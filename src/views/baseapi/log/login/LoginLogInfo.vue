@@ -51,12 +51,17 @@
     })
   }
 
+  /**
+   * 初始化终端信息
+   */
   async function initClients() {
     const { data } = await findAll()
     clients.value = data
   }
 
-  // 获取终端信息
+  /**
+   * 获取终端信息
+   */
   function getClient(code) {
     return findOneByField(clients.value, code, 'code')?.['name']
   }

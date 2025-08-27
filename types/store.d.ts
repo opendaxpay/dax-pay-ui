@@ -68,4 +68,6 @@ export interface FilePlatform {
   type: string
   url: string
   defaultPlatform: boolean
+  // 现在所有都是前端直传
+  frontendUpload: boolean
 }

@@ -31,25 +31,25 @@
           :data="pagination.records"
           :loading="loading"
         >
-          <vxe-column type="seq" width="60" />
-          <vxe-column field="userId" title="用户id" />
-          <vxe-column field="account" title="用户名称" />
-          <vxe-column field="login" title="登录成功状态">
+          <vxe-column type="seq" :width="60" />
+          <vxe-column field="userId" title="用户ID" :min-width="100" />
+          <vxe-column field="account" title="用户账号" :min-width="120" />
+          <vxe-column field="login" title="登录成功" align="center" :min-width="90">
             <template #default="{ row }">
               <a-tag v-if="row.login" color="green">成功</a-tag>
               <a-tag v-else color="red">失败</a-tag>
             </template>
           </vxe-column>
-          <vxe-column field="client" title="终端">
+          <vxe-column field="client" title="终端" align="center" :min-width="100">
             <template #default="{ row }">
               {{ getClient(row.client) }}
             </template>
           </vxe-column>
-          <vxe-column field="ip" title="登录IP地址" />
-          <vxe-column field="os" title="操作系统" />
-          <vxe-column field="browser" title="浏览器类型" />
-          <vxe-column field="msg" title="提示消息" />
-          <vxe-column field="loginTime" title="访问时间" />
+          <vxe-column field="ip" title="登录IP地址" :min-width="150" />
+          <vxe-column field="os" title="操作系统" :min-width="150" />
+          <vxe-column field="browser" title="浏览器类型" :min-width="150" />
+          <vxe-column field="msg" title="提示消息" :min-width="170" />
+          <vxe-column field="loginTime" title="访问时间" :min-width="170" />
           <vxe-column fixed="right" width="60" :showOverflow="false" title="操作">
             <template #default="{ row }">
               <span>
@@ -95,7 +95,7 @@
     model,
     loading,
   } = useTablePage(queryPage)
-  const { notification, createMessage, createConfirm } = useMessage()
+  const { createMessage, createConfirm } = useMessage()
 
   let clients = ref<Client[]>()
   const deleteDay = ref<number | undefined>(undefined)
@@ -117,13 +117,22 @@
   // 查询条件
   const fields = computed(() => {
     return [
-      { field: 'code', type: 'string', name: '账号', placeholder: '请输入账号名称' },
+      { field: 'account', type: 'string', name: '用户账号', placeholder: '请输入用户账号' },
       {
         field: 'client',
         type: 'list',
         name: '终端',
         placeholder: '请选择终端',
         selectList: dropdownTranslate(clients, 'name', 'code'),
+      },
+      {
+        field: 'success',
+        type: 'list',
+        name: '登录状态',
+        selectList: [
+          { label: '成功', value: 'true' },
+          { label: '失败', value: 'false' },
+        ],
       },
     ] as QueryField[]
   })
@@ -181,7 +190,7 @@
       content: '是否清除指定日期前的日志，该操作不可撤回',
       onOk: async () => {
         createMessage.info('清理日志中...')
-        deleteByDay(deleteDay).then(() => {
+        deleteByDay(deleteDay.value).then(() => {
           createMessage.success('清理日志成功')
           queryPage()
         })

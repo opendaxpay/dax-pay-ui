@@ -8,47 +8,193 @@
     :mask-closable="showable"
     @cancel="handleCancel"
   >
-    <a-descriptions bordered>
-      <a-descriptions-item label="退款号" :column="{ lg: 2, md: 1 }">
-        {{ order.refundNo }}
-      </a-descriptions-item>
-      <a-descriptions-item label="商户退款号" :span="2">
-        {{ order.bizRefundNo }}
-      </a-descriptions-item>
-      <a-descriptions-item label="原支付标题" :span="2">
-        {{ order.title }}
-      </a-descriptions-item>
-      <a-descriptions-item label="支付订单号" :span="2">
-        {{ order.orderNo }}
-      </a-descriptions-item>
-      <a-descriptions-item label="商户支付订单号" :span="2">
-        {{ order.bizOrderNo }}
-      </a-descriptions-item>
-      <a-descriptions-item label="退款金额(元)" :span="2">
-        {{ order.amount ? order.amount : 0 }}
-      </a-descriptions-item>
-      <a-descriptions-item label="退款发起时间" :span="2">
-        {{ order.createTime }}
-      </a-descriptions-item>
-      <a-descriptions-item label="退款完成时间" :span="2">
-        {{ order.finishTime }}
-      </a-descriptions-item>
-      <a-descriptions-item v-if="order.errorCode" label="错误码" :span="2">
-        {{ order.errorCode }}
-      </a-descriptions-item>
-      <a-descriptions-item v-if="order.errorMsg" label="错误信息" :span="2">
-        {{ order.errorMsg }}
-      </a-descriptions-item>
-      <a-descriptions-item label="退款状态" :span="2">
-        <a-tag>{{ dictConvert('refund_status', order.status) || '空' }}</a-tag>
-      </a-descriptions-item>
-      <a-descriptions-item label="退款终端ip">
-        {{ order.clientIp }}
-      </a-descriptions-item>
-      <a-descriptions-item label="应用AppId" :span="2">
-        {{ order.appId }}
-      </a-descriptions-item>
-    </a-descriptions>
+    <div class="dialogRow">
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">退款标题</div>
+            <div class="rightContent">{{ order.title }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">退款金额(元)</div>
+            <div class="rightContent">{{ order.amount ? order.amount : 0 }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="8">
+          <div class="gutterItem">
+            <div class="leftTitle">退款通道</div>
+            <div class="rightContent">{{ dictConvert('channel', order.channel) }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">退款号</div>
+            <div class="rightContent">{{ order.refundNo }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">通道退款号</div>
+            <div class="rightContent">{{ order.outRefundNo || '无' }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">商户退款号</div>
+            <div class="rightContent">{{ order.bizRefundNo }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">支付订单号</div>
+            <div class="rightContent">{{ order.orderNo }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">商户支付订单号</div>
+            <div class="rightContent">{{ order.bizOrderNo }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">应用号</div>
+            <div class="rightContent">
+              {{ order.appId }}
+            </div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">应用名称</div>
+            <div class="rightContent">
+              {{ order.appName }}
+            </div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-divider />
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">退款状态</div>
+            <div class="rightContent">
+              {{ dictConvert('refund_status', order.status) || '空' }}
+            </div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">结算状态</div>
+            <div class="rightContent">
+              {{ dictConvert('settle_status', order.settleStatus) || '空' }}
+            </div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">退款发起时间</div>
+            <div class="rightContent">{{ order.createTime }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">退款完成时间</div>
+            <div class="rightContent">
+              {{ order.finishTime || '无' }}
+            </div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="24" v-if="order.notifyUrl">
+          <div class="gutterItem">
+            <div class="leftTitle">通知地址</div>
+            <div class="rightContent"> {{ order.notifyUrl || '无' }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="24" v-if="order.attach">
+          <div class="gutterItem">
+            <div class="leftTitle">商户扩展参数</div>
+            <div class="rightContent"> {{ order.attach || '无' }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="24" v-if="order.extraParam">
+          <div class="gutterItem">
+            <div class="leftTitle">附加参数</div>
+            <div class="rightContent"> {{ order.extraParam || '无' }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="24" v-if="order.errorMsg">
+          <div class="gutterItem">
+            <div class="leftTitle">错误信息</div>
+            <div class="rightContent"> {{ order.errorMsg || '无' }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">退款终端ip</div>
+            <div class="rightContent">{{ order.clientIp }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="8">
+          <div class="gutterItem">
+            <div class="leftTitle">商户号</div>
+            <div class="rightContent"> {{ order.mchNo || '无' }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="8" v-if="order.agentNo">
+          <div class="gutterItem">
+            <div class="leftTitle">代理商号</div>
+            <div class="rightContent"> {{ order.agentNo || '无' }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="8" v-if="order.isvNo">
+          <div class="gutterItem">
+            <div class="leftTitle">服务商号</div>
+            <div class="rightContent"> {{ order.isvNo || '无' }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="8">
+          <div class="gutterItem">
+            <div class="leftTitle">商户名称</div>
+            <div class="rightContent"> {{ order.mchName || '无' }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="8" v-if="order.agentName">
+          <div class="gutterItem">
+            <div class="leftTitle">代理商名称</div>
+            <div class="rightContent"> {{ order.agentName || '无' }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="8" v-if="order.isvName">
+          <div class="gutterItem">
+            <div class="leftTitle">服务商名称</div>
+            <div class="rightContent"> {{ order.isvName || '无' }}</div>
+          </div>
+        </a-col>
+      </a-row>
+    </div>
     <template #footer>
       <a-button key="cancel" @click="handleCancel">取消</a-button>
     </template>

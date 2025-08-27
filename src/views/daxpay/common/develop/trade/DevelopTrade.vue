@@ -11,6 +11,7 @@
         <develop-trade-pay v-if="tradeType === TradeTypeEnum.PAY" />
         <develop-trade-refund v-if="tradeType === TradeTypeEnum.REFUND" />
         <develop-trade-transfer v-if="tradeType === TradeTypeEnum.TRANSFER" />
+        <develop-trade-gateway v-if="tradeType === 'gateway'" />
       </div>
     </div>
   </div>
@@ -24,6 +25,7 @@
   import DevelopTradePay from './DevelopTradePay.vue'
   import DevelopTradeRefund from './DevelopTradeRefund.vue'
   import DevelopTradeTransfer from './DevelopTradeTransfer.vue'
+  import DevelopTradeGateway from './DevelopTradeGateway.vue'
 
   const { dictDropDown } = useDict()
 
@@ -36,7 +38,10 @@
    * 初始化数据
    */
   async function initData() {
-    tradeTypes.value = await dictDropDown('trade_type')
+    tradeTypes.value.push({ value: TradeTypeEnum.PAY, label: '支付' })
+    tradeTypes.value.push({ value: TradeTypeEnum.REFUND, label: '退款' })
+    tradeTypes.value.push({ value: TradeTypeEnum.TRANSFER, label: '转账' })
+    tradeTypes.value.push({ value: 'gateway', label: '网关支付' })
   }
 </script>
 

@@ -8,37 +8,96 @@
     :mask-closable="showable"
     @cancel="handleCancel"
   >
-    <a-spin :spinning="confirmLoading">
-      <a-descriptions bordered title="" :column="{ lg: 2, md: 1 }">
-        <a-descriptions-item label="平台交易号" :span="2">
-          {{ form.tradeNo }}
-        </a-descriptions-item>
-        <a-descriptions-item label="通道交易号" :span="2">
-          {{ form.outTradeNo }}
-        </a-descriptions-item>
-        <a-descriptions-item label="支付通道" :span="2">
-          <a-tag>{{ dictConvert('channel', form.channel) || '无' }}</a-tag>
-        </a-descriptions-item>
-        <a-descriptions-item label="交易类型" :span="2">
-          <a-tag>{{ dictConvert('trade_type', form.callbackType) || '无' }}</a-tag>
-        </a-descriptions-item>
-        <a-descriptions-item label="处理状态" :span="2">
-          {{ dictConvert('callback_status', form.status) || '无' }}
-        </a-descriptions-item>
-        <a-descriptions-item label="通知时间">
-          {{ form.createTime }}
-        </a-descriptions-item>
-        <a-descriptions-item label="提示消息" v-if="form.errorMsg" :span="4">
-          {{ form.errorMsg }}
-        </a-descriptions-item>
-        <a-descriptions-item label="应用AppId" :span="2">
-          {{ form.appId }}
-        </a-descriptions-item>
-        <a-descriptions-item label="通知消息" :span="4">
-          <json-preview :data="JSON.parse(form.notifyInfo || '{}')" />
-        </a-descriptions-item>
-      </a-descriptions>
-    </a-spin>
+    <div class="dialogRow">
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="24">
+          <div class="gutterItem">
+            <div class="leftTitle">平台交易号</div>
+            <div class="rightContent">{{ form.tradeNo }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="24">
+          <div class="gutterItem">
+            <div class="leftTitle">通道交易号</div>
+            <div class="rightContent">{{ form.outTradeNo }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">支付通道</div>
+            <div class="rightContent">{{ dictConvert('channel', form.channel) || '无' }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">交易类型</div>
+            <div class="rightContent">{{
+              dictConvert('trade_type', form.callbackType) || '无'
+            }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">处理状态</div>
+            <div class="rightContent">{{
+              dictConvert('callback_status', form.status) || '无'
+            }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">通知时间</div>
+            <div class="rightContent">{{ form.createTime }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">处理状态</div>
+            <div class="rightContent">{{
+              dictConvert('callback_status', form.status) || '无'
+            }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12" v-if="form.errorMsg">
+          <div class="gutterItem">
+            <div class="leftTitle">提示消息</div>
+            <div class="rightContent">{{ form.errorMsg }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">商户号</div>
+            <div class="rightContent"> {{ form.mchNo }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12" v-if="form.errorMsg">
+          <div class="gutterItem">
+            <div class="leftTitle">应用AppId</div>
+            <div class="rightContent">{{ form.appId }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">通知消息</div>
+            <div class="rightContent">
+              <json-preview :data="JSON.parse(form.notifyInfo || '{}')"
+            /></div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-divider />
+    </div>
+
     <template #footer>
       <a-button key="cancel" @click="handleCancel">取消</a-button>
     </template>

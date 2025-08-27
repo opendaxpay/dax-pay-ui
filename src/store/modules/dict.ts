@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import { findAllByEnable } from '@/views/baseapi/dict/DictItem.api'
 import { Dict } from '#/store'
-import { store } from '@/store'
 
 interface DictState {
   dict: Dict[]

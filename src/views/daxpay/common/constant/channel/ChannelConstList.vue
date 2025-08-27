@@ -19,15 +19,33 @@
           :loading="loading"
         >
           <vxe-column type="seq" width="60" />
-          <vxe-column field="code" title="编码" />
-          <vxe-column field="name" title="名称" />
-          <vxe-column field="enable" title="是否启用">
+          <vxe-column field="code" title="编码" :min-width="150" />
+          <vxe-column field="name" title="名称" :min-width="170" />
+          <vxe-column field="enable" title="是否启用" :min-width="90" align="center">
             <template #default="{ row }">
               <a-tag v-if="row.enable" color="green">启用</a-tag>
               <a-tag v-else color="red">停用</a-tag>
             </template>
           </vxe-column>
-          <vxe-column field="remark" title="备注" />
+          <vxe-column field="isv" title="服务商" :min-width="90" align="center">
+            <template #default="{ row }">
+              <a-tag v-if="row.isv" color="green">支持</a-tag>
+              <a-tag v-else color="red">不支持</a-tag>
+            </template>
+          </vxe-column>
+          <vxe-column field="allocatable" title="分账" :min-width="90" align="center">
+            <template #default="{ row }">
+              <a-tag v-if="row.allocatable" color="green">支持</a-tag>
+              <a-tag v-else color="red">不支持</a-tag>
+            </template>
+          </vxe-column>
+          <vxe-column field="terminal" title="终端报送" :min-width="90" align="center">
+            <template #default="{ row }">
+              <a-tag v-if="row.terminal" color="green">支持</a-tag>
+              <a-tag v-else color="red">不支持</a-tag>
+            </template>
+          </vxe-column>
+          <vxe-column field="remark" title="备注" :min-width="150" />
         </vxe-table>
       </div>
       <vxe-pager

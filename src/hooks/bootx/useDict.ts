@@ -19,7 +19,7 @@ async function getDict(): Promise<Dict[]> {
 /**
  * 字典项转换
  */
-function dictConvert(dictCode: string, code) {
+function dictConvert(dictCode: string, code:any) {
   const dictList = dictStore.getDict
   const item = dictList.filter((dict) => {
     return dictCode === dict.dictCode && dict.code === String(code)

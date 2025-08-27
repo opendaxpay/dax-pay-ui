@@ -32,13 +32,17 @@
           :loading="loading"
         >
           <vxe-column type="seq" width="60" />
-          <vxe-column field="operateId" title="操作人员id" :min-width="120" />
           <vxe-column field="account" title="操作账号" :min-width="120" />
-          <vxe-column field="title" title="操作模块" :min-width="100" />
-          <vxe-column field="success" title="是否成功" :min-width="70">
+          <vxe-column field="title" title="操作模块" :min-width="220" />
+          <vxe-column field="success" title="是否成功" align="center" :min-width="100">
             <template #default="{ row }">
               <a-tag v-if="row.success" color="green">成功</a-tag>
               <a-tag v-else color="red">失败</a-tag>
+            </template>
+          </vxe-column>
+          <vxe-column field="client" title="终端" align="center" :min-width="100">
+            <template #default="{ row }">
+              {{ getClient(row.client) }}
             </template>
           </vxe-column>
           <vxe-column field="businessType" title="业务类型" :min-width="100">
@@ -46,7 +50,9 @@
               {{ dictConvert('log_business_type', row.businessType) }}
             </template>
           </vxe-column>
-          <vxe-column field="operateIp" title="操作ip" :min-width="100" />
+          <vxe-column field="os" title="操作系统" :min-width="150" />
+          <vxe-column field="browser" title="浏览器类型" :min-width="150" />
+          <vxe-column field="operateIp" title="操作ip" :min-width="150" />
           <vxe-column field="errorMsg" title="错误提示" :min-width="150" />
           <vxe-column field="operateTime" title="操作时间" :min-width="170" />
           <vxe-column fixed="right" width="60" :showOverflow="false" title="操作">
@@ -72,7 +78,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { onMounted, ref } from 'vue'
+  import { computed, onMounted, ref } from 'vue'
   import { page, deleteByDay } from './OperateLog.api'
   import useTablePage from '@/hooks/bootx/useTablePage'
   import OperateLogEdit from './OperateLogInfo.vue'
@@ -82,6 +88,8 @@
   import { QueryField } from '@/components/Bootx/Query/Query'
   import { useDict } from '@/hooks/bootx/useDict'
   import { LabeledValue } from 'ant-design-vue/lib/select'
+  import { Client, findAll as findClients } from '@/views/iam/client/Client.api'
+  import { dropdownTranslate, findOneByField } from '@/utils/dataUtil'
 
   // 使用hooks
   const {
@@ -94,9 +102,11 @@
     loading,
   } = useTablePage(queryPage)
   const { createMessage, createConfirm } = useMessage()
-  const { dictConvert } = useDict()
+  const { dictConvert, dictDropDown } = useDict()
 
   const deleteDay = ref<any>(undefined)
+  let clients = ref<Client[]>()
+  const businessTypeList = ref<LabeledValue[]>([])
   // 删除条件
   let deleteDays = ref<LabeledValue[]>([
     { label: '3天之前', value: '3' },
@@ -108,10 +118,35 @@
     { label: '365天之前', value: '365' },
   ])
   // 查询条件
-  const fields = [
-    { field: 'title', type: 'string', name: '操作模块', placeholder: '请输入操作模块' },
-    { field: 'username', type: 'string', name: '账号', placeholder: '请输入账号名称' },
-  ] as QueryField[]
+  const fields = computed(() => {
+    return [
+      { field: 'title', type: 'string', name: '操作模块', placeholder: '请输入操作模块' },
+      { field: 'username', type: 'string', name: '账号', placeholder: '请输入账号名称' },
+      {
+        field: 'client',
+        type: 'list',
+        name: '终端',
+        placeholder: '请选择终端',
+        selectList: dropdownTranslate(clients, 'name', 'code'),
+      },
+      {
+        field: 'businessType',
+        type: 'list',
+        name: '业务类型',
+        placeholder: '请选择业务类型',
+        selectList: businessTypeList.value,
+      },
+      {
+        field: 'success',
+        type: 'list',
+        name: '是否成功',
+        selectList: [
+          { label: '成功', value: 'true' },
+          { label: '失败', value: 'false' },
+        ],
+      },
+    ] as QueryField[]
+  })
 
   const xTable = ref<VxeTableInstance>()
   const xToolbar = ref<VxeToolbarInstance>()
@@ -119,10 +154,21 @@
 
   onMounted(() => {
     vxeBind()
+    initData()
     queryPage()
   })
   function vxeBind() {
     xTable.value?.connect(xToolbar.value as VxeToolbarInstance)
+  }
+
+  /**
+   * 初始化数据
+   */
+  function initData() {
+    findClients().then(({ data }) => {
+      clients.value = data
+    })
+    dictDropDown('log_business_type').then((res) => (businessTypeList.value = res))
   }
 
   /**
@@ -145,6 +191,12 @@
     operateLogEdit.value.show(record.id)
   }
   /**
+   * 获取终端信息
+   */
+  function getClient(code) {
+    return findOneByField(clients, code, 'code')?.['name']
+  }
+  /**
    * 清理日志
    */
   function deleteLogs() {
@@ -154,7 +206,7 @@
       content: '是否清除指定日期前的日志，该操作不可撤回',
       onOk: async () => {
         createMessage.info('清理日志中...')
-        deleteByDay(deleteDay).then(() => {
+        deleteByDay(deleteDay.value).then(() => {
           createMessage.success('清理日志成功')
           queryPage()
         })

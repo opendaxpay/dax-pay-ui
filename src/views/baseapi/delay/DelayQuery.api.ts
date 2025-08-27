@@ -11,7 +11,7 @@ export function getBucket() {
 /**
  * 获取桶任务分页
  */
-export function pageBucketJob(param) {
+export function pageBucketJob(param:any) {
   return defHttp.get<Result<PageResult<DelayJobResult>>>({
     url: '/delay/queue/pageBucketJob',
     params: param,

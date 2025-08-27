@@ -8,59 +8,131 @@
     :mask-closable="showable"
     @cancel="handleCancel"
   >
-    <a-descriptions bordered :column="{ lg: 4, md: 1 }">
-      <a-descriptions-item label="转账号" :span="2">
-        {{ order.transferNo }}
-      </a-descriptions-item>
-      <a-descriptions-item label="商户转账号" :span="2">
-        {{ order.transferNo }}
-      </a-descriptions-item>
-      <a-descriptions-item label="通道转账号" :span="2">
-        {{ order.outTransferNo }}
-      </a-descriptions-item>
-      <a-descriptions-item label="标题" :span="2">
-        {{ order.title }}
-      </a-descriptions-item>
-      <a-descriptions-item label="转账金额(元)" :span="2">
-        {{ order.amount || '无' }}
-      </a-descriptions-item>
-      <a-descriptions-item label="退款发起时间" :span="2">
-        {{ order.createTime }}
-      </a-descriptions-item>
-      <a-descriptions-item label="转账原因" :span="2">
-        {{ order.reason }}
-      </a-descriptions-item>
-      <a-descriptions-item label="收款人姓名" :span="2">
-        {{ order.payeeName || '空' }}
-      </a-descriptions-item>
-      <a-descriptions-item label="收款人账号" :span="4">
-        {{ order.payeeAccount }}
-      </a-descriptions-item>
-      <a-descriptions-item label="状态" :span="2">
-        <a-tag>{{ dictConvert('transfer_status', order.status) || '空' }}</a-tag>
-      </a-descriptions-item>
-      <a-descriptions-item label="创建时间" :span="2">
-        {{ order.createTime }}
-      </a-descriptions-item>
-      <a-descriptions-item label="完成时间" :span="2">
-        {{ order.finishTime }}
-      </a-descriptions-item>
-      <a-descriptions-item v-if="order.errorCode" label="错误码" :span="2">
-        {{ order.errorCode }}
-      </a-descriptions-item>
-      <a-descriptions-item v-if="order.errorMsg" label="错误信息" :span="2">
-        {{ order.errorMsg }}
-      </a-descriptions-item>
-      <a-descriptions-item label="终端ip" :span="4">
-        {{ order.clientIp }}
-      </a-descriptions-item>
-      <a-descriptions-item label="应用AppId" :span="2">
-        {{ order.appId }}
-      </a-descriptions-item>
-      <a-descriptions-item label="商户扩展参数" :span="4">
-        {{ order.attach || '无' }}
-      </a-descriptions-item>
-    </a-descriptions>
+    <div class="dialogRow">
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">转账号</div>
+            <div class="rightContent">{{ order.transferNo }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">商户转账号</div>
+            <div class="rightContent">{{ order.transferNo }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">通道转账号</div>
+            <div class="rightContent">{{ order.outTransferNo }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">标题</div>
+            <div class="rightContent">{{ order.title }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">转账金额(元)</div>
+            <div class="rightContent">{{ order.amount || '无' }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">转账原因</div>
+            <div class="rightContent">{{ order.reason }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">收款人姓名</div>
+            <div class="rightContent">{{ order.payeeName || '空' }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">收款人账号</div>
+            <div class="rightContent"> {{ order.payeeAccount }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">状态</div>
+            <div class="rightContent">{{
+              dictConvert('transfer_status', order.status) || '空'
+            }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-divider />
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">创建时间</div>
+            <div class="rightContent">{{ order.createTime }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">完成时间</div>
+            <div class="rightContent"> {{ order.finishTime }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12" v-if="order.errorCode">
+          <div class="gutterItem">
+            <div class="leftTitle">错误码</div>
+            <div class="rightContent">{{ order.errorCode }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12" v-if="order.errorMsg">
+          <div class="gutterItem">
+            <div class="leftTitle">错误信息</div>
+            <div class="rightContent"> {{ order.errorMsg }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">终端ip</div>
+            <div class="rightContent">{{ order.clientIp }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">商户号</div>
+            <div class="rightContent"> {{ order.mchNo }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">应用AppId</div>
+            <div class="rightContent">{{ order.appId }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">商户扩展参数</div>
+            <div class="rightContent"> {{ order.attach || '无' }}</div>
+          </div>
+        </a-col>
+      </a-row>
+    </div>
     <template #footer>
       <a-button key="cancel" @click="handleCancel">取消</a-button>
     </template>

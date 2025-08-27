@@ -14,22 +14,31 @@ async function getFilePlatforms(): Promise<FilePlatform[]> {
     return await platformStore.initFilePlatform()
   }
 }
+/**
+ * 获取存储平台参数
+ */
+async function getFilePlatform(platform): Promise<FilePlatform> {
+  const platforms = await getFilePlatforms()
+  return platforms.filter((o) => {
+    return platform ? platform === o.type : o.defaultPlatform
+  })?.[0]
+}
 
 /**
- * 获取地址
- * @param fileUrl 文件保存的url地址
- * @param platform 存储平台类型编码
+ * 获取默认上传平台
  */
-function getFileUrl(fileUrl?: string, platform?: string) {
-  const platforms = platformStore.getFilePlatforms
-  const item = platforms.filter((o) => {
-    return platform ? platform === o.type : o.defaultPlatform
-  })
-  if (item && item.length > 0) {
-    return item[0].url + fileUrl
-  } else {
-    return ''
-  }
+async function getUploadPlatform(): Promise<FilePlatform> {
+  const uploadPlatform = platformStore.getUploadPlatform
+  return getFilePlatform(uploadPlatform)
+}
+
+/**
+ * 获取文件预览地址
+ * @param fileUrl 文件保存的名称
+ */
+function getFileUrl(fileUrl?: string) {
+  fileUrl = fileUrl?.startsWith('/') ? fileUrl.slice(1) : fileUrl
+  return `${import.meta.env.VITE_GLOB_API_URL}/file/download/${fileUrl}`
 }
 
 /**
@@ -40,5 +49,8 @@ export function useFilePlatform() {
   getFilePlatforms().then()
   return {
     getFileUrl,
+    getFilePlatform,
+    getUploadPlatform,
   }
 }
+// platformStore.initUploadPlatform().then()

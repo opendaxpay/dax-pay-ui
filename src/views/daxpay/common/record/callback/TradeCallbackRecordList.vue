@@ -47,7 +47,8 @@
           </vxe-column>
           <vxe-column field="msg" title="提示信息" :min-width="250" />
           <vxe-column field="createTime" title="通知时间" sortable :min-width="170" />
-          <vxe-column field="appId" title="应用号" :min-width="150" />
+          <vxe-column field="mchName" title="商户" :min-width="150" />
+          <vxe-column field="appName" title="应用" :min-width="150" />
           <vxe-column fixed="right" width="60" :showOverflow="false" title="操作">
             <template #default="{ row }">
               <span>
@@ -87,7 +88,8 @@
   import RefundOrderInfo from '@/views/daxpay/common/order/refund/RefundOrderInfo.vue'
   import TransferOrderInfo from '@/views/daxpay/common/order/transfer/TransferOrderInfo.vue'
   import { TradeTypeEnum } from '@/enums/daxpay/daxpayEnum'
-  import { mchAppDropdown } from '@/views/daxpay/common/merchant/app/MchApp.api'
+  import { dropdown as merchantDropdown } from '@/views/daxpay/common/assist/basic/MerchantQuery.api'
+  import { dropdownByMchNo as mchAppDropdown } from '@/views/daxpay/common/assist/basic/MchAppQuery.api'
 
   // 使用hooks
   const {
@@ -103,7 +105,8 @@
   } = useTablePage(queryPage)
   const { dictConvert, dictDropDown } = useDict()
 
-  const mchAppList = ref<LabeledValue[]>([])
+  const mchNoOptions = ref<LabeledValue[]>([])
+  const mchAppOptions = ref<LabeledValue[]>([])
   let channelList = ref<LabeledValue[]>([])
   let callbackTypeList = ref<LabeledValue[]>([])
   let callbackStatusList = ref<LabeledValue[]>([])
@@ -135,11 +138,18 @@
         selectList: callbackStatusList.value,
       },
       {
+        field: 'mchNo',
+        type: LIST,
+        name: '商户号',
+        placeholder: '请选择商户号',
+        selectList: mchNoOptions.value,
+      },
+      {
         field: 'appId',
         type: LIST,
         name: '应用号',
         placeholder: '请先选择商户后选择应用号',
-        selectList: mchAppList.value,
+        selectList: mchAppOptions.value,
       },
     ] as QueryField[]
   })
@@ -150,6 +160,10 @@
   const payOrderInfo = ref<any>()
   const refundOrderInfo = ref<any>()
   const transferOrderInfo = ref<any>()
+  watch(
+    () => model.queryParam?.mchNo,
+    (value) => changeMch(value),
+  )
   onMounted(() => {
     initData()
     vxeBind()
@@ -163,18 +177,25 @@
    * 初始化
    */
   async function initData() {
+    merchantDropdown().then(({ data }) => {
+      mchNoOptions.value = data
+    })
     channelList.value = await dictDropDown('channel')
     callbackTypeList.value = await dictDropDown('trade_type')
     callbackStatusList.value = await dictDropDown('callback_status')
-    initMchApp()
   }
   /**
-   * 初始化商户应用列表
+   * 商户变动后更新应用列表
    */
-  function initMchApp() {
-    mchAppDropdown().then(({ data }) => {
-      mchAppList.value = data
-    })
+  function changeMch(mchNo) {
+    if (mchNo) {
+      mchAppDropdown(mchNo).then(({ data }) => {
+        mchAppOptions.value = data
+      })
+    } else {
+      mchAppOptions.value = []
+      model.queryParam.appId = undefined
+    }
   }
 
   /**

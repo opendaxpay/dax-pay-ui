@@ -19,7 +19,7 @@
         @sort-change="sortChange"
       >
         <vxe-column type="seq" width="60" />
-        <vxe-column field="reqCount" title="请求次数">
+        <vxe-column field="reqCount" title="请求次数" sortable>
           <template #default="{ row }">
             <a-tag color="green">{{ row.reqCount || '空' }}</a-tag>
           </template>

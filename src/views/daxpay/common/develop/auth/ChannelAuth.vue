@@ -11,22 +11,34 @@
   >
     <a-alert style="width: 400px" message="请选择参数后生成授权链接进行扫码" type="info" />
     <a-form class="small-from-item mt-15px mb-15px" ref="formRef" :model="form">
-      <a-form-item label="商户应用" name="appId">
+      <a-form-item label="商户" name="mchNo">
         <a-select
           style="width: 320px"
+          :filter-option="search"
+          :options="merchantList"
+          v-model:value="form.mchNo"
+          placeholder="请选择商户"
+          @change="merchantChange"
+        />
+      </a-form-item>
+      <a-form-item label="商户应用" name="appId" v-show="form.mchNo">
+        <a-select
           :filter-option="search"
           :options="mchAppList"
           v-model:value="form.appId"
           placeholder="请选择商户应用"
         />
       </a-form-item>
-      <a-form-item label="对账通道" name="channel" v-show="form.appId">
+      <a-form-item label="支付通道" name="channel" v-show="form.appId">
+        <a-select v-model:value="form.channel" :options="channels" placeholder="请选择支付通道" />
+      </a-form-item>
+      <a-form-item label="认证类型" name="authType">
         <a-input-group compact>
           <a-select
             style="width: calc(100% - 60px)"
-            v-model:value="form.channel"
-            :options="channels"
-            placeholder="请选择对账通道"
+            v-model:value="form.authType"
+            :options="authTypes"
+            placeholder="请选择认证类型"
           />
           <a-button
             :loading="loading"
@@ -81,7 +93,8 @@
     queryAuthResult,
   } from './ChannelAuth.api'
   import useFormEdit from '@/hooks/bootx/useFormEdit'
-  import { mchAppDropdown } from '@/views/daxpay/common/merchant/app/MchApp.api'
+  import { dropdownByEnable as dropdownByEnable } from '@/views/daxpay/common/assist/basic/MerchantQuery.api'
+  import { dropdownEnableByMchNo as mchAppDropdownByEnable } from '@/views/daxpay/common/assist/basic/MchAppQuery.api'
   import { useDict } from '@/hooks/bootx/useDict'
   import { ChannelAuthStatusEnum } from '@/enums/daxpay/daxpayEnum'
 
@@ -90,6 +103,8 @@
   const { search } = useFormEdit()
 
   const channels = ref<LabeledValue[]>([])
+  const authTypes = ref<LabeledValue[]>([])
+  const merchantList = ref<LabeledValue[]>([])
   const mchAppList = ref<LabeledValue[]>([])
 
   const formRef = ref<FormInstance>()
@@ -109,14 +124,20 @@
   async function initData() {
     // 通道
     channels.value = await dictDropDown('channel')
-    initMchApp()
+    // 认证类型
+    authTypes.value = await dictDropDown('channel_auth_type')
+    // 商户
+    dropdownByEnable().then(({ data }) => {
+      merchantList.value = data
+    })
   }
 
   /**
    * 商户变动时刷新应用列表
    */
-  function initMchApp() {
-    mchAppDropdown().then(({ data }) => {
+  function merchantChange() {
+    form.value.appId = undefined
+    mchAppDropdownByEnable(form.value.mchNo).then(({ data }) => {
       mchAppList.value = data
     })
   }

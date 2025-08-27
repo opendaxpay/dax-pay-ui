@@ -3,7 +3,7 @@
     <div class="m-3 p-3 pt-5 bg-white">
       <a-form class="page-query">
         <a-row :gutter="10">
-          <a-col :md="4" :sm="24">
+          <a-col :md="4" :sm="24" v-if="isAdmin()">
             <a-form-item label="终端">
               <a-select
                 v-model:value="clientCode"
@@ -78,7 +78,7 @@
   import PermPathInfo from './PermPathInfo.vue'
   import { Client, findAll } from '@/views/iam/client/Client.api'
   import XEUtils from 'xe-utils'
-  import { getAppEnvConfig } from '@/utils/env'
+  import { getAppEnvConfig, isAdmin } from '@/utils/env'
 
   const { createMessage, createConfirm } = useMessage()
 

@@ -28,3 +28,12 @@ export function forgetPasswordByPhone(obj) {
     data: obj,
   })
 }
+/**
+ * 修改密码
+ */
+export function modifPassword(obj) {
+  return defHttp.post({
+    url: `/user/updatePassword`,
+    params: obj,
+  })
+}

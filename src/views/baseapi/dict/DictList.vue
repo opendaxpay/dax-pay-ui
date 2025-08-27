@@ -26,22 +26,22 @@
           :data="pagination.records"
           :loading="loading"
         >
-          <vxe-column type="seq" width="60" />
-          <vxe-column field="code" title="编码" />
-          <vxe-column field="name" title="名称" />
-          <vxe-column field="groupTag" title="分类标签">
+          <vxe-column type="seq" :width="60" />
+          <vxe-column field="code" title="编码" :min-width="170" />
+          <vxe-column field="name" title="名称" :min-width="150" />
+          <vxe-column field="groupTag" title="分类标签" :min-width="130" align="center">
             <template #default="{ row }">
               <a-tag color="green">{{ row.groupTag || '空' }}</a-tag>
             </template>
           </vxe-column>
-          <vxe-column field="enable" title="启用状态">
+          <vxe-column field="enable" title="启用状态" :min-width="100" align="center">
             <template #default="{ row }">
               <a-tag v-if="row.enable" color="green">启用</a-tag>
               <a-tag v-else color="red">停用</a-tag>
             </template>
           </vxe-column>
-          <vxe-column field="remark" title="备注" />
-          <vxe-column field="createTime" title="创建时间" />
+          <vxe-column field="remark" title="备注" :min-width="150" />
+          <vxe-column field="createTime" title="创建时间" :min-width="140" />
           <vxe-column fixed="right" width="220" :showOverflow="false" title="操作">
             <template #default="{ row }">
               <span>
@@ -71,14 +71,14 @@
         :total="pagination.total"
         @page-change="handleTableChange"
       />
-      <dict-edit ref="dictEdit" @ok="queryPage" />
-      <dict-item-list ref="dictItemList" />
+      <DictEdit ref="dictEdit" @ok="queryPage" />
+      <DictItemList ref="dictItemList" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-  import { onMounted, ref } from 'vue'
+  import { computed, onMounted, ref } from 'vue'
   import { del, page } from './Dict.api'
   import useTablePage from '@/hooks/bootx/useTablePage'
   import DictEdit from './DictEdit.vue'
@@ -88,13 +88,6 @@
   import { useMessage } from '@/hooks/web/useMessage'
   import { QueryField, STRING } from '@/components/Bootx/Query/Query'
   import DictItemList from './DictItemList.vue'
-
-  interface RowVO {
-    id: number
-    name: string
-  }
-
-  const tableData = ref<RowVO[]>([{ id: 10001, name: 'Test1' }])
 
   // 使用hooks
   const {
@@ -109,11 +102,13 @@
   const { createMessage } = useMessage()
 
   // 查询条件
-  const fields = [
-    { field: 'code', type: STRING, name: '字典编码', placeholder: '请输入字典编码' },
-    { field: 'name', type: STRING, name: '字典名称', placeholder: '请输入字典名称' },
-    { field: 'groupTag', type: STRING, name: '分组标签', placeholder: '请输入分组标签' },
-  ] as QueryField[]
+  const fields = computed(() => {
+    return [
+      { field: 'code', type: STRING, name: '字典编码', placeholder: '请输入字典编码' },
+      { field: 'name', type: STRING, name: '字典名称', placeholder: '请输入字典名称' },
+      { field: 'groupTag', type: STRING, name: '分组标签', placeholder: '请输入分组标签' },
+    ] as QueryField[]
+  })
 
   const xTable = ref<VxeTableInstance>()
   const xToolbar = ref<VxeToolbarInstance>()

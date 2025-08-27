@@ -1,16 +1,8 @@
 <template>
   <div>
-    <div class="m-3 p-3 pt-5 bg-white">
-      <b-query
-        :query-params="model.queryParam"
-        :fields="fields"
-        @query="queryPage"
-        @reset="resetQueryParams"
-      />
-    </div>
     <div class="m-3 p-3 bg-white">
       <vxe-toolbar ref="xToolbar" custom :refresh="{ queryMethod: queryPage }" />
-      <div class="h-70vh">
+      <div class="h-75vh">
         <vxe-table
           height="auto"
           key-field="id"
@@ -34,11 +26,26 @@
               </template>
             </template>
           </vxe-column>
-          <vxe-column field="type" title="类型" :width="80" />
+          <vxe-column field="type" title="类型" :width="120" />
           <vxe-column field="name" title="名称" :width="120" />
           <vxe-column field="url" title="平台地址" :min-width="550" :edit-render="{}">
             <template #edit="scope">
               <a-input v-model:value="scope.row.url" @change="updateRowStatus(scope)" />
+            </template>
+          </vxe-column>
+          <vxe-column field="frontendUpload" title="前端直传" :min-width="150">
+            <template #edit="scope">
+              <a-radio-group
+                v-model:value="scope.row.frontendUpload"
+                @change="updateRowStatus(scope)"
+                button-style="solid"
+              >
+                <a-radio-button :value="true">直传</a-radio-button>
+                <a-radio-button :value="false">非直传</a-radio-button>
+              </a-radio-group>
+            </template>
+            <template #default="{ row }">
+              {{ row.frontendUpload ? '是' : '否' }}
             </template>
           </vxe-column>
           <vxe-column fixed="right" :width="120" :showOverflow="false" title="操作">
@@ -70,20 +77,13 @@
   import { FilePlatform, findAll, setDefault, updateUrl } from './FilePlatform.api'
   import useTablePage from '@/hooks/bootx/useTablePage'
   import { VxeTableInstance, VxeToolbarInstance } from 'vxe-table'
-  import BQuery from '/@/components/Bootx/Query/BQuery.vue'
-  import { QueryField } from '@/components/Bootx/Query/Query'
   import { useMessage } from '@/hooks/web/useMessage'
 
   // 使用hooks
-  const { resetQueryParams, model, loading } = useTablePage(queryPage)
+  const { loading } = useTablePage(queryPage)
   const { createMessage, createConfirm } = useMessage()
 
   const records = ref<FilePlatform[]>([])
-
-  // 查询条件
-  const fields = [
-    { field: 'name', type: 'string', name: '文件名称', placeholder: '请输入文件名称' },
-  ] as QueryField[]
 
   const xTable = ref<VxeTableInstance>()
   const xToolbar = ref<VxeToolbarInstance>()
@@ -112,6 +112,7 @@
    * 更新行状态
    */
   function updateRowStatus(params: any) {
+    console.log(params)
     const $table = xTable.value
     if ($table) {
       return $table.updateStatus(params)
@@ -148,7 +149,7 @@
         createConfirm({
           iconType: 'warning',
           title: '警告',
-          content: '是否更新平台地址?',
+          content: '是否更新存储平台配置?',
           onOk: () => {
             updateUrl(row.id, row.url).then(() => {
               createMessage.success('更新成功')

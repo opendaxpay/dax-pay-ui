@@ -46,7 +46,7 @@ export function transfer(params) {
 /**
  * 转账信息同步
  */
-export function syncByTransferNo(id) {
+export function syncByTransferId(id) {
   return defHttp.post<Result<void>>({
     url: '/order/transfer/sync',
     params: { id },

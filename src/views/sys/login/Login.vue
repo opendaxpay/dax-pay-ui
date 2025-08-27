@@ -15,10 +15,10 @@
           <div class="my-auto">
             <img :alt="title" src="@/assets/svg/login-box-bg.svg" class="w-1/2 -mt-16 -enter-x" />
             <div class="mt-10 font-medium text-white -enter-x">
-              <span class="inline-block mt-4 text-3xl"> 开箱即用的开源支付系统</span>
+              <span class="inline-block mt-4 text-3xl"> 支付系统</span>
             </div>
             <div class="mt-5 font-normal text-white dark:text-gray-500 -enter-x"
-              >支持支付宝、微信支付、云闪付
+              >支持聚合支付、服务商模式等功能
             </div>
           </div>
         </div>

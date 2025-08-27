@@ -56,7 +56,8 @@
           <vxe-column field="bizTradeNo" title="商户交易号" :min-width="230" />
           <vxe-column field="outTradeNo" title="通道交易号" :min-width="230" />
           <vxe-column field="createTime" title="时间" :min-width="170" sortable />
-          <vxe-column field="appId" title="应用号" :min-width="150" />
+          <vxe-column field="mchName" title="商户" :min-width="150" />
+          <vxe-column field="appName" title="应用" :min-width="150" />
           <vxe-column fixed="right" :min-width="60" :showOverflow="false" title="操作">
             <template #default="{ row }">
               <span>
@@ -97,7 +98,8 @@
   import ALink from '@/components/Link/Link.vue'
   import TradeFlowRecordInfo from './TradeFlowRecordInfo.vue'
   import { TradeTypeEnum } from '@/enums/daxpay/daxpayEnum'
-  import { mchAppDropdown } from '@/views/daxpay/common/merchant/app/MchApp.api'
+  import { dropdown as merchantDropdown } from '@/views/daxpay/common/assist/basic/MerchantQuery.api'
+  import { dropdownByMchNo as mchAppDropdown } from '@/views/daxpay/common/assist/basic/MchAppQuery.api'
 
   // 使用hooks
   const {
@@ -111,7 +113,8 @@
   } = useTablePage(queryPage)
   const { dictConvert, dictDropDown } = useDict()
 
-  const mchAppList = ref<LabeledValue[]>([])
+  const mchNoOptions = ref<LabeledValue[]>([])
+  const mchAppOptions = ref<LabeledValue[]>([])
   const payChannelList = ref<LabeledValue[]>([])
   const tradeFlowRecordTypeList = ref<LabeledValue[]>([])
 
@@ -137,11 +140,18 @@
         selectList: payChannelList.value,
       },
       {
+        field: 'mchNo',
+        type: LIST,
+        name: '商户号',
+        placeholder: '请选择商户号',
+        selectList: mchNoOptions.value,
+      },
+      {
         field: 'appId',
         type: LIST,
         name: '应用号',
         placeholder: '请先选择商户后选择应用号',
-        selectList: mchAppList.value,
+        selectList: mchAppOptions.value,
       },
     ] as QueryField[]
   })
@@ -166,21 +176,32 @@
   function vxeBind() {
     xTable.value?.connect(xToolbar.value as VxeToolbarInstance)
   }
+  watch(
+    () => model.queryParam?.mchNo,
+    (value) => changeMch(value),
+  )
   /**
    * 初始化
    */
   async function initData() {
+    merchantDropdown().then(({ data }) => {
+      mchNoOptions.value = data
+    })
     tradeFlowRecordTypeList.value = await dictDropDown('trade_type')
     payChannelList.value = await dictDropDown('channel')
-    initMchApp()
   }
   /**
-   * 初始化商户应用列表
+   * 商户变动后更新应用列表
    */
-  function initMchApp() {
-    mchAppDropdown().then(({ data }) => {
-      mchAppList.value = data
-    })
+  function changeMch(mchNo) {
+    if (mchNo) {
+      mchAppDropdown(mchNo).then(({ data }) => {
+        mchAppOptions.value = data
+      })
+    } else {
+      mchAppOptions.value = []
+      model.queryParam.appId = undefined
+    }
   }
   /**
    * 分页查询

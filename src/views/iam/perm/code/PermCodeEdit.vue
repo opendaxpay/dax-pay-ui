@@ -144,7 +144,6 @@
         confirmLoading.value = false
       })
     } else {
-      console.log(row)
       if (row) {
         form.value.pid = row.id as string
       }

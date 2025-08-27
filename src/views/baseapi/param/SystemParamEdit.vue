@@ -112,7 +112,7 @@
     formEditType,
   } = useFormEdit()
   const { existsByServer } = useValidate()
-  const { dictDropDownNumber } = useDict()
+  const { dictDropDown } = useDict()
 
   // 表单
   const formRef = ref<FormInstance>()
@@ -145,7 +145,7 @@
     initFormEditType(editType)
     resetForm()
     getInfo(id, editType)
-    dictDropDownNumber('ParamType').then((res) => (paramTypeList.value = res))
+    dictDropDown('ParamType').then((res) => (paramTypeList.value = res))
   }
   // 获取信息
   function getInfo(id, editType: FormEditType) {

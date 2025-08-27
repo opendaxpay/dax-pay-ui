@@ -6,7 +6,6 @@ import { SessionTimeoutProcessingEnum } from '@/enums/appEnum'
 
 const { createMessage, createErrorModal } = useMessage()
 const error = createMessage.error!
-const stp = projectSetting.sessionTimeoutProcessing
 
 export function checkStatus(
   status: number,
@@ -25,17 +24,12 @@ export function checkStatus(
     // Return to the current page after successful login. This step needs to be operated on the login page.
     case 401:
       userStore.setToken(undefined)
-      errMessage = msg || '用户没有权限（令牌、用户名、密码错误）!'
-      if (stp === SessionTimeoutProcessingEnum.PAGE_COVERAGE) {
-        // @ts-ignore
-        userStore.setSessionTimeout(true)
-      } else {
-        // 被动登出，带redirect地址
-        userStore.logout(false)
-      }
+      errMessage = msg || '用户未登录，请重新登录!'
+      // 被动登出，带redirect地址
+      userStore.logout(true)
       break
     case 403:
-      errMessage = '用户得到授权，但是访问是被禁止的。!'
+      errMessage = '用户得到授权，但是访问是被禁止的!'
       break
     // 404请求不存在
     case 404:

@@ -40,8 +40,10 @@ export interface AuthUrlResult {
 export interface GenerateAuthUrlParam extends MchEntity {
   // 通道
   channel?: string
-  // 自定义授权重定向地址
-  authRedirectUrl?: string
+  // 认证类型
+  authType?: string
+  // 授权认证路径
+  authPath?: string
 }
 
 /**

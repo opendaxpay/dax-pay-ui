@@ -23,7 +23,7 @@
       <a-form-item label="字典编码" name="dictCode">
         <a-input v-model:value="form.dictCode" disabled />
       </a-form-item>
-      <a-form-item label="字典项编码" name="code">
+      <a-form-item label="字典项编码" validate-first name="code">
         <a-input v-model:value="form.code" :disabled="showable" placeholder="请输入字典项code" />
       </a-form-item>
       <a-form-item label="字典项名称" name="name">
@@ -61,7 +61,7 @@
 </template>
 
 <script lang="ts" setup>
-import { nextTick, reactive, ref, unref } from "vue";
+  import { nextTick, reactive, ref, unref } from 'vue'
   import useFormEdit from '@/hooks/bootx/useFormEdit'
   import { add, get, update, existsByCode, existsByCodeNotId, DictItem } from './DictItem.api'
   import { FormInstance, Rule } from 'ant-design-vue/lib/form'
@@ -82,7 +82,6 @@ import { nextTick, reactive, ref, unref } from "vue";
     showable,
     formEditType,
   } = useFormEdit()
-  const { existsByServer } = useValidate()
   // 表单
   const formRef = ref<FormInstance>()
   let form = reactive({
@@ -139,10 +138,18 @@ import { nextTick, reactive, ref, unref } from "vue";
     })
   }
 
-  // 校验编码重复
+  /**
+   * 校验编码重复
+   */
   async function validateCode() {
-    const { code, id } = form
-    return existsByServer(code, id, formEditType, existsByCode, existsByCodeNotId)
+    const { code, id, dictId } = form
+    if (!id) {
+      const res = await existsByCode(code, dictId)
+      return res.data ? Promise.reject('该编码已存在') : Promise.resolve()
+    } else {
+      const res = await existsByCodeNotId(code, id, dictId)
+      return res.data ? Promise.reject('该编码已存在') : Promise.resolve()
+    }
   }
 
   // 重置表单的校验

@@ -4,6 +4,7 @@ import { Link } from './Link'
 import {
   Layout,
   Input,
+  Collapse,
   Image,
   Badge,
   Popover,
@@ -40,8 +41,10 @@ import {
   DatePicker,
   TimePicker,
   Descriptions,
+  Transfer,
   Space,
   Statistic,
+  Cascader,
 } from 'ant-design-vue'
 
 export function registerGlobComp(app: App) {
@@ -49,7 +52,9 @@ export function registerGlobComp(app: App) {
   app.use(Button)
   app.use(Link)
   app.use(Image)
+  app.use(Cascader)
   app.use(Layout)
+  app.use(Collapse)
   app.use(InputNumber)
   app.use(Tag)
   app.use(Tabs)
@@ -85,6 +90,7 @@ export function registerGlobComp(app: App) {
   app.use(Steps)
   app.use(Form)
   app.use(Spin)
+  app.use(Transfer)
   app.use(Dropdown)
   app.use(Input)
   app.use(Statistic)

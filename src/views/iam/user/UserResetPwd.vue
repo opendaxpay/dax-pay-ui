@@ -31,7 +31,7 @@
   import { restartPassword, restartPasswordBatch } from './User.api'
   import { useMessage } from '@/hooks/web/useMessage'
   import { Rule } from 'ant-design-vue/lib/form'
-  import { ref } from 'vue'
+  import { nextTick, ref } from 'vue'
 
   const { handleCancel, labelCol, wrapperCol, modalWidth, confirmLoading, visible } = useFormEdit()
   const { createConfirm, createMessage } = useMessage()
@@ -62,6 +62,9 @@
     } else {
       userIds.value = userIdOrIds as never[]
     }
+    nextTick(() => {
+      formRef.value.resetFields()
+    })
   }
 
   function handleOk() {

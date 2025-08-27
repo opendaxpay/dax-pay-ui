@@ -44,15 +44,18 @@ export default function () {
     visible.value = true
     if (formEditType.value === FormEditType.Add) {
       addable.value = true
+      editable.value = showable.value = false
       title.value = '新增'
     }
     if (formEditType.value === FormEditType.Edit) {
       editable.value = true
       title.value = '修改'
+      addable.value = showable.value = false
     }
     if (formEditType.value === FormEditType.Show) {
       showable.value = true
       title.value = '查看'
+      addable.value = editable.value = false
     }
   }
 

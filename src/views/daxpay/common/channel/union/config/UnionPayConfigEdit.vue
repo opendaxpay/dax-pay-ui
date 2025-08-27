@@ -35,21 +35,6 @@
             v-model:checked="form.enable"
           />
         </a-form-item>
-        <a-form-item name="limitAmount">
-          <template #label>
-            <basic-title
-              helpMessage="每次发起支付的金额不能超过该值，如果同时配置了全局支付限额，则以额度低的为准"
-            >
-              支付限额(元)
-            </basic-title>
-          </template>
-          <a-input-number
-            :precision="2"
-            :min="0.01"
-            v-model:value="form.limitAmount"
-            placeholder="请输入支付限额(元)"
-          />
-        </a-form-item>
         <a-form-item label="签名类型" name="signType">
           <a-select
             allowClear
@@ -172,12 +157,12 @@
   import useFormEdit from '@/hooks/bootx/useFormEdit'
   import { FormInstance, Rule } from 'ant-design-vue/lib/form'
   import { BasicDrawer } from '@/components/Drawer'
-  import Icon from '@/components/Icon/Icon.vue'
+  import Icon from '../../../../../../components/Icon/Icon.vue'
   import { useUpload } from '@/hooks/bootx/useUpload'
   import { useMessage } from '@/hooks/web/useMessage'
   import BasicTitle from '@/components/Basic/src/BasicTitle.vue'
   import { getConfig, saveOrUpdate, UnionPayConfig } from './UnionPayConfig.api'
-  import { ChannelConfig } from '@/views/daxpay/common/merchant/channel/ChannelConfig.api'
+  import { ChannelConfig } from '@/views/daxpay/common/merchant/config/ChannelConfig.api'
 
   const { handleCancel, diffForm, labelCol, wrapperCol, confirmLoading, visible, showable } =
     useFormEdit()
@@ -193,7 +178,7 @@
     id: null,
     limitAmount: 20000,
     signType: 'RSA2',
-    enable: false,
+    enable: true,
     sandbox: false,
   })
   // 校验
@@ -201,7 +186,6 @@
     return {
       unionMachId: [{ required: true, message: '请输入商户号' }],
       wxAppId: [{ required: true, message: '请输入应用编号' }],
-      limitAmount: [{ required: true, message: '请输入单次支付限额' }],
       // certSign: [{ required: true, message: '请选择是否为证书签名' }],
       signType: [{ required: true, message: '请选择签名类型' }],
       keyPrivateCert: [{ required: true, message: '请上传应用私钥证书' }],
@@ -214,7 +198,6 @@
       apiVersion: [{ required: true, message: '请选择支付API版本' }],
       apiKeyV2: [{ required: true, message: '请输入V2秘钥' }],
       sandbox: [{ required: true, message: '请选择是否为沙箱环境' }],
-      payWays: [{ required: true, message: '请选择支持的支付类型' }],
     } as Record<string, Rule[]>
   })
 

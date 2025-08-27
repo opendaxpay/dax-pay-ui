@@ -16,7 +16,7 @@
         <a-descriptions-item label="交易类型" :span="1">
           <a-tag>{{ dictConvert('trade_type', task.tradeType) }}</a-tag>
         </a-descriptions-item>
-        <a-descriptions-item label="是否发送成功" :span="1">
+        <a-descriptions-item label="发送状态" :span="1">
           <a-tag v-if="task.success" color="green">成功</a-tag>
           <a-tag v-else color="red">失败</a-tag>
         </a-descriptions-item>
@@ -37,6 +37,9 @@
         </a-descriptions-item>
         <a-descriptions-item label="创建时间" :span="1">
           {{ task.createTime }}
+        </a-descriptions-item>
+        <a-descriptions-item label="商户号" :span="1">
+          {{ task.mchNo }}
         </a-descriptions-item>
         <a-descriptions-item label="应用AppId" :span="1">
           {{ task.appId }}

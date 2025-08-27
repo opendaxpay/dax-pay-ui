@@ -10,10 +10,19 @@
         :wrapperCol="{ span: 18 }"
         :validate-trigger="['blur', 'change']"
       >
+        <a-form-item label="商户号" name="mchNo">
+          <a-select
+            :filter-option="search"
+            v-model:value="form.mchNo"
+            placeholder="请选择商户"
+            :options="mchNoOptions"
+            @change="merchantChange"
+          />
+        </a-form-item>
         <a-form-item label="应用号" name="appId">
           <a-select
             :filter-option="search"
-            :options="mchAppList"
+            :options="mchAppOptions"
             v-model:value="form.appId"
             placeholder="请选择商户应用"
           />
@@ -97,8 +106,9 @@
   import { Modal } from 'ant-design-vue'
   import { refundSign, RefundParam, tradeRefund } from './DevelopTrade.api'
   import { LabeledValue } from 'ant-design-vue/lib/select'
+  import { dropdownByEnable as dropdownByEnable } from '@/views/daxpay/common/assist/basic/MerchantQuery.api'
   import useFormEdit from '@/hooks/bootx/useFormEdit'
-  import { mchAppDropdown } from '@/views/daxpay/common/merchant/app/MchApp.api'
+  import { dropdownEnableByMchNo as mchAppDropdownByEnable } from '@/views/daxpay/common/assist/basic/MchAppQuery.api'
   import XEUtils from 'xe-utils'
   import { buildShortUUID, buildUUID } from '@/utils/uuid'
 
@@ -112,6 +122,7 @@
   })
   const rules = computed(() => {
     return {
+      mchNo: [{ required: true, message: '商户号不可为空' }],
       appId: [{ required: true, message: '应用号不可为空' }],
       bizRefundNo: [{ required: true, message: '商户退款号不可为空' }],
       title: [{ required: true, message: '退款标题不可为空' }],
@@ -122,7 +133,8 @@
     } as Record<string, Rule[]>
   })
 
-  const mchAppList = ref<LabeledValue[]>([])
+  const mchNoOptions = ref<LabeledValue[]>([])
+  const mchAppOptions = ref<LabeledValue[]>([])
 
   onMounted(() => {
     initData()
@@ -133,7 +145,10 @@
    */
   async function initData() {
     confirmLoading.value = false
-    initMchApp()
+    dropdownByEnable().then(({ data }) => {
+      mchNoOptions.value = data
+    })
+    // 时间默认30M后
     genNonceStr()
     genBizOrderNo()
     updateReqTime()
@@ -142,9 +157,10 @@
   /**
    * 商户变动时刷新应用列表
    */
-  function initMchApp() {
-    mchAppDropdown().then(({ data }) => {
-      mchAppList.value = data
+  function merchantChange() {
+    form.appId = undefined
+    mchAppDropdownByEnable(form.mchNo).then(({ data }) => {
+      mchAppOptions.value = data
     })
   }
 

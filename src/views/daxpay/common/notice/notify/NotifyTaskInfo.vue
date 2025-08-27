@@ -38,6 +38,9 @@
         <a-descriptions-item label="创建时间" :span="1">
           {{ task.createTime }}
         </a-descriptions-item>
+        <a-descriptions-item label="商户号" :span="1">
+          {{ task.mchNo }}
+        </a-descriptions-item>
         <a-descriptions-item label="应用AppId" :span="1">
           {{ task.appId }}
         </a-descriptions-item>

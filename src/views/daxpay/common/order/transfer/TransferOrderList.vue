@@ -54,8 +54,9 @@
             </template>
           </vxe-column>
           <vxe-column field="reason" title="转账原因" :min-width="160" />
-          <vxe-column field="createTime" title="创建时间" sortable :min-width="170" />
-          <vxe-column field="appId" title="应用号" :min-width="150" />
+          <vxe-column field="createTime" title="创建时间" sortable :min-width="140" />
+          <vxe-column field="mchName" title="商户" :min-width="150" />
+          <vxe-column field="appName" title="应用" :min-width="150" />
           <vxe-column fixed="right" :width="120" :showOverflow="false" title="操作">
             <template #default="{ row }">
               <a-link @click="show(row)">查看</a-link>
@@ -111,7 +112,7 @@
     getTotalAmount,
     page,
     retryTransfer,
-    syncByTransferNo,
+    syncByTransferId,
     cellStyle,
   } from './TransferOrder.api'
   import useTablePage from '@/hooks/bootx/useTablePage'
@@ -125,8 +126,8 @@
   import ALink from '/@/components/Link/Link.vue'
   import { TransferStatusEnum } from '@/enums/daxpay/tradeStatusEnum'
   import { Icon } from '@/components/Icon'
-  import { merchantDropdown } from '@/views/daxpay/admin/merchant/info/Merchant.api'
-  import { mchAppDropdown } from '@/views/daxpay/common/merchant/app/MchApp.api'
+  import { dropdown as merchantDropdown } from '@/views/daxpay/common/assist/basic/MerchantQuery.api'
+  import { dropdownByMchNo as mchAppDropdown } from '@/views/daxpay/common/assist/basic/MchAppQuery.api'
 
   // 使用hooks
   const {
@@ -143,7 +144,8 @@
   const { createMessage, createConfirm } = useMessage()
   const { dictConvert, dictDropDown } = useDict()
 
-  const mchAppList = ref<LabeledValue[]>([])
+  const mchNoOptions = ref<LabeledValue[]>([])
+  const mchAppOptions = ref<LabeledValue[]>([])
   let channelList = ref<LabeledValue[]>([])
   let transferStatusList = ref<LabeledValue[]>([])
   let totalAmount = ref<number>(0)
@@ -165,11 +167,18 @@
       },
       { field: 'channel', name: '转账通道', type: LIST, selectList: channelList.value },
       {
+        field: 'mchNo',
+        type: LIST,
+        name: '商户号',
+        placeholder: '请选择商户号',
+        selectList: mchNoOptions.value,
+      },
+      {
         field: 'appId',
         type: LIST,
         name: '应用号',
         placeholder: '请先选择商户后选择应用号',
-        selectList: mchAppList.value,
+        selectList: mchAppOptions.value,
       },
     ] as QueryField[]
   })
@@ -177,6 +186,11 @@
   const xTable = ref<VxeTableInstance>()
   const xToolbar = ref<VxeToolbarInstance>()
   const transferOrderInfo = ref<any>()
+
+  watch(
+    () => model.queryParam?.mchNo,
+    (value) => changeMch(value),
+  )
 
   onMounted(() => {
     initData()
@@ -191,17 +205,25 @@
    * 初始化数据
    */
   async function initData() {
+    merchantDropdown().then(({ data }) => {
+      mchNoOptions.value = data
+    })
     transferStatusList.value = await dictDropDown('transfer_status')
     channelList.value = await dictDropDown('channel')
   }
 
   /**
-   * 初始化商户应用列表
+   * 商户变动后更新应用列表
    */
-  function initMchApp() {
-    mchAppDropdown().then(({ data }) => {
-      mchAppList.value = data
-    })
+  function changeMch(mchNo) {
+    if (mchNo) {
+      mchAppDropdown(mchNo).then(({ data }) => {
+        mchAppOptions.value = data
+      })
+    } else {
+      mchAppOptions.value = []
+      model.queryParam.appId = undefined
+    }
   }
   /**
    * 分页查询
@@ -233,10 +255,10 @@
     createConfirm({
       iconType: 'warning',
       title: '警告',
-      content: '是否同步退款信息',
+      content: '是否同步转账信息',
       onOk: () => {
         loading.value = true
-        syncByTransferNo(record.transferNo).then(() => {
+        syncByTransferId(record.id).then(() => {
           createMessage.success('同步成功')
           queryPage()
         })

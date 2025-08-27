@@ -4,7 +4,7 @@
       <div class="flex justify-between items-center">
         <span class="flex-1">
           <a :href="GITHUB_URL" target="_blank">{{ name }}</a>
-          是DaxPay单商户支付管理系统的前端项目，基于Vue3.0、Vite、 Ant-Design-Vue 、TypeScript实现。
+          是DaxPay多商户支付管理系统的前端项目，基于Vue3.0、Vite、 Ant-Design-Vue 、TypeScript实现。
         </span>
       </div>
     </template>

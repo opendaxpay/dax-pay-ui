@@ -56,7 +56,7 @@
                       <a-link @click="addChildren(row)">添加下级</a-link>
                     </a-menu-item>
                     <a-menu-item>
-                      <a-link href="javascript:" danger>删除</a-link>
+                      <a-link href="javascript:" danger @click="remove(row)">删除</a-link>
                     </a-menu-item>
                   </a-menu>
                 </template>

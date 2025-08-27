@@ -5,7 +5,6 @@ import 'ant-design-vue/dist/reset.css'
 import 'virtual:svg-icons-register'
 
 import { createApp } from 'vue'
-
 import { registerGlobComp } from '@/components/registerGlobComp'
 import { setupGlobDirectives } from '@/directives'
 import { initAppConfigStore } from '@/logics/initAppConfig'

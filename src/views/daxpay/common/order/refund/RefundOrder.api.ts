@@ -135,6 +135,8 @@ export interface RefundOrder extends MchEntity {
   channel?: string
   // 退款状态
   status?: string
+  // 结算状态
+  settleStatus?: string
   // 退款结束时间
   finishTime?: string
   // 退款原因

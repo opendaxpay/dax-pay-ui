@@ -45,7 +45,7 @@ export const update = (obj: UpdateFileInfo) => {
  * 删除
  */
 export const del = (id) => {
-  return defHttp.delete({
+  return defHttp.post({
     url: '/file/delete',
     params: { id },
   })
@@ -61,12 +61,43 @@ export const findAll = () => {
 }
 
 /**
+ * 对象存储预签名
+ */
+export function getUploadParams(param: FileUploadRequestParams) {
+  return defHttp.post<Result<FileUploadParamsResult>>({
+    url: '/file/getUploadParams',
+    data: param,
+  })
+}
+
+/**
+ * 保存前端直传文件信息
+ */
+export function saveOssFileInfo(fileInfo: UpdateFileInfo) {
+  return defHttp.post<Result<UpdateFileInfo>>({
+    url: '/file/saveFileInfo',
+    data: fileInfo,
+  })
+}
+
+/**
+ * 后台下载文件
+ */
+export function downloadFile(attachName) {
+  return defHttp.get<Result<File>>({
+    url: '/file/downloadByServer',
+    params: { attachName },
+    responseType: 'blob',
+  })
+}
+
+/**
  * 上传文件信息
  */
 export interface UpdateFileInfo {
   // id
   id?: number
-  // 文件访问地址
+  // 文件访问地址（名称、唯一标识）
   url?: string
   // 文件大小，单位字节
   size?: string
@@ -110,4 +141,28 @@ export interface UpdateFileInfo {
   fileAcl?: string
   // 缩略图文件ACL
   thFileAcl?: string
+}
+
+/**
+ * 预签名上传参数
+ */
+export interface FileUploadRequestParams {
+  /** 文件名称,请携带扩展名 */
+  fileName?: string
+  /** 文件MIME类型 */
+  mediaType?: string
+  /** 文件大小 */
+  fileSize?: number
+}
+
+/**
+ * 预签名上传参数结果
+ */
+export interface FileUploadParamsResult {
+  /** 上传后文件名称 */
+  attachName?: string
+  /** 文件访问地址 */
+  url?: string
+  /** 文件上传请求头 */
+  headers?: Map<string, string>
 }

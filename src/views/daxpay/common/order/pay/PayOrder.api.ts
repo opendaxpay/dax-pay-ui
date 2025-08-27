@@ -28,6 +28,16 @@ export function getOrder(id: number) {
 }
 
 /**
+ * 获取扩展记录
+ */
+export function getOrderExtend(id) {
+  return defHttp.get<Result<PayOrderExtend>>({
+    url: '/order/pay/findExpandByById',
+    params: { id },
+  })
+}
+
+/**
  * 根据订单号查询详情
  */
 export function getOrderByOrderNo(orderNo: string) {
@@ -70,10 +80,10 @@ export function cancel(id) {
 /**
  * 触发分账
  */
-export function allocationByOrderNo(orderNo) {
+export function allocation(id) {
   return defHttp.post<Result<void>>({
     url: '/order/pay/allocation',
-    params: { orderNo },
+    params: { id },
   })
 }
 
@@ -137,7 +147,7 @@ export function cellStyle({ row, column }) {
 }
 
 /**
- * 支付记录
+ * 支付订单
  */
 export interface PayOrder extends MchEntity {
   // 标题
@@ -158,8 +168,12 @@ export interface PayOrder extends MchEntity {
   channel?: string
   // 支付方式
   method?: string
+  // 其他支付方式
+  otherMethod?: string
   // 金额
   amount?: number
+  // 实付金额
+  realAmount?: number
   // 可退款余额
   refundableBalance?: number
   // 支付状态
@@ -168,6 +182,8 @@ export interface PayOrder extends MchEntity {
   refundStatus?: string
   // 分账状态
   allocStatus?: string
+  // 结算状态
+  settleStatus?: string
   // 支付时间
   payTime?: string
   // 过期时间
@@ -188,4 +204,26 @@ export interface PayOrder extends MchEntity {
   errorCode?: string
   // 错误信息
   errorMsg?: string
+}
+
+/**
+ * 订单扩展记录
+ */
+export interface PayOrderExtend extends MchEntity {
+  /** 付款用户ID */
+  buyerId?: string
+  /** 用户标识 */
+  userId?: string
+  /** 支付产品 三方通道所使用的支付产品或类型 */
+  tradeProduct?: string
+  /** 交易方式 */
+  tradeWay?: string
+  /** 银行卡类型 借记卡/贷记卡 */
+  bankType?: string
+  /** 透传订单号 三方通道使用微信/支付宝/银联支付时产生的订单号 */
+  transOrderNo?: string
+  /** 参加活动类型 */
+  promotionType?: string
+  /** 扩展参数存储字段 */
+  ext?: string
 }

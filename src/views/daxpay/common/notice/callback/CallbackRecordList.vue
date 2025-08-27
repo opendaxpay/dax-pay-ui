@@ -19,7 +19,7 @@
         @sort-change="sortChange"
       >
         <vxe-column type="seq" width="60" />
-        <vxe-column field="reqCount" title="请求次数">
+        <vxe-column field="reqCount" title="请求次数" sortable>
           <template #default="{ row }">
             <a-tag color="green">{{ row.reqCount || '空' }}</a-tag>
           </template>
@@ -35,7 +35,7 @@
             <a-tag>{{ dictConvert('notice_send_type', row.sendType) }}</a-tag>
           </template>
         </vxe-column>
-        <vxe-column field="errorMsg" title="错误信息" max-width="200" />
+        <vxe-column field="errorMsg" title="错误信息" :min-width="200" />
         <vxe-column field="createTime" title="发送时间" />
         <vxe-column fixed="right" width="60" :showOverflow="false" title="操作">
           <template #default="{ row }">

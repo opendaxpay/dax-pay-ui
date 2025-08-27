@@ -85,7 +85,7 @@ export function banUser(userId) {
  */
 export function banUserBatch(userIds) {
   return defHttp.post({
-    url: '/user/admin/banUserBatch',
+    url: '/user/admin/banBatch',
     data: userIds,
   })
 }
@@ -101,7 +101,7 @@ export function unlockUser(userId) {
 }
 
 /**
- * 解锁用户
+ * 批量解锁用户
  */
 export function unlockUserBatch(userIds) {
   return defHttp.post({

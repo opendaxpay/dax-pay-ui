@@ -22,7 +22,7 @@
           <vxe-column field="code" title="编码" :min-width="80" />
           <vxe-column field="name" title="名称" :min-width="120" />
           <vxe-column field="remark" title="描述" />
-          <vxe-column field="enable" title="是否启用" :width="80">
+          <vxe-column field="enable" title="是否启用" :min-width="80">
             <template #default="{ row }">
               <a-tag v-if="row.enable" color="green">启用</a-tag>
               <a-tag v-else color="red">停用</a-tag>

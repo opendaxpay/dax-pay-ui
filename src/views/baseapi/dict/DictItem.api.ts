@@ -72,16 +72,16 @@ export const findAllByEnable = () => {
 /**
  * 编码是否存在
  */
-export function existsByCode(code) {
+export function existsByCode(code, dictId) {
   return defHttp.get<Result<boolean>>({
     url: '/dict/item/existsByCode',
-    params: { code },
+    params: { code, dictId },
   })
 }
-export function existsByCodeNotId(code, id) {
+export function existsByCodeNotId(code, id, dictId) {
   return defHttp.get<Result<boolean>>({
     url: '/dict/item/existsByCodeNotId',
-    params: { code, id },
+    params: { code, id, dictId },
   })
 }
 

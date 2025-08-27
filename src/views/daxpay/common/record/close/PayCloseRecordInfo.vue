@@ -8,40 +8,89 @@
     :mask-closable="showable"
     @cancel="handleCancel"
   >
-    <a-spin :spinning="confirmLoading">
-      <a-descriptions bordered title="" :column="{ lg: 2, md: 1 }">
-        <a-descriptions-item label="订单号">
-          {{ record.orderNo }}
-        </a-descriptions-item>
-        <a-descriptions-item label="业务号">
-          {{ record.bizOrderNo }}
-        </a-descriptions-item>
-        <a-descriptions-item label="支付通道">
-          {{ dictConvert('channel', record.channel) }}
-        </a-descriptions-item>
-        <a-descriptions-item label="关闭类型">
-          <a-tag>{{ dictConvert('close_type', record.closeType) }}</a-tag>
-        </a-descriptions-item>
-        <a-descriptions-item label="是否关闭成功">
-          <a-tag>{{ record.closed ? '成功' : '失败' }}</a-tag>
-        </a-descriptions-item>
-        <a-descriptions-item label="错误编码" v-if="record.errorCode">
-          {{ record.errorMsg }}
-        </a-descriptions-item>
-        <a-descriptions-item label="错误消息" v-if="record.errorMsg">
-          {{ record.errorMsg }}
-        </a-descriptions-item>
-        <a-descriptions-item label="客户端IP">
-          {{ record.clientIp || '无' }}
-        </a-descriptions-item>
-        <a-descriptions-item label="关闭时间">
-          {{ record.createTime }}
-        </a-descriptions-item>
-        <a-descriptions-item label="应用AppId">
-          {{ record.appId }}
-        </a-descriptions-item>
-      </a-descriptions>
-    </a-spin>
+    <div class="dialogRow">
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">订单号</div>
+            <div class="rightContent"> {{ record.orderNo }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">业务号</div>
+            <div class="rightContent"> {{ record.bizOrderNo }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">支付通道</div>
+            <div class="rightContent">{{ dictConvert('channel', record.channel) }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">关闭类型</div>
+            <div class="rightContent">{{ dictConvert('close_type', record.closeType) }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">是否关闭成功</div>
+            <div class="rightContent">{{ record.closed ? '成功' : '失败' }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">客户端IP</div>
+            <div class="rightContent">{{ record.clientIp || '无' }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-divider />
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12" v-if="record.errorCode">
+          <div class="gutterItem">
+            <div class="leftTitle">错误编码</div>
+            <div class="rightContent">{{ record.errorCode }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12" v-if="record.errorMsg">
+          <div class="gutterItem">
+            <div class="leftTitle">错误信息</div>
+            <div class="rightContent">
+              {{ record.errorMsg }}
+            </div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">关闭时间</div>
+            <div class="rightContent">{{ record.createTime }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">商户号</div>
+            <div class="rightContent">{{ record.mchNo }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">应用AppId</div>
+            <div class="rightContent">{{ record.appId }}</div>
+          </div>
+        </a-col>
+      </a-row>
+    </div>
     <template #footer>
       <a-button key="cancel" @click="handleCancel">取消</a-button>
     </template>

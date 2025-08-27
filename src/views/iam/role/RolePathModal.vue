@@ -25,7 +25,7 @@
         @expand="onExpand"
       >
         <template #title="{ title }">
-          <span v-if="title.toLowerCase().indexOf(searchName.toLowerCase()) > -1">
+          <span v-if="title?.toLowerCase().indexOf(searchName.toLowerCase()) > -1">
             {{ searchRenderStart(title, searchName) }}
             <span style="color: #f50">
               {{ searchRenderMiddle(title, searchName) }}
@@ -38,6 +38,7 @@
     </a-spin>
     <template #footer>
       <a-select
+        v-if="isAdmin()"
         style="min-width: 100px"
         @change="clientSwitch"
         v-model:value="clientCode"
@@ -70,7 +71,7 @@
 <script lang="ts" setup>
   import { BasicDrawer } from '@/components/Drawer'
   import { findAll as findClients, Client } from '@/views/iam/client/Client.api'
-  import { getAppEnvConfig } from "@/utils/env";
+  import { getAppEnvConfig, isAdmin } from "@/utils/env";
   import { RoleTree } from './Role.api'
   import { Tree, treeDataTranslate } from '@/utils/dataUtil'
   import XEUtils from 'xe-utils'
@@ -222,15 +223,15 @@
    * 渲染搜索项目数据开始段
    */
   function searchRenderStart(title, searchName) {
-    return title.substring(0, title.toLowerCase().indexOf(searchName.toLowerCase()))
+    return title.substring(0, title?.toLowerCase().indexOf(searchName.toLowerCase()))
   }
   /**
    * 渲染搜索项目数据中间段
    */
   function searchRenderMiddle(title, searchName) {
     return title.substring(
-      title.toLowerCase().indexOf(searchName.toLowerCase()),
-      title.toLowerCase().indexOf(searchName.toLowerCase()) + searchName.length,
+      title?.toLowerCase().indexOf(searchName.toLowerCase()),
+      title?.toLowerCase().indexOf(searchName.toLowerCase()) + searchName.length,
     )
   }
   /**
@@ -238,7 +239,7 @@
    */
   function searchRenderEnd(title, searchName) {
     return title.substring(
-      title.toLowerCase().indexOf(searchName.toLowerCase()) + searchName.length,
+      title?.toLowerCase().indexOf(searchName.toLowerCase()) + searchName.length,
     )
   }
   /**

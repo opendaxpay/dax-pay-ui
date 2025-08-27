@@ -30,11 +30,11 @@
           <vxe-column field="name" title="参数名称" :min-width="200" />
           <vxe-column field="key" title="参数Key" :min-width="150" />
           <vxe-column field="value" title="参数值" :min-width="200" />
-          <vxe-column field="type" title="参数类型" :min-width="80">
-            <template #default="{ row }">
-              <a-tag>{{ dictConvert('ParamType', row.type) || '无' }}</a-tag>
-            </template>
-          </vxe-column>
+<!--          <vxe-column field="type" title="参数类型" :min-width="80">-->
+<!--            <template #default="{ row }">-->
+<!--              <a-tag>{{ dictConvert('ParamType', row.type) || '无' }}</a-tag>-->
+<!--            </template>-->
+<!--          </vxe-column>-->
           <vxe-column field="enable" title="启用状态" :min-width="80">
             <template #default="{ row }">
               <a-tag v-if="row.enable" color="green">启用</a-tag>
@@ -48,7 +48,7 @@
             </template>
           </vxe-column>
           <vxe-column field="remark" title="备注" :min-width="220" />
-          <vxe-column field="createTime" title="创建时间" :min-width="160" />
+          <vxe-column field="createTime" title="创建时间" :min-width="140" />
           <vxe-column fixed="right" width="150" :showOverflow="false" title="操作" :min-width="150">
             <template #default="{ row }">
               <span>

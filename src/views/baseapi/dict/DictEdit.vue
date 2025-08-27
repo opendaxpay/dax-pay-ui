@@ -86,14 +86,14 @@
   const { existsByServer } = useValidate()
   // 表单
   const formRef = ref<FormInstance>()
-  let form = ref({
+  let form = ref<Dict>({
     id: null,
     code: '',
     name: '',
     enable: true,
     groupTag: '',
     remark: '',
-  } as Dict)
+  })
   // 校验
   const rules = reactive({
     code: [
@@ -104,13 +104,19 @@
   } as Record<string, Rule[]>)
   // 事件
   const emits = defineEmits(['ok'])
-  // 入口
+
+  /**
+   * 入口
+   */
   function init(id, editType: FormEditType) {
     initFormEditType(editType)
     resetForm()
     getInfo(id, editType)
   }
-  // 获取信息
+
+  /**
+   * 获取信息
+   */
   function getInfo(id, editType: FormEditType) {
     if ([FormEditType.Edit, FormEditType.Show].includes(editType)) {
       confirmLoading.value = true
@@ -122,7 +128,10 @@
       confirmLoading.value = false
     }
   }
-  // 保存
+
+  /**
+   * 保存
+   */
   function handleOk() {
     formRef.value?.validate().then(async () => {
       confirmLoading.value = true
@@ -136,16 +145,20 @@
     })
   }
 
-  // 重置表单的校验
+  /**
+   * 重置表单的校验
+   */
   function resetForm() {
     nextTick(() => {
       formRef.value?.resetFields()
     })
   }
 
-  // 校验编码重复
+  /**
+   * 校验编码重复
+   */
   async function validateCode() {
-    const { code, id } = form
+    const { code, id } = form.value
     return existsByServer(code, id, formEditType, existsByCode, existsByCodeNotId)
   }
   defineExpose({

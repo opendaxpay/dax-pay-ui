@@ -29,6 +29,7 @@
         </a-form-item>
         <a-form-item v-show="!form.root" label="上级菜单" name="pid">
           <a-tree-select
+            allow-clear
             style="width: 100%"
             :tree-data="treeData"
             v-model:value="form.pid"
@@ -39,45 +40,38 @@
         <a-form-item label="菜单名称" name="title">
           <a-input v-model:value="form.title" :disabled="showable" placeholder="请输入菜单名称" />
         </a-form-item>
-        <a-form-item name="name">
-          <template #label>
-            <basic-title
-              helpMessage="此处名称应和vue组件的name属性保持一致。
+        <a-form-item
+          name="name"
+          label="路由名称"
+          tooltip="此处名称应和vue组件的name属性保持一致。
               路由名称不能重复，主要用于路由缓存功能。
               如果路由名称和vue组件的name属性不一致，则会导致路由缓存失效。不填则随机自动生成"
-              >路由名称</basic-title
-            >
-          </template>
+        >
           <a-input v-model:value="form.name" :disabled="showable" placeholder="请输入路由名称" />
         </a-form-item>
-        <a-form-item name="path">
-          <template #label>
-            <basic-title helpMessage="如果访问路径不是网址，则需要以'/'开头，否则将无法被注册为路由"
-              >访问路径</basic-title
-            >
-          </template>
+        <a-form-item
+          name="path"
+          label="访问路径"
+          tooltip="如果访问路径不是网址，则需要以'/'开头，否则将无法被注册为路由"
+        >
           <a-input v-model:value="form.path" :disabled="showable" placeholder="请输入访问路径" />
         </a-form-item>
-        <a-form-item name="component">
-          <template #label>
-            <basic-title
-              help-message="Layout和Iframe可以直接输入，新页面打开访问地址不需要填写，自定义组件需要输入/src/views/下的全路径"
-            >
-              组件
-            </basic-title>
-          </template>
+        <a-form-item
+          name="component"
+          label="组件名称"
+          tooltip="Layout和Iframe可以直接输入，新页面打开访问地址不需要填写，自定义组件需要输入/src/views/下的全路径"
+        >
           <a-input
             v-model:value="form.component"
             :disabled="showable"
             placeholder="请输入组件名称"
           />
         </a-form-item>
-        <a-form-item name="redirect">
-          <template #label>
-            <basic-title help-message="组件是Iframe的情况下，此配置为内嵌页面中请求地址">
-              默认跳转地址
-            </basic-title>
-          </template>
+        <a-form-item
+          name="redirect"
+          label="默认跳转地址"
+          tooltip="组件是Iframe的情况下，此配置为内嵌页面中请求地址"
+        >
           <a-input
             v-model:value="form.redirect"
             :disabled="showable"
@@ -124,10 +118,7 @@
             v-model:checked="form.keepAlive"
           />
         </a-form-item>
-        <a-form-item label="是否外部打开" name="targetOutside">
-          <template #label>
-            <basic-title help-message="对Iframe组件无效"> 是否外部打开 </basic-title>
-          </template>
+        <a-form-item label="是否外部打开" name="targetOutside" tooltip="对Iframe组件无效">
           <a-switch
             :disabled="showable"
             checkedChildren="是"
@@ -135,12 +126,11 @@
             v-model:checked="form.targetOutside"
           />
         </a-form-item>
-        <a-form-item label="是否全屏显示" name="fullScreen">
-          <template #label>
-            <basic-title help-message="默认从新窗口打开，对Iframe组件无效">
-              是否全屏显示
-            </basic-title>
-          </template>
+        <a-form-item
+          label="是否全屏显示"
+          name="fullScreen"
+          tooltip="默认从新窗口打开，对Iframe组件无效"
+          >
           <a-switch
             :disabled="showable"
             checkedChildren="是"
@@ -174,9 +164,8 @@
   import { FormEditType } from '@/enums/formTypeEnum'
   import { treeDataTranslate } from '@/utils/dataUtil'
   import { IconPicker } from '@/components/Icon'
-  import { BasicTitle } from '@/components/Basic'
   import { BasicDrawer } from '@/components/Drawer'
-  import Icon from '../../../../components/Icon/Icon.vue'
+  import Icon from '@/components/Icon/Icon.vue'
 
   defineComponent({
     name: 'MenuEdit',

@@ -1,5 +1,5 @@
 import { defHttp } from '@/utils/http/axios'
-import { PageResult, Result } from '#/axios'
+import { Result } from '#/axios'
 import { BaseEntity } from '#/web'
 
 /**
@@ -32,6 +32,15 @@ export function setDefault(id: string) {
 }
 
 /**
+ * 获取默认上传平台
+ */
+export function getDefaultUploadPlatform() {
+  return defHttp.get<Result<string>>({
+    url: '/file/platform/getDefaultUpload',
+  })
+}
+
+/**
  * 文件存储平台
  */
 export interface FilePlatform extends BaseEntity {
@@ -51,4 +60,8 @@ export interface FilePlatform extends BaseEntity {
    * 默认平台
    */
   defaultPlatform: boolean
+  /**
+   * 前端直传
+   */
+  frontendUpload: boolean
 }

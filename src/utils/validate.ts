@@ -167,8 +167,6 @@ export function validateEmail(email) {
     } else {
       result = true
     }
-  } else {
-    msg = '邮箱不能为空'
   }
   return { result, msg }
 }
@@ -191,8 +189,6 @@ export function validateMobile(phone) {
     } else {
       msg = '手机号码格式不正确'
     }
-  } else {
-    msg = '手机号码不能为空'
   }
   return { result, msg }
 }

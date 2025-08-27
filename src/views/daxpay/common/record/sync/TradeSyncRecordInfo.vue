@@ -8,46 +8,106 @@
     :mask-closable="showable"
     @cancel="handleCancel"
   >
-    <a-spin :column="{ lg: 4, md: 1 }" :spinning="confirmLoading">
-      <a-descriptions title="" bordered>
-        <a-descriptions-item label="平台交易号" :span="4">
-          {{ form.tradeNo }}
-        </a-descriptions-item>
-        <a-descriptions-item label="商户交易号" :span="4">
-          {{ form.bizTradeNo }}
-        </a-descriptions-item>
-        <a-descriptions-item label="通道交易号" :span="4">
-          {{ form.outTradeNo || '无' }}
-        </a-descriptions-item>
-        <a-descriptions-item label="同步类型" :span="2">
-          <a-tag>{{ dictConvert('trade_type', form.tradeType) }}</a-tag>
-        </a-descriptions-item>
-        <a-descriptions-item label="通道状态" :span="2">
-          <a-tag> {{ form.outTradeStatus }}</a-tag>
-        </a-descriptions-item>
-        <a-descriptions-item label="同步通道" :span="2">
-          <a-tag> {{ dictConvert('channel', form.channel) }}</a-tag>
-        </a-descriptions-item>
-        <a-descriptions-item label="客户端IP" :span="2">
-          {{ form.clientIp }}
-        </a-descriptions-item>
-        <a-descriptions-item label="同步时间" :span="4">
-          {{ form.createTime }}
-        </a-descriptions-item>
-        <a-descriptions-item label="错误编码" v-if="form.errorMsg" :span="2">
-          {{ form.errorMsg }}
-        </a-descriptions-item>
-        <a-descriptions-item label="错误信息" v-if="form.errorMsg" :span="2">
-          {{ form.errorMsg }}
-        </a-descriptions-item>
-        <a-descriptions-item label="应用AppId" :span="2">
-          {{ form.appId }}
-        </a-descriptions-item>
-        <a-descriptions-item label="同步消息" :span="4">
-          <json-preview :data="XEUtils.toStringJSON(form.syncInfo || '{}')" />
-        </a-descriptions-item>
-      </a-descriptions>
-    </a-spin>
+    <div class="dialogRow">
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="24">
+          <div class="gutterItem">
+            <div class="leftTitle">平台交易号</div>
+            <div class="rightContent"> {{ form.tradeNo }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="24">
+          <div class="gutterItem">
+            <div class="leftTitle">商户交易号</div>
+            <div class="rightContent"> {{ form.bizTradeNo }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="24">
+          <div class="gutterItem">
+            <div class="leftTitle">通道交易号</div>
+            <div class="rightContent">{{ form.outTradeNo || '无' }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-divider />
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">同步类型</div>
+            <div class="rightContent">{{ dictConvert('trade_type', form.tradeType) }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">通道状态</div>
+            <div class="rightContent"> {{ form.outTradeStatus }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">同步通道</div>
+            <div class="rightContent">{{ dictConvert('channel', form.channel) }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">客户端IP</div>
+            <div class="rightContent">{{ form.clientIp }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="24">
+          <div class="gutterItem">
+            <div class="leftTitle">同步时间</div>
+            <div class="rightContent">{{ form.createTime }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-divider />
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12" v-if="form.errorCode">
+          <div class="gutterItem">
+            <div class="leftTitle">错误码</div>
+            <div class="rightContent">{{ form.errorCode }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12" v-if="form.errorMsg">
+          <div class="gutterItem">
+            <div class="leftTitle">错误信息</div>
+            <div class="rightContent">
+              {{ form.errorMsg }}
+            </div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">商户号</div>
+            <div class="rightContent"> {{ form.mchNo }}</div>
+          </div>
+        </a-col>
+        <a-col class="gutter-row" :span="12">
+          <div class="gutterItem">
+            <div class="leftTitle">应用AppId</div>
+            <div class="rightContent">{{ form.appId }}</div>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row :gutter="[16, 24]">
+        <a-col class="gutter-row" :span="24">
+          <div class="gutterItem">
+            <div class="leftTitle">同步消息</div>
+            <div class="rightContent">
+              <json-preview :data="XEUtils.toStringJSON(form.syncInfo || '{}')"
+            /></div>
+          </div>
+        </a-col>
+      </a-row>
+    </div>
     <template #footer>
       <a-button key="cancel" @click="handleCancel">取消</a-button>
     </template>

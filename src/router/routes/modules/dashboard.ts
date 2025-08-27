@@ -6,7 +6,6 @@ const Dashboard: AppRouteModule = {
   path: '/dashboard',
   name: 'Dashboard',
   component: LAYOUT,
-  redirect: '/dashboard/analysis',
   meta: {
     orderNo: 10,
     icon: 'ion:grid-outline',
@@ -14,11 +13,18 @@ const Dashboard: AppRouteModule = {
   },
   children: [
     {
-      path: 'analysis',
-      name: 'Analysis',
-      component: () => import('@/views/dashboard/analysis/index.vue'),
+      path: '/admin/dashboard',
+      name: 'AdminDashboard',
+      component: () => import('@/views/daxpay/admin/dashboard/index.vue'),
       meta: {
-        // affix: true,
+        title: '主页',
+      },
+    },
+    {
+      path: '/merchant/dashboard',
+      name: 'MerchantDashboard',
+      component: () => import('@/views/daxpay/merchant/dashboard/index.vue'),
+      meta: {
         title: '主页',
       },
     },

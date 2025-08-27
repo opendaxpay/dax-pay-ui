@@ -155,6 +155,9 @@
    */
   async function validateBindEmail() {
     const { email } = form.value
+    if (!email) {
+      return Promise.resolve()
+    }
     const { data } = await existsEmail(email)
     return data ? Promise.reject('邮箱已被使用') : Promise.resolve()
   }
@@ -174,6 +177,9 @@
    */
   async function validateBindPhone() {
     const { phone } = form.value
+    if (!phone) {
+      return Promise.resolve()
+    }
     const { data } = await existsPhone(phone)
     return data ? Promise.reject('手机号已被使用') : Promise.resolve()
   }

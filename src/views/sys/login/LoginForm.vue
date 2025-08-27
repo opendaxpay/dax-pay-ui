@@ -53,16 +53,16 @@
           </a-form-item>
         </a-col>
         <a-col :span="12">
-          <a-form-item :style="{ 'text-align': 'right' }">
-            <!-- 没有逻辑，你需要自己处理 -->
-            <a-button
-              type="link"
-              size="small"
-              @click="setLoginState(LoginStateEnum.RESET_PASSWORD)"
-            >
-              忘记密码?
-            </a-button>
-          </a-form-item>
+<!--          <a-form-item :style="{ 'text-align': 'right' }">-->
+<!--            &lt;!&ndash; 没有逻辑，你需要自己处理 &ndash;&gt;-->
+<!--            <a-button-->
+<!--              type="link"-->
+<!--              size="small"-->
+<!--              @click="setLoginState(LoginStateEnum.RESET_PASSWORD)"-->
+<!--            >-->
+<!--              忘记密码?-->
+<!--            </a-button>-->
+<!--          </a-form-item>-->
         </a-col>
       </a-row>
 

@@ -22,12 +22,12 @@
                   <a-menu-item>
                     <a @click="assignRolesBatch()">角色分配</a>
                   </a-menu-item>
-                  <!--                  <a-menu-item>-->
-                  <!--                    <a @click="lockUserConfirmBatch(true)">锁定账号</a>-->
-                  <!--                  </a-menu-item>-->
-                  <!--                  <a-menu-item>-->
-                  <!--                    <a @click="lockUserConfirmBatch(false)">解锁账号</a>-->
-                  <!--                  </a-menu-item>-->
+                  <a-menu-item>
+                    <a @click="lockUserConfirmBatch(true)">封禁账号</a>
+                  </a-menu-item>
+                  <a-menu-item>
+                    <a @click="lockUserConfirmBatch(false)">解锁账号</a>
+                  </a-menu-item>
                   <a-menu-item>
                     <a @click="resetPwdBatch()">重置密码</a>
                   </a-menu-item>
@@ -48,7 +48,7 @@
           :data="pagination.records"
         >
           <vxe-column type="checkbox" width="50" />
-          <vxe-column field="name" title="姓名" />
+          <vxe-column field="name" title="名称" />
           <vxe-column field="account" title="账号" />
           <vxe-column field="phone" title="手机号" />
           <vxe-column field="email" title="邮箱" />
@@ -58,15 +58,9 @@
               <a-tag v-else color="red">否</a-tag>
             </template>
           </vxe-column>
-          <vxe-column field="avatar" title="头像" align="center">
-            <template #default="{ row }">
-              <Avatar size="large" :src="getFileUrl(row.avatar)" />
-            </template>
-          </vxe-column>
-
           <vxe-column field="status" title="用户状态" align="center">
             <template #default="{ row }">
-              {{ dictConvert('UserStatusCode', row.status) || '无' }}
+              {{ dictConvert('user_status', row.status) || '无' }}
             </template>
           </vxe-column>
           <vxe-column fixed="right" width="170" :showOverflow="false" title="操作">
@@ -85,13 +79,13 @@
                     <a-menu-item>
                       <a-link @click="resetPwd(row)">重置密码</a-link>
                     </a-menu-item>
-                    <a-menu-item v-if="[1, 3].includes(row.status)">
-                      <a-link v-if="row.status === 1" @click="lockUserConfirm(row.id, true)"
-                        >封禁账号</a-link
-                      >
-                      <a-link v-if="row.status === 3" @click="lockUserConfirm(row.id, false)"
-                        >解锁账号</a-link
-                      >
+                    <a-menu-item v-if="[UserStatusEnum.NORMAL].includes(row.status)">
+                      <a-link danger @click="lockUserConfirm(row.id, true)">封禁账号</a-link>
+                    </a-menu-item>
+                    <a-menu-item
+                      v-if="[UserStatusEnum.LOCK, UserStatusEnum.BAN].includes(row.status)"
+                    >
+                      <a-link @click="lockUserConfirm(row.id, false)">解锁账号</a-link>
                     </a-menu-item>
                   </a-menu>
                 </template>
@@ -119,7 +113,6 @@
 
 <script lang="ts" setup>
   import BQuery from '/@/components/Bootx/Query/BQuery.vue'
-  import { Avatar } from 'ant-design-vue'
   import useTablePage from '@/hooks/bootx/useTablePage'
   import { useMessage } from '@/hooks/web/useMessage'
   import { onMounted, ref } from 'vue'
@@ -134,7 +127,7 @@
   import UserResetPwd from './UserResetPwd.vue'
   import UserRoleAssign from './role/UserRoleAssign.vue'
   import ALink from '@/components/Link/Link.vue'
-  import { useFilePlatform } from '@/hooks/bootx/useFilePlatform'
+  import { UserStatusEnum } from '@/enums/bootx/bootxEnum'
 
   // 使用hooks
   const {
@@ -149,12 +142,11 @@
   } = useTablePage(queryPage)
   const { createConfirm } = useMessage()
   const { dictConvert } = useDict()
-  const { getFileUrl } = useFilePlatform()
 
   // 查询条件
   const fields = [
     { field: 'account', type: STRING, name: '账号', placeholder: '请输入要查询的账号' },
-    { field: 'name', type: STRING, name: '姓名', placeholder: '请输入要查询的姓名' },
+    { field: 'name', type: STRING, name: '名称', placeholder: '请输入要查询的名称' },
   ] as QueryField[]
   const xTable = ref<VxeTableInstance>()
   const xToolbar = ref<VxeToolbarInstance>()
@@ -162,10 +154,6 @@
   let userEdit = ref<any>()
   let userShow = ref<any>()
   let userRoleAssign = ref<any>()
-  let userDataScopeAssign = ref<any>()
-  let userDataScopeAssignBatch = ref<any>()
-  let userDeptAssign = ref<any>()
-  let userDeptAssignBatch = ref<any>()
   let userResetPwd = ref<any>()
 
   onMounted(() => {
@@ -222,15 +210,15 @@
     })
   }
   /**
-   * 批量锁定/解锁用户
-   * @param type true 锁定, false 解锁
+   * 批量封禁/解锁用户
+   * @param type true 封禁, false 解锁
    */
   function lockUserConfirmBatch(type) {
     const userIds = xTable.value?.getCheckboxRecords().map((o) => o.id)
     createConfirm({
       iconType: 'warning',
       title: '警告',
-      content: type ? '是否锁定选中的用户' : '是否解锁选中的用户',
+      content: type ? '是否封禁选中的用户' : '是否解锁选中的用户',
       onOk: async () => {
         if (type) {
           await banUserBatch(userIds)

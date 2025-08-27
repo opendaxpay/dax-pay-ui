@@ -18,23 +18,23 @@
         :wrapper-col="wrapperCol"
       >
         <a-form-item label="用户账号" name="account">
-          <a-input disabled v-model:value="form.account" />
+          {{ form.account }}
         </a-form-item>
         <a-form-item label="用户名称" name="name">
-          <a-input disabled v-model:value="form.name" />
+          {{ form.name }}
         </a-form-item>
         <a-form-item label="手机号" name="phone">
-          <a-input disabled v-model:value="form.phone" />
+          {{ form.phone || '无' }}
         </a-form-item>
         <a-form-item label="邮箱">
-          <a-input disabled v-model:value="form.email" />
+          {{ form.email || '无' }}
         </a-form-item>
         <a-form-item label="管理员">
           <a-tag v-if="form.administrator" color="green">是</a-tag>
           <a-tag v-else>否</a-tag>
         </a-form-item>
         <a-form-item label="用户状态">
-          <a-tag>{{ dictConvert('UserStatusCode', form.status) || '无' }}</a-tag>
+          <a-tag>{{ dictConvert('user_status', form.status) || '无' }}</a-tag>
         </a-form-item>
         <a-form-item label="角色列表">
           <a-tag color="green" v-for="o in roles" :key="o.id">{{ o.name }}</a-tag>

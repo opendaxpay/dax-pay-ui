@@ -12,11 +12,12 @@
       <vxe-toolbar ref="xToolbar" custom :refresh="{ queryMethod: queryPage }">
         <template #buttons>
           <a-upload
-            name="file"
             :multiple="false"
-            :action="uploadAction"
-            :headers="tokenHeader"
+            :action="uploadUrl"
+            :headers="uploadHeader"
+            :customRequest="uploadOssFile"
             :showUploadList="false"
+            :before-upload="beforeUpload"
             @change="handleChange"
           >
             <a-button preIcon="ant-design:cloud-upload-outlined" type="primary">
@@ -43,14 +44,14 @@
           <vxe-column field="contentType" title="文件类型" :min-width="100" />
           <vxe-column field="platformName" title="存储平台" :min-width="70" />
           <vxe-column field="fileSize" title="文件大小" :min-width="120" />
-          <vxe-column field="createTime" title="创建时间" :min-width="170" />
+          <vxe-column field="createTime" title="创建时间" :min-width="140" />
           <vxe-column fixed="right" :width="170" :showOverflow="false" title="操作">
             <template #default="{ row }">
               <a href="javascript:" @click="show(row)">查看</a>
               <a-divider type="vertical" />
               <a href="javascript:" @click="down(row)">下载</a>
               <a-divider type="vertical" />
-              <a href="javascript:" style="color: red" @click="remove(row)">删除</a>
+              <a-link danger @click="remove(row)">删除</a-link>
             </template>
           </vxe-column>
         </vxe-table>
@@ -70,7 +71,7 @@
 
 <script lang="ts" setup>
   import { computed, onMounted, ref } from 'vue'
-  import { page, del, UpdateFileInfo } from './FileUpload.api'
+  import { page, del, UpdateFileInfo, getUploadParams, saveOssFileInfo } from './FileUpload.api'
   import useTablePage from '@/hooks/bootx/useTablePage'
   import { VxeTableInstance, VxeToolbarInstance } from 'vxe-table'
   import { useMessage } from '@/hooks/web/useMessage'
@@ -81,7 +82,8 @@
   import BQuery from '@/components/Bootx/Query/BQuery.vue'
   import { useFilePlatform } from '@/hooks/bootx/useFilePlatform'
   import ALink from '@/components/Link/Link.vue'
-
+  import { UploadProps } from 'ant-design-vue'
+  import { FilePlatform } from '#/store'
   // 使用hooks
   const {
     handleTableChange,
@@ -94,12 +96,29 @@
   } = useTablePage(queryPage)
   const { createMessage, createConfirm } = useMessage()
 
-  const { tokenHeader, uploadAction } = useUpload('/file/upload')
-  const { getFileUrl } = useFilePlatform()
+  const { getFileUrl, getUploadPlatform } = useFilePlatform()
+  const { uploadFileToOss } = useUpload()
+
+  // 文件存储平台
+  const filePlatform = ref<FilePlatform>()
+  const uploadUrl = ref<string>()
+  const uploadHeader = ref<Map<string, string>>()
+  const uploadAttachName = ref<string>()
 
   // 查询条件
   const fields = computed(() => {
-    return [{}] as QueryField[]
+    return [
+      { field: 'filename', type: 'string', name: '文件名称', placeholder: '请输入文件名称' },
+      {
+        field: 'originalFilename',
+        type: 'string',
+        name: '原始文件名',
+        placeholder: '请输入原始文件名',
+      },
+      { field: 'url', type: 'string', name: '访问地址', placeholder: '请输入文件访问地址' },
+      { field: 'ext', type: 'string', name: '文件扩展名', placeholder: '请输入文件扩展名' },
+      { field: 'contentType', type: 'string', name: '用户账号', placeholder: '请输入用户账号' },
+    ] as QueryField[]
   })
 
   const xTable = ref<VxeTableInstance>()
@@ -107,6 +126,7 @@
   const fileUploadInfo = ref<any>()
 
   onMounted(() => {
+    initData()
     vxeBind()
     queryPage()
   })
@@ -114,6 +134,52 @@
     xTable.value?.connect(xToolbar.value as VxeToolbarInstance)
   }
 
+  /**
+   * 初始化数据
+   */
+  async function initData() {
+    filePlatform.value = await getUploadPlatform()
+  }
+
+  /**
+   * 上传前处理
+   */
+  const beforeUpload: UploadProps['beforeUpload'] = async (file) => {
+    // 前端直传获取签名链接
+    await getUploadParams({
+      fileName: file.name,
+      mediaType: file.type || '*/*',
+      fileSize: file.size,
+    })
+      .then(({ data }) => {
+        // 预签名形式
+        uploadUrl.value = data.url
+        uploadHeader.value = data.headers
+        uploadAttachName.value = data.attachName
+      })
+      .catch((error) => {
+        createMessage.error(`${error.msg}`)
+      })
+  }
+
+  /**
+   * 自定义文件上传到OSS中
+   */
+  async function uploadOssFile(action: any) {
+    uploadFileToOss(action.file, uploadUrl.value as string, uploadHeader.value).then(() => {
+      const file = action.file
+      saveOssFileInfo({
+        url: `${uploadAttachName.value}`,
+        size: file.size,
+        originalFilename: file.name,
+        filename: uploadAttachName.value,
+        contentType: file.type,
+      }).then(() => {
+        createMessage.success(`${file.name} 上传成功!`)
+        queryPage()
+      })
+    })
+  }
   /**
    * 上传完成回调
    */

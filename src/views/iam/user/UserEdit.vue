@@ -20,7 +20,7 @@
         :wrapper-col="wrapperCol"
       >
         <a-form-item label="用户账号" validate-first name="account">
-          <a-input v-model:value="form.account" placeholder="请输入用户账号" />
+          {{ form.account }}
         </a-form-item>
         <a-form-item label="用户名称" name="name">
           <a-input v-model:value="form.name" placeholder="请输入用户名称" />
@@ -138,6 +138,9 @@
    */
   async function validateBindEmail() {
     const { email, id } = form.value
+    if (!email) {
+      return Promise.resolve()
+    }
     if (rawForm.email === email) {
       return Promise.resolve()
     }
@@ -152,6 +155,9 @@
     if (!phone) {
       return Promise.resolve()
     }
+    if (rawForm.phone === phone) {
+      return Promise.resolve()
+    }
     const { msg, result } = validateMobile(phone)
     return result ? Promise.resolve() : Promise.reject(msg)
   }
@@ -160,6 +166,12 @@
    */
   async function validateBindPhone() {
     const { phone, id } = form.value
+    if (!phone) {
+      return Promise.resolve()
+    }
+    if (rawForm.phone === phone) {
+      return Promise.resolve()
+    }
     const { data } = await existsPhoneNotId(phone, id)
     return data ? Promise.reject('手机号已被使用') : Promise.resolve()
   }

@@ -35,14 +35,7 @@ export const OUTSIDE: AppRouteModule = {
   path: '/outside',
   name: 'PROJECT_OUTSIDE',
   meta: { title: '' },
-  children: [
-    // {
-    //   path: '/cashier',
-    //   name: 'cashier',
-    //   component: () => import('@/views/demo/cashier/Cashier.vue'),
-    //   meta: { title: '收银台演示', ignoreAuth: true },
-    // },
-  ],
+  children: [],
 }
 
 /**

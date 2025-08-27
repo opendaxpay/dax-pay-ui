@@ -27,12 +27,12 @@ export function findAllProvinceAndCityAndArea() {
   })
 }
 /**
- * 获取省市二级联动
+ * 根据区划代码获取下级行政区划的列表
  */
-export function findAllRegionByParentCode(parentCode: string) {
+export function findAllRegionByParentCode(code: string) {
   return defHttp.get<Result<Region[]>>({
     url: '/china/region/findAllRegionByParentCode',
-    params: { parentCode },
+    params: { code },
   })
 }
 
@@ -42,7 +42,8 @@ export function findAllRegionByParentCode(parentCode: string) {
 export interface Region {
   code: string
   name: string
-  level: 1 | 2 | 3 | 4 | 5
+  /** 省市区街道 */
+  level: 1 | 2 | 3 | 4
   isLeaf?: boolean
   children: Region[]
 }

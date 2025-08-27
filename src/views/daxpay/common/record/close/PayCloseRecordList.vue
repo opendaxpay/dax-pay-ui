@@ -47,8 +47,9 @@
           </vxe-column>
           <vxe-column field="errorMsg" title="错误消息" :min-width="180" />
           <vxe-column field="clientIp" title="客户端IP" :min-width="120" />
-          <vxe-column field="createTime" title="创建时间" :min-width="170" />
-          <vxe-column field="appId" title="应用号" :min-width="150" />
+          <vxe-column field="createTime" title="创建时间" :min-width="140" />
+          <vxe-column field="mchName" title="商户" :min-width="150" />
+          <vxe-column field="appName" title="应用" :min-width="150" />
           <vxe-column fixed="right" width="60" :showOverflow="false" title="操作">
             <template #default="{ row }">
               <span>
@@ -83,7 +84,8 @@
   import { LabeledValue } from 'ant-design-vue/lib/select'
   import PayCloseRecordInfo from './PayCloseRecordInfo.vue'
   import PayOrderInfo from '@/views/daxpay/common/order/pay/PayOrderInfo.vue'
-  import { mchAppDropdown } from '@/views/daxpay/common/merchant/app/MchApp.api'
+  import { dropdown as merchantDropdown } from '@/views/daxpay/common/assist/basic/MerchantQuery.api'
+  import { dropdownByMchNo as mchAppDropdown } from '@/views/daxpay/common/assist/basic/MchAppQuery.api'
 
   // 使用hooks
   const {
@@ -99,7 +101,8 @@
   } = useTablePage(queryPage)
   const { dictConvert, dictDropDown } = useDict()
 
-  const mchAppList = ref<LabeledValue[]>([])
+  const mchNoOptions = ref<LabeledValue[]>([])
+  const mchAppOptions = ref<LabeledValue[]>([])
   let payChannelList = ref<LabeledValue[]>([])
   let closeTypeList = ref<LabeledValue[]>([])
 
@@ -128,16 +131,23 @@
         name: '关闭状态',
         placeholder: '请选择关闭状态',
         selectList: [
-          { label: '成功', value: true },
-          { label: '失败', value: false },
+          { label: '成功', value: 'true' },
+          { label: '失败', value: 'false' },
         ],
+      },
+      {
+        field: 'mchNo',
+        type: LIST,
+        name: '商户号',
+        placeholder: '请选择商户号',
+        selectList: mchNoOptions.value,
       },
       {
         field: 'appId',
         type: LIST,
         name: '应用号',
         placeholder: '请先选择商户后选择应用号',
-        selectList: mchAppList.value,
+        selectList: mchAppOptions.value,
       },
     ] as QueryField[]
   })
@@ -146,6 +156,10 @@
   const xToolbar = ref<VxeToolbarInstance>()
   const payCloseRecordInfo = ref<any>()
   const payOrderInfo = ref<any>()
+  watch(
+    () => model.queryParam?.mchNo,
+    (value) => changeMch(value),
+  )
   onMounted(() => {
     initData()
     vxeBind()
@@ -159,17 +173,24 @@
    * 初始化
    */
   async function initData() {
+    merchantDropdown().then(({ data }) => {
+      mchNoOptions.value = data
+    })
     payChannelList.value = await dictDropDown('channel')
     closeTypeList.value = await dictDropDown('close_type')
-    initMchApp()
   }
   /**
-   * 初始化商户应用列表
+   * 商户变动后更新应用列表
    */
-  function initMchApp() {
-    mchAppDropdown().then(({ data }) => {
-      mchAppList.value = data
-    })
+  function changeMch(mchNo) {
+    if (mchNo) {
+      mchAppDropdown(mchNo).then(({ data }) => {
+        mchAppOptions.value = data
+      })
+    } else {
+      mchAppOptions.value = []
+      model.queryParam.appId = undefined
+    }
   }
 
   /**
@@ -190,7 +211,6 @@
    * 查看
    */
   function show(record) {
-    console.log(record)
     payCloseRecordInfo.value.init(record.id)
   }
 

@@ -143,11 +143,14 @@ const transform: AxiosTransform = {
   requestInterceptors: (config, options) => {
     // 请求之前处理config
     const userStore = useUserStoreWithOut()
+    const { VITE_GLOB_APP_CLIENT } = getAppEnvConfig()
     const token = userStore.getToken
+    // 添加 token 到请求头
     if (token && (config as Recordable)?.requestOptions?.withToken !== false) {
-      // 添加 token 到请求头
       ;(config as Recordable).headers.AccessToken = token
     }
+    // 添加终端编码标识
+    ;(config as Recordable).headers['x-client-code'] = VITE_GLOB_APP_CLIENT
     return config
   },
 
@@ -188,7 +191,13 @@ const transform: AxiosTransform = {
       throw new Error(error as unknown as string)
     }
 
-    checkStatus(error?.response?.status, msg, errorMessageMode)
+    // 403 检验
+    if (response?.status === 403) {
+      const error = createMessage.error!
+      error({ content: response?.data?.msg, key: `global_error_message_status_403` })
+    } else {
+      checkStatus(error?.response?.status, msg, errorMessageMode)
+    }
 
     // 添加自动重试机制 保险起见 只针对GET请求
     const retryRequest = new AxiosRetry()

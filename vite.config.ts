@@ -20,12 +20,17 @@ export default defineApplicationConfig({
       proxy: {
         // 运营管理端
         '/server': {
-          target: 'http://localhost:9999',
+          target: 'http://127.0.0.1:9999',
           changeOrigin: true,
           ws: true,
           rewrite: (path) => path.replace(new RegExp(`^/server`), ''),
-          // only https
-          // secure: false
+        },
+        // 商户端
+        '/merchant': {
+          target: 'http://127.0.0.1:9999',
+          changeOrigin: true,
+          ws: true,
+          rewrite: (path) => path.replace(new RegExp(`^/merchant`), ''),
         },
       },
       warmup: {

@@ -33,7 +33,7 @@
         </vxe-column>
         <vxe-column field="sortNo" title="排序" :min-width="50" />
         <vxe-column field="remark" title="备注" :min-width="170" />
-        <vxe-column field="createTime" title="创建时间" :min-width="170" />
+        <vxe-column field="createTime" title="创建时间" :min-width="140" />
         <vxe-column fixed="right" :width="150" :showOverflow="false" title="操作">
           <template #default="{ row }">
             <span>
