@@ -113,8 +113,7 @@
   import { useDict } from '@/hooks/bootx/useDict'
   import { CashierSceneEnum } from '@/enums/daxpay/daxpayEnum'
   import { LabeledValue } from 'ant-design-vue/lib/select'
-  import { isAdmin, isAgent, isMerchant } from '@/utils/env'
-  import { getAgentPermConfig, getMchPermConfig } from '@/api/daxpay/DaxpayPerm.api'
+  import { isAdmin, isMerchant } from '@/utils/env'
 
   const { labelCol, wrapperCol, confirmLoading } = useFormEdit()
   const { createMessage } = useMessage()
@@ -149,18 +148,6 @@
     if (isAdmin()) {
       permFlag.value = true
       return Promise.resolve()
-    }
-    if (isAgent()) {
-      // 返回Promise以确保await生效
-      return getAgentPermConfig().then(({ data }) => {
-        permFlag.value = data.setupAlloc as boolean
-      })
-    }
-    if (isMerchant()) {
-      // 返回Promise以确保await生效
-      return getMchPermConfig().then(({ data }) => {
-        permFlag.value = data.setupAlloc as boolean
-      })
     }
     permFlag.value = true
     return Promise.resolve()
