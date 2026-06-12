@@ -1,0 +1,9 @@
+{
+  "field": {
+    "provider": "Pay Provider",
+    "method": "Payment Method",
+    "code": "Code",
+    "description": "Description"
+  },
+  "detail": "Directory Item Detail"
+}

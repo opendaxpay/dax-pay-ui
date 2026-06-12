@@ -1,0 +1,26 @@
+{
+  "aliAppId": "支付宝商户appId",
+  "authType": "认证类型",
+  "signType": "签名类型",
+  "alipayUserId": "支付宝商家用户ID",
+  "alipayPublicKey": "支付宝公钥",
+  "privateKey": "应用私钥",
+  "appCert": "应用公钥证书",
+  "alipayCert": "支付宝公钥证书",
+  "alipayRootCert": "支付宝CA根证书",
+  "certFields": "证书认证相关（认证类型=证书时必填）",
+  "authTypeCert": "证书",
+  "authTypeKey": "公钥",
+  "signTypeRsa2": "RSA2",
+  "validation": {
+    "aliAppIdRequired": "请输入支付宝商户appId",
+    "authTypeRequired": "请选择认证类型",
+    "signTypeRequired": "请选择签名类型",
+    "alipayUserIdRequired": "请输入支付宝商家用户ID",
+    "alipayPublicKeyRequired": "请输入支付宝公钥",
+    "privateKeyRequired": "请输入应用私钥",
+    "appCertRequired": "认证类型为证书时，应用公钥证书为必填",
+    "alipayCertRequired": "认证类型为证书时，支付宝公钥证书为必填",
+    "alipayRootCertRequired": "认证类型为证书时，支付宝CA根证书为必填"
+  }
+}

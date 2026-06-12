@@ -1,0 +1,14 @@
+{
+  "product": {
+    "title": "支付产品管理",
+    "backToWorkbench": "返回管理页",
+    "enable": "启用",
+    "disable": "禁用",
+    "confirmToggle": "确定要{action}该产品吗？",
+    "productName": "产品名称",
+    "productCode": "产品编码",
+    "channel": "所属通道",
+    "status": "状态",
+    "description": "产品介绍"
+  }
+}

@@ -1,18 +1,34 @@
 module.exports = {
-  tabWidth: 2, //指定每个缩进级别的空格数
-  printWidth: 100, //超过多少换行
-  semi: false, //行位是否使用分号
-  vueIndentScriptAndStyle: true, // vue文件的script标签和Style标签下的内容需要缩进
-  singleQuote: true, // 强制使用单引号
-  trailingComma: 'all', // 尾部逗号设置, 强制最后一行也要有斗号
-  proseWrap: 'never', // 文章换行,默认情况下会对你的markdown文件换行进行format会控制在printwidth以内
-  htmlWhitespaceSensitivity: 'strict', // html中的空格敏感性
-  endOfLine: 'lf', // 行尾换行符,默认是lf
-  plugins: ['prettier-plugin-packagejson'],
+  // 缩进空格数
+  tabWidth: 2,
+  // 单行最大字符数
+  printWidth: 120,
+  // 使用分号
+  semi: true,
+  // Vue文件中script和style标签内容缩进
+  vueIndentScriptAndStyle: true,
+  // 使用单引号
+  singleQuote: true,
+  // 尾随逗号
+  trailingComma: 'all',
+  // 文本换行方式
+  proseWrap: 'never',
+  // HTML空格敏感性
+  htmlWhitespaceSensitivity: 'strict',
+  // 行尾换行符
+  endOfLine: 'auto',
+  // 箭头函数参数括号
+  arrowParens: 'always',
+  // 对象括号内是否添加空格
+  bracketSpacing: true,
+  // JSX标签闭合位置
+  bracketSameLine: false,
   overrides: [
     {
+      // 匹配rc配置文件
       files: '.*rc',
       options: {
+        // 使用JSON解析器
         parser: 'json',
       },
     },

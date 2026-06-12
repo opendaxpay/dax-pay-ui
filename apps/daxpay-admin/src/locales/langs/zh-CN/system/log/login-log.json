@@ -1,0 +1,20 @@
+{
+  "account": "用户账号",
+  "userId": "用户ID",
+  "status": "登录状态",
+  "ip": "登录IP地址",
+  "os": "操作系统",
+  "browser": "浏览器类型",
+  "msg": "提示消息",
+  "loginTime": "访问时间",
+  "client": "登录终端",
+  "loginType": "登录方式",
+  "loginLocation": "登录地点",
+  "inputAccount": "请输入用户账号",
+  "selectStatus": "请选择登录状态",
+  "detailTitle": "登录日志详情",
+  "selectCleanDay": "清除多久前的日志",
+  "cleanWarning": "警告",
+  "cleanConfirm": "是否清除指定日期前的日志，该操作不可撤回",
+  "cleanSuccess": "清理日志成功"
+}

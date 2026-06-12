@@ -1,0 +1,9 @@
+{
+  "placeholder": "Please select administrative region",
+  "level": {
+    "province": "Province",
+    "city": "City",
+    "area": "District/County",
+    "street": "Street/Town"
+  }
+}

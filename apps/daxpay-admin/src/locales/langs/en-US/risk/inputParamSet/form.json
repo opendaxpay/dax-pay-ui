@@ -1,0 +1,11 @@
+{
+  "add": {
+    "title": "Add Parameter Set",
+    "codePlaceholder": "Enter set code (letters+underscore)",
+    "namePlaceholder": "Enter set name",
+    "descriptionPlaceholder": "Enter description"
+  },
+  "edit": {
+    "title": "Edit Parameter Set"
+  }
+}

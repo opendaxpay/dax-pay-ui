@@ -1,0 +1,20 @@
+{
+  "account": "Account",
+  "userId": "User ID",
+  "status": "Status",
+  "ip": "IP Address",
+  "os": "OS",
+  "browser": "Browser",
+  "msg": "Message",
+  "loginTime": "Login Time",
+  "client": "Client",
+  "loginType": "Login Type",
+  "loginLocation": "Location",
+  "inputAccount": "Please enter account",
+  "selectStatus": "Please select status",
+  "detailTitle": "Login Log Detail",
+  "selectCleanDay": "Clean logs before",
+  "cleanWarning": "Warning",
+  "cleanConfirm": "Are you sure to delete logs before the specified date? This action cannot be undone.",
+  "cleanSuccess": "Logs cleaned successfully"
+}

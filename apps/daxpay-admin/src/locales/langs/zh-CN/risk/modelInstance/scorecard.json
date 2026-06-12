@@ -1,0 +1,14 @@
+{
+  "readonlyDimensionHint": "评分卡维度、条目与评级标尺行均由模型模板定义；实例侧仅填写覆盖值，不可增删行",
+  "formHint": "条目与标尺行结构与模型模板一致，可直接在表格中修改；与模板完全一致保存后将使用模板默认值",
+  "manageData": "管理数据",
+  "panelTitle": "实例评分卡",
+  "saveEntries": "保存条目",
+  "saveMappings": "保存标尺",
+  "noDimension": "该规则节点暂无评分卡维度定义",
+  "noTemplateEntry": "该维度在模型中暂无条目定义，请先在模型侧配置",
+  "noTemplateMapping": "该规则节点在模型中暂无评级标尺定义，请先在模型侧配置",
+  "templateDefault": "模板默认",
+  "templateScore": "模板分数",
+  "resetToTemplate": "恢复默认"
+}

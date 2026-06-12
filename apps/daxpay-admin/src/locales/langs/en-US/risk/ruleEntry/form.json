@@ -1,0 +1,11 @@
+{
+  "add": {
+    "title": "Add Rule Entry",
+    "conditionExprPlaceholder": "Please enter condition expression",
+    "resultValuePlaceholder": "Please enter result value",
+    "seqPlaceholder": "Please enter sequence number"
+  },
+  "edit": {
+    "title": "Edit Rule Entry"
+  }
+}

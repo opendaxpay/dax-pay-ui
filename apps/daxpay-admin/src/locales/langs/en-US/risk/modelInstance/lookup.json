@@ -1,0 +1,9 @@
+{
+  "readonlyStructureHint": "Lookup structure is defined by the model template; only instance rows are maintained here",
+  "manageRows": "Manage Data",
+  "rowTitle": "Instance Lookup Rows",
+  "instanceRowHint": "Template default rows are used when no instance rows exist; edit inline and click Save",
+  "addRow": "Add Row",
+  "saveRows": "Save Rows",
+  "confirmDeleteRow": "Are you sure you want to delete this lookup row?"
+}

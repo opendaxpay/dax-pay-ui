@@ -1,0 +1,9 @@
+{
+  "username": "用户名称",
+  "account": "账号",
+  "clientCode": "终端",
+  "loginTime": "登录时间",
+  "kickout": "强制下线",
+  "batchKickout": "批量强制下线",
+  "confirmKickout": "确定要强制选中的用户下线吗？"
+}

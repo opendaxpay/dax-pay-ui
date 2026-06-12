@@ -1,0 +1,35 @@
+{
+  "field": {
+    "mchNo": "Merchant No.",
+    "mchName": "Merchant Name",
+    "mchShortName": "Short Name",
+    "isvNo": "ISV",
+    "isvName": "ISV Name",
+    "status": "Status",
+    "subjectType": "Subject Type",
+    "createTime": "Create Time",
+    "id": "ID"
+  },
+  "status": {
+    "enable": "Enabled",
+    "disabled": "Disabled"
+  },
+  "subjectType": {
+    "micro": "Micro Merchant",
+    "individual": "Individual Business",
+    "enterprise": "Enterprise"
+  },
+  "action": {
+    "confirmEnableContent": "Are you sure you want to enable this merchant?",
+    "confirmDisableContent": "Are you sure you want to disable this merchant? After disabling, the merchant account will not be able to log in."
+  },
+  "validation": {
+    "pleaseSelectIsv": "Please select ISV",
+    "pleaseInputMchName": "Please enter merchant name",
+    "pleaseInputMchShortName": "Please enter merchant short name",
+    "pleaseInputAccount": "Please enter administrator account",
+    "pleaseConfirmPassword": "Please confirm the password",
+    "pleaseSelectSubjectType": "Please select subject type",
+    "pleaseSelectStatus": "Please select status"
+  }
+}

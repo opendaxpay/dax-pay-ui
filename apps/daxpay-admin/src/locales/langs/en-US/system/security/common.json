@@ -1,0 +1,16 @@
+{
+  "title": "Security Management",
+  "description": "Manage system security settings by module",
+  "unit": {
+    "char": "chars",
+    "day": "days",
+    "times": "times",
+    "minute": "minutes",
+    "hour": "hours",
+    "session": "sessions",
+    "second": "seconds",
+    "window": "windows",
+    "count": "count",
+    "score": "points"
+  }
+}

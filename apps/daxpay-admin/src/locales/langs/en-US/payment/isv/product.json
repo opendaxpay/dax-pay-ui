@@ -1,0 +1,14 @@
+{
+  "product": {
+    "title": "Payment Product Management",
+    "backToWorkbench": "Back to Workbench",
+    "enable": "Enabled",
+    "disable": "Disabled",
+    "confirmToggle": "Are you sure you want to {action} this product?",
+    "productName": "Product Name",
+    "productCode": "Product Code",
+    "channel": "Channel",
+    "status": "Status",
+    "description": "Description"
+  }
+}

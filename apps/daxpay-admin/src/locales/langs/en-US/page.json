@@ -1,0 +1,30 @@
+{
+  "auth": {
+    "profile": "Profile",
+    "login": "Login",
+    "codeLogin": "Code Login",
+    "qrcodeLogin": "QR Code Login",
+    "forgetPassword": "Forget Password",
+    "register": "Register"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "analytics": "Analytics",
+    "workspace": "Workspace"
+  },
+  "payment": {
+    "title": "Payment Management",
+    "platform": "Platform Management",
+    "isvList": "ISV List",
+    "isvManage": "ISV Management",
+    "isvInfoManage": "ISV Info",
+    "isvEntityManage": "Entity Info",
+    "merchantList": "Merchant List",
+    "merchantManage": "Merchant Management",
+    "merchantChannelMerchant": "Merchant Channel Merchant",
+    "channelMerchantManage": "Channel Merchant Management",
+    "channelMerchantList": "Channel Merchant Management",
+    "channelMerchantDetail": "Channel Merchant Detail",
+    "productList": "Payment Product"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Instance Configuration",
+  "groupInstanceConfig": "Instance Configuration",
+  "empty": "No configurable instance data for this model",
+  "overrideValue": "Override Value",
+  "cardConfigParam": "Config Parameter Overrides",
+  "cardConfigParamDesc": "Set instance-level config parameter override values",
+  "cardLookupTable": "Lookup Data",
+  "cardLookupTableDesc": "Maintain instance-level lookup row data",
+  "cardScorecard": "Scorecard Data",
+  "cardScorecardDesc": "Fill instance override values for scorecard entries and mappings defined by the model template"
+}

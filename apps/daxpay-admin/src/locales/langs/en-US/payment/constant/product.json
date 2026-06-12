@@ -1,0 +1,29 @@
+{
+  "field": {
+    "code": "Product Code",
+    "name": "Product Name",
+    "channel": "Channel",
+    "description": "Description",
+    "icon": "Icon",
+    "remark": "Remark",
+    "channelName": "Channel Name",
+    "isv": "ISV",
+    "allocatable": "Allocatable",
+    "terminal": "Terminal Report",
+    "apply": "Onboarding",
+    "sandbox": "Sandbox",
+    "apiCallMode": "API Call Mode",
+    "payIdType": "Pay ID Type",
+    "capabilities": "Payment Capabilities",
+    "settlePeriods": "Settlement Periods",
+    "features": "Product Features"
+  },
+  "features": "Product Features",
+  "detail": "Product Detail",
+  "sandboxSupported": "Supported",
+  "sandboxNotSupported": "Not Supported",
+  "placeholder": {
+    "name": "Enter product name",
+    "code": "Enter product code"
+  }
+}

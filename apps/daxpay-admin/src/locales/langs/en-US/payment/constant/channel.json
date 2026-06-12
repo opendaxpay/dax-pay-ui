@@ -1,0 +1,19 @@
+{
+  "field": {
+    "icon": "Icon",
+    "code": "Channel Code",
+    "name": "Channel Name",
+    "description": "Description"
+  },
+  "detail": "Channel Detail",
+  "section": {
+    "products": "Pay Products"
+  },
+  "empty": {
+    "products": "No pay products"
+  },
+  "placeholder": {
+    "name": "Enter channel name",
+    "code": "Enter channel code"
+  }
+}

@@ -1,0 +1,163 @@
+<script lang="ts" setup>
+  import { computed, ref } from 'vue';
+
+  import { $t } from '@vben/locales';
+
+  import { type WechatIsvApp, WechatIsvAppApi } from '#/api/payment/wechatIsvApp.api';
+  import { FormEditType } from '#/enums/formEditType';
+  import { useFormEdit } from '#/hooks/useFormEdit';
+  import { useMessage } from '#/hooks/useMessage';
+  import { useValidate } from '#/hooks/useValidate';
+
+  const emit = defineEmits(['ok']);
+
+  const { message } = useMessage();
+  const { existsByServer, useDebounceValidator } = useValidate();
+
+  const formRef = ref();
+  const isvNo = ref('');
+
+  const { visible, confirmLoading, title, initFormEditType, handleCancel, formEditType } = useFormEdit();
+
+  const formState = ref<WechatIsvApp>({
+    appName: '',
+    appType: 'official_account',
+    wxAppId: '',
+  });
+
+  const isEdit = computed(() => formEditType.value === FormEditType.Edit);
+
+  /** 应用类型选项 */
+  const appTypeOptions = computed(() => [
+    { label: $t('payment.channel.wechatManage.appTypeOfficialAccount'), value: 'official_account' },
+    { label: $t('payment.channel.wechatManage.appTypeMiniProgram'), value: 'mini_program' },
+    { label: $t('payment.channel.wechatManage.appTypeMobileApp'), value: 'mobile_app' },
+  ]);
+
+  async function validateWxAppId() {
+    const { wxAppId, id } = formState.value;
+    return existsByServer(
+      wxAppId,
+      id,
+      formEditType.value,
+      (value) => WechatIsvAppApi.existsWxAppId(isvNo.value, value),
+      (value, excludeId) => WechatIsvAppApi.existsWxAppIdNotId(isvNo.value, value, excludeId),
+      $t('payment.channel.wechatManage.wxAppIdDuplicate'),
+    );
+  }
+
+  const validateWxAppIdDebounced = useDebounceValidator(formRef, 'wxAppId', validateWxAppId, 500);
+
+  const formRules = computed(() => ({
+    appName: [{ required: true, message: $t('payment.channel.wechatManage.appNameRequired') }],
+    appType: isEdit.value ? [] : [{ required: true, message: $t('payment.channel.wechatManage.appTypeRequired') }],
+    wxAppId: [
+      { required: true, message: $t('payment.channel.wechatManage.wxAppIdRequired') },
+      { validator: validateWxAppIdDebounced },
+    ],
+  }));
+
+  function resetForm() {
+    formState.value = {
+      appName: '',
+      appType: 'official_account',
+      wxAppId: '',
+    };
+    formRef.value?.resetFields();
+  }
+
+  function show(no: string) {
+    isvNo.value = no;
+    initFormEditType(FormEditType.Add);
+    resetForm();
+  }
+
+  function showEdit(no: string, record: WechatIsvApp) {
+    isvNo.value = no;
+    initFormEditType(FormEditType.Edit);
+    resetForm();
+    confirmLoading.value = true;
+    WechatIsvAppApi.findById(record.id!)
+      .then(({ data }) => {
+        if (data) {
+          formState.value = {
+            id: data.id,
+            appName: data.appName,
+            appType: data.appType || 'official_account',
+            wxAppId: data.wxAppId,
+          };
+        }
+      })
+      .finally(() => {
+        confirmLoading.value = false;
+      });
+  }
+
+  async function handleOk() {
+    await formRef.value?.validate();
+    await validateWxAppId();
+    confirmLoading.value = true;
+    const payload: WechatIsvApp = {
+      ...formState.value,
+      isvNo: isvNo.value,
+    };
+    const request =
+      formEditType.value === FormEditType.Edit ? WechatIsvAppApi.update(payload) : WechatIsvAppApi.add(payload);
+    request
+      .then(() => {
+        message.success($t('payment.channel.wechatManage.saveSuccess'));
+        handleCancel();
+        emit('ok');
+      })
+      .finally(() => {
+        confirmLoading.value = false;
+      });
+  }
+
+  defineExpose({ show, showEdit });
+</script>
+
+<template>
+  <a-modal
+    v-model:open="visible"
+    :title="title"
+    :width="520"
+    :confirm-loading="confirmLoading"
+    :destroy-on-hidden="true"
+    :mask-closable="false"
+    @ok="handleOk"
+    @cancel="handleCancel"
+  >
+    <a-spin :spinning="confirmLoading">
+      <a-form
+        ref="formRef"
+        :model="formState"
+        :rules="formRules"
+        :label-col="{ span: 6 }"
+        :wrapper-col="{ span: 16 }"
+        class="form-compact"
+      >
+        <a-form-item :label="$t('payment.channel.wechatManage.appName')" name="appName">
+          <a-input
+            v-model:value="formState.appName"
+            :placeholder="$t('payment.channel.wechatManage.appNamePlaceholder')"
+          />
+        </a-form-item>
+        <a-form-item :label="$t('payment.channel.wechatManage.appType')" name="appType">
+          <a-select
+            v-model:value="formState.appType"
+            :options="appTypeOptions"
+            :disabled="isEdit"
+            :placeholder="$t('payment.channel.wechatManage.appTypeRequired')"
+          />
+        </a-form-item>
+        <a-form-item :label="$t('payment.channel.wechatManage.wxAppId')" name="wxAppId">
+          <a-input
+            v-model:value="formState.wxAppId"
+            :placeholder="$t('payment.channel.wechatManage.wxAppIdPlaceholder')"
+          />
+        </a-form-item>
+      </a-form>
+    </a-spin>
+  </a-modal>
+</template>

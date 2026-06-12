@@ -1,0 +1,46 @@
+{
+  "field": {
+    "code": "产品编码",
+    "name": "产品名称",
+    "channel": "所属通道",
+    "description": "产品介绍",
+    "icon": "图标",
+    "sortNo": "排序",
+    "remark": "备注",
+    "channelName": "通道名称",
+    "isv": "服务商",
+    "allocatable": "分账",
+    "terminal": "终端报备",
+    "apply": "进件",
+    "sandbox": "沙箱",
+    "apiCallMode": "API调用模式",
+    "payIdType": "支付标识类型",
+    "capabilities": "支付能力",
+    "settlePeriods": "结算周期",
+    "features": "产品特性"
+  },
+  "features": "产品特性",
+  "detail": "产品详情",
+  "editCapabilities": "配置支付能力",
+  "sandboxSupported": "支持",
+  "sandboxNotSupported": "不支持",
+  "enum": {
+    "alipayIsv": "支付宝(服务商)",
+    "alipay": "支付宝(直连)",
+    "wechat": "微信支付(直连)",
+    "wechatPay": "微信支付(直连)",
+    "wechatIsv": "微信支付(服务商)",
+    "douyinPay": "抖音支付(直连)",
+    "umsQrcode": "银联商务(C扫B)",
+    "umsJsapi": "银联商务(公众号)",
+    "umsApp": "银联商务(APP)",
+    "umsMini": "银联商务(小程序)",
+    "umsH5": "银联商务(H5)",
+    "umsBarcode": "银联商务(B扫C)",
+    "lakalaPay": "拉卡拉支付"
+  },
+  "placeholder": {
+    "name": "请输入产品名称",
+    "channel": "请选择通道"
+  }
+}

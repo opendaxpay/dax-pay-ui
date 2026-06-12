@@ -1,0 +1,96 @@
+{
+  "add": {
+    "title": "Add ISV",
+    "isvInfo": "ISV Information",
+    "namePlaceholder": "Please enter ISV name",
+    "shortNamePlaceholder": "Please enter short name"
+  },
+  "detail": {
+    "title": "ISV Details",
+    "basicInfo": "Basic Information",
+    "profileInfo": "Basic Profile",
+    "legalInfo": "Legal Person Information",
+    "licenseInfo": "Business License Information",
+    "bankCardInfo": "Bank Card Information"
+  },
+  "isvInfo": {
+    "title": "ISV Information",
+    "editTitle": "Edit ISV Information",
+    "backToWorkbench": "Back to Management"
+  },
+  "entity": {
+    "title": "Entity Information",
+    "backToWorkbench": "Back to Management"
+  },
+  "profile": {
+    "contactName": "Contact Name",
+    "contactPhone": "Contact Phone",
+    "contactEmail": "Contact Email",
+    "province": "Province",
+    "city": "City",
+    "region": "Region",
+    "address": "Address",
+    "remark": "Remark",
+    "contactNamePlaceholder": "Please enter contact name",
+    "contactPhonePlaceholder": "Please enter contact phone",
+    "contactEmailPlaceholder": "Please enter contact email",
+    "provincePlaceholder": "Please enter province",
+    "cityPlaceholder": "Please enter city",
+    "regionPlaceholder": "Please select province and city",
+    "addressPlaceholder": "Please enter address",
+    "remarkPlaceholder": "Please enter remark"
+  },
+  "legal": {
+    "name": "Legal Person Name",
+    "certNo": "ID Card No.",
+    "phone": "Phone",
+    "periodLong": "Long Term Valid",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "idCardAddress": "ID Card Address",
+    "idCardFront": "ID Card Front",
+    "idCardBack": "ID Card Back",
+    "namePlaceholder": "Please enter legal person name",
+    "certNoPlaceholder": "Please enter ID card No.",
+    "phonePlaceholder": "Please enter contact phone",
+    "startDatePlaceholder": "Please select start date",
+    "endDatePlaceholder": "Please select end date",
+    "idCardAddressPlaceholder": "Please enter ID card address",
+    "idCardFrontPlaceholder": "Please enter ID card front photo (S3 key)",
+    "idCardBackPlaceholder": "Please enter ID card back photo (S3 key)"
+  },
+  "license": {
+    "no": "Business License No.",
+    "name": "Business License Name",
+    "region": "Region",
+    "address": "Business License Address",
+    "pic": "Business License Photo",
+    "noPlaceholder": "Please enter business license No.",
+    "namePlaceholder": "Please enter business license name",
+    "regionPlaceholder": "Please select province, city and area",
+    "addressPlaceholder": "Please enter business license address",
+    "startDatePlaceholder": "Please select business license start date",
+    "endDatePlaceholder": "Please select business license end date",
+    "picPlaceholder": "Please enter business license photo (S3 key)"
+  },
+  "bankCard": {
+    "accountType": "Account Type",
+    "accountName": "Account Name",
+    "cardNo": "Bank Card No.",
+    "bankName": "Bank Name",
+    "branchNo": "Branch No.",
+    "bankPhone": "Reserved Phone",
+    "cardFrontPic": "Card Front Photo",
+    "cardBackPic": "Card Back Photo",
+    "accountTypePlaceholder": "Please select account type",
+    "accountNamePlaceholder": "Please enter bank card account name",
+    "cardNoPlaceholder": "Please enter bank card No.",
+    "bankNamePlaceholder": "Please enter bank name",
+    "branchNoPlaceholder": "Please enter branch No.",
+    "bankPhonePlaceholder": "Please enter reserved phone",
+    "cardFrontPicPlaceholder": "Please enter card front photo (S3 key)",
+    "cardBackPicPlaceholder": "Please enter card back photo (S3 key)",
+    "accountTypeCompany": "Corporate Account",
+    "accountTypePerson": "Personal Account"
+  }
+}

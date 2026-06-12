@@ -1,0 +1,9 @@
+{
+  "field": {
+    "provider": "支付渠道",
+    "method": "支付方式",
+    "code": "编码",
+    "description": "介绍"
+  },
+  "detail": "目录项详情"
+}

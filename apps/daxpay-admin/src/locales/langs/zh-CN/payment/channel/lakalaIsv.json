@@ -1,0 +1,28 @@
+{
+  "title": "拉卡拉服务商配置",
+  "basicConfig": "基础配置",
+  "keyConfig": "密钥配置",
+  "enable": "是否启用",
+  "lklAppId": "拉卡拉应用编号",
+  "lklAppIdPlaceholder": "请输入拉卡拉应用编号",
+  "mchSerialNo": "商户证书序列号",
+  "mchSerialNoPlaceholder": "请输入商户证书序列号",
+  "privateKey": "私钥证书",
+  "publicKey": "公钥证书",
+  "sm4Key": "SM4密钥",
+  "sm4KeyPlaceholder": "请输入SM4密钥",
+  "uploadPublicKey": "上传公钥证书",
+  "uploadPrivateKey": "上传私钥证书",
+  "validation": {
+    "enable": "请选择是否启用",
+    "lklAppId": "请输入拉卡拉应用编号",
+    "mchSerialNo": "请输入商户证书序列号",
+    "privateKey": "请上传私钥证书",
+    "publicKey": "请上传公钥证书",
+    "termNo": "请输入终端号"
+  },
+  "termNo": "终端号",
+  "termNoPlaceholder": "请输入终端号",
+  "businessContent": "经营内容",
+  "businessContentPlaceholder": "请选择经营内容"
+}

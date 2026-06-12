@@ -1,11 +1,9 @@
 {
   "name": "@vben/vite-config",
-  "version": "1.0.0",
+  "version": "5.7.0",
   "private": true,
   "homepage": "https://github.com/vbenjs/vue-vben-admin",
-  "bugs": {
-    "url": "https://github.com/vbenjs/vue-vben-admin/issues"
-  },
+  "bugs": "https://github.com/vbenjs/vue-vben-admin/issues",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vbenjs/vue-vben-admin.git",
@@ -13,46 +11,49 @@
   },
   "license": "MIT",
   "type": "module",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
+  "scripts": {
+    "stub": "pnpm unbuild --stub"
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "scripts": {
-    "clean": "pnpm rimraf .turbo node_modules dist",
-    "lint": "pnpm eslint .",
-    "stub": "pnpm unbuild --stub"
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.mjs"
+    }
   },
   "dependencies": {
-    "@ant-design/colors": "^7.0.2",
-    "vite": "^5.2.10"
+    "@intlify/unplugin-vue-i18n": "catalog:",
+    "@jspm/generator": "catalog:",
+    "@tailwindcss/vite": "catalog:",
+    "archiver": "catalog:",
+    "cheerio": "catalog:",
+    "html-minifier-terser": "catalog:",
+    "resolve.exports": "catalog:",
+    "vite-plugin-pwa": "catalog:",
+    "vite-plugin-vue-devtools": "catalog:"
   },
   "devDependencies": {
-    "@types/fs-extra": "^11.0.4",
-    "@vitejs/plugin-vue": "^5.0.4",
-    "@vitejs/plugin-vue-jsx": "^3.1.0",
-    "ant-design-vue": "^4.2.1",
-    "dayjs": "^1.11.10",
-    "dotenv": "^16.4.5",
-    "fs-extra": "^11.2.0",
-    "less": "^4.2.0",
-    "picocolors": "^1.0.0",
-    "pkg-types": "^1.1.0",
-    "rollup-plugin-visualizer": "^5.12.0",
-    "sass": "^1.75.0",
-    "unocss": "0.59.4",
-    "vite-plugin-compression": "^0.5.1",
-    "vite-plugin-dts": "^3.9.0",
-    "vite-plugin-html": "^3.2.2",
-    "vite-plugin-purge-icons": "^0.10.0",
-    "vite-plugin-svg-icons": "^2.0.1"
+    "@pnpm/workspace.read-manifest": "catalog:",
+    "@types/archiver": "catalog:",
+    "@types/html-minifier-terser": "catalog:",
+    "@vben/node-utils": "workspace:*",
+    "@vitejs/plugin-vue": "catalog:",
+    "@vitejs/plugin-vue-jsx": "catalog:",
+    "dayjs": "catalog:",
+    "dotenv": "catalog:",
+    "rollup": "catalog:",
+    "rollup-plugin-visualizer": "catalog:",
+    "sass": "catalog:",
+    "sass-embedded": "catalog:",
+    "vite": "catalog:",
+    "vite-plugin-compression": "catalog:",
+    "vite-plugin-dts": "catalog:",
+    "vite-plugin-html": "catalog:",
+    "vite-plugin-lazy-import": "catalog:"
   }
 }

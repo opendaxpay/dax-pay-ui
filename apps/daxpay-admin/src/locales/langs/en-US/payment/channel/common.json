@@ -1,0 +1,20 @@
+{
+  "alipay": "Alipay",
+  "wechat": "WeChat Pay",
+  "unionPay": "UnionPay",
+  "leshuaPay": "Leshua",
+  "vbillPay": "VBill",
+  "adaPay": "AdaPay",
+  "dougongPay": "DouGong",
+  "douyinPay": "Douyin Pay",
+  "hkrtPay": "HKRT",
+  "lakalaPay": "Lakala",
+  "fuyouPay": "Fuyou",
+  "shengPay": "ShengPay",
+  "ysepPay": "YSEP",
+  "quickPay": "QuickPay",
+  "sandPay": "SandPay",
+  "yeePay": "YeePay",
+  "umsPay": "UMS",
+  "jeePay": "JeePay"
+}

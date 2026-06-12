@@ -1,0 +1,12 @@
+{
+  "tab": {
+    "modelDataSource": "模型数据源",
+    "configParam": "配置参数",
+    "strategyNode": "策略节点",
+    "lookupTable": "查表定义"
+  },
+  "info": {
+    "title": "模型配置",
+    "editBtn": "编辑"
+  }
+}

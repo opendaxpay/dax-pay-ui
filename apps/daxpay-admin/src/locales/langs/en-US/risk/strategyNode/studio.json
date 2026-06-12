@@ -1,0 +1,10 @@
+{
+  "title": "Rule Configuration",
+  "breadcrumbModel": "Model Configuration",
+  "breadcrumbStrategyNode": "Strategy Nodes",
+  "ruleNodeList": "Rule Nodes",
+  "selectRuleNodeHint": "Select a rule node from the left, or add a new one",
+  "lookupReadonlyHint": "Lookup table linked to this LOOKUP rule node (read-only)",
+  "summaryDecisionMode": "Decision Mode",
+  "summaryPrecondition": "Precondition"
+}

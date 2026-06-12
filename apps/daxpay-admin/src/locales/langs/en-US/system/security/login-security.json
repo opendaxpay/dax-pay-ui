@@ -1,0 +1,49 @@
+{
+  "title": "Login Security",
+  "description": "Manage failed login lockout and reset window settings",
+  "summary": {
+    "enabled": "Protection enabled",
+    "disabled": "Protection disabled",
+    "failedThreshold": "Failed threshold {count} times",
+    "locked": "Locked {minutes} minutes",
+    "resetWindow": "Reset window {minutes} minutes",
+    "captchaEnabled": "Captcha trigger {count} times",
+    "captchaDisabled": "Captcha disabled"
+  },
+  "section": {
+    "protection": "Login Protection",
+    "lockout": "Lockout Policy",
+    "captcha": "Captcha Trigger"
+  },
+  "lockoutEnabled": {
+    "label": "Enable Login Failure Lockout",
+    "desc": "When enabled, accounts will be locked after consecutive failures reach the threshold."
+  },
+  "maxFailedAttempts": {
+    "label": "Max Failed Attempts",
+    "desc": "Account will be locked after exceeding this count.",
+    "placeholder": "Enter max failed attempts"
+  },
+  "lockoutDurationMinutes": {
+    "label": "Lockout Duration",
+    "desc": "Duration of account lockout.",
+    "placeholder": "Enter lockout duration"
+  },
+  "failureResetMinutes": {
+    "label": "Failure Reset Window",
+    "desc": "Failure count will be reset if no further failures occur within this time.",
+    "placeholder": "Enter reset window duration"
+  },
+  "captchaEnabled": {
+    "label": "Enable Captcha Trigger",
+    "desc": "When enabled, captcha will be required after consecutive failures reach the threshold."
+  },
+  "captchaTriggerAttempts": {
+    "label": "Captcha Trigger Attempts",
+    "desc": "Captcha will be required when failure count reaches this value.",
+    "placeholder": "Enter trigger attempts"
+  },
+  "validation": {
+    "captchaTriggerRange": "Captcha trigger attempts cannot be greater than max failed attempts"
+  }
+}

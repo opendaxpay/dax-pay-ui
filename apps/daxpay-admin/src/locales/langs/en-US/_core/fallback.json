@@ -1,0 +1,12 @@
+{
+  "pageNotFound": "Oops! Page Not Found",
+  "pageNotFoundDesc": "Sorry, we couldn't find the page you were looking for.",
+  "forbidden": "Oops! Access Denied",
+  "forbiddenDesc": "Sorry, you don't have permission to access this page.",
+  "internalError": "Oops! Something Went Wrong",
+  "internalErrorDesc": "Sorry, the server encountered an error.",
+  "offline": "Offline Page",
+  "offlineError": "Oops! Network Error",
+  "offlineErrorDesc": "Sorry, unable to connect to the internet. Please check your network connection and try again.",
+  "comingSoon": "Coming Soon"
+}

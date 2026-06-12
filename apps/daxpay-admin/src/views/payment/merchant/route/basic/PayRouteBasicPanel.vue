@@ -1,0 +1,172 @@
+<script lang="ts" setup>
+  import { ref } from 'vue';
+
+  import { $t } from '@vben/locales';
+
+  import { IconifyIcon } from '@vben-core/icons';
+
+  import { PayRouteApi, type PayRouteBasicConfigResult } from '#/api/payment/payRoute.api';
+  import { PermCodes } from '#/constants/perm-codes';
+  import { useMessage } from '#/hooks/useMessage';
+  import { usePermission } from '#/hooks/usePermission';
+
+  import { ROUTE_PAY_PROVIDERS } from '../shared/payRoute.constants';
+  import { providerLabel } from '../shared/payRoute.labels';
+
+  defineOptions({ name: 'PayRouteBasicPanel' });
+
+  // 基础模式：按支付品牌配置默认支付产品
+  const props = defineProps<{
+    appId: string;
+    productNameMap: Record<string, string>;
+  }>();
+
+  const { confirm, message } = useMessage();
+  const { hasPermission } = usePermission();
+
+  const basicConfigRows = ref<PayRouteBasicConfigResult[]>([]);
+  const basicConfigMap = ref<Record<string, string | undefined>>({});
+  const basicConfigEditing = ref(false);
+
+  async function loadBasicConfig() {
+    if (!props.appId) {
+      return;
+    }
+    const { data } = await PayRouteApi.listBasicConfig(props.appId);
+    basicConfigRows.value = (data || []) as PayRouteBasicConfigResult[];
+    const map: Record<string, string | undefined> = {};
+    for (const vendor of ROUTE_PAY_PROVIDERS) {
+      map[vendor.code] = undefined;
+    }
+    for (const row of basicConfigRows.value) {
+      if (row.provider) {
+        map[row.provider] = row.product;
+      }
+    }
+    basicConfigMap.value = map;
+  }
+
+  async function reload() {
+    await loadBasicConfig();
+  }
+
+  function vendorProductOptions(vendor: string) {
+    const products = basicConfigRows.value.find((item) => item.provider === vendor)?.products || [];
+    return products.map((code) => ({
+      label: props.productNameMap[code] || code,
+      value: code,
+    }));
+  }
+
+  function basicProductDisplay(vendor: string) {
+    const code = basicConfigMap.value[vendor];
+    if (!code) {
+      return $t('payment.merchant.route.route.basicProductNotSelected');
+    }
+    return props.productNameMap[code] || code;
+  }
+
+  function startBasicConfigEdit() {
+    basicConfigEditing.value = true;
+  }
+
+  async function doCancelBasicConfigEdit() {
+    basicConfigEditing.value = false;
+    await loadBasicConfig();
+  }
+
+  /** 取消编辑前二次确认 */
+  function cancelBasicConfigEdit() {
+    confirm({
+      // 国际化：取消编辑二次确认
+      content: $t('common.confirmCancelContent'),
+      onOk() {
+        return doCancelBasicConfigEdit();
+      },
+    });
+  }
+
+  function resetEditing() {
+    basicConfigEditing.value = false;
+  }
+
+  async function doSaveBasicConfig() {
+    await PayRouteApi.saveBasicBatch({
+      appId: props.appId!,
+      items: ROUTE_PAY_PROVIDERS.map((v) => ({
+        provider: v.code,
+        product: basicConfigMap.value[v.code],
+      })),
+    });
+    message.success($t('common.operationSuccess'));
+    basicConfigEditing.value = false;
+    await loadBasicConfig();
+  }
+
+  /** 保存前二次确认 */
+  function saveBasicConfig() {
+    if (!props.appId) {
+      return;
+    }
+    confirm({
+      // 国际化：基础模式保存二次确认
+      content: $t('payment.merchant.route.route.basicSaveConfirm'),
+      onOk() {
+        return doSaveBasicConfig();
+      },
+    });
+  }
+
+  defineExpose({
+    reload,
+    resetEditing,
+  });
+</script>
+
+<template>
+  <div class="py-2">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div v-for="vendor in ROUTE_PAY_PROVIDERS" :key="vendor.code" class="vendor-card rounded-xl border p-4">
+        <div class="mb-3 flex items-center gap-2">
+          <IconifyIcon :icon="vendor.icon" class="text-2xl" :style="{ color: vendor.color }" />
+          <span class="font-medium">{{ providerLabel(vendor.code) }}</span>
+        </div>
+        <div class="mt-3">
+          <div class="mb-1 text-xs text-muted-foreground">
+            {{ $t('payment.merchant.route.route.basicProduct') }}
+          </div>
+          <div
+            v-if="!basicConfigEditing"
+            class="min-h-8 rounded-md border border-border bg-muted/30 px-3 py-1.5 text-sm"
+          >
+            {{ basicProductDisplay(vendor.code) }}
+          </div>
+          <template v-else>
+            <a-select
+              v-model:value="basicConfigMap[vendor.code]"
+              class="w-full"
+              allow-clear
+              :placeholder="$t('payment.merchant.route.route.basicProductPlaceholder')"
+              :options="vendorProductOptions(vendor.code)"
+            >
+              <template #notFoundContent>
+                {{ $t('payment.merchant.route.route.basicNoProductNotFound') }}
+              </template>
+            </a-select>
+          </template>
+        </div>
+      </div>
+    </div>
+    <div v-if="hasPermission(PermCodes.Payment.AppPayRoute.EDIT)" class="mt-4 flex gap-2">
+      <a-button v-if="!basicConfigEditing" type="primary" @click="startBasicConfigEdit">
+        {{ $t('common.edit') }}
+      </a-button>
+      <template v-else>
+        <a-button type="primary" @click="saveBasicConfig">
+          {{ $t('common.save') }}
+        </a-button>
+        <a-button @click="cancelBasicConfigEdit">{{ $t('common.cancel') }}</a-button>
+      </template>
+    </div>
+  </div>
+</template>

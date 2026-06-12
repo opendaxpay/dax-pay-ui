@@ -1,0 +1,10 @@
+{
+  "login": "Login",
+  "register": "Register",
+  "codeLogin": "Code Login",
+  "qrcodeLogin": "Qr Code Login",
+  "forgetPassword": "Forget Password",
+  "profile": "Profile",
+  "pageTitle": "DaxPay Payment Operations Platform",
+  "pageDesc": "Secure, stable and efficient payment operations solution"
+}

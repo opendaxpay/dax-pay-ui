@@ -1,0 +1,37 @@
+{
+  "title": "Session Management",
+  "description": "Manage online duration, concurrent sessions and cleanup policies",
+  "summary": {
+    "enabled": "Control enabled",
+    "disabled": "Control disabled",
+    "online": "Online {hours} hours",
+    "concurrent": "Concurrent {count} sessions",
+    "strategy": "Strategy {name}"
+  },
+  "section": {
+    "control": "Session Control",
+    "limit": "Online & Concurrent Limits",
+    "policy": "Overflow Policy & Cleanup"
+  },
+  "enabled": {
+    "label": "Enable Session Management",
+    "desc": "When enabled, online duration, concurrent sessions and overflow handling will be restricted."
+  },
+  "maxOnlineHours": {
+    "label": "Max Online Duration",
+    "desc": "Maximum continuous online time per session.",
+    "placeholder": "Enter max online duration"
+  },
+  "maxConcurrentSessions": {
+    "label": "Max Concurrent Sessions",
+    "desc": "Maximum concurrent sessions per account.",
+    "placeholder": "Enter max concurrent sessions"
+  },
+  "concurrentStrategy": {
+    "label": "Concurrent Overflow Strategy",
+    "desc": "How to handle new sessions when concurrent limit is reached.",
+    "newSession": "Allow New Session",
+    "kickOldest": "Kick Oldest Session",
+    "denyNew": "Deny New Session"
+  }
+}

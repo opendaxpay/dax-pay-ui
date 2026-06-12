@@ -1,0 +1,12 @@
+{
+  "tab": {
+    "modelDataSource": "Model Data Sources",
+    "configParam": "Config Params",
+    "strategyNode": "Strategy Nodes",
+    "lookupTable": "Lookup Tables"
+  },
+  "info": {
+    "title": "Model Configuration",
+    "editBtn": "Edit"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "field": {
+    "code": "Param Code",
+    "name": "Param Name",
+    "paramType": "Param Type",
+    "description": "Description"
+  },
+  "paramType": {
+    "string": "String",
+    "number": "Number",
+    "boolean": "Boolean"
+  },
+  "action": {
+    "confirmDelete": "Are you sure to delete this param definition?"
+  },
+  "manageTitle": "Param Definition Management"
+}

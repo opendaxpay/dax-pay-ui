@@ -1,0 +1,28 @@
+{
+  "field": {
+    "instanceId": "Instance ID",
+    "modelId": "Model ID",
+    "providerId": "Provider ID",
+    "instanceName": "Instance Name",
+    "configParams": "Config Params",
+    "status": "Status",
+    "createTime": "Created At"
+  },
+  "status": {
+    "draft": "Draft",
+    "published": "Published",
+    "disabled": "Disabled"
+  },
+  "action": {
+    "manage": "Configure",
+    "confirmDelete": "Are you sure you want to delete this model instance? This action cannot be undone."
+  },
+  "configParam": {
+    "sectionBasic": "Basic Info",
+    "sectionOverride": "Config Parameter Overrides",
+    "title": "Config Parameter Overrides",
+    "empty": "No config parameters defined for this model",
+    "defaultValue": "Template default",
+    "paramCode": "Param Code"
+  }
+}

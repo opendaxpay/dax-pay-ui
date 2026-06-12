@@ -1,0 +1,124 @@
+/**
+ * 该文件可自行根据业务逻辑进行调整
+ */
+import type { RequestClientOptions } from '@vben/request';
+
+import { useAppConfig } from '@vben/hooks';
+import { preferences } from '@vben/preferences';
+import {
+  authenticateResponseInterceptor,
+  defaultResponseInterceptor,
+  errorMessageResponseInterceptor,
+  RequestClient,
+} from '@vben/request';
+import { useAccessStore } from '@vben/stores';
+
+import { createNonceRequestInterceptor } from '#/api/interceptors/nonce';
+import { useMessage } from '#/hooks/useMessage';
+import { useAuthStore } from '#/store';
+
+const { apiURL } = useAppConfig(import.meta.env, import.meta.env.PROD);
+
+function createRequestClient(baseURL: string, options?: RequestClientOptions) {
+  const client = new RequestClient({
+    ...options,
+    baseURL,
+  });
+
+  /**
+   * 重新认证逻辑
+   */
+  async function doReAuthenticate() {
+    console.warn('Access token is invalid or expired.');
+    const accessStore = useAccessStore();
+    const authStore = useAuthStore();
+    accessStore.setAccessToken(null);
+    if (preferences.app.loginExpiredMode === 'modal' && accessStore.isAccessChecked) {
+      accessStore.setLoginExpired(true);
+    } else {
+      await authStore.logout();
+    }
+  }
+
+  // 防重放Nonce请求拦截器
+  client.addRequestInterceptor(createNonceRequestInterceptor());
+
+  // 请求头处理
+  client.addRequestInterceptor({
+    fulfilled: async (config) => {
+      const accessStore = useAccessStore();
+
+      config.headers.Authorization = accessStore.accessToken;
+      config.headers['Accept-Language'] = preferences.app.locale;
+      config.headers['x-client-code'] = 'admin';
+      return config;
+    },
+  });
+
+  // 处理返回的响应数据格式，返回后端响应体 Result<T>
+  client.addResponseInterceptor(
+    defaultResponseInterceptor({
+      codeField: 'code',
+      dataField: (responseData) => responseData,
+      successCode: 0,
+    }),
+  );
+
+  client.addResponseInterceptor(
+    authenticateResponseInterceptor({
+      client,
+      doReAuthenticate,
+    }),
+  );
+
+  // 通用的错误处理,如果没有进入上面的错误处理逻辑，就会进入这里
+  client.addResponseInterceptor(
+    errorMessageResponseInterceptor((msg: string, error) => {
+      const { message } = useMessage();
+      const responseData = error?.data ?? {};
+      const errorMessage = responseData?.message ?? '';
+      message.error(errorMessage || msg);
+    }),
+  );
+
+  return client;
+}
+
+export const requestClient = createRequestClient(apiURL, {
+  responseReturn: 'body',
+});
+
+/**
+ * 支持对象参数的HTTP请求类
+ */
+class DefHttp {
+  private client: RequestClient;
+
+  constructor(client: RequestClient) {
+    this.client = client;
+  }
+
+  delete<T = any>(config: { [key: string]: any; headers?: any; params?: any; url: string }): Promise<T> {
+    const { url, ...rest } = config;
+    return this.client.delete<T>(url, rest);
+  }
+
+  get<T = any>(config: { [key: string]: any; headers?: any; params?: any; url: string }): Promise<T> {
+    const { url, ...rest } = config;
+    return this.client.get<T>(url, rest);
+  }
+
+  post<T = any>(config: { [key: string]: any; data?: any; headers?: any; params?: any; url: string }): Promise<T> {
+    const { url, data, ...rest } = config;
+    return this.client.post<T>(url, data, rest);
+  }
+
+  put<T = any>(config: { [key: string]: any; data?: any; headers?: any; params?: any; url: string }): Promise<T> {
+    const { url, data, ...rest } = config;
+    return this.client.put<T>(url, data, rest);
+  }
+}
+
+export const defHttp = new DefHttp(requestClient);
+
+export const baseRequestClient = new RequestClient({ baseURL: apiURL, timeout: 30_000 });

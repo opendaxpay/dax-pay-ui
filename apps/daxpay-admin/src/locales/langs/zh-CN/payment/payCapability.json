@@ -1,0 +1,18 @@
+{
+  "field": {
+    "code": "能力编码",
+    "name": "能力名称",
+    "remark": "备注",
+    "enabled": "是否启用",
+    "products": "关联支付产品",
+    "provider": "支付渠道",
+    "method": "支付方式",
+    "providerMethod": "渠道与方式（发版）"
+  },
+  "placeholder": {
+    "name": "请输入能力名称",
+    "code": "请输入能力编码"
+  },
+  "detail": "支付能力详情",
+  "edit": "编辑支付能力"
+}

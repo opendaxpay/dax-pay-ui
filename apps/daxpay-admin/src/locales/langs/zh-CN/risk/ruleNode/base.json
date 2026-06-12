@@ -1,0 +1,30 @@
+{
+  "field": {
+    "nodeId": "规则节点ID",
+    "nodeName": "节点名称",
+    "type": "规则类型",
+    "sortNo": "排序号",
+    "outputVariable": "输出变量",
+    "entryAggregation": "条目聚合策略",
+    "lookupTableId": "查表定义",
+    "lookupTable": "查表定义",
+    "title": "规则节点"
+  },
+  "ruleType": {
+    "decision": "决策规则",
+    "number": "数值规则",
+    "scorecard": "评分卡规则",
+    "lookup": "查表规则"
+  },
+  "aggregation": {
+    "first": "首个命中",
+    "sum": "求和",
+    "max": "最大值",
+    "min": "最小值",
+    "avg": "平均值"
+  },
+  "action": {
+    "confirmDelete": "确定要删除该规则节点吗？删除后其下的规则条目也会一并删除"
+  },
+  "title": "规则节点 - {name}"
+}

@@ -1,0 +1,17 @@
+{
+  "title": "Antd Next演示",
+  "description": "支持多语言，主题功能集成切换等",
+  "button": "按钮",
+  "message": "Message",
+  "notification": "Notification",
+  "info": "信息",
+  "error": "错误",
+  "warning": "警告",
+  "success": "成功",
+  "notificationTitle": "提示消息",
+  "confirmTitle": "确认操作",
+  "confirmContent": "这是一个通过 useMessage 调起的确认框示例。",
+  "confirmed": "已确认",
+  "dialog": "Dialog",
+  "openConfirm": "打开确认框"
+}

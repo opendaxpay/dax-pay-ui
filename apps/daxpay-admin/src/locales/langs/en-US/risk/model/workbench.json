@@ -1,0 +1,14 @@
+{
+  "workbench": {
+    "title": "Model Configuration",
+    "groupModelConfig": "Model Configuration",
+    "cardModelDataSource": "Model Data Sources",
+    "cardModelDataSourceDesc": "Configure data sources and load types for the model",
+    "cardConfigParam": "Config Parameters",
+    "cardConfigParamDesc": "Runtime configuration parameter definitions",
+    "cardStrategyNode": "Strategy Nodes",
+    "cardStrategyNodeDesc": "Strategy orchestration, rule nodes and decision logic",
+    "cardLookupTable": "Lookup Tables",
+    "cardLookupTableDesc": "Lookup table codes, columns and data maintenance"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "field": {
+    "code": "数据源编码",
+    "name": "数据源名称",
+    "className": "提供者类名",
+    "remark": "备注"
+  },
+  "action": {
+    "sync": "同步数据源",
+    "syncConfirm": "将根据系统接口自动同步数据源，是否确认？",
+    "syncResult": "同步完成：新增 {added} 个，更新 {updated} 个"
+  }
+}

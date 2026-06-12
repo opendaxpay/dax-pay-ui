@@ -1,0 +1,21 @@
+{
+  "title": "安全管理",
+  "description": "按模块维护系统安全配置",
+  "edit": "编辑",
+  "cancel": "取消",
+  "confirm": "确认",
+  "confirmSave": "确认保存",
+  "confirmSaveContent": "确定要保存当前配置吗？",
+  "unit": {
+    "char": "位",
+    "day": "天",
+    "times": "次",
+    "minute": "分钟",
+    "hour": "小时",
+    "session": "个",
+    "second": "秒",
+    "window": "个",
+    "count": "个",
+    "score": "分"
+  }
+}

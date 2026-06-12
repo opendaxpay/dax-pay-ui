@@ -1,0 +1,13 @@
+{
+  "add": {
+    "title": "新增模型",
+    "modelIdPlaceholder": "请输入模型标识",
+    "modelNamePlaceholder": "请输入模型名称",
+    "descriptionPlaceholder": "请输入描述",
+    "statusPlaceholder": "请选择状态",
+    "inputParamSetCodePlaceholder": "请选择参数集合"
+  },
+  "edit": {
+    "title": "编辑模型"
+  }
+}

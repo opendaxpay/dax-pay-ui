@@ -1,0 +1,22 @@
+{
+  "appManageTitle": "Alipay Channel Merchant Apps",
+  "consoleLink": "Alipay Open Platform",
+  "addCard": "Add App",
+  "emptyAppList": "No apps yet",
+  "edit": "Edit",
+  "delete": "Delete",
+  "actionMore": "More",
+  "saveSuccess": "Saved successfully",
+  "deleteSuccess": "Deleted successfully",
+  "appName": "App Name",
+  "appNamePlaceholder": "Enter app name",
+  "appNameRequired": "App name is required",
+  "aliAppId": "App ID",
+  "aliAppIdPlaceholder": "Enter Alipay app ID",
+  "aliAppIdRequired": "App ID is required",
+  "aliAppIdDuplicate": "App ID already exists under this channel merchant",
+  "aliAppIdPrefix": "App ID: {appId}",
+  "detailTitle": "{name} - App Management",
+  "tabBasicInfo": "Basic Info",
+  "tabKeyConfig": "Key Config"
+}

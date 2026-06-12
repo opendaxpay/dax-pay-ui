@@ -1,0 +1,13 @@
+{
+  "add": {
+    "title": "Add Param Definition",
+    "codePlaceholder": "Enter param code (letters+underscore)",
+    "codeDuplicate": "Param code already exists",
+    "namePlaceholder": "Enter param name",
+    "paramTypePlaceholder": "Please select param type",
+    "descriptionPlaceholder": "Enter description"
+  },
+  "edit": {
+    "title": "Edit Param Definition"
+  }
+}

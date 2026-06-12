@@ -1,0 +1,65 @@
+{
+  "field": {
+    "name": "Name",
+    "account": "Account",
+    "phone": "Phone",
+    "email": "Email",
+    "clientCode": "Client",
+    "status": "Status",
+    "role": "Role",
+    "roleList": "Role List",
+    "candidateRole": "Candidate Role",
+    "selectedRole": "Selected Role",
+    "lastLoginTime": "Last Login Time",
+    "detail": "User Detail",
+    "administrator": "Administrator"
+  },
+  "status": {
+    "normal": "Normal",
+    "lock": "Locked",
+    "ban": "Banned"
+  },
+  "action": {
+    "assignRole": "Assign Role",
+    "resetPassword": "Reset Password",
+    "ban": "Ban",
+    "unlock": "Unlock",
+    "batchBan": "Batch Ban",
+    "batchUnlock": "Batch Unlock",
+    "batchResetPassword": "Batch Reset Password",
+    "confirmAssignRole": "Are you sure you want to save the role assignment?",
+    "confirmBan": "Are you sure to ban selected users?",
+    "confirmUnlock": "Are you sure to unlock selected users?",
+    "confirmResetPassword": "Are you sure to reset password for selected users?"
+  },
+  "password": {
+    "password": "Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password"
+  },
+  "validation": {
+    "nameLength": "Name length must be between 3 and 15 characters",
+    "passwordLength": "Password length must be between 8 and 32 characters",
+    "assignRoleSingleTip": "A user can only be assigned one role, please select",
+    "pleaseSelectRole": "Please select a role",
+    "noAssignableRole": "No assignable roles",
+    "passwordRequired": "Please enter password",
+    "passwordLengthRange": "Password length must be between {min} and {max} characters",
+    "accountFormat": "Account can only contain letters, numbers, underscores and hyphens",
+    "passwordNoChinese": "Password cannot contain Chinese characters",
+    "cannotEditNonAdmin": "Cannot edit non-admin client users",
+    "cannotAssignRoleNonAdmin": "Cannot assign roles to non-admin client users"
+  },
+  "passwordPolicy": {
+    "requireUppercase": "Password must contain uppercase letter",
+    "requireLowercase": "Password must contain lowercase letter",
+    "requireDigit": "Password must contain digit",
+    "requireSpecialChar": "Password must contain special character ({chars})",
+    "hintLength": "Length: {min}-{max} characters",
+    "hintUppercase": "At least one uppercase letter",
+    "hintLowercase": "At least one lowercase letter",
+    "hintDigit": "At least one digit",
+    "hintSpecialChar": "At least one special character ({chars})",
+    "notMeetRequirements": "Password does not meet requirements"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "field": {
+    "instanceId": "实例标识",
+    "modelId": "模型标识",
+    "providerId": "服务提供商标识",
+    "instanceName": "实例名称",
+    "configParams": "配置参数",
+    "status": "状态",
+    "createTime": "创建时间"
+  },
+  "status": {
+    "draft": "草稿",
+    "published": "已发布",
+    "disabled": "已停用"
+  },
+  "action": {
+    "manage": "配置",
+    "confirmDelete": "确定要删除该模型实例吗？删除后不可恢复"
+  },
+  "configParam": {
+    "sectionBasic": "基本信息",
+    "sectionOverride": "配置参数覆盖",
+    "title": "配置参数覆盖",
+    "empty": "该模型暂无配置参数定义",
+    "defaultValue": "模板默认值",
+    "paramCode": "参数编码"
+  }
+}

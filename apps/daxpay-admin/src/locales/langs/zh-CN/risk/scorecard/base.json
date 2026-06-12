@@ -1,0 +1,25 @@
+{
+  "field": {
+    "title": "评分卡",
+    "dimension": "评分维度",
+    "dimensionName": "维度名称",
+    "dimensionSortNo": "排序号",
+    "entry": "维度条目",
+    "entryConditionExpr": "条件表达式",
+    "entryScore": "分数",
+    "entryIsExpression": "分数为表达式",
+    "entrySeq": "序号",
+    "scoreMapping": "评级标尺",
+    "minScoreExpr": "最低分数",
+    "grade": "等级",
+    "decision": "决策结果",
+    "isDefault": "默认条目"
+  },
+  "comingSoon": "评分卡管理功能开发中",
+  "comingSoonDesc": "评分卡规则支持按维度评分并汇总，通过评级标尺映射等级和决策结果。该功能即将上线，敬请期待。",
+  "action": {
+    "confirmDeleteDimension": "确定要删除该维度吗？删除后其下的条目也会一并删除",
+    "confirmDeleteEntry": "确定要删除该条目吗？",
+    "confirmDeleteMapping": "确定要删除该标尺条目吗？"
+  }
+}

@@ -1,0 +1,418 @@
+import type { RouteRecordStringComponent } from '@vben/types';
+
+import type { BaseEntity, Result } from '#/types/web';
+
+import { preferences } from '@vben/preferences';
+
+import { requestClient } from '#/api/request';
+import { MenuTypeEnum } from '#/enums/menuType';
+import { i18n } from '#/locales';
+
+/**
+ * 提取菜单翻译数据并注入到 i18n
+ */
+export function injectMenuI18n(menus: PermMenu[]) {
+  const zhCnMessages: Record<string, string> = {};
+  const enUsMessages: Record<string, string> = {};
+
+  function extractMessages(menu: PermMenu) {
+    if (menu.i18nKey) {
+      if (menu.titleCn) zhCnMessages[menu.i18nKey] = menu.titleCn;
+      if (menu.titleEn) enUsMessages[menu.i18nKey] = menu.titleEn;
+    }
+    menu.children?.forEach((child) => extractMessages(child));
+  }
+
+  menus.forEach((menu) => extractMessages(menu));
+
+  // 同时注入中英文内容
+  i18n.global.mergeLocaleMessage('zh', zhCnMessages);
+  i18n.global.mergeLocaleMessage('en', enUsMessages);
+}
+
+/**
+ * 统一标题生成链路
+ * 优先级：i18nKey > titleEn > titleCn
+ */
+function resolveMenuTitle(menu: PermMenu): string {
+  const locale = preferences.app.locale;
+  if (menu.i18nKey) {
+    return menu.i18nKey;
+  }
+  if (locale === 'en-US') {
+    return menu.titleEn || '';
+  }
+  return menu.titleCn || '';
+}
+
+/**
+ * 根据 menuType 过滤按钮类型节点（按钮不生成可导航路由，仅作权限标识）
+ */
+function filterButtonMenus(menus: PermMenu[]): PermMenu[] {
+  return menus
+    .filter((menu) => menu.menuType !== 'button')
+    .map((menu) => ({
+      ...menu,
+      children: menu.children ? filterButtonMenus(menu.children) : undefined,
+    }));
+}
+
+/**
+ * 过滤仅作权限锚点、无路由信息的菜单节点
+ * 中文：如 payment:alipay:isv / payment:wechat:isv 仅用于 @PermCode menuCode 挂载，无 path/component
+ */
+function filterPermissionAnchorMenus(menus: PermMenu[]): PermMenu[] {
+  return menus
+    .filter((menu) => {
+      const menuType = menu.menuType || MenuTypeEnum.MENU;
+      if (menuType === MenuTypeEnum.MENU && !menu.path && !menu.component) {
+        return false;
+      }
+      return true;
+    })
+    .map((menu) => ({
+      ...menu,
+      children: menu.children ? filterPermissionAnchorMenus(menu.children) : undefined,
+    }));
+}
+
+/**
+ * 处理单个菜单节点，提取其子菜单中的子页面并提升到当前层级
+ * 中文：子页面在数据库中作为菜单的子节点维护，但路由生成时需要提升到目录级别
+ */
+function processMenuNode(menu: PermMenu): PermMenu {
+  if (!menu.children || menu.children.length === 0) {
+    return menu;
+  }
+
+  const processedChildren: PermMenu[] = [];
+  const liftedSubpages: PermMenu[] = [];
+
+  for (const child of menu.children) {
+    const processedChild = processMenuNode(child);
+
+    if (processedChild.children && processedChild.children.length > 0) {
+      const subpages = processedChild.children.filter((c) => c.menuType === MenuTypeEnum.SUBPAGE);
+      const nonSubpages = processedChild.children.filter((c) => c.menuType !== MenuTypeEnum.SUBPAGE);
+
+      liftedSubpages.push(...subpages);
+
+      processedChild.children = nonSubpages.length > 0 ? nonSubpages : undefined;
+    }
+
+    processedChildren.push(processedChild);
+  }
+
+  const finalChildren = [...processedChildren, ...liftedSubpages];
+
+  return {
+    ...menu,
+    children: finalChildren.length > 0 ? finalChildren : undefined,
+  };
+}
+
+/**
+ * 从菜单树中提取所有子页面，并提升到其祖父节点下
+ * 中文：维护时保持层级关系，路由生成时提升子页面
+ */
+function extractAndLiftSubpages(menus: PermMenu[]): PermMenu[] {
+  return menus.map((menu) => processMenuNode(menu));
+}
+
+/**
+ * 将后端 PermMenu 转换为前端路由格式
+ * menuType 分支行为：
+ * - catalog：目录容器路由，可带 redirect，不渲染页面
+ * - menu：普通组件路由，component 必填
+ * - subpage：子页面路由，component 必填，强制隐藏菜单
+ * - embedded：内嵌容器路由，component = IFrameView，写入 meta.iframeSrc
+ * - link：外链路由，写入 meta.link + meta.external
+ * - button：不过滤（已在入参层移除），保留子级处理
+ */
+function convertMenuToRoute(menu: PermMenu): RouteRecordStringComponent {
+  const title = resolveMenuTitle(menu);
+  const menuType = menu.menuType || MenuTypeEnum.MENU;
+
+  // 构建基础路由对象
+  const route: RouteRecordStringComponent = {
+    name: menu.path,
+    path: menu.path,
+    component: '',
+    meta: {
+      title,
+      icon: menu.icon || undefined,
+      order: menu.sortNo ?? 0,
+      hideInMenu: menu.hidden,
+      hideChildrenInMenu: menu.hideChildrenMenu,
+      keepAlive: menu.keepAlive,
+      affixTab: menu.affixTab,
+      // 扩展字段
+      badge: menu.badge || undefined,
+      badgeType: (menu.badgeType as 'dot' | 'normal') || 'normal',
+      badgeVariants: menu.badgeVariants || 'subtle',
+    },
+    children: menu.children ? menu.children.map((child) => convertMenuToRoute(child)) : undefined,
+  };
+
+  // 根据 menuType 分支处理
+  switch (menuType) {
+    case MenuTypeEnum.CATALOG: {
+      // 目录：无组件，仅容器，可带 redirect
+      route.component = '';
+      route.redirect = menu.redirect;
+      // 目录隐藏时不传递 hideInMenu（目录本身不显示无意义）
+      route.meta!.hideInMenu = menu.hidden;
+      break;
+    }
+
+    case MenuTypeEnum.EMBEDDED: {
+      // 内嵌：强制使用 IFrameView 容器，写入 iframeSrc
+      route.component = 'IFrameView';
+      route.meta!.iframeSrc = menu.iframeSrc || '';
+      break;
+    }
+
+    case MenuTypeEnum.LINK: {
+      // 外链：写入 link 地址，component 置空由前端框架处理
+      route.component = '';
+      route.meta!.link = menu.link || '';
+      break;
+    }
+
+    case MenuTypeEnum.SUBPAGE: {
+      // 子页面：使用 component，强制隐藏菜单
+      route.component = menu.component || '';
+      route.meta!.hideInMenu = true;
+      break;
+    }
+
+    default: {
+      // 普通菜单：直接使用 component
+      route.component = menu.component || '';
+      route.redirect = menu.redirect;
+      break;
+    }
+  }
+
+  return route;
+}
+
+/**
+ * 批量转换菜单列表（先过滤按钮类型，再提取提升子页面，最后递归转换）
+ */
+export function convertMenuListToRoutes(menus: PermMenu[]): RouteRecordStringComponent[] {
+  const filtered = filterPermissionAnchorMenus(filterButtonMenus(menus));
+  const processed = extractAndLiftSubpages(filtered);
+  return processed.map((menu) => convertMenuToRoute(menu));
+}
+
+/**
+ * 菜单管理 API
+ */
+export const MenuApi = {
+  /**
+   * 获取当前用户菜单
+   */
+  getMyMenus(): Promise<Result<PermMenu[]>> {
+    return requestClient.get('/perm/menu/my');
+  },
+  /**
+   * 获取菜单树结构
+   */
+  tree(clientCode: string): Promise<Result<Menu[]>> {
+    return requestClient.get('/perm/menu/tree', { params: { clientCode } });
+  },
+  /**
+   * 根据ID获取菜单详情
+   */
+  findById(id: string): Promise<Result<Menu>> {
+    return requestClient.get('/perm/menu/get', { params: { id } });
+  },
+  /**
+   * 新增菜单
+   */
+  add(data: Menu): Promise<Result<Menu>> {
+    return requestClient.post('/perm/menu/add', data);
+  },
+  /**
+   * 更新菜单
+   */
+  update(data: Menu): Promise<Result<Menu>> {
+    return requestClient.post('/perm/menu/update', data);
+  },
+  /**
+   * 删除菜单
+   */
+  delete(id: string): Promise<Result<boolean>> {
+    return requestClient.post('/perm/menu/delete', null, { params: { id } });
+  },
+  /**
+   * 检查菜单编码是否已存在
+   */
+  checkMenuCodeExists(menuCode: string, clientCode: string, excludeId?: string): Promise<Result<boolean>> {
+    return requestClient.get('/perm/menu/check-menu-code-exists', {
+      params: { menuCode, clientCode, excludeId },
+    });
+  },
+};
+
+/**
+ * 权限码管理 API
+ */
+export const PermCodeApi = {
+  /**
+   * 扫描权限码
+   */
+  scan(): Promise<Result<PermCodeScanResult>> {
+    return requestClient.post('/perm/code/scan');
+  },
+  /**
+   * 根据菜单ID查询权限码列表
+   */
+  findByMenu(menuId: string): Promise<Result<MenuPermCodeItem[]>> {
+    return requestClient.get('/perm/code/get-by-menu', { params: { menuId } });
+  },
+};
+
+/**
+ * 运行时菜单结果类型（与后端 PermMenu 对齐）
+ * menuType 分支值：catalog=目录, menu=菜单, subpage=子页面, embedded=内嵌, link=外链, button=按钮
+ */
+export interface PermMenu extends BaseEntity {
+  /** 父级ID */
+  pid: string;
+  /** 客户端编码 */
+  clientCode: string;
+  /** 菜单标题-中文 */
+  titleCn?: string;
+  /** 菜单标题-英文 */
+  titleEn?: string;
+  /** 国际化key */
+  i18nKey?: string;
+  /** 图标 */
+  icon?: string;
+  /** 是否隐藏 */
+  hidden: boolean;
+  /** 是否隐藏子菜单 */
+  hideChildrenMenu: boolean;
+  /** 组件路径 */
+  component?: string;
+  /** 路由路径 */
+  path: string;
+  /** 重定向路径 */
+  redirect?: string;
+  /** 排序号 */
+  sortNo: number;
+  /** 是否缓存页面 */
+  keepAlive: boolean;
+  /** 是否固定标签页 */
+  affixTab: boolean;
+  /** 菜单类型 @see MenuTypeEnum */
+  menuType?: string;
+  /** 徽章显示文本 */
+  badge?: string;
+  /** 徽章类型: dot-圆点, normal-文本 */
+  badgeType?: string;
+  /** 徽章样式变体 */
+  badgeVariants?: string;
+  /** 内嵌页面URL地址（menuType=embedded 时使用） */
+  iframeSrc?: string;
+  /** 外部链接URL地址（menuType=link 时使用） */
+  link?: string;
+  /** 子菜单 */
+  children?: PermMenu[];
+}
+
+/**
+ * 菜单信息
+ */
+export interface Menu extends BaseEntity {
+  /** 应用编码 */
+  clientCode?: string;
+  /** 父级ID */
+  pid?: string;
+  /** 菜单编码 */
+  menuCode?: string;
+  /** 中文标题 */
+  titleCn?: string;
+  /** 英文标题 */
+  titleEn?: string;
+  /** 国际化Key */
+  i18nKey?: string;
+  /** 图标 */
+  icon?: string;
+  /** 是否隐藏 */
+  hidden?: boolean;
+  /** 是否隐藏子菜单 */
+  hideChildrenMenu?: boolean;
+  /** 组件路径 */
+  component?: string;
+  /** 路由路径 */
+  path?: string;
+  /** 重定向路径 */
+  redirect?: string;
+  /** 排序号 */
+  sortNo?: number;
+  /** 是否缓存 */
+  keepAlive?: boolean;
+  /** 是否固定标签页 */
+  affixTab?: boolean;
+  /** 菜单类型 */
+  menuType?: string;
+  /** 徽标内容 */
+  badge?: string;
+  /** 徽标类型 */
+  badgeType?: string;
+  /** 徽标样式 */
+  badgeVariants?: string;
+  /** iframe嵌入地址 */
+  iframeSrc?: string;
+  /** 外链地址 */
+  link?: string;
+  /** 子菜单列表 */
+  children?: Menu[];
+}
+
+/**
+ * 权限码扫描结果
+ */
+export interface PermCodeScanResult {
+  /** 新增数量 */
+  addedCount?: number;
+  /** 更新数量 */
+  updatedCount?: number;
+  /** 跳过数量 */
+  skippedCount?: number;
+  /** 删除数量 */
+  deletedCount?: number;
+  /** 错误数量 */
+  errorCount?: number;
+  /** 新增的权限码列表 */
+  addedCodes?: string[];
+  /** 更新的权限码列表 */
+  updatedCodes?: string[];
+  /** 跳过的权限码列表 */
+  skippedCodes?: string[];
+  /** 删除的权限码列表 */
+  deletedCodes?: string[];
+  /** 错误信息列表 */
+  errors?: string[];
+}
+
+/**
+ * 菜单权限码项
+ */
+export interface MenuPermCodeItem extends BaseEntity {
+  /** 权限码 */
+  code?: string;
+  /** 中文名称 */
+  nameCn?: string;
+  /** 英文名称 */
+  nameEn?: string;
+  /** 菜单编码 */
+  menuCode?: string;
+  /** 是否内置 */
+  internal?: boolean;
+  /** 备注 */
+  remark?: string;
+}

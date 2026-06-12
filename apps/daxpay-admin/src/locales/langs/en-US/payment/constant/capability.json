@@ -1,0 +1,13 @@
+{
+  "field": {
+    "code": "Capability Code",
+    "name": "Capability Name",
+    "description": "Description",
+    "products": "Linked Payment Products"
+  },
+  "placeholder": {
+    "name": "Enter capability name",
+    "code": "Enter capability code"
+  },
+  "detail": "Payment Capability Detail"
+}

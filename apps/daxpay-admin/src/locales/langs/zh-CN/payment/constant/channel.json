@@ -1,0 +1,19 @@
+{
+  "field": {
+    "icon": "图标",
+    "code": "通道编码",
+    "name": "通道名称",
+    "description": "通道介绍"
+  },
+  "detail": "通道详情",
+  "section": {
+    "products": "支付产品"
+  },
+  "empty": {
+    "products": "暂无支付产品"
+  },
+  "placeholder": {
+    "name": "请输入通道名称",
+    "code": "请输入通道编码"
+  }
+}

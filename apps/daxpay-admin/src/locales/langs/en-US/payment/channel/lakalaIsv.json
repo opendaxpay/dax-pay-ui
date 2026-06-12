@@ -1,0 +1,26 @@
+{
+  "title": "Lakala ISV Configuration",
+  "basicConfig": "Basic Configuration",
+  "keyConfig": "Key Configuration",
+  "enable": "Enable",
+  "lklAppId": "Lakala Application ID",
+  "lklAppIdPlaceholder": "Please enter Lakala application ID",
+  "mchSerialNo": "Merchant Certificate Serial Number",
+  "mchSerialNoPlaceholder": "Please enter merchant certificate serial number",
+  "privateKey": "Private Key Certificate",
+  "publicKey": "Public Key Certificate",
+  "sm4Key": "SM4 Key",
+  "sm4KeyPlaceholder": "Please enter SM4 key",
+  "uploadPublicKey": "Upload Public Key Certificate",
+  "uploadPrivateKey": "Upload Private Key Certificate",
+  "validation": {
+    "enable": "Please select whether to enable",
+    "lklAppId": "Please enter Lakala application ID",
+    "mchSerialNo": "Please enter merchant certificate serial number",
+    "privateKey": "Please upload private key certificate",
+    "publicKey": "Please upload public key certificate",
+    "termNo": "Please enter terminal number"
+  },
+  "termNo": "Terminal No",
+  "termNoPlaceholder": "Please enter terminal number"
+}

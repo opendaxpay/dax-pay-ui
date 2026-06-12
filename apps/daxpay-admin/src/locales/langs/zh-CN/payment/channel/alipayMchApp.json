@@ -1,0 +1,22 @@
+{
+  "appManageTitle": "支付宝通道商户应用",
+  "consoleLink": "支付宝开放平台",
+  "addCard": "添加应用",
+  "emptyAppList": "暂无应用",
+  "edit": "编辑",
+  "delete": "删除",
+  "actionMore": "更多操作",
+  "saveSuccess": "保存成功",
+  "deleteSuccess": "删除成功",
+  "appName": "应用名称",
+  "appNamePlaceholder": "请输入应用名称",
+  "appNameRequired": "请输入应用名称",
+  "aliAppId": "应用 AppId",
+  "aliAppIdPlaceholder": "请输入支付宝应用 AppId",
+  "aliAppIdRequired": "请输入应用 AppId",
+  "aliAppIdDuplicate": "该通道商户下应用 AppId 已存在",
+  "aliAppIdPrefix": "AppId：{appId}",
+  "detailTitle": "{name} - 应用管理",
+  "tabBasicInfo": "基础信息",
+  "tabKeyConfig": "密钥配置"
+}

@@ -1,0 +1,12 @@
+{
+  "title": "实例配置",
+  "groupInstanceConfig": "实例配置",
+  "empty": "该模型暂无可配置的实例数据项",
+  "overrideValue": "覆盖值",
+  "cardConfigParam": "配置参数覆盖",
+  "cardConfigParamDesc": "填写实例级配置参数覆盖值",
+  "cardLookupTable": "查表数据",
+  "cardLookupTableDesc": "维护实例级查表行数据",
+  "cardScorecard": "评分卡数据",
+  "cardScorecardDesc": "按模型模板结构填写实例级评分卡条目与评级标尺覆盖值"
+}

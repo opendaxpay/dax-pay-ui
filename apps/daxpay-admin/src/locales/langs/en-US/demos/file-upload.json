@@ -1,0 +1,21 @@
+{
+  "title": "File Upload Demo",
+  "description": "Demonstrate presigned URL file upload to platform storage",
+  "publicBucket": {
+    "title": "Public Bucket Upload",
+    "description": "Files can be accessed directly via public URL, suitable for images, static resources, etc."
+  },
+  "loginBucket": {
+    "title": "Private Bucket Upload",
+    "description": "Files require presigned URL to access, suitable for sensitive files, contracts, etc."
+  },
+  "upload": "Upload",
+  "delete": "Delete",
+  "uploadSuccess": "Upload successful",
+  "deleteSuccess": "Delete successful",
+  "deleteConfirm": "Are you sure you want to delete this file?",
+  "fileTooLarge": "File size exceeds limit, max 10MB",
+  "invalidFileType": "Only image files are supported",
+  "uploading": "Uploading...",
+  "accessUrl": "Access URL"
+}

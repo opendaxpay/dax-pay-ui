@@ -1,0 +1,29 @@
+{
+  "field": {
+    "code": "产品编码",
+    "name": "产品名称",
+    "channel": "所属通道",
+    "description": "产品介绍",
+    "icon": "图标",
+    "remark": "备注",
+    "channelName": "通道名称",
+    "isv": "服务商",
+    "allocatable": "分账",
+    "terminal": "终端报备",
+    "apply": "进件",
+    "sandbox": "沙箱",
+    "apiCallMode": "API调用模式",
+    "payIdType": "支付标识类型",
+    "capabilities": "支付能力",
+    "settlePeriods": "结算周期",
+    "features": "产品特性"
+  },
+  "features": "产品特性",
+  "detail": "产品详情",
+  "sandboxSupported": "支持",
+  "sandboxNotSupported": "不支持",
+  "placeholder": {
+    "name": "请输入产品名称",
+    "code": "请输入产品编码"
+  }
+}

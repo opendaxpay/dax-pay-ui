@@ -1,0 +1,31 @@
+/* 列表页公共样式 - 减少留白，提高信息密度 */
+.list-page-compact {
+  /* 查询卡片减少内边距 */
+  > .ant-card:first-child {
+    .ant-card-body {
+      padding: 10px 12px;
+    }
+  }
+
+  /* 表格卡片减少内边距 */
+  > div > .ant-card {
+    .ant-card-body {
+      padding: 10px 12px;
+    }
+  }
+
+  /* 查询表单（inline 布局）行间距调整 */
+  .ant-form-inline {
+    gap: 6px 10px;
+  }
+
+  /* 查询表单项间距调整 */
+  .ant-form-item {
+    margin-bottom: 0;
+
+    .ant-form-item-label {
+      padding-right: 4px;
+      padding-bottom: 0;
+    }
+  }
+}

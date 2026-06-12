@@ -1,0 +1,14 @@
+{
+  "add": {
+    "title": "Add Config Param",
+    "paramCodePlaceholder": "Please enter param code",
+    "paramCodeDuplicate": "Param code already exists",
+    "paramNamePlaceholder": "Please enter param name",
+    "paramTypePlaceholder": "Please select param type",
+    "defaultValuePlaceholder": "Please enter default value",
+    "sortNoPlaceholder": "Please enter sort number"
+  },
+  "edit": {
+    "title": "Edit Config Param"
+  }
+}

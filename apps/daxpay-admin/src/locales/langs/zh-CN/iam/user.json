@@ -1,0 +1,66 @@
+{
+  "field": {
+    "name": "名称",
+    "account": "账号",
+    "phone": "手机号",
+    "email": "邮箱",
+    "clientCode": "终端",
+    "status": "状态",
+    "role": "角色",
+    "roleList": "角色列表",
+    "candidateRole": "候选角色",
+    "selectedRole": "已选角色",
+    "lastLoginTime": "最后登录时间",
+    "detail": "用户详情",
+    "administrator": "管理员"
+  },
+  "status": {
+    "normal": "正常",
+    "lock": "锁定",
+    "ban": "封禁"
+  },
+  "action": {
+    "assignRole": "分配角色",
+    "resetPassword": "重置密码",
+    "ban": "封禁",
+    "unlock": "解锁",
+    "batchBan": "批量封禁",
+    "batchUnlock": "批量解锁",
+    "batchResetPassword": "批量重置密码",
+    "confirmAssignRole": "确定要保存角色分配吗？",
+    "confirmBan": "确定要封禁选中的用户吗？",
+    "confirmUnlock": "确定要解锁选中的用户吗？",
+    "confirmResetPassword": "确定要重置选中用户的密码吗？"
+  },
+  "password": {
+    "password": "密码",
+    "newPassword": "新密码",
+    "confirmPassword": "确认密码"
+  },
+  "validation": {
+    "nameLength": "名称长度为3-15个字符",
+    "accountLength": "账号长度为6-20个字符",
+    "passwordLength": "密码长度为8-32个字符",
+    "assignRoleSingleTip": "一个用户只能分配一个角色，请选择",
+    "pleaseSelectRole": "请选择角色",
+    "noAssignableRole": "无可分配的角色",
+    "passwordRequired": "请输入密码",
+    "passwordLengthRange": "密码长度为{min}-{max}个字符",
+    "accountFormat": "账号只能包含字母、数字、下划线和中划线",
+    "passwordNoChinese": "密码不能包含中文字符",
+    "cannotEditNonAdmin": "不允许编辑非运营端用户",
+    "cannotAssignRoleNonAdmin": "不允许为非运营端用户分配角色"
+  },
+  "passwordPolicy": {
+    "requireUppercase": "密码必须包含大写字母",
+    "requireLowercase": "密码必须包含小写字母",
+    "requireDigit": "密码必须包含数字",
+    "requireSpecialChar": "密码必须包含特殊字符（{chars}）",
+    "hintLength": "长度{min}-{max}个字符",
+    "hintUppercase": "至少包含一个大写字母",
+    "hintLowercase": "至少包含一个小写字母",
+    "hintDigit": "至少包含一个数字",
+    "hintSpecialChar": "至少包含一个特殊字符（{chars}）",
+    "notMeetRequirements": "密码不符合要求"
+  }
+}

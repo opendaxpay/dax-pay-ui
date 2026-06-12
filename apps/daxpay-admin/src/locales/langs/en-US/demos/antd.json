@@ -1,0 +1,17 @@
+{
+  "title": "Antd Next Demo",
+  "description": "Support multi-language, theme switching and more",
+  "button": "Button",
+  "message": "Message",
+  "notification": "Notification",
+  "info": "Info",
+  "error": "Error",
+  "warning": "Warning",
+  "success": "Success",
+  "notificationTitle": "Notification",
+  "confirmTitle": "Confirm",
+  "confirmContent": "This is a confirm dialog triggered by useMessage.",
+  "confirmed": "Confirmed",
+  "dialog": "Dialog",
+  "openConfirm": "Open Confirm Dialog"
+}

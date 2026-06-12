@@ -1,0 +1,12 @@
+{
+  "add": {
+    "title": "Add Model Data Source",
+    "dataSourceCodePlaceholder": "Please select data source",
+    "loadTypePlaceholder": "Please select load type",
+    "sortNoPlaceholder": "Please enter sort number"
+  },
+  "edit": {
+    "title": "Edit Model Data Source"
+  },
+  "dataSourceCodeDuplicate": "Data source code already exists in this model"
+}

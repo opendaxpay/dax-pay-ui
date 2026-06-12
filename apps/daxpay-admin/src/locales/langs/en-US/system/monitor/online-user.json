@@ -1,0 +1,9 @@
+{
+  "username": "Username",
+  "account": "Account",
+  "clientCode": "Client",
+  "loginTime": "Login Time",
+  "kickout": "Kickout",
+  "batchKickout": "Batch Kickout",
+  "confirmKickout": "Are you sure to kickout the selected users?"
+}

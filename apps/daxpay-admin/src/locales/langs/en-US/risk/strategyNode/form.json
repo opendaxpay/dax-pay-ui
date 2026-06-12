@@ -1,0 +1,12 @@
+{
+  "add": {
+    "title": "Add Strategy Node",
+    "nodeNamePlaceholder": "Please enter node name",
+    "decisionModePlaceholder": "Please select decision mode",
+    "preconditionPlaceholder": "Please enter precondition expression, leave empty for no restriction",
+    "sortNoPlaceholder": "Please enter sort number"
+  },
+  "edit": {
+    "title": "Edit Strategy Node"
+  }
+}

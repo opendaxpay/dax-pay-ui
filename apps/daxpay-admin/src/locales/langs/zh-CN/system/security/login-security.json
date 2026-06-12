@@ -1,0 +1,49 @@
+{
+  "title": "登录安全",
+  "description": "维护失败锁定与统计窗口配置",
+  "summary": {
+    "enabled": "防护已启用",
+    "disabled": "防护未启用",
+    "failedThreshold": "失败阈值 {count} 次",
+    "locked": "锁定 {minutes} 分钟",
+    "resetWindow": "重置窗口 {minutes} 分钟",
+    "captchaEnabled": "验证码触发 {count} 次",
+    "captchaDisabled": "验证码未启用"
+  },
+  "section": {
+    "protection": "登录防护",
+    "lockout": "锁定策略",
+    "captcha": "验证码触发"
+  },
+  "lockoutEnabled": {
+    "label": "启用登录失败锁定",
+    "desc": "开启后，连续失败达到阈值时将触发锁定。"
+  },
+  "maxFailedAttempts": {
+    "label": "最大失败次数",
+    "desc": "超过该次数后进入锁定状态。",
+    "placeholder": "请输入最大失败次数"
+  },
+  "lockoutDurationMinutes": {
+    "label": "锁定时长",
+    "desc": "账号被锁定后的持续时间。",
+    "placeholder": "请输入锁定时长"
+  },
+  "failureResetMinutes": {
+    "label": "失败统计重置窗口",
+    "desc": "在该时间内未继续失败，则清空累计失败次数。",
+    "placeholder": "请输入重置窗口时长"
+  },
+  "captchaEnabled": {
+    "label": "启用验证码触发",
+    "desc": "开启后，连续失败达到阈值时将要求验证码。"
+  },
+  "captchaTriggerAttempts": {
+    "label": "触发验证码的失败次数",
+    "desc": "失败次数达到该值后，登录时需要验证码。",
+    "placeholder": "请输入触发次数"
+  },
+  "validation": {
+    "captchaTriggerRange": "触发验证码的失败次数不能大于最大失败次数"
+  }
+}

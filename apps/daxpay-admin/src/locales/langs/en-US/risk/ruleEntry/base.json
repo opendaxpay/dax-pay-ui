@@ -1,0 +1,14 @@
+{
+  "field": {
+    "seq": "Seq",
+    "conditionExpr": "Condition Expression",
+    "resultValue": "Result Value",
+    "isExpression": "Is Expression",
+    "outputVariable": "Output Variable",
+    "title": "Rule Entries"
+  },
+  "action": {
+    "confirmDelete": "Are you sure you want to delete this rule entry?"
+  },
+  "empty": "Please select a rule node to view entries"
+}

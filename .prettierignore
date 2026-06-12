@@ -1,12 +1,18 @@
 dist
-.local
-.output.js
 node_modules
-
-**/*.svg
-**/*.sh
-
+.turbo
+.output
+.nitro
 public
+*.svg
+*.sh
+*-lock.yaml
+
+# 配置文件
+.browserslistrc
 .npmrc
 
-*-lock.yaml
+# 只对 apps 目录进行校验，忽略其他目录
+internal/**
+packages/**
+scripts/**

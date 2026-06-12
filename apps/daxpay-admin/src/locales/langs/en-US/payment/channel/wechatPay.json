@@ -1,0 +1,7 @@
+{
+  "mchId": "WeChat Pay Merchant ID",
+  "mchIdPlaceholder": "Enter WeChat Pay merchant ID",
+  "validation": {
+    "mchId": "WeChat Pay merchant ID is required"
+  }
+}

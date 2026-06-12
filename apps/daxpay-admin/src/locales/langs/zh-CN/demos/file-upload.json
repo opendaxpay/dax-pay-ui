@@ -1,0 +1,21 @@
+{
+  "title": "文件上传演示",
+  "description": "演示预签名方式上传文件到平台存储",
+  "publicBucket": {
+    "title": "公开桶上传",
+    "description": "文件可通过公开URL直接访问，适合图片、静态资源等"
+  },
+  "loginBucket": {
+    "title": "加密桶上传",
+    "description": "文件需要预签名URL才能访问，适合敏感文件、合同等"
+  },
+  "upload": "上传",
+  "delete": "删除",
+  "uploadSuccess": "上传成功",
+  "deleteSuccess": "删除成功",
+  "deleteConfirm": "确定要删除该文件吗？",
+  "fileTooLarge": "文件大小超出限制，最大10MB",
+  "invalidFileType": "仅支持图片文件",
+  "uploading": "上传中...",
+  "accessUrl": "访问地址"
+}

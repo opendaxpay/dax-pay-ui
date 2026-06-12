@@ -1,0 +1,47 @@
+{
+  "platform": {
+    "title": "Platform File Management",
+    "detailTitle": "Platform File Details",
+    "field": {
+      "filename": "Filename",
+      "originalFilename": "Original Filename",
+      "size": "File Size",
+      "ext": "Extension",
+      "contentType": "MIME Type",
+      "url": "File URL",
+      "basePath": "Base Path",
+      "path": "Storage Path",
+      "accessType": "Access Type",
+      "bizType": "Business Type",
+      "remark": "Remark",
+      "createTime": "Create Time"
+    },
+    "placeholder": {
+      "filename": "Please enter filename",
+      "originalFilename": "Please enter original filename",
+      "size": "Please enter file size",
+      "ext": "Please enter file extension",
+      "contentType": "Please enter MIME type",
+      "url": "Please enter file URL",
+      "basePath": "Please enter base path",
+      "path": "Please enter storage path",
+      "bizType": "Please enter business type",
+      "remark": "Please enter remark"
+    },
+    "accessType": {
+      "public": "Public",
+      "private": "Private"
+    },
+    "action": {
+      "preview": "Preview",
+      "download": "Download",
+      "confirmDelete": "Delete Confirmation",
+      "confirmDeleteContent": "Are you sure you want to delete this file record?",
+      "deleteSuccess": "Deleted successfully"
+    },
+    "validate": {
+      "urlRequired": "Please enter file URL",
+      "filenameRequired": "Please enter filename"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "app": {
+    "myApps": "我的应用",
+    "appIdPrefix": "ID: {appId}",
+    "actionMore": "更多操作",
+    "title": "应用管理",
+    "addApp": "新建应用",
+    "addCard": "新建应用",
+    "emptyDesc": "暂无应用，请先创建",
+    "appName": "应用名称",
+    "status": "状态",
+    "statusEnable": "启用",
+    "statusDisabled": "禁用",
+    "defaultApp": "默认应用",
+    "defaultTag": "默认",
+    "edit": "编辑",
+    "setDefault": "设为默认",
+    "cancelDefault": "取消默认",
+    "delete": "删除",
+    "confirmSetDefault": "确定将该应用设为默认应用吗？",
+    "confirmCancelDefault": "确定取消该应用的默认状态吗？",
+    "confirmDelete": "确定删除该应用吗？",
+    "deleteDefaultBlocked": "请先指定其他应用为默认后再删除当前默认应用",
+    "noDefaultAppTip": "您还没有设置默认应用，请选择一个应用设为默认",
+    "validationAppName": "请输入应用名称",
+    "validationStatus": "请选择状态",
+    "payRoute": "通道路由"
+  }
+}

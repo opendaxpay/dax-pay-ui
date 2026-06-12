@@ -1,0 +1,17 @@
+{
+  "field": {
+    "name": "查表名称",
+    "description": "描述",
+    "tableCode": "查表编码",
+    "keyCode": "键列编码",
+    "keyName": "键列名称",
+    "expression": "上下文变量",
+    "keys": "键值映射",
+    "value": "结果值",
+    "keyDefCount": "键列数",
+    "rowCount": "数据行数"
+  },
+  "action": {
+    "confirmDelete": "确定要删除该查表定义吗？关联的键定义和行数据将一并删除"
+  }
+}

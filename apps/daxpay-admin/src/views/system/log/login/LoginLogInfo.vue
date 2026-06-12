@@ -1,0 +1,85 @@
+<script lang="ts" setup>
+  import { ref } from 'vue';
+
+  import { $t } from '@vben/locales';
+
+  import { type LoginLog, LoginLogApi } from '#/api/system/log/login-log.api';
+
+  let data = ref<Partial<LoginLog>>({});
+  let visible = ref(false);
+  let confirmLoading = ref(false);
+
+  /**
+   * 显示详情
+   */
+  function show(id: string) {
+    visible.value = true;
+    confirmLoading.value = true;
+    LoginLogApi.findById(id).then(({ data: res }) => {
+      data.value = res || {};
+      confirmLoading.value = false;
+    });
+  }
+
+  defineExpose({ show });
+</script>
+
+<template>
+  <!-- 国际化：登录日志详情 -->
+  <a-modal
+    v-bind="$attrs"
+    :loading="confirmLoading"
+    :width="700"
+    :title="$t('system.log.login-log.detailTitle')"
+    :open="visible"
+    :footer="null"
+    @cancel="visible = false"
+  >
+    <a-spin :spinning="confirmLoading">
+      <a-descriptions :column="2" size="small" bordered>
+        <!-- 用户账号 -->
+        <a-descriptions-item :label="$t('system.log.login-log.account')">
+          {{ data.account }}
+        </a-descriptions-item>
+        <!-- 登录状态 -->
+        <a-descriptions-item :label="$t('system.log.login-log.status')">
+          <a-tag :color="data.login ? 'green' : 'red'">
+            {{ data.login ? $t('common.success') : $t('common.fail') }}
+          </a-tag>
+        </a-descriptions-item>
+        <!-- 终端 -->
+        <a-descriptions-item :label="$t('system.log.login-log.client')">
+          {{ data.client }}
+        </a-descriptions-item>
+        <!-- 登录方式 -->
+        <a-descriptions-item :label="$t('system.log.login-log.loginType')">
+          {{ data.loginType }}
+        </a-descriptions-item>
+        <!-- 登录IP -->
+        <a-descriptions-item :label="$t('system.log.login-log.ip')">
+          {{ data.ip }}
+        </a-descriptions-item>
+        <!-- 登录地点 -->
+        <a-descriptions-item :label="$t('system.log.login-log.loginLocation')">
+          {{ data.loginLocation }}
+        </a-descriptions-item>
+        <!-- 操作系统 -->
+        <a-descriptions-item :label="$t('system.log.login-log.os')">
+          {{ data.os }}
+        </a-descriptions-item>
+        <!-- 浏览器 -->
+        <a-descriptions-item :label="$t('system.log.login-log.browser')">
+          {{ data.browser }}
+        </a-descriptions-item>
+        <!-- 提示消息 -->
+        <a-descriptions-item :label="$t('system.log.login-log.msg')">
+          {{ data.msg }}
+        </a-descriptions-item>
+        <!-- 登录时间 -->
+        <a-descriptions-item :label="$t('system.log.login-log.loginTime')">
+          {{ data.loginTime }}
+        </a-descriptions-item>
+      </a-descriptions>
+    </a-spin>
+  </a-modal>
+</template>

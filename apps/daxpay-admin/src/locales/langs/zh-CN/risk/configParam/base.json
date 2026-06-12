@@ -1,0 +1,21 @@
+{
+  "field": {
+    "paramCode": "参数编码",
+    "paramName": "参数名称",
+    "paramType": "参数类型",
+    "defaultValue": "默认值",
+    "sortNo": "排序号"
+  },
+  "paramType": {
+    "string": "字符串",
+    "number": "数值",
+    "boolean": "布尔"
+  },
+  "boolean": {
+    "true": "是",
+    "false": "否"
+  },
+  "action": {
+    "confirmDelete": "确定要删除该配置参数吗？"
+  }
+}

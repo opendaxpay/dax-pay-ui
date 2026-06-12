@@ -1,0 +1,28 @@
+{
+  "title": "UMS Configuration",
+  "keyConfig": "Key Configuration",
+  "enable": "Enable",
+  "sandbox": "Sandbox Environment",
+  "umsAppId": "Application ID",
+  "umsAppIdPlaceholder": "Please enter UMS application ID",
+  "appKey": "Application Key",
+  "appKeyPlaceholder": "Please enter UMS application key",
+  "merchantNo": "Merchant No",
+  "merchantNoPlaceholder": "Please enter UMS merchant number",
+  "terminalNo": "Terminal No",
+  "terminalNoPlaceholder": "Please enter UMS terminal number",
+  "orderPrefix": "Order Prefix",
+  "orderPrefixPlaceholder": "Please enter order prefix (4-digit source ID assigned by UMS)",
+  "secretKey": "Secret Key",
+  "secretKeyPlaceholder": "Please enter secret key (for callback message verification)",
+  "validation": {
+    "enable": "Please select enable status",
+    "sandbox": "Please select sandbox environment",
+    "umsAppId": "Please enter UMS application ID",
+    "appKey": "Please enter UMS application key",
+    "merchantNo": "Please enter UMS merchant number",
+    "terminalNo": "Please enter UMS terminal number",
+    "orderPrefix": "Please enter order prefix",
+    "secretKey": "Please enter secret key"
+  }
+}

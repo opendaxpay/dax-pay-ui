@@ -1,0 +1,30 @@
+{
+  "auth": {
+    "profile": "个人资料",
+    "login": "登录",
+    "codeLogin": "验证码登录",
+    "qrcodeLogin": "二维码登录",
+    "forgetPassword": "忘记密码",
+    "register": "注册"
+  },
+  "dashboard": {
+    "title": "仪表盘",
+    "analytics": "分析页",
+    "workspace": "工作台"
+  },
+  "payment": {
+    "title": "支付管理",
+    "platform": "平台管理",
+    "isvList": "服务商列表",
+    "isvManage": "服务商管理",
+    "isvInfoManage": "服务商信息",
+    "isvEntityManage": "主体信息",
+    "merchantList": "商户列表",
+    "merchantManage": "商户管理",
+    "merchantChannelMerchant": "商户通道商户",
+    "channelMerchantManage": "通道商户管理",
+    "channelMerchantList": "通道商户管理",
+    "channelMerchantDetail": "通道商户详情",
+    "productList": "支付产品"
+  }
+}

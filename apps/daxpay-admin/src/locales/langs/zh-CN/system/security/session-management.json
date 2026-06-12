@@ -1,0 +1,37 @@
+{
+  "title": "会话管理",
+  "description": "维护在线时长、并发数量与清理策略",
+  "summary": {
+    "enabled": "控制已启用",
+    "disabled": "控制未启用",
+    "online": "在线 {hours} 小时",
+    "concurrent": "并发 {count} 个",
+    "strategy": "策略 {name}"
+  },
+  "section": {
+    "control": "会话控制",
+    "limit": "在线与并发限制",
+    "policy": "超限策略与清理"
+  },
+  "enabled": {
+    "label": "启用会话管理",
+    "desc": "开启后，统一限制在线时长、并发数量和超限处理方式。"
+  },
+  "maxOnlineHours": {
+    "label": "最大在线时长",
+    "desc": "单次会话允许连续在线的最长时间。",
+    "placeholder": "请输入最大在线时长"
+  },
+  "maxConcurrentSessions": {
+    "label": "最大并发会话数",
+    "desc": "单个账号允许同时在线的会话上限。",
+    "placeholder": "请输入最大并发会话数"
+  },
+  "concurrentStrategy": {
+    "label": "并发超限处理策略",
+    "desc": "决定达到并发上限后如何处理新旧会话。",
+    "newSession": "允许新会话",
+    "kickOldest": "踢出最早会话",
+    "denyNew": "拒绝新会话"
+  }
+}

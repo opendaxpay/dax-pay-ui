@@ -1,0 +1,13 @@
+{
+  "field": {
+    "code": "Data Source Code",
+    "name": "Data Source Name",
+    "className": "Provider Class",
+    "remark": "Remark"
+  },
+  "action": {
+    "sync": "Sync Data Sources",
+    "syncConfirm": "Data sources will be synced from system interfaces. Confirm?",
+    "syncResult": "Sync complete: {added} added, {updated} updated"
+  }
+}

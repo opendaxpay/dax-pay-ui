@@ -1,3 +1,7 @@
-node_modules/
-dist/
-.vscode/
+node_modules
+.git
+.gitignore
+*.md
+dist
+.turbo
+dist.zip

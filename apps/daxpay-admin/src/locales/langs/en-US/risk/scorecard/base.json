@@ -1,0 +1,25 @@
+{
+  "field": {
+    "title": "Scorecard",
+    "dimension": "Dimension",
+    "dimensionName": "Dimension Name",
+    "dimensionSortNo": "Sort No",
+    "entry": "Dimension Entry",
+    "entryConditionExpr": "Condition Expression",
+    "entryScore": "Score",
+    "entryIsExpression": "Score is Expression",
+    "entrySeq": "Seq",
+    "scoreMapping": "Score Mapping",
+    "minScoreExpr": "Min Score",
+    "grade": "Grade",
+    "decision": "Decision",
+    "isDefault": "Default Entry"
+  },
+  "comingSoon": "Scorecard Management Coming Soon",
+  "comingSoonDesc": "Scorecard rules support dimension-based scoring with grade mapping. This feature is coming soon.",
+  "action": {
+    "confirmDeleteDimension": "Are you sure you want to delete this dimension? All entries under it will also be deleted",
+    "confirmDeleteEntry": "Are you sure you want to delete this entry?",
+    "confirmDeleteMapping": "Are you sure you want to delete this mapping entry?"
+  }
+}

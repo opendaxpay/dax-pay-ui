@@ -1,0 +1,9 @@
+{
+  "add": {
+    "modelIdPlaceholder": "请选择关联模型",
+    "providerIdPlaceholder": "请输入服务提供商标识",
+    "instanceNamePlaceholder": "请输入实例名称",
+    "statusPlaceholder": "请选择状态",
+    "configParamValuePlaceholder": "请输入覆盖值，留空则使用模板默认值"
+  }
+}

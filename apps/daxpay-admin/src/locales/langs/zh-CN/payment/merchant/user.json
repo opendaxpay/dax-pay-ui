@@ -1,0 +1,41 @@
+{
+  "title": "商户用户管理",
+  "field": {
+    "name": "姓名",
+    "account": "账号",
+    "phone": "手机号",
+    "email": "邮箱",
+    "status": "状态",
+    "administrator": "管理员"
+  },
+  "action": {
+    "add": "新增用户",
+    "edit": "编辑用户",
+    "assignRole": "分配角色",
+    "resetPassword": "重置密码",
+    "ban": "封禁",
+    "unlock": "解锁",
+    "batchBan": "批量封禁",
+    "batchUnlock": "批量解锁",
+    "batchResetPassword": "批量重置密码",
+    "confirmBan": "确认要封禁该用户吗？",
+    "confirmUnlock": "确认要解锁该用户吗？",
+    "confirmAssignRole": "确定要保存角色分配吗？"
+  },
+  "validation": {
+    "pleaseInputName": "请输入姓名",
+    "pleaseInputAccount": "请输入账号",
+    "accountExists": "账号已存在",
+    "noAssignableRole": "没有可分配的角色"
+  },
+  "password": {
+    "password": "密码",
+    "confirmPassword": "确认密码",
+    "newPassword": "新密码"
+  },
+  "status": {
+    "normal": "正常",
+    "lock": "锁定",
+    "ban": "封禁"
+  }
+}

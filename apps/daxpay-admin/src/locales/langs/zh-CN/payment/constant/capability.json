@@ -1,0 +1,13 @@
+{
+  "field": {
+    "code": "能力编码",
+    "name": "能力名称",
+    "description": "能力介绍",
+    "products": "关联支付产品"
+  },
+  "placeholder": {
+    "name": "请输入能力名称",
+    "code": "请输入能力编码"
+  },
+  "detail": "支付能力详情"
+}

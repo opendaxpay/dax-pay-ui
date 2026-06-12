@@ -1,0 +1,29 @@
+{
+  "app": {
+    "myApps": "My Applications",
+    "appIdPrefix": "ID: {appId}",
+    "actionMore": "More actions",
+    "title": "App Management",
+    "addApp": "New App",
+    "addCard": "New App",
+    "emptyDesc": "No apps yet. Create one to get started.",
+    "appName": "App Name",
+    "status": "Status",
+    "statusEnable": "Enabled",
+    "statusDisabled": "Disabled",
+    "defaultApp": "Default App",
+    "defaultTag": "Default",
+    "edit": "Edit",
+    "setDefault": "Set as Default",
+    "cancelDefault": "Cancel Default",
+    "delete": "Delete",
+    "confirmSetDefault": "Set this app as the default?",
+    "confirmCancelDefault": "Cancel default status for this app?",
+    "confirmDelete": "Delete this app?",
+    "deleteDefaultBlocked": "Assign another default app before deleting the current default",
+    "noDefaultAppTip": "You haven't set a default app yet. Please select an app as default",
+    "validationAppName": "Please enter app name",
+    "validationStatus": "Please select status",
+    "payRoute": "Channel Routing"
+  }
+}

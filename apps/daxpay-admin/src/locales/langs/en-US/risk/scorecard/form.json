@@ -1,0 +1,18 @@
+{
+  "add": {
+    "dimensionTitle": "Add Dimension",
+    "dimensionNamePlaceholder": "Please enter dimension name",
+    "entryTitle": "Add Entry",
+    "conditionExprPlaceholder": "Please enter condition expression",
+    "scorePlaceholder": "Please enter score",
+    "mappingTitle": "Add Mapping Entry",
+    "minScoreExprPlaceholder": "Please enter min score expression",
+    "gradePlaceholder": "Please enter grade (e.g. A/B/C)",
+    "decisionPlaceholder": "Please select decision"
+  },
+  "edit": {
+    "dimensionTitle": "Edit Dimension",
+    "entryTitle": "Edit Entry",
+    "mappingTitle": "Edit Mapping Entry"
+  }
+}

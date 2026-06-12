@@ -1,0 +1,14 @@
+{
+  "add": {
+    "title": "Add Rule Node",
+    "nodeNamePlaceholder": "Please enter node name",
+    "typePlaceholder": "Please select rule type",
+    "sortNoPlaceholder": "Please enter sort number",
+    "outputVariablePlaceholder": "Please enter output variable name",
+    "entryAggregationPlaceholder": "Please select entry aggregation strategy",
+    "lookupTablePlaceholder": "Please select lookup table"
+  },
+  "edit": {
+    "title": "Edit Rule Node"
+  }
+}

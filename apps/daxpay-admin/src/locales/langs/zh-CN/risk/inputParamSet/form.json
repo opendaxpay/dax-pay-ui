@@ -1,0 +1,11 @@
+{
+  "add": {
+    "title": "新增参数集合",
+    "codePlaceholder": "请输入集合编码（英文+下划线）",
+    "namePlaceholder": "请输入集合名称",
+    "descriptionPlaceholder": "请输入描述"
+  },
+  "edit": {
+    "title": "编辑参数集合"
+  }
+}

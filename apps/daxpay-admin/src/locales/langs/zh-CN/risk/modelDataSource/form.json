@@ -1,0 +1,12 @@
+{
+  "add": {
+    "title": "新增模型数据源",
+    "dataSourceCodePlaceholder": "请选择数据源",
+    "loadTypePlaceholder": "请选择加载类型",
+    "sortNoPlaceholder": "请输入排序号"
+  },
+  "edit": {
+    "title": "编辑模型数据源"
+  },
+  "dataSourceCodeDuplicate": "该模型下数据源编码已存在"
+}

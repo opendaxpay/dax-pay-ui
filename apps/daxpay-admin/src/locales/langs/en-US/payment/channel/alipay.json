@@ -1,0 +1,26 @@
+{
+  "aliAppId": "Alipay AppId",
+  "authType": "Auth Type",
+  "signType": "Sign Type",
+  "alipayUserId": "Alipay User ID",
+  "alipayPublicKey": "Alipay Public Key",
+  "privateKey": "Private Key",
+  "appCert": "App Certificate",
+  "alipayCert": "Alipay Certificate",
+  "alipayRootCert": "Alipay Root Certificate",
+  "certFields": "Certificate Fields (required when auth type is cert)",
+  "authTypeCert": "Certificate",
+  "authTypeKey": "Public Key",
+  "signTypeRsa2": "RSA2",
+  "validation": {
+    "aliAppIdRequired": "Please enter Alipay appId",
+    "authTypeRequired": "Please select auth type",
+    "signTypeRequired": "Please select sign type",
+    "alipayUserIdRequired": "Please enter Alipay user ID",
+    "alipayPublicKeyRequired": "Please enter Alipay public key",
+    "privateKeyRequired": "Please enter private key",
+    "appCertRequired": "App certificate is required when auth type is cert",
+    "alipayCertRequired": "Alipay certificate is required when auth type is cert",
+    "alipayRootCertRequired": "Alipay root certificate is required when auth type is cert"
+  }
+}

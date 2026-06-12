@@ -1,0 +1,53 @@
+{
+  "title": "Anomaly Detection",
+  "description": "Detect and block anomalous login behaviors",
+  "summary": {
+    "enabled": "Detection enabled",
+    "disabled": "Detection disabled",
+    "ipDetectionEnabled": "IP detection enabled, threshold {threshold} points",
+    "ipDetectionDisabled": "IP detection disabled",
+    "timeDetectionEnabled": "Time detection enabled, deviation threshold {hours} hours",
+    "timeDetectionDisabled": "Time detection disabled",
+    "deviceDetectionEnabled": "Device detection enabled",
+    "deviceDetectionDisabled": "Device detection disabled",
+    "blockEnabled": "Anomalous login will be blocked",
+    "blockDisabled": "Anomalous login will only alert"
+  },
+  "section": {
+    "basic": "Basic Settings",
+    "ipDetection": "IP Detection",
+    "timeDetection": "Time Detection",
+    "deviceDetection": "Device Detection",
+    "blockStrategy": "Block Strategy"
+  },
+  "enabled": {
+    "label": "Enable Anomaly Detection",
+    "desc": "When enabled, the system will detect anomalous login behaviors."
+  },
+  "detectAnomalousIp": {
+    "label": "Detect Anomalous IP",
+    "desc": "Detect if login IP has risks, such as proxy IP or high-risk regions."
+  },
+  "ipRiskThreshold": {
+    "label": "IP Risk Threshold",
+    "desc": "IP risk score above this threshold is considered anomalous.",
+    "placeholder": "Enter IP risk threshold"
+  },
+  "detectAnomalousTime": {
+    "label": "Detect Anomalous Login Time",
+    "desc": "Detect if login time deviates from user's typical login hours."
+  },
+  "timeDeviationThreshold": {
+    "label": "Time Deviation Threshold",
+    "desc": "Login time deviation from user's typical hours above this threshold is considered anomalous.",
+    "placeholder": "Enter time deviation threshold"
+  },
+  "detectAnomalousDevice": {
+    "label": "Detect Anomalous Device",
+    "desc": "Detect if login device is user's commonly used device."
+  },
+  "blockOnAnomaly": {
+    "label": "Block on Anomaly",
+    "desc": "When enabled, anomalous login will be blocked; when disabled, only alerts will be recorded."
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "placeholder": "请选择行政区划",
+  "level": {
+    "province": "省",
+    "city": "市",
+    "area": "区/县",
+    "street": "街道/乡镇"
+  }
+}

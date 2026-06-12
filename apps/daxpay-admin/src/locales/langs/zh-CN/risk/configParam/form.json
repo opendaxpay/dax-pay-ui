@@ -1,0 +1,14 @@
+{
+  "add": {
+    "title": "新增配置参数",
+    "paramCodePlaceholder": "请输入参数编码",
+    "paramCodeDuplicate": "参数编码已存在",
+    "paramNamePlaceholder": "请输入参数名称",
+    "paramTypePlaceholder": "请选择参数类型",
+    "defaultValuePlaceholder": "请输入默认值",
+    "sortNoPlaceholder": "请输入排序号"
+  },
+  "edit": {
+    "title": "编辑配置参数"
+  }
+}

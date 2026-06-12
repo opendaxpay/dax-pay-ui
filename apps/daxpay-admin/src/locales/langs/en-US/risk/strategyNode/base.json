@@ -1,0 +1,18 @@
+{
+  "field": {
+    "nodeName": "Node Name",
+    "decisionMode": "Decision Mode",
+    "precondition": "Precondition",
+    "sortNo": "Sort No",
+    "title": "Strategy Node"
+  },
+  "decisionMode": {
+    "allPass": "All Pass",
+    "firstHit": "First Hit",
+    "anyPass": "Any Pass"
+  },
+  "action": {
+    "confirmDelete": "Are you sure you want to delete this strategy node? All rule nodes and entries under it will also be deleted",
+    "manageRule": "Manage Rules"
+  }
+}

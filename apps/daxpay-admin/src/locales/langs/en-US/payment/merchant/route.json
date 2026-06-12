@@ -1,0 +1,47 @@
+{
+  "route": {
+    "title": "Channel Routing",
+    "editModeLabel": "Configure Mode",
+    "setActiveMode": "Enable This Mode",
+    "setActiveModeConfirm": "This app's payment channel routing will be set to \"{mode}\". New orders will resolve routes using this mode. Continue?",
+    "alreadyActiveMode": "Already the active mode",
+    "activeModeTag": "Active",
+    "simulateUsesEditMode": "Trial resolve using configured mode \"{mode}\" (does not affect live payments)",
+    "modeBasic": "Basic",
+    "modeScene": "Scene",
+    "modeAdvanced": "Advanced",
+    "basicProduct": "Payment product",
+    "payCapability": "Payment capability",
+    "payCapabilityPlaceholder": "Select a capability",
+    "sceneProductCapabilityPairHint": "Select both payment product and capability, or leave both empty; partial selection is not allowed",
+    "sceneSaveConfirm": "Save scene mode routing configuration? This will overwrite the current product and capability mapping per pay method.",
+    "basicProductPlaceholder": "Select a product",
+    "basicProductNotSelected": "Not selected",
+    "basicNoProductNotFound": "No payment products available",
+    "basicSaveConfirm": "Save basic mode routing configuration? This will overwrite the default payment product per provider.",
+    "sceneConfigTableTerminal": "Terminal scene",
+    "sceneRouteNotSelected": "Not selected",
+    "configTab": "Routing",
+    "channel": "Channel",
+    "method": "Pay Method",
+    "simulate": "Simulate",
+    "missingAppContext": "Open channel routing from App Management",
+    "simulateProvider": "Payment provider",
+    "providers": {
+      "aggregate_pay": "Aggregate Pay",
+      "wechat": "WeChat Pay",
+      "alipay": "Alipay",
+      "union_pay": "UnionPay",
+      "visa": "Visa",
+      "mastercard": "Mastercard"
+    },
+    "scenes": {
+      "pc": "PC Web",
+      "h5": "H5",
+      "app": "APP",
+      "mini": "Mini Program",
+      "qrcode": "QR Code",
+      "barcode": "Barcode"
+    }
+  }
+}

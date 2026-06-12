@@ -1,0 +1,18 @@
+{
+  "field": {
+    "code": "Capability Code",
+    "name": "Capability Name",
+    "remark": "Remark",
+    "enabled": "Enabled",
+    "products": "Linked Payment Products",
+    "provider": "Pay Provider",
+    "method": "Payment Method",
+    "providerMethod": "Provider & Method (Release)"
+  },
+  "placeholder": {
+    "name": "Enter capability name",
+    "code": "Enter capability code"
+  },
+  "detail": "Payment Capability Detail",
+  "edit": "Edit Payment Capability"
+}

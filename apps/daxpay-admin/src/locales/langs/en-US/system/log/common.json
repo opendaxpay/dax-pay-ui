@@ -1,0 +1,12 @@
+{
+  "clean": "Clean",
+  "cleanDays": {
+    "d3": "3 days ago",
+    "d7": "7 days ago",
+    "d30": "30 days ago",
+    "d60": "60 days ago",
+    "d90": "90 days ago",
+    "d180": "180 days ago",
+    "d365": "365 days ago"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "field": {
+    "code": "Code",
+    "name": "Name",
+    "description": "Description"
+  },
+  "action": {
+    "confirmDelete": "Are you sure to delete this parameter set?",
+    "manageParams": "Manage Params"
+  }
+}

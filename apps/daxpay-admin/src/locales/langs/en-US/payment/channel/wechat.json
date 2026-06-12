@@ -1,0 +1,24 @@
+{
+  "wxMchId": "WeChat Merchant ID",
+  "wxAppId": "WeChat AppId",
+  "apiKeyV3": "APIv3 Key",
+  "appSecret": "App Secret",
+  "publicKey": "Public Key",
+  "publicKeyId": "Public Key ID",
+  "privateKey": "apiclient_key",
+  "privateCert": "apiclient_cert",
+  "certSerialNo": "Certificate Serial No",
+  "wxAppSecret": "WeChat App Secret",
+  "wxAuthUrl": "WeChat Auth URL",
+  "validation": {
+    "wxMchIdRequired": "Please enter WeChat merchant ID",
+    "wxAppIdRequired": "Please enter WeChat appId",
+    "apiKeyV3Required": "Please enter APIv3 key",
+    "appSecretRequired": "Please enter app secret",
+    "publicKeyRequired": "Please enter public key",
+    "publicKeyIdRequired": "Please enter public key ID",
+    "privateCertRequired": "Please enter apiclient_cert",
+    "certSerialNoRequired": "Please enter certificate serial number",
+    "wxAppSecretRequired": "Please enter WeChat app secret"
+  }
+}
