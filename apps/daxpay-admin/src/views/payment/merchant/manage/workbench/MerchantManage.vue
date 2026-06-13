@@ -45,24 +45,6 @@
           route: '/payment/merchant/manage/info',
         },
         {
-          key: 'entity',
-          // 主体信息
-          title: $t('payment.merchant.workbench.workbench.cardEntity'),
-          icon: 'ant-design:file-text-outlined',
-          // 基础资料、法人、营业执照等
-          description: $t('payment.merchant.workbench.workbench.cardEntityDesc'),
-          route: '/payment/merchant/manage/entity',
-        },
-        {
-          key: 'settleAccount',
-          // 结算账户
-          title: $t('payment.merchant.workbench.workbench.cardSettleAccount'),
-          icon: 'ant-design:bank-outlined',
-          // 结算银行卡、持卡人信息配置
-          description: $t('payment.merchant.workbench.workbench.cardSettleAccountDesc'),
-          route: '/payment/merchant/manage/settle',
-        },
-        {
           key: 'log',
           // 操作日志
           title: $t('payment.merchant.workbench.workbench.cardLog'),
@@ -88,15 +70,6 @@
       color: 'green',
       cards: [
         {
-          key: 'product',
-          // 支付产品
-          title: $t('payment.merchant.workbench.workbench.cardProduct'),
-          icon: 'ant-design:appstore-outlined',
-          // 支付产品开通与费率配置
-          description: $t('payment.merchant.workbench.workbench.cardProductDesc'),
-          route: '/payment/merchant/product',
-        },
-        {
           key: 'channelMerchant',
           // 通道商户管理
           title: $t('payment.merchant.workbench.workbench.cardChannelMerchant'),
@@ -113,15 +86,6 @@
           // 商户应用创建与管理
           description: $t('payment.merchant.workbench.workbench.cardAppDesc'),
           route: '/payment/merchant/app',
-        },
-        {
-          key: 'rateConfig',
-          // 费率配置
-          title: $t('payment.merchant.workbench.workbench.cardRateConfig'),
-          icon: 'ant-design:percentage-outlined',
-          // 通道商户费率配置
-          description: $t('payment.merchant.workbench.workbench.cardRateConfigDesc'),
-          route: '/payment/merchant/rate',
         },
       ],
     },
