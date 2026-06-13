@@ -13,10 +13,7 @@
   "confirmed": "已确认",
   "dialog": "Dialog",
   "openConfirm": "打开确认框",
-  "currentTime": "当前时间",
-  "formatDateDemo": "日期格式化",
-  "formatDateTimeDemo": "日期时间格式化",
-  "inputDemo": "时间输入组件（含回显）",
+  "inputDemo": "时间输入组件",
   "datePicker": "日期选择",
   "timePicker": "时间选择",
   "dateTimePicker": "日期时间选择"

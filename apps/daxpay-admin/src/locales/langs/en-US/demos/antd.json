@@ -13,10 +13,7 @@
   "confirmed": "Confirmed",
   "dialog": "Dialog",
   "openConfirm": "Open Confirm Dialog",
-  "currentTime": "Current Time",
-  "formatDateDemo": "Date Formatting",
-  "formatDateTimeDemo": "Date Time Formatting",
-  "inputDemo": "Time Input (with Echo)",
+  "inputDemo": "Time Input",
   "datePicker": "Date Picker",
   "timePicker": "Time Picker",
   "dateTimePicker": "Date Time Picker"

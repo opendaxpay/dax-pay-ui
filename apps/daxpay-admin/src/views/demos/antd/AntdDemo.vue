@@ -1,24 +1,14 @@
 <script lang="ts" setup>
-  import { onBeforeUnmount, onMounted, ref } from 'vue';
+  import { ref } from 'vue';
 
   import { Page } from '@vben/common-ui';
   import { $t } from '@vben/locales';
-  import { formatDate, formatDateTime } from '@vben/utils';
 
   import { useMessage } from '#/hooks/useMessage';
 
   type NotificationType = 'error' | 'info' | 'success' | 'warning';
 
   const { confirm, message, notification } = useMessage();
-
-  // 当前时间（每秒更新）
-  const now = ref(new Date());
-  let timer: ReturnType<typeof setInterval> | null = null;
-
-  onMounted(() => {
-    timer = setInterval(() => { now.value = new Date(); }, 1000);
-  });
-  onBeforeUnmount(() => { if (timer) clearInterval(timer); });
 
   // 日期选择器值
   const selectedDate = ref<string>('');
@@ -72,35 +62,6 @@
 <template>
   <!-- 国际化：支持多语言，主题功能集成切换等 -->
   <Page :description="$t('demos.antd.description')" :title="$t('demos.antd.title')">
-    <!-- 国际化：当前时间 -->
-    <a-card class="mb-5" :title="$t('demos.antd.currentTime')">
-      <a-typography-title :level="4" class="font-mono">
-        {{ formatDateTime(now) }}
-      </a-typography-title>
-      <a-space>
-        <a-tag>{{ formatDate(now) }}</a-tag>
-        <a-tag>{{ $t('common.createTime') }}: {{ formatDateTime(now) }}</a-tag>
-      </a-space>
-    </a-card>
-
-    <!-- 国际化：日期格式化 -->
-    <a-card class="mb-5" :title="$t('demos.antd.formatDateDemo')">
-      <a-descriptions :column="2" size="small" bordered>
-        <a-descriptions-item :label="$t('demos.antd.formatDateDemo')">
-          {{ formatDate('2026-06-13T08:30:00Z') }}
-        </a-descriptions-item>
-        <a-descriptions-item :label="$t('demos.antd.formatDateTimeDemo')">
-          {{ formatDateTime('2026-06-13T08:30:00Z') }}
-        </a-descriptions-item>
-        <a-descriptions-item :label="$t('demos.antd.formatDateDemo')">
-          {{ formatDate('2026-06-13T16:30:00+08:00') }}
-        </a-descriptions-item>
-        <a-descriptions-item :label="$t('demos.antd.formatDateTimeDemo')">
-          {{ formatDateTime('2026-06-13T16:30:00+08:00') }}
-        </a-descriptions-item>
-      </a-descriptions>
-    </a-card>
-
     <!-- 国际化：时间输入组件 -->
     <a-card class="mb-5" :title="$t('demos.antd.inputDemo')">
       <a-form layout="inline">
