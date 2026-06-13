@@ -24,6 +24,7 @@
   "sandboxNotSupported": "不支持",
   "productName": {
     "alipayIsv": "支付宝(服务商)",
+    "wechatIsv": "微信支付(服务商)",
     "unknown": "产品配置"
   },
   "productConfig": {

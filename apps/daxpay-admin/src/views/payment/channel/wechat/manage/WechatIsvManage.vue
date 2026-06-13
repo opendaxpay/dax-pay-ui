@@ -11,7 +11,6 @@
   defineOptions({ name: 'WechatIsvManage' });
 
   const router = useRouter();
-  const isvNo = ref('');
   const mchKeyEditRef = ref<InstanceType<typeof WechatIsvConfigEdit> | null>(null);
 
   /** 功能卡片配置 */
@@ -34,7 +33,7 @@
           title: $t('payment.channel.wechatManage.cardIsvApp'),
           icon: 'ant-design:appstore-outlined',
           description: $t('payment.channel.wechatManage.cardIsvAppDesc'),
-          route: '/payment/isv/wechat-app-manage',
+          route: '/payment/config/product/wechat-app-manage',
         },
       ],
     },
@@ -56,18 +55,17 @@
     return map[color] || 'bg-gray-500 dark:bg-gray-400';
   }
 
-  /** 初始化（由中转页调用） */
-  function init(no: string) {
-    isvNo.value = no;
+  /** 初始化（由分发页调用，平台为唯一服务商，无需服务商号） */
+  function init() {
   }
 
   function handleCardClick(card: { key: string; route?: string }) {
     if (card.key === 'mchKey') {
-      mchKeyEditRef.value?.init(isvNo.value);
+      mchKeyEditRef.value?.init();
       return;
     }
     if (card.route) {
-      router.push({ path: card.route, query: { isvNo: isvNo.value } });
+      router.push({ path: card.route });
     }
   }
 

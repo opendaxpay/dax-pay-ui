@@ -24,7 +24,6 @@
   const { message } = useMessage();
   const { hasPermission } = usePermission();
 
-  const isvNo = ref('');
   const formRef = ref();
   const form = ref<WechatIsvKeyConfig>({} as WechatIsvKeyConfig);
   let rawForm: Record<string, any> = {};
@@ -34,7 +33,6 @@
   const drawerTitle = $t('payment.channel.wechatManage.mchKeyTitle');
 
   const rules = {
-    enable: [{ required: true, message: $t('payment.channel.wechatIsv.validation.enable') }],
     wxMchId: [{ required: true, message: $t('payment.channel.wechatIsv.validation.wxMchId') }],
     apiKeyV3: [{ required: true, message: $t('payment.channel.wechatIsv.validation.apiKeyV3') }],
     publicKey: [{ required: true, message: $t('payment.channel.wechatIsv.validation.publicKey') }],
@@ -44,9 +42,8 @@
     certSerialNo: [{ required: true, message: $t('payment.channel.wechatIsv.validation.certSerialNo') }],
   };
 
-  /** 打开抽屉并加载商户支付密钥配置 */
-  function init(no: string) {
-    isvNo.value = no;
+  /** 打开抽屉并加载商户支付密钥配置（平台为唯一服务商，无需服务商号） */
+  function init() {
     visible.value = true;
     resetForm();
     loadConfig();
@@ -54,14 +51,11 @@
 
   function loadConfig() {
     confirmLoading.value = true;
-    WechatPayConfigApi.findConfig(isvNo.value, ProductEnum.WECHAT_ISV)
+    WechatPayConfigApi.findConfig(ProductEnum.WECHAT_ISV)
       .then(({ data }) => {
         rawForm = { ...data };
         form.value = {
-          isvNo: isvNo.value,
           product: ProductEnum.WECHAT_ISV,
-          channel: 'wechat',
-          enable: data?.enable ?? false,
           ...data,
         } as WechatIsvKeyConfig;
       })
@@ -85,9 +79,7 @@
           'publicKeyId',
           'certSerialNo',
         ),
-        isvNo: isvNo.value,
         product: ProductEnum.WECHAT_ISV,
-        channel: 'wechat',
       })
         .then(() => {
           message.success($t('common.saveSuccess'));
@@ -139,15 +131,6 @@
         :validate-trigger="['blur', 'change']"
       >
         <a-divider orientation="left">{{ $t('payment.channel.wechatIsv.basicConfig') }}</a-divider>
-
-        <a-form-item :label="$t('payment.channel.wechatIsv.enable')" name="enable">
-          <a-switch
-            v-model:checked="form.enable"
-            :disabled="!canEdit"
-            :checked-children="$t('common.enable')"
-            :un-checked-children="$t('common.disable')"
-          />
-        </a-form-item>
 
         <a-form-item :label="$t('payment.channel.wechatIsv.wxMchId')" name="wxMchId">
           <a-input

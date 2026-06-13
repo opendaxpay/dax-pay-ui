@@ -15,15 +15,13 @@
   const visible = ref(false);
   const loading = ref(false);
   const activeKey = ref('basic');
-  const isvNo = ref('');
   const appDetail = ref<WechatIsvApp>({});
 
   const modalTitle = computed(() =>
     $t('payment.channel.wechatManage.detailTitle', { name: appDetail.value.appName || '-' }),
   );
 
-  function show(no: string, record: WechatIsvApp) {
-    isvNo.value = no;
+  function show(record: WechatIsvApp) {
     activeKey.value = 'basic';
     visible.value = true;
     loading.value = true;
@@ -70,7 +68,6 @@
         <a-tab-pane key="auth" :tab="$t('payment.channel.wechatManage.tabAuthConfig')">
           <WechatIsvAppAuthConfig
             :app-id="appDetail.id!"
-            :isv-no="isvNo"
             :app-type="appDetail.appType"
           />
         </a-tab-pane>

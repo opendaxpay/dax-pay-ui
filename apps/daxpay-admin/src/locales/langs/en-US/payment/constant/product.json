@@ -24,6 +24,7 @@
   "sandboxNotSupported": "Not Supported",
   "productName": {
     "alipayIsv": "Alipay (ISV)",
+    "wechatIsv": "WeChat Pay (ISV)",
     "unknown": "Product Configuration"
   },
   "productConfig": {

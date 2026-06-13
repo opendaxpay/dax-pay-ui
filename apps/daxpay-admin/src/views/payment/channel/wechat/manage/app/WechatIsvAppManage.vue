@@ -7,11 +7,8 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { type WechatIsvApp, WechatIsvAppApi } from '#/api/payment/wechatIsvApp.api';
-  import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
-  import { ProductEnum } from '#/enums/payment/productEnum';
   import { usePermission } from '#/hooks/usePermission';
-  import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
 
   import WechatIsvAppCard from './WechatIsvAppCard.vue';
   import WechatIsvAppDetail from './WechatIsvAppDetail.vue';
@@ -22,14 +19,7 @@
   const router = useRouter();
   const { hasPermission } = usePermission();
 
-  const routeContext = useRequiredRouteQuery({
-    keys: ['isvNo'],
-    messageKey: 'payment.common.route.missingIsvNo',
-    fallbackPath: '/payment/isv',
-  });
-
   const loading = ref(false);
-  const isvNo = ref('');
   const appList = ref<WechatIsvApp[]>([]);
   const editRef = ref<InstanceType<typeof WechatIsvAppEdit>>();
   const detailRef = ref<InstanceType<typeof WechatIsvAppDetail>>();
@@ -37,9 +27,8 @@
   const canAdd = computed(() => hasPermission(PermCodes.Payment.WechatIsv.ADD));
 
   function loadAppList() {
-    if (!isvNo.value) return;
     loading.value = true;
-    WechatIsvAppApi.listByIsvNo(isvNo.value)
+    WechatIsvAppApi.listAll()
       .then(({ data }) => {
         appList.value = data || [];
       })
@@ -50,40 +39,30 @@
 
   function handleBack() {
     router.push({
-      path: '/payment/isv/product-detail',
-      query: { product: ProductEnum.WECHAT_ISV, isvNo: isvNo.value },
+      path: '/payment/product-detail',
+      query: { product: 'wechat_isv' },
     });
   }
 
   function handleAdd() {
-    editRef.value?.show(isvNo.value);
+    editRef.value?.show();
   }
 
   function handleManage(record: WechatIsvApp) {
-    detailRef.value?.show(isvNo.value, record);
+    detailRef.value?.show(record);
   }
 
   function handleEdit(record: WechatIsvApp) {
-    editRef.value?.showEdit(isvNo.value, record);
+    editRef.value?.showEdit(record);
   }
 
   onMounted(() => {
-    if (!routeContext.isValid.value) {
-      return;
-    }
-    isvNo.value = routeContext.query.value.isvNo;
     loadAppList();
   });
 </script>
 
 <template>
-  <RouteQueryMissingState
-    v-if="!routeContext.isValid"
-    :description="$t('payment.common.route.missingIsvNo')"
-    :back-text="$t('payment.isv.workbench.workbench.backToList')"
-    @back="routeContext.goFallback"
-  />
-  <div v-else class="m-4">
+  <div class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <div class="flex w-full items-center justify-between gap-4">

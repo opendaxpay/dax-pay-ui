@@ -15,7 +15,6 @@
   const { existsByServer, useDebounceValidator } = useValidate();
 
   const formRef = ref();
-  const isvNo = ref('');
 
   const { visible, confirmLoading, title, initFormEditType, handleCancel, formEditType } = useFormEdit();
 
@@ -40,8 +39,8 @@
       wxAppId,
       id,
       formEditType.value,
-      (value) => WechatIsvAppApi.existsWxAppId(isvNo.value, value),
-      (value, excludeId) => WechatIsvAppApi.existsWxAppIdNotId(isvNo.value, value, excludeId),
+      (value) => WechatIsvAppApi.existsWxAppId(value),
+      (value, excludeId) => WechatIsvAppApi.existsWxAppIdNotId(value, excludeId),
       $t('payment.channel.wechatManage.wxAppIdDuplicate'),
     );
   }
@@ -66,14 +65,12 @@
     formRef.value?.resetFields();
   }
 
-  function show(no: string) {
-    isvNo.value = no;
+  function show() {
     initFormEditType(FormEditType.Add);
     resetForm();
   }
 
-  function showEdit(no: string, record: WechatIsvApp) {
-    isvNo.value = no;
+  function showEdit(record: WechatIsvApp) {
     initFormEditType(FormEditType.Edit);
     resetForm();
     confirmLoading.value = true;
@@ -99,7 +96,6 @@
     confirmLoading.value = true;
     const payload: WechatIsvApp = {
       ...formState.value,
-      isvNo: isvNo.value,
     };
     const request =
       formEditType.value === FormEditType.Edit ? WechatIsvAppApi.update(payload) : WechatIsvAppApi.add(payload);

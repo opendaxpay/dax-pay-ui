@@ -11,7 +11,6 @@
 
   const props = defineProps<{
     appId?: string;
-    isvNo?: string;
     appType?: string;
   }>();
 
@@ -66,7 +65,6 @@
         formState.value = {
           ...data,
           appId: props.appId,
-          isvNo: props.isvNo,
           appSecret: appSecretConfigured.value ? undefined : data?.appSecret,
         };
         originalForm.value = { ...formState.value };
@@ -107,7 +105,6 @@
           ...formState.value,
           ...sensitiveData,
           appId: props.appId,
-          isvNo: props.isvNo,
           // 非公众号不传授权回调地址
           authCallbackUrl: isOfficialAccount.value ? formState.value.authCallbackUrl : undefined,
         };

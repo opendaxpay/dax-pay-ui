@@ -1,4 +1,4 @@
-import type { MchEntity, Result } from '#/types/web';
+import type { Result } from '#/types/web';
 
 import { defHttp } from '#/api/request';
 
@@ -8,10 +8,10 @@ import { defHttp } from '#/api/request';
 export const WechatPayConfigApi = {
   /**
    * 查询微信服务商密钥配置
-   * 注意: 微信服务商模式不支持沙箱环境
+   * 注意: 微信服务商模式不支持沙箱环境，平台为唯一服务商，密钥全局唯一
    */
-  findConfig(isvNo: string, product: string): Promise<Result<WechatIsvKeyConfig>> {
-    return defHttp.get({ url: '/admin/wechat/isv-key-config/find-config', params: { isvNo, product } });
+  findConfig(product: string): Promise<Result<WechatIsvKeyConfig>> {
+    return defHttp.get({ url: '/admin/wechat/isv-key-config/find-config', params: { product } });
   },
   /**
    * 保存微信服务商密钥配置
@@ -22,9 +22,9 @@ export const WechatPayConfigApi = {
 };
 
 /** 微信服务商密钥配置 */
-export interface WechatIsvKeyConfig extends MchEntity {
-  /** 是否启用 */
-  enable?: boolean;
+export interface WechatIsvKeyConfig {
+  /** 主键 */
+  id?: string;
   /** 微信服务商商户号 */
   wxMchId?: string;
   /** APIv3密钥 */
@@ -41,6 +41,4 @@ export interface WechatIsvKeyConfig extends MchEntity {
   certSerialNo?: string;
   /** 产品类型 */
   product?: string;
-  /** 通道 */
-  channel?: string;
 }

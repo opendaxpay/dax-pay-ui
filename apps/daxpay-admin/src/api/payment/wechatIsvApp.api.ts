@@ -7,25 +7,25 @@ import { defHttp } from '#/api/request';
  */
 export const WechatIsvAppApi = {
   /** 查询服务商应用列表 */
-  listByIsvNo(isvNo: string): Promise<Result<WechatIsvApp[]>> {
-    return defHttp.get({ url: '/admin/wechat/isv-app/list-by-isv-no', params: { isvNo } });
+  listAll(): Promise<Result<WechatIsvApp[]>> {
+    return defHttp.get({ url: '/admin/wechat/isv-app/list-all' });
   },
   /** 查询应用详情 */
   findById(id: string): Promise<Result<WechatIsvApp>> {
     return defHttp.get({ url: '/admin/wechat/isv-app/find-by-id', params: { id } });
   },
-  /** 同一服务商下微信 AppId 是否已存在（新增） */
-  existsWxAppId(isvNo: string, wxAppId: string): Promise<Result<boolean>> {
+  /** 微信 AppId 是否已存在（新增） */
+  existsWxAppId(wxAppId: string): Promise<Result<boolean>> {
     return defHttp.get({
-      url: '/admin/wechat/isv-app/exists-wx-app-id-by-isv',
-      params: { isvNo, wxAppId },
+      url: '/admin/wechat/isv-app/exists-wx-app-id',
+      params: { wxAppId },
     });
   },
-  /** 同一服务商下微信 AppId 是否已存在（编辑，排除自身） */
-  existsWxAppIdNotId(isvNo: string, wxAppId: string, id: string): Promise<Result<boolean>> {
+  /** 微信 AppId 是否已存在（编辑，排除自身） */
+  existsWxAppIdNotId(wxAppId: string, id: string): Promise<Result<boolean>> {
     return defHttp.get({
-      url: '/admin/wechat/isv-app/exists-wx-app-id-by-isv-not-id',
-      params: { isvNo, wxAppId, id },
+      url: '/admin/wechat/isv-app/exists-wx-app-id-not-id',
+      params: { wxAppId, id },
     });
   },
   /** 新增服务商应用 */
@@ -55,8 +55,6 @@ export const WechatIsvAppApi = {
 
 /** 微信服务商应用 */
 export interface WechatIsvApp extends BaseEntity {
-  /** 服务商号 */
-  isvNo?: string;
   /** 应用名称 */
   appName?: string;
   /** 应用类型 */
@@ -69,8 +67,6 @@ export interface WechatIsvApp extends BaseEntity {
 export interface WechatIsvAppAuthConfig {
   /** 应用ID */
   appId?: string;
-  /** 服务商号 */
-  isvNo?: string;
   /** 应用密钥 */
   appSecret?: string;
   /** 是否已配置应用密钥 */

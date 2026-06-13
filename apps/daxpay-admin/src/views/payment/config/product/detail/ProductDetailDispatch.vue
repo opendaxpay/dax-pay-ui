@@ -7,6 +7,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import AlipayIsvManage from '#/views/payment/channel/alipay/manage/AlipayIsvManage.vue';
+  import WechatIsvManage from '#/views/payment/channel/wechat/manage/WechatIsvManage.vue';
 
   defineOptions({ name: 'ProductDetailDispatch' });
 
@@ -39,6 +40,10 @@
         currentComponent.value = markRaw(AlipayIsvManage);
         break;
       }
+      case 'wechat_isv': {
+        currentComponent.value = markRaw(WechatIsvManage);
+        break;
+      }
       default: {
         currentComponent.value = null;
         break;
@@ -53,6 +58,9 @@
   const productName = computed(() => {
     if (product.value === 'alipay_isv') {
       return $t('payment.constant.product.productName.alipayIsv');
+    }
+    if (product.value === 'wechat_isv') {
+      return $t('payment.constant.product.productName.wechatIsv');
     }
     if (product.value) {
       return $t('payment.constant.product.productName.unknown', { product: product.value });
