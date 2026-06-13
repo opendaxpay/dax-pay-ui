@@ -6,8 +6,6 @@ export enum ClientCode {
   ADMIN = 'admin',
   /** 支付网关 */
   GATEWAY = 'gateway',
-  /** 服务商端 */
-  ISV = 'isv',
   /** 商户端 */
   MERCHANT = 'merchant',
 }
@@ -18,7 +16,6 @@ export enum ClientCode {
 export const clientCodeOptions = [
   { label: 'common.clientGateway', value: ClientCode.GATEWAY },
   { label: 'common.clientAdmin', value: ClientCode.ADMIN },
-  { label: 'common.clientIsv', value: ClientCode.ISV },
   { label: 'common.clientMerchant', value: ClientCode.MERCHANT },
 ];
 
@@ -28,7 +25,6 @@ export const clientCodeOptions = [
 export const clientCodeColorMap: Record<string, string> = {
   [ClientCode.GATEWAY]: 'cyan',
   [ClientCode.ADMIN]: 'blue',
-  [ClientCode.ISV]: 'green',
   [ClientCode.MERCHANT]: 'purple',
 };
 
@@ -38,6 +34,5 @@ export const clientCodeColorMap: Record<string, string> = {
 export const clientCodeI18nMap: Record<string, string> = {
   [ClientCode.GATEWAY]: 'common.clientGateway',
   [ClientCode.ADMIN]: 'common.clientAdmin',
-  [ClientCode.ISV]: 'common.clientIsv',
   [ClientCode.MERCHANT]: 'common.clientMerchant',
 };

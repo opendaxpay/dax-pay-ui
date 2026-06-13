@@ -129,7 +129,7 @@
         selectedProduct.value!.product!,
         mchNo.value,
         selectedProduct.value!.channel || '',
-        merchantInfo.value.isvNo || '',
+        '',
         selectedProduct.value!.name || getProductName(selectedProduct.value!.product || ''),
       );
     });

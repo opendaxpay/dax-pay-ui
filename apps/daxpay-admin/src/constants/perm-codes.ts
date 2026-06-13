@@ -51,12 +51,6 @@ export const PermCodes = {
       VIEW: 'payment:merchant:app:payRoute:view',
       EDIT: 'payment:merchant:app:payRoute:edit',
     },
-    Isv: {
-      ADD: 'payment:isv:add',
-      VIEW: 'payment:isv:view',
-      EDIT: 'payment:isv:edit',
-      CREDENTIAL_CONFIG_UPDATE: 'payment:isv:credential_config_update',
-    },
     /** 支付宝服务商通道 menuCode=payment:alipay:isv */
     AlipayIsv: {
       ADD: 'payment:alipay:isv:add',

@@ -50,10 +50,6 @@ export interface BaseEntity {
  * 商户应用基础实体对象
  */
 export interface MchEntity extends BaseEntity {
-  /** 服务商号 */
-  isvNo?: string;
-  /** 服务商名称 */
-  isvName?: string;
   /** 商户号 */
   mchNo?: string;
   /** 商户名称 */

@@ -60,24 +60,7 @@ export const MerchantApi = {
   dropdown(): Promise<Result<LabelValue[]>> {
     return defHttp.get({ url: '/admin/merchant/dropdown' });
   },
-  /**
-   * 校验服务商下商户登录账号是否已存在
-   */
-  existsAccountByIsv(account: string, isvNo: string): Promise<Result<boolean>> {
-    return defHttp.get({ url: '/admin/merchant/exists-account-by-isv', params: { account, isvNo } });
-  },
-  /**
-   * 校验服务商下商户手机号是否已存在
-   */
-  existsPhoneByIsv(phone: string, isvNo: string): Promise<Result<boolean>> {
-    return defHttp.get({ url: '/admin/merchant/exists-phone-by-isv', params: { phone, isvNo } });
-  },
-  /**
-   * 校验服务商下商户邮箱是否已存在
-   */
-  existsEmailByIsv(email: string, isvNo: string): Promise<Result<boolean>> {
-    return defHttp.get({ url: '/admin/merchant/exists-email-by-isv', params: { email, isvNo } });
-  },
+
 };
 
 /**
@@ -178,8 +161,6 @@ export interface MerchantInfo extends BaseEntity {
   mchName?: string;
   mchShortName?: string;
   subjectType?: string;
-  isvNo?: string;
-  isvName?: string;
   status?: string;
   adminUserId?: number;
 }
@@ -203,7 +184,6 @@ export interface MerchantParam extends BaseEntity {
   mchShortName?: string;
   subjectType?: string;
   status?: string;
-  isvNo?: string;
 }
 
 /**

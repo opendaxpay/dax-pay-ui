@@ -20,7 +20,6 @@
   "clientType": "终端类型",
   "clientGateway": "支付网关",
   "clientAdmin": "运营端",
-  "clientIsv": "服务商端",
 "clientMerchant": "商户端",
   "add": "新增",
   "edit": "编辑",

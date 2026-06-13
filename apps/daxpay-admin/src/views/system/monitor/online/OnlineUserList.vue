@@ -53,7 +53,6 @@
   // 终端类型下拉选项
   const clientCodeOptions = computed(() => [
     { label: $t('common.clientAdmin'), value: 'admin' },
-    { label: $t('common.clientIsv'), value: 'isv' },
     { label: $t('common.clientMerchant'), value: 'merchant' },
   ]);
 

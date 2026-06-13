@@ -3,8 +3,6 @@
     "mchNo": "商户号",
     "mchName": "商户名称",
     "mchShortName": "商户简称",
-    "isvNo": "服务商",
-    "isvName": "服务商名称",
     "status": "状态",
     "subjectType": "主体类型",
     "createTime": "创建时间",
@@ -24,7 +22,6 @@
     "confirmDisableContent": "确定要禁用该商户吗？禁用后商户账号将无法登录。"
   },
   "validation": {
-    "pleaseSelectIsv": "请选择所属服务商",
     "pleaseInputMchName": "请输入商户名称",
     "pleaseInputMchShortName": "请输入商户简称",
     "pleaseInputAccount": "请输入管理员账号",

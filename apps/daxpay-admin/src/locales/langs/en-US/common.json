@@ -20,7 +20,6 @@
   "clientType": "Client Type",
   "clientGateway": "Payment Gateway",
   "clientAdmin": "Admin",
-  "clientIsv": "ISV",
 "clientMerchant": "Merchant",
   "add": "Add",
   "edit": "Edit",

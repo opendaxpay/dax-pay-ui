@@ -3,8 +3,6 @@
     "mchNo": "Merchant No.",
     "mchName": "Merchant Name",
     "mchShortName": "Short Name",
-    "isvNo": "ISV",
-    "isvName": "ISV Name",
     "status": "Status",
     "subjectType": "Subject Type",
     "createTime": "Create Time",
@@ -24,7 +22,6 @@
     "confirmDisableContent": "Are you sure you want to disable this merchant? After disabling, the merchant account will not be able to log in."
   },
   "validation": {
-    "pleaseSelectIsv": "Please select ISV",
     "pleaseInputMchName": "Please enter merchant name",
     "pleaseInputMchShortName": "Please enter merchant short name",
     "pleaseInputAccount": "Please enter administrator account",

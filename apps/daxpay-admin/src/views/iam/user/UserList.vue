@@ -35,8 +35,6 @@
   const tabItems: TabItem[] = [
     // 运营端
     { key: 'admin', label: 'common.clientAdmin', clientCode: 'admin', color: 'blue' },
-    // 服务商端
-    { key: 'isv', label: 'common.clientIsv', clientCode: 'isv', color: 'green' },
     // 商户端
     { key: 'merchant', label: 'common.clientMerchant', clientCode: 'merchant', color: 'purple' },
   ];
