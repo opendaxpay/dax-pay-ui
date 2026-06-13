@@ -1,29 +1,7 @@
 {
   "common": {
     "title": "平台配置",
-    "description": "管理平台的OCR、短信、OSS等服务配置"
-  },
-  "ocr": {
-    "title": "OCR配置",
-    "description": "管理OCR识别服务配置",
-    "configName": "配置名称",
-    "provider": "供应商",
-    "endpoint": "访问端点",
-    "accessKey": "AccessKey",
-    "secretKey": "SecretKey",
-    "status": "状态",
-    "providerOptions": {
-      "aliyun": "阿里云",
-      "tencent": "腾讯云"
-    },
-    "inputConfigName": "请输入配置名称",
-    "selectProvider": "请选择供应商",
-    "inputEndpoint": "请输入访问端点",
-    "inputAccessKey": "请输入AccessKey",
-    "inputSecretKey": "请输入SecretKey",
-    "confirmDelete": "确定要删除配置「{name}」吗？",
-    "enableSuccess": "启用成功",
-    "disableSuccess": "禁用成功"
+    "description": "管理平台的短信、OSS等服务配置"
   },
   "sms": {
     "title": "短信配置",

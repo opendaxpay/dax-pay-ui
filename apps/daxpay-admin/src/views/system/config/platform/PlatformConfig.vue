@@ -3,22 +3,14 @@
 
   import { $t } from '#/locales';
 
-  import OcrConfigList from './ocr/OcrConfigList.vue';
   import OssConfigForm from './oss/OssConfigForm.vue';
   import SmsConfigList from './sms/SmsConfigList.vue';
 
   defineOptions({ name: 'PlatformConfig' });
 
-  const activeKey = ref<string>('ocr');
+  const activeKey = ref<string>('sms');
 
   const tabs = [
-    {
-      key: 'ocr',
-      // OCR配置标题
-      label: $t('system.platform.ocr.title'),
-      // OCR配置描述
-      description: $t('system.platform.ocr.description'),
-    },
     {
       key: 'sms',
       // 短信配置标题
@@ -62,8 +54,7 @@
 
       <section class="platform-content">
         <div class="platform-content__scroll">
-          <OcrConfigList v-if="activeKey === 'ocr'" />
-          <SmsConfigList v-else-if="activeKey === 'sms'" />
+          <SmsConfigList v-if="activeKey === 'sms'" />
           <OssConfigForm v-else-if="activeKey === 'oss'" />
         </div>
       </section>

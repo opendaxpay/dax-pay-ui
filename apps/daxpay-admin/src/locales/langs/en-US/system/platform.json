@@ -1,29 +1,7 @@
 {
   "common": {
     "title": "Platform Config",
-    "description": "Manage platform OCR, SMS, OSS and other service configurations"
-  },
-  "ocr": {
-    "title": "OCR Config",
-    "description": "Manage OCR recognition service configuration",
-    "configName": "Config Name",
-    "provider": "Provider",
-    "endpoint": "Endpoint",
-    "accessKey": "AccessKey",
-    "secretKey": "SecretKey",
-    "status": "Status",
-    "providerOptions": {
-      "aliyun": "Alibaba Cloud",
-      "tencent": "Tencent Cloud"
-    },
-    "inputConfigName": "Please enter config name",
-    "selectProvider": "Please select provider",
-    "inputEndpoint": "Please enter endpoint",
-    "inputAccessKey": "Please enter AccessKey",
-    "inputSecretKey": "Please enter SecretKey",
-    "confirmDelete": "Are you sure you want to delete the configuration \"{name}\"?",
-    "enableSuccess": "Enabled successfully",
-    "disableSuccess": "Disabled successfully"
+    "description": "Manage platform SMS, OSS and other service configurations"
   },
   "sms": {
     "title": "SMS Config",
