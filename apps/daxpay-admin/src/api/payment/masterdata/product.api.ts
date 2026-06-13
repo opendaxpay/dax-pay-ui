@@ -16,6 +16,10 @@ export const PayProductApi = {
   dropdown(): Promise<Result<LabelValue[]>> {
     return defHttp.get({ url: '/admin/product/dropdown' });
   },
+  /** 全量查询支付产品（卡片式管理页使用） */
+  listAll(): Promise<Result<PayProductResult[]>> {
+    return defHttp.get({ url: '/admin/product/list-all' });
+  },
 };
 
 /** 标签值 */

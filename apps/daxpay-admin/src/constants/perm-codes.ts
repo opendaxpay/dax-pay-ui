@@ -44,7 +44,6 @@ export const PermCodes = {
       VIEW: 'payment:merchant:view',
       EDIT: 'payment:merchant:edit',
       CREDENTIAL_CONFIG_UPDATE: 'payment:merchant:credential_config_update',
-      PRODUCT_CONFIG_UPDATE: 'payment:merchant:product_config_update',
     },
     /** 应用通道路由 menuCode=payment:merchant:app:payRoute（方案 B） */
     AppPayRoute: {

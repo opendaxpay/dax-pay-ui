@@ -8,11 +8,10 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import {
-    MchProductConfigApi,
-    type MchProductConfigResult,
     MerchantApi,
     type MerchantInfo,
   } from '#/api/payment/merchant.api';
+  import { PayProductApi, type PayProductResult } from '#/api/payment/masterdata/product.api';
   import ChannelLogo from '#/components/channel/ChannelLogo.vue';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { channelI18nMap, channelNameMap, productI18nMap, productNameMap } from '#/enums/payment';
@@ -45,11 +44,11 @@
   // 加载状态
   const loading = ref(false);
 
-  // Step1: 选中的支付产品
-  const selectedProduct = ref<MchProductConfigResult | null>(null);
+  // Step1: 选中的支付产品（开源版：产品主数据默认全可用）
+  const selectedProduct = ref<PayProductResult | null>(null);
 
-  // 商户已启用的支付产品列表
-  const productList = ref<MchProductConfigResult[]>([]);
+  // 支付产品列表（开源版：从产品主数据获取，默认全启用）
+  const productList = ref<PayProductResult[]>([]);
 
   // Transit组件引用
   const transitRef = ref();
@@ -92,15 +91,13 @@
   }
 
   /**
-   * 加载商户已启用的支付产品
+   * 加载支付产品列表（开源版：从产品主数据获取，默认全启用）
    */
   function loadProductList() {
-    if (!mchNo.value) return;
     loading.value = true;
-    MchProductConfigApi.findAllByMchNo(mchNo.value)
+    PayProductApi.page({ current: 1, size: 200 })
       .then(({ data }) => {
-        // 国际化：只展示已启用的支付产品
-        productList.value = (data || []).filter((item) => item.enable);
+        productList.value = data?.records || [];
         loading.value = false;
       })
       .catch(() => {
@@ -111,7 +108,7 @@
   /**
    * 选择支付产品
    */
-  function handleSelectProduct(item: MchProductConfigResult) {
+  function handleSelectProduct(item: PayProductResult) {
     selectedProduct.value = item;
   }
 
@@ -126,11 +123,11 @@
     currentStep.value = 1;
     nextTick(() => {
       transitRef.value?.init(
-        selectedProduct.value!.product!,
+        selectedProduct.value!.code!,
         mchNo.value,
         selectedProduct.value!.channel || '',
         '',
-        selectedProduct.value!.name || getProductName(selectedProduct.value!.product || ''),
+        selectedProduct.value!.name || getProductName(selectedProduct.value!.code || ''),
       );
     });
   }
@@ -201,24 +198,29 @@
           <span class="text-lg font-bold text-foreground">{{
             $t('payment.merchant.channelMerchant.createTitle')
           }}</span>
-          <span v-if="merchantInfo.mchName" class="text-sm text-muted-foreground">({{ merchantInfo.mchName }})</span>
+          <span v-if="merchantInfo.mchName" class="text-sm text-muted-foreground"
+            >({{ merchantInfo.mchName }})</span
+          >
         </div>
       </template>
 
       <!-- Step1: 选择支付产品 -->
       <div v-if="currentStep === 0">
         <a-spin :spinning="loading">
-          <div v-if="productList.length === 0 && !loading" class="flex items-center justify-center empty-container">
-            <!-- 国际化：暂无已启用的支付产品 -->
+          <div
+            v-if="productList.length === 0 && !loading"
+            class="flex items-center justify-center empty-container"
+          >
+            <!-- 国际化：暂无可用支付产品 -->
             <a-empty :description="$t('payment.merchant.channelMerchant.noEnabledProduct')" />
           </div>
           <div v-else class="product-select-grid">
             <div
               v-for="item in productList"
-              :key="item.product"
+              :key="item.code"
               class="product-select-card group relative overflow-hidden rounded-xl border transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg"
               :class="
-                selectedProduct?.product === item.product
+                selectedProduct?.code === item.code
                   ? 'border-primary bg-primary/5 ring-2 ring-primary/30'
                   : 'border-border bg-card hover:border-primary/50'
               "
@@ -229,13 +231,15 @@
                   <ChannelLogo :channel="item.channel!" :size="44" />
                 </div>
                 <div class="text-center font-bold text-foreground text-sm mb-1">
-                  {{ item.name || getProductName(item.product || '') }}
+                  {{ item.name || getProductName(item.code || '') }}
                 </div>
-                <div class="text-xs text-muted-foreground">{{ getChannelName(item.channel || '') }}</div>
+                <div class="text-xs text-muted-foreground">
+                  {{ getChannelName(item.channel || '') }}
+                </div>
               </div>
               <!-- 选中标记 -->
               <div
-                v-if="selectedProduct?.product === item.product"
+                v-if="selectedProduct?.code === item.code"
                 class="absolute top-2 right-2 w-6 h-6 rounded-full bg-primary flex items-center justify-center"
               >
                 <IconifyIcon icon="ant-design:check-outlined" class="text-white text-sm" />

@@ -1,6 +1,5 @@
 {
   "missingIsvNo": "Missing ISV number. Open from the ISV list",
   "missingMchNo": "Missing merchant number. Open from the merchant list",
-"missingProduct": "Missing product parameter. Open from product configuration",
   "missingAppContext": "Open channel routing from App Management"
 }
