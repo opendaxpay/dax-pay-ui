@@ -2,6 +2,7 @@
   import { ref } from 'vue';
 
   import { $t } from '@vben/locales';
+  import { formatDateTime } from '@vben/utils';
 
   import { type MerchantUserDetail, MerchantUserApi } from '#/api/payment/merchantUser.api';
   import { useMessage } from '#/hooks/useMessage';
@@ -114,11 +115,11 @@
         </a-descriptions-item>
         <!-- 注册时间 -->
         <a-descriptions-item :label="$t('iam.user.field.registerTime')">
-          {{ userInfo.createTime || '-' }}
+          {{ formatDateTime(userInfo.createTime) || '-' }}
         </a-descriptions-item>
         <!-- 最后登录时间 -->
         <a-descriptions-item :label="$t('iam.user.field.lastLoginTime')">
-          {{ userInfo.lastLoginTime || '-' }}
+          {{ formatDateTime(userInfo.lastLoginTime) || '-' }}
         </a-descriptions-item>
         <!-- 登录次数 -->
         <a-descriptions-item :label="$t('iam.user.field.loginCount')">

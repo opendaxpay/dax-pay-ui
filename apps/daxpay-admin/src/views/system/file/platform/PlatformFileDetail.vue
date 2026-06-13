@@ -2,6 +2,7 @@
   import { ref } from 'vue';
 
   import { $t } from '@vben/locales';
+  import { formatDateTime } from '@vben/utils';
 
   import { type PlatformFile, PlatformFileApi } from '#/api/system/platform-file.api';
   import { useApiPrefix } from '#/hooks/useApiPrefix';
@@ -116,7 +117,7 @@
         </a-descriptions-item>
         <!-- 创建时间 -->
         <a-descriptions-item :label="$t('system.file.platform.field.createTime')">
-          {{ data.createTime }}
+          {{ formatDateTime(data.createTime) }}
         </a-descriptions-item>
       </a-descriptions>
     </a-spin>

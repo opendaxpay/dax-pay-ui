@@ -208,7 +208,7 @@
           <!-- 错误提示 -->
           <vxe-column field="errorMsg" :title="$t('system.log.operate-log.errorMsg')" :min-width="150" />
           <!-- 操作时间 -->
-          <vxe-column field="operateTime" :title="$t('system.log.operate-log.operateTime')" :min-width="170" />
+          <vxe-column field="operateTime" :title="$t('system.log.operate-log.operateTime')" :min-width="170" formatter="formatDateTime" />
           <!-- 操作 -->
           <vxe-column fixed="right" width="60" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">

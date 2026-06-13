@@ -394,7 +394,7 @@
               </a-tag>
             </template>
           </vxe-column>
-          <vxe-column field="createTime" :title="$t('common.createTime')" min-width="160" />
+          <vxe-column field="createTime" :title="$t('common.createTime')" min-width="160" formatter="formatDateTime" />
           <vxe-column fixed="right" width="180" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">
               <a-space :size="2">

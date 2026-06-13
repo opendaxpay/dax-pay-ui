@@ -236,7 +236,7 @@
           <!-- 备注 -->
           <vxe-column field="remark" :title="$t('iam.role.remark')" :min-width="150" />
           <!-- 创建时间 -->
-          <vxe-column field="createTime" :title="$t('common.createTime')" :min-width="160" />
+          <vxe-column field="createTime" :title="$t('common.createTime')" :min-width="160" formatter="formatDateTime" />
           <!-- 操作 -->
           <vxe-column fixed="right" width="180" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">

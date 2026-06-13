@@ -228,7 +228,7 @@
             </template>
           </vxe-column>
           <!-- 创建时间 -->
-          <vxe-column field="createTime" :title="$t('risk.modelInstance.base.field.createTime')" :min-width="170" />
+          <vxe-column field="createTime" :title="$t('risk.modelInstance.base.field.createTime')" :min-width="170" formatter="formatDateTime" />
           <!-- 操作 -->
           <vxe-column fixed="right" width="180" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">

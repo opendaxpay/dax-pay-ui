@@ -228,7 +228,12 @@
             </template>
           </vxe-column>
           <!-- 登录时间 -->
-          <vxe-column field="loginTime" :title="$t('system.monitor.online-user.loginTime')" min-width="160" />
+          <vxe-column
+            field="loginTime"
+            :title="$t('system.monitor.online-user.loginTime')"
+            min-width="160"
+            formatter="formatDateTime"
+          />
           <!-- 操作 -->
           <vxe-column fixed="right" width="100" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">

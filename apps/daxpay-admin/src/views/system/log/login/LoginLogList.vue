@@ -201,7 +201,7 @@
           <!-- 提示消息 -->
           <vxe-column field="msg" :title="$t('system.log.login-log.msg')" :min-width="170" />
           <!-- 访问时间 -->
-          <vxe-column field="loginTime" :title="$t('system.log.login-log.loginTime')" :min-width="170" />
+          <vxe-column field="loginTime" :title="$t('system.log.login-log.loginTime')" :min-width="170" formatter="formatDateTime" />
           <!-- 操作 -->
           <vxe-column fixed="right" width="60" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">

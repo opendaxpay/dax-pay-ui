@@ -2,6 +2,7 @@
   import { ref } from 'vue';
 
   import { $t } from '@vben/locales';
+  import { formatDateTime } from '@vben/utils';
 
   import { type LoginLog, LoginLogApi } from '#/api/system/log/login-log.api';
 
@@ -77,7 +78,7 @@
         </a-descriptions-item>
         <!-- 登录时间 -->
         <a-descriptions-item :label="$t('system.log.login-log.loginTime')">
-          {{ data.loginTime }}
+          {{ formatDateTime(data.loginTime) }}
         </a-descriptions-item>
       </a-descriptions>
     </a-spin>

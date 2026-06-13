@@ -155,7 +155,7 @@
               <a-tag v-else color="red">{{ $t('payment.merchant.base.status.disabled') }}</a-tag>
             </template>
           </vxe-column>
-          <vxe-column field="createTime" :title="$t('payment.merchant.base.field.createTime')" :min-width="180" />
+          <vxe-column field="createTime" :title="$t('payment.merchant.base.field.createTime')" :min-width="180" formatter="formatDateTime" />
           <vxe-column fixed="right" width="100" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">
               <a

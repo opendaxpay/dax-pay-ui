@@ -1,4 +1,6 @@
+// @ts-ignore
 import Vue from '@vitejs/plugin-vue';
+// @ts-ignore
 import VueJsx from '@vitejs/plugin-vue-jsx';
 import { configDefaults, defineConfig } from 'vitest/config';
 

@@ -5,8 +5,8 @@ import { preferences } from '@vben/preferences';
 import { initStores } from '@vben/stores';
 import '@vben/styles';
 import '@vben/styles/antdv-next';
-
 import { useTitle } from '@vueuse/core';
+import { formatDate, formatDateTime } from '@vben/utils';
 import Antd from 'antdv-next';
 import VxeUI from 'vxe-pc-ui';
 import VxeUITable from 'vxe-table';
@@ -39,6 +39,18 @@ async function bootstrap(namespace: string) {
   app.use(VxeUITable);
   // 注册 VxeUI
   app.use(VxeUI);
+
+  // 注册全局 vxe-table 日期格式化器, 使 formatter="formatDateTime" 生效
+  VxeUI.formats.add('formatDate', {
+    tableCellFormatMethod({ cellValue }) {
+      return formatDate(cellValue);
+    },
+  });
+  VxeUI.formats.add('formatDateTime', {
+    tableCellFormatMethod({ cellValue }) {
+      return formatDateTime(cellValue);
+    },
+  });
 
   // 注册v-loading指令
   registerLoadingDirective(app, {

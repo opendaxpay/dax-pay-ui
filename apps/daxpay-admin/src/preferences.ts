@@ -40,6 +40,6 @@ export const overridesPreferences = defineOverridesPreferences({
     colorPrimary: 'hsl(212 100% 45%)',
   },
   widget: {
-    timezone: false,
+    timezone: true,
   },
 });

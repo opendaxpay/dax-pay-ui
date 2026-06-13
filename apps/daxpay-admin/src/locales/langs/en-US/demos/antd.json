@@ -1,7 +1,6 @@
 {
   "title": "Antd Next Demo",
   "description": "Support multi-language, theme switching and more",
-  "button": "Button",
   "message": "Message",
   "notification": "Notification",
   "info": "Info",
@@ -13,5 +12,12 @@
   "confirmContent": "This is a confirm dialog triggered by useMessage.",
   "confirmed": "Confirmed",
   "dialog": "Dialog",
-  "openConfirm": "Open Confirm Dialog"
+  "openConfirm": "Open Confirm Dialog",
+  "currentTime": "Current Time",
+  "formatDateDemo": "Date Formatting",
+  "formatDateTimeDemo": "Date Time Formatting",
+  "inputDemo": "Time Input (with Echo)",
+  "datePicker": "Date Picker",
+  "timePicker": "Time Picker",
+  "dateTimePicker": "Date Time Picker"
 }

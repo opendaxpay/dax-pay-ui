@@ -2,6 +2,7 @@
   import { ref } from 'vue';
 
   import { $t, i18n } from '@vben/locales';
+  import { formatDateTime } from '@vben/utils';
 
   import { type User, UserApi, type UserRole, UserRoleApi } from '#/api/iam/user.api';
   import { clientCodeColorMap, clientCodeI18nMap } from '#/enums/clientCode';
@@ -142,11 +143,11 @@
         </a-descriptions-item>
         <!-- 创建时间 -->
         <a-descriptions-item :label="$t('common.createTime')">
-          {{ userInfo.createTime }}
+          {{ formatDateTime(userInfo.createTime) }}
         </a-descriptions-item>
         <!-- 最后登录时间 -->
         <a-descriptions-item :label="$t('iam.user.field.lastLoginTime')">
-          {{ userInfo.lastLoginTime || '-' }}
+          {{ formatDateTime(userInfo.lastLoginTime) || '-' }}
         </a-descriptions-item>
       </a-descriptions>
     </a-spin>

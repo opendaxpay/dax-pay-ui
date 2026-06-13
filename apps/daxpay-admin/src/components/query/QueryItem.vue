@@ -4,6 +4,7 @@
   import { computed } from 'vue';
 
   import { $t } from '@vben/locales';
+  import { formatDate } from '@vben/utils';
 
   import { BOOLEAN, DATE, DATE_RANGE, DATE_TIME, DATE_TIME_RANGE, LIST, NUMBER, STRING, TIME } from './query';
 
@@ -129,13 +130,6 @@
       },
     },
   ];
-
-  function formatDate(date: Date): string {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  }
 
   function query() {
     emits('enterQuery');

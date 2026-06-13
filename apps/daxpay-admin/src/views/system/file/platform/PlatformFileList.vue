@@ -205,7 +205,7 @@
             </template>
           </vxe-column>
           <!-- 创建时间 -->
-          <vxe-column field="createTime" :title="$t('system.file.platform.field.createTime')" :min-width="180" />
+          <vxe-column field="createTime" :title="$t('system.file.platform.field.createTime')" :min-width="180" formatter="formatDateTime" />
           <!-- 操作 -->
           <vxe-column fixed="right" :width="160" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">

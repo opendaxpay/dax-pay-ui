@@ -2,6 +2,7 @@
   import { ref } from 'vue';
 
   import { $t } from '@vben/locales';
+  import { formatDateTime } from '@vben/utils';
 
   import { type OperateLog, OperateLogApi } from '#/api/system/log/operate-log.api';
 
@@ -101,7 +102,7 @@
         </a-descriptions-item>
         <!-- 操作时间 -->
         <a-descriptions-item :label="$t('system.log.operate-log.operateTime')" :span="2">
-          {{ data.operateTime }}
+          {{ formatDateTime(data.operateTime) }}
         </a-descriptions-item>
       </a-descriptions>
     </a-spin>
