@@ -22,6 +22,16 @@
   "detail": "产品详情",
   "sandboxSupported": "支持",
   "sandboxNotSupported": "不支持",
+  "productConfig": {
+    "title": "支付产品管理",
+    "emptyDesc": "暂无支付产品数据",
+    "prodLabel": "生产",
+    "sandboxLabel": "沙箱",
+    "prodConfigBtn": "生产配置",
+    "sandboxConfigBtn": "沙箱配置",
+    "switchEnv": "切换环境",
+    "switchEnvConfirm": "确定要切换到{env}吗？"
+  },
   "placeholder": {
     "name": "请输入产品名称",
     "code": "请输入产品编码"

@@ -22,6 +22,16 @@
   "detail": "Product Detail",
   "sandboxSupported": "Supported",
   "sandboxNotSupported": "Not Supported",
+  "productConfig": {
+    "title": "Payment Product Management",
+    "emptyDesc": "No payment product data available",
+    "prodLabel": "Prod",
+    "sandboxLabel": "Sandbox",
+    "prodConfigBtn": "Production",
+    "sandboxConfigBtn": "Sandbox",
+    "switchEnv": "Switch Environment",
+    "switchEnvConfirm": "Switch to {env}?"
+  },
   "placeholder": {
     "name": "Enter product name",
     "code": "Enter product code"
