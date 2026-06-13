@@ -7,10 +7,8 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { type AlipayIsvApp, AlipayIsvAppApi } from '#/api/payment/alipayIsvApp.api';
-  import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
   import { usePermission } from '#/hooks/usePermission';
-  import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
 
   import AlipayIsvAppCard from './AlipayIsvAppCard.vue';
   import AlipayIsvAppDetail from './AlipayIsvAppDetail.vue';
@@ -21,14 +19,7 @@
   const router = useRouter();
   const { hasPermission } = usePermission();
 
-  const routeContext = useRequiredRouteQuery({
-    keys: ['isvNo'],
-    messageKey: 'payment.common.route.missingIsvNo',
-    fallbackPath: '/payment/isv',
-  });
-
   const loading = ref(false);
-  const isvNo = ref('');
   const appList = ref<AlipayIsvApp[]>([]);
   const editRef = ref<InstanceType<typeof AlipayIsvAppEdit>>();
   const detailRef = ref<InstanceType<typeof AlipayIsvAppDetail>>();
@@ -39,9 +30,8 @@
    * 加载应用列表
    */
   function loadAppList() {
-    if (!isvNo.value) return;
     loading.value = true;
-    AlipayIsvAppApi.listByIsvNo(isvNo.value)
+    AlipayIsvAppApi.listAll()
       .then(({ data }) => {
         appList.value = data || [];
       })
@@ -55,8 +45,8 @@
    */
   function handleBack() {
     router.push({
-      path: '/payment/isv/product-detail',
-      query: { product: 'alipay_isv', isvNo: isvNo.value },
+      path: '/payment/product-detail',
+      query: { product: 'alipay_isv' },
     });
   }
 
@@ -64,40 +54,30 @@
    * 新增应用
    */
   function handleAdd() {
-    editRef.value?.show(isvNo.value);
+    editRef.value?.show();
   }
 
   /**
    * 打开应用管理弹窗
    */
   function handleManage(record: AlipayIsvApp) {
-    detailRef.value?.show(isvNo.value, record);
+    detailRef.value?.show(record);
   }
 
   /**
    * 编辑应用
    */
   function handleEdit(record: AlipayIsvApp) {
-    editRef.value?.showEdit(isvNo.value, record);
+    editRef.value?.showEdit(record);
   }
 
   onMounted(() => {
-    if (!routeContext.isValid.value) {
-      return;
-    }
-    isvNo.value = routeContext.query.value.isvNo;
     loadAppList();
   });
 </script>
 
 <template>
-  <RouteQueryMissingState
-    v-if="!routeContext.isValid"
-    :description="$t('payment.common.route.missingIsvNo')"
-    :back-text="$t('payment.isv.workbench.workbench.backToList')"
-    @back="routeContext.goFallback"
-  />
-  <div v-else class="m-4">
+  <div class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <div class="flex w-full items-center justify-between gap-4">

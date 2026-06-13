@@ -9,8 +9,8 @@ export const AlipayIsvAppApi = {
   /**
    * 查询服务商应用列表
    */
-  listByIsvNo(isvNo: string): Promise<Result<AlipayIsvApp[]>> {
-    return defHttp.get({ url: '/admin/alipay/isv-app/list-by-isv-no', params: { isvNo } });
+  listAll(): Promise<Result<AlipayIsvApp[]>> {
+    return defHttp.get({ url: '/admin/alipay/isv-app/list-all' });
   },
   /**
    * 查询应用详情
@@ -19,21 +19,21 @@ export const AlipayIsvAppApi = {
     return defHttp.get({ url: '/admin/alipay/isv-app/find-by-id', params: { id } });
   },
   /**
-   * 同一服务商下应用 ID 是否已存在（新增）
+   * 支付宝应用 ID 是否已存在（新增）
    */
-  existsAliAppId(isvNo: string, aliAppId: string): Promise<Result<boolean>> {
+  existsAliAppId(aliAppId: string): Promise<Result<boolean>> {
     return defHttp.get({
-      url: '/admin/alipay/isv-app/exists-ali-app-id-by-isv',
-      params: { isvNo, aliAppId },
+      url: '/admin/alipay/isv-app/exists-ali-app-id',
+      params: { aliAppId },
     });
   },
   /**
-   * 同一服务商下应用 ID 是否已存在（编辑，排除自身）
+   * 支付宝应用 ID 是否已存在（编辑，排除自身）
    */
-  existsAliAppIdNotId(isvNo: string, aliAppId: string, id: string): Promise<Result<boolean>> {
+  existsAliAppIdNotId(aliAppId: string, id: string): Promise<Result<boolean>> {
     return defHttp.get({
-      url: '/admin/alipay/isv-app/exists-ali-app-id-by-isv-not-id',
-      params: { isvNo, aliAppId, id },
+      url: '/admin/alipay/isv-app/exists-ali-app-id-not-id',
+      params: { aliAppId, id },
     });
   },
   /**
@@ -88,8 +88,6 @@ export const AlipayIsvAppApi = {
 
 /** 支付宝服务商应用 */
 export interface AlipayIsvApp extends BaseEntity {
-  /** 服务商号 */
-  isvNo?: string;
   /** 应用名称 */
   appName?: string;
   /** 支付宝应用ID */
@@ -100,8 +98,6 @@ export interface AlipayIsvApp extends BaseEntity {
 export interface AlipayIsvAppKeyConfig {
   /** 应用ID */
   appId?: string;
-  /** 服务商号 */
-  isvNo?: string;
   /** 认证类型 */
   authType?: string;
   /** 支付宝公钥 */
@@ -122,8 +118,6 @@ export interface AlipayIsvAppKeyConfig {
 export interface AlipayIsvAppAuthConfig {
   /** 应用ID */
   appId?: string;
-  /** 服务商号 */
-  isvNo?: string;
   /** 用户标识类型 */
   userIdType?: string;
   /** 授权回调地址 */

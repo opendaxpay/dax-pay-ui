@@ -11,7 +11,6 @@
 
   const props = defineProps<{
     appId?: string;
-    isvNo?: string;
   }>();
 
   const { labelCol, wrapperCol } = useFormEdit();
@@ -49,7 +48,6 @@
           userIdType: 'openid',
           ...data,
           appId: props.appId,
-          isvNo: props.isvNo,
         };
       })
       .finally(() => {
@@ -95,7 +93,6 @@
         const submitData: AlipayIsvAppAuthConfig = {
           ...formState.value,
           appId: props.appId,
-          isvNo: props.isvNo,
         };
         return AlipayIsvAppApi.saveAuthConfig(submitData)
           .then(() => {

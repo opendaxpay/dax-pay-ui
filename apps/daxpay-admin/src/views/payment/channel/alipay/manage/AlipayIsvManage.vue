@@ -10,7 +10,6 @@
 
   const router = useRouter();
   const loading = ref(false);
-  const isvNo = ref('');
   // 是否沙箱环境
   const sandbox = ref(false);
 
@@ -30,7 +29,7 @@
           icon: 'ant-design:appstore-outlined',
           // 国际化：查看支付宝开放平台应用列表
           description: $t('payment.channel.alipayManage.cardIsvAppDesc'),
-          route: '/payment/isv/alipay-app-manage',
+          route: '/payment/config/product/app-manage',
         },
       ],
     },
@@ -61,19 +60,18 @@
   }
 
   /**
-   * 初始化（由中转页调用）
+   * 初始化（由分发页调用）
    */
-  function init(no: string, isSandbox: boolean) {
-    isvNo.value = no;
+  function init(isSandbox: boolean) {
     sandbox.value = isSandbox;
   }
 
   /**
-   * 卡片点击（Phase 2 实现具体跳转）
+   * 卡片点击跳转
    */
   function handleCardClick(card: { key: string; route?: string }) {
     if (card.route) {
-      router.push({ path: card.route, query: { isvNo: isvNo.value } });
+      router.push({ path: card.route });
     }
   }
 

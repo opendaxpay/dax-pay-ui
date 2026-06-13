@@ -16,7 +16,6 @@
   const visible = ref(false);
   const loading = ref(false);
   const activeKey = ref('basic');
-  const isvNo = ref('');
   const appDetail = ref<AlipayIsvApp>({});
 
   /** 弹窗标题 */
@@ -27,8 +26,7 @@
   /**
    * 打开应用管理弹窗
    */
-  function show(no: string, record: AlipayIsvApp) {
-    isvNo.value = no;
+  function show(record: AlipayIsvApp) {
     activeKey.value = 'basic';
     visible.value = true;
     loading.value = true;
@@ -83,13 +81,12 @@
         <a-tab-pane key="key" :tab="$t('payment.channel.alipayManage.tabKeyConfig')">
           <AlipayIsvAppKeyConfig
             :app-id="appDetail.id!"
-            :isv-no="isvNo"
             :ali-app-id="appDetail.aliAppId"
           />
         </a-tab-pane>
         <!-- 授权认证 -->
         <a-tab-pane key="auth" :tab="$t('payment.channel.alipayManage.tabAuthConfig')">
-          <AlipayIsvAppAuthConfig :app-id="appDetail.id!" :isv-no="isvNo" />
+          <AlipayIsvAppAuthConfig :app-id="appDetail.id!" />
         </a-tab-pane>
       </a-tabs>
     </a-spin>

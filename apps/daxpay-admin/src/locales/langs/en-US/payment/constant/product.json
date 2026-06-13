@@ -22,6 +22,10 @@
   "detail": "Product Detail",
   "sandboxSupported": "Supported",
   "sandboxNotSupported": "Not Supported",
+  "productName": {
+    "alipayIsv": "Alipay (ISV)",
+    "unknown": "Product Configuration"
+  },
   "productConfig": {
     "title": "Payment Product Management",
     "emptyDesc": "No payment product data available",

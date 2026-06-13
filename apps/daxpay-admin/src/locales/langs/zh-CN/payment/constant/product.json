@@ -22,6 +22,10 @@
   "detail": "产品详情",
   "sandboxSupported": "支持",
   "sandboxNotSupported": "不支持",
+  "productName": {
+    "alipayIsv": "支付宝(服务商)",
+    "unknown": "产品配置"
+  },
   "productConfig": {
     "title": "支付产品管理",
     "emptyDesc": "暂无支付产品数据",

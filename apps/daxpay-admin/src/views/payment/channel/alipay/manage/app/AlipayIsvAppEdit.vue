@@ -15,7 +15,6 @@
   const { existsByServer, useDebounceValidator } = useValidate();
 
   const formRef = ref();
-  const isvNo = ref('');
 
   const { visible, confirmLoading, title, initFormEditType, handleCancel, formEditType } = useFormEdit();
 
@@ -26,7 +25,7 @@
   });
 
   /**
-   * 校验同一服务商下应用 ID 不可重复
+   * 校验应用 ID 不可重复
    */
   async function validateAliAppId() {
     const { aliAppId, id } = formState.value;
@@ -34,8 +33,8 @@
       aliAppId,
       id,
       formEditType.value,
-      (value) => AlipayIsvAppApi.existsAliAppId(isvNo.value, value),
-      (value, excludeId) => AlipayIsvAppApi.existsAliAppIdNotId(isvNo.value, value, excludeId),
+      (value) => AlipayIsvAppApi.existsAliAppId(value),
+      (value, excludeId) => AlipayIsvAppApi.existsAliAppIdNotId(value, excludeId),
       // 国际化：应用 ID 重复
       $t('payment.channel.alipayManage.aliAppIdDuplicate'),
     );
@@ -67,8 +66,7 @@
   /**
    * 打开新增弹窗
    */
-  function show(no: string) {
-    isvNo.value = no;
+  function show() {
     initFormEditType(FormEditType.Add);
     resetForm();
   }
@@ -76,8 +74,7 @@
   /**
    * 打开编辑弹窗
    */
-  function showEdit(no: string, record: AlipayIsvApp) {
-    isvNo.value = no;
+  function showEdit(record: AlipayIsvApp) {
     initFormEditType(FormEditType.Edit);
     resetForm();
     confirmLoading.value = true;
@@ -106,7 +103,6 @@
     confirmLoading.value = true;
     const payload: AlipayIsvApp = {
       ...formState.value,
-      isvNo: isvNo.value,
     };
     const request =
       formEditType.value === FormEditType.Edit ? AlipayIsvAppApi.update(payload) : AlipayIsvAppApi.add(payload);

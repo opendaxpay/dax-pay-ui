@@ -16,7 +16,6 @@
   const props = defineProps<{
     aliAppId?: string;
     appId?: string;
-    isvNo?: string;
   }>();
 
   const { labelCol, wrapperCol, diffForm } = useFormEdit();
@@ -79,7 +78,6 @@
           authType: 'public_key',
           ...data,
           appId: props.appId,
-          isvNo: props.isvNo,
         };
         originalForm.value = { ...formState.value };
       })
@@ -137,7 +135,6 @@
           ...formState.value,
           ...sensitiveData,
           appId: props.appId,
-          isvNo: props.isvNo,
         };
         return AlipayIsvAppApi.saveKeyConfig(submitData)
           .then(() => {
