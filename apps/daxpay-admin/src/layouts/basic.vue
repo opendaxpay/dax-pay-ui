@@ -120,6 +120,10 @@
     return userStore.userInfo?.avatar ?? preferences.app.defaultAvatar;
   });
 
+  function handleLogoClick() {
+    router.push('/');
+  }
+
   async function handleLogout() {
     await authStore.logout(false);
   }
@@ -163,7 +167,7 @@
 </script>
 
 <template>
-  <BasicLayout @clear-preferences-and-logout="handleLogout">
+  <BasicLayout @click-logo="handleLogoClick" @clear-preferences-and-logout="handleLogout">
     <template #user-dropdown>
       <UserDropdown :avatar :menus :text="userStore.userInfo?.name" @logout="handleLogout" />
     </template>
