@@ -240,7 +240,7 @@
 
       <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: loadList }">
         <template #buttons>
-          <a-button v-if="hasPermission(PermCodes.Payment.ChannelMerchant.ADD)" type="primary" @click="handleCreate">
+          <a-button v-if="hasPermission(PermCodes.Payment.ChannelMerchant.EDIT)" type="primary" @click="handleCreate">
             <template #icon><IconifyIcon icon="ant-design:plus-outlined" /></template>
             {{ $t('payment.merchant.channelMerchant.create') }}
           </a-button>

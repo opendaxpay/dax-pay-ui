@@ -128,7 +128,6 @@
           <vxe-column field="mchNo" :title="$t('payment.merchant.base.field.mchNo')" :min-width="180" />
           <vxe-column field="mchName" :title="$t('payment.merchant.base.field.mchName')" :min-width="200" />
           <vxe-column field="mchShortName" :title="$t('payment.merchant.base.field.mchShortName')" :min-width="150" />
-          <vxe-column field="isvName" :title="$t('payment.merchant.base.field.isvName')" :min-width="150" />
           <vxe-column
             field="subjectType"
             :title="$t('payment.merchant.base.field.subjectType')"

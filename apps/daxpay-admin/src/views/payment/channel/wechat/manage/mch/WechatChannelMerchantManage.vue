@@ -89,9 +89,6 @@
         query: {
           mchNo: mchNo.value,
           channelMchNo: channelMchNo.value,
-          channelMerchantName: channelMerchant.value.channelMerchantName || '',
-          channelMerchantId: channelMerchant.value.id || '',
-          product: channelMerchant.value.product || '',
         },
       });
       return;

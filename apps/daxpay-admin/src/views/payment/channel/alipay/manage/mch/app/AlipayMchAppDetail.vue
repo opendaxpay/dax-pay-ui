@@ -5,6 +5,7 @@
 
   import { AlipayMchAppApi, type AlipayMchApp } from '#/api/payment/alipayMchApp.api';
 
+  import AlipayMchAppAuthConfig from './tabs/AlipayMchAppAuthConfig.vue';
   import AlipayMchAppBasicInfo from './tabs/AlipayMchAppBasicInfo.vue';
   import AlipayMchAppKeyConfig from './tabs/AlipayMchAppKeyConfig.vue';
 
@@ -75,6 +76,13 @@
             :mch-no="mchNo"
             :channel-mch-no="channelMchNo"
             :ali-app-id="appDetail.aliAppId"
+          />
+        </a-tab-pane>
+        <a-tab-pane key="auth" :tab="$t('payment.channel.alipayMchApp.tabAuthConfig')">
+          <AlipayMchAppAuthConfig
+            :app-id="appDetail.id!"
+            :mch-no="mchNo"
+            :channel-mch-no="channelMchNo"
           />
         </a-tab-pane>
       </a-tabs>

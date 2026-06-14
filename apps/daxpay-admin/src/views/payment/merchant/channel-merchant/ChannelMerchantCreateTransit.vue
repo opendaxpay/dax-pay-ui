@@ -39,12 +39,12 @@ function isUmsProduct(product: string) {
 /**
  * 初始化对应通道的配置组件
  */
-function init(product: string, mchNo: string, channel: string, isvNo = '', productName = '') {
+function init(product: string, mchNo: string, channel: string, productName = '') {
   currentProduct.value = { product, channel };
   nextTick(() => {
     switch (product) {
       case ProductEnum.ALIPAY_ISV: {
-        alipayRef.value?.init(mchNo, product, channel, isvNo);
+        alipayRef.value?.init(mchNo, product, channel);
         break;
       }
       case ProductEnum.ALIPAY: {

@@ -7,7 +7,7 @@ import { IconifyIcon } from '@vben-core/icons';
 
 import { ChannelMerchantWechatApi } from '#/api/payment/channelMerchant.api';
 import ChannelLogo from '#/components/channel/ChannelLogo.vue';
-import { channelI18nMap, channelNameMap } from '#/enums/payment';
+import { channelI18nMap, channelNameMap, productI18nMap, productNameMap } from '#/enums/payment';
 import { useMessage } from '#/hooks/useMessage';
 
 defineOptions({ name: 'WechatMchCreateConfig' });
@@ -40,6 +40,17 @@ const channelDisplayName = computed(() => {
     return $t(i18nKey);
   }
   return channelNameMap[channel] || channel;
+});
+
+/** 支付产品展示名称，区分服务商/直连等模式 */
+const productDisplayName = computed(() => {
+  const product = productCode.value;
+  if (!product) return '-';
+  const i18nKey = productI18nMap[product];
+  if (i18nKey) {
+    return $t(i18nKey);
+  }
+  return productNameMap[product] || product;
 });
 
 /** 是否为微信直连产品 */
@@ -145,7 +156,7 @@ defineExpose({ init, validate, getData, submit });
         <a-form-item :label="$t('payment.merchant.channelMerchant.product')">
           <div class="flex items-center gap-2 h-8">
             <ChannelLogo v-if="channelCode" :channel="channelCode" :size="24" />
-            <span class="text-foreground">{{ channelDisplayName }}</span>
+            <span class="text-foreground">{{ productDisplayName }}</span>
           </div>
         </a-form-item>
         <!-- 国际化：商户名称 -->

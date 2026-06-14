@@ -18,5 +18,6 @@
   "aliAppIdPrefix": "AppId：{appId}",
   "detailTitle": "{name} - 应用管理",
   "tabBasicInfo": "基础信息",
-  "tabKeyConfig": "密钥配置"
+  "tabKeyConfig": "密钥配置",
+  "tabAuthConfig": "授权认证"
 }

@@ -8,7 +8,7 @@ import { IconifyIcon } from '@vben-core/icons';
 import { type AlipayIsvApp, AlipayIsvAppApi } from '#/api/payment/alipayIsvApp.api';
 import { ChannelMerchantAlipayApi } from '#/api/payment/channelMerchant.api';
 import ChannelLogo from '#/components/channel/ChannelLogo.vue';
-import { channelI18nMap, channelNameMap } from '#/enums/payment';
+import { channelI18nMap, channelNameMap, productI18nMap, productNameMap } from '#/enums/payment';
 import { useMessage } from '#/hooks/useMessage';
 
 defineOptions({ name: 'AlipayMchCreateConfig' });
@@ -21,7 +21,6 @@ const emit = defineEmits<{
 const { message } = useMessage();
 
 const mchNo = ref('');
-const isvNo = ref('');
 const productCode = ref('');
 const channelCode = ref('');
 const formRef = ref();
@@ -49,6 +48,17 @@ const channelDisplayName = computed(() => {
   return channelNameMap[channel] || channel;
 });
 
+/** 支付产品展示名称，区分服务商/直连等模式 */
+const productDisplayName = computed(() => {
+  const product = productCode.value;
+  if (!product) return '-';
+  const i18nKey = productI18nMap[product];
+  if (i18nKey) {
+    return $t(i18nKey);
+  }
+  return productNameMap[product] || product;
+});
+
 const rules = computed(() => ({
   channelMerchantName: [{ required: true, message: $t('payment.merchant.channelMerchant.channelMerchantNameRequired') }],
   isvAppId: [{ required: true, message: $t('payment.merchant.channelMerchant.alipayIsvAppRequired') }],
@@ -64,13 +74,10 @@ const isvAppOptions = computed(() =>
   })),
 );
 
+/** 加载支付宝服务商应用下拉列表（开源版全局共享，无服务商号隔离） */
 function loadIsvAppList() {
-  if (!isvNo.value) {
-    isvAppList.value = [];
-    return;
-  }
   isvAppLoading.value = true;
-  AlipayIsvAppApi.listByIsvNo(isvNo.value)
+  AlipayIsvAppApi.listAll()
     .then(({ data }) => {
       isvAppList.value = data || [];
     })
@@ -79,9 +86,8 @@ function loadIsvAppList() {
     });
 }
 
-function init(no: string, product: string, channel: string, isv: string) {
+function init(no: string, product: string, channel: string) {
   mchNo.value = no;
-  isvNo.value = isv;
   productCode.value = product;
   channelCode.value = channel;
   visible.value = true;
@@ -163,7 +169,7 @@ defineExpose({ init, validate, getData, submit });
         <a-form-item :label="$t('payment.merchant.channelMerchant.product')">
           <div class="flex items-center gap-2 h-8">
             <ChannelLogo v-if="channelCode" :channel="channelCode" :size="24" />
-            <span class="text-foreground">{{ channelDisplayName }}</span>
+            <span class="text-foreground">{{ productDisplayName }}</span>
           </div>
         </a-form-item>
         <!-- 国际化：商户名称 -->

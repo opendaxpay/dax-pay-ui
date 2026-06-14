@@ -15,10 +15,6 @@
   "payment": {
     "title": "Payment Management",
     "platform": "Platform Management",
-    "isvList": "ISV List",
-    "isvManage": "ISV Management",
-    "isvInfoManage": "ISV Info",
-    "isvEntityManage": "Entity Info",
     "merchantList": "Merchant List",
     "merchantManage": "Merchant Management",
     "merchantChannelMerchant": "Merchant Channel Merchant",

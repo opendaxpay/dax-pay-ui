@@ -59,6 +59,17 @@ export const AlipayMchAppApi = {
   saveKeyConfig(data: AlipayMchAppKeyConfig): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/alipay/mch-app/save-key-config', data });
   },
+  /** 查询应用授权认证配置 */
+  findAuthConfigByAppId(appId: string): Promise<Result<AlipayMchAppAuthConfig>> {
+    return defHttp.get({
+      url: '/admin/alipay/mch-app/find-auth-config-by-app-id',
+      params: { appId },
+    });
+  },
+  /** 保存应用授权认证配置 */
+  saveAuthConfig(data: AlipayMchAppAuthConfig): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/alipay/mch-app/save-auth-config', data });
+  },
 };
 
 /** 支付宝通道商户应用 */
@@ -93,4 +104,18 @@ export interface AlipayMchAppKeyConfig {
   alipayRootCert?: string;
   /** AES 通信密钥 */
   secretKey?: string;
+}
+
+/** 支付宝通道商户应用授权认证配置 */
+export interface AlipayMchAppAuthConfig {
+  /** 应用 ID */
+  appId?: string;
+  /** 商户号 */
+  mchNo?: string;
+  /** 通道商户号 */
+  channelMchNo?: string;
+  /** 用户标识类型 */
+  userIdType?: string;
+  /** 授权回调地址 */
+  authCallbackUrl?: string;
 }

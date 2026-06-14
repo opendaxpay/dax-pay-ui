@@ -2,5 +2,7 @@
   "title": "Alipay Direct Management",
   "groupApp": "App Management",
   "cardMchApp": "Alipay Channel Merchant Apps",
-  "cardMchAppDesc": "Manage Alipay channel merchant applications"
+  "cardMchAppDesc": "Manage Alipay channel merchant applications",
+  "cardAddMchApp": "Add Alipay App",
+  "cardAddMchAppDesc": "Create a new Alipay channel merchant app"
 }

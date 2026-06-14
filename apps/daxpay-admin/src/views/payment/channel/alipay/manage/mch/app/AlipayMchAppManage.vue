@@ -82,18 +82,21 @@
     channelMerchantName.value = normalizeRouteQueryValue(route.query.channelMerchantName);
   }
 
-  /** 返回通道商户详情 */
+  /** 返回通道商户详情或列表 */
   function handleBack() {
     const id = normalizeRouteQueryValue(route.query.channelMerchantId);
-    const product = normalizeRouteQueryValue(route.query.product) || ProductEnum.ALIPAY;
-    router.push({
-      path: '/payment/merchant/channel-merchant/detail',
-      query: {
-        mchNo: mchNo.value,
-        id,
-        product,
-      },
-    });
+    if (id) {
+      const product = normalizeRouteQueryValue(route.query.product) || ProductEnum.ALIPAY;
+      router.push({
+        path: '/payment/merchant/channel-merchant/detail',
+        query: { mchNo: mchNo.value, id, product },
+      });
+    } else {
+      router.push({
+        path: '/payment/merchant/channel-merchant',
+        query: { mchNo: mchNo.value },
+      });
+    }
   }
 
   function handleAdd() {

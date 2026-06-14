@@ -126,7 +126,6 @@
         selectedProduct.value!.code!,
         mchNo.value,
         selectedProduct.value!.channel || '',
-        '',
         selectedProduct.value!.name || getProductName(selectedProduct.value!.code || ''),
       );
     });
