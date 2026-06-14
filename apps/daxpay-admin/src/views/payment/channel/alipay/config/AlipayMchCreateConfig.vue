@@ -74,7 +74,7 @@ const isvAppOptions = computed(() =>
   })),
 );
 
-/** 加载支付宝服务商应用下拉列表（开源版全局共享，无服务商号隔离） */
+/** 加载支付宝服务商应用下拉列表 */
 function loadIsvAppList() {
   isvAppLoading.value = true;
   AlipayIsvAppApi.listAll()

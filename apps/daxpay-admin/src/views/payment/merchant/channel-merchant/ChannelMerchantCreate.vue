@@ -44,10 +44,10 @@
   // 加载状态
   const loading = ref(false);
 
-  // Step1: 选中的支付产品（开源版：产品主数据默认全可用）
+  // Step1: 选中的支付产品
   const selectedProduct = ref<PayProductResult | null>(null);
 
-  // 支付产品列表（开源版：从产品主数据获取，默认全启用）
+  // 支付产品列表
   const productList = ref<PayProductResult[]>([]);
 
   // Transit组件引用
@@ -91,7 +91,7 @@
   }
 
   /**
-   * 加载支付产品列表（开源版：从产品主数据获取，默认全启用）
+   * 加载支付产品列表
    */
   function loadProductList() {
     loading.value = true;
