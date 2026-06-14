@@ -3,11 +3,14 @@ import { computed, ref, watch } from 'vue';
 
 import { $t } from '@vben/locales';
 
+import { type AlipayIsvApp, AlipayIsvAppApi } from '#/api/payment/alipayIsvApp.api';
 import {
-  ChannelMerchantAlipayApi,
-  type AlipayChannelMerchantConfig,
-  type ChannelMerchantResult,
-} from '#/api/payment/channelMerchant.api';
+  AlipayDirectChannelMerchantApi,
+  AlipayIsvChannelMerchantApi,
+  type AlipayDirectChannelMerchantConfig,
+  type AlipayIsvChannelMerchantConfig,
+} from '#/api/payment/alipayChannelMerchant.api';
+import { type ChannelMerchantResult } from '#/api/payment/channelMerchant.api';
 import { ProductEnum } from '#/enums/payment/productEnum';
 
 defineOptions({ name: 'AlipayChannelMerchantBasicInfo' });
@@ -19,7 +22,12 @@ const props = defineProps<{
 
 const visible = ref(false);
 const loading = ref(false);
-const config = ref<AlipayChannelMerchantConfig>({});
+// 服务商通道商户配置(含 isvAppId / alipayUserId / appAuthToken)
+const isvConfig = ref<AlipayIsvChannelMerchantConfig>({});
+// 直连通道商户配置(含 alipayUserId)
+const directConfig = ref<AlipayDirectChannelMerchantConfig>({});
+// 关联的服务商应用详情(用于展示 aliAppId, 让用户能识别对应的应用)
+const isvAppInfo = ref<AlipayIsvApp>({});
 
 /** 是否为直连产品 */
 const isDirectProduct = computed(() => props.channelMerchant.product === ProductEnum.ALIPAY);
@@ -54,15 +62,38 @@ const sourceLabel = computed(() => {
   return props.channelMerchant.source || '-';
 });
 
-/** 加载支付宝通道商户配置 */
+/**
+ * 加载支付宝通道商户配置
+ * 按支付产品类型分别调用服务商/直连接口
+ */
 function loadConfig() {
   if (!props.channelMchNo) {
     return;
   }
   loading.value = true;
-  ChannelMerchantAlipayApi.findByChannelMchNo(props.channelMchNo)
+  // 重置状态
+  isvConfig.value = {};
+  directConfig.value = {};
+  isvAppInfo.value = {};
+
+  const query = isIsvProduct.value
+    ? AlipayIsvChannelMerchantApi.findByChannelMchNo(props.channelMchNo)
+    : AlipayDirectChannelMerchantApi.findByChannelMchNo(props.channelMchNo);
+
+  query
     .then(({ data }) => {
-      config.value = data || {};
+      if (isIsvProduct.value) {
+        isvConfig.value = data || {};
+        // 服务商场景: 查应用详情, 展示 aliAppId 让用户能识别对应应用
+        const appId = isvConfig.value.isvAppId;
+        if (appId) {
+          return AlipayIsvAppApi.findById(appId).then(({ data: appData }) => {
+            isvAppInfo.value = appData || {};
+          });
+        }
+      } else {
+        directConfig.value = data || {};
+      }
     })
     .finally(() => {
       loading.value = false;
@@ -100,7 +131,7 @@ defineExpose({ open, close });
     <a-spin :spinning="loading">
       <a-descriptions bordered :column="1" size="small">
         <a-descriptions-item :label="$t('payment.merchant.channelMerchant.channelMerchantNo')">
-          {{ channelMerchant.channelMchNo || config.channelMchNo || '-' }}
+          {{ channelMerchant.channelMchNo || '-' }}
         </a-descriptions-item>
         <a-descriptions-item :label="$t('payment.merchant.channelMerchant.channelMerchantName')">
           {{ channelMerchant.channelMerchantName || '-' }}
@@ -112,17 +143,17 @@ defineExpose({ open, close });
           {{ sourceLabel }}
         </a-descriptions-item>
         <a-descriptions-item v-if="isDirectProduct" :label="$t('payment.channel.alipay.alipayUserId')">
-          {{ config.alipayUserId || '-' }}
+          {{ directConfig.alipayUserId || '-' }}
         </a-descriptions-item>
         <template v-if="isIsvProduct">
           <a-descriptions-item :label="$t('payment.merchant.channelMerchant.alipayIsvApp')">
-            {{ config.isvAppId || '-' }}
+            {{ isvAppInfo.aliAppId || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.merchant.channelMerchant.alipaySubMerchantNo')">
-            {{ config.alipayUserId || '-' }}
+            {{ isvConfig.alipayUserId || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.merchant.channelMerchant.appAuthToken')">
-            {{ config.appAuthToken ? maskSecret(config.appAuthToken) : '-' }}
+            {{ isvConfig.appAuthToken ? maskSecret(isvConfig.appAuthToken) : '-' }}
           </a-descriptions-item>
         </template>
       </a-descriptions>

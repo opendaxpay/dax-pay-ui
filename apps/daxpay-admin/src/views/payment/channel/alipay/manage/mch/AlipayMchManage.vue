@@ -8,8 +8,9 @@
 
   import type { ChannelMerchantResult } from '#/api/payment/channelMerchant.api';
 
+  import { ProductEnum } from '#/enums/payment/productEnum';
+
   import AlipayChannelMerchantBasicInfo from './AlipayChannelMerchantBasicInfo.vue';
-  import AlipayMchAppEdit from './app/AlipayMchAppEdit.vue';
 
   defineOptions({ name: 'AlipayMchManage' });
 
@@ -19,7 +20,6 @@
   const channelMchNo = ref('');
   const channelMerchant = ref<ChannelMerchantResult>({});
   const basicInfoRef = ref<InstanceType<typeof AlipayChannelMerchantBasicInfo>>();
-  const mchAppEditRef = ref<InstanceType<typeof AlipayMchAppEdit>>();
 
   /** 功能卡片配置 */
   const functionCards = computed(() => [
@@ -42,14 +42,6 @@
       group: $t('payment.channel.alipayMchManage.groupApp'),
       color: 'blue',
       cards: [
-        {
-          key: 'addMchApp',
-          // 国际化：添加支付宝应用
-          title: $t('payment.channel.alipayMchManage.cardAddMchApp'),
-          icon: 'ant-design:plus-circle-outlined',
-          // 国际化：创建新的支付宝通道商户应用
-          description: $t('payment.channel.alipayMchManage.cardAddMchAppDesc'),
-        },
         {
           key: 'mchApp',
           // 国际化：通道商户应用
@@ -88,25 +80,10 @@
     channelMerchant.value = summary;
   }
 
-  /** 添加应用成功，跳转到应用管理页 */
-  function handleAddAppOk() {
-    router.push({
-      path: '/payment/merchant/channel-merchant/alipay-app-manage',
-      query: {
-        mchNo: mchNo.value,
-        channelMchNo: channelMchNo.value,
-      },
-    });
-  }
-
   /** 卡片点击 */
   function handleCardClick(card: { key: string; route?: string }) {
     if (card.key === 'basicInfo') {
       basicInfoRef.value?.open();
-      return;
-    }
-    if (card.key === 'addMchApp') {
-      mchAppEditRef.value?.show(mchNo.value, channelMchNo.value);
       return;
     }
     if (card.route) {
@@ -115,6 +92,9 @@
         query: {
           mchNo: mchNo.value,
           channelMchNo: channelMchNo.value,
+          // 国际化：透传通道商户 id 与产品类型，使应用管理页返回时能回到详情页
+          channelMerchantId: channelMerchant.value.id,
+          product: ProductEnum.ALIPAY,
         },
       });
     }
@@ -176,7 +156,6 @@
       :channel-mch-no="channelMchNo"
       :channel-merchant="channelMerchant"
     />
-    <AlipayMchAppEdit ref="mchAppEditRef" @ok="handleAddAppOk" />
   </div>
 </template>
 

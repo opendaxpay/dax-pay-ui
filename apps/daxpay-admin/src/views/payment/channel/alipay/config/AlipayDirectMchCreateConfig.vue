@@ -5,7 +5,7 @@ import { $t } from '@vben/locales';
 
 import { IconifyIcon } from '@vben-core/icons';
 
-import { ChannelMerchantAlipayApi } from '#/api/payment/channelMerchant.api';
+import { AlipayDirectChannelMerchantApi } from '#/api/payment/alipayChannelMerchant.api';
 import ChannelLogo from '#/components/channel/ChannelLogo.vue';
 import { channelI18nMap, channelNameMap, productI18nMap, productNameMap } from '#/enums/payment';
 import { useMessage } from '#/hooks/useMessage';
@@ -74,10 +74,9 @@ function handlePrev() {
 function handleSubmit() {
   formRef.value?.validate().then(() => {
     submitLoading.value = true;
-    ChannelMerchantAlipayApi.createDirect({
+    AlipayDirectChannelMerchantApi.create({
       mchNo: mchNo.value,
       product: productCode.value,
-      channel: 'alipay',
       ...form.value,
     })
       .then(() => {

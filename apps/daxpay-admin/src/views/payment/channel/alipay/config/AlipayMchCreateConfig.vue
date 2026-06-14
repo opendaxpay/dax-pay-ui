@@ -6,7 +6,10 @@ import { $t } from '@vben/locales';
 import { IconifyIcon } from '@vben-core/icons';
 
 import { type AlipayIsvApp, AlipayIsvAppApi } from '#/api/payment/alipayIsvApp.api';
-import { ChannelMerchantAlipayApi } from '#/api/payment/channelMerchant.api';
+import {
+  type AlipayIsvChannelMerchantCreateParam,
+  AlipayIsvChannelMerchantApi,
+} from '#/api/payment/alipayChannelMerchant.api';
 import ChannelLogo from '#/components/channel/ChannelLogo.vue';
 import { channelI18nMap, channelNameMap, productI18nMap, productNameMap } from '#/enums/payment';
 import { useMessage } from '#/hooks/useMessage';
@@ -26,7 +29,7 @@ const channelCode = ref('');
 const formRef = ref();
 const form = ref({
   channelMerchantName: '',
-  isvAppId: undefined as string | undefined,
+  appId: undefined as string | undefined,
   alipayUserId: '',
   appAuthToken: '',
 });
@@ -61,15 +64,15 @@ const productDisplayName = computed(() => {
 
 const rules = computed(() => ({
   channelMerchantName: [{ required: true, message: $t('payment.merchant.channelMerchant.channelMerchantNameRequired') }],
-  isvAppId: [{ required: true, message: $t('payment.merchant.channelMerchant.alipayIsvAppRequired') }],
+  appId: [{ required: true, message: $t('payment.merchant.channelMerchant.alipayIsvAppRequired') }],
   alipayUserId: [{ required: true, message: $t('payment.merchant.channelMerchant.alipaySubMerchantNoRequired') }],
   appAuthToken: [{ required: true, message: $t('payment.merchant.channelMerchant.appAuthTokenRequired') }],
 }));
 
-/** 支付宝应用下拉选项（antdv-next Select 需使用 options 属性） */
+/** 支付宝应用下拉选项(值为系统主键id, 展示应用名+支付宝APPID便于识别) */
 const isvAppOptions = computed(() =>
   isvAppList.value.map((item) => ({
-    value: item.aliAppId,
+    value: item.id,
     label: `${item.appName} (${item.aliAppId})`,
   })),
 );
@@ -109,10 +112,8 @@ function getData(): Record<string, any> {
 }
 
 function submit(param: Record<string, any>): Promise<any> {
-  return ChannelMerchantAlipayApi.create({
-    ...param,
-    ...form.value,
-  });
+  // param 已由 handleSubmit 组装完整(mchNo/product/form 各字段), 直接透传
+  return AlipayIsvChannelMerchantApi.create(param as AlipayIsvChannelMerchantCreateParam);
 }
 
 function handlePrev() {
@@ -125,7 +126,6 @@ function handleSubmit() {
     const param = {
       mchNo: mchNo.value,
       product: productCode.value,
-      channel: 'alipay',
       ...form.value,
     };
     submit(param)
@@ -142,7 +142,7 @@ function handleSubmit() {
 function resetForm() {
   form.value = {
     channelMerchantName: '',
-    isvAppId: undefined,
+    appId: undefined,
     alipayUserId: '',
     appAuthToken: '',
   };
@@ -180,7 +180,7 @@ defineExpose({ init, validate, getData, submit });
           />
         </a-form-item>
         <!-- 国际化：支付宝应用 -->
-        <a-form-item name="isvAppId">
+        <a-form-item name="appId">
           <template #label>
             {{ $t('payment.merchant.channelMerchant.alipayIsvApp') }}
             <a-tooltip :title="$t('payment.merchant.channelMerchant.alipayIsvAppHelp')">
@@ -188,7 +188,7 @@ defineExpose({ init, validate, getData, submit });
             </a-tooltip>
           </template>
           <a-select
-            v-model:value="form.isvAppId"
+            v-model:value="form.appId"
             :options="isvAppOptions"
             :loading="isvAppLoading"
             :placeholder="$t('payment.merchant.channelMerchant.alipayIsvAppPlaceholder')"

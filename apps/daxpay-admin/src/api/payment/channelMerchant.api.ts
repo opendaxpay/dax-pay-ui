@@ -109,33 +109,6 @@ export interface ChannelMerchantBaseCreateParam {
 }
 
 /**
- * 支付宝通道商户创建 API
- */
-export const ChannelMerchantAlipayApi = {
-  /**
-   * 创建支付宝通道商户（服务商）
-   */
-  create(data: Record<string, any>): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/alipay/channel-merchant/create', data });
-  },
-  /**
-   * 创建支付宝通道商户（直连）
-   */
-  createDirect(data: Record<string, any>): Promise<Result<string>> {
-    return defHttp.post({ url: '/admin/alipay/channel-merchant/create-direct', data });
-  },
-  /**
-   * 根据通道商户号查询支付宝通道商户配置
-   */
-  findByChannelMchNo(channelMchNo: string): Promise<Result<AlipayChannelMerchantConfig>> {
-    return defHttp.get({
-      url: '/admin/alipay/channel-merchant/find-by-channel-mch-no',
-      params: { channelMchNo },
-    });
-  },
-};
-
-/**
  * 微信通道商户创建 API
  */
 export const ChannelMerchantWechatApi = {
@@ -191,20 +164,6 @@ export const ChannelMerchantDouyinApi = {
     return defHttp.post({ url: '/admin/douyin/channel-merchant/create', data });
   },
 };
-
-/** 支付宝通道商户配置 */
-export interface AlipayChannelMerchantConfig extends MchEntity {
-  /** 通道商户号 */
-  channelMchNo?: string;
-  /** 所属支付产品 */
-  product?: string;
-  /** 支付宝服务商应用 ID */
-  isvAppId?: string;
-  /** 子商户号 */
-  alipayUserId?: string;
-  /** 应用授权令牌 */
-  appAuthToken?: string;
-}
 
 /** 微信通道商户配置 */
 export interface WechatChannelMerchantConfig extends MchEntity {
