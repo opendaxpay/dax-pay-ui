@@ -21,7 +21,6 @@
   import PayRouteModeToolbar from './components/PayRouteModeToolbar.vue';
   import PayRouteScenePanel from './scene/PayRouteScenePanel.vue';
   import { modeDisplayName, normalizePayRouteMode } from './shared/payRoute.labels';
-  import PayRouteSimulatePanel from './simulate/PayRouteSimulatePanel.vue';
 
   defineOptions({ name: 'PayRouteConfig' });
 
@@ -55,7 +54,6 @@
 
   const basicPanelRef = ref<InstanceType<typeof PayRouteBasicPanel> | null>(null);
   const scenePanelRef = ref<InstanceType<typeof PayRouteScenePanel> | null>(null);
-  const simulatePanelRef = ref<InstanceType<typeof PayRouteSimulatePanel> | null>(null);
 
   // 策略库中当前生效的路由模式
   const effectiveMode = computed<PayRouteMode>(() => normalizePayRouteMode(strategy.value.mode));
@@ -145,7 +143,6 @@
     await loadProductNameMap();
     await nextTick();
     await loadStrategy();
-    simulatePanelRef.value?.syncContextIds();
     editMode.value = effectiveMode.value;
   });
 </script>
@@ -199,10 +196,6 @@
               :app-id="appId"
               :product-name-map="productNameMap"
             />
-          </a-tab-pane>
-
-          <a-tab-pane key="simulate" :tab="$t('payment.merchant.route.route.simulate')">
-            <PayRouteSimulatePanel ref="simulatePanelRef" :app-id="appId" :mch-no="mchNo" :edit-mode="editMode" />
           </a-tab-pane>
         </a-tabs>
       </a-spin>

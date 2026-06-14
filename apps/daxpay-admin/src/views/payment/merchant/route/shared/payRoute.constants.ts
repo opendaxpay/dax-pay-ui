@@ -1,7 +1,5 @@
 // 通道路由配置模式（与后端 PayRouteModeEnum 对齐）
-export type PayRouteMode = 'advanced' | 'basic' | 'scene';
-
-// advanced：精细模式预留，管理端仅展示 disabled，不可编辑与设为生效
+export type PayRouteMode = 'basic' | 'scene';
 
 import { PAY_PROVIDER_DISPLAY } from '#/views/payment/shared/payProviderDisplay';
 

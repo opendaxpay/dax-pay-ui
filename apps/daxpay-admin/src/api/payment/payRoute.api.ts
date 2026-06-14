@@ -3,7 +3,7 @@ import type { BaseEntity, Result } from '#/types/web';
 
 import { defHttp } from '#/api/request';
 
-// 通道路由 API（管理端）：策略、基础/场景配置、试算及已启用目录；精细模式规则接口已移除，advanced 仅前端占位
+// 通道路由 API（管理端）：策略、基础/场景配置及已启用目录
 export const PayRouteApi = {
   /** 已启用渠道+方式扁平目录（`PayProviderMethodService`，权限归属通道路由菜单） */
   listMethodDirectoryFlat(): Promise<Result<PayProviderMethod[]>> {
@@ -76,9 +76,6 @@ export const PayRouteApi = {
     return defHttp.post({ url: '/admin/merchant/pay-route/basic-config/save-batch', data });
   },
 
-  simulate(data: PayRouteSimulateParam): Promise<Result<PayRouteResolveResult>> {
-    return defHttp.post({ url: '/admin/merchant/pay-route/simulate', data });
-  },
 };
 
 export interface LabelValue {
@@ -152,18 +149,6 @@ export interface PayRouteSceneCapabilityBatchItem {
   product: string;
 }
 
-export interface PayRouteSimulateParam {
-  appId: string;
-  mchNo: string;
-  /** 支付渠道（基础/场景模式模拟时必填） */
-  provider?: string;
-  /** 支付方式（场景模式试算时必填） */
-  method?: string;
-  amount?: number;
-  /** 模拟使用的路由模式（不传则按策略生效模式） */
-  mode?: string;
-}
-
 /** 基础模式配置（含可选产品列表） */
 export interface PayRouteBasicConfigResult extends BaseEntity {
   provider?: string;
@@ -180,13 +165,4 @@ export interface PayRouteBasicConfigItem {
 export interface PayRouteBasicConfigBatchParam {
   appId: string;
   items: PayRouteBasicConfigItem[];
-}
-
-export interface PayRouteResolveResult {
-  channel?: string;
-  method?: string;
-  product?: string;
-  hitRuleId?: string;
-  hitConfigId?: string;
-  mode?: string;
 }

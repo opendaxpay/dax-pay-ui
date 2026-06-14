@@ -14,16 +14,10 @@ export function modeDisplayName(mode: PayRouteMode) {
   if (mode === 'basic') {
     return $t('payment.merchant.route.route.modeBasic');
   }
-  if (mode === 'advanced') {
-    return $t('payment.merchant.route.route.modeAdvanced');
-  }
   return $t('payment.merchant.route.route.modeScene');
 }
 
-/**
- * 规范化路由模式（兼容历史 simple → scene）
- * advanced 保留用于展示「生效中」标签，不可通过工具栏切换编辑
- */
+/** 规范化路由模式（兼容历史 simple → scene） */
 export function normalizePayRouteMode(mode?: string): PayRouteMode {
   if (!mode || mode === 'simple') {
     return 'scene';

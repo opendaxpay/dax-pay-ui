@@ -20,7 +20,7 @@
     applyActiveMode: [];
   }>();
 
-  // 当前编辑的配置模式（基础/场景可切换；精细模式仅展示）
+  // 当前编辑的配置模式（基础/场景可切换）
   const editMode = defineModel<PayRouteMode>('editMode', { required: true });
 
   const { hasPermission } = usePermission();
@@ -42,15 +42,6 @@
         <span class="inline-flex items-center gap-1">
           {{ $t('payment.merchant.route.route.modeScene') }}
           <a-tag v-if="effectiveMode === 'scene'" color="processing" class="!m-0 !text-xs">
-            {{ $t('payment.merchant.route.route.activeModeTag') }}
-          </a-tag>
-        </span>
-      </a-radio>
-      <!-- 精细模式：功能未实现，固定 disabled，若历史数据为 advanced 仍显示「生效中」 -->
-      <a-radio value="advanced" disabled>
-        <span class="inline-flex items-center gap-1">
-          {{ $t('payment.merchant.route.route.modeAdvanced') }}
-          <a-tag v-if="effectiveMode === 'advanced'" color="processing" class="!m-0 !text-xs">
             {{ $t('payment.merchant.route.route.activeModeTag') }}
           </a-tag>
         </span>
