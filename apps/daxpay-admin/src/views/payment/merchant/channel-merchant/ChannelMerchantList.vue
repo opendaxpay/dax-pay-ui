@@ -85,10 +85,6 @@
       // 国际化：手动创建
       return $t('payment.merchant.channelMerchant.sourceManual');
     }
-    if (source === 'apply') {
-      // 国际化：进件申请
-      return $t('payment.merchant.channelMerchant.sourceApply');
-    }
     return source || '-';
   }
 

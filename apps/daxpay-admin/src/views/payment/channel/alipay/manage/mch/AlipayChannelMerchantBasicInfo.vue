@@ -56,9 +56,6 @@ const sourceLabel = computed(() => {
   if (props.channelMerchant.source === 'manual') {
     return $t('payment.merchant.channelMerchant.sourceManual');
   }
-  if (props.channelMerchant.source === 'apply') {
-    return $t('payment.merchant.channelMerchant.sourceApply');
-  }
   return props.channelMerchant.source || '-';
 });
 

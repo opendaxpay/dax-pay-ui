@@ -46,8 +46,6 @@ export interface ChannelMerchantResult extends BaseEntity {
   channelMerchantType?: string;
   /** 所属通道 */
   channel?: string;
-  /** 来源 */
-  source?: string;
   /** 是否启用 */
   enable?: boolean;
   /** 备注 */

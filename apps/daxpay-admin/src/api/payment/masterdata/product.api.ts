@@ -58,7 +58,6 @@ export interface PayProductResult extends BaseEntity {
   isv?: boolean;
   allocatable?: boolean;
   terminal?: boolean;
-  apply?: boolean;
   sandbox?: boolean;
   apiCallMode?: string;
   payIdType?: string;

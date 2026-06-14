@@ -115,9 +115,6 @@
     if (row.allocatable) {
       tags.push({ label: $t('payment.constant.product.field.allocatable'), color: 'green' });
     }
-    if (row.apply) {
-      tags.push({ label: $t('payment.constant.product.field.apply'), color: 'orange' });
-    }
     if (row.terminal) {
       tags.push({ label: $t('payment.constant.product.field.terminal'), color: 'purple' });
     }
