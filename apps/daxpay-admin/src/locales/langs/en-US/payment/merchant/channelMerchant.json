@@ -76,5 +76,8 @@
   "alipayIsvAppHelp": "Sub-merchants will be attached to this application for delegated authorization",
   "alipaySubMerchantNo": "Sub-merchant No.",
   "alipaySubMerchantNoPlaceholder": "Please enter sub-merchant no.",
-  "alipaySubMerchantNoRequired": "Please enter sub-merchant no."
+  "alipaySubMerchantNoRequired": "Please enter sub-merchant no.",
+  "wechatSubMerchantNo": "Sub-merchant No.",
+  "wechatSubMerchantNoPlaceholder": "Please enter WeChat sub-merchant no.",
+  "wechatSubMerchantNoRequired": "Please enter sub-merchant no."
 }

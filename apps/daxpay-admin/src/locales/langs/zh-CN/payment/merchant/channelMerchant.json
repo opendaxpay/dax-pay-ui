@@ -76,5 +76,8 @@
   "alipayIsvAppHelp": "子商户将挂在此应用下进行代授权",
   "alipaySubMerchantNo": "子商户号",
   "alipaySubMerchantNoPlaceholder": "请输入子商户号",
-  "alipaySubMerchantNoRequired": "请输入子商户号"
+  "alipaySubMerchantNoRequired": "请输入子商户号",
+  "wechatSubMerchantNo": "特约商户号",
+  "wechatSubMerchantNoPlaceholder": "请输入微信特约商户号",
+  "wechatSubMerchantNoRequired": "请输入特约商户号"
 }

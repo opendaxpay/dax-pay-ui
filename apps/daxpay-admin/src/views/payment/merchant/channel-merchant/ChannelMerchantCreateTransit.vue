@@ -9,6 +9,7 @@ import DouyinMchCreateConfig from '#/views/payment/channel/douyin/config/DouyinM
 import LakalaMchCreateConfig from '#/views/payment/channel/lakala/config/LakalaMchCreateConfig.vue';
 import UmsMchCreateConfig from '#/views/payment/channel/ums/config/UmsMchCreateConfig.vue';
 import WechatMchCreateConfig from '#/views/payment/channel/wechat/config/WechatMchCreateConfig.vue';
+import WechatDirectMchCreateConfig from '#/views/payment/channel/wechat/config/WechatDirectMchCreateConfig.vue';
 
 const emit = defineEmits<{
   (e: 'prev'): void;
@@ -20,6 +21,7 @@ const currentProduct = ref<{ channel: string; product: string }>({ product: '', 
 const alipayRef = ref();
 const alipayDirectRef = ref();
 const wechatRef = ref();
+const wechatDirectRef = ref();
 const lakalaRef = ref();
 const umsRef = ref();
 const douyinRef = ref();
@@ -51,9 +53,12 @@ function init(product: string, mchNo: string, channel: string, productName = '')
         alipayDirectRef.value?.init(mchNo, product, channel);
         break;
       }
-      case ProductEnum.WECHAT_ISV:
-      case ProductEnum.WECHAT_PAY: {
+      case ProductEnum.WECHAT_ISV: {
         wechatRef.value?.init(mchNo, product, channel);
+        break;
+      }
+      case ProductEnum.WECHAT_PAY: {
+        wechatDirectRef.value?.init(mchNo, product, channel);
         break;
       }
       case ProductEnum.LAKALA_PAY: {
@@ -80,6 +85,7 @@ defineExpose({ init });
   <AlipayMchCreateConfig ref="alipayRef" @prev="emit('prev')" @close="emit('close')" />
   <AlipayDirectMchCreateConfig ref="alipayDirectRef" @prev="emit('prev')" @close="emit('close')" />
   <WechatMchCreateConfig ref="wechatRef" @prev="emit('prev')" @close="emit('close')" />
+  <WechatDirectMchCreateConfig ref="wechatDirectRef" @prev="emit('prev')" @close="emit('close')" />
   <LakalaMchCreateConfig ref="lakalaRef" @prev="emit('prev')" @close="emit('close')" />
   <UmsMchCreateConfig ref="umsRef" @prev="emit('prev')" @close="emit('close')" />
   <DouyinMchCreateConfig ref="douyinRef" @prev="emit('prev')" @close="emit('close')" />

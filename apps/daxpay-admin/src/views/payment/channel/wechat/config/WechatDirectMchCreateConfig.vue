@@ -5,15 +5,12 @@ import { $t } from '@vben/locales';
 
 import { IconifyIcon } from '@vben-core/icons';
 
-import {
-  type WechatIsvChannelMerchantCreateParam,
-  WechatIsvChannelMerchantApi,
-} from '#/api/payment/wechatChannelMerchant.api';
+import { WechatDirectChannelMerchantApi } from '#/api/payment/wechatChannelMerchant.api';
 import ChannelLogo from '#/components/channel/ChannelLogo.vue';
 import { productI18nMap, productNameMap } from '#/enums/payment';
 import { useMessage } from '#/hooks/useMessage';
 
-defineOptions({ name: 'WechatMchCreateConfig' });
+defineOptions({ name: 'WechatDirectMchCreateConfig' });
 
 const emit = defineEmits<{
   (e: 'prev'): void;
@@ -28,7 +25,7 @@ const channelCode = ref('');
 const formRef = ref();
 const form = ref({
   channelMerchantName: '',
-  subMchId: '',
+  wxMchId: '',
 });
 
 const visible = ref(false);
@@ -48,7 +45,7 @@ const productDisplayName = computed(() => {
 
 const rules = computed(() => ({
   channelMerchantName: [{ required: true, message: $t('payment.merchant.channelMerchant.channelMerchantNameRequired') }],
-  subMchId: [{ required: true, message: $t('payment.merchant.channelMerchant.wechatSubMerchantNoRequired') }],
+  wxMchId: [{ required: true, message: $t('payment.channel.wechatPay.validation.mchId') }],
 }));
 
 function init(no: string, product: string, channel: string) {
@@ -67,11 +64,11 @@ function handlePrev() {
 function handleSubmit() {
   formRef.value?.validate().then(() => {
     submitLoading.value = true;
-    WechatIsvChannelMerchantApi.create({
+    WechatDirectChannelMerchantApi.create({
       mchNo: mchNo.value,
       product: productCode.value,
       ...form.value,
-    } as WechatIsvChannelMerchantCreateParam)
+    })
       .then(() => {
         createSuccess.value = true;
         message.success($t('payment.merchant.channelMerchant.createSuccess'));
@@ -85,7 +82,7 @@ function handleSubmit() {
 function resetForm() {
   form.value = {
     channelMerchantName: '',
-    subMchId: '',
+    wxMchId: '',
   };
   nextTick(() => {
     formRef.value?.resetFields();
@@ -120,11 +117,11 @@ defineExpose({ init });
             :placeholder="$t('payment.merchant.channelMerchant.pleaseInputName')"
           />
         </a-form-item>
-        <!-- 国际化：特约商户号 -->
-        <a-form-item :label="$t('payment.merchant.channelMerchant.wechatSubMerchantNo')" name="subMchId">
+        <!-- 国际化：微信商户号 -->
+        <a-form-item :label="$t('payment.channel.wechatPay.mchId')" name="wxMchId">
           <a-input
-            v-model:value="form.subMchId"
-            :placeholder="$t('payment.merchant.channelMerchant.wechatSubMerchantNoPlaceholder')"
+            v-model:value="form.wxMchId"
+            :placeholder="$t('payment.channel.wechatPay.mchIdPlaceholder')"
           />
         </a-form-item>
 

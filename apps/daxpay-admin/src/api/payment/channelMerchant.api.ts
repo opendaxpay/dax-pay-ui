@@ -1,4 +1,4 @@
-import type { BaseEntity, MchEntity, PageResult, Result } from '#/types/web';
+import type { BaseEntity, PageResult, Result } from '#/types/web';
 
 import { defHttp } from '#/api/request';
 
@@ -48,6 +48,8 @@ export interface ChannelMerchantResult extends BaseEntity {
   channel?: string;
   /** 是否启用 */
   enable?: boolean;
+  /** 通道商户创建来源 */
+  source?: string;
   /** 备注 */
   remark?: string;
   /** 交易标识（前端不展示） */
@@ -107,25 +109,9 @@ export interface ChannelMerchantBaseCreateParam {
 }
 
 /**
- * 微信通道商户创建 API
+ * 微信通道商户 API 已迁移至 wechatChannelMerchant.api.ts
+ * (WechatIsvChannelMerchantApi, 路径前缀 /admin/wechat/isv-channel-merchant)
  */
-export const ChannelMerchantWechatApi = {
-  /**
-   * 创建微信通道商户
-   */
-  create(data: Record<string, any>): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/wechat/channel-merchant/create', data });
-  },
-  /**
-   * 根据通道商户号查询微信通道商户配置
-   */
-  findByChannelMchNo(channelMchNo: string): Promise<Result<WechatChannelMerchantConfig>> {
-    return defHttp.get({
-      url: '/admin/wechat/channel-merchant/find-by-channel-mch-no',
-      params: { channelMchNo },
-    });
-  },
-};
 
 /**
  * 拉卡拉通道商户创建 API
@@ -162,13 +148,3 @@ export const ChannelMerchantDouyinApi = {
     return defHttp.post({ url: '/admin/douyin/channel-merchant/create', data });
   },
 };
-
-/** 微信通道商户配置 */
-export interface WechatChannelMerchantConfig extends MchEntity {
-  /** 通道商户号 */
-  channelMchNo?: string;
-  /** 所属支付产品 */
-  product?: string;
-  /** 微信特约商户号/二级商户号 */
-  subMchId?: string;
-}

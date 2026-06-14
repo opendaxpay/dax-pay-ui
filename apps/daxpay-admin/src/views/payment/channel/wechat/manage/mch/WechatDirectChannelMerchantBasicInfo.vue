@@ -4,12 +4,12 @@ import { computed, ref, watch } from 'vue';
 import { $t } from '@vben/locales';
 
 import {
-  type WechatIsvChannelMerchantConfig,
-  WechatIsvChannelMerchantApi,
+  type WechatDirectChannelMerchantConfig,
+  WechatDirectChannelMerchantApi,
 } from '#/api/payment/wechatChannelMerchant.api';
 import { type ChannelMerchantResult } from '#/api/payment/channelMerchant.api';
 
-defineOptions({ name: 'WechatChannelMerchantBasicInfo' });
+defineOptions({ name: 'WechatDirectChannelMerchantBasicInfo' });
 
 const props = defineProps<{
   channelMchNo: string;
@@ -18,8 +18,8 @@ const props = defineProps<{
 
 const visible = ref(false);
 const loading = ref(false);
-// 服务商通道商户配置(含 subMchId)
-const config = ref<WechatIsvChannelMerchantConfig>({});
+// 直连通道商户配置(含 wxMchId)
+const config = ref<WechatDirectChannelMerchantConfig>({});
 
 const enableLabel = computed(() =>
   props.channelMerchant.enable
@@ -34,7 +34,7 @@ const sourceLabel = computed(() => {
   return props.channelMerchant.source || '-';
 });
 
-/** 加载微信服务商通道商户配置 */
+/** 加载微信直连通道商户配置 */
 function loadConfig() {
   if (!props.channelMchNo) {
     return;
@@ -42,7 +42,7 @@ function loadConfig() {
   loading.value = true;
   config.value = {};
 
-  WechatIsvChannelMerchantApi.findByChannelMchNo(props.channelMchNo)
+  WechatDirectChannelMerchantApi.findByChannelMchNo(props.channelMchNo)
     .then(({ data }) => {
       config.value = data || {};
     })
@@ -93,8 +93,8 @@ defineExpose({ open, close });
         <a-descriptions-item :label="$t('payment.merchant.channelMerchant.source')">
           {{ sourceLabel }}
         </a-descriptions-item>
-        <a-descriptions-item :label="$t('payment.merchant.channelMerchant.wechatSubMerchantNo')">
-          {{ config.subMchId || '-' }}
+        <a-descriptions-item :label="$t('payment.channel.wechatPay.mchId')">
+          {{ config.wxMchId || '-' }}
         </a-descriptions-item>
       </a-descriptions>
     </a-spin>
