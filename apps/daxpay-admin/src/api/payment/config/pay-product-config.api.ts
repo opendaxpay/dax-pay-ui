@@ -44,6 +44,8 @@ export interface PayProductConfigResult extends BaseEntity {
   activeEnv?: string;
   /** 是否已配置参数 */
   configured?: boolean;
+  /** 是否为服务商模式（true=服务商, false=直连） */
+  isv?: boolean;
 }
 
 /** 产品配置保存参数 */
