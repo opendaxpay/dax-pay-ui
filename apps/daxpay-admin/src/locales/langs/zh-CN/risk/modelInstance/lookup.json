@@ -1,9 +1,0 @@
-{
-  "readonlyStructureHint": "查表结构由模型模板定义，此处仅维护实例级行数据",
-  "manageRows": "管理数据",
-  "rowTitle": "实例查表行",
-  "instanceRowHint": "无实例行时将使用模板默认行数据；可在表格中直接编辑，完成后点击保存",
-  "addRow": "新增行",
-  "saveRows": "保存行数据",
-  "confirmDeleteRow": "确定删除该查表行吗？"
-}

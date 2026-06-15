@@ -6,7 +6,7 @@
   import {
     WechatMchAppApi,
     type WechatMchApp,
-  } from '#/api/payment/wechatMchApp.api';
+  } from '#/api/payment/channel/wechat/mch-app.api';
   import { FormEditType } from '#/enums/formEditType';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';

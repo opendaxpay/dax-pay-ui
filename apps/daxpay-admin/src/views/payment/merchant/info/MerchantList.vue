@@ -6,7 +6,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { type MerchantInfo, MerchantApi } from '#/api/payment/merchant.api';
+  import { type MerchantInfo, MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { usePermission } from '#/hooks/usePermission';

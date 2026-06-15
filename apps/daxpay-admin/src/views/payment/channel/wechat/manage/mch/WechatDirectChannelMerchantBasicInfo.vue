@@ -6,8 +6,8 @@ import { $t } from '@vben/locales';
 import {
   type WechatDirectChannelMerchantConfig,
   WechatDirectChannelMerchantApi,
-} from '#/api/payment/wechatChannelMerchant.api';
-import { type ChannelMerchantResult } from '#/api/payment/channelMerchant.api';
+} from '#/api/payment/channel/wechat/channel-merchant.api';
+import { type ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
 
 defineOptions({ name: 'WechatDirectChannelMerchantBasicInfo' });
 

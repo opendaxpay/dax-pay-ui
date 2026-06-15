@@ -5,8 +5,8 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { LakalaPayConfigApi, type LakalaProductConfig } from '#/api/payment/lakalaPayConfig.api';
-  import { type IsvProductPayConfigResult } from '#/api/payment/isvPayConfig.api';
+  import { LakalaPayConfigApi, type LakalaProductConfig } from '#/api/payment/channel/lakala/pay-config.api';
+  import { type IsvProductPayConfigResult } from '#/api/payment/config/pay-product-config.api';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
   import { readFileAsText } from '#/utils/file';

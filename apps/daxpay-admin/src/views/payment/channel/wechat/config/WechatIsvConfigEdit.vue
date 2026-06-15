@@ -5,7 +5,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { type WechatIsvKeyConfig, WechatPayConfigApi } from '#/api/payment/wechatPayConfig.api';
+  import { type WechatIsvKeyConfig, WechatPayConfigApi } from '#/api/payment/channel/wechat/pay-config.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { ProductEnum } from '#/enums/payment/productEnum';
   import { useFormEdit } from '#/hooks/useFormEdit';

@@ -4,7 +4,7 @@
   import { $t } from '@vben/locales';
   import { formatDateTime } from '@vben/utils';
 
-  import { type MerchantUserDetail, MerchantUserApi } from '#/api/payment/merchantUser.api';
+  import { type MerchantUserDetail, MerchantUserApi } from '#/api/payment/merchant/merchant-user.api';
   import { useMessage } from '#/hooks/useMessage';
 
   const { message } = useMessage();

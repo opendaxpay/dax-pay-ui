@@ -6,7 +6,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant.api';
+  import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { useMessage } from '#/hooks/useMessage';
   import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';

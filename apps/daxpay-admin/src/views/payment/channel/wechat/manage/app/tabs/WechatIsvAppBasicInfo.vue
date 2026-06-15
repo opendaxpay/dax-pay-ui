@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-  import type { WechatIsvApp } from '#/api/payment/wechatIsvApp.api';
+  import type { WechatIsvApp } from '#/api/payment/channel/wechat/isv-app.api';
 
   import { computed } from 'vue';
 
   import { $t } from '@vben/locales';
 
-  import { WechatIsvAppApi } from '#/api/payment/wechatIsvApp.api';
+  import { WechatIsvAppApi } from '#/api/payment/channel/wechat/isv-app.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { useDeleteConfirm } from '#/hooks/useDeleteConfirm';
   import { useMessage } from '#/hooks/useMessage';

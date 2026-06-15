@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import type { AlipayMchApp } from '#/api/payment/alipayMchApp.api';
+  import type { AlipayMchApp } from '#/api/payment/channel/alipay/mch-app.api';
 
   import { $t } from '@vben/locales';
 

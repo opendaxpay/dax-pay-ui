@@ -5,7 +5,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { type LabelValue, PayRouteApi, type PayRouteSceneConfigItem } from '#/api/payment/payRoute.api';
+  import { type LabelValue, PayRouteApi, type PayRouteSceneConfigItem } from '#/api/payment/route/pay-route.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';

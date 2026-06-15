@@ -5,7 +5,7 @@ import { $t } from '@vben/locales';
 
 import { IconifyIcon } from '@vben-core/icons';
 
-import { ChannelMerchantUmsApi } from '#/api/payment/channelMerchant.api';
+import { ChannelMerchantUmsApi } from '#/api/payment/channel/ums/channel-merchant.api';
 import { useMessage } from '#/hooks/useMessage';
 
 defineOptions({ name: 'UmsMchCreateConfig' });

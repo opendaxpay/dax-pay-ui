@@ -8,7 +8,7 @@ import { IconifyIcon } from '@vben-core/icons';
 import {
   type WechatIsvChannelMerchantCreateParam,
   WechatIsvChannelMerchantApi,
-} from '#/api/payment/wechatChannelMerchant.api';
+} from '#/api/payment/channel/wechat/channel-merchant.api';
 import ChannelLogo from '#/components/channel/ChannelLogo.vue';
 import { productI18nMap, productNameMap } from '#/enums/payment';
 import { useMessage } from '#/hooks/useMessage';

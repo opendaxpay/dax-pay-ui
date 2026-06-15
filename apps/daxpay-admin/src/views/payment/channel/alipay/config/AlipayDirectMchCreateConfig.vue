@@ -5,7 +5,7 @@ import { $t } from '@vben/locales';
 
 import { IconifyIcon } from '@vben-core/icons';
 
-import { AlipayDirectChannelMerchantApi } from '#/api/payment/alipayChannelMerchant.api';
+import { AlipayDirectChannelMerchantApi } from '#/api/payment/channel/alipay/channel-merchant.api';
 import ChannelLogo from '#/components/channel/ChannelLogo.vue';
 import { channelI18nMap, channelNameMap, productI18nMap, productNameMap } from '#/enums/payment';
 import { useMessage } from '#/hooks/useMessage';

@@ -3,14 +3,14 @@ import { computed, ref, watch } from 'vue';
 
 import { $t } from '@vben/locales';
 
-import { type AlipayIsvApp, AlipayIsvAppApi } from '#/api/payment/alipayIsvApp.api';
+import { type AlipayIsvApp, AlipayIsvAppApi } from '#/api/payment/channel/alipay/isv-app.api';
 import {
   AlipayDirectChannelMerchantApi,
   AlipayIsvChannelMerchantApi,
   type AlipayDirectChannelMerchantConfig,
   type AlipayIsvChannelMerchantConfig,
-} from '#/api/payment/alipayChannelMerchant.api';
-import { type ChannelMerchantResult } from '#/api/payment/channelMerchant.api';
+} from '#/api/payment/channel/alipay/channel-merchant.api';
+import { type ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
 import { ProductEnum } from '#/enums/payment/productEnum';
 
 defineOptions({ name: 'AlipayChannelMerchantBasicInfo' });

@@ -1,4 +1,4 @@
-import type { BaseEntity, PageResult, Result } from '#/types/web';
+import type { BaseEntity, LabelValue, PageResult, Result } from '#/types/web';
 
 import { defHttp } from '#/api/request';
 
@@ -21,12 +21,6 @@ export const PayProductApi = {
     return defHttp.get({ url: '/admin/product/list-all' });
   },
 };
-
-/** 标签值 */
-export interface LabelValue {
-  label?: string;
-  value?: string;
-}
 
 /** 支付产品分页查询参数 */
 export interface PayProductPageParam {

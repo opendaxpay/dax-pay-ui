@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import type { MenuProps } from 'antdv-next';
 
-  import type { MchAppInfoResult } from '#/api/payment/mchAppInfo.api';
+  import type { MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
 
   import { computed } from 'vue';
   import { useRouter } from 'vue-router';

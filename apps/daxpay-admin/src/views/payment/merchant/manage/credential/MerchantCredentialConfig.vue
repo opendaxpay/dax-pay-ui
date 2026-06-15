@@ -9,13 +9,12 @@
   import { useClipboard } from '@vueuse/core';
 
   import {
-    MerchantApi,
-    MerchantCredentialApi,
-    type MerchantCredentialParam,
-    type MerchantCredentialResult,
-    type MerchantInfo,
-  } from '#/api/payment/merchant.api';
-  import { KeyGenApi } from '#/api/payment/keyGen.api';
+  MerchantApi, type MerchantInfo,
+  } from '#/api/payment/merchant/merchant.api';
+  import {
+  MerchantCredentialApi, type MerchantCredentialParam, type MerchantCredentialResult,
+  } from '#/api/payment/merchant/credential.api';
+  import { KeyGenApi } from '#/api/payment/merchant/key-gen.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { PermCodes } from '#/constants/perm-codes';

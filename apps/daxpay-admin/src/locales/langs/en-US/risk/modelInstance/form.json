@@ -1,9 +1,0 @@
-{
-  "add": {
-    "modelIdPlaceholder": "Select a model",
-    "providerIdPlaceholder": "Enter provider ID",
-    "instanceNamePlaceholder": "Enter instance name",
-    "statusPlaceholder": "Select status",
-    "configParamValuePlaceholder": "Enter override value, leave empty to use template default"
-  }
-}

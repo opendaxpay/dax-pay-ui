@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-  import type { AlipayIsvApp } from '#/api/payment/alipayIsvApp.api';
+  import type { AlipayIsvApp } from '#/api/payment/channel/alipay/isv-app.api';
 
   import { $t } from '@vben/locales';
 
-  import { AlipayIsvAppApi } from '#/api/payment/alipayIsvApp.api';
+  import { AlipayIsvAppApi } from '#/api/payment/channel/alipay/isv-app.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { useDeleteConfirm } from '#/hooks/useDeleteConfirm';
   import { useMessage } from '#/hooks/useMessage';

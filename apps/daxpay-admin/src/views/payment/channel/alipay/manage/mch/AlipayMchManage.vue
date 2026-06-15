@@ -6,7 +6,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import type { ChannelMerchantResult } from '#/api/payment/channelMerchant.api';
+  import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
 
   import { ProductEnum } from '#/enums/payment/productEnum';
 

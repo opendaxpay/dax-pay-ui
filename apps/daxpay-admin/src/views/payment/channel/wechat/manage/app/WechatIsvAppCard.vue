@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import type { WechatIsvApp } from '#/api/payment/wechatIsvApp.api';
+  import type { WechatIsvApp } from '#/api/payment/channel/wechat/isv-app.api';
 
   import { computed } from 'vue';
 

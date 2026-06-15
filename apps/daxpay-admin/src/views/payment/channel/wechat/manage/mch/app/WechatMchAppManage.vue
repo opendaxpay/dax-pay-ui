@@ -9,7 +9,7 @@
   import {
     WechatMchAppApi,
     type WechatMchApp,
-  } from '#/api/payment/wechatMchApp.api';
+  } from '#/api/payment/channel/wechat/mch-app.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { ProductEnum } from '#/enums/payment/productEnum';
   import { PermCodes } from '#/constants/perm-codes';

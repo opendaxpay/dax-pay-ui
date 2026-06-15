@@ -6,7 +6,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { PayProductConfigApi, type PayProductConfigResult } from '#/api/payment/payProductConfig.api';
+  import { PayProductConfigApi, type PayProductConfigResult } from '#/api/payment/config/pay-product-config.api';
   import ChannelLogo from '#/components/channel/ChannelLogo.vue';
   import { useMessage } from '#/hooks/useMessage';
 

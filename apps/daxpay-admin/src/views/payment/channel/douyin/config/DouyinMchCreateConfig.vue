@@ -5,7 +5,7 @@ import { $t } from '@vben/locales';
 
 import { IconifyIcon } from '@vben-core/icons';
 
-import { ChannelMerchantDouyinApi } from '#/api/payment/channelMerchant.api';
+import { ChannelMerchantDouyinApi } from '#/api/payment/channel/douyin/channel-merchant.api';
 import ChannelLogo from '#/components/channel/ChannelLogo.vue';
 import { channelI18nMap, channelNameMap, productI18nMap, productNameMap } from '#/enums/payment';
 import { useMessage } from '#/hooks/useMessage';

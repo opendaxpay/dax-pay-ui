@@ -3,7 +3,7 @@
 
   import { $t, i18n } from '@vben/locales';
 
-  import { MerchantUserApi } from '#/api/payment/merchantUser.api';
+  import { MerchantUserApi } from '#/api/payment/merchant/merchant-user.api';
   import { UserRoleApi, type UserRole } from '#/api/iam/user.api';
   import { useMessage } from '#/hooks/useMessage';
 

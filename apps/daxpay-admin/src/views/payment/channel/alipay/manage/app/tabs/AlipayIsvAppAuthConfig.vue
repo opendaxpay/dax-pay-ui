@@ -3,7 +3,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { AlipayIsvAppApi, type AlipayIsvAppAuthConfig } from '#/api/payment/alipayIsvApp.api';
+  import { AlipayIsvAppApi, type AlipayIsvAppAuthConfig } from '#/api/payment/channel/alipay/isv-app.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';

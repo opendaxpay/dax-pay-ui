@@ -5,7 +5,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { AlipayMchAppApi, type AlipayMchAppKeyConfig } from '#/api/payment/alipayMchApp.api';
+  import { AlipayMchAppApi, type AlipayMchAppKeyConfig } from '#/api/payment/channel/alipay/mch-app.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { useDict } from '#/hooks/useDict';
   import { useFormEdit } from '#/hooks/useFormEdit';

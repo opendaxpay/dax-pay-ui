@@ -6,7 +6,7 @@
   import {
     WechatMchAppApi,
     type WechatMchApp,
-  } from '#/api/payment/wechatMchApp.api';
+  } from '#/api/payment/channel/wechat/mch-app.api';
 
   import WechatMchAppAuthConfig from './tabs/WechatMchAppAuthConfig.vue';
   import WechatMchAppBasicInfo from './tabs/WechatMchAppBasicInfo.vue';

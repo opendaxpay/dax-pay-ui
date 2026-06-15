@@ -3,7 +3,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { MchAppInfoApi, type MchAppInfoParam, type MchAppInfoResult } from '#/api/payment/mchAppInfo.api';
+  import { MchAppInfoApi, type MchAppInfoParam, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import { FormEditType } from '#/enums/formEditType';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';

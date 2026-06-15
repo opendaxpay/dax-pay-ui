@@ -7,7 +7,7 @@ import { $t } from '@vben/locales';
 
 import { IconifyIcon } from '@vben-core/icons';
 
-import { ChannelMerchantApi, type ChannelMerchantResult } from '#/api/payment/channelMerchant.api';
+import { ChannelMerchantApi, type ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
 import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
 import { ProductEnum } from '#/enums/payment/productEnum';
 import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';

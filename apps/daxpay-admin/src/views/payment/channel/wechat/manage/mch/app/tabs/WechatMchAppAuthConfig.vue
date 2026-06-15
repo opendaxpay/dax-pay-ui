@@ -6,7 +6,7 @@
   import {
     WechatMchAppApi,
     type WechatMchAppAuthConfig,
-  } from '#/api/payment/wechatMchApp.api';
+  } from '#/api/payment/channel/wechat/mch-app.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';

@@ -3,7 +3,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { AlipayMchAppApi, type AlipayMchAppAuthConfig } from '#/api/payment/alipayMchApp.api';
+  import { AlipayMchAppApi, type AlipayMchAppAuthConfig } from '#/api/payment/channel/alipay/mch-app.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';

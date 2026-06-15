@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-  import type { AlipayMchApp } from '#/api/payment/alipayMchApp.api';
+  import type { AlipayMchApp } from '#/api/payment/channel/alipay/mch-app.api';
 
   import { $t } from '@vben/locales';
 
-  import { AlipayMchAppApi } from '#/api/payment/alipayMchApp.api';
+  import { AlipayMchAppApi } from '#/api/payment/channel/alipay/mch-app.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { useDeleteConfirm } from '#/hooks/useDeleteConfirm';
   import { useMessage } from '#/hooks/useMessage';

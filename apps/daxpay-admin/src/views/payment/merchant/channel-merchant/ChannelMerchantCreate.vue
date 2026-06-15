@@ -7,10 +7,8 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import {
-    MerchantApi,
-    type MerchantInfo,
-  } from '#/api/payment/merchant.api';
+  import { MerchantApi,
+    type MerchantInfo, } from '#/api/payment/merchant/merchant.api';
   import { PayProductApi, type PayProductResult } from '#/api/payment/masterdata/product.api';
   import ChannelLogo from '#/components/channel/ChannelLogo.vue';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';

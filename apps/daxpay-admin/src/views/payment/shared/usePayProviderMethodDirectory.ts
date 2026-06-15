@@ -2,7 +2,7 @@ import type { PayProviderMethod } from '#/api/payment/masterdata/provider.api';
 
 import { ref } from 'vue';
 
-import { PayRouteApi } from '#/api/payment/payRoute.api';
+import { PayRouteApi } from '#/api/payment/route/pay-route.api';
 
 import { ROUTE_PAY_PROVIDERS } from '../merchant/route/shared/payRoute.constants';
 

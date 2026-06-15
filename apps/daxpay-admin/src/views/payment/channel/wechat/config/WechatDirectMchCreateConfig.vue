@@ -5,7 +5,7 @@ import { $t } from '@vben/locales';
 
 import { IconifyIcon } from '@vben-core/icons';
 
-import { WechatDirectChannelMerchantApi } from '#/api/payment/wechatChannelMerchant.api';
+import { WechatDirectChannelMerchantApi } from '#/api/payment/channel/wechat/channel-merchant.api';
 import ChannelLogo from '#/components/channel/ChannelLogo.vue';
 import { productI18nMap, productNameMap } from '#/enums/payment';
 import { useMessage } from '#/hooks/useMessage';

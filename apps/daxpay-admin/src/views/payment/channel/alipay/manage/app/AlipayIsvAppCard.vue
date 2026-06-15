@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import type { AlipayIsvApp } from '#/api/payment/alipayIsvApp.api';
+  import type { AlipayIsvApp } from '#/api/payment/channel/alipay/isv-app.api';
 
   import { $t } from '@vben/locales';
 

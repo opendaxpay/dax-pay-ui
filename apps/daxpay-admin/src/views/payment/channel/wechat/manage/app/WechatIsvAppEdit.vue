@@ -3,7 +3,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { type WechatIsvApp, WechatIsvAppApi } from '#/api/payment/wechatIsvApp.api';
+  import { type WechatIsvApp, WechatIsvAppApi } from '#/api/payment/channel/wechat/isv-app.api';
   import { FormEditType } from '#/enums/formEditType';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';

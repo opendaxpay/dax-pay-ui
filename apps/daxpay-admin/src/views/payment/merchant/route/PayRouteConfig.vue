@@ -9,8 +9,8 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { PayProductApi } from '#/api/payment/masterdata/product.api';
-  import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/mchAppInfo.api';
-  import { PayRouteApi, type PayRouteStrategyResult } from '#/api/payment/payRoute.api';
+  import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
+  import { PayRouteApi, type PayRouteStrategyResult } from '#/api/payment/route/pay-route.api';
   import { PermCodes } from '#/constants/perm-codes';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { useMessage } from '#/hooks/useMessage';

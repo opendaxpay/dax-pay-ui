@@ -3,7 +3,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { type AlipayIsvApp, AlipayIsvAppApi } from '#/api/payment/alipayIsvApp.api';
+  import { type AlipayIsvApp, AlipayIsvAppApi } from '#/api/payment/channel/alipay/isv-app.api';
 
   import AlipayIsvAppAuthConfig from './tabs/AlipayIsvAppAuthConfig.vue';
   import AlipayIsvAppBasicInfo from './tabs/AlipayIsvAppBasicInfo.vue';

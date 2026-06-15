@@ -9,7 +9,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { MerchantUserApi, type MerchantUserResult } from '#/api/payment/merchantUser.api';
+  import { MerchantUserApi, type MerchantUserResult } from '#/api/payment/merchant/merchant-user.api';
   import { BQuery, type QueryField } from '#/components/query';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { useMessage } from '#/hooks/useMessage';

@@ -5,11 +5,11 @@ import { $t } from '@vben/locales';
 
 import { IconifyIcon } from '@vben-core/icons';
 
-import { type AlipayIsvApp, AlipayIsvAppApi } from '#/api/payment/alipayIsvApp.api';
+import { type AlipayIsvApp, AlipayIsvAppApi } from '#/api/payment/channel/alipay/isv-app.api';
 import {
   type AlipayIsvChannelMerchantCreateParam,
   AlipayIsvChannelMerchantApi,
-} from '#/api/payment/alipayChannelMerchant.api';
+} from '#/api/payment/channel/alipay/channel-merchant.api';
 import ChannelLogo from '#/components/channel/ChannelLogo.vue';
 import { channelI18nMap, channelNameMap, productI18nMap, productNameMap } from '#/enums/payment';
 import { useMessage } from '#/hooks/useMessage';

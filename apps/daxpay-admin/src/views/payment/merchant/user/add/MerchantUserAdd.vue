@@ -5,7 +5,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { type MerchantUserParam, MerchantUserApi } from '#/api/payment/merchantUser.api';
+  import { type MerchantUserParam, MerchantUserApi } from '#/api/payment/merchant/merchant-user.api';
   import { SecurityApi } from '#/api/system/security.api';
   import { InputPassword } from '#/components/input-password';
   import { useMessage } from '#/hooks/useMessage';

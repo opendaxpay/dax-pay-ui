@@ -8,11 +8,9 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import {
-  ChannelMerchantApi,
-  type ChannelMerchantResult,
-} from '#/api/payment/channelMerchant.api';
-  import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant.api';
+  import { ChannelMerchantApi,
+  type ChannelMerchantResult, } from '#/api/payment/channel/channel-merchant.api';
+  import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import ChannelLogo from '#/components/channel/ChannelLogo.vue';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { productChannelMap, productI18nMap, productNameMap } from '#/enums/payment';

@@ -6,8 +6,8 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/mchAppInfo.api';
-  import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant.api';
+  import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
+  import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
   import useTablePage from '#/hooks/useTablePage';
