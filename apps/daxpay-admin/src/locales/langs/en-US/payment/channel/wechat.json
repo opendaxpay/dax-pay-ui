@@ -5,8 +5,8 @@
   "appSecret": "App Secret",
   "publicKey": "Public Key",
   "publicKeyId": "Public Key ID",
-  "privateKey": "apiclient_key",
-  "privateCert": "apiclient_cert",
+  "privateKey": "API Certificate Private Key",
+  "privateCert": "API Certificate",
   "certSerialNo": "Certificate Serial No",
   "wxAppSecret": "WeChat App Secret",
   "wxAuthUrl": "WeChat Auth URL",
@@ -17,7 +17,7 @@
     "appSecretRequired": "Please enter app secret",
     "publicKeyRequired": "Please enter public key",
     "publicKeyIdRequired": "Please enter public key ID",
-    "privateCertRequired": "Please enter apiclient_cert",
+    "privateCertRequired": "Please enter API certificate",
     "certSerialNoRequired": "Please enter certificate serial number",
     "wxAppSecretRequired": "Please enter WeChat app secret"
   }

@@ -26,7 +26,7 @@
   "publicKey": "支付公钥",
   "publicKeyTooltip": "微信平台中的支付公钥(pub_key.pem)",
   "uploadPublicKey": "上传支付公钥",
-  "publicKeyId": "公钥编号",
+  "publicKeyId": "支付公钥ID",
   "publicKeyIdPlaceholder": "请输入公钥编号",
   "validation": {
     "enable": "请选择是否启用",

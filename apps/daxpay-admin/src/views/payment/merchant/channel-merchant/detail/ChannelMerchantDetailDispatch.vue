@@ -59,7 +59,7 @@ function isSupported(p: string) {
 /** 按产品解析页头标题 */
 function resolvePageTitle(productCode: string) {
   if (productCode === ProductEnum.ALIPAY) {
-    return $t('payment.channel.alipayMchManage.title');
+    return $t('payment.merchant.channelMerchant.manageTitleAlipayDirect');
   }
   if (productCode === ProductEnum.ALIPAY_ISV) {
     return $t('payment.merchant.channelMerchant.manageTitleAlipay');
@@ -68,7 +68,7 @@ function resolvePageTitle(productCode: string) {
     return $t('payment.merchant.channelMerchant.manageTitleWechat');
   }
   if (productCode === ProductEnum.WECHAT_PAY) {
-    return $t('payment.merchant.channelMerchant.manageTitleWechat');
+    return $t('payment.merchant.channelMerchant.manageTitleWechatDirect');
   }
   return $t('payment.merchant.channelMerchant.manageTitleDefault');
 }
