@@ -20,7 +20,6 @@
   const channelMchNo = ref('');
   const channelMerchant = ref<ChannelMerchantResult>({});
   const basicInfoRef = ref<InstanceType<typeof AlipayChannelMerchantBasicInfo>>();
-
   /** 功能卡片配置 */
   const functionCards = computed(() => [
     {

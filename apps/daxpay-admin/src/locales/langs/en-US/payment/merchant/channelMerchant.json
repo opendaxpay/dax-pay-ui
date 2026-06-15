@@ -17,6 +17,8 @@
   "groupApp": "App Management",
   "cardBasicInfo": "Basic Info",
   "cardBasicInfoDesc": "View channel merchant basic configuration",
+  "cardAuthOperation": "Auth Operation",
+  "cardAuthOperationDesc": "Authorize platform to operate Alipay merchant, get app auth token",
   "cardApp": "App Management",
   "cardAppDesc": "Channel merchant app creation and management",
   "basicInfoDrawerTitle": "Basic Info",

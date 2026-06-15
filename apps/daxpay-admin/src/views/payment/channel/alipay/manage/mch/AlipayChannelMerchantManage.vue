@@ -6,6 +6,7 @@ import { $t } from '@vben/locales';
 import { IconifyIcon } from '@vben-core/icons';
 
 import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
+import { useMessage } from '#/hooks/useMessage';
 
 import AlipayChannelMerchantBasicInfo from './AlipayChannelMerchantBasicInfo.vue';
 
@@ -15,6 +16,7 @@ const mchNo = ref('');
 const channelMchNo = ref('');
 const channelMerchant = ref<ChannelMerchantResult>({});
 const basicInfoRef = ref<InstanceType<typeof AlipayChannelMerchantBasicInfo>>();
+const { message } = useMessage();
 
 /** 功能卡片配置（服务商通道商户：仅基本信息） */
 const functionCards = computed(() => [
@@ -22,15 +24,22 @@ const functionCards = computed(() => [
     // 国际化：基础管理
     group: $t('payment.merchant.channelMerchant.groupBasic'),
     color: 'blue',
-    cards: [
-      {
-        key: 'basicInfo',
-        // 国际化：基本信息
-        title: $t('payment.merchant.channelMerchant.cardBasicInfo'),
-        icon: 'ant-design:info-circle-outlined',
-        description: $t('payment.merchant.channelMerchant.cardBasicInfoDesc'),
-      },
-    ],
+      cards: [
+        {
+          key: 'basicInfo',
+          // 国际化：基本信息
+          title: $t('payment.merchant.channelMerchant.cardBasicInfo'),
+          icon: 'ant-design:info-circle-outlined',
+          description: $t('payment.merchant.channelMerchant.cardBasicInfoDesc'),
+        },
+        {
+          key: 'authOperation',
+          // 国际化：代运营授权
+          title: $t('payment.merchant.channelMerchant.cardAuthOperation'),
+          icon: 'ant-design:safety-certificate-outlined',
+          description: $t('payment.merchant.channelMerchant.cardAuthOperationDesc'),
+        },
+      ],
   },
 ]);
 
@@ -60,6 +69,12 @@ function init(no: string, mchChannelNo: string, summary: ChannelMerchantResult) 
 function handleCardClick(card: { key: string }) {
   if (card.key === 'basicInfo') {
     basicInfoRef.value?.open();
+    return;
+  }
+  if (card.key === 'authOperation') {
+    // 国际化：功能开发中，敬请期待
+    message.info($t('payment.merchant.channelMerchant.developing'));
+    return;
   }
 }
 

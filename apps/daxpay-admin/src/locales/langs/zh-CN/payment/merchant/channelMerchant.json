@@ -17,6 +17,8 @@
   "groupApp": "应用管理",
   "cardBasicInfo": "基本信息",
   "cardBasicInfoDesc": "查看通道商户基础配置信息",
+  "cardAuthOperation": "代运营授权",
+  "cardAuthOperationDesc": "授权平台代运营支付宝商户，获取应用授权令牌",
   "cardApp": "应用管理",
   "cardAppDesc": "通道商户应用创建与管理",
   "basicInfoDrawerTitle": "基本信息",

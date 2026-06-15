@@ -66,7 +66,7 @@ const rules = computed(() => ({
   channelMerchantName: [{ required: true, message: $t('payment.merchant.channelMerchant.channelMerchantNameRequired') }],
   appId: [{ required: true, message: $t('payment.merchant.channelMerchant.alipayIsvAppRequired') }],
   alipayUserId: [{ required: true, message: $t('payment.merchant.channelMerchant.alipaySubMerchantNoRequired') }],
-  appAuthToken: [{ required: true, message: $t('payment.merchant.channelMerchant.appAuthTokenRequired') }],
+  appAuthToken: [{ required: false }],
 }));
 
 /** 支付宝应用下拉选项(值为系统主键id, 展示应用名+支付宝APPID便于识别) */
