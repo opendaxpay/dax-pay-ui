@@ -42,6 +42,21 @@ export const WechatDirectChannelMerchantApi = {
       params: { channelMchNo },
     });
   },
+  /**
+   * 根据通道商户号查询密钥配置
+   */
+  findKeyConfig(channelMchNo: string): Promise<Result<WechatDirectKeyConfig>> {
+    return defHttp.get({
+      url: '/admin/wechat/direct-channel-merchant/find-key-config',
+      params: { channelMchNo },
+    });
+  },
+  /**
+   * 保存密钥配置
+   */
+  saveKeyConfig(data: WechatDirectKeyConfig): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/wechat/direct-channel-merchant/save-key-config', data });
+  },
 };
 
 /**
@@ -80,6 +95,28 @@ export interface WechatIsvChannelMerchantCreateParam {
   product: string;
   /** 微信特约商户号/二级商户号 */
   subMchId: string;
+}
+
+/**
+ * 微信直连密钥配置
+ */
+export interface WechatDirectKeyConfig {
+  /** 通道商户号 */
+  channelMchNo?: string;
+  /** 商户号 */
+  mchNo?: string;
+  /** APIv3密钥 */
+  apiKeyV3?: string;
+  /** 支付公钥 */
+  publicKey?: string;
+  /** 支付公钥ID */
+  publicKeyId?: string;
+  /** 商户私钥 */
+  privateKey?: string;
+  /** 商户证书 */
+  privateCert?: string;
+  /** 证书序列号 */
+  certSerialNo?: string;
 }
 
 /**

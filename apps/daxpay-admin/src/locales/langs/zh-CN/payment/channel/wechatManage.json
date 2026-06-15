@@ -41,6 +41,9 @@
   "appSecretTooltipMobileApp": "移动应用 AppSecret，用于 OAuth 授权",
   "authCallbackUrl": "授权回调地址",
   "authCallbackUrlPlaceholder": "请输入授权回调地址",
+  "directKeyConfigTitle": "直连密钥配置",
+  "cardDirectKeyConfig": "直连密钥配置",
+  "cardDirectKeyConfigDesc": "配置直连商户APIv3密钥、平台公钥及证书",
   "validation": {
     "appSecret": "请输入应用密钥",
     "authCallbackUrl": "请输入授权回调地址"

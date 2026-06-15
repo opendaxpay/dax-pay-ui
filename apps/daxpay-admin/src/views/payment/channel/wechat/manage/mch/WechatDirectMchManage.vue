@@ -8,6 +8,7 @@ import { IconifyIcon } from '@vben-core/icons';
 import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
 
 import WechatDirectChannelMerchantBasicInfo from './WechatDirectChannelMerchantBasicInfo.vue';
+import WechatDirectKeyConfigEdit from './WechatDirectKeyConfigEdit.vue';
 
 defineOptions({ name: 'WechatDirectMchManage' });
 
@@ -15,8 +16,9 @@ const mchNo = ref('');
 const channelMchNo = ref('');
 const channelMerchant = ref<ChannelMerchantResult>({});
 const basicInfoRef = ref<InstanceType<typeof WechatDirectChannelMerchantBasicInfo>>();
+const keyConfigRef = ref<InstanceType<typeof WechatDirectKeyConfigEdit>>();
 
-/** 功能卡片配置（直连通道商户：仅基本信息） */
+/** 功能卡片配置（直连通道商户：基本信息 + 密钥配置） */
 const functionCards = computed(() => [
   {
     // 国际化：基础管理
@@ -29,6 +31,12 @@ const functionCards = computed(() => [
         title: $t('payment.merchant.channelMerchant.cardBasicInfo'),
         icon: 'ant-design:info-circle-outlined',
         description: $t('payment.merchant.channelMerchant.cardBasicInfoDesc'),
+      },
+      {
+        key: 'keyConfig',
+        title: $t('payment.channel.wechatManage.cardDirectKeyConfig'),
+        icon: 'ant-design:key-outlined',
+        description: $t('payment.channel.wechatManage.cardDirectKeyConfigDesc'),
       },
     ],
   },
@@ -60,6 +68,9 @@ function init(no: string, mchChannelNo: string, summary: ChannelMerchantResult) 
 function handleCardClick(card: { key: string }) {
   if (card.key === 'basicInfo') {
     basicInfoRef.value?.open();
+  }
+  if (card.key === 'keyConfig') {
+    keyConfigRef.value?.init();
   }
 }
 
@@ -106,6 +117,11 @@ defineExpose({ init });
       ref="basicInfoRef"
       :channel-mch-no="channelMchNo"
       :channel-merchant="channelMerchant"
+    />
+
+    <WechatDirectKeyConfigEdit
+      ref="keyConfigRef"
+      :channel-mch-no="channelMchNo"
     />
   </div>
 </template>

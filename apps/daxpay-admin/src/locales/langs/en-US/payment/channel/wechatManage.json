@@ -41,6 +41,9 @@
   "appSecretTooltipMobileApp": "Mobile app AppSecret for OAuth",
   "authCallbackUrl": "Auth Callback URL",
   "authCallbackUrlPlaceholder": "Enter auth callback URL",
+  "directKeyConfigTitle": "Direct Key Config",
+  "cardDirectKeyConfig": "Direct Key Config",
+  "cardDirectKeyConfigDesc": "Configure direct merchant APIv3 key, public key and certificates",
   "validation": {
     "appSecret": "App secret is required",
     "authCallbackUrl": "Auth callback URL is required"
