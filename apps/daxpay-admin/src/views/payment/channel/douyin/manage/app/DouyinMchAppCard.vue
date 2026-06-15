@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-  import type { AlipayMchApp } from '#/api/payment/channel/alipay/mch-app.api';
-
-  import { computed } from 'vue';
+  import type { DouyinMchApp } from '#/api/payment/channel/douyin/mch-app.api';
 
   import { $t } from '@vben/locales';
 
@@ -11,24 +9,15 @@
   import { usePermission } from '#/hooks/usePermission';
   import { getProviderSvgUrl } from '#/views/payment/shared/payProviderDisplay';
 
-  // 支付宝品牌色值
-  const alipayColor = '#1677ff';
-  const alipaySvgUrl = getProviderSvgUrl('alipay');
+  import { computed } from 'vue';
+
+  // 抖音品牌色值
+  const douyinColor = '#000000';
+  const douyinSvgUrl = getProviderSvgUrl('douyin');
 
   const props = defineProps<{
-    record: AlipayMchApp;
+    record: DouyinMchApp;
   }>();
-
-  /** 应用类型展示文案 */
-  const appTypeLabel = computed(() => {
-    const typeKeyMap: Record<string, string> = {
-      mini_program: 'payment.channel.alipayMchApp.appTypeMiniProgram',
-      mobile_app: 'payment.channel.alipayMchApp.appTypeMobileApp',
-      web_app: 'payment.channel.alipayMchApp.appTypeWebApp',
-    };
-    const key = typeKeyMap[props.record.appType || ''];
-    return key ? $t(key) : props.record.appType || '-';
-  });
 
   const emit = defineEmits<{
     edit: [];
@@ -36,30 +25,37 @@
   }>();
 
   const { hasPermission } = usePermission();
+
+  /** 应用类型展示文案 */
+  const appTypeLabel = computed(() => {
+    const typeKeyMap: Record<string, string> = {
+      mini_program: 'payment.channel.douyinMchApp.appTypeMiniProgram',
+      mobile_app: 'payment.channel.douyinMchApp.appTypeMobileApp',
+      web_app: 'payment.channel.douyinMchApp.appTypeWebApp',
+    };
+    const key = typeKeyMap[props.record.appType || ''];
+    return key ? $t(key) : props.record.appType || '-';
+  });
 </script>
 
 <template>
-  <div
-    class="alipay-mch-app-card group flex h-full min-h-[128px] flex-col rounded-xl border bg-card shadow-sm"
-  >
+  <div class="douyin-mch-app-card group flex h-full min-h-[128px] flex-col rounded-xl border bg-card shadow-sm">
     <div class="card-body flex flex-1 items-center gap-3 px-4 py-4">
       <div
         class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg"
-        :style="{ backgroundColor: `${alipayColor}1a` }"
+        :style="{ backgroundColor: `${douyinColor}1a` }"
       >
-        <img v-if="alipaySvgUrl" :src="alipaySvgUrl" class="w-6 h-6" alt="alipay" />
+        <img v-if="douyinSvgUrl" :src="douyinSvgUrl" class="w-6 h-6" alt="douyin" />
       </div>
       <div class="min-w-0 flex-1">
-        <div class="flex items-center gap-2">
-          <span class="truncate text-base font-semibold leading-snug text-foreground">
-            {{ record.appName || '-' }}
-          </span>
+        <div class="truncate text-base font-semibold leading-snug text-foreground">
+          {{ record.appName || '-' }}
         </div>
-        <div class="mt-1.5 truncate text-xs text-muted-foreground">
-          {{ $t('payment.channel.alipayMchApp.aliAppIdPrefix', { appId: record.aliAppId || '-' }) }}
+        <div class="mt-1 truncate text-xs text-muted-foreground">
+          {{ $t('payment.channel.douyinMchApp.appIdPrefix', { appId: record.douyinAppId || '-' }) }}
         </div>
         <div class="mt-0.5 truncate text-xs text-muted-foreground">
-          {{ $t('payment.channel.alipayMchApp.appTypePrefix', { type: appTypeLabel }) }}
+          {{ $t('payment.channel.douyinMchApp.appTypePrefix', { type: appTypeLabel }) }}
         </div>
       </div>
     </div>
@@ -68,7 +64,7 @@
       <div class="flex items-center">
         <a-tooltip
           v-if="hasPermission(PermCodes.Payment.ChannelMerchant.EDIT)"
-          :title="$t('payment.channel.alipayMchApp.edit')"
+          :title="$t('payment.channel.douyinMchApp.edit')"
         >
           <a-button
             type="text"
@@ -82,8 +78,8 @@
           </a-button>
         </a-tooltip>
         <a-tooltip
-          v-if="hasPermission(PermCodes.Payment.ChannelMerchant.EDIT)"
-          :title="$t('payment.channel.alipayMchApp.actionMore')"
+          v-if="hasPermission(PermCodes.Payment.ChannelMerchant.VIEW)"
+          :title="$t('payment.channel.douyinMchApp.actionMore')"
         >
           <a-button
             type="text"
@@ -102,14 +98,14 @@
 </template>
 
 <style scoped>
-  .alipay-mch-app-card {
+  .douyin-mch-app-card {
     transition:
       transform 0.25s ease,
       box-shadow 0.25s ease,
       border-color 0.25s ease;
   }
 
-  .alipay-mch-app-card:hover {
+  .douyin-mch-app-card:hover {
     border-color: hsl(var(--primary) / 0.4);
     box-shadow: 0 8px 24px rgb(0 0 0 / 0.12);
     transform: translateY(-4px);

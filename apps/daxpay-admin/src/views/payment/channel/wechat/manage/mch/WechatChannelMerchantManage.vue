@@ -27,7 +27,7 @@
     {
       // 国际化：基础管理
       group: $t('payment.merchant.channelMerchant.groupBasic'),
-      color: 'green',
+      color: 'blue',
       cards: [
         {
           key: 'basicInfo',
@@ -41,13 +41,13 @@
     {
       // 国际化：应用管理
       group: $t('payment.merchant.channelMerchant.groupApp'),
-      color: 'blue',
+      color: 'green',
       cards: [
         {
           key: 'app',
           // 国际化：应用管理
           title: $t('payment.merchant.channelMerchant.cardApp'),
-          icon: 'ant-design:mobile-outlined',
+          icon: 'ant-design:appstore-outlined',
           description: $t('payment.merchant.channelMerchant.cardAppDesc'),
           route: '/payment/merchant/channel-merchant/wechat-app-manage',
         },
@@ -57,10 +57,10 @@
 
   function getGroupColorClass(color: string) {
     const map: Record<string, string> = {
-      blue: 'bg-blue-500 dark:bg-blue-400',
-      green: 'bg-emerald-500 dark:bg-emerald-400',
+      blue: 'bg-blue-500',
+      green: 'bg-emerald-500',
     };
-    return map[color] || 'bg-gray-500 dark:bg-gray-400';
+    return map[color] || 'bg-gray-500';
   }
 
   function getIconBgClass(color: string) {

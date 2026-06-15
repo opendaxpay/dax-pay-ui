@@ -6,8 +6,8 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import {
-    type WechatDirectKeyConfig,
     WechatDirectChannelMerchantApi,
+    type WechatDirectKeyConfig,
   } from '#/api/payment/channel/wechat/channel-merchant.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { useFormEdit } from '#/hooks/useFormEdit';

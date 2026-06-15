@@ -6,38 +6,65 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  defineOptions({ name: 'AlipayIsvManage' });
+  import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
+
+  import DouyinDirectChannelMerchantBasicInfo from './DouyinDirectChannelMerchantBasicInfo.vue';
+  import DouyinDirectKeyConfigEdit from './DouyinDirectKeyConfigEdit.vue';
+
+  defineOptions({ name: 'DouyinDirectMchManage' });
 
   const router = useRouter();
-  const loading = ref(false);
-  // 是否沙箱环境
-  const sandbox = ref(false);
 
-  /**
-   * 功能卡片配置
-   */
+  const loading = ref(false);
+  const mchNo = ref('');
+  const channelMchNo = ref('');
+  const channelMerchant = ref<ChannelMerchantResult>({});
+  const basicInfoRef = ref<InstanceType<typeof DouyinDirectChannelMerchantBasicInfo>>();
+  const keyConfigRef = ref<InstanceType<typeof DouyinDirectKeyConfigEdit>>();
+
+  /** 功能卡片配置（按组分组的卡片布局） */
   const functionCards = computed(() => [
     {
+      // 国际化：基础管理
+      group: $t('payment.merchant.channelMerchant.groupBasic'),
+      color: 'blue',
+      cards: [
+        {
+          key: 'basicInfo',
+          // 国际化：基本信息
+          title: $t('payment.merchant.channelMerchant.cardBasicInfo'),
+          icon: 'ant-design:info-circle-outlined',
+          // 国际化：编辑通道商户基本信息
+          description: $t('payment.merchant.channelMerchant.cardBasicInfoDesc'),
+        },
+        {
+          key: 'keyConfig',
+          // 国际化：密钥配置
+          title: $t('payment.channel.douyinManage.cardDirectKeyConfig'),
+          icon: 'ant-design:key-outlined',
+          // 国际化：配置通道商户密钥
+          description: $t('payment.channel.douyinManage.cardDirectKeyConfigDesc'),
+        },
+      ],
+    },
+    {
       // 国际化：应用管理
-      group: $t('payment.channel.alipayManage.groupApp'),
+      group: $t('payment.merchant.channelMerchant.groupApp'),
       color: 'green',
       cards: [
         {
-          key: 'isvApp',
-          // 国际化：服务商应用
-          title: $t('payment.channel.alipayManage.cardIsvApp'),
+          key: 'appManage',
+          // 国际化：通道商户应用
+          title: $t('payment.merchant.channelMerchant.cardApp'),
           icon: 'ant-design:appstore-outlined',
-          // 国际化：查看支付宝开放平台应用列表
-          description: $t('payment.channel.alipayManage.cardIsvAppDesc'),
-          route: '/payment/config/product/app-manage',
+          // 国际化：管理通道商户应用
+          description: $t('payment.merchant.channelMerchant.cardAppDesc'),
         },
       ],
     },
   ]);
 
-  /**
-   * 获取组主题颜色
-   */
+  /** 获取组主题颜色（底条） */
   function getGroupColorClass(color: string) {
     const map: Record<string, string> = {
       blue: 'bg-blue-500',
@@ -47,9 +74,7 @@
     return map[color] || 'bg-gray-500';
   }
 
-  /**
-   * 获取图标背景颜色
-   */
+  /** 获取图标背景颜色 */
   function getIconBgClass(color: string) {
     const map: Record<string, string> = {
       blue: 'bg-primary/10 text-primary',
@@ -59,19 +84,31 @@
     return map[color] || 'bg-muted text-muted-foreground';
   }
 
-  /**
-   * 初始化（由分发页调用）
-   */
-  function init(isSandbox: boolean) {
-    sandbox.value = isSandbox;
+  function init(no: string, mchChannelNo: string, summary: ChannelMerchantResult) {
+    mchNo.value = no;
+    channelMchNo.value = mchChannelNo;
+    channelMerchant.value = summary;
   }
 
-  /**
-   * 卡片点击跳转
-   */
-  function handleCardClick(card: { key: string; route?: string }) {
-    if (card.route) {
-      router.push({ path: card.route });
+  function handleCardClick(card: { key: string }) {
+    if (card.key === 'basicInfo') {
+      basicInfoRef.value?.open();
+    }
+    if (card.key === 'keyConfig') {
+      keyConfigRef.value?.init();
+    }
+    if (card.key === 'appManage') {
+      const id = channelMerchant.value.id;
+      router.push({
+        path: '/payment/merchant/channel-merchant/douyin-app-manage',
+        query: {
+          mchNo: mchNo.value,
+          channelMchNo: channelMchNo.value,
+          channelMerchantId: id,
+          product: 'douyin_pay',
+          channelMerchantName: channelMerchant.value.channelMerchantName || '',
+        },
+      });
     }
   }
 
@@ -97,20 +134,17 @@
               @click="handleCardClick(card)"
             >
               <div class="flex flex-col items-center text-center">
-                <!-- 图标区域 -->
                 <div
                   class="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:shadow-md"
                   :class="getIconBgClass(group.color)"
                 >
                   <IconifyIcon :icon="card.icon" class="h-7 w-7" />
                 </div>
-
-                <!-- 标题 -->
                 <div
                   class="mb-1.5 text-base font-bold text-foreground group-hover:text-primary transition-colors duration-300"
-                >{{ card.title }}</div>
-
-                <!-- 描述 -->
+                >
+                  {{ card.title }}
+                </div>
                 <a-tooltip :title="card.description" placement="bottom">
                   <div
                     class="card-desc line-clamp-1 text-xs leading-relaxed text-muted-foreground group-hover:text-foreground transition-colors duration-300"
@@ -119,8 +153,6 @@
                   </div>
                 </a-tooltip>
               </div>
-
-              <!-- 底部交互色条 -->
               <div
                 class="absolute bottom-0 left-0 h-1.5 w-0 transition-all duration-300 group-hover:w-full"
                 :class="getGroupColorClass(group.color)"
@@ -130,6 +162,14 @@
         </div>
       </div>
     </a-spin>
+
+    <DouyinDirectChannelMerchantBasicInfo
+      ref="basicInfoRef"
+      :channel-mch-no="channelMchNo"
+      :channel-merchant="channelMerchant"
+    />
+
+    <DouyinDirectKeyConfigEdit ref="keyConfigRef" :channel-mch-no="channelMchNo" />
   </div>
 </template>
 

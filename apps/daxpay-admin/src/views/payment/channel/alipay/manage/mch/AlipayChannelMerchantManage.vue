@@ -45,10 +45,10 @@ const functionCards = computed(() => [
 
 function getGroupColorClass(color: string) {
   const map: Record<string, string> = {
-    blue: 'bg-blue-500 dark:bg-blue-400',
-    green: 'bg-emerald-500 dark:bg-emerald-400',
+    blue: 'bg-blue-500',
+    green: 'bg-emerald-500',
   };
-  return map[color] || 'bg-gray-500 dark:bg-gray-400';
+  return map[color] || 'bg-gray-500';
 }
 
 function getIconBgClass(color: string) {
@@ -82,8 +82,12 @@ defineExpose({ init });
 </script>
 
 <template>
-  <div class="py-4">
+  <div class="space-y-12 py-4">
     <div v-for="group in functionCards" :key="group.group">
+      <div class="mb-6 flex items-center gap-3 px-2">
+        <div class="h-6 w-1.5 rounded-full shadow-sm" :class="getGroupColorClass(group.color)"></div>
+        <span class="text-xl font-extrabold tracking-tight text-foreground">{{ group.group }}</span>
+      </div>
       <div class="card-grid">
         <a-card
           v-for="card in group.cards"

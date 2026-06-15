@@ -20,27 +20,19 @@
     }
     try {
       return new URL(`/src/assets/channel/${fileName}.svg`, import.meta.url).href;
-    }
-    catch {
+    } catch {
       return undefined;
     }
   });
 </script>
 
 <template>
-  <span class="channel-logo" :style="{ width: size + 'px', height: size + 'px' }">
-    <img
-      v-if="logoSrc"
-      :src="logoSrc"
-      :width="size"
-      :height="size"
-      :alt="channel"
-      class="logo-img"
-    />
+  <span class="channel-logo" :style="{ width: `${size}px`, height: `${size}px` }">
+    <img v-if="logoSrc" :src="logoSrc" :width="size" :height="size" :alt="channel" class="logo-img" />
     <span
       v-else
       class="fallback-icon"
-      :style="{ width: size + 'px', height: size + 'px', fontSize: Math.max(size * 0.5, 14) + 'px' }"
+      :style="{ width: `${size}px`, height: `${size}px`, fontSize: `${Math.max(size! * 0.5, 14)}px` }"
     >
       💳
     </span>

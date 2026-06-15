@@ -25,7 +25,7 @@
     {
       // 国际化：基础管理
       group: $t('payment.merchant.channelMerchant.groupBasic'),
-      color: 'green',
+      color: 'blue',
       cards: [
         {
           key: 'basicInfo',
@@ -39,7 +39,7 @@
     {
       // 国际化：应用管理
       group: $t('payment.channel.alipayMchManage.groupApp'),
-      color: 'blue',
+      color: 'green',
       cards: [
         {
           key: 'mchApp',
@@ -56,18 +56,18 @@
 
   function getGroupColorClass(color: string) {
     const map: Record<string, string> = {
-      blue: 'bg-blue-500 dark:bg-blue-400',
-      green: 'bg-emerald-500 dark:bg-emerald-400',
-      purple: 'bg-purple-500 dark:bg-purple-400',
+      blue: 'bg-blue-500',
+      green: 'bg-emerald-500',
+      purple: 'bg-purple-500',
     };
-    return map[color] || 'bg-gray-500 dark:bg-gray-400';
+    return map[color] || 'bg-gray-500';
   }
 
   function getIconBgClass(color: string) {
     const map: Record<string, string> = {
       blue: 'bg-primary/10 text-primary',
       green: 'bg-success/10 text-success',
-      purple: 'bg-purple-500/10 dark:bg-purple-400/20 text-purple-500 dark:text-purple-400',
+      purple: 'bg-purple-500/10 text-purple-500',
     };
     return map[color] || 'bg-muted text-muted-foreground';
   }

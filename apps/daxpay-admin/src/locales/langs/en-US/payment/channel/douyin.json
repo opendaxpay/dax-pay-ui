@@ -8,6 +8,15 @@
   "validation": {
     "douyinMchIdRequired": "Douyin merchant ID is required",
     "dyAppIdRequired": "Douyin app ID is required",
-    "appSecretRequired": "App secret is required"
-  }
+    "appSecretRequired": "App secret is required",
+    "merchantPrivateKeyRequired": "Merchant private key is required",
+    "merchantSerialNumberRequired": "Merchant cert serial number is required",
+    "encryptKeyRequired": "Encryption key is required"
+  },
+  "merchantPrivateKey": "Merchant Private Key",
+  "merchantPrivateKeyPlaceholder": "Enter merchant private key",
+  "merchantSerialNumber": "Merchant Cert Serial Number",
+  "merchantSerialNumberPlaceholder": "Enter merchant cert serial number",
+  "encryptKey": "Encryption Key",
+  "encryptKeyPlaceholder": "Enter encryption key"
 }

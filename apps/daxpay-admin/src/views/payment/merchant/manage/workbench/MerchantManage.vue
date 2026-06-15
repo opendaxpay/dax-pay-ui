@@ -82,7 +82,7 @@
           key: 'app',
           // 应用管理
           title: $t('payment.merchant.workbench.workbench.cardApp'),
-          icon: 'ant-design:mobile-outlined',
+          icon: 'ant-design:appstore-outlined',
           // 商户应用创建与管理
           description: $t('payment.merchant.workbench.workbench.cardAppDesc'),
           route: '/payment/merchant/app',
@@ -151,7 +151,7 @@
     if (!routeContext.isValid.value) {
       return;
     }
-    mchNo.value = routeContext.query.value.mchNo;
+    mchNo.value = routeContext.query.value.mchNo!;
     loadMerchantInfo();
   });
 

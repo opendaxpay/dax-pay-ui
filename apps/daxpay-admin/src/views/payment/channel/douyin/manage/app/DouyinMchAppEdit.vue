@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-  import { computed, ref } from 'vue';
+  import { ref, computed } from 'vue';
 
   import { $t } from '@vben/locales';
 
-  import { AlipayMchAppApi, type AlipayMchApp } from '#/api/payment/channel/alipay/mch-app.api';
-  import { FormEditType } from '#/enums/formEditType';
+  import { DouyinMchAppApi, type DouyinMchApp } from '#/api/payment/channel/douyin/mch-app.api';
   import { useFormEdit } from '#/hooks/useFormEdit';
+  import { FormEditType } from '#/enums/formEditType';
   import { useMessage } from '#/hooks/useMessage';
   import { useValidate } from '#/hooks/useValidate';
 
@@ -20,49 +20,48 @@
 
   const { visible, confirmLoading, title, initFormEditType, handleCancel, formEditType } = useFormEdit();
 
-  /** 应用类型选项 */
-  const appTypeOptions = computed(() => [
-    { label: $t('payment.channel.alipayMchApp.appTypeMiniProgram'), value: 'mini_program' },
-    { label: $t('payment.channel.alipayMchApp.appTypeMobileApp'), value: 'mobile_app' },
-    { label: $t('payment.channel.alipayMchApp.appTypeWebApp'), value: 'web_app' },
-  ]);
-
-  // 表单数据
-  const formState = ref<AlipayMchApp>({
+  const formState = ref<DouyinMchApp>({
     appName: '',
-    aliAppId: '',
+    douyinAppId: '',
     appType: 'mini_program',
   });
 
-  /** 校验同一通道商户下应用 ID 不可重复 */
-  async function validateAliAppId() {
-    const { aliAppId, id } = formState.value;
+  const isEdit = computed(() => formEditType.value === FormEditType.Edit);
+
+  /** 应用类型选项 */
+  const appTypeOptions = computed(() => [
+    { label: $t('payment.channel.douyinMchApp.appTypeMiniProgram'), value: 'mini_program' },
+    { label: $t('payment.channel.douyinMchApp.appTypeMobileApp'), value: 'mobile_app' },
+    { label: $t('payment.channel.douyinMchApp.appTypeWebApp'), value: 'web_app' },
+  ]);
+
+  async function validateDouyinAppId() {
+    const { douyinAppId, id } = formState.value;
     return existsByServer(
-      aliAppId,
+      douyinAppId,
       id,
       formEditType.value,
-      (value) => AlipayMchAppApi.existsAliAppId(mchNo.value, channelMchNo.value, value),
-      (value, excludeId) =>
-        AlipayMchAppApi.existsAliAppIdNotId(mchNo.value, channelMchNo.value, value, excludeId),
-      $t('payment.channel.alipayMchApp.aliAppIdDuplicate'),
+      (value) => DouyinMchAppApi.existsDouyinAppId(mchNo.value, channelMchNo.value, value),
+      (value, excludeId) => DouyinMchAppApi.existsDouyinAppIdNotId(mchNo.value, channelMchNo.value, value, excludeId),
+      $t('payment.channel.douyinMchApp.douyinAppIdDuplicate'),
     );
   }
 
-  const validateAliAppIdDebounced = useDebounceValidator(formRef, 'aliAppId', validateAliAppId, 500);
+  const validateDouyinAppIdDebounced = useDebounceValidator(formRef, 'douyinAppId', validateDouyinAppId, 500);
 
-  const formRules = {
-    appName: [{ required: true, message: $t('payment.channel.alipayMchApp.appNameRequired') }],
-    appType: [{ required: true, message: $t('payment.channel.alipayMchApp.appTypeRequired') }],
-    aliAppId: [
-      { required: true, message: $t('payment.channel.alipayMchApp.aliAppIdRequired') },
-      { validator: validateAliAppIdDebounced },
+  const formRules = computed(() => ({
+    appName: [{ required: true, message: $t('payment.channel.douyinMchApp.appNameRequired') }],
+    appType: isEdit.value ? [] : [{ required: true, message: $t('payment.channel.douyinMchApp.appTypeRequired') }],
+    douyinAppId: [
+      { required: true, message: $t('payment.channel.douyinMchApp.douyinAppIdRequired') },
+      { validator: validateDouyinAppIdDebounced },
     ],
-  };
+  }));
 
   function resetForm() {
     formState.value = {
       appName: '',
-      aliAppId: '',
+      douyinAppId: '',
       appType: 'mini_program',
     };
     formRef.value?.resetFields();
@@ -75,19 +74,19 @@
     resetForm();
   }
 
-  function showEdit(no: string, mchChannelNo: string, record: AlipayMchApp) {
+  function showEdit(no: string, mchChannelNo: string, record: DouyinMchApp) {
     mchNo.value = no;
     channelMchNo.value = mchChannelNo;
     initFormEditType(FormEditType.Edit);
     resetForm();
     confirmLoading.value = true;
-    AlipayMchAppApi.findById(record.id!)
+    DouyinMchAppApi.findById(record.id!)
       .then(({ data }) => {
         if (data) {
           formState.value = {
             id: data.id,
             appName: data.appName,
-            aliAppId: data.aliAppId,
+            douyinAppId: data.douyinAppId,
             appType: data.appType || 'mini_program',
           };
         }
@@ -99,18 +98,18 @@
 
   async function handleOk() {
     await formRef.value?.validate();
-    await validateAliAppId();
+    await validateDouyinAppId();
     confirmLoading.value = true;
-    const payload: AlipayMchApp = {
+    const payload: DouyinMchApp = {
       ...formState.value,
       mchNo: mchNo.value,
       channelMchNo: channelMchNo.value,
     };
     const request =
-      formEditType.value === FormEditType.Edit ? AlipayMchAppApi.update(payload) : AlipayMchAppApi.add(payload);
+      formEditType.value === FormEditType.Edit ? DouyinMchAppApi.update(payload) : DouyinMchAppApi.add(payload);
     request
       .then(() => {
-        message.success($t('payment.channel.alipayMchApp.saveSuccess'));
+        message.success($t('payment.channel.douyinMchApp.saveSuccess'));
         handleCancel();
         emit('ok');
       })
@@ -126,7 +125,7 @@
   <a-modal
     v-model:open="visible"
     :title="title"
-    :width="480"
+    :width="520"
     :confirm-loading="confirmLoading"
     :destroy-on-hidden="true"
     :mask-closable="false"
@@ -142,23 +141,24 @@
         :wrapper-col="{ span: 16 }"
         class="form-compact"
       >
-        <a-form-item :label="$t('payment.channel.alipayMchApp.appName')" name="appName">
+        <a-form-item :label="$t('payment.channel.douyinMchApp.appName')" name="appName">
           <a-input
             v-model:value="formState.appName"
-            :placeholder="$t('payment.channel.alipayMchApp.appNamePlaceholder')"
+            :placeholder="$t('payment.channel.douyinMchApp.appNamePlaceholder')"
           />
         </a-form-item>
-        <a-form-item :label="$t('payment.channel.alipayMchApp.appType')" name="appType">
+        <a-form-item :label="$t('payment.channel.douyinMchApp.appType')" name="appType">
           <a-select
             v-model:value="formState.appType"
             :options="appTypeOptions"
-            :placeholder="$t('payment.channel.alipayMchApp.appTypeRequired')"
+            :disabled="isEdit"
+            :placeholder="$t('payment.channel.douyinMchApp.appTypeRequired')"
           />
         </a-form-item>
-        <a-form-item :label="$t('payment.channel.alipayMchApp.aliAppId')" name="aliAppId">
+        <a-form-item :label="$t('payment.channel.douyinMchApp.douyinAppId')" name="douyinAppId">
           <a-input
-            v-model:value="formState.aliAppId"
-            :placeholder="$t('payment.channel.alipayMchApp.aliAppIdPlaceholder')"
+            v-model:value="formState.douyinAppId"
+            :placeholder="$t('payment.channel.douyinMchApp.douyinAppIdPlaceholder')"
           />
         </a-form-item>
       </a-form>

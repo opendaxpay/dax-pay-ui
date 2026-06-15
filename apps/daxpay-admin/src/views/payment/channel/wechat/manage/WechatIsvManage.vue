@@ -18,7 +18,7 @@
     {
       // 国际化：配置管理
       group: $t('payment.channel.wechatManage.groupConfig'),
-      color: 'green',
+      color: 'blue',
       cards: [
         {
           key: 'mchKey',
@@ -27,6 +27,13 @@
           icon: 'ant-design:key-outlined',
           description: $t('payment.channel.wechatManage.cardMchKeyDesc'),
         },
+      ],
+    },
+    {
+      // 国际化：应用管理
+      group: $t('payment.channel.wechatManage.groupApp'),
+      color: 'green',
+      cards: [
         {
           key: 'isvApp',
           // 国际化：微信服务商应用
@@ -49,10 +56,10 @@
 
   function getGroupColorClass(color: string) {
     const map: Record<string, string> = {
-      green: 'bg-emerald-500 dark:bg-emerald-400',
-      blue: 'bg-blue-500 dark:bg-blue-400',
+      green: 'bg-emerald-500',
+      blue: 'bg-blue-500',
     };
-    return map[color] || 'bg-gray-500 dark:bg-gray-400';
+    return map[color] || 'bg-gray-500';
   }
 
   /** 初始化（由分发页调用，平台为唯一服务商，无需服务商号） */
@@ -73,8 +80,12 @@
 </script>
 
 <template>
-  <div class="py-4">
+  <div class="space-y-12 py-4">
     <div v-for="group in functionCards" :key="group.group">
+      <div class="mb-6 flex items-center gap-3 px-2">
+        <div class="h-6 w-1.5 rounded-full shadow-sm" :class="getGroupColorClass(group.color)"></div>
+        <span class="text-xl font-extrabold tracking-tight text-foreground">{{ group.group }}</span>
+      </div>
       <div class="card-grid">
         <a-card
           v-for="card in group.cards"

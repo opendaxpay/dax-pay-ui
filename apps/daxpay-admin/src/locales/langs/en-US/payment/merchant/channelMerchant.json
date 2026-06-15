@@ -14,6 +14,7 @@
   "manageTitleWechatDirect": "WeChat Direct Channel Merchant",
   "manageTitleDefault": "Channel Merchant Management",
   "groupBasic": "Basic Management",
+  "groupConfig": "Configuration",
   "groupApp": "App Management",
   "cardBasicInfo": "Basic Info",
   "cardBasicInfoDesc": "View channel merchant basic configuration",

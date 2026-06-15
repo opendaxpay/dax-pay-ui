@@ -80,6 +80,8 @@ export interface AlipayMchApp extends MchEntity {
   appName?: string;
   /** 支付宝应用 ID */
   aliAppId?: string;
+  /** 应用类型: mini_program-小程序 mobile_app-移动应用 web_app-网站应用 */
+  appType?: string;
 }
 
 /** 支付宝通道商户应用密钥配置 */

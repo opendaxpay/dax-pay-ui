@@ -1,0 +1,33 @@
+{
+  "appManageTitle": "Douyin Channel Merchant Apps",
+  "emptyAppList": "No apps",
+  "addCard": "Add App",
+  "appIdPrefix": "Douyin APPID: {appId}",
+  "edit": "Edit",
+  "actionMore": "Manage",
+  "appName": "App Name",
+  "appNameRequired": "Please enter app name",
+  "appNamePlaceholder": "Enter app name",
+  "douyinAppId": "Douyin App ID",
+  "douyinAppIdRequired": "Please enter Douyin app ID",
+  "douyinAppIdPlaceholder": "Enter Douyin app ID",
+  "douyinAppIdDuplicate": "Douyin app ID already exists under this channel merchant",
+  "saveSuccess": "Saved successfully",
+  "detailTitle": "{name} Details",
+  "tabBasicInfo": "Basic Info",
+  "tabAuthConfig": "Auth Config",
+  "delete": "Delete App",
+  "deleteSuccess": "Deleted successfully",
+  "authConfigTitle": "Auth Config",
+  "authCallbackUrl": "Auth Callback URL",
+  "authCallbackUrlPlaceholder": "Enter auth callback URL",
+  "validation": {
+    "authCallbackUrl": "Auth callback URL is required"
+  },
+  "appType": "App Type",
+  "appTypeRequired": "Please select app type",
+  "appTypeMiniProgram": "Mini Program",
+  "appTypeMobileApp": "Mobile App",
+  "appTypeWebApp": "Web App",
+  "appTypePrefix": "Type: {type}"
+}

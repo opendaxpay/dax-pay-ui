@@ -1,112 +1,97 @@
 <script lang="ts" setup>
-import { computed, nextTick, ref } from 'vue';
+  import { computed, nextTick, ref } from 'vue';
 
-import { $t } from '@vben/locales';
+  import { $t } from '@vben/locales';
 
-import { IconifyIcon } from '@vben-core/icons';
+  import { IconifyIcon } from '@vben-core/icons';
 
-import { ChannelMerchantDouyinApi } from '#/api/payment/channel/douyin/channel-merchant.api';
-import ChannelLogo from '#/components/channel/ChannelLogo.vue';
-import { channelI18nMap, channelNameMap, productI18nMap, productNameMap } from '#/enums/payment';
-import { useMessage } from '#/hooks/useMessage';
+  import { DouyinDirectChannelMerchantApi } from '#/api/payment/channel/douyin/channel-merchant.api';
+  import ChannelLogo from '#/components/channel/ChannelLogo.vue';
+  import { productI18nMap, productNameMap } from '#/enums/payment';
+  import { useMessage } from '#/hooks/useMessage';
 
-defineOptions({ name: 'DouyinMchCreateConfig' });
+  defineOptions({ name: 'DouyinMchCreateConfig' });
 
-const emit = defineEmits<{
-  (e: 'prev'): void;
-  (e: 'close'): void;
-}>();
+  const emit = defineEmits<{
+    (e: 'prev'): void;
+    (e: 'close'): void;
+  }>();
 
-const { message } = useMessage();
+  const { message } = useMessage();
 
-const mchNo = ref('');
-const productCode = ref('');
-const channelCode = ref('');
-const formRef = ref();
-const form = ref({
-  channelMerchantName: '',
-  douyinMchId: '',
-  dyAppId: '',
-  appSecret: '',
-});
-
-const visible = ref(false);
-const createSuccess = ref(false);
-const submitLoading = ref(false);
-
-const channelDisplayName = computed(() => {
-  const channel = channelCode.value;
-  if (!channel) return '-';
-  const i18nKey = channelI18nMap[channel];
-  if (i18nKey) {
-    return $t(i18nKey);
-  }
-  return channelNameMap[channel] || channel;
-});
-
-/** 支付产品展示名称，区分服务商/直连等模式 */
-const productDisplayName = computed(() => {
-  const product = productCode.value;
-  if (!product) return '-';
-  const i18nKey = productI18nMap[product];
-  if (i18nKey) {
-    return $t(i18nKey);
-  }
-  return productNameMap[product] || product;
-});
-
-const rules = computed(() => ({
-  channelMerchantName: [{ required: true, message: $t('payment.merchant.channelMerchant.channelMerchantNameRequired') }],
-  douyinMchId: [{ required: true, message: $t('payment.channel.douyin.validation.douyinMchIdRequired') }],
-  dyAppId: [{ required: true, message: $t('payment.channel.douyin.validation.dyAppIdRequired') }],
-  appSecret: [{ required: true, message: $t('payment.channel.douyin.validation.appSecretRequired') }],
-}));
-
-function init(no: string, product: string, channel: string) {
-  mchNo.value = no;
-  productCode.value = product;
-  channelCode.value = channel;
-  visible.value = true;
-  createSuccess.value = false;
-  resetForm();
-}
-
-function handlePrev() {
-  emit('prev');
-}
-
-function handleSubmit() {
-  formRef.value?.validate().then(() => {
-    submitLoading.value = true;
-    ChannelMerchantDouyinApi.create({
-      mchNo: mchNo.value,
-      product: productCode.value,
-      channel: 'douyin_pay',
-      ...form.value,
-    })
-      .then(() => {
-        createSuccess.value = true;
-        message.success($t('payment.merchant.channelMerchant.createSuccess'));
-      })
-      .finally(() => {
-        submitLoading.value = false;
-      });
-  });
-}
-
-function resetForm() {
-  form.value = {
+  const mchNo = ref('');
+  const productCode = ref('');
+  const channelCode = ref('');
+  const formRef = ref();
+  const form = ref({
     channelMerchantName: '',
-    douyinMchId: '',
-    dyAppId: '',
-    appSecret: '',
-  };
-  nextTick(() => {
-    formRef.value?.resetFields();
+    dyMchId: '',
   });
-}
 
-defineExpose({ init });
+  const visible = ref(false);
+  const createSuccess = ref(false);
+  const submitLoading = ref(false);
+
+  const productDisplayName = computed(() => {
+    const product = productCode.value;
+    if (!product) return '-';
+    const i18nKey = productI18nMap[product];
+    if (i18nKey) {
+      return $t(i18nKey);
+    }
+    return productNameMap[product] || product;
+  });
+
+  const rules = computed(() => ({
+    channelMerchantName: [
+      { required: true, message: $t('payment.merchant.channelMerchant.channelMerchantNameRequired') },
+    ],
+    dyMchId: [{ required: true, message: $t('payment.channel.douyin.validation.douyinMchIdRequired') }],
+  }));
+
+  function init(no: string, product: string, channel: string) {
+    mchNo.value = no;
+    productCode.value = product;
+    channelCode.value = channel;
+    visible.value = true;
+    createSuccess.value = false;
+    resetForm();
+  }
+
+  function handlePrev() {
+    emit('prev');
+  }
+
+  function handleSubmit() {
+    formRef.value?.validate().then(() => {
+      submitLoading.value = true;
+      DouyinDirectChannelMerchantApi.create({
+        mchNo: mchNo.value,
+        product: productCode.value,
+        channelMerchantName: form.value.channelMerchantName,
+        dyMchId: form.value.dyMchId,
+      })
+        .then(() => {
+          createSuccess.value = true;
+          message.success($t('payment.merchant.channelMerchant.createSuccess'));
+        })
+        .finally(() => {
+          submitLoading.value = false;
+        });
+    });
+  }
+
+  function resetForm() {
+    form.value = {
+      channelMerchantName: '',
+      dyMchId: '',
+    };
+    nextTick(() => {
+      formRef.value?.resetFields();
+    });
+  }
+
+  defineExpose({ init });
 </script>
 
 <template>
@@ -120,37 +105,20 @@ defineExpose({ init });
         :wrapper-col="{ span: 16 }"
         :validate-trigger="['blur', 'change']"
       >
-        <!-- 国际化：支付产品 -->
         <a-form-item :label="$t('payment.merchant.channelMerchant.product')">
           <div class="flex items-center gap-2 h-8">
             <ChannelLogo v-if="channelCode" :channel="channelCode" :size="24" />
             <span class="text-foreground">{{ productDisplayName }}</span>
           </div>
         </a-form-item>
-        <!-- 国际化：商户名称 -->
         <a-form-item :label="$t('payment.merchant.channelMerchant.channelMerchantName')" name="channelMerchantName">
           <a-input
             v-model:value="form.channelMerchantName"
             :placeholder="$t('payment.merchant.channelMerchant.pleaseInputName')"
           />
         </a-form-item>
-        <!-- 国际化：抖音商户号 -->
-        <a-form-item :label="$t('payment.channel.douyin.douyinMchId')" name="douyinMchId">
-          <a-input
-            v-model:value="form.douyinMchId"
-            :placeholder="$t('payment.channel.douyin.douyinMchIdPlaceholder')"
-          />
-        </a-form-item>
-        <!-- 国际化：应用 AppId -->
-        <a-form-item :label="$t('payment.channel.douyin.dyAppId')" name="dyAppId">
-          <a-input v-model:value="form.dyAppId" :placeholder="$t('payment.channel.douyin.dyAppIdPlaceholder')" />
-        </a-form-item>
-        <!-- 国际化：应用密钥 -->
-        <a-form-item :label="$t('payment.channel.douyin.appSecret')" name="appSecret">
-          <a-input-password
-            v-model:value="form.appSecret"
-            :placeholder="$t('payment.channel.douyin.appSecretPlaceholder')"
-          />
+        <a-form-item :label="$t('payment.channel.douyin.douyinMchId')" name="dyMchId">
+          <a-input v-model:value="form.dyMchId" :placeholder="$t('payment.channel.douyin.douyinMchIdPlaceholder')" />
         </a-form-item>
 
         <div class="flex justify-center gap-4 mt-8 pt-6 border-t border-border">

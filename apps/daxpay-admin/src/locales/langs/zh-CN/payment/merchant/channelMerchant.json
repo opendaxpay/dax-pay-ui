@@ -14,6 +14,7 @@
   "manageTitleWechatDirect": "微信直连通道商户管理",
   "manageTitleDefault": "通道商户管理",
   "groupBasic": "基础管理",
+  "groupConfig": "配置管理",
   "groupApp": "应用管理",
   "cardBasicInfo": "基本信息",
   "cardBasicInfoDesc": "查看通道商户基础配置信息",

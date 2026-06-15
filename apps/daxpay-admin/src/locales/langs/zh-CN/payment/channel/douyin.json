@@ -8,6 +8,15 @@
   "validation": {
     "douyinMchIdRequired": "请输入抖音商户号",
     "dyAppIdRequired": "请输入抖音应用 AppId",
-    "appSecretRequired": "请输入应用密钥"
-  }
+    "appSecretRequired": "请输入应用密钥",
+    "merchantPrivateKeyRequired": "请输入商户私钥",
+    "merchantSerialNumberRequired": "请输入商家公钥证书序列号",
+    "encryptKeyRequired": "请输入接口加密密钥"
+  },
+  "merchantPrivateKey": "商户私钥",
+  "merchantPrivateKeyPlaceholder": "请输入商户私钥",
+  "merchantSerialNumber": "商家公钥证书序列号",
+  "merchantSerialNumberPlaceholder": "请输入商家公钥证书序列号",
+  "encryptKey": "接口加密密钥",
+  "encryptKeyPlaceholder": "请输入接口加密密钥"
 }

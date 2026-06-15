@@ -1,6 +1,7 @@
 {
   "title": "WeChat ISV Management",
   "groupConfig": "Configuration",
+  "groupApp": "App Management",
   "cardMchKey": "Merchant Pay Keys",
   "cardMchKeyDesc": "Configure merchant ID, API certificates and payment keys",
   "cardIsvApp": "WeChat ISV Applications",

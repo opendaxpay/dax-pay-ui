@@ -1,0 +1,7 @@
+{
+  "manageTitle": "Douyin Direct Channel Merchant Management",
+  "cardDirectKeyConfig": "Key Config",
+  "cardDirectKeyConfigDesc": "Configure Douyin Pay merchant-level keys and certificates",
+  "directKeyConfigTitle": "Douyin Direct Key Config",
+  "keyConfigSection": "Merchant Key Config"
+}
