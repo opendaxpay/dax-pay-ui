@@ -3,13 +3,12 @@
 
   import { $t } from '@vben/locales';
 
-  import { IconifyIcon } from '@vben-core/icons';
-
   import { type LabelValue, PayRouteApi, type PayRouteSceneConfigItem } from '#/api/payment/route/pay-route.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
+  import { getProviderSvgUrl } from '#/views/payment/shared/payProviderDisplay';
   import { usePayProviderMethodDirectory } from '#/views/payment/shared/usePayProviderMethodDirectory';
   import { providerLabel } from '../shared/payRoute.labels';
 
@@ -321,7 +320,7 @@
   <div>
     <div v-for="card in directoryByProviderCards()" :key="card.code" class="vendor-card mb-4 rounded-xl border p-4">
       <div class="mb-3 flex items-center gap-2 font-medium">
-        <IconifyIcon :icon="card.icon" class="text-xl" :style="{ color: card.color }" />
+        <img :src="getProviderSvgUrl(card.code)" class="w-5 h-5" :alt="card.code" />
         {{ providerLabel(card.code) }}
       </div>
       <div

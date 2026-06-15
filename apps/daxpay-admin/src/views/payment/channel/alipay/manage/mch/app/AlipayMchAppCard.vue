@@ -7,12 +7,11 @@
 
   import { PermCodes } from '#/constants/perm-codes';
   import { usePermission } from '#/hooks/usePermission';
-  import { findPayProviderDisplay } from '#/views/payment/shared/payProviderDisplay';
+  import { getProviderSvgUrl } from '#/views/payment/shared/payProviderDisplay';
 
-  // 支付宝品牌图标与色值
-  const alipayDisplay = findPayProviderDisplay('alipay');
-  const alipayIcon = alipayDisplay?.icon ?? 'simple-icons:alipay';
-  const alipayColor = alipayDisplay?.color ?? '#1677ff';
+  // 支付宝品牌色值
+  const alipayColor = '#1677ff';
+  const alipaySvgUrl = getProviderSvgUrl('alipay');
 
   defineProps<{
     record: AlipayMchApp;
@@ -35,7 +34,7 @@
         class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg"
         :style="{ backgroundColor: `${alipayColor}1a` }"
       >
-        <IconifyIcon :icon="alipayIcon" class="text-2xl" :style="{ color: alipayColor }" />
+        <img v-if="alipaySvgUrl" :src="alipaySvgUrl" class="w-6 h-6" alt="alipay" />
       </div>
       <div class="min-w-0 flex-1">
         <div class="flex items-center gap-2">

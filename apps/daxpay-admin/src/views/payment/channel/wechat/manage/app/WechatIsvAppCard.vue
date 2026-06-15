@@ -9,11 +9,11 @@
 
   import { PermCodes } from '#/constants/perm-codes';
   import { usePermission } from '#/hooks/usePermission';
-  import { findPayProviderDisplay } from '#/views/payment/shared/payProviderDisplay';
+  import { getProviderSvgUrl } from '#/views/payment/shared/payProviderDisplay';
 
-  const wechatDisplay = findPayProviderDisplay('wechat');
-  const wechatIcon = wechatDisplay?.icon ?? 'simple-icons:wechat';
-  const wechatColor = wechatDisplay?.color ?? '#07c160';
+  // 微信支付品牌色值
+  const wechatColor = '#07c160';
+  const wechatSvgUrl = getProviderSvgUrl('wechat');
 
   const props = defineProps<{
     record: WechatIsvApp;
@@ -46,7 +46,7 @@
         class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg"
         :style="{ backgroundColor: `${wechatColor}1a` }"
       >
-        <IconifyIcon :icon="wechatIcon" class="text-2xl" :style="{ color: wechatColor }" />
+        <img v-if="wechatSvgUrl" :src="wechatSvgUrl" class="w-6 h-6" alt="wechat" />
       </div>
       <div class="min-w-0 flex-1">
         <div class="truncate text-base font-semibold leading-snug text-foreground">

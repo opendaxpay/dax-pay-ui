@@ -6,7 +6,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { PayProviderApi, type PayProviderGroup, type PayProviderMethod } from '#/api/payment/masterdata/provider.api';
-  import { findPayProviderDisplay } from '#/views/payment/shared/payProviderDisplay';
+  import { getProviderSvgUrl } from '#/views/payment/shared/payProviderDisplay';
 
   const loading = ref(false);
   const providerGroups = ref<PayProviderGroup[]>([]);
@@ -52,15 +52,8 @@
     return group.providerLabel || group.provider || '-';
   }
 
-  function providerIcon(group: PayProviderGroup) {
-    if (group.icon) {
-      return group.icon;
-    }
-    return findPayProviderDisplay(group.provider || '')?.icon;
-  }
-
-  function providerColor(group: PayProviderGroup) {
-    return findPayProviderDisplay(group.provider || '')?.color;
+  function providerSvgUrl(group: PayProviderGroup) {
+    return getProviderSvgUrl(group.provider || '');
   }
 
   async function handleView(row: PayProviderMethod) {
@@ -94,10 +87,11 @@
           <a-tab-pane v-for="group in sortedProviderGroups" :key="group.provider">
             <template #tab>
               <span class="inline-flex items-center gap-1">
-                <IconifyIcon
-                  v-if="providerIcon(group)"
-                  :icon="providerIcon(group)!"
-                  :style="{ color: providerColor(group) }"
+                <img
+                  v-if="providerSvgUrl(group)"
+                  :src="providerSvgUrl(group)!"
+                  :alt="group.provider"
+                  class="provider-tab-icon"
                 />
                 {{ providerTabLabel(group) }}
               </span>
@@ -154,6 +148,14 @@
 </template>
 
 <style scoped>
+  .provider-tab-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    object-fit: contain;
+  }
+
   /* 表头在 tabs 外切换，收起 tabs 内容区并与表格紧贴 */
   .provider-directory-tabs :deep(.ant-tabs-nav) {
     margin-bottom: 0;
