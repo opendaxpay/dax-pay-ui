@@ -57,10 +57,10 @@ export const AlipayIsvAppApi = {
   /**
    * 查询应用密钥配置
    */
-  findKeyConfigByAppId(appId: string): Promise<Result<AlipayIsvAppKeyConfig>> {
+  findKeyConfigByAlipayIsvAppId(alipayIsvAppId: string): Promise<Result<AlipayIsvAppKeyConfig>> {
     return defHttp.get({
       url: '/admin/alipay/isv-app/find-key-config-by-app-id',
-      params: { appId },
+      params: { alipayIsvAppId },
     });
   },
   /**
@@ -72,10 +72,10 @@ export const AlipayIsvAppApi = {
   /**
    * 查询应用授权认证配置
    */
-  findAuthConfigByAppId(appId: string): Promise<Result<AlipayIsvAppAuthConfig>> {
+  findAuthConfigByAlipayIsvAppId(alipayIsvAppId: string): Promise<Result<AlipayIsvAppAuthConfig>> {
     return defHttp.get({
       url: '/admin/alipay/isv-app/find-auth-config-by-app-id',
-      params: { appId },
+      params: { alipayIsvAppId },
     });
   },
   /**
@@ -97,7 +97,7 @@ export interface AlipayIsvApp extends BaseEntity {
 /** 支付宝服务商应用密钥配置 */
 export interface AlipayIsvAppKeyConfig {
   /** 应用ID */
-  appId?: string;
+  alipayIsvAppId?: string;
   /** 认证类型 */
   authType?: string;
   /** 支付宝公钥 */
@@ -117,7 +117,7 @@ export interface AlipayIsvAppKeyConfig {
 /** 支付宝服务商应用授权认证配置 */
 export interface AlipayIsvAppAuthConfig {
   /** 应用ID */
-  appId?: string;
+  alipayIsvAppId?: string;
   /** 用户标识类型 */
   userIdType?: string;
   /** 授权回调地址 */

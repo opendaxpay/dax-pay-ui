@@ -15,7 +15,7 @@
 
   const props = defineProps<{
     aliAppId?: string;
-    appId?: string;
+    alipayIsvAppId?: string;
   }>();
 
   const { labelCol, wrapperCol, diffForm } = useFormEdit();
@@ -70,14 +70,14 @@
    * 加载密钥配置
    */
   function loadConfig() {
-    if (!props.appId) return;
+    if (!props.alipayIsvAppId) return;
     loading.value = true;
-    AlipayIsvAppApi.findKeyConfigByAppId(props.appId)
+    AlipayIsvAppApi.findKeyConfigByAlipayIsvAppId(props.alipayIsvAppId)
       .then(({ data }) => {
         formState.value = {
           authType: 'public_key',
           ...data,
-          appId: props.appId,
+          alipayIsvAppId: props.alipayIsvAppId,
         };
         originalForm.value = { ...formState.value };
       })
@@ -134,7 +134,7 @@
         const submitData: AlipayIsvAppKeyConfig = {
           ...formState.value,
           ...sensitiveData,
-          appId: props.appId,
+          alipayIsvAppId: props.alipayIsvAppId,
         };
         return AlipayIsvAppApi.saveKeyConfig(submitData)
           .then(() => {
@@ -172,9 +172,9 @@
   }
 
   watch(
-    () => props.appId,
-    (appId) => {
-      if (appId) {
+    () => props.alipayIsvAppId,
+    (alipayIsvAppId) => {
+      if (alipayIsvAppId) {
         isEditing.value = false;
         loadConfig();
       }

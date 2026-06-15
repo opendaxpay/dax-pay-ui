@@ -13,7 +13,7 @@
   import { usePermission } from '#/hooks/usePermission';
 
   const props = defineProps<{
-    appId?: string;
+    wechatDirectAppId?: string;
     mchNo?: string;
     channelMchNo?: string;
     appType?: string;
@@ -61,16 +61,16 @@
   }));
 
   function loadConfig() {
-    if (!props.appId) {
+    if (!props.wechatDirectAppId) {
       return;
     }
     loading.value = true;
-    WechatMchAppApi.findAuthConfigByAppId(props.appId)
+    WechatMchAppApi.findAuthConfigByWechatDirectAppId(props.wechatDirectAppId)
       .then(({ data }) => {
         appSecretConfigured.value = !!data?.appSecretConfigured;
         formState.value = {
           ...data,
-          appId: props.appId,
+          wechatDirectAppId: props.wechatDirectAppId,
           mchNo: props.mchNo,
           channelMchNo: props.channelMchNo,
           appSecret: appSecretConfigured.value ? undefined : data?.appSecret,
@@ -112,7 +112,7 @@
         const submitData: WechatMchAppAuthConfig = {
           ...formState.value,
           ...sensitiveData,
-          appId: props.appId,
+          wechatDirectAppId: props.wechatDirectAppId,
           mchNo: props.mchNo,
           channelMchNo: props.channelMchNo,
           authCallbackUrl: isOfficialAccount.value ? formState.value.authCallbackUrl : undefined,
@@ -131,9 +131,9 @@
   }
 
   watch(
-    () => props.appId,
-    (appId) => {
-      if (appId) {
+    () => props.wechatDirectAppId,
+    (wechatDirectAppId) => {
+      if (wechatDirectAppId) {
         isEditing.value = false;
         loadConfig();
       }

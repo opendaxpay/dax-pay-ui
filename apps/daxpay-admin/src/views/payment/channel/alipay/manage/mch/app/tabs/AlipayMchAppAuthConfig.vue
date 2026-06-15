@@ -10,7 +10,7 @@
   import { usePermission } from '#/hooks/usePermission';
 
   const props = defineProps<{
-    appId?: string;
+    alipayDirectAppId?: string;
     mchNo?: string;
     channelMchNo?: string;
   }>();
@@ -42,14 +42,14 @@
    * 加载授权认证配置
    */
   function loadConfig() {
-    if (!props.appId) return;
+    if (!props.alipayDirectAppId) return;
     loading.value = true;
-    AlipayMchAppApi.findAuthConfigByAppId(props.appId)
+    AlipayMchAppApi.findAuthConfigByAlipayDirectAppId(props.alipayDirectAppId)
       .then(({ data }) => {
         formState.value = {
           userIdType: 'openid',
           ...data,
-          appId: props.appId,
+          alipayDirectAppId: props.alipayDirectAppId,
           mchNo: props.mchNo,
           channelMchNo: props.channelMchNo,
         };
@@ -96,7 +96,7 @@
         saving.value = true;
         const submitData: AlipayMchAppAuthConfig = {
           ...formState.value,
-          appId: props.appId,
+          alipayDirectAppId: props.alipayDirectAppId,
           mchNo: props.mchNo,
           channelMchNo: props.channelMchNo,
         };
@@ -114,9 +114,9 @@
   }
 
   watch(
-    () => props.appId,
-    (appId) => {
-      if (appId) {
+    () => props.alipayDirectAppId,
+    (alipayDirectAppId) => {
+      if (alipayDirectAppId) {
         isEditing.value = false;
         loadConfig();
       }

@@ -15,7 +15,7 @@
 
   const props = defineProps<{
     aliAppId?: string;
-    appId?: string;
+    alipayDirectAppId?: string;
     channelMchNo?: string;
     mchNo?: string;
   }>();
@@ -67,16 +67,16 @@
 
   /** 加载密钥配置 */
   function loadConfig() {
-    if (!props.appId) {
+    if (!props.alipayDirectAppId) {
       return;
     }
     loading.value = true;
-    AlipayMchAppApi.findKeyConfigByAppId(props.appId)
+    AlipayMchAppApi.findKeyConfigByAlipayDirectAppId(props.alipayDirectAppId)
       .then(({ data }) => {
         formState.value = {
           authType: 'public_key',
           ...data,
-          appId: props.appId,
+          alipayDirectAppId: props.alipayDirectAppId,
           mchNo: props.mchNo,
           channelMchNo: props.channelMchNo,
         };
@@ -126,7 +126,7 @@
         const submitData: AlipayMchAppKeyConfig = {
           ...formState.value,
           ...sensitiveData,
-          appId: props.appId,
+          alipayDirectAppId: props.alipayDirectAppId,
           mchNo: props.mchNo,
           channelMchNo: props.channelMchNo,
         };
@@ -166,9 +166,9 @@
   }
 
   watch(
-    () => props.appId,
-    (appId) => {
-      if (appId) {
+    () => props.alipayDirectAppId,
+    (alipayDirectAppId) => {
+      if (alipayDirectAppId) {
         isEditing.value = false;
         loadConfig();
       }

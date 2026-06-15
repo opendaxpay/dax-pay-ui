@@ -26,7 +26,7 @@ const formRef = ref();
 const form = ref({
   channelMerchantName: '',
   douyinMchId: '',
-  appId: '',
+  dyAppId: '',
   appSecret: '',
 });
 
@@ -58,7 +58,7 @@ const productDisplayName = computed(() => {
 const rules = computed(() => ({
   channelMerchantName: [{ required: true, message: $t('payment.merchant.channelMerchant.channelMerchantNameRequired') }],
   douyinMchId: [{ required: true, message: $t('payment.channel.douyin.validation.douyinMchIdRequired') }],
-  appId: [{ required: true, message: $t('payment.channel.douyin.validation.appIdRequired') }],
+  dyAppId: [{ required: true, message: $t('payment.channel.douyin.validation.dyAppIdRequired') }],
   appSecret: [{ required: true, message: $t('payment.channel.douyin.validation.appSecretRequired') }],
 }));
 
@@ -98,7 +98,7 @@ function resetForm() {
   form.value = {
     channelMerchantName: '',
     douyinMchId: '',
-    appId: '',
+    dyAppId: '',
     appSecret: '',
   };
   nextTick(() => {
@@ -142,8 +142,8 @@ defineExpose({ init });
           />
         </a-form-item>
         <!-- 国际化：应用 AppId -->
-        <a-form-item :label="$t('payment.channel.douyin.appId')" name="appId">
-          <a-input v-model:value="form.appId" :placeholder="$t('payment.channel.douyin.appIdPlaceholder')" />
+        <a-form-item :label="$t('payment.channel.douyin.dyAppId')" name="dyAppId">
+          <a-input v-model:value="form.dyAppId" :placeholder="$t('payment.channel.douyin.dyAppIdPlaceholder')" />
         </a-form-item>
         <!-- 国际化：应用密钥 -->
         <a-form-item :label="$t('payment.channel.douyin.appSecret')" name="appSecret">

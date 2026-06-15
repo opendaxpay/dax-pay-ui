@@ -1,13 +1,13 @@
 {
   "douyinMchId": "Douyin Merchant ID",
   "douyinMchIdPlaceholder": "Enter Douyin Pay merchant ID",
-  "appId": "App ID",
-  "appIdPlaceholder": "Enter Douyin app ID",
+  "dyAppId": "Douyin App ID",
+  "dyAppIdPlaceholder": "Enter Douyin app ID",
   "appSecret": "App Secret",
   "appSecretPlaceholder": "Enter Douyin app secret",
   "validation": {
     "douyinMchIdRequired": "Douyin merchant ID is required",
-    "appIdRequired": "App ID is required",
+    "dyAppIdRequired": "Douyin app ID is required",
     "appSecretRequired": "App secret is required"
   }
 }

@@ -49,10 +49,10 @@ export const WechatMchAppApi = {
     return defHttp.post({ url: '/admin/wechat/mch-app/delete', params: { id } });
   },
   /** 查询应用授权认证配置 */
-  findAuthConfigByAppId(appId: string): Promise<Result<WechatMchAppAuthConfig>> {
+  findAuthConfigByWechatDirectAppId(wechatDirectAppId: string): Promise<Result<WechatMchAppAuthConfig>> {
     return defHttp.get({
       url: '/admin/wechat/mch-app/find-auth-config-by-app-id',
-      params: { appId },
+      params: { wechatDirectAppId },
     });
   },
   /** 保存应用授权认证配置 */
@@ -76,7 +76,7 @@ export interface WechatMchApp extends MchEntity {
 /** 微信通道商户应用授权认证配置 */
 export interface WechatMchAppAuthConfig {
   /** 应用ID */
-  appId?: string;
+  wechatDirectAppId?: string;
   /** 商户号 */
   mchNo?: string;
   /** 通道商户号 */

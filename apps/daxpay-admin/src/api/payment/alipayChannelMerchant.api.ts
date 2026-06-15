@@ -83,7 +83,7 @@ export interface AlipayIsvChannelMerchantCreateParam {
   /** 所属支付产品 */
   product: string;
   /** 服务商应用ID(系统主键) */
-  appId: string;
+  isvAppId: string;
   /** 子商户支付宝用户ID(2088开头) */
   alipayUserId: string;
   /** 应用授权令牌 */

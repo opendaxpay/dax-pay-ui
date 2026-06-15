@@ -49,10 +49,10 @@ export const AlipayMchAppApi = {
     return defHttp.post({ url: '/admin/alipay/mch-app/delete', params: { id } });
   },
   /** 查询应用密钥配置 */
-  findKeyConfigByAppId(appId: string): Promise<Result<AlipayMchAppKeyConfig>> {
+  findKeyConfigByAlipayDirectAppId(alipayDirectAppId: string): Promise<Result<AlipayMchAppKeyConfig>> {
     return defHttp.get({
       url: '/admin/alipay/mch-app/find-key-config-by-app-id',
-      params: { appId },
+      params: { alipayDirectAppId },
     });
   },
   /** 保存应用密钥配置 */
@@ -60,10 +60,10 @@ export const AlipayMchAppApi = {
     return defHttp.post({ url: '/admin/alipay/mch-app/save-key-config', data });
   },
   /** 查询应用授权认证配置 */
-  findAuthConfigByAppId(appId: string): Promise<Result<AlipayMchAppAuthConfig>> {
+  findAuthConfigByAlipayDirectAppId(alipayDirectAppId: string): Promise<Result<AlipayMchAppAuthConfig>> {
     return defHttp.get({
       url: '/admin/alipay/mch-app/find-auth-config-by-app-id',
-      params: { appId },
+      params: { alipayDirectAppId },
     });
   },
   /** 保存应用授权认证配置 */
@@ -85,7 +85,7 @@ export interface AlipayMchApp extends MchEntity {
 /** 支付宝通道商户应用密钥配置 */
 export interface AlipayMchAppKeyConfig {
   /** 应用 ID */
-  appId?: string;
+  alipayDirectAppId?: string;
   /** 商户号 */
   mchNo?: string;
   /** 通道商户号 */
@@ -109,7 +109,7 @@ export interface AlipayMchAppKeyConfig {
 /** 支付宝通道商户应用授权认证配置 */
 export interface AlipayMchAppAuthConfig {
   /** 应用 ID */
-  appId?: string;
+  alipayDirectAppId?: string;
   /** 商户号 */
   mchNo?: string;
   /** 通道商户号 */

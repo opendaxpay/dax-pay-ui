@@ -10,7 +10,7 @@
   import { usePermission } from '#/hooks/usePermission';
 
   const props = defineProps<{
-    appId?: string;
+    wechatIsvAppId?: string;
     appType?: string;
   }>();
 
@@ -57,14 +57,14 @@
   }));
 
   function loadConfig() {
-    if (!props.appId) return;
+    if (!props.wechatIsvAppId) return;
     loading.value = true;
-    WechatIsvAppApi.findAuthConfigByAppId(props.appId)
+    WechatIsvAppApi.findAuthConfigByWechatIsvAppId(props.wechatIsvAppId)
       .then(({ data }) => {
         appSecretConfigured.value = !!data?.appSecretConfigured;
         formState.value = {
           ...data,
-          appId: props.appId,
+          wechatIsvAppId: props.wechatIsvAppId,
           appSecret: appSecretConfigured.value ? undefined : data?.appSecret,
         };
         originalForm.value = { ...formState.value };
@@ -104,7 +104,7 @@
         const submitData: WechatIsvAppAuthConfig = {
           ...formState.value,
           ...sensitiveData,
-          appId: props.appId,
+          wechatIsvAppId: props.wechatIsvAppId,
           // 非公众号不传授权回调地址
           authCallbackUrl: isOfficialAccount.value ? formState.value.authCallbackUrl : undefined,
         };
@@ -122,9 +122,9 @@
   }
 
   watch(
-    () => props.appId,
-    (appId) => {
-      if (appId) {
+    () => props.wechatIsvAppId,
+    (wechatIsvAppId) => {
+      if (wechatIsvAppId) {
         isEditing.value = false;
         loadConfig();
       }

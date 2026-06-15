@@ -10,7 +10,7 @@
   import { usePermission } from '#/hooks/usePermission';
 
   const props = defineProps<{
-    appId?: string;
+    alipayIsvAppId?: string;
   }>();
 
   const { labelCol, wrapperCol } = useFormEdit();
@@ -40,14 +40,14 @@
    * 加载授权认证配置
    */
   function loadConfig() {
-    if (!props.appId) return;
+    if (!props.alipayIsvAppId) return;
     loading.value = true;
-    AlipayIsvAppApi.findAuthConfigByAppId(props.appId)
+    AlipayIsvAppApi.findAuthConfigByAlipayIsvAppId(props.alipayIsvAppId)
       .then(({ data }) => {
         formState.value = {
           userIdType: 'openid',
           ...data,
-          appId: props.appId,
+          alipayIsvAppId: props.alipayIsvAppId,
         };
       })
       .finally(() => {
@@ -92,7 +92,7 @@
         saving.value = true;
         const submitData: AlipayIsvAppAuthConfig = {
           ...formState.value,
-          appId: props.appId,
+          alipayIsvAppId: props.alipayIsvAppId,
         };
         return AlipayIsvAppApi.saveAuthConfig(submitData)
           .then(() => {
@@ -108,9 +108,9 @@
   }
 
   watch(
-    () => props.appId,
-    (appId) => {
-      if (appId) {
+    () => props.alipayIsvAppId,
+    (alipayIsvAppId) => {
+      if (alipayIsvAppId) {
         isEditing.value = false;
         loadConfig();
       }

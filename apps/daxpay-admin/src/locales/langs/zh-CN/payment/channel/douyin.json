@@ -1,13 +1,13 @@
 {
   "douyinMchId": "抖音商户号",
   "douyinMchIdPlaceholder": "请输入抖音支付商户号",
-  "appId": "应用 AppId",
-  "appIdPlaceholder": "请输入抖音应用 AppId",
+  "dyAppId": "抖音应用 AppId",
+  "dyAppIdPlaceholder": "请输入抖音应用 AppId",
   "appSecret": "应用密钥",
   "appSecretPlaceholder": "请输入抖音应用密钥",
   "validation": {
     "douyinMchIdRequired": "请输入抖音商户号",
-    "appIdRequired": "请输入应用 AppId",
+    "dyAppIdRequired": "请输入抖音应用 AppId",
     "appSecretRequired": "请输入应用密钥"
   }
 }

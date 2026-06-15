@@ -41,10 +41,10 @@ export const WechatIsvAppApi = {
     return defHttp.post({ url: '/admin/wechat/isv-app/delete', params: { id } });
   },
   /** 查询应用授权认证配置 */
-  findAuthConfigByAppId(appId: string): Promise<Result<WechatIsvAppAuthConfig>> {
+  findAuthConfigByWechatIsvAppId(wechatIsvAppId: string): Promise<Result<WechatIsvAppAuthConfig>> {
     return defHttp.get({
       url: '/admin/wechat/isv-app/find-auth-config-by-app-id',
-      params: { appId },
+      params: { wechatIsvAppId },
     });
   },
   /** 保存应用授权认证配置 */
@@ -66,7 +66,7 @@ export interface WechatIsvApp extends BaseEntity {
 /** 微信服务商应用授权认证配置 */
 export interface WechatIsvAppAuthConfig {
   /** 应用ID */
-  appId?: string;
+  wechatIsvAppId?: string;
   /** 应用密钥 */
   appSecret?: string;
   /** 是否已配置应用密钥 */
