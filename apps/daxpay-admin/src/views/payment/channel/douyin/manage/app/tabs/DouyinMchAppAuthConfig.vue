@@ -3,7 +3,10 @@
 
   import { $t } from '@vben/locales';
 
-  import { DouyinMchAppApi, type DouyinMchAppAuthConfig } from '#/api/payment/channel/douyin/mch-app.api';
+  import {
+    DouyinMchAppApi,
+    type DouyinMchAppAuthConfig,
+  } from '#/api/payment/channel/douyin/mch-app.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
@@ -13,10 +16,11 @@
     appId?: string;
     mchNo?: string;
     channelMchNo?: string;
+    appType?: string;
   }>();
 
-  const { labelCol, wrapperCol } = useFormEdit();
-  const { message } = useMessage();
+  const { labelCol, wrapperCol, diffForm } = useFormEdit();
+  const { confirm, message } = useMessage();
   const { hasPermission } = usePermission();
 
   const loading = ref(false);
@@ -28,8 +32,37 @@
 
   const canEdit = computed(() => hasPermission(PermCodes.Payment.ChannelMerchant.EDIT));
 
+  // 是否为小程序类型
+  const isMiniProgram = computed(() => props.appType === 'mini_program');
+
+  // 密钥 label：小程序叫 AppSecret，其余叫 Client Secret
+  const appSecretLabel = computed(() =>
+    isMiniProgram.value
+      ? $t('payment.channel.douyinMchApp.appSecret')
+      : $t('payment.channel.douyinMchApp.clientSecret'),
+  );
+
+  /** AppSecret 提示文案（按应用类型） */
+  const appSecretTooltip = computed(() => {
+    const map: Record<string, string> = {
+      mini_program: 'payment.channel.douyinMchApp.appSecretTooltipMiniProgram',
+      mobile_app: 'payment.channel.douyinMchApp.appSecretTooltipMobileApp',
+      web_app: 'payment.channel.douyinMchApp.appSecretTooltipWebApp',
+    };
+    const key = map[props.appType || 'mini_program'];
+    return key ? $t(key) : $t('payment.channel.douyinMchApp.appSecretTooltipMiniProgram');
+  });
+
   const formRules = computed(() => ({
-    authCallbackUrl: [{ required: false, message: $t('payment.channel.douyinMchApp.validation.authCallbackUrl') }],
+    appSecret: [
+      {
+        required: true,
+        message: $t('payment.channel.douyinMchApp.validation.appSecret'),
+      },
+    ],
+    authCallbackUrl: isMiniProgram.value
+      ? []
+      : [{ required: true, message: $t('payment.channel.douyinMchApp.validation.authCallbackUrl') }],
   }));
 
   function loadConfig() {
@@ -44,6 +77,8 @@
           douyinDirectAppId: props.appId,
           mchNo: props.mchNo,
           channelMchNo: props.channelMchNo,
+          // 已配置过密钥则不清空，让用户自行决定是否修改
+          appSecret: data?.appSecret || '',
         };
         originalForm.value = { ...formState.value };
       })
@@ -57,28 +92,47 @@
   }
 
   function handleCancel() {
-    loadConfig();
-    isEditing.value = false;
+    confirm({
+      title: $t('common.confirm'),
+      content: $t('common.confirmCancelContent'),
+      okText: $t('common.okText'),
+      cancelText: $t('common.cancelText'),
+      onOk() {
+        loadConfig();
+        isEditing.value = false;
+      },
+    });
   }
 
   async function handleSave() {
     await formRef.value?.validate();
-    saving.value = true;
-    const submitData: DouyinMchAppAuthConfig = {
-      ...formState.value,
-      douyinDirectAppId: props.appId,
-      mchNo: props.mchNo,
-      channelMchNo: props.channelMchNo,
-    };
-    DouyinMchAppApi.saveAuthConfig(submitData)
-      .then(() => {
-        message.success($t('common.saveSuccess'));
-        isEditing.value = false;
-        loadConfig();
-      })
-      .finally(() => {
-        saving.value = false;
-      });
+    confirm({
+      title: $t('common.confirm'),
+      content: $t('common.confirmSaveContent'),
+      okText: $t('common.okText'),
+      cancelText: $t('common.cancelText'),
+      onOk() {
+        saving.value = true;
+        const sensitiveData = diffForm(originalForm.value, formState.value, 'appSecret');
+        const submitData: DouyinMchAppAuthConfig = {
+          ...formState.value,
+          ...sensitiveData,
+          douyinDirectAppId: props.appId,
+          mchNo: props.mchNo,
+          channelMchNo: props.channelMchNo,
+          authCallbackUrl: isMiniProgram.value ? undefined : formState.value.authCallbackUrl,
+        };
+        return DouyinMchAppApi.saveAuthConfig(submitData)
+          .then(() => {
+            message.success($t('common.saveSuccess'));
+            isEditing.value = false;
+            loadConfig();
+          })
+          .finally(() => {
+            saving.value = false;
+          });
+      },
+    });
   }
 
   watch(
@@ -125,7 +179,24 @@
           :validate-trigger="['blur', 'change']"
           class="form-compact max-w-3xl"
         >
-          <a-form-item :label="$t('payment.channel.douyinMchApp.authCallbackUrl')" name="authCallbackUrl">
+          <a-form-item
+            :label="appSecretLabel"
+            name="appSecret"
+            :tooltip="appSecretTooltip"
+          >
+            <a-input
+              v-model:value="formState.appSecret"
+              :placeholder="$t('payment.channel.douyinMchApp.appSecretPlaceholder')"
+              :disabled="!isEditing"
+              allow-clear
+            />
+          </a-form-item>
+
+          <a-form-item
+            v-if="!isMiniProgram"
+            :label="$t('payment.channel.douyinMchApp.authCallbackUrl')"
+            name="authCallbackUrl"
+          >
             <a-input
               v-model:value="formState.authCallbackUrl"
               :placeholder="$t('payment.channel.douyinMchApp.authCallbackUrlPlaceholder')"

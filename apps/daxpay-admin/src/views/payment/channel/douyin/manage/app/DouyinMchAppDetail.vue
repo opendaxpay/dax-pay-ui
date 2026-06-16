@@ -70,7 +70,7 @@
           <DouyinMchAppBasicInfo :app="appDetail" @deleted="handleDeleted" />
         </a-tab-pane>
         <a-tab-pane key="auth" :tab="$t('payment.channel.douyinMchApp.tabAuthConfig')">
-          <DouyinMchAppAuthConfig :app-id="appDetail.id!" :mch-no="mchNo" :channel-mch-no="channelMchNo" />
+          <DouyinMchAppAuthConfig :app-id="appDetail.id!" :mch-no="mchNo" :channel-mch-no="channelMchNo" :app-type="appDetail.appType" />
         </a-tab-pane>
       </a-tabs>
     </a-spin>
