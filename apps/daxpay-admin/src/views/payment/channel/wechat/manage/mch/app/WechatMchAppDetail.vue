@@ -74,7 +74,7 @@
         </a-tab-pane>
         <a-tab-pane key="auth" :tab="$t('payment.channel.wechatMchApp.tabAuthConfig')">
           <WechatMchAppAuthConfig
-            :app-id="appDetail.id!"
+            :wechat-direct-app-id="appDetail.id!"
             :mch-no="mchNo"
             :channel-mch-no="channelMchNo"
             :app-type="appDetail.appType"

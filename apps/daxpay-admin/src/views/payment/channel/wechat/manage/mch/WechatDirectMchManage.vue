@@ -1,24 +1,27 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 import { $t } from '@vben/locales';
 
 import { IconifyIcon } from '@vben-core/icons';
 
 import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
+import { ProductEnum } from '#/enums/payment/productEnum';
 
 import WechatDirectChannelMerchantBasicInfo from './WechatDirectChannelMerchantBasicInfo.vue';
 import WechatDirectKeyConfigEdit from './WechatDirectKeyConfigEdit.vue';
 
 defineOptions({ name: 'WechatDirectMchManage' });
 
+const router = useRouter();
 const mchNo = ref('');
 const channelMchNo = ref('');
 const channelMerchant = ref<ChannelMerchantResult>({});
 const basicInfoRef = ref<InstanceType<typeof WechatDirectChannelMerchantBasicInfo>>();
 const keyConfigRef = ref<InstanceType<typeof WechatDirectKeyConfigEdit>>();
 
-/** 功能卡片配置（直连通道商户：基本信息 + 密钥配置） */
+/** 功能卡片配置（直连通道商户：基本信息 + 密钥配置 + 应用管理） */
 const functionCards = computed(() => [
   {
     // 国际化：基础管理
@@ -37,6 +40,20 @@ const functionCards = computed(() => [
         title: $t('payment.channel.wechatManage.cardDirectKeyConfig'),
         icon: 'ant-design:key-outlined',
         description: $t('payment.channel.wechatManage.cardDirectKeyConfigDesc'),
+      },
+    ],
+  },
+  {
+    // 国际化：应用管理
+    group: $t('payment.merchant.channelMerchant.groupApp'),
+    color: 'green',
+    cards: [
+      {
+        key: 'appManage',
+        // 国际化：通道商户应用
+        title: $t('payment.merchant.channelMerchant.cardApp'),
+        icon: 'ant-design:appstore-outlined',
+        description: $t('payment.merchant.channelMerchant.cardAppDesc'),
       },
     ],
   },
@@ -71,6 +88,19 @@ function handleCardClick(card: { key: string }) {
   }
   if (card.key === 'keyConfig') {
     keyConfigRef.value?.init();
+  }
+  if (card.key === 'appManage') {
+    const id = channelMerchant.value.id;
+    router.push({
+      path: '/payment/merchant/channel-merchant/wechat-app-manage',
+      query: {
+        mchNo: mchNo.value,
+        channelMchNo: channelMchNo.value,
+        channelMerchantId: id,
+        product: ProductEnum.WECHAT_PAY,
+        channelMerchantName: channelMerchant.value.channelMerchantName || '',
+      },
+    });
   }
 }
 
