@@ -1,38 +1,7 @@
 {
   "common": {
     "title": "Platform Config",
-    "description": "Manage platform SMS, OSS and other service configurations"
-  },
-  "sms": {
-    "title": "SMS Config",
-    "description": "Manage SMS service configuration",
-    "configName": "Config Name",
-    "provider": "Provider",
-    "signature": "Signature",
-    "accessKey": "AccessKey",
-    "secretKey": "SecretKey",
-    "status": "Status",
-    "templateDivider": "Template Config",
-    "registerId": "Register Template ID",
-    "forgetId": "Forgot Password Template ID",
-    "captchaId": "Captcha Template ID",
-    "noticeId": "Notice Template ID",
-    "providerOptions": {
-      "aliyun": "Alibaba Cloud",
-      "tencent": "Tencent Cloud"
-    },
-    "inputConfigName": "Please enter config name",
-    "selectProvider": "Please select provider",
-    "inputSignature": "Please enter signature",
-    "inputAccessKey": "Please enter AccessKey",
-    "inputSecretKey": "Please enter SecretKey",
-    "inputRegisterId": "Please enter register template ID",
-    "inputForgetId": "Please enter forgot password template ID",
-    "inputCaptchaId": "Please enter captcha template ID",
-    "inputNoticeId": "Please enter notice template ID",
-    "confirmDelete": "Are you sure you want to delete the configuration \"{name}\"?",
-    "enableSuccess": "Enabled successfully",
-    "disableSuccess": "Disabled successfully"
+    "description": "Manage platform OSS and other service configurations"
   },
   "oss": {
     "title": "OSS Config",

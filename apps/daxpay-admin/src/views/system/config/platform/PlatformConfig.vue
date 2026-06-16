@@ -4,20 +4,12 @@
   import { $t } from '#/locales';
 
   import OssConfigForm from './oss/OssConfigForm.vue';
-  import SmsConfigList from './sms/SmsConfigList.vue';
 
   defineOptions({ name: 'PlatformConfig' });
 
-  const activeKey = ref<string>('sms');
+  const activeKey = ref<string>('oss');
 
   const tabs = [
-    {
-      key: 'sms',
-      // 短信配置标题
-      label: $t('system.platform.sms.title'),
-      // 短信配置描述
-      description: $t('system.platform.sms.description'),
-    },
     {
       key: 'oss',
       // OSS配置标题
@@ -54,8 +46,7 @@
 
       <section class="platform-content">
         <div class="platform-content__scroll">
-          <SmsConfigList v-if="activeKey === 'sms'" />
-          <OssConfigForm v-else-if="activeKey === 'oss'" />
+          <OssConfigForm v-if="activeKey === 'oss'" />
         </div>
       </section>
     </div>
