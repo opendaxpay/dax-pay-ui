@@ -81,10 +81,8 @@ export interface WechatMchAppAuthConfig {
   mchNo?: string;
   /** 通道商户号 */
   channelMchNo?: string;
-  /** 应用密钥 */
+  /** 应用密钥（已脱敏） */
   appSecret?: string;
-  /** 是否已配置应用密钥 */
-  appSecretConfigured?: boolean;
   /** 授权回调地址（仅公众号） */
   authCallbackUrl?: string;
 }

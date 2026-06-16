@@ -29,13 +29,14 @@
   const formRef = ref();
   const formState = ref<WechatMchAppAuthConfig>({});
   const originalForm = ref<WechatMchAppAuthConfig>({});
-  // 是否已在服务端保存过 AppSecret
-  const appSecretConfigured = ref(false);
 
   const canEdit = computed(() => hasPermission(PermCodes.Payment.ChannelMerchant.EDIT));
 
   // 仅公众号需要配置 OAuth 授权回调地址
   const isOfficialAccount = computed(() => props.appType === 'official_account');
+
+  // 是否已在服务端保存过 AppSecret（脱敏回显不代表可跳过首次必填）
+  const appSecretConfigured = computed(() => !!formState.value.appSecret);
 
   /** AppSecret 提示文案（按应用类型） */
   const appSecretTooltip = computed(() => {
@@ -67,13 +68,11 @@
     loading.value = true;
     WechatMchAppApi.findAuthConfigByWechatDirectAppId(props.wechatDirectAppId)
       .then(({ data }) => {
-        appSecretConfigured.value = !!data?.appSecretConfigured;
         formState.value = {
           ...data,
           wechatDirectAppId: props.wechatDirectAppId,
           mchNo: props.mchNo,
           channelMchNo: props.channelMchNo,
-          appSecret: appSecretConfigured.value ? undefined : data?.appSecret,
         };
         originalForm.value = { ...formState.value };
       })
@@ -83,6 +82,10 @@
   }
 
   function handleEdit() {
+    // 编辑时清空脱敏回显的 AppSecret，留空表示不修改
+    if (formState.value.appSecret) {
+      formState.value.appSecret = undefined;
+    }
     isEditing.value = true;
   }
 

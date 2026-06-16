@@ -67,10 +67,8 @@ export interface WechatIsvApp extends BaseEntity {
 export interface WechatIsvAppAuthConfig {
   /** 应用ID */
   wechatIsvAppId?: string;
-  /** 应用密钥 */
+  /** 应用密钥（已脱敏） */
   appSecret?: string;
-  /** 是否已配置应用密钥 */
-  appSecretConfigured?: boolean;
   /** 授权回调地址（仅公众号） */
   authCallbackUrl?: string;
 }
