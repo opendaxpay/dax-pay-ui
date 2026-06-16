@@ -7,7 +7,6 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { AlipayMchAppApi, type AlipayMchApp } from '#/api/payment/channel/alipay/mch-app.api';
-  import ChannelLogo from '#/components/channel/ChannelLogo.vue';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
   import { ProductEnum } from '#/enums/payment/productEnum';
@@ -147,8 +146,6 @@
                 <IconifyIcon icon="ant-design:arrow-left-outlined" class="text-lg" />
               </template>
             </a-button>
-            <!-- 国际化：支付宝通道商户应用 -->
-            <ChannelLogo channel="alipay" :size="24" />
             <span class="text-lg font-bold text-foreground">{{ pageTitle }}</span>
           </div>
           <a

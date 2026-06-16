@@ -9,6 +9,11 @@
 
   import { PermCodes } from '#/constants/perm-codes';
   import { usePermission } from '#/hooks/usePermission';
+  import { getProviderSvgUrl } from '#/views/payment/shared/payProviderDisplay';
+
+  // 微信支付品牌色值
+  const wechatColor = '#07c160';
+  const wechatSvgUrl = getProviderSvgUrl('wechat');
 
   const props = defineProps<{
     record: WechatMchApp;
@@ -37,6 +42,12 @@
 <template>
   <div class="wechat-mch-app-card group flex h-full min-h-[128px] flex-col rounded-xl border bg-card shadow-sm">
     <div class="card-body flex flex-1 items-center gap-3 px-4 py-4">
+      <div
+        class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg"
+        :style="{ backgroundColor: `${wechatColor}1a` }"
+      >
+        <img v-if="wechatSvgUrl" :src="wechatSvgUrl" class="w-6 h-6" alt="wechat" />
+      </div>
       <div class="min-w-0 flex-1">
         <div class="truncate text-base font-semibold leading-snug text-foreground">
           {{ record.appName || '-' }}

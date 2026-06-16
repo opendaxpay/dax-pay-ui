@@ -7,8 +7,13 @@
 
   import { PermCodes } from '#/constants/perm-codes';
   import { usePermission } from '#/hooks/usePermission';
+  import { getProviderSvgUrl } from '#/views/payment/shared/payProviderDisplay';
 
   import { computed } from 'vue';
+
+  // 抖音品牌色值
+  const douyinColor = '#000000';
+  const douyinSvgUrl = getProviderSvgUrl('douyin');
 
   const props = defineProps<{
     record: DouyinMchApp;
@@ -36,6 +41,12 @@
 <template>
   <div class="douyin-mch-app-card group flex h-full min-h-[128px] flex-col rounded-xl border bg-card shadow-sm">
     <div class="card-body flex flex-1 items-center gap-3 px-4 py-4">
+      <div
+        class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg"
+        :style="{ backgroundColor: `${douyinColor}1a` }"
+      >
+        <img v-if="douyinSvgUrl" :src="douyinSvgUrl" class="w-6 h-6" alt="douyin" />
+      </div>
       <div class="min-w-0 flex-1">
         <div class="truncate text-base font-semibold leading-snug text-foreground">
           {{ record.appName || '-' }}

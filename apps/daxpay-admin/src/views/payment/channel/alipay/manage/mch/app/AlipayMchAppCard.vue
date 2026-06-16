@@ -9,6 +9,11 @@
 
   import { PermCodes } from '#/constants/perm-codes';
   import { usePermission } from '#/hooks/usePermission';
+  import { getProviderSvgUrl } from '#/views/payment/shared/payProviderDisplay';
+
+  // 支付宝品牌色值
+  const alipayColor = '#1677ff';
+  const alipaySvgUrl = getProviderSvgUrl('alipay');
 
   const props = defineProps<{
     record: AlipayMchApp;
@@ -38,6 +43,12 @@
     class="alipay-mch-app-card group flex h-full min-h-[128px] flex-col rounded-xl border bg-card shadow-sm"
   >
     <div class="card-body flex flex-1 items-center gap-3 px-4 py-4">
+      <div
+        class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg"
+        :style="{ backgroundColor: `${alipayColor}1a` }"
+      >
+        <img v-if="alipaySvgUrl" :src="alipaySvgUrl" class="w-6 h-6" alt="alipay" />
+      </div>
       <div class="min-w-0 flex-1">
         <div class="flex items-center gap-2">
           <span class="truncate text-base font-semibold leading-snug text-foreground">

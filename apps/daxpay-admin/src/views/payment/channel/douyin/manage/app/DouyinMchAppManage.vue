@@ -7,7 +7,6 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { DouyinMchAppApi, type DouyinMchApp } from '#/api/payment/channel/douyin/mch-app.api';
-  import ChannelLogo from '#/components/channel/ChannelLogo.vue';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { ProductEnum } from '#/enums/payment/productEnum';
   import { PermCodes } from '#/constants/perm-codes';
@@ -145,7 +144,6 @@
                 <IconifyIcon icon="ant-design:arrow-left-outlined" class="text-lg" />
               </template>
             </a-button>
-            <ChannelLogo channel="douyin" :size="24" />
             <span class="text-lg font-bold text-foreground">{{ pageTitle }}</span>
           </div>
         </div>
