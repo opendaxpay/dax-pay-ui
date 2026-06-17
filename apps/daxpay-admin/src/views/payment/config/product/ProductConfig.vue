@@ -18,6 +18,7 @@
   const loading = ref(false);
   const productList = ref<PayProductConfigResult[]>([]);
   const radioRefreshKey = ref(0);
+  const switchRefreshKey = ref(0);
 
   /**
    * 获取当前激活的环境值
@@ -77,6 +78,34 @@
   }
 
   /**
+   * 处理产品启停切换
+   */
+  function handleEnabledSwitch(row: PayProductConfigResult, enabled: boolean) {
+    const action = enabled
+      ? $t('payment.constant.product.productConfig.enabled')
+      : $t('payment.constant.product.productConfig.disabled');
+
+    confirm({
+      // 国际化：启停切换
+      title: $t('payment.constant.product.productConfig.switchEnabled'),
+      // 国际化：确定要{action}该产品吗？
+      content: $t('payment.constant.product.productConfig.switchEnabledConfirm', { action }),
+      onOk: () => {
+        return PayProductConfigApi.switchEnabled(row.product!, enabled)
+          .then(() => {
+            row.enabled = enabled;
+          })
+          .catch(() => {
+            switchRefreshKey.value++;
+          });
+      },
+      onCancel: () => {
+        switchRefreshKey.value++;
+      },
+    });
+  }
+
+  /**
    * 加载产品配置列表
    */
   function loadProductConfig() {
@@ -114,11 +143,12 @@
             v-for="row in productList"
             :key="row.product"
             class="product-config-card group relative overflow-hidden rounded-xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
-            :class="
+            :class="[
               row.activeEnv === 'sandbox'
-                ? 'border-amber-200/60 dark:border-amber-500/30 bg-card'
-                : 'border-blue-100/60 dark:border-blue-500/30 bg-card'
-            "
+                ? 'border-amber-200/60 dark:border-amber-500/30'
+                : 'border-blue-100/60 dark:border-blue-500/30',
+              { 'opacity-50': !row.enabled },
+            ]"
             :styles="{ body: { padding: 0, display: 'flex', flexDirection: 'column', height: '100%' } }"
           >
             <!-- 右上角：环境切换（仅支持沙箱时显示） -->
@@ -140,8 +170,18 @@
               <div class="mb-3 transform transition-transform duration-300 group-hover:scale-110">
                 <ChannelLogo :channel="row.channel!" :size="44" />
               </div>
-              <div class="text-center font-bold text-foreground text-[14px] mb-3 px-4">
+              <div class="text-center font-bold text-foreground text-[14px] mb-2 px-4">
                 {{ row.name }}
+              </div>
+              <!-- 启停状态 -->
+              <div class="flex items-center justify-center gap-1.5 mb-3">
+                <span class="text-[11px] text-muted-foreground">{{ $t('payment.constant.product.productConfig.statusLabel') }}:</span>
+                <a-switch
+                  :key="`enabled-${row.product}-${switchRefreshKey}`"
+                  :checked="row.enabled"
+                  size="small"
+                  @change="(val: boolean) => handleEnabledSwitch(row, val)"
+                />
               </div>
             </div>
 
@@ -196,7 +236,7 @@
   }
 
   .product-config-card {
-    height: 220px;
+    height: 250px;
     position: relative;
   }
 

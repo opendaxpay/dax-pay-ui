@@ -21,6 +21,13 @@ export const PayProductConfigApi = {
   },
 
   /**
+   * 切换产品启停
+   */
+  switchEnabled(product: string, enabled: boolean): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/product-config/switch-enabled', params: { product, enabled } });
+  },
+
+  /**
    * 保存产品配置
    */
   save(param: PayProductConfigParam): Promise<Result<void>> {
@@ -34,6 +41,8 @@ export interface PayProductConfigResult extends BaseEntity {
   product?: string;
   /** 产品名称 */
   name?: string;
+  /** 是否启用 */
+  enabled?: boolean;
   /** 通道编码 */
   channel?: string;
   /** 通道名称 */
@@ -54,6 +63,7 @@ export interface PayProductConfigParam {
   channel?: string;
   activeEnv?: string;
   configured?: boolean;
+  enabled?: boolean;
   remark?: string;
 }
 
