@@ -3,6 +3,9 @@
     "provider": "支付渠道",
     "method": "支付方式",
     "code": "编码",
+    "icon": "图标",
+    "name": "名称",
+    "sortNo": "排序",
     "description": "介绍"
   },
   "detail": "目录项详情"

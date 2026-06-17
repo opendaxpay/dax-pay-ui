@@ -14,6 +14,11 @@ export const PayProviderApi = {
       params: { provider, method },
     });
   },
+
+  /** 切换支付渠道启停 */
+  switchEnabled(product: string, enabled: boolean): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/payment/pay-provider/switch-enabled', params: { product, enabled } });
+  },
 };
 
 /** 按支付渠道分组 */
@@ -22,6 +27,8 @@ export interface PayProviderGroup {
   providerLabel?: string;
   icon?: string;
   sortNo?: number;
+  enabled?: boolean;
+  description?: string;
   methods?: PayProviderMethod[];
 }
 

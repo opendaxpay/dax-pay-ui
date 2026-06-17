@@ -3,6 +3,9 @@
     "provider": "Pay Provider",
     "method": "Payment Method",
     "code": "Code",
+    "icon": "Icon",
+    "name": "Name",
+    "sortNo": "Sort",
     "description": "Description"
   },
   "detail": "Directory Item Detail"

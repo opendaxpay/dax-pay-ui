@@ -33,12 +33,7 @@
     "prodConfigBtn": "Production",
     "sandboxConfigBtn": "Sandbox",
     "switchEnv": "Switch Environment",
-    "switchEnvConfirm": "Switch to {env}?",
-    "enabled": "Enabled",
-    "disabled": "Disabled",
-    "statusLabel": "Enable",
-    "switchEnabled": "Toggle Status",
-    "switchEnabledConfirm": "Are you sure to {action} this product?"
+    "switchEnvConfirm": "Switch to {env}?"
   },
   "placeholder": {
     "name": "Enter product name",

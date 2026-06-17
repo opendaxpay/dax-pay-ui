@@ -33,12 +33,7 @@
     "prodConfigBtn": "生产配置",
     "sandboxConfigBtn": "沙箱配置",
     "switchEnv": "切换环境",
-    "switchEnvConfirm": "确定要切换到{env}吗？",
-    "enabled": "启用",
-    "disabled": "停用",
-    "statusLabel": "启用",
-    "switchEnabled": "启停切换",
-    "switchEnabledConfirm": "确定要{action}该产品吗？"
+    "switchEnvConfirm": "确定要切换到{env}吗？"
   },
   "placeholder": {
     "name": "请输入产品名称",
