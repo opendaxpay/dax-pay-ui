@@ -112,9 +112,6 @@
     if (row.isv) {
       tags.push({ label: $t('payment.constant.product.field.isv'), color: 'blue' });
     }
-    if (row.allocatable) {
-      tags.push({ label: $t('payment.constant.product.field.allocatable'), color: 'green' });
-    }
     if (row.terminal) {
       tags.push({ label: $t('payment.constant.product.field.terminal'), color: 'purple' });
     }

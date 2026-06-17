@@ -50,7 +50,6 @@ export interface PayProductResult extends BaseEntity {
   sortNo?: number;
   remark?: string;
   isv?: boolean;
-  allocatable?: boolean;
   terminal?: boolean;
   sandbox?: boolean;
   apiCallMode?: string;

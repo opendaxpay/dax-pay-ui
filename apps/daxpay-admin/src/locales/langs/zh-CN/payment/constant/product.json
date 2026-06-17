@@ -8,7 +8,6 @@
     "remark": "备注",
     "channelName": "通道名称",
     "isv": "服务商",
-    "allocatable": "分账",
     "terminal": "终端报备",
     "sandbox": "沙箱",
     "apiCallMode": "API调用模式",
