@@ -1,0 +1,54 @@
+{
+  "title": "Message Queue Demo",
+  "description": "Demonstrates four core Artemis JMS scenarios: point-to-point, pub-sub, delayed message, and tag filtering",
+  "scene": {
+    "queue": {
+      "title": "Point-to-Point Queue",
+      "description": "A message is consumed by only one consumer (the classic MQ scenario)"
+    },
+    "topic": {
+      "title": "Publish/Subscribe",
+      "description": "A message is broadcast to all subscribers (A/B subscribers on the same node both receive it)"
+    },
+    "delay": {
+      "title": "Delayed Message",
+      "description": "Consumer receives the message N seconds after sending (e.g. order timeout close)"
+    },
+    "tag": {
+      "title": "Tag Filtering",
+      "description": "Producer sends by tag, consumer subscribes only specific tags via selector"
+    }
+  },
+  "form": {
+    "content": "Message Content",
+    "contentPlaceholder": "Please enter message content",
+    "tag": "Message Tag",
+    "delaySeconds": "Delay Seconds",
+    "send": "Send",
+    "broadcast": "Broadcast",
+    "important": "Important",
+    "normal": "Normal"
+  },
+  "records": {
+    "title": "Consumption Records",
+    "description": "Records processed by consumers, auto-refreshed every 2 seconds. Cleared on service restart.",
+    "refresh": "Refresh",
+    "clear": "Clear",
+    "empty": "No records yet, send a message above to start",
+    "columns": {
+      "scene": "Scene",
+      "tag": "Tag",
+      "content": "Content",
+      "sendTime": "Send Time",
+      "consumeTime": "Consume Time",
+      "costMillis": "Cost(ms)",
+      "consumer": "Consumer"
+    }
+  },
+  "messages": {
+    "sendSuccess": "Sent successfully",
+    "clearSuccess": "Cleared successfully",
+    "clearConfirm": "Are you sure to clear all consumption records?",
+    "contentRequired": "Please enter message content"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "title": "消息队列演示",
+  "description": "演示 Artemis JMS 的四类核心场景：点对点、发布订阅、延时消息、Tag 过滤",
+  "scene": {
+    "queue": {
+      "title": "点对点队列",
+      "description": "一条消息只被一个消费者消费（最经典 MQ 场景）"
+    },
+    "topic": {
+      "title": "发布订阅",
+      "description": "一条消息广播给所有订阅者（同节点注册 A/B 两个订阅者，都会收到）"
+    },
+    "delay": {
+      "title": "延时消息",
+      "description": "发送后延时 N 秒消费者才收到（订单超时关单等场景）"
+    },
+    "tag": {
+      "title": "Tag 过滤",
+      "description": "生产者按标签发送，消费者用 selector 只订阅特定标签"
+    }
+  },
+  "form": {
+    "content": "消息内容",
+    "contentPlaceholder": "请输入消息内容",
+    "tag": "消息标签",
+    "delaySeconds": "延时秒数",
+    "send": "发送",
+    "broadcast": "广播",
+    "important": "重要",
+    "normal": "普通"
+  },
+  "records": {
+    "title": "消费记录",
+    "description": "消费者处理后的消息记录，每 2 秒自动刷新。重启服务后清空。",
+    "refresh": "刷新",
+    "clear": "清空",
+    "empty": "暂无消费记录，先在上方发送一条消息试试",
+    "columns": {
+      "scene": "场景",
+      "tag": "标签",
+      "content": "内容",
+      "sendTime": "发送时间",
+      "consumeTime": "消费时间",
+      "costMillis": "耗时(ms)",
+      "consumer": "消费者"
+    }
+  },
+  "messages": {
+    "sendSuccess": "发送成功",
+    "clearSuccess": "清空成功",
+    "clearConfirm": "确定要清空全部消费记录吗？",
+    "contentRequired": "请输入消息内容"
+  }
+}
