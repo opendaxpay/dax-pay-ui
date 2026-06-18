@@ -11,14 +11,11 @@
 
   const { confirm, message } = useMessage();
 
-  // 四类场景各自的输入内容
+  // 三类场景各自的输入内容
   const queueContent = ref<string>('');
   const topicContent = ref<string>('');
   const delayContent = ref<string>('');
   const delaySeconds = ref<number>(5);
-  const tagContent = ref<string>('');
-  // TAG 场景的标签选择：important / normal
-  const tagValue = ref<'important' | 'normal'>('important');
 
   // 消费记录列表
   const records = ref<DemoMessageResult[]>([]);
@@ -88,24 +85,6 @@
   }
 
   /**
-   * 发送带 Tag 的消息（按选择的标签发送）
-   */
-  async function sendTag() {
-    if (!tagContent.value) {
-      message.warning($t('demos.artemis.messages.contentRequired'));
-      return;
-    }
-    await ArtemisDemoApi.send({
-      scene: 'TAG' as DemoScene,
-      content: tagContent.value,
-      tag: tagValue.value,
-    });
-    message.success($t('demos.artemis.messages.sendSuccess'));
-    tagContent.value = '';
-    await refreshRecords();
-  }
-
-  /**
    * 清空消费记录（带二次确认）
    */
   function clearRecords() {
@@ -124,7 +103,6 @@
   // 表格列定义（响应语言切换）
   const columns = computed(() => [
     { title: $t('demos.artemis.records.columns.scene'), dataIndex: 'scene', width: 90 },
-    { title: $t('demos.artemis.records.columns.tag'), dataIndex: 'tag', width: 100 },
     { title: $t('demos.artemis.records.columns.content'), dataIndex: 'content', ellipsis: true },
     { title: $t('demos.artemis.records.columns.sendTime'), dataIndex: 'sendTime', width: 180 },
     { title: $t('demos.artemis.records.columns.consumeTime'), dataIndex: 'consumeTime', width: 180 },
@@ -136,7 +114,6 @@
   const sceneColorMap: Record<string, string> = {
     DELAY: 'orange',
     QUEUE: 'blue',
-    TAG: 'purple',
     TOPIC: 'green',
   };
 
@@ -215,34 +192,6 @@
           </a-space-compact>
         </a-card>
       </a-col>
-
-      <!-- Tag 过滤 -->
-      <a-col :span="12">
-        <a-card class="mb-4 h-full" :title="$t('demos.artemis.scene.tag.title')">
-          <p class="mb-3 text-gray-500 text-sm">
-            {{ $t('demos.artemis.scene.tag.description') }}
-          </p>
-          <a-space-compact style="width: 100%">
-            <a-select v-model:value="tagValue" style="width: 120px">
-              <a-select-option value="important">
-                {{ $t('demos.artemis.form.important') }}
-              </a-select-option>
-              <a-select-option value="normal">
-                {{ $t('demos.artemis.form.normal') }}
-              </a-select-option>
-            </a-select>
-            <a-input
-              v-model:value="tagContent"
-              :placeholder="$t('demos.artemis.form.contentPlaceholder')"
-              style="flex: 1"
-              @press-enter="sendTag"
-            />
-            <a-button type="primary" @click="sendTag">
-              {{ $t('demos.artemis.form.send') }}
-            </a-button>
-          </a-space-compact>
-        </a-card>
-      </a-col>
     </a-row>
 
     <!-- 消费记录 -->
@@ -280,12 +229,6 @@
             <a-tag :color="sceneColorMap[record.scene] || 'default'">
               {{ record.scene }}
             </a-tag>
-          </template>
-          <template v-else-if="column.dataIndex === 'tag'">
-            <a-tag v-if="record.tag" :color="record.tag === 'important' ? 'red' : 'blue'">
-              {{ record.tag }}
-            </a-tag>
-            <span v-else>-</span>
           </template>
           <template v-else-if="column.dataIndex === 'costMillis'">
             <span :class="record.costMillis > 1000 ? 'text-orange-500' : ''">

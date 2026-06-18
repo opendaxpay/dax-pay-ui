@@ -1,6 +1,6 @@
 {
   "title": "Message Queue Demo",
-  "description": "Demonstrates four core Artemis JMS scenarios: point-to-point, pub-sub, delayed message, and tag filtering",
+  "description": "Demonstrates three core Artemis JMS scenarios: point-to-point, pub-sub, and delayed message",
   "scene": {
     "queue": {
       "title": "Point-to-Point Queue",
@@ -13,21 +13,14 @@
     "delay": {
       "title": "Delayed Message",
       "description": "Consumer receives the message N seconds after sending (e.g. order timeout close)"
-    },
-    "tag": {
-      "title": "Tag Filtering",
-      "description": "Producer sends by tag, consumer subscribes only specific tags via selector"
     }
   },
   "form": {
     "content": "Message Content",
     "contentPlaceholder": "Please enter message content",
-    "tag": "Message Tag",
     "delaySeconds": "Delay Seconds",
     "send": "Send",
-    "broadcast": "Broadcast",
-    "important": "Important",
-    "normal": "Normal"
+    "broadcast": "Broadcast"
   },
   "records": {
     "title": "Consumption Records",
@@ -37,7 +30,6 @@
     "empty": "No records yet, send a message above to start",
     "columns": {
       "scene": "Scene",
-      "tag": "Tag",
       "content": "Content",
       "sendTime": "Send Time",
       "consumeTime": "Consume Time",

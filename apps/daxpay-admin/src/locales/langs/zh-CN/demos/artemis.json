@@ -1,6 +1,6 @@
 {
   "title": "消息队列演示",
-  "description": "演示 Artemis JMS 的四类核心场景：点对点、发布订阅、延时消息、Tag 过滤",
+  "description": "演示 Artemis JMS 的三类核心场景：点对点、发布订阅、延时消息",
   "scene": {
     "queue": {
       "title": "点对点队列",
@@ -13,21 +13,14 @@
     "delay": {
       "title": "延时消息",
       "description": "发送后延时 N 秒消费者才收到（订单超时关单等场景）"
-    },
-    "tag": {
-      "title": "Tag 过滤",
-      "description": "生产者按标签发送，消费者用 selector 只订阅特定标签"
     }
   },
   "form": {
     "content": "消息内容",
     "contentPlaceholder": "请输入消息内容",
-    "tag": "消息标签",
     "delaySeconds": "延时秒数",
     "send": "发送",
-    "broadcast": "广播",
-    "important": "重要",
-    "normal": "普通"
+    "broadcast": "广播"
   },
   "records": {
     "title": "消费记录",
@@ -37,7 +30,6 @@
     "empty": "暂无消费记录，先在上方发送一条消息试试",
     "columns": {
       "scene": "场景",
-      "tag": "标签",
       "content": "内容",
       "sendTime": "发送时间",
       "consumeTime": "消费时间",

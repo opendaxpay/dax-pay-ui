@@ -29,9 +29,9 @@ export const ArtemisDemoApi = {
 };
 
 /**
- * 消息场景：点对点 / 发布订阅 / 延时 / Tag 过滤
+ * 消息场景：点对点 / 发布订阅 / 延时
  */
-export type DemoScene = 'DELAY' | 'QUEUE' | 'TAG' | 'TOPIC';
+export type DemoScene = 'DELAY' | 'QUEUE' | 'TOPIC';
 
 /**
  * 发送演示消息参数
@@ -41,8 +41,6 @@ export interface SendDemoMessageParam {
   scene: DemoScene;
   /** 消息内容 */
   content: string;
-  /** 消息标签（仅 TAG 场景使用） */
-  tag?: string;
   /** 延时秒数（仅 DELAY 场景使用，范围 1-300） */
   delaySeconds?: number;
 }
@@ -55,8 +53,6 @@ export interface DemoMessageResult {
   id: string;
   /** 消息场景 */
   scene: string;
-  /** 消息标签 */
-  tag?: string;
   /** 消息内容 */
   content: string;
   /** 发送时间（UTC，ISO 字符串） */
