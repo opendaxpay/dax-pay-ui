@@ -10,8 +10,6 @@
     "cardMchInfoDesc": "Merchant No., name, status and other basic info",
     "cardSecurity": "Security Config",
     "cardSecurityDesc": "Password policy, login security, session management",
-    "cardLog": "Operation Log",
-    "cardLogDesc": "Merchant operation audit log query",
     "cardProductPayConfig": "Product Pay Config",
     "cardProductPayConfigDesc": "Merchant product payment parameters and sandbox environment configuration",
     "cardChannelMerchant": "Channel Merchant",

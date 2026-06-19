@@ -45,15 +45,6 @@
           route: '/payment/merchant/manage/info',
         },
         {
-          key: 'log',
-          // 操作日志
-          title: $t('payment.merchant.workbench.workbench.cardLog'),
-          icon: 'ant-design:history-outlined',
-          // 商户操作审计日志查询
-          description: $t('payment.merchant.workbench.workbench.cardLogDesc'),
-          route: '/payment/merchant/log',
-        },
-        {
           key: 'user',
           // 国际化：用户管理
           title: $t('payment.merchant.workbench.workbench.cardUser'),

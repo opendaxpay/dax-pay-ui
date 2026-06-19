@@ -196,7 +196,7 @@
   }
 
   .product-config-card {
-    height: 250px;
+    height: 210px;
     position: relative;
   }
 

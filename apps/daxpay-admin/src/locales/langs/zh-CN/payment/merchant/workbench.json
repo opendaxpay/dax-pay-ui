@@ -10,8 +10,6 @@
     "cardMchInfoDesc": "商户号、名称、状态等基本信息",
     "cardSecurity": "安全配置",
     "cardSecurityDesc": "密码策略、登录安全、会话管理",
-    "cardLog": "操作日志",
-    "cardLogDesc": "商户操作审计日志查询",
     "cardProductPayConfig": "支付产品配置",
     "cardProductPayConfigDesc": "商户产品支付参数与沙箱调试环境配置",
     "cardChannelMerchant": "通道商户管理",
