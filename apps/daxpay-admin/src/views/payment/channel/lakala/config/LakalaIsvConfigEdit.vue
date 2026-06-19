@@ -86,7 +86,7 @@
         .finally(() => {
           confirmLoading.value = false;
         });
-    });
+    }).catch(() => {});
   }
 
   function handleUpload(info: { file: File }, fieldName: string) {

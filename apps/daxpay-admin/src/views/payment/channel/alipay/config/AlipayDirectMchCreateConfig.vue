@@ -83,11 +83,11 @@ function handleSubmit() {
         createSuccess.value = true;
         message.success($t('payment.merchant.channelMerchant.createSuccess'));
       })
-      .finally(() => {
-        submitLoading.value = false;
-      });
-  });
-}
+        .finally(() => {
+          submitLoading.value = false;
+        });
+    }).catch(() => {});
+  }
 
 function resetForm() {
   form.value = {

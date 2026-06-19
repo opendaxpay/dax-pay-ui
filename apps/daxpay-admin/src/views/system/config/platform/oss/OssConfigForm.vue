@@ -111,7 +111,7 @@
         },
         title: $t('common.confirm'),
       });
-    });
+    }).catch(() => {});
   }
 </script>
 

@@ -97,7 +97,12 @@
   }
 
   async function handleOk() {
-    await formRef.value?.validate();
+    try {
+      await formRef.value?.validate();
+    } catch {
+      // 校验失败：表单已显示错误提示
+      return;
+    }
     await validateDouyinAppId();
     confirmLoading.value = true;
     const payload: DouyinMchApp = {

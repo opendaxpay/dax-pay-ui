@@ -97,7 +97,12 @@
    * 保存
    */
   async function handleOk() {
-    await formRef.value?.validate();
+    try {
+      await formRef.value?.validate();
+    } catch {
+      // 校验失败：表单已显示错误提示
+      return;
+    }
     // 提交前再次校验应用 ID，避免防抖校验尚未完成
     await validateAliAppId();
     confirmLoading.value = true;

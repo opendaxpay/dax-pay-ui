@@ -398,7 +398,7 @@
       }
       closeDrawer();
       emits('ok');
-    });
+    }).catch(() => {});
   }
 
   /**

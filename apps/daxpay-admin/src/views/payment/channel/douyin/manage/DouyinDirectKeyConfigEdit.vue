@@ -81,7 +81,7 @@
         .finally(() => {
           confirmLoading.value = false;
         });
-    });
+    }).catch(() => {});
   }
 
   function resetForm() {

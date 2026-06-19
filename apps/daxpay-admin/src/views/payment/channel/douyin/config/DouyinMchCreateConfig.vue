@@ -78,7 +78,7 @@
         .finally(() => {
           submitLoading.value = false;
         });
-    });
+    }).catch(() => {});
   }
 
   function resetForm() {

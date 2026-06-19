@@ -114,7 +114,7 @@
       }
       handleCancel();
       emits('ok');
-    });
+    }).catch(() => {});
   }
 
   defineExpose({ init });
