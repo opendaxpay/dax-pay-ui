@@ -4,8 +4,7 @@
     "login": "Login",
     "codeLogin": "Code Login",
     "qrcodeLogin": "QR Code Login",
-    "forgetPassword": "Forget Password",
-    "register": "Register"
+    "forgetPassword": "Forget Password"
   },
   "dashboard": {
     "title": "Dashboard",

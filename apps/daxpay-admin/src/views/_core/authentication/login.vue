@@ -146,14 +146,6 @@
       </a>
     </div>
 
-    <!-- 国际化：还没有账号? -->
-    <!-- 国际化：注册 -->
-    <AuthPageFooterActions
-      :question-text="$t('authentication.accountTip')"
-      :action-text="$t('authentication.signUp')"
-      action-path="/auth/register"
-    />
-
     <AuthThirdPartyPanel />
   </AuthPageCard>
 </template>

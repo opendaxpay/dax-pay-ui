@@ -84,15 +84,7 @@ const coreRoutes: RouteRecordRaw[] = [
           title: $t('page.auth.forgetPassword'),
         },
       },
-      {
-        name: 'Register',
-        path: 'register',
-        component: () => import('#/views/_core/authentication/register.vue'),
-        meta: {
-          // 注册
-          title: $t('page.auth.register'),
-        },
-      },
+
     ],
   },
 ];
