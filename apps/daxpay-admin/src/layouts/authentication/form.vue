@@ -17,8 +17,7 @@
         <component
           :is="Component"
           :key="route.fullPath"
-          class="side-content mt-6 w-full sm:mx-auto md:max-w-md"
-          :data-side="dataSide"
+          class="auth-view-enter mt-6 w-full sm:mx-auto md:max-w-md"
         />
       </KeepAlive>
     </RouterView>
@@ -30,3 +29,22 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+  /* 路由切换时登录区卡片淡入 + 轻微位移：纯 CSS animation，不依赖 transitionend，规避 out-in 白屏 */
+  .auth-view-enter {
+    animation: auth-fade-slide-in 0.25s cubic-bezier(0.25, 0.8, 0.5, 1);
+  }
+
+  @keyframes auth-fade-slide-in {
+    from {
+      opacity: 0;
+      transform: translateX(15px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+</style>
