@@ -83,7 +83,7 @@
     }
   },
   "widgets": {
-    "document": "Document",
+    "document": "Documentation",
     "qa": "Q&A",
     "setting": "Settings",
     "logoutTip": "Do you want to logout?",
@@ -111,7 +111,16 @@
       "unlock": "Click to unlock",
       "errorPasswordTip": "Password error, please re-enter",
       "backToLogin": "Back to login",
-      "entry": "Enter the system"
+      "entry": "Enter the system",
+      "greeting": {
+        "morning": "Good morning",
+        "forenoon": "Good morning",
+        "noon": "Good noon",
+        "afternoon": "Good afternoon",
+        "evening": "Good evening",
+        "night": "Good night"
+      },
+      "guest": "Guest"
     },
     "timezone": {
       "setTimezone": "Set Timezone",

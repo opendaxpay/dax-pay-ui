@@ -145,7 +145,7 @@
       </AuthenticationLoginExpiredModal>
     </template>
     <template #lock-screen>
-      <LockScreen :avatar @to-login="handleLogout" />
+      <LockScreen :avatar :text="userStore.userInfo?.name" @to-login="handleLogout" />
     </template>
   </BasicLayout>
 </template>

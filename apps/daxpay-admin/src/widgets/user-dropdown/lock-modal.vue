@@ -46,9 +46,9 @@
   }
 
   function handleSubmit() {
-    // 密码不能为空
+    // 密码不能为空（提示用更准确的 passwordTip，而非 placeholder）
     if (!password.value) {
-      message.warning($t('ui.widgets.lockScreen.placeholder'));
+      message.warning($t('authentication.passwordTip'));
       return;
     }
     emit('submit', password.value);
@@ -67,7 +67,8 @@
     @update:open="(val: boolean) => emit('update:open', val)"
   >
     <div class="flex flex-col items-center px-4 pb-2 pt-6">
-      <a-avatar :size="72" :src="avatar" />
+      <!-- 头像：环形描边，与全屏锁屏页风格统一 -->
+      <a-avatar :size="72" :src="avatar" class="ring-2 ring-primary/30 ring-offset-4 ring-offset-background" />
       <div class="my-4 text-base font-medium">{{ text }}</div>
       <a-input-password
         ref="inputRef"
@@ -77,7 +78,7 @@
         allow-clear
         @press-enter="handleSubmit"
       />
-      <a-button type="primary" block size="large" class="mt-4" @click="handleSubmit">
+      <a-button type="primary" block size="large" class="mt-6" @click="handleSubmit">
         {{ $t('ui.widgets.lockScreen.screenButton') }}
       </a-button>
     </div>

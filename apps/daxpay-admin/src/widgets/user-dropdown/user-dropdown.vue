@@ -2,8 +2,7 @@
   import { computed, ref } from 'vue';
   import { useRouter } from 'vue-router';
 
-  import { VBEN_DOC_URL, VBEN_GITHUB_URL } from '@vben/constants';
-  import { BookOpenText, CircleHelp, LockKeyhole, LogOut, SvgGithubIcon, UserRoundPen } from '@vben/icons';
+  import { BookOpenText, CircleHelp, LockKeyhole, LogOut, UserRoundPen } from '@vben/icons';
   import { $t } from '@vben/locales';
   import { preferences, usePreferences } from '@vben/preferences';
   import { useAccessStore } from '@vben/stores';
@@ -27,6 +26,9 @@
   });
 
   const emit = defineEmits<{ logout: [] }>();
+
+  // 项目文档地址（文档 / 问题与帮助均跳转至此）
+  const DOC_URL = 'https://doc.daxpay.cn';
 
   const router = useRouter();
   const accessStore = useAccessStore();
@@ -54,17 +56,12 @@
 
   /** 打开文档 */
   function openDocs() {
-    openWindow(VBEN_DOC_URL, { target: '_blank' });
-  }
-
-  /** 打开 GitHub 仓库 */
-  function openGithub() {
-    openWindow(VBEN_GITHUB_URL, { target: '_blank' });
+    openWindow(DOC_URL, { target: '_blank' });
   }
 
   /** 打开问题 & 帮助 */
   function openIssue() {
-    openWindow(`${VBEN_GITHUB_URL}/issues`, { target: '_blank' });
+    openWindow(DOC_URL, { target: '_blank' });
   }
 
   /** 打开锁屏密码弹窗 */
@@ -94,10 +91,6 @@
     switch (info.key) {
       case 'docs': {
         openDocs();
-        break;
-      }
-      case 'github': {
-        openGithub();
         break;
       }
       case 'issue': {
@@ -165,13 +158,6 @@
           <div class="flex items-center">
             <BookOpenText class="mr-2 size-4" />
             <span>{{ $t('ui.widgets.document') }}</span>
-          </div>
-        </a-menu-item>
-        <!-- GitHub -->
-        <a-menu-item key="github">
-          <div class="flex items-center">
-            <SvgGithubIcon class="mr-2 size-4" />
-            <span>GitHub</span>
           </div>
         </a-menu-item>
         <!-- 问题 & 帮助 -->
