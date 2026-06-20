@@ -33,7 +33,9 @@
     "prodConfigBtn": "生产配置",
     "sandboxConfigBtn": "沙箱配置",
     "switchEnv": "切换环境",
-    "switchEnvConfirm": "确定要切换到{env}吗？"
+    "switchToSandboxConfirm": "确定要切换到沙箱环境吗？所有交易将会使用调用沙箱接口，适用于接口联调与功能测试。",
+    "switchToProdConfirm": "确定要切换到生产环境吗？所有交易将使用生产接口进行真实请求，并产生真实资金往来。",
+    "nonIsvDisabledTip": "非服务商类型的支付产品无法编辑"
   },
   "placeholder": {
     "name": "请输入产品名称",

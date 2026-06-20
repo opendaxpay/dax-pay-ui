@@ -36,16 +36,15 @@
     if (targetEnv === currentEnv) return;
 
     const targetSandbox = targetEnv === 'sandbox';
-    // 国际化：沙箱模式 / 生产模式
-    const envLabel = targetSandbox
-      ? $t('payment.constant.product.productConfig.sandboxLabel')
-      : $t('payment.constant.product.productConfig.prodLabel');
+    // 根据目标环境选择对应的确认文案
+    const contentKey = targetSandbox
+      ? 'payment.constant.product.productConfig.switchToSandboxConfirm'
+      : 'payment.constant.product.productConfig.switchToProdConfirm';
 
     confirm({
       // 国际化：切换环境
       title: $t('payment.constant.product.productConfig.switchEnv'),
-      // 国际化：确定要切换到{env}吗？
-      content: $t('payment.constant.product.productConfig.switchEnvConfirm', { env: envLabel }),
+      content: $t(contentKey),
       onOk: () => {
         return PayProductConfigApi.switchEnv(row.product!, targetSandbox)
           .then(() => {
@@ -147,6 +146,10 @@
 
             <!-- 底部分栏 -->
             <div class="flex border-t border-border h-10 bg-muted/50">
+              <a-tooltip
+                :title="!row.isv ? $t('payment.constant.product.productConfig.nonIsvDisabledTip') : undefined"
+                placement="top"
+              >
               <div
                 class="config-slot prod-slot"
                 :class="[
@@ -162,8 +165,13 @@
                   </span>
                 </div>
               </div>
-              <div
+            </a-tooltip>
+              <a-tooltip
                 v-if="row.sandboxSupport"
+                :title="!row.isv ? $t('payment.constant.product.productConfig.nonIsvDisabledTip') : undefined"
+                placement="top"
+              >
+              <div
                 class="config-slot sandbox-slot"
                 :class="{ 'config-slot-disabled': !row.isv }"
                 @click.stop="row.isv && openDetailPage(row, true)"
@@ -175,6 +183,7 @@
                   </span>
                 </div>
               </div>
+            </a-tooltip>
             </div>
           </a-card>
         </div>

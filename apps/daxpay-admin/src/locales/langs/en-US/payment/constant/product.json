@@ -33,7 +33,9 @@
     "prodConfigBtn": "Production",
     "sandboxConfigBtn": "Sandbox",
     "switchEnv": "Switch Environment",
-    "switchEnvConfirm": "Switch to {env}?"
+    "switchToSandboxConfirm": "Switch to sandbox environment? All transactions will use sandbox API endpoints, suitable for integration and functional testing.",
+    "switchToProdConfirm": "Switch to production environment? All transactions will use production API endpoints and involve real fund flows.",
+    "nonIsvDisabledTip": "Non-ISV payment products cannot be edited"
   },
   "placeholder": {
     "name": "Enter product name",
