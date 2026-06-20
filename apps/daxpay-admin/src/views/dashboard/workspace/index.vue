@@ -11,15 +11,15 @@
 
   import {
     AnalysisChartCard,
-    WorkbenchHeader,
     WorkbenchProject,
     WorkbenchQuickNav,
     WorkbenchTodo,
     WorkbenchTrends,
   } from '@vben/common-ui';
-  import { preferences } from '@vben/preferences';
   import { useUserStore } from '@vben/stores';
   import { openWindow } from '@vben/utils';
+
+  import { WorkbenchHeader } from '#/components/workbench-header';
 
   import AnalyticsVisitsSource from '../analytics/analytics-visits-source.vue';
 
@@ -235,7 +235,7 @@
 
 <template>
   <div class="p-5">
-    <WorkbenchHeader :avatar="userStore.userInfo?.avatar || preferences.app.defaultAvatar">
+    <WorkbenchHeader :text="userStore.userInfo?.name">
       <template #title> 早安, {{ userStore.userInfo?.name }}, 开始您一天的工作吧！ </template>
       <template #description> 今日晴，20℃ - 32℃！ </template>
     </WorkbenchHeader>

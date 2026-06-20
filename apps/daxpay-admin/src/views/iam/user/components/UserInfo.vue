@@ -5,6 +5,7 @@
   import { formatDateTime } from '@vben/utils';
 
   import { type User, UserApi, type UserRole, UserRoleApi } from '#/api/iam/user.api';
+  import { UserAvatar } from '#/components/user-avatar';
   import { clientCodeColorMap, clientCodeI18nMap } from '#/enums/clientCode';
   import { useMessage } from '#/hooks/useMessage';
 
@@ -101,9 +102,7 @@
     <a-spin :spinning="loading">
       <!-- 头像区域 -->
       <div class="user-header">
-        <a-avatar :size="72" :src="userInfo.avatar" class="user-avatar">
-          {{ userInfo.name?.charAt(0)?.toUpperCase() }}
-        </a-avatar>
+        <UserAvatar :text="userInfo.name" :size="72" class="user-avatar" />
         <div class="user-basic">
           <div class="user-name">{{ userInfo.name }}</div>
           <div class="user-account">@{{ userInfo.account }}</div>
@@ -170,7 +169,6 @@
     flex-shrink: 0;
     font-size: 28px;
     font-weight: 500;
-    background-color: #1890ff;
   }
 
   .user-basic {

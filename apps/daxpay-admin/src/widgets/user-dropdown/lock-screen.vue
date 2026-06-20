@@ -7,17 +7,15 @@
 
   import { useDateFormat, useNow, useScrollLock } from '@vueuse/core';
 
+  import { UserAvatar } from '#/components/user-avatar';
   import { useMessage } from '#/hooks/useMessage';
 
   interface Props {
-    /** 头像 */
-    avatar?: string;
-    /** 用户名（用于问候语展示） */
+    /** 用户名（用于问候语展示，并取首字作为头像） */
     text?: string;
   }
 
   withDefaults(defineProps<Props>(), {
-    avatar: '',
     text: '',
   });
 
@@ -158,10 +156,9 @@
         class="flex w-[90%] max-w-sm flex-col items-center rounded-2xl border border-border bg-card/60 px-8 py-10 shadow-xl backdrop-blur-md"
         :class="{ 'animate-[vben-lock-shake_0.4s_ease-in-out]': isError }"
       >
-        <!-- 头像：环形描边 + 外层柔光 -->
+        <!-- 头像：环形描边主题色首字头像 + 外层柔光 -->
         <div class="relative mb-4">
-          <div class="absolute inset-0 -z-10 rounded-full bg-primary/20 blur-xl" />
-          <a-avatar :size="80" :src="avatar" class="ring-2 ring-primary/30 ring-offset-4 ring-offset-background" />
+          <UserAvatar :text="text || $t('ui.widgets.lockScreen.guest')" :size="80" ring glow />
         </div>
         <!-- 用户名 + 小字问候语 -->
         <div class="mb-6 text-center">

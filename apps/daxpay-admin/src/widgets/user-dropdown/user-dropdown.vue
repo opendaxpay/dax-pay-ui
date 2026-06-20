@@ -8,20 +8,18 @@
   import { useAccessStore } from '@vben/stores';
   import { isWindowsOs, openWindow } from '@vben/utils';
 
+  import { UserAvatar } from '#/components/user-avatar';
   import { useMessage } from '#/hooks/useMessage';
 
   import LockModal from './lock-modal.vue';
   import { useLockShortcut } from './use-lock-shortcut';
 
   interface Props {
-    /** 头像 */
-    avatar?: string;
-    /** 用户名 */
+    /** 用户名（取首字作为头像） */
     text?: string;
   }
 
-  const props = withDefaults(defineProps<Props>(), {
-    avatar: '',
+  withDefaults(defineProps<Props>(), {
     text: '',
   });
 
@@ -39,8 +37,6 @@
   // 下拉菜单展开状态（点击菜单项后需手动收起）
   const dropdownOpen = ref(false);
 
-  // 头像兜底为默认头像
-  const avatarValue = computed(() => props.avatar || preferences.app.defaultAvatar);
   // 平台判断：Windows 显示 Alt，其它平台显示 ⌥
   const altView = computed(() => (isWindowsOs() ? 'Alt' : '⌥'));
   // 是否开启锁屏功能
@@ -122,18 +118,12 @@
 </script>
 
 <template>
-  <LockModal
-    v-if="enableLockScreen"
-    v-model:open="lockModalOpen"
-    :avatar="avatarValue"
-    :text="text"
-    @submit="handleLockSubmit"
-  />
+  <LockModal v-if="enableLockScreen" v-model:open="lockModalOpen" :text="text" @submit="handleLockSubmit" />
 
   <a-dropdown v-model:open="dropdownOpen" :trigger="['click']" placement="bottomRight">
     <div class="ml-1 mr-2 cursor-pointer rounded-full p-1.5 hover:bg-accent">
       <div class="flex items-center justify-center hover:text-accent-foreground">
-        <a-avatar :size="32" :src="avatarValue" />
+        <UserAvatar :text="text" :size="32" />
       </div>
     </div>
     <template #popupRender>
@@ -141,7 +131,7 @@
         <!-- 顶部用户信息（不可点击） -->
         <a-menu-item key="user-info" disabled class="!cursor-default !text-foreground">
           <div class="flex items-center gap-2">
-            <a-avatar :size="36" :src="avatarValue" />
+            <UserAvatar :text="text" :size="36" />
             <span class="text-sm font-medium">{{ text }}</span>
           </div>
         </a-menu-item>

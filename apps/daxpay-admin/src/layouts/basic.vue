@@ -4,12 +4,12 @@
   import { computed, ref, watch } from 'vue';
   import { useRouter } from 'vue-router';
 
-  import { AuthenticationLoginExpiredModal } from '@vben/common-ui';
   import { useWatermark } from '@vben/hooks';
   import { BasicLayout, Notification } from '@vben/layouts';
   import { preferences } from '@vben/preferences';
   import { useAccessStore, useUserStore } from '@vben/stores';
 
+  import { LoginExpiredModal } from '#/components/login-expired-modal';
   import { useAuthStore } from '#/store';
   import LoginForm from '#/views/_core/authentication/login.vue';
   import { LockScreen, UserDropdown } from '#/widgets/user-dropdown';
@@ -74,10 +74,6 @@
   const { destroyWatermark, updateWatermark } = useWatermark();
   const showDot = computed(() => notifications.value.some((item) => !item.isRead));
 
-  const avatar = computed(() => {
-    return userStore.userInfo?.avatar ?? preferences.app.defaultAvatar;
-  });
-
   function handleLogoClick() {
     router.push('/');
   }
@@ -127,7 +123,7 @@
 <template>
   <BasicLayout @click-logo="handleLogoClick" @clear-preferences-and-logout="handleLogout">
     <template #user-dropdown>
-      <UserDropdown :avatar :text="userStore.userInfo?.name" @logout="handleLogout" />
+      <UserDropdown :text="userStore.userInfo?.name" @logout="handleLogout" />
     </template>
     <template #notification>
       <Notification
@@ -140,12 +136,12 @@
       />
     </template>
     <template #extra>
-      <AuthenticationLoginExpiredModal v-model:open="accessStore.loginExpired" :avatar>
+      <LoginExpiredModal v-model:open="accessStore.loginExpired" :text="userStore.userInfo?.name">
         <LoginForm />
-      </AuthenticationLoginExpiredModal>
+      </LoginExpiredModal>
     </template>
     <template #lock-screen>
-      <LockScreen :avatar :text="userStore.userInfo?.name" @to-login="handleLogout" />
+      <LockScreen :text="userStore.userInfo?.name" @to-login="handleLogout" />
     </template>
   </BasicLayout>
 </template>

@@ -3,19 +3,17 @@
 
   import { $t } from '@vben/locales';
 
+  import { UserAvatar } from '#/components/user-avatar';
   import { useMessage } from '#/hooks/useMessage';
 
   interface Props {
     /** 是否打开 */
     open: boolean;
-    /** 头像 */
-    avatar?: string;
-    /** 用户名 */
+    /** 用户名（取首字作为头像） */
     text?: string;
   }
 
   const props = withDefaults(defineProps<Props>(), {
-    avatar: '',
     text: '',
   });
 
@@ -67,8 +65,8 @@
     @update:open="(val: boolean) => emit('update:open', val)"
   >
     <div class="flex flex-col items-center px-4 pb-2 pt-6">
-      <!-- 头像：环形描边，与全屏锁屏页风格统一 -->
-      <a-avatar :size="72" :src="avatar" class="ring-2 ring-primary/30 ring-offset-4 ring-offset-background" />
+      <!-- 头像：环形描边主题色首字头像，与全屏锁屏页风格统一 -->
+      <UserAvatar :text="text" :size="72" ring />
       <div class="my-4 text-base font-medium">{{ text }}</div>
       <a-input-password
         ref="inputRef"
