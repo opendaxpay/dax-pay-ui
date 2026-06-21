@@ -1,7 +1,27 @@
 {
   "common": {
     "title": "平台配置",
-    "description": "管理平台的 OSS 等服务配置"
+    "description": "管理平台各服务端点及第三方服务集成等运行配置"
+  },
+  "url": {
+    "title": "端点配置",
+    "description": "管理各端访问地址",
+    "adminBaseUrl": "管理端访问地址",
+    "adminBaseUrlDesc": "运营管理端的基础访问地址, 第三方登录 client=admin 时使用此地址生成回调 URL",
+    "merchantBaseUrl": "商户端访问地址",
+    "merchantBaseUrlDesc": "商户管理端的基础访问地址, 第三方登录 client=merchant 时使用此地址生成回调 URL",
+    "paymentGatewayBaseUrl": "支付网关前端地址",
+    "paymentGatewayBaseUrlDesc": "支付收银台/网关页面的访问地址, 用于支付页面跳转",
+    "backendBaseUrl": "后端 API 地址",
+    "backendBaseUrlDesc": "后端服务的基础 API 地址, 用于支付回调通知等后端发起的场景",
+    "inputAdminBaseUrl": "请输入管理端访问地址, 如 https://admin.daxpay.com",
+    "inputMerchantBaseUrl": "请输入商户端访问地址, 如 https://merchant.daxpay.com",
+    "inputPaymentGatewayBaseUrl": "请输入支付网关前端地址, 如 https://pay.daxpay.com",
+    "inputBackendBaseUrl": "请输入后端 API 地址, 如 https://api.daxpay.com",
+    "confirmSaveContent": "确定要保存端点配置吗？",
+    "section": {
+      "endpoint": "各端访问地址"
+    }
   },
   "oss": {
     "title": "OSS配置",

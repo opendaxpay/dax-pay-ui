@@ -4,12 +4,21 @@
   import { $t } from '#/locales';
 
   import OssConfigForm from './oss/OssConfigForm.vue';
+  import UrlConfigForm from './url/UrlConfigForm.vue';
 
   defineOptions({ name: 'PlatformConfig' });
 
-  const activeKey = ref<string>('oss');
+  // 默认展示端点配置(基础配置优先)
+  const activeKey = ref<string>('url');
 
   const tabs = [
+    {
+      key: 'url',
+      // 端点配置标题
+      label: $t('system.platform.url.title'),
+      // 端点配置描述
+      description: $t('system.platform.url.description'),
+    },
     {
       key: 'oss',
       // OSS配置标题
@@ -46,6 +55,7 @@
 
       <section class="platform-content">
         <div class="platform-content__scroll">
+          <UrlConfigForm v-if="activeKey === 'url'" />
           <OssConfigForm v-if="activeKey === 'oss'" />
         </div>
       </section>

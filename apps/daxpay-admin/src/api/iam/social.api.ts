@@ -39,6 +39,14 @@ export const SocialApi = {
   exchange(code: string, state: string): Promise<Result<SocialExchangeResult>> {
     return defHttp.post({ url: '/social/exchange', params: { code, state } });
   },
+
+  /**
+   * 查询已启用的第三方登录平台(登录页公开接口)
+   * 仅返回平台编码(source), 不含敏感字段
+   */
+  enabledList(): Promise<Result<SocialEnabledPlatform[]>> {
+    return defHttp.get({ url: '/social/enabled-list' });
+  },
 };
 
 /**
@@ -109,8 +117,6 @@ export interface SocialConfigResult {
   clientId?: string;
   /** 客户端密钥(脱敏返回) */
   clientSecret?: string;
-  /** 回调地址 */
-  redirectUri?: string;
   /** 平台特有配置(如企业微信 agentId) */
   extra?: Record<string, string>;
   /** 是否已配置(内存合并缺失项为 false, 保存配置后为 true) */
@@ -134,4 +140,12 @@ export interface SocialExchangeResult {
   result?: string;
   /** 错误码(unbind=未绑定, state_invalid=state过期, oauth_failed=授权失败) */
   error?: string;
+}
+
+/**
+ * 已启用的第三方登录平台(登录页公开返回, 仅含平台编码)
+ */
+export interface SocialEnabledPlatform {
+  /** 平台编码(weChat/weCom/qq/github/gitee/feishu/dingTalk/douyin) */
+  source: string;
 }

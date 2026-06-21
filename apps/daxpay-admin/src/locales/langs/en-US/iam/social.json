@@ -7,7 +7,7 @@
     "merchant": "Merchant"
   },
   "platform": {
-    "weChat": "WeChat Official Account",
+    "weChat": "WeChat Open Platform",
     "weCom": "WeCom",
     "qq": "QQ",
     "github": "GitHub",
@@ -22,7 +22,7 @@
     "unconfigured": "Not Configured"
   },
   "action": {
-    "config": "Configure",
+    "config": "Configuration",
     "edit": "Edit",
     "enable": "Enable",
     "disable": "Disable",
@@ -38,8 +38,6 @@
     "clientSecret": "Client Secret (AppSecret)",
     "clientSecretPlaceholder": "Enter client secret",
     "clientSecretRequired": "Client secret cannot be blank",
-    "redirectUri": "Redirect URI",
-    "redirectUriPlaceholder": "Full URL the third party redirects to after authorization",
     "agentId": "WeCom Agent ID",
     "agentIdPlaceholder": "Only required for WeCom",
     "enabled": "Enabled",

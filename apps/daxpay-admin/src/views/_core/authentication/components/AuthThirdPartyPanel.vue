@@ -1,12 +1,17 @@
 <script lang="ts" setup>
-  import { computed } from 'vue';
+  import { onMounted, ref } from 'vue';
 
-  import { SvgGithubIcon, SvgQQChatIcon, SvgWeChatIcon } from '@vben/icons';
   import { $t } from '@vben/locales';
 
   import { SocialApi } from '#/api/iam/social.api';
+  import { SocialLogo } from '#/components/social';
 
   defineOptions({ name: 'AuthThirdPartyPanel' });
+
+  const props = withDefaults(defineProps<Props>(), {
+    showDivider: true,
+    mode: 'LOGIN',
+  });
 
   interface Props {
     showDivider?: boolean;
@@ -14,50 +19,58 @@
     mode?: 'BIND' | 'LOGIN';
   }
 
-  const props = withDefaults(defineProps<Props>(), {
-    showDivider: true,
-    mode: 'LOGIN',
-  });
+  // 已启用的第三方平台列表(由后端配置驱动)
+  const platformList = ref<{ source: string }[]>([]);
 
-  // 仅展示后端支持且有图标的平台
-  const thirdPartyList = computed(() => [
-    // 国际化: 微信登录
-    { icon: SvgWeChatIcon, name: $t('authentication.wechatLogin'), key: 'weChat' },
-    // 国际化: QQ登录
-    { icon: SvgQQChatIcon, name: $t('authentication.qqLogin'), key: 'qq' },
-    // 国际化: Github登录
-    { icon: SvgGithubIcon, name: $t('authentication.githubLogin'), key: 'github' },
-  ]);
+  /**
+   * 拉取后端已启用的第三方登录平台
+   */
+  async function fetchEnabledList() {
+    const { data } = await SocialApi.enabledList();
+    platformList.value = data ?? [];
+  }
 
   /**
    * 点击三方图标, 获取授权地址并跳转
    */
-  async function handleSocialLogin(key: string) {
-    const url = (await SocialApi.render(key, props.mode)).data;
+  async function handleSocialLogin(source: string) {
+    const { data: url } = await SocialApi.render(source, props.mode);
     if (url) {
       // 跳转到第三方授权页, 授权后由后端回调处理并重定向回前端 /oauth-callback
       window.location.href = url;
     }
   }
+
+  onMounted(fetchEnabledList);
 </script>
 
 <template>
-  <div class="mt-6">
+  <div v-if="platformList.length > 0" class="mt-6">
     <a-divider v-if="props.showDivider" class="!text-gray-400">
       <!-- 国际化: 其他登录方式 -->
       <span class="text-xs">{{ $t('authentication.thirdPartyLogin') }}</span>
     </a-divider>
     <div class="flex flex-wrap justify-center gap-2">
-      <a-tooltip v-for="item in thirdPartyList" :key="item.key" :title="item.name">
+      <a-tooltip v-for="item in platformList" :key="item.source" :title="$t(`iam.social.platform.${item.source}`)">
         <a-button
           type="text"
           size="large"
-          class="!flex !h-10 !w-10 !items-center !justify-center !p-0"
-          @click="handleSocialLogin(item.key)"
+          class="social-btn !flex !h-10 !w-10 !items-center !justify-center !p-0"
+          @click="handleSocialLogin(item.source)"
         >
-          <component :is="item.icon" class="h-5 w-5 text-gray-500 hover:text-blue-500" />
+          <SocialLogo :source="item.source" :size="28" />
         </a-button>
       </a-tooltip>
     </div>
   </div>
 </template>
+
+<style scoped>
+  .social-btn :deep(.logo-img) {
+    transition: transform 0.2s ease;
+  }
+
+  .social-btn:hover :deep(.logo-img) {
+    transform: scale(1.1);
+  }
+</style>

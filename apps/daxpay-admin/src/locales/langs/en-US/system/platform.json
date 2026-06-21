@@ -1,7 +1,27 @@
 {
   "common": {
     "title": "Platform Config",
-    "description": "Manage platform OSS and other service configurations"
+    "description": "Manage platform service endpoints, third-party integrations, and other runtime configurations"
+  },
+  "url": {
+    "title": "Endpoint Config",
+    "description": "Manage access URLs for each client",
+    "adminBaseUrl": "Admin URL",
+    "adminBaseUrlDesc": "Base URL of the admin portal. Used to generate callback URLs when third-party login client=admin",
+    "merchantBaseUrl": "Merchant URL",
+    "merchantBaseUrlDesc": "Base URL of the merchant portal. Used to generate callback URLs when third-party login client=merchant",
+    "paymentGatewayBaseUrl": "Payment Gateway URL",
+    "paymentGatewayBaseUrlDesc": "Access URL of the payment gateway page, used for payment page redirection",
+    "backendBaseUrl": "Backend API URL",
+    "backendBaseUrlDesc": "Base API URL of the backend service, used for backend-initiated scenarios like payment callback notifications",
+    "inputAdminBaseUrl": "Enter admin URL, e.g. https://admin.daxpay.com",
+    "inputMerchantBaseUrl": "Enter merchant URL, e.g. https://merchant.daxpay.com",
+    "inputPaymentGatewayBaseUrl": "Enter payment gateway URL, e.g. https://pay.daxpay.com",
+    "inputBackendBaseUrl": "Enter backend API URL, e.g. https://api.daxpay.com",
+    "confirmSaveContent": "Are you sure to save endpoint configuration?",
+    "section": {
+      "endpoint": "Client Access URLs"
+    }
   },
   "oss": {
     "title": "OSS Config",

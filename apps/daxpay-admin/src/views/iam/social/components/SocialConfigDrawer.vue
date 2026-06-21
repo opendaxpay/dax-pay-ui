@@ -1,18 +1,19 @@
 <script lang="ts" setup>
+  import type { SocialConfigParam, SocialConfigResult } from '#/api/iam/social.api';
+
   import { computed, reactive, ref, watch } from 'vue';
 
   import { $t } from '@vben/locales';
 
   import { SocialConfigApi } from '#/api/iam/social.api';
-  import type { SocialConfigParam, SocialConfigResult } from '#/api/iam/social.api';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
 
   defineOptions({ name: 'SocialConfigDrawer' });
 
   const props = defineProps<{
+    configItem: null | SocialConfigResult;
     visible: boolean;
-    configItem: SocialConfigResult | null;
   }>();
 
   const emit = defineEmits<{
@@ -35,7 +36,6 @@
     source: '',
     clientId: '',
     clientSecret: '',
-    redirectUri: '',
     extra: {},
     enabled: true,
   });
@@ -45,7 +45,6 @@
     enabled: [{ required: true, message: $t('iam.social.form.enabledRequired') }],
     clientId: [{ required: true, message: $t('iam.social.form.clientId') }],
     clientSecret: [{ required: true, message: $t('iam.social.form.clientSecretRequired') }],
-    redirectUri: [{ required: true, message: $t('iam.social.form.redirectUri') }],
   }));
 
   // 原始脱敏数据(来自后端), 用于 diffForm 比对敏感字段是否被修改
@@ -77,7 +76,8 @@
       if (item.configured || item.id) {
         // 编辑模式(已配置平台)
         currentSource.value = item.source || '';
-        modalTitle.value = $t('iam.social.action.edit');
+        const editSourceName = $t(`iam.social.platform.${currentSource.value}`);
+        modalTitle.value = `${editSourceName}${$t('iam.social.action.config')}`;
         isFirstConfig.value = false;
         // 保存原始脱敏数据用于 diffForm 比对, clientSecret 保留脱敏值回显到输入框
         // (脱敏值非真实密钥, 即使用户误提交也会因 diffForm 相等而被忽略)
@@ -91,13 +91,13 @@
         // 配置模式(未配置平台), 先调 findBySource 初始化占位记录
         const record = (await SocialConfigApi.findBySource(item.source!)).data;
         currentSource.value = record.source || '';
-        modalTitle.value = $t('iam.social.action.config');
+        const configSourceName = $t(`iam.social.platform.${currentSource.value}`);
+        modalTitle.value = `${configSourceName}${$t('iam.social.action.config')}`;
         isFirstConfig.value = true;
         Object.assign(formData, {
           ...record,
           clientId: '',
           clientSecret: '',
-          redirectUri: '',
           extra: {},
           enabled: true,
         });
@@ -140,7 +140,11 @@
           <a-switch v-model:checked="formData.enabled" :disabled="submitLoading" />
         </a-form-item>
         <a-form-item :label="$t('iam.social.form.clientId')" name="clientId">
-          <a-input v-model:value="formData.clientId" :placeholder="$t('iam.social.form.clientIdPlaceholder')" :disabled="submitLoading" />
+          <a-input
+            v-model:value="formData.clientId"
+            :placeholder="$t('iam.social.form.clientIdPlaceholder')"
+            :disabled="submitLoading"
+          />
         </a-form-item>
         <a-form-item :label="$t('iam.social.form.clientSecret')" name="clientSecret">
           <a-input
@@ -149,12 +153,13 @@
             :disabled="submitLoading"
           />
         </a-form-item>
-        <a-form-item :label="$t('iam.social.form.redirectUri')" name="redirectUri">
-          <a-input v-model:value="formData.redirectUri" :placeholder="$t('iam.social.form.redirectUriPlaceholder')" :disabled="submitLoading" />
-        </a-form-item>
         <!-- 企业微信特有: agentId 存入 extra -->
         <a-form-item v-if="showAgentId" :label="$t('iam.social.form.agentId')">
-          <a-input v-model:value="agentIdValue" :placeholder="$t('iam.social.form.agentIdPlaceholder')" :disabled="submitLoading" />
+          <a-input
+            v-model:value="agentIdValue"
+            :placeholder="$t('iam.social.form.agentIdPlaceholder')"
+            :disabled="submitLoading"
+          />
         </a-form-item>
       </a-form>
     </a-spin>

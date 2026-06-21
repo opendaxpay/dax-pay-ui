@@ -2,7 +2,7 @@
  * 社交平台编码枚举(与后端 SocialSource.name 保持一致)
  */
 export enum SocialSourceEnum {
-  /** 微信公众号 */
+  /** 微信开放平台 */
   WE_CHAT = 'weChat',
   /** 企业微信 */
   WE_COM = 'weCom',
@@ -24,7 +24,7 @@ export enum SocialSourceEnum {
  * 社交平台默认名称映射
  */
 export const socialNameMap: Record<string, string> = {
-  [SocialSourceEnum.WE_CHAT]: '微信公众号',
+  [SocialSourceEnum.WE_CHAT]: '微信开放平台',
   [SocialSourceEnum.WE_COM]: '企业微信',
   [SocialSourceEnum.QQ]: 'QQ',
   [SocialSourceEnum.GITHUB]: 'GitHub',

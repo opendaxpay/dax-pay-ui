@@ -86,7 +86,8 @@ const coreRoutes: RouteRecordRaw[] = [
       },
       {
         name: 'OauthCallback',
-        path: 'oauth-callback',
+        // source 为路径参数, 用于回调页识别平台; 可选以兼容无 source 的旧地址
+        path: 'oauth-callback/:source?',
         component: () => import('#/views/_core/authentication/oauth-callback.vue'),
         meta: {
           // 第三方登录回调
@@ -94,7 +95,6 @@ const coreRoutes: RouteRecordRaw[] = [
           hideInMenu: true,
         },
       },
-
     ],
   },
 ];
