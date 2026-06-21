@@ -84,6 +84,16 @@ const coreRoutes: RouteRecordRaw[] = [
           title: $t('page.auth.forgetPassword'),
         },
       },
+      {
+        name: 'OauthCallback',
+        path: 'oauth-callback',
+        component: () => import('#/views/_core/authentication/oauth-callback.vue'),
+        meta: {
+          // 第三方登录回调
+          title: $t('page.auth.oauthCallback'),
+          hideInMenu: true,
+        },
+      },
 
     ],
   },

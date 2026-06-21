@@ -5,5 +5,13 @@
   "forgetPassword": "Forget Password",
   "profile": "Profile",
   "pageTitle": "DaxPay Payment Operations Platform",
-  "pageDesc": "Secure, stable and efficient payment operations solution"
+  "pageDesc": "Secure, stable and efficient payment operations solution",
+  // OAuth callback related
+  "oauthLoginSuccess": "Login successful",
+  "oauthBindSuccess": "Social account bound successfully",
+  "oauthNotBind": "This social account is not bound. Please log in first and bind it in your profile",
+  "oauthStateInvalid": "Authorization has expired. Please try again",
+  "oauthFailed": "Authorization login failed",
+  "oauthProcessFailed": "Failed to process authorization login",
+  "oauthProcessing": "Processing login..."
 }

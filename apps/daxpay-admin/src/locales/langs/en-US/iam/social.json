@@ -1,0 +1,59 @@
+{
+  "title": "Third-party Platform Login",
+  "emptyDesc": "No platform configuration data",
+  "clientCode": {
+    "label": "Client",
+    "admin": "Admin",
+    "merchant": "Merchant"
+  },
+  "platform": {
+    "weChat": "WeChat Official Account",
+    "weCom": "WeCom",
+    "qq": "QQ",
+    "github": "GitHub",
+    "gitee": "Gitee",
+    "feishu": "Feishu",
+    "dingTalk": "DingTalk",
+    "douyin": "Douyin"
+  },
+  "status": {
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "unconfigured": "Not Configured"
+  },
+  "action": {
+    "config": "Configure",
+    "edit": "Edit",
+    "enable": "Enable",
+    "disable": "Disable",
+    "delete": "Delete",
+    "add": "Add Platform Config",
+    "search": "Search",
+    "reset": "Reset"
+  },
+  "form": {
+    "source": "Platform",
+    "clientId": "Client ID (AppId)",
+    "clientIdPlaceholder": "Enter client ID (AppId)",
+    "clientSecret": "Client Secret (AppSecret)",
+    "clientSecretPlaceholder": "Enter client secret",
+    "clientSecretRequired": "Client secret cannot be blank",
+    "redirectUri": "Redirect URI",
+    "redirectUriPlaceholder": "Full URL the third party redirects to after authorization",
+    "agentId": "WeCom Agent ID",
+    "agentIdPlaceholder": "Only required for WeCom",
+    "enabled": "Enabled",
+    "enabledRequired": "Please select enable status"
+  },
+  "confirm": {
+    "delete": "Are you sure to delete the {name} configuration?"
+  },
+  "tip": {
+    "addSuccess": "Added successfully",
+    "configSuccess": "Configured successfully",
+    "editSuccess": "Updated successfully",
+    "enableSuccess": "Enabled successfully",
+    "disableSuccess": "Disabled successfully",
+    "deleteSuccess": "Deleted successfully"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "title": "第三方平台登录配置",
+  "emptyDesc": "暂无平台配置数据",
+  "clientCode": {
+    "label": "终端",
+    "admin": "运营端",
+    "merchant": "商户端"
+  },
+  "platform": {
+    "weChat": "微信公众号",
+    "weCom": "企业微信",
+    "qq": "QQ",
+    "github": "GitHub",
+    "gitee": "Gitee",
+    "feishu": "飞书",
+    "dingTalk": "钉钉",
+    "douyin": "抖音"
+  },
+  "status": {
+    "enabled": "已启用",
+    "disabled": "已停用",
+    "unconfigured": "未配置"
+  },
+  "action": {
+    "config": "配置",
+    "edit": "编辑",
+    "enable": "启用",
+    "disable": "禁用",
+    "delete": "删除",
+    "add": "新增平台配置",
+    "search": "查询",
+    "reset": "重置"
+  },
+  "form": {
+    "source": "平台",
+    "clientId": "客户端ID(AppId)",
+    "clientIdPlaceholder": "请输入客户端ID(AppId)",
+    "clientSecret": "客户端密钥(AppSecret)",
+    "clientSecretPlaceholder": "输入客户端密钥",
+    "clientSecretRequired": "客户端密钥不可为空",
+    "redirectUri": "回调地址",
+    "redirectUriPlaceholder": "授权完成后第三方重定向到前端的完整地址",
+    "agentId": "企业微信应用ID",
+    "agentIdPlaceholder": "仅企业微信需要",
+    "enabled": "是否启用",
+    "enabledRequired": "请选择是否启用"
+  },
+  "confirm": {
+    "delete": "确认删除 {name} 配置吗？"
+  },
+  "tip": {
+    "addSuccess": "新增成功",
+    "configSuccess": "配置成功",
+    "editSuccess": "修改成功",
+    "enableSuccess": "启用成功",
+    "disableSuccess": "停用成功",
+    "deleteSuccess": "删除成功"
+  }
+}

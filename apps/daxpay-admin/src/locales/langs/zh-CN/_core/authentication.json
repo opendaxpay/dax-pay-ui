@@ -5,5 +5,12 @@
   "forgetPassword": "忘记密码",
   "profile": "个人中心",
   "pageTitle": "DaxPay 支付运营管理平台",
-  "pageDesc": "安全、稳定、高效的支付运营解决方案"
+  "pageDesc": "安全、稳定、高效的支付运营解决方案",
+  "oauthLoginSuccess": "登录成功",
+  "oauthBindSuccess": "三方账号绑定成功",
+  "oauthNotBind": "该三方账号未绑定，请先登录后在个人中心绑定",
+  "oauthStateInvalid": "授权状态已过期，请重新操作",
+  "oauthFailed": "授权登录失败",
+  "oauthProcessFailed": "授权登录处理失败",
+  "oauthProcessing": "正在处理登录..."
 }
