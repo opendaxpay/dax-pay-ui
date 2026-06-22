@@ -52,6 +52,7 @@
     "vxe-table": "catalog:"
   },
   "devDependencies": {
-    "axios": "catalog:"
+    "axios": "catalog:",
+    "less": "catalog:"
   }
 }
