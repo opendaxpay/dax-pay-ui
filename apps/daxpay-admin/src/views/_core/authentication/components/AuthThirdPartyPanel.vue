@@ -34,7 +34,7 @@
    * 点击三方图标, 获取授权地址并跳转
    */
   async function handleSocialLogin(source: string) {
-    const { data: url } = await SocialApi.render(source, props.mode);
+    const { data: url } = await SocialApi.render(source, 'admin', props.mode);
     if (url) {
       // 跳转到第三方授权页, 授权后由后端回调处理并重定向回前端 /oauth-callback
       window.location.href = url;

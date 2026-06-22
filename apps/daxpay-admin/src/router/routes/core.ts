@@ -34,6 +34,19 @@ const profileRoute: RouteRecordRaw = {
   },
 };
 
+/** 第三方绑定回调（独立路由，弹窗模式，不使用 AuthPageLayout） */
+const socialBindCallbackRoute: RouteRecordRaw = {
+  name: 'SocialBindCallback',
+  path: '/auth/social-bind-callback/:source?',
+  component: () => import('#/views/_core/authentication/social-bind-callback.vue'),
+  meta: {
+    title: $t('page.auth.oauthCallback'),
+    hideInMenu: true,
+    hideInBreadcrumb: true,
+    hideInTab: true,
+  },
+};
+
 /** 基本路由，这些路由是必须存在的 */
 const coreRoutes: RouteRecordRaw[] = [
   /**
@@ -111,6 +124,8 @@ const coreRoutes: RouteRecordRaw[] = [
       },
     ],
   },
+  // 第三方绑定回调（独立路由，弹窗模式）
+  socialBindCallbackRoute,
 ];
 
-export { coreRoutes, fallbackNotFoundRoute, profileRoute };
+export { coreRoutes, fallbackNotFoundRoute, profileRoute, socialBindCallbackRoute };

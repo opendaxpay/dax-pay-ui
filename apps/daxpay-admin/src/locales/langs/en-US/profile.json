@@ -12,6 +12,7 @@
   "socialUnbindTitle": "Unbind",
   "socialUnbindConfirm": "Are you sure to unbind {name}? After unbinding, you will not be able to log in with this account.",
   "socialUnbindSuccess": "Unbound successfully",
+  "socialBindSuccess": "Bound successfully",
   "loginAccount": "Login Account",
   "notSet": "Not set",
   "name": "Name",

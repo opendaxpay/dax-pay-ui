@@ -41,21 +41,19 @@
   });
 
   /**
-   * 处理社交登录回调
-   * 新流程: URL 含 code+state → 调 exchange API → 后端返回 JSON 结果
-   * 旧兼容: URL 直接含 token/error/result → 原地处理
+   * 处理社交登录回调(仅登录场景)
+   * URL 含 code+state → 调 exchangeLogin API → 后端返回 JSON 结果
    */
   onMounted(async () => {
-    const { code, state, token, error, result } = route.query;
+    const { code, state } = route.query;
+    if (!code || !state) {
+      message.error($t('_core.authentication.oauthProcessFailed'));
+      router.push('/auth/login');
+      return;
+    }
     try {
-      if (code && state) {
-        // 新流程: 前端回调模式, 用 code+state 调后端兑换
-        const res = await SocialApi.exchange(code as string, state as string);
-        await handleResult(res.data?.token, res.data?.result, res.data?.error);
-      } else {
-        // 旧兼容: 后端 302 重定向模式, 直接从 URL 读参数
-        await handleResult(token as string | undefined, result as string | undefined, error as string | undefined);
-      }
+      const res = await SocialApi.exchangeLogin(code as string, state as string, source.value, 'admin');
+      await handleResult(res.data?.token, res.data?.error);
     } catch {
       message.error($t('_core.authentication.oauthProcessFailed'));
       router.push('/auth/login');
@@ -63,14 +61,13 @@
   });
 
   /**
-   * 统一处理兑换结果
+   * 统一处理登录兑换结果
    * - token: 登录成功, 存储令牌并跳转首页
-   * - result=bind_success: 绑定成功, 跳转个人中心
    * - error=unbind: 未绑定三方账号, 引导回登录页
    * - error=state_invalid: 授权状态过期
    * - error=oauth_failed: 授权失败
    */
-  async function handleResult(token?: string, result?: string, error?: string) {
+  async function handleResult(token?: string, error?: string) {
     if (token) {
       accessStore.setAccessToken(token, true);
       await authStore.fetchUserInfo();
@@ -82,9 +79,6 @@
           : $t('_core.authentication.oauthLoginSuccess'),
       );
       router.push(preferences.app.defaultHomePath);
-    } else if (result === 'bind_success') {
-      message.success($t('_core.authentication.oauthBindSuccess'));
-      router.push('/profile');
     } else if (error === 'unbind') {
       message.error($t('_core.authentication.oauthNotBind'));
       router.push('/auth/login');
@@ -108,6 +102,6 @@
   <div class="flex h-screen w-full flex-col items-center justify-center gap-4">
     <!-- 平台图标(有 source 时显示, 强化用户感知) -->
     <SocialLogo v-if="source" :source="source" :size="56" />
-    <a-spin size="large" :tip="processingTip" />
+    <a-spin size="large" :description="processingTip" />
   </div>
 </template>

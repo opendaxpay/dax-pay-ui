@@ -1,5 +1,6 @@
-import { defHttp } from '#/api/request';
 import type { Result } from '#/types/web';
+
+import { defHttp } from '#/api/request';
 
 /**
  * 第三方社交登录 API
@@ -8,13 +9,14 @@ export const SocialApi = {
   /**
    * 生成授权地址(前端拿到后跳转到第三方)
    * @param source 平台来源(wechat/qq/github 等)
+   * @param client 终端编码(admin/merchant)
    * @param mode 授权场景: BIND(已登录绑定) | LOGIN(未登录登录), 不传按登录态判断
    * @param redirect 成功后前端跳转路径
    */
-  render(source: string, mode?: string, redirect?: string): Promise<Result<string>> {
+  render(source: string, client: string = 'admin', mode?: string, redirect?: string): Promise<Result<string>> {
     return defHttp.get({
       url: `/social/render/${source}`,
-      params: { client: 'admin', mode, redirect },
+      params: { client, mode, redirect },
     });
   },
 
@@ -33,11 +35,29 @@ export const SocialApi = {
   },
 
   /**
-   * OAuth 授权码兑换(前端回调模式)
-   * 前端回调页收到第三方平台的 code+state 后调用, 后端换 token 并返回结果
+   * OAuth 授权码兑换 - 登录(公开)
+   * 前端登录回调页收到第三方平台的 code+state 后调用
    */
-  exchange(code: string, state: string): Promise<Result<SocialExchangeResult>> {
-    return defHttp.post({ url: '/social/exchange', params: { code, state } });
+  exchangeLogin(
+    code: string,
+    state: string,
+    source: string,
+    client: string = 'admin',
+  ): Promise<Result<SocialExchangeResult>> {
+    return defHttp.post({ url: '/social/exchange-login', params: { code, state, source, client } });
+  },
+
+  /**
+   * OAuth 授权码兑换 - 绑定(需登录)
+   * 前端绑定回调页收到第三方平台的 code+state 后调用
+   */
+  exchangeBind(
+    code: string,
+    state: string,
+    source: string,
+    client: string = 'admin',
+  ): Promise<Result<SocialExchangeResult>> {
+    return defHttp.post({ url: '/social/exchange-bind', params: { code, state, source, client } });
   },
 
   /**

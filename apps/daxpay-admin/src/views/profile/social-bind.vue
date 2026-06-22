@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import type { SocialBindResult } from '#/api/iam/social.api';
 
-  import { computed, onMounted, ref } from 'vue';
+  import { computed, onMounted, onUnmounted, ref } from 'vue';
 
   import { $t } from '@vben/locales';
 
@@ -46,12 +46,22 @@
   }
 
   /**
-   * 绑定第三方账号(跳转授权, 授权后由后端回调处理)
+   * 绑定第三方账号(打开弹窗进行授权, 授权后弹窗自动关闭并通知刷新)
    */
   async function handleBind(source: string) {
-    const { data: url } = await SocialApi.render(source, 'BIND');
+    const { data: url } = await SocialApi.render(source, 'admin', 'BIND');
     if (url) {
-      window.location.href = url;
+      window.open(url, 'social-bind', 'width=600,height=700');
+    }
+  }
+
+  /**
+   * 监听弹窗回传的绑定结果
+   */
+  function handlePostMessage(event: MessageEvent) {
+    if (event.data?.type === 'social_bind_success') {
+      message.success($t('profile.socialBindSuccess'));
+      fetchData();
     }
   }
 
@@ -70,7 +80,14 @@
     });
   }
 
-  onMounted(fetchData);
+  onMounted(() => {
+    window.addEventListener('message', handlePostMessage);
+    fetchData();
+  });
+
+  onUnmounted(() => {
+    window.removeEventListener('message', handlePostMessage);
+  });
 </script>
 
 <template>
