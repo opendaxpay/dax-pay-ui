@@ -53,6 +53,7 @@
   },
   "devDependencies": {
     "axios": "catalog:",
+    "esbuild": "catalog:",
     "less": "catalog:"
   }
 }
