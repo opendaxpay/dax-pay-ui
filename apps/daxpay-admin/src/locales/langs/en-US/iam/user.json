@@ -30,7 +30,17 @@
     "confirmAssignRole": "Are you sure you want to save the role assignment?",
     "confirmBan": "Are you sure to ban selected users?",
     "confirmUnlock": "Are you sure to unlock selected users?",
-    "confirmResetPassword": "Are you sure to reset password for selected users?"
+    "confirmResetPassword": "Are you sure to reset password for selected users?",
+    "socialBind": "Social Bindings"
+  },
+  "social": {
+    "title": "Social Account Bindings",
+    "bound": "Bound",
+    "unbound": "Not Bound",
+    "unbindAction": "Unbind",
+    "unbindConfirm": "Are you sure to unbind this user's {name} account?",
+    "unbindSuccess": "Unbind successful",
+    "noEnabled": "No enabled social platforms"
   },
   "password": {
     "password": "Password",

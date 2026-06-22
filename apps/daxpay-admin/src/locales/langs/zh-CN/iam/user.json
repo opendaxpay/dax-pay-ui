@@ -30,7 +30,17 @@
     "confirmAssignRole": "确定要保存角色分配吗？",
     "confirmBan": "确定要封禁选中的用户吗？",
     "confirmUnlock": "确定要解锁选中的用户吗？",
-    "confirmResetPassword": "确定要重置选中用户的密码吗？"
+    "confirmResetPassword": "确定要重置选中用户的密码吗？",
+    "socialBind": "三方绑定"
+  },
+  "social": {
+    "title": "三方账号绑定",
+    "bound": "已绑定",
+    "unbound": "未绑定",
+    "unbindAction": "解绑",
+    "unbindConfirm": "确定要解绑该用户的 {name} 账号吗？",
+    "unbindSuccess": "解绑成功",
+    "noEnabled": "暂无启用的第三方平台"
   },
   "password": {
     "password": "密码",

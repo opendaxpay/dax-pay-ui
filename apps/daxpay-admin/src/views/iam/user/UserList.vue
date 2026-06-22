@@ -10,9 +10,9 @@
 
   import { UserApi } from '#/api/iam/user.api';
   import { BQuery, type QueryField } from '#/components/query';
+  import { PermCodes } from '#/constants/perm-codes';
   import { clientCodeColorMap, clientCodeI18nMap } from '#/enums/clientCode';
   import { useMessage } from '#/hooks/useMessage';
-  import { PermCodes } from '#/constants/perm-codes';
   import { usePermission } from '#/hooks/usePermission';
 
   import UserAdd from './components/UserAdd.vue';
@@ -20,6 +20,7 @@
   import UserInfo from './components/UserInfo.vue';
   import UserResetPassword from './components/UserResetPassword.vue';
   import UserRoleAssign from './components/UserRoleAssign.vue';
+  import UserSocialBind from './components/UserSocialBind.vue';
 
   /**
    * Tab 配置项接口
@@ -54,6 +55,7 @@
   const userInfoRef = ref();
   const userResetPasswordRef = ref();
   const userRoleAssignRef = ref();
+  const userSocialBindRef = ref();
 
   // 加载状态
   const loading = ref(false);
@@ -207,6 +209,12 @@
           label: $t('iam.user.action.resetPassword'),
           disabled: !hasPermission(PermCodes.Iam.UserManager.RESET_PASSWORD),
         },
+        // 三方绑定
+        {
+          key: 'socialBind',
+          label: $t('iam.user.action.socialBind'),
+          disabled: !hasPermission(PermCodes.Iam.UserManager.VIEW),
+        },
         { type: 'divider' },
         // 封禁
         {
@@ -235,6 +243,11 @@
           }
           case 'resetPassword': {
             handleResetPassword([row.id]);
+
+            break;
+          }
+          case 'socialBind': {
+            handleSocialBind(row);
 
             break;
           }
@@ -303,6 +316,13 @@
    */
   function handleAssignRole(row: any) {
     userRoleAssignRef.value?.show(row.id);
+  }
+
+  /**
+   * 三方账号绑定
+   */
+  function handleSocialBind(row: any) {
+    userSocialBindRef.value?.show(row.id, row.name);
   }
 
   /**
@@ -529,6 +549,7 @@
     <UserInfo ref="userInfoRef" />
     <UserResetPassword ref="userResetPasswordRef" @ok="queryPage" />
     <UserRoleAssign ref="userRoleAssignRef" @ok="queryPage" />
+    <UserSocialBind ref="userSocialBindRef" />
   </div>
 </template>
 
