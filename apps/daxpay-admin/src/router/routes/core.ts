@@ -20,6 +20,20 @@ const fallbackNotFoundRoute: RouteRecordRaw = {
   path: '/:path(.*)*',
 };
 
+/** 个人设置路由（需要登录，独立于 coreRoutes） */
+const profileRoute: RouteRecordRaw = {
+  name: 'Profile',
+  path: 'profile',
+  component: () => import('#/views/profile/index.vue'),
+  meta: {
+    // 个人设置
+    title: $t('page.auth.profile'),
+    hideInMenu: true,
+    hideInBreadcrumb: true,
+    activePath: '/profile',
+  },
+};
+
 /** 基本路由，这些路由是必须存在的 */
 const coreRoutes: RouteRecordRaw[] = [
   /**
@@ -99,4 +113,4 @@ const coreRoutes: RouteRecordRaw[] = [
   },
 ];
 
-export { coreRoutes, fallbackNotFoundRoute };
+export { coreRoutes, fallbackNotFoundRoute, profileRoute };

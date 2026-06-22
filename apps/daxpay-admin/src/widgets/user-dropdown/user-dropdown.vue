@@ -45,7 +45,7 @@
   const showLockShortcut = computed(() => preferences.shortcutKeys.enable && globalLockScreenShortcutKey.value);
   const showLogoutShortcut = computed(() => preferences.shortcutKeys.enable && globalLogoutShortcutKey.value);
 
-  /** 跳转个人资料 */
+  /** 跳转个人设置 */
   function goProfile() {
     router.push({ name: 'Profile' });
   }
@@ -136,7 +136,7 @@
           </div>
         </a-menu-item>
         <a-menu-divider />
-        <!-- 个人资料 -->
+        <!-- 个人设置 -->
         <a-menu-item key="profile">
           <div class="flex items-center">
             <UserRoundPen class="mr-2 size-4" />

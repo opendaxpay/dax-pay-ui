@@ -1,6 +1,6 @@
 {
   "auth": {
-    "profile": "个人资料",
+    "profile": "个人设置",
     "login": "登录",
     "codeLogin": "验证码登录",
     "qrcodeLogin": "二维码登录",

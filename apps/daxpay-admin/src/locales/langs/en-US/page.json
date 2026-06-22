@@ -1,6 +1,6 @@
 {
   "auth": {
-    "profile": "Profile",
+    "profile": "Settings",
     "login": "Login",
     "codeLogin": "Code Login",
     "qrcodeLogin": "QR Code Login",

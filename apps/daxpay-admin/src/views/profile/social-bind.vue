@@ -1,29 +1,23 @@
 <script lang="ts" setup>
+  import type { SocialBindResult } from '#/api/iam/social.api';
+
   import { computed, onMounted, ref } from 'vue';
 
   import { $t } from '@vben/locales';
 
   import { SocialApi } from '#/api/iam/social.api';
-  import type { SocialBindResult } from '#/api/iam/social.api';
+  import { SocialLogo } from '#/components/social';
   import { useMessage } from '#/hooks/useMessage';
 
   defineOptions({ name: 'ProfileSocialBind' });
 
   const { message, confirm } = useMessage();
 
-  // 当前系统支持的平台列表
-  const platforms = [
-    { source: 'weChat' },
-    { source: 'weCom' },
-    { source: 'qq' },
-    { source: 'github' },
-    { source: 'gitee' },
-    { source: 'feishu' },
-    { source: 'dingTalk' },
-  ];
+  /** 后端已启用的平台列表 */
+  const enabledPlatforms = ref<{ source: string }[]>([]);
 
   const platformList = computed(() =>
-    platforms.map((p) => ({
+    enabledPlatforms.value.map((p) => ({
       ...p,
       name: $t(`iam.social.platform.${p.source}`),
     })),
@@ -32,13 +26,13 @@
   const bindList = ref<SocialBindResult[]>([]);
   const loading = ref(false);
 
-  /**
-   * 查询已绑定的第三方账号
-   */
-  async function fetchBindList() {
+  /** 拉取已启用平台 + 已绑定账号 */
+  async function fetchData() {
     loading.value = true;
     try {
-      bindList.value = (await SocialApi.bindList()).data;
+      const [{ data: platforms }, { data: binds }] = await Promise.all([SocialApi.enabledList(), SocialApi.bindList()]);
+      enabledPlatforms.value = platforms ?? [];
+      bindList.value = binds ?? [];
     } finally {
       loading.value = false;
     }
@@ -55,7 +49,7 @@
    * 绑定第三方账号(跳转授权, 授权后由后端回调处理)
    */
   async function handleBind(source: string) {
-    const url = (await SocialApi.render(source, 'BIND')).data;
+    const { data: url } = await SocialApi.render(source, 'BIND');
     if (url) {
       window.location.href = url;
     }
@@ -71,24 +65,26 @@
       onOk: async () => {
         await SocialApi.unbind(source);
         message.success($t('profile.socialUnbindSuccess'));
-        await fetchBindList();
+        await fetchData();
       },
     });
   }
 
-  onMounted(fetchBindList);
+  onMounted(fetchData);
 </script>
 
 <template>
   <a-spin :spinning="loading">
-    <a-card :title="$t('profile.socialBind')" :bordered="false">
-      <div class="space-y-3">
+    <a-card :title="$t('profile.socialBind')" variant="borderless">
+      <a-empty v-if="platformList.length === 0" :description="$t('profile.socialUnbound')" />
+      <div v-else class="space-y-3">
         <div
           v-for="platform in platformList"
           :key="platform.source"
           class="flex items-center justify-between border-b border-gray-100 py-3 last:border-0"
         >
           <div class="flex items-center gap-3">
+            <SocialLogo :source="platform.source" :size="32" />
             <span class="text-base font-medium">{{ platform.name }}</span>
             <template v-if="findBind(platform.source)">
               <a-tag color="green">{{ $t('profile.socialBound') }}</a-tag>
