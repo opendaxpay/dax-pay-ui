@@ -23,7 +23,6 @@
     account: '',
     password: '',
     captcha: false,
-    remember: true,
   });
 
   // 表单校验规则
@@ -53,7 +52,6 @@
       await authStore.authLogin({
         account: formData.account,
         password: formData.password,
-        remember: formData.remember,
       });
     }
   }
@@ -72,12 +70,6 @@
     router.push('/auth/qrcode-login');
   }
 
-  /**
-   * 跳转到忘记密码
-   */
-  function goToForgetPassword() {
-    router.push('/auth/forget-password');
-  }
 </script>
 
 <template>
@@ -109,17 +101,6 @@
       <a-form-item name="captcha">
         <SliderCaptcha v-model="formData.captcha" />
       </a-form-item>
-
-      <div class="mb-4 flex items-center justify-between">
-        <a-checkbox v-model:checked="formData.remember">
-          <!-- 国际化：记住账号 -->
-          {{ $t('authentication.rememberMe') }}
-        </a-checkbox>
-        <a class="cursor-pointer text-sm text-blue-600 hover:text-blue-500" @click="goToForgetPassword">
-          <!-- 国际化：忘记密码? -->
-          {{ $t('authentication.forgetPassword') }}
-        </a>
-      </div>
 
       <a-button
         type="primary"

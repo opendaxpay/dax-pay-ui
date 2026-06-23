@@ -5,13 +5,13 @@ import type { VbenFormSchema } from '@vben-core/form-ui';
 
 import type { AuthenticationProps } from './types';
 
-import { computed, onMounted, reactive, ref } from 'vue';
+import { computed, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 
 import { $t } from '@vben/locales';
 
 import { useVbenForm } from '@vben-core/form-ui';
-import { VbenButton, VbenCheckbox } from '@vben-core/shadcn-ui';
+import { VbenButton } from '@vben-core/shadcn-ui';
 
 import Title from './auth-title.vue';
 import ThirdPartyLogin from './third-party-login.vue';
@@ -26,16 +26,13 @@ defineOptions({
 
 const props = withDefaults(defineProps<Props>(), {
   codeLoginPath: '/auth/code-login',
-  forgetPasswordPath: '/auth/forget-password',
   formSchema: () => [],
   loading: false,
   qrCodeLoginPath: '/auth/qrcode-login',
   registerPath: '/auth/register',
   showCodeLogin: true,
-  showForgetPassword: true,
   showQrcodeLogin: true,
   showRegister: true,
-  showRememberMe: true,
   showThirdPartyLogin: true,
   submitButtonText: '',
   subTitle: '',
@@ -58,20 +55,10 @@ const [Form, formApi] = useVbenForm(
 );
 const router = useRouter();
 
-const REMEMBER_ME_KEY = `REMEMBER_ME_USERNAME_${location.hostname}`;
-
-const localUsername = localStorage.getItem(REMEMBER_ME_KEY) || '';
-
-const rememberMe = ref(!!localUsername);
-
 async function handleSubmit() {
   const { valid } = await formApi.validate();
   const values = await formApi.getValues();
   if (valid) {
-    localStorage.setItem(
-      REMEMBER_ME_KEY,
-      rememberMe.value ? values?.account : '',
-    );
     emit('submit', values);
   }
 }
@@ -79,12 +66,6 @@ async function handleSubmit() {
 function handleGo(path: string) {
   router.push(path);
 }
-
-onMounted(() => {
-  if (localUsername) {
-    formApi.setFieldValue('account', localUsername);
-  }
-});
 
 defineExpose({
   getFormApi: () => formApi,
@@ -110,28 +91,6 @@ defineExpose({
 
     <Form />
 
-    <div
-      v-if="showRememberMe || showForgetPassword"
-      class="mb-6 flex justify-between"
-    >
-      <div class="flex-center">
-        <VbenCheckbox
-          v-if="showRememberMe"
-          v-model="rememberMe"
-          name="rememberMe"
-        >
-          {{ $t('authentication.rememberMe') }}
-        </VbenCheckbox>
-      </div>
-
-      <span
-        v-if="showForgetPassword"
-        class="vben-link text-sm font-normal"
-        @click="handleGo(forgetPasswordPath)"
-      >
-        {{ $t('authentication.forgetPassword') }}
-      </span>
-    </div>
     <VbenButton
       :class="{
         'cursor-wait': loading,
