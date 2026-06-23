@@ -34,7 +34,14 @@
       "sendTime": "发送时间",
       "consumeTime": "消费时间",
       "costMillis": "耗时(ms)",
-      "consumer": "消费者"
+      "consumer": "消费者",
+      "producerTraceId": "生产者traceId",
+      "consumerTraceId": "消费者traceId",
+      "tracePropagated": "trace贯穿"
+    },
+    "traceStatus": {
+      "success": "贯穿",
+      "failed": "断裂"
     }
   },
   "messages": {

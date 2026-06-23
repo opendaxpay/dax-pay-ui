@@ -108,6 +108,9 @@
     { title: $t('demos.artemis.records.columns.consumeTime'), dataIndex: 'consumeTime', width: 180 },
     { title: $t('demos.artemis.records.columns.costMillis'), dataIndex: 'costMillis', width: 100 },
     { title: $t('demos.artemis.records.columns.consumer'), dataIndex: 'consumer', width: 200 },
+    { title: $t('demos.artemis.records.columns.producerTraceId'), dataIndex: 'producerTraceId', width: 160 },
+    { title: $t('demos.artemis.records.columns.consumerTraceId'), dataIndex: 'consumerTraceId', width: 160 },
+    { title: $t('demos.artemis.records.columns.tracePropagated'), dataIndex: 'tracePropagated', width: 110 },
   ]);
 
   // 场景标签颜色映射
@@ -234,6 +237,21 @@
             <span :class="record.costMillis > 1000 ? 'text-orange-500' : ''">
               {{ record.costMillis }}
             </span>
+          </template>
+          <template v-else-if="column.dataIndex === 'tracePropagated'">
+            <a-tag :color="record.tracePropagated ? 'success' : 'error'">
+              {{ record.tracePropagated
+                ? $t('demos.artemis.records.traceStatus.success')
+                : $t('demos.artemis.records.traceStatus.failed') }}
+            </a-tag>
+          </template>
+          <template
+            v-else-if="
+              column.dataIndex === 'producerTraceId' ||
+              column.dataIndex === 'consumerTraceId'
+            "
+          >
+            <span class="font-mono text-xs">{{ record[column.dataIndex] || '-' }}</span>
           </template>
         </template>
 

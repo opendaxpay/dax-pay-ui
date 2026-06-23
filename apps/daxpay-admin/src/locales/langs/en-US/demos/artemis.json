@@ -34,7 +34,14 @@
       "sendTime": "Send Time",
       "consumeTime": "Consume Time",
       "costMillis": "Cost(ms)",
-      "consumer": "Consumer"
+      "consumer": "Consumer",
+      "producerTraceId": "Producer TraceId",
+      "consumerTraceId": "Consumer TraceId",
+      "tracePropagated": "Trace Propagated"
+    },
+    "traceStatus": {
+      "success": "Propagated",
+      "failed": "Broken"
     }
   },
   "messages": {

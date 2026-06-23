@@ -63,4 +63,10 @@ export interface DemoMessageResult {
   costMillis: number;
   /** 消费者名称 */
   consumer: string;
+  /** 生产者 traceId */
+  producerTraceId?: string;
+  /** 消费者 traceId */
+  consumerTraceId?: string;
+  /** trace 是否贯穿 MQ */
+  tracePropagated?: boolean;
 }
