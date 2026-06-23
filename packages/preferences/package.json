@@ -1,14 +1,7 @@
 {
   "name": "@vben/preferences",
-  "version": "5.7.0",
-  "homepage": "https://github.com/vbenjs/vue-vben-admin",
-  "bugs": "https://github.com/vbenjs/vue-vben-admin/issues",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vbenjs/vue-vben-admin.git",
-    "directory": "packages/preferences"
-  },
-  "license": "MIT",
+  "version": "4.0.0",
+  "license": "LGPL-3.0-or-later",
   "type": "module",
   "sideEffects": [
     "**/*.css"

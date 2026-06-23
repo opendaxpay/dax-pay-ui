@@ -1,19 +1,7 @@
 {
   "name": "daxpay-admin",
-  "version": "5.7.0",
-  "homepage": "https://vben.pro",
-  "bugs": "https://github.com/vbenjs/vue-vben-admin/issues",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vbenjs/vue-vben-admin.git",
-    "directory": "apps/daxpay-admin"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "vben",
-    "email": "ann.vben@gmail.com",
-    "url": "https://github.com/anncwb"
-  },
+  "version": "4.0.0",
+  "license": "LGPL-3.0-or-later",
   "type": "module",
   "scripts": {
     "build": "pnpm vite build --mode production",

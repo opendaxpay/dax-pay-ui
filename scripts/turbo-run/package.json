@@ -1,8 +1,8 @@
 {
   "name": "@vben/turbo-run",
-  "version": "5.7.0",
+  "version": "4.0.0",
   "private": true,
-  "license": "MIT",
+  "license": "LGPL-3.0-or-later",
   "type": "module",
   "scripts": {
     "stub": "pnpm unbuild --stub"

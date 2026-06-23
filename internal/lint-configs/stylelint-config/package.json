@@ -1,15 +1,8 @@
 {
   "name": "@vben/stylelint-config",
-  "version": "5.7.0",
+  "version": "4.0.0",
   "private": true,
-  "homepage": "https://github.com/vbenjs/vue-vben-admin",
-  "bugs": "https://github.com/vbenjs/vue-vben-admin/issues",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vbenjs/vue-vben-admin.git",
-    "directory": "internal/lint-configs/stylelint-config"
-  },
-  "license": "MIT",
+  "license": "LGPL-3.0-or-later",
   "type": "module",
   "files": [
     "dist"

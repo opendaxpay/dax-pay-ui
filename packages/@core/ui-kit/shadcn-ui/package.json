@@ -1,16 +1,9 @@
 {
   "name": "@vben-core/shadcn-ui",
-  "version": "5.7.0",
+  "version": "4.0.0",
   "#main": "./dist/index.mjs",
   "#module": "./dist/index.mjs",
-  "homepage": "https://github.com/vbenjs/vue-vben-admin",
-  "bugs": "https://github.com/vbenjs/vue-vben-admin/issues",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vbenjs/vue-vben-admin.git",
-    "directory": "packages/@vben-core/uikit/shadcn-ui"
-  },
-  "license": "MIT",
+  "license": "LGPL-3.0-or-later",
   "type": "module",
   "scripts": {
     "#build": "pnpm unbuild",
