@@ -1,0 +1,36 @@
+{
+  "title": "Channel Connectivity Demo",
+  "description": "Demonstrates main app calling sub-app dax-pay-channel-one via declarative HTTP client",
+  "form": {
+    "bizOrderNo": "Order No.",
+    "bizOrderNoPlaceholder": "Leave empty to auto-generate",
+    "amount": "Amount (CNY)",
+    "subject": "Subject",
+    "subjectPlaceholder": "Enter payment subject",
+    "method": "Payment Method",
+    "submit": "Send Payment"
+  },
+  "methodOptions": {
+    "alipay_qr": "QR Code",
+    "alipay_wap": "WAP (Mobile Web)",
+    "alipay_page": "PC Web",
+    "alipay_app": "APP"
+  },
+  "result": {
+    "title": "Response",
+    "empty": "No request sent yet",
+    "bizOrderNo": "Order No.",
+    "outOrderNo": "Channel Order No.",
+    "payBody": "Pay Body",
+    "payBodyType": "Body Type",
+    "mainAppTraceId": "Main App TraceId",
+    "subAppTraceId": "Sub App TraceId",
+    "traceMatch": "Trace Matched",
+    "traceMismatch": "Trace Mismatched"
+  },
+  "messages": {
+    "success": "Request succeeded",
+    "failed": "Request failed",
+    "subjectRequired": "Please enter payment subject"
+  }
+}
