@@ -1,0 +1,139 @@
+{
+  "sign": {
+    "title": "签名调试工具",
+    "tabSign": "签名生成",
+    "tabVerify": "签名验证",
+    "field": {
+      "signParam": "待签名参数 (JSON 格式)",
+      "signPrivateKey": "RSA 私钥",
+      "signStr": "待签名字符串",
+      "signValue": "签名值 (sign)",
+      "verifyParam": "待验签参数 (不含 sign 字段的 JSON)",
+      "verifySign": "签名值",
+      "verifyPublicKey": "RSA 公钥"
+    },
+    "placeholder": {
+      "signParam": "例如: {'{'}\"mchNo\": \"M0001\", \"amount\": 0.01{'}'}",
+      "signPrivateKey": "请输入完整的 RSA 私钥 (PKCS8 格式)",
+      "verifyParam": "请输入待验签的 JSON 参数",
+      "verifySign": "Base64 签名串",
+      "verifyPublicKey": "请输入 RSA 公钥"
+    },
+    "rule": {
+      "signParam": "请输入待签名参数",
+      "signPrivateKey": "请输入私钥",
+      "verifyParam": "请输入待验签参数",
+      "verifySign": "请输入签名值",
+      "verifyPublicKey": "请输入公钥"
+    },
+    "btn": {
+      "genSign": "生成签名",
+      "reset": "重置",
+      "verify": "验证签名",
+      "copy": "复制"
+    },
+    "result": {
+      "divider": "签名结果",
+      "verifySuccess": "验证通过",
+      "verifySuccessSub": "签名有效，参数未被篡改",
+      "verifyFail": "验证失败",
+      "verifyFailSub": "签名无效，请检查参数或公钥",
+      "verifyEmpty": "请输入参数并点击验证"
+    },
+    "msg": {
+      "genSuccess": "签名生成成功",
+      "verifyDone": "验签完成",
+      "verifyPass": "验签通过",
+      "verifyNotPass": "验签不通过",
+      "copySuccess": "复制成功",
+      "copyFail": "复制失败"
+    }
+  },
+  "trade": {
+    "page": {
+      "title": "支付调试",
+      "tag": "真实交易",
+      "warning": "点击「提交支付」将向支付系统发起真实交易请求，请确认参数无误。"
+    },
+    "card": {
+      "basic": "基础信息",
+      "mchApp": "商户与应用",
+      "param": "支付参数",
+      "order": "订单信息",
+      "preview": "请求预览"
+    },
+    "preview": {
+      "title": "请求参数 JSON",
+      "signBtn": "生成签名预览",
+      "empty": "暂无数据"
+    },
+    "field": {
+      "privateKey": "商户私钥",
+      "mchNo": "商户",
+      "appId": "应用",
+      "product": "支付产品",
+      "method": "支付方式",
+      "openId": "OpenID",
+      "authCode": "付款码",
+      "notifyUrl": "异步通知地址",
+      "expiredTime": "支付超时时间",
+      "bizOrderNo": "订单号",
+      "amount": "支付金额",
+      "title": "支付标题",
+      "description": "支付描述"
+    },
+    "placeholder": {
+      "method": "qr_code / jsapi / barcode / ...",
+      "openId": "微信 jsapi/mini 场景必填",
+      "authCode": "付款码支付必填",
+      "notifyUrl": "https://...",
+      "expiredTime": "留空默认 30 分钟",
+      "title": "测试订单",
+      "description": "请输入支付描述"
+    },
+    "btn": {
+      "setPrivateKey": "设置私钥",
+      "clearPrivateKey": "清除私钥",
+      "genOrderNo": "生成",
+      "reset": "重置表单",
+      "submit": "提交支付"
+    },
+    "privateKey": {
+      "modalTitle": "设置商户私钥",
+      "modalTip": "请输入商户 RSA 私钥，用于在服务端计算签名（仅保存在浏览器本地缓存中）。",
+      "placeholder": "请输入商户私钥",
+      "savedTip": "私钥保存成功",
+      "clearedTip": "私钥已清除",
+      "setTag": "已设置",
+      "unsetTag": "未设置"
+    },
+    "result": {
+      "modalTitle": "支付结果",
+      "statusTitle": "支付调试完成",
+      "payLink": "支付链接",
+      "jsapiParam": "JSAPI 参数",
+      "formData": "表单数据",
+      "markCode": "标识码",
+      "copyData": "复制数据",
+      "empty": "暂无数据",
+      "field": {
+        "orderNo": "系统订单号",
+        "bizOrderNo": "商户订单号",
+        "amount": "支付金额",
+        "status": "支付状态"
+      }
+    },
+    "rule": {
+      "mchNo": "请选择商户",
+      "bizOrderNo": "请输入订单号",
+      "title": "请输入支付标题",
+      "amount": "请输入支付金额"
+    },
+    "msg": {
+      "signSuccess": "签名生成成功",
+      "payDone": "支付调试完成",
+      "inputPrivateKey": "请先设置商户私钥",
+      "copySuccess": "复制成功"
+    }
+  }
+}

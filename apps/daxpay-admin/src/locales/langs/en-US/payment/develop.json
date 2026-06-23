@@ -1,0 +1,139 @@
+{
+  "sign": {
+    "title": "Sign Debug Tool",
+    "tabSign": "Generate Sign",
+    "tabVerify": "Verify Sign",
+    "field": {
+      "signParam": "Params to sign (JSON)",
+      "signPrivateKey": "RSA Private Key",
+      "signStr": "String to be signed",
+      "signValue": "Sign Value (sign)",
+      "verifyParam": "Params to verify (JSON without sign)",
+      "verifySign": "Sign Value",
+      "verifyPublicKey": "RSA Public Key"
+    },
+    "placeholder": {
+      "signParam": "e.g. {'{'}\"mchNo\": \"M0001\", \"amount\": 0.01{'}'}",
+      "signPrivateKey": "Enter the full RSA private key (PKCS8)",
+      "verifyParam": "Enter the JSON params to verify",
+      "verifySign": "Base64 sign string",
+      "verifyPublicKey": "Enter the RSA public key"
+    },
+    "rule": {
+      "signParam": "Please enter params to sign",
+      "signPrivateKey": "Please enter the private key",
+      "verifyParam": "Please enter params to verify",
+      "verifySign": "Please enter the sign value",
+      "verifyPublicKey": "Please enter the public key"
+    },
+    "btn": {
+      "genSign": "Generate Sign",
+      "reset": "Reset",
+      "verify": "Verify Sign",
+      "copy": "Copy"
+    },
+    "result": {
+      "divider": "Sign Result",
+      "verifySuccess": "Passed",
+      "verifySuccessSub": "Signature is valid, params are not tampered",
+      "verifyFail": "Failed",
+      "verifyFailSub": "Signature is invalid, check params or public key",
+      "verifyEmpty": "Enter params and click verify"
+    },
+    "msg": {
+      "genSuccess": "Sign generated successfully",
+      "verifyDone": "Verification completed",
+      "verifyPass": "Verification passed",
+      "verifyNotPass": "Verification not passed",
+      "copySuccess": "Copied",
+      "copyFail": "Copy failed"
+    }
+  },
+  "trade": {
+    "page": {
+      "title": "Payment Debug",
+      "tag": "Real Trade",
+      "warning": "Clicking \"Submit\" sends a real payment request to the system. Please confirm the params."
+    },
+    "card": {
+      "basic": "Basic Info",
+      "mchApp": "Merchant & App",
+      "param": "Payment Params",
+      "order": "Order Info",
+      "preview": "Request Preview"
+    },
+    "preview": {
+      "title": "Request JSON",
+      "signBtn": "Sign Preview",
+      "empty": "No data"
+    },
+    "field": {
+      "privateKey": "Merchant Private Key",
+      "mchNo": "Merchant",
+      "appId": "Application",
+      "product": "Payment Product",
+      "method": "Payment Method",
+      "openId": "OpenID",
+      "authCode": "Auth Code",
+      "notifyUrl": "Async Notify URL",
+      "expiredTime": "Expire Time",
+      "bizOrderNo": "Order No.",
+      "amount": "Amount",
+      "title": "Title",
+      "description": "Description"
+    },
+    "placeholder": {
+      "method": "qr_code / jsapi / barcode / ...",
+      "openId": "Required for WeChat jsapi/mini",
+      "authCode": "Required for barcode pay",
+      "notifyUrl": "https://...",
+      "expiredTime": "Default 30 minutes if empty",
+      "title": "Test order",
+      "description": "Enter payment description"
+    },
+    "btn": {
+      "setPrivateKey": "Set Key",
+      "clearPrivateKey": "Clear Key",
+      "genOrderNo": "Generate",
+      "reset": "Reset",
+      "submit": "Submit"
+    },
+    "privateKey": {
+      "modalTitle": "Set Merchant Private Key",
+      "modalTip": "Enter the merchant RSA private key for server-side signing (stored in browser local cache only).",
+      "placeholder": "Enter the merchant private key",
+      "savedTip": "Private key saved",
+      "clearedTip": "Private key cleared",
+      "setTag": "Set",
+      "unsetTag": "Not Set"
+    },
+    "result": {
+      "modalTitle": "Payment Result",
+      "statusTitle": "Payment debug completed",
+      "payLink": "Payment Link",
+      "jsapiParam": "JSAPI Params",
+      "formData": "Form Data",
+      "markCode": "Mark Code",
+      "copyData": "Copy Data",
+      "empty": "No data",
+      "field": {
+        "orderNo": "System Order No.",
+        "bizOrderNo": "Merchant Order No.",
+        "amount": "Amount",
+        "status": "Status"
+      }
+    },
+    "rule": {
+      "mchNo": "Please select a merchant",
+      "bizOrderNo": "Please enter the order no.",
+      "title": "Please enter the title",
+      "amount": "Please enter the amount"
+    },
+    "msg": {
+      "signSuccess": "Sign generated successfully",
+      "payDone": "Payment debug completed",
+      "inputPrivateKey": "Please set the merchant private key first",
+      "copySuccess": "Copied"
+    }
+  }
+}
