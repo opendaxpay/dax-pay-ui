@@ -102,7 +102,7 @@
 </script>
 
 <template>
-  <a-drawer v-model:open="visible" :title="drawerTitle" :size="640" :destroy-on-close="true">
+  <a-drawer v-model:open="visible" :title="drawerTitle" :size="640" :destroy-on-hidden="true">
     <a-spin :spinning="loading">
       <a-empty v-if="platformList.length === 0" :description="$t('iam.user.social.noEnabled')" />
       <div v-else class="space-y-3">

@@ -560,7 +560,7 @@
       v-model:open="privateKeyVisible"
       :title="$t('payment.develop.trade.privateKey.modalTitle')"
       :mask-closable="false"
-      destroy-on-close
+      destroy-on-hidden
       @ok="savePrivateKey"
     >
       <div class="mb-4 text-sm text-muted-foreground">
@@ -581,7 +581,7 @@
       :title="$t('payment.develop.trade.result.modalTitle')"
       :footer="null"
       :width="640"
-      destroy-on-close
+      destroy-on-hidden
     >
       <!-- 状态头 + 订单摘要(真实支付结果) -->
       <template v-if="hasPayBody">

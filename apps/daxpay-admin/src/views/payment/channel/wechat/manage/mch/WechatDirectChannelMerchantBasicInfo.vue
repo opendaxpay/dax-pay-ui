@@ -77,7 +77,7 @@ defineExpose({ open, close });
     v-model:open="visible"
     :title="$t('payment.merchant.channelMerchant.basicInfoDrawerTitle')"
     :size="640"
-    destroy-on-close
+    destroy-on-hidden
   >
     <a-spin :spinning="loading">
       <a-descriptions bordered :column="1" size="small">
