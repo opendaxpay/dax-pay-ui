@@ -9,6 +9,8 @@
   "seq": "No.",
   "createTime": "Create Time",
   "operation": "Operation",
+  "query": "Query",
+  "reset": "Reset",
   "action": "Action",
   "more": "More",
   "confirmDelete": "Confirm delete?",

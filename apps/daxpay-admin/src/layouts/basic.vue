@@ -1,32 +1,45 @@
 <script lang="ts" setup>
   import type { NotificationItem } from '@vben/layouts';
 
-  import { computed, onMounted, onUnmounted, watch } from 'vue';
+  import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
   import { useRouter } from 'vue-router';
 
   import { useWatermark } from '@vben/hooks';
   import { BasicLayout, Notification } from '@vben/layouts';
+  import { $t } from '@vben/locales';
   import { preferences } from '@vben/preferences';
   import { useAccessStore, useUserStore } from '@vben/stores';
+  import { formatDateTime } from '@vben/utils';
+
+  import { MdPreview } from 'md-editor-v3';
 
   import { LoginExpiredModal } from '#/components/login-expired-modal';
+  import { useMessage } from '#/hooks/useMessage';
   import { useAuthStore } from '#/store';
   import { useNotifyStore } from '#/store/notify';
   import LoginForm from '#/views/_core/authentication/login.vue';
   import { LockScreen, UserDropdown } from '#/widgets/user-dropdown';
 
+  import 'md-editor-v3/lib/style.css';
+
   const notifyStore = useNotifyStore();
+  const { message } = useMessage();
+
+  // 铃铛"查看正文"弹窗
+  const detailOpen = ref(false);
+  const detail = ref<NotificationItem>();
 
   // 通知项(公告 + 个人消息), 适配铃铛组件结构
   const notifications = computed<NotificationItem[]>(() =>
     notifyStore.list.map((item) => ({
-      avatar: 'https://avatar.vercel.sh/notify.svg',
-      date: item.createTime ?? '',
+      date: formatDateTime(item.createTime),
       id: item.id!,
       isRead: item.isRead,
       link: item.link,
       message: item.message ?? '',
+      severity: item.severity,
       title: item.title ?? '',
+      type: item.type,
     })),
   );
 
@@ -35,7 +48,6 @@
   const authStore = useAuthStore();
   const accessStore = useAccessStore();
   const { destroyWatermark, updateWatermark } = useWatermark();
-  const showDot = computed(() => notifyStore.unreadCount > 0);
 
   // 登录后拉取通知并建立 SSE 实时连接
   onMounted(() => {
@@ -52,13 +64,13 @@
     router.push('/');
   }
 
-  async function handleLogout() {
-    await authStore.logout(false);
+  // 铃铛"查看全部" → 通知中心
+  function handleViewAll() {
+    router.push('/notify/center');
   }
 
-  // 清空 = 全部已读
-  function handleNoticeClear() {
-    notifyStore.markAllRead();
+  async function handleLogout() {
+    await authStore.logout(false);
   }
 
   // 根据id查原始通知项(取type)
@@ -70,6 +82,16 @@
     const brief = findBrief(id);
     if (brief?.type && brief.id) {
       notifyStore.markRead(brief.type, brief.id);
+      message.success($t('system.notify.markReadSuccess'));
+    }
+  }
+
+  // 点击铃铛通知项查看正文(查看即标记已读)
+  function handleView(item: NotificationItem) {
+    detail.value = item;
+    detailOpen.value = true;
+    if (!item.isRead && item.type && item.id) {
+      notifyStore.markRead(item.type, String(item.id));
     }
   }
 
@@ -82,6 +104,7 @@
 
   function handleMakeAll() {
     notifyStore.markAllRead();
+    message.success($t('system.notify.readAllSuccess'));
   }
   watch(
     () => ({
@@ -110,12 +133,13 @@
     </template>
     <template #notification>
       <Notification
-        :dot="showDot"
+        :count="notifyStore.unreadCount"
         :notifications="notifications"
-        @clear="handleNoticeClear"
         @read="(item) => item.id && markRead(item.id)"
         @remove="(item) => item.id && remove(item.id)"
         @make-all="handleMakeAll"
+        @view="handleView"
+        @view-all="handleViewAll"
       />
     </template>
     <template #extra>
@@ -127,4 +151,8 @@
       <LockScreen :text="userStore.userInfo?.name" @to-login="handleLogout" />
     </template>
   </BasicLayout>
+  <!-- 铃铛通知正文查看弹窗 -->
+  <a-modal :open="detailOpen" :title="detail?.title" :footer="null" width="800" @cancel="detailOpen = false">
+    <MdPreview v-if="detail" :model-value="detail.message ?? ''" />
+  </a-modal>
 </template>

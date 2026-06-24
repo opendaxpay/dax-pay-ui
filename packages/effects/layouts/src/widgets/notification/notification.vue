@@ -3,7 +3,7 @@ import type { NotificationItem } from './types';
 
 import { useRouter } from 'vue-router';
 
-import { Bell, CircleCheckBig, CircleX, MailCheck } from '@vben/icons';
+import { Bell, CircleCheckBig, Inbox, MailCheck } from '@vben/icons';
 import { $t } from '@vben/locales';
 
 import {
@@ -17,9 +17,9 @@ import { useToggle } from '@vueuse/core';
 
 interface Props {
   /**
-   * 显示圆点
+   * 未读数(显示为铃铛角标, >99 显示 99+)
    */
-  dot?: boolean;
+  count?: number;
   /**
    * 消息列表
    */
@@ -29,15 +29,15 @@ interface Props {
 defineOptions({ name: 'NotificationPopup' });
 
 withDefaults(defineProps<Props>(), {
-  dot: false,
+  count: 0,
   notifications: () => [],
 });
 
 const emit = defineEmits<{
-  clear: [];
   makeAll: [];
   read: [NotificationItem];
   remove: [NotificationItem];
+  view: [NotificationItem];
   viewAll: [];
 }>();
 
@@ -57,14 +57,12 @@ function handleMakeAll() {
   emit('makeAll');
 }
 
-function handleClear() {
-  emit('clear');
-}
-
 function handleClick(item: NotificationItem) {
-  // 如果通知项有链接，点击时跳转
+  // 有链接则跳转, 否则触发查看正文
   if (item.link) {
     navigateTo(item.link, item.query, item.state);
+  } else {
+    emit('view', item);
   }
 }
 
@@ -92,16 +90,18 @@ function navigateTo(
       <div class="mr-2 flex-center h-full" @click.stop="toggle()">
         <VbenIconButton class="bell-button relative text-foreground">
           <span
-            v-if="dot"
-            class="absolute top-0.5 right-0.5 size-2 rounded-sm bg-primary"
-          ></span>
+            v-if="count && count > 0"
+            class="absolute -right-1 -top-1 flex min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[10px] font-medium leading-4 text-primary-foreground"
+          >
+            {{ count > 99 ? '99+' : count }}
+          </span>
           <Bell class="size-4" />
         </VbenIconButton>
       </div>
     </template>
 
     <div class="relative">
-      <div class="flex items-center justify-between p-4 py-3">
+      <div class="flex items-center justify-between px-4 py-1">
         <div class="text-foreground">{{ $t('ui.widgets.notifications') }}</div>
         <VbenIconButton
           :disabled="notifications.length <= 0"
@@ -115,26 +115,26 @@ function navigateTo(
         <ul class="flex! max-h-90 w-full flex-col">
           <template v-for="item in notifications" :key="item.id ?? item.title">
             <li
-              class="relative flex w-full cursor-pointer items-start gap-5 border-t border-border p-3 hover:bg-accent"
+              class="relative flex w-full cursor-pointer items-start gap-5 border-t border-border px-3 py-2 hover:bg-accent"
               @click="handleClick(item)"
             >
               <span
-                v-if="!item.isRead"
-                class="absolute top-2 right-2 size-2 rounded-sm bg-primary"
-              ></span>
-
-              <span
-                class="relative flex size-10 shrink-0 overflow-hidden rounded-full"
+                class="relative flex size-10 shrink-0 items-center justify-center rounded-full"
+                :class="
+                  item.type === 'message'
+                    ? 'bg-blue-500/15 text-blue-500'
+                    : 'bg-emerald-500/15 text-emerald-500'
+                "
               >
-                <img
-                  :src="item.avatar"
-                  class="aspect-square size-full object-cover"
-                />
+                <Inbox v-if="item.type === 'message'" class="size-5" />
+                <Bell v-else class="size-5" />
               </span>
-              <div class="flex flex-col gap-1 leading-none">
-                <p class="font-semibold">{{ item.title }}</p>
-                <p class="my-1 line-clamp-2 text-xs text-muted-foreground">
-                  {{ item.message }}
+              <div class="flex min-w-0 flex-1 flex-col gap-1 pr-12 leading-none">
+                <p
+                  class="truncate font-semibold"
+                  :class="{ 'text-red-500': item.severity === 'important' }"
+                >
+                  {{ item.title }}
                 </p>
                 <p class="line-clamp-2 text-xs text-muted-foreground">
                   {{ item.date }}
@@ -153,16 +153,6 @@ function navigateTo(
                 >
                   <CircleCheckBig class="size-4" />
                 </VbenIconButton>
-                <VbenIconButton
-                  v-if="item.isRead"
-                  size="xs"
-                  variant="ghost"
-                  class="h-6 px-2 text-destructive"
-                  :tooltip="$t('common.delete')"
-                  @click.stop="emit('remove', item)"
-                >
-                  <CircleX class="size-4" />
-                </VbenIconButton>
               </div>
             </li>
           </template>
@@ -175,17 +165,7 @@ function navigateTo(
         </div>
       </template>
 
-      <div
-        class="flex items-center justify-between border-t border-border px-4 py-3"
-      >
-        <VbenButton
-          :disabled="notifications.length <= 0"
-          size="sm"
-          variant="ghost"
-          @click="handleClear"
-        >
-          {{ $t('ui.widgets.clearNotifications') }}
-        </VbenButton>
+      <div class="flex items-center justify-end border-t border-border px-4 py-1">
         <VbenButton size="sm" @click="handleViewAll">
           {{ $t('ui.widgets.viewAll') }}
         </VbenButton>

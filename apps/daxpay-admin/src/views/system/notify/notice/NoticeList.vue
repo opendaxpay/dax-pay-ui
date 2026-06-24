@@ -226,6 +226,9 @@
           <vxe-column fixed="right" width="280" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">
               <a-space :size="2">
+                <template #separator>
+                  <a-divider type="vertical" />
+                </template>
                 <!-- 查看 -->
                 <a-button
                   v-if="hasPermission(PermCodes.System.Notify.VIEW)"

@@ -27,7 +27,8 @@ export const useNotifyStore = defineStore('notify', () => {
    * 拉取铃铛列表
    */
   async function fetchList() {
-    const { data } = await NotifyUserApi.page();
+    // 铃铛仅展示未读(已读不显示), 全部数据在通知中心查看
+    const { data } = await NotifyUserApi.page({ onlyUnread: true });
     list.value = data ?? [];
   }
 

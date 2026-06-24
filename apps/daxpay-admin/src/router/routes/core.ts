@@ -128,4 +128,18 @@ const coreRoutes: RouteRecordRaw[] = [
   socialBindCallbackRoute,
 ];
 
-export { coreRoutes, fallbackNotFoundRoute, profileRoute, socialBindCallbackRoute };
+/** 通知中心路由（需要登录，从铃铛"查看全部"进入，无菜单） */
+const notifyCenterRoute: RouteRecordRaw = {
+  name: 'NotifyCenter',
+  path: 'notify/center',
+  component: () => import('#/views/system/notify/center/NotifyCenter.vue'),
+  meta: {
+    // 通知中心
+    title: $t('system.notify.centerTitle'),
+    hideInMenu: true,
+    hideInBreadcrumb: true,
+    activePath: '/notify/center',
+  },
+};
+
+export { coreRoutes, fallbackNotFoundRoute, notifyCenterRoute, profileRoute, socialBindCallbackRoute };

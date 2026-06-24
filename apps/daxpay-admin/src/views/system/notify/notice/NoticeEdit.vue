@@ -15,29 +15,23 @@
 
   const emits = defineEmits(['ok']);
 
-  const { message } = useMessage();
+  const { confirm, message } = useMessage();
 
-  const {
-    initFormEditType,
-    handleCancel,
-    labelCol,
-    wrapperCol,
-    visible,
-    title,
-    confirmLoading,
-    showable,
-    editable,
-    formEditType,
-  } = useFormEdit();
+  const { initFormEditType, handleCancel, visible, title, confirmLoading, showable, editable, formEditType } =
+    useFormEdit();
 
   const formRef = ref();
   // 公告表单(时间用 dayjs 对象, 提交时转 ISO 字符串)
   const form = ref<Record<string, any>>({ severity: 'normal', isTop: false });
+  // 正文初始内容(用于关闭时检测是否有未保存修改)
+  const loadedContent = ref('');
 
   // 表单校验规则
   const rules = {
     title: [{ required: true, message: $t('system.notify.inputTitle') }],
     content: [{ required: true, message: $t('system.notify.inputContent') }],
+    severity: [{ required: true, message: $t('system.notify.severityRequired') }],
+    isTop: [{ required: true, message: $t('system.notify.isTopRequired') }],
   };
 
   // 重要程度选项
@@ -68,6 +62,8 @@
           effectiveTime: data.effectiveTime ? dayjs(data.effectiveTime) : undefined,
           expireTime: data.expireTime ? dayjs(data.expireTime) : undefined,
         };
+        // 记录正文初始值, 用于关闭时检测变动
+        loadedContent.value = data.content ?? '';
         confirmLoading.value = false;
       });
     } else {
@@ -82,7 +78,24 @@
     nextTick(() => {
       formRef.value?.resetFields();
       form.value = { severity: 'normal', isTop: false };
+      loadedContent.value = '';
     });
+  }
+
+  /**
+   * 关闭抽屉(正文有未保存修改时二次确认)
+   */
+  function closeWithConfirm() {
+    const content = form.value.content ?? '';
+    if (content && content !== loadedContent.value) {
+      confirm({
+        title: $t('common.warning'),
+        content: $t('system.notify.confirmCloseContent'),
+        onOk: () => handleCancel(),
+      });
+    } else {
+      handleCancel();
+    }
   }
 
   /**
@@ -116,76 +129,119 @@
 </script>
 
 <template>
-  <a-modal
+  <a-drawer
     :open="visible"
     :title="title"
-    :confirm-loading="confirmLoading"
-    :width="900"
+    width="85%"
     :mask-closable="showable"
-    :ok-text="$t('common.save')"
-    :cancel-text="$t('common.cancel')"
-    :ok-button-props="{ disabled: showable }"
-    @ok="handleOk"
-    @cancel="handleCancel"
+    wrap-class-name="notice-drawer"
+    @close="closeWithConfirm"
   >
+    <template #footer>
+      <a-space>
+        <a-button @click="closeWithConfirm">{{ $t('common.cancel') }}</a-button>
+        <a-button v-if="!showable" type="primary" :loading="confirmLoading" @click="handleOk">
+          {{ $t('common.save') }}
+        </a-button>
+      </a-space>
+    </template>
     <a-spin :spinning="confirmLoading">
-      <a-form
-        ref="formRef"
-        :model="form"
-        :rules="rules"
-        :label-col="labelCol"
-        :wrapper-col="wrapperCol"
-        class="form-compact"
-      >
-        <!-- 主键 -->
-        <a-form-item label="ID" name="id" :hidden="true">
-          <a-input v-model:value="form.id" :disabled="showable" />
-        </a-form-item>
-        <!-- 标题 -->
-        <a-form-item :label="$t('system.notify.titleField')" name="title">
-          <a-input v-model:value="form.title" :disabled="showable" :placeholder="$t('system.notify.inputTitle')" />
-        </a-form-item>
-        <!-- 重要程度 -->
-        <a-form-item :label="$t('system.notify.severity')" name="severity">
-          <a-select v-model:value="form.severity" :disabled="showable" :options="severityOptions" />
-        </a-form-item>
-        <!-- 置顶 -->
-        <a-form-item :label="$t('system.notify.isTop')" name="isTop">
-          <a-switch v-model:checked="form.isTop" :disabled="showable" />
-        </a-form-item>
-        <!-- 生效时间 -->
-        <a-form-item :label="$t('system.notify.effectiveTime')" name="effectiveTime">
-          <a-date-picker
-            v-model:value="form.effectiveTime"
-            :disabled="showable"
-            show-time
-            value-format="YYYY-MM-DD HH:mm:ss"
-            style="width: 100%"
-          />
-        </a-form-item>
-        <!-- 过期时间 -->
-        <a-form-item :label="$t('system.notify.expireTime')" name="expireTime">
-          <a-date-picker
-            v-model:value="form.expireTime"
-            :disabled="showable"
-            show-time
-            value-format="YYYY-MM-DD HH:mm:ss"
-            style="width: 100%"
-          />
-        </a-form-item>
-        <!-- 正文 -->
-        <a-form-item :label="$t('system.notify.content')" name="content" :wrapper-col="{ sm: { span: 16 } }">
-          <!-- 编辑模式 -->
-          <MdEditor
-            v-if="editable || !showable"
-            v-model="form.content"
-            :toolbars-exclude="['github', 'save', 'pageFullscreen', 'catalog', 'htmlPreview']"
-            :style="{ height: '300px' }"
-          />
-          <!-- 查看模式 -->
-          <MdPreview v-else :model-value="form.content" :style="{ minHeight: '200px' }" />
-        </a-form-item>
-      </a-form>
+      <div class="notice-form-wrap">
+        <a-form
+          ref="formRef"
+          :model="form"
+          :rules="rules"
+          :label-col="{ sm: { span: 4 } }"
+          :wrapper-col="{ sm: { span: 20 } }"
+          class="form-compact"
+        >
+          <!-- 主键 -->
+          <a-form-item label="ID" name="id" :hidden="true">
+            <a-input v-model:value="form.id" :disabled="showable" />
+          </a-form-item>
+          <!-- 标题 -->
+          <a-form-item
+            :label="$t('system.notify.titleField')"
+            name="title"
+            :label-col="{ sm: { span: 2 } }"
+            :wrapper-col="{ sm: { span: 22 } }"
+          >
+            <a-input v-model:value="form.title" :disabled="showable" :placeholder="$t('system.notify.inputTitle')" />
+          </a-form-item>
+          <a-row :gutter="16">
+            <!-- 重要程度 -->
+            <a-col :md="12" :sm="24">
+              <a-form-item :label="$t('system.notify.severity')" name="severity">
+                <a-select v-model:value="form.severity" :disabled="showable" :options="severityOptions" />
+              </a-form-item>
+            </a-col>
+            <!-- 置顶 -->
+            <a-col :md="12" :sm="24">
+              <a-form-item :label="$t('system.notify.isTop')" name="isTop">
+                <a-switch v-model:checked="form.isTop" :disabled="showable" />
+              </a-form-item>
+            </a-col>
+          </a-row>
+          <a-row :gutter="16">
+            <!-- 生效时间 -->
+            <a-col :md="12" :sm="24">
+              <a-form-item
+                :label="$t('system.notify.effectiveTime')"
+                name="effectiveTime"
+                :tooltip="$t('system.notify.effectiveTimeHelp')"
+              >
+                <a-date-picker
+                  v-model:value="form.effectiveTime"
+                  :disabled="showable"
+                  show-time
+                  value-format="YYYY-MM-DD HH:mm:ss"
+                  style="width: 100%"
+                />
+              </a-form-item>
+            </a-col>
+            <!-- 过期时间 -->
+            <a-col :md="12" :sm="24">
+              <a-form-item
+                :label="$t('system.notify.expireTime')"
+                name="expireTime"
+                :tooltip="$t('system.notify.expireTimeHelp')"
+              >
+                <a-date-picker
+                  v-model:value="form.expireTime"
+                  :disabled="showable"
+                  show-time
+                  value-format="YYYY-MM-DD HH:mm:ss"
+                  style="width: 100%"
+                />
+              </a-form-item>
+            </a-col>
+          </a-row>
+          <!-- 正文 -->
+          <a-form-item
+            :label="$t('system.notify.content')"
+            name="content"
+            :label-col="{ sm: { span: 2 } }"
+            :wrapper-col="{ sm: { span: 22 } }"
+          >
+            <!-- 编辑模式 -->
+            <MdEditor
+              v-if="editable || !showable"
+              v-model="form.content"
+              :toolbars-exclude="['github', 'save', 'pageFullscreen', 'catalog', 'htmlPreview']"
+              :style="{ height: 'calc(100vh - 300px)' }"
+            />
+            <!-- 查看模式 -->
+            <MdPreview v-else :model-value="form.content" :style="{ minHeight: 'calc(100vh - 300px)' }" />
+          </a-form-item>
+        </a-form>
+      </div>
     </a-spin>
-  </a-modal>
+  </a-drawer>
 </template>
+
+<style scoped>
+  .notice-form-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+</style>

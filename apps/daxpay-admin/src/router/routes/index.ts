@@ -2,7 +2,7 @@ import type { RouteRecordRaw } from 'vue-router';
 
 import { traverseTreeValues } from '@vben/utils';
 
-import { coreRoutes, fallbackNotFoundRoute, profileRoute } from './core';
+import { coreRoutes, fallbackNotFoundRoute, notifyCenterRoute, profileRoute } from './core';
 
 // 基本路由名称集合（coreRoutes 不含 Profile，这些路由不走权限拦截）
 const coreRouteNames = traverseTreeValues(coreRoutes, (route) => route.name);
@@ -10,10 +10,10 @@ const coreRouteNames = traverseTreeValues(coreRoutes, (route) => route.name);
 // 路由列表
 const routes: RouteRecordRaw[] = [...coreRoutes, fallbackNotFoundRoute];
 
-// 将 Profile 注入 Root children（使用 BasicLayout，走完整认证流程）
+// 将 Profile、通知中心注入 Root children（使用 BasicLayout，走完整认证流程）
 const rootRoute = routes.find((r) => r.name === 'Root');
 if (rootRoute) {
-  rootRoute.children = [...(rootRoute.children || []), profileRoute];
+  rootRoute.children = [...(rootRoute.children || []), profileRoute, notifyCenterRoute];
 }
 
 export { coreRouteNames, routes };
