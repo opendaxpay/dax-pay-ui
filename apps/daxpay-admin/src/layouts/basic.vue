@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import type { NotificationItem } from '@vben/layouts';
 
-  import { computed, ref, watch } from 'vue';
+  import { computed, onMounted, onUnmounted, watch } from 'vue';
   import { useRouter } from 'vue-router';
 
   import { useWatermark } from '@vben/hooks';
@@ -11,68 +11,42 @@
 
   import { LoginExpiredModal } from '#/components/login-expired-modal';
   import { useAuthStore } from '#/store';
+  import { useNotifyStore } from '#/store/notify';
   import LoginForm from '#/views/_core/authentication/login.vue';
   import { LockScreen, UserDropdown } from '#/widgets/user-dropdown';
 
-  const notifications = ref<NotificationItem[]>([
-    {
-      id: 1,
-      avatar: 'https://avatar.vercel.sh/vercel.svg?text=VB',
-      date: '3小时前',
-      isRead: true,
-      message: '描述信息描述信息描述信息',
-      title: '收到了 14 份新周报',
-    },
-    {
-      id: 2,
-      avatar: 'https://avatar.vercel.sh/1',
-      date: '刚刚',
-      isRead: false,
-      message: '描述信息描述信息描述信息',
-      title: '朱偏右 回复了你',
-    },
-    {
-      id: 3,
-      avatar: 'https://avatar.vercel.sh/1',
-      date: '2024-01-01',
-      isRead: false,
-      message: '描述信息描述信息描述信息',
-      title: '曲丽丽 评论了你',
-    },
-    {
-      id: 4,
-      avatar: 'https://avatar.vercel.sh/satori',
-      date: '1天前',
-      isRead: false,
-      message: '描述信息描述信息描述信息',
-      title: '代办提醒',
-    },
-    {
-      id: 5,
-      avatar: 'https://avatar.vercel.sh/satori',
-      date: '1天前',
-      isRead: false,
-      message: '描述信息描述信息描述信息',
-      title: '跳转Workspace示例',
-      link: '/workspace',
-    },
-    {
-      id: 6,
-      avatar: 'https://avatar.vercel.sh/satori',
-      date: '1天前',
-      isRead: false,
-      message: '描述信息描述信息描述信息',
-      title: '跳转外部链接示例',
-      link: 'https://doc.vben.pro',
-    },
-  ]);
+  const notifyStore = useNotifyStore();
+
+  // 通知项(公告 + 个人消息), 适配铃铛组件结构
+  const notifications = computed<NotificationItem[]>(() =>
+    notifyStore.list.map((item) => ({
+      avatar: 'https://avatar.vercel.sh/notify.svg',
+      date: item.createTime ?? '',
+      id: item.id!,
+      isRead: item.isRead,
+      link: item.link,
+      message: item.message ?? '',
+      title: item.title ?? '',
+    })),
+  );
 
   const router = useRouter();
   const userStore = useUserStore();
   const authStore = useAuthStore();
   const accessStore = useAccessStore();
   const { destroyWatermark, updateWatermark } = useWatermark();
-  const showDot = computed(() => notifications.value.some((item) => !item.isRead));
+  const showDot = computed(() => notifyStore.unreadCount > 0);
+
+  // 登录后拉取通知并建立 SSE 实时连接
+  onMounted(() => {
+    notifyStore.refresh().catch(() => {});
+    notifyStore.connectSSE();
+  });
+
+  // 离开布局断开 SSE
+  onUnmounted(() => {
+    notifyStore.disconnectSSE();
+  });
 
   function handleLogoClick() {
     router.push('/');
@@ -82,23 +56,32 @@
     await authStore.logout(false);
   }
 
+  // 清空 = 全部已读
   function handleNoticeClear() {
-    notifications.value = [];
+    notifyStore.markAllRead();
+  }
+
+  // 根据id查原始通知项(取type)
+  function findBrief(id: number | string) {
+    return notifyStore.list.find((item) => item.id === id);
   }
 
   function markRead(id: number | string) {
-    const item = notifications.value.find((item) => item.id === id);
-    if (item) {
-      item.isRead = true;
+    const brief = findBrief(id);
+    if (brief?.type && brief.id) {
+      notifyStore.markRead(brief.type, brief.id);
     }
   }
 
   function remove(id: number | string) {
-    notifications.value = notifications.value.filter((item) => item.id !== id);
+    const brief = findBrief(id);
+    if (brief?.type && brief.id) {
+      notifyStore.ignore(brief.type, brief.id);
+    }
   }
 
   function handleMakeAll() {
-    notifications.value.forEach((item) => (item.isRead = true));
+    notifyStore.markAllRead();
   }
   watch(
     () => ({

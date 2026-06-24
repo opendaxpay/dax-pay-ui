@@ -81,6 +81,11 @@ export const PermCodes = {
       MANAGE: 'system:dict:item:manage',
       VIEW: 'system:dict:item:view',
     },
+    Notify: {
+      ADD: 'system:notify:notice:add',
+      PUBLISH: 'system:notify:notice:publish',
+      VIEW: 'system:notify:notice:view',
+    },
     FilePlatform: {
       VIEW: 'system:file:platform:view',
     },

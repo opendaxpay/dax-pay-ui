@@ -115,6 +115,7 @@ catalog:
   lodash.clonedeep: ^4.5.0
   lucide-vue-next: ^0.577.0
   medium-zoom: ^1.1.0
+  md-editor-v3: ^6.0.0
   nprogress: ^0.2.0
   ora: ^9.3.0
   pinia: ^3.0.4
