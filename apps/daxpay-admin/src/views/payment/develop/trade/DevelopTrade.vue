@@ -8,6 +8,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { ChannelMerchantApi } from '#/api/payment/channel/channel-merchant.api';
   import { DevelopTradeApi } from '#/api/payment/develop/developTrade.api';
   import { PayProductApi } from '#/api/payment/masterdata/product.api';
   import { MchAppInfoApi } from '#/api/payment/merchant/mch-app-info.api';
@@ -26,6 +27,7 @@
   const form = reactive<PayParam>({
     mchNo: '',
     appId: '',
+    channelMchNo: '',
     bizOrderNo: '',
     title: '',
     amount: 0.01,
@@ -43,6 +45,7 @@
   // ===== 下拉选项 =====
   const mchNoOptions = ref<LabelValue[]>([]);
   const mchAppOptions = ref<LabelValue[]>([]);
+  const channelMchNoOptions = ref<LabelValue[]>([]);
   const productOptions = ref<LabelValue[]>([]);
 
   // ===== 调试结果 =====
@@ -80,16 +83,29 @@
     }
   }
 
-  /** 商户变更时刷新应用下拉 */
+  /** 商户变更时刷新应用与通道商户下拉 */
   function merchantChange() {
     form.appId = '';
+    form.channelMchNo = '';
     mchAppOptions.value = [];
+    channelMchNoOptions.value = [];
     if (!form.mchNo) return;
+    // 应用列表
     MchAppInfoApi.page({ mchNo: form.mchNo, size: 100 }).then(({ data }) => {
       mchAppOptions.value =
         data?.records?.map((item) => ({
           label: item.appName ? `${item.appName} (${item.appId})` : (item.appId ?? ''),
           value: item.appId ?? '',
+        })) ?? [];
+    });
+    // 通道商户列表
+    ChannelMerchantApi.findAllByMchNo(form.mchNo).then(({ data }) => {
+      channelMchNoOptions.value =
+        data?.map((item) => ({
+          label: item.channelMerchantName
+            ? `${item.channelMerchantName} (${item.channelMchNo})`
+            : (item.channelMchNo ?? ''),
+          value: item.channelMchNo ?? '',
         })) ?? [];
     });
   }
@@ -202,6 +218,7 @@
     Object.assign(form, {
       mchNo: '',
       appId: '',
+      channelMchNo: '',
       bizOrderNo: '',
       title: '',
       amount: 0.01,
@@ -215,6 +232,7 @@
       expiredTime: undefined,
     });
     mchAppOptions.value = [];
+    channelMchNoOptions.value = [];
     signPreview.signStr = '';
     signPreview.sign = '';
     genBizOrderNo();
@@ -305,7 +323,7 @@
                 </a-form-item>
 
                 <a-row :gutter="16">
-                  <a-col :span="12">
+                  <a-col :span="8">
                     <a-form-item :label="$t('payment.develop.trade.field.mchNo')" name="mchNo" required>
                       <a-select
                         v-model:value="form.mchNo"
@@ -318,13 +336,25 @@
                       />
                     </a-form-item>
                   </a-col>
-                  <a-col :span="12">
+                  <a-col :span="8">
                     <a-form-item :label="$t('payment.develop.trade.field.appId')" name="appId">
                       <a-select
                         v-model:value="form.appId"
                         show-search
                         :options="mchAppOptions"
                         :placeholder="$t('payment.develop.trade.field.appId')"
+                        :filter-option="filterOption"
+                        allow-clear
+                      />
+                    </a-form-item>
+                  </a-col>
+                  <a-col :span="8">
+                    <a-form-item :label="$t('payment.develop.trade.field.channelMchNo')" name="channelMchNo">
+                      <a-select
+                        v-model:value="form.channelMchNo"
+                        show-search
+                        :options="channelMchNoOptions"
+                        :placeholder="$t('payment.develop.trade.field.channelMchNo')"
                         :filter-option="filterOption"
                         allow-clear
                       />

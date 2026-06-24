@@ -35,6 +35,8 @@ export interface PayParam {
   mchNo: string;
   /** 应用号 */
   appId?: string;
+  /** 通道商户号(调试/指定通道商户时传入) */
+  channelMchNo?: string;
   /** 商户订单号 */
   bizOrderNo: string;
   /** 支付标题 */

@@ -57,7 +57,7 @@
     },
     "card": {
       "basic": "基础信息",
-      "mchApp": "商户与应用",
+      "mchApp": "商户信息",
       "param": "支付参数",
       "order": "订单信息",
       "preview": "请求预览"
@@ -71,6 +71,7 @@
       "privateKey": "商户私钥",
       "mchNo": "商户",
       "appId": "应用",
+      "channelMchNo": "通道商户",
       "product": "支付产品",
       "method": "支付方式",
       "openId": "OpenID",

@@ -57,7 +57,7 @@
     },
     "card": {
       "basic": "Basic Info",
-      "mchApp": "Merchant & App",
+      "mchApp": "Merchant Info",
       "param": "Payment Params",
       "order": "Order Info",
       "preview": "Request Preview"
@@ -71,6 +71,7 @@
       "privateKey": "Merchant Private Key",
       "mchNo": "Merchant",
       "appId": "Application",
+      "channelMchNo": "Channel Merchant",
       "product": "Payment Product",
       "method": "Payment Method",
       "openId": "OpenID",
