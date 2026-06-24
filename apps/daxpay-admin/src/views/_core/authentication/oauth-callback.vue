@@ -69,7 +69,7 @@
    */
   async function handleResult(token?: string, error?: string) {
     if (token) {
-      accessStore.setAccessToken(token, true);
+      accessStore.setAccessToken(token);
       await authStore.fetchUserInfo();
       message.success(
         platformName.value

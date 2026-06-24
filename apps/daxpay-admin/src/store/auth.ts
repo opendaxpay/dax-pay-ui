@@ -39,15 +39,13 @@ export const useAuthStore = defineStore('auth', () => {
         client: 'admin',
         loginType: 'password',
         password: encryptedPassword,
-        remember: params.remember,
         // 验证码参数（登录失败达阈值后必传）
         captchaKey: params.captchaKey,
         captchaCode: params.captchaCode,
       });
 
       if (accessToken) {
-        // 根据remember选择存储方式
-        accessStore.setAccessToken(accessToken, params.remember ?? true);
+        accessStore.setAccessToken(accessToken);
 
         const userInfoResult = await fetchUserInfo();
 

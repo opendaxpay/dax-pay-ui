@@ -15,10 +15,6 @@ export const AuthApi = {
     formData.set('password', data.password);
     formData.set('client', data.client);
     formData.set('loginType', data.loginType);
-    // 添加remember参数
-    if (data.remember !== undefined) {
-      formData.set('remember', String(data.remember));
-    }
     // 验证码参数（登录失败达阈值后必传）
     if (data.captchaKey) {
       formData.set('captchaKey', data.captchaKey);
@@ -72,8 +68,6 @@ export interface LoginParams {
   loginType: string;
   /** 密码 */
   password: string;
-  /** 记住我 */
-  remember?: boolean;
   /** 验证码标识 */
   captchaKey?: string;
   /** 验证码内容 */

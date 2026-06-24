@@ -84,7 +84,6 @@ function calcZIndex() {
       <Slot
         :show-forget-password="false"
         :show-register="false"
-        :show-remember-me="false"
         :sub-title="$t('authentication.loginAgainSubTitle')"
         :title="$t('authentication.loginAgainTitle')"
       >

@@ -52,17 +52,7 @@ interface AccessState {
  * 从存储加载Token
  */
 function loadTokenFromStorage(): AccessToken {
-  // 优先从sessionStorage读取（不记住我模式）
-  const sessionToken = sessionStorage.getItem(TOKEN_KEY);
-  if (sessionToken) {
-    return sessionToken;
-  }
-  // 其次从localStorage读取（记住我模式）
-  const localToken = localStorage.getItem(TOKEN_KEY);
-  if (localToken) {
-    return localToken;
-  }
-  return null;
+  return localStorage.getItem(TOKEN_KEY);
 }
 
 /**
@@ -99,37 +89,25 @@ export const useAccessStore = defineStore('core-access', {
     setAccessRoutes(routes: RouteRecordRaw[]) {
       this.accessRoutes = routes;
     },
-    setAccessToken(token: AccessToken, remember: boolean = true) {
+    setAccessToken(token: AccessToken) {
       this.accessToken = token;
       if (token) {
-        this.saveTokenToStorage(token, remember);
+        this.saveTokenToStorage(token);
       } else {
         this.clearTokenFromStorage();
       }
     },
     /**
-     * 保存Token到存储
-     * @param token Token值
-     * @param remember 是否记住我
+     * 保存Token到存储（始终持久化到localStorage）
      */
-    saveTokenToStorage(token: string, remember: boolean) {
-      // 先清除两个存储中的旧Token
-      localStorage.removeItem(TOKEN_KEY);
-      sessionStorage.removeItem(TOKEN_KEY);
-      if (remember) {
-        // 记住我：存入localStorage，持久化
-        localStorage.setItem(TOKEN_KEY, token);
-      } else {
-        // 不记住我：存入sessionStorage，会话级
-        sessionStorage.setItem(TOKEN_KEY, token);
-      }
+    saveTokenToStorage(token: string) {
+      localStorage.setItem(TOKEN_KEY, token);
     },
     /**
      * 清除Token存储
      */
     clearTokenFromStorage() {
       localStorage.removeItem(TOKEN_KEY);
-      sessionStorage.removeItem(TOKEN_KEY);
     },
     setIsAccessChecked(isAccessChecked: boolean) {
       this.isAccessChecked = isAccessChecked;
@@ -146,7 +124,7 @@ export const useAccessStore = defineStore('core-access', {
     },
   },
   persist: {
-    // 持久化（accessToken改为手动管理，根据remember选择存储方式）
+    // 持久化（accessToken改为手动管理，始终存入localStorage）
     pick: ['refreshToken', 'isLockScreen', 'lockScreenPassword'],
   },
   state: (): AccessState => ({
