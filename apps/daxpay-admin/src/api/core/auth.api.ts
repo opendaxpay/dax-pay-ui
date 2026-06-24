@@ -19,6 +19,13 @@ export const AuthApi = {
     if (data.remember !== undefined) {
       formData.set('remember', String(data.remember));
     }
+    // 验证码参数（登录失败达阈值后必传）
+    if (data.captchaKey) {
+      formData.set('captchaKey', data.captchaKey);
+    }
+    if (data.captchaCode) {
+      formData.set('captchaCode', data.captchaCode);
+    }
 
     return requestClient.post('/token/login', formData, {
       headers: {
@@ -32,6 +39,18 @@ export const AuthApi = {
    */
   logout(): Promise<Result<void>> {
     return requestClient.post('/token/logout');
+  },
+  /**
+   * 获取登录页上下文（是否启用验证码、支持的登录方式等）
+   */
+  getLoginContent(): Promise<Result<LoginContentResult>> {
+    return requestClient.post('/token/login-content', {});
+  },
+  /**
+   * 获取图形验证码
+   */
+  getCaptchaImage(): Promise<Result<CaptchaDataResult>> {
+    return requestClient.get('/captcha/image');
   },
   /**
    * 获取用户权限码
@@ -55,4 +74,30 @@ export interface LoginParams {
   password: string;
   /** 记住我 */
   remember?: boolean;
+  /** 验证码标识 */
+  captchaKey?: string;
+  /** 验证码内容 */
+  captchaCode?: string;
+}
+
+/**
+ * 登录页上下文
+ */
+export interface LoginContentResult {
+  /** 支持的登录方式 */
+  loginTypes: string[];
+  /** 是否启用验证码触发 */
+  enableCaptcha: boolean;
+  /** 密码是否加密传输 */
+  passwordEncrypted: boolean;
+}
+
+/**
+ * 图形验证码数据
+ */
+export interface CaptchaDataResult {
+  /** 验证码标识KEY */
+  captchaKey: string;
+  /** 验证码base64数据 */
+  captchaData: string;
 }

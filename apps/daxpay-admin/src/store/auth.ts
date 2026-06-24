@@ -40,6 +40,9 @@ export const useAuthStore = defineStore('auth', () => {
         loginType: 'password',
         password: encryptedPassword,
         remember: params.remember,
+        // 验证码参数（登录失败达阈值后必传）
+        captchaKey: params.captchaKey,
+        captchaCode: params.captchaCode,
       });
 
       if (accessToken) {

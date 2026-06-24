@@ -12,6 +12,8 @@
   "passwordErrorTip": "Password is incorrect",
   "passwordTip": "Please enter password",
   "verifyRequiredTip": "Please complete the verification first",
+  "captcha": "Captcha",
+  "captchaTip": "Please enter the captcha",
   "rememberMe": "Remember Me",
   "forgetPassword": "Forget Password?",
   "forgetPasswordSubtitle": "Enter your email and we'll send you instructions to reset your password",

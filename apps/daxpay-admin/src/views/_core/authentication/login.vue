@@ -4,12 +4,12 @@
   import { reactive, ref } from 'vue';
   import { useRouter } from 'vue-router';
 
-  import { SliderCaptcha } from '@vben/common-ui';
   import { $t } from '@vben/locales';
 
+  import { AuthApi } from '#/api/core/auth.api';
   import { useAuthStore } from '#/store';
 
-  import { AuthPageCard, AuthPageFooterActions, AuthThirdPartyPanel } from './components';
+  import { AuthPageCard, AuthThirdPartyPanel } from './components';
 
   defineOptions({ name: 'Login' });
 
@@ -22,37 +22,80 @@
   const formData = reactive({
     account: '',
     password: '',
-    captcha: false,
+    // 国际化：验证码输入值
+    captchaCode: '',
   });
+
+  // 验证码相关状态
+  // needCaptcha: 是否显示验证码（登录失败达阈值后由后端返回 40001 触发）
+  const needCaptcha = ref(false);
+  // 当前验证码标识（提交时回传后端校验）
+  const captchaKey = ref('');
+  // 验证码图片（base64 data URI，后端直接返回可用的 data URI）
+  const captchaImg = ref('');
+  const captchaLoading = ref(false);
 
   // 表单校验规则
   const formRules: FormProps['rules'] = {
     account: [{ required: true, message: $t('authentication.usernameTip'), trigger: 'blur' }],
     password: [{ required: true, message: $t('authentication.passwordTip'), trigger: 'blur' }],
-    captcha: [
+    captchaCode: [
       {
         validator: (_rule, value) => {
-          if (!value) {
-            // 国际化：请先完成验证
-            return Promise.reject($t('authentication.verifyRequiredTip'));
+          // 仅在需要验证码时校验非空
+          if (needCaptcha.value && !value) {
+            return Promise.reject($t('authentication.captchaTip'));
           }
           return Promise.resolve();
         },
-        trigger: 'change',
+        trigger: 'blur',
       },
     ],
   };
 
   /**
+   * 刷新图形验证码（点击图片或验证码错误时调用）
+   */
+  async function refreshCaptcha() {
+    captchaLoading.value = true;
+    try {
+      const { data } = await AuthApi.getCaptchaImage();
+      if (data) {
+        captchaKey.value = data.captchaKey;
+        captchaImg.value = data.captchaData;
+      }
+    } finally {
+      captchaLoading.value = false;
+    }
+  }
+
+  /**
    * 处理登录提交
    */
   async function handleLogin() {
-    const values = await formRef.value?.validateFields();
-    if (values) {
-      await authStore.authLogin({
-        account: formData.account,
-        password: formData.password,
-      });
+    try {
+      const values = await formRef.value?.validateFields();
+      if (values) {
+        await authStore.authLogin({
+          account: formData.account,
+          password: formData.password,
+          // 验证码参数（仅在需要验证码时提交）
+          captchaKey: needCaptcha.value ? captchaKey.value : undefined,
+          captchaCode: needCaptcha.value ? formData.captchaCode : undefined,
+        });
+      }
+    } catch (error: any) {
+      // 业务错误码由全局拦截器统一提示，此处仅处理验证码联动
+      const code = error?.code;
+      if (code === 40_001) {
+        // 需要验证码：显示验证码区域并拉取图片
+        needCaptcha.value = true;
+        await refreshCaptcha();
+      } else if (code === 40_002) {
+        // 验证码错误：清空输入并刷新图片
+        formData.captchaCode = '';
+        await refreshCaptcha();
+      }
     }
   }
 
@@ -69,7 +112,6 @@
   function goToQrCodeLogin() {
     router.push('/auth/qrcode-login');
   }
-
 </script>
 
 <template>
@@ -98,8 +140,28 @@
         />
       </a-form-item>
 
-      <a-form-item name="captcha">
-        <SliderCaptcha v-model="formData.captcha" />
+      <!-- 图形验证码（条件渲染：登录失败达阈值后由后端 40001 触发显示） -->
+      <a-form-item v-if="needCaptcha" name="captchaCode" :label="$t('authentication.captcha')">
+        <div class="flex items-center gap-2">
+          <a-input
+            v-model:value="formData.captchaCode"
+            :placeholder="$t('authentication.captchaTip')"
+            size="large"
+            allow-clear
+            class="flex-1"
+          />
+          <!-- 点击图片刷新验证码 -->
+          <a-spin :spinning="captchaLoading">
+            <img
+              v-if="captchaImg"
+              :src="captchaImg"
+              alt="captcha"
+              class="h-[40px] w-[120px] cursor-pointer rounded border border-solid border-gray-200"
+              :title="$t('authentication.captcha')"
+              @click="refreshCaptcha"
+            />
+          </a-spin>
+        </div>
       </a-form-item>
 
       <a-button

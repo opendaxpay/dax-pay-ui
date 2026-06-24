@@ -29,7 +29,9 @@ export const defaultResponseInterceptor = ({
         if (config.responseReturn === 'body') {
           // 查看后端返回的code值是请求成功
           if (responseData.code !== successCode){
-            throw Object.assign({}, response, { response: responseData.message });
+            // 保留 axios response 原结构, 使 RequestClient.request 的 catch 能正确取到 response.data(后端body)
+            // 此前覆盖为 message 字符串会导致 request catch 取 error.response.data 时得到 undefined
+            throw Object.assign({}, response, { response });
           }
           return responseData;
         } else if (
