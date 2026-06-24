@@ -2,7 +2,7 @@
   import { computed, ref } from 'vue';
   import { useRouter } from 'vue-router';
 
-  import { BookOpenText, CircleHelp, LockKeyhole, LogOut, UserRoundPen } from '@vben/icons';
+  import { BookOpenText, LockKeyhole, LogOut, UserRoundPen } from '@vben/icons';
   import { $t } from '@vben/locales';
   import { preferences, usePreferences } from '@vben/preferences';
   import { useAccessStore } from '@vben/stores';
@@ -25,7 +25,7 @@
 
   const emit = defineEmits<{ logout: [] }>();
 
-  // 项目文档地址（文档 / 问题与帮助均跳转至此）
+  // 项目文档地址（文档跳转至此）
   const DOC_URL = 'https://doc.daxpay.cn';
 
   const router = useRouter();
@@ -52,11 +52,6 @@
 
   /** 打开文档 */
   function openDocs() {
-    openWindow(DOC_URL, { target: '_blank' });
-  }
-
-  /** 打开问题 & 帮助 */
-  function openIssue() {
     openWindow(DOC_URL, { target: '_blank' });
   }
 
@@ -87,10 +82,6 @@
     switch (info.key) {
       case 'docs': {
         openDocs();
-        break;
-      }
-      case 'issue': {
-        openIssue();
         break;
       }
       case 'lock': {
@@ -148,13 +139,6 @@
           <div class="flex items-center">
             <BookOpenText class="mr-2 size-4" />
             <span>{{ $t('ui.widgets.document') }}</span>
-          </div>
-        </a-menu-item>
-        <!-- 问题 & 帮助 -->
-        <a-menu-item key="issue">
-          <div class="flex items-center">
-            <CircleHelp class="mr-2 size-4" />
-            <span>{{ $t('ui.widgets.qa') }}</span>
           </div>
         </a-menu-item>
         <!-- 锁定屏幕 -->

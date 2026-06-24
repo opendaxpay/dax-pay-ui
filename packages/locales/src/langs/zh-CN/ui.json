@@ -84,7 +84,6 @@
   },
   "widgets": {
     "document": "使用文档",
-    "qa": "问题 & 帮助",
     "setting": "设置",
     "logoutTip": "是否退出登录？",
     "viewAll": "查看所有消息",

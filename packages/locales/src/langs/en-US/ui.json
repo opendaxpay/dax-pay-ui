@@ -84,7 +84,6 @@
   },
   "widgets": {
     "document": "Documentation",
-    "qa": "Q&A",
     "setting": "Settings",
     "logoutTip": "Do you want to logout?",
     "viewAll": "View All Messages",

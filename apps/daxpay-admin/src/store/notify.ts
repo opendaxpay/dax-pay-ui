@@ -1,7 +1,8 @@
-import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
-import { NotifyUserApi, type NotifyNoticeBrief } from '#/api/system/notify/user.api';
+import { defineStore } from 'pinia';
+
+import { type NotifyNoticeBrief, NotifyUserApi } from '#/api/system/notify/user.api';
 
 /**
  * 站内通知 store(当前登录用户视角)
@@ -64,7 +65,7 @@ export const useNotifyStore = defineStore('notify', () => {
   }
 
   /** SSE 连接实例(模块级, 避免响应式开销) */
-  let eventSource: null | EventSource = null;
+  let eventSource: EventSource | null = null;
 
   /**
    * 建立 SSE 实时推送连接
@@ -80,7 +81,7 @@ export const useNotifyStore = defineStore('notify', () => {
         withCredentials: true,
       });
       // 收到推送即刷新未读数与铃铛列表
-      eventSource.onmessage = () => {
+      eventSource.onmessage! = () => {
         refresh().catch(() => {});
       };
     } catch {
@@ -96,11 +97,19 @@ export const useNotifyStore = defineStore('notify', () => {
     eventSource = null;
   }
 
+  /**
+   * 重置 store(setup 语法需手动实现 $reset, 退出登录时由 resetAllStores 调用)
+   */
+  function $reset() {
+    list.value = [];
+    unreadCount.value = 0;
+    disconnectSSE();
+  }
+
   return {
+    $reset,
     connectSSE,
     disconnectSSE,
-    fetchList,
-    fetchUnreadCount,
     ignore,
     list,
     markAllRead,

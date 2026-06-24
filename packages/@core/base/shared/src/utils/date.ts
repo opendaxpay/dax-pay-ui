@@ -28,6 +28,10 @@ type Format =
  * @returns 格式化后的日期字符串
  */
 export function formatDate(time?: FormatDate, format: Format = 'YYYY-MM-DD') {
+  // 空值 (null、undefined、空字符串) 直接返回空字符串, 不做格式化也不报错
+  if (time === null || time === undefined || time === '') {
+    return '';
+  }
   try {
     let date: dayjs.Dayjs;
     // 已经是 dayjs 对象, 直接复用
@@ -40,14 +44,14 @@ export function formatDate(time?: FormatDate, format: Format = 'YYYY-MM-DD') {
     } else {
       date = dayjs(time);
     }
-    // 日期无效时抛出异常, 进入 catch 返回原始值
+    // 日期无效时静默返回空字符串, 不在控制台报错
     if (!date.isValid()) {
-      throw new Error('Invalid date');
+      return '';
     }
     // 按用户时区转换后格式化
     return date.tz().format(format);
-  } catch (error) {
-    console.error(`Error formatting date: ${error}`);
+  } catch {
+    // 解析异常时返回原始值的字符串形式, 不在控制台报错
     return String(time ?? '');
   }
 }

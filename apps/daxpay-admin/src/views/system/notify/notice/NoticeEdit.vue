@@ -132,7 +132,7 @@
   <a-drawer
     :open="visible"
     :title="title"
-    width="85%"
+    size="85%"
     :mask-closable="showable"
     wrap-class-name="notice-drawer"
     @close="closeWithConfirm"
