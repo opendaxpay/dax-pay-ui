@@ -1,7 +1,7 @@
 {
   "platform": {
-    "title": "平台文件管理",
-    "detailTitle": "平台文件详情",
+    "title": "存储文件管理",
+    "detailTitle": "存储文件详情",
     "field": {
       "filename": "文件名称",
       "originalFilename": "原始文件名",

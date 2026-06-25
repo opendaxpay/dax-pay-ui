@@ -1,7 +1,7 @@
 {
   "platform": {
-    "title": "Platform File Management",
-    "detailTitle": "Platform File Details",
+    "title": "Storage File Management",
+    "detailTitle": "Storage File Details",
     "field": {
       "filename": "Filename",
       "originalFilename": "Original Filename",
