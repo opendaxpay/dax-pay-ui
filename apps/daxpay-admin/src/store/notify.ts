@@ -68,7 +68,7 @@ export const useNotifyStore = defineStore('notify', () => {
   let eventSource: EventSource | null = null;
 
   /** 手动重连定时器(覆盖浏览器默认 3 秒重连, 避免重连风暴) */
-  let reconnectTimer: ReturnType<typeof setTimeout> | null = null;
+  let reconnectTimer: null | ReturnType<typeof setTimeout> = null;
 
   /** 连续重连次数(用于指数退避) */
   let reconnectAttempts = 0;
@@ -87,7 +87,7 @@ export const useNotifyStore = defineStore('notify', () => {
   function scheduleReconnect() {
     clearReconnect();
     // 2s, 4s, 8s, 16s, 30s, 30s ...
-    const delay = Math.min(2000 * 2 ** reconnectAttempts, 30000);
+    const delay = Math.min(2000 * 2 ** reconnectAttempts, 30_000);
     reconnectAttempts += 1;
     reconnectTimer = setTimeout(() => connectSSE(), delay);
   }
@@ -116,15 +116,15 @@ export const useNotifyStore = defineStore('notify', () => {
         withCredentials: true,
       });
       // 连接建立成功, 重置退避计数
-      eventSource.onopen = () => {
+      eventSource.onopen! = () => {
         reconnectAttempts = 0;
       };
       // 收到推送即刷新未读数与铃铛列表
-      eventSource.onmessage = () => {
+      eventSource.onmessage! = () => {
         refresh().catch(() => {});
       };
       // 出错主动关闭, 改用指数退避手动重连, 关闭浏览器默认的固定重连
-      eventSource.onerror = () => {
+      eventSource.onerror! = () => {
         eventSource?.close();
         eventSource = null;
         scheduleReconnect();
