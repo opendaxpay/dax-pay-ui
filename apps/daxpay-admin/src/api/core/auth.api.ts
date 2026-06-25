@@ -37,6 +37,12 @@ export const AuthApi = {
     return requestClient.post('/token/logout');
   },
   /**
+   * 双因素认证二次验证(密码通过后凭预认证令牌 + 动态码完成登录)
+   */
+  secondVerify(data: SecondVerifyParams): Promise<Result<string>> {
+    return requestClient.post('/token/second-verify', data);
+  },
+  /**
    * 获取登录页上下文（是否启用验证码、支持的登录方式等）
    */
   getLoginContent(): Promise<Result<LoginContentResult>> {
@@ -95,3 +101,18 @@ export interface CaptchaDataResult {
   /** 验证码base64数据 */
   captchaData: string;
 }
+
+/**
+ * 双因素认证二次验证参数
+ */
+export interface SecondVerifyParams {
+  /** 预认证令牌 */
+  preAuthToken: string;
+  /** 动态码或备用验证码 */
+  code: string;
+  /** 验证码类型: TOTP(默认) | BACKUP */
+  codeType?: string;
+}
+
+/** 双因素认证挑战响应码(后端 TwoFactorRequiredException.CODE) */
+export const TWO_FACTOR_REQUIRED_CODE = 40_101;

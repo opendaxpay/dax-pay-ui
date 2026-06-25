@@ -45,9 +45,7 @@
     "desc": "用户可生成的备用验证码数量。",
     "placeholder": "请输入备用验证码数量"
   },
-  "codeValidityMinutes": {
-    "label": "验证码有效期",
-    "desc": "备用验证码的有效时长。",
-    "placeholder": "请输入验证码有效期"
+  "warning": {
+    "algorithmChange": "修改算法类型、验证码长度或时间步长，将导致已绑定用户的身份验证器失效，用户需重新绑定。变更前请通知所有已绑定用户。"
   }
 }

@@ -9,7 +9,7 @@ import { resetAllStores, useAccessStore, useUserStore } from '@vben/stores';
 
 import { defineStore } from 'pinia';
 
-import { AuthApi } from '#/api/core/auth.api';
+import { AuthApi, TWO_FACTOR_REQUIRED_CODE } from '#/api/core/auth.api';
 import { UserCommonApi } from '#/api/core/user.api';
 import { useMessage } from '#/hooks/useMessage';
 import { $t } from '#/locales';
@@ -21,6 +21,10 @@ export const useAuthStore = defineStore('auth', () => {
   const router = useRouter();
 
   const loginLoading = ref(false);
+
+  // 双因素认证挑战状态
+  const twoFactorRequired = ref(false);
+  const twoFactorPreAuthToken = ref('');
 
   /**
    * 异步处理登录操作
@@ -34,7 +38,7 @@ export const useAuthStore = defineStore('auth', () => {
       // 中文注释：对密码进行RSA加密
       const encryptedPassword = await encryptPassword(params.password);
       // 中文注释：登录协议固定对齐后端真实接口，避免继续命中 Mock 参数结构。
-      const { data: accessToken } = await AuthApi.login({
+      const loginResult = await AuthApi.login({
         account: params.account,
         client: 'admin',
         loginType: 'password',
@@ -44,6 +48,14 @@ export const useAuthStore = defineStore('auth', () => {
         captchaCode: params.captchaCode,
       });
 
+      // 双因素认证挑战: 密码通过但需二次验证, 记录预认证令牌并切到验证界面
+      if (loginResult.code === TWO_FACTOR_REQUIRED_CODE) {
+        twoFactorPreAuthToken.value = (loginResult.data as any)?.preAuthToken ?? '';
+        twoFactorRequired.value = true;
+        return { userInfo: null };
+      }
+
+      const accessToken = loginResult.data;
       if (accessToken) {
         accessStore.setAccessToken(accessToken);
 
@@ -78,6 +90,49 @@ export const useAuthStore = defineStore('auth', () => {
     };
   }
 
+  /**
+   * 双因素认证二次验证, 凭预认证令牌 + 动态码/备用码完成登录
+   */
+  async function twoFactorVerify(code: string, codeType: string = 'TOTP') {
+    let userInfo: null | UserInfo = null;
+    try {
+      loginLoading.value = true;
+      const { data: accessToken } = await AuthApi.secondVerify({
+        preAuthToken: twoFactorPreAuthToken.value,
+        code,
+        codeType,
+      });
+      if (accessToken) {
+        accessStore.setAccessToken(accessToken);
+        userInfo = await fetchUserInfo();
+        userStore.setUserInfo(userInfo!);
+        // 清除 2FA 挑战状态
+        twoFactorRequired.value = false;
+        twoFactorPreAuthToken.value = '';
+        await router.push(preferences.app.defaultHomePath);
+        if (userInfo?.name) {
+          const { notification } = useMessage();
+          notification.success({
+            description: `${$t('authentication.loginSuccessDesc')}: ${userInfo.name}`,
+            duration: 3,
+            title: $t('authentication.loginSuccess'),
+          });
+        }
+      }
+    } finally {
+      loginLoading.value = false;
+    }
+    return { userInfo };
+  }
+
+  /**
+   * 取消双因素认证(返回登录表单)
+   */
+  function cancelTwoFactor() {
+    twoFactorRequired.value = false;
+    twoFactorPreAuthToken.value = '';
+  }
+
   async function logout(redirect: boolean = true) {
     await AuthApi.logout();
     // 清除Token存储
@@ -108,8 +163,12 @@ export const useAuthStore = defineStore('auth', () => {
   return {
     $reset,
     authLogin,
+    cancelTwoFactor,
     fetchUserInfo,
     loginLoading,
     logout,
+    twoFactorPreAuthToken,
+    twoFactorRequired,
+    twoFactorVerify,
   };
 });

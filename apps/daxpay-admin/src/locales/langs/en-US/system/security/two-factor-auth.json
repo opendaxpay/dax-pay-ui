@@ -45,9 +45,7 @@
     "desc": "The number of backup codes users can generate.",
     "placeholder": "Enter backup codes count"
   },
-  "codeValidityMinutes": {
-    "label": "Code Validity Period",
-    "desc": "The validity duration for backup codes.",
-    "placeholder": "Enter code validity period"
+  "warning": {
+    "algorithmChange": "Changing the algorithm type, code length, or time step will invalidate the authenticator for already-bound users, requiring them to re-bind. Notify all bound users before making changes."
   }
 }

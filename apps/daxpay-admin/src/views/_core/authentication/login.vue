@@ -10,6 +10,7 @@
   import { useAuthStore } from '#/store';
 
   import { AuthPageCard, AuthThirdPartyPanel } from './components';
+  import TwoFactorVerifyPanel from './components/TwoFactorVerifyPanel.vue';
 
   defineOptions({ name: 'Login' });
 
@@ -116,8 +117,17 @@
 
 <template>
   <!-- 国际化：欢迎回来 -->
-  <AuthPageCard :title="$t('authentication.welcomeBack')" :subtitle="$t('authentication.loginSubtitle')">
-    <a-form ref="formRef" :model="formData" :rules="formRules" layout="vertical" @keypress.enter="handleLogin">
+  <!-- 双因素认证时切换标题/副标题 -->
+  <AuthPageCard
+    :title="authStore.twoFactorRequired ? $t('_core.authentication.twoFactor.title') : $t('authentication.welcomeBack')"
+    :subtitle="
+      authStore.twoFactorRequired ? $t('_core.authentication.twoFactor.subtitle') : $t('authentication.loginSubtitle')
+    "
+  >
+    <!-- 双因素认证二次验证面板 -->
+    <TwoFactorVerifyPanel v-if="authStore.twoFactorRequired" />
+
+    <a-form v-else ref="formRef" :model="formData" :rules="formRules" layout="vertical" @keypress.enter="handleLogin">
       <!-- 国际化：账号 -->
       <a-form-item name="account" :label="$t('authentication.username')">
         <!-- 国际化：请输入用户名 -->
@@ -190,6 +200,6 @@
       </a>
     </div>
 
-    <AuthThirdPartyPanel />
+    <AuthThirdPartyPanel v-if="!authStore.twoFactorRequired" />
   </AuthPageCard>
 </template>

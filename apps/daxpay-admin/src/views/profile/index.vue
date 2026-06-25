@@ -5,6 +5,7 @@
 
   import ProfileBase from './base-setting.vue';
   import ProfilePasswordSetting from './password-setting.vue';
+  import ProfileSecuritySetting from './security-setting.vue';
   import ProfileSocialBind from './social-bind.vue';
 
   defineOptions({ name: 'Profile' });
@@ -26,6 +27,11 @@
       key: 'social',
       label: $t('profile.socialAccount'),
       description: $t('profile.socialAccountDesc'),
+    },
+    {
+      key: 'security',
+      label: $t('profile.securitySetting'),
+      description: $t('profile.securitySettingDesc'),
     },
   ] as const;
 </script>
@@ -55,6 +61,7 @@
           <ProfileBase v-if="activeKey === 'basic'" />
           <ProfilePasswordSetting v-else-if="activeKey === 'password'" />
           <ProfileSocialBind v-else-if="activeKey === 'social'" />
+          <ProfileSecuritySetting v-else-if="activeKey === 'security'" />
         </div>
       </section>
     </div>

@@ -155,8 +155,6 @@ export interface TwoFactorAuthConfig {
   issuer?: string;
   /** 备用码数量 */
   backupCodesCount?: number;
-  /** 验证码有效期（分钟） */
-  codeValidityMinutes?: number;
 }
 
 /**

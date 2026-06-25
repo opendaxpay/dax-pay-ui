@@ -155,6 +155,14 @@
         <div class="config-section">
           <!-- TOTP配置 -->
           <div class="config-section__title">{{ $t('system.security.two-factor-auth.section.totp') }}</div>
+          <!-- 警示：修改算法/位数/步长将导致已绑定用户的验证器失效 -->
+          <a-alert
+            v-if="isEditing"
+            type="warning"
+            show-icon
+            :message="$t('system.security.two-factor-auth.warning.algorithmChange')"
+            class="config-warning"
+          />
 
           <div class="config-grid">
             <div class="config-item config-item--block">
@@ -279,32 +287,6 @@
                 />
                 <!-- 单位：个 -->
                 <span class="number-field__suffix">{{ $t('system.security.common.unit.count') }}</span>
-              </div>
-            </div>
-
-            <div class="config-item config-item--block config-item--full">
-              <div class="config-item__main">
-                <!-- 验证码有效期标签 -->
-                <div class="config-item__label">{{
-                  $t('system.security.two-factor-auth.codeValidityMinutes.label')
-                }}</div>
-                <!-- 验证码有效期描述 -->
-                <div class="config-item__desc">{{
-                  $t('system.security.two-factor-auth.codeValidityMinutes.desc')
-                }}</div>
-              </div>
-              <div class="number-field">
-                <!-- 国际化：请输入验证码有效期 -->
-                <a-input-number
-                  v-model:value="formState.codeValidityMinutes"
-                  :min="1"
-                  :max="1440"
-                  :placeholder="$t('system.security.two-factor-auth.codeValidityMinutes.placeholder')"
-                  :disabled="!isEditing"
-                  style="width: 180px"
-                />
-                <!-- 单位：分钟 -->
-                <span class="number-field__suffix">{{ $t('system.security.common.unit.minute') }}</span>
               </div>
             </div>
           </div>
