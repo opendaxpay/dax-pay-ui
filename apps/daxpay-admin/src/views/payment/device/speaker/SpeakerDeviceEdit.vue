@@ -3,7 +3,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { IotSpeakerDeviceApi, type IotSpeakerDeviceParam, type IotSpeakerDeviceResult } from '#/api/payment/iot/speaker-device.api';
+  import { SpeakerDeviceApi, type SpeakerDeviceParam, type SpeakerDeviceResult } from '#/api/payment/device/speaker.api';
   import { FormEditType } from '#/enums/formEditType';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
@@ -16,15 +16,15 @@
 
   const { visible, confirmLoading, title, initFormEditType, handleCancel, formEditType } = useFormEdit();
 
-  const formState = ref<IotSpeakerDeviceParam>({
+  const formState = ref<SpeakerDeviceParam>({
     mchNo: '',
     deviceSn: '',
     deviceName: '',
   });
 
   const formRules = computed(() => ({
-    mchNo: [{ required: true, message: $t('payment.iot.speaker.device.validateMchNo') }],
-    deviceSn: [{ required: true, message: $t('payment.iot.speaker.device.validateDeviceSn') }],
+    mchNo: [{ required: true, message: $t('payment.device.speaker.validateMchNo') }],
+    deviceSn: [{ required: true, message: $t('payment.device.speaker.validateDeviceSn') }],
   }));
 
   /**
@@ -50,12 +50,12 @@
   /**
    * 打开编辑弹窗
    */
-  async function showEdit(record: IotSpeakerDeviceResult) {
+  async function showEdit(record: SpeakerDeviceResult) {
     initFormEditType(FormEditType.Edit);
     resetForm();
     confirmLoading.value = true;
     try {
-      const { data } = await IotSpeakerDeviceApi.get(record.id!);
+      const { data } = await SpeakerDeviceApi.get(record.id!);
       const row = data || record;
       formState.value = {
         id: row.id!,
@@ -83,10 +83,10 @@
     }
     confirmLoading.value = true;
     try {
-      const payload: IotSpeakerDeviceParam = { ...formState.value };
+      const payload: SpeakerDeviceParam = { ...formState.value };
       await (formEditType.value === FormEditType.Edit
-        ? IotSpeakerDeviceApi.update(payload)
-        : IotSpeakerDeviceApi.add(payload));
+        ? SpeakerDeviceApi.update(payload)
+        : SpeakerDeviceApi.add(payload));
       message.success($t('common.operationSuccess'));
       handleCancel();
       emit('ok');
@@ -119,27 +119,27 @@
         class="form-compact"
       >
         <!-- 商户号 -->
-        <a-form-item :label="$t('payment.iot.speaker.device.field.mchNo')" name="mchNo">
+        <a-form-item :label="$t('payment.device.speaker.field.mchNo')" name="mchNo">
           <a-input v-model:value="formState.mchNo" :placeholder="$t('common.pleaseInput')" />
         </a-form-item>
         <!-- 设备序列号 -->
-        <a-form-item :label="$t('payment.iot.speaker.device.field.deviceSn')" name="deviceSn">
+        <a-form-item :label="$t('payment.device.speaker.field.deviceSn')" name="deviceSn">
           <a-input v-model:value="formState.deviceSn" :placeholder="$t('common.pleaseInput')" />
         </a-form-item>
         <!-- 设备名称 -->
-        <a-form-item :label="$t('payment.iot.speaker.device.field.deviceName')">
+        <a-form-item :label="$t('payment.device.speaker.field.deviceName')">
           <a-input v-model:value="formState.deviceName" :placeholder="$t('common.pleaseInput')" />
         </a-form-item>
         <!-- 设备IMEI -->
-        <a-form-item :label="$t('payment.iot.speaker.device.field.imei')">
+        <a-form-item :label="$t('payment.device.speaker.field.imei')">
           <a-input v-model:value="formState.imei" :placeholder="$t('common.pleaseInput')" />
         </a-form-item>
         <!-- 商米门店ID -->
-        <a-form-item :label="$t('payment.iot.speaker.device.field.shopId')">
+        <a-form-item :label="$t('payment.device.speaker.field.shopId')">
           <a-input v-model:value="formState.shopId" :placeholder="$t('common.pleaseInput')" />
         </a-form-item>
         <!-- 备注 -->
-        <a-form-item :label="$t('payment.iot.speaker.device.field.remark')">
+        <a-form-item :label="$t('payment.device.speaker.field.remark')">
           <a-textarea v-model:value="formState.remark" :rows="2" :placeholder="$t('common.pleaseInput')" />
         </a-form-item>
       </a-form>

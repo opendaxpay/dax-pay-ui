@@ -5,15 +5,15 @@
 
   import { $t } from '@vben/locales';
 
-  import { IotSpeakerDeviceApi, type IotSpeakerDeviceResult } from '#/api/payment/iot/speaker-device.api';
+  import { SpeakerDeviceApi, type SpeakerDeviceResult } from '#/api/payment/device/speaker.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
-  import IotSpeakerDeviceEdit from './IotSpeakerDeviceEdit.vue';
+  import SpeakerDeviceEdit from './SpeakerDeviceEdit.vue';
 
-  defineOptions({ name: 'IotSpeakerDeviceList' });
+  defineOptions({ name: 'SpeakerDeviceList' });
 
   const { confirm, message } = useMessage();
   const { hasPermission } = usePermission();
@@ -21,7 +21,7 @@
   const loading = ref(false);
   const xTable = ref<VxeTableInstance>();
   const xToolbar = ref<VxeToolbarInstance>();
-  const editRef = ref<InstanceType<typeof IotSpeakerDeviceEdit>>();
+  const editRef = ref<InstanceType<typeof SpeakerDeviceEdit>>();
 
   const queryForm = ref<Record<string, any>>({});
 
@@ -29,31 +29,31 @@
     {
       type: 'string',
       field: 'mchNo',
-      name: $t('payment.iot.speaker.device.field.mchNo'),
+      name: $t('payment.device.speaker.field.mchNo'),
       placeholder: $t('common.pleaseInput'),
     },
     {
       type: 'string',
       field: 'deviceSn',
-      name: $t('payment.iot.speaker.device.field.deviceSn'),
+      name: $t('payment.device.speaker.field.deviceSn'),
       placeholder: $t('common.pleaseInput'),
     },
     {
       type: 'string',
       field: 'deviceName',
-      name: $t('payment.iot.speaker.device.field.deviceName'),
+      name: $t('payment.device.speaker.field.deviceName'),
       placeholder: $t('common.pleaseInput'),
     },
     {
       type: 'list',
       field: 'status',
-      name: $t('payment.iot.speaker.device.field.status'),
+      name: $t('payment.device.speaker.field.status'),
       placeholder: $t('common.pleaseSelect'),
       selectList: [
-        { label: $t('payment.iot.speaker.device.status.unbound'), value: 'unbound' },
-        { label: $t('payment.iot.speaker.device.status.online'), value: 'online' },
-        { label: $t('payment.iot.speaker.device.status.offline'), value: 'offline' },
-        { label: $t('payment.iot.speaker.device.status.fault'), value: 'fault' },
+        { label: $t('payment.device.speaker.status.unbound'), value: 'unbound' },
+        { label: $t('payment.device.speaker.status.online'), value: 'online' },
+        { label: $t('payment.device.speaker.status.offline'), value: 'offline' },
+        { label: $t('payment.device.speaker.status.fault'), value: 'fault' },
       ],
     },
   ]);
@@ -64,14 +64,14 @@
     total: 0,
   });
 
-  const tableData = ref<IotSpeakerDeviceResult[]>([]);
+  const tableData = ref<SpeakerDeviceResult[]>([]);
 
   /**
    * 分页查询云音响设备列表
    */
   function queryPage() {
     loading.value = true;
-    IotSpeakerDeviceApi.page({
+    SpeakerDeviceApi.page({
       current: pageConfig.value.currentPage,
       size: pageConfig.value.pageSize,
       ...queryForm.value,
@@ -107,18 +107,18 @@
     editRef.value?.show();
   }
 
-  function handleEdit(row: IotSpeakerDeviceResult) {
+  function handleEdit(row: SpeakerDeviceResult) {
     editRef.value?.showEdit(row);
   }
 
   /**
    * 删除设备
    */
-  function handleDelete(row: IotSpeakerDeviceResult) {
+  function handleDelete(row: SpeakerDeviceResult) {
     confirm({
-      content: $t('payment.iot.speaker.device.confirmDelete'),
+      content: $t('payment.device.speaker.confirmDelete'),
       onOk() {
-        return IotSpeakerDeviceApi.delete(row.id!).then(() => {
+        return SpeakerDeviceApi.delete(row.id!).then(() => {
           message.success($t('common.operationSuccess'));
           queryPage();
         });
@@ -129,11 +129,11 @@
   /**
    * 绑定设备(首期仅更新本地状态)
    */
-  function handleBind(row: IotSpeakerDeviceResult) {
+  function handleBind(row: SpeakerDeviceResult) {
     confirm({
-      content: $t('payment.iot.speaker.device.confirmBind'),
+      content: $t('payment.device.speaker.confirmBind'),
       onOk() {
-        return IotSpeakerDeviceApi.bind(row.id!).then(() => {
+        return SpeakerDeviceApi.bind(row.id!).then(() => {
           message.success($t('common.operationSuccess'));
           queryPage();
         });
@@ -144,11 +144,11 @@
   /**
    * 解绑设备
    */
-  function handleUnbind(row: IotSpeakerDeviceResult) {
+  function handleUnbind(row: SpeakerDeviceResult) {
     confirm({
-      content: $t('payment.iot.speaker.device.confirmUnbind'),
+      content: $t('payment.device.speaker.confirmUnbind'),
       onOk() {
-        return IotSpeakerDeviceApi.unbind(row.id!).then(() => {
+        return SpeakerDeviceApi.unbind(row.id!).then(() => {
           message.success($t('common.operationSuccess'));
           queryPage();
         });
@@ -179,38 +179,38 @@
         </vxe-toolbar>
         <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
-          <vxe-column field="deviceSn" :title="$t('payment.iot.speaker.device.field.deviceSn')" :min-width="180" />
-          <vxe-column field="deviceName" :title="$t('payment.iot.speaker.device.field.deviceName')" :min-width="140" />
-          <vxe-column field="mchNo" :title="$t('payment.iot.speaker.device.field.mchNo')" :min-width="140" />
-          <vxe-column field="shopId" :title="$t('payment.iot.speaker.device.field.shopId')" :min-width="140" />
+          <vxe-column field="deviceSn" :title="$t('payment.device.speaker.field.deviceSn')" :min-width="180" />
+          <vxe-column field="deviceName" :title="$t('payment.device.speaker.field.deviceName')" :min-width="140" />
+          <vxe-column field="mchNo" :title="$t('payment.device.speaker.field.mchNo')" :min-width="140" />
+          <vxe-column field="shopId" :title="$t('payment.device.speaker.field.shopId')" :min-width="140" />
           <vxe-column
             field="status"
-            :title="$t('payment.iot.speaker.device.field.status')"
+            :title="$t('payment.device.speaker.field.status')"
             :min-width="100"
             align="center"
           >
             <template #default="{ row }">
               <a-tag v-if="row.status === 'online'" color="green">{{
-                $t('payment.iot.speaker.device.status.online')
+                $t('payment.device.speaker.status.online')
               }}</a-tag>
               <a-tag v-else-if="row.status === 'offline'" color="default">{{
-                $t('payment.iot.speaker.device.status.offline')
+                $t('payment.device.speaker.status.offline')
               }}</a-tag>
               <a-tag v-else-if="row.status === 'fault'" color="red">{{
-                $t('payment.iot.speaker.device.status.fault')
+                $t('payment.device.speaker.status.fault')
               }}</a-tag>
-              <a-tag v-else color="blue">{{ $t('payment.iot.speaker.device.status.unbound') }}</a-tag>
+              <a-tag v-else color="blue">{{ $t('payment.device.speaker.status.unbound') }}</a-tag>
             </template>
           </vxe-column>
           <vxe-column
             field="bindTime"
-            :title="$t('payment.iot.speaker.device.field.bindTime')"
+            :title="$t('payment.device.speaker.field.bindTime')"
             :min-width="180"
             formatter="formatDateTime"
           />
           <vxe-column
             field="createTime"
-            :title="$t('payment.iot.speaker.device.field.createTime')"
+            :title="$t('payment.device.speaker.field.createTime')"
             :min-width="180"
             formatter="formatDateTime"
           />
@@ -229,14 +229,14 @@
                 href="javascript:"
                 class="vben-link"
                 @click="handleBind(row)"
-                >{{ $t('payment.iot.speaker.device.bind') }}</a
+                >{{ $t('payment.device.speaker.bind') }}</a
               >
               <a
                 v-else-if="hasPermission(PermCodes.Payment.Speaker.EDIT) && row.status === 'online'"
                 href="javascript:"
                 class="vben-link"
                 @click="handleUnbind(row)"
-                >{{ $t('payment.iot.speaker.device.unbind') }}</a
+                >{{ $t('payment.device.speaker.unbind') }}</a
               >
               <a-divider type="vertical" />
               <a
@@ -260,6 +260,6 @@
       </a-card>
     </div>
 
-    <IotSpeakerDeviceEdit ref="editRef" @ok="queryPage" />
+    <SpeakerDeviceEdit ref="editRef" @ok="queryPage" />
   </div>
 </template>

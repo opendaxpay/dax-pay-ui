@@ -76,12 +76,12 @@ export const PermCodes = {
       EDIT: 'payment:merchant:store:edit',
       DELETE: 'payment:merchant:store:delete',
     },
-    /** 云音响 menuCode=payment:iot:speaker */
+    /** 云音响 menuCode=payment:device:speaker */
     Speaker: {
-      ADD: 'payment:iot:speaker:add',
-      VIEW: 'payment:iot:speaker:view',
-      EDIT: 'payment:iot:speaker:edit',
-      DELETE: 'payment:iot:speaker:delete',
+      ADD: 'payment:device:speaker:add',
+      VIEW: 'payment:device:speaker:view',
+      EDIT: 'payment:device:speaker:edit',
+      DELETE: 'payment:device:speaker:delete',
     },
   },
 

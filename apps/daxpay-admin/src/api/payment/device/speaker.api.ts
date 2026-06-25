@@ -5,61 +5,61 @@ import { defHttp } from '#/api/request';
 /**
  * 云音响设备 API
  */
-export const IotSpeakerDeviceApi = {
+export const SpeakerDeviceApi = {
   /**
    * 分页查询云音响设备
    */
   page(
-    params: IotSpeakerDeviceQuery & { current?: number; size?: number },
-  ): Promise<Result<PageResult<IotSpeakerDeviceResult>>> {
-    return defHttp.get({ url: '/admin/iot/speaker-device/page', params });
+    params: SpeakerDeviceQuery & { current?: number; size?: number },
+  ): Promise<Result<PageResult<SpeakerDeviceResult>>> {
+    return defHttp.get({ url: '/admin/device/speaker/page', params });
   },
 
   /**
    * 根据 id 查询云音响设备
    */
-  get(id: string): Promise<Result<IotSpeakerDeviceResult>> {
-    return defHttp.get({ url: '/admin/iot/speaker-device/get', params: { id } });
+  get(id: string): Promise<Result<SpeakerDeviceResult>> {
+    return defHttp.get({ url: '/admin/device/speaker/get', params: { id } });
   },
 
   /**
    * 新增云音响设备
    */
-  add(data: IotSpeakerDeviceParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/iot/speaker-device/add', data });
+  add(data: SpeakerDeviceParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/device/speaker/add', data });
   },
 
   /**
    * 修改云音响设备
    */
-  update(data: IotSpeakerDeviceParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/iot/speaker-device/update', data });
+  update(data: SpeakerDeviceParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/device/speaker/update', data });
   },
 
   /**
    * 删除云音响设备
    */
   delete(id: string): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/iot/speaker-device/delete', params: { id } });
+    return defHttp.post({ url: '/admin/device/speaker/delete', params: { id } });
   },
 
   /**
    * 绑定云音响设备(首期仅更新本地状态, 真实商米对接由独立服务完成)
    */
   bind(id: string): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/iot/speaker-device/bind', params: { id } });
+    return defHttp.post({ url: '/admin/device/speaker/bind', params: { id } });
   },
 
   /**
    * 解绑云音响设备
    */
   unbind(id: string): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/iot/speaker-device/unbind', params: { id } });
+    return defHttp.post({ url: '/admin/device/speaker/unbind', params: { id } });
   },
 };
 
 /** 云音响设备查询参数 */
-export interface IotSpeakerDeviceQuery {
+export interface SpeakerDeviceQuery {
   /** 商户号 */
   mchNo?: string;
   /** 设备序列号 */
@@ -73,7 +73,7 @@ export interface IotSpeakerDeviceQuery {
 }
 
 /** 云音响设备参数 */
-export interface IotSpeakerDeviceParam {
+export interface SpeakerDeviceParam {
   /** 主键 */
   id?: string;
   /** 商户号 */
@@ -91,7 +91,7 @@ export interface IotSpeakerDeviceParam {
 }
 
 /** 云音响设备结果 */
-export interface IotSpeakerDeviceResult extends BaseEntity {
+export interface SpeakerDeviceResult extends BaseEntity {
   /** 商户号 */
   mchNo?: string;
   /** 设备序列号 */
