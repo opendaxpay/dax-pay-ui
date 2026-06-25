@@ -1,0 +1,28 @@
+{
+  "store": {
+    "title": "门店管理",
+    "field": {
+      "storeNo": "门店号",
+      "storeName": "门店名称",
+      "contactPhone": "联系人电话",
+      "logoUrl": "门店LOGO",
+      "facadeUrl": "门头照",
+      "interiorUrl": "门店内景照",
+      "region": "所在地区",
+      "address": "详细地址",
+      "longitude": "经度",
+      "latitude": "纬度",
+      "status": "状态",
+      "remark": "备注",
+      "createTime": "创建时间"
+    },
+    "status": {
+      "enable": "启用",
+      "disabled": "停用"
+    },
+    "regionPlaceholder": "请选择省/市/区",
+    "confirmDelete": "确定删除该门店吗？",
+    "validationStoreName": "请输入门店名称",
+    "validationStatus": "请选择状态"
+  }
+}

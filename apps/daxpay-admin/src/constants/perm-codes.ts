@@ -69,6 +69,20 @@ export const PermCodes = {
       DELETE: 'payment:merchant:channelMerchant:delete',
       VIEW: 'payment:merchant:channelMerchant:view',
     },
+    /** 门店 menuCode=payment:merchant:store */
+    Store: {
+      ADD: 'payment:merchant:store:add',
+      VIEW: 'payment:merchant:store:view',
+      EDIT: 'payment:merchant:store:edit',
+      DELETE: 'payment:merchant:store:delete',
+    },
+    /** 云音响 menuCode=payment:iot:speaker */
+    Speaker: {
+      ADD: 'payment:iot:speaker:add',
+      VIEW: 'payment:iot:speaker:view',
+      EDIT: 'payment:iot:speaker:edit',
+      DELETE: 'payment:iot:speaker:delete',
+    },
   },
 
   /** 系统域 */

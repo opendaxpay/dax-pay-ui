@@ -23,6 +23,8 @@
     "cardCredentialConfig": "对接配置",
     "cardCredentialConfigDesc": "商户公钥、通信密钥、平台公钥等对接密钥配置",
     "cardUser": "用户管理",
-    "cardUserDesc": "用户账号管理与权限分配"
+    "cardUserDesc": "用户账号管理与权限分配",
+    "cardStore": "门店管理",
+    "cardStoreDesc": "商户物理门店档案与位置信息管理"
   }
 }

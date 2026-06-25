@@ -53,6 +53,15 @@
           description: $t('payment.merchant.workbench.workbench.cardUserDesc'),
           route: '/payment/merchant/user',
         },
+        {
+          key: 'store',
+          // 国际化：门店管理
+          title: $t('payment.merchant.workbench.workbench.cardStore'),
+          icon: 'ant-design:environment-outlined',
+          // 国际化：商户物理门店档案与位置信息管理
+          description: $t('payment.merchant.workbench.workbench.cardStoreDesc'),
+          route: '/payment/merchant/store',
+        },
       ],
     },
     {

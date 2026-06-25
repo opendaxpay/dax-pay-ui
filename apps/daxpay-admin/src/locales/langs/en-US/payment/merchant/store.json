@@ -1,0 +1,28 @@
+{
+  "store": {
+    "title": "Store Management",
+    "field": {
+      "storeNo": "Store No.",
+      "storeName": "Store Name",
+      "contactPhone": "Contact Phone",
+      "logoUrl": "Store Logo",
+      "facadeUrl": "Storefront Photo",
+      "interiorUrl": "Interior Photo",
+      "region": "Region",
+      "address": "Address",
+      "longitude": "Longitude",
+      "latitude": "Latitude",
+      "status": "Status",
+      "remark": "Remark",
+      "createTime": "Create Time"
+    },
+    "status": {
+      "enable": "Enabled",
+      "disabled": "Disabled"
+    },
+    "regionPlaceholder": "Please select province / city / district",
+    "confirmDelete": "Delete this store?",
+    "validationStoreName": "Please enter store name",
+    "validationStatus": "Please select status"
+  }
+}

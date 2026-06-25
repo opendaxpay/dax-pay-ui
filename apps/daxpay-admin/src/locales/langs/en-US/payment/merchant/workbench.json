@@ -23,6 +23,8 @@
     "cardCredentialConfig": "Credential Config",
     "cardCredentialConfigDesc": "Merchant public key, communication key, platform public key and other credential configuration",
     "cardUser": "User Management",
-    "cardUserDesc": "User account management and permission assignment"
+    "cardUserDesc": "User account management and permission assignment",
+    "cardStore": "Store Management",
+    "cardStoreDesc": "Physical store profiles and location management"
   }
 }
