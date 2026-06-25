@@ -3,37 +3,15 @@
   "description": "Manage TOTP authentication and backup codes configuration",
   "summary": {
     "enabled": "Two-factor auth enabled",
-    "disabled": "Two-factor auth disabled",
-    "codeLength": "Code length {count} digits",
-    "timeStep": "Time step {seconds} seconds"
+    "disabled": "Two-factor auth disabled"
   },
   "section": {
     "basic": "Basic Settings",
-    "totp": "TOTP Configuration",
     "other": "Other Settings"
   },
   "enabled": {
     "label": "Enable Two-Factor Authentication",
     "desc": "When enabled, users can enable two-factor authentication to enhance account security."
-  },
-  "algorithm": {
-    "label": "TOTP Algorithm Type",
-    "desc": "Select the hash algorithm used to generate TOTP verification codes."
-  },
-  "timeStep": {
-    "label": "TOTP Time Step",
-    "desc": "The valid time window length for verification codes.",
-    "placeholder": "Enter time step"
-  },
-  "codeLength": {
-    "label": "TOTP Code Length",
-    "desc": "The number of digits in generated verification codes.",
-    "placeholder": "Enter code length"
-  },
-  "timeWindowOffset": {
-    "label": "Time Window Offset",
-    "desc": "Allowed time window offset for handling clock drift.",
-    "placeholder": "Enter time window offset"
   },
   "issuer": {
     "label": "Issuer Name",
@@ -44,8 +22,5 @@
     "label": "Backup Codes Count",
     "desc": "The number of backup codes users can generate.",
     "placeholder": "Enter backup codes count"
-  },
-  "warning": {
-    "algorithmChange": "Changing the algorithm type, code length, or time step will invalidate the authenticator for already-bound users, requiring them to re-bind. Notify all bound users before making changes."
   }
 }

@@ -18,26 +18,12 @@
 
   const formState = ref<TwoFactorAuthConfig>({} as TwoFactorAuthConfig);
 
-  // TOTP算法选项
-  const algorithmOptions = [
-    // HmacSHA1算法
-    { label: 'HmacSHA1', value: 'HmacSHA1' },
-    // HmacSHA256算法
-    { label: 'HmacSHA256', value: 'HmacSHA256' },
-    // HmacSHA512算法
-    { label: 'HmacSHA512', value: 'HmacSHA512' },
-  ];
-
   const summaryItems = computed(() => {
     return [
       // 双因素认证启用状态
       formState.value.enabled
         ? $t('system.security.two-factor-auth.summary.enabled')
         : $t('system.security.two-factor-auth.summary.disabled'),
-      // 验证码长度
-      $t('system.security.two-factor-auth.summary.codeLength', { count: formState.value.codeLength ?? 6 }),
-      // 时间步长
-      $t('system.security.two-factor-auth.summary.timeStep', { seconds: formState.value.timeStep ?? 30 }),
     ];
   });
 
@@ -153,102 +139,6 @@
         </div>
 
         <div class="config-section">
-          <!-- TOTP配置 -->
-          <div class="config-section__title">{{ $t('system.security.two-factor-auth.section.totp') }}</div>
-          <!-- 警示：修改算法/位数/步长将导致已绑定用户的验证器失效 -->
-          <a-alert
-            v-if="isEditing"
-            type="warning"
-            show-icon
-            :message="$t('system.security.two-factor-auth.warning.algorithmChange')"
-            class="config-warning"
-          />
-
-          <div class="config-grid">
-            <div class="config-item config-item--block">
-              <div class="config-item__main">
-                <!-- TOTP算法类型标签 -->
-                <div class="config-item__label">{{ $t('system.security.two-factor-auth.algorithm.label') }}</div>
-                <!-- TOTP算法类型描述 -->
-                <div class="config-item__desc">{{ $t('system.security.two-factor-auth.algorithm.desc') }}</div>
-              </div>
-              <a-select
-                v-model:value="formState.algorithm"
-                :options="algorithmOptions"
-                :disabled="!isEditing"
-                style="width: 220px"
-              />
-            </div>
-
-            <div class="config-item config-item--block">
-              <div class="config-item__main">
-                <!-- TOTP时间步长标签 -->
-                <div class="config-item__label">{{ $t('system.security.two-factor-auth.timeStep.label') }}</div>
-                <!-- TOTP时间步长描述 -->
-                <div class="config-item__desc">{{ $t('system.security.two-factor-auth.timeStep.desc') }}</div>
-              </div>
-              <div class="number-field">
-                <!-- 国际化：请输入时间步长 -->
-                <a-input-number
-                  v-model:value="formState.timeStep"
-                  :min="15"
-                  :max="120"
-                  :placeholder="$t('system.security.two-factor-auth.timeStep.placeholder')"
-                  :disabled="!isEditing"
-                  style="width: 180px"
-                />
-                <!-- 单位：秒 -->
-                <span class="number-field__suffix">{{ $t('system.security.common.unit.second') }}</span>
-              </div>
-            </div>
-
-            <div class="config-item config-item--block">
-              <div class="config-item__main">
-                <!-- TOTP验证码长度标签 -->
-                <div class="config-item__label">{{ $t('system.security.two-factor-auth.codeLength.label') }}</div>
-                <!-- TOTP验证码长度描述 -->
-                <div class="config-item__desc">{{ $t('system.security.two-factor-auth.codeLength.desc') }}</div>
-              </div>
-              <div class="number-field">
-                <!-- 国际化：请输入验证码长度 -->
-                <a-input-number
-                  v-model:value="formState.codeLength"
-                  :min="6"
-                  :max="8"
-                  :placeholder="$t('system.security.two-factor-auth.codeLength.placeholder')"
-                  :disabled="!isEditing"
-                  style="width: 180px"
-                />
-                <!-- 单位：位 -->
-                <span class="number-field__suffix">{{ $t('system.security.common.unit.char') }}</span>
-              </div>
-            </div>
-
-            <div class="config-item config-item--block">
-              <div class="config-item__main">
-                <!-- 时间窗口偏移标签 -->
-                <div class="config-item__label">{{ $t('system.security.two-factor-auth.timeWindowOffset.label') }}</div>
-                <!-- 时间窗口偏移描述 -->
-                <div class="config-item__desc">{{ $t('system.security.two-factor-auth.timeWindowOffset.desc') }}</div>
-              </div>
-              <div class="number-field">
-                <!-- 国际化：请输入时间窗口偏移 -->
-                <a-input-number
-                  v-model:value="formState.timeWindowOffset"
-                  :min="0"
-                  :max="5"
-                  :placeholder="$t('system.security.two-factor-auth.timeWindowOffset.placeholder')"
-                  :disabled="!isEditing"
-                  style="width: 180px"
-                />
-                <!-- 单位：个 -->
-                <span class="number-field__suffix">{{ $t('system.security.common.unit.window') }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="config-section">
           <!-- 其他配置 -->
           <div class="config-section__title">{{ $t('system.security.two-factor-auth.section.other') }}</div>
 
@@ -279,7 +169,7 @@
                 <!-- 国际化：请输入备用验证码数量 -->
                 <a-input-number
                   v-model:value="formState.backupCodesCount"
-                  :min="0"
+                  :min="10"
                   :max="20"
                   :placeholder="$t('system.security.two-factor-auth.backupCodesCount.placeholder')"
                   :disabled="!isEditing"

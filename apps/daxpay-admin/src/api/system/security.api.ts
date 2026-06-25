@@ -143,14 +143,6 @@ export interface SessionManagementConfig {
 export interface TwoFactorAuthConfig {
   /** 是否启用 */
   enabled?: boolean;
-  /** 算法 */
-  algorithm?: string;
-  /** 时间步长 */
-  timeStep?: number;
-  /** 验证码长度 */
-  codeLength?: number;
-  /** 时间窗口偏移 */
-  timeWindowOffset?: number;
   /** 发行者 */
   issuer?: string;
   /** 备用码数量 */

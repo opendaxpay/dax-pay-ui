@@ -3,37 +3,15 @@
   "description": "维护TOTP认证与备用验证码配置",
   "summary": {
     "enabled": "双因素认证已启用",
-    "disabled": "双因素认证未启用",
-    "codeLength": "验证码 {count} 位",
-    "timeStep": "时间步长 {seconds} 秒"
+    "disabled": "双因素认证未启用"
   },
   "section": {
     "basic": "基础设置",
-    "totp": "TOTP配置",
     "other": "其他配置"
   },
   "enabled": {
     "label": "启用双因素认证",
     "desc": "开启后，用户可启用双因素认证增强账户安全。"
-  },
-  "algorithm": {
-    "label": "TOTP算法类型",
-    "desc": "选择用于生成TOTP验证码的哈希算法。"
-  },
-  "timeStep": {
-    "label": "TOTP时间步长",
-    "desc": "验证码的有效时间窗口长度。",
-    "placeholder": "请输入时间步长"
-  },
-  "codeLength": {
-    "label": "TOTP验证码长度",
-    "desc": "生成的验证码位数。",
-    "placeholder": "请输入验证码长度"
-  },
-  "timeWindowOffset": {
-    "label": "时间窗口偏移",
-    "desc": "允许的时间窗口偏移量，用于处理时钟偏差。",
-    "placeholder": "请输入时间窗口偏移"
   },
   "issuer": {
     "label": "发行者名称",
@@ -44,8 +22,5 @@
     "label": "备用验证码数量",
     "desc": "用户可生成的备用验证码数量。",
     "placeholder": "请输入备用验证码数量"
-  },
-  "warning": {
-    "algorithmChange": "修改算法类型、验证码长度或时间步长，将导致已绑定用户的身份验证器失效，用户需重新绑定。变更前请通知所有已绑定用户。"
   }
 }
