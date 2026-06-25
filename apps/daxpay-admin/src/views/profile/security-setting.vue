@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import type { BackupCodeResult, TwoFactorSetup, TwoFactorStatus } from '#/api/core/two-factor.api';
 
-  import { computed, onMounted, ref } from 'vue';
+  import { computed, onMounted, ref, watch } from 'vue';
 
   import { $t } from '@vben/locales';
 
@@ -37,6 +37,11 @@
   const confirmModalCode = ref('');
   // 确认弹窗验证码类型(disable / regenerate 共用)
   const confirmModalCodeType = ref<'BACKUP' | 'TOTP'>('TOTP');
+
+  // 切换验证码类型时清空, 两者格式不同(动态码6位数字 / 备用码8位含连字符)避免错位
+  watch(confirmModalCodeType, () => {
+    confirmModalCode.value = '';
+  });
   // 重新生成的备用码(弹窗内展示)
   const regenBackupResult = ref<BackupCodeResult | null>(null);
 
@@ -267,15 +272,20 @@
 
       <!-- 步骤2 输入验证码 -->
       <div v-if="current === 1" class="tf-step">
-        <a-input
-          v-model:value="confirmCode"
-          :placeholder="$t('profile.twoFactor.codePlaceholder')"
-          style="max-width: 280px; text-align: center; font-size: 18px; letter-spacing: 4px"
-          :maxlength="8"
-        />
+        <!-- 一次性密码框(6位分格, 中间3-3分隔) -->
+        <a-input-otp v-model:value="confirmCode" :length="6" size="large">
+          <template #separator>
+            <span style="flex: 1; text-align: center; color: hsl(var(--muted-foreground))">-</span>
+          </template>
+        </a-input-otp>
         <div class="tf-step__actions">
           <a-button @click="current = 0">{{ $t('profile.twoFactor.prev') }}</a-button>
-          <a-button type="primary" :loading="actionLoading" @click="handleConfirmBind">
+          <a-button
+            type="primary"
+            :disabled="confirmCode.length < 6"
+            :loading="actionLoading"
+            @click="handleConfirmBind"
+          >
             {{ $t('profile.twoFactor.confirmBind') }}
           </a-button>
         </div>
@@ -311,6 +321,9 @@
       :confirm-loading="actionLoading"
       :ok-text="$t('profile.twoFactor.confirm')"
       :cancel-text="$t('profile.twoFactor.cancel')"
+      :ok-button-props="{
+        disabled: !regenBackupResult && confirmModalCodeType === 'TOTP' && confirmModalCode.length < 6,
+      }"
       @ok="handleConfirmModalOk"
     >
       <!-- 重新生成成功后展示新备用码 -->
@@ -342,17 +355,28 @@
           $t('profile.twoFactor.codeInputTip')
         }}</p>
         <!-- 验证码类型切换 -->
-        <a-radio-group v-model:value="confirmModalCodeType" button-style="solid" class="w-full" :style="{ display: 'block', marginBottom: '16px' }">
+        <a-radio-group
+          v-model:value="confirmModalCodeType"
+          button-style="solid"
+          class="w-full"
+          :style="{ display: 'block', marginBottom: '16px' }"
+        >
           <a-radio-button value="TOTP" class="w-1/2 text-center">{{ $t('profile.twoFactor.totp') }}</a-radio-button>
           <a-radio-button value="BACKUP" class="w-1/2 text-center">{{ $t('profile.twoFactor.backup') }}</a-radio-button>
         </a-radio-group>
+        <!-- TOTP 动态码: 一次性密码框(6位分格, 中间3-3分隔) -->
+        <div v-if="confirmModalCodeType === 'TOTP'" class="tf-otp">
+          <a-input-otp v-model:value="confirmModalCode" :length="6">
+            <template #separator>
+              <span style="flex: 1; text-align: center; color: hsl(var(--muted-foreground))">-</span>
+            </template>
+          </a-input-otp>
+        </div>
+        <!-- 备用码: 普通输入框(格式如 K7MQ-AB3X, 保持不变) -->
         <a-input
+          v-else
           v-model:value="confirmModalCode"
-          :placeholder="
-            confirmModalCodeType === 'TOTP'
-              ? $t('profile.twoFactor.codePlaceholder')
-              : $t('profile.twoFactor.backupCodePlaceholder')
-          "
+          :placeholder="$t('profile.twoFactor.backupCodePlaceholder')"
           style="text-align: center; font-size: 16px; letter-spacing: 4px"
         />
       </template>
@@ -465,5 +489,16 @@
     font-size: 15px;
     font-weight: 500;
     letter-spacing: 1px;
+  }
+
+  /* OTP 6格占满宽度, 中间分隔符弹性撑开分成3-3两组
+     用本组件元素(.tf-step / .tf-otp)做 :deep 锚点, teleport 后祖先仍带 scope id */
+  .tf-step :deep(.ant-otp),
+  .tf-otp :deep(.ant-otp) {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 4px;
+    justify-content: space-between;
   }
 </style>
