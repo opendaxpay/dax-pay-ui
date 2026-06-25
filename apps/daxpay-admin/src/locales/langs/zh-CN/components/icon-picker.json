@@ -1,5 +1,6 @@
 {
   "placeholder": "选择一个图标",
   "search": "搜索图标...",
-  "noData": "暂无数据"
+  "noData": "暂无数据",
+  "notLocal": "本地未收录，将尝试在线渲染"
 }

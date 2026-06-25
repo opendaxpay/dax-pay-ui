@@ -1,44 +1,32 @@
-import type { Recordable } from '@vben/types';
+import { listIcons } from '@vben/icons';
 
-export const ICONS_MAP: Recordable<string[]> = {};
+// 本地图标合并缓存(lucide 通用图标 + simple-icons 品牌图标)
+let mergedCache: string[] | null = null;
 
-interface IconifyResponse {
-  prefix: string;
-  total: number;
-  title: string;
-  uncategorized?: string[];
-  categories?: Recordable<string[]>;
-  aliases?: Recordable<string>;
+/**
+ * 获取本地已预加载的图标列表
+ * 数据源为 bootstrap 中 addCollection 注册到内存的图标集,完全离线可用:
+ * - lucide: 通用 UI 图标(线条风,菜单主力)
+ * - simple-icons: 品牌图标(wechat/qq/alipay/tiktok 等)
+ * 合并后支持双集合并搜索,如搜 wechat 命中品牌图标,搜 user 命中 UI 图标
+ */
+export function getLocalIcons(): string[] {
+  if (mergedCache) {
+    return mergedCache;
+  }
+  mergedCache = [...listIcons('', 'lucide'), ...listIcons('', 'simple-icons')];
+  return mergedCache;
 }
 
-const PENDING_REQUESTS: Recordable<Promise<string[]>> = {};
+/** 判断指定图标是否存在于本地预加载集合中(用于手输弱提示) */
+export function isLocalIcon(icon: string): boolean {
+  if (!icon) {
+    return false;
+  }
+  return getLocalIcons().includes(icon);
+}
 
-export async function fetchIconsData(prefix: string): Promise<string[]> {
-  if (Reflect.has(ICONS_MAP, prefix) && ICONS_MAP[prefix]) {
-    return ICONS_MAP[prefix];
-  }
-  if (Reflect.has(PENDING_REQUESTS, prefix) && PENDING_REQUESTS[prefix]) {
-    return PENDING_REQUESTS[prefix];
-  }
-  PENDING_REQUESTS[prefix] = (async () => {
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 1000 * 10);
-      const response: IconifyResponse = await fetch(`https://api.iconify.design/collection?prefix=${prefix}`, {
-        signal: controller.signal,
-      }).then((res) => res.json());
-      clearTimeout(timeoutId);
-      const list = response.uncategorized || [];
-      if (response.categories) {
-        for (const category in response.categories) {
-          list.push(...(response.categories[category] || []));
-        }
-      }
-      ICONS_MAP[prefix] = list.map((item) => `${prefix}:${item}`);
-    } catch {
-      return [] as string[];
-    }
-    return ICONS_MAP[prefix];
-  })();
-  return PENDING_REQUESTS[prefix];
+/** 清除本地图标缓存(图标集动态更新后强制刷新) */
+export function clearIconCache(): void {
+  mergedCache = null;
 }

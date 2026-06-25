@@ -7,6 +7,9 @@ import '@vben/styles';
 import '@vben/styles/antdv-next';
 import { useTitle } from '@vueuse/core';
 import { formatDate, formatDateTime } from '@vben/utils';
+import lucide from '@iconify/json/json/lucide.json';
+import simpleIcons from '@iconify/json/json/simple-icons.json';
+import { addCollection } from '@vben/icons';
 import Antd from 'antdv-next';
 import VxeUI from 'vxe-pc-ui';
 import VxeUITable from 'vxe-table';
@@ -25,6 +28,11 @@ import '#/adapter/component/vxe-table/index.less';
 import '#/styles/index.less';
 
 async function bootstrap(namespace: string) {
+  // 预加载图标集到内存: lucide(通用UI图标) + simple-icons(品牌图标)
+  // 使菜单图标与图标选择弹窗均可离线渲染,不再依赖在线 API
+  addCollection(lucide);
+  addCollection(simpleIcons);
+
   // 初始化组件适配器
   await initComponentAdapter();
 

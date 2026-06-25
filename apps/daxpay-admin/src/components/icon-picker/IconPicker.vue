@@ -1,20 +1,21 @@
 <script setup lang="ts">
   import { computed, ref, watch, watchEffect } from 'vue';
 
-  import { EmptyIcon, listIcons } from '@vben/icons';
+  import { EmptyIcon } from '@vben/icons';
   import { $t } from '@vben/locales';
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { refDebounced, watchDebounced } from '@vueuse/core';
+  import { refDebounced } from '@vueuse/core';
 
-  import { fetchIconsData } from './icons';
+  import { getLocalIcons, isLocalIcon } from './icons';
 
   interface Props {
     pageSize?: number;
     pageSizeOptions?: number[];
+    /** 图标集前缀(保留兼容,数据源已固定为本地 lucide+simple-icons 合并) */
     prefix?: string;
-    autoFetchApi?: boolean;
+    /** 外部自定义图标列表(传入后优先于本地集合) */
     icons?: string[];
     type?: 'icon' | 'input';
     disabled?: boolean;
@@ -25,11 +26,10 @@
   });
 
   const props = withDefaults(defineProps<Props>(), {
-    prefix: 'ant-design',
+    prefix: 'lucide',
     pageSize: 70,
     pageSizeOptions: () => [70, 130, 200, 300],
     icons: () => [],
-    autoFetchApi: true,
     type: 'input',
     disabled: false,
   });
@@ -40,25 +40,20 @@
 
   const modelValue = defineModel<string>({ default: '' });
 
-  const defaultPreviewIcon = 'ant-design:appstore-outlined';
+  // 默认预览图标(未选择时触发器展示)
+  const defaultPreviewIcon = 'lucide:image';
 
   const open = ref(false);
-  const loading = ref(false);
   const currentSelect = ref('');
   const keyword = ref('');
   const keywordDebounced = refDebounced(keyword, 300);
-  const innerIcons = ref<string[]>([]);
   const currentPage = ref(1);
   const currentPageSize = ref(props.pageSize);
 
+  // 数据源: 本地预加载的 lucide(通用UI) + simple-icons(品牌) 合并集合
+  // 外部传入 icons 时优先使用外部列表,否则走本地双集
   const mergedIcons = computed(() => {
-    if (!props.prefix) {
-      return props.icons;
-    }
-    if (props.prefix !== 'svg' && props.autoFetchApi && props.icons.length === 0) {
-      return innerIcons.value;
-    }
-    return listIcons('', props.prefix);
+    return props.icons.length > 0 ? props.icons : getLocalIcons();
   });
 
   const filteredIcons = computed(() => {
@@ -79,27 +74,22 @@
     return filteredIcons.value.slice(startIndex.value, startIndex.value + currentPageSize.value);
   });
 
+  // 手输弱提示: 当前值不在本地预加载集合中,将尝试在线渲染(不阻断保存)
+  // 实际渲染由 @iconify/vue 自动在线 fallback,保留手输任意图标的空间
+  const notLocalHint = computed(() => {
+    const val = currentSelect.value.trim();
+    if (!val) {
+      return false;
+    }
+    return !isLocalIcon(val);
+  });
+
   watch(
     () => props.pageSize,
     (value) => {
       currentPageSize.value = value;
     },
     { immediate: true },
-  );
-
-  watchDebounced(
-    () => props.prefix,
-    async (prefix) => {
-      if (prefix && prefix !== 'svg' && props.autoFetchApi && props.icons.length === 0) {
-        loading.value = true;
-        innerIcons.value = await fetchIconsData(prefix);
-        loading.value = false;
-        return;
-      }
-      innerIcons.value = [];
-      loading.value = false;
-    },
-    { immediate: true, debounce: 500, maxWait: 1000 },
   );
 
   watch(
@@ -173,9 +163,9 @@
   }
 
   function hidePopover() {
-  open.value = false;
-  keyword.value = '';
-}
+    open.value = false;
+    keyword.value = '';
+  }
 
   defineExpose({
     close: hidePopover,
@@ -203,48 +193,42 @@
           class="icon-picker-search"
           :placeholder="$t('components.icon-picker.search')"
         />
-        <div v-if="loading" class="icon-picker-loading">
-          <a-spin />
+        <div v-if="pagedIcons.length > 0" class="icon-picker-grid">
+          <button
+            v-for="icon in pagedIcons"
+            :key="icon"
+            class="icon-picker-item"
+            type="button"
+            :class="{ 'icon-picker-item-active': currentSelect === icon }"
+            :title="icon"
+            @click="handleSelect(icon)"
+          >
+            <IconifyIcon :icon="icon" class="icon-picker-item-icon" />
+          </button>
         </div>
-        <template v-else>
-          <div v-if="pagedIcons.length > 0" class="icon-picker-grid">
-            <button
-              v-for="icon in pagedIcons"
-              :key="icon"
-              class="icon-picker-item"
-              type="button"
-              :class="{ 'icon-picker-item-active': currentSelect === icon }"
-              :title="icon"
-              @click="handleSelect(icon)"
-            >
-              <IconifyIcon :icon="icon" class="icon-picker-item-icon" />
-            </button>
-          </div>
-          <div v-else class="icon-picker-empty">
-            <EmptyIcon class="icon-picker-empty-icon" />
-            <!-- 国际化：图标列表空状态 -->
-            <div class="icon-picker-empty-text">{{ $t('components.icon-picker.noData') }}</div>
-          </div>
-          <div v-if="total > currentPageSize" class="icon-picker-pagination">
-            <a-pagination
-              :current="currentPage"
-              :page-size="currentPageSize"
-              :page-size-options="normalizedPageSizeOptions.map((item) => String(item))"
-              :show-size-changer="true"
-              :total="total"
-              size="small"
-              @change="handlePageChange"
-              @show-size-change="handlePageSizeChange"
-            />
-          </div>
-        </template>
+        <div v-else class="icon-picker-empty">
+          <EmptyIcon class="icon-picker-empty-icon" />
+          <!-- 国际化：图标列表空状态 -->
+          <div class="icon-picker-empty-text">{{ $t('components.icon-picker.noData') }}</div>
+        </div>
+        <div v-if="total > currentPageSize" class="icon-picker-pagination">
+          <a-pagination
+            :current="currentPage"
+            :page-size="currentPageSize"
+            :page-size-options="normalizedPageSizeOptions.map((item) => String(item))"
+            :show-size-changer="true"
+            :total="total"
+            size="small"
+            @change="handlePageChange"
+            @show-size-change="handlePageSizeChange"
+          />
+        </div>
       </div>
     </template>
 
     <template v-if="type === 'input'">
       <!-- 国际化：选择一个图标 -->
       <div class="icon-picker-trigger" :class="{ 'icon-picker-disabled': disabled }">
-        <!-- 国际化：选择一个图标 -->
         <a-input
           v-bind="$attrs"
           :value="currentSelect"
@@ -258,6 +242,10 @@
             <IconifyIcon v-else :icon="defaultPreviewIcon" class="icon-picker-preview" />
           </template>
         </a-input>
+        <!-- 本地未收录弱提示: 不阻断保存,实际渲染由 @iconify/vue 自动在线 fallback -->
+        <div v-if="notLocalHint" class="icon-picker-not-local">
+          {{ $t('components.icon-picker.notLocal') }}
+        </div>
       </div>
     </template>
     <button v-else class="icon-picker-icon-trigger" type="button" :disabled="disabled" @click.stop="toggleOpenState">
@@ -274,13 +262,6 @@
 
   .icon-picker-search {
     margin-bottom: 8px;
-  }
-
-  .icon-picker-loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 220px;
   }
 
   .icon-picker-grid {
@@ -343,6 +324,13 @@
   .icon-picker-trigger,
   .icon-picker-input {
     width: 100%;
+  }
+
+  .icon-picker-not-local {
+    margin-top: 4px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--ant-color-warning);
   }
 
   .icon-picker-disabled {

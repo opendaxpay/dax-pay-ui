@@ -490,7 +490,7 @@
 
         <a-form-item :label="$t('iam.menu.icon')" name="icon" class="col-span-2 md:col-span-1">
           <!-- 图标 -->
-          <IconPicker v-model="form.icon" :disabled="showable" type="input" prefix="ant-design" />
+          <IconPicker v-model="form.icon" :disabled="showable" type="input" prefix="lucide" />
         </a-form-item>
 
         <!-- 第三区：路由配置 -->

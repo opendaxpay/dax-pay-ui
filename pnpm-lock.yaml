@@ -546,6 +546,9 @@ importers:
 
   apps/daxpay-admin:
     dependencies:
+      '@iconify/json':
+        specifier: 'catalog:'
+        version: 2.2.489
       '@vben-core/icons':
         specifier: workspace:*
         version: link:../../packages/@core/base/icons
