@@ -1,0 +1,30 @@
+{
+  "device": {
+    "title": "Cloud Speaker Device",
+    "field": {
+      "mchNo": "Merchant No.",
+      "deviceSn": "Device Serial No.",
+      "imei": "Device IMEI",
+      "shopId": "SUNMI Shop ID",
+      "deviceName": "Device Name",
+      "status": "Status",
+      "bindTime": "Bind Time",
+      "lastOnlineTime": "Last Online Time",
+      "remark": "Remark",
+      "createTime": "Create Time"
+    },
+    "status": {
+      "unbound": "Unbound",
+      "online": "Online",
+      "offline": "Offline",
+      "fault": "Fault"
+    },
+    "validateMchNo": "Please enter merchant no.",
+    "validateDeviceSn": "Please enter device serial no.",
+    "bind": "Bind",
+    "unbind": "Unbind",
+    "confirmBind": "Are you sure to bind this device?",
+    "confirmUnbind": "Are you sure to unbind this device? Broadcast will stop after unbind.",
+    "confirmDelete": "Are you sure to delete this device?"
+  }
+}
