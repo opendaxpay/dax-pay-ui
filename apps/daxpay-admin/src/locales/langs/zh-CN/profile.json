@@ -47,7 +47,6 @@
     "disable": "关闭",
     "regenerate": "重新生成备用码",
     "remaining": "剩余备用码",
-    "lastVerify": "上次验证",
     "bindTitle": "绑定双因素认证",
     "stepScan": "扫描二维码",
     "stepVerify": "输入验证码",
@@ -71,6 +70,9 @@
     "regenConfirm": "重新生成后旧备用码将全部失效，确认操作？",
     "codeInputTitle": "身份验证",
     "codeInputTip": "请输入 Authenticator 中的动态验证码以确认操作",
+    "totp": "动态码",
+    "backup": "备用码",
+    "backupCodePlaceholder": "请输入备用验证码",
     "confirm": "确认",
     "disableSuccess": "已关闭双因素认证",
     "regenSuccess": "备用码已重新生成"

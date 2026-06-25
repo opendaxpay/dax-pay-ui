@@ -35,6 +35,8 @@
   const confirmModalVisible = ref(false);
   const confirmModalAction = ref<'disable' | 'regenerate'>('disable');
   const confirmModalCode = ref('');
+  // 确认弹窗验证码类型(disable / regenerate 共用)
+  const confirmModalCodeType = ref<'BACKUP' | 'TOTP'>('TOTP');
   // 重新生成的备用码(弹窗内展示)
   const regenBackupResult = ref<BackupCodeResult | null>(null);
 
@@ -120,6 +122,7 @@
   function handleDisable() {
     confirmModalAction.value = 'disable';
     confirmModalCode.value = '';
+    confirmModalCodeType.value = 'TOTP';
     regenBackupResult.value = null;
     confirmModalVisible.value = true;
   }
@@ -128,6 +131,7 @@
   function handleRegenerate() {
     confirmModalAction.value = 'regenerate';
     confirmModalCode.value = '';
+    confirmModalCodeType.value = 'TOTP';
     regenBackupResult.value = null;
     confirmModalVisible.value = true;
   }
@@ -140,12 +144,15 @@
     actionLoading.value = true;
     try {
       if (confirmModalAction.value === 'disable') {
-        await TwoFactorApi.disable({ code: confirmModalCode.value });
+        await TwoFactorApi.disable({ code: confirmModalCode.value, codeType: confirmModalCodeType.value });
         message.success($t('profile.twoFactor.disableSuccess'));
         confirmModalVisible.value = false;
         await fetchStatus();
       } else {
-        const { data } = await TwoFactorApi.regenerateBackupCodes({ code: confirmModalCode.value });
+        const { data } = await TwoFactorApi.regenerateBackupCodes({
+          code: confirmModalCode.value,
+          codeType: confirmModalCodeType.value,
+        });
         regenBackupResult.value = data;
         message.success($t('profile.twoFactor.regenSuccess'));
         await fetchStatus();
@@ -187,14 +194,6 @@
     URL.revokeObjectURL(url);
   }
 
-  /** 格式化时间 */
-  function formatTime(ts?: number) {
-    if (!ts) {
-      return '-';
-    }
-    return new Date(ts).toLocaleString();
-  }
-
   onMounted(fetchStatus);
 </script>
 
@@ -229,9 +228,6 @@
       <div v-else class="tf-overview">
         <div class="tf-overview__meta">
           <span>{{ $t('profile.twoFactor.remaining') }}: {{ status.backupCodesRemaining ?? 0 }}</span>
-          <span style="margin-left: 16px">
-            {{ $t('profile.twoFactor.lastVerify') }}: {{ formatTime(status.lastVerifyTime) }}
-          </span>
         </div>
         <div class="tf-overview__actions">
           <a-button :loading="actionLoading" @click="handleRegenerate">
@@ -345,11 +341,19 @@
         <p style="color: hsl(var(--muted-foreground)); margin-bottom: 8px">{{
           $t('profile.twoFactor.codeInputTip')
         }}</p>
+        <!-- 验证码类型切换 -->
+        <a-radio-group v-model:value="confirmModalCodeType" button-style="solid" class="w-full" :style="{ display: 'block', marginBottom: '16px' }">
+          <a-radio-button value="TOTP" class="w-1/2 text-center">{{ $t('profile.twoFactor.totp') }}</a-radio-button>
+          <a-radio-button value="BACKUP" class="w-1/2 text-center">{{ $t('profile.twoFactor.backup') }}</a-radio-button>
+        </a-radio-group>
         <a-input
           v-model:value="confirmModalCode"
-          :placeholder="$t('profile.twoFactor.codePlaceholder')"
+          :placeholder="
+            confirmModalCodeType === 'TOTP'
+              ? $t('profile.twoFactor.codePlaceholder')
+              : $t('profile.twoFactor.backupCodePlaceholder')
+          "
           style="text-align: center; font-size: 16px; letter-spacing: 4px"
-          :maxlength="8"
         />
       </template>
     </a-modal>

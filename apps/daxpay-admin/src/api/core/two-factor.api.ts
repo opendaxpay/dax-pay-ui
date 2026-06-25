@@ -52,8 +52,6 @@ export interface TwoFactorStatus {
   bound?: boolean;
   /** 剩余可用备用验证码数量 */
   backupCodesRemaining?: number;
-  /** 最后验证时间(毫秒时间戳) */
-  lastVerifyTime?: number;
 }
 
 /**
@@ -70,8 +68,10 @@ export interface TwoFactorSetup {
  * 动态码参数(确认/关闭/重置备用码)
  */
 export interface TwoFactorCodeParams {
-  /** TOTP 动态码 */
+  /** 验证码(TOTP 动态码或备用码) */
   code: string;
+  /** 验证码类型: TOTP(动态码) | BACKUP(备用码) */
+  codeType?: 'BACKUP' | 'TOTP';
 }
 
 /**

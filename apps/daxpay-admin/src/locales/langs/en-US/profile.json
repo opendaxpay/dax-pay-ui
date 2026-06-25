@@ -47,7 +47,6 @@
     "disable": "Disable",
     "regenerate": "Regenerate Backup Codes",
     "remaining": "Remaining Backup Codes",
-    "lastVerify": "Last Verified",
     "bindTitle": "Bind Two-Factor Authentication",
     "stepScan": "Scan QR Code",
     "stepVerify": "Enter Code",
@@ -71,6 +70,9 @@
     "regenConfirm": "Regenerating will invalidate all previous backup codes. Confirm?",
     "codeInputTitle": "Verification",
     "codeInputTip": "Enter the verification code from your Authenticator to confirm",
+    "totp": "Authenticator Code",
+    "backup": "Backup Code",
+    "backupCodePlaceholder": "Enter backup code",
     "confirm": "Confirm",
     "disableSuccess": "Two-factor authentication disabled",
     "regenSuccess": "Backup codes regenerated"
