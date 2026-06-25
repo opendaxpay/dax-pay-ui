@@ -66,7 +66,7 @@
     @cancel="handleClose"
   >
     <a-spin :spinning="loading">
-      <a-tabs v-model:active-key="activeKey" tab-position="left" class="detail-tabs">
+      <a-tabs v-model:active-key="activeKey" tab-placement="left" class="detail-tabs">
         <a-tab-pane key="basic" :tab="$t('payment.channel.alipayMchApp.tabBasicInfo')">
           <AlipayMchAppBasicInfo :app="appDetail" @deleted="handleDeleted" />
         </a-tab-pane>
