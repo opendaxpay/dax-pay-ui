@@ -76,12 +76,19 @@ export const PermCodes = {
       EDIT: 'payment:merchant:store:edit',
       DELETE: 'payment:merchant:store:delete',
     },
-    /** 云音响 menuCode=payment:device:speaker */
+    /** 云音箱 menuCode=payment:device:speaker */
     Speaker: {
       ADD: 'payment:device:speaker:add',
       VIEW: 'payment:device:speaker:view',
       EDIT: 'payment:device:speaker:edit',
       DELETE: 'payment:device:speaker:delete',
+    },
+    /** 厂商配置 menuCode=payment:device:vendorConfig */
+    VendorConfig: {
+      ADD: 'payment:device:vendorConfig:add',
+      VIEW: 'payment:device:vendorConfig:view',
+      EDIT: 'payment:device:vendorConfig:edit',
+      DELETE: 'payment:device:vendorConfig:delete',
     },
   },
 

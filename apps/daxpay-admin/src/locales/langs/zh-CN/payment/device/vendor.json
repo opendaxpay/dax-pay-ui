@@ -1,0 +1,42 @@
+{
+  "title": "设备厂商管理",
+  "vendorSunmi": "商米",
+  "vendorZhigulian": "智谷联",
+  "vendorBoshijie": "博实结",
+  "field": {
+    "deviceType": "设备类型",
+    "vendorCode": "厂商",
+    "configName": "配置名称",
+    "appId": "应用ID",
+    "appSecret": "应用密钥",
+    "enable": "是否启用",
+    "extParam": "扩展参数",
+    "remark": "备注",
+    "createTime": "创建时间"
+  },
+  "action": {
+    "addConfig": "新增配置",
+    "editConfig": "编辑配置"
+  },
+  "placeholder": {
+    "configName": "请输入配置名称",
+    "appId": "请输入应用ID",
+    "appSecret": "请输入应用密钥",
+    "extParam": "请输入扩展参数(JSON格式)"
+  },
+  "hint": {
+    "appSecretKeepEmpty": "留空不修改",
+    "clickToManage": "点击管理厂商配置"
+  },
+  "enable": "启用",
+  "disable": "停用",
+  "confirmDelete": "确定要删除该厂商配置吗？",
+  "validateConfigName": "请输入配置名称",
+  "validateAppId": "请输入应用ID",
+  "validateAppSecret": "请输入应用密钥",
+  "deviceTypeLabel": {
+    "speaker": "云音箱",
+    "printer": "云打印",
+    "qrcode": "码牌"
+  }
+}

@@ -3,7 +3,9 @@
 
   import { $t } from '@vben/locales';
 
-  import { SpeakerDeviceApi, type SpeakerDeviceParam, type SpeakerDeviceResult } from '#/api/payment/device/speaker.api';
+  import { DeviceSpeakerApi, type DeviceSpeakerParam, type DeviceSpeakerResult } from '#/api/payment/device/speaker.api';
+  import { DeviceVendorConfigApi, type DeviceVendorConfigResult } from '#/api/payment/device/vendor-config.api';
+  import { DeviceType, deviceVendorMap, vendorI18nMap } from '#/enums/payment/deviceEnum';
   import { FormEditType } from '#/enums/formEditType';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
@@ -16,26 +18,60 @@
 
   const { visible, confirmLoading, title, initFormEditType, handleCancel, formEditType } = useFormEdit();
 
-  const formState = ref<SpeakerDeviceParam>({
-    mchNo: '',
+  // 厂商选项(从设备类型→厂商映射获取)
+  const vendorOptions = computed(() => {
+    const vendorList = deviceVendorMap[DeviceType.SPEAKER] || [];
+    return vendorList.map((v) => ({
+      label: $t(vendorI18nMap[v] || v),
+      value: v,
+    }));
+  });
+
+  // 厂商配置选项(根据厂商动态加载)
+  const configOptions = ref<DeviceVendorConfigResult[]>([]);
+
+  const formState = ref<DeviceSpeakerParam>({
+    vendorCode: '',
     deviceSn: '',
     deviceName: '',
   });
 
   const formRules = computed(() => ({
-    mchNo: [{ required: true, message: $t('payment.device.speaker.validateMchNo') }],
+    vendorCode: [{ required: true, message: $t('payment.device.speaker.validateVendorCode') }],
+    vendorConfigId: [{ required: true, message: $t('payment.device.speaker.validateVendorConfig') }],
     deviceSn: [{ required: true, message: $t('payment.device.speaker.validateDeviceSn') }],
   }));
+
+  /**
+   * 加载厂商配置选项
+   */
+  async function loadConfigOptions(vendorCode?: string) {
+    if (!vendorCode) {
+      configOptions.value = [];
+      return;
+    }
+    const { data } = await DeviceVendorConfigApi.listEnabledByVendor(DeviceType.SPEAKER, vendorCode);
+    configOptions.value = data || [];
+  }
+
+  /**
+   * 厂商切换时清空配置并重新加载
+   */
+  function handleVendorChange() {
+    formState.value.vendorConfigId = undefined;
+    loadConfigOptions(formState.value.vendorCode);
+  }
 
   /**
    * 重置表单
    */
   function resetForm() {
     formState.value = {
-      mchNo: '',
+      vendorCode: '',
       deviceSn: '',
       deviceName: '',
     };
+    configOptions.value = [];
     formRef.value?.resetFields();
   }
 
@@ -50,22 +86,28 @@
   /**
    * 打开编辑弹窗
    */
-  async function showEdit(record: SpeakerDeviceResult) {
+  async function showEdit(record: DeviceSpeakerResult) {
     initFormEditType(FormEditType.Edit);
     resetForm();
     confirmLoading.value = true;
     try {
-      const { data } = await SpeakerDeviceApi.get(record.id!);
+      const { data } = await DeviceSpeakerApi.get(record.id!);
       const row = data || record;
       formState.value = {
         id: row.id!,
         mchNo: row.mchNo,
+        vendorCode: row.vendorCode,
+        vendorConfigId: row.vendorConfigId,
         deviceSn: row.deviceSn,
         imei: row.imei,
         shopId: row.shopId,
         deviceName: row.deviceName,
         remark: row.remark,
       };
+      // 加载已有厂商的配置列表
+      if (row.vendorCode) {
+        await loadConfigOptions(row.vendorCode);
+      }
     } finally {
       confirmLoading.value = false;
     }
@@ -83,10 +125,10 @@
     }
     confirmLoading.value = true;
     try {
-      const payload: SpeakerDeviceParam = { ...formState.value };
+      const payload: DeviceSpeakerParam = { ...formState.value };
       await (formEditType.value === FormEditType.Edit
-        ? SpeakerDeviceApi.update(payload)
-        : SpeakerDeviceApi.add(payload));
+        ? DeviceSpeakerApi.update(payload)
+        : DeviceSpeakerApi.add(payload));
       message.success($t('common.operationSuccess'));
       handleCancel();
       emit('ok');
@@ -118,9 +160,23 @@
         :wrapper-col="{ span: 16 }"
         class="form-compact"
       >
-        <!-- 商户号 -->
-        <a-form-item :label="$t('payment.device.speaker.field.mchNo')" name="mchNo">
-          <a-input v-model:value="formState.mchNo" :placeholder="$t('common.pleaseInput')" />
+        <!-- 厂商 -->
+        <a-form-item :label="$t('payment.device.speaker.field.vendorCode')" name="vendorCode">
+          <a-select
+            v-model:value="formState.vendorCode"
+            :options="vendorOptions"
+            :placeholder="$t('payment.device.speaker.pleaseSelectVendor')"
+            @change="handleVendorChange"
+          />
+        </a-form-item>
+        <!-- 厂商配置 -->
+        <a-form-item :label="$t('payment.device.speaker.field.vendorConfigId')" name="vendorConfigId">
+          <a-select
+            v-model:value="formState.vendorConfigId"
+            :options="configOptions"
+            :field-names="{ label: 'configName', value: 'id' }"
+            :placeholder="$t('payment.device.speaker.pleaseSelectVendorConfig')"
+          />
         </a-form-item>
         <!-- 设备序列号 -->
         <a-form-item :label="$t('payment.device.speaker.field.deviceSn')" name="deviceSn">
@@ -133,10 +189,6 @@
         <!-- 设备IMEI -->
         <a-form-item :label="$t('payment.device.speaker.field.imei')">
           <a-input v-model:value="formState.imei" :placeholder="$t('common.pleaseInput')" />
-        </a-form-item>
-        <!-- 商米门店ID -->
-        <a-form-item :label="$t('payment.device.speaker.field.shopId')">
-          <a-input v-model:value="formState.shopId" :placeholder="$t('common.pleaseInput')" />
         </a-form-item>
         <!-- 备注 -->
         <a-form-item :label="$t('payment.device.speaker.field.remark')">

@@ -5,15 +5,16 @@
 
   import { $t } from '@vben/locales';
 
-  import { SpeakerDeviceApi, type SpeakerDeviceResult } from '#/api/payment/device/speaker.api';
+  import { DeviceSpeakerApi, type DeviceSpeakerResult } from '#/api/payment/device/speaker.api';
+  import { DeviceType, deviceVendorMap, vendorI18nMap } from '#/enums/payment/deviceEnum';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
-  import SpeakerDeviceEdit from './SpeakerDeviceEdit.vue';
+  import DeviceSpeakerEdit from './DeviceSpeakerEdit.vue';
 
-  defineOptions({ name: 'SpeakerDeviceList' });
+  defineOptions({ name: 'DeviceSpeakerList' });
 
   const { confirm, message } = useMessage();
   const { hasPermission } = usePermission();
@@ -21,9 +22,18 @@
   const loading = ref(false);
   const xTable = ref<VxeTableInstance>();
   const xToolbar = ref<VxeToolbarInstance>();
-  const editRef = ref<InstanceType<typeof SpeakerDeviceEdit>>();
+  const editRef = ref<InstanceType<typeof DeviceSpeakerEdit>>();
 
   const queryForm = ref<Record<string, any>>({});
+
+  // 厂商选项(查询用)
+  const vendorOptions = computed(() => {
+    const vendorList = deviceVendorMap[DeviceType.SPEAKER] || [];
+    return vendorList.map((v) => ({
+      label: $t(vendorI18nMap[v] || v),
+      value: v,
+    }));
+  });
 
   const queryFields = computed<QueryField[]>(() => [
     {
@@ -31,6 +41,13 @@
       field: 'mchNo',
       name: $t('payment.device.speaker.field.mchNo'),
       placeholder: $t('common.pleaseInput'),
+    },
+    {
+      type: 'list',
+      field: 'vendorCode',
+      name: $t('payment.device.speaker.field.vendorCode'),
+      placeholder: $t('common.pleaseSelect'),
+      selectList: vendorOptions.value,
     },
     {
       type: 'string',
@@ -64,14 +81,14 @@
     total: 0,
   });
 
-  const tableData = ref<SpeakerDeviceResult[]>([]);
+  const tableData = ref<DeviceSpeakerResult[]>([]);
 
   /**
-   * 分页查询云音响设备列表
+   * 分页查询云音箱设备列表
    */
   function queryPage() {
     loading.value = true;
-    SpeakerDeviceApi.page({
+    DeviceSpeakerApi.page({
       current: pageConfig.value.currentPage,
       size: pageConfig.value.pageSize,
       ...queryForm.value,
@@ -107,18 +124,18 @@
     editRef.value?.show();
   }
 
-  function handleEdit(row: SpeakerDeviceResult) {
+  function handleEdit(row: DeviceSpeakerResult) {
     editRef.value?.showEdit(row);
   }
 
   /**
    * 删除设备
    */
-  function handleDelete(row: SpeakerDeviceResult) {
+  function handleDelete(row: DeviceSpeakerResult) {
     confirm({
       content: $t('payment.device.speaker.confirmDelete'),
       onOk() {
-        return SpeakerDeviceApi.delete(row.id!).then(() => {
+        return DeviceSpeakerApi.delete(row.id!).then(() => {
           message.success($t('common.operationSuccess'));
           queryPage();
         });
@@ -129,11 +146,11 @@
   /**
    * 绑定设备(首期仅更新本地状态)
    */
-  function handleBind(row: SpeakerDeviceResult) {
+  function handleBind(row: DeviceSpeakerResult) {
     confirm({
       content: $t('payment.device.speaker.confirmBind'),
       onOk() {
-        return SpeakerDeviceApi.bind(row.id!).then(() => {
+        return DeviceSpeakerApi.bind(row.id!).then(() => {
           message.success($t('common.operationSuccess'));
           queryPage();
         });
@@ -144,11 +161,11 @@
   /**
    * 解绑设备
    */
-  function handleUnbind(row: SpeakerDeviceResult) {
+  function handleUnbind(row: DeviceSpeakerResult) {
     confirm({
       content: $t('payment.device.speaker.confirmUnbind'),
       onOk() {
-        return SpeakerDeviceApi.unbind(row.id!).then(() => {
+        return DeviceSpeakerApi.unbind(row.id!).then(() => {
           message.success($t('common.operationSuccess'));
           queryPage();
         });
@@ -181,8 +198,17 @@
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
           <vxe-column field="deviceSn" :title="$t('payment.device.speaker.field.deviceSn')" :min-width="180" />
           <vxe-column field="deviceName" :title="$t('payment.device.speaker.field.deviceName')" :min-width="140" />
-          <vxe-column field="mchNo" :title="$t('payment.device.speaker.field.mchNo')" :min-width="140" />
-          <vxe-column field="shopId" :title="$t('payment.device.speaker.field.shopId')" :min-width="140" />
+          <vxe-column field="mchNo" :title="$t('payment.device.speaker.field.mchNo')" :min-width="140">
+            <template #default="{ row }">
+              <a-tag v-if="row.mchNo" color="blue">{{ row.mchNo }}</a-tag>
+              <span v-else style="color: var(--text-color-placeholder)">{{ $t('payment.device.speaker.unassigned') }}</span>
+            </template>
+          </vxe-column>
+          <vxe-column field="vendorCode" :title="$t('payment.device.speaker.field.vendorCode')" :min-width="100">
+            <template #default="{ row }">
+              {{ row.vendorCode ? $t(vendorI18nMap[row.vendorCode] || row.vendorCode) : '-' }}
+            </template>
+          </vxe-column>
           <vxe-column
             field="status"
             :title="$t('payment.device.speaker.field.status')"
@@ -260,6 +286,6 @@
       </a-card>
     </div>
 
-    <SpeakerDeviceEdit ref="editRef" @ok="queryPage" />
+    <DeviceSpeakerEdit ref="editRef" @ok="queryPage" />
   </div>
 </template>

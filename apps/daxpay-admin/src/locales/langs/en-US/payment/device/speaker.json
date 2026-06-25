@@ -2,9 +2,11 @@
   "title": "Cloud Speaker Device",
   "field": {
     "mchNo": "Merchant No.",
+    "vendorCode": "Vendor",
+    "vendorConfigId": "Vendor Config",
     "deviceSn": "Device Serial No.",
     "imei": "Device IMEI",
-    "shopId": "SUNMI Shop ID",
+    "shopId": "Vendor Shop ID",
     "deviceName": "Device Name",
     "status": "Status",
     "bindTime": "Bind Time",
@@ -24,5 +26,10 @@
   "unbind": "Unbind",
   "confirmBind": "Are you sure to bind this device?",
   "confirmUnbind": "Are you sure to unbind this device? Broadcast will stop after unbind.",
-  "confirmDelete": "Are you sure to delete this device?"
+  "confirmDelete": "Are you sure to delete this device?",
+  "validateVendorCode": "Please select a vendor",
+  "validateVendorConfig": "Please select a vendor config",
+  "pleaseSelectVendor": "Please select a vendor",
+  "pleaseSelectVendorConfig": "Please select a config",
+  "unassigned": "Unassigned"
 }
