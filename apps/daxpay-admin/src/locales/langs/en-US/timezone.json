@@ -1,0 +1,12 @@
+{
+  "current": "Current timezone",
+  "searchPlaceholder": "Search city / timezone / offset",
+  "region": {
+    "asia": "Asia",
+    "europe": "Europe",
+    "america": "America",
+    "oceania": "Oceania",
+    "africa": "Africa",
+    "universal": "Universal"
+  }
+}

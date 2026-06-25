@@ -14,6 +14,7 @@
   import { MdPreview } from 'md-editor-v3';
 
   import { LoginExpiredModal } from '#/components/login-expired-modal';
+  import TimezonePicker from '#/components/timezone/TimezonePicker.vue';
   import { useMessage } from '#/hooks/useMessage';
   import { useAuthStore } from '#/store';
   import { useNotifyStore } from '#/store/notify';
@@ -130,6 +131,9 @@
   <BasicLayout @click-logo="handleLogoClick" @clear-preferences-and-logout="handleLogout">
     <template #user-dropdown>
       <UserDropdown :text="userStore.userInfo?.name" @logout="handleLogout" />
+    </template>
+    <template #timezone>
+      <TimezonePicker />
     </template>
     <template #notification>
       <Notification

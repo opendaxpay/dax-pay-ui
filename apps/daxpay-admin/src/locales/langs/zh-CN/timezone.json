@@ -1,0 +1,12 @@
+{
+  "current": "当前时区",
+  "searchPlaceholder": "搜索城市 / 时区 / 偏移",
+  "region": {
+    "asia": "亚洲",
+    "europe": "欧洲",
+    "america": "美洲",
+    "oceania": "大洋洲",
+    "africa": "非洲",
+    "universal": "通用"
+  }
+}
