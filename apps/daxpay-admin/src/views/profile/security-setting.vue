@@ -3,7 +3,7 @@
 
   import { computed, onMounted, ref, watch } from 'vue';
 
-  import { $t } from '@vben/locales';
+  import { $t, i18n } from '@vben/locales';
 
   import QRCode from 'qrcode';
 
@@ -55,6 +55,12 @@
     { title: $t('profile.twoFactor.stepVerify') },
     { title: $t('profile.twoFactor.stepBackup') },
   ]);
+
+  // 验证码确认弹窗宽度, 英文文案较长需更宽
+  const confirmModalWidth = computed(() => {
+    const locale = i18n.global.locale.value;
+    return locale === 'en-US' ? 530 : 410;
+  });
 
   /** 拉取 2FA 状态 */
   async function fetchStatus() {
@@ -318,6 +324,7 @@
     <a-modal
       v-model:open="confirmModalVisible"
       :title="$t('profile.twoFactor.codeInputTitle')"
+      :width="confirmModalWidth"
       :confirm-loading="actionLoading"
       :ok-text="$t('profile.twoFactor.confirm')"
       :cancel-text="$t('profile.twoFactor.cancel')"
