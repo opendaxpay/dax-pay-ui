@@ -61,7 +61,7 @@
     formRef.value?.validateFields(['phoneNumber']).then(() => {
       if (countdown.value > 0) return;
 
-      message.info('验证码发送功能待接入');
+      message.info($t('_core.authentication.codeSendPending'));
 
       countdown.value = 60;
       const timer = setInterval(() => {
@@ -80,7 +80,7 @@
     const values = await formRef.value?.validateFields();
     if (values) {
       loading.value = true;
-      message.info('验证码登录功能待接入');
+      message.info($t('_core.authentication.codeLoginPending'));
       loading.value = false;
     }
   }

@@ -7,6 +7,7 @@
   "no": "否",
   "all": "全部",
   "seq": "序号",
+  "id": "主键",
   "createTime": "创建时间",
   "operation": "操作",
   "query": "查询",

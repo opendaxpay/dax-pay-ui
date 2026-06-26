@@ -17,6 +17,11 @@
   "oauthFailedWith": "{platform} authorization failed",
   "oauthLoginSuccessWith": "{platform} login successful",
   "oauthUnknownPlatform": "Unknown platform",
+  "passwordResetPending": "Password reset is not yet available",
+  "codeSendPending": "Verification code sending is not yet available",
+  "codeLoginPending": "Code login is not yet available",
+  "qrcodeRefreshPending": "QR code refresh is not yet available",
+  "qrcodeLoadFailed": "Failed to load QR code",
   "twoFactor": {
     "title": "Two-Factor Verification",
     "subtitle": "Enter the verification code to complete login",

@@ -143,11 +143,11 @@
         class="form-compact"
       >
         <!-- 主键 -->
-        <a-form-item label="主键" name="id" :hidden="true">
+        <a-form-item :label="$t('common.id')" name="id" :hidden="true">
           <a-input v-model:value="form.id" :disabled="showable" />
         </a-form-item>
         <!-- 字典ID -->
-        <a-form-item label="字典ID" name="dictId" :hidden="true">
+        <a-form-item :label="$t('system.dict.dictId')" name="dictId" :hidden="true">
           <a-input v-model:value="form.dictId" :disabled="showable" />
         </a-form-item>
         <!-- 字典项编码 -->

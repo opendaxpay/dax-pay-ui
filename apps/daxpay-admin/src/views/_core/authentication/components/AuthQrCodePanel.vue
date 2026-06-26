@@ -37,14 +37,14 @@
    */
   function handleImageError() {
     loading.value = false;
-    message.error('二维码加载失败');
+    message.error($t('_core.authentication.qrcodeLoadFailed'));
   }
 
   /**
    * 刷新二维码
    */
   function refreshQrCode() {
-    message.info('二维码刷新功能待接入');
+    message.info($t('_core.authentication.qrcodeRefreshPending'));
   }
 
   onMounted(() => {

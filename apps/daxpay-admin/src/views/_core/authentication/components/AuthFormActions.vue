@@ -1,13 +1,15 @@
 <script lang="ts" setup>
   import { useRouter } from 'vue-router';
 
+  import { $t } from '@vben/locales';
+
   defineOptions({ name: 'AuthFormActions' });
 
   const props = withDefaults(defineProps<Props>(), {
     loading: false,
-    submitText: '提交',
+    submitText: $t('common.submit'),
     showBack: false,
-    backText: '返回',
+    backText: $t('common.back'),
     backPath: '/auth/login',
   });
 

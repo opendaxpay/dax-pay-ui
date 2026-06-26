@@ -40,7 +40,7 @@
     const values = await formRef.value?.validateFields();
     if (values) {
       loading.value = true;
-      message.info('密码重置功能待接入');
+      message.info($t('_core.authentication.passwordResetPending'));
       loading.value = false;
     }
   }

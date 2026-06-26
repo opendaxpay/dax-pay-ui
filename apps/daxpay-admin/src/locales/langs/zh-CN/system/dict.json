@@ -1,5 +1,6 @@
 {
   "code": "字典编码",
+  "dictId": "字典ID",
   "name": "字典名称",
   "nameCn": "中文名称",
   "nameEn": "英文名称",

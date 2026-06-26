@@ -17,6 +17,11 @@
   "oauthFailedWith": "{platform} 授权登录失败",
   "oauthLoginSuccessWith": "{platform} 登录成功",
   "oauthUnknownPlatform": "未知平台",
+  "passwordResetPending": "密码重置功能待接入",
+  "codeSendPending": "验证码发送功能待接入",
+  "codeLoginPending": "验证码登录功能待接入",
+  "qrcodeRefreshPending": "二维码刷新功能待接入",
+  "qrcodeLoadFailed": "二维码加载失败",
   "twoFactor": {
     "title": "双因素验证",
     "subtitle": "请输入验证码以完成登录",
