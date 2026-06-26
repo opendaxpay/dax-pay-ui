@@ -47,6 +47,7 @@ export const vendorLogoMap: Record<string, string> = {
  */
 export const deviceVendorMap: Record<string, DeviceVendor[]> = {
   [DeviceType.SPEAKER]: [DeviceVendor.SUNMI, DeviceVendor.ZHIGULIAN, DeviceVendor.BOSHIJIE],
+  [DeviceType.PRINTER]: [DeviceVendor.SUNMI],
 };
 
 /**

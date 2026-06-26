@@ -83,6 +83,13 @@ export const PermCodes = {
       EDIT: 'payment:device:speaker:edit',
       DELETE: 'payment:device:speaker:delete',
     },
+    /** 云打印 menuCode=payment:device:printer */
+    Printer: {
+      ADD: 'payment:device:printer:add',
+      VIEW: 'payment:device:printer:view',
+      EDIT: 'payment:device:printer:edit',
+      DELETE: 'payment:device:printer:delete',
+    },
     /** 厂商配置 menuCode=payment:device:vendorConfig */
     VendorConfig: {
       ADD: 'payment:device:vendorConfig:add',

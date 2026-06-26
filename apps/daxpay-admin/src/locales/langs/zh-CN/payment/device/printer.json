@@ -1,0 +1,35 @@
+{
+  "title": "云打印设备",
+  "field": {
+    "mchNo": "商户号",
+    "vendorCode": "厂商",
+    "vendorConfigId": "厂商配置",
+    "deviceSn": "设备序列号",
+    "imei": "设备IMEI",
+    "shopId": "厂商门店ID",
+    "deviceName": "设备名称",
+    "status": "设备状态",
+    "bindTime": "绑定时间",
+    "lastOnlineTime": "最后在线时间",
+    "remark": "备注",
+    "createTime": "创建时间"
+  },
+  "status": {
+    "unbound": "未绑定",
+    "online": "在线",
+    "offline": "离线",
+    "fault": "故障"
+  },
+  "validateMchNo": "请输入商户号",
+  "validateDeviceSn": "请输入设备序列号",
+  "bind": "绑定",
+  "unbind": "解绑",
+  "confirmBind": "确定要绑定该设备吗？",
+  "confirmUnbind": "确定要解绑该设备吗？解绑后将停止打印。",
+  "confirmDelete": "确定要删除该设备吗？",
+  "validateVendorCode": "请选择厂商",
+  "validateVendorConfig": "请选择厂商配置",
+  "pleaseSelectVendor": "请选择厂商",
+  "pleaseSelectVendorConfig": "请选择配置",
+  "unassigned": "未分配"
+}
