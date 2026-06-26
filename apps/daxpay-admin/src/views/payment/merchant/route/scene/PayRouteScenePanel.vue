@@ -14,10 +14,9 @@
 
   defineOptions({ name: 'PayRouteScenePanel' });
 
-  // 场景模式：按品牌支付方式目录配置，每行绑定支付产品与支付能力
+  // 场景模式：按品牌支付方式目录配置，每行绑定通道商户与支付能力
   const props = defineProps<{
     appId: string;
-    productNameMap: Record<string, string>;
   }>();
 
   const { confirm, message } = useMessage();
@@ -25,18 +24,18 @@
   const { loadDirectory, directoryByProviderCards } = usePayProviderMethodDirectory();
 
   const sceneRows = ref<PayRouteSceneConfigItem[]>([]);
-  const sceneProductOptionsMap = ref<Record<string, LabelValue[]>>({});
+  const sceneChannelMchOptionsMap = ref<Record<string, LabelValue[]>>({});
   const sceneCapabilityOptionsMap = ref<Record<string, LabelValue[]>>({});
   const sceneConfigEditing = ref(false);
 
-  // 产品候选缓存键
-  function productOptionsKey(provider: string, method: string) {
+  // 通道商户候选缓存键
+  function channelMchOptionsKey(provider: string, method: string) {
     return `${provider}|${method}`;
   }
 
-  // 能力候选缓存键（含产品）
-  function capabilityOptionsKey(provider: string, method: string, product: string) {
-    return `${provider}|${method}|${product}`;
+  // 能力候选缓存键（含通道商户号）
+  function capabilityOptionsKey(provider: string, method: string, channelMchNo: string) {
+    return `${provider}|${method}|${channelMchNo}`;
   }
 
   function sceneNotSelectedText() {
@@ -55,56 +54,57 @@
     const row: PayRouteSceneConfigItem = {
       provider,
       method,
-      product: '',
+      channelMchNo: '',
       capability: '',
     };
     sceneRows.value.push(row);
     return row;
   }
 
-  function sceneProductDisplay(provider: string, method: string) {
-    const product = findSceneRow(provider, method)?.product;
-    if (!product) {
+  function sceneChannelMchDisplay(provider: string, method: string) {
+    const channelMchNo = findSceneRow(provider, method)?.channelMchNo;
+    if (!channelMchNo) {
       return sceneNotSelectedText();
     }
-    const option = sceneProductOptions(provider, method).find((item) => item.value === product);
-    return option?.label || props.productNameMap[product] || product;
+    const option = sceneChannelMchOptions(provider, method).find((item) => item.value === channelMchNo);
+    return option?.label || channelMchNo;
   }
 
   function sceneCapabilityDisplay(provider: string, method: string) {
-    const capability = findSceneRow(provider, method)?.capability;
+    const row = findSceneRow(provider, method);
+    const capability = row?.capability;
     if (!capability) {
       return sceneNotSelectedText();
     }
-    const product = findSceneRow(provider, method)?.product;
-    if (!product) {
+    const channelMchNo = row?.channelMchNo;
+    if (!channelMchNo) {
       return capability;
     }
-    const option = sceneCapabilityOptions(provider, method, product).find((item) => item.value === capability);
+    const option = sceneCapabilityOptions(provider, method, channelMchNo).find((item) => item.value === capability);
     return option?.label || capability;
   }
 
-  async function loadSceneProducts(provider: string, method: string) {
+  async function loadSceneChannelMch(provider: string, method: string) {
     if (!props.appId) {
       return;
     }
-    const key = productOptionsKey(provider, method);
-    if (sceneProductOptionsMap.value[key]) {
+    const key = channelMchOptionsKey(provider, method);
+    if (sceneChannelMchOptionsMap.value[key]) {
       return;
     }
-    const { data } = await PayRouteApi.listSceneProductCandidates({
+    const { data } = await PayRouteApi.listSceneChannelMchCandidates({
       appId: props.appId,
       provider,
       method,
     });
-    sceneProductOptionsMap.value[key] = data || [];
+    sceneChannelMchOptionsMap.value[key] = data || [];
   }
 
-  async function loadSceneCapabilities(provider: string, method: string, product: string) {
-    if (!props.appId || !product) {
+  async function loadSceneCapabilities(provider: string, method: string, channelMchNo: string) {
+    if (!props.appId || !channelMchNo) {
       return;
     }
-    const key = capabilityOptionsKey(provider, method, product);
+    const key = capabilityOptionsKey(provider, method, channelMchNo);
     if (sceneCapabilityOptionsMap.value[key]) {
       return;
     }
@@ -112,43 +112,48 @@
       appId: props.appId,
       provider,
       method,
-      product,
+      channelMchNo,
     });
     sceneCapabilityOptionsMap.value[key] = data || [];
   }
 
-  function sceneProductOptions(provider: string, method: string) {
-    return sceneProductOptionsMap.value[productOptionsKey(provider, method)] || [];
+  function sceneChannelMchOptions(provider: string, method: string) {
+    return sceneChannelMchOptionsMap.value[channelMchOptionsKey(provider, method)] || [];
   }
 
-  function sceneCapabilityOptions(provider: string, method: string, product: string) {
-    return sceneCapabilityOptionsMap.value[capabilityOptionsKey(provider, method, product)] || [];
+  function sceneCapabilityOptions(provider: string, method: string, channelMchNo: string) {
+    return sceneCapabilityOptionsMap.value[capabilityOptionsKey(provider, method, channelMchNo)] || [];
   }
 
-  function sceneProductSelectOptions(provider: string, method: string) {
-    return sceneProductOptions(provider, method).map((item) => ({
+  function sceneChannelMchSelectOptions(provider: string, method: string) {
+    return sceneChannelMchOptions(provider, method).map((item) => ({
       label: item.label || item.value,
       value: item.value,
     }));
   }
 
-  function sceneCapabilitySelectOptions(provider: string, method: string, product: string) {
-    return sceneCapabilityOptions(provider, method, product).map((item) => ({
+  function sceneCapabilitySelectOptions(provider: string, method: string, channelMchNo: string) {
+    return sceneCapabilityOptions(provider, method, channelMchNo).map((item) => ({
       label: item.label || item.value,
       value: item.value,
     }));
   }
 
-  /** 切换或清空支付产品时清空能力；有产品时刷新能力候选 */
-  function onSceneProductChange(provider: string, method: string) {
+  /** 切换或清空通道商户时清空能力；有通道商户时刷新能力候选 */
+  function onSceneChannelMchChange(provider: string, method: string) {
     const row = getSceneRow(provider, method);
     row.capability = '';
-    if (!row.product) {
+    // 清除该支付方式下所有能力缓存(能力依赖通道商户号)
+    const prefix = `${provider}|${method}|`;
+    for (const k of Object.keys(sceneCapabilityOptionsMap.value)) {
+      if (k.startsWith(prefix)) {
+        delete sceneCapabilityOptionsMap.value[k];
+      }
+    }
+    if (!row.channelMchNo) {
       return;
     }
-    const capKey = capabilityOptionsKey(provider, method, row.product);
-    delete sceneCapabilityOptionsMap.value[capKey];
-    loadSceneCapabilities(provider, method, row.product);
+    loadSceneCapabilities(provider, method, row.channelMchNo);
   }
 
   /** 按品牌支付方式目录补齐内存行，保证保存时可提交完整目录项 */
@@ -163,10 +168,10 @@
   /** 根据批量候选 Map 回显唯一支付能力（仅展示） */
   function applyInferredCapabilitiesFromBatch() {
     for (const row of sceneRows.value) {
-      if (!row.provider || !row.method || !row.product || row.capability) {
+      if (!row.provider || !row.method || !row.channelMchNo || row.capability) {
         continue;
       }
-      const key = capabilityOptionsKey(row.provider, row.method, row.product);
+      const key = capabilityOptionsKey(row.provider, row.method, row.channelMchNo);
       const options = sceneCapabilityOptionsMap.value[key];
       if (options?.length === 1 && options[0]?.value) {
         row.capability = options[0].value;
@@ -185,23 +190,23 @@
       .map((c) => ({
         provider: c.provider,
         method: c.method,
-        product: c.product,
-        capability: '',
+        channelMchNo: c.channelMchNo,
+        capability: c.capability,
         channel: c.channel,
       }));
     ensureDirectoryRows();
-    sceneProductOptionsMap.value = {};
+    sceneChannelMchOptionsMap.value = {};
     sceneCapabilityOptionsMap.value = {};
-    const { data: productBatch } = await PayRouteApi.listSceneProductCandidatesBatch({
+    const { data: channelMchBatch } = await PayRouteApi.listSceneChannelMchCandidatesBatch({
       appId: props.appId,
     });
-    sceneProductOptionsMap.value = productBatch || {};
+    sceneChannelMchOptionsMap.value = channelMchBatch || {};
     const capabilityItems = sceneRows.value
-      .filter((row) => row.provider && row.method && row.product)
+      .filter((row) => row.provider && row.method && row.channelMchNo)
       .map((row) => ({
         provider: row.provider!,
         method: row.method!,
-        product: row.product!,
+        channelMchNo: row.channelMchNo!,
       }));
     if (capabilityItems.length > 0) {
       const { data: capabilityBatch } = await PayRouteApi.listSceneCapabilityCandidatesBatch({
@@ -242,23 +247,23 @@
     sceneConfigEditing.value = false;
   }
 
-  /** 目录行是否已完整配置（产品与能力同时有值） */
+  /** 目录行是否已完整配置（通道商户与能力同时有值） */
   function isSceneRowFullyConfigured(row: PayRouteSceneConfigItem) {
-    return !!(row.product && row.capability);
+    return !!(row.channelMchNo && row.capability);
   }
 
-  /** 目录行是否未配置（产品与能力同时为空） */
+  /** 目录行是否未配置（通道商户与能力同时为空） */
   function isSceneRowEmpty(row: PayRouteSceneConfigItem) {
-    return !row.product && !row.capability;
+    return !row.channelMchNo && !row.capability;
   }
 
-  /** 校验：不可只配置产品或只配置能力 */
+  /** 校验：不可只配置通道商户或只配置能力 */
   function validateSceneRowPairing() {
     for (const card of directoryByProviderCards()) {
       for (const entry of card.methods) {
         const row = getSceneRow(entry.provider, entry.method);
         if (!isSceneRowEmpty(row) && !isSceneRowFullyConfigured(row)) {
-          message.error($t('payment.merchant.route.route.sceneProductCapabilityPairHint'));
+          message.error($t('payment.merchant.route.route.sceneChannelMchCapabilityPairHint'));
           return false;
         }
       }
@@ -268,25 +273,19 @@
 
   /** 保存场景模式配置（校验通过后由确认框回调执行） */
   async function doSaveSceneConfig() {
-    const { data: allConfigs } = await PayRouteApi.listSceneConfig(props.appId!);
-    // 历史通用行：无 provider，仅 channel+method
-    const genericRows = (allConfigs || []).filter((c) => !c.provider && c.channel && c.method);
     const directoryItems = directoryByProviderCards().flatMap((card) =>
       card.methods.map((entry) => getSceneRow(entry.provider, entry.method)),
     );
     await PayRouteApi.saveSceneBatch({
       appId: props.appId,
-      items: [
-        ...directoryItems.filter(
-          (r) => r.provider && r.method && (isSceneRowEmpty(r) || isSceneRowFullyConfigured(r)),
-        ),
-        ...genericRows.map((c) => ({
-          provider: c.provider,
-          product: c.product,
-          channel: c.channel,
-          method: c.method,
+      items: directoryItems
+        .filter((r) => r.provider && r.method && (isSceneRowEmpty(r) || isSceneRowFullyConfigured(r)))
+        .map((r) => ({
+          provider: r.provider,
+          method: r.method,
+          channelMchNo: r.channelMchNo,
+          capability: r.capability,
         })),
-      ],
     });
     message.success($t('common.operationSuccess'));
     sceneConfigEditing.value = false;
@@ -327,12 +326,12 @@
         class="mb-2 grid grid-cols-[minmax(8rem,1fr)_minmax(10rem,1fr)_minmax(10rem,1fr)] gap-2 text-xs text-muted-foreground"
       >
         <span>{{ $t('payment.merchant.route.route.method') }}</span>
-        <span>{{ $t('payment.merchant.route.route.basicProduct') }}</span>
+        <span>{{ $t('payment.merchant.route.route.channelMerchant') }}</span>
         <span>{{ $t('payment.merchant.route.route.payCapability') }}</span>
       </div>
       <div
         v-for="entry in card.methods"
-        :key="productOptionsKey(entry.provider, entry.method)"
+        :key="channelMchOptionsKey(entry.provider, entry.method)"
         class="mb-2 grid grid-cols-[minmax(8rem,1fr)_minmax(10rem,1fr)_minmax(10rem,1fr)] items-start gap-2"
       >
         <div class="min-h-8 py-1.5 text-sm">
@@ -340,7 +339,7 @@
         </div>
         <template v-if="!sceneConfigEditing">
           <div class="min-h-8 rounded-md border border-border bg-muted/30 px-3 py-1.5 text-sm">
-            {{ sceneProductDisplay(entry.provider, entry.method) }}
+            {{ sceneChannelMchDisplay(entry.provider, entry.method) }}
           </div>
           <div class="min-h-8 rounded-md border border-border bg-muted/30 px-3 py-1.5 text-sm">
             {{ sceneCapabilityDisplay(entry.provider, entry.method) }}
@@ -348,14 +347,18 @@
         </template>
         <template v-else>
           <a-select
-            v-model:value="getSceneRow(entry.provider, entry.method).product"
+            v-model:value="getSceneRow(entry.provider, entry.method).channelMchNo"
             allow-clear
             class="w-full"
-            :placeholder="$t('payment.merchant.route.route.basicProductPlaceholder')"
-            :options="sceneProductSelectOptions(entry.provider, entry.method)"
-            @change="onSceneProductChange(entry.provider, entry.method)"
-            @focus="loadSceneProducts(entry.provider, entry.method)"
-          />
+            :placeholder="$t('payment.merchant.route.route.channelMerchantPlaceholder')"
+            :options="sceneChannelMchSelectOptions(entry.provider, entry.method)"
+            @change="onSceneChannelMchChange(entry.provider, entry.method)"
+            @focus="loadSceneChannelMch(entry.provider, entry.method)"
+          >
+            <template #notFoundContent>
+              {{ $t('payment.merchant.route.route.channelMerchantNotFound') }}
+            </template>
+          </a-select>
           <a-select
             v-model:value="getSceneRow(entry.provider, entry.method).capability"
             allow-clear
@@ -365,14 +368,14 @@
               sceneCapabilitySelectOptions(
                 entry.provider,
                 entry.method,
-                getSceneRow(entry.provider, entry.method).product || '',
+                getSceneRow(entry.provider, entry.method).channelMchNo || '',
               )
             "
             @focus="
               loadSceneCapabilities(
                 entry.provider,
                 entry.method,
-                getSceneRow(entry.provider, entry.method).product || '',
+                getSceneRow(entry.provider, entry.method).channelMchNo || '',
               )
             "
           />

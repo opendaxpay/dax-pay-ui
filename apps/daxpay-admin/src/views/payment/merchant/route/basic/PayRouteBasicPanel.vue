@@ -14,10 +14,9 @@
 
   defineOptions({ name: 'PayRouteBasicPanel' });
 
-  // 基础模式：按支付品牌配置默认支付产品
+  // 基础模式：按支付品牌配置默认通道商户
   const props = defineProps<{
     appId: string;
-    productNameMap: Record<string, string>;
   }>();
 
   const { confirm, message } = useMessage();
@@ -39,7 +38,7 @@
     }
     for (const row of basicConfigRows.value) {
       if (row.provider) {
-        map[row.provider] = row.product;
+        map[row.provider] = row.channelMchNo;
       }
     }
     basicConfigMap.value = map;
@@ -49,20 +48,22 @@
     await loadBasicConfig();
   }
 
-  function vendorProductOptions(vendor: string) {
-    const products = basicConfigRows.value.find((item) => item.provider === vendor)?.products || [];
-    return products.map((code) => ({
-      label: props.productNameMap[code] || code,
-      value: code,
+  function vendorChannelMchOptions(vendor: string) {
+    const mchants = basicConfigRows.value.find((item) => item.provider === vendor)?.channelMchants || [];
+    return mchants.map((item) => ({
+      label: item.label || item.value,
+      value: item.value,
     }));
   }
 
-  function basicProductDisplay(vendor: string) {
+  function basicChannelMchDisplay(vendor: string) {
     const code = basicConfigMap.value[vendor];
     if (!code) {
       return $t('payment.merchant.route.route.basicProductNotSelected');
     }
-    return props.productNameMap[code] || code;
+    const mchants = basicConfigRows.value.find((item) => item.provider === vendor)?.channelMchants || [];
+    const option = mchants.find((item) => item.value === code);
+    return option?.label || code;
   }
 
   function startBasicConfigEdit() {
@@ -94,7 +95,7 @@
       appId: props.appId!,
       items: ROUTE_PAY_PROVIDERS.map((v) => ({
         provider: v.code,
-        product: basicConfigMap.value[v.code],
+        channelMchNo: basicConfigMap.value[v.code],
       })),
     });
     message.success($t('common.operationSuccess'));
@@ -132,24 +133,24 @@
         </div>
         <div class="mt-3">
           <div class="mb-1 text-xs text-muted-foreground">
-            {{ $t('payment.merchant.route.route.basicProduct') }}
+            {{ $t('payment.merchant.route.route.channelMerchant') }}
           </div>
           <div
             v-if="!basicConfigEditing"
             class="min-h-8 rounded-md border border-border bg-muted/30 px-3 py-1.5 text-sm"
           >
-            {{ basicProductDisplay(vendor.code) }}
+            {{ basicChannelMchDisplay(vendor.code) }}
           </div>
           <template v-else>
             <a-select
               v-model:value="basicConfigMap[vendor.code]"
               class="w-full"
               allow-clear
-              :placeholder="$t('payment.merchant.route.route.basicProductPlaceholder')"
-              :options="vendorProductOptions(vendor.code)"
+              :placeholder="$t('payment.merchant.route.route.channelMerchantPlaceholder')"
+              :options="vendorChannelMchOptions(vendor.code)"
             >
               <template #notFoundContent>
-                {{ $t('payment.merchant.route.route.basicNoProductNotFound') }}
+                {{ $t('payment.merchant.route.route.channelMerchantNotFound') }}
               </template>
             </a-select>
           </template>

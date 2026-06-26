@@ -7,6 +7,7 @@ import { defHttp } from '#/api/request';
 export type { LabelValue };
 
 // 通道路由 API（管理端）：策略、基础/场景配置及已启用目录
+// 场景模式重构后以「通道商户 + 支付能力」替代「支付产品」，候选按通道商户返回
 export const PayRouteApi = {
   /** 已启用渠道+方式扁平目录（`PayProviderMethodService`，权限归属通道路由菜单） */
   listMethodDirectoryFlat(): Promise<Result<PayProviderMethod[]>> {
@@ -29,21 +30,23 @@ export const PayRouteApi = {
     return defHttp.post({ url: '/admin/merchant/pay-route/scene-config/save-batch', data });
   },
 
-  listSceneProductCandidates(params: PayRouteSceneProductCandidatesQuery): Promise<Result<LabelValue[]>> {
+  /** 通道路由白名单目录下全部 (provider|method) 通道商户候选 */
+  listSceneChannelMchCandidatesBatch(params: { appId: string }): Promise<Result<Record<string, LabelValue[]>>> {
     return defHttp.get({
-      url: '/admin/merchant/pay-route/scene-config/product-candidates',
+      url: '/admin/merchant/pay-route/scene-config/channel-mch-candidates-batch',
       params,
     });
   },
 
-  /** 通道路由白名单目录下全部 (provider|method) 产品候选 */
-  listSceneProductCandidatesBatch(params: { appId: string }): Promise<Result<Record<string, LabelValue[]>>> {
+  /** 目录项下商户已开通的通道商户候选 */
+  listSceneChannelMchCandidates(params: PayRouteSceneChannelMchCandidatesQuery): Promise<Result<LabelValue[]>> {
     return defHttp.get({
-      url: '/admin/merchant/pay-route/scene-config/product-candidates-batch',
+      url: '/admin/merchant/pay-route/scene-config/channel-mch-candidates',
       params,
     });
   },
 
+  /** 目录项与通道商户下支付能力候选 */
   listSceneCapabilityCandidates(params: PayRouteSceneCapabilityCandidatesQuery): Promise<Result<LabelValue[]>> {
     return defHttp.get({
       url: '/admin/merchant/pay-route/scene-config/capability-candidates',
@@ -51,7 +54,7 @@ export const PayRouteApi = {
     });
   },
 
-  /** 按目录项与产品批量返回支付能力候选，key 为 provider|method|product */
+  /** 按目录项与通道商户批量返回支付能力候选，key 为 provider|method|channelMchNo */
   listSceneCapabilityCandidatesBatch(
     params: PayRouteSceneCapabilityBatchQuery,
   ): Promise<Result<Record<string, LabelValue[]>>> {
@@ -105,14 +108,15 @@ export interface PayRouteSceneConfigResult extends BaseEntity {
   provider?: string;
   channel?: string;
   method?: string;
-  product?: string;
+  channelMchNo?: string;
+  capability?: string;
 }
 
 export interface PayRouteSceneConfigItem {
   provider?: string;
-  /** 场景模式（有 provider）以产品为主；保存时服务端解析 channel/method */
-  product?: string;
-  /** 支付能力（保存校验用，不落库） */
+  /** 通道商户号(场景模式定位通道商户，由其推导支付产品) */
+  channelMchNo?: string;
+  /** 支付能力 */
   capability?: string;
   channel?: string;
   method?: string;
@@ -123,7 +127,7 @@ export interface PayRouteSceneConfigBatchParam {
   items: PayRouteSceneConfigItem[];
 }
 
-export interface PayRouteSceneProductCandidatesQuery {
+export interface PayRouteSceneChannelMchCandidatesQuery {
   appId: string;
   provider: string;
   method?: string;
@@ -133,7 +137,7 @@ export interface PayRouteSceneCapabilityCandidatesQuery {
   appId: string;
   provider: string;
   method: string;
-  product: string;
+  channelMchNo: string;
 }
 
 export interface PayRouteSceneCapabilityBatchQuery {
@@ -144,20 +148,20 @@ export interface PayRouteSceneCapabilityBatchQuery {
 export interface PayRouteSceneCapabilityBatchItem {
   provider: string;
   method: string;
-  product: string;
+  channelMchNo: string;
 }
 
-/** 基础模式配置（含可选产品列表） */
+/** 基础模式配置（含可选通道商户列表） */
 export interface PayRouteBasicConfigResult extends BaseEntity {
   provider?: string;
-  product?: string;
-  /** 该渠道下可选支付产品编码 */
-  products?: string[];
+  channelMchNo?: string;
+  /** 该渠道下可选通道商户列表（名称/号码） */
+  channelMchants?: LabelValue[];
 }
 
 export interface PayRouteBasicConfigItem {
   provider: string;
-  product?: string;
+  channelMchNo?: string;
 }
 
 export interface PayRouteBasicConfigBatchParam {

@@ -8,7 +8,6 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { PayProductApi } from '#/api/payment/masterdata/product.api';
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import { PayRouteApi, type PayRouteStrategyResult } from '#/api/payment/route/pay-route.api';
   import { PermCodes } from '#/constants/perm-codes';
@@ -49,7 +48,6 @@
   const strategy = ref<PayRouteStrategyResult>({});
   const loading = ref(false);
   const activeTab = ref('config');
-  const productNameMap = ref<Record<string, string>>({});
   const editMode = ref<PayRouteMode>('basic');
 
   const basicPanelRef = ref<InstanceType<typeof PayRouteBasicPanel> | null>(null);
@@ -67,18 +65,6 @@
     const { data } = await MchAppInfoApi.page({ mchNo: mchNo.value, current: 1, size: 200 });
     const app = data?.records?.find((a) => a.appId === appId.value);
     appInfo.value = app || {};
-  }
-
-  // 加载支付产品名称映射
-  async function loadProductNameMap() {
-    const { data } = await PayProductApi.dropdown();
-    const map: Record<string, string> = {};
-    for (const item of data || []) {
-      if (item.value) {
-        map[item.value] = item.label || item.value;
-      }
-    }
-    productNameMap.value = map;
   }
 
   async function loadStrategy() {
@@ -140,7 +126,6 @@
       return;
     }
     await loadAppInfo();
-    await loadProductNameMap();
     await nextTick();
     await loadStrategy();
     editMode.value = effectiveMode.value;
@@ -188,13 +173,11 @@
               v-show="editMode === 'basic'"
               ref="basicPanelRef"
               :app-id="appId"
-              :product-name-map="productNameMap"
             />
             <PayRouteScenePanel
               v-show="editMode === 'scene'"
               ref="scenePanelRef"
               :app-id="appId"
-              :product-name-map="productNameMap"
             />
           </a-tab-pane>
         </a-tabs>
