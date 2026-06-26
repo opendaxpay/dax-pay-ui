@@ -160,7 +160,7 @@
         >
           <!-- 用户标识类型 -->
           <a-form-item :label="$t('payment.channel.alipayIsv.userIdType')" name="userIdType">
-            <a-radio-group v-model:value="formState.userIdType" :disabled="!isEditing">
+            <a-radio-group v-model:value="formState.userIdType" :disabled="!isEditing" button-style="solid">
               <a-radio value="openid">{{ $t('payment.channel.alipayIsv.userIdTypeOpenid') }}</a-radio>
               <a-radio value="userid">{{ $t('payment.channel.alipayIsv.userIdTypeUserid') }}</a-radio>
               <a-radio value="openid_userid">{{ $t('payment.channel.alipayIsv.userIdTypeBoth') }}</a-radio>

@@ -242,36 +242,40 @@
           />
           <vxe-column fixed="right" width="200" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">
-              <a
-                v-if="hasPermission(PermCodes.Payment.Speaker.EDIT)"
-                href="javascript:"
-                class="vben-link"
-                @click="handleEdit(row)"
-                >{{ $t('common.edit') }}</a
-              >
-              <a-divider type="vertical" />
-              <a
-                v-if="hasPermission(PermCodes.Payment.Speaker.EDIT) && row.status !== 'online'"
-                href="javascript:"
-                class="vben-link"
-                @click="handleBind(row)"
-                >{{ $t('payment.device.speaker.bind') }}</a
-              >
-              <a
-                v-else-if="hasPermission(PermCodes.Payment.Speaker.EDIT) && row.status === 'online'"
-                href="javascript:"
-                class="vben-link"
-                @click="handleUnbind(row)"
-                >{{ $t('payment.device.speaker.unbind') }}</a
-              >
-              <a-divider type="vertical" />
-              <a
-                v-if="hasPermission(PermCodes.Payment.Speaker.DELETE)"
-                href="javascript:"
-                class="vben-link"
-                @click="handleDelete(row)"
-                >{{ $t('common.delete') }}</a
-              >
+              <a-space :size="2">
+                <template #separator>
+                  <a-divider type="vertical" />
+                </template>
+                <a-button
+                  v-if="hasPermission(PermCodes.Payment.Speaker.EDIT)"
+                  type="link"
+                  size="small"
+                  @click="handleEdit(row)"
+                  >{{ $t('common.edit') }}</a-button
+                >
+                <a-button
+                  v-if="hasPermission(PermCodes.Payment.Speaker.EDIT) && row.status !== 'online'"
+                  type="link"
+                  size="small"
+                  @click="handleBind(row)"
+                  >{{ $t('payment.device.speaker.bind') }}</a-button
+                >
+                <a-button
+                  v-else-if="hasPermission(PermCodes.Payment.Speaker.EDIT) && row.status === 'online'"
+                  type="link"
+                  size="small"
+                  @click="handleUnbind(row)"
+                  >{{ $t('payment.device.speaker.unbind') }}</a-button
+                >
+                <a-button
+                  v-if="hasPermission(PermCodes.Payment.Speaker.DELETE)"
+                  type="link"
+                  size="small"
+                  danger
+                  @click="handleDelete(row)"
+                  >{{ $t('common.delete') }}</a-button
+                >
+              </a-space>
             </template>
           </vxe-column>
         </vxe-table>

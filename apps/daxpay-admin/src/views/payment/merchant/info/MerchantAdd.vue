@@ -151,7 +151,7 @@
         </a-form-item>
 
         <a-form-item :label="$t('payment.merchant.base.field.subjectType')" name="subjectType">
-          <a-radio-group v-model:value="formState.subjectType">
+          <a-radio-group v-model:value="formState.subjectType" button-style="solid">
             <a-radio value="micro">{{ $t('payment.merchant.base.subjectType.micro') }}</a-radio>
             <a-radio value="individual">{{ $t('payment.merchant.base.subjectType.individual') }}</a-radio>
             <a-radio value="enterprise">{{ $t('payment.merchant.base.subjectType.enterprise') }}</a-radio>

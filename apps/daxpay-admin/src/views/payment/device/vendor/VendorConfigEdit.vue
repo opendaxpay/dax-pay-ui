@@ -185,7 +185,6 @@
           <a-input
             v-model:value="formState.appSecret"
             :placeholder="$t('payment.device.vendor.placeholder.appSecret')"
-            allow-clear
           />
         </a-form-item>
         <!-- 是否启用 -->

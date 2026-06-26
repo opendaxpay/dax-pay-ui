@@ -159,7 +159,7 @@
         :precision="field.precision ?? 0"
         :placeholder="field.placeholder || $t('components.query.inputQueryValue')"
       />
-      <a-radio-group v-else-if="field.type === BOOLEAN" v-model:value="queryParams[field.field!]!">
+      <a-radio-group v-else-if="field.type === BOOLEAN" v-model:value="queryParams[field.field!]!" button-style="solid">
         <a-radio :value="true">{{ $t('common.yes') }}</a-radio>
         <a-radio :value="false">{{ $t('common.no') }}</a-radio>
       </a-radio-group>

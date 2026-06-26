@@ -29,7 +29,7 @@
 <template>
   <div class="mb-4 flex flex-wrap items-center gap-4">
     <span>{{ $t('payment.merchant.route.route.editModeLabel') }}</span>
-    <a-radio-group v-model:value="editMode">
+    <a-radio-group v-model:value="editMode" button-style="solid">
       <a-radio value="basic">
         <span class="inline-flex items-center gap-1">
           {{ $t('payment.merchant.route.route.modeBasic') }}

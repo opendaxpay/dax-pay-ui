@@ -231,21 +231,26 @@
           />
           <vxe-column :title="$t('common.operation')" width="120" fixed="right" :show-overflow="false">
             <template #default="{ row }">
-              <a
-                v-if="hasPermission(PermCodes.Payment.VendorConfig.EDIT)"
-                href="javascript:"
-                class="vben-link"
-                @click="handleEdit(row)"
-                >{{ $t('common.edit') }}</a
-              >
-              <a-divider type="vertical" />
-              <a
-                v-if="hasPermission(PermCodes.Payment.VendorConfig.DELETE)"
-                href="javascript:"
-                class="vben-link"
-                @click="handleDelete(row)"
-                >{{ $t('common.delete') }}</a
-              >
+              <a-space :size="2">
+                <template #separator>
+                  <a-divider type="vertical" />
+                </template>
+                <a-button
+                  v-if="hasPermission(PermCodes.Payment.VendorConfig.EDIT)"
+                  type="link"
+                  size="small"
+                  @click="handleEdit(row)"
+                  >{{ $t('common.edit') }}</a-button
+                >
+                <a-button
+                  v-if="hasPermission(PermCodes.Payment.VendorConfig.DELETE)"
+                  type="link"
+                  size="small"
+                  danger
+                  @click="handleDelete(row)"
+                  >{{ $t('common.delete') }}</a-button
+                >
+              </a-space>
             </template>
           </vxe-column>
         </vxe-table>
