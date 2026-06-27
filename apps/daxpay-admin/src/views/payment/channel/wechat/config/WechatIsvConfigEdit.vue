@@ -28,7 +28,7 @@
   const form = ref<WechatIsvKeyConfig>({} as WechatIsvKeyConfig);
   let rawForm: Record<string, any> = {};
 
-  const canEdit = computed(() => hasPermission(PermCodes.Payment.WechatIsv.EDIT));
+  const canEdit = computed(() => hasPermission(PermCodes.Payment.WechatIsv.MANAGE));
 
   const drawerTitle = $t('payment.channel.wechatManage.mchKeyTitle');
 

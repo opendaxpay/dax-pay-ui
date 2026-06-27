@@ -50,7 +50,7 @@
   const editRef = ref<InstanceType<typeof AlipayMchAppEdit>>();
   const detailRef = ref<InstanceType<typeof AlipayMchAppDetail>>();
 
-  const canAdd = computed(() => hasPermission(PermCodes.Payment.ChannelMerchant.ADD));
+  const canAdd = computed(() => hasPermission(PermCodes.Channel.AlipayApp.MANAGE));
 
   const pageTitle = computed(() => {
     const base = $t('payment.channel.alipayMchManage.cardMchApp');

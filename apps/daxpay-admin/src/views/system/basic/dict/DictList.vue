@@ -209,7 +209,7 @@
                 >
                 <!-- 字典配置 -->
                 <a-button
-                  v-if="hasPermission(PermCodes.System.DictItem.VIEW)"
+                  v-if="hasPermission(PermCodes.System.Dict.VIEW)"
                   type="link"
                   size="small"
                   @click="handleConfig(row)"

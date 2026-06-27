@@ -144,7 +144,7 @@
       <template #buttons>
         <a-space>
           <!-- 新增 -->
-          <a-button v-if="hasPermission(PermCodes.System.DictItem.MANAGE)" type="primary" @click="handleAdd">{{
+          <a-button v-if="hasPermission(PermCodes.System.Dict.MANAGE)" type="primary" @click="handleAdd">{{
             $t('common.add')
           }}</a-button>
         </a-space>
@@ -185,7 +185,7 @@
             </template>
             <!-- 编辑 -->
             <a-button
-              v-if="hasPermission(PermCodes.System.DictItem.MANAGE)"
+              v-if="hasPermission(PermCodes.System.Dict.MANAGE)"
               type="link"
               size="small"
               @click="handleEdit(row)"
@@ -193,7 +193,7 @@
             >
             <!-- 删除 -->
             <a-button
-              v-if="hasPermission(PermCodes.System.DictItem.MANAGE)"
+              v-if="hasPermission(PermCodes.System.Dict.MANAGE)"
               type="link"
               size="small"
               danger

@@ -186,7 +186,7 @@
           <template #buttons>
             <a-space>
               <a-button
-                v-if="hasPermission(PermCodes.Payment.Speaker.ADD)"
+                v-if="hasPermission(PermCodes.Device.Speaker.MANAGE)"
                 type="primary"
                 @click="handleAdd"
                 >{{ $t('common.add') }}</a-button
@@ -247,28 +247,28 @@
                   <a-divider type="vertical" />
                 </template>
                 <a-button
-                  v-if="hasPermission(PermCodes.Payment.Speaker.EDIT)"
+                  v-if="hasPermission(PermCodes.Device.Speaker.MANAGE)"
                   type="link"
                   size="small"
                   @click="handleEdit(row)"
                   >{{ $t('common.edit') }}</a-button
                 >
                 <a-button
-                  v-if="hasPermission(PermCodes.Payment.Speaker.EDIT) && row.status !== 'online'"
+                  v-if="hasPermission(PermCodes.Device.Speaker.MANAGE) && row.status !== 'online'"
                   type="link"
                   size="small"
                   @click="handleBind(row)"
                   >{{ $t('payment.device.speaker.bind') }}</a-button
                 >
                 <a-button
-                  v-else-if="hasPermission(PermCodes.Payment.Speaker.EDIT) && row.status === 'online'"
+                  v-else-if="hasPermission(PermCodes.Device.Speaker.MANAGE) && row.status === 'online'"
                   type="link"
                   size="small"
                   @click="handleUnbind(row)"
                   >{{ $t('payment.device.speaker.unbind') }}</a-button
                 >
                 <a-button
-                  v-if="hasPermission(PermCodes.Payment.Speaker.DELETE)"
+                  v-if="hasPermission(PermCodes.Device.Speaker.MANAGE)"
                   type="link"
                   size="small"
                   danger

@@ -25,7 +25,7 @@
   const formState = ref<WechatIsvAppAuthConfig>({});
   const originalForm = ref<WechatIsvAppAuthConfig>({});
 
-  const canEdit = computed(() => hasPermission(PermCodes.Payment.WechatIsv.EDIT));
+  const canEdit = computed(() => hasPermission(PermCodes.Payment.WechatIsv.MANAGE));
 
   // 仅公众号需要配置 OAuth 授权回调地址
   const isOfficialAccount = computed(() => props.appType === 'official_account');

@@ -234,7 +234,7 @@
 
       <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: loadList }">
         <template #buttons>
-          <a-button v-if="hasPermission(PermCodes.Payment.ChannelMerchant.EDIT)" type="primary" @click="handleCreate">
+          <a-button v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)" type="primary" @click="handleCreate">
             <template #icon><IconifyIcon icon="ant-design:plus-outlined" /></template>
             {{ $t('payment.merchant.channelMerchant.create') }}
           </a-button>
@@ -281,7 +281,7 @@
         >
           <template #default="{ row }">
             <a-switch
-              v-if="hasPermission(PermCodes.Payment.ChannelMerchant.EDIT)"
+              v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)"
               :checked="row.enable"
               @change="(checked: boolean) => handleToggleEnable(row, checked)"
             />

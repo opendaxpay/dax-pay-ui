@@ -30,7 +30,7 @@
   const formState = ref<DouyinMchAppAuthConfig>({});
   const originalForm = ref<DouyinMchAppAuthConfig>({});
 
-  const canEdit = computed(() => hasPermission(PermCodes.Payment.ChannelMerchant.EDIT));
+  const canEdit = computed(() => hasPermission(PermCodes.Channel.DouyinApp.MANAGE));
 
   // 是否为小程序类型
   const isMiniProgram = computed(() => props.appType === 'mini_program');

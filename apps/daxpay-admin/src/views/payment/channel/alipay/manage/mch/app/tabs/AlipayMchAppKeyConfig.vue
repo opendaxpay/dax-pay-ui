@@ -34,7 +34,7 @@
   });
   const originalForm = ref<AlipayMchAppKeyConfig>({});
 
-  const canEdit = computed(() => hasPermission(PermCodes.Payment.ChannelMerchant.EDIT));
+  const canEdit = computed(() => hasPermission(PermCodes.Channel.AlipayApp.MANAGE));
 
   const formRules = computed(() => ({
     authType: [{ required: true, message: $t('payment.channel.alipayIsv.validation.authType') }],

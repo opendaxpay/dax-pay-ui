@@ -48,7 +48,7 @@
       </a-radio>
     </a-radio-group>
     <a-tooltip
-      v-if="hasPermission(PermCodes.Payment.AppPayRoute.EDIT)"
+      v-if="hasPermission(PermCodes.Merchant.AppRoute.MANAGE)"
       :title="isEditModeActive ? $t('payment.merchant.route.route.alreadyActiveMode') : ''"
     >
       <a-button type="primary" :disabled="isEditModeActive" @click="emit('applyActiveMode')">

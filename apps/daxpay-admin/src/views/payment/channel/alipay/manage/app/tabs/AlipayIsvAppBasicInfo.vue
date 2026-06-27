@@ -52,7 +52,7 @@
       </a-descriptions-item>
     </a-descriptions>
 
-    <div v-if="hasPermission(PermCodes.Payment.AlipayIsv.EDIT)" class="basic-info-panel__actions">
+    <div v-if="hasPermission(PermCodes.Payment.AlipayIsv.MANAGE)" class="basic-info-panel__actions">
       <!-- 国际化：删除 -->
       <a-button danger @click="handleDelete">{{ $t('payment.channel.alipayManage.delete') }}</a-button>
     </div>

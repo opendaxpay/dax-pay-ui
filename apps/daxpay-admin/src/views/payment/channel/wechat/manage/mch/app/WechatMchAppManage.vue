@@ -53,7 +53,7 @@
   const editRef = ref<InstanceType<typeof WechatMchAppEdit>>();
   const detailRef = ref<InstanceType<typeof WechatMchAppDetail>>();
 
-  const canAdd = computed(() => hasPermission(PermCodes.Payment.ChannelMerchant.ADD));
+  const canAdd = computed(() => hasPermission(PermCodes.Channel.WechatApp.MANAGE));
 
   const pageTitle = computed(() => {
     const base = $t('payment.channel.wechatMchApp.appManageTitle');

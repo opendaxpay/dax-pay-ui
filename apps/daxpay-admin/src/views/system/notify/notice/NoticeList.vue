@@ -172,7 +172,7 @@
           <template #buttons>
             <a-space>
               <!-- 新增 -->
-              <a-button v-if="hasPermission(PermCodes.System.Notify.ADD)" type="primary" @click="handleAdd">{{
+              <a-button v-if="hasPermission(PermCodes.System.Notify.MANAGE)" type="primary" @click="handleAdd">{{
                 $t('system.notify.add')
               }}</a-button>
             </a-space>
@@ -239,7 +239,7 @@
                 >
                 <!-- 编辑 -->
                 <a-button
-                  v-if="hasPermission(PermCodes.System.Notify.ADD)"
+                  v-if="hasPermission(PermCodes.System.Notify.MANAGE)"
                   type="link"
                   size="small"
                   @click="handleEdit(row)"
@@ -264,7 +264,7 @@
                 >
                 <!-- 删除 -->
                 <a-button
-                  v-if="hasPermission(PermCodes.System.Notify.ADD)"
+                  v-if="hasPermission(PermCodes.System.Notify.MANAGE)"
                   type="link"
                   size="small"
                   danger

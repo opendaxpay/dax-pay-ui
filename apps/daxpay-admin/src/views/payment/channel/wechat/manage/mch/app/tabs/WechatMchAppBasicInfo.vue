@@ -62,7 +62,7 @@
       </a-descriptions-item>
     </a-descriptions>
 
-    <div v-if="hasPermission(PermCodes.Payment.ChannelMerchant.EDIT)" class="basic-info-panel__actions">
+    <div v-if="hasPermission(PermCodes.Channel.WechatApp.MANAGE)" class="basic-info-panel__actions">
       <a-button danger @click="handleDelete">{{ $t('payment.channel.wechatMchApp.delete') }}</a-button>
     </div>
   </div>

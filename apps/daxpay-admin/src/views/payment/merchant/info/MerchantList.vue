@@ -117,7 +117,7 @@
         <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
           <template #buttons>
             <a-space>
-              <a-button v-if="hasPermission(PermCodes.Payment.Merchant.ADD)" type="primary" @click="handleAdd">{{
+              <a-button v-if="hasPermission(PermCodes.Merchant.Info.MANAGE)" type="primary" @click="handleAdd">{{
                 $t('common.add')
               }}</a-button>
             </a-space>
@@ -158,7 +158,7 @@
           <vxe-column fixed="right" width="100" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">
               <a
-                v-if="hasPermission(PermCodes.Payment.Merchant.VIEW)"
+                v-if="hasPermission(PermCodes.Merchant.Info.VIEW)"
                 href="javascript:"
                 class="vben-link"
                 @click="handleManage(row)"

@@ -34,7 +34,7 @@
   const form = ref<WechatDirectKeyConfig>({} as WechatDirectKeyConfig);
   let rawForm: Record<string, any> = {};
 
-  const canEdit = computed(() => hasPermission(PermCodes.Payment.ChannelMerchant.EDIT));
+  const canEdit = computed(() => hasPermission(PermCodes.Channel.Merchant.MANAGE));
 
   const drawerTitle = $t('payment.channel.wechatManage.directKeyConfigTitle');
 

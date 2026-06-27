@@ -186,7 +186,7 @@
           <template #buttons>
             <a-space>
               <a-button
-                v-if="hasPermission(PermCodes.Payment.Printer.ADD)"
+                v-if="hasPermission(PermCodes.Device.Printer.MANAGE)"
                 type="primary"
                 @click="handleAdd"
                 >{{ $t('common.add') }}</a-button
@@ -247,28 +247,28 @@
                   <a-divider type="vertical" />
                 </template>
                 <a-button
-                  v-if="hasPermission(PermCodes.Payment.Printer.EDIT)"
+                  v-if="hasPermission(PermCodes.Device.Printer.MANAGE)"
                   type="link"
                   size="small"
                   @click="handleEdit(row)"
                   >{{ $t('common.edit') }}</a-button
                 >
                 <a-button
-                  v-if="hasPermission(PermCodes.Payment.Printer.EDIT) && row.status !== 'online'"
+                  v-if="hasPermission(PermCodes.Device.Printer.MANAGE) && row.status !== 'online'"
                   type="link"
                   size="small"
                   @click="handleBind(row)"
                   >{{ $t('payment.device.printer.bind') }}</a-button
                 >
                 <a-button
-                  v-else-if="hasPermission(PermCodes.Payment.Printer.EDIT) && row.status === 'online'"
+                  v-else-if="hasPermission(PermCodes.Device.Printer.MANAGE) && row.status === 'online'"
                   type="link"
                   size="small"
                   @click="handleUnbind(row)"
                   >{{ $t('payment.device.printer.unbind') }}</a-button
                 >
                 <a-button
-                  v-if="hasPermission(PermCodes.Payment.Printer.DELETE)"
+                  v-if="hasPermission(PermCodes.Device.Printer.MANAGE)"
                   type="link"
                   size="small"
                   danger

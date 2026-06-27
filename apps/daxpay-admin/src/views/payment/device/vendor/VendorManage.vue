@@ -184,7 +184,7 @@
         <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
           <template #buttons>
             <a-button
-              v-if="hasPermission(PermCodes.Payment.VendorConfig.ADD)"
+              v-if="hasPermission(PermCodes.Device.VendorConfig.MANAGE)"
               type="primary"
               @click="handleAdd"
             >
@@ -236,14 +236,14 @@
                   <a-divider type="vertical" />
                 </template>
                 <a-button
-                  v-if="hasPermission(PermCodes.Payment.VendorConfig.EDIT)"
+                  v-if="hasPermission(PermCodes.Device.VendorConfig.MANAGE)"
                   type="link"
                   size="small"
                   @click="handleEdit(row)"
                   >{{ $t('common.edit') }}</a-button
                 >
                 <a-button
-                  v-if="hasPermission(PermCodes.Payment.VendorConfig.DELETE)"
+                  v-if="hasPermission(PermCodes.Device.VendorConfig.MANAGE)"
                   type="link"
                   size="small"
                   danger

@@ -64,7 +64,7 @@
     <div class="card-footer flex shrink-0 items-center justify-end border-t border-border px-3 py-1.5">
       <div class="flex items-center">
         <a-tooltip
-          v-if="hasPermission(PermCodes.Payment.ChannelMerchant.EDIT)"
+          v-if="hasPermission(PermCodes.Channel.WechatApp.MANAGE)"
           :title="$t('payment.channel.wechatMchApp.edit')"
         >
           <a-button
@@ -79,7 +79,7 @@
           </a-button>
         </a-tooltip>
         <a-tooltip
-          v-if="hasPermission(PermCodes.Payment.ChannelMerchant.VIEW)"
+          v-if="hasPermission(PermCodes.Channel.WechatApp.VIEW)"
           :title="$t('payment.channel.wechatMchApp.actionMore')"
         >
           <a-button

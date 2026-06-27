@@ -239,7 +239,7 @@
 
           <!-- 新增应用占位卡片 -->
           <div
-            v-if="hasPermission(PermCodes.Payment.Merchant.ADD)"
+            v-if="hasPermission(PermCodes.Merchant.App.MANAGE)"
             class="add-card flex h-full min-h-[128px] cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-muted/30 text-muted-foreground transition-all hover:border-primary hover:bg-primary/5 hover:text-primary"
             @click="handleAdd"
           >

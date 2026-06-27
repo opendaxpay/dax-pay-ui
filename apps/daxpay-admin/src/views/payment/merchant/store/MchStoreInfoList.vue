@@ -211,7 +211,7 @@
         <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
           <template #buttons>
             <a-space>
-              <a-button v-if="hasPermission(PermCodes.Payment.Store.ADD)" type="primary" @click="handleAdd">{{
+              <a-button v-if="hasPermission(PermCodes.Merchant.Store.MANAGE)" type="primary" @click="handleAdd">{{
                 $t('common.add')
               }}</a-button>
             </a-space>
@@ -222,7 +222,7 @@
           <vxe-column field="storeNo" :title="$t('payment.merchant.store.store.field.storeNo')" :min-width="180">
             <template #default="{ row }">
               <a
-                v-if="hasPermission(PermCodes.Payment.Store.VIEW)"
+                v-if="hasPermission(PermCodes.Merchant.Store.VIEW)"
                 href="javascript:"
                 class="vben-link"
                 @click="handleView(row)"
@@ -268,14 +268,14 @@
                   <a-divider type="vertical" />
                 </template>
                 <a-button
-                  v-if="hasPermission(PermCodes.Payment.Store.EDIT)"
+                  v-if="hasPermission(PermCodes.Merchant.Store.MANAGE)"
                   type="link"
                   size="small"
                   @click="handleEdit(row)"
                   >{{ $t('common.edit') }}</a-button
                 >
                 <a-button
-                  v-if="hasPermission(PermCodes.Payment.Store.DELETE)"
+                  v-if="hasPermission(PermCodes.Merchant.Store.MANAGE)"
                   type="link"
                   size="small"
                   danger

@@ -172,12 +172,12 @@
       </template>
       <template #extra>
         <a-space>
-          <a-button v-if="!isEditing && hasPermission(PermCodes.Payment.Merchant.EDIT)" type="primary" @click="handleEdit">{{
+          <a-button v-if="!isEditing && hasPermission(PermCodes.Merchant.Info.MANAGE)" type="primary" @click="handleEdit">{{
             $t('common.edit')
           }}</a-button>
           <template v-else>
             <a-button @click="handleCancel">{{ $t('common.cancelText') }}</a-button>
-            <a-button v-if="hasPermission(PermCodes.Payment.Merchant.EDIT)" type="primary" :loading="confirmLoading" @click="handleSave">{{
+            <a-button v-if="hasPermission(PermCodes.Merchant.Info.MANAGE)" type="primary" :loading="confirmLoading" @click="handleSave">{{
               $t('common.save')
             }}</a-button>
           </template>

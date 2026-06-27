@@ -108,7 +108,7 @@
         </span>
       </div>
       <div class="flex items-center">
-        <a-tooltip v-if="hasPermission(PermCodes.Payment.AppPayRoute.VIEW)" :title="$t('payment.merchant.app.app.payRoute')">
+        <a-tooltip v-if="hasPermission(PermCodes.Merchant.AppRoute.VIEW)" :title="$t('payment.merchant.app.app.payRoute')">
           <a-button
             type="text"
             size="small"
@@ -120,7 +120,7 @@
             </template>
           </a-button>
         </a-tooltip>
-        <a-tooltip v-if="hasPermission(PermCodes.Payment.Merchant.EDIT)" :title="$t('payment.merchant.app.app.edit')">
+        <a-tooltip v-if="hasPermission(PermCodes.Merchant.App.MANAGE)" :title="$t('payment.merchant.app.app.edit')">
           <a-button
             type="text"
             size="small"
@@ -132,7 +132,7 @@
             </template>
           </a-button>
         </a-tooltip>
-        <a-dropdown v-if="hasPermission(PermCodes.Payment.Merchant.EDIT)" :menu="getMoreMenu()" :trigger="['click']">
+        <a-dropdown v-if="hasPermission(PermCodes.Merchant.App.MANAGE)" :menu="getMoreMenu()" :trigger="['click']">
           <a-tooltip :title="$t('payment.merchant.app.app.actionMore')">
             <a-button
               type="text"

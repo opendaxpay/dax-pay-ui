@@ -6,9 +6,11 @@
  * | 要点 | 说明 |
  * |------|------|
  * | 与后端对齐 | 值必须等于 @PermCode 扫描出的完整码 `menuCode:code` |
- * | 命名约定 | `PermCodes.域.功能.{VIEW\|EDIT\|ADD\|...}`，键名用业务语义 |
+ * | 命名约定 | 全部使用下划线（`security_config` 非 `securityConfig`），键名用业务语义 |
+ * | 粒度约定 | 标准为 `VIEW` + `MANAGE`（`MANAGE` 含增删改）；仅查看的只保留 `VIEW` |
+ * | 特殊操作 | `PUBLISH`/`KICKOUT`/`RESET_PASSWORD`/`ASSIGN_ROLE`/`STATUS`/`SIGN`/`PAY`/`CREDENTIAL_CONFIG_UPDATE` 独立保留 |
  * | menu_code | 菜单注册（iam_perm_menu）用，**不**写入本文件 |
- * | 方案 B | `AppPayRoute` 表示应用通道路由，与商户主体 `Merchant` 同级 |
+ * | 顶级域 | merchant / channel / payment / develop / device / iam / system 七域 |
  * | 使用方式 | 模板：`v-if="hasPermission(PermCodes....)"` / `hasAnyPermission([...])`（`usePermission`）；脚本：同上 |
  * | 已移除 | v-access 指令已删除，仅用 `usePermission` |
  */
@@ -16,118 +18,204 @@ export const PermCodes = {
   /** IAM 身份与访问 */
   Iam: {
     PermMenu: {
-      MANAGE: 'iam:perm:menu:manage',
       VIEW: 'iam:perm:menu:view',
+      MANAGE: 'iam:perm:menu:manage',
     },
     Role: {
-      MANAGE: 'iam:role:manage',
       VIEW: 'iam:role:view',
+      MANAGE: 'iam:role:manage',
     },
     UserManager: {
-      ADD: 'iam:user:manager:add',
-      EDIT: 'iam:user:manager:edit',
       VIEW: 'iam:user:manager:view',
+      MANAGE: 'iam:user:manager:manage',
+      RESET_PASSWORD: 'iam:user:manager:reset_password',
+      ASSIGN_ROLE: 'iam:user:manager:assign_role',
       STATUS: 'iam:user:manager:status',
-      RESET_PASSWORD: 'iam:user:manager:resetPassword',
-      ASSIGN_ROLE: 'iam:user:manager:assignRole',
     },
     OnlineUser: {
+      VIEW: 'iam:online:user:view',
       KICKOUT: 'iam:online:user:kickout',
+    },
+    Social: {
+      VIEW: 'iam:social:config:view',
+      MANAGE: 'iam:social:config:manage',
     },
   },
 
-  /** 支付域 */
-  Payment: {
-    /** 商户主体 menuCode=payment:merchant */
-    Merchant: {
-      ADD: 'payment:merchant:add',
-      VIEW: 'payment:merchant:view',
-      EDIT: 'payment:merchant:edit',
-      CREDENTIAL_CONFIG_UPDATE: 'payment:merchant:credential_config_update',
+  /** 商户管理（独立顶级域） */
+  Merchant: {
+    /** 商户主体 menuCode=merchant:info */
+    Info: {
+      VIEW: 'merchant:info:view',
+      MANAGE: 'merchant:info:manage',
     },
-    /** 应用通道路由 menuCode=payment:merchant:app:payRoute（方案 B） */
-    AppPayRoute: {
-      VIEW: 'payment:merchant:app:payRoute:view',
-      EDIT: 'payment:merchant:app:payRoute:edit',
+    /** 对接配置 menuCode=merchant:credential */
+    Credential: {
+      VIEW: 'merchant:credential:view',
+      CREDENTIAL_CONFIG_UPDATE: 'merchant:credential:credential_config_update',
     },
-    /** 支付宝服务商通道 menuCode=payment:alipay:isv */
-    AlipayIsv: {
-      ADD: 'payment:alipay:isv:add',
-      VIEW: 'payment:alipay:isv:view',
-      EDIT: 'payment:alipay:isv:edit',
+    /** 商户应用 menuCode=merchant:app */
+    App: {
+      VIEW: 'merchant:app:view',
+      MANAGE: 'merchant:app:manage',
     },
-    /** 微信服务商通道 menuCode=payment:wechat:isv */
-    WechatIsv: {
-      ADD: 'payment:wechat:isv:add',
-      VIEW: 'payment:wechat:isv:view',
-      EDIT: 'payment:wechat:isv:edit',
+    /** 通道路由 menuCode=merchant:app:route */
+    AppRoute: {
+      VIEW: 'merchant:app:route:view',
+      MANAGE: 'merchant:app:route:manage',
     },
-    /** 通道商户 menuCode=payment:merchant:channelMerchant */
-    ChannelMerchant: {
-      ADD: 'payment:merchant:channelMerchant:add',
-      EDIT: 'payment:merchant:channelMerchant:edit',
-      DELETE: 'payment:merchant:channelMerchant:delete',
-      VIEW: 'payment:merchant:channelMerchant:view',
-    },
-    /** 门店 menuCode=payment:merchant:store */
+    /** 门店 menuCode=merchant:store */
     Store: {
-      ADD: 'payment:merchant:store:add',
-      VIEW: 'payment:merchant:store:view',
-      EDIT: 'payment:merchant:store:edit',
-      DELETE: 'payment:merchant:store:delete',
+      VIEW: 'merchant:store:view',
+      MANAGE: 'merchant:store:manage',
     },
-    /** 云音箱 menuCode=payment:device:speaker */
+    /** 商户用户 menuCode=merchant:user（预留，待 Controller 实现） */
+    User: {
+      VIEW: 'merchant:user:view',
+      MANAGE: 'merchant:user:manage',
+    },
+  },
+
+  /** 渠道管理（独立顶级域） */
+  Channel: {
+    /** 通道商户 menuCode=channel:merchant */
+    Merchant: {
+      VIEW: 'channel:merchant:view',
+      MANAGE: 'channel:merchant:manage',
+    },
+    /** 支付宝直连应用 menuCode=channel:alipay:app */
+    AlipayApp: {
+      VIEW: 'channel:alipay:app:view',
+      MANAGE: 'channel:alipay:app:manage',
+    },
+    /** 微信直连应用 menuCode=channel:wechat:app */
+    WechatApp: {
+      VIEW: 'channel:wechat:app:view',
+      MANAGE: 'channel:wechat:app:manage',
+    },
+    /** 抖音直连应用 menuCode=channel:douyin:app */
+    DouyinApp: {
+      VIEW: 'channel:douyin:app:view',
+      MANAGE: 'channel:douyin:app:manage',
+    },
+  },
+
+  /** 支付核心（瘦身后：主数据 + 配置 + 服务商） */
+  Payment: {
+    /** 支付宝服务商 menuCode=payment:alipay:isv */
+    AlipayIsv: {
+      VIEW: 'payment:alipay:isv:view',
+      MANAGE: 'payment:alipay:isv:manage',
+    },
+    /** 微信服务商 menuCode=payment:wechat:isv */
+    WechatIsv: {
+      VIEW: 'payment:wechat:isv:view',
+      MANAGE: 'payment:wechat:isv:manage',
+    },
+    /** 支付主数据 menuCode=payment:platform:* */
+    Platform: {
+      Product: {
+        VIEW: 'payment:platform:product:view',
+        MANAGE: 'payment:platform:product:manage',
+      },
+      Provider: {
+        VIEW: 'payment:platform:provider:view',
+        MANAGE: 'payment:platform:provider:manage',
+      },
+      PayChannel: {
+        VIEW: 'payment:platform:pay_channel:view',
+      },
+      Capability: {
+        VIEW: 'payment:platform:capability:view',
+      },
+    },
+    /** 支付产品配置 menuCode=payment:config:product_config */
+    ProductConfig: {
+      VIEW: 'payment:config:product_config:view',
+      MANAGE: 'payment:config:product_config:manage',
+    },
+  },
+
+  /** 开发调试（独立顶级域） */
+  Develop: {
+    /** 支付调试 menuCode=develop:trade */
+    Trade: {
+      VIEW: 'develop:trade:view',
+      SIGN: 'develop:trade:sign',
+      PAY: 'develop:trade:pay',
+    },
+    /** 签名调试 menuCode=develop:sign */
+    Sign: {
+      VIEW: 'develop:sign:view',
+    },
+  },
+
+  /** 设备管理（独立命名空间） */
+  Device: {
+    /** 云音箱 menuCode=device:speaker */
     Speaker: {
-      ADD: 'payment:device:speaker:add',
-      VIEW: 'payment:device:speaker:view',
-      EDIT: 'payment:device:speaker:edit',
-      DELETE: 'payment:device:speaker:delete',
+      VIEW: 'device:speaker:view',
+      MANAGE: 'device:speaker:manage',
     },
-    /** 云打印 menuCode=payment:device:printer */
+    /** 云打印 menuCode=device:printer */
     Printer: {
-      ADD: 'payment:device:printer:add',
-      VIEW: 'payment:device:printer:view',
-      EDIT: 'payment:device:printer:edit',
-      DELETE: 'payment:device:printer:delete',
+      VIEW: 'device:printer:view',
+      MANAGE: 'device:printer:manage',
     },
-    /** 厂商配置 menuCode=payment:device:vendorConfig */
+    /** 厂商配置 menuCode=device:vendor_config */
     VendorConfig: {
-      ADD: 'payment:device:vendorConfig:add',
-      VIEW: 'payment:device:vendorConfig:view',
-      EDIT: 'payment:device:vendorConfig:edit',
-      DELETE: 'payment:device:vendorConfig:delete',
+      VIEW: 'device:vendor_config:view',
+      MANAGE: 'device:vendor_config:manage',
     },
   },
 
   /** 系统域 */
   System: {
+    /** 字典（含字典项）menuCode=system:dict */
     Dict: {
-      MANAGE: 'system:dict:dict:manage',
-      VIEW: 'system:dict:dict:view',
+      VIEW: 'system:dict:view',
+      MANAGE: 'system:dict:manage',
     },
-    DictItem: {
-      MANAGE: 'system:dict:item:manage',
-      VIEW: 'system:dict:item:view',
+    /** 日志 menuCode=system:log:* */
+    Log: {
+      Login: {
+        VIEW: 'system:log:login:view',
+        MANAGE: 'system:log:login:manage',
+      },
+      Operate: {
+        VIEW: 'system:log:operate:view',
+        MANAGE: 'system:log:operate:manage',
+      },
     },
+    /** 公告通知 menuCode=system:notify */
     Notify: {
-      ADD: 'system:notify:notice:add',
-      PUBLISH: 'system:notify:notice:publish',
-      VIEW: 'system:notify:notice:view',
+      VIEW: 'system:notify:view',
+      MANAGE: 'system:notify:manage',
+      PUBLISH: 'system:notify:publish',
     },
+    /** 存储文件 menuCode=system:file:platform */
     FilePlatform: {
       VIEW: 'system:file:platform:view',
     },
-  },
-
-  /** 日志域 */
-  Log: {
-    Operate: {
-      MANAGE: 'starter:log:operate:manage',
-      VIEW: 'starter:log:operate:view',
+    /** 平台配置 menuCode=system:platform_config */
+    PlatformConfig: {
+      VIEW: 'system:platform_config:view',
+      MANAGE: 'system:platform_config:manage',
     },
-    Login: {
-      MANAGE: 'starter:log:login:manage',
-      VIEW: 'starter:log:login:view',
+    /** OSS 配置 menuCode=system:oss_config */
+    OssConfig: {
+      VIEW: 'system:oss_config:view',
+      MANAGE: 'system:oss_config:manage',
+    },
+    /** 安全配置 menuCode=system:security_config */
+    SecurityConfig: {
+      VIEW: 'system:security_config:view',
+      MANAGE: 'system:security_config:manage',
+    },
+    /** 用户协议 menuCode=system:protocol（预留，待 Controller 实现） */
+    Protocol: {
+      VIEW: 'system:protocol:view',
+      MANAGE: 'system:protocol:manage',
     },
   },
 } as const;

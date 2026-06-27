@@ -438,7 +438,7 @@
             <a-space>
               <!-- 新增 -->
               <a-button
-                v-if="showAddButton && hasPermission(PermCodes.Iam.UserManager.ADD)"
+                v-if="showAddButton && hasPermission(PermCodes.Iam.UserManager.MANAGE)"
                 type="primary"
                 @click="handleAdd"
               >
@@ -514,7 +514,7 @@
                 }}</a>
                 <!-- 编辑 -->
                 <a
-                  v-if="hasPermission(PermCodes.Iam.UserManager.EDIT)"
+                  v-if="hasPermission(PermCodes.Iam.UserManager.MANAGE)"
                   href="javascript:"
                   :class="isAdminClient ? '' : 'ant-typography-disabled'"
                   :style="isAdminClient ? '' : 'pointer-events: none; color: rgba(0, 0, 0, 0.25);'"

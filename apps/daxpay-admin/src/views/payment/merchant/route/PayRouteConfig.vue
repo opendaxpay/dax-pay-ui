@@ -102,7 +102,7 @@
    * 设为生效模式（始终确认，仅此处更新 strategy.mode）
    */
   function applyActiveMode() {
-    if (!hasPermission(PermCodes.Payment.AppPayRoute.EDIT) || !appId.value) {
+    if (!hasPermission(PermCodes.Merchant.AppRoute.MANAGE) || !appId.value) {
       return;
     }
     const targetModeName = modeDisplayName(editMode.value);

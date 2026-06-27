@@ -30,7 +30,7 @@
   const formState = ref<WechatMchAppAuthConfig>({});
   const originalForm = ref<WechatMchAppAuthConfig>({});
 
-  const canEdit = computed(() => hasPermission(PermCodes.Payment.ChannelMerchant.EDIT));
+  const canEdit = computed(() => hasPermission(PermCodes.Channel.WechatApp.MANAGE));
 
   // 仅公众号需要配置 OAuth 授权回调地址
   const isOfficialAccount = computed(() => props.appType === 'official_account');

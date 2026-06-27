@@ -394,7 +394,7 @@
         </template>
       </div>
     </div>
-    <div v-if="hasPermission(PermCodes.Payment.AppPayRoute.EDIT)" class="mt-4 flex gap-2">
+    <div v-if="hasPermission(PermCodes.Merchant.AppRoute.MANAGE)" class="mt-4 flex gap-2">
       <a-button v-if="!sceneConfigEditing" type="primary" @click="startSceneConfigEdit">
         {{ $t('common.edit') }}
       </a-button>
