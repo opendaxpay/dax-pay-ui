@@ -28,7 +28,7 @@ export enum ChannelEnum {
   SHENG_PAY = 'sheng_pay',
   /** 银联商务 */
   UMS_PAY = 'ums_pay',
-  /** 云闪付 */
+  /** 银联 */
   UNION_PAY = 'union_pay',
   /** 随行付 */
   VBILL_PAY = 'vbill_pay',
@@ -70,7 +70,7 @@ export const channelI18nMap: Record<string, string> = {
 export const channelNameMap: Record<string, string> = {
   [ChannelEnum.ALIPAY]: '支付宝',
   [ChannelEnum.WECHAT]: '微信支付',
-  [ChannelEnum.UNION_PAY]: '云闪付',
+  [ChannelEnum.UNION_PAY]: '银联',
   [ChannelEnum.LESHUA_PAY]: '乐刷',
   [ChannelEnum.VBILL_PAY]: '随行付',
   [ChannelEnum.ADA_PAY]: '汇付天下',

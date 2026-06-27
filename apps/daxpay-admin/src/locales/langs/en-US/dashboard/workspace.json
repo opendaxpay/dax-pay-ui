@@ -1,0 +1,60 @@
+{
+  "greeting": {
+    "morning": "Good morning",
+    "afternoon": "Good afternoon",
+    "evening": "Good evening",
+    "subtitle": "Welcome back to DaxPay Admin"
+  },
+  "stat": {
+    "merchantCount": "Merchants",
+    "channelMerchantCount": "Channel Merchants",
+    "userCount": "Users",
+    "todayLogin": "Today Logins",
+    "onlineUser": "Online Users"
+  },
+  "widget": {
+    "workbenchHeader": "Workspace",
+    "quickEntry": "Quick Entry",
+    "tradeOverview": "Trade Overview",
+    "payOrder": "Payment Orders",
+    "tradeTrend": "Trade Trend",
+    "channelDist": "Payment Channel",
+    "noticeList": "Notices"
+  },
+  "tradeOverview": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "successAmount": "Success Amount (CNY)",
+    "successCount": "Success Count",
+    "refundAmount": "Refund Amount (CNY)",
+    "refundCount": "Refund Count"
+  },
+  "payOrder": {
+    "developing": "Payment order management in development",
+    "status": {
+      "success": "Success",
+      "fail": "Failed",
+      "closed": "Closed"
+    }
+  },
+  "tradeTrend": {
+    "last7days": "7 Days",
+    "last30days": "30 Days"
+  },
+  "quickEntry": {
+    "merchant": "Merchants",
+    "app": "Applications",
+    "channelMerchant": "Channel Merchants",
+    "notify": "Notifications",
+    "user": "Users",
+    "dict": "Dictionaries",
+    "loginLog": "Login Logs",
+    "security": "Security",
+    "empty": "No accessible quick entries"
+  },
+  "notice": {
+    "important": "Important",
+    "normal": "Normal",
+    "top": "Top"
+  }
+}

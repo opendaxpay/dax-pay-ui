@@ -1,0 +1,60 @@
+{
+  "greeting": {
+    "morning": "早上好",
+    "afternoon": "下午好",
+    "evening": "晚上好",
+    "subtitle": "欢迎回到 DaxPay 运营平台"
+  },
+  "stat": {
+    "merchantCount": "商户总数",
+    "channelMerchantCount": "通道商户",
+    "userCount": "用户总数",
+    "todayLogin": "今日登录",
+    "onlineUser": "在线用户"
+  },
+  "widget": {
+    "workbenchHeader": "工作台",
+    "quickEntry": "快捷入口",
+    "tradeOverview": "交易概览",
+    "payOrder": "支付订单",
+    "tradeTrend": "交易趋势",
+    "channelDist": "支付渠道",
+    "noticeList": "系统公告"
+  },
+  "tradeOverview": {
+    "today": "今日交易",
+    "yesterday": "昨日交易",
+    "successAmount": "成交金额(元)",
+    "successCount": "成交笔数",
+    "refundAmount": "退款金额(元)",
+    "refundCount": "退款笔数"
+  },
+  "payOrder": {
+    "developing": "支付订单管理开发中",
+    "status": {
+      "success": "成功",
+      "fail": "失败",
+      "closed": "已关闭"
+    }
+  },
+  "tradeTrend": {
+    "last7days": "近 7 天",
+    "last30days": "近 30 天"
+  },
+  "quickEntry": {
+    "merchant": "商户管理",
+    "app": "应用管理",
+    "channelMerchant": "通道商户",
+    "notify": "通知中心",
+    "user": "用户管理",
+    "dict": "字典管理",
+    "loginLog": "登录日志",
+    "security": "安全配置",
+    "empty": "暂无可访问的快捷入口"
+  },
+  "notice": {
+    "important": "重要",
+    "normal": "普通",
+    "top": "置顶"
+  }
+}

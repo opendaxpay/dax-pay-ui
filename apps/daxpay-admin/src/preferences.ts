@@ -10,6 +10,8 @@ export const overridesPreferences = defineOverridesPreferences({
   app: {
     accessMode: 'backend',
     name: 'DaxPay Admin',
+    // 默认首页路径，覆盖框架默认的 /analytics，登录后直接进入工作台
+    defaultHomePath: '/workspace',
   },
   logo: {
     enable: true,
