@@ -64,13 +64,6 @@ export const PayRouteApi = {
     });
   },
 
-  inferSceneCapability(params: PayRouteSceneCapabilityCandidatesQuery): Promise<Result<string>> {
-    return defHttp.get({
-      url: '/admin/merchant/pay-route/scene-config/infer-capability',
-      params,
-    });
-  },
-
   listBasicConfig(appId: string): Promise<Result<PayRouteBasicConfigResult[]>> {
     return defHttp.get({
       url: '/admin/merchant/pay-route/basic-config/list-by-app-id',
@@ -88,8 +81,6 @@ export interface PayRouteStrategyResult extends BaseEntity {
   appId?: string;
   mchNo?: string;
   mode?: string;
-  /** 支付渠道 */
-  provider?: string;
   enable?: boolean;
   name?: string;
 }
@@ -97,28 +88,22 @@ export interface PayRouteStrategyResult extends BaseEntity {
 export interface PayRouteStrategyParam {
   appId: string;
   mode?: string;
-  /** 支付渠道 */
-  provider?: string;
   enable?: boolean;
   name?: string;
 }
 
 export interface PayRouteSceneConfigResult extends BaseEntity {
   strategyId?: string;
-  provider?: string;
-  channel?: string;
   method?: string;
   channelMchNo?: string;
   capability?: string;
 }
 
 export interface PayRouteSceneConfigItem {
-  provider?: string;
   /** 通道商户号(场景模式定位通道商户，由其推导支付产品) */
   channelMchNo?: string;
   /** 支付能力 */
   capability?: string;
-  channel?: string;
   method?: string;
 }
 

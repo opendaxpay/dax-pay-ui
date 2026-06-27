@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { ref } from 'vue';
+  import { computed, ref } from 'vue';
 
   import { $t } from '@vben/locales';
 
@@ -23,7 +23,21 @@
   const { hasPermission } = usePermission();
   const { loadDirectory, directoryByProviderCards } = usePayProviderMethodDirectory();
 
-  const sceneRows = ref<PayRouteSceneConfigItem[]>([]);
+  // 场景模式内存行：提交项 + 派生 provider(目录维度，用于行定位与候选缓存键，不提交后端)
+  type SceneRow = PayRouteSceneConfigItem & { provider: string };
+
+  // 支付方式 → 支付渠道 映射(从目录派生，用于回显时填充内存行的 provider)
+  const methodToProvider = computed<Record<string, string>>(() => {
+    const map: Record<string, string> = {};
+    for (const card of directoryByProviderCards()) {
+      for (const entry of card.methods) {
+        map[entry.method] = entry.provider;
+      }
+    }
+    return map;
+  });
+
+  const sceneRows = ref<SceneRow[]>([]);
   const sceneChannelMchOptionsMap = ref<Record<string, LabelValue[]>>({});
   const sceneCapabilityOptionsMap = ref<Record<string, LabelValue[]>>({});
   const sceneConfigEditing = ref(false);
@@ -42,16 +56,16 @@
     return $t('payment.merchant.route.route.sceneRouteNotSelected');
   }
 
-  function findSceneRow(provider: string, method: string): PayRouteSceneConfigItem | undefined {
+  function findSceneRow(provider: string, method: string): SceneRow | undefined {
     return sceneRows.value.find((row) => row.provider === provider && row.method === method);
   }
 
-  function getSceneRow(provider: string, method: string): PayRouteSceneConfigItem {
+  function getSceneRow(provider: string, method: string): SceneRow {
     const existing = findSceneRow(provider, method);
     if (existing) {
       return existing;
     }
-    const row: PayRouteSceneConfigItem = {
+    const row: SceneRow = {
       provider,
       method,
       channelMchNo: '',
@@ -186,13 +200,12 @@
     await loadDirectory();
     const { data: configs } = await PayRouteApi.listSceneConfig(props.appId);
     sceneRows.value = (configs || [])
-      .filter((c) => c.provider && c.method)
+      .filter((c) => c.method)
       .map((c) => ({
-        provider: c.provider,
-        method: c.method,
-        channelMchNo: c.channelMchNo,
-        capability: c.capability,
-        channel: c.channel,
+        provider: methodToProvider.value[c.method!] || '',
+        method: c.method!,
+        channelMchNo: c.channelMchNo || '',
+        capability: c.capability || '',
       }));
     ensureDirectoryRows();
     sceneChannelMchOptionsMap.value = {};
@@ -279,9 +292,8 @@
     await PayRouteApi.saveSceneBatch({
       appId: props.appId,
       items: directoryItems
-        .filter((r) => r.provider && r.method && (isSceneRowEmpty(r) || isSceneRowFullyConfigured(r)))
+        .filter((r) => r.method && (isSceneRowEmpty(r) || isSceneRowFullyConfigured(r)))
         .map((r) => ({
-          provider: r.provider,
           method: r.method,
           channelMchNo: r.channelMchNo,
           capability: r.capability,
