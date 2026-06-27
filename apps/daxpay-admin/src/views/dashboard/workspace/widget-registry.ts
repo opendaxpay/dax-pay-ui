@@ -66,7 +66,7 @@ export const WIDGET_REGISTRY: WidgetMeta[] = [
     titleKey: 'dashboard.workspace.widget.tradeTrend',
     icon: 'lucide:trending-up',
     defaultSpan: 16,
-    defaultOrder: 5,
+    defaultOrder: 6,
   },
   {
     id: 'channel-distribution',
@@ -74,7 +74,7 @@ export const WIDGET_REGISTRY: WidgetMeta[] = [
     titleKey: 'dashboard.workspace.widget.channelDist',
     icon: 'lucide:pie-chart',
     defaultSpan: 8,
-    defaultOrder: 6,
+    defaultOrder: 5,
   },
 ];
 

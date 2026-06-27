@@ -70,3 +70,11 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+/* 头像首字放大: antd 默认按 size 自动算字号偏小, 这里提到 32px 并加粗, 与统计数值风格一致 */
+:deep(.ant-avatar-string) {
+  font-size: 32px !important;
+  font-weight: 600;
+}
+</style>
