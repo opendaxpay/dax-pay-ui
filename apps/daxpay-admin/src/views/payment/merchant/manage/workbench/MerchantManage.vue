@@ -102,22 +102,12 @@
           route: '/payment/merchant/manage/credential',
         },
         {
-          key: 'apiConfig',
-          // API配置
-          title: $t('payment.merchant.workbench.workbench.cardApiConfig'),
-          icon: 'ant-design:code-outlined',
-          // 商户API密钥与接口配置
-          description: $t('payment.merchant.workbench.workbench.cardApiConfigDesc'),
-          route: '/payment/merchant/api',
-        },
-        {
           key: 'notifyConfig',
-          // 通知配置
+          // 国际化：通知配置（功能开发中）
           title: $t('payment.merchant.workbench.workbench.cardNotifyConfig'),
           icon: 'ant-design:notification-outlined',
-          // 回调地址、通知方式配置
+          // 国际化：回调地址、通知方式配置
           description: $t('payment.merchant.workbench.workbench.cardNotifyConfigDesc'),
-          route: '/payment/merchant/notify',
         },
       ],
     },
@@ -216,7 +206,9 @@
               </template>
             </a-button>
             <div>
-              <span class="text-2xl font-bold text-foreground">{{ $t('payment.merchant.workbench.workbench.title') }}</span>
+              <span class="text-2xl font-bold text-foreground">{{
+                $t('payment.merchant.workbench.workbench.title')
+              }}</span>
               <span v-if="merchantInfo.mchName" class="ml-2 text-base text-muted-foreground"
                 >({{ merchantInfo.mchName }})</span
               >
