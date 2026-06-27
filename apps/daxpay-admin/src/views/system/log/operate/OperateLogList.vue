@@ -167,7 +167,7 @@
       <a-card>
         <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
           <template #buttons>
-            <a-space v-if="hasPermission(PermCodes.Log.Operate.MANAGE)">
+            <a-space v-if="hasPermission(PermCodes.System.Log.Operate.MANAGE)">
               <!-- 国际化：清除多久前的日志 -->
               <a-select
                 v-model:value="deleteDay"
@@ -212,7 +212,7 @@
           <!-- 操作 -->
           <vxe-column fixed="right" width="60" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">
-              <a v-if="hasPermission(PermCodes.Log.Operate.VIEW)" href="javascript:" @click="handleShow(row)">{{
+              <a v-if="hasPermission(PermCodes.System.Log.Operate.VIEW)" href="javascript:" @click="handleShow(row)">{{
                 $t('common.view')
               }}</a>
             </template>
