@@ -8,9 +8,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { ChannelMerchantApi } from '#/api/payment/channel/channel-merchant.api';
   import { DevelopTradeApi } from '#/api/payment/develop/developTrade.api';
-  import { PayProductApi } from '#/api/payment/masterdata/product.api';
   import { MchAppInfoApi } from '#/api/payment/merchant/mch-app-info.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { QrCode } from '#/components/qrcode';
@@ -23,6 +21,9 @@
   // 私钥在 localStorage 中的键名
   const PRIVATE_KEY_STORAGE_KEY = 'daxpay_dev_private_key';
 
+  // 支付模式: route=路由模式(商户+方式+应用动态匹配) direct=传值模式(通道商户+能力直接决定)
+  const routeMode = ref<'route' | 'direct'>('route');
+
   // ===== 表单数据 =====
   const form = reactive<PayParam>({
     mchNo: '',
@@ -32,7 +33,7 @@
     title: '',
     amount: 0.01,
     method: '',
-    product: '',
+    capability: '',
     description: '',
   });
 
@@ -45,8 +46,9 @@
   // ===== 下拉选项 =====
   const mchNoOptions = ref<LabelValue[]>([]);
   const mchAppOptions = ref<LabelValue[]>([]);
+  const methodOptions = ref<LabelValue[]>([]);
   const channelMchNoOptions = ref<LabelValue[]>([]);
-  const productOptions = ref<LabelValue[]>([]);
+  const capabilityOptions = ref<LabelValue[]>([]);
 
   // ===== 调试结果 =====
   const resultVisible = ref(false);
@@ -75,22 +77,28 @@
     MerchantApi.dropdown().then(({ data }) => {
       mchNoOptions.value = data ?? [];
     });
-    PayProductApi.dropdown().then(({ data }) => {
-      productOptions.value = data ?? [];
+    DevelopTradeApi.methodDirectory().then(({ data }) => {
+      methodOptions.value =
+        data?.map((item) => ({
+          label: item.methodLabel || item.method,
+          value: item.method,
+        })) ?? [];
     });
     if (!form.bizOrderNo) {
       genBizOrderNo();
     }
   }
 
-  /** 商户变更时刷新应用与通道商户下拉 */
+  /** 商户变更: 刷新应用列表, 传值模式下重载通道商户候选 */
   function merchantChange() {
     form.appId = '';
     form.channelMchNo = '';
+    form.capability = '';
     mchAppOptions.value = [];
     channelMchNoOptions.value = [];
+    capabilityOptions.value = [];
     if (!form.mchNo) return;
-    // 应用列表
+    // 应用列表(路由模式使用)
     MchAppInfoApi.page({ mchNo: form.mchNo, size: 100 }).then(({ data }) => {
       mchAppOptions.value =
         data?.records?.map((item) => ({
@@ -98,15 +106,43 @@
           value: item.appId ?? '',
         })) ?? [];
     });
-    // 通道商户列表
-    ChannelMerchantApi.findAllByMchNo(form.mchNo).then(({ data }) => {
-      channelMchNoOptions.value =
-        data?.map((item) => ({
-          label: item.channelMerchantName
-            ? `${item.channelMerchantName} (${item.channelMchNo})`
-            : (item.channelMchNo ?? ''),
-          value: item.channelMchNo ?? '',
-        })) ?? [];
+    // 传值模式: 商户变更即加载通道商户候选(不依赖支付方式)
+    if (routeMode.value === 'direct') {
+      loadChannelMchCandidates(form.mchNo);
+    }
+  }
+
+  /** 通道商户变更: 重置能力并重载能力候选 */
+  function channelMchNoChange() {
+    form.capability = '';
+    capabilityOptions.value = [];
+    if (form.channelMchNo) {
+      loadCapabilityCandidates(form.channelMchNo);
+    }
+  }
+
+  /** 模式切换: 清空通道相关字段, 传值模式重载通道商户候选 */
+  function modeChange() {
+    form.channelMchNo = '';
+    form.capability = '';
+    channelMchNoOptions.value = [];
+    capabilityOptions.value = [];
+    if (routeMode.value === 'direct' && form.mchNo) {
+      loadChannelMchCandidates(form.mchNo);
+    }
+  }
+
+  /** 加载通道商户候选(商户全部启用通道商户) */
+  function loadChannelMchCandidates(mchNo: string) {
+    DevelopTradeApi.channelMchCandidates(mchNo).then(({ data }) => {
+      channelMchNoOptions.value = data ?? [];
+    });
+  }
+
+  /** 加载支付能力候选(按通道商户产品) */
+  function loadCapabilityCandidates(channelMchNo: string) {
+    DevelopTradeApi.capabilityCandidates(channelMchNo).then(({ data }) => {
+      capabilityOptions.value = data ?? [];
     });
   }
 
@@ -150,10 +186,24 @@
   }
 
   // ===== 实时请求预览 =====
-  /** 当前表单的 JSON 预览(剔除空值) */
+  /** 按当前模式组装提交参数(各模式只透传自身字段, product/method 由后端派生) */
+  function buildPayload(): PayParam {
+    const payload: PayParam = { ...form };
+    if (routeMode.value === 'route') {
+      // 路由模式: 不传通道商户/能力, 由路由引擎决定
+      payload.channelMchNo = '';
+      payload.capability = '';
+    } else {
+      // 传值模式: method 由后端从(通道商户, 能力)反推, 不透传
+      payload.method = '';
+    }
+    return payload;
+  }
+
+  /** 当前请求 JSON 预览(剔除空值) */
   const requestPreview = computed(() => {
     const cleaned: Record<string, any> = {};
-    for (const [k, v] of Object.entries(form)) {
+    for (const [k, v] of Object.entries(buildPayload())) {
       if (v !== '' && v != null) {
         cleaned[k] = v;
       }
@@ -170,7 +220,7 @@
     signPreviewLoading.value = true;
     try {
       const { data } = await DevelopTradeApi.sign({
-        param: form,
+        param: buildPayload(),
         privateKey: privateKey.value,
       });
       signPreview.signStr = data?.signStr ?? '';
@@ -202,7 +252,7 @@
     loading.value = true;
     try {
       const { data } = await DevelopTradeApi.pay({
-        param: form,
+        param: buildPayload(),
         privateKey: privateKey.value,
       });
       resultData.value = data ?? {};
@@ -223,7 +273,7 @@
       title: '',
       amount: 0.01,
       method: '',
-      product: '',
+      capability: '',
       description: '',
       openId: undefined,
       authCode: undefined,
@@ -231,8 +281,10 @@
       returnUrl: undefined,
       expiredTime: undefined,
     });
+    routeMode.value = 'route';
     mchAppOptions.value = [];
     channelMchNoOptions.value = [];
+    capabilityOptions.value = [];
     signPreview.signStr = '';
     signPreview.sign = '';
     genBizOrderNo();
@@ -322,6 +374,21 @@
                   </div>
                 </a-form-item>
 
+                <!-- 支付模式切换 -->
+                <a-form-item :label="$t('payment.develop.trade.mode.label')" name="routeMode">
+                  <a-radio-group v-model:value="routeMode" button-style="solid" @change="modeChange">
+                    <a-radio-button value="route">{{ $t('payment.develop.trade.mode.route') }}</a-radio-button>
+                    <a-radio-button value="direct">{{ $t('payment.develop.trade.mode.direct') }}</a-radio-button>
+                  </a-radio-group>
+                  <div class="mt-1 text-xs text-muted-foreground">
+                    {{
+                      routeMode === 'route'
+                        ? $t('payment.develop.trade.mode.routeDesc')
+                        : $t('payment.develop.trade.mode.directDesc')
+                    }}
+                  </div>
+                </a-form-item>
+
                 <a-row :gutter="16">
                   <a-col :span="8">
                     <a-form-item :label="$t('payment.develop.trade.field.mchNo')" name="mchNo" required>
@@ -336,7 +403,21 @@
                       />
                     </a-form-item>
                   </a-col>
-                  <a-col :span="8">
+                  <!-- 路由模式: 支付方式(必填, 经路由引擎匹配) -->
+                  <a-col v-if="routeMode === 'route'" :span="8">
+                    <a-form-item :label="$t('payment.develop.trade.field.method')" name="method" required>
+                      <a-select
+                        v-model:value="form.method"
+                        show-search
+                        :options="methodOptions"
+                        :placeholder="$t('payment.develop.trade.placeholder.method')"
+                        :filter-option="filterOption"
+                        allow-clear
+                      />
+                    </a-form-item>
+                  </a-col>
+                  <!-- 路由模式: 应用(可选, 决定使用哪个应用的路由策略) -->
+                  <a-col v-if="routeMode === 'route'" :span="8">
                     <a-form-item :label="$t('payment.develop.trade.field.appId')" name="appId">
                       <a-select
                         v-model:value="form.appId"
@@ -348,8 +429,13 @@
                       />
                     </a-form-item>
                   </a-col>
-                  <a-col :span="8">
-                    <a-form-item :label="$t('payment.develop.trade.field.channelMchNo')" name="channelMchNo">
+                  <!-- 传值模式: 通道商户(必填) -->
+                  <a-col v-if="routeMode === 'direct'" :span="8">
+                    <a-form-item
+                      :label="$t('payment.develop.trade.field.channelMchNo')"
+                      name="channelMchNo"
+                      required
+                    >
                       <a-select
                         v-model:value="form.channelMchNo"
                         show-search
@@ -357,26 +443,24 @@
                         :placeholder="$t('payment.develop.trade.field.channelMchNo')"
                         :filter-option="filterOption"
                         allow-clear
+                        @change="channelMchNoChange"
                       />
                     </a-form-item>
                   </a-col>
-                  <a-col :span="12">
-                    <a-form-item :label="$t('payment.develop.trade.field.product')" name="product">
+                  <!-- 传值模式: 支付能力(必填, 由通道商户+能力直接决定支付实现) -->
+                  <a-col v-if="routeMode === 'direct'" :span="8">
+                    <a-form-item
+                      :label="$t('payment.develop.trade.field.capability')"
+                      name="capability"
+                      required
+                    >
                       <a-select
-                        v-model:value="form.product"
+                        v-model:value="form.capability"
                         show-search
-                        :options="productOptions"
-                        :placeholder="$t('payment.develop.trade.field.product')"
+                        :options="capabilityOptions"
+                        :placeholder="$t('payment.develop.trade.placeholder.capability')"
                         :filter-option="filterOption"
                         allow-clear
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="12">
-                    <a-form-item :label="$t('payment.develop.trade.field.method')" name="method" required>
-                      <a-input
-                        v-model:value="form.method"
-                        :placeholder="$t('payment.develop.trade.placeholder.method')"
                       />
                     </a-form-item>
                   </a-col>

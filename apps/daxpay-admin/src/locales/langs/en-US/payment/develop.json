@@ -62,6 +62,13 @@
       "order": "Order Info",
       "preview": "Request Preview"
     },
+    "mode": {
+      "label": "Pay Mode",
+      "route": "Route Mode",
+      "direct": "Direct Mode",
+      "routeDesc": "Dynamically matched by merchant/method + app via routing engine",
+      "directDesc": "Directly decided by channel merchant + capability"
+    },
     "preview": {
       "title": "Request JSON",
       "signBtn": "Sign Preview",
@@ -74,6 +81,7 @@
       "channelMchNo": "Channel Merchant",
       "product": "Payment Product",
       "method": "Payment Method",
+      "capability": "Capability",
       "openId": "OpenID",
       "authCode": "Auth Code",
       "notifyUrl": "Async Notify URL",
@@ -84,7 +92,8 @@
       "description": "Description"
     },
     "placeholder": {
-      "method": "qr_code / jsapi / barcode / ...",
+      "method": "Select payment method",
+      "capability": "Select capability",
       "openId": "Required for WeChat jsapi/mini",
       "authCode": "Required for barcode pay",
       "notifyUrl": "https://...",

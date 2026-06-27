@@ -1,4 +1,5 @@
-import type { Result } from '#/types/web';
+import type { LabelValue, Result } from '#/types/web';
+import type { PayProviderMethod } from '#/api/payment/masterdata/provider.api';
 
 import { defHttp } from '#/api/request';
 
@@ -18,6 +19,33 @@ export const DevelopTradeApi = {
    */
   pay(data: DevelopParam): Promise<Result<DevelopPayResult>> {
     return defHttp.post({ url: '/admin/develop/trade/pay', data });
+  },
+
+  /**
+   * 已启用渠道支付方式目录(供调试页支付方式下拉)
+   */
+  methodDirectory(): Promise<Result<PayProviderMethod[]>> {
+    return defHttp.get({ url: '/admin/develop/trade/method-directory' });
+  },
+
+  /**
+   * 传值模式: 按商户号筛选通道商户候选
+   */
+  channelMchCandidates(mchNo: string): Promise<Result<LabelValue[]>> {
+    return defHttp.get({
+      url: '/admin/develop/trade/channel-mch-candidates',
+      params: { mchNo },
+    });
+  },
+
+  /**
+   * 传值模式: 按通道商户筛选支付能力候选
+   */
+  capabilityCandidates(channelMchNo: string): Promise<Result<LabelValue[]>> {
+    return defHttp.get({
+      url: '/admin/develop/trade/capability-candidates',
+      params: { channelMchNo },
+    });
   },
 };
 
@@ -47,8 +75,10 @@ export interface PayParam {
   amount: number;
   /** 支付产品编码, 为空时由路由自动选择 */
   product?: string;
-  /** 支付方式编码 */
-  method: string;
+  /** 支付方式编码(路由模式必填, 传值模式由后端从能力反推) */
+  method?: string;
+  /** 支付能力编码(传值模式输入, 路由模式由后端回填) */
+  capability?: string;
   /** 用户标识 OpenId(微信 jsapi/mini 场景) */
   openId?: string;
   /** 付款码(被扫支付) */

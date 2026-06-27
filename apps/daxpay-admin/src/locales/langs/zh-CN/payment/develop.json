@@ -62,6 +62,13 @@
       "order": "订单信息",
       "preview": "请求预览"
     },
+    "mode": {
+      "label": "支付模式",
+      "route": "路由模式",
+      "direct": "传值模式",
+      "routeDesc": "由商户/支付方式+应用经路由引擎动态匹配",
+      "directDesc": "由通道商户+支付能力直接决定支付实现"
+    },
     "preview": {
       "title": "请求参数 JSON",
       "signBtn": "生成签名预览",
@@ -74,6 +81,7 @@
       "channelMchNo": "通道商户",
       "product": "支付产品",
       "method": "支付方式",
+      "capability": "支付能力",
       "openId": "OpenID",
       "authCode": "付款码",
       "notifyUrl": "异步通知地址",
@@ -84,7 +92,8 @@
       "description": "支付描述"
     },
     "placeholder": {
-      "method": "qr_code / jsapi / barcode / ...",
+      "method": "请选择支付方式",
+      "capability": "请选择支付能力",
       "openId": "微信 jsapi/mini 场景必填",
       "authCode": "付款码支付必填",
       "notifyUrl": "https://...",
