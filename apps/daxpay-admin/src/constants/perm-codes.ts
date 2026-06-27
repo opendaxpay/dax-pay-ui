@@ -212,10 +212,11 @@ export const PermCodes = {
       VIEW: 'system:security_config:view',
       MANAGE: 'system:security_config:manage',
     },
-    /** 用户协议 menuCode=system:protocol（预留，待 Controller 实现） */
+    /** 用户协议 menuCode=system:protocol */
     Protocol: {
       VIEW: 'system:protocol:view',
       MANAGE: 'system:protocol:manage',
+      PUBLISH: 'system:protocol:publish',
     },
   },
 } as const;
