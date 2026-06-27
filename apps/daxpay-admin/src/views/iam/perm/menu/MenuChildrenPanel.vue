@@ -7,8 +7,6 @@
 
   import { $t, i18n } from '@vben/locales';
 
-  import { IconifyIcon } from '@vben-core/icons';
-
   import { PermCodes } from '#/constants/perm-codes';
   import { menuTypeColorMap, MenuTypeEnum, menuTypeI18nMap } from '#/enums/menuType';
   import { usePermission } from '#/hooks/usePermission';
@@ -209,35 +207,6 @@
   function canManagePermCode(row: Menu) {
     return ([MenuTypeEnum.MENU, MenuTypeEnum.SUBPAGE] as string[]).includes(row.menuType || '') && !!row.menuCode;
   }
-
-  /**
-   * 获取更多操作菜单配置
-   */
-  function getActionMenu(row: Menu) {
-    const items = [];
-    if (canManagePermCode(row) && hasPermission(PermCodes.Iam.PermMenu.MANAGE)) {
-      items.push({ key: 'managePermCode', label: $t('iam.menu.managePermCode') });
-    }
-    if (hasPermission(PermCodes.Iam.PermMenu.MANAGE)) {
-      items.push({ key: 'delete', label: $t('common.delete'), danger: true });
-    }
-
-    return {
-      items,
-      onClick: ({ key }: { key: string }) => {
-        switch (key) {
-          case 'delete': {
-            emits('delete', row);
-            break;
-          }
-          case 'managePermCode': {
-            emits('managePermCode', row);
-            break;
-          }
-        }
-      },
-    };
-  }
 </script>
 
 <template>
@@ -276,7 +245,14 @@
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
           <vxe-column field="titleCn" :title="$t('iam.menu.titleCn')" :min-width="140">
             <template #default="{ row }">
-              {{ getDisplayTitle(row) }}
+              <a
+                v-if="hasPermission(PermCodes.Iam.PermMenu.VIEW)"
+                href="javascript:"
+                class="vben-link"
+                @click="emits('view', row)"
+                >{{ getDisplayTitle(row) }}</a
+              >
+              <span v-else>{{ getDisplayTitle(row) }}</span>
             </template>
           </vxe-column>
           <vxe-column field="menuType" :title="$t('iam.menu.menuType')" :min-width="90" align="center">
@@ -295,14 +271,6 @@
                   <a-divider type="vertical" />
                 </template>
                 <a-button
-                  v-if="hasPermission(PermCodes.Iam.PermMenu.VIEW)"
-                  type="link"
-                  size="small"
-                  @click="emits('view', row)"
-                >
-                  {{ $t('common.view') }}
-                </a-button>
-                <a-button
                   v-if="hasPermission(PermCodes.Iam.PermMenu.MANAGE)"
                   type="link"
                   size="small"
@@ -310,12 +278,23 @@
                 >
                   {{ $t('common.edit') }}
                 </a-button>
-                <a-dropdown v-if="hasPermission(PermCodes.Iam.PermMenu.MANAGE)" :menu="getActionMenu(row)">
-                  <a-button type="link" size="small">
-                    {{ $t('iam.menu.more') }}
-                    <IconifyIcon icon="ant-design:down-outlined" class="inline" />
-                  </a-button>
-                </a-dropdown>
+                <a-button
+                  v-if="canManagePermCode(row) && hasPermission(PermCodes.Iam.PermMenu.MANAGE)"
+                  type="link"
+                  size="small"
+                  @click="emits('managePermCode', row)"
+                >
+                  {{ $t('iam.menu.managePermCode') }}
+                </a-button>
+                <a-button
+                  v-if="hasPermission(PermCodes.Iam.PermMenu.MANAGE)"
+                  type="link"
+                  size="small"
+                  danger
+                  @click="emits('delete', row)"
+                >
+                  {{ $t('common.delete') }}
+                </a-button>
               </a-space>
             </template>
           </vxe-column>

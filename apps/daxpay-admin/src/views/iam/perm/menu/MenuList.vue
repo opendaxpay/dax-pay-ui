@@ -9,16 +9,16 @@
 
   import { type Menu, MenuApi, PermCodeApi } from '#/api/iam/perm/menu.api';
   import { SplitPane } from '#/components/split-pane';
+  import { PermCodes } from '#/constants/perm-codes';
   import { clientCodeOptions } from '#/enums/clientCode';
   import { FormEditType } from '#/enums/formEditType';
   import { menuTypeColorMap, MenuTypeEnum, menuTypeI18nMap } from '#/enums/menuType';
-  import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
+  import { buildSkeletonTree, filterSkeletonTreeWithSubpages, flattenMenuMap } from './menu-tree.util';
   import MenuChildrenPanel from './MenuChildrenPanel.vue';
   import MenuEdit from './MenuEdit.vue';
-  import { buildSkeletonTree, filterSkeletonTreeWithSubpages, flattenMenuMap } from './menu-tree.util';
   import PermCodeManager from './PermCodeManager.vue';
 
   const { confirm, message } = useMessage();
@@ -78,9 +78,6 @@
     if (row.menuType && ([MenuTypeEnum.CATALOG, MenuTypeEnum.MENU] as string[]).includes(row.menuType)) {
       items.push({ key: 'addChild', label: $t('iam.menu.addChild') });
     }
-    if (canManagePermCode(row)) {
-      items.push({ key: 'managePermCode', label: $t('iam.menu.managePermCode') });
-    }
     items.push({ key: 'delete', label: $t('common.delete'), danger: true });
 
     return {
@@ -93,10 +90,6 @@
           }
           case 'delete': {
             handleDeleteConfirm(row);
-            break;
-          }
-          case 'managePermCode': {
-            handleManagePermCode(row);
             break;
           }
         }
@@ -391,11 +384,7 @@
                     <template #default="{ row }">
                       <IconifyIcon v-if="row.icon" :icon="row.icon" class="text-lg inline-block align-middle mr-2" />
                       <span>{{ getDisplayTitle(row) }}</span>
-                      <a-tag
-                        v-if="row.menuType === MenuTypeEnum.MENU && row.subpageCount"
-                        class="ml-2"
-                        color="blue"
-                      >
+                      <a-tag v-if="row.menuType === MenuTypeEnum.MENU && row.subpageCount" class="ml-2" color="blue">
                         {{ $t('iam.menu.subpageCount', { count: row.subpageCount }) }}
                       </a-tag>
                     </template>
@@ -410,7 +399,7 @@
                       </a-tag>
                     </template>
                   </vxe-column>
-                  <vxe-column fixed="right" :width="200" :show-overflow="false" :title="$t('common.operation')">
+                  <vxe-column fixed="right" :width="240" :show-overflow="false" :title="$t('common.operation')">
                     <template #default="{ row }">
                       <a-space :size="2">
                         <template #separator>
@@ -431,6 +420,14 @@
                           @click.stop="handleEdit(row)"
                         >
                           {{ $t('common.edit') }}
+                        </a-button>
+                        <a-button
+                          v-if="canManagePermCode(row) && hasPermission(PermCodes.Iam.PermMenu.MANAGE)"
+                          type="link"
+                          size="small"
+                          @click.stop="handleManagePermCode(row)"
+                        >
+                          {{ $t('iam.menu.managePermCode') }}
                         </a-button>
                         <a-dropdown
                           v-if="hasPermission(PermCodes.Iam.PermMenu.MANAGE)"
