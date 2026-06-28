@@ -4,12 +4,10 @@
   import { $t } from '@vben/locales';
 
   import { type LabelValue, PayRouteApi, type PayRouteSceneConfigItem } from '#/api/payment/route/pay-route.api';
-  import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
-  import { usePermission } from '#/hooks/usePermission';
-
   import { getProviderSvgUrl } from '#/views/payment/shared/payProviderDisplay';
   import { usePayProviderMethodDirectory } from '#/views/payment/shared/usePayProviderMethodDirectory';
+
   import { providerLabel } from '../shared/payRoute.labels';
 
   defineOptions({ name: 'PayRouteScenePanel' });
@@ -20,7 +18,6 @@
   }>();
 
   const { confirm, message } = useMessage();
-  const { hasPermission } = usePermission();
   const { loadDirectory, directoryByProviderCards } = usePayProviderMethodDirectory();
 
   // 场景模式内存行：提交项 + 派生 provider(目录维度，用于行定位与候选缓存键，不提交后端)
@@ -40,7 +37,8 @@
   const sceneRows = ref<SceneRow[]>([]);
   const sceneChannelMchOptionsMap = ref<Record<string, LabelValue[]>>({});
   const sceneCapabilityOptionsMap = ref<Record<string, LabelValue[]>>({});
-  const sceneConfigEditing = ref(false);
+  // 编辑态由父组件持有（v-model:editing），编辑/保存/取消按钮置于 a-tabs 标签行右侧
+  const editing = defineModel<boolean>('editing', { default: false });
 
   // 通道商户候选缓存键
   function channelMchOptionsKey(provider: string, method: string) {
@@ -236,12 +234,12 @@
   }
 
   function startSceneConfigEdit() {
-    sceneConfigEditing.value = true;
+    editing.value = true;
     ensureDirectoryRows();
   }
 
   async function doCancelSceneConfigEdit() {
-    sceneConfigEditing.value = false;
+    editing.value = false;
     await loadSceneConfig();
   }
 
@@ -257,7 +255,7 @@
   }
 
   function resetEditing() {
-    sceneConfigEditing.value = false;
+    editing.value = false;
   }
 
   /** 目录行是否已完整配置（通道商户与能力同时有值） */
@@ -300,7 +298,7 @@
         })),
     });
     message.success($t('common.operationSuccess'));
-    sceneConfigEditing.value = false;
+    editing.value = false;
     await loadSceneConfig();
   }
 
@@ -324,12 +322,15 @@
   defineExpose({
     reload,
     resetEditing,
+    startEdit: startSceneConfigEdit,
+    save: saveSceneConfig,
+    cancel: cancelSceneConfigEdit,
   });
 </script>
 
 <template>
-  <div>
-    <div v-for="card in directoryByProviderCards()" :key="card.code" class="vendor-card mb-4 rounded-xl border p-4">
+  <div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
+    <div v-for="card in directoryByProviderCards()" :key="card.code" class="vendor-card rounded-xl border p-4">
       <div class="mb-3 flex items-center gap-2 font-medium">
         <img :src="getProviderSvgUrl(card.code)" class="w-5 h-5" :alt="card.code" />
         {{ providerLabel(card.code) }}
@@ -349,7 +350,7 @@
         <div class="min-h-8 py-1.5 text-sm">
           {{ entry.methodLabel || entry.method }}
         </div>
-        <template v-if="!sceneConfigEditing">
+        <template v-if="!editing">
           <div class="min-h-8 rounded-md border border-border bg-muted/30 px-3 py-1.5 text-sm">
             {{ sceneChannelMchDisplay(entry.provider, entry.method) }}
           </div>
@@ -393,17 +394,6 @@
           />
         </template>
       </div>
-    </div>
-    <div v-if="hasPermission(PermCodes.Merchant.AppRoute.MANAGE)" class="mt-4 flex gap-2">
-      <a-button v-if="!sceneConfigEditing" type="primary" @click="startSceneConfigEdit">
-        {{ $t('common.edit') }}
-      </a-button>
-      <template v-else>
-        <a-button type="primary" @click="saveSceneConfig">
-          {{ $t('common.save') }}
-        </a-button>
-        <a-button @click="cancelSceneConfigEdit">{{ $t('common.cancel') }}</a-button>
-      </template>
     </div>
   </div>
 </template>

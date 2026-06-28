@@ -4,12 +4,10 @@
   import { $t } from '@vben/locales';
 
   import { PayRouteApi, type PayRouteBasicConfigResult } from '#/api/payment/route/pay-route.api';
-  import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
-  import { usePermission } from '#/hooks/usePermission';
+  import { getProviderSvgUrl } from '#/views/payment/shared/payProviderDisplay';
 
   import { ROUTE_PAY_PROVIDERS } from '../shared/payRoute.constants';
-  import { getProviderSvgUrl } from '#/views/payment/shared/payProviderDisplay';
   import { providerLabel } from '../shared/payRoute.labels';
 
   defineOptions({ name: 'PayRouteBasicPanel' });
@@ -20,11 +18,11 @@
   }>();
 
   const { confirm, message } = useMessage();
-  const { hasPermission } = usePermission();
 
   const basicConfigRows = ref<PayRouteBasicConfigResult[]>([]);
   const basicConfigMap = ref<Record<string, string | undefined>>({});
-  const basicConfigEditing = ref(false);
+  // 编辑态由父组件持有（v-model:editing），编辑/保存/取消按钮置于 a-tabs 标签行右侧
+  const editing = defineModel<boolean>('editing', { default: false });
 
   async function loadBasicConfig() {
     if (!props.appId) {
@@ -67,11 +65,11 @@
   }
 
   function startBasicConfigEdit() {
-    basicConfigEditing.value = true;
+    editing.value = true;
   }
 
   async function doCancelBasicConfigEdit() {
-    basicConfigEditing.value = false;
+    editing.value = false;
     await loadBasicConfig();
   }
 
@@ -87,7 +85,7 @@
   }
 
   function resetEditing() {
-    basicConfigEditing.value = false;
+    editing.value = false;
   }
 
   async function doSaveBasicConfig() {
@@ -99,7 +97,7 @@
       })),
     });
     message.success($t('common.operationSuccess'));
-    basicConfigEditing.value = false;
+    editing.value = false;
     await loadBasicConfig();
   }
 
@@ -120,12 +118,15 @@
   defineExpose({
     reload,
     resetEditing,
+    startEdit: startBasicConfigEdit,
+    save: saveBasicConfig,
+    cancel: cancelBasicConfigEdit,
   });
 </script>
 
 <template>
   <div class="py-2">
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       <div v-for="vendor in ROUTE_PAY_PROVIDERS" :key="vendor.code" class="vendor-card rounded-xl border p-4">
         <div class="mb-3 flex items-center gap-2">
           <img :src="getProviderSvgUrl(vendor.code)" class="w-6 h-6" :alt="vendor.code" />
@@ -135,10 +136,7 @@
           <div class="mb-1 text-xs text-muted-foreground">
             {{ $t('payment.merchant.route.route.channelMerchant') }}
           </div>
-          <div
-            v-if="!basicConfigEditing"
-            class="min-h-8 rounded-md border border-border bg-muted/30 px-3 py-1.5 text-sm"
-          >
+          <div v-if="!editing" class="min-h-8 rounded-md border border-border bg-muted/30 px-3 py-1.5 text-sm">
             {{ basicChannelMchDisplay(vendor.code) }}
           </div>
           <template v-else>
@@ -156,17 +154,6 @@
           </template>
         </div>
       </div>
-    </div>
-    <div v-if="hasPermission(PermCodes.Merchant.AppRoute.MANAGE)" class="mt-4 flex gap-2">
-      <a-button v-if="!basicConfigEditing" type="primary" @click="startBasicConfigEdit">
-        {{ $t('common.edit') }}
-      </a-button>
-      <template v-else>
-        <a-button type="primary" @click="saveBasicConfig">
-          {{ $t('common.save') }}
-        </a-button>
-        <a-button @click="cancelBasicConfigEdit">{{ $t('common.cancel') }}</a-button>
-      </template>
     </div>
   </div>
 </template>

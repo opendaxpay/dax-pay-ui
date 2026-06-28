@@ -10,8 +10,8 @@
 
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import { PayRouteApi, type PayRouteStrategyResult } from '#/api/payment/route/pay-route.api';
-  import { PermCodes } from '#/constants/perm-codes';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
+  import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
   import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
@@ -32,9 +32,9 @@
   const routeContext = useRequiredRouteQuery({
     keys: ['mchNo', 'appId'],
     messageKey: computed(() =>
-      !normalizeRouteQueryValue(route.query.mchNo)
-        ? 'payment.common.route.missingMchNo'
-        : 'payment.common.route.missingAppContext',
+      normalizeRouteQueryValue(route.query.mchNo)
+        ? 'payment.common.route.missingAppContext'
+        : 'payment.common.route.missingMchNo',
     ),
     fallbackPath: computed(() => {
       const no = normalizeRouteQueryValue(route.query.mchNo);
@@ -52,6 +52,23 @@
 
   const basicPanelRef = ref<InstanceType<typeof PayRouteBasicPanel> | null>(null);
   const scenePanelRef = ref<InstanceType<typeof PayRouteScenePanel> | null>(null);
+
+  // 编辑态由父组件统一持有，编辑/保存/取消按钮置于 a-tabs 标签行右侧
+  const editing = ref(false);
+  // 按 editMode 路由到当前可见 panel 的方法（两 panel 均已 expose startEdit/save/cancel）
+  const activePanel = computed(() => (editMode.value === 'basic' ? basicPanelRef.value : scenePanelRef.value));
+
+  function onStartEdit() {
+    activePanel.value?.startEdit();
+  }
+
+  function onSave() {
+    activePanel.value?.save();
+  }
+
+  function onCancel() {
+    activePanel.value?.cancel();
+  }
 
   // 策略库中当前生效的路由模式
   const effectiveMode = computed<PayRouteMode>(() => normalizePayRouteMode(strategy.value.mode));
@@ -136,11 +153,7 @@
   <RouteQueryMissingState
     v-if="!routeContext.isValid"
     :description="
-      $t(
-        !routeContext.query.mchNo
-          ? 'payment.common.route.missingMchNo'
-          : 'payment.common.route.missingAppContext',
-      )
+      $t(!routeContext.query.mchNo ? 'payment.common.route.missingMchNo' : 'payment.common.route.missingAppContext')
     "
     :back-text="$t('payment.merchant.workbench.workbench.backToList')"
     @back="routeContext.goFallback"
@@ -168,15 +181,30 @@
         />
 
         <a-tabs v-model:active-key="activeTab">
+          <template #rightExtra>
+            <div v-if="hasPermission(PermCodes.Merchant.AppRoute.MANAGE)" class="flex gap-2">
+              <a-button v-if="!editing" type="primary" @click="onStartEdit">
+                {{ $t('common.edit') }}
+              </a-button>
+              <template v-else>
+                <a-button type="primary" @click="onSave">
+                  {{ $t('common.save') }}
+                </a-button>
+                <a-button @click="onCancel">{{ $t('common.cancel') }}</a-button>
+              </template>
+            </div>
+          </template>
           <a-tab-pane key="config" :tab="$t('payment.merchant.route.route.configTab')" force-render>
             <PayRouteBasicPanel
               v-show="editMode === 'basic'"
               ref="basicPanelRef"
+              v-model:editing="editing"
               :app-id="appId"
             />
             <PayRouteScenePanel
               v-show="editMode === 'scene'"
               ref="scenePanelRef"
+              v-model:editing="editing"
               :app-id="appId"
             />
           </a-tab-pane>
