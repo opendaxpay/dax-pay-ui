@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import type { FormInstance, FormProps } from 'antdv-next';
 
-  import { reactive, ref } from 'vue';
+  import { nextTick, reactive, ref } from 'vue';
   import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
@@ -19,12 +19,25 @@
 
   const formRef = ref<FormInstance>();
 
+  // 用户协议/隐私政策"已同意"在 localStorage 中的键名（登录成功后持久化，下次免勾选）
+  const AGREEMENT_ACCEPTED_KEY = 'daxpay_admin_agreement_accepted';
+
+  // 协议未勾选时触发的抖动动画状态（校验失败时左右轻晃，提醒用户）
+  const shaking = ref(false);
+  let shakeTimer: ReturnType<typeof setTimeout> | undefined;
+
+  // 用户协议 / 隐私政策页面地址（新标签页打开，避免离开登录页丢失已输入内容）
+  const termsUrl = router.resolve({ name: 'AgreementTerms' }).href;
+  const privacyUrl = router.resolve({ name: 'AgreementPrivacy' }).href;
+
   // 表单数据
   const formData = reactive({
     account: '',
     password: '',
     // 国际化：验证码输入值
     captchaCode: '',
+    // 是否已阅读并同意用户协议和隐私政策（从本地恢复，登录成功后持久化）
+    agreed: localStorage.getItem(AGREEMENT_ACCEPTED_KEY) === 'true',
   });
 
   // 验证码相关状态
@@ -50,6 +63,14 @@
           return Promise.resolve();
         },
         trigger: 'blur',
+      },
+    ],
+    // 国际化：请先阅读并同意用户协议和隐私政策
+    agreed: [
+      {
+        validator: (_rule, value) =>
+          value ? Promise.resolve() : Promise.reject($t('authentication.agreeRequiredTip')),
+        trigger: 'change',
       },
     ],
   };
@@ -84,8 +105,14 @@
           captchaKey: needCaptcha.value ? captchaKey.value : undefined,
           captchaCode: needCaptcha.value ? formData.captchaCode : undefined,
         });
+        // 登录成功后持久化"已同意"，后续登录免勾选
+        localStorage.setItem(AGREEMENT_ACCEPTED_KEY, 'true');
       }
     } catch (error: any) {
+      // 表单校验失败：协议未勾选时触发协议行抖动
+      if (!formData.agreed) {
+        triggerShake();
+      }
       // 业务错误码由全局拦截器统一提示，此处仅处理验证码联动
       const code = error?.code;
       if (code === 40_001) {
@@ -97,6 +124,36 @@
         formData.captchaCode = '';
         await refreshCaptcha();
       }
+    }
+  }
+
+  /**
+   * 触发协议行抖动动画（连续校验失败可重复触发）
+   */
+  function triggerShake() {
+    if (shakeTimer) {
+      clearTimeout(shakeTimer);
+    }
+    // 先复位再触发，确保连续失败时动画能重新播放
+    shaking.value = false;
+    nextTick(() => {
+      shaking.value = true;
+      shakeTimer = setTimeout(() => (shaking.value = false), 400);
+    });
+  }
+
+  /**
+   * 协议勾选守卫：触发 agreed 表单校验，返回是否已同意
+   * 供三方面板登录前复用，提示与账号登录一致（红字+抖动）
+   */
+  async function ensureAgreement(): Promise<boolean> {
+    try {
+      await formRef.value?.validateFields(['agreed']);
+      return true;
+    } catch {
+      // 未同意时触发协议行抖动
+      triggerShake();
+      return false;
     }
   }
 
@@ -174,6 +231,19 @@
         </div>
       </a-form-item>
 
+      <!-- 国际化：我已阅读并同意《用户协议》和《隐私政策》 -->
+      <a-form-item name="agreed" class="agreement-item">
+        <a-checkbox v-model:checked="formData.agreed" :class="{ 'agreement-shake': shaking }">
+          <span>
+            {{ $t('authentication.agreePrefix') }}
+            <!-- 新标签页打开协议页，避免离开登录页丢失输入 -->
+            <a :href="termsUrl" target="_blank" @click.stop>{{ $t('authentication.termsOfService') }}</a>
+            {{ $t('authentication.and') }}
+            <a :href="privacyUrl" target="_blank" @click.stop>{{ $t('authentication.privacyPolicy') }}</a>
+          </span>
+        </a-checkbox>
+      </a-form-item>
+
       <a-button
         type="primary"
         html-type="submit"
@@ -200,6 +270,46 @@
       </a>
     </div>
 
-    <AuthThirdPartyPanel v-if="!authStore.twoFactorRequired" />
+    <AuthThirdPartyPanel v-if="!authStore.twoFactorRequired" :ensure-agreement="ensureAgreement" />
   </AuthPageCard>
 </template>
+
+<style scoped>
+  /* 协议勾选项：收紧下间距，使其与常规表单项视觉一致 */
+  .agreement-item {
+    margin-bottom: 8px;
+  }
+
+  /* 取消 control 默认 min-height，避免 checkbox 被撑高、错误提示偏远 */
+  .agreement-item :deep(.ant-form-item-control-input) {
+    min-height: auto;
+  }
+
+  /* 未勾选校验失败时，协议行左右轻晃提醒（曲线参考 vben-lock-shake） */
+  .agreement-shake {
+    animation: login-agree-shake 0.4s ease-in-out;
+  }
+
+  @keyframes login-agree-shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+
+    20% {
+      transform: translateX(-8px);
+    }
+
+    40% {
+      transform: translateX(8px);
+    }
+
+    60% {
+      transform: translateX(-6px);
+    }
+
+    80% {
+      transform: translateX(6px);
+    }
+  }
+</style>

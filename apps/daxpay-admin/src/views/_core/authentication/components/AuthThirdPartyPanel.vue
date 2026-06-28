@@ -11,12 +11,16 @@
   const props = withDefaults(defineProps<Props>(), {
     showDivider: true,
     mode: 'LOGIN',
+    // 登录前的协议勾选守卫（触发调用方表单校验，返回是否已同意）
+    ensureAgreement: undefined,
   });
 
   interface Props {
     showDivider?: boolean;
     // 授权场景: LOGIN=未登录直接登录, BIND=已登录绑定
     mode?: 'BIND' | 'LOGIN';
+    // 登录前的协议勾选守卫（触发调用方表单校验，返回是否已同意）
+    ensureAgreement?: () => Promise<boolean>;
   }
 
   // 已启用的第三方平台列表(由后端配置驱动)
@@ -34,6 +38,11 @@
    * 点击三方图标, 获取授权地址并跳转
    */
   async function handleSocialLogin(source: string) {
+    // 仅登录场景校验协议勾选，提示由父表单红字显示（绑定场景不校验）
+    if (props.mode === 'LOGIN' && props.ensureAgreement) {
+      const ok = await props.ensureAgreement();
+      if (!ok) return;
+    }
     const { data: url } = await SocialApi.render(source, 'admin', props.mode);
     if (url) {
       // 跳转到第三方授权页, 授权后由后端回调处理并重定向回前端 /oauth-callback

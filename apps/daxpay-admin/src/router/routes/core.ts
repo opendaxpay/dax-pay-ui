@@ -122,6 +122,28 @@ const coreRoutes: RouteRecordRaw[] = [
           hideInMenu: true,
         },
       },
+      // 国际化：用户协议（公开页，登录前可访问）
+      {
+        name: 'AgreementTerms',
+        path: 'agreement/terms',
+        component: () => import('#/views/_core/authentication/agreement-terms.vue'),
+        meta: {
+          // 用户协议
+          title: $t('authentication.termsTitle'),
+          hideInMenu: true,
+        },
+      },
+      // 国际化：隐私政策（公开页，登录前可访问）
+      {
+        name: 'AgreementPrivacy',
+        path: 'agreement/privacy',
+        component: () => import('#/views/_core/authentication/agreement-privacy.vue'),
+        meta: {
+          // 隐私政策
+          title: $t('authentication.privacyTitle'),
+          hideInMenu: true,
+        },
+      },
     ],
   },
   // 第三方绑定回调（独立路由，弹窗模式）
