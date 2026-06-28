@@ -1,0 +1,52 @@
+{
+  "title": "Analytics",
+  "subtitle": "{start} to {end} · {days} days total",
+  "customRange": "Custom Range",
+  "timeRange": {
+    "last7days": "7D",
+    "last30days": "30D",
+    "thisMonth": "This Month",
+    "custom": "Custom"
+  },
+  "overview": {
+    "totalAmount": "Total Amount",
+    "totalOrders": "Total Orders",
+    "avgAmount": "Avg Amount",
+    "successRate": "Success Rate",
+    "refundAmount": "Refund Amount",
+    "refundRate": "Refund Rate",
+    "chainRatio": "MoM"
+  },
+  "tradeTrend": {
+    "title": "Trade Trend",
+    "amount": "Amount",
+    "orders": "Orders",
+    "avgAmount": "Avg Amount"
+  },
+  "payMethod": {
+    "title": "Payment Channel"
+  },
+  "channelSuccess": {
+    "title": "Channel Success Rate"
+  },
+  "hourlyDist": {
+    "title": "Hourly Distribution"
+  },
+  "amountRange": {
+    "title": "Amount Range"
+  },
+  "channelVolume": {
+    "title": "Channel Volume"
+  },
+  "refundTrend": {
+    "title": "Refund Trend"
+  },
+  "merchantRank": {
+    "title": "Merchant Ranking",
+    "rank": "Rank",
+    "merchant": "Merchant",
+    "amount": "Amount",
+    "orders": "Orders",
+    "proportion": "Share"
+  }
+}

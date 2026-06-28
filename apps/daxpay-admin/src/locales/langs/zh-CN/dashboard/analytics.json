@@ -1,0 +1,52 @@
+{
+  "title": "数据分析",
+  "subtitle": "{start} 至 {end} · 共 {days} 天",
+  "customRange": "自定义范围",
+  "timeRange": {
+    "last7days": "近7天",
+    "last30days": "近30天",
+    "thisMonth": "本月",
+    "custom": "自定义"
+  },
+  "overview": {
+    "totalAmount": "交易总额",
+    "totalOrders": "交易笔数",
+    "avgAmount": "客单价",
+    "successRate": "支付成功率",
+    "refundAmount": "退款金额",
+    "refundRate": "退款率",
+    "chainRatio": "环比"
+  },
+  "tradeTrend": {
+    "title": "交易趋势",
+    "amount": "交易额",
+    "orders": "交易笔数",
+    "avgAmount": "客单价"
+  },
+  "payMethod": {
+    "title": "支付渠道占比"
+  },
+  "channelSuccess": {
+    "title": "渠道成功率"
+  },
+  "hourlyDist": {
+    "title": "24小时交易分布"
+  },
+  "amountRange": {
+    "title": "单笔金额区间"
+  },
+  "channelVolume": {
+    "title": "渠道交易量"
+  },
+  "refundTrend": {
+    "title": "退款趋势"
+  },
+  "merchantRank": {
+    "title": "商户交易额排名",
+    "rank": "排名",
+    "merchant": "商户",
+    "amount": "交易额",
+    "orders": "笔数",
+    "proportion": "占比"
+  }
+}
