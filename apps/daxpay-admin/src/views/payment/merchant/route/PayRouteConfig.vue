@@ -91,9 +91,6 @@
     loading.value = true;
     const { data: st } = await PayRouteApi.getOrInitStrategy(appId.value);
     strategy.value = st || {};
-    if (strategy.value.mode === 'simple') {
-      strategy.value.mode = 'scene';
-    }
     await basicPanelRef.value?.reload();
     // 仅生效模式为场景时预加载批量候选，避免基础模式白打 batch
     if (normalizePayRouteMode(strategy.value.mode) === 'scene') {

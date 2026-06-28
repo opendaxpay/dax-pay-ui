@@ -8,23 +8,17 @@
     "activeModeTag": "生效中",
     "modeBasic": "基础模式",
     "modeScene": "场景模式",
-    "basicProduct": "支付产品",
     "payCapability": "支付能力",
     "payCapabilityPlaceholder": "请选择支付能力",
-    "sceneProductCapabilityPairHint": "支付产品与支付能力须同时选择或同时留空，不可只填其中一项",
     "sceneSaveConfirm": "确定要保存场景模式路由配置吗？保存后将覆盖当前按支付方式映射的通道商户与能力。",
-    "basicProductPlaceholder": "请选择支付产品",
     "basicProductNotSelected": "未选择",
-    "basicNoProductNotFound": "暂无可选支付产品",
     "channelMerchant": "通道商户",
     "channelMerchantPlaceholder": "请选择通道商户",
     "channelMerchantNotFound": "暂无可选通道商户",
     "sceneChannelMchCapabilityPairHint": "通道商户与支付能力须同时选择或同时留空，不可只填其中一项",
     "basicSaveConfirm": "确定要保存基础模式路由配置吗？保存后将覆盖各支付品牌对应的默认支付产品。",
-    "sceneConfigTableTerminal": "终端场景",
     "sceneRouteNotSelected": "未选择",
     "configTab": "路由配置",
-    "channel": "支付通道",
     "method": "支付方式",
     "missingAppContext": "请从应用管理进入通道路由配置",
     "providers": {
@@ -35,14 +29,6 @@
       "visa": "Visa",
       "mastercard": "万事达",
       "douyin": "抖音支付"
-    },
-    "scenes": {
-      "pc": "PC网页",
-      "h5": "H5移动端",
-      "app": "APP",
-      "mini": "小程序",
-      "qrcode": "扫码支付",
-      "barcode": "付款码"
     }
   }
 }

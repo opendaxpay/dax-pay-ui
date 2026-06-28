@@ -8,23 +8,17 @@
     "activeModeTag": "Active",
     "modeBasic": "Basic",
     "modeScene": "Scene",
-    "basicProduct": "Payment product",
     "payCapability": "Payment capability",
     "payCapabilityPlaceholder": "Select a capability",
-    "sceneProductCapabilityPairHint": "Select both payment product and capability, or leave both empty; partial selection is not allowed",
     "sceneSaveConfirm": "Save scene mode routing configuration? This will overwrite the current channel merchant and capability mapping per pay method.",
-    "basicProductPlaceholder": "Select a product",
     "basicProductNotSelected": "Not selected",
-    "basicNoProductNotFound": "No payment products available",
     "channelMerchant": "Channel merchant",
     "channelMerchantPlaceholder": "Select a channel merchant",
     "channelMerchantNotFound": "No channel merchants available",
     "sceneChannelMchCapabilityPairHint": "Select both channel merchant and capability, or leave both empty; partial selection is not allowed",
     "basicSaveConfirm": "Save basic mode routing configuration? This will overwrite the default payment product per provider.",
-    "sceneConfigTableTerminal": "Terminal scene",
     "sceneRouteNotSelected": "Not selected",
     "configTab": "Routing",
-    "channel": "Channel",
     "method": "Pay Method",
     "missingAppContext": "Open channel routing from App Management",
     "providers": {
@@ -35,14 +29,6 @@
       "visa": "Visa",
       "mastercard": "Mastercard",
       "douyin": "Douyin Pay"
-    },
-    "scenes": {
-      "pc": "PC Web",
-      "h5": "H5",
-      "app": "APP",
-      "mini": "Mini Program",
-      "qrcode": "QR Code",
-      "barcode": "Barcode"
     }
   }
 }

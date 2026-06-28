@@ -74,22 +74,17 @@ export const PayRouteApi = {
   saveBasicBatch(data: PayRouteBasicConfigBatchParam): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/merchant/pay-route/basic-config/save-batch', data });
   },
-
 };
 
 export interface PayRouteStrategyResult extends BaseEntity {
   appId?: string;
   mchNo?: string;
   mode?: string;
-  enable?: boolean;
-  name?: string;
 }
 
 export interface PayRouteStrategyParam {
   appId: string;
   mode?: string;
-  enable?: boolean;
-  name?: string;
 }
 
 export interface PayRouteSceneConfigResult extends BaseEntity {

@@ -17,10 +17,7 @@ export function modeDisplayName(mode: PayRouteMode) {
   return $t('payment.merchant.route.route.modeScene');
 }
 
-/** 规范化路由模式（兼容历史 simple → scene） */
+/** 规范化路由模式 */
 export function normalizePayRouteMode(mode?: string): PayRouteMode {
-  if (!mode || mode === 'simple') {
-    return 'scene';
-  }
-  return mode as PayRouteMode;
+  return mode === 'basic' ? 'basic' : 'scene';
 }
