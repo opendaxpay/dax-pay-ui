@@ -33,7 +33,8 @@
           <span v-if="item.suffix" class="ml-0.5 text-base">{{ item.suffix }}</span>
         </div>
         <div class="mt-1 flex items-center text-xs">
-          <span :class="item.chainRatio >= 0 ? 'text-emerald-500' : 'text-red-500'">
+          <!-- 涨跌色遵循中国惯例：涨红跌绿（西方为涨绿跌红） -->
+          <span :class="item.chainRatio >= 0 ? 'text-red-500' : 'text-emerald-500'">
             {{ item.chainRatio >= 0 ? '↑' : '↓' }} {{ Math.abs(item.chainRatio) }}%
           </span>
           <span class="text-foreground/40 ml-1">{{ $t('dashboard.analytics.overview.chainRatio') }}</span>
