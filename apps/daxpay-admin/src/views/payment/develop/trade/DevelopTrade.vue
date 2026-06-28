@@ -16,7 +16,7 @@
 
   defineOptions({ name: 'DevelopTrade' });
 
-  const { message } = useMessage();
+  const { message, confirm } = useMessage();
 
   // 私钥在 localStorage 中的键名
   const PRIVATE_KEY_STORAGE_KEY = 'daxpay_dev_private_key';
@@ -152,14 +152,6 @@
   }
 
   // ===== 私钥相关 =====
-  /** 私钥脱敏展示(前6后4) */
-  const maskedPrivateKey = computed(() => {
-    const key = privateKey.value;
-    if (!key) return '';
-    if (key.length <= 12) return key;
-    return `${key.slice(0, 6)}……${key.slice(-4)}`;
-  });
-
   /** 打开私钥设置弹窗 */
   function showPrivateKeyModal() {
     privateKeyInput.value = privateKey.value;
@@ -180,9 +172,15 @@
 
   /** 清除私钥 */
   function clearPrivateKey() {
-    privateKey.value = '';
-    localStorage.removeItem(PRIVATE_KEY_STORAGE_KEY);
-    message.success($t('payment.develop.trade.privateKey.clearedTip'));
+    confirm({
+      title: $t('payment.develop.trade.privateKey.clearConfirmTitle'),
+      content: $t('payment.develop.trade.privateKey.clearConfirmContent'),
+      onOk() {
+        privateKey.value = '';
+        localStorage.removeItem(PRIVATE_KEY_STORAGE_KEY);
+        message.success($t('payment.develop.trade.privateKey.clearedTip'));
+      },
+    });
   }
 
   // ===== 实时请求预览 =====
@@ -355,13 +353,7 @@
                       {{ $t('payment.develop.trade.privateKey.setTag') }}
                     </a-tag>
                     <a-tag v-else color="default">{{ $t('payment.develop.trade.privateKey.unsetTag') }}</a-tag>
-                    <span
-                      v-if="privateKey"
-                      class="monospace flex-1 truncate text-xs text-muted-foreground"
-                      :title="privateKey"
-                    >
-                      {{ maskedPrivateKey }}
-                    </span>
+                    <span v-if="privateKey" class="text-xs text-muted-foreground">{{ $t('payment.develop.trade.privateKey.setLabel') }}</span>
                     <div class="flex shrink-0 gap-1">
                       <a-button size="small" type="primary" @click="showPrivateKeyModal">
                         <template #icon><IconifyIcon icon="ant-design:key-outlined" /></template>
@@ -403,19 +395,6 @@
                       />
                     </a-form-item>
                   </a-col>
-                  <!-- 路由模式: 支付方式(必填, 经路由引擎匹配) -->
-                  <a-col v-if="routeMode === 'route'" :span="8">
-                    <a-form-item :label="$t('payment.develop.trade.field.method')" name="method" required>
-                      <a-select
-                        v-model:value="form.method"
-                        show-search
-                        :options="methodOptions"
-                        :placeholder="$t('payment.develop.trade.placeholder.method')"
-                        :filter-option="filterOption"
-                        allow-clear
-                      />
-                    </a-form-item>
-                  </a-col>
                   <!-- 路由模式: 应用(可选, 决定使用哪个应用的路由策略) -->
                   <a-col v-if="routeMode === 'route'" :span="8">
                     <a-form-item :label="$t('payment.develop.trade.field.appId')" name="appId">
@@ -424,6 +403,19 @@
                         show-search
                         :options="mchAppOptions"
                         :placeholder="$t('payment.develop.trade.field.appId')"
+                        :filter-option="filterOption"
+                        allow-clear
+                      />
+                    </a-form-item>
+                  </a-col>
+                  <!-- 路由模式: 支付方式(必填, 经路由引擎匹配) -->
+                  <a-col v-if="routeMode === 'route'" :span="8">
+                    <a-form-item :label="$t('payment.develop.trade.field.method')" name="method" required>
+                      <a-select
+                        v-model:value="form.method"
+                        show-search
+                        :options="methodOptions"
+                        :placeholder="$t('payment.develop.trade.placeholder.method')"
                         :filter-option="filterOption"
                         allow-clear
                       />

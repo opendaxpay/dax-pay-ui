@@ -115,7 +115,10 @@
       "savedTip": "Private key saved",
       "clearedTip": "Private key cleared",
       "setTag": "Set",
-      "unsetTag": "Not Set"
+      "setLabel": "Merchant private key set",
+      "unsetTag": "Not Set",
+      "clearConfirmTitle": "Confirm Clear",
+      "clearConfirmContent": "Are you sure you want to clear the merchant private key? It will need to be re-entered."
     },
     "result": {
       "modalTitle": "Payment Result",

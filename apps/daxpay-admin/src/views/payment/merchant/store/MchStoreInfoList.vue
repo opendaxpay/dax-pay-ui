@@ -4,10 +4,14 @@
   import type { Region } from '#/api/core/region.api';
 
   import { computed, onMounted, ref } from 'vue';
+  import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
+  import { IconifyIcon } from '@vben-core/icons';
+
   import { ChinaRegionApi } from '#/api/core/region.api';
+  import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import { MchStoreInfoApi, type MchStoreInfoResult } from '#/api/payment/merchant/store.api';
   import { BQuery, type QueryField } from '#/components/query';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
@@ -20,6 +24,8 @@
 
   defineOptions({ name: 'MchStoreInfoList' });
 
+  const router = useRouter();
+
   // 商户号从路由 query 获取
   const routeContext = useRequiredRouteQuery({
     keys: ['mchNo'],
@@ -30,6 +36,8 @@
   const { hasPermission } = usePermission();
 
   const mchNo = computed(() => routeContext.query.value.mchNo);
+  // 商户信息（用于标题展示商户名称）
+  const merchantInfo = ref<MerchantInfo>({});
 
   const loading = ref(false);
   const xTable = ref<VxeTableInstance>();
@@ -160,8 +168,32 @@
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
     // 国际化：加载行政区划映射用于地址反查
     loadRegionMap();
+    // 加载商户信息用于标题展示
+    loadMerchantInfo();
     queryPage();
   });
+
+  /**
+   * 返回商户工作台
+   */
+  function handleBack() {
+    router.push({
+      path: '/payment/merchant/manage',
+      query: { mchNo: mchNo.value },
+    });
+  }
+
+  /**
+   * 加载商户信息
+   */
+  function loadMerchantInfo() {
+    if (!mchNo.value) return;
+    MerchantApi.findByMchNo(mchNo.value).then(({ data }) => {
+      if (data) {
+        merchantInfo.value = data;
+      }
+    });
+  }
 
   function handleAdd() {
     storeEditRef.value?.show(mchNo.value!);
@@ -203,6 +235,22 @@
   />
   <div v-else class="m-3 p-3 bg-background rounded-lg list-page-compact">
     <a-card>
+      <template #title>
+        <div class="flex items-center gap-2">
+          <!-- 国际化：门店管理 -->
+          <a-button
+            type="text"
+            class="flex items-center justify-center rounded-full hover:bg-accent"
+            @click="handleBack"
+          >
+            <template #icon>
+              <IconifyIcon icon="ant-design:arrow-left-outlined" class="text-lg" />
+            </template>
+          </a-button>
+          <span class="text-lg font-bold text-foreground">{{ $t('payment.merchant.store.store.title') }}</span>
+          <span v-if="merchantInfo.mchName" class="text-sm text-muted-foreground">({{ merchantInfo.mchName }})</span>
+        </div>
+      </template>
       <BQuery :fields="queryFields" :query-params="queryForm" @query="queryPage" @reset="resetQuery" />
     </a-card>
 

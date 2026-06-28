@@ -115,7 +115,10 @@
       "savedTip": "私钥保存成功",
       "clearedTip": "私钥已清除",
       "setTag": "已设置",
-      "unsetTag": "未设置"
+      "setLabel": "已设置商户私钥",
+      "unsetTag": "未设置",
+      "clearConfirmTitle": "确认清除",
+      "clearConfirmContent": "确定要清除已设置的商户私钥吗？清除后需重新输入。"
     },
     "result": {
       "modalTitle": "支付结果",

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import type { PayRouteMode } from '../shared/payRoute.constants';
+  import { PAY_ROUTE_MODE, type PayRouteMode } from '../shared/payRoute.constants';
 
   import { $t } from '@vben/locales';
 
@@ -30,18 +30,18 @@
   <div class="mb-4 flex flex-wrap items-center gap-4">
     <span>{{ $t('payment.merchant.route.route.editModeLabel') }}</span>
     <a-radio-group v-model:value="editMode" button-style="solid">
-      <a-radio value="basic">
+      <a-radio :value="PAY_ROUTE_MODE.BASIC">
         <span class="inline-flex items-center gap-1">
           {{ $t('payment.merchant.route.route.modeBasic') }}
-          <a-tag v-if="effectiveMode === 'basic'" color="processing" class="!m-0 !text-xs">
+          <a-tag v-if="effectiveMode === PAY_ROUTE_MODE.BASIC" color="processing" class="!m-0 !text-xs">
             {{ $t('payment.merchant.route.route.activeModeTag') }}
           </a-tag>
         </span>
       </a-radio>
-      <a-radio value="scene">
+      <a-radio :value="PAY_ROUTE_MODE.SCENE">
         <span class="inline-flex items-center gap-1">
           {{ $t('payment.merchant.route.route.modeScene') }}
-          <a-tag v-if="effectiveMode === 'scene'" color="processing" class="!m-0 !text-xs">
+          <a-tag v-if="effectiveMode === PAY_ROUTE_MODE.SCENE" color="processing" class="!m-0 !text-xs">
             {{ $t('payment.merchant.route.route.activeModeTag') }}
           </a-tag>
         </span>

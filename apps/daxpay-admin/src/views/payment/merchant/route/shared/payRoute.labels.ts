@@ -1,4 +1,4 @@
-import type { PayRouteMode } from './payRoute.constants';
+import { PAY_ROUTE_MODE, type PayRouteMode } from './payRoute.constants';
 
 import { $t } from '@vben/locales';
 
@@ -11,7 +11,7 @@ export function providerLabel(code: string) {
 
 /** 国际化：路由模式展示名 */
 export function modeDisplayName(mode: PayRouteMode) {
-  if (mode === 'basic') {
+  if (mode === PAY_ROUTE_MODE.BASIC) {
     return $t('payment.merchant.route.route.modeBasic');
   }
   return $t('payment.merchant.route.route.modeScene');
@@ -19,5 +19,5 @@ export function modeDisplayName(mode: PayRouteMode) {
 
 /** 规范化路由模式 */
 export function normalizePayRouteMode(mode?: string): PayRouteMode {
-  return mode === 'basic' ? 'basic' : 'scene';
+  return mode === PAY_ROUTE_MODE.BASIC ? PAY_ROUTE_MODE.BASIC : PAY_ROUTE_MODE.SCENE;
 }

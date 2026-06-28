@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import type { PayRouteMode } from './shared/payRoute.constants';
+  import { PAY_ROUTE_MODE, type PayRouteMode } from './shared/payRoute.constants';
 
   import { computed, nextTick, onMounted, ref, watch } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
@@ -48,7 +48,7 @@
   const strategy = ref<PayRouteStrategyResult>({});
   const loading = ref(false);
   const activeTab = ref('config');
-  const editMode = ref<PayRouteMode>('basic');
+  const editMode = ref<PayRouteMode>(PAY_ROUTE_MODE.BASIC);
 
   const basicPanelRef = ref<InstanceType<typeof PayRouteBasicPanel> | null>(null);
   const scenePanelRef = ref<InstanceType<typeof PayRouteScenePanel> | null>(null);
@@ -56,7 +56,7 @@
   // 编辑态由父组件统一持有，编辑/保存/取消按钮置于 a-tabs 标签行右侧
   const editing = ref(false);
   // 按 editMode 路由到当前可见 panel 的方法（两 panel 均已 expose startEdit/save/cancel）
-  const activePanel = computed(() => (editMode.value === 'basic' ? basicPanelRef.value : scenePanelRef.value));
+  const activePanel = computed(() => (editMode.value === PAY_ROUTE_MODE.BASIC ? basicPanelRef.value : scenePanelRef.value));
 
   function onStartEdit() {
     activePanel.value?.startEdit();
@@ -93,7 +93,7 @@
     strategy.value = st || {};
     await basicPanelRef.value?.reload();
     // 仅生效模式为场景时预加载批量候选，避免基础模式白打 batch
-    if (normalizePayRouteMode(strategy.value.mode) === 'scene') {
+    if (normalizePayRouteMode(strategy.value.mode) === PAY_ROUTE_MODE.SCENE) {
       await scenePanelRef.value?.reload();
     }
     loading.value = false;
@@ -107,7 +107,7 @@
     basicPanelRef.value?.resetEditing();
     scenePanelRef.value?.resetEditing();
     // 切换到场景编辑时加载配置（含批量候选）
-    if (mode === 'scene' && prev !== 'scene') {
+    if (mode === PAY_ROUTE_MODE.SCENE && prev !== PAY_ROUTE_MODE.SCENE) {
       scenePanelRef.value?.reload();
     }
   });
@@ -193,13 +193,13 @@
           </template>
           <a-tab-pane key="config" :tab="$t('payment.merchant.route.route.configTab')" force-render>
             <PayRouteBasicPanel
-              v-show="editMode === 'basic'"
+              v-show="editMode === PAY_ROUTE_MODE.BASIC"
               ref="basicPanelRef"
               v-model:editing="editing"
               :app-id="appId"
             />
             <PayRouteScenePanel
-              v-show="editMode === 'scene'"
+              v-show="editMode === PAY_ROUTE_MODE.SCENE"
               ref="scenePanelRef"
               v-model:editing="editing"
               :app-id="appId"

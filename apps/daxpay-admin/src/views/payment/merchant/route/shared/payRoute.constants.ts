@@ -1,5 +1,10 @@
 // 通道路由配置模式（与后端 PayRouteModeEnum 对齐）
-export type PayRouteMode = 'basic' | 'scene';
+export const PAY_ROUTE_MODE = {
+  BASIC: 'basic',
+  SCENE: 'scene',
+} as const;
+
+export type PayRouteMode = (typeof PAY_ROUTE_MODE)[keyof typeof PAY_ROUTE_MODE];
 
 import { PAY_PROVIDER_DISPLAY } from '#/views/payment/shared/payProviderDisplay';
 
