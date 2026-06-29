@@ -16,7 +16,7 @@
     "channelMerchantPlaceholder": "Select a channel merchant",
     "channelMerchantNotFound": "No channel merchants available",
     "sceneChannelMchCapabilityPairHint": "Select both channel merchant and capability, or leave both empty; partial selection is not allowed",
-    "basicSaveConfirm": "Save basic mode routing configuration? This will overwrite the default payment product per provider.",
+    "basicSaveConfirm": "Save basic mode routing configuration? This will overwrite the default channel merchant per payment channel.",
     "sceneRouteNotSelected": "Not selected",
     "configTab": "Routing",
     "method": "Pay Method",

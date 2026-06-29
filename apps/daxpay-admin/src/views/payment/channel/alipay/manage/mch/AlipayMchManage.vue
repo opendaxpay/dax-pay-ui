@@ -12,6 +12,8 @@
 
   import AlipayChannelMerchantBasicInfo from './AlipayChannelMerchantBasicInfo.vue';
 
+  import AlipayMchAppCapability from './AlipayMchAppCapability.vue';
+
   defineOptions({ name: 'AlipayMchManage' });
 
   const router = useRouter();
@@ -20,6 +22,7 @@
   const channelMchNo = ref('');
   const channelMerchant = ref<ChannelMerchantResult>({});
   const basicInfoRef = ref<InstanceType<typeof AlipayChannelMerchantBasicInfo>>();
+  const capabilityRef = ref<InstanceType<typeof AlipayMchAppCapability>>();
   /** 功能卡片配置 */
   const functionCards = computed(() => [
     {
@@ -49,6 +52,14 @@
           // 国际化：管理支付宝通道商户应用
           description: $t('payment.channel.alipayMchManage.cardMchAppDesc'),
           route: '/payment/merchant/channel-merchant/alipay-app-manage',
+        },
+        {
+          key: 'capabilityBinding',
+          // 国际化：能力应用绑定
+          title: $t('payment.channel.alipayMchManage.cardCapabilityBinding'),
+          icon: 'ant-design:api-outlined',
+          // 国际化：配置各支付能力使用的应用
+          description: $t('payment.channel.alipayMchManage.cardCapabilityBindingDesc'),
         },
       ],
     },
@@ -83,6 +94,10 @@
   function handleCardClick(card: { key: string; route?: string }) {
     if (card.key === 'basicInfo') {
       basicInfoRef.value?.open();
+      return;
+    }
+    if (card.key === 'capabilityBinding') {
+      capabilityRef.value?.show(mchNo.value, channelMchNo.value);
       return;
     }
     if (card.route) {
@@ -155,6 +170,8 @@
       :channel-mch-no="channelMchNo"
       :channel-merchant="channelMerchant"
     />
+
+    <AlipayMchAppCapability ref="capabilityRef" />
   </div>
 </template>
 

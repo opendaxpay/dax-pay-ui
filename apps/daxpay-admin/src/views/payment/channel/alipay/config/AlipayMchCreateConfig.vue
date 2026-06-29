@@ -29,7 +29,7 @@ const channelCode = ref('');
 const formRef = ref();
 const form = ref({
   channelMerchantName: '',
-  appId: undefined as string | undefined,
+  isvAppId: undefined as string | undefined,
   alipayUserId: '',
   appAuthToken: '',
 });
@@ -64,7 +64,7 @@ const productDisplayName = computed(() => {
 
 const rules = computed(() => ({
   channelMerchantName: [{ required: true, message: $t('payment.merchant.channelMerchant.channelMerchantNameRequired') }],
-  appId: [{ required: true, message: $t('payment.merchant.channelMerchant.alipayIsvAppRequired') }],
+  isvAppId: [{ required: true, message: $t('payment.merchant.channelMerchant.alipayIsvAppRequired') }],
   alipayUserId: [{ required: true, message: $t('payment.merchant.channelMerchant.alipaySubMerchantNoRequired') }],
   appAuthToken: [{ required: false }],
 }));
@@ -142,7 +142,7 @@ function handleSubmit() {
 function resetForm() {
   form.value = {
     channelMerchantName: '',
-    appId: undefined,
+    isvAppId: undefined,
     alipayUserId: '',
     appAuthToken: '',
   };
@@ -157,6 +157,7 @@ defineExpose({ init, validate, getData, submit });
 <template>
   <div v-if="visible">
     <div v-if="!createSuccess">
+      <a-spin :spinning="submitLoading">
       <a-form
         ref="formRef"
         :model="form"
@@ -180,7 +181,7 @@ defineExpose({ init, validate, getData, submit });
           />
         </a-form-item>
         <!-- 国际化：支付宝应用 -->
-        <a-form-item name="appId">
+        <a-form-item name="isvAppId">
           <template #label>
             {{ $t('payment.merchant.channelMerchant.alipayIsvApp') }}
             <a-tooltip :title="$t('payment.merchant.channelMerchant.alipayIsvAppHelp')">
@@ -188,7 +189,7 @@ defineExpose({ init, validate, getData, submit });
             </a-tooltip>
           </template>
           <a-select
-            v-model:value="form.appId"
+            v-model:value="form.isvAppId"
             :options="isvAppOptions"
             :loading="isvAppLoading"
             :placeholder="$t('payment.merchant.channelMerchant.alipayIsvAppPlaceholder')"
@@ -226,6 +227,7 @@ defineExpose({ init, validate, getData, submit });
           </a-button>
         </div>
       </a-form>
+      </a-spin>
     </div>
 
     <div v-else class="flex flex-col items-center justify-center py-12">

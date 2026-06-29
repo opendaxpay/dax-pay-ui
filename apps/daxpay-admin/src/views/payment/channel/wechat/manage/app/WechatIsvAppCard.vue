@@ -11,7 +11,7 @@
   import { usePermission } from '#/hooks/usePermission';
   import { getProviderSvgUrl } from '#/views/payment/shared/payProviderDisplay';
 
-  // 微信支付品牌色值
+  // 微信支付渠道色值
   const wechatColor = '#07c160';
   const wechatSvgUrl = getProviderSvgUrl('wechat');
 

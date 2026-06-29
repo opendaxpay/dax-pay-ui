@@ -11,7 +11,7 @@
 
   import { computed } from 'vue';
 
-  // 抖音品牌色值
+  // 抖音渠道色值
   const douyinColor = '#000000';
   const douyinSvgUrl = getProviderSvgUrl('douyin');
 

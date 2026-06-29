@@ -72,7 +72,7 @@
         </a-tab-pane>
         <a-tab-pane key="key" :tab="$t('payment.channel.alipayMchApp.tabKeyConfig')">
           <AlipayMchAppKeyConfig
-            :app-id="appDetail.id!"
+            :alipay-direct-app-id="appDetail.id!"
             :mch-no="mchNo"
             :channel-mch-no="channelMchNo"
             :ali-app-id="appDetail.aliAppId"
@@ -80,7 +80,7 @@
         </a-tab-pane>
         <a-tab-pane key="auth" :tab="$t('payment.channel.alipayMchApp.tabAuthConfig')">
           <AlipayMchAppAuthConfig
-            :app-id="appDetail.id!"
+            :alipay-direct-app-id="appDetail.id!"
             :mch-no="mchNo"
             :channel-mch-no="channelMchNo"
           />

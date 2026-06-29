@@ -12,7 +12,7 @@
 
   defineOptions({ name: 'PayRouteBasicPanel' });
 
-  // 基础模式：按支付品牌配置默认通道商户
+  // 基础模式：按支付渠道配置默认通道商户
   const props = defineProps<{
     appId: string;
   }>();

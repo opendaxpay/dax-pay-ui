@@ -97,6 +97,7 @@
 <template>
   <div v-if="visible">
     <div v-if="!createSuccess">
+      <a-spin :spinning="submitLoading">
       <a-form
         ref="formRef"
         :model="form"
@@ -130,6 +131,7 @@
           </a-button>
         </div>
       </a-form>
+      </a-spin>
     </div>
 
     <div v-else class="flex flex-col items-center justify-center py-12">

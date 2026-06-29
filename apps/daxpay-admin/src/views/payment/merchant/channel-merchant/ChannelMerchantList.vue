@@ -34,6 +34,12 @@
   // 通道商户新增权限
   const loading = ref(false);
 
+  // 商户信息加载状态
+  const merchantLoading = ref(false);
+
+  // 切换启用状态按行 loading（key=record.id）
+  const enableLoadingMap = ref<Record<string, boolean>>({});
+
 // VXE Table 相关引用
   const xTable = ref<VxeTableInstance>();
   const xToolbar = ref<VxeToolbarInstance>();
@@ -105,14 +111,19 @@
    */
   function loadMerchantInfo() {
     if (!mchNo.value) return;
-    MerchantApi.findByMchNo(mchNo.value).then(({ data }) => {
-      if (data) {
-        merchantInfo.value = data;
-        if (!mchNo.value) {
-          mchNo.value = data.mchNo || '';
+    merchantLoading.value = true;
+    MerchantApi.findByMchNo(mchNo.value)
+      .then(({ data }) => {
+        if (data) {
+          merchantInfo.value = data;
+          if (!mchNo.value) {
+            mchNo.value = data.mchNo || '';
+          }
         }
-      }
-    });
+      })
+      .finally(() => {
+        merchantLoading.value = false;
+      });
   }
 
   /**
@@ -167,7 +178,7 @@
 
   /**
  * 切换启用状态
-   */
+    */
   function handleToggleEnable(record: ChannelMerchantResult, checked: boolean) {
     const isEnabling = checked;
     confirm({
@@ -183,14 +194,19 @@
         : $t('payment.merchant.channelMerchant.confirmDisableOk'),
       cancelText: $t('common.cancelText'),
       onOk() {
-        ChannelMerchantApi.updateEnable(record.id!, checked).then(() => {
-          message.success(
-            isEnabling
-              ? $t('payment.merchant.channelMerchant.enableSuccess')
-              : $t('payment.merchant.channelMerchant.disableSuccess'),
-          );
-          loadList();
-        });
+        enableLoadingMap.value[record.id!] = true;
+        ChannelMerchantApi.updateEnable(record.id!, checked)
+          .then(() => {
+            message.success(
+              isEnabling
+                ? $t('payment.merchant.channelMerchant.enableSuccess')
+                : $t('payment.merchant.channelMerchant.disableSuccess'),
+            );
+            loadList();
+          })
+          .finally(() => {
+            enableLoadingMap.value[record.id!] = false;
+          });
       },
     });
   }
@@ -228,7 +244,10 @@
           </a-button>
           <!-- 国际化：通道商户管理 -->
           <span class="text-lg font-bold text-foreground">{{ $t('payment.merchant.channelMerchant.title') }}</span>
-          <span v-if="merchantInfo.mchName" class="text-sm text-muted-foreground">({{ merchantInfo.mchName }})</span>
+          <span v-if="merchantLoading" class="text-sm text-muted-foreground">
+            <a-skeleton-input :active="true" size="small" />
+          </span>
+          <span v-else-if="merchantInfo.mchName" class="text-sm text-muted-foreground">({{ merchantInfo.mchName }})</span>
         </div>
       </template>
 
@@ -283,6 +302,7 @@
             <a-switch
               v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)"
               :checked="row.enable"
+              :loading="!!enableLoadingMap[row.id]"
               @change="(checked: boolean) => handleToggleEnable(row, checked)"
             />
           </template>

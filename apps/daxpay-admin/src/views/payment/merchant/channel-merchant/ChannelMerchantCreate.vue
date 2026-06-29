@@ -36,6 +36,9 @@
   // 商户信息
   const merchantInfo = ref<MerchantInfo>({});
 
+  // 商户信息加载状态
+  const merchantLoading = ref(false);
+
   // 当前步骤 (0-1)
   const currentStep = ref(0);
 
@@ -81,11 +84,16 @@
    */
   function loadMerchantInfo() {
     if (!mchNo.value) return;
-    MerchantApi.findByMchNo(mchNo.value).then(({ data }) => {
-      if (data) {
-        merchantInfo.value = data;
-      }
-    });
+    merchantLoading.value = true;
+    MerchantApi.findByMchNo(mchNo.value)
+      .then(({ data }) => {
+        if (data) {
+          merchantInfo.value = data;
+        }
+      })
+      .finally(() => {
+        merchantLoading.value = false;
+      });
   }
 
   /**
@@ -195,7 +203,10 @@
           <span class="text-lg font-bold text-foreground">{{
             $t('payment.merchant.channelMerchant.createTitle')
           }}</span>
-          <span v-if="merchantInfo.mchName" class="text-sm text-muted-foreground"
+          <span v-if="merchantLoading" class="text-sm text-muted-foreground">
+            <a-skeleton-input :active="true" size="small" />
+          </span>
+          <span v-else-if="merchantInfo.mchName" class="text-sm text-muted-foreground"
             >({{ merchantInfo.mchName }})</span
           >
         </div>

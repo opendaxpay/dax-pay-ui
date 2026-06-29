@@ -12,7 +12,7 @@
 
   defineOptions({ name: 'PayRouteScenePanel' });
 
-  // 场景模式：按品牌支付方式目录配置，每行绑定通道商户与支付能力
+  // 场景模式：按支付渠道支付方式目录配置，每行绑定通道商户与支付能力
   const props = defineProps<{
     appId: string;
   }>();
@@ -168,7 +168,7 @@
     loadSceneCapabilities(provider, method, row.channelMchNo);
   }
 
-  /** 按品牌支付方式目录补齐内存行，保证保存时可提交完整目录项 */
+  /** 按支付渠道支付方式目录补齐内存行，保证保存时可提交完整目录项 */
   function ensureDirectoryRows() {
     for (const card of directoryByProviderCards()) {
       for (const entry of card.methods) {

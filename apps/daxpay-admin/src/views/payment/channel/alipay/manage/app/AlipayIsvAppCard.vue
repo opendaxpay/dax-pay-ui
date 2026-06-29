@@ -9,7 +9,7 @@
   import { usePermission } from '#/hooks/usePermission';
   import { getProviderSvgUrl } from '#/views/payment/shared/payProviderDisplay';
 
-  // 支付宝品牌色值（与支付渠道展示一致）
+  // 支付宝渠道色值（与支付渠道展示一致）
   const alipayColor = '#1677ff';
   const alipaySvgUrl = getProviderSvgUrl('alipay');
 

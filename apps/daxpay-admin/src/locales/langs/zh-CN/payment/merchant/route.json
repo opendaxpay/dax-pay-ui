@@ -16,7 +16,7 @@
     "channelMerchantPlaceholder": "请选择通道商户",
     "channelMerchantNotFound": "暂无可选通道商户",
     "sceneChannelMchCapabilityPairHint": "通道商户与支付能力须同时选择或同时留空，不可只填其中一项",
-    "basicSaveConfirm": "确定要保存基础模式路由配置吗？保存后将覆盖各支付品牌对应的默认支付产品。",
+    "basicSaveConfirm": "确定要保存基础模式路由配置吗？保存后将覆盖各支付渠道对应的默认通道商户。",
     "sceneRouteNotSelected": "未选择",
     "configTab": "路由配置",
     "method": "支付方式",

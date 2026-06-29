@@ -80,13 +80,13 @@
         <!-- 密钥配置 -->
         <a-tab-pane key="key" :tab="$t('payment.channel.alipayManage.tabKeyConfig')">
           <AlipayIsvAppKeyConfig
-            :app-id="appDetail.id!"
+            :alipay-isv-app-id="appDetail.id!"
             :ali-app-id="appDetail.aliAppId"
           />
         </a-tab-pane>
         <!-- 授权认证 -->
         <a-tab-pane key="auth" :tab="$t('payment.channel.alipayManage.tabAuthConfig')">
-          <AlipayIsvAppAuthConfig :app-id="appDetail.id!" />
+          <AlipayIsvAppAuthConfig :alipay-isv-app-id="appDetail.id!" />
         </a-tab-pane>
       </a-tabs>
     </a-spin>
