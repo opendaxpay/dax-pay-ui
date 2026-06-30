@@ -35,7 +35,7 @@
   "changePasswordDesc": "Regularly change your password to protect account security",
   "socialAccountDesc": "Manage bound third-party platform accounts",
   "securitySetting": "Security",
-  "securitySettingDesc": "Two-factor authentication and account security",
+  "securitySettingDesc": "Two-Factor Authentication",
   "twoFactor": {
     "title": "Two-Factor Authentication",
     "platformOff": "Not Enabled",
