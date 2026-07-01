@@ -1,0 +1,101 @@
+{
+  "normal": {
+    "title": "支付订单",
+    "detail": "支付订单详情"
+  },
+  "trade": {
+    "title": "资金交易",
+    "detail": "资金交易详情"
+  },
+  "field": {
+    "bizOrderNo": "商户订单号",
+    "tradeNo": "资金交易号",
+    "title": "订单标题",
+    "description": "订单描述",
+    "amount": "金额(元)",
+    "currency": "币种",
+    "bizStatus": "业务状态",
+    "fundStatus": "资金状态",
+    "channel": "支付通道",
+    "method": "支付方式",
+    "product": "支付产品",
+    "tradeType": "交易形态",
+    "provider": "支付渠道",
+    "outOrderNo": "通道订单号",
+    "transOrderNo": "透传订单号",
+    "relationOrderNo": "关联订单号",
+    "refundableBalance": "可退金额(元)",
+    "payBody": "支付参数体",
+    "payBodyType": "参数体类型",
+    "buyerId": "付款用户ID",
+    "openid": "OpenID",
+    "tradeProduct": "通道支付产品",
+    "tradeWay": "通道交易方式",
+    "bankType": "银行卡类型",
+    "barCode": "付款码",
+    "promotionType": "活动类型",
+    "errorMsg": "错误信息",
+    "notifyUrl": "异步通知地址",
+    "returnUrl": "同步跳转地址",
+    "attach": "商户附加参数",
+    "expiredTime": "过期时间",
+    "payTime": "支付成功时间",
+    "closeTime": "关闭时间",
+    "channelMchNo": "通道商户号",
+    "capability": "支付能力",
+    "clientIp": "客户端IP",
+    "terminalNo": "终端编码",
+    "containerId": "关联容器ID",
+    "containerStatus": "容器业务状态",
+    "source": "订单来源",
+    "otherMethod": "其他支付方式",
+    "limitPay": "限制支付类型",
+    "mchNo": "商户号",
+    "appId": "应用号",
+    "createTime": "创建时间"
+  },
+  "bizStatus": {
+    "wait_pay": "待支付",
+    "paid": "已支付",
+    "closed": "已关闭",
+    "expired": "已过期"
+  },
+  "fundStatus": {
+    "init": "初始化",
+    "processing": "处理中",
+    "success": "成功",
+    "fail": "失败",
+    "close": "已关闭"
+  },
+  "bizStatusColor": {
+    "wait_pay": "orange",
+    "paid": "green",
+    "closed": "default",
+    "expired": "red"
+  },
+  "fundStatusColor": {
+    "init": "default",
+    "processing": "processing",
+    "success": "green",
+    "fail": "red",
+    "close": "default"
+  },
+  "placeholder": {
+    "bizOrderNo": "请输入商户订单号",
+    "title": "请输入订单标题",
+    "tradeNo": "请输入资金交易号",
+    "outOrderNo": "请输入通道订单号",
+    "amountMin": "最小金额(分)",
+    "amountMax": "最大金额(分)"
+  },
+  "action": {
+    "sync": "同步状态",
+    "close": "关闭订单",
+    "syncSuccess": "同步成功",
+    "closeSuccess": "关闭成功",
+    "syncConfirmTitle": "确认同步状态",
+    "syncConfirmContent": "将主动向支付通道查询该订单的最新状态,是否继续?",
+    "closeConfirmTitle": "确认关闭订单",
+    "closeConfirmContent": "关闭后订单将不可继续支付,是否继续?"
+  }
+}

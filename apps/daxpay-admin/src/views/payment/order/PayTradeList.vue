@@ -1,0 +1,430 @@
+<script lang="ts" setup>
+  import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
+
+  import { computed, onMounted, ref } from 'vue';
+
+  import { $t } from '@vben/locales';
+
+  import { PayTradeApi, type PayTradeQuery, type PayTradeResult } from '#/api/payment/order/pay-trade.api';
+  import { BQuery, type QueryField } from '#/components/query';
+  import { PermCodes } from '#/constants/perm-codes';
+  import { useMessage } from '#/hooks/useMessage';
+  import { usePermission } from '#/hooks/usePermission';
+
+  defineOptions({ name: 'PayTradeList' });
+
+  const { confirm, message } = useMessage();
+  const { hasPermission } = usePermission();
+
+  const loading = ref(false);
+  const xTable = ref<VxeTableInstance>();
+  const xToolbar = ref<VxeToolbarInstance>();
+
+  // 查询条件
+  const queryForm = ref<PayTradeQuery>({});
+
+  const pageConfig = ref({
+    currentPage: 1,
+    pageSize: 10,
+    total: 0,
+  });
+
+  const tableData = ref<PayTradeResult[]>([]);
+
+  // 详情抽屉
+  const drawerVisible = ref(false);
+  const drawerLoading = ref(false);
+  const detail = ref<PayTradeResult>({});
+  const actionLoading = ref(false);
+
+  // 资金状态下拉
+  const statusOptions = computed(() =>
+    ['init', 'processing', 'success', 'fail', 'close'].map((v) => ({
+      label: $t(`payment.order.fundStatus.${v}`),
+      value: v,
+    })),
+  );
+
+  // 交易形态下拉
+  const tradeTypeOptions = [{ label: '普通支付', value: 'normal' }];
+
+  // 支付通道下拉
+  const channelOptions = [
+    { label: '支付宝', value: 'alipay' },
+    { label: '微信支付', value: 'wechat' },
+    { label: '抖音支付', value: 'douyin' },
+  ];
+
+  // 支付方式下拉
+  const methodOptions = [
+    { label: 'JSAPI', value: 'jsapi' },
+    { label: '扫码', value: 'qrcode' },
+    { label: 'H5', value: 'h5' },
+    { label: 'APP', value: 'app' },
+    { label: '付款码', value: 'barcode' },
+    { label: 'WAP', value: 'wap' },
+  ];
+
+  const queryFields = computed<QueryField[]>(() => [
+    {
+      type: 'string',
+      field: 'tradeNo',
+      name: $t('payment.order.field.tradeNo'),
+      placeholder: $t('payment.order.placeholder.tradeNo'),
+    },
+    {
+      type: 'string',
+      field: 'outOrderNo',
+      name: $t('payment.order.field.outOrderNo'),
+      placeholder: $t('payment.order.placeholder.outOrderNo'),
+    },
+    {
+      type: 'list',
+      field: 'status',
+      name: $t('payment.order.field.fundStatus'),
+      selectList: statusOptions.value,
+    },
+    {
+      type: 'list',
+      field: 'tradeType',
+      name: $t('payment.order.field.tradeType'),
+      selectList: tradeTypeOptions,
+    },
+    {
+      type: 'list',
+      field: 'channel',
+      name: $t('payment.order.field.channel'),
+      selectList: channelOptions,
+    },
+    {
+      type: 'list',
+      field: 'method',
+      name: $t('payment.order.field.method'),
+      selectList: methodOptions,
+    },
+    {
+      type: 'date_time_range',
+      field: 'createTime',
+      name: $t('payment.order.field.createTime'),
+      startField: 'createTimeStart',
+      endField: 'createTimeEnd',
+    },
+    {
+      type: 'number',
+      field: 'amountMin',
+      name: $t('payment.order.placeholder.amountMin'),
+    },
+    {
+      type: 'number',
+      field: 'amountMax',
+      name: $t('payment.order.placeholder.amountMax'),
+    },
+  ]);
+
+  /**
+   * 分页查询
+   */
+  function queryPage() {
+    loading.value = true;
+    return PayTradeApi.page({
+      current: pageConfig.value.currentPage,
+      size: pageConfig.value.pageSize,
+      ...queryForm.value,
+    })
+      .then((res) => {
+        tableData.value = res.data?.records || [];
+        pageConfig.value.total = Number(res.data?.total) || 0;
+        loading.value = false;
+      })
+      .catch(() => {
+        loading.value = false;
+      });
+  }
+
+  function resetQuery() {
+    queryForm.value = {};
+    pageConfig.value.currentPage = 1;
+    queryPage();
+  }
+
+  function handlePageChange({ currentPage, pageSize }: { currentPage: number; pageSize: number }) {
+    pageConfig.value.currentPage = currentPage;
+    pageConfig.value.pageSize = pageSize;
+    queryPage();
+  }
+
+  /**
+   * 金额分转元
+   */
+  function formatAmount(amount?: number): string {
+    if (amount === null || amount === undefined) return '-';
+    return (amount / 100).toFixed(2);
+  }
+
+  /**
+   * 资金状态颜色
+   */
+  function statusColor(status?: string): string {
+    return status ? $t(`payment.order.fundStatusColor.${status}`) : 'default';
+  }
+
+  function channelLabel(code?: string): string {
+    if (!code) return '-';
+    return channelOptions.find((o) => o.value === code)?.label || code;
+  }
+
+  function methodLabel(code?: string): string {
+    if (!code) return '-';
+    return methodOptions.find((o) => o.value === code)?.label || code;
+  }
+
+  /**
+   * 查看详情
+   */
+  async function handleView(row: PayTradeResult) {
+    drawerVisible.value = true;
+    drawerLoading.value = true;
+    try {
+      const { data } = await PayTradeApi.getById(row.id!);
+      detail.value = data || {};
+    } finally {
+      drawerLoading.value = false;
+    }
+  }
+
+  /**
+   * 同步支付状态
+   */
+  function handleSync(row: PayTradeResult) {
+    confirm({
+      title: $t('payment.order.action.syncConfirmTitle'),
+      content: $t('payment.order.action.syncConfirmContent'),
+      onOk() {
+        actionLoading.value = true;
+        return PayTradeApi.sync(row.id!)
+          .then(() => {
+            message.success($t('payment.order.action.syncSuccess'));
+            queryPage();
+          })
+          .finally(() => {
+            actionLoading.value = false;
+          });
+      },
+    });
+  }
+
+  /**
+   * 关闭订单
+   */
+  function handleClose(row: PayTradeResult) {
+    confirm({
+      title: $t('payment.order.action.closeConfirmTitle'),
+      content: $t('payment.order.action.closeConfirmContent'),
+      onOk() {
+        actionLoading.value = true;
+        return PayTradeApi.close(row.id!)
+          .then(() => {
+            message.success($t('payment.order.action.closeSuccess'));
+            queryPage();
+          })
+          .finally(() => {
+            actionLoading.value = false;
+          });
+      },
+    });
+  }
+
+  function handleDrawerClose() {
+    drawerVisible.value = false;
+    detail.value = {};
+  }
+
+  onMounted(() => {
+    xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
+    queryPage();
+  });
+</script>
+
+<template>
+  <div class="m-3 p-3 bg-background rounded-lg list-page-compact">
+    <a-card>
+      <BQuery :fields="queryFields" :query-params="queryForm" @query="queryPage" @reset="resetQuery" />
+    </a-card>
+
+    <div class="mt-4">
+      <a-card>
+        <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }" />
+        <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
+          <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
+          <vxe-column field="tradeNo" :title="$t('payment.order.field.tradeNo')" :min-width="200" show-overflow />
+          <vxe-column field="outOrderNo" :title="$t('payment.order.field.outOrderNo')" :min-width="200" show-overflow />
+          <vxe-column field="bizOrderNo" :title="$t('payment.order.field.bizOrderNo')" :min-width="180" show-overflow />
+          <vxe-column field="amount" :title="$t('payment.order.field.amount')" :min-width="100" align="right">
+            <template #default="{ row }">{{ formatAmount(row.amount) }}</template>
+          </vxe-column>
+          <vxe-column field="status" :title="$t('payment.order.field.fundStatus')" :min-width="100" align="center">
+            <template #default="{ row }">
+              <a-tag :color="statusColor(row.status)">
+                {{ $t(`payment.order.fundStatus.${row.status}`) }}
+              </a-tag>
+            </template>
+          </vxe-column>
+          <vxe-column field="channel" :title="$t('payment.order.field.channel')" :min-width="100">
+            <template #default="{ row }">{{ channelLabel(row.channel) }}</template>
+          </vxe-column>
+          <vxe-column field="method" :title="$t('payment.order.field.method')" :min-width="90">
+            <template #default="{ row }">{{ methodLabel(row.method) }}</template>
+          </vxe-column>
+          <vxe-column
+            field="createTime"
+            :title="$t('payment.order.field.createTime')"
+            :min-width="160"
+            formatter="formatDateTime"
+          />
+          <vxe-column :title="$t('common.operation')" width="200" fixed="right" :show-overflow="false">
+            <template #default="{ row }">
+              <a-space :size="2">
+                <template #separator>
+                  <a-divider type="vertical" />
+                </template>
+                <a-button type="link" size="small" @click="handleView(row)">
+                  {{ $t('common.view') }}
+                </a-button>
+                <a-button
+                  v-if="hasPermission(PermCodes.Payment.Trade.MANAGE)"
+                  type="link"
+                  size="small"
+                  :loading="actionLoading"
+                  @click="handleSync(row)"
+                >
+                  {{ $t('payment.order.action.sync') }}
+                </a-button>
+                <a-button
+                  v-if="hasPermission(PermCodes.Payment.Trade.MANAGE)"
+                  type="link"
+                  size="small"
+                  danger
+                  :loading="actionLoading"
+                  @click="handleClose(row)"
+                >
+                  {{ $t('payment.order.action.close') }}
+                </a-button>
+              </a-space>
+            </template>
+          </vxe-column>
+        </vxe-table>
+        <vxe-pager
+          size="medium"
+          :loading="loading"
+          :current-page="pageConfig.currentPage"
+          :page-size="pageConfig.pageSize"
+          :total="pageConfig.total"
+          @page-change="handlePageChange"
+        />
+      </a-card>
+    </div>
+
+    <!-- 详情抽屉 -->
+    <a-drawer
+      v-model:open="drawerVisible"
+      :title="$t('payment.order.trade.detail')"
+      :size="900"
+      @close="handleDrawerClose"
+    >
+      <a-spin :spinning="drawerLoading">
+        <a-divider orientation="left" plain>{{ $t('payment.order.trade.detail') }}</a-divider>
+        <a-descriptions :column="2" size="small" bordered>
+          <a-descriptions-item :label="$t('payment.order.field.tradeNo')">
+            {{ detail.tradeNo || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.outOrderNo')">
+            {{ detail.outOrderNo || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.bizOrderNo')">
+            {{ detail.bizOrderNo || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.title')">
+            {{ detail.title || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.fundStatus')">
+            <a-tag :color="statusColor(detail.status)">
+              {{ detail.status ? $t(`payment.order.fundStatus.${detail.status}`) : '-' }}
+            </a-tag>
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.containerStatus')">
+            {{ detail.containerStatus ? $t(`payment.order.bizStatus.${detail.containerStatus}`) : '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.amount')">
+            {{ formatAmount(detail.amount) }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.refundableBalance')">
+            {{ formatAmount(detail.refundableBalance) }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.channel')">
+            {{ channelLabel(detail.channel) }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.method')">
+            {{ methodLabel(detail.method) }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.product')">
+            {{ detail.product || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.provider')">
+            {{ detail.provider || '-' }}
+          </a-descriptions-item>
+        </a-descriptions>
+
+        <a-divider orientation="left" plain>{{ $t('payment.order.field.transOrderNo') }}</a-divider>
+        <a-descriptions :column="2" size="small" bordered>
+          <a-descriptions-item :label="$t('payment.order.field.transOrderNo')">
+            {{ detail.transOrderNo || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.relationOrderNo')">
+            {{ detail.relationOrderNo || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.buyerId')">
+            {{ detail.buyerId || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.openid')">
+            {{ detail.openid || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.tradeProduct')">
+            {{ detail.tradeProduct || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.tradeWay')">
+            {{ detail.tradeWay || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.bankType')">
+            {{ detail.bankType || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.source')">
+            {{ detail.source || '-' }}
+          </a-descriptions-item>
+        </a-descriptions>
+
+        <a-divider orientation="left" plain>{{ $t('payment.order.field.createTime') }}</a-divider>
+        <a-descriptions :column="2" size="small" bordered>
+          <a-descriptions-item :label="$t('payment.order.field.createTime')">
+            {{ detail.createTime || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.expiredTime')">
+            {{ detail.expiredTime || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.payTime')">
+            {{ detail.payTime || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.closeTime')">
+            {{ detail.closeTime || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.errorMsg')" :span="2">
+            {{ detail.errorMsg || '-' }}
+          </a-descriptions-item>
+        </a-descriptions>
+      </a-spin>
+
+      <template #footer>
+        <a-button @click="handleDrawerClose">{{ $t('common.close') }}</a-button>
+      </template>
+    </a-drawer>
+  </div>
+</template>

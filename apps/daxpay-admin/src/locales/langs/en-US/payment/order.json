@@ -1,0 +1,101 @@
+{
+  "normal": {
+    "title": "Payment Orders",
+    "detail": "Payment Order Detail"
+  },
+  "trade": {
+    "title": "Fund Trades",
+    "detail": "Fund Trade Detail"
+  },
+  "field": {
+    "bizOrderNo": "Merchant Order No.",
+    "tradeNo": "Trade No.",
+    "title": "Title",
+    "description": "Description",
+    "amount": "Amount(Yuan)",
+    "currency": "Currency",
+    "bizStatus": "Biz Status",
+    "fundStatus": "Fund Status",
+    "channel": "Channel",
+    "method": "Pay Method",
+    "product": "Product",
+    "tradeType": "Trade Type",
+    "provider": "Provider",
+    "outOrderNo": "Channel Order No.",
+    "transOrderNo": "Trans Order No.",
+    "relationOrderNo": "Relation Order No.",
+    "refundableBalance": "Refundable(Yuan)",
+    "payBody": "Pay Body",
+    "payBodyType": "Pay Body Type",
+    "buyerId": "Buyer ID",
+    "openid": "OpenID",
+    "tradeProduct": "Channel Product",
+    "tradeWay": "Channel Trade Way",
+    "bankType": "Bank Card Type",
+    "barCode": "Bar Code",
+    "promotionType": "Promotion Type",
+    "errorMsg": "Error",
+    "notifyUrl": "Notify URL",
+    "returnUrl": "Return URL",
+    "attach": "Attach",
+    "expiredTime": "Expired Time",
+    "payTime": "Pay Time",
+    "closeTime": "Close Time",
+    "channelMchNo": "Channel Merchant No.",
+    "capability": "Capability",
+    "clientIp": "Client IP",
+    "terminalNo": "Terminal No.",
+    "containerId": "Container ID",
+    "containerStatus": "Container Status",
+    "source": "Source",
+    "otherMethod": "Other Method",
+    "limitPay": "Limit Pay",
+    "mchNo": "Merchant No.",
+    "appId": "App ID",
+    "createTime": "Create Time"
+  },
+  "bizStatus": {
+    "wait_pay": "Waiting",
+    "paid": "Paid",
+    "closed": "Closed",
+    "expired": "Expired"
+  },
+  "fundStatus": {
+    "init": "Initial",
+    "processing": "Processing",
+    "success": "Success",
+    "fail": "Failed",
+    "close": "Closed"
+  },
+  "bizStatusColor": {
+    "wait_pay": "orange",
+    "paid": "green",
+    "closed": "default",
+    "expired": "red"
+  },
+  "fundStatusColor": {
+    "init": "default",
+    "processing": "processing",
+    "success": "green",
+    "fail": "red",
+    "close": "default"
+  },
+  "placeholder": {
+    "bizOrderNo": "Enter merchant order no.",
+    "title": "Enter title",
+    "tradeNo": "Enter trade no.",
+    "outOrderNo": "Enter channel order no.",
+    "amountMin": "Min amount(cents)",
+    "amountMax": "Max amount(cents)"
+  },
+  "action": {
+    "sync": "Sync Status",
+    "close": "Close Order",
+    "syncSuccess": "Sync succeeded",
+    "closeSuccess": "Order closed",
+    "syncConfirmTitle": "Confirm Sync",
+    "syncConfirmContent": "Will query the latest status from the payment channel, continue?",
+    "closeConfirmTitle": "Confirm Close",
+    "closeConfirmContent": "The order cannot be paid after closing, continue?"
+  }
+}

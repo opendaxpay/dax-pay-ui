@@ -134,6 +134,16 @@ export const PermCodes = {
       VIEW: 'payment:config:product_config:view',
       MANAGE: 'payment:config:product_config:manage',
     },
+    /** 普通支付业务订单 menuCode=payment:order */
+    Order: {
+      VIEW: 'payment:order:view',
+      MANAGE: 'payment:order:manage',
+    },
+    /** 资金交易凭证 menuCode=payment:trade */
+    Trade: {
+      VIEW: 'payment:trade:view',
+      MANAGE: 'payment:trade:manage',
+    },
   },
 
   /** 开发调试（独立顶级域） */
@@ -187,11 +197,11 @@ export const PermCodes = {
         MANAGE: 'system:log:operate:manage',
       },
     },
-    /** 公告通知 menuCode=system:notify */
+    /** 通知中心 menuCode=system:notify → 公告通知 menuCode=system:notify:notice */
     Notify: {
-      VIEW: 'system:notify:view',
-      MANAGE: 'system:notify:manage',
-      PUBLISH: 'system:notify:publish',
+      VIEW: 'system:notify:notice:view',
+      MANAGE: 'system:notify:notice:manage',
+      PUBLISH: 'system:notify:notice:publish',
     },
     /** 存储文件 menuCode=system:file:platform */
     FilePlatform: {
