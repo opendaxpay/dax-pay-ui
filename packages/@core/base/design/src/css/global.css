@@ -572,3 +572,14 @@ html.invert-mode {
 html.grayscale-mode {
   @apply grayscale;
 }
+
+/* 修复 Tailwind v4 preflight (ol,ul{list-style:none}) 清空 md-editor-v3 预览区列表标记:
+   default-theme 仅设了 padding-inline-start 缩进, 未显式声明 list-style-type,
+   需补回才能显示有序列表序号 / 无序列表圆点 */
+.md-editor-preview ol {
+  list-style-type: decimal;
+}
+
+.md-editor-preview ul {
+  list-style-type: disc;
+}

@@ -13,6 +13,7 @@
   import { type NotifyNotice, NotifyNoticeApi } from '#/api/system/notify/notice.api';
 
   import 'md-editor-v3/lib/style.css';
+  import 'md-editor-v3/lib/preview.css';
 
   interface Props {
     /** 工作台聚合数据（公告独立拉数据，不消费统计） */

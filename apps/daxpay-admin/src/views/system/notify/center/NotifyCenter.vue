@@ -12,6 +12,7 @@
   import { useNotifyStore } from '#/store/notify';
 
   import 'md-editor-v3/lib/style.css';
+  import 'md-editor-v3/lib/preview.css';
 
   const store = useNotifyStore();
   const { confirm, message } = useMessage();
