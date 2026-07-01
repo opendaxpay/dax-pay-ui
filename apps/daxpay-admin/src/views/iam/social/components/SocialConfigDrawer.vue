@@ -139,14 +139,14 @@
         <a-form-item :label="$t('iam.social.form.enabled')" name="enabled">
           <a-switch v-model:checked="formData.enabled" :disabled="submitLoading" />
         </a-form-item>
-        <a-form-item :label="$t('iam.social.form.clientId')" name="clientId">
+        <a-form-item :label="$t('iam.social.form.clientId')" name="clientId" :tooltip="$t('iam.social.form.clientIdHelp')">
           <a-input
             v-model:value="formData.clientId"
             :placeholder="$t('iam.social.form.clientIdPlaceholder')"
             :disabled="submitLoading"
           />
         </a-form-item>
-        <a-form-item :label="$t('iam.social.form.clientSecret')" name="clientSecret">
+        <a-form-item :label="$t('iam.social.form.clientSecret')" name="clientSecret" :tooltip="$t('iam.social.form.clientSecretHelp')">
           <a-input
             v-model:value="formData.clientSecret"
             :placeholder="$t('iam.social.form.clientSecretPlaceholder')"
