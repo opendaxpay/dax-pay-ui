@@ -146,7 +146,6 @@
     },
     "msg": {
       "signSuccess": "Sign generated successfully",
-      "payDone": "Payment debug completed",
       "inputPrivateKey": "Please set the merchant private key first",
       "copySuccess": "Copied"
     }

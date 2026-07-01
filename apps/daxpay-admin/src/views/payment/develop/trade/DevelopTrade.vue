@@ -298,7 +298,6 @@
       });
       resultData.value = data ?? {};
       resultVisible.value = true;
-      message.success($t('payment.develop.trade.msg.payDone'));
     } finally {
       loading.value = false;
     }

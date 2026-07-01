@@ -146,7 +146,6 @@
     },
     "msg": {
       "signSuccess": "签名生成成功",
-      "payDone": "支付调试完成",
       "inputPrivateKey": "请先设置商户私钥",
       "copySuccess": "复制成功"
     }
