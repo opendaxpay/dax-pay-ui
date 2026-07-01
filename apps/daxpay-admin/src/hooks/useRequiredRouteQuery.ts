@@ -1,5 +1,5 @@
 import { type MaybeRefOrGetter, computed, toValue, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { type LocationQueryRaw, useRoute, useRouter } from 'vue-router';
 
 import { $t } from '@vben/locales';
 
@@ -10,13 +10,16 @@ export function normalizeRouteQueryValue(value: unknown): string {
   return String(value ?? '').trim();
 }
 
-export interface UseRequiredRouteQueryOptions {
+/** fallback 目标：纯路径字符串或带 query 的对象 */
+export type RouteFallbackTarget = string | { path: string; query?: LocationQueryRaw };
+
+export interface UseRequiredRouteQueryOptions<K extends string = string> {
   /** 必填 query 参数名 */
-  keys: string[];
+  keys: readonly K[];
   /** 缺失时 toast 文案 i18n key */
   messageKey: MaybeRefOrGetter<string>;
-  /** 返回列表/上级页路径，可含 query 字符串 */
-  fallbackPath: MaybeRefOrGetter<string>;
+  /** 返回列表/上级页路径，支持字符串或 { path, query } 对象 */
+  fallbackPath: MaybeRefOrGetter<RouteFallbackTarget>;
   /** 是否在缺失时弹出 toast，默认 true */
   showMessage?: boolean;
   /** 所属路由 path，默认取组件 setup 时的 route.path（keep-alive 场景避免误校验） */
@@ -26,7 +29,7 @@ export interface UseRequiredRouteQueryOptions {
 /**
  * 校验页面必填路由 query 参数
  */
-export function useRequiredRouteQuery(options: UseRequiredRouteQueryOptions) {
+export function useRequiredRouteQuery<K extends string = string>(options: UseRequiredRouteQueryOptions<K>) {
   const route = useRoute();
   const router = useRouter();
   const { message } = useMessage();
@@ -36,8 +39,9 @@ export function useRequiredRouteQuery(options: UseRequiredRouteQueryOptions) {
 
   const isRouteActive = computed(() => route.path === ownedPath);
 
-  const query = computed(() => {
-    const result: Record<string, string> = {};
+  // 国际化：query 值经 normalize 处理，保证为非 undefined 的字符串
+  const query = computed((): Record<K, string> => {
+    const result = {} as Record<K, string>;
     for (const key of options.keys) {
       result[key] = normalizeRouteQueryValue(route.query[key]);
     }
@@ -51,21 +55,9 @@ export function useRequiredRouteQuery(options: UseRequiredRouteQueryOptions) {
     return options.keys.every((key) => !!query.value[key]);
   });
 
-  /** 跳转至 fallback 页面 */
+  /** 跳转至 fallback 页面（支持字符串或 { path, query } 对象） */
   function goFallback() {
-    const path = toValue(options.fallbackPath);
-    const queryIndex = path.indexOf('?');
-    if (queryIndex === -1) {
-      router.push(path);
-      return;
-    }
-    const pathname = path.slice(0, queryIndex);
-    const search = path.slice(queryIndex + 1);
-    const queryObj: Record<string, string> = {};
-    new URLSearchParams(search).forEach((value, key) => {
-      queryObj[key] = value;
-    });
-    router.push({ path: pathname, query: queryObj });
+    router.push(toValue(options.fallbackPath));
   }
 
   watch(

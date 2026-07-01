@@ -37,9 +37,11 @@
       // product 由本页所属渠道决定（抖音直连），无需从路由读取
       const product = ProductEnum.DOUYIN_PAY;
       if (mchNo && id) {
-        return `/payment/merchant/channel-merchant/detail?mchNo=${mchNo}&id=${id}&product=${product}`;
+        return { path: '/payment/merchant/channel-merchant/detail', query: { mchNo, id, product } };
       }
-      return mchNo ? `/payment/merchant/channel-merchant?mchNo=${mchNo}` : '/payment/merchant';
+      return mchNo
+        ? { path: '/payment/merchant/channel-merchant', query: { mchNo } }
+        : '/payment/merchant';
     }),
   });
 
@@ -76,8 +78,8 @@
     if (!routeContext.isValid.value) {
       return;
     }
-    mchNo.value = routeContext.query.value.mchNo;
-    channelMchNo.value = routeContext.query.value.channelMchNo;
+    mchNo.value = routeContext.query.value.mchNo!;
+    channelMchNo.value = routeContext.query.value.channelMchNo!;
     channelMerchantName.value = normalizeRouteQueryValue(route.query.channelMerchantName);
   }
 
@@ -124,7 +126,7 @@
     v-if="!routeContext.isValid"
     :description="
       $t(
-        !routeContext.query.mchNo
+        !routeContext.query.value.mchNo
           ? 'payment.common.route.missingMchNo'
           : 'payment.merchant.channelMerchant.missingChannelMchNo',
       )

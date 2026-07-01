@@ -38,7 +38,7 @@
     ),
     fallbackPath: computed(() => {
       const no = normalizeRouteQueryValue(route.query.mchNo);
-      return no ? `/payment/merchant/app?mchNo=${no}` : '/payment/merchant';
+      return no ? { path: '/payment/merchant/app', query: { mchNo: no } } : '/payment/merchant';
     }),
   });
 
@@ -150,7 +150,7 @@
   <RouteQueryMissingState
     v-if="!routeContext.isValid"
     :description="
-      $t(!routeContext.query.mchNo ? 'payment.common.route.missingMchNo' : 'payment.common.route.missingAppContext')
+      $t(!routeContext.query.value.mchNo ? 'payment.common.route.missingMchNo' : 'payment.common.route.missingAppContext')
     "
     :back-text="$t('payment.merchant.workbench.workbench.backToList')"
     @back="routeContext.goFallback"

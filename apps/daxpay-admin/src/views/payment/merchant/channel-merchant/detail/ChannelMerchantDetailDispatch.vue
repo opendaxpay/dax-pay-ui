@@ -37,7 +37,7 @@
     }),
     fallbackPath: computed(() => {
       const no = normalizeRouteQueryValue(route.query.mchNo);
-      return no ? `/payment/merchant/channel-merchant?mchNo=${no}` : '/payment/merchant';
+      return no ? { path: '/payment/merchant/channel-merchant', query: { mchNo: no } } : '/payment/merchant';
     }),
   });
 
@@ -173,9 +173,9 @@
     v-if="!routeContext.isValid"
     :description="
       $t(
-        !routeContext.query.mchNo
+        !routeContext.query.value.mchNo
           ? 'payment.common.route.missingMchNo'
-          : !routeContext.query.id
+          : !routeContext.query.value.id
             ? 'payment.merchant.channelMerchant.missingId'
             : 'payment.common.route.missingProduct',
       )

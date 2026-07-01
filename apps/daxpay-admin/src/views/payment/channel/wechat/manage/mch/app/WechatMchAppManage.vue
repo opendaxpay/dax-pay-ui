@@ -39,9 +39,11 @@
       const id = normalizeRouteQueryValue(route.query.channelMerchantId);
       const product = normalizeRouteQueryValue(route.query.product);
       if (mchNo && id && product) {
-        return `/payment/merchant/channel-merchant/detail?mchNo=${mchNo}&id=${id}&product=${product}`;
+        return { path: '/payment/merchant/channel-merchant/detail', query: { mchNo, id, product } };
       }
-      return mchNo ? `/payment/merchant/channel-merchant?mchNo=${mchNo}` : '/payment/merchant';
+      return mchNo
+        ? { path: '/payment/merchant/channel-merchant', query: { mchNo } }
+        : '/payment/merchant';
     }),
   });
 
@@ -126,7 +128,7 @@
     v-if="!routeContext.isValid"
     :description="
       $t(
-        !routeContext.query.mchNo
+        !routeContext.query.value.mchNo
           ? 'payment.common.route.missingMchNo'
           : 'payment.merchant.channelMerchant.missingChannelMchNo',
       )
