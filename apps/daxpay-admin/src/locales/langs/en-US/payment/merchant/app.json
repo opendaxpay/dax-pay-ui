@@ -24,6 +24,7 @@
     "noDefaultAppTip": "You haven't set a default app yet. Please select an app as default",
     "validationAppName": "Please enter app name",
     "validationStatus": "Please select status",
-    "payRoute": "Channel Routing"
+    "payRoute": "Channel Routing",
+    "notifyConfig": "Notification Config"
   }
 }

@@ -24,6 +24,7 @@
     cancelDefault: [];
     delete: [];
     edit: [];
+    notifyConfig: [];
     setDefault: [];
   }>();
 
@@ -43,23 +44,14 @@
    * 更多操作菜单
    */
   function getMoreMenu(): MenuProps {
-    const items: MenuProps['items'] = [];
-    if (!props.record.defaultApp) {
-      items.push({
-        key: 'setDefault',
-        label: $t('payment.merchant.app.app.setDefault'),
-      });
-    } else {
-      items.push({
-        key: 'cancelDefault',
-        label: $t('payment.merchant.app.app.cancelDefault'),
-      });
-    }
-    items.push({
-      key: 'delete',
-      label: $t('payment.merchant.app.app.delete'),
-      danger: true,
-    });
+    const items: MenuProps['items'] = [
+      props.record.defaultApp
+        ? { key: 'cancelDefault', label: $t('payment.merchant.app.app.cancelDefault') }
+        : { key: 'setDefault', label: $t('payment.merchant.app.app.setDefault') },
+      // 国际化：通知配置
+      { key: 'notifyConfig', label: $t('payment.merchant.app.app.notifyConfig') },
+      { key: 'delete', label: $t('payment.merchant.app.app.delete'), danger: true },
+    ];
     return {
       items,
       onClick: ({ key }: { key: string }) => {
@@ -67,6 +59,8 @@
           emit('setDefault');
         } else if (key === 'cancelDefault') {
           emit('cancelDefault');
+        } else if (key === 'notifyConfig') {
+          emit('notifyConfig');
         } else if (key === 'delete') {
           emit('delete');
         }
@@ -108,7 +102,10 @@
         </span>
       </div>
       <div class="flex items-center">
-        <a-tooltip v-if="hasPermission(PermCodes.Merchant.AppRoute.VIEW)" :title="$t('payment.merchant.app.app.payRoute')">
+        <a-tooltip
+          v-if="hasPermission(PermCodes.Merchant.AppRoute.VIEW)"
+          :title="$t('payment.merchant.app.app.payRoute')"
+        >
           <a-button
             type="text"
             size="small"

@@ -54,6 +54,11 @@ export const PermCodes = {
       VIEW: 'merchant:credential:view',
       CREDENTIAL_CONFIG_UPDATE: 'merchant:credential:credential_config_update',
     },
+    /** 通知配置 menuCode=merchant:notify_config */
+    NotifyConfig: {
+      VIEW: 'merchant:notify_config:view',
+      UPDATE: 'merchant:notify_config:notify_config_update',
+    },
     /** 商户应用 menuCode=merchant:app */
     App: {
       VIEW: 'merchant:app:view',

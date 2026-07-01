@@ -1,0 +1,23 @@
+{
+  "notifyConfig": {
+    "title": "通知配置",
+    "infoBanner": "通知配置用于接收平台主动推送的业务事件回调，请填写可被公网访问的 https 回调地址",
+    "notifyUrl": "回调地址",
+    "notifyUrlTooltip": "事件通知将以 HTTP POST 方式推送到该地址，需以 https:// 开头",
+    "notifyUrlPlaceholder": "https://您的回调接收地址",
+    "notifyWay": "通知方式",
+    "notifyWayHint": "当前版本仅支持 HTTP 异步回调",
+    "subscribedEvents": "订阅事件",
+    "subscribedEventsTooltip": "勾选需要接收通知的业务事件类型",
+    "eventPay": "支付",
+    "eventCashouts": "提现",
+    "eventSettle": "结算",
+    "status": "启用状态",
+    "statusEnable": "启用",
+    "statusDisable": "禁用",
+    "remark": "备注",
+    "remarkPlaceholder": "请输入备注",
+    "confirmSave": "确定要保存通知配置吗？",
+    "saveSuccess": "保存成功"
+  }
+}

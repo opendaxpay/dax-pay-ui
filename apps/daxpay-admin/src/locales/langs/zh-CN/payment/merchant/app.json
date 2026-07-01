@@ -24,6 +24,7 @@
     "noDefaultAppTip": "您还没有设置默认应用，请选择一个应用设为默认",
     "validationAppName": "请输入应用名称",
     "validationStatus": "请选择状态",
-    "payRoute": "通道路由"
+    "payRoute": "通道路由",
+    "notifyConfig": "通知配置"
   }
 }

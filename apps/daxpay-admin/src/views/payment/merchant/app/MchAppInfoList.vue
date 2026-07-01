@@ -17,6 +17,7 @@
 
   import MchAppInfoCard from './MchAppInfoCard.vue';
   import MchAppInfoEdit from './MchAppInfoEdit.vue';
+  import MchAppNotifyConfig from './MchAppNotifyConfig.vue';
 
   defineOptions({ name: 'MchAppInfoList' });
 
@@ -33,6 +34,10 @@
   const mchNo = computed(() => routeContext.query.value.mchNo);
   const merchantInfo = ref<MerchantInfo>({});
   const appEditRef = ref<InstanceType<typeof MchAppInfoEdit>>();
+
+  // 通知配置抽屉
+  const notifyDrawerVisible = ref(false);
+  const notifyConfigApp = ref<MchAppInfoResult>({});
 
   /**
    * 分页查询应用列表
@@ -129,6 +134,14 @@
 
   function handleEdit(row: MchAppInfoResult) {
     appEditRef.value?.showEdit(mchNo.value, row);
+  }
+
+  /**
+   * 打开通知配置抽屉
+   */
+  function handleNotifyConfig(row: MchAppInfoResult) {
+    notifyConfigApp.value = row;
+    notifyDrawerVisible.value = true;
   }
 
   /**
@@ -232,6 +245,7 @@
             :mch-no="mchNo"
             :record="row"
             @edit="handleEdit(row)"
+            @notify-config="handleNotifyConfig(row)"
             @set-default="handleSetDefault(row)"
             @cancel-default="handleCancelDefault(row)"
             @delete="handleDelete(row)"
@@ -251,6 +265,13 @@
     </a-card>
 
     <MchAppInfoEdit ref="appEditRef" @ok="handleOk" />
+
+    <!-- 应用事件通知配置抽屉 -->
+    <MchAppNotifyConfig
+      v-model:visible="notifyDrawerVisible"
+      :app-id="notifyConfigApp.appId"
+      :app-name="notifyConfigApp.appName"
+    />
   </div>
 </template>
 

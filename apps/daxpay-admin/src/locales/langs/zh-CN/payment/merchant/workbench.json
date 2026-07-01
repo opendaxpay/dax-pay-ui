@@ -16,8 +16,6 @@
     "cardChannelMerchantDesc": "商户在各支付通道的商户号配置与管理",
     "cardApp": "应用管理",
     "cardAppDesc": "商户应用创建与管理",
-    "cardNotifyConfig": "通知配置",
-    "cardNotifyConfigDesc": "回调地址、通知方式配置",
     "cardCredentialConfig": "对接配置",
     "cardCredentialConfigDesc": "商户公钥、通信密钥、平台公钥等对接密钥配置",
     "cardUser": "用户管理",

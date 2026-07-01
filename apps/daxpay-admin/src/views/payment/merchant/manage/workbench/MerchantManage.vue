@@ -101,14 +101,6 @@
           description: $t('payment.merchant.workbench.workbench.cardCredentialConfigDesc'),
           route: '/payment/merchant/manage/credential',
         },
-        {
-          key: 'notifyConfig',
-          // 国际化：通知配置（功能开发中）
-          title: $t('payment.merchant.workbench.workbench.cardNotifyConfig'),
-          icon: 'ant-design:notification-outlined',
-          // 国际化：回调地址、通知方式配置
-          description: $t('payment.merchant.workbench.workbench.cardNotifyConfigDesc'),
-        },
       ],
     },
   ]);

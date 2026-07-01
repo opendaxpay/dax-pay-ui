@@ -16,8 +16,6 @@
     "cardChannelMerchantDesc": "Merchant No. configuration and management across payment channels",
     "cardApp": "App Management",
     "cardAppDesc": "Merchant app creation and management",
-    "cardNotifyConfig": "Notification Config",
-    "cardNotifyConfigDesc": "Callback address, notification method configuration",
     "cardCredentialConfig": "Credential Config",
     "cardCredentialConfigDesc": "Merchant public key, communication key, platform public key and other credential configuration",
     "cardUser": "User Management",
