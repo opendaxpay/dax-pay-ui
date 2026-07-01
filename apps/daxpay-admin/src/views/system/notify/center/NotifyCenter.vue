@@ -77,12 +77,15 @@
   }
 
   /**
-   * 查看正文(未读则自动标记已读)
+   * 查看正文(独立请求详情, 未读则自动标记已读)
    */
-  function handleView(row: NotifyNoticeBrief) {
-    detail.value = row;
+  async function handleView(row: NotifyNoticeBrief) {
+    if (!row.type || !row.id) return;
+    const { data } = await NotifyUserApi.detail(row.type, row.id);
+    detail.value = data;
     detailOpen.value = true;
-    if (!row.isRead && row.type && row.id) {
+    // 以列表行阅读状态判定, 未读则标记(标记用原 row 的 type/id)
+    if (!row.isRead) {
       handleRead(row);
     }
   }

@@ -19,6 +19,12 @@ export const NotifyUserApi = {
     return defHttp.get({ url: '/notify/user/page', params });
   },
   /**
+   * 查看详情(独立请求, 不复用列表数据)
+   */
+  detail(type: string, id: string): Promise<Result<NotifyNoticeBrief>> {
+    return defHttp.get({ url: '/notify/user/detail', params: { type, id } });
+  },
+  /**
    * 标记单条已读
    */
   read(type: string, id: string): Promise<Result<void>> {
