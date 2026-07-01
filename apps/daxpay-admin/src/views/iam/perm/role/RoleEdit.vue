@@ -38,23 +38,19 @@
     .filter((item) => item.value !== ClientCode.GATEWAY)
     .map((item) => ({ label: $t(item.label), value: item.value }));
 
+  // 防抖判重校验
+  const validateCodeDebounced = useDebounceValidator(formRef, 'code', validateCode, 500);
+  const validateNameCnDebounced = useDebounceValidator(formRef, 'nameCn', validateNameCn, 500);
+  const validateNameEnDebounced = useDebounceValidator(formRef, 'nameEn', validateNameEn, 500);
+
   // 表单校验规则
   const rules = {
     // 角色编码（含防抖判重）
-    code: [
-      { required: true, message: $t('iam.role.inputCode') },
-      { validator: useDebounceValidator(formRef, 'code', validateCode, 500) },
-    ],
+    code: [{ required: true, message: $t('iam.role.inputCode') }, { validator: validateCodeDebounced }],
     // 中文名称（含防抖判重）
-    nameCn: [
-      { required: true, message: $t('iam.role.inputNameCn') },
-      { validator: useDebounceValidator(formRef, 'nameCn', validateNameCn, 500) },
-    ],
+    nameCn: [{ required: true, message: $t('iam.role.inputNameCn') }, { validator: validateNameCnDebounced }],
     // 英文名称（含防抖判重）
-    nameEn: [
-      { required: true, message: $t('iam.role.inputNameEn') },
-      { validator: useDebounceValidator(formRef, 'nameEn', validateNameEn, 500) },
-    ],
+    nameEn: [{ required: true, message: $t('iam.role.inputNameEn') }, { validator: validateNameEnDebounced }],
     // 终端类型
     clientCode: [{ required: true, message: $t('iam.role.selectClientCode') }],
   };
@@ -87,6 +83,10 @@
    * 重置表单
    */
   function resetForm() {
+    // 清空防抖校验缓存，避免上次（新增/编辑）判重结果污染本次会话
+    validateCodeDebounced.reset();
+    validateNameCnDebounced.reset();
+    validateNameEnDebounced.reset();
     nextTick(() => {
       formRef.value?.resetFields();
     });
@@ -144,18 +144,21 @@
    * 提交
    */
   function handleOk() {
-    formRef.value?.validate().then(async () => {
-      confirmLoading.value = true;
-      if (formEditType.value === FormEditType.Add) {
-        await RoleApi.add(form.value).finally(() => (confirmLoading.value = false));
-        message.success($t('common.saveSuccess'));
-      } else if (formEditType.value === FormEditType.Edit) {
-        await RoleApi.update(form.value).finally(() => (confirmLoading.value = false));
-        message.success($t('common.saveSuccess'));
-      }
-      handleCancel();
-      emits('ok');
-    }).catch(() => {});
+    formRef.value
+      ?.validate()
+      .then(async () => {
+        confirmLoading.value = true;
+        if (formEditType.value === FormEditType.Add) {
+          await RoleApi.add(form.value).finally(() => (confirmLoading.value = false));
+          message.success($t('common.saveSuccess'));
+        } else if (formEditType.value === FormEditType.Edit) {
+          await RoleApi.update(form.value).finally(() => (confirmLoading.value = false));
+          message.success($t('common.saveSuccess'));
+        }
+        handleCancel();
+        emits('ok');
+      })
+      .catch(() => {});
   }
 
   defineExpose({ init });

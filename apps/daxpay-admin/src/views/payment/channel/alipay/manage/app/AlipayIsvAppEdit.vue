@@ -61,6 +61,8 @@
       aliAppId: '',
     };
     formRef.value?.resetFields();
+    // 清空防抖校验缓存，避免上次（新增/编辑）判重结果污染本次会话
+    validateAliAppIdDebounced.reset();
   }
 
   /**

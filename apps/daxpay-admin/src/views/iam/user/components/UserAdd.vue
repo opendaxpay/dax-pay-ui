@@ -51,6 +51,9 @@
     return Promise.resolve();
   }
 
+  // 账号防抖判重校验
+  const validateAccountDebounced = useDebounceValidator(formRef, 'account', validateAccountExists, 800);
+
   // 表单校验规则
   const formRules = computed(() => ({
     // 名称
@@ -59,10 +62,7 @@
       { min: 3, max: 15, message: $t('iam.user.validation.nameLength') },
     ],
     // 账号（含防抖判重）
-    account: [
-      ...generateAccountRules(),
-      { validator: useDebounceValidator(formRef, 'account', validateAccountExists, 800) },
-    ],
+    account: [...generateAccountRules(), { validator: validateAccountDebounced }],
     // 密码
     password: generatePasswordRules(passwordConfig.value),
     // 确认密码
@@ -72,6 +72,8 @@
   function resetForm() {
     formState.value = {};
     formRef.value?.resetFields();
+    // 清空防抖校验缓存，避免上次判重结果残留
+    validateAccountDebounced.reset();
   }
 
   async function show() {

@@ -173,6 +173,9 @@
     return Promise.resolve();
   }
 
+  // 菜单编码防抖判重校验
+  const validateMenuCodeDebounced = useDebounceValidator(formRef, 'menuCode', validateMenuCodeExists, 500);
+
   // 表单校验规则
   const rules = computed(() => ({
     // 菜单类型校验
@@ -180,7 +183,7 @@
     // 菜单编码校验（含防抖判重）- 仅菜单类型必填，子页面可选
     menuCode: [
       { required: menuCodeRequired.value, message: $t('iam.menu.inputMenuCode') },
-      { validator: useDebounceValidator(formRef, 'menuCode', validateMenuCodeExists, 500) },
+      { validator: validateMenuCodeDebounced },
     ],
     // 上级菜单校验
     pid: [{ required: parentRequired.value, message: $t('iam.menu.selectParent') }],
@@ -253,6 +256,8 @@
     extraParams.value = params || {};
     initFormEditType(editType);
     originalMenuCode.value = '';
+    // 清空防抖校验缓存，避免上次（新增/编辑）判重结果污染本次会话
+    validateMenuCodeDebounced.reset();
     // 先 resetFields 再 getInfo，避免 menuType 表单项挂载后被重置为 catalog
     nextTick(() => {
       formRef.value?.resetFields();
@@ -309,12 +314,23 @@
     if (type !== MenuTypeEnum.SUBPAGE) {
       return;
     }
-    if (formEditType.value === FormEditType.Add) {
-      title.value = $t('iam.menu.addSubpage');
-    } else if (formEditType.value === FormEditType.Edit) {
-      title.value = $t('iam.menu.editSubpage');
-    } else if (formEditType.value === FormEditType.Show) {
-      title.value = $t('iam.menu.viewSubpage');
+    switch (formEditType.value) {
+      case FormEditType.Add: {
+        title.value = $t('iam.menu.addSubpage');
+
+        break;
+      }
+      case FormEditType.Edit: {
+        title.value = $t('iam.menu.editSubpage');
+
+        break;
+      }
+      case FormEditType.Show: {
+        title.value = $t('iam.menu.viewSubpage');
+
+        break;
+      }
+      // No default
     }
   }
 
@@ -381,24 +397,27 @@
    * 提交
    */
   function handleOk() {
-    formRef.value?.validate().then(async () => {
-      confirmLoading.value = true;
-      const menuCodeChanged =
-        formEditType.value === FormEditType.Edit && originalMenuCode.value !== (form.value.menuCode || '');
-      if (formEditType.value === FormEditType.Add) {
-        await MenuApi.add(form.value).finally(() => (confirmLoading.value = false));
-        message.success($t('common.saveSuccess'));
-      } else if (formEditType.value === FormEditType.Edit) {
-        await MenuApi.update(form.value).finally(() => (confirmLoading.value = false));
-        message.success($t('common.saveSuccess'));
-      }
-      if (menuCodeChanged) {
-        // 菜单编码已变更，权限码挂载关系将在下次同步后按新菜单编码生效
-        message.warning($t('iam.menu.menuCodeChanged'));
-      }
-      closeDrawer();
-      emits('ok');
-    }).catch(() => {});
+    formRef.value
+      ?.validate()
+      .then(async () => {
+        confirmLoading.value = true;
+        const menuCodeChanged =
+          formEditType.value === FormEditType.Edit && originalMenuCode.value !== (form.value.menuCode || '');
+        if (formEditType.value === FormEditType.Add) {
+          await MenuApi.add(form.value).finally(() => (confirmLoading.value = false));
+          message.success($t('common.saveSuccess'));
+        } else if (formEditType.value === FormEditType.Edit) {
+          await MenuApi.update(form.value).finally(() => (confirmLoading.value = false));
+          message.success($t('common.saveSuccess'));
+        }
+        if (menuCodeChanged) {
+          // 菜单编码已变更，权限码挂载关系将在下次同步后按新菜单编码生效
+          message.warning($t('iam.menu.menuCodeChanged'));
+        }
+        closeDrawer();
+        emits('ok');
+      })
+      .catch(() => {});
   }
 
   /**

@@ -3,7 +3,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { AlipayMchAppApi, type AlipayMchApp } from '#/api/payment/channel/alipay/mch-app.api';
+  import { type AlipayMchApp, AlipayMchAppApi } from '#/api/payment/channel/alipay/mch-app.api';
   import { FormEditType } from '#/enums/formEditType';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
@@ -42,8 +42,7 @@
       id,
       formEditType.value,
       (value) => AlipayMchAppApi.existsAliAppId(mchNo.value, channelMchNo.value, value),
-      (value, excludeId) =>
-        AlipayMchAppApi.existsAliAppIdNotId(mchNo.value, channelMchNo.value, value, excludeId),
+      (value, excludeId) => AlipayMchAppApi.existsAliAppIdNotId(mchNo.value, channelMchNo.value, value, excludeId),
       $t('payment.channel.alipayMchApp.aliAppIdDuplicate'),
     );
   }
@@ -66,6 +65,8 @@
       appType: 'mini_program',
     };
     formRef.value?.resetFields();
+    // 清空防抖校验缓存，避免上次（新增/编辑）判重结果污染本次会话
+    validateAliAppIdDebounced.reset();
   }
 
   function show(no: string, mchChannelNo: string) {

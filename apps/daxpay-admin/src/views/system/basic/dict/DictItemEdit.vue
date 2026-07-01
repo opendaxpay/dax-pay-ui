@@ -37,13 +37,13 @@
   // 当前字典ID
   let currentDictId: string | undefined;
 
+  // 字典项编码防抖判重校验
+  const validateCodeDebounced = useDebounceValidator(formRef, 'code', validateCode, 500);
+
   // 表单校验规则
   const rules = {
     // 字典项编码（含防抖判重）
-    code: [
-      { required: true, message: $t('system.dict.item.inputItemCode') },
-      { validator: useDebounceValidator(formRef, 'code', validateCode, 500) },
-    ],
+    code: [{ required: true, message: $t('system.dict.item.inputItemCode') }, { validator: validateCodeDebounced }],
     // 中文名称
     nameCn: [{ required: true, message: $t('system.dict.item.inputNameCn') }],
   };
@@ -78,6 +78,8 @@
    * 重置表单
    */
   function resetForm() {
+    // 清空防抖校验缓存，避免上次（新增/编辑）判重结果污染本次会话
+    validateCodeDebounced.reset();
     nextTick(() => {
       formRef.value?.resetFields();
     });
@@ -103,18 +105,21 @@
    * 提交
    */
   function handleOk() {
-    formRef.value?.validate().then(async () => {
-      confirmLoading.value = true;
-      if (formEditType.value === FormEditType.Add) {
-        await DictItemApi.add(form.value).finally(() => (confirmLoading.value = false));
-        message.success($t('common.saveSuccess'));
-      } else if (formEditType.value === FormEditType.Edit) {
-        await DictItemApi.update(form.value).finally(() => (confirmLoading.value = false));
-        message.success($t('common.saveSuccess'));
-      }
-      handleCancel();
-      emits('ok');
-    }).catch(() => {});
+    formRef.value
+      ?.validate()
+      .then(async () => {
+        confirmLoading.value = true;
+        if (formEditType.value === FormEditType.Add) {
+          await DictItemApi.add(form.value).finally(() => (confirmLoading.value = false));
+          message.success($t('common.saveSuccess'));
+        } else if (formEditType.value === FormEditType.Edit) {
+          await DictItemApi.update(form.value).finally(() => (confirmLoading.value = false));
+          message.success($t('common.saveSuccess'));
+        }
+        handleCancel();
+        emits('ok');
+      })
+      .catch(() => {});
   }
 
   defineExpose({ init });

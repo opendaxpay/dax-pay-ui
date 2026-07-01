@@ -32,13 +32,13 @@
   // 字典表单数据
   const form = ref<Dict>({ enable: true });
 
+  // 字典编码防抖判重校验
+  const validateCodeDebounced = useDebounceValidator(formRef, 'code', validateCode, 500);
+
   // 表单校验规则
   const rules = {
     // 字典编码（含防抖判重）
-    code: [
-      { required: true, message: $t('system.dict.inputCode') },
-      { validator: useDebounceValidator(formRef, 'code', validateCode, 500) },
-    ],
+    code: [{ required: true, message: $t('system.dict.inputCode') }, { validator: validateCodeDebounced }],
     // 字典名称
     name: [{ required: true, message: $t('system.dict.inputName') }],
     // 中文名称
@@ -75,6 +75,8 @@
    * 重置表单
    */
   function resetForm() {
+    // 清空防抖校验缓存，避免上次（新增/编辑）判重结果污染本次会话
+    validateCodeDebounced.reset();
     nextTick(() => {
       formRef.value?.resetFields();
     });
@@ -100,19 +102,22 @@
    * 提交
    */
   function handleOk() {
-    formRef.value?.validate().then(async () => {
-      confirmLoading.value = true;
-      if (formEditType.value === FormEditType.Add) {
-        await DictApi.add(form.value).finally(() => (confirmLoading.value = false));
-        message.success($t('common.saveSuccess'));
-      } else if (formEditType.value === FormEditType.Edit) {
-        console.info(form.value);
-        await DictApi.update(form.value).finally(() => (confirmLoading.value = false));
-        message.success($t('common.saveSuccess'));
-      }
-      handleCancel();
-      emits('ok');
-    }).catch(() => {});
+    formRef.value
+      ?.validate()
+      .then(async () => {
+        confirmLoading.value = true;
+        if (formEditType.value === FormEditType.Add) {
+          await DictApi.add(form.value).finally(() => (confirmLoading.value = false));
+          message.success($t('common.saveSuccess'));
+        } else if (formEditType.value === FormEditType.Edit) {
+          console.info(form.value);
+          await DictApi.update(form.value).finally(() => (confirmLoading.value = false));
+          message.success($t('common.saveSuccess'));
+        }
+        handleCancel();
+        emits('ok');
+      })
+      .catch(() => {});
   }
 
   defineExpose({ init });
