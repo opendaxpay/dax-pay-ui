@@ -13,7 +13,7 @@
       "verifyPublicKey": "RSA 公钥"
     },
     "placeholder": {
-      "signParam": "例如: {'{'}\"mchNo\": \"M0001\", \"amount\": 0.01{'}'}",
+      "signParam": "例如: {'{'}\"mchNo\": \"M0001\", \"amount\": 1{'}'}",
       "signPrivateKey": "请输入完整的 RSA 私钥 (PKCS8 格式)",
       "verifyParam": "请输入待验签的 JSON 参数",
       "verifySign": "Base64 签名串",
@@ -87,7 +87,7 @@
       "notifyUrl": "异步通知地址",
       "expiredTime": "支付超时时间",
       "bizOrderNo": "订单号",
-      "amount": "支付金额",
+      "amount": "支付金额(分)",
       "title": "支付标题",
       "description": "支付描述"
     },
@@ -100,6 +100,9 @@
       "expiredTime": "留空默认 30 分钟",
       "title": "测试订单",
       "description": "请输入支付描述"
+    },
+    "default": {
+      "titlePrefix": "测试支付"
     },
     "btn": {
       "setPrivateKey": "设置私钥",
@@ -122,7 +125,6 @@
     },
     "result": {
       "modalTitle": "支付结果",
-      "statusTitle": "支付调试完成",
       "payLink": "支付链接",
       "jsapiParam": "JSAPI 参数",
       "formData": "表单数据",
@@ -130,10 +132,7 @@
       "copyData": "复制数据",
       "empty": "暂无数据",
       "field": {
-        "orderNo": "系统订单号",
-        "bizOrderNo": "商户订单号",
-        "amount": "支付金额",
-        "status": "支付状态"
+        "orderNo": "系统订单号"
       }
     },
     "rule": {

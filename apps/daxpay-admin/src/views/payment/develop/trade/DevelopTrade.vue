@@ -6,6 +6,7 @@
 
   import { computed, onMounted, reactive, ref } from 'vue';
 
+  import { JsonViewer } from '@vben/common-ui';
   import { $t } from '@vben/locales';
 
   import { IconifyIcon } from '@vben-core/icons';
@@ -27,7 +28,7 @@
   const PRIVATE_KEY_STORAGE_KEY = 'daxpay_dev_private_key';
 
   // 支付模式: route=路由模式(商户+方式+应用动态匹配) direct=传值模式(通道商户+能力直接决定)
-  const routeMode = ref<'route' | 'direct'>('route');
+  const routeMode = ref<'direct' | 'route'>('route');
 
   // ===== 表单校验规则(按模式动态生成) =====
   const formRules = computed<Record<string, any[]>>(() => {
@@ -55,8 +56,8 @@
     appId: '',
     channelMchNo: '',
     bizOrderNo: '',
-    title: '',
-    amount: 0.01,
+    title: genDefaultTitle(),
+    amount: 1,
     method: '',
     capability: '',
     description: '',
@@ -95,6 +96,16 @@
       .toString()
       .padStart(4, '0');
     form.bizOrderNo = `PAY${ts}${rand}`;
+  }
+
+  /**
+   * 生成默认支付标题(测试支付 + yyyyMMddHHmmss)
+   */
+  function genDefaultTitle() {
+    const d = new Date();
+    const pad = (n: number) => n.toString().padStart(2, '0');
+    const ts = `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
+    return `${$t('payment.develop.trade.default.titlePrefix')}-${ts}`;
   }
 
   /** 初始化下拉与默认值 */
@@ -300,8 +311,8 @@
       appId: '',
       channelMchNo: '',
       bizOrderNo: '',
-      title: '',
-      amount: 0.01,
+      title: genDefaultTitle(),
+      amount: 1,
       method: '',
       capability: '',
       description: '',
@@ -325,26 +336,19 @@
   const payBodyType = computed(() => resultData.value.payResult?.payBodyType ?? '');
   /** 结果中的支付参数体 */
   const payBody = computed(() => resultData.value.payResult?.payBody ?? '');
-  /** 结果中的支付订单结果 */
-  const payResult = computed(() => resultData.value.payResult);
-
-  /** 格式化 jsapi 参数展示 */
-  const jsapiPreview = computed(() => {
+  /** JSAPI 参数对象(供 JsonViewer 展示) */
+  const jsapiObject = computed(() => {
     const body = payBody.value;
-    if (!body) return '';
+    if (!body) return {};
     try {
-      return JSON.stringify(JSON.parse(body), null, 2);
+      return JSON.parse(body);
     } catch {
-      return body;
+      return {};
     }
   });
 
-  /** 结果弹窗是否展示支付参数体(区分 sign 预览与真实支付) */
+  /** 结果弹窗是否展示支付参数体 */
   const hasPayBody = computed(() => !!payBody.value);
-  /** 结果弹窗是否为签名预览(无支付结果) */
-  const isSignOnly = computed(
-    () => !hasPayBody.value && (!!resultData.value.signInfo?.sign || !!resultData.value.signInfo?.signStr),
-  );
 
   /** 复制结果数据 */
   function copyResultData() {
@@ -385,7 +389,9 @@
                       {{ $t('payment.develop.trade.privateKey.setTag') }}
                     </a-tag>
                     <a-tag v-else color="default">{{ $t('payment.develop.trade.privateKey.unsetTag') }}</a-tag>
-                    <span v-if="privateKey" class="text-xs text-muted-foreground">{{ $t('payment.develop.trade.privateKey.setLabel') }}</span>
+                    <span v-if="privateKey" class="text-xs text-muted-foreground">{{
+                      $t('payment.develop.trade.privateKey.setLabel')
+                    }}</span>
                     <div class="flex shrink-0 gap-1">
                       <a-button size="small" type="primary" @click="showPrivateKeyModal">
                         <template #icon><IconifyIcon icon="ant-design:key-outlined" /></template>
@@ -558,17 +564,25 @@
                   </a-col>
                   <a-col :span="12">
                     <a-form-item :label="$t('payment.develop.trade.field.amount')" name="amount">
-                      <a-input-number v-model:value="form.amount" :min="0.01" :precision="2" style="width: 100%">
-                        <template #prefix>￥</template>
-                      </a-input-number>
+                      <a-input-number
+                        v-model:value="form.amount"
+                        :min="1"
+                        :precision="0"
+                        :step="1"
+                        style="width: 100%"
+                      />
                     </a-form-item>
                   </a-col>
                   <a-col :span="12">
                     <a-form-item :label="$t('payment.develop.trade.field.title')" name="title">
-                      <a-input
-                        v-model:value="form.title"
-                        :placeholder="$t('payment.develop.trade.placeholder.title')"
-                      />
+                      <a-input v-model:value="form.title" :placeholder="$t('payment.develop.trade.placeholder.title')">
+                        <template #suffix>
+                          <a-button size="small" type="link" @click="form.title = genDefaultTitle()">
+                            <template #icon><IconifyIcon icon="ant-design:reload-outlined" /></template>
+                            {{ $t('payment.develop.trade.btn.genOrderNo') }}
+                          </a-button>
+                        </template>
+                      </a-input>
                     </a-form-item>
                   </a-col>
                   <a-col :span="24">
@@ -680,38 +694,15 @@
       v-model:open="resultVisible"
       :title="$t('payment.develop.trade.result.modalTitle')"
       :footer="null"
-      :width="640"
+      :width="600"
       destroy-on-hidden
     >
-      <!-- 状态头 + 订单摘要(真实支付结果) -->
       <template v-if="hasPayBody">
-        <a-result status="success" :title="$t('payment.develop.trade.result.statusTitle')" class="py-4">
-          <template #extra>
-            <a-descriptions v-if="payResult" :column="2" bordered size="small">
-              <a-descriptions-item :label="$t('payment.develop.trade.result.field.bizOrderNo')">
-                {{ payResult.bizOrderNo || '-' }}
-              </a-descriptions-item>
-              <a-descriptions-item :label="$t('payment.develop.trade.result.field.orderNo')">
-                {{ payResult.orderNo || '-' }}
-              </a-descriptions-item>
-              <a-descriptions-item :label="$t('payment.develop.trade.result.field.amount')">
-                ￥{{ form.amount?.toFixed(2) }}
-              </a-descriptions-item>
-              <a-descriptions-item :label="$t('payment.develop.trade.result.field.status')">
-                <a-tag v-if="payResult.status" color="blue">{{ payResult.status }}</a-tag>
-                <span v-else>-</span>
-              </a-descriptions-item>
-            </a-descriptions>
-          </template>
-        </a-result>
-
-        <a-divider class="my-2" />
-
-        <!-- 扫码链接: 渲染二维码 -->
-        <template v-if="payBodyType === 'link'">
-          <div class="flex flex-col items-center">
-            <div class="mb-3 rounded-xl border border-border bg-card p-2 shadow-sm">
-              <QrCode :value="payBody" :width="220" />
+        <div class="flex flex-col items-center">
+          <!-- 扫码支付/支付链接: qr_code + link 渲染二维码 -->
+          <template v-if="['link', 'qr_code'].includes(payBodyType)">
+            <div class="mb-3 rounded-lg border border-border bg-card p-1 shadow-sm">
+              <QrCode :value="payBody" :width="240" />
             </div>
             <div class="w-full">
               <div class="mb-1 text-xs font-medium text-muted-foreground">
@@ -721,56 +712,47 @@
                 {{ payBody }}
               </div>
             </div>
-          </div>
-        </template>
+          </template>
 
-        <!-- JSAPI: 展示 JSON -->
-        <template v-else-if="payBodyType === 'jsapi'">
-          <div class="w-full">
-            <div class="mb-1 text-xs font-medium text-muted-foreground">
-              {{ $t('payment.develop.trade.result.jsapiParam') }}
+          <!-- JSON/JSAPI: jsapi + json 用 JsonViewer 展示 -->
+          <template v-else-if="['jsapi', 'json'].includes(payBodyType)">
+            <div class="w-full">
+              <div class="mb-1 text-xs font-medium text-muted-foreground">
+                {{ $t('payment.develop.trade.result.jsapiParam') }}
+              </div>
+              <JsonViewer class="json-viewer-box mb-3" :value="jsapiObject" :expand-depth="3" boxed copyable />
             </div>
-            <pre class="code-box mb-3 rounded-lg border border-border bg-muted/40 p-3 text-xs">{{ jsapiPreview }}</pre>
-          </div>
-        </template>
+          </template>
 
-        <!-- 其它类型 -->
-        <template v-else>
-          <div class="w-full">
-            <div class="mb-1 text-xs font-medium text-muted-foreground">
-              {{
-                payBodyType === 'form'
-                  ? $t('payment.develop.trade.result.formData')
-                  : $t('payment.develop.trade.result.markCode')
-              }}
+          <!-- 表单数据: from -->
+          <template v-else-if="payBodyType === 'from'">
+            <div class="w-full">
+              <div class="mb-1 text-xs font-medium text-muted-foreground">
+                {{ $t('payment.develop.trade.result.formData') }}
+              </div>
+              <div class="code-box mb-3 break-all rounded-lg border border-border bg-muted/40 p-3 text-xs">
+                {{ payBody }}
+              </div>
             </div>
-            <div class="code-box mb-3 break-all rounded-lg border border-border bg-muted/40 p-3 text-xs">
-              {{ payBody }}
+          </template>
+
+          <!-- 标识码及其他: identifier / 兜底 -->
+          <template v-else>
+            <div class="w-full">
+              <div class="mb-1 text-xs font-medium text-muted-foreground">
+                {{ payBodyType === 'identifier' ? $t('payment.develop.trade.result.markCode') : payBodyType }}
+              </div>
+              <div class="code-box mb-3 break-all rounded-lg border border-border bg-muted/40 p-3 text-xs">
+                {{ payBody }}
+              </div>
             </div>
-          </div>
-        </template>
+          </template>
 
-        <a-button block type="primary" @click="copyResultData">
-          <template #icon><IconifyIcon icon="ant-design:copy-outlined" /></template>
-          {{ $t('payment.develop.trade.result.copyData') }}
-        </a-button>
-      </template>
-
-      <!-- 签名预览(无支付结果) -->
-      <template v-else-if="isSignOnly">
-        <div class="w-full py-2">
-          <div class="mb-1 text-xs font-medium text-muted-foreground">
-            {{ $t('payment.develop.sign.field.signStr') }}
-          </div>
-          <div class="code-box mb-3 break-all rounded-lg border border-border bg-muted/40 p-3 text-xs">
-            {{ resultData.signInfo?.signStr || $t('payment.develop.trade.result.empty') }}
-          </div>
-          <div class="mb-1 text-xs font-medium text-muted-foreground">
-            {{ $t('payment.develop.sign.field.signValue') }}
-          </div>
-          <div class="code-box break-all rounded-lg border border-border bg-muted/40 p-3 text-xs">
-            {{ resultData.signInfo?.sign || $t('payment.develop.trade.result.empty') }}
-          </div>
+          <!-- 复制数据 -->
+          <a-button block type="primary" @click="copyResultData">
+            <template #icon><IconifyIcon icon="ant-design:copy-outlined" /></template>
+            {{ $t('payment.develop.trade.result.copyData') }}
+          </a-button>
         </div>
       </template>
 

@@ -13,7 +13,7 @@
       "verifyPublicKey": "RSA Public Key"
     },
     "placeholder": {
-      "signParam": "e.g. {'{'}\"mchNo\": \"M0001\", \"amount\": 0.01{'}'}",
+      "signParam": "e.g. {'{'}\"mchNo\": \"M0001\", \"amount\": 1{'}'}",
       "signPrivateKey": "Enter the full RSA private key (PKCS8)",
       "verifyParam": "Enter the JSON params to verify",
       "verifySign": "Base64 sign string",
@@ -87,7 +87,7 @@
       "notifyUrl": "Async Notify URL",
       "expiredTime": "Expire Time",
       "bizOrderNo": "Order No.",
-      "amount": "Amount",
+      "amount": "Amount (Fen)",
       "title": "Title",
       "description": "Description"
     },
@@ -100,6 +100,9 @@
       "expiredTime": "Default 30 minutes if empty",
       "title": "Test order",
       "description": "Enter payment description"
+    },
+    "default": {
+      "titlePrefix": "Test Pay"
     },
     "btn": {
       "setPrivateKey": "Set Key",
@@ -122,7 +125,6 @@
     },
     "result": {
       "modalTitle": "Payment Result",
-      "statusTitle": "Payment debug completed",
       "payLink": "Payment Link",
       "jsapiParam": "JSAPI Params",
       "formData": "Form Data",
@@ -130,10 +132,7 @@
       "copyData": "Copy Data",
       "empty": "No data",
       "field": {
-        "orderNo": "System Order No.",
-        "bizOrderNo": "Merchant Order No.",
-        "amount": "Amount",
-        "status": "Status"
+        "orderNo": "System Order No."
       }
     },
     "rule": {
