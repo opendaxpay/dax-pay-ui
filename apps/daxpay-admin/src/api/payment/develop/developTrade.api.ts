@@ -71,7 +71,7 @@ export interface PayParam {
   title: string;
   /** 支付描述 */
   description?: string;
-  /** 支付金额(元) */
+  /** 支付金额(分) */
   amount: number;
   /** 支付产品编码, 为空时由路由自动选择 */
   product?: string;
@@ -117,10 +117,8 @@ export interface DevelopSignResult {
 
 /** 支付调试结果 */
 export interface DevelopPayResult {
-  /** 请求体 JSON */
-  requestBody?: string;
-  /** 签名信息 */
-  signInfo?: DevelopSignResult;
   /** 支付结果 */
   payResult?: PayResult;
+  /** 响应签名(平台私钥签名) */
+  sign?: string;
 }
