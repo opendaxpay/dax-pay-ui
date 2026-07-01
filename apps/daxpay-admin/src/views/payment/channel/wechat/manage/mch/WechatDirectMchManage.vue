@@ -107,7 +107,6 @@ function handleCardClick(card: { key: string }) {
         channelMchNo: channelMchNo.value,
         channelMerchantId: id,
         product: ProductEnum.WECHAT_PAY,
-        channelMerchantName: channelMerchant.value.channelMerchantName || '',
       },
     });
   }

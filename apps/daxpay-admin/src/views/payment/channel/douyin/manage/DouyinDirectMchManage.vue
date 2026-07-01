@@ -115,8 +115,6 @@
           mchNo: mchNo.value,
           channelMchNo: channelMchNo.value,
           channelMerchantId: id,
-          product: 'douyin_pay',
-          channelMerchantName: channelMerchant.value.channelMerchantName || '',
         },
       });
     }

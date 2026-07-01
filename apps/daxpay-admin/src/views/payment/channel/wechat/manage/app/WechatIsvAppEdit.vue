@@ -24,8 +24,6 @@
     wxAppId: '',
   });
 
-  const isEdit = computed(() => formEditType.value === FormEditType.Edit);
-
   /** 应用类型选项 */
   const appTypeOptions = computed(() => [
     { label: $t('payment.channel.wechatManage.appTypeOfficialAccount'), value: 'official_account' },
@@ -47,14 +45,14 @@
 
   const validateWxAppIdDebounced = useDebounceValidator(formRef, 'wxAppId', validateWxAppId, 500);
 
-  const formRules = computed(() => ({
+  const formRules = {
     appName: [{ required: true, message: $t('payment.channel.wechatManage.appNameRequired') }],
-    appType: isEdit.value ? [] : [{ required: true, message: $t('payment.channel.wechatManage.appTypeRequired') }],
+    appType: [{ required: true, message: $t('payment.channel.wechatManage.appTypeRequired') }],
     wxAppId: [
       { required: true, message: $t('payment.channel.wechatManage.wxAppIdRequired') },
       { validator: validateWxAppIdDebounced },
     ],
-  }));
+  };
 
   function resetForm() {
     formState.value = {
@@ -63,6 +61,8 @@
       wxAppId: '',
     };
     formRef.value?.resetFields();
+    // 清空防抖校验缓存，避免上次（新增/编辑）判重结果污染本次会话
+    validateWxAppIdDebounced.reset();
   }
 
   function show() {
@@ -148,7 +148,6 @@
           <a-select
             v-model:value="formState.appType"
             :options="appTypeOptions"
-            :disabled="isEdit"
             :placeholder="$t('payment.channel.wechatManage.appTypeRequired')"
           />
         </a-form-item>

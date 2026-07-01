@@ -34,8 +34,9 @@
     fallbackPath: computed(() => {
       const mchNo = normalizeRouteQueryValue(route.query.mchNo);
       const id = normalizeRouteQueryValue(route.query.channelMerchantId);
-      const product = normalizeRouteQueryValue(route.query.product);
-      if (mchNo && id && product) {
+      // product 由本页所属渠道决定（支付宝直连），无需从路由读取
+      const product = ProductEnum.ALIPAY;
+      if (mchNo && id) {
         return `/payment/merchant/channel-merchant/detail?mchNo=${mchNo}&id=${id}&product=${product}`;
       }
       return mchNo ? `/payment/merchant/channel-merchant?mchNo=${mchNo}` : '/payment/merchant';
@@ -85,7 +86,8 @@
   function handleBack() {
     const id = normalizeRouteQueryValue(route.query.channelMerchantId);
     if (id) {
-      const product = normalizeRouteQueryValue(route.query.product) || ProductEnum.ALIPAY;
+      // product 由本页所属渠道决定（支付宝直连）
+      const product = ProductEnum.ALIPAY;
       router.push({
         path: '/payment/merchant/channel-merchant/detail',
         query: { mchNo: mchNo.value, id, product },

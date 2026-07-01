@@ -3,10 +3,7 @@
 
   import { $t } from '@vben/locales';
 
-  import {
-    WechatMchAppApi,
-    type WechatMchApp,
-  } from '#/api/payment/channel/wechat/mch-app.api';
+  import { type WechatMchApp, WechatMchAppApi } from '#/api/payment/channel/wechat/mch-app.api';
   import { FormEditType } from '#/enums/formEditType';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
@@ -29,8 +26,6 @@
     wxAppId: '',
   });
 
-  const isEdit = computed(() => formEditType.value === FormEditType.Edit);
-
   /** 应用类型选项 */
   const appTypeOptions = computed(() => [
     {
@@ -48,25 +43,20 @@
       id,
       formEditType.value,
       (value) => WechatMchAppApi.existsWxAppId(mchNo.value, channelMchNo.value, value),
-      (value, excludeId) =>
-        WechatMchAppApi.existsWxAppIdNotId(mchNo.value, channelMchNo.value, value, excludeId),
+      (value, excludeId) => WechatMchAppApi.existsWxAppIdNotId(mchNo.value, channelMchNo.value, value, excludeId),
       $t('payment.channel.wechatMchApp.wxAppIdDuplicate'),
     );
   }
 
   const validateWxAppIdDebounced = useDebounceValidator(formRef, 'wxAppId', validateWxAppId, 500);
-
-  const formRules = computed(() => ({
+  const formRules = {
     appName: [{ required: true, message: $t('payment.channel.wechatMchApp.appNameRequired') }],
-    appType: isEdit.value
-      ? []
-      : [{ required: true, message: $t('payment.channel.wechatMchApp.appTypeRequired') }],
+    appType: [{ required: true, message: $t('payment.channel.wechatMchApp.appTypeRequired') }],
     wxAppId: [
       { required: true, message: $t('payment.channel.wechatMchApp.wxAppIdRequired') },
       { validator: validateWxAppIdDebounced },
     ],
-  }));
-
+  };
   function resetForm() {
     formState.value = {
       appName: '',
@@ -74,6 +64,8 @@
       wxAppId: '',
     };
     formRef.value?.resetFields();
+    // 清空防抖校验缓存，避免上次（新增/编辑）判重结果污染本次会话
+    validateWxAppIdDebounced.reset();
   }
 
   function show(no: string, mchChannelNo: string) {
@@ -120,9 +112,7 @@
       channelMchNo: channelMchNo.value,
     };
     const request =
-      formEditType.value === FormEditType.Edit
-        ? WechatMchAppApi.update(payload)
-        : WechatMchAppApi.add(payload);
+      formEditType.value === FormEditType.Edit ? WechatMchAppApi.update(payload) : WechatMchAppApi.add(payload);
     request
       .then(() => {
         message.success($t('payment.channel.wechatMchApp.saveSuccess'));
@@ -167,7 +157,6 @@
           <a-select
             v-model:value="formState.appType"
             :options="appTypeOptions"
-            :disabled="isEdit"
             :placeholder="$t('payment.channel.wechatMchApp.appTypeRequired')"
           />
         </a-form-item>

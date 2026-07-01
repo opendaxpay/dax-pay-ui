@@ -8,8 +8,6 @@
 
   import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
 
-  import { ProductEnum } from '#/enums/payment/productEnum';
-
   import AlipayChannelMerchantBasicInfo from './AlipayChannelMerchantBasicInfo.vue';
 
   import AlipayMchAppCapability from './AlipayMchAppCapability.vue';
@@ -106,9 +104,8 @@
         query: {
           mchNo: mchNo.value,
           channelMchNo: channelMchNo.value,
-          // 国际化：透传通道商户 id 与产品类型，使应用管理页返回时能回到详情页
+          // 国际化：透传通道商户 id，使应用管理页返回时能回到详情页（product 由应用管理页按渠道常量推断）
           channelMerchantId: channelMerchant.value.id,
-          product: ProductEnum.ALIPAY,
         },
       });
     }

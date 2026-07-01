@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-  import { ref, computed } from 'vue';
+  import { computed, ref } from 'vue';
 
   import { $t } from '@vben/locales';
 
-  import { DouyinMchAppApi, type DouyinMchApp } from '#/api/payment/channel/douyin/mch-app.api';
-  import { useFormEdit } from '#/hooks/useFormEdit';
+  import { type DouyinMchApp, DouyinMchAppApi } from '#/api/payment/channel/douyin/mch-app.api';
   import { FormEditType } from '#/enums/formEditType';
+  import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
   import { useValidate } from '#/hooks/useValidate';
 
@@ -25,8 +25,6 @@
     douyinAppId: '',
     appType: 'mini_program',
   });
-
-  const isEdit = computed(() => formEditType.value === FormEditType.Edit);
 
   /** 应用类型选项 */
   const appTypeOptions = computed(() => [
@@ -49,14 +47,14 @@
 
   const validateDouyinAppIdDebounced = useDebounceValidator(formRef, 'douyinAppId', validateDouyinAppId, 500);
 
-  const formRules = computed(() => ({
+  const formRules = {
     appName: [{ required: true, message: $t('payment.channel.douyinMchApp.appNameRequired') }],
-    appType: isEdit.value ? [] : [{ required: true, message: $t('payment.channel.douyinMchApp.appTypeRequired') }],
+    appType: [{ required: true, message: $t('payment.channel.douyinMchApp.appTypeRequired') }],
     douyinAppId: [
       { required: true, message: $t('payment.channel.douyinMchApp.douyinAppIdRequired') },
       { validator: validateDouyinAppIdDebounced },
     ],
-  }));
+  };
 
   function resetForm() {
     formState.value = {
@@ -65,6 +63,8 @@
       appType: 'mini_program',
     };
     formRef.value?.resetFields();
+    // 清空防抖校验缓存，避免上次（新增/编辑）判重结果污染本次会话
+    validateDouyinAppIdDebounced.reset();
   }
 
   function show(no: string, mchChannelNo: string) {
@@ -156,7 +156,6 @@
           <a-select
             v-model:value="formState.appType"
             :options="appTypeOptions"
-            :disabled="isEdit"
             :placeholder="$t('payment.channel.douyinMchApp.appTypeRequired')"
           />
         </a-form-item>
