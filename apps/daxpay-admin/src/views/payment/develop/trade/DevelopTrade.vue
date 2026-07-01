@@ -415,7 +415,7 @@
 
                 <a-row :gutter="16">
                   <a-col :span="8">
-                    <a-form-item :label="$t('payment.develop.trade.field.mchNo')" name="mchNo" required>
+                    <a-form-item :label="$t('payment.develop.trade.field.mchNo')" name="mchNo">
                       <a-select
                         v-model:value="form.mchNo"
                         show-search
@@ -442,7 +442,7 @@
                   </a-col>
                   <!-- 路由模式: 支付方式(必填, 经路由引擎匹配) -->
                   <a-col v-if="routeMode === 'route'" :span="8">
-                    <a-form-item :label="$t('payment.develop.trade.field.method')" name="method" required>
+                    <a-form-item :label="$t('payment.develop.trade.field.method')" name="method">
                       <a-select
                         v-model:value="form.method"
                         show-search
@@ -455,11 +455,7 @@
                   </a-col>
                   <!-- 传值模式: 通道商户(必填) -->
                   <a-col v-if="routeMode === 'direct'" :span="8">
-                    <a-form-item
-                      :label="$t('payment.develop.trade.field.channelMchNo')"
-                      name="channelMchNo"
-                      required
-                    >
+                    <a-form-item :label="$t('payment.develop.trade.field.channelMchNo')" name="channelMchNo">
                       <a-select
                         v-model:value="form.channelMchNo"
                         show-search
@@ -473,11 +469,7 @@
                   </a-col>
                   <!-- 传值模式: 支付能力(必填, 由通道商户+能力直接决定支付实现) -->
                   <a-col v-if="routeMode === 'direct'" :span="8">
-                    <a-form-item
-                      :label="$t('payment.develop.trade.field.capability')"
-                      name="capability"
-                      required
-                    >
+                    <a-form-item :label="$t('payment.develop.trade.field.capability')" name="capability">
                       <a-select
                         v-model:value="form.capability"
                         show-search
@@ -553,7 +545,7 @@
                 </template>
                 <a-row :gutter="16">
                   <a-col :span="24">
-                    <a-form-item :label="$t('payment.develop.trade.field.bizOrderNo')" name="bizOrderNo" required>
+                    <a-form-item :label="$t('payment.develop.trade.field.bizOrderNo')" name="bizOrderNo">
                       <a-input v-model:value="form.bizOrderNo">
                         <template #suffix>
                           <a-button size="small" type="link" @click="genBizOrderNo">
@@ -565,14 +557,14 @@
                     </a-form-item>
                   </a-col>
                   <a-col :span="12">
-                    <a-form-item :label="$t('payment.develop.trade.field.amount')" name="amount" required>
+                    <a-form-item :label="$t('payment.develop.trade.field.amount')" name="amount">
                       <a-input-number v-model:value="form.amount" :min="0.01" :precision="2" style="width: 100%">
                         <template #prefix>￥</template>
                       </a-input-number>
                     </a-form-item>
                   </a-col>
                   <a-col :span="12">
-                    <a-form-item :label="$t('payment.develop.trade.field.title')" name="title" required>
+                    <a-form-item :label="$t('payment.develop.trade.field.title')" name="title">
                       <a-input
                         v-model:value="form.title"
                         :placeholder="$t('payment.develop.trade.placeholder.title')"
