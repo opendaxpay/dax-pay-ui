@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import type { FormInstance } from 'antdv-next';
+
   import type { DevelopPayResult, PayParam } from '#/api/payment/develop/developTrade.api';
   import type { LabelValue } from '#/types/web';
 
@@ -18,11 +20,34 @@
 
   const { message, confirm } = useMessage();
 
+  // 表单引用(用于提交前校验)
+  const formRef = ref<FormInstance>();
+
   // 私钥在 localStorage 中的键名
   const PRIVATE_KEY_STORAGE_KEY = 'daxpay_dev_private_key';
 
   // 支付模式: route=路由模式(商户+方式+应用动态匹配) direct=传值模式(通道商户+能力直接决定)
   const routeMode = ref<'route' | 'direct'>('route');
+
+  // ===== 表单校验规则(按模式动态生成) =====
+  const formRules = computed<Record<string, any[]>>(() => {
+    // 通用必填字段
+    const rules: Record<string, any[]> = {
+      mchNo: [{ required: true, message: $t('payment.develop.trade.rule.mchNo') }],
+      bizOrderNo: [{ required: true, message: $t('payment.develop.trade.rule.bizOrderNo') }],
+      amount: [{ required: true, message: $t('payment.develop.trade.rule.amount') }],
+      title: [{ required: true, message: $t('payment.develop.trade.rule.title') }],
+    };
+    // 路由模式: 支付方式必填
+    if (routeMode.value === 'route') {
+      rules.method = [{ required: true, message: $t('payment.develop.trade.rule.method') }];
+    } else {
+      // 传值模式: 通道商户与支付能力必填
+      rules.channelMchNo = [{ required: true, message: $t('payment.develop.trade.rule.channelMchNo') }];
+      rules.capability = [{ required: true, message: $t('payment.develop.trade.rule.capability') }];
+    }
+    return rules;
+  });
 
   // ===== 表单数据 =====
   const form = reactive<PayParam>({
@@ -243,6 +268,13 @@
   // ===== 提交 =====
   /** 发起真实支付调试 */
   async function handlePay() {
+    // 表单字段校验
+    try {
+      await formRef.value?.validate();
+    } catch {
+      // 校验未通过,字段错误已由表单自动展示
+      return;
+    }
     if (!privateKey.value) {
       message.warning($t('payment.develop.trade.msg.inputPrivateKey'));
       return;
@@ -331,7 +363,7 @@
 <template>
   <div class="develop-trade p-4 pb-28">
     <a-spin :spinning="loading">
-      <a-form layout="vertical" :model="form">
+      <a-form ref="formRef" layout="vertical" :model="form" :rules="formRules">
         <a-row :gutter="16">
           <!-- ============ 左列 ============ -->
           <a-col :lg="12" :xs="24">

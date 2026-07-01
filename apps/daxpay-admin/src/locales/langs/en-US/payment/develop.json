@@ -140,7 +140,10 @@
       "mchNo": "Please select a merchant",
       "bizOrderNo": "Please enter the order no.",
       "title": "Please enter the title",
-      "amount": "Please enter the amount"
+      "amount": "Please enter the amount",
+      "method": "Please select a payment method",
+      "channelMchNo": "Please select a channel merchant",
+      "capability": "Please select a capability"
     },
     "msg": {
       "signSuccess": "Sign generated successfully",

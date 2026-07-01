@@ -140,7 +140,10 @@
       "mchNo": "请选择商户",
       "bizOrderNo": "请输入订单号",
       "title": "请输入支付标题",
-      "amount": "请输入支付金额"
+      "amount": "请输入支付金额",
+      "method": "请选择支付方式",
+      "channelMchNo": "请选择通道商户",
+      "capability": "请选择支付能力"
     },
     "msg": {
       "signSuccess": "签名生成成功",
