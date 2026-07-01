@@ -53,31 +53,14 @@ export interface MerchantUserParam {
   account?: string;
   /** 密码 */
   password?: string;
+  /** 密码 */
+  confirmPassword?: string;
   /** 手机号 */
   phone?: string;
   /** 邮箱 */
   email?: string;
 }
 
-/**
- * 商户用户重置密码参数
- */
-export interface MerchantUserResetPwdParam {
-  /** 用户ID */
-  userId: string;
-  /** 新密码 */
-  newPassword: string;
-}
-
-/**
- * 商户用户批量重置密码参数
- */
-export interface MerchantUserResetPwdBatchParam {
-  /** 用户ID列表 */
-  userIds: string[];
-  /** 新密码 */
-  newPassword: string;
-}
 
 /**
  * 用户信息结果
