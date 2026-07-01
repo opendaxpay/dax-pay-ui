@@ -3,5 +3,16 @@
   "cardDirectKeyConfig": "密钥配置",
   "cardDirectKeyConfigDesc": "配置抖音支付商户维度的密钥和证书",
   "directKeyConfigTitle": "抖音直连密钥配置",
-  "keyConfigSection": "商户密钥配置"
+  "keyConfigSection": "商户密钥配置",
+  "cardCapabilityBinding": "能力应用绑定",
+  "cardCapabilityBindingDesc": "配置支付能力与应用的绑定关系",
+  "capabilityTitle": "能力应用绑定",
+  "capabilityDesc": "为每个支付能力指定使用的抖音应用，未指定时将按应用类型自动推导",
+  "capabilityNoApp": "当前通道商户下暂无应用，请先创建应用",
+  "capabilityAutoTip": "自动推导",
+  "capabilitySelectPlaceholder": "选择应用",
+  "capabilitySaveSuccess": "保存成功",
+  "appTypeMiniProgram": "小程序",
+  "appTypeMobileApp": "移动应用",
+  "appTypeWebApp": "网站应用"
 }

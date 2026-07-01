@@ -10,6 +10,7 @@
 
   import DouyinDirectChannelMerchantBasicInfo from './DouyinDirectChannelMerchantBasicInfo.vue';
   import DouyinDirectKeyConfigEdit from './DouyinDirectKeyConfigEdit.vue';
+  import DouyinMchAppCapability from './DouyinMchAppCapability.vue';
 
   defineOptions({ name: 'DouyinDirectMchManage' });
 
@@ -21,6 +22,7 @@
   const channelMerchant = ref<ChannelMerchantResult>({});
   const basicInfoRef = ref<InstanceType<typeof DouyinDirectChannelMerchantBasicInfo>>();
   const keyConfigRef = ref<InstanceType<typeof DouyinDirectKeyConfigEdit>>();
+  const capabilityRef = ref<InstanceType<typeof DouyinMchAppCapability>>();
 
   /** 功能卡片配置（按组分组的卡片布局） */
   const functionCards = computed(() => [
@@ -59,6 +61,14 @@
           icon: 'ant-design:appstore-outlined',
           // 国际化：管理通道商户应用
           description: $t('payment.merchant.channelMerchant.cardAppDesc'),
+        },
+        {
+          key: 'capabilityBinding',
+          // 国际化：能力应用绑定
+          title: $t('payment.channel.douyinManage.cardCapabilityBinding'),
+          icon: 'ant-design:link-outlined',
+          // 国际化：配置支付能力与应用的绑定关系
+          description: $t('payment.channel.douyinManage.cardCapabilityBindingDesc'),
         },
       ],
     },
@@ -109,6 +119,9 @@
           channelMerchantName: channelMerchant.value.channelMerchantName || '',
         },
       });
+    }
+    if (card.key === 'capabilityBinding') {
+      capabilityRef.value?.show(mchNo.value, channelMchNo.value);
     }
   }
 
@@ -170,6 +183,8 @@
     />
 
     <DouyinDirectKeyConfigEdit ref="keyConfigRef" :channel-mch-no="channelMchNo" />
+
+    <DouyinMchAppCapability ref="capabilityRef" />
   </div>
 </template>
 

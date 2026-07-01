@@ -3,5 +3,16 @@
   "cardDirectKeyConfig": "Key Config",
   "cardDirectKeyConfigDesc": "Configure Douyin Pay merchant-level keys and certificates",
   "directKeyConfigTitle": "Douyin Direct Key Config",
-  "keyConfigSection": "Merchant Key Config"
+  "keyConfigSection": "Merchant Key Config",
+  "cardCapabilityBinding": "Capability App Binding",
+  "cardCapabilityBindingDesc": "Configure the binding between payment capabilities and applications",
+  "capabilityTitle": "Capability App Binding",
+  "capabilityDesc": "Specify the Douyin app for each payment capability. Unspecified capabilities will be auto-resolved by app type.",
+  "capabilityNoApp": "No application exists under this channel merchant. Please create one first.",
+  "capabilityAutoTip": "Auto",
+  "capabilitySelectPlaceholder": "Select app",
+  "capabilitySaveSuccess": "Saved successfully",
+  "appTypeMiniProgram": "Mini Program",
+  "appTypeMobileApp": "Mobile App",
+  "appTypeWebApp": "Web App"
 }

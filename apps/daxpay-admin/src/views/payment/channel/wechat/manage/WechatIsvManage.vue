@@ -8,10 +8,13 @@
 
   import WechatIsvConfigEdit from '#/views/payment/channel/wechat/config/WechatIsvConfigEdit.vue';
 
+import WechatIsvAppCapability from './WechatIsvAppCapability.vue';
+
   defineOptions({ name: 'WechatIsvManage' });
 
   const router = useRouter();
   const mchKeyEditRef = ref<InstanceType<typeof WechatIsvConfigEdit> | null>(null);
+const capabilityRef = ref<InstanceType<typeof WechatIsvAppCapability> | null>(null);
 
   /** 功能卡片配置 */
   const functionCards = computed(() => [
@@ -42,6 +45,13 @@
           description: $t('payment.channel.wechatManage.cardIsvAppDesc'),
           route: '/payment/config/product/wechat-app-manage',
         },
+        {
+          key: 'capabilityBinding',
+          // 国际化：能力应用绑定
+          title: $t('payment.channel.wechatManage.cardCapabilityBinding'),
+          icon: 'ant-design:api-outlined',
+          description: $t('payment.channel.wechatManage.cardCapabilityBindingDesc'),
+        },
       ],
     },
   ]);
@@ -69,6 +79,10 @@
   function handleCardClick(card: { key: string; route?: string }) {
     if (card.key === 'mchKey') {
       mchKeyEditRef.value?.init();
+      return;
+    }
+    if (card.key === 'capabilityBinding') {
+      capabilityRef.value?.show();
       return;
     }
     if (card.route) {
@@ -117,6 +131,8 @@
       </div>
     </div>
     <WechatIsvConfigEdit ref="mchKeyEditRef" />
+
+    <WechatIsvAppCapability ref="capabilityRef" />
   </div>
 </template>
 

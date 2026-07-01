@@ -45,6 +45,14 @@
   "directKeyConfigTitle": "直连密钥配置",
   "cardDirectKeyConfig": "直连密钥配置",
   "cardDirectKeyConfigDesc": "配置直连商户APIv3密钥、平台公钥及证书",
+  "cardCapabilityBinding": "能力应用绑定",
+  "cardCapabilityBindingDesc": "配置各支付能力使用的应用",
+  "capabilityTitle": "支付能力应用绑定",
+  "capabilityDesc": "为各支付能力指定发起调用时使用的微信应用；不绑定则按应用类型自动推导",
+  "capabilitySelectPlaceholder": "不选则按应用类型自动推导",
+  "capabilityAutoTip": "自动推导",
+  "capabilityNoApp": "尚未创建任何应用，请先前往应用管理创建应用",
+  "capabilitySaveSuccess": "保存成功",
   "validation": {
     "appSecret": "请输入应用密钥",
     "authCallbackUrl": "请输入授权回调地址"

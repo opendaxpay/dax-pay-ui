@@ -11,6 +11,7 @@ import { ProductEnum } from '#/enums/payment/productEnum';
 
 import WechatDirectChannelMerchantBasicInfo from './WechatDirectChannelMerchantBasicInfo.vue';
 import WechatDirectKeyConfigEdit from './WechatDirectKeyConfigEdit.vue';
+import WechatMchAppCapability from './WechatMchAppCapability.vue';
 
 defineOptions({ name: 'WechatDirectMchManage' });
 
@@ -20,6 +21,7 @@ const channelMchNo = ref('');
 const channelMerchant = ref<ChannelMerchantResult>({});
 const basicInfoRef = ref<InstanceType<typeof WechatDirectChannelMerchantBasicInfo>>();
 const keyConfigRef = ref<InstanceType<typeof WechatDirectKeyConfigEdit>>();
+const capabilityRef = ref<InstanceType<typeof WechatMchAppCapability>>();
 
 /** 功能卡片配置（直连通道商户：基本信息 + 密钥配置 + 应用管理） */
 const functionCards = computed(() => [
@@ -54,6 +56,13 @@ const functionCards = computed(() => [
         title: $t('payment.merchant.channelMerchant.cardApp'),
         icon: 'ant-design:appstore-outlined',
         description: $t('payment.merchant.channelMerchant.cardAppDesc'),
+      },
+      {
+        key: 'capabilityBinding',
+        // 国际化：能力应用绑定
+        title: $t('payment.channel.wechatManage.cardCapabilityBinding'),
+        icon: 'ant-design:api-outlined',
+        description: $t('payment.channel.wechatManage.cardCapabilityBindingDesc'),
       },
     ],
   },
@@ -101,6 +110,9 @@ function handleCardClick(card: { key: string }) {
         channelMerchantName: channelMerchant.value.channelMerchantName || '',
       },
     });
+  }
+  if (card.key === 'capabilityBinding') {
+    capabilityRef.value?.show(mchNo.value, channelMchNo.value);
   }
 }
 
@@ -157,6 +169,8 @@ defineExpose({ init });
       ref="keyConfigRef"
       :channel-mch-no="channelMchNo"
     />
+
+    <WechatMchAppCapability ref="capabilityRef" />
   </div>
 </template>
 

@@ -45,6 +45,14 @@
   "directKeyConfigTitle": "Direct Key Config",
   "cardDirectKeyConfig": "Direct Key Config",
   "cardDirectKeyConfigDesc": "Configure direct merchant APIv3 key, public key and certificates",
+  "cardCapabilityBinding": "Capability-App Binding",
+  "cardCapabilityBindingDesc": "Configure which app each payment capability uses",
+  "capabilityTitle": "Payment Capability App Binding",
+  "capabilityDesc": "Specify the WeChat app used by each payment capability; auto-derived by app type if not bound",
+  "capabilitySelectPlaceholder": "Auto-derived by app type if not selected",
+  "capabilityAutoTip": "Auto",
+  "capabilityNoApp": "No application created yet, please create one in App Management first",
+  "capabilitySaveSuccess": "Saved successfully",
   "validation": {
     "appSecret": "App secret is required",
     "authCallbackUrl": "Auth callback URL is required"
