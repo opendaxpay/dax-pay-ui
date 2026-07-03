@@ -101,6 +101,8 @@ function createRequestClient(baseURL: string, options?: RequestClientOptions) {
 
 export const requestClient = createRequestClient(apiURL, {
   responseReturn: 'body',
+  // 与 baseRequestClient 对齐, 避免代理挂起时请求无限 pending 导致页面卡在 loading
+  timeout: 30_000,
 });
 
 /**

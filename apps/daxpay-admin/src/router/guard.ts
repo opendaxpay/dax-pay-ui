@@ -84,31 +84,40 @@ function setupAccessGuard(router: Router) {
       return true;
     }
 
-    // 获取用户信息
-    if (!userStore.userInfo) {
-      await authStore.fetchUserInfo();
+    try {
+      // 获取用户信息
+      if (!userStore.userInfo) {
+        await authStore.fetchUserInfo();
+      }
+
+      // 中文注释：每次刷新都重新获取权限码，确保权限变更实时生效
+      const { data: permCodes } = await AuthApi.getPermCodes();
+      accessStore.setPermCodes(permCodes);
+
+      // 生成菜单和路由
+      const { accessibleMenus, accessibleRoutes } = await generateAccess({
+        router,
+      });
+
+      // 保存菜单信息和路由信息
+      accessStore.setAccessMenus(accessibleMenus);
+      accessStore.setAccessRoutes(accessibleRoutes);
+      accessStore.setIsAccessChecked(true);
+      const redirectPath = (from.query.redirect ??
+        (to.path === preferences.app.defaultHomePath ? preferences.app.defaultHomePath : to.fullPath)) as string;
+
+      return {
+        ...router.resolve(decodeURIComponent(redirectPath)),
+        replace: true,
+      };
+    } catch {
+      // 401 token 失效时, authenticateResponseInterceptor 已调用 doReAuthenticate 清除 token, 此时跳登录页重新登录
+      if (!accessStore.accessToken) {
+        return { path: LOGIN_PATH, replace: true };
+      }
+      // 网络错误 / 后端服务不可用: token 仍在, 跳服务不可用提示页, 保留登录态供用户手动刷新重试
+      return { path: '/service-unavailable', replace: true };
     }
-
-    // 中文注释：每次刷新都重新获取权限码，确保权限变更实时生效
-    const { data: permCodes } = await AuthApi.getPermCodes();
-    accessStore.setPermCodes(permCodes);
-
-    // 生成菜单和路由
-    const { accessibleMenus, accessibleRoutes } = await generateAccess({
-      router,
-    });
-
-    // 保存菜单信息和路由信息
-    accessStore.setAccessMenus(accessibleMenus);
-    accessStore.setAccessRoutes(accessibleRoutes);
-    accessStore.setIsAccessChecked(true);
-    const redirectPath = (from.query.redirect ??
-      (to.path === preferences.app.defaultHomePath ? preferences.app.defaultHomePath : to.fullPath)) as string;
-
-    return {
-      ...router.resolve(decodeURIComponent(redirectPath)),
-      replace: true,
-    };
   });
 }
 

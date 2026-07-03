@@ -47,6 +47,20 @@ const socialBindCallbackRoute: RouteRecordRaw = {
   },
 };
 
+// 服务不可用提示页（后端不可用时的兜底，独立全屏，不走权限拦截）
+const serviceUnavailableRoute: RouteRecordRaw = {
+  name: 'ServiceUnavailable',
+  path: '/service-unavailable',
+  component: () => import('#/views/_core/fallback/offline.vue'),
+  meta: {
+    // 服务不可用
+    title: $t('ui.fallback.offlineError'),
+    hideInMenu: true,
+    hideInBreadcrumb: true,
+    hideInTab: true,
+  },
+};
+
 /** 基本路由，这些路由是必须存在的 */
 const coreRoutes: RouteRecordRaw[] = [
   /**
@@ -148,6 +162,8 @@ const coreRoutes: RouteRecordRaw[] = [
   },
   // 第三方绑定回调（独立路由，弹窗模式）
   socialBindCallbackRoute,
+  // 服务不可用提示页（后端不可用兜底，独立全屏，不走权限拦截）
+  serviceUnavailableRoute,
 ];
 
 /** 通知中心路由（需要登录，从铃铛"查看全部"进入，无菜单） */
