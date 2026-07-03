@@ -222,11 +222,11 @@
           label: $t('iam.user.action.ban'),
           disabled: !hasPermission(PermCodes.Iam.UserManager.STATUS) || row.status === 'ban',
         },
-        // 解锁
+        // 解锁（后端 unlock 无条件置为 NORMAL，对 lock/ban 均生效）
         {
           key: 'unlock',
           label: $t('iam.user.action.unlock'),
-          disabled: !hasPermission(PermCodes.Iam.UserManager.STATUS) || row.status !== 'lock',
+          disabled: !hasPermission(PermCodes.Iam.UserManager.STATUS) || row.status === 'normal',
         },
       ],
       onClick: ({ key }: { key: string }) => {

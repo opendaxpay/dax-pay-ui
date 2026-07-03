@@ -179,7 +179,8 @@
         {
           key: 'unlock',
           label: $t('iam.user.action.unlock'),
-          disabled: row.status !== 'lock',
+          // 后端 unlock 无条件置为 NORMAL，对 lock/ban 均生效
+          disabled: row.status === 'normal',
         },
       ],
       onClick: ({ key }: { key: string }) => {
