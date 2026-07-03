@@ -7,6 +7,24 @@
     "title": "资金交易",
     "detail": "资金交易详情"
   },
+  "refund": {
+    "title": "退款订单",
+    "detail": "退款订单详情",
+    "status": {
+      "init": "初始化",
+      "progress": "退款中",
+      "success": "退款成功",
+      "fail": "退款失败",
+      "close": "退款关闭"
+    },
+    "statusColor": {
+      "init": "default",
+      "progress": "processing",
+      "success": "green",
+      "fail": "red",
+      "close": "default"
+    }
+  },
   "field": {
     "bizOrderNo": "商户订单号",
     "tradeNo": "资金交易号",
@@ -52,7 +70,14 @@
     "limitPay": "限制支付类型",
     "mchNo": "商户号",
     "appId": "应用号",
-    "createTime": "创建时间"
+    "createTime": "创建时间",
+    "refundNo": "退款号",
+    "bizRefundNo": "商户退款号",
+    "outRefundNo": "通道退款流水号",
+    "reason": "退款原因",
+    "finishTime": "退款完成时间",
+    "orderAmount": "订单总金额",
+    "orderNo": "原支付订单号"
   },
   "bizStatus": {
     "wait_pay": "待支付",
@@ -86,16 +111,28 @@
     "tradeNo": "请输入资金交易号",
     "outOrderNo": "请输入通道订单号",
     "amountMin": "最小金额(分)",
-    "amountMax": "最大金额(分)"
+    "amountMax": "最大金额(分)",
+    "refundNo": "请输入退款号",
+    "bizRefundNo": "请输入商户退款号",
+    "orderNo": "请输入原支付订单号"
   },
   "action": {
     "sync": "同步状态",
     "close": "关闭订单",
+    "refund": "退款",
     "syncSuccess": "同步成功",
     "closeSuccess": "关闭成功",
+    "refundSuccess": "退款发起成功",
     "syncConfirmTitle": "确认同步状态",
     "syncConfirmContent": "将主动向支付通道查询该订单的最新状态,是否继续?",
     "closeConfirmTitle": "确认关闭订单",
-    "closeConfirmContent": "关闭后订单将不可继续支付,是否继续?"
+    "closeConfirmContent": "关闭后订单将不可继续支付,是否继续?",
+    "refundConfirmTitle": "确认发起退款",
+    "refundConfirmContent": "退款将从原支付订单扣除 {amount} 元,是否继续?",
+    "refundAmountLabel": "退款金额(元)",
+    "refundReasonLabel": "退款原因",
+    "refundAmountPlaceholder": "请输入退款金额",
+    "refundReasonPlaceholder": "请输入退款原因(可选)",
+    "refundAmountExceed": "退款金额不能大于可退金额"
   }
 }

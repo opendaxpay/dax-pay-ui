@@ -6,12 +6,12 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { AlipayMchAppApi, type AlipayMchApp } from '#/api/payment/channel/alipay/mch-app.api';
+  import { type AlipayMchApp, AlipayMchAppApi } from '#/api/payment/channel/alipay/mch-app.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
   import { ProductEnum } from '#/enums/payment/productEnum';
-  import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
   import { usePermission } from '#/hooks/usePermission';
+  import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
 
   import AlipayMchAppCard from './AlipayMchAppCard.vue';
   import AlipayMchAppDetail from './AlipayMchAppDetail.vue';
@@ -39,9 +39,7 @@
       if (mchNo && id) {
         return { path: '/payment/merchant/channel-merchant/detail', query: { mchNo, id, product } };
       }
-      return mchNo
-        ? { path: '/payment/merchant/channel-merchant', query: { mchNo } }
-        : '/payment/merchant';
+      return mchNo ? { path: '/payment/merchant/channel-merchant', query: { mchNo } } : '/payment/merchant';
     }),
   });
 

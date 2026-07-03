@@ -7,6 +7,24 @@
     "title": "Fund Trades",
     "detail": "Fund Trade Detail"
   },
+  "refund": {
+    "title": "Refund Orders",
+    "detail": "Refund Order Detail",
+    "status": {
+      "init": "Initial",
+      "progress": "Refunding",
+      "success": "Success",
+      "fail": "Failed",
+      "close": "Closed"
+    },
+    "statusColor": {
+      "init": "default",
+      "progress": "processing",
+      "success": "green",
+      "fail": "red",
+      "close": "default"
+    }
+  },
   "field": {
     "bizOrderNo": "Merchant Order No.",
     "tradeNo": "Trade No.",
@@ -52,7 +70,14 @@
     "limitPay": "Limit Pay",
     "mchNo": "Merchant No.",
     "appId": "App ID",
-    "createTime": "Create Time"
+    "createTime": "Create Time",
+    "refundNo": "Refund No.",
+    "bizRefundNo": "Biz Refund No.",
+    "outRefundNo": "Channel Refund No.",
+    "reason": "Refund Reason",
+    "finishTime": "Finish Time",
+    "orderAmount": "Order Amount",
+    "orderNo": "Original Order No."
   },
   "bizStatus": {
     "wait_pay": "Waiting",
@@ -86,16 +111,28 @@
     "tradeNo": "Enter trade no.",
     "outOrderNo": "Enter channel order no.",
     "amountMin": "Min amount(cents)",
-    "amountMax": "Max amount(cents)"
+    "amountMax": "Max amount(cents)",
+    "refundNo": "Enter refund no.",
+    "bizRefundNo": "Enter biz refund no.",
+    "orderNo": "Enter original order no."
   },
   "action": {
     "sync": "Sync Status",
     "close": "Close Order",
+    "refund": "Refund",
     "syncSuccess": "Sync succeeded",
     "closeSuccess": "Order closed",
+    "refundSuccess": "Refund initiated",
     "syncConfirmTitle": "Confirm Sync",
     "syncConfirmContent": "Will query the latest status from the payment channel, continue?",
     "closeConfirmTitle": "Confirm Close",
-    "closeConfirmContent": "The order cannot be paid after closing, continue?"
+    "closeConfirmContent": "The order cannot be paid after closing, continue?",
+    "refundConfirmTitle": "Confirm Refund",
+    "refundConfirmContent": "Will refund {amount} from the original order, continue?",
+    "refundAmountLabel": "Refund Amount(Yuan)",
+    "refundReasonLabel": "Refund Reason",
+    "refundAmountPlaceholder": "Enter refund amount",
+    "refundReasonPlaceholder": "Enter refund reason (optional)",
+    "refundAmountExceed": "Refund amount cannot exceed refundable amount"
   }
 }

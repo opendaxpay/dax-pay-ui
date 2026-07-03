@@ -6,6 +6,7 @@
   import { $t } from '@vben/locales';
 
   import { NormalOrderApi, type NormalOrderQuery, type NormalOrderResult } from '#/api/payment/order/normal-order.api';
+  import { RefundOrderApi, type PayRefundParam } from '#/api/payment/order/refund-order.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
@@ -36,6 +37,12 @@
   const drawerLoading = ref(false);
   const detail = ref<NormalOrderResult>({});
   const actionLoading = ref(false);
+
+  // 退款弹窗
+  const refundVisible = ref(false);
+  const refundLoading = ref(false);
+  const refundForm = ref<PayRefundParam & { orderNo?: string }>({ amount: 0, reason: '' });
+  const refundRow = ref<NormalOrderResult | null>(null);
 
   // 业务状态下拉
   const statusOptions = computed(() =>
@@ -231,6 +238,56 @@
     detail.value = {};
   }
 
+  /**
+   * 打开退款弹窗
+   */
+  function handleRefund(row: NormalOrderResult) {
+    refundRow.value = row;
+    // 默认退款金额为可退金额(分转元)
+    const refundable = row.refundableBalance ?? detail.value.refundableBalance ?? 0;
+    refundForm.value = {
+      orderNo: row.tradeNo || detail.value.tradeNo,
+      amount: refundable,
+      reason: '',
+    };
+    refundVisible.value = true;
+  }
+
+  /**
+   * 提交退款
+   */
+  function submitRefund() {
+    if (!refundRow.value) return;
+    // 校验退款金额不能超过可退金额
+    const refundable = (refundRow.value.refundableBalance ?? 0);
+    if (refundForm.value.amount > refundable) {
+      message.error($t('payment.order.action.refundAmountExceed'));
+      return;
+    }
+    const yuanAmount = (refundForm.value.amount / 100).toFixed(2);
+    confirm({
+      title: $t('payment.order.action.refundConfirmTitle'),
+      content: $t('payment.order.action.refundConfirmContent', { amount: yuanAmount }),
+      onOk() {
+        refundLoading.value = true;
+        return RefundOrderApi.refund(refundForm.value)
+          .then(() => {
+            message.success($t('payment.order.action.refundSuccess'));
+            refundVisible.value = false;
+            queryPage();
+          })
+          .finally(() => {
+            refundLoading.value = false;
+          });
+      },
+    });
+  }
+
+  function handleRefundClose() {
+    refundVisible.value = false;
+    refundRow.value = null;
+  }
+
   onMounted(() => {
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
     queryPage();
@@ -308,6 +365,15 @@
                   @click="handleClose(row)"
                 >
                   {{ $t('payment.order.action.close') }}
+                </a-button>
+                <a-button
+                  v-if="hasPermission(PermCodes.Payment.Refund.MANAGE) && row.status === 'paid'"
+                  type="link"
+                  size="small"
+                  danger
+                  @click="handleRefund(row)"
+                >
+                  {{ $t('payment.order.action.refund') }}
                 </a-button>
               </a-space>
             </template>
@@ -420,5 +486,36 @@
         <a-button @click="handleDrawerClose">{{ $t('common.close') }}</a-button>
       </template>
     </a-drawer>
+
+    <!-- 退款弹窗 -->
+    <a-modal
+      v-model:open="refundVisible"
+      :title="$t('payment.order.action.refund')"
+      :confirm-loading="refundLoading"
+      @ok="submitRefund"
+      @cancel="handleRefundClose"
+    >
+      <a-form :label-col="{ span: 6 }">
+        <a-form-item :label="$t('payment.order.action.refundAmountLabel')">
+          <a-input-number
+            v-model:value="refundForm.amount"
+            :min="1"
+            :max="refundRow?.refundableBalance"
+            style="width: 100%"
+            :placeholder="$t('payment.order.action.refundAmountPlaceholder')"
+          />
+          <div v-if="refundRow" style="font-size: 12px; color: #999; margin-top: 4px">
+            {{ $t('payment.order.field.refundableBalance') }}: {{ formatAmount(refundRow.refundableBalance) }}
+          </div>
+        </a-form-item>
+        <a-form-item :label="$t('payment.order.action.refundReasonLabel')">
+          <a-textarea
+            v-model:value="refundForm.reason"
+            :rows="2"
+            :placeholder="$t('payment.order.action.refundReasonPlaceholder')"
+          />
+        </a-form-item>
+      </a-form>
+    </a-modal>
   </div>
 </template>

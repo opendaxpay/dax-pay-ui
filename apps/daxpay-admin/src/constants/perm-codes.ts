@@ -144,6 +144,11 @@ export const PermCodes = {
       VIEW: 'payment:order:view',
       MANAGE: 'payment:order:manage',
     },
+    /** 退款订单 menuCode=payment:refund */
+    Refund: {
+      VIEW: 'payment:refund:view',
+      MANAGE: 'payment:refund:manage',
+    },
     /** 资金交易凭证 menuCode=payment:trade */
     Trade: {
       VIEW: 'payment:trade:view',
