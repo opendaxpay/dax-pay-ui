@@ -30,9 +30,6 @@
   // 仅公众号需要配置 OAuth 授权回调地址
   const isOfficialAccount = computed(() => props.appType === 'official_account');
 
-  // 是否已在服务端保存过 AppSecret（脱敏回显不代表可跳过首次必填）
-  const appSecretConfigured = computed(() => !!formState.value.appSecret);
-
   /** AppSecret 提示文案（按应用类型） */
   const appSecretTooltip = computed(() => {
     const map: Record<string, string> = {
@@ -44,17 +41,16 @@
     return key ? $t(key) : $t('payment.channel.wechatManage.appSecretTooltipOfficialAccount');
   });
 
+  // 应用密钥：始终必填（星号常显）；编辑时预填脱敏值，未修改由 diffForm 比对跳过更新
+  // 授权回调地址：非必填（公众号可按需配置 OAuth 回调地址）
   const formRules = computed(() => ({
-    // 应用密钥：公众号/小程序/移动应用首次配置时均必填；已配置后留空表示不修改
     appSecret: [
       {
-        required: !appSecretConfigured.value,
+        required: true,
         message: $t('payment.channel.wechatManage.validation.appSecret'),
       },
     ],
-    authCallbackUrl: isOfficialAccount.value
-      ? [{ required: true, message: $t('payment.channel.wechatManage.validation.authCallbackUrl') }]
-      : [],
+    authCallbackUrl: [],
   }));
 
   function loadConfig() {
@@ -74,10 +70,7 @@
   }
 
   function handleEdit() {
-    // 编辑时清空脱敏回显的 AppSecret，留空表示不修改
-    if (formState.value.appSecret) {
-      formState.value.appSecret = undefined;
-    }
+    // 编辑时保留脱敏回显的 AppSecret，未修改由 diffForm 比对跳过更新
     isEditing.value = true;
   }
 
