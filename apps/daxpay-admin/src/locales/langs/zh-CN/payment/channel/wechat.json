@@ -1,7 +1,7 @@
 {
   "wxMchId": "微信商户Id",
   "wxAppId": "微信应用appId",
-  "apiKeyV3": "APIv3密钥",
+  "apiKeyV3": "API V3密钥",
   "appSecret": "APPID接口密码",
   "publicKey": "支付公钥",
   "publicKeyId": "支付公钥ID",
@@ -13,7 +13,7 @@
   "validation": {
     "wxMchIdRequired": "请输入微信商户Id",
     "wxAppIdRequired": "请输入微信应用appId",
-    "apiKeyV3Required": "请输入APIv3密钥",
+    "apiKeyV3Required": "请输入API V3密钥",
     "appSecretRequired": "请输入APPID接口密码",
     "publicKeyRequired": "请输入支付公钥",
     "publicKeyIdRequired": "请输入支付公钥ID",

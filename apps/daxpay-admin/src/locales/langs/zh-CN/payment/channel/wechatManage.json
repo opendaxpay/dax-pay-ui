@@ -44,7 +44,7 @@
   "authCallbackUrlPlaceholder": "请输入授权回调地址",
   "directKeyConfigTitle": "直连密钥配置",
   "cardDirectKeyConfig": "直连密钥配置",
-  "cardDirectKeyConfigDesc": "配置直连商户APIv3密钥、平台公钥及证书",
+  "cardDirectKeyConfigDesc": "配置直连商户API V3密钥、平台公钥及证书",
   "cardCapabilityBinding": "能力应用绑定",
   "cardCapabilityBindingDesc": "配置各支付能力使用的应用",
   "capabilityTitle": "支付能力应用绑定",

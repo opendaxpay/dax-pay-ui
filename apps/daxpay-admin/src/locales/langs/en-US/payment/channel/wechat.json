@@ -1,7 +1,7 @@
 {
   "wxMchId": "WeChat Merchant ID",
   "wxAppId": "WeChat AppId",
-  "apiKeyV3": "APIv3 Key",
+  "apiKeyV3": "API V3 Key",
   "appSecret": "App Secret",
   "publicKey": "Public Key",
   "publicKeyId": "Public Key ID",
@@ -13,7 +13,7 @@
   "validation": {
     "wxMchIdRequired": "Please enter WeChat merchant ID",
     "wxAppIdRequired": "Please enter WeChat appId",
-    "apiKeyV3Required": "Please enter APIv3 key",
+    "apiKeyV3Required": "Please enter API V3 key",
     "appSecretRequired": "Please enter app secret",
     "publicKeyRequired": "Please enter public key",
     "publicKeyIdRequired": "Please enter public key ID",

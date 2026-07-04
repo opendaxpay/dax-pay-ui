@@ -105,7 +105,7 @@ export interface WechatDirectKeyConfig {
   channelMchNo?: string;
   /** 商户号 */
   mchNo?: string;
-  /** APIv3密钥 */
+  /** API V3密钥 */
   apiKeyV3?: string;
   /** 支付公钥 */
   publicKey?: string;

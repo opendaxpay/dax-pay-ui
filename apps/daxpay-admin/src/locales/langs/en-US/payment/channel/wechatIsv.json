@@ -10,7 +10,7 @@
   "wxAppId": "App ID",
   "wxAppIdPlaceholder": "Please enter WeChat AppId",
   "apiKeyV3": "API V3 Key",
-  "apiKeyV3Tooltip": "APIv3 key set in merchant platform API security",
+  "apiKeyV3Tooltip": "API V3 key set in merchant platform API security",
   "apiKeyV3Placeholder": "Please enter API V3 key",
   "appSecret": "App Secret",
   "appSecretTooltip": "AppSecret for official account/miniprogram, required for JSAPI payment",

@@ -27,7 +27,7 @@ export interface WechatIsvKeyConfig {
   id?: string;
   /** 微信服务商商户号 */
   wxMchId?: string;
-  /** APIv3密钥 */
+  /** API V3密钥 */
   apiKeyV3?: string;
   /** 公钥 */
   publicKey?: string;

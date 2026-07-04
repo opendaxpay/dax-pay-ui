@@ -44,7 +44,7 @@
   "authCallbackUrlPlaceholder": "Enter auth callback URL",
   "directKeyConfigTitle": "Direct Key Config",
   "cardDirectKeyConfig": "Direct Key Config",
-  "cardDirectKeyConfigDesc": "Configure direct merchant APIv3 key, public key and certificates",
+  "cardDirectKeyConfigDesc": "Configure direct merchant API V3 key, public key and certificates",
   "cardCapabilityBinding": "Capability-App Binding",
   "cardCapabilityBindingDesc": "Configure which app each payment capability uses",
   "capabilityTitle": "Payment Capability App Binding",
