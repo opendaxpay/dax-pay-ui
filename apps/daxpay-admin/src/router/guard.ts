@@ -6,7 +6,7 @@ import { useAccessStore, useUserStore } from '@vben/stores';
 import { startProgress, stopProgress } from '@vben/utils';
 
 import { AuthApi } from '#/api/core/auth.api';
-import { coreRouteNames } from '#/router/routes';
+import { coreRouteNames, HOME_PATH } from '#/router/routes';
 import { useAuthStore } from '#/store';
 
 import { generateAccess } from './access';
@@ -54,7 +54,7 @@ function setupAccessGuard(router: Router) {
     // 基本路由，这些路由不需要进入权限拦截
     if (coreRouteNames.includes(to.name as string)) {
       if (to.path === LOGIN_PATH && accessStore.accessToken) {
-        return decodeURIComponent((to.query?.redirect as string) || preferences.app.defaultHomePath);
+        return decodeURIComponent((to.query?.redirect as string) || HOME_PATH);
       }
       return true;
     }
@@ -71,7 +71,7 @@ function setupAccessGuard(router: Router) {
         return {
           path: LOGIN_PATH,
           // 如不需要，直接删除 query
-          query: to.fullPath === preferences.app.defaultHomePath ? {} : { redirect: encodeURIComponent(to.fullPath) },
+          query: to.fullPath === HOME_PATH ? {} : { redirect: encodeURIComponent(to.fullPath) },
           // 携带当前跳转的页面，登录后重新跳转该页面
           replace: true,
         };
@@ -103,8 +103,7 @@ function setupAccessGuard(router: Router) {
       accessStore.setAccessMenus(accessibleMenus);
       accessStore.setAccessRoutes(accessibleRoutes);
       accessStore.setIsAccessChecked(true);
-      const redirectPath = (from.query.redirect ??
-        (to.path === preferences.app.defaultHomePath ? preferences.app.defaultHomePath : to.fullPath)) as string;
+      const redirectPath = (from.query.redirect ?? (to.path === HOME_PATH ? HOME_PATH : to.fullPath)) as string;
 
       return {
         ...router.resolve(decodeURIComponent(redirectPath)),

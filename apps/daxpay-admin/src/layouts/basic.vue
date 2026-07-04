@@ -16,6 +16,7 @@
   import { LoginExpiredModal } from '#/components/login-expired-modal';
   import TimezonePicker from '#/components/timezone/TimezonePicker.vue';
   import { useMessage } from '#/hooks/useMessage';
+  import { HOME_PATH } from '#/router/routes';
   import { useAuthStore } from '#/store';
   import { useNotifyStore } from '#/store/notify';
   import LoginForm from '#/views/_core/authentication/login.vue';
@@ -63,7 +64,8 @@
   });
 
   function handleLogoClick() {
-    router.push('/');
+    // 直接跳首页常量，避免经 "/" 的 redirect 受 preferences 缓存污染
+    router.push(HOME_PATH);
   }
 
   // 铃铛"查看全部" → 通知中心

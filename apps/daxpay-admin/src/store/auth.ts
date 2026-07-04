@@ -4,7 +4,6 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 import { LOGIN_PATH } from '@vben/constants';
-import { preferences } from '@vben/preferences';
 import { resetAllStores, useAccessStore, useUserStore } from '@vben/stores';
 
 import { defineStore } from 'pinia';
@@ -13,6 +12,7 @@ import { AuthApi, TWO_FACTOR_REQUIRED_CODE } from '#/api/core/auth.api';
 import { UserCommonApi } from '#/api/core/user.api';
 import { useMessage } from '#/hooks/useMessage';
 import { $t } from '#/locales';
+import { HOME_PATH } from '#/router/routes';
 import { encryptPassword } from '#/utils/rsa-encrypt';
 
 export const useAuthStore = defineStore('auth', () => {
@@ -67,7 +67,7 @@ export const useAuthStore = defineStore('auth', () => {
         if (accessStore.loginExpired) {
           accessStore.setLoginExpired(false);
         } else {
-          await (onSuccess ? onSuccess?.() : router.push(preferences.app.defaultHomePath));
+          await (onSuccess ? onSuccess?.() : router.push(HOME_PATH));
         }
 
         if (userInfo?.name) {
@@ -109,7 +109,7 @@ export const useAuthStore = defineStore('auth', () => {
         // 清除 2FA 挑战状态
         twoFactorRequired.value = false;
         twoFactorPreAuthToken.value = '';
-        await router.push(preferences.app.defaultHomePath);
+        await router.push(HOME_PATH);
         if (userInfo?.name) {
           const { notification } = useMessage();
           notification.success({

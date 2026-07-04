@@ -17,3 +17,6 @@ if (rootRoute) {
 }
 
 export { coreRouteNames, routes };
+
+// 首页路径常量透传（统一引用入口，避免业务模块直接深入 core.ts）
+export { HOME_PATH } from './core';

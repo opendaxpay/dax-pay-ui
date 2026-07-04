@@ -3,12 +3,12 @@
   import { useRoute, useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
-  import { preferences } from '@vben/preferences';
   import { useAccessStore } from '@vben/stores';
 
   import { SocialApi } from '#/api/iam/social.api';
   import { SocialLogo } from '#/components/social';
   import { useMessage } from '#/hooks/useMessage';
+  import { HOME_PATH } from '#/router/routes';
   import { useAuthStore } from '#/store';
 
   defineOptions({ name: 'OauthCallback' });
@@ -78,7 +78,7 @@
             })
           : $t('_core.authentication.oauthLoginSuccess'),
       );
-      router.push(preferences.app.defaultHomePath);
+      router.push(HOME_PATH);
     } else if (error === 'unbind') {
       message.error($t('_core.authentication.oauthNotBind'));
       router.push('/auth/login');

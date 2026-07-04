@@ -1,9 +1,15 @@
 import type { RouteRecordRaw } from 'vue-router';
 
 import { LOGIN_PATH } from '@vben/constants';
-import { preferences } from '@vben/preferences';
 
 import { $t } from '#/locales';
+
+/**
+ * 首页路径常量
+ * 不直接读 preferences.app.defaultHomePath：Vben 偏好合并用 defu（缓存优先），
+ * 历史缓存中的旧值会覆盖代码默认值，导致根路由 redirect 与登录回跳指向错误页面
+ */
+export const HOME_PATH = '/workspace';
 
 const BasicLayout = () => import('#/layouts/basic.vue');
 const AuthPageLayout = () => import('#/layouts/auth.vue');
@@ -76,7 +82,7 @@ const coreRoutes: RouteRecordRaw[] = [
     },
     name: 'Root',
     path: '/',
-    redirect: preferences.app.defaultHomePath,
+    redirect: HOME_PATH,
     children: [],
   },
   {
