@@ -172,6 +172,7 @@ catalog:
   vue-router: ^5.1.0
   vue-tippy: ^6.7.1
   vue-tsc: ^3.3.5
+  vuedraggable: ^4.1.0
   vxe-pc-ui: ^4.15.7
   vxe-table: ^4.19.17
   watermark-js-plus: ^1.6.3

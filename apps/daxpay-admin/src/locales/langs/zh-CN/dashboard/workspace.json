@@ -50,7 +50,12 @@
     "dict": "字典管理",
     "loginLog": "登录日志",
     "security": "安全配置",
-    "empty": "暂无可访问的快捷入口"
+    "empty": "暂无可访问的快捷入口",
+    "edit": "编辑",
+    "editTitle": "编辑快捷入口",
+    "selected": "已选（拖拽排序）",
+    "available": "可选入口",
+    "allAdded": "已全部添加"
   },
   "notice": {
     "important": "重要",

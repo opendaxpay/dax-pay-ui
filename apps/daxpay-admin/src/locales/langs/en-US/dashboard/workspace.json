@@ -50,7 +50,12 @@
     "dict": "Dictionaries",
     "loginLog": "Login Logs",
     "security": "Security",
-    "empty": "No accessible quick entries"
+    "empty": "No accessible quick entries",
+    "edit": "Edit",
+    "editTitle": "Edit Quick Entry",
+    "selected": "Selected (drag to sort)",
+    "available": "Available",
+    "allAdded": "All added"
   },
   "notice": {
     "important": "Important",

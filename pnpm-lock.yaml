@@ -621,6 +621,9 @@ importers:
       vue-router:
         specifier: 'catalog:'
         version: 5.1.0(@vue/compiler-sfc@3.5.38)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.38(typescript@5.9.3)))(vite@8.0.16(@types/node@26.0.0)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.48.0)(yaml@2.9.0))(vue@3.5.38(typescript@5.9.3))
+      vuedraggable:
+        specifier: ^4.1.0
+        version: 4.1.0(vue@3.5.38(typescript@5.9.3))
       vxe-pc-ui:
         specifier: 'catalog:'
         version: 4.15.7(vue@3.5.38(typescript@5.9.3))
@@ -8294,6 +8297,9 @@ packages:
     resolution: {integrity: sha512-aqVvWoyO21L23mb+drl4RmMXbf6N7FdHjAhTRA9ZBL7apWBgfWC16KjrASI+1p9GAroljyMHj6fK67i0UiTNvQ==}
     engines: {node: '>= 18'}
 
+  sortablejs@1.14.0:
+    resolution: {integrity: sha512-pBXvQCs5/33fdN1/39pPL0NZF20LeRbLQ5jtnheIPN9JQAaufGjKdWduZn4U7wCtVuzKhmRkI0DFYHYRbB2H1w==}
+
   sortablejs@1.15.7:
     resolution: {integrity: sha512-Kk8wLQPlS+yi1ZEf48a4+fzHa4yxjC30M/Sr2AnQu+f/MPwvvX9XjZ6OWejiz8crBsLwSq8GHqaxaET7u6ux0A==}
 
@@ -9028,6 +9034,11 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
+
+  vuedraggable@4.1.0:
+    resolution: {integrity: sha512-FU5HCWBmsf20GpP3eudURW3WdWTKIbEIQxh9/8GE806hydR9qZqRRxRE3RjqX7PkuLuMQG/A7n3cfj9rCEchww==}
+    peerDependencies:
+      vue: 3.5.38
 
   vxe-pc-ui@4.15.7:
     resolution: {integrity: sha512-yjnZgVX39DJU7AYBdLV9TUpv6s8Omqry8RPCSfpUAsi4f/3w7KDtmExBXdwZap1R98BKPKayLakB0HvTRXBZOQ==}
@@ -16671,6 +16682,8 @@ snapshots:
 
   smol-toml@1.7.0: {}
 
+  sortablejs@1.14.0: {}
+
   sortablejs@1.15.7: {}
 
   source-map-js@1.2.1: {}
@@ -17541,6 +17554,11 @@ snapshots:
       '@vue/shared': 3.5.38
     optionalDependencies:
       typescript: 5.9.3
+
+  vuedraggable@4.1.0(vue@3.5.38(typescript@5.9.3)):
+    dependencies:
+      sortablejs: 1.14.0
+      vue: 3.5.38(typescript@5.9.3)
 
   vxe-pc-ui@4.15.7(vue@3.5.38(typescript@5.9.3)):
     dependencies:

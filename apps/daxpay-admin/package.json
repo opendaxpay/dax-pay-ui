@@ -39,6 +39,7 @@
     "qrcode": "catalog:",
     "vue": "catalog:",
     "vue-router": "catalog:",
+    "vuedraggable": "^4.1.0",
     "vxe-pc-ui": "catalog:",
     "vxe-table": "catalog:"
   },

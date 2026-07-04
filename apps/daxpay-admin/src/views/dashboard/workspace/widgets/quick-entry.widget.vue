@@ -1,12 +1,19 @@
 <script lang="ts" setup>
   import type { DashboardData } from '../types';
 
+  import { computed, onMounted, ref } from 'vue';
   import { useRouter } from 'vue-router';
 
   import { IconifyIcon } from '@vben/icons';
   import { $t } from '@vben/locales';
 
-  import { PermCodes } from '#/constants/perm-codes';
+  import QuickEntryEditDrawer from './quick-entry/quick-entry-edit.drawer.vue';
+  import {
+    DEFAULT_ENTRIES,
+    resolveEntries,
+  } from './quick-entry/catalog';
+  import { usePermission } from '#/hooks/usePermission';
+  import { useQuickEntryStore } from '#/store/quick-entry';
 
   interface Props {
     /** 工作台聚合数据（快捷入口不消费统计，保留以统一 widget props 契约） */
@@ -20,110 +27,79 @@
     data: undefined,
   });
 
-  interface QuickEntry {
-    // 权限码（保留用于未来恢复权限过滤；当前展示态不做过滤，点击跳转由路由/后端鉴权守卫处理）
-    perms: string[];
-    // 路由 name（跳转用）
-    routeName: string;
-    // 图标
-    icon: string;
-    // 标题 i18n key
-    titleKey: string;
-    // 图标背景色（Tailwind 颜色类）
-    color: string;
-  }
-
-  // 快捷入口清单：常用运营入口，全部展示
-  const entries: QuickEntry[] = [
-    // 商户管理
-    {
-      perms: [PermCodes.Merchant.Info.VIEW],
-      routeName: 'MerchantList',
-      icon: 'lucide:shopping-bag',
-      titleKey: 'dashboard.workspace.quickEntry.merchant',
-      color: 'bg-blue-500',
-    },
-    // 应用管理
-    {
-      perms: [PermCodes.Merchant.App.VIEW],
-      routeName: 'MchAppInfoList',
-      icon: 'lucide:app-window',
-      titleKey: 'dashboard.workspace.quickEntry.app',
-      color: 'bg-emerald-500',
-    },
-    // 通道商户
-    {
-      perms: [PermCodes.Channel.Merchant.VIEW],
-      routeName: 'ChannelMerchantList',
-      icon: 'lucide:plug',
-      titleKey: 'dashboard.workspace.quickEntry.channelMerchant',
-      color: 'bg-violet-500',
-    },
-    // 通知中心
-    {
-      perms: [PermCodes.System.Notify.VIEW],
-      routeName: 'NotifyCenter',
-      icon: 'lucide:bell',
-      titleKey: 'dashboard.workspace.quickEntry.notify',
-      color: 'bg-amber-500',
-    },
-    // 用户管理
-    {
-      perms: [PermCodes.Iam.UserManager.VIEW],
-      routeName: 'UserList',
-      icon: 'lucide:users-round',
-      titleKey: 'dashboard.workspace.quickEntry.user',
-      color: 'bg-rose-500',
-    },
-    // 字典管理
-    {
-      perms: [PermCodes.System.Dict.VIEW],
-      routeName: 'SystemDict',
-      icon: 'lucide:book-open',
-      titleKey: 'dashboard.workspace.quickEntry.dict',
-      color: 'bg-cyan-500',
-    },
-    // 登录日志
-    {
-      perms: [PermCodes.System.Log.Login.VIEW],
-      routeName: 'SystemLoginLog',
-      icon: 'lucide:log-in',
-      titleKey: 'dashboard.workspace.quickEntry.loginLog',
-      color: 'bg-slate-500',
-    },
-    // 安全配置
-    {
-      perms: [PermCodes.System.SecurityConfig.VIEW],
-      routeName: 'SecurityConfig',
-      icon: 'lucide:shield-check',
-      titleKey: 'dashboard.workspace.quickEntry.security',
-      color: 'bg-indigo-500',
-    },
-  ];
-
   const router = useRouter();
+  const quickEntryStore = useQuickEntryStore();
+  const { hasPermission } = usePermission();
+
+  // 编辑抽屉显隐
+  const editVisible = ref(false);
+
+  // 实际渲染序列：用户自定义 ?? 默认，按权限过滤
+  const entries = computed(() => {
+    const keys = quickEntryStore.entries ?? DEFAULT_ENTRIES;
+    return resolveEntries(keys).filter((e) =>
+      e.perms.some((p) => hasPermission(p)),
+    );
+  });
 
   /** 跳转到目标路由 */
-  function navTo(entry: QuickEntry) {
-    router.push({ name: entry.routeName }).catch(() => {});
+  function navTo(routeName: string) {
+    router.push({ name: routeName }).catch(() => {});
   }
+
+  /** 打开编辑抽屉 */
+  function openEdit() {
+    editVisible.value = true;
+  }
+
+  /** 编辑保存后刷新本地缓存 */
+  function handleSaved() {
+    quickEntryStore.load(true);
+  }
+
+  onMounted(() => {
+    // 进入工作台即加载当前用户偏好
+    quickEntryStore.load();
+  });
 </script>
 
 <template>
   <a-card variant="borderless" class="!bg-card">
+    <template #title>
+      <span>{{ $t('dashboard.workspace.widget.quickEntry') }}</span>
+    </template>
+    <template #extra>
+      <a-button type="link" size="small" @click="openEdit">
+        <IconifyIcon icon="lucide:settings-2" class="mr-1 size-4" />
+        <span>{{ $t('dashboard.workspace.quickEntry.edit') }}</span>
+      </a-button>
+    </template>
+
     <div class="grid grid-cols-4 gap-2 md:grid-cols-8">
       <div
         v-for="entry in entries"
-        :key="entry.routeName"
+        :key="entry.key"
         class="hover:bg-accent flex cursor-pointer flex-col items-center gap-2 rounded-lg p-3 transition-colors"
-        @click="navTo(entry)"
+        @click="navTo(entry.routeName)"
       >
-        <div :class="entry.color" class="text-background flex size-11 items-center justify-center rounded-lg shadow-sm">
+        <div
+          :class="entry.color"
+          class="text-background flex size-11 items-center justify-center rounded-lg shadow-sm"
+        >
           <IconifyIcon :icon="entry.icon" class="size-5" />
         </div>
-        <span class="text-foreground/80 line-clamp-1 text-center text-xs">{{ $t(entry.titleKey) }}</span>
+        <span class="text-foreground/80 line-clamp-1 text-center text-xs">{{
+          $t(entry.titleKey)
+        }}</span>
       </div>
     </div>
-    <a-empty v-if="entries.length === 0" :description="$t('dashboard.workspace.quickEntry.empty')" class="!my-4" />
+    <a-empty
+      v-if="entries.length === 0"
+      :description="$t('dashboard.workspace.quickEntry.empty')"
+      class="!my-4"
+    />
+
+    <!-- 编辑抽屉 -->
+    <QuickEntryEditDrawer v-model:open="editVisible" @saved="handleSaved" />
   </a-card>
 </template>
