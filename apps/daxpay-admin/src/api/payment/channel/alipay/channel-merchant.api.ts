@@ -13,6 +13,12 @@ export const AlipayIsvChannelMerchantApi = {
     return defHttp.post({ url: '/admin/alipay/isv-channel-merchant/create', data });
   },
   /**
+   * 更新应用授权令牌(手动设置/更新, 适用于令牌补充或过期/变更后重新绑定)
+   */
+  updateAppAuthToken(data: AlipayIsvAppAuthTokenUpdateParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/alipay/isv-channel-merchant/update-app-auth-token', data });
+  },
+  /**
    * 根据通道商户号查询支付宝服务商通道商户配置
    */
   findByChannelMchNo(channelMchNo: string): Promise<Result<AlipayIsvChannelMerchantConfig>> {
@@ -102,4 +108,14 @@ export interface AlipayDirectChannelMerchantCreateParam {
   product: string;
   /** 支付宝商家用户ID(2088开头) */
   alipayUserId: string;
+}
+
+/**
+ * 应用授权令牌更新参数
+ */
+export interface AlipayIsvAppAuthTokenUpdateParam {
+  /** 通道商户号 */
+  channelMchNo: string;
+  /** 应用授权令牌 */
+  appAuthToken: string;
 }

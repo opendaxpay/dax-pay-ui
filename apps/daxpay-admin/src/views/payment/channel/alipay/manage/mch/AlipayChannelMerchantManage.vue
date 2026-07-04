@@ -1,29 +1,30 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+  import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
 
-import { $t } from '@vben/locales';
+  import { computed, ref } from 'vue';
 
-import { IconifyIcon } from '@vben-core/icons';
+  import { $t } from '@vben/locales';
 
-import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
-import { useMessage } from '#/hooks/useMessage';
+  import { IconifyIcon } from '@vben-core/icons';
 
-import AlipayChannelMerchantBasicInfo from './AlipayChannelMerchantBasicInfo.vue';
+  import AlipayAppAuthTokenUpdate from './AlipayAppAuthTokenUpdate.vue';
+  import AlipayChannelMerchantBasicInfo from './AlipayChannelMerchantBasicInfo.vue';
 
-defineOptions({ name: 'AlipayChannelMerchantManage' });
+  defineOptions({ name: 'AlipayChannelMerchantManage' });
 
-const mchNo = ref('');
-const channelMchNo = ref('');
-const channelMerchant = ref<ChannelMerchantResult>({});
-const basicInfoRef = ref<InstanceType<typeof AlipayChannelMerchantBasicInfo>>();
-const { message } = useMessage();
+  const mchNo = ref('');
+  const channelMchNo = ref('');
+  const channelMerchant = ref<ChannelMerchantResult>({});
+  const basicInfoRef = ref<InstanceType<typeof AlipayChannelMerchantBasicInfo>>();
+  // 应用授权令牌更新弹窗
+  const authTokenUpdateRef = ref<InstanceType<typeof AlipayAppAuthTokenUpdate>>();
 
-/** 功能卡片配置（服务商通道商户：仅基本信息） */
-const functionCards = computed(() => [
-  {
-    // 国际化：基础管理
-    group: $t('payment.merchant.channelMerchant.groupBasic'),
-    color: 'blue',
+  /** 功能卡片配置（服务商通道商户：仅基本信息） */
+  const functionCards = computed(() => [
+    {
+      // 国际化：基础管理
+      group: $t('payment.merchant.channelMerchant.groupBasic'),
+      color: 'blue',
       cards: [
         {
           key: 'basicInfo',
@@ -34,51 +35,50 @@ const functionCards = computed(() => [
         },
         {
           key: 'authOperation',
-          // 国际化：代运营授权
+          // 国际化：应用授权令牌
           title: $t('payment.merchant.channelMerchant.cardAuthOperation'),
           icon: 'ant-design:safety-certificate-outlined',
           description: $t('payment.merchant.channelMerchant.cardAuthOperationDesc'),
         },
       ],
-  },
-]);
+    },
+  ]);
 
-function getGroupColorClass(color: string) {
-  const map: Record<string, string> = {
-    blue: 'bg-blue-500',
-    green: 'bg-emerald-500',
-  };
-  return map[color] || 'bg-gray-500';
-}
-
-function getIconBgClass(color: string) {
-  const map: Record<string, string> = {
-    blue: 'bg-primary/10 text-primary',
-    green: 'bg-success/10 text-success',
-  };
-  return map[color] || 'bg-muted text-muted-foreground';
-}
-
-/** 初始化（由中转页调用） */
-function init(no: string, mchChannelNo: string, summary: ChannelMerchantResult) {
-  mchNo.value = no;
-  channelMchNo.value = mchChannelNo;
-  channelMerchant.value = summary;
-}
-
-function handleCardClick(card: { key: string }) {
-  if (card.key === 'basicInfo') {
-    basicInfoRef.value?.open();
-    return;
+  function getGroupColorClass(color: string) {
+    const map: Record<string, string> = {
+      blue: 'bg-blue-500',
+      green: 'bg-emerald-500',
+    };
+    return map[color] || 'bg-gray-500';
   }
-  if (card.key === 'authOperation') {
-    // 国际化：功能开发中，敬请期待
-    message.info($t('payment.merchant.channelMerchant.developing'));
-    return;
-  }
-}
 
-defineExpose({ init });
+  function getIconBgClass(color: string) {
+    const map: Record<string, string> = {
+      blue: 'bg-primary/10 text-primary',
+      green: 'bg-success/10 text-success',
+    };
+    return map[color] || 'bg-muted text-muted-foreground';
+  }
+
+  /** 初始化（由中转页调用） */
+  function init(no: string, mchChannelNo: string, summary: ChannelMerchantResult) {
+    mchNo.value = no;
+    channelMchNo.value = mchChannelNo;
+    channelMerchant.value = summary;
+  }
+
+  function handleCardClick(card: { key: string }) {
+    if (card.key === 'basicInfo') {
+      basicInfoRef.value?.open();
+      return;
+    }
+    if (card.key === 'authOperation') {
+      authTokenUpdateRef.value?.open(channelMchNo.value);
+      return;
+    }
+  }
+
+  defineExpose({ init });
 </script>
 
 <template>
@@ -104,7 +104,9 @@ defineExpose({ init });
             >
               <IconifyIcon :icon="card.icon" class="h-7 w-7" />
             </div>
-            <div class="mb-1.5 text-base font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+            <div
+              class="mb-1.5 text-base font-bold text-foreground group-hover:text-primary transition-colors duration-300"
+            >
               {{ card.title }}
             </div>
             <a-tooltip :title="card.description" placement="bottom">
@@ -126,25 +128,27 @@ defineExpose({ init });
       :channel-mch-no="channelMchNo"
       :channel-merchant="channelMerchant"
     />
+
+    <AlipayAppAuthTokenUpdate ref="authTokenUpdateRef" />
   </div>
 </template>
 
 <style scoped>
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 220px);
-  gap: 24px;
-  justify-content: center;
-}
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 220px);
+    gap: 24px;
+    justify-content: center;
+  }
 
-.isv-card {
-  max-height: 200px;
-}
+  .isv-card {
+    max-height: 200px;
+  }
 
-.line-clamp-1 {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-}
+  .line-clamp-1 {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
 </style>
