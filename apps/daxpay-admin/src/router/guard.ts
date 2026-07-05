@@ -115,7 +115,14 @@ function setupAccessGuard(router: Router) {
         return { path: LOGIN_PATH, replace: true };
       }
       // 网络错误 / 后端服务不可用: token 仍在, 跳服务不可用提示页, 保留登录态供用户手动刷新重试
-      return { path: '/service-unavailable', replace: true };
+      // 中文注释：记录用户原本想访问的页面，网络恢复后重试可回到该页而非首页；
+      // 排除自身路径，避免 redirect 指向 /service-unavailable 形成循环
+      const redirectPath = to.path === '/service-unavailable' ? HOME_PATH : to.fullPath;
+      return {
+        path: '/service-unavailable',
+        query: { redirect: encodeURIComponent(redirectPath) },
+        replace: true,
+      };
     }
   });
 }
