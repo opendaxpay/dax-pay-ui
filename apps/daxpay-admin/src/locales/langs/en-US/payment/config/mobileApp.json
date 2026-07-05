@@ -1,0 +1,44 @@
+{
+  "title": "Mobile App Management",
+  "card": {
+    "merchant": {
+      "name": "Merchant App",
+      "desc": "Mobile app for merchant staff"
+    },
+    "admin": {
+      "name": "Admin App",
+      "desc": "Mobile app for platform operators"
+    },
+    "cashier": {
+      "name": "Cashier Mini Program",
+      "desc": "Mini program for consumer payment"
+    },
+    "comingSoon": "Coming Soon",
+    "enter": "Configure"
+  },
+  "platformNames": {
+    "wx_h5": "WeChat Official Account",
+    "wx_mini": "WeChat Mini Program",
+    "alipay_mini": "Alipay Mini Program",
+    "dy_mini": "Douyin Mini Program",
+    "android": "Android App",
+    "ios": "iOS App"
+  },
+  "detail": {
+    "back": "Back",
+    "appName": "App Name",
+    "appNamePlaceholder": "Enter app name",
+    "appConfig": "Platform Key Config",
+    "appConfigPlaceholder": "Enter platform key config in JSON format",
+    "notifyConfig": "Notification Config",
+    "notifyConfigPlaceholder": "Enter notification config in JSON format",
+    "bindingEnabled": "Enable third-party account binding",
+    "enabled": "Enabled",
+    "remark": "Remark",
+    "remarkPlaceholder": "Enter remark",
+    "save": "Save",
+    "saveSuccess": "Saved successfully",
+    "notSupportedAppType": "Unsupported app type",
+    "emptyPlatformConfig": "No platform config yet, fill in and save to create"
+  }
+}

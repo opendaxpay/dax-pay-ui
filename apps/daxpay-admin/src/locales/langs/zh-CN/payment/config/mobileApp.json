@@ -1,0 +1,44 @@
+{
+  "title": "移动端应用管理",
+  "card": {
+    "merchant": {
+      "name": "商户端",
+      "desc": "商户员工使用的移动应用"
+    },
+    "admin": {
+      "name": "管理端",
+      "desc": "平台运营使用的移动应用"
+    },
+    "cashier": {
+      "name": "收银台小程序",
+      "desc": "消费者扫码支付的小程序"
+    },
+    "comingSoon": "敬请期待",
+    "enter": "进入配置"
+  },
+  "platformNames": {
+    "wx_h5": "微信公众号",
+    "wx_mini": "微信小程序",
+    "alipay_mini": "支付宝小程序",
+    "dy_mini": "抖音小程序",
+    "android": "安卓APP",
+    "ios": "iOS APP"
+  },
+  "detail": {
+    "back": "返回",
+    "appName": "应用名称",
+    "appNamePlaceholder": "请输入应用名称",
+    "appConfig": "平台密钥配置",
+    "appConfigPlaceholder": "请输入 JSON 格式的平台密钥配置",
+    "notifyConfig": "消息通知配置",
+    "notifyConfigPlaceholder": "请输入 JSON 格式的消息通知配置",
+    "bindingEnabled": "启用第三方账号用户绑定",
+    "enabled": "是否启用",
+    "remark": "备注",
+    "remarkPlaceholder": "请输入备注",
+    "save": "保存",
+    "saveSuccess": "保存成功",
+    "notSupportedAppType": "不支持的端类型",
+    "emptyPlatformConfig": "暂无平台配置，填写后保存即可创建"
+  }
+}
