@@ -1,0 +1,9 @@
+{
+  "manageTitle": "UMS Direct Merchant Management",
+  "cardDirectKeyConfig": "Key Config",
+  "cardDirectKeyConfigDesc": "Configure UMS merchant-level App ID and keys",
+  "directKeyConfigTitle": "UMS Key Configuration",
+  "keyConfigSection": "Merchant Key Config",
+  "appKeyConfigured": "Configured (enter new value to change)",
+  "secretKeyConfigured": "Configured (enter new value to change)"
+}

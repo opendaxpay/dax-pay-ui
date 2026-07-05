@@ -13,6 +13,7 @@
   import AlipayChannelMerchantManage from '#/views/payment/channel/alipay/manage/mch/AlipayChannelMerchantManage.vue';
   import AlipayMchManage from '#/views/payment/channel/alipay/manage/mch/AlipayMchManage.vue';
   import DouyinDirectMchManage from '#/views/payment/channel/douyin/manage/DouyinDirectMchManage.vue';
+  import UmsDirectMchManage from '#/views/payment/channel/ums/manage/UmsDirectMchManage.vue';
   import WechatChannelMerchantManage from '#/views/payment/channel/wechat/manage/mch/WechatChannelMerchantManage.vue';
   import WechatDirectMchManage from '#/views/payment/channel/wechat/manage/mch/WechatDirectMchManage.vue';
 
@@ -49,6 +50,19 @@
   const wechatManageRef = ref<InstanceType<typeof WechatChannelMerchantManage>>();
   const wechatDirectManageRef = ref<InstanceType<typeof WechatDirectMchManage>>();
   const douyinDirectManageRef = ref<InstanceType<typeof DouyinDirectMchManage>>();
+  const umsDirectManageRef = ref<InstanceType<typeof UmsDirectMchManage>>();
+
+  /** 是否为银联商务系列产品 */
+  function isUmsProduct(p: string) {
+    return (
+      p === ProductEnum.UMS_QRCODE ||
+      p === ProductEnum.UMS_JSAPI ||
+      p === ProductEnum.UMS_APP ||
+      p === ProductEnum.UMS_MINI ||
+      p === ProductEnum.UMS_H5 ||
+      p === ProductEnum.UMS_BARCODE
+    );
+  }
 
   /** 是否为已支持的通道产品 */
   function isSupported(p: string) {
@@ -57,7 +71,8 @@
       p === ProductEnum.ALIPAY_ISV ||
       p === ProductEnum.WECHAT_ISV ||
       p === ProductEnum.WECHAT_PAY ||
-      p === ProductEnum.DOUYIN_PAY
+      p === ProductEnum.DOUYIN_PAY ||
+      isUmsProduct(p)
     );
   }
 
@@ -77,6 +92,9 @@
     }
     if (productCode === ProductEnum.DOUYIN_PAY) {
       return $t('payment.channel.douyinManage.manageTitle');
+    }
+    if (isUmsProduct(productCode)) {
+      return $t('payment.channel.umsManage.manageTitle');
     }
     return $t('payment.merchant.channelMerchant.manageTitleDefault');
   }
@@ -128,6 +146,9 @@
     }
     if (product.value === ProductEnum.DOUYIN_PAY) {
       douyinDirectManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
+    }
+    if (isUmsProduct(product.value)) {
+      umsDirectManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
     }
   }
 
@@ -212,6 +233,7 @@
         <WechatChannelMerchantManage v-else-if="product === ProductEnum.WECHAT_ISV" ref="wechatManageRef" />
         <WechatDirectMchManage v-else-if="product === ProductEnum.WECHAT_PAY" ref="wechatDirectManageRef" />
         <DouyinDirectMchManage v-else-if="product === ProductEnum.DOUYIN_PAY" ref="douyinDirectManageRef" />
+        <UmsDirectMchManage v-else-if="isUmsProduct(product)" ref="umsDirectManageRef" />
         <div v-else-if="!isSupported(product)" class="flex items-center justify-center" style="min-height: 400px">
           <a-empty :description="$t('payment.merchant.channelMerchant.detailNotSupportYet')" />
         </div>

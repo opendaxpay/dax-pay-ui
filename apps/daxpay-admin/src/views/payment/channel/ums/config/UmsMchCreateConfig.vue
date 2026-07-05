@@ -1,195 +1,187 @@
 <script lang="ts" setup>
-import { computed, nextTick, ref } from 'vue';
+  import type { UmsDirectChannelMerchantCreateParam } from '#/api/payment/channel/ums/channel-merchant.api';
 
-import { $t } from '@vben/locales';
+  import { computed, nextTick, ref } from 'vue';
 
-import { IconifyIcon } from '@vben-core/icons';
+  import { $t } from '@vben/locales';
 
-import { ChannelMerchantUmsApi } from '#/api/payment/channel/ums/channel-merchant.api';
-import { useMessage } from '#/hooks/useMessage';
+  import { IconifyIcon } from '@vben-core/icons';
 
-defineOptions({ name: 'UmsMchCreateConfig' });
+  import { UmsDirectChannelMerchantApi } from '#/api/payment/channel/ums/channel-merchant.api';
+  import { useMessage } from '#/hooks/useMessage';
 
-const emit = defineEmits<{
-  (e: 'prev'): void;
-  (e: 'close'): void;
-}>();
+  defineOptions({ name: 'UmsMchCreateConfig' });
 
-const { message } = useMessage();
+  const emit = defineEmits<{
+    (e: 'prev'): void;
+    (e: 'close'): void;
+  }>();
 
-const mchNo = ref('');
-const productCode = ref('');
-const productDisplayName = ref('');
-const formRef = ref();
-const form = ref({
-  channelMerchantName: '',
-  sandbox: false,
-  umsAppId: '',
-  appKey: '',
-  merchantNo: '',
-  terminalNo: '',
-  orderPrefix: '',
-  secretKey: '',
-});
+  const { message } = useMessage();
 
-const visible = ref(false);
-const createSuccess = ref(false);
-const submitLoading = ref(false);
-
-const rules = computed(() => ({
-  channelMerchantName: [{ required: true, message: $t('payment.merchant.channelMerchant.channelMerchantNameRequired') }],
-  umsAppId: [{ required: true, message: $t('payment.channel.ums.validation.umsAppId') }],
-  appKey: [{ required: true, message: $t('payment.channel.ums.validation.appKey') }],
-  merchantNo: [{ required: true, message: $t('payment.channel.ums.validation.merchantNo') }],
-  terminalNo: [{ required: true, message: $t('payment.channel.ums.validation.terminalNo') }],
-  orderPrefix: [{ required: true, message: $t('payment.channel.ums.validation.orderPrefix') }],
-  secretKey: [{ required: true, message: $t('payment.channel.ums.validation.secretKey') }],
-}));
-
-function init(no: string, product: string, displayName: string) {
-  mchNo.value = no;
-  productCode.value = product;
-  productDisplayName.value = displayName;
-  visible.value = true;
-  createSuccess.value = false;
-  resetForm();
-}
-
-function validate(): boolean {
-  let valid = false;
-  formRef.value?.validate((errors: any) => {
-    valid = !errors;
+  const mchNo = ref('');
+  const productCode = ref('');
+  const productDisplayName = ref('');
+  const formRef = ref();
+  const form = ref({
+    channelMerchantName: '',
+    sandbox: false,
+    umsAppId: '',
+    appKey: '',
+    merchantNo: '',
+    terminalNo: '',
+    orderPrefix: '',
+    secretKey: '',
   });
-  return valid;
-}
 
-function getData(): Record<string, any> {
-  return { ...form.value };
-}
+  const visible = ref(false);
+  const createSuccess = ref(false);
+  const submitLoading = ref(false);
 
-function submit(param: Record<string, any>): Promise<any> {
-  return ChannelMerchantUmsApi.create({
-    ...param,
-    ...form.value,
-  });
-}
+  const rules = computed(() => ({
+    channelMerchantName: [
+      { required: true, message: $t('payment.merchant.channelMerchant.channelMerchantNameRequired') },
+    ],
+    umsAppId: [{ required: true, message: $t('payment.channel.ums.validation.umsAppId') }],
+    appKey: [{ required: true, message: $t('payment.channel.ums.validation.appKey') }],
+    merchantNo: [{ required: true, message: $t('payment.channel.ums.validation.merchantNo') }],
+    terminalNo: [{ required: true, message: $t('payment.channel.ums.validation.terminalNo') }],
+    orderPrefix: [{ required: true, message: $t('payment.channel.ums.validation.orderPrefix') }],
+    secretKey: [{ required: true, message: $t('payment.channel.ums.validation.secretKey') }],
+  }));
 
-function handlePrev() {
-  emit('prev');
-}
-
-function handleSubmit() {
-  formRef.value?.validate().then(() => {
-    submitLoading.value = true;
-    const param = {
-      mchNo: mchNo.value,
-      product: productCode.value,
-      channel: 'ums',
-      ...form.value,
-    };
-    submit(param)
-      .then(() => {
-        createSuccess.value = true;
-        message.success($t('payment.merchant.channelMerchant.createSuccess'));
-      })
-        .finally(() => {
-          submitLoading.value = false;
-        });
-    }).catch(() => {});
+  function init(no: string, product: string, displayName: string) {
+    mchNo.value = no;
+    productCode.value = product;
+    productDisplayName.value = displayName;
+    visible.value = true;
+    createSuccess.value = false;
+    resetForm();
   }
 
-function resetForm() {
-  nextTick(() => {
-    formRef.value?.resetFields();
-  });
-}
+  function validate(): boolean {
+    let valid = false;
+    formRef.value?.validate((errors: any) => {
+      valid = !errors;
+    });
+    return valid;
+  }
 
-defineExpose({ init, validate, getData, submit });
+  function getData(): Record<string, any> {
+    return { ...form.value };
+  }
+
+  function submit(param: Record<string, any>): Promise<any> {
+    return UmsDirectChannelMerchantApi.create({
+      ...param,
+      ...form.value,
+    } as UmsDirectChannelMerchantCreateParam);
+  }
+
+  function handlePrev() {
+    emit('prev');
+  }
+
+  function handleSubmit() {
+    formRef.value
+      ?.validate()
+      .then(() => {
+        submitLoading.value = true;
+        const param = {
+          mchNo: mchNo.value,
+          product: productCode.value,
+          channel: 'ums',
+          ...form.value,
+        };
+        submit(param)
+          .then(() => {
+            createSuccess.value = true;
+            message.success($t('payment.merchant.channelMerchant.createSuccess'));
+          })
+          .finally(() => {
+            submitLoading.value = false;
+          });
+      })
+      .catch(() => {});
+  }
+
+  function resetForm() {
+    nextTick(() => {
+      formRef.value?.resetFields();
+    });
+  }
+
+  defineExpose({ init, validate, getData, submit });
 </script>
 
 <template>
   <div v-if="visible">
     <div v-if="!createSuccess">
       <a-spin :spinning="submitLoading">
-      <a-form
-        ref="formRef"
-        :model="form"
-        :rules="rules"
-        :label-col="{ span: 6 }"
-        :wrapper-col="{ span: 16 }"
-        :validate-trigger="['blur', 'change']"
-      >
-        <!-- 国际化：商户名称 -->
-        <a-form-item :label="$t('payment.merchant.channelMerchant.channelMerchantName')" name="channelMerchantName">
-          <a-input
-            v-model:value="form.channelMerchantName"
-            :placeholder="$t('payment.merchant.channelMerchant.pleaseInputName')"
-          />
-        </a-form-item>
-        <!-- 国际化：所属支付产品 -->
-        <a-form-item :label="$t('payment.merchant.channelMerchant.selectedProduct')">
-          <a-input :value="productDisplayName" disabled />
-        </a-form-item>
-        <!-- 国际化：沙箱环境 -->
-        <a-form-item :label="$t('payment.channel.ums.sandbox')" name="sandbox">
-          <a-switch
-            v-model:checked="form.sandbox"
-            :checked-children="$t('common.yes')"
-            :un-checked-children="$t('common.no')"
-          />
-        </a-form-item>
+        <a-form
+          ref="formRef"
+          :model="form"
+          :rules="rules"
+          :label-col="{ span: 6 }"
+          :wrapper-col="{ span: 16 }"
+          :validate-trigger="['blur', 'change']"
+        >
+          <!-- 国际化：商户名称 -->
+          <a-form-item :label="$t('payment.merchant.channelMerchant.channelMerchantName')" name="channelMerchantName">
+            <a-input
+              v-model:value="form.channelMerchantName"
+              :placeholder="$t('payment.merchant.channelMerchant.pleaseInputName')"
+            />
+          </a-form-item>
+          <!-- 国际化：所属支付产品 -->
+          <a-form-item :label="$t('payment.merchant.channelMerchant.selectedProduct')">
+            <a-input :value="productDisplayName" disabled />
+          </a-form-item>
+          <!-- 国际化：沙箱环境 -->
+          <a-form-item :label="$t('payment.channel.ums.sandbox')" name="sandbox">
+            <a-switch
+              v-model:checked="form.sandbox"
+              :checked-children="$t('common.yes')"
+              :un-checked-children="$t('common.no')"
+            />
+          </a-form-item>
 
-        <a-form-item :label="$t('payment.channel.ums.umsAppId')" name="umsAppId">
-          <a-input
-            v-model:value="form.umsAppId"
-            :placeholder="$t('payment.channel.ums.umsAppIdPlaceholder')"
-          />
-        </a-form-item>
+          <a-form-item :label="$t('payment.channel.ums.umsAppId')" name="umsAppId">
+            <a-input v-model:value="form.umsAppId" :placeholder="$t('payment.channel.ums.umsAppIdPlaceholder')" />
+          </a-form-item>
 
-        <a-form-item :label="$t('payment.channel.ums.appKey')" name="appKey">
-          <a-input-password
-            v-model:value="form.appKey"
-            :placeholder="$t('payment.channel.ums.appKeyPlaceholder')"
-          />
-        </a-form-item>
+          <a-form-item :label="$t('payment.channel.ums.appKey')" name="appKey">
+            <a-input-password v-model:value="form.appKey" :placeholder="$t('payment.channel.ums.appKeyPlaceholder')" />
+          </a-form-item>
 
-        <a-form-item :label="$t('payment.channel.ums.merchantNo')" name="merchantNo">
-          <a-input
-            v-model:value="form.merchantNo"
-            :placeholder="$t('payment.channel.ums.merchantNoPlaceholder')"
-          />
-        </a-form-item>
+          <a-form-item :label="$t('payment.channel.ums.merchantNo')" name="merchantNo">
+            <a-input v-model:value="form.merchantNo" :placeholder="$t('payment.channel.ums.merchantNoPlaceholder')" />
+          </a-form-item>
 
-        <a-form-item :label="$t('payment.channel.ums.terminalNo')" name="terminalNo">
-          <a-input
-            v-model:value="form.terminalNo"
-            :placeholder="$t('payment.channel.ums.terminalNoPlaceholder')"
-          />
-        </a-form-item>
+          <a-form-item :label="$t('payment.channel.ums.terminalNo')" name="terminalNo">
+            <a-input v-model:value="form.terminalNo" :placeholder="$t('payment.channel.ums.terminalNoPlaceholder')" />
+          </a-form-item>
 
-        <a-form-item :label="$t('payment.channel.ums.orderPrefix')" name="orderPrefix">
-          <a-input
-            v-model:value="form.orderPrefix"
-            :placeholder="$t('payment.channel.ums.orderPrefixPlaceholder')"
-          />
-        </a-form-item>
+          <a-form-item :label="$t('payment.channel.ums.orderPrefix')" name="orderPrefix">
+            <a-input v-model:value="form.orderPrefix" :placeholder="$t('payment.channel.ums.orderPrefixPlaceholder')" />
+          </a-form-item>
 
-        <a-form-item :label="$t('payment.channel.ums.secretKey')" name="secretKey">
-          <a-input-password
-            v-model:value="form.secretKey"
-            :placeholder="$t('payment.channel.ums.secretKeyPlaceholder')"
-          />
-        </a-form-item>
+          <a-form-item :label="$t('payment.channel.ums.secretKey')" name="secretKey">
+            <a-input-password
+              v-model:value="form.secretKey"
+              :placeholder="$t('payment.channel.ums.secretKeyPlaceholder')"
+            />
+          </a-form-item>
 
-        <div class="flex justify-center gap-4 mt-8 pt-6 border-t border-border">
-          <a-button @click="handlePrev">
-            {{ $t('payment.merchant.channelMerchant.prevStep') }}
-          </a-button>
-          <a-button type="primary" :loading="submitLoading" @click="handleSubmit">
-            {{ $t('payment.merchant.channelMerchant.create') }}
-          </a-button>
-        </div>
-      </a-form>
+          <div class="flex justify-center gap-4 mt-8 pt-6 border-t border-border">
+            <a-button @click="handlePrev">
+              {{ $t('payment.merchant.channelMerchant.prevStep') }}
+            </a-button>
+            <a-button type="primary" :loading="submitLoading" @click="handleSubmit">
+              {{ $t('payment.merchant.channelMerchant.create') }}
+            </a-button>
+          </div>
+        </a-form>
       </a-spin>
     </div>
 
