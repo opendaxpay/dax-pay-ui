@@ -2,7 +2,6 @@
   import { computed, nextTick, onMounted, ref, watch } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
 
-  import { useTabs } from '@vben/hooks';
   import { $t } from '@vben/locales';
 
   import { IconifyIcon } from '@vben-core/icons';
@@ -11,7 +10,6 @@
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { ProductEnum } from '#/enums/payment/productEnum';
   import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
-
   import AlipayChannelMerchantManage from '#/views/payment/channel/alipay/manage/mch/AlipayChannelMerchantManage.vue';
   import AlipayMchManage from '#/views/payment/channel/alipay/manage/mch/AlipayMchManage.vue';
   import DouyinDirectMchManage from '#/views/payment/channel/douyin/manage/DouyinDirectMchManage.vue';
@@ -22,7 +20,6 @@
 
   const route = useRoute();
   const router = useRouter();
-  const { setTabTitle } = useTabs();
 
   const routeContext = useRequiredRouteQuery({
     keys: ['mchNo', 'id', 'product'],
@@ -111,11 +108,6 @@
     });
   }
 
-  /** 同步标签页标题 */
-  function syncTabTitle() {
-    setTabTitle(pageTitle.value);
-  }
-
   /** 按当前产品初始化子页面 */
   function initChannelPanel() {
     const channelMchNo = channelMerchant.value.channelMchNo;
@@ -147,7 +139,6 @@
     mchNo.value = routeContext.query.value.mchNo;
     channelMerchantId.value = routeContext.query.value.id;
     product.value = routeContext.query.value.product;
-    syncTabTitle();
   }
 
   watch(() => route.query, syncRouteState, { deep: true });

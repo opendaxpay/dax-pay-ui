@@ -3,10 +3,10 @@
 
   import { $t } from '@vben/locales';
 
-  import { type WechatIsvApp, WechatIsvAppApi } from '#/api/payment/channel/wechat/isv-app.api';
+  import { type WechatIsvMchApp, WechatIsvMchAppApi } from '#/api/payment/channel/wechat/isv-mch-app.api';
 
-  import WechatIsvAppAuthConfig from './tabs/WechatIsvAppAuthConfig.vue';
-  import WechatIsvAppBasicInfo from './tabs/WechatIsvAppBasicInfo.vue';
+  import WechatIsvMchAppAuthConfig from './tabs/WechatIsvMchAppAuthConfig.vue';
+  import WechatIsvMchAppBasicInfo from './tabs/WechatIsvMchAppBasicInfo.vue';
 
   const emit = defineEmits<{
     deleted: [];
@@ -15,18 +15,22 @@
   const visible = ref(false);
   const loading = ref(false);
   const activeKey = ref('basic');
-  const appDetail = ref<WechatIsvApp>({});
+  const mchNo = ref('');
+  const channelMchNo = ref('');
+  const appDetail = ref<WechatIsvMchApp>({});
 
   const modalTitle = computed(() =>
-    $t('payment.channel.wechatManage.detailTitle', { name: appDetail.value.appName || '-' }),
+    $t('payment.channel.wechatMchApp.detailTitle', { name: appDetail.value.appName || '-' }),
   );
 
-  function show(record: WechatIsvApp) {
+  function show(no: string, mchChannelNo: string, record: WechatIsvMchApp) {
+    mchNo.value = no;
+    channelMchNo.value = mchChannelNo;
     activeKey.value = 'basic';
     visible.value = true;
     loading.value = true;
     appDetail.value = { ...record };
-    WechatIsvAppApi.findById(record.id!)
+    WechatIsvMchAppApi.findById(record.id!)
       .then(({ data }) => {
         if (data) {
           appDetail.value = data;
@@ -54,7 +58,7 @@
     v-model:open="visible"
     :title="modalTitle"
     width="100%"
-    wrap-class-name="wechat-isv-app-detail-modal"
+    wrap-class-name="wechat-isv-mch-app-detail-modal"
     :footer="null"
     :destroy-on-hidden="true"
     :mask-closable="false"
@@ -62,12 +66,14 @@
   >
     <a-spin :spinning="loading">
       <a-tabs v-model:active-key="activeKey" tab-placement="left" class="detail-tabs">
-        <a-tab-pane key="basic" :tab="$t('payment.channel.wechatManage.tabBasicInfo')">
-          <WechatIsvAppBasicInfo :app="appDetail" @deleted="handleDeleted" />
+        <a-tab-pane key="basic" :tab="$t('payment.channel.wechatMchApp.tabBasicInfo')">
+          <WechatIsvMchAppBasicInfo :app="appDetail" @deleted="handleDeleted" />
         </a-tab-pane>
-        <a-tab-pane key="auth" :tab="$t('payment.channel.wechatManage.tabAuthConfig')">
-          <WechatIsvAppAuthConfig
-            :wechat-isv-app-id="appDetail.id!"
+        <a-tab-pane key="auth" :tab="$t('payment.channel.wechatMchApp.tabAuthConfig')">
+          <WechatIsvMchAppAuthConfig
+            :wechat-isv-mch-app-id="appDetail.id!"
+            :mch-no="mchNo"
+            :channel-mch-no="channelMchNo"
             :app-type="appDetail.appType"
           />
         </a-tab-pane>
@@ -111,21 +117,21 @@
 </style>
 
 <style>
-  .wechat-isv-app-detail-modal .ant-modal {
+  .wechat-isv-mch-app-detail-modal .ant-modal {
     top: 0;
     max-width: 100%;
     padding-bottom: 0;
     margin: 0;
   }
 
-  .wechat-isv-app-detail-modal .ant-modal-content {
+  .wechat-isv-mch-app-detail-modal .ant-modal-content {
     display: flex;
     flex-direction: column;
     height: 100vh;
     border-radius: 0;
   }
 
-  .wechat-isv-app-detail-modal .ant-modal-body {
+  .wechat-isv-mch-app-detail-modal .ant-modal-body {
     flex: 1;
     overflow: hidden;
     padding: 16px 24px;

@@ -1,5 +1,6 @@
 {
-  "appManageTitle": "WeChat Channel Merchant Applications",
+  "appManageTitle": "WeChat App",
+  "appManageTitleIsv": "WeChat ISV Sub-merchant App",
   "consoleLink": "WeChat Open Platform",
   "addCard": "Add Application",
   "emptyAppList": "No applications",

@@ -3,15 +3,15 @@
   "groupApp": "App Management",
   "cardMchApp": "Alipay Channel Merchant Apps",
   "cardMchAppDesc": "Manage Alipay channel merchant applications",
-  "cardCapabilityBinding": "Capability-App Binding",
-  "cardCapabilityBindingDesc": "Configure which app each payment capability uses",
-  "capabilityTitle": "Payment Capability App Binding",
-  "capabilityDesc": "Specify the Alipay app used for each payment capability; auto-resolved by app type if not bound",
+  "cardCapabilityBinding": "Payment App Setup",
+  "cardCapabilityBindingDesc": "Decide which app each payment capability uses to initiate payment",
+  "capabilityTitle": "Configure App per Capability",
+  "capabilityDesc": "Specify which Alipay app to use when initiating payment for each capability. Leave empty to auto-match by app type.",
   "capabilityTableCapability": "Payment Capability",
-  "capabilityTableApp": "Bound App",
-  "capabilitySelectPlaceholder": "Auto-resolved by app type if empty",
+  "capabilityTableApp": "App to use",
+  "capabilitySelectPlaceholder": "Auto-match by app type if empty",
   "capabilityAutoTip": "Auto",
   "capabilityNoApp": "No apps created for this channel merchant yet, please create one first",
   "capabilitySaveSuccess": "Saved successfully",
-  "capabilityClearConfirm": "Clear all bindings?"
+  "capabilityClearConfirm": "Clear all app assignments?"
 }

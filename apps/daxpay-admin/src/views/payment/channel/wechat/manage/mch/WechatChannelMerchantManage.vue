@@ -1,5 +1,6 @@
 <script lang="ts" setup>
   import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
+  import { ProductEnum } from '#/enums/payment/productEnum';
 
   import { computed, ref } from 'vue';
   import { useRouter } from 'vue-router';
@@ -11,6 +12,7 @@
   import { useMessage } from '#/hooks/useMessage';
 
   import WechatChannelMerchantBasicInfo from './WechatChannelMerchantBasicInfo.vue';
+  import WechatIsvMchAppCapability from './WechatIsvMchAppCapability.vue';
 
   defineOptions({ name: 'WechatChannelMerchantManage' });
 
@@ -21,6 +23,7 @@
   const channelMchNo = ref('');
   const channelMerchant = ref<ChannelMerchantResult>({});
   const basicInfoRef = ref<InstanceType<typeof WechatChannelMerchantBasicInfo>>();
+  const capabilityRef = ref<InstanceType<typeof WechatIsvMchAppCapability>>();
 
   /** 功能卡片配置 */
   const functionCards = computed(() => [
@@ -49,7 +52,13 @@
           title: $t('payment.merchant.channelMerchant.cardApp'),
           icon: 'ant-design:appstore-outlined',
           description: $t('payment.merchant.channelMerchant.cardAppDesc'),
-          route: '/payment/merchant/channel-merchant/wechat-app-manage',
+        },
+        {
+          key: 'capability',
+          // 国际化：支付应用配置
+          title: $t('payment.channel.wechatManage.cardCapabilityBinding'),
+          icon: 'ant-design:api-outlined',
+          description: $t('payment.channel.wechatManage.cardCapabilityBindingDesc'),
         },
       ],
     },
@@ -78,19 +87,25 @@
     channelMerchant.value = summary;
   }
 
-  function handleCardClick(card: { key: string; route?: string }) {
+  function handleCardClick(card: { key: string }) {
     if (card.key === 'basicInfo') {
       basicInfoRef.value?.open();
       return;
     }
-    if (card.route) {
+    if (card.key === 'app') {
       router.push({
-        path: card.route,
+        path: '/payment/merchant/channel-merchant/wechat-isv-mch-app-manage',
         query: {
           mchNo: mchNo.value,
           channelMchNo: channelMchNo.value,
+          channelMerchantId: channelMerchant.value.id,
+          product: ProductEnum.WECHAT_ISV,
         },
       });
+      return;
+    }
+    if (card.key === 'capability') {
+      capabilityRef.value?.show(mchNo.value, channelMchNo.value);
       return;
     }
     message.info($t('payment.merchant.channelMerchant.developing'));
@@ -146,6 +161,8 @@
       :channel-mch-no="channelMchNo"
       :channel-merchant="channelMerchant"
     />
+
+    <WechatIsvMchAppCapability ref="capabilityRef" />
   </div>
 </template>
 

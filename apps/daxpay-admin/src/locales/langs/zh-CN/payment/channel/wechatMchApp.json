@@ -1,5 +1,6 @@
 {
-  "appManageTitle": "微信通道商户应用",
+  "appManageTitle": "微信应用",
+  "appManageTitleIsv": "微信服务商子商户应用",
   "consoleLink": "微信开放平台",
   "addCard": "添加应用",
   "emptyAppList": "暂无应用",
