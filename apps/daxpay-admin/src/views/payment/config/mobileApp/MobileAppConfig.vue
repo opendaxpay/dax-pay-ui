@@ -9,29 +9,25 @@
 
   const router = useRouter();
 
-  // 三种端类型卡片配置(收银台本期灰显)
+  // 三种端类型卡片配置(收银台本期灰显), 图标文件名与 appType 一致
   const cards: {
     appType: string;
     disabled: boolean;
-    icon: string;
     theme: string;
   }[] = [
     {
       appType: 'merchant',
       disabled: false,
-      icon: 'ant-design:shop-filled',
       theme: 'blue',
     },
     {
       appType: 'admin',
       disabled: false,
-      icon: 'ant-design:control-filled',
       theme: 'green',
     },
     {
       appType: 'cashier',
       disabled: true,
-      icon: 'ant-design:qrcode-outlined',
       theme: 'amber',
     },
   ];
@@ -42,6 +38,20 @@
   function handleEnter(appType: string, disabled: boolean) {
     if (disabled) return;
     router.push({ path: `/payment/config/mobile-app/detail/${appType}` });
+  }
+
+  /**
+   * 获取端图标资源地址(文件名与 appType 一致)
+   */
+  function getLogoSrc(appType: string): string | undefined {
+    try {
+      return new URL(
+        `/src/assets/mobile-app/${appType}.svg`,
+        import.meta.url,
+      ).href;
+    } catch {
+      return undefined;
+    }
   }
 </script>
 
@@ -71,7 +81,12 @@
           </div>
 
           <div class="card-icon">
-            <IconifyIcon :icon="card.icon" class="text-5xl" />
+            <img
+              v-if="getLogoSrc(card.appType)"
+              :src="getLogoSrc(card.appType)"
+              :alt="card.appType"
+              class="card-logo-img"
+            />
           </div>
 
           <div class="card-name">
@@ -141,16 +156,11 @@
     margin-bottom: 16px;
   }
 
-  .theme-blue .card-icon {
-    color: hsl(var(--primary));
-  }
-
-  .theme-green .card-icon {
-    color: hsl(142 71% 45%);
-  }
-
-  .theme-amber .card-icon {
-    color: hsl(38 92% 50%);
+  .card-logo-img {
+    display: block;
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
   }
 
   .card-name {
