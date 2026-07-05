@@ -117,6 +117,11 @@ export const PermCodes = {
       VIEW: 'payment:wechat:isv:view',
       MANAGE: 'payment:wechat:isv:manage',
     },
+    /** 拉卡拉服务商 menuCode=payment:lakala:isv */
+    Lakala: {
+      VIEW: 'payment:lakala:isv:view',
+      MANAGE: 'payment:lakala:isv:manage',
+    },
     /** 支付主数据 menuCode=payment:platform:* */
     Platform: {
       Product: {

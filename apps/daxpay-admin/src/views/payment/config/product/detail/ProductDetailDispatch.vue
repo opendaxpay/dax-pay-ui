@@ -7,6 +7,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import AlipayIsvManage from '#/views/payment/channel/alipay/manage/AlipayIsvManage.vue';
+  import LakalaManage from '#/views/payment/channel/lakala/manage/LakalaManage.vue';
   import WechatIsvManage from '#/views/payment/channel/wechat/manage/WechatIsvManage.vue';
 
   defineOptions({ name: 'ProductDetailDispatch' });
@@ -44,6 +45,10 @@
         currentComponent.value = markRaw(WechatIsvManage);
         break;
       }
+      case 'lakala_pay': {
+        currentComponent.value = markRaw(LakalaManage);
+        break;
+      }
       default: {
         currentComponent.value = null;
         break;
@@ -61,6 +66,9 @@
     }
     if (product.value === 'wechat_isv') {
       return $t('payment.constant.product.productName.wechatIsv');
+    }
+    if (product.value === 'lakala_pay') {
+      return $t('payment.product.enum.lakalaPay');
     }
     if (product.value) {
       return $t('payment.constant.product.productName.unknown', { product: product.value });
