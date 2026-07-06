@@ -14,7 +14,7 @@
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
-  import { readFileAsBase64 } from '#/utils/file';
+  import { readFileAsText } from '#/utils/file';
 
   defineOptions({ name: 'LakalaIsvConfigEdit' });
 
@@ -37,6 +37,8 @@
 
   const rules = {
     lklAppId: [{ required: true, message: $t('payment.channel.lakalaIsv.validation.lklAppId') }],
+    orgCode: [{ required: true, message: $t('payment.channel.lakalaIsv.validation.orgCode') }],
+    mchSerialNo: [{ required: true, message: $t('payment.channel.lakalaIsv.validation.mchSerialNo') }],
     privateKey: [{ required: true, message: $t('payment.channel.lakalaIsv.validation.privateKey') }],
     publicKey: [{ required: true, message: $t('payment.channel.lakalaIsv.validation.publicKey') }],
   };
@@ -71,12 +73,9 @@
         ...diffForm(
           rawForm,
           form.value,
-          'lklAppId',
-          'mchSerialNo',
           'privateKey',
           'publicKey',
           'sm4Key',
-          'sandbox',
         ),
         product: ProductEnum.LAKALA_PAY,
       })
@@ -94,7 +93,7 @@
   function handleUpload(info: { file: File }, fieldName: string) {
     const file = info.file;
     if (!file) return;
-    readFileAsBase64(file).then((content) => {
+    readFileAsText(file).then((content) => {
       (form.value as Record<string, any>)[fieldName] = content;
       message.success($t('components.upload.uploadSuccess', { name: file.name }));
       formRef.value?.validateFields(fieldName);
@@ -139,6 +138,16 @@
           />
         </a-form-item>
 
+        <a-form-item :label="$t('payment.channel.lakalaIsv.orgCode')" name="orgCode">
+          <a-input
+            v-model:value="form.orgCode"
+            :disabled="!canEdit"
+            :placeholder="$t('payment.channel.lakalaIsv.orgCodePlaceholder')"
+          />
+        </a-form-item>
+
+        <a-divider orientation="left">{{ $t('payment.channel.lakalaIsv.keyConfig') }}</a-divider>
+
         <a-form-item :label="$t('payment.channel.lakalaIsv.mchSerialNo')" name="mchSerialNo">
           <a-input
             v-model:value="form.mchSerialNo"
@@ -147,15 +156,45 @@
           />
         </a-form-item>
 
-        <a-divider orientation="left">{{ $t('payment.channel.lakalaIsv.keyConfig') }}</a-divider>
+        <a-form-item
+          :label="$t('payment.channel.lakalaIsv.publicKey')"
+          name="publicKey"
+          :tooltip="$t('payment.channel.lakalaIsv.publicKeyTooltip')"
+        >
+          <a-upload
+            v-if="!form.publicKey"
+            :disabled="!canEdit"
+            :multiple="false"
+            :show-upload-list="false"
+            accept=".cer"
+            :before-upload="() => false"
+            @change="(info: any) => handleUpload(info, 'publicKey')"
+          >
+            <a-button :disabled="!canEdit">
+              <template #icon><IconifyIcon icon="ant-design:upload-outlined" class="text-lg" /></template>
+              {{ $t('payment.channel.lakalaIsv.uploadPublicKey') }}
+            </a-button>
+          </a-upload>
+          <a-input v-else value="publicKey.cer" disabled>
+            <template #suffix>
+              <span v-if="canEdit" class="cursor-pointer text-gray-400" @click="form.publicKey = ''">
+                <IconifyIcon icon="ant-design:close-circle-outlined" class="text-lg" />
+              </span>
+            </template>
+          </a-input>
+        </a-form-item>
 
-        <a-form-item :label="$t('payment.channel.lakalaIsv.privateKey')" name="privateKey">
+        <a-form-item
+          :label="$t('payment.channel.lakalaIsv.privateKey')"
+          name="privateKey"
+          :tooltip="$t('payment.channel.lakalaIsv.privateKeyTooltip')"
+        >
           <a-upload
             v-if="!form.privateKey"
             :disabled="!canEdit"
             :multiple="false"
             :show-upload-list="false"
-            accept=".pem,.key,.txt"
+            accept=".pem"
             :before-upload="() => false"
             @change="(info: any) => handleUpload(info, 'privateKey')"
           >
@@ -173,46 +212,11 @@
           </a-input>
         </a-form-item>
 
-        <a-form-item :label="$t('payment.channel.lakalaIsv.publicKey')" name="publicKey">
-          <a-upload
-            v-if="!form.publicKey"
-            :disabled="!canEdit"
-            :multiple="false"
-            :show-upload-list="false"
-            accept=".pem,.cer,.crt,.txt"
-            :before-upload="() => false"
-            @change="(info: any) => handleUpload(info, 'publicKey')"
-          >
-            <a-button :disabled="!canEdit">
-              <template #icon><IconifyIcon icon="ant-design:upload-outlined" class="text-lg" /></template>
-              {{ $t('payment.channel.lakalaIsv.uploadPublicKey') }}
-            </a-button>
-          </a-upload>
-          <a-input v-else value="lakala_public_key.pem" disabled>
-            <template #suffix>
-              <span v-if="canEdit" class="cursor-pointer text-gray-400" @click="form.publicKey = ''">
-                <IconifyIcon icon="ant-design:close-circle-outlined" class="text-lg" />
-              </span>
-            </template>
-          </a-input>
-        </a-form-item>
-
-        <a-divider orientation="left">{{ $t('payment.channel.lakalaIsv.advancedConfig') }}</a-divider>
-
         <a-form-item :label="$t('payment.channel.lakalaIsv.sm4Key')" name="sm4Key">
           <a-input
             v-model:value="form.sm4Key"
             :disabled="!canEdit"
             :placeholder="$t('payment.channel.lakalaIsv.sm4KeyPlaceholder')"
-          />
-        </a-form-item>
-
-        <a-form-item :label="$t('payment.channel.lakalaIsv.sandbox')" name="sandbox">
-          <a-switch
-            v-model:checked="form.sandbox"
-            :disabled="!canEdit"
-            :checked-children="$t('payment.channel.lakalaIsv.sandboxOn')"
-            :un-checked-children="$t('payment.channel.lakalaIsv.sandboxOff')"
           />
         </a-form-item>
       </a-form>
