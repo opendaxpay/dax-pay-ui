@@ -11,7 +11,7 @@
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
-  import { readFileAsBase64 } from '#/utils/file';
+  import { readFileAsText } from '#/utils/file';
 
   defineOptions({ name: 'WechatIsvConfigEdit' });
 
@@ -65,37 +65,40 @@
   }
 
   function handleOk() {
-    formRef.value?.validate().then(() => {
-      confirmLoading.value = true;
-      WechatPayConfigApi.saveConfig({
-        ...form.value,
-        ...diffForm(
-          rawForm,
-          form.value,
-          'apiKeyV3',
-          'privateKey',
-          'privateCert',
-          'publicKey',
-          'publicKeyId',
-          'certSerialNo',
-        ),
-        product: ProductEnum.WECHAT_ISV,
-      })
-        .then(() => {
-          message.success($t('common.saveSuccess'));
-          handleCancel();
-          emit('saved');
+    formRef.value
+      ?.validate()
+      .then(() => {
+        confirmLoading.value = true;
+        WechatPayConfigApi.saveConfig({
+          ...form.value,
+          ...diffForm(
+            rawForm,
+            form.value,
+            'apiKeyV3',
+            'privateKey',
+            'privateCert',
+            'publicKey',
+            'publicKeyId',
+            'certSerialNo',
+          ),
+          product: ProductEnum.WECHAT_ISV,
         })
-        .finally(() => {
-          confirmLoading.value = false;
-        });
-    }).catch(() => {});
+          .then(() => {
+            message.success($t('common.saveSuccess'));
+            handleCancel();
+            emit('saved');
+          })
+          .finally(() => {
+            confirmLoading.value = false;
+          });
+      })
+      .catch(() => {});
   }
 
   function handleUpload(info: { file: File }, fieldName: string) {
     const file = info.file;
     if (!file) return;
-    readFileAsBase64(file).then((content) => {
+    readFileAsText(file).then((content) => {
       (form.value as Record<string, any>)[fieldName] = content;
       message.success($t('components.upload.uploadSuccess', { name: file.name }));
       formRef.value?.validateFields(fieldName);

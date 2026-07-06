@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+  import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
+
   import { computed, ref } from 'vue';
   import { useRouter } from 'vue-router';
 
@@ -6,13 +8,16 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
+  import ChannelMerchantNameEditModal from '#/views/payment/merchant/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
 
   import AlipayChannelMerchantBasicInfo from './AlipayChannelMerchantBasicInfo.vue';
-
   import AlipayMchAppCapability from './AlipayMchAppCapability.vue';
 
   defineOptions({ name: 'AlipayMchManage' });
+
+  const emit = defineEmits<{
+    (e: 'success'): void;
+  }>();
 
   const router = useRouter();
   const loading = ref(false);
@@ -21,6 +26,7 @@
   const channelMerchant = ref<ChannelMerchantResult>({});
   const basicInfoRef = ref<InstanceType<typeof AlipayChannelMerchantBasicInfo>>();
   const capabilityRef = ref<InstanceType<typeof AlipayMchAppCapability>>();
+  const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
   /** 功能卡片配置 */
   const functionCards = computed(() => [
     {
@@ -34,6 +40,13 @@
           title: $t('payment.merchant.channelMerchant.cardBasicInfo'),
           icon: 'ant-design:info-circle-outlined',
           description: $t('payment.merchant.channelMerchant.cardBasicInfoDesc'),
+        },
+        {
+          key: 'editMerchantName',
+          // 国际化：修改商户名称
+          title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
+          icon: 'ant-design:edit-outlined',
+          description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),
         },
       ],
     },
@@ -92,6 +105,10 @@
   function handleCardClick(card: { key: string; route?: string }) {
     if (card.key === 'basicInfo') {
       basicInfoRef.value?.open();
+      return;
+    }
+    if (card.key === 'editMerchantName') {
+      editNameRef.value?.open();
       return;
     }
     if (card.key === 'capabilityBinding') {
@@ -167,6 +184,8 @@
       :channel-mch-no="channelMchNo"
       :channel-merchant="channelMerchant"
     />
+
+    <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 
     <AlipayMchAppCapability ref="capabilityRef" />
   </div>

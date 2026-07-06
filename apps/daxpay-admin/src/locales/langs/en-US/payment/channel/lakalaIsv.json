@@ -1,7 +1,8 @@
 {
   "title": "Lakala ISV Configuration",
+  "groupConfig": "Configuration",
   "configTitle": "Lakala ISV Key Configuration",
-  "manageTitle": "Lakala ISV Management",
+  "manageTitle": "Lakala Merchant Management",
   "basicConfig": "Basic Configuration",
   "keyConfig": "Key Configuration",
   "advancedConfig": "Advanced Configuration",

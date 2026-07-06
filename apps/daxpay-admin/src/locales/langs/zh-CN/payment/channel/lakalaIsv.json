@@ -1,7 +1,8 @@
 {
   "title": "拉卡拉服务商配置",
+  "groupConfig": "配置管理",
   "configTitle": "拉卡拉服务商密钥配置",
-  "manageTitle": "拉卡拉服务商管理",
+  "manageTitle": "拉卡拉商户管理",
   "basicConfig": "基础配置",
   "keyConfig": "密钥配置",
   "advancedConfig": "高级配置",

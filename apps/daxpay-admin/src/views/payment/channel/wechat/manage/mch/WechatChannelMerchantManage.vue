@@ -1,6 +1,5 @@
 <script lang="ts" setup>
   import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
-  import { ProductEnum } from '#/enums/payment/productEnum';
 
   import { computed, ref } from 'vue';
   import { useRouter } from 'vue-router';
@@ -9,12 +8,18 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { ProductEnum } from '#/enums/payment/productEnum';
   import { useMessage } from '#/hooks/useMessage';
+  import ChannelMerchantNameEditModal from '#/views/payment/merchant/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
 
   import WechatChannelMerchantBasicInfo from './WechatChannelMerchantBasicInfo.vue';
   import WechatIsvMchAppCapability from './WechatIsvMchAppCapability.vue';
 
   defineOptions({ name: 'WechatChannelMerchantManage' });
+
+  const emit = defineEmits<{
+    (e: 'success'): void;
+  }>();
 
   const { message } = useMessage();
   const router = useRouter();
@@ -24,6 +29,7 @@
   const channelMerchant = ref<ChannelMerchantResult>({});
   const basicInfoRef = ref<InstanceType<typeof WechatChannelMerchantBasicInfo>>();
   const capabilityRef = ref<InstanceType<typeof WechatIsvMchAppCapability>>();
+  const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
 
   /** 功能卡片配置 */
   const functionCards = computed(() => [
@@ -38,6 +44,13 @@
           title: $t('payment.merchant.channelMerchant.cardBasicInfo'),
           icon: 'ant-design:info-circle-outlined',
           description: $t('payment.merchant.channelMerchant.cardBasicInfoDesc'),
+        },
+        {
+          key: 'editMerchantName',
+          // 国际化：修改商户名称
+          title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
+          icon: 'ant-design:edit-outlined',
+          description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),
         },
       ],
     },
@@ -90,6 +103,10 @@
   function handleCardClick(card: { key: string }) {
     if (card.key === 'basicInfo') {
       basicInfoRef.value?.open();
+      return;
+    }
+    if (card.key === 'editMerchantName') {
+      editNameRef.value?.open();
       return;
     }
     if (card.key === 'app') {
@@ -161,6 +178,8 @@
       :channel-mch-no="channelMchNo"
       :channel-merchant="channelMerchant"
     />
+
+    <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 
     <WechatIsvMchAppCapability ref="capabilityRef" />
   </div>

@@ -33,6 +33,7 @@
   const drawerTitle = $t('payment.channel.umsManage.directKeyConfigTitle');
 
   const rules = {
+    terminalNo: [{ required: true, message: $t('payment.channel.ums.validation.terminalNo') }],
     umsAppId: [{ required: true, message: $t('payment.channel.ums.validation.umsAppId') }],
     appKey: [{ required: true, message: $t('payment.channel.ums.validation.appKey') }],
     secretKey: [{ required: true, message: $t('payment.channel.ums.validation.secretKey') }],
@@ -110,6 +111,20 @@
       >
         <a-divider orientation="left">{{ $t('payment.channel.umsManage.keyConfigSection') }}</a-divider>
 
+        <!-- 国际化: 银联商务商户号(mid, 创建时录入, 不可修改) -->
+        <a-form-item :label="$t('payment.channel.ums.merchantNo')">
+          <a-input :value="form.merchantNo" disabled />
+        </a-form-item>
+
+        <!-- 国际化: 终端号 -->
+        <a-form-item :label="$t('payment.channel.ums.terminalNo')" name="terminalNo">
+          <a-input
+            v-model:value="form.terminalNo"
+            :disabled="!canEdit"
+            :placeholder="$t('payment.channel.ums.terminalNoPlaceholder')"
+          />
+        </a-form-item>
+
         <!-- 国际化: 应用ID -->
         <a-form-item :label="$t('payment.channel.ums.umsAppId')" name="umsAppId">
           <a-input
@@ -119,29 +134,21 @@
           />
         </a-form-item>
 
-        <!-- 国际化: 应用密钥 -->
+        <!-- 国际化: 应用密钥(脱敏回显, diffForm 判断是否修改) -->
         <a-form-item :label="$t('payment.channel.ums.appKey')" name="appKey">
-          <a-input-password
+          <a-input
             v-model:value="form.appKey"
             :disabled="!canEdit"
-            :placeholder="
-              form.appKeyConfigured
-                ? $t('payment.channel.umsManage.appKeyConfigured')
-                : $t('payment.channel.ums.appKeyPlaceholder')
-            "
+            :placeholder="$t('payment.channel.ums.appKeyPlaceholder')"
           />
         </a-form-item>
 
-        <!-- 国际化: 通讯密钥 -->
+        <!-- 国际化: 通讯密钥(脱敏回显, diffForm 判断是否修改) -->
         <a-form-item :label="$t('payment.channel.ums.secretKey')" name="secretKey">
-          <a-input-password
+          <a-input
             v-model:value="form.secretKey"
             :disabled="!canEdit"
-            :placeholder="
-              form.secretKeyConfigured
-                ? $t('payment.channel.umsManage.secretKeyConfigured')
-                : $t('payment.channel.ums.secretKeyPlaceholder')
-            "
+            :placeholder="$t('payment.channel.ums.secretKeyPlaceholder')"
           />
         </a-form-item>
       </a-form>

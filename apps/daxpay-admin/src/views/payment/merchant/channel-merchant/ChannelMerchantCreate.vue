@@ -132,7 +132,6 @@
         selectedProduct.value!.code!,
         mchNo.value,
         selectedProduct.value!.channel || '',
-        selectedProduct.value!.name || getProductName(selectedProduct.value!.code || ''),
       );
     });
   }
@@ -282,6 +281,23 @@
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 16px;
     padding: 4px;
+    /* 三行可见，超出滚动：160px*3 + 16px*2(gap) + 4px*2(padding) = 520px */
+    max-height: 520px;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+  }
+
+  .product-select-grid::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .product-select-grid::-webkit-scrollbar-thumb {
+    background: rgb(0 0 0 / 15%);
+    border-radius: 3px;
+  }
+
+  .product-select-grid::-webkit-scrollbar-thumb:hover {
+    background: rgb(0 0 0 / 30%);
   }
 
   .product-select-card {

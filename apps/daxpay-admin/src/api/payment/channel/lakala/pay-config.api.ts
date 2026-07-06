@@ -37,6 +37,6 @@ export interface LakalaIsvKeyConfig {
   publicKey?: string;
   /** SM4密钥(进件敏感字段加密用) */
   sm4Key?: string;
-  /** 是否沙箱环境 */
-  sandbox?: boolean;
+  /** 机构代码 */
+  orgCode?: string;
 }

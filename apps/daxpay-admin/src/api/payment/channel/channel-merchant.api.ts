@@ -30,6 +30,12 @@ export const ChannelMerchantApi = {
   updateEnable(id: string, enable: boolean): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/merchant/channel-merchant/update-enable', params: { id, enable } });
   },
+  /**
+   * 修改商户名称
+   */
+  update(data: ChannelMerchantEditParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/merchant/channel-merchant/update', data });
+  },
 };
 
 /**

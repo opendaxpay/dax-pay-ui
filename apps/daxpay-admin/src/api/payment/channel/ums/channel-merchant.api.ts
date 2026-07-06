@@ -1,4 +1,4 @@
-import type { MchEntity, Result } from '#/types/web';
+import type { Result } from '#/types/web';
 
 import { defHttp } from '#/api/request';
 
@@ -7,19 +7,10 @@ import { defHttp } from '#/api/request';
  */
 export const UmsDirectChannelMerchantApi = {
   /**
-   * 创建银联商务直连通道商户(同时保存密钥配置)
+   * 创建银联商务直连通道商户(写入商户身份 mid, 应用ID由密钥配置单独维护)
    */
   create(data: UmsDirectChannelMerchantCreateParam): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/ums/direct-channel-merchant/create', data });
-  },
-  /**
-   * 根据通道商户号查询银联商务直连通道商户配置
-   */
-  findByChannelMchNo(channelMchNo: string): Promise<Result<UmsDirectChannelMerchantConfig>> {
-    return defHttp.get({
-      url: '/admin/ums/direct-channel-merchant/find-by-channel-mch-no',
-      params: { channelMchNo },
-    });
   },
   /**
    * 根据通道商户号查询密钥配置
@@ -39,31 +30,17 @@ export const UmsDirectChannelMerchantApi = {
 };
 
 /**
- * 银联商务直连通道商户配置
- */
-export interface UmsDirectChannelMerchantConfig extends MchEntity {
-  /** 通道商户号(系统生成雪花号) */
-  channelMchNo?: string;
-  /** 所属支付产品 */
-  product?: string;
-  /** 银联商务商户号(mid) */
-  merchantNo?: string;
-  /** 终端号(tid) */
-  terminalNo?: string;
-  /** 订单号前缀 */
-  orderPrefix?: string;
-  /** 是否沙箱环境 */
-  sandbox?: boolean;
-}
-
-/**
- * 银联商务直连密钥配置
+ * 银联商务直连密钥配置(含商户身份 mid/tid 与签名密钥)
  */
 export interface UmsDirectKeyConfig {
   /** 通道商户号 */
   channelMchNo?: string;
   /** 商户号 */
   mchNo?: string;
+  /** 银联商务商户号(mid, 创建时录入) */
+  merchantNo?: string;
+  /** 终端号(tid) */
+  terminalNo?: string;
   /** 银联商务应用 AppId */
   umsAppId?: string;
   /** 应用密钥(HmacSHA256 签名密钥) */
@@ -80,10 +57,10 @@ export interface UmsDirectKeyConfig {
  * 银联商务直连密钥配置保存参数
  */
 export interface UmsDirectKeyConfigParam {
-  /** 通道商户号 */
+  /** 通道商户号(唯一标识) */
   channelMchNo: string;
-  /** 商户号 */
-  mchNo?: string;
+  /** 终端号(tid) */
+  terminalNo?: string;
   /** 银联商务应用 AppId */
   umsAppId?: string;
   /** 应用密钥 */
@@ -102,18 +79,6 @@ export interface UmsDirectChannelMerchantCreateParam {
   channelMerchantName: string;
   /** 所属支付产品 */
   product: string;
-  /** 银联商务商户号 */
+  /** 银联商务商户号(mid) */
   merchantNo: string;
-  /** 终端号 */
-  terminalNo?: string;
-  /** 订单号前缀 */
-  orderPrefix?: string;
-  /** 是否沙箱环境 */
-  sandbox?: boolean;
-  /** 银联商务应用 AppId */
-  umsAppId: string;
-  /** 应用密钥 */
-  appKey: string;
-  /** 通讯密钥 */
-  secretKey: string;
 }

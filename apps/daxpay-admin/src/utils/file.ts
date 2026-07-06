@@ -1,5 +1,7 @@
 /**
- * 读取文件内容为 Base64 字符串（用于 .pem 等需要 base64 编码的证书）
+ * 读取二进制文件内容为 Base64 字符串
+ *
+ * 注意: PEM/CRT 等文本格式的证书请使用 readFileAsText, 无需额外 Base64 编码
  */
 export async function readFileAsBase64(file: File): Promise<string> {
   const buffer = await file.arrayBuffer();

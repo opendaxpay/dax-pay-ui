@@ -11,7 +11,7 @@ import {
   AlipayIsvChannelMerchantApi,
 } from '#/api/payment/channel/alipay/channel-merchant.api';
 import ChannelLogo from '#/components/channel/ChannelLogo.vue';
-import { channelI18nMap, channelNameMap, productI18nMap, productNameMap } from '#/enums/payment';
+import { productI18nMap, productNameMap } from '#/enums/payment';
 import { useMessage } from '#/hooks/useMessage';
 
 defineOptions({ name: 'AlipayMchCreateConfig' });
@@ -40,16 +40,6 @@ const isvAppLoading = ref(false);
 const visible = ref(false);
 const createSuccess = ref(false);
 const submitLoading = ref(false);
-
-const channelDisplayName = computed(() => {
-  const channel = channelCode.value;
-  if (!channel) return '-';
-  const i18nKey = channelI18nMap[channel];
-  if (i18nKey) {
-    return $t(i18nKey);
-  }
-  return channelNameMap[channel] || channel;
-});
 
 /** 支付产品展示名称，区分服务商/直连等模式 */
 const productDisplayName = computed(() => {

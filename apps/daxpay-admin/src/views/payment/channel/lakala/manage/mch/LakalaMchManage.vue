@@ -2,81 +2,61 @@
   import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
 
   import { computed, ref } from 'vue';
-  import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { ProductEnum } from '#/enums/payment/productEnum';
+  import { LakalaChannelMerchantApi } from '#/api/payment/channel/lakala/channel-merchant.api';
   import ChannelMerchantNameEditModal from '#/views/payment/merchant/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
 
-  import WechatDirectChannelMerchantBasicInfo from './WechatDirectChannelMerchantBasicInfo.vue';
-  import WechatDirectKeyConfigEdit from './WechatDirectKeyConfigEdit.vue';
-  import WechatMchAppCapability from './WechatMchAppCapability.vue';
+  import LakalaChannelMerchantBasicInfo from './LakalaChannelMerchantBasicInfo.vue';
+  import LakalaMchConfigEdit from './LakalaMchConfigEdit.vue';
 
-  defineOptions({ name: 'WechatDirectMchManage' });
+  defineOptions({ name: 'LakalaMchManage' });
 
   const emit = defineEmits<{
     (e: 'success'): void;
   }>();
 
-  const router = useRouter();
   const mchNo = ref('');
   const channelMchNo = ref('');
   const channelMerchant = ref<ChannelMerchantResult>({});
-  const basicInfoRef = ref<InstanceType<typeof WechatDirectChannelMerchantBasicInfo>>();
-  const keyConfigRef = ref<InstanceType<typeof WechatDirectKeyConfigEdit>>();
-  const capabilityRef = ref<InstanceType<typeof WechatMchAppCapability>>();
+  const basicInfoRef = ref<InstanceType<typeof LakalaChannelMerchantBasicInfo>>();
+  const configEditRef = ref<InstanceType<typeof LakalaMchConfigEdit>>();
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
 
-  /** 功能卡片配置（直连通道商户：基本信息 + 密钥配置 + 应用管理） */
+  /**
+   * 功能卡片配置
+   * 拉卡拉服务商模式, 商户配置(终端号)
+   */
   const functionCards = computed(() => [
     {
-      // 国际化：基础管理
+      // 国际化: 基础管理
       group: $t('payment.merchant.channelMerchant.groupBasic'),
       color: 'blue',
       cards: [
         {
           key: 'basicInfo',
-          // 国际化：基本信息
+          // 国际化: 基本信息
           title: $t('payment.merchant.channelMerchant.cardBasicInfo'),
           icon: 'ant-design:info-circle-outlined',
+          // 国际化: 查看通道商户基础配置信息
           description: $t('payment.merchant.channelMerchant.cardBasicInfoDesc'),
         },
         {
-          key: 'keyConfig',
-          title: $t('payment.channel.wechatManage.cardDirectKeyConfig'),
-          icon: 'ant-design:key-outlined',
-          description: $t('payment.channel.wechatManage.cardDirectKeyConfigDesc'),
+          key: 'mchConfig',
+          // 国际化: 商户配置
+          title: $t('payment.channel.lakalaIsv.cardMchConfig'),
+          icon: 'ant-design:setting-outlined',
+          description: $t('payment.channel.lakalaIsv.cardMchConfigDesc'),
         },
         {
           key: 'editMerchantName',
-          // 国际化：修改商户名称
+          // 国际化: 修改商户名称
           title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
           icon: 'ant-design:edit-outlined',
           description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),
-        },
-      ],
-    },
-    {
-      // 国际化：应用管理
-      group: $t('payment.merchant.channelMerchant.groupApp'),
-      color: 'green',
-      cards: [
-        {
-          key: 'appManage',
-          // 国际化：通道商户应用
-          title: $t('payment.merchant.channelMerchant.cardApp'),
-          icon: 'ant-design:appstore-outlined',
-          description: $t('payment.merchant.channelMerchant.cardAppDesc'),
-        },
-        {
-          key: 'capabilityBinding',
-          // 国际化：能力应用绑定
-          title: $t('payment.channel.wechatManage.cardCapabilityBinding'),
-          icon: 'ant-design:api-outlined',
-          description: $t('payment.channel.wechatManage.cardCapabilityBindingDesc'),
         },
       ],
     },
@@ -98,7 +78,7 @@
     return map[color] || 'bg-muted text-muted-foreground';
   }
 
-  /** 初始化（由中转页调用） */
+  /** 初始化(由 DetailDispatch 调用) */
   function init(no: string, mchChannelNo: string, summary: ChannelMerchantResult) {
     mchNo.value = no;
     channelMchNo.value = mchChannelNo;
@@ -108,27 +88,17 @@
   function handleCardClick(card: { key: string }) {
     if (card.key === 'basicInfo') {
       basicInfoRef.value?.open();
+      return;
     }
     if (card.key === 'editMerchantName') {
       editNameRef.value?.open();
+      return;
     }
-    if (card.key === 'keyConfig') {
-      keyConfigRef.value?.init();
-    }
-    if (card.key === 'appManage') {
-      const id = channelMerchant.value.id;
-      router.push({
-        path: '/payment/merchant/channel-merchant/wechat-app-manage',
-        query: {
-          mchNo: mchNo.value,
-          channelMchNo: channelMchNo.value,
-          channelMerchantId: id,
-          product: ProductEnum.WECHAT_PAY,
-        },
+    if (card.key === 'mchConfig') {
+      // 先查询当前终端号, 再打开配置弹窗
+      LakalaChannelMerchantApi.findByChannelMchNo(channelMchNo.value).then(({ data }) => {
+        configEditRef.value?.show(channelMchNo.value, data?.termNo);
       });
-    }
-    if (card.key === 'capabilityBinding') {
-      capabilityRef.value?.show(mchNo.value, channelMchNo.value);
     }
   }
 
@@ -164,9 +134,7 @@
               {{ card.title }}
             </div>
             <a-tooltip :title="card.description" placement="bottom">
-              <div class="line-clamp-1 text-xs leading-relaxed text-muted-foreground">
-                {{ card.description }}
-              </div>
+              <div class="line-clamp-1 text-xs leading-relaxed text-muted-foreground">{{ card.description }}</div>
             </a-tooltip>
           </div>
           <div
@@ -177,7 +145,7 @@
       </div>
     </div>
 
-    <WechatDirectChannelMerchantBasicInfo
+    <LakalaChannelMerchantBasicInfo
       ref="basicInfoRef"
       :channel-mch-no="channelMchNo"
       :channel-merchant="channelMerchant"
@@ -185,9 +153,7 @@
 
     <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 
-    <WechatDirectKeyConfigEdit ref="keyConfigRef" :channel-mch-no="channelMchNo" />
-
-    <WechatMchAppCapability ref="capabilityRef" />
+    <LakalaMchConfigEdit ref="configEditRef" />
   </div>
 </template>
 
@@ -201,12 +167,5 @@
 
   .isv-card {
     max-height: 200px;
-  }
-
-  .line-clamp-1 {
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
   }
 </style>

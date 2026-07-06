@@ -41,7 +41,7 @@ function isUmsProduct(product: string) {
 /**
  * 初始化对应通道的配置组件
  */
-function init(product: string, mchNo: string, channel: string, productName = '') {
+function init(product: string, mchNo: string, channel: string) {
   currentProduct.value = { product, channel };
   nextTick(() => {
     switch (product) {
@@ -71,7 +71,7 @@ function init(product: string, mchNo: string, channel: string, productName = '')
       }
       default: {
         if (isUmsProduct(product)) {
-          umsRef.value?.init(mchNo, product, productName);
+          umsRef.value?.init(mchNo, product, channel);
         }
       }
     }

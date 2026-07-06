@@ -13,7 +13,7 @@
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
-  import { readFileAsBase64 } from '#/utils/file';
+  import { readFileAsText } from '#/utils/file';
 
   defineOptions({ name: 'WechatDirectKeyConfigEdit' });
 
@@ -97,7 +97,7 @@
   function handleUpload(info: { file: File }, fieldName: string) {
     const file = info.file;
     if (!file) return;
-    readFileAsBase64(file).then((content) => {
+    readFileAsText(file).then((content) => {
       (form.value as Record<string, any>)[fieldName] = content;
       message.success($t('components.upload.uploadSuccess', { name: file.name }));
       formRef.value?.validateFields(fieldName);

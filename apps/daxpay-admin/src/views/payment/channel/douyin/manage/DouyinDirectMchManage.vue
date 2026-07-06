@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+  import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
+
   import { computed, ref } from 'vue';
   import { useRouter } from 'vue-router';
 
@@ -6,13 +8,17 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
+  import ChannelMerchantNameEditModal from '#/views/payment/merchant/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
 
   import DouyinDirectChannelMerchantBasicInfo from './DouyinDirectChannelMerchantBasicInfo.vue';
   import DouyinDirectKeyConfigEdit from './DouyinDirectKeyConfigEdit.vue';
   import DouyinMchAppCapability from './DouyinMchAppCapability.vue';
 
   defineOptions({ name: 'DouyinDirectMchManage' });
+
+  const emit = defineEmits<{
+    (e: 'success'): void;
+  }>();
 
   const router = useRouter();
 
@@ -23,6 +29,7 @@
   const basicInfoRef = ref<InstanceType<typeof DouyinDirectChannelMerchantBasicInfo>>();
   const keyConfigRef = ref<InstanceType<typeof DouyinDirectKeyConfigEdit>>();
   const capabilityRef = ref<InstanceType<typeof DouyinMchAppCapability>>();
+  const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
 
   /** 功能卡片配置（按组分组的卡片布局） */
   const functionCards = computed(() => [
@@ -46,6 +53,13 @@
           icon: 'ant-design:key-outlined',
           // 国际化：配置通道商户密钥
           description: $t('payment.channel.douyinManage.cardDirectKeyConfigDesc'),
+        },
+        {
+          key: 'editMerchantName',
+          // 国际化：修改商户名称
+          title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
+          icon: 'ant-design:edit-outlined',
+          description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),
         },
       ],
     },
@@ -103,6 +117,9 @@
   function handleCardClick(card: { key: string }) {
     if (card.key === 'basicInfo') {
       basicInfoRef.value?.open();
+    }
+    if (card.key === 'editMerchantName') {
+      editNameRef.value?.open();
     }
     if (card.key === 'keyConfig') {
       keyConfigRef.value?.init();
@@ -179,6 +196,8 @@
       :channel-mch-no="channelMchNo"
       :channel-merchant="channelMerchant"
     />
+
+    <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 
     <DouyinDirectKeyConfigEdit ref="keyConfigRef" :channel-mch-no="channelMchNo" />
 

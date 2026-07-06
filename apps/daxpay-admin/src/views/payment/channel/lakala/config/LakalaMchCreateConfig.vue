@@ -5,9 +5,9 @@ import { $t } from '@vben/locales';
 
 import { IconifyIcon } from '@vben-core/icons';
 
-import { ChannelMerchantLakalaApi } from '#/api/payment/channel/lakala/channel-merchant.api';
+import { LakalaChannelMerchantApi, type LakalaIsvChannelMerchantCreateParam } from '#/api/payment/channel/lakala/channel-merchant.api';
 import ChannelLogo from '#/components/channel/ChannelLogo.vue';
-import { channelI18nMap, channelNameMap, productI18nMap, productNameMap } from '#/enums/payment';
+import { productI18nMap, productNameMap } from '#/enums/payment';
 import { useMessage } from '#/hooks/useMessage';
 
 defineOptions({ name: 'LakalaMchCreateConfig' });
@@ -25,22 +25,12 @@ const channelCode = ref('');
 const formRef = ref();
 const form = ref({
   channelMerchantName: '',
-  termNo: '',
+  lakalaMchNo: '',
 });
 
 const visible = ref(false);
 const createSuccess = ref(false);
 const submitLoading = ref(false);
-
-const channelDisplayName = computed(() => {
-  const channel = channelCode.value;
-  if (!channel) return '-';
-  const i18nKey = channelI18nMap[channel];
-  if (i18nKey) {
-    return $t(i18nKey);
-  }
-  return channelNameMap[channel] || channel;
-});
 
 /** 支付产品展示名称，区分服务商/直连等模式 */
 const productDisplayName = computed(() => {
@@ -55,7 +45,7 @@ const productDisplayName = computed(() => {
 
 const rules = computed(() => ({
   channelMerchantName: [{ required: true, message: $t('payment.merchant.channelMerchant.channelMerchantNameRequired') }],
-  termNo: [{ required: true, message: $t('payment.channel.lakalaIsv.validation.termNo') }],
+  lakalaMchNo: [{ required: true, message: $t('payment.channel.lakalaIsv.validation.lakalaMchNo') }],
 }));
 
 function init(no: string, product: string, channel: string) {
@@ -80,10 +70,8 @@ function getData(): Record<string, any> {
 }
 
 function submit(param: Record<string, any>): Promise<any> {
-  return ChannelMerchantLakalaApi.create({
-    ...param,
-    ...form.value,
-  });
+  // param 已由 handleSubmit 组装完整(mchNo/product/form 各字段), 直接透传
+  return LakalaChannelMerchantApi.create(param as LakalaIsvChannelMerchantCreateParam);
 }
 
 function handlePrev() {
@@ -96,7 +84,6 @@ function handleSubmit() {
     const param = {
       mchNo: mchNo.value,
       product: productCode.value,
-      channel: 'lakala',
       ...form.value,
     };
     submit(param)
@@ -145,14 +132,13 @@ defineExpose({ init, validate, getData, submit });
             :placeholder="$t('payment.merchant.channelMerchant.pleaseInputName')"
           />
         </a-form-item>
-        <!-- 国际化：终端号 -->
-        <a-form-item :label="$t('payment.channel.lakalaIsv.termNo')" name="termNo">
+        <!-- 国际化：拉卡拉商户编号 -->
+        <a-form-item :label="$t('payment.channel.lakalaIsv.lakalaMchNo')" name="lakalaMchNo">
           <a-input
-            v-model:value="form.termNo"
-            :placeholder="$t('payment.channel.lakalaIsv.termNoPlaceholder')"
+            v-model:value="form.lakalaMchNo"
+            :placeholder="$t('payment.channel.lakalaIsv.lakalaMchNoPlaceholder')"
           />
         </a-form-item>
-
         <div class="flex justify-center gap-4 mt-8 pt-6 border-t border-border">
           <a-button @click="handlePrev">
             {{ $t('payment.merchant.channelMerchant.prevStep') }}

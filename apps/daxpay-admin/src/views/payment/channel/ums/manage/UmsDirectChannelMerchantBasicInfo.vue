@@ -1,13 +1,10 @@
 <script lang="ts" setup>
-  import { computed, ref, watch } from 'vue';
+  import { computed, ref } from 'vue';
 
   import { $t } from '@vben/locales';
 
   import { type ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
-  import {
-    UmsDirectChannelMerchantApi,
-    type UmsDirectChannelMerchantConfig,
-  } from '#/api/payment/channel/ums/channel-merchant.api';
+  import { productI18nMap, productNameMap } from '#/enums/payment';
 
   defineOptions({ name: 'UmsDirectChannelMerchantBasicInfo' });
 
@@ -17,8 +14,6 @@
   }>();
 
   const visible = ref(false);
-  const loading = ref(false);
-  const config = ref<UmsDirectChannelMerchantConfig>({});
 
   const enableLabel = computed(() =>
     props.channelMerchant.enable
@@ -33,41 +28,24 @@
     return props.channelMerchant.source || '-';
   });
 
-  const sandboxLabel = computed(() => (config.value.sandbox ? $t('common.yes') : $t('common.no')));
-
-  function loadConfig() {
-    if (!props.channelMchNo) {
-      return;
+  // 支付产品展示名称(优先取国际化映射, 兜底产品编码)
+  const productDisplayName = computed(() => {
+    const product = props.channelMerchant.product;
+    if (!product) return '-';
+    const i18nKey = productI18nMap[product];
+    if (i18nKey) {
+      return $t(i18nKey);
     }
-    loading.value = true;
-    config.value = {};
-
-    UmsDirectChannelMerchantApi.findByChannelMchNo(props.channelMchNo)
-      .then(({ data }) => {
-        config.value = data || {};
-      })
-      .finally(() => {
-        loading.value = false;
-      });
-  }
+    return productNameMap[product] || product;
+  });
 
   function open() {
     visible.value = true;
-    loadConfig();
   }
 
   function close() {
     visible.value = false;
   }
-
-  watch(
-    () => props.channelMchNo,
-    () => {
-      if (visible.value) {
-        loadConfig();
-      }
-    },
-  );
 
   defineExpose({ open, close });
 </script>
@@ -79,41 +57,27 @@
     :size="640"
     destroy-on-hidden
   >
-    <a-spin :spinning="loading">
-      <a-descriptions bordered :column="1" size="small">
-        <!-- 国际化: 通道商户号 -->
-        <a-descriptions-item :label="$t('payment.merchant.channelMerchant.channelMerchantNo')">
-          {{ channelMerchant.channelMchNo || '-' }}
-        </a-descriptions-item>
-        <!-- 国际化: 通道商户名称 -->
-        <a-descriptions-item :label="$t('payment.merchant.channelMerchant.channelMerchantName')">
-          {{ channelMerchant.channelMerchantName || '-' }}
-        </a-descriptions-item>
-        <!-- 国际化: 是否启用 -->
-        <a-descriptions-item :label="$t('payment.merchant.channelMerchant.enable')">
-          {{ enableLabel }}
-        </a-descriptions-item>
-        <!-- 国际化: 来源 -->
-        <a-descriptions-item :label="$t('payment.merchant.channelMerchant.source')">
-          {{ sourceLabel }}
-        </a-descriptions-item>
-        <!-- 国际化: 银联商务商户号 -->
-        <a-descriptions-item :label="$t('payment.channel.ums.merchantNo')">
-          {{ config.merchantNo || '-' }}
-        </a-descriptions-item>
-        <!-- 国际化: 终端号 -->
-        <a-descriptions-item :label="$t('payment.channel.ums.terminalNo')">
-          {{ config.terminalNo || '-' }}
-        </a-descriptions-item>
-        <!-- 国际化: 订单号前缀 -->
-        <a-descriptions-item :label="$t('payment.channel.ums.orderPrefix')">
-          {{ config.orderPrefix || '-' }}
-        </a-descriptions-item>
-        <!-- 国际化: 沙箱环境 -->
-        <a-descriptions-item :label="$t('payment.channel.ums.sandbox')">
-          {{ sandboxLabel }}
-        </a-descriptions-item>
-      </a-descriptions>
-    </a-spin>
+    <a-descriptions bordered :column="1" size="small">
+      <!-- 国际化: 通道商户号 -->
+      <a-descriptions-item :label="$t('payment.merchant.channelMerchant.channelMerchantNo')">
+        {{ channelMerchant.channelMchNo || '-' }}
+      </a-descriptions-item>
+      <!-- 国际化: 通道商户名称 -->
+      <a-descriptions-item :label="$t('payment.merchant.channelMerchant.channelMerchantName')">
+        {{ channelMerchant.channelMerchantName || '-' }}
+      </a-descriptions-item>
+      <!-- 国际化: 所属支付产品 -->
+      <a-descriptions-item :label="$t('payment.merchant.channelMerchant.selectedProduct')">
+        {{ productDisplayName }}
+      </a-descriptions-item>
+      <!-- 国际化: 是否启用 -->
+      <a-descriptions-item :label="$t('payment.merchant.channelMerchant.enable')">
+        {{ enableLabel }}
+      </a-descriptions-item>
+      <!-- 国际化: 来源 -->
+      <a-descriptions-item :label="$t('payment.merchant.channelMerchant.source')">
+        {{ sourceLabel }}
+      </a-descriptions-item>
+    </a-descriptions>
   </a-drawer>
 </template>

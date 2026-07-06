@@ -7,10 +7,16 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import ChannelMerchantNameEditModal from '#/views/payment/merchant/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
+
   import UmsDirectChannelMerchantBasicInfo from './UmsDirectChannelMerchantBasicInfo.vue';
   import UmsDirectKeyConfigEdit from './UmsDirectKeyConfigEdit.vue';
 
   defineOptions({ name: 'UmsDirectMchManage' });
+
+  const emit = defineEmits<{
+    (e: 'success'): void;
+  }>();
 
   const loading = ref(false);
   const mchNo = ref('');
@@ -18,6 +24,7 @@
   const channelMerchant = ref<ChannelMerchantResult>({});
   const basicInfoRef = ref<InstanceType<typeof UmsDirectChannelMerchantBasicInfo>>();
   const keyConfigRef = ref<InstanceType<typeof UmsDirectKeyConfigEdit>>();
+  const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
 
   /** 功能卡片配置(银联商务首期仅基本信息与密钥配置, 无应用管理) */
   const functionCards = computed(() => [
@@ -41,6 +48,13 @@
           icon: 'ant-design:key-outlined',
           // 国际化: 配置通道商户密钥
           description: $t('payment.channel.umsManage.cardDirectKeyConfigDesc'),
+        },
+        {
+          key: 'editMerchantName',
+          // 国际化: 修改商户名称
+          title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
+          icon: 'ant-design:edit-outlined',
+          description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),
         },
       ],
     },
@@ -75,6 +89,9 @@
   function handleCardClick(card: { key: string }) {
     if (card.key === 'basicInfo') {
       basicInfoRef.value?.open();
+    }
+    if (card.key === 'editMerchantName') {
+      editNameRef.value?.open();
     }
     if (card.key === 'keyConfig') {
       keyConfigRef.value?.init();
@@ -137,6 +154,8 @@
       :channel-mch-no="channelMchNo"
       :channel-merchant="channelMerchant"
     />
+
+    <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 
     <UmsDirectKeyConfigEdit ref="keyConfigRef" :channel-mch-no="channelMchNo" />
   </div>

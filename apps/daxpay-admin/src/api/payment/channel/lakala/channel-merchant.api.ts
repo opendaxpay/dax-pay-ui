@@ -21,6 +21,13 @@ export const LakalaChannelMerchantApi = {
   create(data: LakalaIsvChannelMerchantCreateParam): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/lakala/isv-channel-merchant/create', data });
   },
+  /** 更新终端号 */
+  updateTermNo(channelMchNo: string, termNo: string): Promise<Result<void>> {
+    return defHttp.post({
+      url: '/admin/lakala/isv-channel-merchant/update-term-no',
+      params: { channelMchNo, termNo },
+    });
+  },
 };
 
 /** 拉卡拉通道商户绑定 */
@@ -47,6 +54,4 @@ export interface LakalaIsvChannelMerchantCreateParam {
   product: string;
   /** 拉卡拉商户编号 */
   lakalaMchNo: string;
-  /** 终端号 */
-  termNo?: string;
 }

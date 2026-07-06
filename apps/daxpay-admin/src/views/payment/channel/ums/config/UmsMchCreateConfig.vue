@@ -8,6 +8,8 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { UmsDirectChannelMerchantApi } from '#/api/payment/channel/ums/channel-merchant.api';
+  import ChannelLogo from '#/components/channel/ChannelLogo.vue';
+  import { productI18nMap, productNameMap } from '#/enums/payment';
   import { useMessage } from '#/hooks/useMessage';
 
   defineOptions({ name: 'UmsMchCreateConfig' });
@@ -21,61 +23,42 @@
 
   const mchNo = ref('');
   const productCode = ref('');
-  const productDisplayName = ref('');
+  const channelCode = ref('');
   const formRef = ref();
   const form = ref({
     channelMerchantName: '',
-    sandbox: false,
-    umsAppId: '',
-    appKey: '',
     merchantNo: '',
-    terminalNo: '',
-    orderPrefix: '',
-    secretKey: '',
   });
 
   const visible = ref(false);
   const createSuccess = ref(false);
   const submitLoading = ref(false);
 
-  const rules = computed(() => ({
+  /** 支付产品展示名称(优先取国际化映射, 兜底产品编码) */
+  const productDisplayName = computed(() => {
+    const product = productCode.value;
+    if (!product) return '-';
+    const i18nKey = productI18nMap[product];
+    if (i18nKey) {
+      return $t(i18nKey);
+    }
+    return productNameMap[product] || product;
+  });
+
+  const rules = {
     channelMerchantName: [
       { required: true, message: $t('payment.merchant.channelMerchant.channelMerchantNameRequired') },
     ],
-    umsAppId: [{ required: true, message: $t('payment.channel.ums.validation.umsAppId') }],
-    appKey: [{ required: true, message: $t('payment.channel.ums.validation.appKey') }],
     merchantNo: [{ required: true, message: $t('payment.channel.ums.validation.merchantNo') }],
-    terminalNo: [{ required: true, message: $t('payment.channel.ums.validation.terminalNo') }],
-    orderPrefix: [{ required: true, message: $t('payment.channel.ums.validation.orderPrefix') }],
-    secretKey: [{ required: true, message: $t('payment.channel.ums.validation.secretKey') }],
-  }));
+  };
 
-  function init(no: string, product: string, displayName: string) {
+  function init(no: string, product: string, channel: string) {
     mchNo.value = no;
     productCode.value = product;
-    productDisplayName.value = displayName;
+    channelCode.value = channel;
     visible.value = true;
     createSuccess.value = false;
     resetForm();
-  }
-
-  function validate(): boolean {
-    let valid = false;
-    formRef.value?.validate((errors: any) => {
-      valid = !errors;
-    });
-    return valid;
-  }
-
-  function getData(): Record<string, any> {
-    return { ...form.value };
-  }
-
-  function submit(param: Record<string, any>): Promise<any> {
-    return UmsDirectChannelMerchantApi.create({
-      ...param,
-      ...form.value,
-    } as UmsDirectChannelMerchantCreateParam);
   }
 
   function handlePrev() {
@@ -87,13 +70,11 @@
       ?.validate()
       .then(() => {
         submitLoading.value = true;
-        const param = {
+        UmsDirectChannelMerchantApi.create({
           mchNo: mchNo.value,
           product: productCode.value,
-          channel: 'ums',
           ...form.value,
-        };
-        submit(param)
+        } as UmsDirectChannelMerchantCreateParam)
           .then(() => {
             createSuccess.value = true;
             message.success($t('payment.merchant.channelMerchant.createSuccess'));
@@ -106,12 +87,16 @@
   }
 
   function resetForm() {
+    form.value = {
+      channelMerchantName: '',
+      merchantNo: '',
+    };
     nextTick(() => {
       formRef.value?.resetFields();
     });
   }
 
-  defineExpose({ init, validate, getData, submit });
+  defineExpose({ init });
 </script>
 
 <template>
@@ -126,50 +111,28 @@
           :wrapper-col="{ span: 16 }"
           :validate-trigger="['blur', 'change']"
         >
-          <!-- 国际化：商户名称 -->
-          <a-form-item :label="$t('payment.merchant.channelMerchant.channelMerchantName')" name="channelMerchantName">
+          <!-- 国际化: 支付产品 -->
+          <a-form-item :label="$t('payment.merchant.channelMerchant.product')">
+            <div class="flex items-center gap-2 h-8">
+              <ChannelLogo v-if="channelCode" :channel="channelCode" :size="24" />
+              <span class="text-foreground">{{ productDisplayName }}</span>
+            </div>
+          </a-form-item>
+          <!-- 国际化: 商户名称 -->
+          <a-form-item
+            :label="$t('payment.merchant.channelMerchant.channelMerchantName')"
+            name="channelMerchantName"
+          >
             <a-input
               v-model:value="form.channelMerchantName"
               :placeholder="$t('payment.merchant.channelMerchant.pleaseInputName')"
             />
           </a-form-item>
-          <!-- 国际化：所属支付产品 -->
-          <a-form-item :label="$t('payment.merchant.channelMerchant.selectedProduct')">
-            <a-input :value="productDisplayName" disabled />
-          </a-form-item>
-          <!-- 国际化：沙箱环境 -->
-          <a-form-item :label="$t('payment.channel.ums.sandbox')" name="sandbox">
-            <a-switch
-              v-model:checked="form.sandbox"
-              :checked-children="$t('common.yes')"
-              :un-checked-children="$t('common.no')"
-            />
-          </a-form-item>
-
-          <a-form-item :label="$t('payment.channel.ums.umsAppId')" name="umsAppId">
-            <a-input v-model:value="form.umsAppId" :placeholder="$t('payment.channel.ums.umsAppIdPlaceholder')" />
-          </a-form-item>
-
-          <a-form-item :label="$t('payment.channel.ums.appKey')" name="appKey">
-            <a-input-password v-model:value="form.appKey" :placeholder="$t('payment.channel.ums.appKeyPlaceholder')" />
-          </a-form-item>
-
+          <!-- 国际化: 银联商务商户号 -->
           <a-form-item :label="$t('payment.channel.ums.merchantNo')" name="merchantNo">
-            <a-input v-model:value="form.merchantNo" :placeholder="$t('payment.channel.ums.merchantNoPlaceholder')" />
-          </a-form-item>
-
-          <a-form-item :label="$t('payment.channel.ums.terminalNo')" name="terminalNo">
-            <a-input v-model:value="form.terminalNo" :placeholder="$t('payment.channel.ums.terminalNoPlaceholder')" />
-          </a-form-item>
-
-          <a-form-item :label="$t('payment.channel.ums.orderPrefix')" name="orderPrefix">
-            <a-input v-model:value="form.orderPrefix" :placeholder="$t('payment.channel.ums.orderPrefixPlaceholder')" />
-          </a-form-item>
-
-          <a-form-item :label="$t('payment.channel.ums.secretKey')" name="secretKey">
-            <a-input-password
-              v-model:value="form.secretKey"
-              :placeholder="$t('payment.channel.ums.secretKeyPlaceholder')"
+            <a-input
+              v-model:value="form.merchantNo"
+              :placeholder="$t('payment.channel.ums.merchantNoPlaceholder')"
             />
           </a-form-item>
 

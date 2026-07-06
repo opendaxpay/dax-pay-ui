@@ -2,7 +2,6 @@
   "title": "银联商务配置",
   "keyConfig": "密钥配置",
   "enable": "是否启用",
-  "sandbox": "沙箱环境",
   "umsAppId": "应用ID",
   "umsAppIdPlaceholder": "请输入银联商务应用ID",
   "appKey": "应用密钥",
@@ -11,18 +10,14 @@
   "merchantNoPlaceholder": "请输入银联商务商户号",
   "terminalNo": "终端号",
   "terminalNoPlaceholder": "请输入银联商务终端号",
-  "orderPrefix": "订单号前缀",
-  "orderPrefixPlaceholder": "请输入订单号前缀(银商分配的4位来源编号)",
   "secretKey": "通信密钥",
   "secretKeyPlaceholder": "请输入通信密钥(用于回调消息验签)",
   "validation": {
     "enable": "请选择是否启用",
-    "sandbox": "请选择是否为沙箱环境",
     "umsAppId": "请输入银联商务应用ID",
     "appKey": "请输入银联商务应用密钥",
     "merchantNo": "请输入银联商务商户号",
     "terminalNo": "请输入银联商务终端号",
-    "orderPrefix": "请输入订单号前缀",
     "secretKey": "请输入通信密钥"
   }
 }

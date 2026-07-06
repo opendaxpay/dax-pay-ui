@@ -7,10 +7,16 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import ChannelMerchantNameEditModal from '#/views/payment/merchant/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
+
   import AlipayAppAuthTokenUpdate from './AlipayAppAuthTokenUpdate.vue';
   import AlipayChannelMerchantBasicInfo from './AlipayChannelMerchantBasicInfo.vue';
 
   defineOptions({ name: 'AlipayChannelMerchantManage' });
+
+  const emit = defineEmits<{
+    (e: 'success'): void;
+  }>();
 
   const mchNo = ref('');
   const channelMchNo = ref('');
@@ -18,6 +24,7 @@
   const basicInfoRef = ref<InstanceType<typeof AlipayChannelMerchantBasicInfo>>();
   // 应用授权令牌更新弹窗
   const authTokenUpdateRef = ref<InstanceType<typeof AlipayAppAuthTokenUpdate>>();
+  const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
 
   /** 功能卡片配置（服务商通道商户：仅基本信息） */
   const functionCards = computed(() => [
@@ -39,6 +46,13 @@
           title: $t('payment.merchant.channelMerchant.cardAuthOperation'),
           icon: 'ant-design:safety-certificate-outlined',
           description: $t('payment.merchant.channelMerchant.cardAuthOperationDesc'),
+        },
+        {
+          key: 'editMerchantName',
+          // 国际化：修改商户名称
+          title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
+          icon: 'ant-design:edit-outlined',
+          description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),
         },
       ],
     },
@@ -70,6 +84,10 @@
   function handleCardClick(card: { key: string }) {
     if (card.key === 'basicInfo') {
       basicInfoRef.value?.open();
+      return;
+    }
+    if (card.key === 'editMerchantName') {
+      editNameRef.value?.open();
       return;
     }
     if (card.key === 'authOperation') {
@@ -128,6 +146,8 @@
       :channel-mch-no="channelMchNo"
       :channel-merchant="channelMerchant"
     />
+
+    <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 
     <AlipayAppAuthTokenUpdate ref="authTokenUpdateRef" />
   </div>

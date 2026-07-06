@@ -17,7 +17,7 @@
    */
   const functionCards = computed(() => [
     {
-      group: $t('payment.channel.lakalaIsv.manageTitle'),
+      group: $t('payment.channel.lakalaIsv.groupConfig'),
       color: 'blue',
       cards: [
         {
