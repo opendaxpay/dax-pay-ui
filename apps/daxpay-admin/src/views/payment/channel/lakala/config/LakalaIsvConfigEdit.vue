@@ -166,7 +166,7 @@
             :disabled="!canEdit"
             :multiple="false"
             :show-upload-list="false"
-            accept=".cer"
+            accept=".pem,.cer,.crt"
             :before-upload="() => false"
             @change="(info: any) => handleUpload(info, 'publicKey')"
           >
@@ -175,7 +175,7 @@
               {{ $t('payment.channel.lakalaIsv.uploadPublicKey') }}
             </a-button>
           </a-upload>
-          <a-input v-else value="publicKey.cer" disabled>
+          <a-input v-else :value="$t('payment.channel.lakalaIsv.publicKeyUploaded')" disabled>
             <template #suffix>
               <span v-if="canEdit" class="cursor-pointer text-gray-400" @click="form.publicKey = ''">
                 <IconifyIcon icon="ant-design:close-circle-outlined" class="text-lg" />
@@ -194,7 +194,7 @@
             :disabled="!canEdit"
             :multiple="false"
             :show-upload-list="false"
-            accept=".pem"
+            accept=".pem,.cer,.crt,.key"
             :before-upload="() => false"
             @change="(info: any) => handleUpload(info, 'privateKey')"
           >
@@ -203,7 +203,7 @@
               {{ $t('payment.channel.lakalaIsv.uploadKey') }}
             </a-button>
           </a-upload>
-          <a-input v-else value="private_key.pem" disabled>
+          <a-input v-else :value="$t('payment.channel.lakalaIsv.privateKeyUploaded')" disabled>
             <template #suffix>
               <span v-if="canEdit" class="cursor-pointer text-gray-400" @click="form.privateKey = ''">
                 <IconifyIcon icon="ant-design:close-circle-outlined" class="text-lg" />
