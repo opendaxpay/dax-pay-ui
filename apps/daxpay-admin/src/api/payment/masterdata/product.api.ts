@@ -50,7 +50,6 @@ export interface PayProductResult extends BaseEntity {
   channel?: string;
   channelName?: string;
   description?: string;
-  icon?: string;
   sortNo?: number;
   remark?: string;
   isv?: boolean;

@@ -4,13 +4,13 @@ import { ChannelEnum } from './channelEnum';
  * 支付产品枚举
  */
 export enum ProductEnum {
-  /** 汇付天下 */
+  /** 汇付天下(Adapay直连) */
   ADA_PAY = 'ada_pay',
   /** 支付宝(直连) */
   ALIPAY = 'alipay',
   /** 支付宝(服务商) */
   ALIPAY_ISV = 'alipay_isv',
-  /** 斗拱(汇付天下) */
+  /** 斗拱(归属 ADA_PAY 通道) */
   DOUGONG_PAY = 'dougong_pay',
   /** 抖音支付(直连) */
   DOUYIN_PAY = 'douyin_pay',
@@ -119,7 +119,8 @@ export const productChannelMap: Record<string, string> = {
   [ProductEnum.LAKALA_PAY]: ChannelEnum.LAKALA_PAY,
   [ProductEnum.LESHUA_PAY]: ChannelEnum.LESHUA_PAY,
   [ProductEnum.ADA_PAY]: ChannelEnum.ADA_PAY,
-  [ProductEnum.DOUGONG_PAY]: ChannelEnum.DOUGONG_PAY,
+  // 斗拱归属汇付天下(ADA_PAY)通道
+  [ProductEnum.DOUGONG_PAY]: ChannelEnum.ADA_PAY,
   [ProductEnum.HKRT_PAY]: ChannelEnum.HKRT_PAY,
   [ProductEnum.VBILL_PAY]: ChannelEnum.VBILL_PAY,
   // 河马付归属杉德通道
@@ -129,11 +130,40 @@ export const productChannelMap: Record<string, string> = {
 };
 
 /**
- * 支付产品独立Logo文件映射（覆盖所属通道Logo）
+ * 支付产品Logo文件映射
  * key为产品编码，value为assets/channel/目录下的SVG文件名（不含扩展名）
- * 未在此映射中的产品，回退使用所属通道的Logo（见 channelLogoMap）
+ * 产品图标统一由此映射维护，未命中的产品回退使用所属通道的Logo（见 channelLogoMap）
  */
 export const productLogoMap: Record<string, string> = {
-  // 河马付(杉德旗下聚合支付产品)有独立品牌Logo
+  // 支付宝
+  [ProductEnum.ALIPAY]: 'ali_pay',
+  [ProductEnum.ALIPAY_ISV]: 'ali_pay',
+  // 微信
+  [ProductEnum.WECHAT_PAY]: 'wechat',
+  [ProductEnum.WECHAT_ISV]: 'wechat',
+  // 抖音
+  [ProductEnum.DOUYIN_PAY]: 'douyin_pay',
+  // 银联商务(6个子产品共用通道Logo)
+  [ProductEnum.UMS_QRCODE]: 'ums_pay',
+  [ProductEnum.UMS_JSAPI]: 'ums_pay',
+  [ProductEnum.UMS_APP]: 'ums_pay',
+  [ProductEnum.UMS_MINI]: 'ums_pay',
+  [ProductEnum.UMS_H5]: 'ums_pay',
+  [ProductEnum.UMS_BARCODE]: 'ums_pay',
+  // 拉卡拉
+  [ProductEnum.LAKALA_PAY]: 'lakala',
+  // 乐刷
+  [ProductEnum.LESHUA_PAY]: 'leshua',
+  // 汇付天下(Adapay直连)
+  [ProductEnum.ADA_PAY]: 'ada_pay',
+  // 斗拱(汇付天下旗下)
+  [ProductEnum.DOUGONG_PAY]: 'dougong',
+  // 海科融通
+  [ProductEnum.HKRT_PAY]: 'hkrt_pay',
+  // 随行付
+  [ProductEnum.VBILL_PAY]: 'vbill_pay',
+  // 富友
+  [ProductEnum.FUYOU_PAY]: 'fuyou',
+  // 河马付(杉德旗下聚合支付产品, 独立品牌Logo)
   [ProductEnum.HM_PAY]: 'hm_pay',
 };
