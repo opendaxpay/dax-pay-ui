@@ -8,13 +8,12 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { ChannelMerchantApi,
-  type ChannelMerchantResult, } from '#/api/payment/channel/channel-merchant.api';
+  import { ChannelMerchantApi, type ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
   import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import ChannelLogo from '#/components/channel/ChannelLogo.vue';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
-  import { productChannelMap, productI18nMap, productNameMap } from '#/enums/payment';
   import { PermCodes } from '#/constants/perm-codes';
+  import { productChannelMap, productI18nMap, productNameMap } from '#/enums/payment';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
   import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
@@ -40,7 +39,7 @@
   // 切换启用状态按行 loading（key=record.id）
   const enableLoadingMap = ref<Record<string, boolean>>({});
 
-// VXE Table 相关引用
+  // VXE Table 相关引用
   const xTable = ref<VxeTableInstance>();
   const xToolbar = ref<VxeToolbarInstance>();
 
@@ -60,7 +59,7 @@
     total: 0,
   });
 
-/**
+  /**
    * 获取支付产品名称
    */
   function getProductName(product: string) {
@@ -177,8 +176,8 @@
   }
 
   /**
- * 切换启用状态
-    */
+   * 切换启用状态
+   */
   function handleToggleEnable(record: ChannelMerchantResult, checked: boolean) {
     const isEnabling = checked;
     confirm({
@@ -247,7 +246,9 @@
           <span v-if="merchantLoading" class="text-sm text-muted-foreground">
             <a-skeleton-input :active="true" size="small" />
           </span>
-          <span v-else-if="merchantInfo.mchName" class="text-sm text-muted-foreground">({{ merchantInfo.mchName }})</span>
+          <span v-else-if="merchantInfo.mchName" class="text-sm text-muted-foreground"
+            >({{ merchantInfo.mchName }})</span
+          >
         </div>
       </template>
 
@@ -260,18 +261,13 @@
         </template>
       </vxe-toolbar>
 
-      <vxe-table
-        ref="xTable"
-        :row-config="{ keyField: 'id' }"
-        :data="list"
-        :loading="loading"
-      >
+      <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="list" :loading="loading">
         <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
         <!-- 支付产品（图标+名称） -->
         <vxe-column field="product" :title="$t('payment.merchant.channelMerchant.product')" :min-width="200">
           <template #default="{ row }">
             <div class="flex items-center gap-2">
-              <ChannelLogo :channel="getProductChannel(row.product)" :size="24" />
+              <ChannelLogo :product="row.product" :channel="getProductChannel(row.product)" :size="24" />
               <span>{{ getProductName(row.product) }}</span>
             </div>
           </template>
@@ -334,7 +330,6 @@
         @page-change="handlePageChange"
       />
     </a-card>
-
   </div>
 </template>
 

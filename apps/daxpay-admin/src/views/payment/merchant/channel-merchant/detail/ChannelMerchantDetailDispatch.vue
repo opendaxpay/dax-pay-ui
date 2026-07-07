@@ -14,7 +14,13 @@
   import AlipayMchManage from '#/views/payment/channel/alipay/manage/mch/AlipayMchManage.vue';
   import DouyinDirectMchManage from '#/views/payment/channel/douyin/manage/DouyinDirectMchManage.vue';
   import LakalaMchManage from '#/views/payment/channel/lakala/manage/mch/LakalaMchManage.vue';
+  import HkrtMchManage from '#/views/payment/channel/hkrt/manage/mch/HkrtMchManage.vue';
+  import LeshuaMchManage from '#/views/payment/channel/leshua/manage/mch/LeshuaMchManage.vue';
+  import DougongMchManage from '#/views/payment/channel/dougong/manage/mch/DougongMchManage.vue';
+  import VbillMchManage from '#/views/payment/channel/vbill/manage/mch/VbillMchManage.vue';
+  import FuyouMchManage from '#/views/payment/channel/fuyou/manage/mch/FuyouMchManage.vue';
   import UmsDirectMchManage from '#/views/payment/channel/ums/manage/UmsDirectMchManage.vue';
+  import AdapayDirectMchManage from '#/views/payment/channel/adapay/manage/AdapayDirectMchManage.vue';
   import WechatChannelMerchantManage from '#/views/payment/channel/wechat/manage/mch/WechatChannelMerchantManage.vue';
   import WechatDirectMchManage from '#/views/payment/channel/wechat/manage/mch/WechatDirectMchManage.vue';
 
@@ -52,7 +58,13 @@
   const wechatDirectManageRef = ref<InstanceType<typeof WechatDirectMchManage>>();
   const douyinDirectManageRef = ref<InstanceType<typeof DouyinDirectMchManage>>();
   const umsDirectManageRef = ref<InstanceType<typeof UmsDirectMchManage>>();
+  const adapayDirectManageRef = ref<InstanceType<typeof AdapayDirectMchManage>>();
   const lakalaManageRef = ref<InstanceType<typeof LakalaMchManage>>();
+  const hkrtManageRef = ref<InstanceType<typeof HkrtMchManage>>();
+  const leshuaManageRef = ref<InstanceType<typeof LeshuaMchManage>>();
+  const dougongManageRef = ref<InstanceType<typeof DougongMchManage>>();
+  const vbillManageRef = ref<InstanceType<typeof VbillMchManage>>();
+  const fuyouManageRef = ref<InstanceType<typeof FuyouMchManage>>();
 
   /** 是否为银联商务系列产品 */
   function isUmsProduct(p: string) {
@@ -75,6 +87,12 @@
       p === ProductEnum.WECHAT_PAY ||
       p === ProductEnum.DOUYIN_PAY ||
       p === ProductEnum.LAKALA_PAY ||
+      p === ProductEnum.ADA_PAY ||
+      p === ProductEnum.HKRT_PAY ||
+      p === ProductEnum.LESHUA_PAY ||
+      p === ProductEnum.DOUGONG_PAY ||
+      p === ProductEnum.VBILL_PAY ||
+      p === ProductEnum.FUYOU_PAY ||
       isUmsProduct(p)
     );
   }
@@ -98,6 +116,24 @@
     }
     if (productCode === ProductEnum.LAKALA_PAY) {
       return $t('payment.channel.lakalaIsv.manageTitle');
+    }
+    if (productCode === ProductEnum.ADA_PAY) {
+      return $t('payment.channel.adapayManage.manageTitle');
+    }
+    if (productCode === ProductEnum.HKRT_PAY) {
+      return $t('payment.channel.hkrtIsv.manageTitle');
+    }
+    if (productCode === ProductEnum.LESHUA_PAY) {
+      return $t('payment.channel.leshuaIsv.title');
+    }
+    if (productCode === ProductEnum.DOUGONG_PAY) {
+      return $t('payment.channel.dougongIsv.manageTitle');
+    }
+    if (productCode === ProductEnum.VBILL_PAY) {
+      return $t('payment.channel.vbillIsv.manageTitle');
+    }
+    if (productCode === ProductEnum.FUYOU_PAY) {
+      return $t('payment.channel.fuyouIsv.manageTitle');
     }
     if (isUmsProduct(productCode)) {
       return $t('payment.channel.umsManage.manageTitle');
@@ -169,6 +205,24 @@
     }
     if (product.value === ProductEnum.LAKALA_PAY) {
       lakalaManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
+    }
+    if (product.value === ProductEnum.ADA_PAY) {
+      adapayDirectManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
+    }
+    if (product.value === ProductEnum.HKRT_PAY) {
+      hkrtManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
+    }
+    if (product.value === ProductEnum.LESHUA_PAY) {
+      leshuaManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
+    }
+    if (product.value === ProductEnum.DOUGONG_PAY) {
+      dougongManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
+    }
+    if (product.value === ProductEnum.VBILL_PAY) {
+      vbillManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
+    }
+    if (product.value === ProductEnum.FUYOU_PAY) {
+      fuyouManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
     }
   }
 
@@ -278,6 +332,36 @@
         <LakalaMchManage
           v-else-if="product === ProductEnum.LAKALA_PAY"
           ref="lakalaManageRef"
+          @success="loadChannelMerchant"
+        />
+        <AdapayDirectMchManage
+          v-else-if="product === ProductEnum.ADA_PAY"
+          ref="adapayDirectManageRef"
+          @success="loadChannelMerchant"
+        />
+        <HkrtMchManage
+          v-else-if="product === ProductEnum.HKRT_PAY"
+          ref="hkrtManageRef"
+          @success="loadChannelMerchant"
+        />
+        <LeshuaMchManage
+          v-else-if="product === ProductEnum.LESHUA_PAY"
+          ref="leshuaManageRef"
+          @success="loadChannelMerchant"
+        />
+        <DougongMchManage
+          v-else-if="product === ProductEnum.DOUGONG_PAY"
+          ref="dougongManageRef"
+          @success="loadChannelMerchant"
+        />
+        <VbillMchManage
+          v-else-if="product === ProductEnum.VBILL_PAY"
+          ref="vbillManageRef"
+          @success="loadChannelMerchant"
+        />
+        <FuyouMchManage
+          v-else-if="product === ProductEnum.FUYOU_PAY"
+          ref="fuyouManageRef"
           @success="loadChannelMerchant"
         />
         <div v-else-if="!isSupported(product)" class="flex items-center justify-center" style="min-height: 400px">

@@ -10,6 +10,9 @@ export * as WechatChannel from './wechat';
 export * as LakalaChannel from './lakala';
 export * as UmsChannel from './ums';
 export * as DouyinChannel from './douyin';
+export * as AdapayChannel from './adapay';
+export * as HkrtChannel from './hkrt';
+export * as DougongChannel from './dougong';
 
 // 通用通道商户（无命名冲突，直接导出）
 export { ChannelMerchantApi } from './channel-merchant.api';

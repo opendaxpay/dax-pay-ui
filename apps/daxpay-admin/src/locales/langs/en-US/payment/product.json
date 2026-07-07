@@ -35,7 +35,14 @@
     "umsMini": "UMS (Mini Program)",
     "umsH5": "UMS (H5)",
     "umsBarcode": "UMS (B Scan C)",
-    "lakalaPay": "Lakala Pay"
+    "lakalaPay": "Lakala Pay",
+    "leshuaPay": "Leshua Pay",
+    "adaPay": "Adapay",
+    "dougongPay": "DouGong",
+    "hkrtPay": "HKRT Pay",
+    "vbillPay": "VBill",
+    "hmPay": "Hmpay",
+    "fuyouPay": "Fuyou Pay"
   },
   "placeholder": {
     "name": "Enter product name",

@@ -35,7 +35,14 @@
     "umsMini": "银联商务(小程序)",
     "umsH5": "银联商务(H5)",
     "umsBarcode": "银联商务(B扫C)",
-    "lakalaPay": "拉卡拉支付"
+    "lakalaPay": "拉卡拉支付",
+    "leshuaPay": "乐刷支付",
+    "adaPay": "汇付天下",
+    "dougongPay": "斗拱",
+    "hkrtPay": "海科融通支付",
+    "vbillPay": "随行付",
+    "hmPay": "河马付",
+    "fuyouPay": "富友支付"
   },
   "placeholder": {
     "name": "请输入产品名称",

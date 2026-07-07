@@ -122,6 +122,26 @@ export const PermCodes = {
       VIEW: 'payment:lakala:isv:view',
       MANAGE: 'payment:lakala:isv:manage',
     },
+    /** 海科融通服务商 menuCode=payment:hkrt:isv */
+    Hkrt: {
+      VIEW: 'payment:hkrt:isv:view',
+      MANAGE: 'payment:hkrt:isv:manage',
+    },
+    /** 斗拱服务商 menuCode=payment:dougong:isv */
+    Dougong: {
+      VIEW: 'payment:dougong:isv:view',
+      MANAGE: 'payment:dougong:isv:manage',
+    },
+    /** 随行付服务商 menuCode=payment:vbill:isv */
+    Vbill: {
+      VIEW: 'payment:vbill:isv:view',
+      MANAGE: 'payment:vbill:isv:manage',
+    },
+    /** 富友服务商 menuCode=payment:fuyou:isv */
+    Fuyou: {
+      VIEW: 'payment:fuyou:isv:view',
+      MANAGE: 'payment:fuyou:isv:manage',
+    },
     /** 支付主数据 menuCode=payment:platform:* */
     Platform: {
       Product: {

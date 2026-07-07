@@ -186,7 +186,7 @@
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
           <vxe-column :title="$t('payment.constant.product.field.icon')" width="70" align="center">
             <template #default="{ row }">
-              <ChannelLogo :channel="row.channel" :size="28" />
+              <ChannelLogo :product="row.code" :channel="row.channel" :size="28" />
             </template>
           </vxe-column>
           <vxe-column field="name" :title="$t('payment.constant.product.field.name')" :min-width="160" />

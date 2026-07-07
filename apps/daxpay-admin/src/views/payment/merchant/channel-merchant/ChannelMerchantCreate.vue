@@ -7,9 +7,8 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { MerchantApi,
-    type MerchantInfo, } from '#/api/payment/merchant/merchant.api';
   import { PayProductApi, type PayProductResult } from '#/api/payment/masterdata/product.api';
+  import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import ChannelLogo from '#/components/channel/ChannelLogo.vue';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { channelI18nMap, channelNameMap, productI18nMap, productNameMap } from '#/enums/payment';
@@ -46,7 +45,7 @@
   const loading = ref(false);
 
   // Step1: 选中的支付产品
-  const selectedProduct = ref<PayProductResult | null>(null);
+  const selectedProduct = ref<null | PayProductResult>(null);
 
   // 支付产品列表
   const productList = ref<PayProductResult[]>([]);
@@ -128,11 +127,7 @@
     }
     currentStep.value = 1;
     nextTick(() => {
-      transitRef.value?.init(
-        selectedProduct.value!.code!,
-        mchNo.value,
-        selectedProduct.value!.channel || '',
-      );
+      transitRef.value?.init(selectedProduct.value!.code!, mchNo.value, selectedProduct.value!.channel || '');
     });
   }
 
@@ -214,10 +209,7 @@
       <!-- Step1: 选择支付产品 -->
       <div v-if="currentStep === 0">
         <a-spin :spinning="loading">
-          <div
-            v-if="productList.length === 0 && !loading"
-            class="flex items-center justify-center empty-container"
-          >
+          <div v-if="productList.length === 0 && !loading" class="flex items-center justify-center empty-container">
             <!-- 国际化：暂无可用支付产品 -->
             <a-empty :description="$t('payment.merchant.channelMerchant.noEnabledProduct')" />
           </div>
@@ -235,7 +227,7 @@
             >
               <div class="flex flex-col items-center justify-center h-full p-5">
                 <div class="mb-3 transform transition-transform duration-300 group-hover:scale-110">
-                  <ChannelLogo :channel="item.channel!" :size="44" />
+                  <ChannelLogo :product="item.code" :channel="item.channel!" :size="44" />
                 </div>
                 <div class="text-center font-bold text-foreground text-sm mb-1">
                   {{ item.name || getProductName(item.code || '') }}

@@ -100,7 +100,9 @@
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <div class="flex items-center gap-2">
-          <span class="text-lg font-bold text-foreground">{{ $t('payment.constant.product.productConfig.title') }}</span>
+          <span class="text-lg font-bold text-foreground">{{
+            $t('payment.constant.product.productConfig.title')
+          }}</span>
         </div>
       </template>
 
@@ -129,15 +131,19 @@
                 class="env-radio-solid compact-radio"
                 @change="(e: any) => handleEnvRadioChange(row, e.target.value)"
               >
-                <a-radio-button value="prod">{{ $t('payment.constant.product.productConfig.prodLabel') }}</a-radio-button>
-                <a-radio-button value="sandbox">{{ $t('payment.constant.product.productConfig.sandboxLabel') }}</a-radio-button>
+                <a-radio-button value="prod">{{
+                  $t('payment.constant.product.productConfig.prodLabel')
+                }}</a-radio-button>
+                <a-radio-button value="sandbox">{{
+                  $t('payment.constant.product.productConfig.sandboxLabel')
+                }}</a-radio-button>
               </a-radio-group>
             </div>
 
             <!-- 主体内容 -->
             <div class="flex-1 flex flex-col items-center justify-center pt-5 pb-1">
               <div class="mb-3 transform transition-transform duration-300 group-hover:scale-110">
-                <ChannelLogo :channel="row.channel!" :size="44" />
+                <ChannelLogo :product="row.product" :channel="row.channel!" :size="44" />
               </div>
               <div class="text-center font-bold text-foreground text-[14px] mb-3 px-4">
                 {{ row.name }}
@@ -150,40 +156,37 @@
                 :title="!row.isv ? $t('payment.constant.product.productConfig.nonIsvDisabledTip') : undefined"
                 placement="top"
               >
-              <div
-                class="config-slot prod-slot"
-                :class="[
-                  { 'border-r border-border': row.sandboxSupport },
-                  { 'config-slot-disabled': !row.isv },
-                ]"
-                @click.stop="row.isv && openDetailPage(row, false)"
-              >
-                <div class="flex items-center gap-1.5">
-                  <IconifyIcon icon="ant-design:setting-filled" class="text-blue-500/80 text-sm" />
-                  <span class="text-[10px] font-bold text-muted-foreground uppercase">
-                    {{ $t('payment.constant.product.productConfig.prodConfigBtn') }}
-                  </span>
+                <div
+                  class="config-slot prod-slot"
+                  :class="[{ 'border-r border-border': row.sandboxSupport }, { 'config-slot-disabled': !row.isv }]"
+                  @click.stop="row.isv && openDetailPage(row, false)"
+                >
+                  <div class="flex items-center gap-1.5">
+                    <IconifyIcon icon="ant-design:setting-filled" class="text-blue-500/80 text-sm" />
+                    <span class="text-[10px] font-bold text-muted-foreground uppercase">
+                      {{ $t('payment.constant.product.productConfig.prodConfigBtn') }}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </a-tooltip>
+              </a-tooltip>
               <a-tooltip
                 v-if="row.sandboxSupport"
                 :title="!row.isv ? $t('payment.constant.product.productConfig.nonIsvDisabledTip') : undefined"
                 placement="top"
               >
-              <div
-                class="config-slot sandbox-slot"
-                :class="{ 'config-slot-disabled': !row.isv }"
-                @click.stop="row.isv && openDetailPage(row, true)"
-              >
-                <div class="flex items-center gap-1.5">
-                  <IconifyIcon icon="ant-design:experiment-filled" class="text-amber-500/80 text-sm" />
-                  <span class="text-[10px] font-bold text-muted-foreground uppercase">
-                    {{ $t('payment.constant.product.productConfig.sandboxConfigBtn') }}
-                  </span>
+                <div
+                  class="config-slot sandbox-slot"
+                  :class="{ 'config-slot-disabled': !row.isv }"
+                  @click.stop="row.isv && openDetailPage(row, true)"
+                >
+                  <div class="flex items-center gap-1.5">
+                    <IconifyIcon icon="ant-design:experiment-filled" class="text-amber-500/80 text-sm" />
+                    <span class="text-[10px] font-bold text-muted-foreground uppercase">
+                      {{ $t('payment.constant.product.productConfig.sandboxConfigBtn') }}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </a-tooltip>
+              </a-tooltip>
             </div>
           </a-card>
         </div>

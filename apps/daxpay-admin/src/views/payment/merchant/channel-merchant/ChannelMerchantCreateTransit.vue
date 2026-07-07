@@ -6,8 +6,14 @@ import { ProductEnum } from '#/enums/payment/productEnum';
 import AlipayDirectMchCreateConfig from '#/views/payment/channel/alipay/config/AlipayDirectMchCreateConfig.vue';
 import AlipayMchCreateConfig from '#/views/payment/channel/alipay/config/AlipayMchCreateConfig.vue';
 import DouyinMchCreateConfig from '#/views/payment/channel/douyin/config/DouyinMchCreateConfig.vue';
+import HkrtMchCreateConfig from '#/views/payment/channel/hkrt/config/HkrtMchCreateConfig.vue';
 import LakalaMchCreateConfig from '#/views/payment/channel/lakala/config/LakalaMchCreateConfig.vue';
 import UmsMchCreateConfig from '#/views/payment/channel/ums/config/UmsMchCreateConfig.vue';
+import AdapayMchCreateConfig from '#/views/payment/channel/adapay/config/AdapayMchCreateConfig.vue';
+import LeshuaMchCreateConfig from '#/views/payment/channel/leshua/config/LeshuaMchCreateConfig.vue';
+import DougongMchCreateConfig from '#/views/payment/channel/dougong/config/DougongMchCreateConfig.vue';
+import VbillMchCreateConfig from '#/views/payment/channel/vbill/config/VbillMchCreateConfig.vue';
+import FuyouMchCreateConfig from '#/views/payment/channel/fuyou/config/FuyouMchCreateConfig.vue';
 import WechatMchCreateConfig from '#/views/payment/channel/wechat/config/WechatMchCreateConfig.vue';
 import WechatDirectMchCreateConfig from '#/views/payment/channel/wechat/config/WechatDirectMchCreateConfig.vue';
 
@@ -23,8 +29,14 @@ const alipayDirectRef = ref();
 const wechatRef = ref();
 const wechatDirectRef = ref();
 const lakalaRef = ref();
-const umsRef = ref();
-const douyinRef = ref();
+  const hkrtRef = ref();
+  const umsRef = ref();
+  const adapayRef = ref();
+  const leshuaRef = ref();
+  const douyinRef = ref();
+  const dougongRef = ref();
+  const vbillRef = ref();
+  const fuyouRef = ref();
 
 /** 是否为银联商务系列产品 */
 function isUmsProduct(product: string) {
@@ -65,8 +77,32 @@ function init(product: string, mchNo: string, channel: string) {
         lakalaRef.value?.init(mchNo, product, channel);
         break;
       }
+      case ProductEnum.HKRT_PAY: {
+        hkrtRef.value?.init(mchNo, product, channel);
+        break;
+      }
+      case ProductEnum.ADA_PAY: {
+        adapayRef.value?.init(mchNo, product, channel);
+        break;
+      }
+      case ProductEnum.LESHUA_PAY: {
+        leshuaRef.value?.init(mchNo, product, channel);
+        break;
+      }
       case ProductEnum.DOUYIN_PAY: {
         douyinRef.value?.init(mchNo, product, channel);
+        break;
+      }
+      case ProductEnum.DOUGONG_PAY: {
+        dougongRef.value?.init(mchNo, product, channel);
+        break;
+      }
+      case ProductEnum.VBILL_PAY: {
+        vbillRef.value?.init(mchNo, product, channel);
+        break;
+      }
+      case ProductEnum.FUYOU_PAY: {
+        fuyouRef.value?.init(mchNo, product, channel);
         break;
       }
       default: {
@@ -87,6 +123,12 @@ defineExpose({ init });
   <WechatMchCreateConfig ref="wechatRef" @prev="emit('prev')" @close="emit('close')" />
   <WechatDirectMchCreateConfig ref="wechatDirectRef" @prev="emit('prev')" @close="emit('close')" />
   <LakalaMchCreateConfig ref="lakalaRef" @prev="emit('prev')" @close="emit('close')" />
+  <HkrtMchCreateConfig ref="hkrtRef" @prev="emit('prev')" @close="emit('close')" />
   <UmsMchCreateConfig ref="umsRef" @prev="emit('prev')" @close="emit('close')" />
+  <AdapayMchCreateConfig ref="adapayRef" @prev="emit('prev')" @close="emit('close')" />
+  <LeshuaMchCreateConfig ref="leshuaRef" @prev="emit('prev')" @close="emit('close')" />
+  <DougongMchCreateConfig ref="dougongRef" @prev="emit('prev')" @close="emit('close')" />
+  <VbillMchCreateConfig ref="vbillRef" @prev="emit('prev')" @close="emit('close')" />
+  <FuyouMchCreateConfig ref="fuyouRef" @prev="emit('prev')" @close="emit('close')" />
   <DouyinMchCreateConfig ref="douyinRef" @prev="emit('prev')" @close="emit('close')" />
 </template>

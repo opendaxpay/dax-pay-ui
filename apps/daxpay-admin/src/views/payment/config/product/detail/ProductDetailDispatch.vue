@@ -7,7 +7,12 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import AlipayIsvManage from '#/views/payment/channel/alipay/manage/AlipayIsvManage.vue';
+  import DougongManage from '#/views/payment/channel/dougong/manage/DougongManage.vue';
+  import HkrtManage from '#/views/payment/channel/hkrt/manage/HkrtManage.vue';
   import LakalaManage from '#/views/payment/channel/lakala/manage/LakalaManage.vue';
+  import LeshuaManage from '#/views/payment/channel/leshua/manage/LeshuaManage.vue';
+  import FuyouManage from '#/views/payment/channel/fuyou/manage/FuyouManage.vue';
+  import VbillManage from '#/views/payment/channel/vbill/manage/VbillManage.vue';
   import WechatIsvManage from '#/views/payment/channel/wechat/manage/WechatIsvManage.vue';
 
   defineOptions({ name: 'ProductDetailDispatch' });
@@ -49,6 +54,26 @@
         currentComponent.value = markRaw(LakalaManage);
         break;
       }
+      case 'leshua_pay': {
+        currentComponent.value = markRaw(LeshuaManage);
+        break;
+      }
+      case 'hkrt_pay': {
+        currentComponent.value = markRaw(HkrtManage);
+        break;
+      }
+      case 'dougong_pay': {
+        currentComponent.value = markRaw(DougongManage);
+        break;
+      }
+      case 'vbill_pay': {
+        currentComponent.value = markRaw(VbillManage);
+        break;
+      }
+      case 'fuyou_pay': {
+        currentComponent.value = markRaw(FuyouManage);
+        break;
+      }
       default: {
         currentComponent.value = null;
         break;
@@ -69,6 +94,21 @@
     }
     if (product.value === 'lakala_pay') {
       return $t('payment.product.enum.lakalaPay');
+    }
+    if (product.value === 'leshua_pay') {
+      return $t('payment.product.enum.leshuaPay');
+    }
+    if (product.value === 'hkrt_pay') {
+      return $t('payment.product.enum.hkrtPay');
+    }
+    if (product.value === 'dougong_pay') {
+      return $t('payment.product.enum.dougongPay');
+    }
+    if (product.value === 'vbill_pay') {
+      return $t('payment.product.enum.vbillPay');
+    }
+    if (product.value === 'fuyou_pay') {
+      return $t('payment.product.enum.fuyouPay');
     }
     if (product.value) {
       return $t('payment.constant.product.productName.unknown', { product: product.value });
