@@ -1,0 +1,29 @@
+{
+  "title": "VBill ISV Configuration",
+  "groupConfig": "Configuration",
+  "configTitle": "VBill ISV Key Configuration",
+  "manageTitle": "VBill Merchant Management",
+  "basicConfig": "Basic Config",
+  "keyConfig": "Key Config",
+  "cardMchKey": "ISV Key",
+  "cardMchKeyDesc": "Configure VBill org ID, RSA public/private keys",
+  "orgId": "Tianque Org ID",
+  "orgIdPlaceholder": "Please enter Tianque partner org ID (orgId)",
+  "publicKey": "Tianque RSA Public Key",
+  "publicKeyTooltip": "Tianque RSA public key (X509 Base64), for response/callback signature verification",
+  "privateKey": "Merchant RSA Private Key",
+  "privateKeyTooltip": "Merchant RSA private key (PKCS8 Base64), SHA1withRSA signing",
+  "sandbox": "Sandbox",
+  "groupMchConfig": "Merchant Config",
+  "cardMchConfig": "Merchant Config",
+  "cardMchConfigDesc": "View Tianque merchant number",
+  "mchConfigTitle": "Merchant Config",
+  "vbillMchNo": "Tianque Merchant No",
+  "vbillMchNoPlaceholder": "Please enter Tianque merchant No (mno)",
+  "validation": {
+    "orgId": "Please enter Tianque org ID",
+    "publicKey": "Please enter Tianque RSA public key",
+    "privateKey": "Please enter merchant RSA private key",
+    "vbillMchNo": "Please enter Tianque merchant No"
+  }
+}

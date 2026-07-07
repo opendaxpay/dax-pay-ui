@@ -1,0 +1,29 @@
+{
+  "title": "随行付服务商配置",
+  "groupConfig": "配置管理",
+  "configTitle": "随行付服务商密钥配置",
+  "manageTitle": "随行付商户管理",
+  "basicConfig": "基础配置",
+  "keyConfig": "密钥配置",
+  "cardMchKey": "服务商密钥",
+  "cardMchKeyDesc": "配置随行付天阙机构ID、RSA公私钥",
+  "orgId": "天阙机构ID",
+  "orgIdPlaceholder": "请输入天阙合作机构ID(orgId)",
+  "publicKey": "天阙RSA公钥",
+  "publicKeyTooltip": "天阙平台RSA公钥(X509 Base64), 用于响应/回调验签",
+  "privateKey": "商户RSA私钥",
+  "privateKeyTooltip": "商户RSA私钥(PKCS8 Base64), SHA1withRSA 签名",
+  "sandbox": "沙箱环境",
+  "groupMchConfig": "商户配置",
+  "cardMchConfig": "商户配置",
+  "cardMchConfigDesc": "查看天阙商户号",
+  "mchConfigTitle": "商户配置",
+  "vbillMchNo": "天阙商户号",
+  "vbillMchNoPlaceholder": "请输入天阙商户号(mno)",
+  "validation": {
+    "orgId": "请输入天阙机构ID",
+    "publicKey": "请输入天阙RSA公钥",
+    "privateKey": "请输入商户RSA私钥",
+    "vbillMchNo": "请输入天阙商户号"
+  }
+}
