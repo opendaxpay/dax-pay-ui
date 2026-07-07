@@ -14,7 +14,6 @@
     "apiCallMode": "API调用模式",
     "payIdType": "支付标识类型",
     "capabilities": "支付能力",
-    "settlePeriods": "结算周期",
     "features": "产品特性"
   },
   "features": "产品特性",

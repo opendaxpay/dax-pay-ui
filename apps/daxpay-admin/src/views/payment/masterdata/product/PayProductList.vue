@@ -260,14 +260,6 @@
           <a-descriptions-item :label="$t('payment.constant.product.field.channel')">
             {{ getChannelName(productDetail.channel || '') }}
           </a-descriptions-item>
-          <a-descriptions-item :label="$t('payment.constant.product.field.settlePeriods')">
-            <div class="detail-tags">
-              <a-tag v-for="period in productDetail.settlePeriods || []" :key="period" color="cyan">
-                {{ period }}
-              </a-tag>
-              <span v-if="(productDetail.settlePeriods || []).length === 0">-</span>
-            </div>
-          </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.constant.product.field.sandbox')">
             <a-tag v-if="productDetail.sandbox" color="cyan">{{
               $t('payment.constant.product.sandboxSupported')
