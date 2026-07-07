@@ -1,0 +1,31 @@
+{
+  "title": "HKRT ISV Configuration",
+  "groupConfig": "Configuration",
+  "configTitle": "HKRT ISV Key Configuration",
+  "manageTitle": "HKRT Merchant Management",
+  "basicConfig": "Basic Configuration",
+  "keyConfig": "Key Configuration",
+  "cardMchKey": "ISV Key",
+  "cardMchKeyDesc": "Configure HKRT agent number, access ID and signature key",
+  "agentNo": "Agent Number",
+  "agentNoPlaceholder": "Please enter agent number",
+  "accessId": "Access Institution ID",
+  "accessIdPlaceholder": "Please enter access institution ID",
+  "accessKey": "Signature Key",
+  "accessKeyPlaceholder": "Please enter signature key (for MD5 uppercase signing)",
+  "groupMchConfig": "Merchant Config",
+  "cardMchConfig": "Merchant Config",
+  "cardMchConfigDesc": "Configure SAAS terminal number for channel merchant",
+  "mchConfigTitle": "Merchant Config",
+  "merchNo": "HKRT Merchant No",
+  "merchNoPlaceholder": "Please enter HKRT merchant number",
+  "pn": "SAAS Terminal No",
+  "pnPlaceholder": "Please enter SAAS terminal number",
+  "validation": {
+    "agentNo": "Please enter agent number",
+    "accessId": "Please enter access institution ID",
+    "accessKey": "Please enter signature key",
+    "merchNo": "Please enter HKRT merchant number",
+    "pn": "Please enter SAAS terminal number"
+  }
+}
