@@ -12,6 +12,8 @@ export enum SocialSourceEnum {
   GITHUB = 'github',
   /** Gitee */
   GITEE = 'gitee',
+  /** Google */
+  GOOGLE = 'google',
   /** 飞书 */
   FEISHU = 'feishu',
   /** 钉钉 */
@@ -29,6 +31,7 @@ export const socialNameMap: Record<string, string> = {
   [SocialSourceEnum.QQ]: 'QQ',
   [SocialSourceEnum.GITHUB]: 'GitHub',
   [SocialSourceEnum.GITEE]: 'Gitee',
+  [SocialSourceEnum.GOOGLE]: 'Google',
   [SocialSourceEnum.FEISHU]: '飞书',
   [SocialSourceEnum.DING_TALK]: '钉钉',
   [SocialSourceEnum.DOUYIN]: '抖音',
@@ -43,6 +46,7 @@ export const socialColorMap: Record<string, string> = {
   [SocialSourceEnum.QQ]: '#12b7f5',
   [SocialSourceEnum.GITHUB]: '#181717',
   [SocialSourceEnum.GITEE]: '#c71d23',
+  [SocialSourceEnum.GOOGLE]: '#4285F4',
   [SocialSourceEnum.FEISHU]: '#3370ff',
   [SocialSourceEnum.DING_TALK]: '#1677ff',
   [SocialSourceEnum.DOUYIN]: '#000000',
@@ -58,6 +62,7 @@ export const socialLogoMap: Record<string, string> = {
   [SocialSourceEnum.QQ]: 'qq',
   [SocialSourceEnum.GITHUB]: 'github',
   [SocialSourceEnum.GITEE]: 'gitee',
+  [SocialSourceEnum.GOOGLE]: 'google',
   [SocialSourceEnum.FEISHU]: 'feishu',
   [SocialSourceEnum.DING_TALK]: 'dingTalk',
   [SocialSourceEnum.DOUYIN]: 'douyin',

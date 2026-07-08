@@ -6,6 +6,8 @@ export default defineConfig(async () => {
     vite: {
       server: {
         open: false,
+        // 允许 nginx 反代的自定义域名访问(Google OAuth 本地调试用)
+        allowedHosts: true,
         proxy: {
           '/api': {
             changeOrigin: true,
