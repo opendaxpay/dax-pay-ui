@@ -30,6 +30,8 @@
   const formRef = ref();
   const form = ref<LakalaIsvKeyConfig>({} as LakalaIsvKeyConfig);
   let rawForm: Record<string, any> = {};
+  // 当前环境(由管理页传入)
+  const sandbox = ref(false);
 
   const canEdit = computed(() => hasPermission(PermCodes.Payment.Lakala.MANAGE));
 
@@ -43,8 +45,9 @@
     publicKey: [{ required: true, message: $t('payment.channel.lakalaIsv.validation.publicKey') }],
   };
 
-  /** 打开抽屉并加载拉卡拉服务商密钥配置（平台为唯一服务商，密钥全局唯一） */
-  function init() {
+  /** 打开抽屉并加载拉卡拉服务商密钥配置（平台为唯一服务商，密钥全局唯一，按环境区分） */
+  function init(isSandbox: boolean) {
+    sandbox.value = isSandbox;
     visible.value = true;
     resetForm();
     loadConfig();
@@ -52,7 +55,7 @@
 
   function loadConfig() {
     confirmLoading.value = true;
-    LakalaPayConfigApi.findConfig(ProductEnum.LAKALA_PAY)
+    LakalaPayConfigApi.findConfig(ProductEnum.LAKALA_PAY, sandbox.value)
       .then(({ data }) => {
         rawForm = { ...data };
         form.value = {
@@ -78,6 +81,7 @@
           'sm4Key',
         ),
         product: ProductEnum.LAKALA_PAY,
+        sandbox: sandbox.value,
       })
         .then(() => {
           message.success($t('common.saveSuccess'));

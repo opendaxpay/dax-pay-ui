@@ -278,6 +278,24 @@
           :min-width="180"
         />
         <vxe-column
+          v-if="list.some((r) => r.sandboxSupport)"
+          field="activeEnv"
+          :title="$t('payment.merchant.channelMerchant.envStatus')"
+          :min-width="100"
+          align="center"
+        >
+          <template #default="{ row }">
+            <a-tag v-if="row.sandboxSupport" :color="row.activeEnv === 'sandbox' ? 'orange' : 'blue'">
+              {{
+                row.activeEnv === 'sandbox'
+                  ? $t('payment.constant.product.productConfig.sandboxLabel')
+                  : $t('payment.constant.product.productConfig.prodLabel')
+              }}
+            </a-tag>
+            <span v-else>-</span>
+          </template>
+        </vxe-column>
+        <vxe-column
           field="source"
           :title="$t('payment.merchant.channelMerchant.source')"
           :min-width="120"

@@ -28,6 +28,9 @@
   const form = ref<UmsDirectKeyConfig>({} as UmsDirectKeyConfig);
   let rawForm: Record<string, any> = {};
 
+  // 是否沙箱环境
+  const sandbox = ref(false);
+
   const canEdit = computed(() => hasPermission(PermCodes.Channel.Merchant.MANAGE));
 
   const drawerTitle = $t('payment.channel.umsManage.directKeyConfigTitle');
@@ -42,6 +45,8 @@
   /** 打开抽屉并加载密钥配置 */
   function init() {
     visible.value = true;
+    // 默认加载生产环境配置
+    sandbox.value = false;
     resetForm();
     loadConfig();
   }
@@ -49,7 +54,7 @@
   function loadConfig() {
     if (!props.channelMchNo) return;
     confirmLoading.value = true;
-    UmsDirectChannelMerchantApi.findKeyConfig(props.channelMchNo)
+    UmsDirectChannelMerchantApi.findKeyConfig(props.channelMchNo, sandbox.value)
       .then(({ data }) => {
         rawForm = { ...data };
         form.value = { ...data } as UmsDirectKeyConfig;
@@ -68,6 +73,7 @@
           ...form.value,
           ...diffForm(rawForm, form.value, 'appKey', 'secretKey'),
           channelMchNo: props.channelMchNo,
+          sandbox: sandbox.value,
         })
           .then(() => {
             message.success($t('common.saveSuccess'));
@@ -110,6 +116,14 @@
         :validate-trigger="['blur', 'change']"
       >
         <a-divider orientation="left">{{ $t('payment.channel.umsManage.keyConfigSection') }}</a-divider>
+
+        <!-- 国际化: 环境(生产/沙箱切换) -->
+        <a-form-item :label="$t('payment.channel.umsManage.environment')">
+          <a-radio-group v-model:value="sandbox" button-style="solid" @change="loadConfig">
+            <a-radio-button :value="false">{{ $t('payment.channel.umsManage.prodEnv') }}</a-radio-button>
+            <a-radio-button :value="true">{{ $t('payment.channel.umsManage.sandboxEnv') }}</a-radio-button>
+          </a-radio-group>
+        </a-form-item>
 
         <!-- 国际化: 银联商务商户号(mid, 创建时录入, 不可修改) -->
         <a-form-item :label="$t('payment.channel.ums.merchantNo')">

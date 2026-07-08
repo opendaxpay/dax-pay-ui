@@ -1,0 +1,31 @@
+{
+  "title": "Hmpay ISV Configuration",
+  "groupConfig": "Configuration",
+  "manageTitle": "Hmpay Merchant Management",
+  "cardMchKey": "ISV Key",
+  "cardMchKeyDesc": "Configure Sand app ID, RSA keys (Hmpay is an aggregated payment product under Sand)",
+  "cardMchConfig": "Merchant Config",
+  "cardMchConfigDesc": "Configure Sand merchant No, store ID, etc.",
+  "configTitle": "Hmpay ISV Key Configuration",
+  "isvIdentity": "ISV Identity",
+  "keyConfig": "Key Configuration",
+  "sandAppId": "Sand App ID",
+  "sandAppIdPlaceholder": "Please enter Sand app ID (sandAppId/app_id)",
+  "publicKey": "Sand Public Key",
+  "publicKeyTooltip": "Sand RSA public key (PEM format, for callback/response signature verification); masked when already configured, clear and re-paste to update",
+  "publicKeyPlaceholder": "Paste Sand RSA public key (PEM format, with -----BEGIN/END markers)",
+  "privateKey": "Merchant Private Key",
+  "privateKeyTooltip": "Merchant RSA private key (PEM format, for request signing); masked when already configured, clear and re-paste to update",
+  "privateKeyPlaceholder": "Paste merchant RSA private key (PEM format, with -----BEGIN/END markers)",
+  "mchConfigTitle": "Hmpay Merchant Configuration",
+  "merchantNo": "Sand Merchant No",
+  "merchantNoPlaceholder": "Please enter Sand merchant No",
+  "storeId": "Store ID",
+  "storeIdPlaceholder": "Please enter store ID (storeId)",
+  "validation": {
+    "sandAppId": "Please enter Sand app ID",
+    "privateKey": "Please enter merchant private key",
+    "publicKey": "Please enter Sand public key",
+    "merchantNo": "Please enter Sand merchant No"
+  }
+}

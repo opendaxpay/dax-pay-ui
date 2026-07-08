@@ -27,6 +27,8 @@
   const formRef = ref();
   const form = ref<HkrtIsvKeyConfig>({} as HkrtIsvKeyConfig);
   let rawForm: Record<string, any> = {};
+  // 当前环境(由管理页传入)
+  const sandbox = ref(false);
 
   const canEdit = computed(() => hasPermission(PermCodes.Payment.Hkrt.MANAGE));
 
@@ -38,8 +40,9 @@
     accessKey: [{ required: true, message: $t('payment.channel.hkrtIsv.validation.accessKey') }],
   };
 
-  /** 打开抽屉并加载海科融通服务商密钥配置（平台为唯一服务商，密钥全局唯一） */
-  function init() {
+  /** 打开抽屉并加载海科融通服务商密钥配置（平台为唯一服务商，密钥全局唯一，按环境区分） */
+  function init(isSandbox: boolean) {
+    sandbox.value = isSandbox;
     visible.value = true;
     resetForm();
     loadConfig();
@@ -47,7 +50,7 @@
 
   function loadConfig() {
     confirmLoading.value = true;
-    HkrtPayConfigApi.findConfig(ProductEnum.HKRT_PAY)
+    HkrtPayConfigApi.findConfig(ProductEnum.HKRT_PAY, sandbox.value)
       .then(({ data }) => {
         rawForm = { ...data };
         form.value = {
@@ -71,6 +74,7 @@
           'accessKey',
         ),
         product: ProductEnum.HKRT_PAY,
+        sandbox: sandbox.value,
       })
         .then(() => {
           message.success($t('common.saveSuccess'));

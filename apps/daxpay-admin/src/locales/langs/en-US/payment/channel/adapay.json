@@ -1,0 +1,23 @@
+{
+  "title": "Adapay Configuration",
+  "keyConfig": "Key Configuration",
+  "enable": "Enable",
+  "adapayAppId": "Application ID",
+  "adapayAppIdPlaceholder": "Please enter Adapay application ID",
+  "apiKey": "API Key",
+  "apiKeyPlaceholder": "Please enter Adapay API key (Authorization header)",
+  "merchantNo": "Merchant No",
+  "merchantNoPlaceholder": "Please enter Adapay merchant number",
+  "privateKey": "Merchant RSA Private Key",
+  "privateKeyPlaceholder": "Please enter PKCS#8 Base64 private key (for request signing)",
+  "publicKey": "Platform Public Key",
+  "publicKeyPlaceholder": "Please enter X509 Base64 public key (for response verification, leave empty for global default)",
+  "validation": {
+    "enable": "Please select enable status",
+    "adapayAppId": "Please enter Adapay application ID",
+    "apiKey": "Please enter Adapay API key",
+    "merchantNo": "Please enter Adapay merchant number",
+    "privateKey": "Please enter merchant RSA private key",
+    "publicKey": "Please enter platform public key"
+  }
+}

@@ -3,5 +3,8 @@
   "cardDirectKeyConfig": "密钥配置",
   "cardDirectKeyConfigDesc": "配置银联商务商户维度的应用ID和密钥",
   "directKeyConfigTitle": "银联商务密钥配置",
-  "keyConfigSection": "商户密钥配置"
+  "keyConfigSection": "商户密钥配置",
+  "environment": "环境",
+  "prodEnv": "生产",
+  "sandboxEnv": "沙箱"
 }

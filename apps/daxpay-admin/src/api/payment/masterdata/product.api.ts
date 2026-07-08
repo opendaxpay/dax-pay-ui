@@ -57,5 +57,7 @@ export interface PayProductResult extends BaseEntity {
   sandbox?: boolean;
   apiCallMode?: string;
   payIdType?: string;
+  /** 当前生效环境(来自支付产品配置, 商户只读): prod/sandbox */
+  activeEnv?: string;
   capabilities?: PayProductCapabilityItem[];
 }

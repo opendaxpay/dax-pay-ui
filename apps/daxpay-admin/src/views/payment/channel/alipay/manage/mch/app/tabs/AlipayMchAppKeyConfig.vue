@@ -28,6 +28,8 @@
   const loading = ref(false);
   const saving = ref(false);
   const isEditing = ref(false);
+  // 是否沙箱环境
+  const sandbox = ref(false);
   const formRef = ref();
   const formState = ref<AlipayMchAppKeyConfig>({
     authType: 'public_key',
@@ -71,7 +73,7 @@
       return;
     }
     loading.value = true;
-    AlipayMchAppApi.findKeyConfigByAlipayDirectAppId(props.alipayDirectAppId)
+    AlipayMchAppApi.findKeyConfigByAlipayDirectAppId(props.alipayDirectAppId, sandbox.value)
       .then(({ data }) => {
         formState.value = {
           authType: 'public_key',
@@ -134,6 +136,7 @@
           alipayDirectAppId: props.alipayDirectAppId,
           mchNo: props.mchNo,
           channelMchNo: props.channelMchNo,
+          sandbox: sandbox.value,
         };
         return AlipayMchAppApi.saveKeyConfig(submitData)
           .then(() => {
@@ -174,6 +177,8 @@
     () => props.alipayDirectAppId,
     (alipayDirectAppId) => {
       if (alipayDirectAppId) {
+        // 切换应用默认加载生产环境配置
+        sandbox.value = false;
         isEditing.value = false;
         loadConfig();
       }
@@ -215,6 +220,14 @@
           class="form-compact max-w-3xl"
         >
           <a-divider orientation="left">{{ $t('payment.channel.alipayIsv.basicConfig') }}</a-divider>
+
+          <!-- 国际化: 环境(生产/沙箱切换) -->
+          <a-form-item :label="$t('payment.channel.alipayIsv.environment')">
+            <a-radio-group v-model:value="sandbox" button-style="solid" @change="loadConfig">
+              <a-radio-button :value="false">{{ $t('payment.channel.alipayIsv.prodEnv') }}</a-radio-button>
+              <a-radio-button :value="true">{{ $t('payment.channel.alipayIsv.sandboxEnv') }}</a-radio-button>
+            </a-radio-group>
+          </a-form-item>
 
           <a-form-item :label="$t('payment.channel.alipayIsv.aliAppId')">
             <a-input :value="aliAppId || '-'" disabled />

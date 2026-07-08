@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { type Component, computed, markRaw, onMounted, ref } from 'vue';
+  import { type Component, computed, markRaw, nextTick, onMounted, ref, watch } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
@@ -9,6 +9,7 @@
   import AlipayIsvManage from '#/views/payment/channel/alipay/manage/AlipayIsvManage.vue';
   import DougongManage from '#/views/payment/channel/dougong/manage/DougongManage.vue';
   import HkrtManage from '#/views/payment/channel/hkrt/manage/HkrtManage.vue';
+  import HmpayManage from '#/views/payment/channel/hmpay/manage/HmpayManage.vue';
   import LakalaManage from '#/views/payment/channel/lakala/manage/LakalaManage.vue';
   import LeshuaManage from '#/views/payment/channel/leshua/manage/LeshuaManage.vue';
   import FuyouManage from '#/views/payment/channel/fuyou/manage/FuyouManage.vue';
@@ -74,6 +75,10 @@
         currentComponent.value = markRaw(FuyouManage);
         break;
       }
+      case 'hm_pay': {
+        currentComponent.value = markRaw(HmpayManage);
+        break;
+      }
       default: {
         currentComponent.value = null;
         break;
@@ -110,6 +115,9 @@
     if (product.value === 'fuyou_pay') {
       return $t('payment.product.enum.fuyouPay');
     }
+    if (product.value === 'hm_pay') {
+      return $t('payment.product.enum.hmPay');
+    }
     if (product.value) {
       return $t('payment.constant.product.productName.unknown', { product: product.value });
     }
@@ -118,6 +126,15 @@
 
   onMounted(() => {
     initDispatch();
+  });
+
+  // 修复断链: 组件挂载后传递 sandbox 参数给子组件
+  watch(currentComponent, (comp) => {
+    if (comp) {
+      nextTick(() => {
+        childRef.value?.init(sandbox.value);
+      });
+    }
   });
 </script>
 

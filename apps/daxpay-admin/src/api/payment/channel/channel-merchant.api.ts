@@ -54,6 +54,10 @@ export interface ChannelMerchantResult extends BaseEntity {
   channel?: string;
   /** 是否启用 */
   enable?: boolean;
+  /** 当前生效环境(来自支付产品配置, 商户只读): prod/sandbox */
+  activeEnv?: string;
+  /** 是否支持沙箱环境 */
+  sandboxSupport?: boolean;
   /** 通道商户创建来源 */
   source?: string;
   /** 备注 */

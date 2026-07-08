@@ -8,10 +8,10 @@ import { defHttp } from '#/api/request';
 export const LakalaPayConfigApi = {
   /**
    * 查询拉卡拉服务商密钥配置
-   * 平台为唯一服务商，密钥全局唯一
+   * 平台为唯一服务商，密钥全局唯一，按环境区分
    */
-  findConfig(product: string): Promise<Result<LakalaIsvKeyConfig>> {
-    return defHttp.get({ url: '/admin/lakala/isv-key-config/find-config', params: { product } });
+  findConfig(product: string, sandbox: boolean): Promise<Result<LakalaIsvKeyConfig>> {
+    return defHttp.get({ url: '/admin/lakala/isv-key-config/find-config', params: { product, sandbox } });
   },
   /**
    * 保存拉卡拉服务商密钥配置
@@ -39,4 +39,6 @@ export interface LakalaIsvKeyConfig {
   sm4Key?: string;
   /** 机构代码 */
   orgCode?: string;
+  /** 是否沙箱环境 */
+  sandbox?: boolean;
 }

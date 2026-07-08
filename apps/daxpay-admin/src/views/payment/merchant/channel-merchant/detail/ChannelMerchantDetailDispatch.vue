@@ -17,6 +17,7 @@
   import HkrtMchManage from '#/views/payment/channel/hkrt/manage/mch/HkrtMchManage.vue';
   import LeshuaMchManage from '#/views/payment/channel/leshua/manage/mch/LeshuaMchManage.vue';
   import DougongMchManage from '#/views/payment/channel/dougong/manage/mch/DougongMchManage.vue';
+  import HmpayMchManage from '#/views/payment/channel/hmpay/manage/mch/HmpayMchManage.vue';
   import VbillMchManage from '#/views/payment/channel/vbill/manage/mch/VbillMchManage.vue';
   import FuyouMchManage from '#/views/payment/channel/fuyou/manage/mch/FuyouMchManage.vue';
   import UmsDirectMchManage from '#/views/payment/channel/ums/manage/UmsDirectMchManage.vue';
@@ -65,6 +66,7 @@
   const dougongManageRef = ref<InstanceType<typeof DougongMchManage>>();
   const vbillManageRef = ref<InstanceType<typeof VbillMchManage>>();
   const fuyouManageRef = ref<InstanceType<typeof FuyouMchManage>>();
+  const hmpayManageRef = ref<InstanceType<typeof HmpayMchManage>>();
 
   /** 是否为银联商务系列产品 */
   function isUmsProduct(p: string) {
@@ -93,6 +95,7 @@
       p === ProductEnum.DOUGONG_PAY ||
       p === ProductEnum.VBILL_PAY ||
       p === ProductEnum.FUYOU_PAY ||
+      p === ProductEnum.HM_PAY ||
       isUmsProduct(p)
     );
   }
@@ -134,6 +137,9 @@
     }
     if (productCode === ProductEnum.FUYOU_PAY) {
       return $t('payment.channel.fuyouIsv.manageTitle');
+    }
+    if (productCode === ProductEnum.HM_PAY) {
+      return $t('payment.channel.hmpayIsv.manageTitle');
     }
     if (isUmsProduct(productCode)) {
       return $t('payment.channel.umsManage.manageTitle');
@@ -223,6 +229,9 @@
     }
     if (product.value === ProductEnum.FUYOU_PAY) {
       fuyouManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
+    }
+    if (product.value === ProductEnum.HM_PAY) {
+      hmpayManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
     }
   }
 
@@ -362,6 +371,11 @@
         <FuyouMchManage
           v-else-if="product === ProductEnum.FUYOU_PAY"
           ref="fuyouManageRef"
+          @success="loadChannelMerchant"
+        />
+        <HmpayMchManage
+          v-else-if="product === ProductEnum.HM_PAY"
+          ref="hmpayManageRef"
           @success="loadChannelMerchant"
         />
         <div v-else-if="!isSupported(product)" class="flex items-center justify-center" style="min-height: 400px">

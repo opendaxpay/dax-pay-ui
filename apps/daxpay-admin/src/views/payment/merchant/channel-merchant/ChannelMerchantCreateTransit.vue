@@ -14,6 +14,7 @@ import LeshuaMchCreateConfig from '#/views/payment/channel/leshua/config/LeshuaM
 import DougongMchCreateConfig from '#/views/payment/channel/dougong/config/DougongMchCreateConfig.vue';
 import VbillMchCreateConfig from '#/views/payment/channel/vbill/config/VbillMchCreateConfig.vue';
 import FuyouMchCreateConfig from '#/views/payment/channel/fuyou/config/FuyouMchCreateConfig.vue';
+import HmpayMchCreateConfig from '#/views/payment/channel/hmpay/config/HmpayMchCreateConfig.vue';
 import WechatMchCreateConfig from '#/views/payment/channel/wechat/config/WechatMchCreateConfig.vue';
 import WechatDirectMchCreateConfig from '#/views/payment/channel/wechat/config/WechatDirectMchCreateConfig.vue';
 
@@ -37,6 +38,7 @@ const lakalaRef = ref();
   const dougongRef = ref();
   const vbillRef = ref();
   const fuyouRef = ref();
+  const hmpayRef = ref();
 
 /** 是否为银联商务系列产品 */
 function isUmsProduct(product: string) {
@@ -105,6 +107,10 @@ function init(product: string, mchNo: string, channel: string) {
         fuyouRef.value?.init(mchNo, product, channel);
         break;
       }
+      case ProductEnum.HM_PAY: {
+        hmpayRef.value?.init(mchNo, product, channel);
+        break;
+      }
       default: {
         if (isUmsProduct(product)) {
           umsRef.value?.init(mchNo, product, channel);
@@ -130,5 +136,6 @@ defineExpose({ init });
   <DougongMchCreateConfig ref="dougongRef" @prev="emit('prev')" @close="emit('close')" />
   <VbillMchCreateConfig ref="vbillRef" @prev="emit('prev')" @close="emit('close')" />
   <FuyouMchCreateConfig ref="fuyouRef" @prev="emit('prev')" @close="emit('close')" />
+  <HmpayMchCreateConfig ref="hmpayRef" @prev="emit('prev')" @close="emit('close')" />
   <DouyinMchCreateConfig ref="douyinRef" @prev="emit('prev')" @close="emit('close')" />
 </template>

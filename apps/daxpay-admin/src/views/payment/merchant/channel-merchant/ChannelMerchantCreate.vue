@@ -235,6 +235,16 @@
                 <div class="text-xs text-muted-foreground">
                   {{ getChannelName(item.channel || '') }}
                 </div>
+                <!-- 环境状态标签(仅支持沙箱的产品显示) -->
+                <div v-if="item.sandbox" class="mt-2">
+                  <a-tag :color="item.activeEnv === 'sandbox' ? 'orange' : 'blue'" class="!m-0">
+                    {{
+                      item.activeEnv === 'sandbox'
+                        ? $t('payment.constant.product.productConfig.sandboxLabel')
+                        : $t('payment.constant.product.productConfig.prodLabel')
+                    }}
+                  </a-tag>
+                </div>
               </div>
               <!-- 选中标记 -->
               <div

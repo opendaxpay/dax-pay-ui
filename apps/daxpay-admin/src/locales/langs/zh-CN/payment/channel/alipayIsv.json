@@ -1,5 +1,8 @@
 {
   "apiInvokeConfigTitle": "接口调用配置(密钥/证书)",
+  "environment": "环境",
+  "prodEnv": "生产",
+  "sandboxEnv": "沙箱",
   "basicConfig": "基础配置",
   "keyConfig": "密钥配置",
   "certConfig": "证书模式",

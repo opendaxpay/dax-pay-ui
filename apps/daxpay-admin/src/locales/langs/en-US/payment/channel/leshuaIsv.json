@@ -1,0 +1,31 @@
+{
+  "title": "Leshua ISV Configuration",
+  "groupConfig": "Configuration Management",
+  "configTitle": "Leshua ISV Key Configuration",
+  "manageTitle": "Leshua Merchant Management",
+  "basicConfig": "Basic Configuration",
+  "keyConfig": "Key Configuration",
+  "enable": "Enable",
+  "lsMchNo": "Leshua Merchant ID",
+  "lsMchNoPlaceholder": "Enter Leshua merchant ID (merchant_id)",
+  "lsMchNoTooltip": "The merchant ID (merchant_id) assigned by Leshua, globally unique",
+  "tradeKey": "Trade Key",
+  "tradeKeyPlaceholder": "Enter trade key (tradeKey)",
+  "tradeKeyTooltip": "Leshua trade API signature key, used for request signing and response/callback verification",
+  "notifyKey": "Notify Key",
+  "notifyKeyPlaceholder": "Enter notify key (notifyKey, optional)",
+  "signType": "Sign Type",
+  "signTypePlaceholder": "Select sign type",
+  "lsIsvNo": "Leshua ISV No",
+  "lsIsvNoPlaceholder": "Enter Leshua ISV number (for onboarding, optional)",
+  "cardMchKey": "ISV Key",
+  "cardMchKeyDesc": "Configure Leshua merchant ID, trade key and sign type",
+  "validation": {
+    "lsMchNo": "Please enter Leshua merchant ID",
+    "tradeKey": "Please enter trade key",
+    "signType": "Please select sign type"
+  },
+  "groupMchConfig": "Merchant Configuration",
+  "cardMchConfig": "Merchant Configuration",
+  "cardMchConfigDesc": "Configure channel merchant Leshua merchant ID"
+}

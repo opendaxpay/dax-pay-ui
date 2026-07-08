@@ -3,5 +3,8 @@
   "cardDirectKeyConfig": "Key Config",
   "cardDirectKeyConfigDesc": "Configure UMS merchant-level App ID and keys",
   "directKeyConfigTitle": "UMS Key Configuration",
-  "keyConfigSection": "Merchant Key Config"
+  "keyConfigSection": "Merchant Key Config",
+  "environment": "Environment",
+  "prodEnv": "Production",
+  "sandboxEnv": "Sandbox"
 }

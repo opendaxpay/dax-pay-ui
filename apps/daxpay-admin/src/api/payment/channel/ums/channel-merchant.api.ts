@@ -15,10 +15,10 @@ export const UmsDirectChannelMerchantApi = {
   /**
    * 根据通道商户号查询密钥配置
    */
-  findKeyConfig(channelMchNo: string): Promise<Result<UmsDirectKeyConfig>> {
+  findKeyConfig(channelMchNo: string, sandbox: boolean = false): Promise<Result<UmsDirectKeyConfig>> {
     return defHttp.get({
       url: '/admin/ums/direct-channel-merchant/find-key-config',
-      params: { channelMchNo },
+      params: { channelMchNo, sandbox },
     });
   },
   /**
@@ -51,6 +51,8 @@ export interface UmsDirectKeyConfig {
   appKeyConfigured?: boolean;
   /** 通讯密钥是否已配置 */
   secretKeyConfigured?: boolean;
+  /** 是否沙箱环境 */
+  sandbox?: boolean;
 }
 
 /**
@@ -59,6 +61,8 @@ export interface UmsDirectKeyConfig {
 export interface UmsDirectKeyConfigParam {
   /** 通道商户号(唯一标识) */
   channelMchNo: string;
+  /** 是否沙箱环境 */
+  sandbox?: boolean;
   /** 终端号(tid) */
   terminalNo?: string;
   /** 银联商务应用 AppId */

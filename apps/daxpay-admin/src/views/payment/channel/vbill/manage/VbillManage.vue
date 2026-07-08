@@ -10,6 +10,8 @@
   defineOptions({ name: 'VbillManage' });
 
   const mchKeyEditRef = ref<InstanceType<typeof VbillIsvConfigEdit> | null>(null);
+  // 当前环境(由分发页传入)
+  const sandbox = ref(false);
 
   /**
    * 功能卡片配置
@@ -47,12 +49,13 @@
   }
 
   /** 初始化（由分发页调用, 平台为唯一服务商, 无需服务商号） */
-  function init() {
+  function init(isSandbox: boolean) {
+    sandbox.value = isSandbox;
   }
 
   function handleCardClick(card: { key: string }) {
     if (card.key === 'mchKey') {
-      mchKeyEditRef.value?.init();
+      mchKeyEditRef.value?.init(sandbox.value);
     }
   }
 

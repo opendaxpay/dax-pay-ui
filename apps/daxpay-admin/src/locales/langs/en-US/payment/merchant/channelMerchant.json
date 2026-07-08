@@ -34,6 +34,7 @@
   "developing": "Feature under development, coming soon",
   "source": "Source",
   "enable": "Status",
+  "envStatus": "Environment",
   "remark": "Remark",
   "sourceManual": "Manual",
   "typeSub": "Sub Merchant",

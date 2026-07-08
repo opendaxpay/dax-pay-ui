@@ -1,5 +1,8 @@
 {
   "apiInvokeConfigTitle": "API Invocation Config (Keys/Certificates)",
+  "environment": "Environment",
+  "prodEnv": "Production",
+  "sandboxEnv": "Sandbox",
   "basicConfig": "Basic Config",
   "keyConfig": "Key Config",
   "certConfig": "Certificate Mode",

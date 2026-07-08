@@ -46,6 +46,9 @@
     return props.channelMerchant.source || '-';
   });
 
+  // 是否显示环境状态(仅支持沙箱的产品)
+  const showEnvStatus = computed(() => props.channelMerchant.sandboxSupport === true);
+
   /** 加载拉卡拉通道商户专属配置 */
   function loadConfig() {
     if (!props.channelMchNo) {
@@ -107,6 +110,16 @@
         <!-- 国际化: 是否启用 -->
         <a-descriptions-item :label="$t('payment.merchant.channelMerchant.enable')">
           {{ enableLabel }}
+        </a-descriptions-item>
+        <!-- 国际化: 环境状态(仅支持沙箱的产品显示) -->
+        <a-descriptions-item v-if="showEnvStatus" :label="$t('payment.merchant.channelMerchant.envStatus')">
+          <a-tag :color="channelMerchant.activeEnv === 'sandbox' ? 'orange' : 'blue'">
+            {{
+              channelMerchant.activeEnv === 'sandbox'
+                ? $t('payment.constant.product.productConfig.sandboxLabel')
+                : $t('payment.constant.product.productConfig.prodLabel')
+            }}
+          </a-tag>
         </a-descriptions-item>
         <!-- 国际化: 来源 -->
         <a-descriptions-item :label="$t('payment.merchant.channelMerchant.source')">

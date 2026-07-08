@@ -49,10 +49,10 @@ export const AlipayMchAppApi = {
     return defHttp.post({ url: '/admin/alipay/mch-app/delete', params: { id } });
   },
   /** 查询应用密钥配置 */
-  findKeyConfigByAlipayDirectAppId(alipayDirectAppId: string): Promise<Result<AlipayMchAppKeyConfig>> {
+  findKeyConfigByAlipayDirectAppId(alipayDirectAppId: string, sandbox: boolean = false): Promise<Result<AlipayMchAppKeyConfig>> {
     return defHttp.get({
       url: '/admin/alipay/mch-app/find-key-config-by-app-id',
-      params: { alipayDirectAppId },
+      params: { alipayDirectAppId, sandbox },
     });
   },
   /** 保存应用密钥配置 */
@@ -106,6 +106,8 @@ export interface AlipayMchAppKeyConfig {
   alipayRootCert?: string;
   /** AES 通信密钥 */
   secretKey?: string;
+  /** 是否沙箱环境 */
+  sandbox?: boolean;
 }
 
 /** 支付宝通道商户应用授权认证配置 */

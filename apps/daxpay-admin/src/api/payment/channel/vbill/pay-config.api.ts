@@ -8,10 +8,10 @@ import { defHttp } from '#/api/request';
 export const VbillPayConfigApi = {
   /**
    * 查询随行付服务商密钥配置
-   * 平台为唯一服务商，密钥全局唯一
+   * 平台为唯一服务商，密钥全局唯一，按环境区分
    */
-  findConfig(product: string): Promise<Result<VbillIsvKeyConfig>> {
-    return defHttp.get({ url: '/admin/vbill/isv-key-config/find-config', params: { product } });
+  findConfig(product: string, sandbox: boolean): Promise<Result<VbillIsvKeyConfig>> {
+    return defHttp.get({ url: '/admin/vbill/isv-key-config/find-config', params: { product, sandbox } });
   },
   /**
    * 保存随行付服务商密钥配置

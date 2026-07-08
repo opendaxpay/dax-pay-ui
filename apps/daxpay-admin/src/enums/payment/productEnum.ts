@@ -4,7 +4,7 @@ import { ChannelEnum } from './channelEnum';
  * 支付产品枚举
  */
 export enum ProductEnum {
-  /** 汇付天下(Adapay直连) */
+  /** Adapay(直连) */
   ADA_PAY = 'ada_pay',
   /** 支付宝(直连) */
   ALIPAY = 'alipay',
@@ -91,7 +91,7 @@ export const productNameMap: Record<string, string> = {
   [ProductEnum.UMS_BARCODE]: '银联商务(B扫C)',
   [ProductEnum.LAKALA_PAY]: '拉卡拉支付',
   [ProductEnum.LESHUA_PAY]: '乐刷支付',
-  [ProductEnum.ADA_PAY]: '汇付天下',
+  [ProductEnum.ADA_PAY]: 'Adapay',
   [ProductEnum.DOUGONG_PAY]: '斗拱',
   [ProductEnum.HKRT_PAY]: '海科融通支付',
   [ProductEnum.VBILL_PAY]: '随行付',
@@ -154,7 +154,7 @@ export const productLogoMap: Record<string, string> = {
   [ProductEnum.LAKALA_PAY]: 'lakala',
   // 乐刷
   [ProductEnum.LESHUA_PAY]: 'leshua',
-  // 汇付天下(Adapay直连)
+  // Adapay(直连)
   [ProductEnum.ADA_PAY]: 'ada_pay',
   // 斗拱(汇付天下旗下)
   [ProductEnum.DOUGONG_PAY]: 'dougong',

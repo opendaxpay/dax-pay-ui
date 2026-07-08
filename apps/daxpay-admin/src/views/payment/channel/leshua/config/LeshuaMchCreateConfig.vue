@@ -1,0 +1,165 @@
+<script lang="ts" setup>
+import { computed, nextTick, ref } from 'vue';
+
+import { $t } from '@vben/locales';
+
+import { IconifyIcon } from '@vben-core/icons';
+
+import { LeshuaChannelMerchantApi, type LeshuaIsvChannelMerchantCreateParam } from '#/api/payment/channel/leshua/channel-merchant.api';
+import ChannelLogo from '#/components/channel/ChannelLogo.vue';
+import { productI18nMap, productNameMap } from '#/enums/payment';
+import { useMessage } from '#/hooks/useMessage';
+
+defineOptions({ name: 'LeshuaMchCreateConfig' });
+
+const emit = defineEmits<{
+  (e: 'prev'): void;
+  (e: 'close'): void;
+}>();
+
+const { message } = useMessage();
+
+const mchNo = ref('');
+const productCode = ref('');
+const channelCode = ref('');
+const formRef = ref();
+const form = ref({
+  channelMerchantName: '',
+  lsMchNo: '',
+});
+
+const visible = ref(false);
+const createSuccess = ref(false);
+const submitLoading = ref(false);
+
+/** 支付产品展示名称 */
+const productDisplayName = computed(() => {
+  const product = productCode.value;
+  if (!product) return '-';
+  const i18nKey = productI18nMap[product];
+  if (i18nKey) {
+    return $t(i18nKey);
+  }
+  return productNameMap[product] || product;
+});
+
+const rules = computed(() => ({
+  channelMerchantName: [{ required: true, message: $t('payment.merchant.channelMerchant.channelMerchantNameRequired') }],
+  lsMchNo: [{ required: true, message: $t('payment.channel.leshuaIsv.validation.lsMchNo') }],
+}));
+
+function init(no: string, product: string, channel: string) {
+  mchNo.value = no;
+  productCode.value = product;
+  channelCode.value = channel;
+  visible.value = true;
+  createSuccess.value = false;
+  resetForm();
+}
+
+function validate(): boolean {
+  let valid = false;
+  formRef.value?.validate((errors: any) => {
+    valid = !errors;
+  });
+  return valid;
+}
+
+function getData(): Record<string, any> {
+  return { ...form.value };
+}
+
+function submit(param: Record<string, any>): Promise<any> {
+  return LeshuaChannelMerchantApi.create(param as LeshuaIsvChannelMerchantCreateParam);
+}
+
+function handlePrev() {
+  emit('prev');
+}
+
+function handleSubmit() {
+  formRef.value?.validate().then(() => {
+    submitLoading.value = true;
+    const param = {
+      mchNo: mchNo.value,
+      product: productCode.value,
+      ...form.value,
+    };
+    submit(param)
+      .then(() => {
+        createSuccess.value = true;
+        message.success($t('payment.merchant.channelMerchant.createSuccess'));
+      })
+      .finally(() => {
+        submitLoading.value = false;
+      });
+    }).catch(() => {});
+  }
+
+function resetForm() {
+  nextTick(() => {
+    formRef.value?.resetFields();
+  });
+}
+
+defineExpose({ init, validate, getData, submit });
+</script>
+
+<template>
+  <div v-if="visible">
+    <div v-if="!createSuccess">
+      <a-spin :spinning="submitLoading">
+      <a-form
+        ref="formRef"
+        :model="form"
+        :rules="rules"
+        :label-col="{ span: 6 }"
+        :wrapper-col="{ span: 16 }"
+        :validate-trigger="['blur', 'change']"
+      >
+        <a-form-item :label="$t('payment.merchant.channelMerchant.product')">
+          <div class="flex items-center gap-2 h-8">
+            <ChannelLogo v-if="channelCode" :channel="channelCode" :size="24" />
+            <span class="text-foreground">{{ productDisplayName }}</span>
+          </div>
+        </a-form-item>
+        <a-form-item :label="$t('payment.merchant.channelMerchant.channelMerchantName')" name="channelMerchantName">
+          <a-input
+            v-model:value="form.channelMerchantName"
+            :placeholder="$t('payment.merchant.channelMerchant.pleaseInputName')"
+          />
+        </a-form-item>
+        <a-form-item :label="$t('payment.channel.leshuaIsv.lsMchNo')" name="lsMchNo">
+          <a-input
+            v-model:value="form.lsMchNo"
+            :placeholder="$t('payment.channel.leshuaIsv.lsMchNoPlaceholder')"
+          />
+        </a-form-item>
+        <div class="flex justify-center gap-4 mt-8 pt-6 border-t border-border">
+          <a-button @click="handlePrev">
+            {{ $t('payment.merchant.channelMerchant.prevStep') }}
+          </a-button>
+          <a-button type="primary" :loading="submitLoading" @click="handleSubmit">
+            {{ $t('payment.merchant.channelMerchant.create') }}
+          </a-button>
+        </div>
+      </a-form>
+      </a-spin>
+    </div>
+
+    <div v-else class="flex flex-col items-center justify-center py-12">
+      <div class="w-20 h-20 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-6">
+        <IconifyIcon icon="ant-design:check-circle-filled" class="text-4xl text-green-500" />
+      </div>
+      <div class="text-xl font-bold text-foreground mb-2">{{
+        $t('payment.merchant.channelMerchant.createSuccess')
+      }}</div>
+      <div class="text-sm text-muted-foreground mb-8">{{
+        $t('payment.merchant.channelMerchant.createSuccessDesc')
+      }}</div>
+      <a-button type="primary" @click="emit('close')">
+        {{ $t('payment.merchant.channelMerchant.closePage') }}
+      </a-button>
+    </div>
+  </div>
+</template>
