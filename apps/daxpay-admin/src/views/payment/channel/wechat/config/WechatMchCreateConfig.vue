@@ -29,6 +29,8 @@ const formRef = ref();
 const form = ref({
   channelMerchantName: '',
   subMchId: '',
+  // 认证应用类型, 默认服务商应用
+  authAppType: 'SP_APP',
 });
 
 const visible = ref(false);
@@ -49,6 +51,7 @@ const productDisplayName = computed(() => {
 const rules = computed(() => ({
   channelMerchantName: [{ required: true, message: $t('payment.merchant.channelMerchant.channelMerchantNameRequired') }],
   subMchId: [{ required: true, message: $t('payment.merchant.channelMerchant.wechatSubMerchantNoRequired') }],
+  authAppType: [{ required: true, message: $t('payment.channel.wechatManage.authAppTypeRequired') }],
 }));
 
 function init(no: string, product: string, channel: string) {
@@ -86,6 +89,7 @@ function resetForm() {
   form.value = {
     channelMerchantName: '',
     subMchId: '',
+    authAppType: 'SP_APP',
   };
   nextTick(() => {
     formRef.value?.resetFields();
@@ -126,6 +130,24 @@ defineExpose({ init });
           <a-input
             v-model:value="form.subMchId"
             :placeholder="$t('payment.merchant.channelMerchant.wechatSubMerchantNoPlaceholder')"
+          />
+        </a-form-item>
+        <!-- 国际化：认证应用类型 -->
+        <a-form-item :label="$t('payment.channel.wechatManage.authAppType')" name="authAppType">
+          <a-radio-group v-model:value="form.authAppType" button-style="solid">
+            <a-radio-button value="SP_APP">
+              {{ $t('payment.channel.wechatManage.authAppTypeSpApp') }}
+            </a-radio-button>
+            <a-radio-button value="SUB_APP">
+              {{ $t('payment.channel.wechatManage.authAppTypeSubApp') }}
+            </a-radio-button>
+          </a-radio-group>
+        </a-form-item>
+        <a-form-item v-if="form.authAppType === 'SUB_APP'" :wrapper-col="{ offset: 6, span: 16 }">
+          <a-alert
+            type="info"
+            show-icon
+            :message="$t('payment.channel.wechatManage.authAppTypeSubTip')"
           />
         </a-form-item>
 

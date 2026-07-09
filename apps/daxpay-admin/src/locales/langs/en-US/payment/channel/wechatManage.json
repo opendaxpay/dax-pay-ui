@@ -57,6 +57,16 @@
   "capabilityIspDefault": "ISP Default",
   "capabilityIspNotConfigured": "Not configured",
   "capabilityNoMchAppTip": "No sub-merchant app created; all capabilities will use the ISP default app",
+  "cardAuthApp": "Auth App Config",
+  "cardAuthAppDesc": "Choose whether OpenId authorization uses the service provider app or the sub-merchant app",
+  "authAppConfigTitle": "Auth App Config",
+  "authAppType": "Auth Application Type",
+  "authAppTypeSpApp": "Service Provider App",
+  "authAppTypeSubApp": "Sub-merchant App",
+  "authAppTypeRequired": "Please select auth application type",
+  "authAppTypeSubTip": "When using a sub-merchant app, create one in App Management and configure auth settings first",
+  "authAppTypeConfirm": "Confirm changing the auth application type?",
+  "authAppTypeSaveSuccess": "Auth application type saved successfully",
   "validation": {
     "appSecret": "App secret is required",
     "authCallbackUrl": "Auth callback URL is required"
