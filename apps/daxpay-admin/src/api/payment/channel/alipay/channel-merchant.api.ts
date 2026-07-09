@@ -19,6 +19,12 @@ export const AlipayIsvChannelMerchantApi = {
     return defHttp.post({ url: '/admin/alipay/isv-channel-merchant/update-app-auth-token', data });
   },
   /**
+   * 生成代运营授权链接(支付宝深链, 可出二维码)
+   */
+  genAuthUrl(data: AlipayIsvAuthParam): Promise<Result<AlipayIsvAuthUrlResult>> {
+    return defHttp.post({ url: '/admin/alipay/isv-channel-merchant/gen-auth-url', data });
+  },
+  /**
    * 根据通道商户号查询支付宝服务商通道商户配置
    */
   findByChannelMchNo(channelMchNo: string): Promise<Result<AlipayIsvChannelMerchantConfig>> {
@@ -118,4 +124,22 @@ export interface AlipayIsvAppAuthTokenUpdateParam {
   channelMchNo: string;
   /** 应用授权令牌 */
   appAuthToken: string;
+}
+
+/**
+ * 代运营授权参数
+ */
+export interface AlipayIsvAuthParam {
+  /** 通道商户号 */
+  channelMchNo: string;
+  /** 应用授权码(回调换 token 时使用) */
+  code?: string;
+}
+
+/**
+ * 代运营授权链接结果
+ */
+export interface AlipayIsvAuthUrlResult {
+  /** 支付宝代运营授权深链 */
+  authUrl?: string;
 }

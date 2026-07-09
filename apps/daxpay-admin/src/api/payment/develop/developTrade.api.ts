@@ -1,5 +1,5 @@
-import type { LabelValue, Result } from '#/types/web';
 import type { PayProviderMethod } from '#/api/payment/masterdata/provider.api';
+import type { LabelValue, Result } from '#/types/web';
 
 import { defHttp } from '#/api/request';
 
@@ -29,12 +29,12 @@ export const DevelopTradeApi = {
   },
 
   /**
-   * 传值模式: 按商户号筛选通道商户候选
+   * 传值模式: 按商户号筛选通道商户候选, channel 非空时仅返回该通道的通道商户
    */
-  channelMchCandidates(mchNo: string): Promise<Result<LabelValue[]>> {
+  channelMchCandidates(mchNo: string, channel?: string): Promise<Result<LabelValue[]>> {
     return defHttp.get({
       url: '/admin/develop/trade/channel-mch-candidates',
-      params: { mchNo },
+      params: { mchNo, channel },
     });
   },
 

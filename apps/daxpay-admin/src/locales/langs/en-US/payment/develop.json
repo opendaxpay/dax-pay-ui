@@ -152,12 +152,27 @@
   },
   "auth": {
     "title": "Channel Auth Debug",
+    "type": {
+      "alipay": "Alipay H5",
+      "alipayMini": "Alipay Mini Program",
+      "wechatMp": "WeChat Official Account",
+      "wechatMini": "WeChat Mini Program",
+      "wechatChannel": "WeChat Pay"
+    },
     "tag": {
-      "alipay": "Alipay"
+      "alipay": "Alipay H5",
+      "alipayMini": "Alipay Mini Program",
+      "wechatMp": "WeChat Official Account",
+      "wechatMini": "WeChat Mini Program",
+      "wechatChannel": "WeChat Pay"
     },
     "guide": {
       "title": "How to use",
-      "desc": "Generate an auth link and scan with Alipay app. Results appear automatically (requires platform Alipay config and payment gateway base URL)."
+      "desc": "Generate an auth link and scan with Alipay app. Results appear automatically (requires Alipay config in Third-party Platform Management, and payment gateway base URL in Platform Config).",
+      "descAlipayMini": "Alipay Mini Program auth debugging is not implemented yet.",
+      "descWechatMp": "Generate an auth link and scan with WeChat to complete web authorization. Results appear automatically (requires WeChat Official Account config in Third-party Platform Management, and payment gateway base URL in Platform Config).",
+      "descWechatMini": "Select merchant or admin mini program, then scan to get the user ID (auth not implemented yet).",
+      "descWechatChannel": "Select merchant/channel merchant/capability, then generate an auth link and scan with WeChat. Used to verify WeChat Pay (direct/ISV) configuration; the payment product is auto-detected from the channel merchant."
     },
     "btn": {
       "generate": "Generate Auth Link",
@@ -165,7 +180,24 @@
     },
     "qr": {
       "tip": "Scan with Alipay to authorize",
+      "tipWechat": "Scan with WeChat to authorize",
       "empty": "No QR code yet"
+    },
+    "form": {
+      "mchNo": "Merchant",
+      "channelMchNo": "Channel Merchant",
+      "capability": "Pay Capability",
+      "miniAppType": "Mini Program Side",
+      "rule": {
+        "mchNo": "Please select a merchant",
+        "channelMchNo": "Please select a channel merchant",
+        "capability": "Please select a pay capability",
+        "miniAppType": "Please select mini program side"
+      }
+    },
+    "miniAppType": {
+      "merchant": "Merchant",
+      "admin": "Admin"
     },
     "result": {
       "divider": "Auth Result",

@@ -167,11 +167,10 @@
                 <div class="config-item__label">{{ $t('system.thirdPlatform.wechatMp.appSecret') }}</div>
                 <div class="config-item__desc">{{ $t('system.thirdPlatform.wechatMp.appSecretDesc') }}</div>
               </div>
-              <a-textarea
+              <a-input
                 v-model:value="formState.appSecret"
                 :disabled="!isEditing"
                 :placeholder="$t('system.thirdPlatform.wechatMp.inputAppSecret')"
-                :rows="3"
                 allow-clear
               />
             </div>
