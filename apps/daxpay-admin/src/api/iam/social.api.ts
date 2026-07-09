@@ -72,34 +72,34 @@ export const SocialApi = {
 /**
  * 第三方平台登录配置管理 API
  */
-export const SocialConfigApi = {
+export const SocialLoginConfigApi = {
   /**
    * 全量查询平台配置(枚举驱动, 首次访问读时初始化缺失平台)
    * 未配置平台返回 configured=false 的占位记录(已落库, 含 id)
    */
-  findAll(): Promise<Result<SocialConfigResult[]>> {
-    return defHttp.get({ url: '/social/config/find-all' });
+  findAll(): Promise<Result<SocialLoginConfigResult[]>> {
+    return defHttp.get({ url: '/social/login-config/find-all' });
   },
 
   /**
    * 根据平台编码查询(不存在则初始化占位记录, 返回含 id 的记录)
    */
-  findBySource(source: string): Promise<Result<SocialConfigResult>> {
-    return defHttp.get({ url: '/social/config/get-by-source', params: { source } });
+  findBySource(source: string): Promise<Result<SocialLoginConfigResult>> {
+    return defHttp.get({ url: '/social/login-config/get-by-source', params: { source } });
   },
 
   /**
    * 修改平台配置(保存即标记为已配置)
    */
-  update(data: SocialConfigParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/social/config/update', data });
+  update(data: SocialLoginConfigParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/social/login-config/update', data });
   },
 
   /**
    * 切换平台启用状态(仅已配置平台可启停)
    */
   updateEnabled(source: string, enabled: boolean): Promise<Result<void>> {
-    return defHttp.post({ url: '/social/config/update-enabled', params: { source, enabled } });
+    return defHttp.post({ url: '/social/login-config/update-enabled', params: { source, enabled } });
   },
 };
 
@@ -128,7 +128,7 @@ export interface SocialBindResult {
 /**
  * 第三方平台登录配置
  */
-export interface SocialConfigResult {
+export interface SocialLoginConfigResult {
   /** 主键 */
   id?: string;
   /** 平台编码 */
@@ -148,7 +148,7 @@ export interface SocialConfigResult {
 /**
  * 第三方平台登录配置表单参数
  */
-export interface SocialConfigParam extends Partial<SocialConfigResult> {}
+export interface SocialLoginConfigParam extends Partial<SocialLoginConfigResult> {}
 
 /**
  * 社交登录授权码兑换结果

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import type { SocialConfigParam, SocialConfigResult } from '#/api/iam/social.api';
+  import type { SocialLoginConfigParam, SocialLoginConfigResult } from '#/api/iam/social.api';
 
   import { computed, reactive, ref, watch } from 'vue';
 
@@ -7,15 +7,15 @@
   import { useClipboard } from '@vueuse/core';
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { SocialConfigApi } from '#/api/iam/social.api';
+  import { SocialLoginConfigApi } from '#/api/iam/social.api';
   import { UrlConfigApi } from '#/api/system/url-config.api';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
 
-  defineOptions({ name: 'SocialConfigDrawer' });
+  defineOptions({ name: 'SocialLoginConfigDrawer' });
 
   const props = defineProps<{
-    configItem: null | SocialConfigResult;
+    configItem: null | SocialLoginConfigResult;
     visible: boolean;
   }>();
 
@@ -38,7 +38,7 @@
   const formRef = ref();
   // 当前操作的平台(新增/编辑时锁定, 决定是否显示 agentId 字段)
   const currentSource = ref<string>('');
-  const formData = reactive<SocialConfigParam>({
+  const formData = reactive<SocialLoginConfigParam>({
     id: undefined,
     source: '',
     clientId: '',
@@ -55,7 +55,7 @@
   }));
 
   // 原始脱敏数据(来自后端), 用于 diffForm 比对敏感字段是否被修改
-  const originalForm = ref<SocialConfigResult>({});
+  const originalForm = ref<SocialLoginConfigResult>({});
 
   /**
    * 是否显示企业微信 agentId 字段
@@ -131,7 +131,7 @@
         });
       } else {
         // 配置模式(未配置平台), 先调 findBySource 初始化占位记录
-        const record = (await SocialConfigApi.findBySource(item.source!)).data;
+        const record = (await SocialLoginConfigApi.findBySource(item.source!)).data;
         currentSource.value = record.source || '';
         const configSourceName = $t(`iam.social.platform.${currentSource.value}`);
         modalTitle.value = `${configSourceName}${$t('iam.social.action.config')}`;
@@ -160,11 +160,11 @@
       // 未修改返回 undefined(JSON 序列化时字段被忽略, 后端 NOT_NULL 策略下不参与 UPDATE),
       // 修改则返回新值
       const sensitiveData = diffForm(originalForm.value, formData, 'clientSecret');
-      const submitData: SocialConfigParam = {
+      const submitData: SocialLoginConfigParam = {
         ...formData,
         ...sensitiveData,
       };
-      await SocialConfigApi.update(submitData);
+      await SocialLoginConfigApi.update(submitData);
       message.success($t(isFirstConfig.value ? 'iam.social.tip.configSuccess' : 'iam.social.tip.editSuccess'));
       emit('update:visible', false);
       emit('saved');

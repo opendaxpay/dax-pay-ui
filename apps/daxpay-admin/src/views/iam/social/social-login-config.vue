@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import type { SocialConfigResult } from '#/api/iam/social.api';
+  import type { SocialLoginConfigResult } from '#/api/iam/social.api';
 
   import { computed, onMounted, ref } from 'vue';
 
@@ -7,17 +7,17 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { SocialConfigApi } from '#/api/iam/social.api';
+  import { SocialLoginConfigApi } from '#/api/iam/social.api';
   import SocialLogo from '#/components/social/SocialLogo.vue';
   import { socialColorMap } from '#/enums/social';
 
-  import SocialConfigDrawer from './components/SocialConfigDrawer.vue';
+  import SocialLoginConfigDrawer from './components/SocialLoginConfigDrawer.vue';
 
-  defineOptions({ name: 'SocialConfigList' });
+  defineOptions({ name: 'SocialLoginConfigList' });
 
   const loading = ref(false);
   // 平台配置列表(来自后端 枚举+库表内存合并, 已含未配置平台的缺省展示项)
-  const configList = ref<SocialConfigResult[]>([]);
+  const configList = ref<SocialLoginConfigResult[]>([]);
 
   /**
    * 卡片列表: 在后端返回基础上补充展示用的 label(国际化名称) 与 color(品牌色)
@@ -36,7 +36,7 @@
    */
   function loadConfig() {
     loading.value = true;
-    SocialConfigApi.findAll()
+    SocialLoginConfigApi.findAll()
       .then((res) => {
         configList.value = res.data || [];
       })
@@ -47,12 +47,12 @@
 
   // ===== 配置抽屉 =====
   const modalVisible = ref(false);
-  const selectedItem = ref<SocialConfigResult | null>(null);
+  const selectedItem = ref<SocialLoginConfigResult | null>(null);
 
   /**
    * 打开配置弹窗
    */
-  function handleConfig(item: SocialConfigResult & { label: string }) {
+  function handleConfig(item: SocialLoginConfigResult & { label: string }) {
     selectedItem.value = item;
     modalVisible.value = true;
   }
@@ -121,7 +121,7 @@
     </a-card>
 
     <!-- 配置抽屉 -->
-    <SocialConfigDrawer
+    <SocialLoginConfigDrawer
       v-model:visible="modalVisible"
       :config-item="selectedItem"
       @saved="loadConfig"

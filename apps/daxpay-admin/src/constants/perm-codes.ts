@@ -37,8 +37,8 @@ export const PermCodes = {
       KICKOUT: 'iam:online:user:kickout',
     },
     Social: {
-      VIEW: 'iam:social:config:view',
-      MANAGE: 'iam:social:config:manage',
+      VIEW: 'iam:social:login-config:view',
+      MANAGE: 'iam:social:login-config:manage',
     },
   },
 
@@ -249,6 +249,16 @@ export const PermCodes = {
       VIEW: 'system:notify:notice:view',
       MANAGE: 'system:notify:notice:manage',
       PUBLISH: 'system:notify:notice:publish',
+    },
+    /** 公众号配置 menuCode=system:notify:wechat-config */
+    WechatConfig: {
+      MANAGE: 'system:notify:wechat-config:manage',
+    },
+    /** 微信通知记录 menuCode=system:notify:wechat-message */
+    WechatMessage: {
+      VIEW: 'system:notify:wechat-message:view',
+      RESEND: 'system:notify:wechat-message:resend',
+      TEST: 'system:notify:wechat-message:test',
     },
     /** 存储文件 menuCode=system:file:platform */
     FilePlatform: {
