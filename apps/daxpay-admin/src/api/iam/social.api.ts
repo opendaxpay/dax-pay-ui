@@ -209,3 +209,17 @@ export const AlipayAuthApi = {
     });
   },
 };
+
+/**
+ * 统一生成三方授权地址
+ * 支付宝走专用端点, 其余走 JustAuth 标准 render
+ */
+export function renderSocialAuth(
+  source: string,
+  client: string = 'admin',
+  mode?: string,
+): Promise<Result<string>> {
+  return source === 'alipay'
+    ? AlipayAuthApi.render(client, mode)
+    : SocialApi.render(source, client, mode);
+}

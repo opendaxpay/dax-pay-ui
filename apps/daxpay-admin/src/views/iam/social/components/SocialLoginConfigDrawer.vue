@@ -183,7 +183,7 @@
         // 跳转型统一走编辑接口: 非空占位过 NotBlank(真实凭据在平台配置页, 后端忽略这两字段)
         await SocialLoginConfigApi.update({
           source: formData.source,
-          enabled: formData.enabled,
+          enabled: !!formData.enabled,
           clientId: '-',
           clientSecret: '-',
         });

@@ -3,7 +3,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { AlipayAuthApi, SocialApi } from '#/api/iam/social.api';
+  import { renderSocialAuth, SocialApi } from '#/api/iam/social.api';
   import { SocialLogo } from '#/components/social';
 
   defineOptions({ name: 'AuthThirdPartyPanel' });
@@ -44,10 +44,7 @@
       const ok = await props.ensureAgreement();
       if (!ok) return;
     }
-    const { data: url } =
-      source === 'alipay'
-        ? await AlipayAuthApi.render('admin', props.mode)
-        : await SocialApi.render(source, 'admin', props.mode);
+    const { data: url } = await renderSocialAuth(source, 'admin', props.mode);
     if (url) {
       // 跳转到第三方授权页, 授权后由后端回调处理并重定向回前端 /oauth-callback
       window.location.href = url;
