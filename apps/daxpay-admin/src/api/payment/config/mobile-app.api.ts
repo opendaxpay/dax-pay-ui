@@ -26,7 +26,7 @@ export const MobileAppApi = {
   /**
    * 查询单条详情
    */
-  findById(id: number): Promise<Result<MobileAppResult>> {
+  findById(id: string): Promise<Result<MobileAppResult>> {
     return defHttp.get({ url: '/admin/mobile-app/get', params: { id } });
   },
 
@@ -40,7 +40,7 @@ export const MobileAppApi = {
   /**
    * 更新启用状态
    */
-  updateEnabled(id: number, enable: boolean): Promise<Result<void>> {
+  updateEnabled(id: string, enable: boolean): Promise<Result<void>> {
     return defHttp.post({
       url: '/admin/mobile-app/update-enabled',
       params: { id, enable },
@@ -56,7 +56,7 @@ export interface MobileAppResult extends BaseEntity {
   platform?: string;
   /** 应用名称 */
   appName?: string;
-  /** 平台特有密钥配置(JSON文本) */
+  /** 平台特有密钥配置(JSON文本, 敏感字段脱敏) */
   appConfig?: string;
   /** 消息通知配置(JSON文本) */
   notifyConfig?: string;
@@ -71,7 +71,7 @@ export interface MobileAppResult extends BaseEntity {
 /** 移动端应用配置保存参数 */
 export interface MobileAppParam {
   /** 主键(更新时传) */
-  id?: number;
+  id?: string;
   /** 端类型 */
   appType?: string;
   /** 移动平台 */

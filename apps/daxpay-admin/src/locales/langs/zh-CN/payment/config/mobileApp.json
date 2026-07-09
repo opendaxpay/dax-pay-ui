@@ -24,6 +24,32 @@
     "android": "安卓APP",
     "ios": "iOS APP"
   },
+  "fields": {
+    "appId": "AppId",
+    "appIdPlaceholder": "请输入 AppId",
+    "appIdRequired": "请输入 AppId",
+    "wxAppId": "小程序 AppId",
+    "wxAppIdPlaceholder": "请输入微信小程序 AppId",
+    "appSecret": "AppSecret",
+    "appSecretPlaceholder": "请输入 AppSecret",
+    "appSecretRequired": "请输入 AppSecret",
+    "wxAppSecret": "小程序 AppSecret",
+    "wxAppSecretPlaceholder": "请输入微信小程序 AppSecret",
+    "originalId": "原始 ID",
+    "originalIdPlaceholder": "请输入小程序原始 ID(gh_ 开头, 可选)",
+    "alipayAppId": "小程序 AppId",
+    "alipayAppIdPlaceholder": "请输入支付宝小程序 AppId",
+    "privateKey": "应用私钥",
+    "privateKeyPlaceholder": "请输入应用私钥",
+    "privateKeyRequired": "请输入应用私钥",
+    "alipayPublicKey": "支付宝公钥",
+    "alipayPublicKeyPlaceholder": "请输入支付宝公钥",
+    "alipayPublicKeyRequired": "请输入支付宝公钥",
+    "dyAppId": "小程序 AppId",
+    "dyAppIdPlaceholder": "请输入抖音小程序 AppId",
+    "dyAppSecret": "小程序 AppSecret",
+    "dyAppSecretPlaceholder": "请输入抖音小程序 AppSecret"
+  },
   "detail": {
     "back": "返回",
     "appName": "应用名称",
@@ -39,6 +65,7 @@
     "save": "保存",
     "saveSuccess": "保存成功",
     "notSupportedAppType": "不支持的端类型",
-    "emptyPlatformConfig": "暂无平台配置，填写后保存即可创建"
+    "emptyPlatformConfig": "暂无平台配置，填写后保存即可创建",
+    "platformComingSoon": "该平台配置暂未开放，后续 APP 完善时再处理"
   }
 }

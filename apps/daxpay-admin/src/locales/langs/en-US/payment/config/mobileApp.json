@@ -24,6 +24,32 @@
     "android": "Android App",
     "ios": "iOS App"
   },
+  "fields": {
+    "appId": "AppId",
+    "appIdPlaceholder": "Enter AppId",
+    "appIdRequired": "Please enter AppId",
+    "wxAppId": "Mini Program AppId",
+    "wxAppIdPlaceholder": "Enter WeChat Mini Program AppId",
+    "appSecret": "AppSecret",
+    "appSecretPlaceholder": "Enter AppSecret",
+    "appSecretRequired": "Please enter AppSecret",
+    "wxAppSecret": "Mini Program AppSecret",
+    "wxAppSecretPlaceholder": "Enter WeChat Mini Program AppSecret",
+    "originalId": "Original ID",
+    "originalIdPlaceholder": "Enter original ID (gh_..., optional)",
+    "alipayAppId": "Mini Program AppId",
+    "alipayAppIdPlaceholder": "Enter Alipay Mini Program AppId",
+    "privateKey": "App Private Key",
+    "privateKeyPlaceholder": "Enter app private key",
+    "privateKeyRequired": "Please enter app private key",
+    "alipayPublicKey": "Alipay Public Key",
+    "alipayPublicKeyPlaceholder": "Enter Alipay public key",
+    "alipayPublicKeyRequired": "Please enter Alipay public key",
+    "dyAppId": "Mini Program AppId",
+    "dyAppIdPlaceholder": "Enter Douyin Mini Program AppId",
+    "dyAppSecret": "Mini Program AppSecret",
+    "dyAppSecretPlaceholder": "Enter Douyin Mini Program AppSecret"
+  },
   "detail": {
     "back": "Back",
     "appName": "App Name",
@@ -39,6 +65,7 @@
     "save": "Save",
     "saveSuccess": "Saved successfully",
     "notSupportedAppType": "Unsupported app type",
-    "emptyPlatformConfig": "No platform config yet, fill in and save to create"
+    "emptyPlatformConfig": "No platform config yet, fill in and save to create",
+    "platformComingSoon": "This platform is not available yet; will be handled when the APP is ready"
   }
 }
