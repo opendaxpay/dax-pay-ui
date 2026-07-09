@@ -18,6 +18,8 @@
     "cardAppDesc": "Merchant app creation and management",
     "cardCredentialConfig": "Credential Config",
     "cardCredentialConfigDesc": "Merchant public key, communication key, platform public key and other credential configuration",
+    "cardWxDomainVerify": "WeChat Domain Verify File",
+    "cardWxDomainVerifyDesc": "Upload and manage WeChat Official Account / Mini Program business domain verification files",
     "cardUser": "User Management",
     "cardUserDesc": "User account management and permission assignment",
     "cardStore": "Store Management",

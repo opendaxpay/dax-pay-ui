@@ -79,6 +79,11 @@ export const PermCodes = {
       VIEW: 'merchant:user:view',
       MANAGE: 'merchant:user:manage',
     },
+    /** 微信域名验证文件 menuCode=merchant:wx_verify */
+    WxDomainVerify: {
+      VIEW: 'merchant:wx_verify:view',
+      MANAGE: 'merchant:wx_verify:manage',
+    },
   },
 
   /** 渠道管理（独立顶级域） */
@@ -163,6 +168,13 @@ export const PermCodes = {
     ProductConfig: {
       VIEW: 'payment:config:product_config:view',
       MANAGE: 'payment:config:product_config:manage',
+    },
+    /** 微信域名验证文件 menuCode=payment:config:wx_verify */
+    Config: {
+      WxDomainVerify: {
+        VIEW: 'payment:config:wx_verify:view',
+        MANAGE: 'payment:config:wx_verify:manage',
+      },
     },
     /** 普通支付业务订单 menuCode=payment:order */
     Order: {

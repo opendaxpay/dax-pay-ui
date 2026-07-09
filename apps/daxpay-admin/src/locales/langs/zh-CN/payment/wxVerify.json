@@ -1,0 +1,23 @@
+{
+  "title": "微信域名验证文件",
+  "adminTitle": "微信域名验证文件",
+  "upload": "上传验证文件",
+  "uploadTip": "请选择微信下载的域名验证 .txt 文件",
+  "uploadSuccess": "上传成功",
+  "uploadFail": "上传失败",
+  "confirmDelete": "确定删除该验证文件吗？",
+  "editTitle": "编辑验证文件",
+  "field": {
+    "fileName": "文件名",
+    "mchNo": "商户号",
+    "belong": "归属",
+    "verifyCode": "验证内容",
+    "remark": "备注",
+    "createTime": "创建时间",
+    "fileContent": "文件内容"
+  },
+  "belong": {
+    "platform": "平台",
+    "merchant": "商户"
+  }
+}

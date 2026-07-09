@@ -1,0 +1,23 @@
+{
+  "title": "WeChat Domain Verify File",
+  "adminTitle": "WeChat Domain Verify File",
+  "upload": "Upload Verify File",
+  "uploadTip": "Select the WeChat domain verification .txt file",
+  "uploadSuccess": "Upload succeeded",
+  "uploadFail": "Upload failed",
+  "confirmDelete": "Are you sure to delete this verification file?",
+  "editTitle": "Edit Verify File",
+  "field": {
+    "fileName": "File Name",
+    "mchNo": "Merchant No.",
+    "belong": "Belong",
+    "verifyCode": "Verify Content",
+    "remark": "Remark",
+    "createTime": "Create Time",
+    "fileContent": "File Content"
+  },
+  "belong": {
+    "platform": "Platform",
+    "merchant": "Merchant"
+  }
+}

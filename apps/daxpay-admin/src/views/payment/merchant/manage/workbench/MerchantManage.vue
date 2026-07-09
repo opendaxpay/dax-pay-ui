@@ -101,6 +101,15 @@
           description: $t('payment.merchant.workbench.workbench.cardCredentialConfigDesc'),
           route: '/payment/merchant/manage/credential',
         },
+        {
+          key: 'wxDomainVerify',
+          // 国际化：微信域名验证文件
+          title: $t('payment.merchant.workbench.workbench.cardWxDomainVerify'),
+          icon: 'ant-design:safety-certificate-outlined',
+          // 国际化：上传与管理微信公众号 / 小程序业务域名校验文件
+          description: $t('payment.merchant.workbench.workbench.cardWxDomainVerifyDesc'),
+          route: '/payment/merchant/manage/wx-verify',
+        },
       ],
     },
   ]);

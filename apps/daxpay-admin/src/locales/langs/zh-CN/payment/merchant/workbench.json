@@ -18,6 +18,8 @@
     "cardAppDesc": "商户应用创建与管理",
     "cardCredentialConfig": "对接配置",
     "cardCredentialConfigDesc": "商户公钥、通信密钥、平台公钥等对接密钥配置",
+    "cardWxDomainVerify": "微信域名验证文件",
+    "cardWxDomainVerifyDesc": "上传与管理微信公众号 / 小程序业务域名校验文件",
     "cardUser": "用户管理",
     "cardUserDesc": "用户账号管理与权限分配",
     "cardStore": "门店管理",
