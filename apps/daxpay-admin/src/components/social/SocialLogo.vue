@@ -5,7 +5,7 @@
 
   const props = withDefaults(
     defineProps<{
-      // 平台编码(weChat/weCom/qq/github/gitee/feishu/dingTalk)
+      // 平台编码(weChat/weCom/qq/github/gitee/feishu/dingTalk/douyin/alipay)
       source: string;
       // 图标尺寸(px)
       size?: number;

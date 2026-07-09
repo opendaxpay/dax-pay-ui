@@ -22,6 +22,7 @@
   const emit = defineEmits<{
     (e: 'update:visible', visible: boolean): void;
     (e: 'saved'): void;
+    (e: 'jump', source: string): void;
   }>();
 
   const { message } = useMessage();
@@ -38,6 +39,9 @@
   const formRef = ref();
   // 当前操作的平台(新增/编辑时锁定, 决定是否显示 agentId 字段)
   const currentSource = ref<string>('');
+  // 是否平台级跳转型(支付宝等: 凭据在独立页, 本抽屉仅启停)
+  const isPlatformRedirect = ref(false);
+
   const formData = reactive<SocialLoginConfigParam>({
     id: undefined,
     source: '',
@@ -47,12 +51,19 @@
     enabled: true,
   });
 
-  // clientSecret 始终必填, 编辑时预填脱敏值, diffForm 判断是否修改
-  const formRules = computed(() => ({
-    enabled: [{ required: true, message: $t('iam.social.form.enabledRequired') }],
-    clientId: [{ required: true, message: $t('iam.social.form.clientId') }],
-    clientSecret: [{ required: true, message: $t('iam.social.form.clientSecretRequired') }],
-  }));
+  // 跳转型仅校验 enabled; 标准型校验 clientId/clientSecret
+  const formRules = computed(() => {
+    if (isPlatformRedirect.value) {
+      return {
+        enabled: [{ required: true, message: $t('iam.social.form.enabledRequired') }],
+      };
+    }
+    return {
+      enabled: [{ required: true, message: $t('iam.social.form.enabledRequired') }],
+      clientId: [{ required: true, message: $t('iam.social.form.clientId') }],
+      clientSecret: [{ required: true, message: $t('iam.social.form.clientSecretRequired') }],
+    };
+  });
 
   // 原始脱敏数据(来自后端), 用于 diffForm 比对敏感字段是否被修改
   const originalForm = ref<SocialLoginConfigResult>({});
@@ -104,6 +115,14 @@
   }
 
   /**
+   * 跳转到平台级凭据配置页
+   */
+  function handleGotoCredential() {
+    if (!currentSource.value) return;
+    emit('jump', currentSource.value);
+  }
+
+  /**
    * 抽屉打开时根据 configItem 初始化表单
    */
   watch(
@@ -115,22 +134,26 @@
         adminBaseUrl.value = res.data?.adminBaseUrl ?? '';
       });
       const item = props.configItem;
-      if (item.configured || item.id) {
-        // 编辑模式(已配置平台)
-        currentSource.value = item.source || '';
+      isPlatformRedirect.value = !!item.platformRedirect;
+
+      if (item.configured || item.id || item.platformRedirect) {
+        // 编辑模式 / 跳转型: 调 findBySource 拿最新占位
+        const record = (await SocialLoginConfigApi.findBySource(item.source!)).data;
+        currentSource.value = record.source || '';
         const editSourceName = $t(`iam.social.platform.${currentSource.value}`);
         modalTitle.value = `${editSourceName}${$t('iam.social.action.config')}`;
-        isFirstConfig.value = false;
-        // 保存原始脱敏数据用于 diffForm 比对, clientSecret 保留脱敏值回显到输入框
-        // (脱敏值非真实密钥, 即使用户误提交也会因 diffForm 相等而被忽略)
-        // diffForm 仅比对 clientSecret, originalForm 无需深拷贝 extra
-        originalForm.value = { ...item };
+        isFirstConfig.value = !record.configured;
+        originalForm.value = { ...record };
         Object.assign(formData, {
-          ...item,
-          extra: { ...item.extra },
+          ...record,
+          clientId: record.clientId ?? '',
+          clientSecret: record.clientSecret ?? '',
+          extra: { ...record.extra },
+          // 跳转型未启用过时默认关; 标准型首次默认开
+          enabled: item.platformRedirect ? !!record.enabled : (record.enabled ?? true),
         });
       } else {
-        // 配置模式(未配置平台), 先调 findBySource 初始化占位记录
+        // 配置模式(未配置标准平台), 先调 findBySource 初始化占位记录
         const record = (await SocialLoginConfigApi.findBySource(item.source!)).data;
         currentSource.value = record.source || '';
         const configSourceName = $t(`iam.social.platform.${currentSource.value}`);
@@ -156,15 +179,25 @@
     submitLoading.value = true;
     try {
       await formRef.value?.validate();
-      // 敏感字段(clientSecret)用 diffForm 比对:
-      // 未修改返回 undefined(JSON 序列化时字段被忽略, 后端 NOT_NULL 策略下不参与 UPDATE),
-      // 修改则返回新值
-      const sensitiveData = diffForm(originalForm.value, formData, 'clientSecret');
-      const submitData: SocialLoginConfigParam = {
-        ...formData,
-        ...sensitiveData,
-      };
-      await SocialLoginConfigApi.update(submitData);
+      if (isPlatformRedirect.value) {
+        // 跳转型统一走编辑接口: 非空占位过 NotBlank(真实凭据在平台配置页, 后端忽略这两字段)
+        await SocialLoginConfigApi.update({
+          source: formData.source,
+          enabled: formData.enabled,
+          clientId: '-',
+          clientSecret: '-',
+        });
+      } else {
+        // 敏感字段(clientSecret)用 diffForm 比对:
+        // 未修改返回 undefined(JSON 序列化时字段被忽略, 后端 NOT_NULL 策略下不参与 UPDATE),
+        // 修改则返回新值
+        const sensitiveData = diffForm(originalForm.value, formData, 'clientSecret');
+        const submitData: SocialLoginConfigParam = {
+          ...formData,
+          ...sensitiveData,
+        };
+        await SocialLoginConfigApi.update(submitData);
+      }
       message.success($t(isFirstConfig.value ? 'iam.social.tip.configSuccess' : 'iam.social.tip.editSuccess'));
       emit('update:visible', false);
       emit('saved');
@@ -181,28 +214,50 @@
         <a-form-item :label="$t('iam.social.form.enabled')" name="enabled">
           <a-switch v-model:checked="formData.enabled" :disabled="submitLoading" />
         </a-form-item>
-        <a-form-item :label="$t('iam.social.form.clientId')" name="clientId" :tooltip="$t('iam.social.form.clientIdHelp')">
-          <a-input
-            v-model:value="formData.clientId"
-            :placeholder="$t('iam.social.form.clientIdPlaceholder')"
-            :disabled="submitLoading"
+
+        <!-- 平台级跳转型: 凭据在独立页维护, 此处仅提供跳转入口 -->
+        <template v-if="isPlatformRedirect">
+          <a-alert
+            type="info"
+            show-icon
+            class="!mb-4"
+            :message="$t('iam.social.tip.platformCredentialHint')"
           />
-        </a-form-item>
-        <a-form-item :label="$t('iam.social.form.clientSecret')" name="clientSecret" :tooltip="$t('iam.social.form.clientSecretHelp')">
-          <a-input
-            v-model:value="formData.clientSecret"
-            :placeholder="$t('iam.social.form.clientSecretPlaceholder')"
-            :disabled="submitLoading"
-          />
-        </a-form-item>
-        <!-- 企业微信特有: agentId 存入 extra -->
-        <a-form-item v-if="showAgentId" :label="$t('iam.social.form.agentId')">
-          <a-input
-            v-model:value="agentIdValue"
-            :placeholder="$t('iam.social.form.agentIdPlaceholder')"
-            :disabled="submitLoading"
-          />
-        </a-form-item>
+          <a-button type="default" block class="!mb-4" @click="handleGotoCredential">
+            <IconifyIcon icon="ant-design:arrow-right-outlined" class="mr-1" />
+            {{ $t('iam.social.action.gotoCredential') }}
+          </a-button>
+        </template>
+
+        <!-- 标准 OAuth 平台: clientId / clientSecret -->
+        <template v-else>
+          <a-form-item :label="$t('iam.social.form.clientId')" name="clientId" :tooltip="$t('iam.social.form.clientIdHelp')">
+            <a-input
+              v-model:value="formData.clientId"
+              :placeholder="$t('iam.social.form.clientIdPlaceholder')"
+              :disabled="submitLoading"
+            />
+          </a-form-item>
+          <a-form-item
+            :label="$t('iam.social.form.clientSecret')"
+            name="clientSecret"
+            :tooltip="$t('iam.social.form.clientSecretHelp')"
+          >
+            <a-input
+              v-model:value="formData.clientSecret"
+              :placeholder="$t('iam.social.form.clientSecretPlaceholder')"
+              :disabled="submitLoading"
+            />
+          </a-form-item>
+          <!-- 企业微信特有: agentId 存入 extra -->
+          <a-form-item v-if="showAgentId" :label="$t('iam.social.form.agentId')">
+            <a-input
+              v-model:value="agentIdValue"
+              :placeholder="$t('iam.social.form.agentIdPlaceholder')"
+              :disabled="submitLoading"
+            />
+          </a-form-item>
+        </template>
       </a-form>
 
       <!-- 回调地址展示(辅助参考, 复制后粘贴到第三方平台授权回调配置) -->

@@ -4,7 +4,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { SocialApi } from '#/api/iam/social.api';
+  import { AlipayAuthApi, SocialApi } from '#/api/iam/social.api';
 
   defineOptions({ name: 'SocialBindCallback' });
 
@@ -32,17 +32,22 @@
   });
 
   /**
-   * 处理绑定回调: 用 code+state 调后端兑换, 成功后通知父窗口并关闭弹窗
+   * 处理绑定回调: 用授权码+state 调后端兑换, 成功后通知父窗口并关闭弹窗
+   * 支付宝回传 auth_code, 标准 OAuth 回传 code
    */
   onMounted(async () => {
-    const { code, state } = route.query;
-    if (!code || !state || !source.value) {
+    const { code, auth_code: authCode, state } = route.query;
+    const oauthCode = (authCode || code) as string | undefined;
+    if (!oauthCode || !state || !source.value) {
       loading.value = false;
       errorMessage.value = $t('_core.authentication.oauthFailed');
       return;
     }
     try {
-      const res = await SocialApi.exchangeBind(code as string, state as string, source.value, 'admin');
+      const res =
+        source.value === 'alipay'
+          ? await AlipayAuthApi.exchange(oauthCode, state as string, 'admin', 'BIND')
+          : await SocialApi.exchangeBind(oauthCode, state as string, source.value, 'admin');
       if (res.data?.result === 'bind_success') {
         success.value = true;
         loading.value = false;

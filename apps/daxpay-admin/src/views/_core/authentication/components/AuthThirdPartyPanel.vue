@@ -3,7 +3,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { SocialApi } from '#/api/iam/social.api';
+  import { AlipayAuthApi, SocialApi } from '#/api/iam/social.api';
   import { SocialLogo } from '#/components/social';
 
   defineOptions({ name: 'AuthThirdPartyPanel' });
@@ -36,6 +36,7 @@
 
   /**
    * 点击三方图标, 获取授权地址并跳转
+   * 支付宝走专用端点(非标准 OAuth2), 其余走 JustAuth 标准 render
    */
   async function handleSocialLogin(source: string) {
     // 仅登录场景校验协议勾选，提示由父表单红字显示（绑定场景不校验）
@@ -43,7 +44,10 @@
       const ok = await props.ensureAgreement();
       if (!ok) return;
     }
-    const { data: url } = await SocialApi.render(source, 'admin', props.mode);
+    const { data: url } =
+      source === 'alipay'
+        ? await AlipayAuthApi.render('admin', props.mode)
+        : await SocialApi.render(source, 'admin', props.mode);
     if (url) {
       // 跳转到第三方授权页, 授权后由后端回调处理并重定向回前端 /oauth-callback
       window.location.href = url;

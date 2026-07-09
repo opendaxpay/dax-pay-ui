@@ -143,6 +143,10 @@ export interface SocialLoginConfigResult {
   configured?: boolean;
   /** 是否启用 */
   enabled?: boolean;
+  /** 是否平台级跳转型配置(运行时由后端 SocialSourceEnum.isPlatformRedirect 计算, 不落库)
+   *  true: 不在本表存 clientId/clientSecret, 使用独立平台级配置, 前端卡片渲染为跳转按钮
+   *  false: 标准 OAuth2 平台, 在本表存 clientId/clientSecret */
+  platformRedirect?: boolean;
 }
 
 /**
@@ -166,6 +170,42 @@ export interface SocialExchangeResult {
  * 已启用的第三方登录平台(登录页公开返回, 仅含平台编码)
  */
 export interface SocialEnabledPlatform {
-  /** 平台编码(weChat/weCom/qq/github/gitee/feishu/dingTalk/douyin) */
+  /** 平台编码(weChat/weCom/qq/github/gitee/feishu/dingTalk/douyin/alipay) */
   source: string;
 }
+
+/**
+ * 支付宝授权登录专用 API
+ *
+ * 支付宝非标准 OAuth2(走 alipay.system.oauth.token), 不复用 JustAuth 的 SocialApi.render/exchangeLogin,
+ * 使用独立的 render/exchange 端点。配置走平台级 PlatformAlipayAuthConfigApi。
+ */
+export const AlipayAuthApi = {
+  /**
+   * 生成支付宝授权地址(前端拿到后 location.href 跳转)
+   * @param client 终端编码(admin/merchant)
+   * @param mode 授权场景: BIND(已登录绑定) | LOGIN(未登录登录), 不传按登录态判断
+   */
+  render(client: string = 'admin', mode?: string): Promise<Result<string>> {
+    return defHttp.get({ url: '/social/alipay/render', params: { client, mode } });
+  },
+
+  /**
+   * 支付宝授权码兑换(LOGIN/BIND 由 mode 决定)
+   * @param authCode 支付宝回调回传的 auth_code
+   * @param state render 阶段生成的 state
+   * @param client 终端编码
+   * @param mode 授权场景
+   */
+  exchange(
+    authCode: string,
+    state: string,
+    client: string = 'admin',
+    mode?: string,
+  ): Promise<Result<SocialExchangeResult>> {
+    return defHttp.post({
+      url: '/social/alipay/exchange',
+      params: { authCode, state, client, mode },
+    });
+  },
+};

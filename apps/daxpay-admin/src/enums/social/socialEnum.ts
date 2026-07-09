@@ -6,6 +6,14 @@ export enum SocialSourceEnum {
   WE_CHAT = 'weChat',
   /** 企业微信 */
   WE_COM = 'weCom',
+  /** 飞书 */
+  FEISHU = 'feishu',
+  /** 钉钉 */
+  DING_TALK = 'dingTalk',
+  /** 支付宝(排序: 钉钉之后、抖音之前) */
+  ALIPAY = 'alipay',
+  /** 抖音 */
+  DOUYIN = 'douyin',
   /** QQ */
   QQ = 'qq',
   /** GitHub */
@@ -14,12 +22,6 @@ export enum SocialSourceEnum {
   GITEE = 'gitee',
   /** Google */
   GOOGLE = 'google',
-  /** 飞书 */
-  FEISHU = 'feishu',
-  /** 钉钉 */
-  DING_TALK = 'dingTalk',
-  /** 抖音 */
-  DOUYIN = 'douyin',
 }
 
 /**
@@ -35,6 +37,7 @@ export const socialNameMap: Record<string, string> = {
   [SocialSourceEnum.FEISHU]: '飞书',
   [SocialSourceEnum.DING_TALK]: '钉钉',
   [SocialSourceEnum.DOUYIN]: '抖音',
+  [SocialSourceEnum.ALIPAY]: '支付宝',
 };
 
 /**
@@ -50,6 +53,7 @@ export const socialColorMap: Record<string, string> = {
   [SocialSourceEnum.FEISHU]: '#3370ff',
   [SocialSourceEnum.DING_TALK]: '#1677ff',
   [SocialSourceEnum.DOUYIN]: '#000000',
+  [SocialSourceEnum.ALIPAY]: '#1677FF',
 };
 
 /**
@@ -66,4 +70,5 @@ export const socialLogoMap: Record<string, string> = {
   [SocialSourceEnum.FEISHU]: 'feishu',
   [SocialSourceEnum.DING_TALK]: 'dingTalk',
   [SocialSourceEnum.DOUYIN]: 'douyin',
+  [SocialSourceEnum.ALIPAY]: 'alipay',
 };

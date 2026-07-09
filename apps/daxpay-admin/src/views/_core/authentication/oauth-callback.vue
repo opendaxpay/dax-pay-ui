@@ -5,7 +5,7 @@
   import { $t } from '@vben/locales';
   import { useAccessStore } from '@vben/stores';
 
-  import { SocialApi } from '#/api/iam/social.api';
+  import { AlipayAuthApi, SocialApi } from '#/api/iam/social.api';
   import { SocialLogo } from '#/components/social';
   import { useMessage } from '#/hooks/useMessage';
   import { HOME_PATH } from '#/router/routes';
@@ -42,17 +42,23 @@
 
   /**
    * 处理社交登录回调(仅登录场景)
-   * URL 含 code+state → 调 exchangeLogin API → 后端返回 JSON 结果
+   * 标准平台: URL 含 code+state → SocialApi.exchangeLogin
+   * 支付宝: URL 含 auth_code+state → AlipayAuthApi.exchange(兼容 code)
    */
   onMounted(async () => {
-    const { code, state } = route.query;
-    if (!code || !state) {
+    const { code, auth_code: authCode, state } = route.query;
+    // 支付宝回传 auth_code, 标准 OAuth 回传 code
+    const oauthCode = (authCode || code) as string | undefined;
+    if (!oauthCode || !state) {
       message.error($t('_core.authentication.oauthProcessFailed'));
       router.push('/auth/login');
       return;
     }
     try {
-      const res = await SocialApi.exchangeLogin(code as string, state as string, source.value, 'admin');
+      const res =
+        source.value === 'alipay'
+          ? await AlipayAuthApi.exchange(oauthCode, state as string, 'admin', 'LOGIN')
+          : await SocialApi.exchangeLogin(oauthCode, state as string, source.value, 'admin');
       await handleResult(res.data?.token, res.data?.error);
     } catch {
       message.error($t('_core.authentication.oauthProcessFailed'));

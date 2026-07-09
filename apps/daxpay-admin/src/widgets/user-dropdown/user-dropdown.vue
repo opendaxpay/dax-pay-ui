@@ -26,7 +26,7 @@
   const emit = defineEmits<{ logout: [] }>();
 
   // 项目文档地址（文档跳转至此）
-  const DOC_URL = 'https://doc.daxpay.cn';
+  const DOC_URL = 'https://doc.open.daxpay.cn';
 
   const router = useRouter();
   const accessStore = useAccessStore();

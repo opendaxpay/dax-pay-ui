@@ -15,15 +15,21 @@
     "google": "Google",
     "feishu": "Feishu",
     "dingTalk": "DingTalk",
-    "douyin": "Douyin"
+    "douyin": "Douyin",
+    "alipay": "Alipay"
   },
   "status": {
     "enabled": "Enabled",
     "disabled": "Disabled",
     "unconfigured": "Not Configured"
   },
+  "badge": {
+    "platformRedirect": "Platform-level"
+  },
   "action": {
     "config": "Configuration",
+    "gotoConfig": "Go to Config",
+    "gotoCredential": "Configure Credentials",
     "edit": "Edit",
     "enable": "Enable",
     "disable": "Disable",
@@ -62,6 +68,8 @@
     "enableSuccess": "Enabled successfully",
     "disableSuccess": "Disabled successfully",
     "deleteSuccess": "Deleted successfully",
-    "copySuccess": "Copied to clipboard"
+    "copySuccess": "Copied to clipboard",
+    "platformCredentialRequired": "Please complete platform-level credentials before enabling login",
+    "platformCredentialHint": "Manage AppId/keys in Alipay App Config; this switch only controls whether Alipay login is available"
   }
 }

@@ -1,0 +1,74 @@
+{
+  "common": {
+    "title": "三方平台管理",
+    "description": "集中管理第三方登录与开放平台凭据。"
+  },
+  "loginConfig": {
+    "title": "三方平台登录配置",
+    "description": "配置 WEB 端使用各平台的 OAuth 登录凭据。"
+  },
+  "alipay": {
+    "tabTitle": "支付宝应用配置",
+    "tabDescription": "支付宝 OAuth 凭据, 服务于授权登录与支付通道认证",
+    "title": "支付宝应用认证配置",
+    "description": "管理支付宝 OAuth 凭据(appId/私钥/证书), 用于授权登录获取用户标识(userId)与支付通道认证。",
+    "usageTip": "本配置同时服务于: 1) 三方登录的支付宝授权登录; 2) 支付场景的通道认证(获取支付所需的用户标识)。",
+    "confirmSaveContent": "确定要保存支付宝应用配置吗?",
+    "section": {
+      "basic": "基础配置",
+      "credential": "凭据配置"
+    },
+    "appId": "应用 AppId",
+    "appIdDesc": "支付宝开放平台创建的应用 appId",
+    "inputAppId": "请输入支付宝应用 AppId",
+    "authType": "鉴权方式",
+    "authTypeDesc": "公钥模式使用支付宝公钥, 证书模式使用三本证书",
+    "authTypeKey": "公钥模式",
+    "authTypeCert": "证书模式",
+    "privateKey": "应用私钥",
+    "privateKeyDesc": "应用私钥(PEM 格式, 公钥与证书模式都需要)",
+    "inputPrivateKey": "请输入应用私钥",
+    "alipayPublicKey": "支付宝公钥",
+    "alipayPublicKeyDesc": "支付宝公钥(公钥模式使用, 在支付宝开放平台「应用信息」获取)",
+    "inputAlipayPublicKey": "请输入支付宝公钥",
+    "appCert": "应用公钥证书",
+    "appCertDesc": "应用公钥证书(证书模式使用, 上传 .crt 文件)",
+    "uploadAppCert": "上传应用公钥证书",
+    "alipayCert": "支付宝公钥证书",
+    "alipayCertDesc": "支付宝公钥证书(证书模式使用, 上传 .crt 文件)",
+    "uploadAlipayCert": "上传支付宝公钥证书",
+    "alipayRootCert": "支付宝根证书",
+    "alipayRootCertDesc": "支付宝根证书(证书模式使用, 上传 .crt 文件)",
+    "uploadRootCert": "上传支付宝根证书",
+    "validate": {
+      "appId": "请输入应用 AppId",
+      "authType": "请选择鉴权方式",
+      "privateKey": "请输入应用私钥",
+      "alipayPublicKey": "请输入支付宝公钥",
+      "appCert": "请上传应用公钥证书",
+      "alipayCert": "请上传支付宝公钥证书",
+      "alipayRootCert": "请上传支付宝根证书"
+    }
+  },
+  "wechatMp": {
+    "tabTitle": "微信公众号配置",
+    "tabDescription": "公众号 H5 网页授权凭据, 服务于微信登录",
+    "title": "微信公众号认证配置",
+    "description": "管理微信公众号网页授权凭据(appId/appSecret), 用于公众号 H5 授权获取用户 openId。",
+    "usageTip": "本配置服务于公众号 H5 网页授权, 用于获取用户 openId。",
+    "confirmSaveContent": "确定要保存微信公众号配置吗?",
+    "section": {
+      "credential": "凭据配置"
+    },
+    "appId": "公众号 AppId",
+    "appIdDesc": "微信公众号的 AppId(在公众平台「设置与开发-基本配置」获取)",
+    "inputAppId": "请输入微信公众号 AppId",
+    "appSecret": "公众号 AppSecret",
+    "appSecretDesc": "微信公众号的 AppSecret(在公众平台「设置与开发-基本配置」获取)",
+    "inputAppSecret": "请输入微信公众号 AppSecret",
+    "validate": {
+      "appId": "请输入公众号 AppId",
+      "appSecret": "请输入公众号 AppSecret"
+    }
+  }
+}

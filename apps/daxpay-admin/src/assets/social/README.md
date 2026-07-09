@@ -14,8 +14,9 @@
 | `feishu.svg` | 飞书 | `feishu` | #3370ff |
 | `dingTalk.svg` | 钉钉 | `dingTalk` | #1677ff |
 | `douyin.svg` | 抖音 | `douyin` | #000000 |
+| `alipay.svg` | 支付宝 | `alipay` | #1677FF |
 
-> 当前 8 个 SVG 均为"品牌色圆形 + 平台首字"的占位图, 拿到官方品牌 logo 后直接覆盖同名文件即可。
+> 当前 SVG 为品牌识别用简化标, 拿到官方品牌 logo 后直接覆盖同名文件即可。
 
 ## 命名规则
 

@@ -1,0 +1,74 @@
+{
+  "common": {
+    "title": "Third-party Platform Management",
+    "description": "Unified management of third-party logins and open platform credentials."
+  },
+  "loginConfig": {
+    "title": "Third-party Login Config",
+    "description": "Configure OAuth login credentials used by the WEB client for each platform."
+  },
+  "alipay": {
+    "tabTitle": "Alipay App Config",
+    "tabDescription": "Alipay OAuth credentials for auth login and payment channel authentication",
+    "title": "Alipay App Auth Configuration",
+    "description": "Manage Alipay OAuth credentials (appId/private key/certs) for auth login to get user identifier (userId) and payment channel authentication.",
+    "usageTip": "This configuration serves both: 1) Alipay auth login in third-party login; 2) Channel authentication in payment scenarios (get user identifier for payment).",
+    "confirmSaveContent": "Are you sure to save the Alipay App configuration?",
+    "section": {
+      "basic": "Basic Configuration",
+      "credential": "Credential Configuration"
+    },
+    "appId": "App ID",
+    "appIdDesc": "The appId of the application created on Alipay Open Platform",
+    "inputAppId": "Please enter Alipay App ID",
+    "authType": "Auth Type",
+    "authTypeDesc": "Public key mode uses Alipay public key, Certificate mode uses three certificates",
+    "authTypeKey": "Public Key",
+    "authTypeCert": "Certificate",
+    "privateKey": "App Private Key",
+    "privateKeyDesc": "App private key (PEM format, required for both public key and certificate mode)",
+    "inputPrivateKey": "Please enter app private key",
+    "alipayPublicKey": "Alipay Public Key",
+    "alipayPublicKeyDesc": "Alipay public key (for public key mode, obtained from Alipay Open Platform 'Application Info')",
+    "inputAlipayPublicKey": "Please enter Alipay public key",
+    "appCert": "App Public Certificate",
+    "appCertDesc": "App public certificate (for certificate mode, upload .crt file)",
+    "uploadAppCert": "Upload App Public Certificate",
+    "alipayCert": "Alipay Public Certificate",
+    "alipayCertDesc": "Alipay public certificate (for certificate mode, upload .crt file)",
+    "uploadAlipayCert": "Upload Alipay Public Certificate",
+    "alipayRootCert": "Alipay Root Certificate",
+    "alipayRootCertDesc": "Alipay root certificate (for certificate mode, upload .crt file)",
+    "uploadRootCert": "Upload Alipay Root Certificate",
+    "validate": {
+      "appId": "Please enter App ID",
+      "authType": "Please select auth type",
+      "privateKey": "Please enter app private key",
+      "alipayPublicKey": "Please enter Alipay public key",
+      "appCert": "Please upload app public certificate",
+      "alipayCert": "Please upload Alipay public certificate",
+      "alipayRootCert": "Please upload Alipay root certificate"
+    }
+  },
+  "wechatMp": {
+    "tabTitle": "WeChat Official Account Config",
+    "tabDescription": "WeChat MP H5 OAuth credentials for WeChat login",
+    "title": "WeChat Official Account Auth Configuration",
+    "description": "Manage WeChat MP H5 web authorization credentials (appId/appSecret) to get user openId.",
+    "usageTip": "This configuration serves WeChat MP H5 web authorization to get user openId.",
+    "confirmSaveContent": "Are you sure to save the WeChat Official Account configuration?",
+    "section": {
+      "credential": "Credential Configuration"
+    },
+    "appId": "App ID",
+    "appIdDesc": "WeChat Official Account AppId (obtained from MP Platform 'Settings & Development - Basic Config')",
+    "inputAppId": "Please enter WeChat MP App ID",
+    "appSecret": "App Secret",
+    "appSecretDesc": "WeChat Official Account AppSecret (obtained from MP Platform 'Settings & Development - Basic Config')",
+    "inputAppSecret": "Please enter WeChat MP App Secret",
+    "validate": {
+      "appId": "Please enter App ID",
+      "appSecret": "Please enter App Secret"
+    }
+  }
+}

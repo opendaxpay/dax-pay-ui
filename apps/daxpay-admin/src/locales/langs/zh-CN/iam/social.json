@@ -1,5 +1,5 @@
 {
-  "title": "第三方平台登录配置",
+  "title": "三方登录配置",
   "emptyDesc": "暂无平台配置数据",
   "clientCode": {
     "label": "终端",
@@ -15,15 +15,21 @@
     "google": "Google",
     "feishu": "飞书",
     "dingTalk": "钉钉",
-    "douyin": "抖音"
+    "douyin": "抖音",
+    "alipay": "支付宝"
   },
   "status": {
     "enabled": "已启用",
     "disabled": "已停用",
     "unconfigured": "未配置"
   },
+  "badge": {
+    "platformRedirect": "平台级配置"
+  },
   "action": {
     "config": "配置",
+    "gotoConfig": "前往配置",
+    "gotoCredential": "前往配置凭据",
     "edit": "编辑",
     "enable": "启用",
     "disable": "禁用",
@@ -62,6 +68,8 @@
     "enableSuccess": "启用成功",
     "disableSuccess": "停用成功",
     "deleteSuccess": "删除成功",
-    "copySuccess": "已复制到剪贴板"
+    "copySuccess": "已复制到剪贴板",
+    "platformCredentialRequired": "请先完成平台级凭据配置后再启用登录",
+    "platformCredentialHint": "AppId/密钥等凭据请在「支付宝应用配置」中维护；此处仅控制是否开放三方登录"
   }
 }
