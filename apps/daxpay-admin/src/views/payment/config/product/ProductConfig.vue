@@ -7,6 +7,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { PayProductConfigApi, type PayProductConfigResult } from '#/api/payment/config/pay-product-config.api';
+  import { PayEnvApi } from '#/api/payment/masterdata/pay-env.api';
   import ChannelLogo from '#/components/channel/ChannelLogo.vue';
   import { useMessage } from '#/hooks/useMessage';
 
@@ -18,11 +19,15 @@
   const loading = ref(false);
   const productList = ref<PayProductConfigResult[]>([]);
   const radioRefreshKey = ref(0);
+  // 全局沙箱环境开关(后端控制), 关闭时不展示沙箱相关选项
+  const sandboxEnabled = ref(false);
 
   /**
    * 获取当前激活的环境值
    */
   function getActiveEnvValue(row: PayProductConfigResult): string {
+    // 全局沙箱关闭时强制显示生产环境
+    if (!sandboxEnabled.value) return 'prod';
     return row.activeEnv === 'sandbox' ? 'sandbox' : 'prod';
   }
 
@@ -90,7 +95,22 @@
       });
   }
 
+  /**
+   * 加载全局沙箱环境开关状态
+   */
+  function loadSandboxEnabled() {
+    PayEnvApi.sandboxEnabled()
+      .then(({ data }) => {
+        sandboxEnabled.value = !!data;
+      })
+      .catch(() => {
+        // 查询失败按关闭处理, 仅展示生产环境
+        sandboxEnabled.value = false;
+      });
+  }
+
   onMounted(() => {
+    loadSandboxEnabled();
     loadProductConfig();
   });
 </script>
@@ -134,7 +154,7 @@
                 <a-radio-button value="prod">{{
                   $t('payment.constant.product.productConfig.prodLabel')
                 }}</a-radio-button>
-                <a-radio-button value="sandbox">{{
+                <a-radio-button v-if="sandboxEnabled" value="sandbox">{{
                   $t('payment.constant.product.productConfig.sandboxLabel')
                 }}</a-radio-button>
               </a-radio-group>
@@ -158,7 +178,7 @@
               >
                 <div
                   class="config-slot prod-slot"
-                  :class="[{ 'border-r border-border': row.sandboxSupport }, { 'config-slot-disabled': !row.isv }]"
+                  :class="[{ 'border-r border-border': row.sandboxSupport && sandboxEnabled }, { 'config-slot-disabled': !row.isv }]"
                   @click.stop="row.isv && openDetailPage(row, false)"
                 >
                   <div class="flex items-center gap-1.5">
@@ -170,7 +190,7 @@
                 </div>
               </a-tooltip>
               <a-tooltip
-                v-if="row.sandboxSupport"
+                v-if="row.sandboxSupport && sandboxEnabled"
                 :title="!row.isv ? $t('payment.constant.product.productConfig.nonIsvDisabledTip') : undefined"
                 placement="top"
               >
