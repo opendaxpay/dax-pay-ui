@@ -205,6 +205,10 @@ export const PermCodes = {
     Sign: {
       VIEW: 'develop:sign:view',
     },
+    /** 认证调试 menuCode=develop:auth */
+    Auth: {
+      VIEW: 'develop:auth:view',
+    },
   },
 
   /** 设备管理（独立命名空间） */

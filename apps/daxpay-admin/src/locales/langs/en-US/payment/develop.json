@@ -149,5 +149,35 @@
       "inputPrivateKey": "Please set the merchant private key first",
       "copySuccess": "Copied"
     }
+  },
+  "auth": {
+    "title": "Channel Auth Debug",
+    "tag": {
+      "alipay": "Alipay"
+    },
+    "guide": {
+      "title": "How to use",
+      "desc": "Generate an auth link and scan with Alipay app. Results appear automatically (requires platform Alipay config and payment gateway base URL)."
+    },
+    "btn": {
+      "generate": "Generate Auth Link",
+      "copy": "Copy"
+    },
+    "qr": {
+      "tip": "Scan with Alipay to authorize",
+      "empty": "No QR code yet"
+    },
+    "result": {
+      "divider": "Auth Result",
+      "openId": "OpenId",
+      "userId": "UserId",
+      "accessToken": "Access Token"
+    },
+    "msg": {
+      "success": "Auth result received",
+      "notExist": "Auth result not found or expired",
+      "copySuccess": "Copied",
+      "copyFail": "Copy failed"
+    }
   }
 }

@@ -149,5 +149,35 @@
       "inputPrivateKey": "请先设置商户私钥",
       "copySuccess": "复制成功"
     }
+  },
+  "auth": {
+    "title": "渠道授权调试工具",
+    "tag": {
+      "alipay": "支付宝"
+    },
+    "guide": {
+      "title": "使用说明",
+      "desc": "点击生成授权链接后，使用支付宝 App 扫码完成授权。结果将自动回显（依赖「三方平台管理」中的平台支付宝配置与支付网关前端地址）。"
+    },
+    "btn": {
+      "generate": "生成授权链接",
+      "copy": "复制"
+    },
+    "qr": {
+      "tip": "请使用支付宝扫码授权",
+      "empty": "暂未生成二维码"
+    },
+    "result": {
+      "divider": "授权结果",
+      "openId": "用户标识 (OpenId)",
+      "userId": "用户ID (UserId)",
+      "accessToken": "Access Token"
+    },
+    "msg": {
+      "success": "获取授权结果成功",
+      "notExist": "获取授权结果失败（查询码不存在或已过期）",
+      "copySuccess": "复制成功",
+      "copyFail": "复制失败"
+    }
   }
 }
