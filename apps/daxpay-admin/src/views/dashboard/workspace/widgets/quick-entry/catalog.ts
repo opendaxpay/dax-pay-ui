@@ -231,6 +231,16 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     defaultVisible: false,
     defaultOrder: 20,
   },
+  {
+    key: 'socialLogin',
+    routeName: '/system/config/social',
+    icon: 'lucide:share-2',
+    titleKey: 'dashboard.workspace.quickEntry.socialLogin',
+    color: 'bg-fuchsia-500',
+    perms: [PermCodes.Iam.Social.VIEW],
+    defaultVisible: false,
+    defaultOrder: 21,
+  },
 ];
 
 /** 默认序列：defaultVisible=true 的按 defaultOrder 升序 */
