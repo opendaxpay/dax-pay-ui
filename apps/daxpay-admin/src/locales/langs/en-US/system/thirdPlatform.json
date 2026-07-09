@@ -52,10 +52,10 @@
   },
   "wechatMp": {
     "tabTitle": "WeChat Official Account Config",
-    "tabDescription": "WeChat MP H5 OAuth credentials for WeChat login",
+    "tabDescription": "WeChat MP credentials for login and template notifications",
     "title": "WeChat Official Account Auth Configuration",
-    "description": "Manage WeChat MP H5 web authorization credentials (appId/appSecret) to get user openId.",
-    "usageTip": "This configuration serves WeChat MP H5 web authorization to get user openId.",
+    "description": "Manage WeChat MP credentials (appId/appSecret) for H5 OAuth openId and notification-center template messages.",
+    "usageTip": "This configuration serves: 1) WeChat MP H5 OAuth login; 2) Notification-center template message sending.",
     "confirmSaveContent": "Are you sure to save the WeChat Official Account configuration?",
     "section": {
       "credential": "Credential Configuration"

@@ -52,10 +52,10 @@
   },
   "wechatMp": {
     "tabTitle": "微信公众号配置",
-    "tabDescription": "公众号 H5 网页授权凭据, 服务于微信登录",
+    "tabDescription": "公众号凭据, 服务于微信登录与模版通知",
     "title": "微信公众号认证配置",
-    "description": "管理微信公众号网页授权凭据(appId/appSecret), 用于公众号 H5 授权获取用户 openId。",
-    "usageTip": "本配置服务于公众号 H5 网页授权, 用于获取用户 openId。",
+    "description": "管理微信公众号凭据(appId/appSecret), 用于公众号 H5 授权获取用户 openId, 以及通知中心模版消息发送。",
+    "usageTip": "本配置同时服务于: 1) 公众号 H5 网页授权登录; 2) 通知中心模版消息发送。",
     "confirmSaveContent": "确定要保存微信公众号配置吗?",
     "section": {
       "credential": "凭据配置"

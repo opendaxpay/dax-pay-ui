@@ -254,15 +254,12 @@ export const PermCodes = {
       MANAGE: 'system:notify:notice:manage',
       PUBLISH: 'system:notify:notice:publish',
     },
-    /** 公众号配置 menuCode=system:notify:wechat-config */
-    WechatConfig: {
+    /** 微信消息通知 menuCode=system:notify:wechat-config（配置 + 发送记录 Tabs） */
+    WechatNotify: {
       MANAGE: 'system:notify:wechat-config:manage',
-    },
-    /** 微信通知记录 menuCode=system:notify:wechat-message */
-    WechatMessage: {
-      VIEW: 'system:notify:wechat-message:view',
-      RESEND: 'system:notify:wechat-message:resend',
-      TEST: 'system:notify:wechat-message:test',
+      VIEW: 'system:notify:wechat-config:view',
+      RESEND: 'system:notify:wechat-config:resend',
+      TEST: 'system:notify:wechat-config:test',
     },
     /** 存储文件 menuCode=system:file:platform */
     FilePlatform: {
