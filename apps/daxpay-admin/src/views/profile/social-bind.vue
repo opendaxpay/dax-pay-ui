@@ -5,7 +5,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { renderSocialAuth, SocialApi } from '#/api/iam/social.api';
+  import { SocialApi } from '#/api/iam/social.api';
   import { SocialLogo } from '#/components/social';
   import { useMessage } from '#/hooks/useMessage';
 
@@ -47,10 +47,9 @@
 
   /**
    * 绑定第三方账号(打开弹窗进行授权, 授权后弹窗自动关闭并通知刷新)
-   * 支付宝走专用端点, 与登录页 renderSocialAuth 一致
    */
   async function handleBind(source: string) {
-    const { data: url } = await renderSocialAuth(source, 'admin', 'BIND');
+    const { data: url } = await SocialApi.render(source, 'admin', 'BIND');
     if (url) {
       window.open(url, 'social-bind', 'width=600,height=700');
     }

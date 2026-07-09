@@ -4,7 +4,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { AlipayAuthApi, SocialApi } from '#/api/iam/social.api';
+  import { SocialApi } from '#/api/iam/social.api';
 
   defineOptions({ name: 'SocialBindCallback' });
 
@@ -33,7 +33,7 @@
 
   /**
    * 处理绑定回调: 用授权码+state 调后端兑换, 成功后通知父窗口并关闭弹窗
-   * 支付宝回传 auth_code, 标准 OAuth 回传 code
+   * 支付宝回传 auth_code, 标准 OAuth 回传 code; 归一后统一走 SocialApi.exchangeBind
    */
   onMounted(async () => {
     const { code, auth_code: authCode, state } = route.query;
@@ -44,10 +44,7 @@
       return;
     }
     try {
-      const res =
-        source.value === 'alipay'
-          ? await AlipayAuthApi.exchange(oauthCode, state as string, 'admin', 'BIND')
-          : await SocialApi.exchangeBind(oauthCode, state as string, source.value, 'admin');
+      const res = await SocialApi.exchangeBind(oauthCode, state as string, source.value, 'admin');
       if (res.data?.result === 'bind_success') {
         success.value = true;
         loading.value = false;
