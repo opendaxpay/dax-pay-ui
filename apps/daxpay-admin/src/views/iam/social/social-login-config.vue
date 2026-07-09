@@ -52,7 +52,7 @@
 
   // ===== 配置抽屉 =====
   const modalVisible = ref(false);
-  const selectedItem = ref<SocialLoginConfigResult | null>(null);
+  const selectedItem = ref<null | SocialLoginConfigResult>(null);
 
   /**
    * 卡片点击: 统一打开配置抽屉(含平台级跳转型支付宝)

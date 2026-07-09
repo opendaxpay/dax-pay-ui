@@ -58,6 +58,8 @@ export interface ChannelMerchantResult extends BaseEntity {
   activeEnv?: string;
   /** 是否支持沙箱环境 */
   sandboxSupport?: boolean;
+  /** 是否为沙箱环境通道商户 */
+  sandbox?: boolean;
   /** 通道商户创建来源 */
   source?: string;
   /** 备注 */
@@ -102,6 +104,8 @@ export interface ChannelMerchantQueryParam {
   channelMerchantName?: string;
   /** 所属通道 */
   channel?: string;
+  /** 是否沙箱环境 */
+  sandbox?: boolean;
 }
 
 /**
