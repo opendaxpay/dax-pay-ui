@@ -4,8 +4,11 @@
   import { computed, reactive, ref, watch } from 'vue';
 
   import { $t } from '@vben/locales';
+  import { useClipboard } from '@vueuse/core';
+  import { IconifyIcon } from '@vben-core/icons';
 
   import { SocialConfigApi } from '#/api/iam/social.api';
+  import { UrlConfigApi } from '#/api/system/url-config.api';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
 
@@ -23,6 +26,10 @@
 
   const { message } = useMessage();
   const { diffForm } = useFormEdit();
+  const { copy } = useClipboard();
+
+  // 管理端访问地址(用于展示回调地址, 抽屉打开时从端点配置获取)
+  const adminBaseUrl = ref('');
 
   const modalTitle = ref('');
   const submitLoading = ref(false);
@@ -65,6 +72,37 @@
     },
   });
 
+  // 回调路径常量(与后端 SocialLoginService 路径约定一致)
+  const LOGIN_CALLBACK_PATH = '/auth/oauth-callback';
+  const BIND_CALLBACK_PATH = '/auth/social-bind-callback';
+
+  /**
+   * 登录回调地址(adminBaseUrl + 登录回调路径 + 平台编码)
+   */
+  const loginCallbackUrl = computed(() => {
+    const base = (adminBaseUrl.value || '').replace(/\/$/, '');
+    const source = currentSource.value;
+    return base && source ? `${base}${LOGIN_CALLBACK_PATH}/${source}` : '';
+  });
+
+  /**
+   * 绑定回调地址(adminBaseUrl + 绑定回调路径 + 平台编码)
+   */
+  const bindCallbackUrl = computed(() => {
+    const base = (adminBaseUrl.value || '').replace(/\/$/, '');
+    const source = currentSource.value;
+    return base && source ? `${base}${BIND_CALLBACK_PATH}/${source}` : '';
+  });
+
+  /**
+   * 复制文本到剪贴板
+   */
+  async function handleCopy(text: string) {
+    if (!text) return;
+    await copy(text);
+    message.success($t('iam.social.tip.copySuccess'));
+  }
+
   /**
    * 抽屉打开时根据 configItem 初始化表单
    */
@@ -72,6 +110,10 @@
     () => props.visible,
     async (visible) => {
       if (!visible || !props.configItem) return;
+      // 获取管理端访问地址(用于回调地址展示, 不阻塞表单初始化)
+      UrlConfigApi.get().then((res) => {
+        adminBaseUrl.value = res.data?.adminBaseUrl ?? '';
+      });
       const item = props.configItem;
       if (item.configured || item.id) {
         // 编辑模式(已配置平台)
@@ -162,6 +204,51 @@
           />
         </a-form-item>
       </a-form>
+
+      <!-- 回调地址展示(辅助参考, 复制后粘贴到第三方平台授权回调配置) -->
+      <div class="mt-2 rounded-lg bg-muted/40 p-4">
+        <div class="mb-3 flex items-center gap-1.5">
+          <span class="text-sm font-semibold">{{ $t('iam.social.form.callbackUrl') }}</span>
+          <a-tooltip :title="$t('iam.social.form.callbackUrlHelp')">
+            <IconifyIcon icon="ant-design:question-circle-outlined" class="text-muted-foreground" />
+          </a-tooltip>
+        </div>
+        <a-alert
+          v-if="!loginCallbackUrl"
+          type="warning"
+          :message="$t('iam.social.form.callbackUrlEmpty')"
+          banner
+          class="!mb-0"
+        />
+        <template v-else>
+          <div class="mb-3">
+            <div class="mb-1 text-xs text-muted-foreground">
+              {{ $t('iam.social.form.loginCallback') }}
+            </div>
+            <a-input :value="loginCallbackUrl" readonly>
+              <template #suffix>
+                <a-button type="link" size="small" @click="handleCopy(loginCallbackUrl)">
+                  <IconifyIcon icon="ant-design:copy-outlined" />
+                  {{ $t('iam.social.action.copy') }}
+                </a-button>
+              </template>
+            </a-input>
+          </div>
+          <div>
+            <div class="mb-1 text-xs text-muted-foreground">
+              {{ $t('iam.social.form.bindCallback') }}
+            </div>
+            <a-input :value="bindCallbackUrl" readonly>
+              <template #suffix>
+                <a-button type="link" size="small" @click="handleCopy(bindCallbackUrl)">
+                  <IconifyIcon icon="ant-design:copy-outlined" />
+                  {{ $t('iam.social.action.copy') }}
+                </a-button>
+              </template>
+            </a-input>
+          </div>
+        </template>
+      </div>
     </a-spin>
     <template #footer>
       <a-space>

@@ -30,7 +30,8 @@
     "delete": "Delete",
     "add": "Add Platform Config",
     "search": "Search",
-    "reset": "Reset"
+    "reset": "Reset",
+    "copy": "Copy"
   },
   "form": {
     "source": "Platform",
@@ -44,7 +45,12 @@
     "agentId": "WeCom Agent ID",
     "agentIdPlaceholder": "Only required for WeCom",
     "enabled": "Enabled",
-    "enabledRequired": "Please select enable status"
+    "enabledRequired": "Please select enable status",
+    "callbackUrl": "Callback URL",
+    "callbackUrlHelp": "Fill the following addresses into the authorization callback URL configuration of the corresponding third-party platform",
+    "callbackUrlEmpty": "Please set the admin access URL in the endpoint configuration first",
+    "loginCallback": "Login Callback",
+    "bindCallback": "Bind Callback"
   },
   "confirm": {
     "delete": "Are you sure to delete the {name} configuration?"
@@ -55,6 +61,7 @@
     "editSuccess": "Updated successfully",
     "enableSuccess": "Enabled successfully",
     "disableSuccess": "Disabled successfully",
-    "deleteSuccess": "Deleted successfully"
+    "deleteSuccess": "Deleted successfully",
+    "copySuccess": "Copied to clipboard"
   }
 }
