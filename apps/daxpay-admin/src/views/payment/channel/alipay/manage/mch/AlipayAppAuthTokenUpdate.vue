@@ -31,6 +31,8 @@
   const activeTab = ref<'agent' | 'manual'>('manual');
   // 代运营授权链接
   const authUrl = ref('');
+  // 授权回调地址(用于支付宝开放平台配置)
+  const callbackUrl = ref('');
 
   // 是否展示底部保存按钮(仅手动设置 Tab)
   const showFooter = computed(() => activeTab.value === 'manual');
@@ -67,9 +69,11 @@
     channelMchNo.value = mchNo;
     newAuthToken.value = '';
     authUrl.value = '';
+    callbackUrl.value = '';
     activeTab.value = 'manual';
     visible.value = true;
     loadConfig();
+    loadCallbackUrl();
   }
 
   /** 关闭抽屉 */
@@ -135,6 +139,30 @@
     }
   }
 
+  /** 加载授权回调地址 */
+  function loadCallbackUrl() {
+    AlipayIsvChannelMerchantApi.getAuthCallbackUrl()
+      .then(({ data }) => {
+        callbackUrl.value = data || '';
+      })
+      .catch(() => {
+        // 回调地址获取失败不阻塞页面
+      });
+  }
+
+  /** 复制回调地址 */
+  async function handleCopyCallbackUrl() {
+    if (!callbackUrl.value) {
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(callbackUrl.value);
+      message.success($t('payment.merchant.channelMerchant.agentAuthCallbackUrlCopied'));
+    } catch {
+      message.error($t('payment.merchant.channelMerchant.agentAuthUrlCopyFail'));
+    }
+  }
+
   defineExpose({ open, close });
 </script>
 
@@ -142,7 +170,7 @@
   <a-drawer
     v-model:open="visible"
     :title="$t('payment.merchant.channelMerchant.appAuthTokenSetTitle')"
-    :size="560"
+    :size="860"
     destroy-on-hidden
   >
     <a-spin :spinning="loading" class="block">
@@ -170,12 +198,9 @@
         <!-- 国际化：代运营授权 -->
         <a-tab-pane key="agent" :tab="$t('payment.merchant.channelMerchant.tabAgentAuth')">
           <div class="agent-auth-wrap flex flex-col gap-4">
-            <!-- 说明卡片 -->
-            <a-alert type="info" show-icon class="agent-auth-tip">
-              <template #message>
-                {{ $t('payment.merchant.channelMerchant.agentAuthTipTitle') }}
-              </template>
-              <template #description>
+            <!-- 说明面板(可折叠, 模拟 Alert info 风格) -->
+            <a-collapse :default-active-key="['auth-tip']" class="auth-tip-collapse">
+              <a-collapse-panel key="auth-tip" :header="$t('payment.merchant.channelMerchant.agentAuthTipTitle')">
                 <div class="space-y-1">
                   <div>{{ $t('payment.merchant.channelMerchant.agentAuthTipLine1') }}</div>
                   <div>
@@ -184,12 +209,24 @@
                     </span>
                     <span class="tip-value">{{ isvConfig.alipayUserId || '-' }}</span>
                   </div>
+                  <div class="callback-row">
+                    <span class="tip-label">
+                      {{ $t('payment.merchant.channelMerchant.agentAuthCallbackUrl') }}
+                    </span>
+                    <span class="callback-url-value">{{ callbackUrl || '-' }}</span>
+                    <a-button v-if="callbackUrl" type="link" size="small" @click="handleCopyCallbackUrl">
+                      {{ $t('common.copy') }}
+                    </a-button>
+                  </div>
+                  <div class="tip-hint">
+                    {{ $t('payment.merchant.channelMerchant.agentAuthCallbackUrlTip') }}
+                  </div>
                   <div class="tip-warn">
                     {{ $t('payment.merchant.channelMerchant.agentAuthTipWarn') }}
                   </div>
                 </div>
-              </template>
-            </a-alert>
+              </a-collapse-panel>
+            </a-collapse>
 
             <!-- 生成按钮 -->
             <div class="text-center">
@@ -242,28 +279,67 @@
   .current-token-value {
     padding: 6px 0;
     font-family: monospace;
-    color: #595959;
+    color: var(--ant-color-text-secondary);
   }
 
-  /* 代运营授权说明 */
-  .agent-auth-tip {
+  /* 代运营授权说明(折叠面板, 模拟 Alert info 风格) */
+  .auth-tip-collapse {
+    background: var(--ant-color-primary-bg);
+    border: 1px solid var(--ant-color-border-secondary);
+    border-left: 4px solid var(--ant-color-primary);
     border-radius: 8px;
   }
 
-  .agent-auth-tip .tip-label {
-    margin-right: 6px;
-    color: #8c8c8c;
+  .auth-tip-collapse :deep(.ant-collapse-header) {
+    align-items: center;
+    font-weight: 600;
+    color: var(--ant-color-primary);
   }
 
-  .agent-auth-tip .tip-value {
+  .auth-tip-collapse :deep(.ant-collapse-content) {
+    background: transparent;
+    border-top: 1px solid var(--ant-color-border-secondary);
+  }
+
+  .auth-tip-collapse :deep(.ant-collapse-content-box) {
+    padding-top: 12px;
+    padding-bottom: 4px;
+  }
+
+  .auth-tip-collapse .tip-label {
+    margin-right: 6px;
+    color: var(--ant-color-text-tertiary);
+  }
+
+  .auth-tip-collapse .tip-value {
     font-family: monospace;
     font-weight: 600;
-    color: #1677ff;
+    color: var(--ant-color-primary);
   }
 
-  .agent-auth-tip .tip-warn {
+  .auth-tip-collapse .callback-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .auth-tip-collapse .callback-url-value {
+    flex: 1;
+    font-family: monospace;
+    font-size: 12px;
+    color: var(--ant-color-text-secondary);
+    word-break: break-all;
+  }
+
+  .auth-tip-collapse .tip-hint {
+    color: var(--ant-color-text-tertiary);
+    font-size: 12px;
+  }
+
+  .auth-tip-collapse .tip-warn {
     margin-top: 4px;
-    color: #fa8c16;
+    color: var(--ant-color-warning);
   }
 
   /* 二维码卡片 */
@@ -271,8 +347,8 @@
     padding: 16px;
     margin: 0 auto;
     text-align: center;
-    background: #fafafa;
-    border: 1px solid #f0f0f0;
+    background: var(--ant-color-fill-quaternary);
+    border: 1px solid var(--ant-color-border-secondary);
     border-radius: 10px;
   }
 
@@ -282,13 +358,13 @@
     align-items: center;
     gap: 8px;
     padding: 12px;
-    background: #fff;
+    background: var(--ant-color-bg-container);
     border-radius: 8px;
     box-shadow: 0 1px 4px rgb(0 0 0 / 6%);
   }
 
   .qrcode-tip {
     font-size: 12px;
-    color: #8c8c8c;
+    color: var(--ant-color-text-tertiary);
   }
 </style>

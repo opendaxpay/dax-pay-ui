@@ -25,6 +25,12 @@ export const AlipayIsvChannelMerchantApi = {
     return defHttp.post({ url: '/admin/alipay/isv-channel-merchant/gen-auth-url', data });
   },
   /**
+   * 获取代运营授权回调地址(用于支付宝开放平台配置)
+   */
+  getAuthCallbackUrl(): Promise<Result<string>> {
+    return defHttp.get({ url: '/admin/alipay/isv-channel-merchant/auth-callback-url' });
+  },
+  /**
    * 根据通道商户号查询支付宝服务商通道商户配置
    */
   findByChannelMchNo(channelMchNo: string): Promise<Result<AlipayIsvChannelMerchantConfig>> {
