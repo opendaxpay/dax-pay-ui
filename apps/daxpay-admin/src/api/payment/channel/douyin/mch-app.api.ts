@@ -83,6 +83,4 @@ export interface DouyinMchAppAuthConfig {
   channelMchNo?: string;
   /** 应用密钥 (已脱敏) */
   appSecret?: string;
-  /** 授权回调地址 */
-  authCallbackUrl?: string;
 }

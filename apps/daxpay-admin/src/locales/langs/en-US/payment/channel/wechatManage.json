@@ -40,8 +40,6 @@
   "appSecretTooltipOfficialAccount": "Official account AppSecret for OAuth web authorization",
   "appSecretTooltipMiniProgram": "Mini program AppSecret for code2session",
   "appSecretTooltipMobileApp": "Mobile app AppSecret for OAuth",
-  "authCallbackUrl": "Auth Callback URL",
-  "authCallbackUrlPlaceholder": "Enter auth callback URL",
   "directKeyConfigTitle": "Direct Key Config",
   "cardDirectKeyConfig": "Direct Key Config",
   "cardDirectKeyConfigDesc": "Configure direct merchant API V3 key, public key and certificates",
@@ -68,7 +66,6 @@
   "authAppTypeConfirm": "Confirm changing the auth application type?",
   "authAppTypeSaveSuccess": "Auth application type saved successfully",
   "validation": {
-    "appSecret": "App secret is required",
-    "authCallbackUrl": "Auth callback URL is required"
+    "appSecret": "App secret is required"
   }
 }

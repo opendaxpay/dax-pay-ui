@@ -25,10 +25,7 @@
   "appSecretTooltipMiniProgram": "Mini Program AppSecret, used for code2session to obtain OpenId",
   "appSecretTooltipMobileApp": "Mobile App Client Secret, used for OAuth authorization",
   "appSecretTooltipWebApp": "Web App Client Secret, used for OAuth authorization",
-  "authCallbackUrl": "Auth Callback URL",
-  "authCallbackUrlPlaceholder": "Enter auth callback URL",
   "validation": {
-    "authCallbackUrl": "Auth callback URL is required",
     "appSecret": "App secret is required"
   },
   "appType": "App Type",

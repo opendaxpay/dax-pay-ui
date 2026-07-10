@@ -60,9 +60,6 @@
         message: $t('payment.channel.douyinMchApp.validation.appSecret'),
       },
     ],
-    authCallbackUrl: isMiniProgram.value
-      ? []
-      : [{ required: true, message: $t('payment.channel.douyinMchApp.validation.authCallbackUrl') }],
   }));
 
   function loadConfig() {
@@ -125,7 +122,6 @@
           douyinDirectAppId: props.appId,
           mchNo: props.mchNo,
           channelMchNo: props.channelMchNo,
-          authCallbackUrl: isMiniProgram.value ? undefined : formState.value.authCallbackUrl,
         };
         return DouyinMchAppApi.saveAuthConfig(submitData)
           .then(() => {
@@ -192,19 +188,6 @@
             <a-input
               v-model:value="formState.appSecret"
               :placeholder="$t('payment.channel.douyinMchApp.appSecretPlaceholder')"
-              :disabled="!isEditing"
-              allow-clear
-            />
-          </a-form-item>
-
-          <a-form-item
-            v-if="!isMiniProgram"
-            :label="$t('payment.channel.douyinMchApp.authCallbackUrl')"
-            name="authCallbackUrl"
-          >
-            <a-input
-              v-model:value="formState.authCallbackUrl"
-              :placeholder="$t('payment.channel.douyinMchApp.authCallbackUrlPlaceholder')"
               :disabled="!isEditing"
               allow-clear
             />

@@ -27,9 +27,6 @@
 
   const canEdit = computed(() => hasPermission(PermCodes.Payment.WechatIsv.MANAGE));
 
-  // 仅公众号需要配置 OAuth 授权回调地址
-  const isOfficialAccount = computed(() => props.appType === 'official_account');
-
   /** AppSecret 提示文案（按应用类型） */
   const appSecretTooltip = computed(() => {
     const map: Record<string, string> = {
@@ -42,7 +39,6 @@
   });
 
   // 应用密钥：始终必填（星号常显）；编辑时预填脱敏值，未修改由 diffForm 比对跳过更新
-  // 授权回调地址：非必填（公众号可按需配置 OAuth 回调地址）
   const formRules = computed(() => ({
     appSecret: [
       {
@@ -50,7 +46,6 @@
         message: $t('payment.channel.wechatManage.validation.appSecret'),
       },
     ],
-    authCallbackUrl: [],
   }));
 
   function loadConfig() {
@@ -106,8 +101,6 @@
           ...formState.value,
           ...sensitiveData,
           wechatIsvAppId: props.wechatIsvAppId,
-          // 非公众号不传授权回调地址
-          authCallbackUrl: isOfficialAccount.value ? formState.value.authCallbackUrl : undefined,
         };
         return WechatIsvAppApi.saveAuthConfig(submitData)
           .then(() => {
@@ -174,19 +167,6 @@
             <a-input
               v-model:value="formState.appSecret"
               :placeholder="$t('payment.channel.wechatManage.appSecretPlaceholder')"
-              :disabled="!isEditing"
-              allow-clear
-            />
-          </a-form-item>
-
-          <a-form-item
-            v-if="isOfficialAccount"
-            :label="$t('payment.channel.wechatManage.authCallbackUrl')"
-            name="authCallbackUrl"
-          >
-            <a-input
-              v-model:value="formState.authCallbackUrl"
-              :placeholder="$t('payment.channel.wechatManage.authCallbackUrlPlaceholder')"
               :disabled="!isEditing"
               allow-clear
             />

@@ -33,9 +33,6 @@
   /** 表单校验规则 */
   const formRules = computed(() => ({
     userIdType: [{ required: true, message: $t('payment.channel.alipayIsv.validation.userIdType') }],
-    authCallbackUrl: [
-      { required: true, message: $t('payment.channel.alipayIsv.validation.authCallbackUrl') },
-    ],
   }));
 
   /**
@@ -171,16 +168,6 @@
               <a-radio value="userid">{{ $t('payment.channel.alipayIsv.userIdTypeUserid') }}</a-radio>
               <a-radio value="openid_userid">{{ $t('payment.channel.alipayIsv.userIdTypeBoth') }}</a-radio>
             </a-radio-group>
-          </a-form-item>
-
-          <!-- 授权回调地址 -->
-          <a-form-item :label="$t('payment.channel.alipayIsv.authCallbackUrl')" name="authCallbackUrl">
-            <a-input
-              v-model:value="formState.authCallbackUrl"
-              :placeholder="$t('payment.channel.alipayIsv.authCallbackUrlPlaceholder')"
-              :disabled="!isEditing"
-              allow-clear
-            />
           </a-form-item>
         </a-form>
       </a-spin>

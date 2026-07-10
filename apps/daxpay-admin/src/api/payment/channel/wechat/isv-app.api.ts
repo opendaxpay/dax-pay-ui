@@ -69,6 +69,4 @@ export interface WechatIsvAppAuthConfig {
   wechatIsvAppId?: string;
   /** 应用密钥（已脱敏） */
   appSecret?: string;
-  /** 授权回调地址（仅公众号） */
-  authCallbackUrl?: string;
 }

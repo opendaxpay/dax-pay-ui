@@ -120,6 +120,4 @@ export interface AlipayIsvAppAuthConfig {
   alipayIsvAppId?: string;
   /** 用户标识类型 */
   userIdType?: string;
-  /** 授权回调地址 */
-  authCallbackUrl?: string;
 }

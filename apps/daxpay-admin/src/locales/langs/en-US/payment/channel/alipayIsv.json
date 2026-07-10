@@ -29,8 +29,6 @@
   "userIdTypeOpenid": "OpenId",
   "userIdTypeUserid": "UserId",
   "userIdTypeBoth": "Both OpenId and UserId",
-  "authCallbackUrl": "Authorization Callback URL",
-  "authCallbackUrlPlaceholder": "Please enter authorization callback URL",
   "validation": {
     "authType": "Please select auth type",
     "alipayPublicKey": "Please enter Alipay public key",
@@ -38,7 +36,6 @@
     "appCert": "App certificate is required",
     "alipayCert": "Alipay certificate is required",
     "alipayRootCert": "Alipay root certificate is required",
-    "userIdType": "Please select user ID type",
-    "authCallbackUrl": "Please enter authorization callback URL"
+    "userIdType": "Please select user ID type"
   }
 }

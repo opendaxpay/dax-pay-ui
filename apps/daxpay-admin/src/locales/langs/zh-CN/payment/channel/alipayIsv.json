@@ -29,8 +29,6 @@
   "userIdTypeOpenid": "OpenId",
   "userIdTypeUserid": "UserId",
   "userIdTypeBoth": "同时支持 OpenId 和 UserId",
-  "authCallbackUrl": "授权回调地址",
-  "authCallbackUrlPlaceholder": "请输入授权回调地址",
   "validation": {
     "authType": "请选择认证方式",
     "alipayPublicKey": "请输入支付宝公钥",
@@ -38,7 +36,6 @@
     "appCert": "请上传应用公钥证书",
     "alipayCert": "请上传支付宝公钥证书",
     "alipayRootCert": "请上传支付宝根证书",
-    "userIdType": "请选择用户标识类型",
-    "authCallbackUrl": "请输入授权回调地址"
+    "userIdType": "请选择用户标识类型"
   }
 }

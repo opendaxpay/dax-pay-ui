@@ -32,10 +32,7 @@
   "appSecretTooltipOfficialAccount": "Official account AppSecret for OAuth OpenId",
   "appSecretTooltipMiniProgram": "Mini program AppSecret for code2session OpenId",
   "appSecretTooltipMobileApp": "Mobile app AppSecret for OAuth",
-  "authCallbackUrl": "OAuth Callback URL",
-  "authCallbackUrlPlaceholder": "Enter OAuth callback URL",
   "validation": {
-    "appSecret": "Please enter App Secret",
-    "authCallbackUrl": "Please enter OAuth callback URL"
+    "appSecret": "Please enter App Secret"
   }
 }

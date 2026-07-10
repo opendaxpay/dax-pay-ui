@@ -25,10 +25,7 @@
   "appSecretTooltipMiniProgram": "小程序 AppSecret，用于 code2session 获取 OpenId",
   "appSecretTooltipMobileApp": "移动应用 Client Secret，用于 OAuth 授权",
   "appSecretTooltipWebApp": "网站应用 Client Secret，用于 OAuth 授权",
-  "authCallbackUrl": "授权回调地址",
-  "authCallbackUrlPlaceholder": "请输入授权回调地址",
   "validation": {
-    "authCallbackUrl": "请输入授权回调地址",
     "appSecret": "请输入应用密钥"
   },
   "appType": "应用类型",
