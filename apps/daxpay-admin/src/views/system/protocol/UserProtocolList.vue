@@ -74,9 +74,13 @@
 
   // 复制到其他端弹窗
   const copyVisible = ref(false);
+  const copyFormRef = ref();
   const copySourceId = ref<string>('');
   const copySourceClientType = ref<string>('');
-  const copyTargetType = ref<string>('');
+  const copyForm = ref<{ clientType?: string }>({ clientType: undefined });
+  const copyRules = {
+    clientType: [{ required: true, message: $t('system.protocol.selectClientType') }],
+  };
 
   onMounted(() => {
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
@@ -213,17 +217,19 @@
   function handleCopy(row: any) {
     copySourceId.value = row.id;
     copySourceClientType.value = row.clientType;
-    copyTargetType.value = '';
+    copyForm.value = { clientType: undefined };
     copyVisible.value = true;
   }
 
   /** 确认复制 */
-  function confirmCopy() {
-    if (!copyTargetType.value) {
-      message.warning($t('system.protocol.selectClientType'));
-      return;
+  async function confirmCopy() {
+    try {
+      await copyFormRef.value?.validate();
+    } catch {
+      // 校验失败: 表单已显示错误提示; 拒绝以阻止 modal 关闭
+      return Promise.reject();
     }
-    UserProtocolApi.copyToClient(copySourceId.value, copyTargetType.value).then(() => {
+    return UserProtocolApi.copyToClient(copySourceId.value, copyForm.value.clientType!).then(() => {
       message.success($t('common.operationSuccess'));
       copyVisible.value = false;
       queryPage();
@@ -352,10 +358,16 @@
       :cancel-text="$t('common.cancelText')"
       @ok="confirmCopy"
     >
-      <a-form :label-col="{ span: 6 }" :wrapper-col="{ span: 16 }">
-        <a-form-item :label="$t('system.protocol.clientType')">
+      <a-form
+        ref="copyFormRef"
+        :model="copyForm"
+        :rules="copyRules"
+        :label-col="{ span: 6 }"
+        :wrapper-col="{ span: 16 }"
+      >
+        <a-form-item :label="$t('system.protocol.clientType')" name="clientType">
           <a-select
-            v-model:value="copyTargetType"
+            v-model:value="copyForm.clientType"
             :options="clientTypeOptions.filter((i) => i.value !== copySourceClientType)"
             :placeholder="$t('system.protocol.selectClientType')"
           />

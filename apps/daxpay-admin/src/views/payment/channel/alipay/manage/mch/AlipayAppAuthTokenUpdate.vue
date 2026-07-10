@@ -25,8 +25,14 @@
   const channelMchNo = ref('');
   // 服务商通道商户配置(用于展示当前令牌 / 子商户号)
   const isvConfig = ref<AlipayIsvChannelMerchantConfig>({});
-  // 新令牌输入
-  const newAuthToken = ref('');
+  // 手动设置表单
+  const formRef = ref();
+  const formState = ref({ appAuthToken: '' });
+  const formRules = {
+    appAuthToken: [
+      { required: true, whitespace: true, message: $t('payment.merchant.channelMerchant.appAuthTokenRequired') },
+    ],
+  };
   // 当前 Tab: manual | agent
   const activeTab = ref<'agent' | 'manual'>('manual');
   // 代运营授权链接
@@ -67,7 +73,7 @@
   /** 打开抽屉 */
   function open(mchNo: string) {
     channelMchNo.value = mchNo;
-    newAuthToken.value = '';
+    formState.value = { appAuthToken: '' };
     authUrl.value = '';
     callbackUrl.value = '';
     activeTab.value = 'manual';
@@ -82,9 +88,11 @@
   }
 
   /** 保存新令牌(二次确认后提交) */
-  function handleSave() {
-    if (!newAuthToken.value.trim()) {
-      message.warning($t('payment.merchant.channelMerchant.appAuthTokenRequired'));
+  async function handleSave() {
+    try {
+      await formRef.value?.validate();
+    } catch {
+      // 校验失败: 表单已显示错误提示
       return;
     }
     confirm({
@@ -96,7 +104,7 @@
         saving.value = true;
         return AlipayIsvChannelMerchantApi.updateAppAuthToken({
           channelMchNo: channelMchNo.value,
-          appAuthToken: newAuthToken.value.trim(),
+          appAuthToken: formState.value.appAuthToken.trim(),
         })
           .then(() => {
             message.success($t('payment.merchant.channelMerchant.appAuthTokenUpdateSuccess'));
@@ -177,7 +185,7 @@
       <a-tabs v-model:active-key="activeTab" class="auth-token-tabs">
         <!-- 国际化：手动设置 -->
         <a-tab-pane key="manual" :tab="$t('payment.merchant.channelMerchant.tabManualToken')">
-          <a-form layout="vertical" class="pt-2">
+          <a-form ref="formRef" layout="vertical" class="pt-2" :model="formState" :rules="formRules">
             <!-- 国际化：当前令牌 -->
             <a-form-item :label="$t('payment.merchant.channelMerchant.appAuthTokenCurrent')">
               <div class="current-token-value">
@@ -185,9 +193,9 @@
               </div>
             </a-form-item>
             <!-- 国际化：新令牌 -->
-            <a-form-item :label="$t('payment.merchant.channelMerchant.appAuthTokenNew')">
+            <a-form-item :label="$t('payment.merchant.channelMerchant.appAuthTokenNew')" name="appAuthToken">
               <a-input
-                v-model:value="newAuthToken"
+                v-model:value="formState.appAuthToken"
                 :placeholder="$t('payment.merchant.channelMerchant.appAuthTokenNewPlaceholder')"
                 allow-clear
               />

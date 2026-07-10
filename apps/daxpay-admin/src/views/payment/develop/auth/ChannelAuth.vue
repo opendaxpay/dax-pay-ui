@@ -36,11 +36,17 @@
   const authResult = ref<AuthResult>({});
 
   /** 微信支付表单 */
+  const formRef = ref();
   const form = reactive({
-    mchNo: '',
-    channelMchNo: '',
-    capability: '',
+    mchNo: undefined as string | undefined,
+    channelMchNo: undefined as string | undefined,
+    capability: undefined as string | undefined,
   });
+  const formRules = {
+    mchNo: [{ required: true, message: $t('payment.develop.auth.form.rule.mchNo') }],
+    channelMchNo: [{ required: true, message: $t('payment.develop.auth.form.rule.channelMchNo') }],
+    capability: [{ required: true, message: $t('payment.develop.auth.form.rule.capability') }],
+  };
 
   /** 微信小程序表单(端类型: merchant 商户端 / admin 运营端) */
   const wechatMiniForm = reactive({
@@ -136,8 +142,8 @@
 
   /** 商户变更: 刷新通道商户候选 */
   function merchantChange() {
-    form.channelMchNo = '';
-    form.capability = '';
+    form.channelMchNo = undefined;
+    form.capability = undefined;
     channelMchNoOptions.value = [];
     capabilityOptions.value = [];
     if (!form.mchNo) return;
@@ -147,7 +153,7 @@
 
   /** 通道商户变更: 重置能力并重载能力候选 */
   function channelMchNoChange() {
-    form.capability = '';
+    form.capability = undefined;
     capabilityOptions.value = [];
     if (form.channelMchNo) {
       loadCapabilityCandidates(form.channelMchNo);
@@ -181,16 +187,10 @@
     }
     // 微信支付: 表单校验
     if (authType.value === 'wechatChannel') {
-      if (!form.mchNo) {
-        message.warning($t('payment.develop.auth.form.rule.mchNo'));
-        return;
-      }
-      if (!form.channelMchNo) {
-        message.warning($t('payment.develop.auth.form.rule.channelMchNo'));
-        return;
-      }
-      if (!form.capability) {
-        message.warning($t('payment.develop.auth.form.rule.capability'));
+      try {
+        await formRef.value?.validate();
+      } catch {
+        // 校验失败: 表单已显示错误提示
         return;
       }
     }
@@ -303,8 +303,14 @@
 
               <!-- 微信支付：商户参数表单 -->
               <div v-if="authType === 'wechatChannel'" class="form-panel">
-                <a-form layout="vertical" class="channel-auth-form">
-                  <a-form-item :label="$t('payment.develop.auth.form.mchNo')">
+                <a-form
+                  ref="formRef"
+                  layout="vertical"
+                  class="channel-auth-form"
+                  :model="form"
+                  :rules="formRules"
+                >
+                  <a-form-item :label="$t('payment.develop.auth.form.mchNo')" name="mchNo">
                     <a-select
                       v-model:value="form.mchNo"
                       :options="mchNoOptions"
@@ -315,7 +321,7 @@
                       @change="merchantChange"
                     />
                   </a-form-item>
-                  <a-form-item :label="$t('payment.develop.auth.form.channelMchNo')">
+                  <a-form-item :label="$t('payment.develop.auth.form.channelMchNo')" name="channelMchNo">
                     <a-select
                       v-model:value="form.channelMchNo"
                       :options="channelMchNoOptions"
@@ -326,7 +332,7 @@
                       @change="channelMchNoChange"
                     />
                   </a-form-item>
-                  <a-form-item :label="$t('payment.develop.auth.form.capability')" class="form-item-last">
+                  <a-form-item :label="$t('payment.develop.auth.form.capability')" name="capability" class="form-item-last">
                     <a-select
                       v-model:value="form.capability"
                       :options="capabilityOptions"

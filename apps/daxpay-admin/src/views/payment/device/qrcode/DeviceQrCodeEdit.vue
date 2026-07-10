@@ -35,6 +35,10 @@
     amountType: 'random',
   });
 
+  // 金额类型为固定时, 固定金额必填
+  const isFixedAmount = computed(() => formState.value.amountType === 'fixed');
+
+  // formState.fixedAmount 以「元」存储, 提交时再×100转分
   const formRules = computed(() => {
     const rules: Record<string, any[]> = {
       name: [{ required: true, message: $t('payment.device.qrcode.validateName') }],
@@ -44,14 +48,19 @@
     if (!isEdit.value) {
       rules.mchNo = [{ required: true, message: $t('payment.device.qrcode.validateMchNo') }];
     }
+    // 固定金额类型时金额必填
+    if (isFixedAmount.value) {
+      rules.fixedAmount = [
+        { required: true, message: $t('payment.device.qrcode.validateFixedAmount') },
+        {
+          type: 'number',
+          min: 0.01,
+          message: $t('payment.device.qrcode.validateFixedAmount'),
+        },
+      ];
+    }
     return rules;
   });
-
-  // 金额类型为固定时, 固定金额必填
-  const isFixedAmount = computed(() => formState.value.amountType === 'fixed');
-
-  // 固定金额展示值(元), 提交时转回分
-  const fixedAmountYuan = ref<number | undefined>(undefined);
 
   /**
    * 加载商户下拉
@@ -81,8 +90,8 @@
       name: '',
       mchNo: '',
       amountType: 'random',
+      fixedAmount: undefined,
     };
-    fixedAmountYuan.value = undefined;
     appOptions.value = [];
     formRef.value?.resetFields();
   }
@@ -112,10 +121,10 @@
         mchNo: row.mchNo,
         appId: row.appId,
         amountType: row.amountType,
-        fixedAmount: row.fixedAmount,
+        // 分转元展示
+        fixedAmount: row.fixedAmount ? row.fixedAmount / 100 : undefined,
         remark: row.remark,
       };
-      fixedAmountYuan.value = row.fixedAmount ? row.fixedAmount / 100 : undefined;
     } finally {
       confirmLoading.value = false;
     }
@@ -131,17 +140,15 @@
       // 校验失败: 表单已显示错误提示
       return;
     }
-    // 固定金额校验
-    if (isFixedAmount.value && (fixedAmountYuan.value === undefined || fixedAmountYuan.value <= 0)) {
-      message.error($t('payment.device.qrcode.validateFixedAmount'));
-      return;
-    }
     confirmLoading.value = true;
     try {
       // 金额元转分, 在构造时一次性赋值避免对对象立即修改
       const payload: DeviceQrCodeParam = {
         ...formState.value,
-        fixedAmount: isFixedAmount.value && fixedAmountYuan.value ? Math.round(fixedAmountYuan.value * 100) : undefined,
+        fixedAmount:
+          isFixedAmount.value && formState.value.fixedAmount
+            ? Math.round(formState.value.fixedAmount * 100)
+            : undefined,
       };
       await (formEditType.value === FormEditType.Edit ? DeviceQrCodeApi.update(payload) : DeviceQrCodeApi.add(payload));
       message.success($t('common.operationSuccess'));
@@ -218,10 +225,10 @@
             <a-radio-button value="fixed">{{ $t('payment.device.qrcode.amountType.fixed') }}</a-radio-button>
           </a-radio-group>
         </a-form-item>
-        <!-- 固定金额(仅固定金额类型显示) -->
+        <!-- 固定金额(仅固定金额类型显示, 表单内以元存储) -->
         <a-form-item v-if="isFixedAmount" :label="$t('payment.device.qrcode.field.fixedAmount')" name="fixedAmount">
           <a-input-number
-            v-model:value="fixedAmountYuan"
+            v-model:value="formState.fixedAmount"
             :min="0.01"
             :step="0.01"
             :precision="2"

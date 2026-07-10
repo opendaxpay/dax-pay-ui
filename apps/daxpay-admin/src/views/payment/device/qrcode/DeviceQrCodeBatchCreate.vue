@@ -18,9 +18,8 @@
   const visible = ref(false);
   const confirmLoading = ref(false);
   const formRef = ref();
-  // 固定金额展示值(元)
-  const fixedAmountYuan = ref<number | undefined>(undefined);
 
+  // formState.fixedAmount 以「元」存储, 提交时再×100转分
   const formState = ref<DeviceQrCodeBatchParam>({
     batchNo: '',
     count: 10,
@@ -30,12 +29,26 @@
 
   const isFixedAmount = computed(() => formState.value.amountType === 'fixed');
 
-  const formRules = computed(() => ({
-    batchNo: [{ required: true, message: $t('payment.device.qrcode.validateBatchNo') }],
-    count: [{ required: true, message: $t('payment.device.qrcode.validateCount') }],
-    amountType: [{ required: true, message: $t('payment.device.qrcode.validateAmountType') }],
-    status: [{ required: true, message: $t('payment.device.qrcode.validateStatus') }],
-  }));
+  const formRules = computed(() => {
+    const rules: Record<string, any[]> = {
+      batchNo: [{ required: true, message: $t('payment.device.qrcode.validateBatchNo') }],
+      count: [{ required: true, message: $t('payment.device.qrcode.validateCount') }],
+      amountType: [{ required: true, message: $t('payment.device.qrcode.validateAmountType') }],
+      status: [{ required: true, message: $t('payment.device.qrcode.validateStatus') }],
+    };
+    // 固定金额类型时金额必填
+    if (isFixedAmount.value) {
+      rules.fixedAmount = [
+        { required: true, message: $t('payment.device.qrcode.validateFixedAmount') },
+        {
+          type: 'number',
+          min: 0.01,
+          message: $t('payment.device.qrcode.validateFixedAmount'),
+        },
+      ];
+    }
+    return rules;
+  });
 
   /**
    * 一键生成批次号: Q + YYMMDDHHmmss(对齐商业版)
@@ -56,8 +69,8 @@
       count: 10,
       amountType: 'random',
       status: 'enabled',
+      fixedAmount: undefined,
     };
-    fixedAmountYuan.value = undefined;
     visible.value = true;
     await nextTick();
     formRef.value?.clearValidate?.();
@@ -95,18 +108,14 @@
     } catch {
       return;
     }
-    if (isFixedAmount.value && (fixedAmountYuan.value === undefined || fixedAmountYuan.value <= 0)) {
-      message.error($t('payment.device.qrcode.validateFixedAmount'));
-      return;
-    }
     confirmLoading.value = true;
     try {
       const payload: DeviceQrCodeBatchParam = {
         ...formState.value,
         batchNo: formState.value.batchNo?.trim(),
         fixedAmount:
-          isFixedAmount.value && fixedAmountYuan.value
-            ? Math.round(fixedAmountYuan.value * 100)
+          isFixedAmount.value && formState.value.fixedAmount
+            ? Math.round(formState.value.fixedAmount * 100)
             : undefined,
       };
       // 再校验一次批次号
@@ -182,9 +191,10 @@
             <a-radio-button value="fixed">{{ $t('payment.device.qrcode.amountType.fixed') }}</a-radio-button>
           </a-radio-group>
         </a-form-item>
-        <a-form-item v-if="isFixedAmount" :label="$t('payment.device.qrcode.field.fixedAmount')">
+        <!-- 固定金额(仅固定金额类型显示, 表单内以元存储) -->
+        <a-form-item v-if="isFixedAmount" :label="$t('payment.device.qrcode.field.fixedAmount')" name="fixedAmount">
           <a-input-number
-            v-model:value="fixedAmountYuan"
+            v-model:value="formState.fixedAmount"
             :min="0.01"
             :step="0.01"
             :precision="2"

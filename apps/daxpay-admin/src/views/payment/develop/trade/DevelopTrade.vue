@@ -30,6 +30,12 @@
   // 支付模式: route=路由模式(商户+方式+应用动态匹配) direct=直传模式(通道商户+能力直接决定)
   const routeMode = ref<'direct' | 'route'>('route');
 
+  // 私钥独立存储(标签+弹窗交互, 校验通过 form 自定义规则挂接)
+  const privateKey = ref('');
+  const privateKeyVisible = ref(false);
+  const privateKeyInput = ref('');
+  const loading = ref(false);
+
   // ===== 表单校验规则(按模式动态生成) =====
   const formRules = computed<Record<string, any[]>>(() => {
     // 通用必填字段
@@ -38,6 +44,16 @@
       bizOrderNo: [{ required: true, message: $t('payment.develop.trade.rule.bizOrderNo') }],
       amount: [{ required: true, message: $t('payment.develop.trade.rule.amount') }],
       title: [{ required: true, message: $t('payment.develop.trade.rule.title') }],
+      // 私钥存独立 ref, 用自定义校验挂到 form 上
+      privateKey: [
+        {
+          validator: async () => {
+            if (!privateKey.value) {
+              return Promise.reject(new Error($t('payment.develop.trade.msg.inputPrivateKey')));
+            }
+          },
+        },
+      ],
     };
     // 路由模式: 支付方式必填
     if (routeMode.value === 'route') {
@@ -62,11 +78,6 @@
     capability: '',
     description: '',
   });
-
-  const privateKey = ref('');
-  const privateKeyVisible = ref(false);
-  const privateKeyInput = ref('');
-  const loading = ref(false);
   const signPreviewLoading = ref(false);
 
   // ===== 下拉选项 =====
@@ -203,6 +214,8 @@
       localStorage.removeItem(PRIVATE_KEY_STORAGE_KEY);
     }
     privateKeyVisible.value = false;
+    // 清除私钥字段校验态
+    formRef.value?.clearValidate?.(['privateKey']);
     message.success($t('payment.develop.trade.privateKey.savedTip'));
   }
 
@@ -214,6 +227,7 @@
       onOk() {
         privateKey.value = '';
         localStorage.removeItem(PRIVATE_KEY_STORAGE_KEY);
+        formRef.value?.clearValidate?.(['privateKey']);
         message.success($t('payment.develop.trade.privateKey.clearedTip'));
       },
     });
@@ -247,8 +261,10 @@
 
   /** 生成签名预览(内联展示, 不弹结果) */
   async function handleSignPreview() {
-    if (!privateKey.value) {
-      message.warning($t('payment.develop.trade.msg.inputPrivateKey'));
+    try {
+      await formRef.value?.validateFields(['privateKey']);
+    } catch {
+      // 校验失败: 表单已显示错误提示
       return;
     }
     signPreviewLoading.value = true;
@@ -279,15 +295,11 @@
   // ===== 提交 =====
   /** 发起真实支付调试 */
   async function handlePay() {
-    // 表单字段校验
+    // 表单字段校验(含私钥自定义规则)
     try {
       await formRef.value?.validate();
     } catch {
       // 校验未通过,字段错误已由表单自动展示
-      return;
-    }
-    if (!privateKey.value) {
-      message.warning($t('payment.develop.trade.msg.inputPrivateKey'));
       return;
     }
     loading.value = true;
@@ -380,8 +392,8 @@
                   </div>
                 </template>
 
-                <!-- 私钥状态行 -->
-                <a-form-item :label="$t('payment.develop.trade.field.privateKey')" required>
+                <!-- 私钥状态行(校验挂 form.privateKey 自定义规则, 实际值在 privateKey ref) -->
+                <a-form-item :label="$t('payment.develop.trade.field.privateKey')" name="privateKey">
                   <div class="flex items-center gap-2">
                     <a-tag v-if="privateKey" color="success">
                       <IconifyIcon icon="ant-design:check-circle-outlined" class="mr-0.5" />

@@ -45,11 +45,30 @@
   const refundVisible = ref(false);
   const refundLoading = ref(false);
   const refundFetching = ref(false);
+  const refundFormRef = ref();
   // refundForm.amount 以「元」存储, 提交时再×100转分
-  const refundForm = ref<{ amount: number; orderNo?: string; reason?: string }>({ amount: 0, reason: '' });
+  const refundForm = ref<{ amount?: number; orderNo?: string; reason?: string }>({ amount: undefined, reason: '' });
   const refundRow = ref<NormalOrderResult | null>(null);
   // 可退金额(元), 作为退款金额输入框上限
   const refundableYuan = computed(() => (refundRow.value?.refundableBalance ?? 0) / 100);
+  // 退款表单校验(走 form rules, 不手写 message)
+  const refundRules = computed(() => ({
+    amount: [
+      { required: true, message: $t('payment.order.action.refundAmountPlaceholder') },
+      {
+        type: 'number',
+        min: 0.01,
+        message: $t('payment.order.action.refundAmountPlaceholder'),
+      },
+      {
+        validator: async (_rule: unknown, value: number) => {
+          if (value != null && value > refundableYuan.value) {
+            return Promise.reject(new Error($t('payment.order.action.refundAmountExceed')));
+          }
+        },
+      },
+    ],
+  }));
 
   // 业务状态下拉
   const statusOptions = computed(() =>
@@ -291,23 +310,27 @@
   /**
    * 提交退款
    */
-  function submitRefund() {
-    if (!refundRow.value) return;
-    // 校验退款金额(元)不能超过可退金额(元)
-    if (refundForm.value.amount > refundableYuan.value) {
-      message.error($t('payment.order.action.refundAmountExceed'));
+  async function submitRefund() {
+    if (!refundRow.value) {
       return;
     }
+    try {
+      await refundFormRef.value?.validate();
+    } catch {
+      // 校验失败: 表单已显示错误提示; 拒绝以阻止 modal 关闭
+      return Promise.reject();
+    }
     // 元转分提交
+    const amountYuan = refundForm.value.amount ?? 0;
     const param: PayRefundParam = {
       orderNo: refundForm.value.orderNo,
       bizOrderNo: refundRow.value.bizOrderNo,
-      amount: Math.round(refundForm.value.amount * 100),
+      amount: Math.round(amountYuan * 100),
       reason: refundForm.value.reason,
     };
     confirm({
       title: $t('payment.order.action.refundConfirmTitle'),
-      content: $t('payment.order.action.refundConfirmContent', { amount: refundForm.value.amount.toFixed(2) }),
+      content: $t('payment.order.action.refundConfirmContent', { amount: amountYuan.toFixed(2) }),
       onOk() {
         refundLoading.value = true;
         return RefundOrderApi.refund(param)
@@ -564,8 +587,8 @@
       @cancel="handleRefundClose"
     >
       <a-spin :spinning="refundFetching">
-        <a-form :label-col="{ span: 6 }">
-          <a-form-item :label="$t('payment.order.action.refundAmountLabel')">
+        <a-form ref="refundFormRef" :model="refundForm" :rules="refundRules" :label-col="{ span: 6 }">
+          <a-form-item :label="$t('payment.order.action.refundAmountLabel')" name="amount">
             <a-input-number
               v-model:value="refundForm.amount"
               :min="0.01"

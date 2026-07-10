@@ -290,7 +290,18 @@
           @checkbox-all="handleCheckboxChange"
         >
           <vxe-column type="checkbox" width="50" />
-          <vxe-column field="code" :title="$t('payment.device.qrcode.field.code')" :min-width="200" />
+          <!-- 编码可点, 打开查看码牌弹窗(替代操作列单独按钮) -->
+          <vxe-column field="code" :title="$t('payment.device.qrcode.field.code')" :min-width="200">
+            <template #default="{ row }">
+              <a
+                v-if="hasPermission(PermCodes.Device.QrCode.VIEW) && row.code"
+                class="vben-link"
+                @click="handleViewCode(row)"
+                >{{ row.code }}</a
+              >
+              <span v-else>{{ row.code || '-' }}</span>
+            </template>
+          </vxe-column>
           <vxe-column field="name" :title="$t('payment.device.qrcode.field.name')" :min-width="140" />
           <vxe-column field="batchNo" :title="$t('payment.device.qrcode.field.batchNo')" :min-width="140">
             <template #default="{ row }">
@@ -307,27 +318,18 @@
               <a-tag v-else color="default">{{ $t('payment.device.qrcode.unbound') }}</a-tag>
             </template>
           </vxe-column>
+          <!-- 金额类型 + 固定金额合并: 固定显示金额, 自定义显示类型文案 -->
           <vxe-column
             field="amountType"
-            :title="$t('payment.device.qrcode.field.amountType')"
-            :min-width="110"
-            align="center"
-          >
-            <template #default="{ row }">
-              {{ $t(`payment.device.qrcode.amountType.${row.amountType}`) }}
-            </template>
-          </vxe-column>
-          <vxe-column
-            field="fixedAmount"
-            :title="$t('payment.device.qrcode.field.fixedAmount')"
+            :title="$t('payment.device.qrcode.amountLabel')"
             :min-width="120"
-            align="right"
+            align="center"
           >
             <template #default="{ row }">
               <span v-if="row.amountType === 'fixed' && row.fixedAmount">
                 ¥{{ (row.fixedAmount / 100).toFixed(2) }}
               </span>
-              <span v-else style="color: var(--text-color-placeholder)">-</span>
+              <span v-else>{{ $t(`payment.device.qrcode.amountType.${row.amountType || 'random'}`) }}</span>
             </template>
           </vxe-column>
           <vxe-column field="status" :title="$t('payment.device.qrcode.field.status')" :min-width="100" align="center">
@@ -346,19 +348,12 @@
             :min-width="180"
             formatter="formatDateTime"
           />
-          <vxe-column fixed="right" width="220" :show-overflow="false" :title="$t('common.operation')">
+          <vxe-column fixed="right" width="180" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">
               <a-space :size="2">
                 <template #separator>
                   <a-divider type="vertical" />
                 </template>
-                <a-button
-                  v-if="hasPermission(PermCodes.Device.QrCode.VIEW)"
-                  type="link"
-                  size="small"
-                  @click="handleViewCode(row)"
-                  >{{ $t('payment.device.qrcode.viewCode') }}</a-button
-                >
                 <a-button
                   v-if="hasPermission(PermCodes.Device.QrCode.MANAGE)"
                   type="link"
