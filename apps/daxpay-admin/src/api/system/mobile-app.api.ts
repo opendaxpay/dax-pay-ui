@@ -10,7 +10,7 @@ export const MobileAppApi = {
    * 查询全部(按端类型分组)
    */
   list(): Promise<Result<MobileAppResult[]>> {
-    return defHttp.get({ url: '/admin/mobile-app/list' });
+    return defHttp.get({ url: '/platform/config/mobile-app/list' });
   },
 
   /**
@@ -18,7 +18,7 @@ export const MobileAppApi = {
    */
   listByAppType(appType: string): Promise<Result<MobileAppResult[]>> {
     return defHttp.get({
-      url: '/admin/mobile-app/list-by-app-type',
+      url: '/platform/config/mobile-app/list-by-app-type',
       params: { appType },
     });
   },
@@ -27,14 +27,20 @@ export const MobileAppApi = {
    * 查询单条详情
    */
   findById(id: string): Promise<Result<MobileAppResult>> {
-    return defHttp.get({ url: '/admin/mobile-app/get', params: { id } });
+    return defHttp.get({
+      url: '/platform/config/mobile-app/get',
+      params: { id },
+    });
   },
 
   /**
    * 保存(按端类型+平台 upsert)
    */
   save(param: MobileAppParam): Promise<Result<MobileAppResult>> {
-    return defHttp.post({ url: '/admin/mobile-app/save', data: param });
+    return defHttp.post({
+      url: '/platform/config/mobile-app/save',
+      data: param,
+    });
   },
 
   /**
@@ -42,7 +48,7 @@ export const MobileAppApi = {
    */
   updateEnabled(id: string, enable: boolean): Promise<Result<void>> {
     return defHttp.post({
-      url: '/admin/mobile-app/update-enabled',
+      url: '/platform/config/mobile-app/update-enabled',
       params: { id, enable },
     });
   },

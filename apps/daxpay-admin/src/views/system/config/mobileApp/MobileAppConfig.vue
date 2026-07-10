@@ -37,7 +37,7 @@
    */
   function handleEnter(appType: string, disabled: boolean) {
     if (disabled) return;
-    router.push({ path: `/payment/config/mobile-app/detail/${appType}` });
+    router.push({ path: `/system/config/mobile-app/detail/${appType}` });
   }
 
   /**
@@ -60,7 +60,7 @@
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <span class="text-lg font-bold text-foreground">{{
-          $t('payment.config.mobileApp.title')
+          $t('system.mobileApp.title')
         }}</span>
       </template>
 
@@ -77,7 +77,7 @@
         >
           <!-- 收银台灰显角标 -->
           <div v-if="card.disabled" class="coming-soon-badge">
-            {{ $t('payment.config.mobileApp.card.comingSoon') }}
+            {{ $t('system.mobileApp.card.comingSoon') }}
           </div>
 
           <div class="card-icon">
@@ -90,15 +90,15 @@
           </div>
 
           <div class="card-name">
-            {{ $t(`payment.config.mobileApp.card.${card.appType}.name`) }}
+            {{ $t(`system.mobileApp.card.${card.appType}.name`) }}
           </div>
           <div class="card-desc">
-            {{ $t(`payment.config.mobileApp.card.${card.appType}.desc`) }}
+            {{ $t(`system.mobileApp.card.${card.appType}.desc`) }}
           </div>
 
           <div v-if="!card.disabled" class="card-enter">
             <IconifyIcon icon="ant-design:setting-outlined" class="text-sm" />
-            <span>{{ $t('payment.config.mobileApp.card.enter') }}</span>
+            <span>{{ $t('system.mobileApp.card.enter') }}</span>
           </div>
         </div>
       </div>
