@@ -70,5 +70,26 @@
       "appId": "请输入公众号 AppId",
       "appSecret": "请输入公众号 AppSecret"
     }
+  },
+  "douyinH5": {
+    "tabTitle": "抖音 H5 应用",
+    "tabDescription": "抖音开放平台 H5 凭据，服务于 H5 场景授权",
+    "title": "抖音 H5 应用认证配置",
+    "description": "管理抖音开放平台 H5 应用凭据(Client Key / Client Secret)，用于 H5 场景授权。",
+    "usageTip": "本配置独立于「三方平台登录配置」中的抖音登录，仅管理开放平台 H5 应用 Client Key / Client Secret。",
+    "confirmSaveContent": "确定要保存抖音 H5 应用配置吗?",
+    "section": {
+      "credential": "凭据配置"
+    },
+    "clientKey": "Client Key",
+    "clientKeyDesc": "抖音开放平台应用的 Client Key(在开放平台「应用详情」获取)",
+    "inputClientKey": "请输入 Client Key",
+    "clientSecret": "Client Secret",
+    "clientSecretDesc": "抖音开放平台应用的 Client Secret(在开放平台「应用详情」获取)",
+    "inputClientSecret": "请输入 Client Secret",
+    "validate": {
+      "clientKey": "请输入 Client Key",
+      "clientSecret": "请输入 Client Secret"
+    }
   }
 }

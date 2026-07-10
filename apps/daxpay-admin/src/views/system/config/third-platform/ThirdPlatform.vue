@@ -4,6 +4,7 @@
   import { $t } from '#/locales';
 
   import AlipayAuthConfigForm from './alipay/AlipayAuthConfigForm.vue';
+  import DouyinH5AuthConfigForm from './douyin-h5/DouyinH5AuthConfigForm.vue';
   import WechatMpAuthConfigForm from './wechat-mp/WechatMpAuthConfigForm.vue';
   import SocialLoginConfigList from '#/views/iam/social/social-login-config.vue';
 
@@ -34,6 +35,13 @@
       label: $t('system.thirdPlatform.wechatMp.tabTitle'),
       // 微信公众号描述
       description: $t('system.thirdPlatform.wechatMp.tabDescription'),
+    },
+    {
+      key: 'douyinH5',
+      // 抖音 H5 应用标题
+      label: $t('system.thirdPlatform.douyinH5.tabTitle'),
+      // 抖音 H5 应用描述
+      description: $t('system.thirdPlatform.douyinH5.tabDescription'),
     },
   ] as const;
 
@@ -80,6 +88,7 @@
           />
           <AlipayAuthConfigForm v-if="activeKey === 'alipay'" />
           <WechatMpAuthConfigForm v-if="activeKey === 'wechatMp'" />
+          <DouyinH5AuthConfigForm v-if="activeKey === 'douyinH5'" />
         </div>
       </section>
     </div>

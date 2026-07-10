@@ -70,5 +70,26 @@
       "appId": "Please enter App ID",
       "appSecret": "Please enter App Secret"
     }
+  },
+  "douyinH5": {
+    "tabTitle": "Douyin H5 App",
+    "tabDescription": "Douyin Open Platform H5 credentials for H5 authorization",
+    "title": "Douyin H5 App Auth Configuration",
+    "description": "Manage Douyin Open Platform H5 app credentials (Client Key / Client Secret) for H5 authorization scenarios.",
+    "usageTip": "This configuration is independent of Douyin login under Third-party Login Config. It only manages Open Platform H5 Client Key / Client Secret.",
+    "confirmSaveContent": "Are you sure to save the Douyin H5 App configuration?",
+    "section": {
+      "credential": "Credential Configuration"
+    },
+    "clientKey": "Client Key",
+    "clientKeyDesc": "Client Key of the Douyin Open Platform app (from Open Platform 'App Details')",
+    "inputClientKey": "Please enter Client Key",
+    "clientSecret": "Client Secret",
+    "clientSecretDesc": "Client Secret of the Douyin Open Platform app (from Open Platform 'App Details')",
+    "inputClientSecret": "Please enter Client Secret",
+    "validate": {
+      "clientKey": "Please enter Client Key",
+      "clientSecret": "Please enter Client Secret"
+    }
   }
 }

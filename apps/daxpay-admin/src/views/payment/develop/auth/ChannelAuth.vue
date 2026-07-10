@@ -26,7 +26,7 @@
   } as const;
 
   /** 认证类型 */
-  type AuthType = 'alipay' | 'alipayMini' | 'wechatChannel' | 'wechatMini' | 'wechatMp';
+  type AuthType = 'alipay' | 'alipayMini' | 'wechatChannel' | 'wechatMini' | 'wechatMp' | 'douyin';
   const authType = ref<AuthType>('alipay');
 
   const { message } = useMessage();
@@ -67,6 +67,7 @@
     if (authType.value === 'wechatMini') return $t('payment.develop.auth.guide.descWechatMini');
     if (authType.value === 'wechatChannel') return $t('payment.develop.auth.guide.descWechatChannel');
     if (authType.value === 'alipayMini') return $t('payment.develop.auth.guide.descAlipayMini');
+    if (authType.value === 'douyin') return $t('payment.develop.auth.guide.descDouyin');
     return $t('payment.develop.auth.guide.desc');
   });
 
@@ -74,7 +75,9 @@
   const qrTip = computed(() =>
     authType.value === 'alipay' || authType.value === 'alipayMini'
       ? $t('payment.develop.auth.qr.tip')
-      : $t('payment.develop.auth.qr.tipWechat'),
+      : authType.value === 'douyin'
+        ? $t('payment.develop.auth.qr.tipDouyin')
+        : $t('payment.develop.auth.qr.tipWechat'),
   );
 
   /** 当前标签文案 */
@@ -83,6 +86,7 @@
     if (authType.value === 'wechatMini') return $t('payment.develop.auth.tag.wechatMini');
     if (authType.value === 'wechatChannel') return $t('payment.develop.auth.tag.wechatChannel');
     if (authType.value === 'alipayMini') return $t('payment.develop.auth.tag.alipayMini');
+    if (authType.value === 'douyin') return $t('payment.develop.auth.tag.douyin');
     return $t('payment.develop.auth.tag.alipay');
   });
 
@@ -137,7 +141,7 @@
     channelMchNoOptions.value = [];
     capabilityOptions.value = [];
     if (!form.mchNo) return;
-    // 通道商户候选(仅微信产品: wechat_pay 直连 / wechat_isv 服务商)
+    // 通道商户候选(支持微信支付的通道商户, 含官方与三方聚合通道)
     loadChannelMchCandidates(form.mchNo);
   }
 
@@ -150,7 +154,7 @@
     }
   }
 
-  /** 加载通道商户候选(仅微信通道) */
+  /** 加载通道商户候选(支持微信支付的通道商户, 含官方与三方聚合通道) */
   function loadChannelMchCandidates(mchNo: string) {
     DevelopTradeApi.channelMchCandidates(mchNo, 'wechat').then(({ data }) => {
       channelMchNoOptions.value = data ?? [];
@@ -200,7 +204,9 @@
           ? DevelopAuthApi.generateAlipayAuthUrl()
           : authType.value === 'wechatMp'
             ? DevelopAuthApi.generateWechatMpAuthUrl()
-            : DevelopAuthApi.generateChannelAuthUrl({
+            : authType.value === 'douyin'
+              ? DevelopAuthApi.generateDouyinAuthUrl()
+              : DevelopAuthApi.generateChannelAuthUrl({
                 channel: 'wechat',
                 authType: 'wechat',
                 mchNo: form.mchNo,
@@ -242,7 +248,7 @@
       <template #extra>
         <a-space :size="8">
           <a-tag color="blue">OAuth2.0</a-tag>
-          <a-tag :color="authType === 'alipay' || authType === 'alipayMini' ? 'processing' : 'green'">
+          <a-tag :color="authType === 'alipay' || authType === 'alipayMini' ? 'processing' : authType === 'douyin' ? 'black' : 'green'">
             {{ tagLabel }}
           </a-tag>
         </a-space>
@@ -265,6 +271,9 @@
           </a-radio-button>
           <a-radio-button value="wechatChannel">
             {{ $t('payment.develop.auth.type.wechatChannel') }}
+          </a-radio-button>
+          <a-radio-button value="douyin">
+            {{ $t('payment.develop.auth.type.douyin') }}
           </a-radio-button>
         </a-radio-group>
 

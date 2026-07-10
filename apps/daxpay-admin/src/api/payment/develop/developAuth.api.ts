@@ -7,7 +7,7 @@ import { defHttp } from '#/api/request';
  */
 export const DevelopAuthApi = {
   /**
-   * 生成支付宝H5授权链接
+   * 生成支付宝 OAuth 授权链接
    */
   generateAlipayAuthUrl(): Promise<Result<AuthUrlResult>> {
     return defHttp.post({ url: '/admin/develop/auth/generate-alipay-auth-url' });
@@ -18,6 +18,13 @@ export const DevelopAuthApi = {
    */
   generateWechatMpAuthUrl(): Promise<Result<AuthUrlResult>> {
     return defHttp.post({ url: '/admin/develop/auth/generate-wechat-mp-auth-url' });
+  },
+
+  /**
+   * 生成抖音H5授权链接(平台级)
+   */
+  generateDouyinAuthUrl(): Promise<Result<AuthUrlResult>> {
+    return defHttp.post({ url: '/admin/develop/auth/generate-douyin-auth-url' });
   },
 
   /**
