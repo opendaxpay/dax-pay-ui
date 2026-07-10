@@ -218,6 +218,11 @@ export const PermCodes = {
       VIEW: 'device:speaker:view',
       MANAGE: 'device:speaker:manage',
     },
+    /** 码牌 menuCode=device:qrcode */
+    QrCode: {
+      VIEW: 'device:qrcode:view',
+      MANAGE: 'device:qrcode:manage',
+    },
     /** 云打印 menuCode=device:printer */
     Printer: {
       VIEW: 'device:printer:view',

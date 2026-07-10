@@ -1,0 +1,452 @@
+<script lang="ts" setup>
+  import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
+
+  import { computed, onMounted, ref } from 'vue';
+
+  import { $t } from '@vben/locales';
+
+  import { DeviceQrCodeApi, type DeviceQrCodeResult } from '#/api/payment/device/qrcode.api';
+  import { BQuery, type QueryField } from '#/components/query';
+  import { PermCodes } from '#/constants/perm-codes';
+  import { useMessage } from '#/hooks/useMessage';
+  import { usePermission } from '#/hooks/usePermission';
+
+  import DeviceQrCodeBatchCreate from './DeviceQrCodeBatchCreate.vue';
+  import DeviceQrCodeBindMerchant from './DeviceQrCodeBindMerchant.vue';
+  import DeviceQrCodeEdit from './DeviceQrCodeEdit.vue';
+
+  defineOptions({ name: 'DeviceQrCode' });
+
+  const { confirm, message } = useMessage();
+  const { hasPermission } = usePermission();
+
+  const loading = ref(false);
+  const xTable = ref<VxeTableInstance>();
+  const xToolbar = ref<VxeToolbarInstance>();
+  const editRef = ref<InstanceType<typeof DeviceQrCodeEdit>>();
+  const batchCreateRef = ref<InstanceType<typeof DeviceQrCodeBatchCreate>>();
+  const bindMerchantRef = ref<InstanceType<typeof DeviceQrCodeBindMerchant>>();
+
+  const queryForm = ref<Record<string, any>>({});
+  // 勾选行
+  const selectedRows = ref<DeviceQrCodeResult[]>([]);
+
+  const queryFields = computed<QueryField[]>(() => [
+    {
+      type: 'string',
+      field: 'mchNo',
+      name: $t('payment.device.qrcode.field.mchNo'),
+      placeholder: $t('common.pleaseInput'),
+    },
+    {
+      type: 'string',
+      field: 'batchNo',
+      name: $t('payment.device.qrcode.field.batchNo'),
+      placeholder: $t('common.pleaseInput'),
+    },
+    {
+      type: 'string',
+      field: 'code',
+      name: $t('payment.device.qrcode.field.code'),
+      placeholder: $t('common.pleaseInput'),
+    },
+    {
+      type: 'string',
+      field: 'name',
+      name: $t('payment.device.qrcode.field.name'),
+      placeholder: $t('common.pleaseInput'),
+    },
+    {
+      type: 'list',
+      field: 'amountType',
+      name: $t('payment.device.qrcode.field.amountType'),
+      placeholder: $t('common.pleaseSelect'),
+      selectList: [
+        { label: $t('payment.device.qrcode.amountType.random'), value: 'random' },
+        { label: $t('payment.device.qrcode.amountType.fixed'), value: 'fixed' },
+      ],
+    },
+    {
+      type: 'list',
+      field: 'status',
+      name: $t('payment.device.qrcode.field.status'),
+      placeholder: $t('common.pleaseSelect'),
+      selectList: [
+        { label: $t('payment.device.qrcode.status.enabled'), value: 'enabled' },
+        { label: $t('payment.device.qrcode.status.disabled'), value: 'disabled' },
+      ],
+    },
+  ]);
+
+  const pageConfig = ref({
+    currentPage: 1,
+    pageSize: 10,
+    total: 0,
+  });
+
+  const tableData = ref<DeviceQrCodeResult[]>([]);
+
+  // 查看码牌弹窗
+  const codeVisible = ref(false);
+  const currentCode = ref('');
+
+  /**
+   * 同步勾选行
+   */
+  function handleCheckboxChange() {
+    selectedRows.value = (xTable.value?.getCheckboxRecords() || []) as DeviceQrCodeResult[];
+  }
+
+  /**
+   * 分页查询码牌列表
+   */
+  function queryPage() {
+    loading.value = true;
+    DeviceQrCodeApi.page({
+      current: pageConfig.value.currentPage,
+      size: pageConfig.value.pageSize,
+      ...queryForm.value,
+    })
+      .then((res: any) => {
+        tableData.value = res.data.records || [];
+        pageConfig.value.total = Number(res.data.total) || 0;
+        selectedRows.value = [];
+        loading.value = false;
+      })
+      .catch(() => {
+        loading.value = false;
+      });
+  }
+
+  function resetQuery() {
+    queryForm.value = {};
+    pageConfig.value.currentPage = 1;
+    queryPage();
+  }
+
+  function handlePageChange({ currentPage, pageSize }: any) {
+    pageConfig.value.currentPage = currentPage;
+    pageConfig.value.pageSize = pageSize;
+    queryPage();
+  }
+
+  onMounted(() => {
+    xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
+    queryPage();
+  });
+
+  function handleAdd() {
+    editRef.value?.show();
+  }
+
+  function handleBatchCreate() {
+    batchCreateRef.value?.show();
+  }
+
+  function handleEdit(row: DeviceQrCodeResult) {
+    editRef.value?.showEdit(row);
+  }
+
+  /**
+   * 获取勾选 id, 无勾选时提示
+   */
+  function getSelectedIds(): null | string[] {
+    const ids = selectedRows.value.map((row) => row.id!).filter(Boolean);
+    if (ids.length === 0) {
+      message.warning($t('payment.device.qrcode.selectRequired'));
+      return null;
+    }
+    return ids;
+  }
+
+  /**
+   * 批量绑定商户
+   */
+  function handleBindMerchant() {
+    const ids = getSelectedIds();
+    if (!ids) {
+      return;
+    }
+    bindMerchantRef.value?.show(ids);
+  }
+
+  /**
+   * 批量解绑商户
+   */
+  function handleUnbindMerchant() {
+    const ids = getSelectedIds();
+    if (!ids) {
+      return;
+    }
+    confirm({
+      content: $t('payment.device.qrcode.confirmUnbind'),
+      onOk() {
+        return DeviceQrCodeApi.unbindMerchant(ids).then(() => {
+          message.success($t('common.operationSuccess'));
+          queryPage();
+        });
+      },
+    });
+  }
+
+  /**
+   * 删除码牌
+   */
+  function handleDelete(row: DeviceQrCodeResult) {
+    confirm({
+      content: $t('payment.device.qrcode.confirmDelete'),
+      onOk() {
+        return DeviceQrCodeApi.delete(row.id!).then(() => {
+          message.success($t('common.operationSuccess'));
+          queryPage();
+        });
+      },
+    });
+  }
+
+  /**
+   * 修改状态(启用/停用)
+   */
+  function handleChangeStatus(row: DeviceQrCodeResult, target: 'disabled' | 'enabled') {
+    confirm({
+      content:
+        target === 'enabled' ? $t('payment.device.qrcode.confirmEnable') : $t('payment.device.qrcode.confirmDisable'),
+      onOk() {
+        return DeviceQrCodeApi.changeStatus(row.id!, target).then(() => {
+          message.success($t('common.operationSuccess'));
+          queryPage();
+        });
+      },
+    });
+  }
+
+  /**
+   * 查看码牌编码
+   */
+  function handleViewCode(row: DeviceQrCodeResult) {
+    currentCode.value = row.code || '';
+    codeVisible.value = true;
+  }
+
+  /**
+   * 复制码牌编码
+   */
+  async function handleCopyCode() {
+    try {
+      await navigator.clipboard.writeText(currentCode.value);
+      message.success($t('common.operationSuccess'));
+    } catch {
+      message.error($t('common.operationFail'));
+    }
+  }
+
+  // import 放最后避免循环依赖(参照项目惯例)
+</script>
+
+<template>
+  <div class="m-3 p-3 bg-background rounded-lg list-page-compact">
+    <a-card>
+      <BQuery :fields="queryFields" :query-params="queryForm" @query="queryPage" @reset="resetQuery" />
+    </a-card>
+
+    <div class="mt-4">
+      <a-card>
+        <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
+          <template #buttons>
+            <a-space>
+              <a-button
+                v-if="hasPermission(PermCodes.Device.QrCode.MANAGE)"
+                type="primary"
+                @click="handleBatchCreate"
+                >{{ $t('payment.device.qrcode.batchCreate') }}</a-button
+              >
+              <a-button v-if="hasPermission(PermCodes.Device.QrCode.MANAGE)" @click="handleAdd">{{
+                $t('common.add')
+              }}</a-button>
+              <a-button
+                v-if="hasPermission(PermCodes.Device.QrCode.MANAGE)"
+                :disabled="selectedRows.length === 0"
+                @click="handleBindMerchant"
+                >{{ $t('payment.device.qrcode.bindMerchant') }}</a-button
+              >
+              <a-button
+                v-if="hasPermission(PermCodes.Device.QrCode.MANAGE)"
+                :disabled="selectedRows.length === 0"
+                danger
+                @click="handleUnbindMerchant"
+                >{{ $t('payment.device.qrcode.unbindMerchant') }}</a-button
+              >
+            </a-space>
+          </template>
+        </vxe-toolbar>
+        <vxe-table
+          ref="xTable"
+          :row-config="{ keyField: 'id' }"
+          :data="tableData"
+          :loading="loading"
+          @checkbox-change="handleCheckboxChange"
+          @checkbox-all="handleCheckboxChange"
+        >
+          <vxe-column type="checkbox" width="50" />
+          <vxe-column field="code" :title="$t('payment.device.qrcode.field.code')" :min-width="200" />
+          <vxe-column field="name" :title="$t('payment.device.qrcode.field.name')" :min-width="140" />
+          <vxe-column field="batchNo" :title="$t('payment.device.qrcode.field.batchNo')" :min-width="140">
+            <template #default="{ row }">
+              <span v-if="row.batchNo">{{ row.batchNo }}</span>
+              <span v-else style="color: var(--text-color-placeholder)">-</span>
+            </template>
+          </vxe-column>
+          <!-- 主显商户名, 悬停展示商户号; 未绑定无 tooltip -->
+          <vxe-column field="mchName" :title="$t('payment.device.qrcode.field.merchant')" :min-width="160">
+            <template #default="{ row }">
+              <a-tooltip v-if="row.mchNo" :title="$t('payment.device.qrcode.mchNoTooltip', { mchNo: row.mchNo })">
+                <a-tag color="blue">{{ row.mchName || row.mchNo }}</a-tag>
+              </a-tooltip>
+              <a-tag v-else color="default">{{ $t('payment.device.qrcode.unbound') }}</a-tag>
+            </template>
+          </vxe-column>
+          <vxe-column
+            field="amountType"
+            :title="$t('payment.device.qrcode.field.amountType')"
+            :min-width="110"
+            align="center"
+          >
+            <template #default="{ row }">
+              {{ $t(`payment.device.qrcode.amountType.${row.amountType}`) }}
+            </template>
+          </vxe-column>
+          <vxe-column
+            field="fixedAmount"
+            :title="$t('payment.device.qrcode.field.fixedAmount')"
+            :min-width="120"
+            align="right"
+          >
+            <template #default="{ row }">
+              <span v-if="row.amountType === 'fixed' && row.fixedAmount">
+                ¥{{ (row.fixedAmount / 100).toFixed(2) }}
+              </span>
+              <span v-else style="color: var(--text-color-placeholder)">-</span>
+            </template>
+          </vxe-column>
+          <vxe-column field="status" :title="$t('payment.device.qrcode.field.status')" :min-width="100" align="center">
+            <template #default="{ row }">
+              <a-tag v-if="row.status === 'enabled'" color="green">
+                {{ $t('payment.device.qrcode.status.enabled') }}
+              </a-tag>
+              <a-tag v-else color="default">
+                {{ $t('payment.device.qrcode.status.disabled') }}
+              </a-tag>
+            </template>
+          </vxe-column>
+          <vxe-column
+            field="createTime"
+            :title="$t('payment.device.qrcode.field.createTime')"
+            :min-width="180"
+            formatter="formatDateTime"
+          />
+          <vxe-column fixed="right" width="220" :show-overflow="false" :title="$t('common.operation')">
+            <template #default="{ row }">
+              <a-space :size="2">
+                <template #separator>
+                  <a-divider type="vertical" />
+                </template>
+                <a-button
+                  v-if="hasPermission(PermCodes.Device.QrCode.VIEW)"
+                  type="link"
+                  size="small"
+                  @click="handleViewCode(row)"
+                  >{{ $t('payment.device.qrcode.viewCode') }}</a-button
+                >
+                <a-button
+                  v-if="hasPermission(PermCodes.Device.QrCode.MANAGE)"
+                  type="link"
+                  size="small"
+                  @click="handleEdit(row)"
+                  >{{ $t('common.edit') }}</a-button
+                >
+                <a-button
+                  v-if="hasPermission(PermCodes.Device.QrCode.MANAGE) && row.status !== 'enabled'"
+                  type="link"
+                  size="small"
+                  @click="handleChangeStatus(row, 'enabled')"
+                  >{{ $t('payment.device.qrcode.enable') }}</a-button
+                >
+                <a-button
+                  v-else-if="hasPermission(PermCodes.Device.QrCode.MANAGE) && row.status === 'enabled'"
+                  type="link"
+                  size="small"
+                  @click="handleChangeStatus(row, 'disabled')"
+                  >{{ $t('payment.device.qrcode.disable') }}</a-button
+                >
+                <a-button
+                  v-if="hasPermission(PermCodes.Device.QrCode.MANAGE)"
+                  type="link"
+                  size="small"
+                  danger
+                  @click="handleDelete(row)"
+                  >{{ $t('common.delete') }}</a-button
+                >
+              </a-space>
+            </template>
+          </vxe-column>
+        </vxe-table>
+        <vxe-pager
+          size="medium"
+          :loading="loading"
+          :current-page="pageConfig.currentPage"
+          :page-size="pageConfig.pageSize"
+          :total="pageConfig.total"
+          @page-change="handlePageChange"
+        />
+      </a-card>
+    </div>
+
+    <DeviceQrCodeEdit ref="editRef" @ok="queryPage" />
+    <DeviceQrCodeBatchCreate ref="batchCreateRef" @ok="queryPage" />
+    <DeviceQrCodeBindMerchant ref="bindMerchantRef" @ok="queryPage" />
+
+    <!-- 查看码牌弹窗 -->
+    <a-modal
+      v-model:open="codeVisible"
+      :title="$t('payment.device.qrcode.qrCodeTitle')"
+      :width="420"
+      :footer="null"
+      :destroy-on-hidden="true"
+    >
+      <div class="code-modal">
+        <p class="code-tip">{{ $t('payment.device.qrcode.qrCodeTip') }}</p>
+        <div class="code-value">{{ currentCode }}</div>
+        <a-button type="primary" block @click="handleCopyCode">
+          {{ $t('common.copy') }}
+        </a-button>
+      </div>
+    </a-modal>
+  </div>
+</template>
+
+<style scoped>
+  .code-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 0;
+  }
+
+  .code-tip {
+    margin: 0;
+    color: var(--text-color-secondary);
+    font-size: 13px;
+  }
+
+  .code-value {
+    width: 100%;
+    padding: 12px;
+    background: var(--background-color);
+    border-radius: 8px;
+    text-align: center;
+    font-family: monospace;
+    font-size: 15px;
+    word-break: break-all;
+  }
+</style>
