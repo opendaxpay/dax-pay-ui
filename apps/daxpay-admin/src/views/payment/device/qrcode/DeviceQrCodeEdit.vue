@@ -1,13 +1,9 @@
 <script lang="ts" setup>
-  import type { LabelValue } from '#/types/web';
-
   import { computed, ref } from 'vue';
 
   import { $t } from '@vben/locales';
 
   import { DeviceQrCodeApi, type DeviceQrCodeParam, type DeviceQrCodeResult } from '#/api/payment/device/qrcode.api';
-  import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
-  import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { FormEditType } from '#/enums/formEditType';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
@@ -18,20 +14,13 @@
 
   const formRef = ref();
 
-  const { visible, confirmLoading, title, initFormEditType, handleCancel, formEditType } = useFormEdit();
+  const { visible, confirmLoading, title, initFormEditType, handleCancel } = useFormEdit();
 
-  // 是否编辑模式(编辑时商户/应用只读展示)
-  const isEdit = computed(() => formEditType.value === FormEditType.Edit);
-
-  // 商户下拉选项
-  const mchOptions = ref<LabelValue[]>([]);
-
-  // 应用下拉选项(根据商户联动)
-  const appOptions = ref<MchAppInfoResult[]>([]);
+  // 编辑态只读展示用商户名称(不参与提交)
+  const editMchName = ref('');
 
   const formState = ref<DeviceQrCodeParam>({
     name: '',
-    mchNo: '',
     amountType: 'random',
   });
 
@@ -44,11 +33,6 @@
       name: [{ required: true, message: $t('payment.device.qrcode.validateName') }],
       amountType: [{ required: true, message: $t('payment.device.qrcode.validateAmountType') }],
     };
-    // 新增时商户必填; 编辑不改归属
-    if (!isEdit.value) {
-      rules.mchNo = [{ required: true, message: $t('payment.device.qrcode.validateMchNo') }];
-    }
-    // 固定金额类型时金额必填
     if (isFixedAmount.value) {
       rules.fixedAmount = [
         { required: true, message: $t('payment.device.qrcode.validateFixedAmount') },
@@ -63,46 +47,16 @@
   });
 
   /**
-   * 加载商户下拉
-   */
-  async function loadMchOptions() {
-    const { data } = await MerchantApi.dropdown();
-    mchOptions.value = data || [];
-  }
-
-  /**
-   * 商户切换时重新加载应用列表并清空已选应用
-   */
-  async function handleMchChange() {
-    formState.value.appId = undefined;
-    appOptions.value = [];
-    if (formState.value.mchNo) {
-      const { data } = await MchAppInfoApi.page({ mchNo: formState.value.mchNo, size: 999 });
-      appOptions.value = data?.records || [];
-    }
-  }
-
-  /**
    * 重置表单
    */
   function resetForm() {
     formState.value = {
       name: '',
-      mchNo: '',
       amountType: 'random',
       fixedAmount: undefined,
     };
-    appOptions.value = [];
+    editMchName.value = '';
     formRef.value?.resetFields();
-  }
-
-  /**
-   * 打开新增弹窗
-   */
-  function show() {
-    initFormEditType(FormEditType.Add);
-    resetForm();
-    loadMchOptions();
   }
 
   /**
@@ -119,12 +73,12 @@
         id: row.id!,
         name: row.name,
         mchNo: row.mchNo,
-        appId: row.appId,
         amountType: row.amountType,
         // 分转元展示
         fixedAmount: row.fixedAmount ? row.fixedAmount / 100 : undefined,
         remark: row.remark,
       };
+      editMchName.value = row.mchName || '';
     } finally {
       confirmLoading.value = false;
     }
@@ -144,13 +98,16 @@
     try {
       // 金额元转分, 在构造时一次性赋值避免对对象立即修改
       const payload: DeviceQrCodeParam = {
-        ...formState.value,
+        id: formState.value.id,
+        name: formState.value.name,
+        amountType: formState.value.amountType,
         fixedAmount:
           isFixedAmount.value && formState.value.fixedAmount
             ? Math.round(formState.value.fixedAmount * 100)
             : undefined,
+        remark: formState.value.remark,
       };
-      await (formEditType.value === FormEditType.Edit ? DeviceQrCodeApi.update(payload) : DeviceQrCodeApi.add(payload));
+      await DeviceQrCodeApi.update(payload);
       message.success($t('common.operationSuccess'));
       handleCancel();
       emit('ok');
@@ -160,7 +117,7 @@
   }
 
   // import 放最后避免循环依赖(参照项目惯例)
-  defineExpose({ show, showEdit });
+  defineExpose({ showEdit });
 </script>
 
 <template>
@@ -183,36 +140,14 @@
         :wrapper-col="{ span: 16 }"
         class="form-compact"
       >
-        <!-- 新增: 可选商户/应用; 编辑: 只读展示归属 -->
-        <a-form-item v-if="!isEdit" :label="$t('payment.device.qrcode.field.mchNo')" name="mchNo">
-          <a-select
-            v-model:value="formState.mchNo"
-            :options="mchOptions"
-            :placeholder="$t('payment.device.qrcode.pleaseSelectMch')"
-            show-search
-            option-filter-prop="label"
-            @change="handleMchChange"
-          />
-        </a-form-item>
-        <a-form-item v-if="!isEdit" :label="$t('payment.device.qrcode.field.appId')">
-          <a-select
-            v-model:value="formState.appId"
-            :options="appOptions"
-            :field-names="{ label: 'appName', value: 'appId' }"
-            :placeholder="$t('payment.device.qrcode.pleaseSelectApp')"
-            allow-clear
-          />
-        </a-form-item>
-        <a-form-item v-if="isEdit" :label="$t('payment.device.qrcode.field.mchNo')">
-          <a-tag v-if="formState.mchNo" color="blue">{{ formState.mchNo }}</a-tag>
+        <!-- 归属只读 -->
+        <a-form-item :label="$t('payment.device.qrcode.field.mchName')">
+          <a-tag v-if="formState.mchNo" color="blue">{{ editMchName || formState.mchNo }}</a-tag>
           <a-tag v-else color="default">{{ $t('payment.device.qrcode.unbound') }}</a-tag>
         </a-form-item>
-        <a-form-item v-if="isEdit" :label="$t('payment.device.qrcode.field.appId')">
-          <a-tag v-if="formState.appId" color="cyan">{{ formState.appId }}</a-tag>
-          <span v-else-if="formState.mchNo" style="color: var(--text-color-placeholder)">
-            {{ $t('payment.device.qrcode.defaultApp') }}
-          </span>
-          <span v-else style="color: var(--text-color-placeholder)">-</span>
+        <a-form-item :label="$t('payment.device.qrcode.field.mchNo')">
+          <a-tag v-if="formState.mchNo" color="blue">{{ formState.mchNo }}</a-tag>
+          <a-tag v-else color="default">{{ $t('payment.device.qrcode.unbound') }}</a-tag>
         </a-form-item>
         <!-- 码牌名称 -->
         <a-form-item :label="$t('payment.device.qrcode.field.name')" name="name">

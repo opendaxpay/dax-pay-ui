@@ -7,6 +7,7 @@
 
   import { DeviceQrCodeApi, type DeviceQrCodeResult } from '#/api/payment/device/qrcode.api';
   import { BQuery, type QueryField } from '#/components/query';
+  import { QrCode } from '#/components/qrcode';
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
@@ -88,7 +89,7 @@
 
   // 查看码牌弹窗
   const codeVisible = ref(false);
-  const currentCode = ref('');
+  const qrCodeUrl = ref('');
 
   /**
    * 同步勾选行
@@ -136,10 +137,6 @@
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
     queryPage();
   });
-
-  function handleAdd() {
-    editRef.value?.show();
-  }
 
   function handleBatchCreate() {
     batchCreateRef.value?.show();
@@ -223,19 +220,27 @@
   }
 
   /**
-   * 查看码牌编码
+   * 查看码牌二维码(拉取完整扫码链接后弹窗展示)
    */
   function handleViewCode(row: DeviceQrCodeResult) {
-    currentCode.value = row.code || '';
-    codeVisible.value = true;
+    if (!row.code) {
+      return;
+    }
+    DeviceQrCodeApi.getCodeLink(row.code).then((res) => {
+      qrCodeUrl.value = res.data || '';
+      codeVisible.value = true;
+    });
   }
 
   /**
-   * 复制码牌编码
+   * 复制码牌扫码链接
    */
   async function handleCopyCode() {
+    if (!qrCodeUrl.value) {
+      return;
+    }
     try {
-      await navigator.clipboard.writeText(currentCode.value);
+      await navigator.clipboard.writeText(qrCodeUrl.value);
       message.success($t('common.operationSuccess'));
     } catch {
       message.error($t('common.operationFail'));
@@ -262,9 +267,6 @@
                 @click="handleBatchCreate"
                 >{{ $t('payment.device.qrcode.batchCreate') }}</a-button
               >
-              <a-button v-if="hasPermission(PermCodes.Device.QrCode.MANAGE)" @click="handleAdd">{{
-                $t('common.add')
-              }}</a-button>
               <a-button
                 v-if="hasPermission(PermCodes.Device.QrCode.MANAGE)"
                 :disabled="selectedRows.length === 0"
@@ -402,7 +404,7 @@
     <DeviceQrCodeBatchCreate ref="batchCreateRef" @ok="queryPage" />
     <DeviceQrCodeBindMerchant ref="bindMerchantRef" @ok="queryPage" />
 
-    <!-- 查看码牌弹窗 -->
+    <!-- 查看码牌弹窗: 素二维码 + 下方扫码地址 -->
     <a-modal
       v-model:open="codeVisible"
       :title="$t('payment.device.qrcode.qrCodeTitle')"
@@ -412,9 +414,12 @@
     >
       <div class="code-modal">
         <p class="code-tip">{{ $t('payment.device.qrcode.qrCodeTip') }}</p>
-        <div class="code-value">{{ currentCode }}</div>
-        <a-button type="primary" block @click="handleCopyCode">
-          {{ $t('common.copy') }}
+        <div v-if="qrCodeUrl" class="qr-card">
+          <QrCode :value="qrCodeUrl" :width="250" :margin="0" />
+        </div>
+        <div class="code-url">{{ qrCodeUrl }}</div>
+        <a-button type="primary" block :disabled="!qrCodeUrl" @click="handleCopyCode">
+          {{ $t('payment.device.qrcode.copyLink') }}
         </a-button>
       </div>
     </a-modal>
@@ -427,7 +432,7 @@
     flex-direction: column;
     align-items: center;
     gap: 16px;
-    padding: 8px 0;
+    padding: 8px 0 4px;
   }
 
   .code-tip {
@@ -436,14 +441,20 @@
     font-size: 13px;
   }
 
-  .code-value {
-    width: 100%;
+  .qr-card {
     padding: 12px;
-    background: var(--background-color);
+    background: #fff;
+    border: 1px solid var(--border-color, #e8e8e8);
     border-radius: 8px;
+  }
+
+  .code-url {
+    width: 100%;
+    padding: 0 8px;
+    color: var(--text-color-secondary);
+    font-size: 12px;
+    line-height: 1.5;
     text-align: center;
-    font-family: monospace;
-    font-size: 15px;
     word-break: break-all;
   }
 </style>

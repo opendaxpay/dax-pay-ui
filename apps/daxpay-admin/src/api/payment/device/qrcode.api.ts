@@ -23,13 +23,6 @@ export const DeviceQrCodeApi = {
   },
 
   /**
-   * 新增码牌(快捷绑定商户)
-   */
-  add(data: DeviceQrCodeParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/device/qrcode/add', data });
-  },
-
-  /**
    * 批量创建空白码牌
    */
   createBatch(data: DeviceQrCodeBatchParam): Promise<Result<void>> {
@@ -77,6 +70,13 @@ export const DeviceQrCodeApi = {
   changeStatus(id: string, status: string): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/device/qrcode/change-status', params: { id, status } });
   },
+
+  /**
+   * 获取码牌扫码链接(完整 H5 地址)
+   */
+  getCodeLink(code: string): Promise<Result<string>> {
+    return defHttp.get({ url: '/admin/device/qrcode/get-code-link', params: { code } });
+  },
 };
 
 /** 支付码牌查询参数 */
@@ -95,16 +95,14 @@ export interface DeviceQrCodeQuery {
   status?: string;
 }
 
-/** 支付码牌参数 */
+/** 支付码牌参数(编辑) */
 export interface DeviceQrCodeParam {
   /** 主键 */
   id?: string;
   /** 码牌名称 */
   name?: string;
-  /** 商户号 */
+  /** 商户号(只读展示, 不提交归属变更) */
   mchNo?: string;
-  /** 关联应用号(空=商户默认应用) */
-  appId?: string;
   /** 金额类型 random/fixed */
   amountType?: string;
   /** 固定金额(分) */

@@ -52,6 +52,7 @@
   "viewCode": "View Code",
   "qrCodeTitle": "QR Code",
   "qrCodeTip": "Scan to enter the payment page",
+  "copyLink": "Copy Link",
   "download": "Download QR Code",
   "amountLabel": "Amount"
 }

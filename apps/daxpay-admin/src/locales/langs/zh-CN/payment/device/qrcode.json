@@ -52,6 +52,7 @@
   "viewCode": "查看码牌",
   "qrCodeTitle": "码牌二维码",
   "qrCodeTip": "扫码即可进入支付页面",
+  "copyLink": "复制链接",
   "download": "下载二维码",
   "amountLabel": "金额"
 }
