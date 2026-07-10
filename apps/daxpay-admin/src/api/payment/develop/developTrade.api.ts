@@ -29,12 +29,12 @@ export const DevelopTradeApi = {
   },
 
   /**
-   * 传值模式: 按商户号筛选通道商户候选, channel 非空时仅返回该通道的通道商户
+   * 传值模式: 按商户号筛选通道商户候选, provider 非空时仅返回声明支持该支付渠道的通道商户
    */
-  channelMchCandidates(mchNo: string, channel?: string): Promise<Result<LabelValue[]>> {
+  channelMchCandidates(mchNo: string, provider?: string): Promise<Result<LabelValue[]>> {
     return defHttp.get({
       url: '/admin/develop/trade/channel-mch-candidates',
-      params: { mchNo, channel },
+      params: { mchNo, provider },
     });
   },
 
