@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+  import type { FormInstance, Rule } from 'antdv-next';
+
   import { computed, onMounted, reactive, ref, watch } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
 
@@ -49,6 +51,8 @@
   const saving = ref(false);
   // 是否处于编辑状态(参考平台配置 WechatMpAuthConfigForm)
   const isEditing = ref(false);
+  // 各平台 a-form 实例(Tab 多表单, 按 platform 缓存 ref)
+  const formRefMap = reactive<Record<string, FormInstance>>({});
 
   // 各端支持的平台: disabled 表示暂不可用(灰显)
   const PLATFORMS_BY_APP_TYPE: Record<
@@ -181,6 +185,135 @@
     return structured.authType === AUTH_TYPE_CERT;
   }
 
+  // 表单 ref 回调缓存, 避免每次渲染新建函数导致 ref 反复卸载
+  const formRefBinders: Record<
+    string,
+    (el: Element | FormInstance | null) => void
+  > = {};
+
+  /**
+   * 获取/创建某平台的稳定 form ref 绑定回调
+   */
+  function bindFormRef(platform: string) {
+    if (!formRefBinders[platform]) {
+      formRefBinders[platform] = (el: Element | FormInstance | null) => {
+        if (el) {
+          formRefMap[platform] = el as FormInstance;
+        } else {
+          delete formRefMap[platform];
+        }
+      };
+    }
+    return formRefBinders[platform]!;
+  }
+
+  /**
+   * 当前平台表单实例
+   */
+  function getActiveFormRef(): FormInstance | undefined {
+    return formRefMap[activePlatform.value];
+  }
+
+  /**
+   * 按平台生成表单校验规则(对齐 AlipayAuthConfigForm)
+   * 敏感字段: 服务端脱敏回填后非空即可通过; 清空后保存会标红
+   * 用 computed 缓存, 避免每次渲染新建 rules 触发 validateOnRuleChange
+   */
+  const structuredRulesMap = computed(() => {
+    const map: Record<string, Record<string, Rule[]>> = {};
+    for (const platform of platforms.value) {
+      if (platform === 'wx_mini' || platform === 'dy_mini') {
+        map[platform] = {
+          appId: [
+            {
+              required: true,
+              whitespace: true,
+              message: $t('system.mobileApp.fields.appIdRequired'),
+            },
+          ],
+          appSecret: [
+            {
+              required: true,
+              whitespace: true,
+              message: $t('system.mobileApp.fields.appSecretRequired'),
+            },
+          ],
+        };
+        continue;
+      }
+      if (platform === 'alipay_mini') {
+        // 依赖 authType, 公钥/证书模式规则互斥
+        const certMode =
+          structuredMap[platform]?.authType === AUTH_TYPE_CERT;
+        map[platform] = {
+          appId: [
+            {
+              required: true,
+              whitespace: true,
+              message: $t('system.mobileApp.fields.appIdRequired'),
+            },
+          ],
+          authType: [
+            {
+              required: true,
+              message: $t('system.mobileApp.fields.authTypeRequired'),
+            },
+          ],
+          privateKey: [
+            {
+              required: true,
+              whitespace: true,
+              message: $t('system.mobileApp.fields.privateKeyRequired'),
+            },
+          ],
+          alipayPublicKey: certMode
+            ? []
+            : [
+                {
+                  required: true,
+                  whitespace: true,
+                  message: $t(
+                    'system.mobileApp.fields.alipayPublicKeyRequired',
+                  ),
+                },
+              ],
+          appCert: !certMode
+            ? []
+            : [
+                {
+                  required: true,
+                  whitespace: true,
+                  message: $t('system.mobileApp.fields.appCertRequired'),
+                },
+              ],
+          alipayCert: !certMode
+            ? []
+            : [
+                {
+                  required: true,
+                  whitespace: true,
+                  message: $t(
+                    'system.mobileApp.fields.alipayCertRequired',
+                  ),
+                },
+              ],
+          alipayRootCert: !certMode
+            ? []
+            : [
+                {
+                  required: true,
+                  whitespace: true,
+                  message: $t(
+                    'system.mobileApp.fields.alipayRootCertRequired',
+                  ),
+                },
+              ],
+        };
+      }
+    }
+    return map;
+  });
+
   /**
    * 按平台序列化 appConfig, 敏感字段仅在 diffForm 有新值时写入
    */
@@ -224,68 +357,6 @@
   }
 
   /**
-   * 校验结构化表单
-   */
-  function validateStructured(
-    platform: string,
-    structured: StructuredConfig,
-    original: StructuredConfig,
-  ): boolean {
-    if (!structured.appId?.trim()) {
-      message.warning($t('system.mobileApp.fields.appIdRequired'));
-      return false;
-    }
-    if (platform === 'wx_mini' || platform === 'dy_mini') {
-      if (!original.appSecret && !structured.appSecret?.trim()) {
-        message.warning(
-          $t('system.mobileApp.fields.appSecretRequired'),
-        );
-        return false;
-      }
-    }
-    if (platform === 'alipay_mini') {
-      if (!structured.authType?.trim()) {
-        message.warning($t('system.mobileApp.fields.authTypeRequired'));
-        return false;
-      }
-      // 应用私钥两种模式都需要; 已有脱敏原值则可不重填
-      if (!original.privateKey && !structured.privateKey?.trim()) {
-        message.warning(
-          $t('system.mobileApp.fields.privateKeyRequired'),
-        );
-        return false;
-      }
-      if (isCertMode(structured)) {
-        // 证书模式: 三本证书必填
-        if (!original.appCert && !structured.appCert?.trim()) {
-          message.warning($t('system.mobileApp.fields.appCertRequired'));
-          return false;
-        }
-        if (!original.alipayCert && !structured.alipayCert?.trim()) {
-          message.warning($t('system.mobileApp.fields.alipayCertRequired'));
-          return false;
-        }
-        if (!original.alipayRootCert && !structured.alipayRootCert?.trim()) {
-          message.warning(
-            $t('system.mobileApp.fields.alipayRootCertRequired'),
-          );
-          return false;
-        }
-      } else if (
-        !original.alipayPublicKey &&
-        !structured.alipayPublicKey?.trim()
-      ) {
-        // 公钥模式: 支付宝公钥必填
-        message.warning(
-          $t('system.mobileApp.fields.alipayPublicKeyRequired'),
-        );
-        return false;
-      }
-    }
-    return true;
-  }
-
-  /**
    * 上传证书文件, 读取文本内容写入对应字段
    */
   function handleCertUpload(
@@ -306,7 +377,21 @@
       message.success(
         $t('components.upload.uploadSuccess', { name: file.name }),
       );
+      // 上传后立即清掉该字段校验错误
+      formRefMap[platform]?.validateFields([fieldName]).catch(() => {});
     });
+  }
+
+  /**
+   * 支付宝鉴权方式切换: 清掉另一模式字段的残留校验态
+   */
+  function handleAuthTypeChange(platform: string) {
+    formRefMap[platform]?.clearValidate([
+      'alipayPublicKey',
+      'appCert',
+      'alipayCert',
+      'alipayRootCert',
+    ]);
   }
 
   /**
@@ -359,6 +444,7 @@
   function handleEdit() {
     if (isPlatformDisabled(activePlatform.value)) return;
     isEditing.value = true;
+    getActiveFormRef()?.clearValidate();
   }
 
   /**
@@ -373,6 +459,7 @@
       onOk: async () => {
         isEditing.value = false;
         await loadData(true);
+        getActiveFormRef()?.clearValidate();
       },
     });
   }
@@ -396,7 +483,12 @@
       const structured = structuredMap[platform];
       const originalStructured = originalStructuredMap[platform];
       if (!structured || !originalStructured) return;
-      if (!validateStructured(platform, structured, originalStructured)) {
+      // 走 a-form 表单项校验(字段下方红字), 不再 message.warning 弹窗
+      const formInst = formRefMap[platform];
+      if (!formInst) return;
+      try {
+        await formInst.validate();
+      } catch {
         return;
       }
       // 按平台敏感字段做 diffForm
@@ -543,15 +635,17 @@
                 formDataMap[item.platform] &&
                 structuredMap[item.platform]
               "
-              :model="formDataMap[item.platform]"
+              :ref="bindFormRef(item.platform)"
+              :model="structuredMap[item.platform]"
+              :rules="structuredRulesMap[item.platform]"
               layout="vertical"
               class="max-w-2xl"
             >
               <!-- 微信小程序 -->
               <template v-if="item.platform === 'wx_mini'">
                 <a-form-item
+                  name="appId"
                   :label="$t('system.mobileApp.fields.wxAppId')"
-                  required
                 >
                   <a-input
                     v-model:value="structuredMap[item.platform]!.appId"
@@ -562,8 +656,8 @@
                   />
                 </a-form-item>
                 <a-form-item
+                  name="appSecret"
                   :label="$t('system.mobileApp.fields.wxAppSecret')"
-                  required
                 >
                   <a-input
                     v-model:value="structuredMap[item.platform]!.appSecret"
@@ -577,6 +671,7 @@
                   />
                 </a-form-item>
                 <a-form-item
+                  name="originalId"
                   :label="$t('system.mobileApp.fields.originalId')"
                 >
                   <a-input
@@ -594,8 +689,8 @@
               <!-- 支付宝小程序: 公钥 / 证书双模式 -->
               <template v-else-if="item.platform === 'alipay_mini'">
                 <a-form-item
+                  name="appId"
                   :label="$t('system.mobileApp.fields.alipayAppId')"
-                  required
                 >
                   <a-input
                     v-model:value="structuredMap[item.platform]!.appId"
@@ -608,13 +703,14 @@
                   />
                 </a-form-item>
                 <a-form-item
+                  name="authType"
                   :label="$t('system.mobileApp.fields.authType')"
-                  required
                 >
                   <a-radio-group
                     v-model:value="structuredMap[item.platform]!.authType"
                     button-style="solid"
                     :disabled="!isEditing"
+                    @change="handleAuthTypeChange(item.platform)"
                   >
                     <a-radio-button :value="AUTH_TYPE_KEY">
                       {{ $t('system.mobileApp.fields.authTypeKey') }}
@@ -625,8 +721,8 @@
                   </a-radio-group>
                 </a-form-item>
                 <a-form-item
+                  name="privateKey"
                   :label="$t('system.mobileApp.fields.privateKey')"
-                  required
                 >
                   <a-textarea
                     v-model:value="structuredMap[item.platform]!.privateKey"
@@ -643,8 +739,8 @@
                 <!-- 公钥模式: 支付宝公钥 -->
                 <a-form-item
                   v-if="!isCertMode(structuredMap[item.platform]!)"
+                  name="alipayPublicKey"
                   :label="$t('system.mobileApp.fields.alipayPublicKey')"
-                  required
                 >
                   <a-textarea
                     v-model:value="
@@ -663,8 +759,8 @@
                 <!-- 证书模式: 三本 .crt 上传 -->
                 <template v-else>
                   <a-form-item
+                    name="appCert"
                     :label="$t('system.mobileApp.fields.appCert')"
-                    required
                   >
                     <a-upload
                       v-if="!structuredMap[item.platform]!.appCert"
@@ -717,8 +813,8 @@
                     </a-tooltip>
                   </a-form-item>
                   <a-form-item
+                    name="alipayCert"
                     :label="$t('system.mobileApp.fields.alipayCert')"
-                    required
                   >
                     <a-upload
                       v-if="!structuredMap[item.platform]!.alipayCert"
@@ -771,8 +867,8 @@
                     </a-tooltip>
                   </a-form-item>
                   <a-form-item
+                    name="alipayRootCert"
                     :label="$t('system.mobileApp.fields.alipayRootCert')"
-                    required
                   >
                     <a-upload
                       v-if="!structuredMap[item.platform]!.alipayRootCert"
@@ -835,8 +931,8 @@
               <!-- 抖音小程序 -->
               <template v-else-if="item.platform === 'dy_mini'">
                 <a-form-item
+                  name="appId"
                   :label="$t('system.mobileApp.fields.dyAppId')"
-                  required
                 >
                   <a-input
                     v-model:value="structuredMap[item.platform]!.appId"
@@ -847,8 +943,8 @@
                   />
                 </a-form-item>
                 <a-form-item
+                  name="appSecret"
                   :label="$t('system.mobileApp.fields.dyAppSecret')"
-                  required
                 >
                   <a-input
                     v-model:value="structuredMap[item.platform]!.appSecret"
