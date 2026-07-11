@@ -1,6 +1,6 @@
 {
   "sign": {
-    "title": "签名调试工具",
+    "title": "签名调试",
     "tabSign": "签名生成",
     "tabVerify": "签名验证",
     "field": {
@@ -151,7 +151,7 @@
     }
   },
   "auth": {
-    "title": "渠道授权调试工具",
+    "title": "认证调试",
     "type": {
       "alipay": "支付宝H5",
       "alipayMini": "支付宝小程序",

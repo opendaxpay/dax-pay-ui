@@ -222,8 +222,8 @@
               <IconifyIcon icon="ant-design:arrow-left-outlined" class="text-lg" />
             </template>
           </a-button>
-          <!-- 国际化：我的应用 -->
-          <span class="text-lg font-bold text-foreground">{{ $t('payment.merchant.app.app.myApps') }}</span>
+          <!-- 国际化：应用管理（与菜单 title 一致） -->
+          <span class="text-lg font-bold text-foreground">{{ $t('payment.merchant.app.app.title') }}</span>
           <span v-if="merchantInfo.mchName" class="text-sm text-muted-foreground">({{ merchantInfo.mchName }})</span>
         </div>
       </template>

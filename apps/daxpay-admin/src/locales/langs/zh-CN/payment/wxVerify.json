@@ -1,6 +1,6 @@
 {
-  "title": "微信域名验证文件",
-  "adminTitle": "微信域名验证文件",
+  "title": "微信域名验证",
+  "adminTitle": "微信域名验证",
   "upload": "上传验证文件",
   "uploadTip": "请选择微信下载的域名验证 .txt 文件",
   "uploadSuccess": "上传成功",

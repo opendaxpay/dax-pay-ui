@@ -1,6 +1,6 @@
 {
   "app": {
-    "myApps": "我的应用",
+    "myApps": "应用管理",
     "appIdPrefix": "ID: {appId}",
     "actionMore": "更多操作",
     "title": "应用管理",

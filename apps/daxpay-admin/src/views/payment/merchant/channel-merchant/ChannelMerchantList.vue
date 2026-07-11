@@ -241,7 +241,7 @@
               <IconifyIcon icon="ant-design:arrow-left-outlined" class="text-lg" />
             </template>
           </a-button>
-          <!-- 国际化：通道商户管理 -->
+          <!-- 国际化：通道商户（与菜单 title 一致） -->
           <span class="text-lg font-bold text-foreground">{{ $t('payment.merchant.channelMerchant.title') }}</span>
           <span v-if="merchantLoading" class="text-sm text-muted-foreground">
             <a-skeleton-input :active="true" size="small" />

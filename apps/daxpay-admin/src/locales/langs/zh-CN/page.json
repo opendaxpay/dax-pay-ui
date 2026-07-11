@@ -18,8 +18,8 @@
     "merchantList": "商户列表",
     "merchantManage": "商户管理",
     "merchantChannelMerchant": "商户通道商户",
-    "channelMerchantManage": "通道商户管理",
-    "channelMerchantList": "通道商户管理",
+    "channelMerchantManage": "通道商户",
+    "channelMerchantList": "通道商户",
     "channelMerchantDetail": "通道商户详情",
     "productList": "支付产品"
   }

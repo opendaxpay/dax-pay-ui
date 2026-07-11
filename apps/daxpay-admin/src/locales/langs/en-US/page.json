@@ -18,8 +18,8 @@
     "merchantList": "Merchant List",
     "merchantManage": "Merchant Management",
     "merchantChannelMerchant": "Merchant Channel Merchant",
-    "channelMerchantManage": "Channel Merchant Management",
-    "channelMerchantList": "Channel Merchant Management",
+    "channelMerchantManage": "Channel Merchant",
+    "channelMerchantList": "Channel Merchant",
     "channelMerchantDetail": "Channel Merchant Detail",
     "productList": "Payment Product"
   }

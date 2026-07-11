@@ -1,6 +1,6 @@
 {
   "aggregate": {
-    "title": "Aggregate QR Pay Config",
+    "title": "Aggregate QR Pay",
     "editModeLabel": "Config Level",
     "autoLaunch": "Auto Launch",
     "autoLaunchHint": "Automatically initiate payment after scanning, no manual click needed",

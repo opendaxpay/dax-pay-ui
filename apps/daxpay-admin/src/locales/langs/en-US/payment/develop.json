@@ -1,6 +1,6 @@
 {
   "sign": {
-    "title": "Sign Debug Tool",
+    "title": "Sign Develop",
     "tabSign": "Generate Sign",
     "tabVerify": "Verify Sign",
     "field": {
@@ -51,7 +51,7 @@
   },
   "trade": {
     "page": {
-      "title": "Payment Debug",
+      "title": "Payment Develop",
       "tag": "Real Trade",
       "warning": "Clicking \"Submit\" sends a real payment request to the system. Please confirm the params."
     },
@@ -151,7 +151,7 @@
     }
   },
   "auth": {
-    "title": "Channel Auth Debug",
+    "title": "Auth Develop",
     "type": {
       "alipay": "Alipay H5",
       "alipayMini": "Alipay Mini Program",

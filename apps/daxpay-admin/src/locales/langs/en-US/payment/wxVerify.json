@@ -1,6 +1,6 @@
 {
-  "title": "WeChat Domain Verify File",
-  "adminTitle": "WeChat Domain Verify File",
+  "title": "WeChat Domain Verify",
+  "adminTitle": "WeChat Domain Verify",
   "upload": "Upload Verify File",
   "uploadTip": "Select the WeChat domain verification .txt file",
   "uploadSuccess": "Upload succeeded",

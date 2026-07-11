@@ -1,6 +1,6 @@
 {
   "route": {
-    "title": "通道路由配置",
+    "title": "通道路由",
     "editModeLabel": "配置模式",
     "setActiveMode": "启用该模式",
     "setActiveModeConfirm": "将把本应用的支付通道路由设为「{mode}」，之后下单按该模式解析。是否继续？",

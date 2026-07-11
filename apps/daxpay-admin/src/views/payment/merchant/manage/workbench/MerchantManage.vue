@@ -71,7 +71,7 @@
       cards: [
         {
           key: 'channelMerchant',
-          // 通道商户管理
+          // 通道商户（与菜单一致）
           title: $t('payment.merchant.workbench.workbench.cardChannelMerchant'),
           icon: 'ant-design:shop-outlined',
           // 商户在各支付通道的商户号配置与管理
@@ -103,7 +103,7 @@
         },
         {
           key: 'wxDomainVerify',
-          // 国际化：微信域名验证文件
+          // 国际化：微信域名验证（与菜单一致）
           title: $t('payment.merchant.workbench.workbench.cardWxDomainVerify'),
           icon: 'ant-design:safety-certificate-outlined',
           // 国际化：上传与管理微信公众号 / 小程序业务域名校验文件

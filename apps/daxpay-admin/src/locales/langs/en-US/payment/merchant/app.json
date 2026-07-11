@@ -1,6 +1,6 @@
 {
   "app": {
-    "myApps": "My Applications",
+    "myApps": "App Management",
     "appIdPrefix": "ID: {appId}",
     "actionMore": "More actions",
     "title": "App Management",

@@ -1,6 +1,6 @@
 {
   "aggregate": {
-    "title": "聚合扫码配置",
+    "title": "聚合扫码",
     "editModeLabel": "配置模式",
     "autoLaunch": "自动拉起支付",
     "autoLaunchHint": "扫码后自动发起支付,无需用户手动点击",
