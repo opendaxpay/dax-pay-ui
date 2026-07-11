@@ -65,8 +65,6 @@
   },
   "detail": {
     "back": "Back",
-    "appName": "App Name",
-    "appNamePlaceholder": "Enter app name",
     "appConfig": "Platform Key Config",
     "appConfigPlaceholder": "Enter platform key config in JSON format",
     "notifyConfig": "Notification Config",
@@ -79,6 +77,8 @@
     "saveSuccess": "Saved successfully",
     "notSupportedAppType": "Unsupported app type",
     "emptyPlatformConfig": "No platform config yet, fill in and save to create",
-    "platformComingSoon": "This platform is not available yet; will be handled when the APP is ready"
+    "platformComingSoon": "This platform is not available yet; will be handled when the APP is ready",
+    "cashierLimitTitle": "Single platform cashier mini program",
+    "cashierLimitDesc": "The whole platform shares one WeChat and one Alipay cashier mini program. openId and opAppId must use the same AppId at pay time. Register or bind this AppId with each payment channel as the pay AppId (often the service-provider mini program for official WeChat ISV, or sub_appid for third-party channels). Not every channel works out of the box."
   }
 }

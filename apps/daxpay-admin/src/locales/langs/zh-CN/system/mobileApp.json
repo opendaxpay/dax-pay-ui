@@ -65,8 +65,6 @@
   },
   "detail": {
     "back": "返回",
-    "appName": "应用名称",
-    "appNamePlaceholder": "请输入应用名称",
     "appConfig": "平台密钥配置",
     "appConfigPlaceholder": "请输入 JSON 格式的平台密钥配置",
     "notifyConfig": "消息通知配置",
@@ -79,6 +77,8 @@
     "saveSuccess": "保存成功",
     "notSupportedAppType": "不支持的端类型",
     "emptyPlatformConfig": "暂无平台配置，填写后保存即可创建",
-    "platformComingSoon": "该平台配置暂未开放，后续 APP 完善时再处理"
+    "platformComingSoon": "该平台配置暂未开放，后续 APP 完善时再处理",
+    "cashierLimitTitle": "平台唯一收银台小程序",
+    "cashierLimitDesc": "全平台共用一套微信/支付宝收银台小程序凭证。支付时 openId 与 opAppId 须同源；平台小程序 AppId 需在所用支付通道侧绑定或报备为收款 AppId（官方服务商常见为服务商小程序，第三方通道一般为 sub_appid）。并非所有通道开箱即用。"
   }
 }

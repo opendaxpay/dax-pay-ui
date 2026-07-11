@@ -9,7 +9,7 @@
 
   const router = useRouter();
 
-  // 三种端类型卡片配置(收银台本期灰显), 图标文件名与 appType 一致
+  // 三种端类型卡片配置, 图标文件名与 appType 一致
   const cards: {
     appType: string;
     disabled: boolean;
@@ -27,7 +27,7 @@
     },
     {
       appType: 'cashier',
-      disabled: true,
+      disabled: false,
       theme: 'amber',
     },
   ];
@@ -75,7 +75,7 @@
           ]"
           @click="handleEnter(card.appType, card.disabled)"
         >
-          <!-- 收银台灰显角标 -->
+          <!-- 暂不可用角标 -->
           <div v-if="card.disabled" class="coming-soon-badge">
             {{ $t('system.mobileApp.card.comingSoon') }}
           </div>
