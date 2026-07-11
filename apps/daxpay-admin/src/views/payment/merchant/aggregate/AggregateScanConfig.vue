@@ -133,6 +133,12 @@
     methodDirectory.value = map;
   }
 
+  /** 查找支付方式的友好名称 */
+  function findMethodLabel(provider: string, method: string): string {
+    const list = methodDirectory.value[provider];
+    return list?.find((m) => m.value === method)?.label || method;
+  }
+
   /** 加载通道商户候选(DIRECT 模式用) */
   async function loadChannelMchCandidates() {
     const map: Record<string, LabelValue[]> = {};
@@ -141,6 +147,7 @@
         const { data } = await PayRouteApi.listSceneChannelMchCandidates({
           appId: appId.value,
           provider: sc.provider,
+          method: sc.defaultMethod,
         });
         map[sc.scene] = data || [];
       }),
@@ -181,6 +188,8 @@
     editLevel.value = (effectiveLevel.value as AggregateLevel) || AGGREGATE_LEVEL.AUTO;
     autoLaunch.value = config.value.autoLaunch || false;
     initSceneForm();
+    // 无条件加载方式目录, AUTO 模式也需要查找方式友好名称
+    await loadMethodDirectory();
     loading.value = false;
   }
 
@@ -330,8 +339,20 @@
       </template>
 
       <a-spin :spinning="loading">
-        <!-- 模式切换 -->
-        <div class="mb-4 flex items-center gap-3">
+        <!-- 公共参数: 自动拉起 -->
+        <div class="mb-2">
+          <a-checkbox v-model:checked="autoLaunch" :disabled="!editing">
+            {{ $t('payment.merchant.aggregate.aggregate.autoLaunch') }}
+          </a-checkbox>
+          <span class="ml-2 text-xs text-muted-foreground">
+            {{ $t('payment.merchant.aggregate.aggregate.autoLaunchHint') }}
+          </span>
+        </div>
+
+        <a-divider class="!my-4" />
+
+        <!-- 配置模式 -->
+        <div class="mb-5 flex items-center gap-3">
           <span class="text-sm font-medium">{{ $t('payment.merchant.aggregate.aggregate.editModeLabel') }}</span>
           <a-radio-group v-model:value="editLevel" button-style="solid" :disabled="!editing">
             <a-radio-button :value="AGGREGATE_LEVEL.AUTO">
@@ -350,16 +371,8 @@
         </div>
 
         <!-- 模式提示 -->
-        <a-alert :message="modeHint" type="info" show-icon class="mb-4" />
-
-        <!-- 自动拉起 -->
-        <div class="mb-4">
-          <a-checkbox v-model:checked="autoLaunch" :disabled="!editing">
-            {{ $t('payment.merchant.aggregate.aggregate.autoLaunch') }}
-          </a-checkbox>
-          <span class="ml-2 text-xs text-muted-foreground">
-            {{ $t('payment.merchant.aggregate.aggregate.autoLaunchHint') }}
-          </span>
+        <div class="mb-5">
+          <a-alert :message="modeHint" type="info" show-icon />
         </div>
 
         <!-- 场景配置 -->
@@ -372,7 +385,7 @@
             <!-- AUTO 模式: 只读提示 -->
             <div v-if="editLevel === AGGREGATE_LEVEL.AUTO" class="scene-content">
               <a-tag color="blue">
-                {{ $t('payment.merchant.aggregate.aggregate.autoDerived') }}: {{ sc.defaultMethod }}
+                {{ $t('payment.merchant.aggregate.aggregate.autoDerived') }}: {{ findMethodLabel(sc.provider, sc.defaultMethod) }}
               </a-tag>
             </div>
 

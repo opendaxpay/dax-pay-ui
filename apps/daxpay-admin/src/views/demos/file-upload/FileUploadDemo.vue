@@ -142,7 +142,7 @@
 <template>
   <div class="p-4">
     <!-- 国际化：文件上传演示 -->
-    <a-card :title="$t('demos.file-upload.title')" class="mb-4">
+    <a-card :title="$t('demos.file-upload.title')" class="!mb-4">
       <!-- 国际化：演示预签名方式上传文件到平台存储 -->
       <p class="text-gray-500">{{ $t('demos.file-upload.description') }}</p>
     </a-card>
@@ -219,7 +219,7 @@
       </a-col>
     </a-row>
 
-    <a-card title="图片上传组件示例 (BUploadImage)" class="mt-4">
+    <a-card title="图片上传组件示例 (BUploadImage)" class="!mt-4">
       <a-row :gutter="16">
         <a-col :span="12">
           <div class="mb-2 font-medium">公有文件上传</div>

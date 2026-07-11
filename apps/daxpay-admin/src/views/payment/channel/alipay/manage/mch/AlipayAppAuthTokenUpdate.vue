@@ -185,7 +185,7 @@
       <a-tabs v-model:active-key="activeTab" class="auth-token-tabs">
         <!-- 国际化：手动设置 -->
         <a-tab-pane key="manual" :tab="$t('payment.merchant.channelMerchant.tabManualToken')">
-          <a-form ref="formRef" layout="vertical" class="pt-2" :model="formState" :rules="formRules">
+          <a-form ref="formRef" layout="vertical" class="!pt-2" :model="formState" :rules="formRules">
             <!-- 国际化：当前令牌 -->
             <a-form-item :label="$t('payment.merchant.channelMerchant.appAuthTokenCurrent')">
               <div class="current-token-value">
@@ -251,7 +251,7 @@
                   {{ $t('payment.merchant.channelMerchant.agentAuthQrTip') }}
                 </div>
               </div>
-              <a-textarea :value="authUrl" :rows="2" readonly class="mt-3" />
+              <a-textarea :value="authUrl" :rows="2" readonly class="!mt-3" />
               <div class="mt-3 text-center">
                 <a-button @click="handleCopyAuthUrl">
                   {{ $t('payment.merchant.channelMerchant.agentAuthCopy') }}

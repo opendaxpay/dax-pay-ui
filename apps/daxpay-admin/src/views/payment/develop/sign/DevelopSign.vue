@@ -167,7 +167,7 @@
                 </a-col>
               </a-row>
 
-              <a-form-item class="mb-0">
+              <a-form-item class="!mb-0">
                 <a-space>
                   <a-button type="primary" :loading="signLoading" @click="handleGenSign">
                     <template #icon>

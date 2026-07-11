@@ -179,7 +179,7 @@
         </div>
 
         <!-- 主按钮：进入系统 -->
-        <a-button type="primary" block size="large" class="mb-3" @click="handleSubmit">
+        <a-button type="primary" block size="large" class="!mb-3" @click="handleSubmit">
           {{ $t('ui.widgets.lockScreen.entry') }}
         </a-button>
 

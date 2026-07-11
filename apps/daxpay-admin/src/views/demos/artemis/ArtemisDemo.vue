@@ -139,7 +139,7 @@
     <a-row :gutter="16">
       <!-- 点对点队列 -->
       <a-col :span="12">
-        <a-card class="mb-4 h-full" :title="$t('demos.artemis.scene.queue.title')">
+        <a-card class="!mb-4 h-full" :title="$t('demos.artemis.scene.queue.title')">
           <p class="mb-3 text-gray-500 text-sm">
             {{ $t('demos.artemis.scene.queue.description') }}
           </p>
@@ -158,7 +158,7 @@
 
       <!-- 发布订阅 -->
       <a-col :span="12">
-        <a-card class="mb-4 h-full" :title="$t('demos.artemis.scene.topic.title')">
+        <a-card class="!mb-4 h-full" :title="$t('demos.artemis.scene.topic.title')">
           <p class="mb-3 text-gray-500 text-sm">
             {{ $t('demos.artemis.scene.topic.description') }}
           </p>
@@ -177,7 +177,7 @@
 
       <!-- 延时消息 -->
       <a-col :span="12">
-        <a-card class="mb-4 h-full" :title="$t('demos.artemis.scene.delay.title')">
+        <a-card class="!mb-4 h-full" :title="$t('demos.artemis.scene.delay.title')">
           <p class="mb-3 text-gray-500 text-sm">
             {{ $t('demos.artemis.scene.delay.description') }}
           </p>

@@ -27,7 +27,7 @@
 
 <template>
   <Page description="中国行政区划级联选择器组件示例" title="行政区划选择器 Demo">
-    <a-card class="mb-4" title="基本用法">
+    <a-card class="!mb-4" title="基本用法">
       <a-row :gutter="24">
         <a-col :span="12">
           <div class="mb-2 font-medium"> 只绑定最后一级值 (valueMode="last") </div>
@@ -42,7 +42,7 @@
       </a-row>
     </a-card>
 
-    <a-card class="mb-4" title="不同层级">
+    <a-card class="!mb-4" title="不同层级">
       <a-row :gutter="24">
         <a-col :span="8">
           <div class="mb-2 font-medium">省市二级联动</div>
@@ -62,7 +62,7 @@
       </a-row>
     </a-card>
 
-    <a-card class="mb-4" title="操作按钮">
+    <a-card class="!mb-4" title="操作按钮">
       <a-space>
         <a-button type="primary" @click="setTestValue"> 设置测试值 (北京市东城区) </a-button>
         <a-button danger @click="clearAll"> 清空所有 </a-button>
@@ -70,7 +70,7 @@
     </a-card>
 
     <a-card title="回显测试">
-      <a-alert class="mb-4" message="回显原理说明" type="info" show-icon>
+      <a-alert class="!mb-4" message="回显原理说明" type="info" show-icon>
         <template #description>
           <p>中国行政区划代码本身包含层级关系：</p>
           <ul class="list-disc pl-4">

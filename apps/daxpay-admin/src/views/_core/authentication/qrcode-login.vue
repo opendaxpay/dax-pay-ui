@@ -23,7 +23,7 @@
   <AuthPageCard>
     <AuthQrCodePanel :show-title="true" />
 
-    <a-button block class="mt-4" @click="goBack">
+    <a-button block class="!mt-4" @click="goBack">
       <template #icon>
         <IconifyIcon icon="ant-design:left-outlined" />
       </template>

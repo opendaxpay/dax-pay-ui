@@ -631,7 +631,7 @@
 
                 <!-- 签名预览结果 -->
                 <template v-if="signPreview.signStr || signPreview.sign">
-                  <a-divider class="my-3" />
+                  <a-divider class="!my-3" />
                   <div class="preview-item mb-3">
                     <div class="mb-1 flex items-center justify-between">
                       <span class="text-xs font-medium text-foreground">

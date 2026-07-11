@@ -28,7 +28,7 @@
     <component :is="headerMeta?.component" v-if="headerMeta" :data="dashboardData" />
 
     <!-- 其余 widgets 按 24 栅格布局渲染 -->
-    <a-row :gutter="[16, 16]" align="stretch" class="mt-4">
+    <a-row :gutter="[16, 16]" align="stretch" class="!mt-4">
       <a-col v-for="item in layout" :key="item.widgetId" :span="item.span">
         <component :is="widgetMap[item.widgetId]?.component" :data="dashboardData" />
       </a-col>

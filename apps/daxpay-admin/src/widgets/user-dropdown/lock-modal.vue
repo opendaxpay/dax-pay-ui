@@ -76,7 +76,7 @@
         allow-clear
         @press-enter="handleSubmit"
       />
-      <a-button type="primary" block size="large" class="mt-6" @click="handleSubmit">
+      <a-button type="primary" block size="large" class="!mt-6" @click="handleSubmit">
         {{ $t('ui.widgets.lockScreen.screenButton') }}
       </a-button>
     </div>

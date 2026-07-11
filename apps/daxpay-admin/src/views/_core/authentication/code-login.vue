@@ -133,7 +133,7 @@
       </a-button>
     </a-form>
 
-    <a-button block class="mt-4" @click="goBack">
+    <a-button block class="!mt-4" @click="goBack">
       <template #icon>
         <IconifyIcon icon="ant-design:left-outlined" />
       </template>

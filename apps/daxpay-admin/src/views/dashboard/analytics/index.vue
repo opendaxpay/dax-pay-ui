@@ -44,7 +44,7 @@
     <AnalysisOverview :data="data.overview" />
 
     <!-- 图表网格：核心趋势 → 洞察三连 → 深度 → 明细 -->
-    <a-row :gutter="[16, 16]" align="stretch" class="mt-4">
+    <a-row :gutter="[16, 16]" align="stretch" class="!mt-4">
       <!-- 第二行：交易趋势(多度量) + 支付方式占比 -->
       <a-col :span="16">
         <AnalysisTradeTrend :data="data.tradeTrend" />

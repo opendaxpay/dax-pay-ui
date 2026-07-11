@@ -174,7 +174,7 @@
     :size="1200"
     @close="handleClose"
   >
-    <a-form layout="inline" class="mb-4">
+    <a-form layout="inline" class="!mb-4">
       <a-form-item :label="$t('system.protocol.version.language')">
         <a-select
           v-model:value="queryForm.language"

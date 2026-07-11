@@ -90,7 +90,7 @@
       {{ $t('_core.authentication.twoFactor.submit') }}
     </a-button>
     <!-- 返回 -->
-    <a-button block size="large" class="mt-2" @click="handleCancel">
+    <a-button block size="large" class="!mt-2" @click="handleCancel">
       {{ $t('_core.authentication.twoFactor.cancel') }}
     </a-button>
   </div>

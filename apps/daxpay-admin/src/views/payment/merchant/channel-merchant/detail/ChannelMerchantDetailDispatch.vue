@@ -291,7 +291,7 @@
             <!-- 国际化：按通道动态展示页头标题 -->
             <span class="text-lg font-bold text-foreground">{{ pageTitle }}</span>
             <!-- 银联商务多产品共页, 用标签区分具体产品类型(如"银联商务(C扫B)") -->
-            <a-tag v-if="isUmsProduct(product) && productTypeName" color="blue" class="ml-1">
+            <a-tag v-if="isUmsProduct(product) && productTypeName" color="blue" class="!ml-1">
               {{ productTypeName }}
             </a-tag>
             <span v-if="channelMerchant.channelMerchantName" class="text-sm text-muted-foreground">
