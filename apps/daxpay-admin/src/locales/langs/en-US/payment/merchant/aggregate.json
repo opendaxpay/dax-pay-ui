@@ -1,6 +1,6 @@
 {
   "aggregate": {
-    "title": "Aggregate QR Pay",
+    "title": "QR Code & Aggregate Pay",
     "editModeLabel": "Config Level",
     "autoLaunch": "Auto Launch",
     "autoLaunchHint": "Automatically initiate payment after scanning, no manual click needed",
@@ -15,8 +15,8 @@
     "capability": "Capability",
     "capabilityPlaceholder": "Select capability",
     "autoDerived": "Auto-derived",
-    "saveConfirm": "Are you sure to save the aggregate QR pay config?",
-    "missingAppContext": "Please access aggregate QR config from app management",
+    "saveConfirm": "Are you sure to save the QR code and aggregate pay config?",
+    "missingAppContext": "Please access QR code and aggregate pay config from app management",
     "notSelected": "Not selected",
     "levelActive": "Active",
     "scenes": {

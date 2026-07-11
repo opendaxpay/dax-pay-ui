@@ -85,10 +85,10 @@
     if (hasPermission(PermCodes.Merchant.GatewayAggregate.VIEW)) {
       paymentCards.push({
         key: 'aggregateScan',
-        // 国际化：聚合扫码
+        // 国际化：码牌和聚合支付
         title: $t('payment.merchant.app.app.aggregateScan'),
         icon: 'ant-design:qrcode-outlined',
-        // 国际化：配置聚合收款码与扫码跳转规则
+        // 国际化：配置聚合收款码与码牌支付规则，同时影响支付码牌相关配置
         description: $t('payment.merchant.app.app.aggregateScanDesc'),
         route: '/payment/merchant/aggregate',
       });

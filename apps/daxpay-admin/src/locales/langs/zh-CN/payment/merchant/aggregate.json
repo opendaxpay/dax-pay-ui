@@ -1,6 +1,6 @@
 {
   "aggregate": {
-    "title": "聚合扫码",
+    "title": "码牌和聚合支付",
     "editModeLabel": "配置模式",
     "autoLaunch": "自动拉起支付",
     "autoLaunchHint": "扫码后自动发起支付,无需用户手动点击",
@@ -15,8 +15,8 @@
     "capability": "支付能力",
     "capabilityPlaceholder": "请选择支付能力",
     "autoDerived": "系统自动推导",
-    "saveConfirm": "确定要保存聚合扫码配置吗?",
-    "missingAppContext": "请从应用管理进入聚合扫码配置",
+    "saveConfirm": "确定要保存码牌和聚合支付配置吗?",
+    "missingAppContext": "请从应用管理进入码牌和聚合支付配置",
     "notSelected": "未选择",
     "levelActive": "生效中",
     "scenes": {

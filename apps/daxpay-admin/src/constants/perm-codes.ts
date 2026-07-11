@@ -69,7 +69,7 @@ export const PermCodes = {
       VIEW: 'merchant:app:route:view',
       MANAGE: 'merchant:app:route:manage',
     },
-    /** 聚合扫码配置 menuCode=merchant:gateway-aggregate */
+    /** 码牌和聚合支付配置 menuCode=merchant:gateway-aggregate */
     GatewayAggregate: {
       VIEW: 'merchant:gateway-aggregate:view',
       MANAGE: 'merchant:gateway-aggregate:update',
