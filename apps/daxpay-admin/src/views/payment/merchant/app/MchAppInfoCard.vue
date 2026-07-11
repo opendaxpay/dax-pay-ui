@@ -1,19 +1,11 @@
 <script lang="ts" setup>
-  import type { MenuProps } from 'antdv-next';
-
   import type { MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
 
   import { computed } from 'vue';
-  import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
   import { IconifyIcon } from '@vben-core/icons';
-
-  import { PermCodes } from '#/constants/perm-codes';
-  import { usePermission } from '#/hooks/usePermission';
-
-  const { hasPermission } = usePermission();
 
   const props = defineProps<{
     mchNo: string;
@@ -21,86 +13,62 @@
   }>();
 
   const emit = defineEmits<{
-    cancelDefault: [];
-    delete: [];
-    edit: [];
-    notifyConfig: [];
-    setDefault: [];
+    open: [];
   }>();
-
-  const router = useRouter();
 
   const isEnabled = computed(() => props.record.status === 'enable');
 
-  /** 进入应用通道路由配置 */
-  function goPayRoute() {
-    router.push({
-      path: '/payment/merchant/route',
-      query: { mchNo: props.mchNo, appId: props.record.appId },
-    });
-  }
-
-  /** 进入聚合扫码配置 */
-  function goAggregateScan() {
-    router.push({
-      path: '/payment/merchant/aggregate',
-      query: { mchNo: props.mchNo, appId: props.record.appId },
-    });
+  /**
+   * 整卡点击进入应用工作台
+   */
+  function handleOpen() {
+    emit('open');
   }
 
   /**
-   * 更多操作菜单
+   * 键盘 Enter / Space 打开
    */
-  function getMoreMenu(): MenuProps {
-    const items: MenuProps['items'] = [
-      props.record.defaultApp
-        ? { key: 'cancelDefault', label: $t('payment.merchant.app.app.cancelDefault') }
-        : { key: 'setDefault', label: $t('payment.merchant.app.app.setDefault') },
-      // 国际化：通知配置
-      { key: 'notifyConfig', label: $t('payment.merchant.app.app.notifyConfig') },
-      { key: 'delete', label: $t('payment.merchant.app.app.delete'), danger: true },
-    ];
-    return {
-      items,
-      onClick: ({ key }: { key: string }) => {
-        if (key === 'setDefault') {
-          emit('setDefault');
-        } else if (key === 'cancelDefault') {
-          emit('cancelDefault');
-        } else if (key === 'notifyConfig') {
-          emit('notifyConfig');
-        } else if (key === 'delete') {
-          emit('delete');
-        }
-      },
-    };
+  function handleKeydown(e: KeyboardEvent) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      emit('open');
+    }
   }
 </script>
 
 <template>
   <div
-    class="mch-app-info-card group flex h-full min-h-[128px] flex-col rounded-xl border bg-card shadow-sm"
+    class="mch-app-info-card group relative flex h-full min-h-[156px] cursor-pointer flex-col overflow-hidden rounded-2xl border-none bg-card shadow-md"
     :class="{ 'mch-app-info-card--default': record.defaultApp }"
+    role="button"
+    tabindex="0"
+    :aria-label="$t('payment.merchant.app.app.openActionAria')"
+    @click="handleOpen"
+    @keydown="handleKeydown"
   >
-    <div class="card-body flex flex-1 items-center gap-3 px-4 py-4">
-      <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-        <IconifyIcon icon="ant-design:appstore-outlined" class="text-xl" />
+    <div class="card-body flex flex-1 items-center gap-4 px-5 py-5">
+      <div
+        class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:shadow-md"
+      >
+        <IconifyIcon icon="ant-design:appstore-outlined" class="h-7 w-7" />
       </div>
       <div class="min-w-0 flex-1">
         <div class="flex items-center gap-2">
-          <span class="truncate text-base font-semibold leading-snug text-foreground">{{ record.appName }}</span>
+          <span class="truncate text-base font-bold leading-snug text-foreground transition-colors duration-300 group-hover:text-primary">
+            {{ record.appName }}
+          </span>
           <a-tag v-if="record.defaultApp" color="processing" class="shrink-0 !m-0 !text-xs">
             {{ $t('payment.merchant.app.app.defaultTag') }}
           </a-tag>
         </div>
-        <div class="mt-1.5 truncate text-xs text-muted-foreground">
+        <div class="mt-2 truncate text-xs text-muted-foreground">
           {{ $t('payment.merchant.app.app.appIdPrefix', { appId: record.appId }) }}
         </div>
       </div>
     </div>
 
-    <div class="card-footer flex shrink-0 items-center justify-between border-t border-border px-3 py-1.5">
-      <div class="flex items-center gap-1 text-xs leading-none text-muted-foreground">
+    <div class="card-footer flex shrink-0 items-center justify-between px-5 pb-4 pt-1">
+      <div class="flex items-center gap-1.5 text-xs leading-none text-muted-foreground">
         <span
           class="inline-block h-1.5 w-1.5 rounded-full"
           :class="isEnabled ? 'bg-primary' : 'bg-muted-foreground/50'"
@@ -109,82 +77,40 @@
           {{ isEnabled ? $t('payment.merchant.app.app.statusEnable') : $t('payment.merchant.app.app.statusDisabled') }}
         </span>
       </div>
-      <div class="flex items-center">
-        <a-tooltip
-          v-if="hasPermission(PermCodes.Merchant.AppRoute.VIEW)"
-          :title="$t('payment.merchant.app.app.payRoute')"
-        >
-          <a-button
-            type="text"
-            size="small"
-            class="!h-6 !w-6 !min-w-6 !p-0 !text-muted-foreground hover:!text-primary"
-            @click="goPayRoute"
-          >
-            <template #icon>
-              <IconifyIcon icon="ant-design:node-index-outlined" class="text-sm" />
-            </template>
-          </a-button>
-        </a-tooltip>
-        <a-tooltip
-          v-if="hasPermission(PermCodes.Merchant.GatewayAggregate.VIEW)"
-          :title="$t('payment.merchant.app.app.aggregateScan')"
-        >
-          <a-button
-            type="text"
-            size="small"
-            class="!h-6 !w-6 !min-w-6 !p-0 !text-muted-foreground hover:!text-primary"
-            @click="goAggregateScan"
-          >
-            <template #icon>
-              <IconifyIcon icon="ant-design:qrcode-outlined" class="text-sm" />
-            </template>
-          </a-button>
-        </a-tooltip>
-        <a-tooltip v-if="hasPermission(PermCodes.Merchant.App.MANAGE)" :title="$t('payment.merchant.app.app.edit')">
-          <a-button
-            type="text"
-            size="small"
-            class="!h-6 !w-6 !min-w-6 !p-0 !text-muted-foreground hover:!text-primary"
-            @click="emit('edit')"
-          >
-            <template #icon>
-              <IconifyIcon icon="ant-design:edit-outlined" class="text-sm" />
-            </template>
-          </a-button>
-        </a-tooltip>
-        <a-dropdown v-if="hasPermission(PermCodes.Merchant.App.MANAGE)" :menu="getMoreMenu()" :trigger="['click']">
-          <a-tooltip :title="$t('payment.merchant.app.app.actionMore')">
-            <a-button
-              type="text"
-              size="small"
-              class="!h-6 !w-6 !min-w-6 !p-0 !text-muted-foreground hover:!text-primary"
-            >
-              <template #icon>
-                <IconifyIcon icon="ant-design:menu-outlined" class="text-sm" />
-              </template>
-            </a-button>
-          </a-tooltip>
-        </a-dropdown>
+      <!-- 国际化：进入配置 › -->
+      <div class="flex items-center gap-0.5 text-xs font-medium text-muted-foreground transition-colors duration-300 group-hover:text-primary">
+        <span>{{ $t('payment.merchant.app.app.enterConfig') }}</span>
+        <IconifyIcon icon="ant-design:right-outlined" class="text-xs" />
       </div>
     </div>
+
+    <!-- hover 底边色条（对齐工作台） -->
+    <div
+      class="absolute bottom-0 left-0 h-1.5 w-0 bg-primary transition-all duration-300 group-hover:w-full"
+    />
   </div>
 </template>
 
 <style scoped>
   .mch-app-info-card {
     transition:
-      transform 0.25s ease,
-      box-shadow 0.25s ease,
-      border-color 0.25s ease;
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
   }
 
   .mch-app-info-card:hover {
-    border-color: hsl(var(--primary) / 0.4);
-    box-shadow: 0 8px 24px rgb(0 0 0 / 0.12);
-    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgb(0 0 0 / 0.12);
+    transform: translateY(-6px);
+  }
+
+  .mch-app-info-card:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
   }
 
   .mch-app-info-card--default {
-    border-color: hsl(var(--primary) / 0.4);
+    box-shadow:
+      0 4px 14px rgb(0 0 0 / 0.08),
+      0 0 0 1.5px hsl(var(--primary) / 0.35);
   }
 </style>

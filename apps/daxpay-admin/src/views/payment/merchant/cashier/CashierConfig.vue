@@ -1,0 +1,314 @@
+<script lang="ts" setup>
+  import { computed, onMounted, ref, watch } from 'vue';
+  import { useRoute, useRouter } from 'vue-router';
+
+  import { $t } from '@vben/locales';
+
+  import { IconifyIcon } from '@vben-core/icons';
+
+  import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
+  import {
+    CashierConfigApi,
+    type CashierItemResult,
+  } from '#/api/payment/merchant/cashier.api';
+  import { PayRouteApi } from '#/api/payment/route/pay-route.api';
+  import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
+  import { PermCodes } from '#/constants/perm-codes';
+  import { useMessage } from '#/hooks/useMessage';
+  import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
+  import { usePermission } from '#/hooks/usePermission';
+
+  import CashierItemEdit from './CashierItemEdit.vue';
+  import {
+    CASHIER_H5_SCENES,
+    CASHIER_TYPE,
+    RESOLVE_MODE,
+    type CashierType,
+  } from './shared/constants';
+
+  defineOptions({ name: 'CashierConfig' });
+
+  const route = useRoute();
+  const router = useRouter();
+  const { confirm, message } = useMessage();
+  const { hasPermission } = usePermission();
+
+  // 路由参数: mchNo + appId
+  const routeContext = useRequiredRouteQuery({
+    keys: ['mchNo', 'appId'],
+    messageKey: computed(() =>
+      normalizeRouteQueryValue(route.query.mchNo)
+        ? 'payment.merchant.cashier.cashier.missingAppContext'
+        : 'payment.common.route.missingMchNo',
+    ),
+    fallbackPath: computed(() => {
+      const no = normalizeRouteQueryValue(route.query.mchNo);
+      const app = normalizeRouteQueryValue(route.query.appId);
+      if (no && app) {
+        return { path: '/payment/merchant/app/manage', query: { mchNo: no, appId: app } };
+      }
+      return no ? { path: '/payment/merchant/app', query: { mchNo: no } } : '/payment/merchant';
+    }),
+  });
+
+  const mchNo = computed(() => routeContext.query.value.mchNo);
+  const appId = computed(() => routeContext.query.value.appId);
+
+  const loading = ref(false);
+  const appInfo = ref<MchAppInfoResult>({});
+  const tableData = ref<CashierItemResult[]>([]);
+  const methodLabelMap = ref<Record<string, string>>({});
+
+  // 一级 / 二级 Tab
+  const activeType = ref<CashierType>(CASHIER_TYPE.H5);
+  const activeScene = ref(CASHIER_H5_SCENES[0]!.scene);
+
+  const itemEditRef = ref<InstanceType<typeof CashierItemEdit>>();
+
+  const canManage = computed(() => hasPermission(PermCodes.Merchant.GatewayCashier.MANAGE));
+
+  /** 场景 i18n */
+  function sceneLabel(scene: string) {
+    return $t(`payment.merchant.cashier.cashier.scenes.${scene}`);
+  }
+
+  /** 图标 i18n */
+  function iconLabel(icon?: string) {
+    if (!icon) return '-';
+    return $t(`payment.merchant.cashier.cashier.icons.${icon}`);
+  }
+
+  /** 解析模式展示 */
+  function resolveModeLabel(mode?: string) {
+    if (mode === RESOLVE_MODE.DIRECT) {
+      return $t('payment.merchant.cashier.cashier.modeDirect');
+    }
+    return $t('payment.merchant.cashier.cashier.modeMethod');
+  }
+
+  /** 支付解析摘要 */
+  function paySummary(row: CashierItemResult) {
+    if (row.resolveMode === RESOLVE_MODE.DIRECT) {
+      const parts = [row.channelMchNo, row.capability].filter(Boolean);
+      return parts.join(' / ') || '-';
+    }
+    return methodLabelMap.value[row.method || ''] || row.method || '-';
+  }
+
+  /** 加载应用信息 */
+  async function loadAppInfo() {
+    if (!mchNo.value || !appId.value) return;
+    const { data } = await MchAppInfoApi.page({ mchNo: mchNo.value, current: 1, size: 200 });
+    const app = data?.records?.find((a) => a.appId === appId.value);
+    appInfo.value = app || {};
+  }
+
+  /** 加载方式标签映射 */
+  async function loadMethodLabels() {
+    const { data } = await PayRouteApi.listMethodDirectoryFlat();
+    const map: Record<string, string> = {};
+    for (const item of data || []) {
+      map[item.method] = item.methodLabel || item.method;
+    }
+    methodLabelMap.value = map;
+  }
+
+  /** 加载当前桶列表 */
+  async function loadList() {
+    if (!appId.value) return;
+    loading.value = true;
+    try {
+      const params: { appId: string; cashierType: string; scene?: string } = {
+        appId: appId.value,
+        cashierType: activeType.value,
+      };
+      if (activeType.value === CASHIER_TYPE.H5) {
+        params.scene = activeScene.value;
+      }
+      const { data } = await CashierConfigApi.list(params);
+      tableData.value = data || [];
+    } finally {
+      loading.value = false;
+    }
+  }
+
+  /** 返回应用列表 */
+  function handleBack() {
+    router.push({
+      path: '/payment/merchant/app/manage',
+      query: { mchNo: mchNo.value, appId: appId.value },
+    });
+  }
+
+  /** 新增 */
+  function handleAdd() {
+    itemEditRef.value?.show({
+      mchNo: mchNo.value,
+      appId: appId.value,
+      cashierType: activeType.value,
+      scene: activeType.value === CASHIER_TYPE.H5 ? activeScene.value : undefined,
+    });
+  }
+
+  /** 编辑 */
+  function handleEdit(row: CashierItemResult) {
+    itemEditRef.value?.showEdit({
+      mchNo: mchNo.value,
+      appId: appId.value,
+      cashierType: activeType.value,
+      scene: activeType.value === CASHIER_TYPE.H5 ? activeScene.value : undefined,
+      record: row,
+    });
+  }
+
+  /** 删除 */
+  function handleDelete(row: CashierItemResult) {
+    confirm({
+      content: $t('payment.merchant.cashier.cashier.confirmDelete'),
+      onOk() {
+        return CashierConfigApi.delete(row.id!).then(() => {
+          message.success($t('common.operationSuccess'));
+          loadList();
+        });
+      },
+    });
+  }
+
+  watch([activeType, activeScene], () => {
+    if (!routeContext.isValid.value) return;
+    loadList();
+  });
+
+  onMounted(async () => {
+    if (!routeContext.isValid.value) return;
+    await Promise.all([loadAppInfo(), loadMethodLabels()]);
+    await loadList();
+  });
+</script>
+
+<template>
+  <RouteQueryMissingState
+    v-if="!routeContext.isValid"
+    :description="$t('payment.merchant.cashier.cashier.missingAppContext')"
+    :back-text="$t('payment.merchant.workbench.workbench.backToList')"
+    @back="routeContext.goFallback"
+  />
+  <div v-else class="m-4">
+    <a-card variant="borderless" class="rounded-xl shadow-sm">
+      <template #title>
+        <div class="flex items-center gap-2">
+          <a-button type="text" @click="handleBack">
+            <template #icon>
+              <IconifyIcon icon="ant-design:arrow-left-outlined" />
+            </template>
+          </a-button>
+          <span class="text-lg font-bold">{{ $t('payment.merchant.cashier.cashier.title') }}</span>
+          <span v-if="appInfo.appName" class="text-sm text-muted-foreground">
+            ({{ appInfo.appName }})
+          </span>
+        </div>
+      </template>
+
+      <template #extra>
+        <a-button v-if="canManage" type="primary" @click="handleAdd">
+          {{ $t('payment.merchant.cashier.cashier.addItem') }}
+        </a-button>
+      </template>
+
+      <!-- 一级: H5 / WEB -->
+      <div class="mb-4">
+        <a-radio-group v-model:value="activeType" button-style="solid">
+          <a-radio-button :value="CASHIER_TYPE.H5">{{
+            $t('payment.merchant.cashier.cashier.typeH5')
+          }}</a-radio-button>
+          <a-radio-button :value="CASHIER_TYPE.WEB">{{
+            $t('payment.merchant.cashier.cashier.typeWeb')
+          }}</a-radio-button>
+        </a-radio-group>
+      </div>
+
+      <!-- H5 二级终端 -->
+      <div v-if="activeType === CASHIER_TYPE.H5" class="mb-4">
+        <a-radio-group v-model:value="activeScene" button-style="solid">
+          <a-radio-button v-for="sc in CASHIER_H5_SCENES" :key="sc.scene" :value="sc.scene">
+            {{ sceneLabel(sc.scene) }}
+          </a-radio-button>
+        </a-radio-group>
+      </div>
+
+      <a-spin :spinning="loading">
+        <vxe-table :data="tableData" :row-config="{ keyField: 'id' }" min-height="200">
+          <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
+          <vxe-column field="name" :title="$t('payment.merchant.cashier.cashier.name')" min-width="140" />
+          <vxe-column field="icon" :title="$t('payment.merchant.cashier.cashier.icon')" width="100" align="center">
+            <template #default="{ row }">
+              {{ iconLabel(row.icon) }}
+            </template>
+          </vxe-column>
+          <vxe-column
+            field="recommend"
+            :title="$t('payment.merchant.cashier.cashier.recommend')"
+            width="90"
+            align="center"
+          >
+            <template #default="{ row }">
+              <a-tag v-if="row.recommend" color="green">{{
+                $t('payment.merchant.cashier.cashier.recommendYes')
+              }}</a-tag>
+              <span v-else class="text-muted-foreground">{{
+                $t('payment.merchant.cashier.cashier.recommendNo')
+              }}</span>
+            </template>
+          </vxe-column>
+          <vxe-column
+            field="sortNo"
+            :title="$t('payment.merchant.cashier.cashier.sortNo')"
+            width="80"
+            align="center"
+          />
+          <vxe-column
+            field="resolveMode"
+            :title="$t('payment.merchant.cashier.cashier.resolveMode')"
+            width="110"
+            align="center"
+          >
+            <template #default="{ row }">
+              {{ resolveModeLabel(row.resolveMode) }}
+            </template>
+          </vxe-column>
+          <vxe-column
+            field="method"
+            :title="$t('payment.merchant.cashier.cashier.method')"
+            min-width="200"
+          >
+            <template #default="{ row }">
+              {{ paySummary(row) }}
+            </template>
+          </vxe-column>
+          <vxe-column fixed="right" :width="120" :show-overflow="false" :title="$t('common.operation')">
+            <template #default="{ row }">
+              <a-space v-if="canManage" :size="2">
+                <template #separator>
+                  <a-divider type="vertical" />
+                </template>
+                <a-button type="link" size="small" @click="handleEdit(row)">
+                  {{ $t('common.edit') }}
+                </a-button>
+                <a-button type="link" size="small" danger @click="handleDelete(row)">
+                  {{ $t('common.delete') }}
+                </a-button>
+              </a-space>
+            </template>
+          </vxe-column>
+          <template #empty>
+            <div class="py-8 text-center text-muted-foreground">
+              {{ $t('payment.merchant.cashier.cashier.empty') }}
+            </div>
+          </template>
+        </vxe-table>
+      </a-spin>
+    </a-card>
+
+    <CashierItemEdit ref="itemEditRef" @ok="loadList" />
+  </div>
+</template>

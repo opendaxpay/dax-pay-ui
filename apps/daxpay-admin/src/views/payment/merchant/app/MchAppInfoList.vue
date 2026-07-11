@@ -11,13 +11,11 @@
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
   import useTablePage from '#/hooks/useTablePage';
-  import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
   import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
 
   import MchAppInfoCard from './MchAppInfoCard.vue';
   import MchAppInfoEdit from './MchAppInfoEdit.vue';
-  import MchAppNotifyConfig from './MchAppNotifyConfig.vue';
 
   defineOptions({ name: 'MchAppInfoList' });
 
@@ -28,16 +26,11 @@
     messageKey: 'payment.common.route.missingMchNo',
     fallbackPath: '/payment/merchant',
   });
-  const { confirm, message } = useMessage();
   const { hasPermission } = usePermission();
 
   const mchNo = computed(() => routeContext.query.value.mchNo);
   const merchantInfo = ref<MerchantInfo>({});
   const appEditRef = ref<InstanceType<typeof MchAppInfoEdit>>();
-
-  // 通知配置抽屉
-  const notifyDrawerVisible = ref(false);
-  const notifyConfigApp = ref<MchAppInfoResult>({});
 
   /**
    * 分页查询应用列表
@@ -90,21 +83,11 @@
    * 是否有应用但没有默认应用
    */
   const hasAppWithoutDefault = computed(() => {
-    return appList.value.length > 0 && !appList.value.some(app => app.defaultApp);
+    return appList.value.length > 0 && !appList.value.some((app) => app.defaultApp);
   });
 
   /** 是否展示无默认应用提示条 */
   const showNoDefaultTip = computed(() => hasAppWithoutDefault.value && !loading.value);
-
-  /**
-   * 有提示条时收紧卡片内容区上内边距，与提示条下边距对称
-   */
-  const cardBodyStyle = computed(() => {
-    if (showNoDefaultTip.value) {
-      return { paddingTop: '16px' };
-    }
-    return undefined;
-  });
 
   /**
    * 返回工作台
@@ -132,64 +115,13 @@
     appEditRef.value?.show(mchNo.value);
   }
 
-  function handleEdit(row: MchAppInfoResult) {
-    appEditRef.value?.showEdit(mchNo.value, row);
-  }
-
   /**
-   * 打开通知配置抽屉
+   * 进入应用工作台
    */
-  function handleNotifyConfig(row: MchAppInfoResult) {
-    notifyConfigApp.value = row;
-    notifyDrawerVisible.value = true;
-  }
-
-  /**
-   * 设为默认
-   */
-  function handleSetDefault(row: MchAppInfoResult) {
-    confirm({
-      content: $t('payment.merchant.app.app.confirmSetDefault'),
-      onOk() {
-        return MchAppInfoApi.setDefault(row.id!).then(() => {
-          message.success($t('common.operationSuccess'));
-          handleOk();
-        });
-      },
-    });
-  }
-
-  /**
-   * 取消默认
-   */
-  function handleCancelDefault(row: MchAppInfoResult) {
-    confirm({
-      content: $t('payment.merchant.app.app.confirmCancelDefault'),
-      onOk() {
-        return MchAppInfoApi.clearDefault(row.id!).then(() => {
-          message.success($t('common.operationSuccess'));
-          handleOk();
-        });
-      },
-    });
-  }
-
-  /**
-   * 删除应用
-   */
-  function handleDelete(row: MchAppInfoResult) {
-    if (row.defaultApp && appList.value.length > 1) {
-      message.warning($t('payment.merchant.app.app.deleteDefaultBlocked'));
-      return;
-    }
-    confirm({
-      content: $t('payment.merchant.app.app.confirmDelete'),
-      onOk() {
-        return MchAppInfoApi.delete(row.id!).then(() => {
-          message.success($t('common.operationSuccess'));
-          handleOk();
-        });
-      },
+  function openAppWorkbench(row: MchAppInfoResult) {
+    router.push({
+      path: '/payment/merchant/app/manage',
+      query: { mchNo: mchNo.value, appId: row.appId },
     });
   }
 
@@ -210,7 +142,8 @@
     @back="routeContext.goFallback"
   />
   <div v-else class="m-4">
-    <a-card variant="borderless" class="rounded-xl shadow-sm" :body-style="cardBodyStyle">
+    <!-- 顶栏对齐对接配置等下级页：a-card title，text-lg，非工作台级大标题 -->
+    <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <div class="flex items-center gap-2">
           <a-button
@@ -222,19 +155,15 @@
               <IconifyIcon icon="ant-design:arrow-left-outlined" class="text-lg" />
             </template>
           </a-button>
-          <!-- 国际化：应用管理（与菜单 title 一致） -->
-          <span class="text-lg font-bold text-foreground">{{ $t('payment.merchant.app.app.title') }}</span>
+          <!-- 国际化：应用管理 -->
+          <span class="text-lg font-bold text-foreground">{{ $t('payment.merchant.app.app.myApps') }}</span>
           <span v-if="merchantInfo.mchName" class="text-sm text-muted-foreground">({{ merchantInfo.mchName }})</span>
         </div>
       </template>
 
       <!-- 国际化：有应用但未设置默认应用时提示 -->
-      <div v-if="showNoDefaultTip" class="no-default-app-tip">
-        <a-alert
-          :message="$t('payment.merchant.app.app.noDefaultAppTip')"
-          type="warning"
-          show-icon
-        />
+      <div v-if="showNoDefaultTip" class="mb-4">
+        <a-alert :message="$t('payment.merchant.app.app.noDefaultAppTip')" type="warning" show-icon />
       </div>
 
       <a-spin :spinning="loading">
@@ -244,61 +173,37 @@
             :key="row.id"
             :mch-no="mchNo"
             :record="row"
-            @edit="handleEdit(row)"
-            @notify-config="handleNotifyConfig(row)"
-            @set-default="handleSetDefault(row)"
-            @cancel-default="handleCancelDefault(row)"
-            @delete="handleDelete(row)"
+            @open="openAppWorkbench(row)"
           />
 
           <!-- 新增应用占位卡片 -->
           <div
             v-if="hasPermission(PermCodes.Merchant.App.MANAGE)"
-            class="add-card flex h-full min-h-[128px] cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-muted/30 text-muted-foreground transition-all hover:border-primary hover:bg-primary/5 hover:text-primary"
+            class="add-card group flex h-full min-h-[156px] cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-border bg-card/60 text-muted-foreground shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary hover:bg-primary/5 hover:text-primary hover:shadow-md"
             @click="handleAdd"
           >
-            <IconifyIcon icon="ant-design:plus-outlined" class="text-3xl" />
-            <span class="text-sm font-medium">{{ $t('payment.merchant.app.app.addCard') }}</span>
+            <div
+              class="flex h-14 w-14 items-center justify-center rounded-2xl bg-muted transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/10"
+            >
+              <IconifyIcon icon="ant-design:plus-outlined" class="h-7 w-7" />
+            </div>
+            <span class="text-sm font-bold">{{ $t('payment.merchant.app.app.addCard') }}</span>
           </div>
         </div>
       </a-spin>
     </a-card>
 
     <MchAppInfoEdit ref="appEditRef" @ok="handleOk" />
-
-    <!-- 应用事件通知配置抽屉 -->
-    <MchAppNotifyConfig
-      v-model:visible="notifyDrawerVisible"
-      :app-id="notifyConfigApp.appId"
-      :app-name="notifyConfigApp.appName"
-    />
   </div>
 </template>
 
 <style scoped>
-  /* 提示条：上下与卡片列表间距一致（上由 cardBodyStyle.paddingTop，下由 margin-bottom） */
-  .no-default-app-tip {
-    margin-bottom: 16px;
-  }
-
   .app-card-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 20px;
-    padding: 4px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+    padding: 4px 0 8px;
     min-height: 120px;
-  }
-
-  @media (max-width: 1400px) {
-    .app-card-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 1024px) {
-    .app-card-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
   }
 
   @media (max-width: 640px) {

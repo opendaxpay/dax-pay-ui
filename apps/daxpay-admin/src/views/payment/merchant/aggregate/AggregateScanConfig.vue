@@ -37,6 +37,10 @@
     ),
     fallbackPath: computed(() => {
       const no = normalizeRouteQueryValue(route.query.mchNo);
+      const app = normalizeRouteQueryValue(route.query.appId);
+      if (no && app) {
+        return { path: '/payment/merchant/app/manage', query: { mchNo: no, appId: app } };
+      }
       return no ? { path: '/payment/merchant/app', query: { mchNo: no } } : '/payment/merchant';
     }),
   });
@@ -195,7 +199,10 @@
 
   /** 返回应用列表 */
   function handleBack() {
-    router.push({ path: '/payment/merchant/app', query: { mchNo: mchNo.value } });
+    router.push({
+      path: '/payment/merchant/app/manage',
+      query: { mchNo: mchNo.value, appId: appId.value },
+    });
   }
 
   /** 进入编辑 */

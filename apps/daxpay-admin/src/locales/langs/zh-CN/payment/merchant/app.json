@@ -26,6 +26,26 @@
     "validationStatus": "请选择状态",
     "payRoute": "通道路由",
     "aggregateScan": "聚合扫码",
-    "notifyConfig": "通知配置"
+    "notifyConfig": "通知配置",
+    "cashierConfig": "收银台配置",
+    "cashierConfigDesc": "配置收银台展示项与支付方式入口",
+    "actionDrawerTitle": "应用配置",
+    "actionHint": "配置",
+    "enterConfig": "进入配置",
+    "workbenchTitle": "应用配置",
+    "backToAppList": "返回应用列表",
+    "appNotFound": "未找到该应用，请返回列表重试",
+    "groupConfig": "支付配置",
+    "groupManage": "应用管理",
+    "groupDanger": "危险操作",
+    "payRouteDesc": "配置支付方式的通道匹配与路由策略",
+    "aggregateScanDesc": "配置聚合收款码与扫码跳转规则",
+    "notifyConfigDesc": "配置业务事件回调地址与订阅事件",
+    "editDesc": "修改应用名称、启用状态等基本信息",
+    "setDefaultDesc": "未指定应用时，交易默认落到该应用",
+    "cancelDefaultDesc": "取消后需重新指定默认应用",
+    "deleteDesc": "删除后不可恢复，请谨慎操作",
+    "noActions": "暂无可用操作",
+    "openActionAria": "进入应用配置"
   }
 }

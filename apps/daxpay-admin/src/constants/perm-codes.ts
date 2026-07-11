@@ -74,6 +74,11 @@ export const PermCodes = {
       VIEW: 'merchant:gateway-aggregate:view',
       MANAGE: 'merchant:gateway-aggregate:update',
     },
+    /** 收银台配置 menuCode=merchant:gateway-cashier */
+    GatewayCashier: {
+      VIEW: 'merchant:gateway-cashier:view',
+      MANAGE: 'merchant:gateway-cashier:update',
+    },
     /** 门店 menuCode=merchant:store */
     Store: {
       VIEW: 'merchant:store:view',

@@ -26,6 +26,26 @@
     "validationStatus": "Please select status",
     "payRoute": "Channel Routing",
     "aggregateScan": "Aggregate QR",
-    "notifyConfig": "Notification Config"
+    "notifyConfig": "Notification Config",
+    "cashierConfig": "Cashier Config",
+    "cashierConfigDesc": "Configure cashier items and payment method entries",
+    "actionDrawerTitle": "App Configuration",
+    "actionHint": "Configure",
+    "enterConfig": "Configure",
+    "workbenchTitle": "App Configuration",
+    "backToAppList": "Back to App List",
+    "appNotFound": "App not found. Please return to the list.",
+    "groupConfig": "Payment Config",
+    "groupManage": "App Management",
+    "groupDanger": "Danger Zone",
+    "payRouteDesc": "Configure channel matching and routing for payment methods",
+    "aggregateScanDesc": "Configure aggregate QR codes and scan redirect rules",
+    "notifyConfigDesc": "Configure event callback URLs and subscriptions",
+    "editDesc": "Edit app name, status and basic info",
+    "setDefaultDesc": "Used when no app is specified for a transaction",
+    "cancelDefaultDesc": "You will need to assign another default app",
+    "deleteDesc": "This cannot be undone. Proceed with caution",
+    "noActions": "No actions available",
+    "openActionAria": "Open app configuration"
   }
 }
