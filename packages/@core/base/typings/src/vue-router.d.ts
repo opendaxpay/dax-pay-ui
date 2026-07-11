@@ -44,6 +44,11 @@ interface RouteMeta {
     | 'warning'
     | string;
   /**
+   * 自定义面包屑链
+   * 优先于 route.matched 渲染，用于子页面路由提升后补全完整层级(catalog>menu>group>subpage)
+   */
+  customBreadcrumb?: { icon?: string; path?: string; title?: string }[];
+  /**
    * 路由对应dom是否缓存起来
    */
   domCached?: boolean;

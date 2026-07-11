@@ -75,7 +75,10 @@
    */
   function getActionMenu(row: Menu) {
     const items = [];
-    if (row.menuType && ([MenuTypeEnum.CATALOG, MenuTypeEnum.MENU] as string[]).includes(row.menuType)) {
+    if (
+      row.menuType &&
+      ([MenuTypeEnum.CATALOG, MenuTypeEnum.MENU, MenuTypeEnum.SUBPAGE_GROUP] as string[]).includes(row.menuType)
+    ) {
       items.push({ key: 'addChild', label: $t('iam.menu.addChild') });
     }
     items.push({ key: 'delete', label: $t('common.delete'), danger: true });
@@ -193,7 +196,11 @@
     if (!row?.menuType) {
       return;
     }
-    if (row.menuType === MenuTypeEnum.CATALOG || row.menuType === MenuTypeEnum.MENU) {
+    if (
+      row.menuType === MenuTypeEnum.CATALOG ||
+      row.menuType === MenuTypeEnum.MENU ||
+      row.menuType === MenuTypeEnum.SUBPAGE_GROUP
+    ) {
       selectedNode.value = row;
       panelSearchKeyword.value = '';
       highlightSubpageId.value = undefined;
@@ -234,13 +241,25 @@
   }
 
   /**
-   * 从右侧面板添加子页面
+   * 从右侧面板添加子页面（父可能是 menu 直挂或 subpage_group）
    */
   function handleAddSubpage(parentMenu: Menu) {
     menuEdit.value.init(undefined, FormEditType.Add, {
       clientCode: clientCode.value,
       parentRow: parentMenu,
+      parentMenuType: parentMenu.menuType,
+    });
+  }
+
+  /**
+   * 从右侧面板添加子页面分组
+   */
+  function handleAddGroup(parentMenu: Menu) {
+    menuEdit.value.init(undefined, FormEditType.Add, {
+      clientCode: clientCode.value,
+      parentRow: parentMenu,
       parentMenuType: MenuTypeEnum.MENU,
+      defaultMenuType: MenuTypeEnum.SUBPAGE_GROUP,
     });
   }
 
@@ -384,7 +403,21 @@
                     <template #default="{ row }">
                       <IconifyIcon v-if="row.icon" :icon="row.icon" class="text-lg inline-block align-middle mr-2" />
                       <span>{{ getDisplayTitle(row) }}</span>
-                      <a-tag v-if="row.menuType === MenuTypeEnum.MENU && row.subpageCount" class="ml-2" color="blue">
+                      <a-tag
+                        v-if="row.menuType === MenuTypeEnum.MENU && row.subpageGroupCount"
+                        class="!ml-2"
+                        color="blue"
+                      >
+                        {{ $t('iam.menu.subpageGroupCount', { count: row.subpageGroupCount }) }}
+                      </a-tag>
+                      <a-tag v-if="row.menuType === MenuTypeEnum.MENU && row.subpageCount" class="!ml-2" color="cyan">
+                        {{ $t('iam.menu.subpageCount', { count: row.subpageCount }) }}
+                      </a-tag>
+                      <a-tag
+                        v-if="row.menuType === MenuTypeEnum.SUBPAGE_GROUP && row.subpageCount"
+                        class="!ml-2"
+                        color="cyan"
+                      >
                         {{ $t('iam.menu.subpageCount', { count: row.subpageCount }) }}
                       </a-tag>
                     </template>
@@ -453,6 +486,7 @@
                   :highlight-row-id="highlightSubpageId"
                   :menu-map="menuMap"
                   :selected-node="selectedNode"
+                  @add-group="handleAddGroup"
                   @add-subpage="handleAddSubpage"
                   @delete="handleDeleteConfirm"
                   @edit="handleEdit"

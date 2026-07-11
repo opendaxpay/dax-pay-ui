@@ -45,6 +45,41 @@ function resolveMenuTitle(menu: PermMenuResult): string {
 }
 
 /**
+ * 面包屑链项
+ */
+interface BreadcrumbChainItem {
+  icon?: string;
+  path?: string;
+  title?: string;
+}
+
+/**
+ * 构建 id → 祖先链(含自身)的映射
+ * 子页面路由提升后会丢失 menu 父级，提升前用原始树构建完整层级链，供面包屑补全
+ */
+function buildBreadcrumbChainMap(menus: PermMenuResult[]): Map<string, BreadcrumbChainItem[]> {
+  const map = new Map<string, BreadcrumbChainItem[]>();
+  function walk(nodes: PermMenuResult[], ancestors: BreadcrumbChainItem[]) {
+    for (const node of nodes) {
+      const item: BreadcrumbChainItem = {
+        title: resolveMenuTitle(node),
+        path: node.path || undefined,
+        icon: node.icon || undefined,
+      };
+      const chain = [...ancestors, item];
+      if (node.id) {
+        map.set(node.id, chain);
+      }
+      if (node.children?.length) {
+        walk(node.children, chain);
+      }
+    }
+  }
+  walk(menus, []);
+  return map;
+}
+
+/**
  * 根据 menuType 过滤按钮类型节点（按钮不生成可导航路由，仅作权限标识）
  */
 function filterButtonMenus(menus: PermMenuResult[]): PermMenuResult[] {
@@ -76,8 +111,8 @@ function filterPermissionAnchorMenus(menus: PermMenuResult[]): PermMenuResult[] 
 }
 
 /**
- * 处理单个菜单节点，提取其子菜单中的子页面并提升到当前层级
- * 中文：子页面在数据库中作为菜单的子节点维护，但路由生成时需要提升到目录级别
+ * 处理单个菜单节点，提取其子菜单中的子页面/子页面分组并提升到当前层级
+ * 中文：子页面/子页面分组在数据库中作为菜单的子节点维护，但路由生成时需要提升到目录级别
  */
 function processMenuNode(menu: PermMenuResult): PermMenuResult {
   if (!menu.children || menu.children.length === 0) {
@@ -85,24 +120,30 @@ function processMenuNode(menu: PermMenuResult): PermMenuResult {
   }
 
   const processedChildren: PermMenuResult[] = [];
-  const liftedSubpages: PermMenuResult[] = [];
+  // 从 menu 类型子节点中提升出来的子页面类节点(subpage / subpage_group)
+  const lifted: PermMenuResult[] = [];
 
   for (const child of menu.children) {
     const processedChild = processMenuNode(child);
 
-    if (processedChild.children && processedChild.children.length > 0) {
-      const subpages = processedChild.children.filter((c) => c.menuType === 'subpage');
-      const nonSubpages = processedChild.children.filter((c) => c.menuType !== 'subpage');
+    // 仅 menu 类型节点下的子页面类需要提升到目录层级；
+    // subpage_group 下的 subpage 保留不动（分组整体提升，保持 group>subpage 嵌套用于面包屑）
+    if (processedChild.menuType === 'menu' && processedChild.children && processedChild.children.length > 0) {
+      const liftable = processedChild.children.filter(
+        (c) => c.menuType === 'subpage' || c.menuType === 'subpage_group',
+      );
+      const remaining = processedChild.children.filter(
+        (c) => c.menuType !== 'subpage' && c.menuType !== 'subpage_group',
+      );
 
-      liftedSubpages.push(...subpages);
-
-      processedChild.children = nonSubpages.length > 0 ? nonSubpages : undefined;
+      lifted.push(...liftable);
+      processedChild.children = remaining.length > 0 ? remaining : undefined;
     }
 
     processedChildren.push(processedChild);
   }
 
-  const finalChildren = [...processedChildren, ...liftedSubpages];
+  const finalChildren = [...processedChildren, ...lifted];
 
   return {
     ...menu,
@@ -128,7 +169,10 @@ function extractAndLiftSubpages(menus: PermMenuResult[]): PermMenuResult[] {
  * - link：外链路由，写入 meta.link + meta.external
  * - button：不过滤（已在入参层移除），保留子级处理
  */
-function convertMenuToRoute(menu: PermMenuResult): RouteRecordStringComponent {
+function convertMenuToRoute(
+  menu: PermMenuResult,
+  breadcrumbMap?: Map<string, BreadcrumbChainItem[]>,
+): RouteRecordStringComponent {
   const title = resolveMenuTitle(menu);
   const menuType = menu.menuType || 'menu';
 
@@ -150,7 +194,7 @@ function convertMenuToRoute(menu: PermMenuResult): RouteRecordStringComponent {
       badgeType: (menu.badgeType as 'dot' | 'normal') || 'normal',
       badgeVariants: menu.badgeVariants || 'subtle',
     },
-    children: menu.children ? menu.children.map((child) => convertMenuToRoute(child)) : undefined,
+    children: menu.children ? menu.children.map((child) => convertMenuToRoute(child, breadcrumbMap)) : undefined,
   };
 
   // 根据 menuType 分支处理
@@ -182,6 +226,20 @@ function convertMenuToRoute(menu: PermMenuResult): RouteRecordStringComponent {
       // 子页面：使用 component，强制隐藏菜单
       route.component = menu.component || '';
       route.meta!.hideInMenu = true;
+      // 注入完整面包屑链（含 catalog/menu/group），弥补路由提升后 matched 缺失 menu 层
+      if (menu.id && breadcrumbMap?.has(menu.id)) {
+        route.meta!.customBreadcrumb = breadcrumbMap.get(menu.id);
+      }
+      break;
+    }
+
+    case 'subpage_group': {
+      // 子页面分组：透明容器（无组件），强制隐藏菜单
+      // 分组无 path，用 id 派生唯一 name/path（有 children 时 component 会被框架移除成为透明容器）
+      route.name = `subpage-group-${menu.id}`;
+      route.component = '';
+      route.path = `/_subpage-group/${menu.id}`;
+      route.meta!.hideInMenu = true;
       break;
     }
 
@@ -201,8 +259,10 @@ function convertMenuToRoute(menu: PermMenuResult): RouteRecordStringComponent {
  */
 export function convertMenuListToRoutes(menus: PermMenuResult[]): RouteRecordStringComponent[] {
   const filtered = filterPermissionAnchorMenus(filterButtonMenus(menus));
+  // 提升前构建面包屑祖先链映射（提升会破坏 menu→subpage 父子关系，必须在提升前建立）
+  const breadcrumbMap = buildBreadcrumbChainMap(filtered);
   const processed = extractAndLiftSubpages(filtered);
-  return processed.map((menu) => convertMenuToRoute(menu));
+  return processed.map((menu) => convertMenuToRoute(menu, breadcrumbMap));
 }
 
 /**

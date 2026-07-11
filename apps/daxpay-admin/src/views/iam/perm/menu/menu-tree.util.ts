@@ -7,10 +7,12 @@ import { MenuTypeEnum } from '#/enums/menuType';
  * 路由侧由 convertMenuListToRoutes 提升子页面，不在管理端开放多级 subpage。
  */
 
-/** 骨架树节点：不含 subpage 子节点，附带子页面数量 */
+/** 骨架树节点：不含 subpage 子节点，附带子页面/分组数量 */
 export interface MenuSkeletonNode extends Menu {
-  /** 直属子页面数量 */
+  /** 直属子页面数量（menu 为未分组直挂数，subpage_group 为其下子页面数） */
   subpageCount?: number;
+  /** 直属子页面分组数量（仅 menu 有值） */
+  subpageGroupCount?: number;
   children?: MenuSkeletonNode[];
 }
 
@@ -34,17 +36,26 @@ export function countDirectSubpages(node: Menu): number {
 }
 
 /**
- * 从树中剥离 subpage，构建骨架树（catalog / menu / embedded / link）
+ * 从树中剥离 subpage，构建骨架树（catalog / menu / embedded / link / subpage_group）
+ * subpage_group 作为可展开分组节点保留，其下 subpage 仍剥离
  */
 export function buildSkeletonTree(data: Menu[]): MenuSkeletonNode[] {
   return data.map((item) => {
-    const subpages = (item.children || []).filter((child) => child.menuType === MenuTypeEnum.SUBPAGE);
-    const nonSubpageChildren = (item.children || []).filter((child) => child.menuType !== MenuTypeEnum.SUBPAGE);
-    const skeletonChildren = buildSkeletonTree(nonSubpageChildren);
+    const directSubpages = (item.children || []).filter((c) => c.menuType === MenuTypeEnum.SUBPAGE);
+    const directGroups = (item.children || []).filter((c) => c.menuType === MenuTypeEnum.SUBPAGE_GROUP);
+    // 骨架子节点：排除 subpage（由右侧面板管理），保留 subpage_group 作为可展开分组节点
+    const skeletonChildrenRaw = (item.children || []).filter((c) => c.menuType !== MenuTypeEnum.SUBPAGE);
+    const builtChildren = buildSkeletonTree(skeletonChildrenRaw);
     return {
       ...item,
-      children: skeletonChildren.length > 0 ? skeletonChildren : undefined,
-      subpageCount: item.menuType === MenuTypeEnum.MENU ? subpages.length : undefined,
+      children: builtChildren.length > 0 ? builtChildren : undefined,
+      // menu 记直属分组数
+      subpageGroupCount: item.menuType === MenuTypeEnum.MENU ? directGroups.length : undefined,
+      // menu 记未分组直挂子页面数；subpage_group 记其下子页面数
+      subpageCount:
+        item.menuType === MenuTypeEnum.MENU || item.menuType === MenuTypeEnum.SUBPAGE_GROUP
+          ? directSubpages.length
+          : undefined,
     };
   });
 }
@@ -65,7 +76,7 @@ export function flattenMenuMap(data: Menu[], map = new Map<string, Menu>()): Map
 }
 
 /**
- * 获取某节点下直属子页面列表
+ * 获取某节点下直属子页面列表（适用于 menu 直挂 / subpage_group 下）
  */
 export function getDirectSubpages(parent: Menu, allMap: Map<string, Menu>): Menu[] {
   const node = parent.id ? allMap.get(parent.id) : parent;
@@ -73,6 +84,30 @@ export function getDirectSubpages(parent: Menu, allMap: Map<string, Menu>): Menu
     return [];
   }
   return node.children.filter((child) => child.menuType === MenuTypeEnum.SUBPAGE);
+}
+
+/**
+ * 获取 menu 下直属子页面分组 + 直挂子页面（未分组的老数据）
+ */
+export function getDirectMenuChildren(menu: Menu, allMap: Map<string, Menu>): Menu[] {
+  const node = menu.id ? allMap.get(menu.id) : menu;
+  if (!node?.children?.length) {
+    return [];
+  }
+  return node.children.filter(
+    (child) => child.menuType === MenuTypeEnum.SUBPAGE_GROUP || child.menuType === MenuTypeEnum.SUBPAGE,
+  );
+}
+
+/**
+ * 获取 menu 下直属子页面分组列表
+ */
+export function getDirectSubpageGroups(menu: Menu, allMap: Map<string, Menu>): Menu[] {
+  const node = menu.id ? allMap.get(menu.id) : menu;
+  if (!node?.children?.length) {
+    return [];
+  }
+  return node.children.filter((child) => child.menuType === MenuTypeEnum.SUBPAGE_GROUP);
 }
 
 /**
@@ -101,14 +136,15 @@ export function matchesMenuKeyword(node: Menu, keyword: string): boolean {
 }
 
 /**
- * 在全量菜单树中查找匹配关键字的子页面
+ * 在全量菜单树中查找匹配关键字的子页面（递归进入子页面分组）
  */
 export function findMatchingSubpages(fullTree: Menu[], keyword: string): SubpageMatch[] {
   const matches: SubpageMatch[] = [];
 
   function walk(nodes: Menu[]) {
     for (const node of nodes) {
-      if (node.menuType === MenuTypeEnum.MENU) {
+      // 子页面可挂在 menu 或 subpage_group 下
+      if (node.menuType === MenuTypeEnum.MENU || node.menuType === MenuTypeEnum.SUBPAGE_GROUP) {
         for (const child of node.children || []) {
           if (child.menuType === MenuTypeEnum.SUBPAGE && matchesMenuKeyword(child, keyword)) {
             matches.push({ subpage: child, parentMenu: node });
@@ -169,7 +205,7 @@ function collectIdsInTree(tree: MenuSkeletonNode[]): Set<string> {
 /**
  * 在骨架树中查找目标节点的祖先路径（含自身）
  */
-function findPathToNode(tree: MenuSkeletonNode[], targetId: string, path: string[] = []): string[] | null {
+function findPathToNode(tree: MenuSkeletonNode[], targetId: string, path: string[] = []): null | string[] {
   for (const node of tree) {
     const currentPath = node.id ? [...path, node.id] : path;
     if (node.id === targetId) {

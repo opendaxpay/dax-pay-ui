@@ -11,7 +11,12 @@
   import { menuTypeColorMap, MenuTypeEnum, menuTypeI18nMap } from '#/enums/menuType';
   import { usePermission } from '#/hooks/usePermission';
 
-  import { getDirectMenusUnderCatalog, getDirectSubpages, matchesMenuKeyword } from './menu-tree.util';
+  import {
+    getDirectMenuChildren,
+    getDirectMenusUnderCatalog,
+    getDirectSubpages,
+    matchesMenuKeyword,
+  } from './menu-tree.util';
 
   const props = defineProps<{
     clientCode: string;
@@ -24,6 +29,7 @@
   }>();
 
   const emits = defineEmits<{
+    addGroup: [parent: Menu];
     addSubpage: [parent: Menu];
     delete: [row: Menu];
     edit: [row: Menu];
@@ -43,13 +49,16 @@
     total: 0,
   });
 
-  // 面板模式：menu 下子页面 / catalog 下直属菜单
-  const panelMode = computed<'catalogMenus' | 'menuSubpages' | 'none'>(() => {
+  // 面板模式：catalog 下直属菜单 / menu 下分组+子页面 / 分组下子页面
+  const panelMode = computed<'catalogMenus' | 'groupSubpages' | 'menuChildren' | 'none'>(() => {
     if (!props.selectedNode?.menuType) {
       return 'none';
     }
     if (props.selectedNode.menuType === MenuTypeEnum.MENU) {
-      return 'menuSubpages';
+      return 'menuChildren';
+    }
+    if (props.selectedNode.menuType === MenuTypeEnum.SUBPAGE_GROUP) {
+      return 'groupSubpages';
     }
     if (props.selectedNode.menuType === MenuTypeEnum.CATALOG) {
       return 'catalogMenus';
@@ -62,7 +71,10 @@
       return '';
     }
     const name = getDisplayTitle(props.selectedNode);
-    if (panelMode.value === 'menuSubpages') {
+    if (panelMode.value === 'menuChildren') {
+      return `${$t('iam.menu.subpageManage')} - ${name}`;
+    }
+    if (panelMode.value === 'groupSubpages') {
       return `${$t('iam.menu.subpageList')} - ${name}`;
     }
     if (panelMode.value === 'catalogMenus') {
@@ -75,7 +87,10 @@
     if (!props.selectedNode || panelMode.value === 'none') {
       return [] as Menu[];
     }
-    if (panelMode.value === 'menuSubpages') {
+    if (panelMode.value === 'menuChildren') {
+      return getDirectMenuChildren(props.selectedNode, props.menuMap);
+    }
+    if (panelMode.value === 'groupSubpages') {
       return getDirectSubpages(props.selectedNode, props.menuMap);
     }
     return getDirectMenusUnderCatalog(props.selectedNode, props.menuMap);
@@ -212,7 +227,7 @@
 <template>
   <div class="h-full min-h-0 flex flex-col">
     <template v-if="panelMode === 'none'">
-      <a-empty class="mt-16" :description="$t('iam.menu.selectNodeHint')" />
+      <a-empty class="!mt-16" :description="$t('iam.menu.selectNodeHint')" />
     </template>
     <template v-else>
       <div class="mb-3 shrink-0 font-medium">{{ panelTitle }}</div>
@@ -226,7 +241,17 @@
               style="width: 280px"
             />
             <a-button
-              v-if="panelMode === 'menuSubpages' && hasPermission(PermCodes.Iam.PermMenu.MANAGE)"
+              v-if="panelMode === 'menuChildren' && hasPermission(PermCodes.Iam.PermMenu.MANAGE)"
+              type="primary"
+              @click="emits('addGroup', selectedNode!)"
+            >
+              {{ $t('iam.menu.addSubpageGroup') }}
+            </a-button>
+            <a-button
+              v-if="
+                (panelMode === 'menuChildren' || panelMode === 'groupSubpages') &&
+                hasPermission(PermCodes.Iam.PermMenu.MANAGE)
+              "
               type="primary"
               @click="emits('addSubpage', selectedNode!)"
             >

@@ -6,7 +6,7 @@
   import { type Menu, MenuApi } from '#/api/iam/perm/menu.api';
   import { IconPicker } from '#/components/icon-picker';
   import { FormEditType } from '#/enums/formEditType';
-  import { MenuTypeEnum, menuTypeOptions } from '#/enums/menuType';
+  import { MenuTypeEnum, menuTypeOptions, menuTypeTipI18nMap } from '#/enums/menuType';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
   import { useValidate } from '#/hooks/useValidate';
@@ -23,6 +23,8 @@
     clientCode?: string;
     parentRow?: Menu;
     parentMenuType?: string;
+    /** 外部预设菜单类型（如"添加分组"按钮强制 subpage_group） */
+    defaultMenuType?: string;
   }
 
   const { initFormEditType, handleCancel, visible, title, confirmLoading, showable, formEditType } = useFormEdit();
@@ -42,9 +44,10 @@
   // 父级菜单树数据
   const treeData = ref<any[]>([]);
 
-  // 可用的菜单类型选项（根据父菜单类型动态计算）
+  // 可用的菜单类型选项（编辑/查看展示全部并锁定；新增时根据父菜单类型动态计算）
   const availableMenuTypeOptions = computed(() => {
-    if (formEditType.value === FormEditType.Edit && form.value.menuType === MenuTypeEnum.SUBPAGE) {
+    // 编辑/查看：展示全部类型（disabled 锁定），便于对照理解
+    if (formEditType.value !== FormEditType.Add) {
       return menuTypeOptions.map((o) => ({ label: $t(o.label), value: o.value }));
     }
     if (extraParams.value?.parentMenuType) {
@@ -62,12 +65,16 @@
           );
         }
         case MenuTypeEnum.MENU: {
-          return (
-            menuTypeOptions
-              .filter((o) => o.value === MenuTypeEnum.SUBPAGE)
-              // 国际化：获取菜单类型选项的显示标签
-              .map((o) => ({ label: $t(o.label), value: o.value }))
-          );
+          // menu 下可选子页面或子页面分组
+          return menuTypeOptions
+            .filter((o) => o.value === MenuTypeEnum.SUBPAGE || o.value === MenuTypeEnum.SUBPAGE_GROUP)
+            .map((o) => ({ label: $t(o.label), value: o.value }));
+        }
+        case MenuTypeEnum.SUBPAGE_GROUP: {
+          // 分组下只能子页面
+          return menuTypeOptions
+            .filter((o) => o.value === MenuTypeEnum.SUBPAGE)
+            .map((o) => ({ label: $t(o.label), value: o.value }));
         }
         default: {
           return [];
@@ -76,7 +83,7 @@
     }
     return (
       menuTypeOptions
-        .filter((o) => o.value !== MenuTypeEnum.SUBPAGE)
+        .filter((o) => o.value !== MenuTypeEnum.SUBPAGE && o.value !== MenuTypeEnum.SUBPAGE_GROUP)
         // 国际化：获取菜单类型选项的显示标签
         .map((o) => ({ label: $t(o.label), value: o.value }))
     );
@@ -128,19 +135,23 @@
   );
   const menuCodeRequired = computed(() => form.value.menuType === MenuTypeEnum.MENU);
   const showSortNo = computed(() => form.value.menuType !== MenuTypeEnum.SUBPAGE);
-  const showHidden = computed(() => form.value.menuType !== MenuTypeEnum.SUBPAGE);
+  const showHidden = computed(
+    () => form.value.menuType !== MenuTypeEnum.SUBPAGE && form.value.menuType !== MenuTypeEnum.SUBPAGE_GROUP,
+  );
   const showAffixTab = computed(() => form.value.menuType === MenuTypeEnum.MENU);
-  const showBadge = computed(() => form.value.menuType !== MenuTypeEnum.SUBPAGE);
+  const showBadge = computed(
+    () => form.value.menuType !== MenuTypeEnum.SUBPAGE && form.value.menuType !== MenuTypeEnum.SUBPAGE_GROUP,
+  );
   // 有可选类型时展示菜单类型区（含子页面仅一项场景）
   const showMenuType = computed(() => availableMenuTypeOptions.value.length > 0);
-  // 子页面场景锁定类型不可切换
-  const menuTypeLocked = computed(
-    () =>
-      showable.value ||
-      form.value.menuType === MenuTypeEnum.SUBPAGE ||
-      extraParams.value?.parentMenuType === MenuTypeEnum.MENU,
-  );
+  // 仅新增时可切换类型；编辑/查看一律锁定
+  const menuTypeLocked = computed(() => formEditType.value !== FormEditType.Add);
   const isSubpage = computed(() => form.value.menuType === MenuTypeEnum.SUBPAGE);
+  // 当前菜单类型的功能说明（编辑表单顶部 Alert）
+  const menuTypeTip = computed(() => {
+    const key = form.value.menuType && menuTypeTipI18nMap[form.value.menuType];
+    return key ? $t(key) : '';
+  });
   // 过滤后的上级菜单树数据 - 使用 disabled 标记方式显示完整树
   const parentTreeData = computed(() => {
     return markDisabledNodes(treeData.value);
@@ -244,6 +255,16 @@
           form.value.hidden = true;
           break;
         }
+        case MenuTypeEnum.SUBPAGE_GROUP: {
+          // 子页面分组：纯容器，清空路由/组件/编码相关字段
+          form.value.component = '';
+          form.value.path = '';
+          form.value.menuCode = '';
+          form.value.iframeSrc = '';
+          form.value.link = '';
+          form.value.hidden = true;
+          break;
+        }
       }
     },
   );
@@ -290,8 +311,12 @@
       if (params?.parentRow) {
         // 根据父菜单类型设置默认的子菜单类型
         let defaultMenuType: string = MenuTypeEnum.MENU;
-        if (params.parentMenuType === MenuTypeEnum.MENU) {
+        if (params.parentMenuType === MenuTypeEnum.MENU || params.parentMenuType === MenuTypeEnum.SUBPAGE_GROUP) {
           defaultMenuType = MenuTypeEnum.SUBPAGE;
+        }
+        // 外部预设类型优先（如"添加分组"按钮强制 subpage_group）
+        if (params.defaultMenuType) {
+          defaultMenuType = params.defaultMenuType;
         }
         form.value = {
           ...form.value,
@@ -311,22 +336,23 @@
    */
   function applySubpageDrawerTitle(menuType?: string) {
     const type = menuType ?? form.value.menuType;
-    if (type !== MenuTypeEnum.SUBPAGE) {
+    if (type !== MenuTypeEnum.SUBPAGE && type !== MenuTypeEnum.SUBPAGE_GROUP) {
       return;
     }
+    const isGroup = type === MenuTypeEnum.SUBPAGE_GROUP;
     switch (formEditType.value) {
       case FormEditType.Add: {
-        title.value = $t('iam.menu.addSubpage');
+        title.value = isGroup ? $t('iam.menu.addSubpageGroup') : $t('iam.menu.addSubpage');
 
         break;
       }
       case FormEditType.Edit: {
-        title.value = $t('iam.menu.editSubpage');
+        title.value = isGroup ? $t('iam.menu.editSubpageGroup') : $t('iam.menu.editSubpage');
 
         break;
       }
       case FormEditType.Show: {
-        title.value = $t('iam.menu.viewSubpage');
+        title.value = isGroup ? $t('iam.menu.viewSubpageGroup') : $t('iam.menu.viewSubpage');
 
         break;
       }
@@ -382,15 +408,23 @@
    * 标记不可选的节点（显示完整树，但禁用不符合条件的节点）
    */
   function markDisabledNodes(nodes: any[]): any[] {
-    return nodes.map((node) => ({
-      ...node,
-      // 子页面只能选择菜单类型，其他类型只能选择目录类型
-      disabled:
-        form.value.menuType === MenuTypeEnum.SUBPAGE
-          ? node.menuType !== MenuTypeEnum.MENU
-          : node.menuType !== MenuTypeEnum.CATALOG,
-      children: node.children ? markDisabledNodes(node.children) : undefined,
-    }));
+    const currentType = form.value.menuType;
+    return nodes.map((node) => {
+      // 各菜单类型可选的父级类型：subpage→menu/group；subpage_group→menu；其余→catalog
+      let disabled: boolean;
+      if (currentType === MenuTypeEnum.SUBPAGE) {
+        disabled = node.menuType !== MenuTypeEnum.MENU && node.menuType !== MenuTypeEnum.SUBPAGE_GROUP;
+      } else if (currentType === MenuTypeEnum.SUBPAGE_GROUP) {
+        disabled = node.menuType !== MenuTypeEnum.MENU;
+      } else {
+        disabled = node.menuType !== MenuTypeEnum.CATALOG;
+      }
+      return {
+        ...node,
+        disabled,
+        children: node.children ? markDisabledNodes(node.children) : undefined,
+      };
+    });
   }
 
   /**
@@ -456,6 +490,8 @@
               {{ item.label }}
             </a-radio-button>
           </a-radio-group>
+          <!-- 当前类型功能说明 -->
+          <a-alert v-if="menuTypeTip" class="!mt-3" type="info" show-icon :message="menuTypeTip" />
         </a-form-item>
 
         <!-- 国际化：菜单编码 -->
