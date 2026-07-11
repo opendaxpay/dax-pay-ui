@@ -5,7 +5,7 @@
     "typeH5": "H5",
     "typeWeb": "WEB",
     "addItem": "Add Payment Item",
-    "empty": "No payment items in this bucket",
+    "empty": "No payment items for this scene",
     "confirmDelete": "Delete this payment item?",
     "name": "Name",
     "namePlaceholder": "Display name on cashier page",

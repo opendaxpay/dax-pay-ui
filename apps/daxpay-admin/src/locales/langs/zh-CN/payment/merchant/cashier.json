@@ -5,7 +5,7 @@
     "typeH5": "H5",
     "typeWeb": "WEB",
     "addItem": "新增支付项",
-    "empty": "当前分桶暂无支付项",
+    "empty": "当前场景暂无支付项",
     "confirmDelete": "确定删除该支付项吗?",
     "name": "名称",
     "namePlaceholder": "请输入前台展示名称",
