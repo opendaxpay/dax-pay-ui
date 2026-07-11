@@ -211,27 +211,12 @@ export const PermCodes = {
     },
   },
 
-  /** 设备管理（独立命名空间） */
+  /** 设备管理（独立命名空间；开源仅码牌，硬件对接归商业版） */
   Device: {
-    /** 云音箱 menuCode=device:speaker */
-    Speaker: {
-      VIEW: 'device:speaker:view',
-      MANAGE: 'device:speaker:manage',
-    },
     /** 码牌 menuCode=device:qrcode */
     QrCode: {
       VIEW: 'device:qrcode:view',
       MANAGE: 'device:qrcode:manage',
-    },
-    /** 云打印 menuCode=device:printer */
-    Printer: {
-      VIEW: 'device:printer:view',
-      MANAGE: 'device:printer:manage',
-    },
-    /** 厂商配置 menuCode=device:vendor_config */
-    VendorConfig: {
-      VIEW: 'device:vendor_config:view',
-      MANAGE: 'device:vendor_config:manage',
     },
   },
 
