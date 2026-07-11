@@ -1,0 +1,32 @@
+{
+  "aggregate": {
+    "title": "聚合扫码配置",
+    "editModeLabel": "配置模式",
+    "autoLaunch": "自动拉起支付",
+    "autoLaunchHint": "扫码后自动发起支付,无需用户手动点击",
+    "autoModeHint": "系统按扫码环境自动推导支付方式,走路由基础模式解析,无需手动配置",
+    "methodModeHint": "每个场景手动选择支付方式,走路由场景模式解析",
+    "directModeHint": "每个场景直接指定通道商户号和支付能力,跳过路由直定通道",
+    "scene": "场景",
+    "method": "支付方式",
+    "methodPlaceholder": "请选择支付方式",
+    "channelMerchant": "通道商户号",
+    "channelMerchantPlaceholder": "请选择通道商户",
+    "capability": "支付能力",
+    "capabilityPlaceholder": "请选择支付能力",
+    "autoDerived": "系统自动推导",
+    "saveConfirm": "确定要保存聚合扫码配置吗?",
+    "missingAppContext": "请从应用管理进入聚合扫码配置",
+    "notSelected": "未选择",
+    "levelActive": "生效中",
+    "scenes": {
+      "wechat_pay": "微信环境",
+      "alipay": "支付宝环境",
+      "union_pay": "云闪付环境",
+      "douyin": "抖音环境"
+    },
+    "modeAuto": "自动模式",
+    "modeMethod": "方式模式",
+    "modeDirect": "精确模式"
+  }
+}

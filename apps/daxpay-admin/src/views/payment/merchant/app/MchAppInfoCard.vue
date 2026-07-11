@@ -40,6 +40,14 @@
     });
   }
 
+  /** 进入聚合扫码配置 */
+  function goAggregateScan() {
+    router.push({
+      path: '/payment/merchant/aggregate',
+      query: { mchNo: props.mchNo, appId: props.record.appId },
+    });
+  }
+
   /**
    * 更多操作菜单
    */
@@ -114,6 +122,21 @@
           >
             <template #icon>
               <IconifyIcon icon="ant-design:node-index-outlined" class="text-sm" />
+            </template>
+          </a-button>
+        </a-tooltip>
+        <a-tooltip
+          v-if="hasPermission(PermCodes.Merchant.GatewayAggregate.VIEW)"
+          :title="$t('payment.merchant.app.app.aggregateScan')"
+        >
+          <a-button
+            type="text"
+            size="small"
+            class="!h-6 !w-6 !min-w-6 !p-0 !text-muted-foreground hover:!text-primary"
+            @click="goAggregateScan"
+          >
+            <template #icon>
+              <IconifyIcon icon="ant-design:qrcode-outlined" class="text-sm" />
             </template>
           </a-button>
         </a-tooltip>

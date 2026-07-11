@@ -1,0 +1,32 @@
+{
+  "aggregate": {
+    "title": "Aggregate QR Pay Config",
+    "editModeLabel": "Config Level",
+    "autoLaunch": "Auto Launch",
+    "autoLaunchHint": "Automatically initiate payment after scanning, no manual click needed",
+    "autoModeHint": "System auto-derives payment method by scan environment, resolved via basic routing. No manual config needed.",
+    "methodModeHint": "Manually select payment method per scene, resolved via scene routing.",
+    "directModeHint": "Directly specify channel merchant and capability per scene, bypassing routing.",
+    "scene": "Scene",
+    "method": "Payment Method",
+    "methodPlaceholder": "Select payment method",
+    "channelMerchant": "Channel Merchant",
+    "channelMerchantPlaceholder": "Select channel merchant",
+    "capability": "Capability",
+    "capabilityPlaceholder": "Select capability",
+    "autoDerived": "Auto-derived",
+    "saveConfirm": "Are you sure to save the aggregate QR pay config?",
+    "missingAppContext": "Please access aggregate QR config from app management",
+    "notSelected": "Not selected",
+    "levelActive": "Active",
+    "scenes": {
+      "wechat_pay": "WeChat",
+      "alipay": "Alipay",
+      "union_pay": "UnionPay",
+      "douyin": "Douyin"
+    },
+    "modeAuto": "Auto",
+    "modeMethod": "By Method",
+    "modeDirect": "Direct"
+  }
+}

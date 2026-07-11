@@ -25,6 +25,7 @@
     "validationAppName": "请输入应用名称",
     "validationStatus": "请选择状态",
     "payRoute": "通道路由",
+    "aggregateScan": "聚合扫码",
     "notifyConfig": "通知配置"
   }
 }

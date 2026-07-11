@@ -25,6 +25,7 @@
     "validationAppName": "Please enter app name",
     "validationStatus": "Please select status",
     "payRoute": "Channel Routing",
+    "aggregateScan": "Aggregate QR",
     "notifyConfig": "Notification Config"
   }
 }
