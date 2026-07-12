@@ -5,6 +5,7 @@
     "enabled": "Control enabled",
     "disabled": "Control disabled",
     "online": "Online {hours} hours",
+    "active": "Active {hours} hours",
     "concurrent": "Concurrent {count} sessions",
     "strategy": "Strategy {name}"
   },
@@ -21,6 +22,11 @@
     "label": "Max Online Duration",
     "desc": "Maximum continuous online time per session.",
     "placeholder": "Enter max online duration"
+  },
+  "activeTimeoutHours": {
+    "label": "Max Active Duration",
+    "desc": "Auto expires after inactivity, 0 means no limit.",
+    "placeholder": "Enter max active duration"
   },
   "maxConcurrentSessions": {
     "label": "Max Concurrent Sessions",

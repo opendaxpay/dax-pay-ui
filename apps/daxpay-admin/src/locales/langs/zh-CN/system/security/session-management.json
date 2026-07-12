@@ -5,6 +5,7 @@
     "enabled": "控制已启用",
     "disabled": "控制未启用",
     "online": "在线 {hours} 小时",
+    "active": "活跃 {hours} 小时",
     "concurrent": "并发 {count} 个",
     "strategy": "策略 {name}"
   },
@@ -21,6 +22,11 @@
     "label": "最大在线时长",
     "desc": "单次会话允许连续在线的最长时间。",
     "placeholder": "请输入最大在线时长"
+  },
+  "activeTimeoutHours": {
+    "label": "最大活跃时长",
+    "desc": "无操作多久后自动失效，0表示不限制。",
+    "placeholder": "请输入最大活跃时长"
   },
   "maxConcurrentSessions": {
     "label": "最大并发会话数",

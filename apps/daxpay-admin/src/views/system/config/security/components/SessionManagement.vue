@@ -40,6 +40,8 @@
         : $t('system.security.session-management.summary.disabled'),
       // 在线时长
       $t('system.security.session-management.summary.online', { hours: formState.value.maxOnlineHours ?? 0 }),
+      // 活跃时长
+      $t('system.security.session-management.summary.active', { hours: formState.value.activeTimeoutHours ?? 0 }),
       // 并发数量
       $t('system.security.session-management.summary.concurrent', {
         count: formState.value.maxConcurrentSessions ?? 0,
@@ -181,6 +183,32 @@
                   :min="1"
                   :max="720"
                   :placeholder="$t('system.security.session-management.maxOnlineHours.placeholder')"
+                  :disabled="!isEditing"
+                  style="width: 180px"
+                />
+                <!-- 单位：小时 -->
+                <span class="number-field__suffix">{{ $t('system.security.common.unit.hour') }}</span>
+              </div>
+            </div>
+
+            <div class="config-item config-item--block">
+              <div class="config-item__main">
+                <!-- 最大活跃时长标签 -->
+                <div class="config-item__label">{{
+                  $t('system.security.session-management.activeTimeoutHours.label')
+                }}</div>
+                <!-- 最大活跃时长描述 -->
+                <div class="config-item__desc">{{
+                  $t('system.security.session-management.activeTimeoutHours.desc')
+                }}</div>
+              </div>
+              <div class="number-field">
+                <!-- 国际化：请输入最大活跃时长 -->
+                <a-input-number
+                  v-model:value="formState.activeTimeoutHours"
+                  :min="0"
+                  :max="720"
+                  :placeholder="$t('system.security.session-management.activeTimeoutHours.placeholder')"
                   :disabled="!isEditing"
                   style="width: 180px"
                 />
