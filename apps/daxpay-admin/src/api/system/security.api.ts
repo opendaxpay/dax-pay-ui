@@ -60,18 +60,6 @@ export const SecurityApi = {
   updateTwoFactorAuthConfig(data: TwoFactorAuthConfig): Promise<Result<void>> {
     return defHttp.post({ url: '/platform/config/security/two-factor-auth/update', data });
   },
-  /**
-   * 获取异常登录检测配置
-   */
-  getAnomalyDetectionConfig(): Promise<Result<AnomalyDetectionConfig>> {
-    return defHttp.get({ url: '/platform/config/security/anomaly-detection/get' });
-  },
-  /**
-   * 更新异常登录检测配置
-   */
-  updateAnomalyDetectionConfig(data: AnomalyDetectionConfig): Promise<Result<void>> {
-    return defHttp.post({ url: '/platform/config/security/anomaly-detection/update', data });
-  },
 };
 
 /**
@@ -131,6 +119,8 @@ export interface SessionManagementConfig {
   enabled?: boolean;
   /** 最大在线时长（小时） */
   maxOnlineHours?: number;
+  /** 最大活跃时长（小时），0表示不限制 */
+  activeTimeoutHours?: number;
   /** 最大并发会话数 */
   maxConcurrentSessions?: number;
   /** 并发策略 */
@@ -147,24 +137,4 @@ export interface TwoFactorAuthConfig {
   issuer?: string;
   /** 备用码数量 */
   backupCodesCount?: number;
-}
-
-/**
- * 异常登录检测配置
- */
-export interface AnomalyDetectionConfig {
-  /** 是否启用 */
-  enabled?: boolean;
-  /** 是否检测异常IP */
-  detectAnomalousIp?: boolean;
-  /** IP风险阈值 */
-  ipRiskThreshold?: number;
-  /** 是否检测异常时间 */
-  detectAnomalousTime?: boolean;
-  /** 时间偏差阈值 */
-  timeDeviationThreshold?: number;
-  /** 是否检测异常设备 */
-  detectAnomalousDevice?: boolean;
-  /** 检测到异常时是否阻止 */
-  blockOnAnomaly?: boolean;
 }

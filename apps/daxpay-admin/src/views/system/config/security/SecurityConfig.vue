@@ -3,7 +3,6 @@
 
   import { $t } from '#/locales';
 
-  import AnomalyDetection from './components/AnomalyDetection.vue';
   import LoginSecurity from './components/LoginSecurity.vue';
   import PasswordPolicy from './components/PasswordPolicy.vue';
   import SessionManagement from './components/SessionManagement.vue';
@@ -27,13 +26,6 @@
       label: $t('system.security.login-security.title'),
       // 登录安全描述
       description: $t('system.security.login-security.description'),
-    },
-    {
-      key: 'anomalyDetection',
-      // 异常登录检测标题
-      label: $t('system.security.anomaly-detection.title'),
-      // 异常登录检测描述
-      description: $t('system.security.anomaly-detection.description'),
     },
     {
       key: 'sessionManagement',
@@ -80,7 +72,6 @@
         <div class="security-content__scroll">
           <PasswordPolicy v-if="activeKey === 'passwordPolicy'" />
           <LoginSecurity v-else-if="activeKey === 'loginSecurity'" />
-          <AnomalyDetection v-else-if="activeKey === 'anomalyDetection'" />
           <SessionManagement v-else-if="activeKey === 'sessionManagement'" />
           <TwoFactorAuth v-else-if="activeKey === 'twoFactorAuth'" />
         </div>
