@@ -33,11 +33,16 @@ export const CASHIER_H5_SCENES: CashierSceneConfig[] = [
   { scene: 'douyin', provider: 'douyin' },
 ];
 
-/** 图标选项 */
+/**
+ * 图标选项（值与 PayProviderEnum.code 完全对齐）
+ * 选支付方式/通道商户时 icon = provider 直接赋值，实现联动
+ */
 export const CASHIER_ICON_OPTIONS = [
+  { value: 'aggregate_pay', labelKey: 'payment.merchant.cashier.cashier.icons.aggregate_pay' },
   { value: 'wechat', labelKey: 'payment.merchant.cashier.cashier.icons.wechat' },
   { value: 'alipay', labelKey: 'payment.merchant.cashier.cashier.icons.alipay' },
-  { value: 'union', labelKey: 'payment.merchant.cashier.cashier.icons.union' },
+  { value: 'union_pay', labelKey: 'payment.merchant.cashier.cashier.icons.union_pay' },
+  { value: 'visa', labelKey: 'payment.merchant.cashier.cashier.icons.visa' },
+  { value: 'mastercard', labelKey: 'payment.merchant.cashier.cashier.icons.mastercard' },
   { value: 'douyin', labelKey: 'payment.merchant.cashier.cashier.icons.douyin' },
-  { value: 'aggregate', labelKey: 'payment.merchant.cashier.cashier.icons.aggregate' },
 ] as const;

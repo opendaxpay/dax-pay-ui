@@ -11,9 +11,10 @@
     type CashierItemResult,
   } from '#/api/payment/merchant/cashier.api';
   import { PayRouteApi } from '#/api/payment/route/pay-route.api';
-  import { FormEditType } from '#/enums/formEditType';
-  import { useFormEdit } from '#/hooks/useFormEdit';
-  import { useMessage } from '#/hooks/useMessage';
+   import { FormEditType } from '#/enums/formEditType';
+   import { useFormEdit } from '#/hooks/useFormEdit';
+   import { useMessage } from '#/hooks/useMessage';
+   import { getProviderSvgUrl } from '#/views/payment/shared/payProviderDisplay';
 
   import {
     CASHIER_ICON_OPTIONS,
@@ -40,8 +41,10 @@
     cashierType: CASHIER_TYPE.H5,
   });
 
-  // DIRECT 模式用：目录 method 仅作候选过滤，不落库
-  const filterMethod = ref('');
+  // DIRECT 模式：通道商户扁平选项（去重）+ 商户→method 组合映射 + 能力→provider 映射（图标联动）
+  const channelMchOptions = ref<LabelValue[]>([]);
+  const channelMchCombosMap = ref<Record<string, Array<{ method: string; provider: string }>>>({});
+  const capabilityProviderMap = ref<Record<string, string>>({});
 
   const formState = ref<CashierItemParam>({
     mchNo: '',
@@ -54,9 +57,8 @@
   });
 
   const methodOptions = ref<LabelValue[]>([]);
-  // method value → provider（加载通道商户用）
+  // method value → provider（METHOD 模式联动图标用）
   const methodProviderMap = ref<Record<string, string>>({});
-  const channelMchOptions = ref<LabelValue[]>([]);
   const capabilityOptions = ref<LabelValue[]>([]);
 
   const iconOptions = computed(() =>
@@ -69,6 +71,7 @@
   const formRules = computed(() => {
     const rules: Record<string, any[]> = {
       name: [{ required: true, message: $t('payment.merchant.cashier.cashier.validationName') }],
+      icon: [{ required: true, message: $t('payment.merchant.cashier.cashier.validationIcon') }],
       resolveMode: [{ required: true, message: $t('payment.merchant.cashier.cashier.validationResolveMode') }],
     };
     if (formState.value.resolveMode === RESOLVE_MODE.METHOD) {
@@ -100,8 +103,9 @@
       channelMchNo: undefined,
       capability: undefined,
     };
-    filterMethod.value = '';
     channelMchOptions.value = [];
+    channelMchCombosMap.value = {};
+    capabilityProviderMap.value = {};
     capabilityOptions.value = [];
     formRef.value?.resetFields();
   }
@@ -113,9 +117,9 @@
     const providerMap: Record<string, string> = {};
     for (const item of data || []) {
       const label = item.methodLabel || item.method;
-      const providerLabel = item.provider || '';
+      // 只展示方式名称，不显示 provider 编码前缀
       options.push({
-        label: providerLabel ? `${providerLabel} / ${label}` : label,
+        label,
         value: item.method,
       });
       providerMap[item.method] = item.provider;
@@ -124,42 +128,90 @@
     methodProviderMap.value = providerMap;
   }
 
-  /** DIRECT：按 filterMethod 加载通道商户 */
-  async function loadChannelMchOptions(method: string) {
+  /** DIRECT：批量加载全部通道商户（扁平去重，记录每商户的全部 provider|method 组合） */
+  async function loadAllChannelMchOptions() {
     channelMchOptions.value = [];
-    capabilityOptions.value = [];
-    if (!method || !context.value.appId) {
+    channelMchCombosMap.value = {};
+    if (!context.value.appId) {
       return;
     }
-    const provider = methodProviderMap.value[method];
-    if (!provider) {
-      return;
-    }
-    const { data } = await PayRouteApi.listSceneChannelMchCandidates({
+    const { data } = await PayRouteApi.listSceneChannelMchCandidatesBatch({
       appId: context.value.appId,
-      provider,
-      method,
     });
-    channelMchOptions.value = data || [];
+    if (!data) {
+      return;
+    }
+    // 按 channelMchNo 去重，同时收集每商户的全部 provider|method 组合
+    const labelMap = new Map<string, string>();
+    const combosMap: Record<string, Array<{ method: string; provider: string }>> = {};
+    for (const [key, list] of Object.entries(data)) {
+      const parts = key.split('|');
+      const provider = parts[0] || '';
+      const method = parts.length >= 2 ? parts[1]! : '';
+      if (!method) {
+        continue;
+      }
+      for (const item of list || []) {
+        labelMap.set(item.value, item.label);
+        if (!combosMap[item.value]) {
+          combosMap[item.value] = [];
+        }
+        combosMap[item.value]!.push({ method, provider });
+      }
+    }
+    channelMchOptions.value = [...labelMap.entries()].map(([value, label]) => ({
+      label,
+      value,
+    }));
+    channelMchCombosMap.value = combosMap;
   }
 
-  /** DIRECT：加载支付能力 */
-  async function loadCapabilityOptions(method: string, channelMchNo: string) {
+  /** DIRECT：按通道商户加载支付能力候选（batch API 合并该商户全部 method 组合） */
+  async function loadCapabilityByChannelMch(channelMchNo: string) {
     capabilityOptions.value = [];
-    if (!method || !channelMchNo || !context.value.appId) {
+    capabilityProviderMap.value = {};
+    if (!channelMchNo || !context.value.appId) {
       return;
     }
-    const provider = methodProviderMap.value[method];
-    if (!provider) {
+    const combos = channelMchCombosMap.value[channelMchNo];
+    if (!combos?.length) {
       return;
     }
-    const { data } = await PayRouteApi.listSceneCapabilityCandidates({
+    const { data } = await PayRouteApi.listSceneCapabilityCandidatesBatch({
       appId: context.value.appId,
-      provider,
-      method,
-      channelMchNo,
+      items: combos.map((c) => ({
+        provider: c.provider,
+        method: c.method,
+        channelMchNo,
+      })),
     });
-    capabilityOptions.value = data || [];
+    if (!data) {
+      return;
+    }
+    // 合并去重，同时建立 capability → provider 映射（用于图标联动）
+    const capLabelMap = new Map<string, string>();
+    const capProviderMap: Record<string, string> = {};
+    for (const [key, list] of Object.entries(data)) {
+      const provider = key.split('|')[0] || '';
+      for (const item of list || []) {
+        capLabelMap.set(item.value, item.label);
+        capProviderMap[item.value] = provider;
+      }
+    }
+    capabilityProviderMap.value = capProviderMap;
+    // label 统一用 i18n 翻译
+    const toLabel = (code: string) =>
+      $t(`payment.merchant.cashier.cashier.capabilities.${code}`) || code;
+    let options = [...capLabelMap.keys()].map((value) => ({
+      label: toLabel(value),
+      value,
+    }));
+    // 编辑回显兜底：确保已选值在选项中
+    const currentCap = formState.value.capability;
+    if (currentCap && !options.some((o) => o.value === currentCap)) {
+      options = [...options, { label: toLabel(currentCap), value: currentCap }];
+    }
+    capabilityOptions.value = options;
   }
 
   /** 解析模式切换 */
@@ -167,27 +219,37 @@
     formState.value.method = undefined;
     formState.value.channelMchNo = undefined;
     formState.value.capability = undefined;
-    filterMethod.value = '';
-    channelMchOptions.value = [];
     capabilityOptions.value = [];
+    capabilityProviderMap.value = {};
   }
 
-  /** DIRECT 过滤 method 变更 */
-  async function onFilterMethodChange(method: any) {
-    filterMethod.value = method || '';
-    formState.value.channelMchNo = undefined;
-    formState.value.capability = undefined;
-    await loadChannelMchOptions(filterMethod.value);
+  /** METHOD 模式支付方式变更 — 联动图标（icon = provider） */
+  function onMethodChange(method: any) {
+    const provider = method ? methodProviderMap.value[method as string] : undefined;
+    if (provider) {
+      formState.value.icon = provider;
+    }
   }
 
-  /** 通道商户变更 */
+  /** DIRECT 通道商户变更 — 加载该商户全部支付能力 */
   async function onChannelMchChange(channelMchNo: any) {
     formState.value.channelMchNo = channelMchNo || undefined;
     formState.value.capability = undefined;
-    if (channelMchNo && filterMethod.value) {
-      await loadCapabilityOptions(filterMethod.value, channelMchNo);
-    } else {
+    if (!channelMchNo) {
       capabilityOptions.value = [];
+      return;
+    }
+    await loadCapabilityByChannelMch(channelMchNo as string);
+  }
+
+  /** DIRECT 支付能力变更 — 联动图标（icon = provider，从 batch key 反推） */
+  function onCapabilityChange(capability: any) {
+    if (!capability) {
+      return;
+    }
+    const provider = capabilityProviderMap.value[capability as string];
+    if (provider) {
+      formState.value.icon = provider;
     }
   }
 
@@ -202,6 +264,7 @@
     initFormEditType(FormEditType.Add);
     resetForm();
     await loadMethodDirectory();
+    await loadAllChannelMchOptions();
   }
 
   /** 编辑 */
@@ -221,6 +284,7 @@
     initFormEditType(FormEditType.Edit);
     resetForm();
     await loadMethodDirectory();
+    await loadAllChannelMchOptions();
     confirmLoading.value = true;
     try {
       const { data } = await CashierConfigApi.getById(opts.record.id!);
@@ -240,43 +304,12 @@
         channelMchNo: row.channelMchNo || undefined,
         capability: row.capability || undefined,
       };
-      // DIRECT 编辑时无法还原 filterMethod，需用户重选目录方式加载候选；若已有 channelMch 则尝试 batch 匹配
+      // DIRECT 编辑时还原支付能力候选
       if (formState.value.resolveMode === RESOLVE_MODE.DIRECT && row.channelMchNo) {
-        await tryRestoreDirectCandidates(row.channelMchNo, row.capability);
+        await loadCapabilityByChannelMch(row.channelMchNo);
       }
     } finally {
       confirmLoading.value = false;
-    }
-  }
-
-  /**
-   * 编辑 DIRECT 项时尝试用 batch 候选还原 filterMethod / 选项
-   */
-  async function tryRestoreDirectCandidates(channelMchNo: string, capability?: string) {
-    const { data } = await PayRouteApi.listSceneChannelMchCandidatesBatch({
-      appId: context.value.appId,
-    });
-    if (!data) {
-      return;
-    }
-    for (const [key, list] of Object.entries(data)) {
-      const hit = (list || []).some((item) => item.value === channelMchNo);
-      if (!hit) {
-        continue;
-      }
-      // key = provider|method
-      const parts = key.split('|');
-      const method = parts.length >= 2 ? parts[1]! : '';
-      if (method) {
-        filterMethod.value = method;
-        await loadChannelMchOptions(method);
-        if (channelMchNo) {
-          formState.value.channelMchNo = channelMchNo;
-          await loadCapabilityOptions(method, channelMchNo);
-          formState.value.capability = capability;
-        }
-        return;
-      }
     }
   }
 
@@ -322,15 +355,13 @@
 </script>
 
 <template>
-  <a-modal
+  <a-drawer
     v-model:open="visible"
     :title="title"
-    :width="720"
-    :confirm-loading="confirmLoading"
+    :size="800"
+    :destroy-on-hidden="true"
     :mask-closable="showable"
-    destroy-on-close
-    @ok="handleOk"
-    @cancel="handleCancel"
+    @close="handleCancel"
   >
     <a-spin :spinning="confirmLoading">
       <a-form
@@ -357,29 +388,6 @@
                 :disabled="showable"
                 class="w-full"
                 :placeholder="$t('payment.merchant.cashier.cashier.sortNoPlaceholder')"
-              />
-            </a-form-item>
-          </a-col>
-          <a-col :span="12">
-            <a-form-item :label="$t('payment.merchant.cashier.cashier.recommend')" name="recommend">
-              <a-radio-group v-model:value="formState.recommend" button-style="solid" :disabled="showable">
-                <a-radio-button :value="false">{{
-                  $t('payment.merchant.cashier.cashier.recommendNo')
-                }}</a-radio-button>
-                <a-radio-button :value="true">{{
-                  $t('payment.merchant.cashier.cashier.recommendYes')
-                }}</a-radio-button>
-              </a-radio-group>
-            </a-form-item>
-          </a-col>
-          <a-col :span="12">
-            <a-form-item :label="$t('payment.merchant.cashier.cashier.icon')" name="icon">
-              <a-select
-                v-model:value="formState.icon"
-                :disabled="showable"
-                allow-clear
-                :options="iconOptions"
-                :placeholder="$t('payment.merchant.cashier.cashier.iconPlaceholder')"
               />
             </a-form-item>
           </a-col>
@@ -411,28 +419,13 @@
                   option-filter-prop="label"
                   :options="methodOptions"
                   :placeholder="$t('payment.merchant.cashier.cashier.methodPlaceholder')"
+                  @change="onMethodChange"
                 />
               </a-form-item>
             </a-col>
           </template>
 
           <template v-else>
-            <a-col :span="24">
-              <a-form-item :label="$t('payment.merchant.cashier.cashier.method')">
-                <a-select
-                  v-model:value="filterMethod"
-                  :disabled="showable"
-                  show-search
-                  option-filter-prop="label"
-                  :options="methodOptions"
-                  :placeholder="$t('payment.merchant.cashier.cashier.methodPlaceholder')"
-                  @change="onFilterMethodChange"
-                />
-                <div class="mt-1 text-xs text-muted-foreground">
-                  {{ $t('payment.merchant.cashier.cashier.methodFilterHint') }}
-                </div>
-              </a-form-item>
-            </a-col>
             <a-col :span="12">
               <a-form-item
                 :label="$t('payment.merchant.cashier.cashier.channelMerchant')"
@@ -440,7 +433,7 @@
               >
                 <a-select
                   v-model:value="formState.channelMchNo"
-                  :disabled="showable || !filterMethod"
+                  :disabled="showable"
                   show-search
                   option-filter-prop="label"
                   :options="channelMchOptions"
@@ -458,12 +451,77 @@
                   option-filter-prop="label"
                   :options="capabilityOptions"
                   :placeholder="$t('payment.merchant.cashier.cashier.capabilityPlaceholder')"
+                  @change="onCapabilityChange"
                 />
               </a-form-item>
             </a-col>
           </template>
+
+          <a-col :span="12">
+            <a-form-item :label="$t('payment.merchant.cashier.cashier.recommend')" name="recommend">
+              <a-radio-group v-model:value="formState.recommend" button-style="solid" :disabled="showable">
+                <a-radio-button :value="false">{{
+                  $t('payment.merchant.cashier.cashier.recommendNo')
+                }}</a-radio-button>
+                <a-radio-button :value="true">{{
+                  $t('payment.merchant.cashier.cashier.recommendYes')
+                }}</a-radio-button>
+              </a-radio-group>
+            </a-form-item>
+          </a-col>
+          <a-col :span="12">
+            <a-form-item :label="$t('payment.merchant.cashier.cashier.icon')" name="icon">
+              <a-select
+                v-model:value="formState.icon"
+                :disabled="showable"
+                show-search
+                option-filter-prop="label"
+                :options="iconOptions"
+                :placeholder="$t('payment.merchant.cashier.cashier.iconPlaceholder')"
+              >
+                <template #optionRender="{ option }">
+                  <img
+                    v-if="getProviderSvgUrl(option.data.value)"
+                    :src="getProviderSvgUrl(option.data.value)"
+                    class="icon-inline"
+                    :alt="option.data.label"
+                  />
+                  <span>{{ option.data.label }}</span>
+                </template>
+                <template #labelRender="{ label, value }">
+                  <img
+                    v-if="getProviderSvgUrl(value)"
+                    :src="getProviderSvgUrl(value)"
+                    class="icon-inline"
+                    :alt="label"
+                  />
+                  <span>{{ label }}</span>
+                </template>
+              </a-select>
+            </a-form-item>
+          </a-col>
         </a-row>
       </a-form>
     </a-spin>
-  </a-modal>
+
+    <template #footer>
+      <a-space>
+        <a-button @click="handleCancel">{{ showable ? $t('common.close') : $t('common.cancel') }}</a-button>
+        <a-button v-if="!showable" type="primary" :loading="confirmLoading" @click="handleOk">
+          {{ $t('common.save') }}
+        </a-button>
+      </a-space>
+    </template>
+  </a-drawer>
 </template>
+
+<style scoped>
+  .icon-inline {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    vertical-align: -3px;
+    object-fit: contain;
+  }
+</style>

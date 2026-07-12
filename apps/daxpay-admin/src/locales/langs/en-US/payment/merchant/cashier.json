@@ -27,6 +27,7 @@
     "capabilityPlaceholder": "Select capability",
     "methodFilterHint": "Used to load channel merchant candidates; not stored in DIRECT mode",
     "validationName": "Please enter name",
+    "validationIcon": "Please select an icon",
     "validationResolveMode": "Please select resolve mode",
     "validationMethod": "Please select payment method",
     "validationChannelMch": "Please select channel merchant",
@@ -39,11 +40,43 @@
       "douyin": "Douyin"
     },
     "icons": {
+      "aggregate_pay": "Aggregate Pay",
       "wechat": "WeChat",
       "alipay": "Alipay",
-      "union": "UnionPay",
-      "douyin": "Douyin",
-      "aggregate": "Aggregate"
+      "union_pay": "UnionPay",
+      "visa": "Visa",
+      "mastercard": "Mastercard",
+      "douyin": "Douyin"
+    },
+    "capabilities": {
+      "aggregate_pay_qrcode": "Aggregate QR Code",
+      "aggregate_pay_barcode": "Aggregate Barcode",
+      "wechat_cashier": "WeChat Mini Cashier",
+      "wechat_jsapi": "WeChat JSAPI",
+      "wechat_app": "WeChat App",
+      "wechat_h5": "WeChat H5",
+      "wechat_qr": "WeChat QR",
+      "wechat_mini": "WeChat Mini",
+      "wechat_barcode": "WeChat Barcode",
+      "alipay_barcode": "Alipay Barcode",
+      "alipay_qr": "Alipay QR",
+      "alipay_app": "Alipay App",
+      "alipay_h5": "Alipay H5",
+      "alipay_pc": "Alipay PC",
+      "alipay_jsapi": "Alipay JSAPI",
+      "alipay_mini": "Alipay Mini",
+      "union_pay_qr": "UnionPay QR",
+      "union_pay_barcode": "UnionPay Barcode",
+      "union_pay_h5": "UnionPay H5",
+      "union_pay_jsapi": "UnionPay JSAPI",
+      "douyin_qr": "Douyin QR",
+      "douyin_jsapi": "Douyin JSAPI",
+      "douyin_h5": "Douyin H5",
+      "douyin_app": "Douyin App",
+      "visa_card_gateway": "Visa Gateway",
+      "visa_card_present": "Visa Present",
+      "mastercard_card_gateway": "Mastercard Gateway",
+      "mastercard_card_present": "Mastercard Present"
     }
   }
 }

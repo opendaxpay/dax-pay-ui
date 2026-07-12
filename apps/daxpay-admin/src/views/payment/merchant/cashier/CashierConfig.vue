@@ -17,6 +17,7 @@
   import { useMessage } from '#/hooks/useMessage';
   import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
   import { usePermission } from '#/hooks/usePermission';
+   import { getProviderSvgUrl } from '#/views/payment/shared/payProviderDisplay';
 
   import CashierItemEdit from './CashierItemEdit.vue';
   import {
@@ -58,6 +59,8 @@
   const appInfo = ref<MchAppInfoResult>({});
   const tableData = ref<CashierItemResult[]>([]);
   const methodLabelMap = ref<Record<string, string>>({});
+  // DIRECT 模式列表展示用：通道商户号 → 名称
+  const channelMchLabelMap = ref<Record<string, string>>({});
 
   // 一级 / 二级 Tab
   const activeType = ref<CashierType>(CASHIER_TYPE.H5);
@@ -89,7 +92,12 @@
   /** 支付解析摘要 */
   function paySummary(row: CashierItemResult) {
     if (row.resolveMode === RESOLVE_MODE.DIRECT) {
-      const parts = [row.channelMchNo, row.capability].filter(Boolean);
+      const mchLabel = channelMchLabelMap.value[row.channelMchNo || ''] || row.channelMchNo || '';
+      // 支付能力为固定枚举(PayCapabilityEnum)，直接用 i18n 静态翻译
+      const capLabel = row.capability
+        ? $t(`payment.merchant.cashier.cashier.capabilities.${row.capability}`)
+        : '';
+      const parts = [mchLabel, capLabel].filter(Boolean);
       return parts.join(' / ') || '-';
     }
     return methodLabelMap.value[row.method || ''] || row.method || '-';
@@ -111,6 +119,26 @@
       map[item.method] = item.methodLabel || item.method;
     }
     methodLabelMap.value = map;
+  }
+
+  /** 加载通道商户标签（每应用仅加载一次） */
+  async function loadChannelMchLabels() {
+    if (Object.keys(channelMchLabelMap.value).length > 0) {
+      return;
+    }
+    const { data } = await PayRouteApi.listSceneChannelMchCandidatesBatch({
+      appId: appId.value,
+    });
+    if (!data) {
+      return;
+    }
+    const labelMap: Record<string, string> = {};
+    for (const list of Object.values(data)) {
+      for (const item of list || []) {
+        labelMap[item.value] = item.label;
+      }
+    }
+    channelMchLabelMap.value = labelMap;
   }
 
   /** 加载当前桶列表 */
@@ -181,7 +209,7 @@
 
   onMounted(async () => {
     if (!routeContext.isValid.value) return;
-    await Promise.all([loadAppInfo(), loadMethodLabels()]);
+    await Promise.all([loadAppInfo(), loadMethodLabels(), loadChannelMchLabels()]);
     await loadList();
   });
 </script>
@@ -239,10 +267,18 @@
       <a-spin :spinning="loading">
         <vxe-table :data="tableData" :row-config="{ keyField: 'id' }" min-height="200">
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
-          <vxe-column field="name" :title="$t('payment.merchant.cashier.cashier.name')" min-width="140" />
-          <vxe-column field="icon" :title="$t('payment.merchant.cashier.cashier.icon')" width="100" align="center">
+          <vxe-column field="name" :title="$t('payment.merchant.cashier.cashier.name')" min-width="70" />
+          <vxe-column field="icon" :title="$t('payment.merchant.cashier.cashier.icon')" width="120" align="center">
             <template #default="{ row }">
-              {{ iconLabel(row.icon) }}
+              <div class="flex items-center justify-center gap-1">
+                <img
+                  v-if="getProviderSvgUrl(row.icon)"
+                  :src="getProviderSvgUrl(row.icon)"
+                  class="h-5 w-5 object-contain"
+                  :alt="row.icon"
+                />
+                <span>{{ iconLabel(row.icon) }}</span>
+              </div>
             </template>
           </vxe-column>
           <vxe-column
