@@ -90,8 +90,9 @@ function createRequestClient(baseURL: string, options?: RequestClientOptions) {
   client.addResponseInterceptor(
     errorMessageResponseInterceptor((msg: string, error) => {
       const { message } = useMessage();
-      const responseData = error?.data ?? {};
-      const errorMessage = responseData?.message ?? '';
+      // HTTP 错误(401等)响应体在 response.data; 业务错误(200但code非0)在顶层 data
+      const body = error?.response?.data ?? error?.data ?? {};
+      const errorMessage = body?.msg || body?.message || '';
       message.error(errorMessage || msg);
     }),
   );
