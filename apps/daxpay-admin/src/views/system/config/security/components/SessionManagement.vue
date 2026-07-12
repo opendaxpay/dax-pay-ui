@@ -28,8 +28,20 @@
     { label: $t('system.security.session-management.concurrentStrategy.denyNew'), value: 'DENY_NEW' },
   ];
 
+  // 并发计数范围选项
+  const concurrentScopeOptions = [
+    // 全局共享
+    { label: $t('system.security.session-management.concurrentScope.global'), value: 'GLOBAL' },
+    // 按终端独立
+    { label: $t('system.security.session-management.concurrentScope.perDevice'), value: 'PER_DEVICE' },
+  ];
+
   const currentStrategyLabel = computed(() => {
     return concurrentStrategyOptions.find((item) => item.value === formState.value.concurrentStrategy)?.label || '-';
+  });
+
+  const currentScopeLabel = computed(() => {
+    return concurrentScopeOptions.find((item) => item.value === formState.value.concurrentScope)?.label || '-';
   });
 
   const summaryItems = computed(() => {
@@ -46,6 +58,8 @@
       $t('system.security.session-management.summary.concurrent', {
         count: formState.value.maxConcurrentSessions ?? 0,
       }),
+      // 计数范围
+      $t('system.security.session-management.summary.scope', { name: currentScopeLabel.value }),
       // 策略名称
       $t('system.security.session-management.summary.strategy', { name: currentStrategyLabel.value }),
     ];
@@ -248,6 +262,30 @@
         <div class="config-section">
           <!-- 超限策略与清理 -->
           <div class="config-section__title">{{ $t('system.security.session-management.section.policy') }}</div>
+
+          <div class="config-item config-item--block">
+            <div class="config-item__main">
+              <!-- 并发计数范围标签 -->
+              <div class="config-item__label">{{
+                $t('system.security.session-management.concurrentScope.label')
+              }}</div>
+              <!-- 并发计数范围描述 -->
+              <div class="config-item__desc">{{
+                $t('system.security.session-management.concurrentScope.desc')
+              }}</div>
+            </div>
+            <a-radio-group
+              v-model:value="formState.concurrentScope"
+              button-style="solid"
+              :disabled="!isEditing"
+            >
+              <a-radio-button
+                v-for="item in concurrentScopeOptions"
+                :key="item.value"
+                :value="item.value"
+              >{{ item.label }}</a-radio-button>
+            </a-radio-group>
+          </div>
 
           <div class="config-item config-item--block">
             <div class="config-item__main">

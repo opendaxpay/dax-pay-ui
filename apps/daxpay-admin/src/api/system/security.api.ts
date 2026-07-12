@@ -125,6 +125,8 @@ export interface SessionManagementConfig {
   maxConcurrentSessions?: number;
   /** 并发策略 */
   concurrentStrategy?: string;
+  /** 并发计数范围 GLOBAL=全局共享 / PER_DEVICE=按终端独立 */
+  concurrentScope?: string;
 }
 
 /**

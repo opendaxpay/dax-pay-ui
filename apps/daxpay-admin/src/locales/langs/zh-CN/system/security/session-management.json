@@ -7,6 +7,7 @@
     "online": "在线 {hours} 小时",
     "active": "活跃 {hours} 小时",
     "concurrent": "并发 {count} 个",
+    "scope": "范围 {name}",
     "strategy": "策略 {name}"
   },
   "section": {
@@ -39,5 +40,11 @@
     "newSession": "允许新会话",
     "kickOldest": "踢出最早会话",
     "denyNew": "拒绝新会话"
+  },
+  "concurrentScope": {
+    "label": "并发计数范围",
+    "desc": "全局共享:所有终端共用一个配额池;按终端独立:每类终端各自计数互不影响。",
+    "global": "全局共享",
+    "perDevice": "按终端独立"
   }
 }

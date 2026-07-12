@@ -7,6 +7,7 @@
     "online": "Online {hours} hours",
     "active": "Active {hours} hours",
     "concurrent": "Concurrent {count} sessions",
+    "scope": "Scope {name}",
     "strategy": "Strategy {name}"
   },
   "section": {
@@ -39,5 +40,11 @@
     "newSession": "Allow New Session",
     "kickOldest": "Kick Oldest Session",
     "denyNew": "Deny New Session"
+  },
+  "concurrentScope": {
+    "label": "Concurrent Counting Scope",
+    "desc": "Global: all terminals share one quota pool; Per Device: each terminal type counts independently.",
+    "global": "Global",
+    "perDevice": "Per Device"
   }
 }
