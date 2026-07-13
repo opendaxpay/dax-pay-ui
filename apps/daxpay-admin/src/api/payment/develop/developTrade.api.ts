@@ -5,6 +5,8 @@ import { defHttp } from '#/api/request';
 
 /**
  * 交易开发调试 API
+ *
+ * 仅组参辅助与签名, 真实支付见 unipay-trade.api (POST /unipay/pay)
  */
 export const DevelopTradeApi = {
   /**
@@ -12,13 +14,6 @@ export const DevelopTradeApi = {
    */
   sign(data: DevelopParam): Promise<Result<DevelopSignResult>> {
     return defHttp.post({ url: '/admin/develop/trade/sign', data });
-  },
-
-  /**
-   * 支付调试(真实发起)
-   */
-  pay(data: DevelopParam): Promise<Result<DevelopPayResult>> {
-    return defHttp.post({ url: '/admin/develop/trade/pay', data });
   },
 
   /**
@@ -57,7 +52,7 @@ export interface DevelopParam {
   privateKey?: string;
 }
 
-/** 支付参数 */
+/** 支付参数(与 unipay NormalPayParam 对齐) */
 export interface PayParam {
   /** 商户号 */
   mchNo: string;
@@ -89,6 +84,14 @@ export interface PayParam {
   returnUrl?: string;
   /** 过期时间(北京时间 yyyy-MM-dd HH:mm:ss) */
   expiredTime?: string;
+  /** 客户端 IP(可选, 未传时由 unipay 从 HTTP 请求提取) */
+  clientIp?: string;
+  /** 随机串 */
+  nonceStr?: string;
+  /** 请求时间(北京时间 yyyy-MM-dd HH:mm:ss) */
+  reqTime?: string;
+  /** 签名 */
+  sign?: string;
 }
 
 /** 支付结果 */
@@ -112,13 +115,5 @@ export interface DevelopSignResult {
   /** 待签名原文 */
   signStr?: string;
   /** 签名值 */
-  sign?: string;
-}
-
-/** 支付调试结果 */
-export interface DevelopPayResult {
-  /** 支付结果 */
-  payResult?: PayResult;
-  /** 响应签名(平台私钥签名) */
   sign?: string;
 }

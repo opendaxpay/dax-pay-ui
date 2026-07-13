@@ -205,11 +205,10 @@ export const PermCodes = {
 
   /** 开发调试（独立顶级域） */
   Develop: {
-    /** 支付调试 menuCode=develop:trade */
+    /** 支付调试 menuCode=develop:trade（真实支付走 unipay, 无 develop:trade:pay 后门） */
     Trade: {
       VIEW: 'develop:trade:view',
       SIGN: 'develop:trade:sign',
-      PAY: 'develop:trade:pay',
     },
     /** 签名调试 menuCode=develop:sign */
     Sign: {

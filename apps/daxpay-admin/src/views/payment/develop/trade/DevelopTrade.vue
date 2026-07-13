@@ -1,7 +1,8 @@
 <script setup lang="ts">
   import type { FormInstance } from 'antdv-next';
 
-  import type { DevelopPayResult, PayParam } from '#/api/payment/develop/developTrade.api';
+  import type { PayParam, PayResult } from '#/api/payment/develop/developTrade.api';
+  import type { DaxResult } from '#/api/payment/unipay/unipay-request';
   import type { LabelValue } from '#/types/web';
 
   import { computed, onMounted, reactive, ref } from 'vue';
@@ -14,6 +15,7 @@
   import { DevelopTradeApi } from '#/api/payment/develop/developTrade.api';
   import { MchAppInfoApi } from '#/api/payment/merchant/mch-app-info.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
+  import { uniPay } from '#/api/payment/unipay/unipay-trade.api';
   import { QrCode } from '#/components/qrcode';
   import { useMessage } from '#/hooks/useMessage';
 
@@ -87,9 +89,9 @@
   const channelMchNoOptions = ref<LabelValue[]>([]);
   const capabilityOptions = ref<LabelValue[]>([]);
 
-  // ===== 调试结果 =====
+  // ===== 调试结果(完整 unipay DaxResult) =====
   const resultVisible = ref(false);
-  const resultData = ref<DevelopPayResult>({});
+  const resultData = ref<DaxResult<PayResult>>({ code: 0 });
 
   // ===== 签名预览(请求预览卡内联展示) =====
   const signPreview = reactive({
@@ -234,29 +236,64 @@
   }
 
   // ===== 实时请求预览 =====
-  /** 按当前模式组装提交参数(各模式只透传自身字段, product/method 由后端派生) */
-  function buildPayload(): PayParam {
-    const payload: PayParam = { ...form };
-    if (routeMode.value === 'route') {
-      // 路由模式: 不传通道商户/能力, 由路由引擎决定
-      payload.channelMchNo = '';
-      payload.capability = '';
-    } else {
-      // 直传模式: method 由后端从(通道商户, 能力)反推, 不透传
-      payload.method = '';
-    }
-    return payload;
+
+  /**
+   * 生成东八区请求时间字面量 yyyy-MM-dd HH:mm:ss
+   * (与 PaymentCommonParam.reqTime 文档一致, 禁止用 toISOString 的 UTC)
+   */
+  function formatReqTimeCst(): string {
+    // sv-SE 在指定时区下格式接近 ISO 本地: YYYY-MM-DD HH:mm:ss
+    return new Date().toLocaleString('sv-SE', { timeZone: 'Asia/Shanghai' });
   }
 
-  /** 当前请求 JSON 预览(剔除空值) */
-  const requestPreview = computed(() => {
+  /** 生成随机 nonce(16 位字母数字) */
+  function genNonceStr(): string {
+    const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let s = '';
+    for (let i = 0; i < 16; i++) {
+      s += chars[Math.floor(Math.random() * chars.length)];
+    }
+    return s;
+  }
+
+  /** 剔除空串/null/undefined, 避免参与签名或污染请求体 */
+  function cleanPayload(raw: PayParam): PayParam {
     const cleaned: Record<string, any> = {};
-    for (const [k, v] of Object.entries(buildPayload())) {
+    for (const [k, v] of Object.entries(raw)) {
       if (v !== '' && v != null) {
         cleaned[k] = v;
       }
     }
-    return JSON.stringify(cleaned, null, 2);
+    return cleaned as PayParam;
+  }
+
+  /**
+   * 按当前模式组装提交参数(含公共字段 reqTime/nonceStr)
+   * 各模式只透传自身字段; 直传模式 method 由 unipay 路由反推
+   */
+  function buildPayload(): PayParam {
+    const payload: PayParam = {
+      ...form,
+      // 每次组参刷新公共字段, 贴近真实商户 SDK
+      reqTime: formatReqTimeCst(),
+      nonceStr: genNonceStr(),
+      // 签名由后续步骤写入, 预览阶段不带旧 sign
+      sign: undefined,
+    };
+    if (routeMode.value === 'route') {
+      // 路由模式: 不传通道商户/能力, 由路由引擎决定
+      payload.channelMchNo = undefined;
+      payload.capability = undefined;
+    } else {
+      // 直传模式: method 由后端从(通道商户, 能力)反推, 不透传
+      payload.method = undefined;
+    }
+    return cleanPayload(payload);
+  }
+
+  /** 当前请求 JSON 预览(剔除空值) */
+  const requestPreview = computed(() => {
+    return JSON.stringify(buildPayload(), null, 2);
   });
 
   /** 生成签名预览(内联展示, 不弹结果) */
@@ -293,7 +330,10 @@
   }
 
   // ===== 提交 =====
-  /** 发起真实支付调试 */
+  /**
+   * 模拟商户调用 unipay 发起支付
+   * 1. admin 仅签名  2. 浏览器 POST /unipay/pay
+   */
   async function handlePay() {
     // 表单字段校验(含私钥自定义规则)
     try {
@@ -304,12 +344,33 @@
     }
     loading.value = true;
     try {
-      const { data } = await DevelopTradeApi.pay({
-        param: buildPayload(),
+      // 组参(含 reqTime/nonceStr)
+      const payload = buildPayload();
+      // 管理端签名(与 Java PaySignUtil 一致; 失败由 defHttp toast 并 throw)
+      const { data: signRes } = await DevelopTradeApi.sign({
+        param: payload,
         privateKey: privateKey.value,
       });
-      resultData.value = data ?? {};
-      resultVisible.value = true;
+      payload.sign = signRes?.sign;
+      signPreview.signStr = signRes?.signStr ?? '';
+      signPreview.sign = signRes?.sign ?? '';
+
+      // 直调统一支付(无 Accesstoken, 完整商户契约)
+      // unipayPost 已将业务失败(code!=0)转为返回值, 仅网络层异常会 throw
+      try {
+        const dax = await uniPay(payload);
+        resultData.value = dax ?? { code: -1 };
+        resultVisible.value = true;
+        if (dax?.code === 0) {
+          message.success($t('payment.develop.trade.msg.paySuccess'));
+        } else {
+          // 业务失败仍展示完整 DaxResult, 便于联调
+          message.warning(dax?.msg || $t('payment.develop.trade.msg.payFail'));
+        }
+      } catch {
+        // unipay 网络/非业务异常
+        message.error($t('payment.develop.trade.msg.payFail'));
+      }
     } finally {
       loading.value = false;
     }
@@ -343,10 +404,12 @@
   }
 
   // ===== 结果展示 =====
+  /** unipay 业务 data */
+  const payResult = computed(() => resultData.value.data);
   /** 结果中的支付参数体类型 */
-  const payBodyType = computed(() => resultData.value.payResult?.payBodyType ?? '');
+  const payBodyType = computed(() => payResult.value?.payBodyType ?? '');
   /** 结果中的支付参数体 */
-  const payBody = computed(() => resultData.value.payResult?.payBody ?? '');
+  const payBody = computed(() => payResult.value?.payBody ?? '');
   /** JSAPI 参数对象(供 JsonViewer 展示) */
   const jsapiObject = computed(() => {
     const body = payBody.value;
@@ -361,9 +424,14 @@
   /** 结果弹窗是否展示支付参数体 */
   const hasPayBody = computed(() => !!payBody.value);
 
-  /** 复制结果数据 */
+  /** 复制支付参数体 */
   function copyResultData() {
     copyText(payBody.value);
+  }
+
+  /** 复制完整 DaxResult JSON */
+  function copyFullResult() {
+    copyText(JSON.stringify(resultData.value, null, 2));
   }
 
   onMounted(() => {
@@ -700,14 +768,25 @@
       />
     </a-modal>
 
-    <!-- 调试结果弹窗 -->
+    <!-- 调试结果弹窗(完整 unipay DaxResult) -->
     <a-modal
       v-model:open="resultVisible"
       :title="$t('payment.develop.trade.result.modalTitle')"
       :footer="null"
-      :width="600"
+      :width="640"
       destroy-on-hidden
     >
+      <!-- 响应摘要 -->
+      <div class="mb-4 flex flex-wrap items-center gap-2">
+        <a-tag :color="resultData.code === 0 ? 'success' : 'error'">
+          code: {{ resultData.code }}
+        </a-tag>
+        <span class="text-sm text-muted-foreground">{{ resultData.msg }}</span>
+        <span v-if="resultData.traceId" class="text-xs text-muted-foreground">
+          traceId: {{ resultData.traceId }}
+        </span>
+      </div>
+
       <template v-if="hasPayBody">
         <div class="flex flex-col items-center">
           <!-- 扫码支付/支付链接: qr_code + link 渲染二维码 -->
@@ -758,16 +837,25 @@
               </div>
             </div>
           </template>
-
-          <!-- 复制数据 -->
-          <a-button block type="primary" @click="copyResultData">
-            <template #icon><IconifyIcon icon="ant-design:copy-outlined" /></template>
-            {{ $t('payment.develop.trade.result.copyData') }}
-          </a-button>
         </div>
       </template>
 
-      <a-empty v-else :description="$t('payment.develop.trade.result.empty')" />
+      <!-- 完整 DaxResult(联调对照文档) -->
+      <div class="mb-1 mt-2 text-xs font-medium text-muted-foreground">
+        {{ $t('payment.develop.trade.result.rawResponse') }}
+      </div>
+      <JsonViewer class="json-viewer-box mb-3" :value="resultData" :expand-depth="2" boxed copyable />
+
+      <div class="flex gap-2">
+        <a-button v-if="hasPayBody" block type="primary" @click="copyResultData">
+          <template #icon><IconifyIcon icon="ant-design:copy-outlined" /></template>
+          {{ $t('payment.develop.trade.result.copyData') }}
+        </a-button>
+        <a-button block @click="copyFullResult">
+          <template #icon><IconifyIcon icon="ant-design:copy-outlined" /></template>
+          {{ $t('payment.develop.trade.result.copyFull') }}
+        </a-button>
+      </div>
     </a-modal>
   </div>
 </template>

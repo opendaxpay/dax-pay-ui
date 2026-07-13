@@ -52,8 +52,8 @@
   "trade": {
     "page": {
       "title": "支付调试",
-      "tag": "真实交易",
-      "warning": "点击「提交支付」将向支付系统发起真实交易请求，请确认参数无误。"
+      "tag": "模拟商户 API",
+      "warning": "本页仅组装参数并签名，提交后将模拟商户调用 /unipay/pay 发起真实交易（非管理端特权通道），请确认参数无误。"
     },
     "card": {
       "basic": "基础信息",
@@ -113,7 +113,7 @@
     },
     "privateKey": {
       "modalTitle": "设置商户私钥",
-      "modalTip": "请输入商户 RSA 私钥，用于在服务端计算签名（仅保存在浏览器本地缓存中）。",
+      "modalTip": "请输入商户 RSA 私钥，仅用于生成请求签名（仅保存在浏览器本地缓存中，不会用于管理端特权下单）。",
       "placeholder": "请输入商户私钥",
       "savedTip": "私钥保存成功",
       "clearedTip": "私钥已清除",
@@ -124,12 +124,14 @@
       "clearConfirmContent": "确定要清除已设置的商户私钥吗？清除后需重新输入。"
     },
     "result": {
-      "modalTitle": "支付结果",
+      "modalTitle": "支付结果 (unipay)",
       "payLink": "支付链接",
       "jsapiParam": "JSAPI 参数",
       "formData": "表单数据",
       "markCode": "标识码",
-      "copyData": "复制数据",
+      "copyData": "复制支付参数",
+      "copyFull": "复制完整响应",
+      "rawResponse": "完整 DaxResult 响应",
       "empty": "暂无数据",
       "field": {
         "orderNo": "系统订单号"
@@ -146,6 +148,8 @@
     },
     "msg": {
       "signSuccess": "签名生成成功",
+      "paySuccess": "支付请求成功",
+      "payFail": "支付请求失败",
       "inputPrivateKey": "请先设置商户私钥",
       "copySuccess": "复制成功"
     }

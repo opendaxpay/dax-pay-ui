@@ -52,8 +52,8 @@
   "trade": {
     "page": {
       "title": "Payment Develop",
-      "tag": "Real Trade",
-      "warning": "Clicking \"Submit\" sends a real payment request to the system. Please confirm the params."
+      "tag": "Simulated Merchant API",
+      "warning": "This page only builds params and signs them. Submit simulates a merchant call to /unipay/pay (not an admin privilege path). Confirm params carefully."
     },
     "card": {
       "basic": "Basic Info",
@@ -113,7 +113,7 @@
     },
     "privateKey": {
       "modalTitle": "Set Merchant Private Key",
-      "modalTip": "Enter the merchant RSA private key for server-side signing (stored in browser local cache only).",
+      "modalTip": "Enter the merchant RSA private key for request signing only (stored in browser local cache; not used for admin privilege pay).",
       "placeholder": "Enter the merchant private key",
       "savedTip": "Private key saved",
       "clearedTip": "Private key cleared",
@@ -124,12 +124,14 @@
       "clearConfirmContent": "Are you sure you want to clear the merchant private key? It will need to be re-entered."
     },
     "result": {
-      "modalTitle": "Payment Result",
+      "modalTitle": "Payment Result (unipay)",
       "payLink": "Payment Link",
       "jsapiParam": "JSAPI Params",
       "formData": "Form Data",
       "markCode": "Mark Code",
-      "copyData": "Copy Data",
+      "copyData": "Copy Pay Body",
+      "copyFull": "Copy Full Response",
+      "rawResponse": "Full DaxResult Response",
       "empty": "No data",
       "field": {
         "orderNo": "System Order No."
@@ -146,6 +148,8 @@
     },
     "msg": {
       "signSuccess": "Sign generated successfully",
+      "paySuccess": "Payment request succeeded",
+      "payFail": "Payment request failed",
       "inputPrivateKey": "Please set the merchant private key first",
       "copySuccess": "Copied"
     }
