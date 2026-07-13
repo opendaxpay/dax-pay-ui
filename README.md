@@ -10,7 +10,7 @@
 
 ## 项目简介
 
-DaxPay Admin 是 DaxPay 4.0 商业支付系统的管理后台前端，基于 Vue Vben Admin 5.0 进行二次开发。提供商户管理、服务商管理、代理商管理、支付通道配置、风控管理、系统管理等功能，支持中英文国际化。
+DaxPay Admin 是 DaxPay 支付系统的运营管理后台前端，基于 Vue Vben Admin 5 二次开发。提供商户管理、支付通道配置、支付主数据、IAM 权限、系统管理、工作台分析等功能，支持中英文国际化。
 
 ## 技术栈
 
@@ -31,96 +31,66 @@ DaxPay Admin 是 DaxPay 4.0 商业支付系统的管理后台前端，基于 Vue
 ## 项目结构
 
 ```
-daxpay4-web/
+dax-pay-ui/
 ├── apps/
-│   └── daxpay-admin/                    # 管理后台应用
+│   └── daxpay-admin/                    # 运营管理后台（当前唯一 app）
 │       └── src/
 │           ├── adapter/                 # 适配器（组件适配、表单适配）
-│           ├── api/                     # API接口层
-│           │   ├── core/                # 核心接口（auth, dict, menu, user）
-│           │   ├── iam/                 # IAM权限接口
-│           │   ├── payment/             # 支付业务接口
-│           │   ├── risk/                # 风控接口
-│           │   └── system/              # 系统管理接口
-│           ├── assets/                  # 静态资源（渠道图标等）
-│           ├── components/              # 业务组件
-│           │   ├── b-upload-image/      # 图片上传
-│           │   ├── channel/             # 渠道Logo
-│           │   ├── icon-picker/         # 图标选择器
-│           │   ├── input-password/      # 密码输入（含强度指示）
-│           │   ├── query/               # 查询组件（BQuery）
-│           │   └── region/              # 地区级联选择
-│           ├── enums/                   # 枚举定义
-│           ├── hooks/                   # 自定义Hooks
-│           │   ├── useDict.ts           # 字典
-│           │   ├── useFormEdit.ts       # 表单编辑
-│           │   ├── useMessage.ts        # 消息提示
-│           │   ├── usePermission.ts     # 权限
-│           │   ├── useTablePage.ts      # 表格页面
-│           │   └── useValidate.ts       # 验证
-│           ├── layouts/                 # 布局
-│           ├── locales/                 # 国际化（en-US / zh-CN）
-│           ├── router/                  # 路由
-│           ├── store/                   # 状态管理
-│           ├── views/                   # 页面视图
-│           │   ├── dashboard/           # 仪表盘
-│           │   ├── iam/                 # IAM权限管理
+│           ├── api/                     # API 接口层
+│           │   ├── core/                # 核心（auth, dict, menu, user…）
+│           │   ├── iam/                 # IAM（perm, social, user…）
 │           │   ├── payment/             # 支付业务
-│           │   │   ├── agent/           # 代理商
-│           │   │   ├── channel/         # 渠道配置
-│           │   │   ├── isv/             # 服务商
+│           │   │   ├── channel/         # 各通道接口
+│           │   │   ├── config/          # 产品等配置
+│           │   │   ├── develop/         # 开发联调
+│           │   │   ├── device/          # 设备
+│           │   │   ├── masterdata/      # 支付主数据
 │           │   │   ├── merchant/        # 商户
-│           │   │   └── product/         # 支付产品
-│           │   ├── risk/                # 风控
+│           │   │   ├── order/           # 订单
+│           │   │   ├── route/           # 路由配置 API
+│           │   │   └── unipay/          # 统一支付联调 API
 │           │   └── system/              # 系统管理
+│           ├── assets/                  # 静态资源（渠道图标等）
+│           ├── components/              # 跨域可复用业务组件
+│           ├── enums/                   # 枚举定义
+│           ├── hooks/                   # 自定义 Hooks
+│           ├── layouts/                 # 布局
+│           ├── locales/langs/           # 国际化（en-US / zh-CN）
+│           ├── router/                  # 路由（动态菜单 + 静态 core）
+│           ├── store/                   # 状态管理
+│           ├── views/                   # 页面视图（约定见 views/README.md）
+│           │   ├── _core/               # 登录 / 鉴权 / fallback
+│           │   ├── dashboard/           # 工作台、数据分析
+│           │   ├── demos/               # 演示页
+│           │   ├── iam/                 # 用户 / 角色 / 菜单 / 社交
+│           │   ├── payment/             # 支付业务（主体）
+│           │   │   ├── channel/         # 按通道分包（alipay、wechat…）
+│           │   │   ├── config/          # 产品配置等
+│           │   │   ├── develop/         # 开发联调
+│           │   │   ├── device/          # 设备
+│           │   │   ├── masterdata/      # 支付主数据
+│           │   │   ├── merchant/        # 商户 / 应用 / 路由等
+│           │   │   ├── order/           # 订单
+│           │   │   └── shared/          # 支付域 TS 工具（非路由页）
+│           │   ├── profile/             # 个人中心
+│           │   └── system/              # 系统配置 / 日志 / 监控 / 通知
 │           └── utils/                   # 工具函数
 │
-├── packages/
-│   ├── @core/                           # 核心组件包
-│   │   ├── base/                        # 基础模块
-│   │   │   ├── design/                  # 设计令牌、CSS样式
-│   │   │   ├── icons/                   # 图标工具
-│   │   │   ├── shared/                  # 通用工具函数
-│   │   │   └── typings/                 # TypeScript类型定义
-│   │   ├── composables/                 # 组合式函数
-│   │   ├── preferences/                 # 偏好设置
-│   │   └── ui-kit/                      # UI组件库
-│   │       ├── form-ui/                 # 表单组件
-│   │       ├── layout-ui/               # 布局组件
-│   │       ├── menu-ui/                 # 菜单组件
-│   │       ├── popup-ui/                # 弹出层组件
-│   │       ├── shadcn-ui/               # Shadcn UI组件
-│   │       └── tabs-ui/                 # 标签页组件
-│   ├── effects/                         # 功能效果包
-│   │   ├── access/                      # 权限控制
-│   │   ├── common-ui/                   # 通用业务UI
-│   │   ├── hooks/                       # 通用Hooks
-│   │   ├── layouts/                     # 布局系统
-│   │   ├── plugins/                     # 插件（ECharts、Motion、VXE-Table）
-│   │   └── request/                     # HTTP请求封装
-│   ├── constants/                       # 全局常量
-│   ├── icons/                           # 图标包
-│   ├── locales/                         # 国际化基础包
-│   ├── preferences/                     # 偏好设置入口
-│   ├── stores/                          # Pinia状态管理
-│   ├── styles/                          # 全局样式
-│   ├── types/                           # 全局类型定义
-│   └── utils/                           # 工具函数
+├── packages/                            # Vben 内核与共享包
+│   ├── @core/                           # 核心（design / icons / shared / ui-kit）
+│   ├── effects/                         # access / layouts / request / plugins…
+│   ├── constants/ · icons/ · locales/
+│   ├── preferences/ · stores/ · styles/
+│   ├── types/ · utils/
 │
-├── internal/                            # 内部工具
-│   ├── lint-configs/                    # 代码规范配置
-│   │   ├── commitlint-config/           # 提交规范
-│   │   ├── eslint-config/               # ESLint配置
-│   │   └── stylelint-config/            # Stylelint配置
-│   ├── node-utils/                      # Node工具库
-│   ├── tsconfig/                        # TypeScript配置预设
-│   └── vite-config/                     # Vite构建配置
-│
-└── scripts/                             # 脚本
-    ├── deploy/                          # Docker部署
-    ├── turbo-run/                       # Turbo运行器
-    └── vsh/                             # Vben Shell工具
+├── internal/                            # lint / tsconfig / vite-config / node-utils
+└── scripts/                             # 构建与部署脚本
+    ├── deploy/                          # Docker 部署
+    ├── turbo-run/                       # Turbo 运行器
+    └── vsh/                             # Vben Shell 工具
 ```
+
+**菜单 component 约定**：值为 `/` + `views` 内相对路径（无 `.vue` 后缀），例如 `/payment/merchant/info/MerchantList`。页面目录与命名细则见 [`apps/daxpay-admin/src/views/README.md`](apps/daxpay-admin/src/views/README.md)。
 
 ## 快速开始
 
@@ -133,7 +103,7 @@ daxpay4-web/
 ```bash
 # 1. 克隆项目
 git clone <repository-url>
-cd daxpay4-web
+cd dax-pay-ui
 
 # 2. 安装依赖
 pnpm install
@@ -160,43 +130,32 @@ pnpm build:admin
 ## 业务模块
 
 ### 支付管理 (Payment)
-- **商户管理**: 商户入驻、信息管理、支付产品配置、用户管理
-- **服务商管理**: 服务商入驻、对接配置、安全配置、用户管理
-- **代理商管理**: 代理商信息、支付产品配置、用户管理
-- **渠道配置**: 支付宝、微信、银联商务、拉卡拉通道配置
-- **支付产品**: 产品管理与配置
+- **商户管理**: 商户列表/工作台、应用、门店、用户、通道商户
+- **通道配置**: 支付宝、微信及多家收单通道（ISV / 直连）
+- **支付主数据**: 通道、产品、能力、提供方
+- **产品配置**: 产品级通道能力与详情分发
+- **订单 / 设备 / 开发联调**: 订单查询、收款码设备、签名与交易调试
 
-### IAM权限管理
-- 菜单管理
-- 角色管理
-- 用户管理
-
-### 风控管理 (Risk)
-- 数据源定义
-- 输入参数配置
-- 风控模型管理
+### IAM 权限管理
+- 菜单管理、角色管理、用户管理、社交登录配置
 
 ### 系统管理 (System)
-- 字典管理
-- 平台配置
-- 安全配置
-- 文件管理
-- 日志管理（登录日志、操作日志）
-- 在线用户监控
+- 字典、平台配置（URL/OSS/安全/第三方平台）、日志、在线用户、通知、协议
+
+### 工作台 (Dashboard)
+- 运营工作台、数据分析
 
 ## 国际化
 
-项目支持中英文国际化，翻译文件按业务模块拆分：
+项目支持中英文国际化，翻译文件按业务域拆分（`zh-CN` / `en-US` 对称）：
 
 ```
-locales/langs/
-├── en-US/                    # 英文翻译
-│   ├── core/                 # 核心翻译
-│   ├── iam/                  # IAM模块
-│   ├── payment/              # 支付模块
-│   ├── risk/                 # 风控模块
-│   └── system/               # 系统模块
-└── zh-CN/                    # 中文翻译
+apps/daxpay-admin/src/locales/langs/
+├── en-US/
+│   ├── _core/ · components/ · dashboard/ · demos/
+│   ├── hooks/ · iam/ · payment/ · system/
+│   ├── common.json · page.json · profile.json · timezone.json
+└── zh-CN/
     └── (同上结构)
 ```
 
