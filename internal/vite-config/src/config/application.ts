@@ -42,7 +42,7 @@ function defineApplicationConfig(userConfigPromise?: DefineApplicationOptions) {
       mode,
       print: !isBuild,
       printInfoMap: {
-        'Vben Admin Docs': 'https://doc.vben.pro',
+        'DaxPay Docs': 'https://doc.open.daxpay.cn',
       },
       pwa: true,
       pwaOptions: getDefaultPwaOptions(appTitle),
