@@ -26,9 +26,9 @@ export const AGGREGATE_SCENES: AggregateSceneConfig[] = [
   { scene: 'douyin', provider: 'douyin', defaultMethod: 'douyin_jsapi' },
 ];
 
-// 模式显示名
+// 模式显示名（与 i18n payment.merchant.route / aggregate 词表对齐；页面优先用 $t）
 export const LEVEL_DISPLAY: Record<AggregateLevel, string> = {
-  auto: '自动模式',
-  method: '方式模式',
-  direct: '精确模式',
+  auto: '跟随通道路由',
+  method: '指定支付方式',
+  direct: '指定通道商户',
 };

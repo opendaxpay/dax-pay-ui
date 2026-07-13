@@ -14,7 +14,7 @@
   },
   "payment": {
     "title": "Payment Management",
-    "platform": "Platform Management",
+    "platform": "Payment Management",
     "merchantList": "Merchant List",
     "merchantManage": "Merchant Management",
     "merchantChannelMerchant": "Merchant Channel Merchant",

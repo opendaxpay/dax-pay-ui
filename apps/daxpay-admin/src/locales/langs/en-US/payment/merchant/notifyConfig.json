@@ -1,7 +1,7 @@
 {
   "notifyConfig": {
-    "title": "Notification Config",
-    "infoBanner": "Notification config receives business event callbacks pushed by the platform. Please fill in an https callback URL accessible from the public network",
+    "title": "Async Notify Config",
+    "infoBanner": "Async notify config receives business event callbacks pushed by the platform. Please fill in an https callback URL accessible from the public network",
     "notifyUrl": "Callback URL",
     "notifyUrlTooltip": "Event notifications will be pushed to this URL via HTTP POST, must start with https://",
     "notifyUrlPlaceholder": "https://your-callback-receiver-url",
@@ -17,7 +17,7 @@
     "statusDisable": "Disable",
     "remark": "Remark",
     "remarkPlaceholder": "Please enter remark",
-    "confirmSave": "Are you sure to save the notification config?",
+    "confirmSave": "Save async notify config?",
     "saveSuccess": "Saved successfully"
   }
 }

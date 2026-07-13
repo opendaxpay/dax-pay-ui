@@ -14,7 +14,7 @@
   },
   "payment": {
     "title": "支付管理",
-    "platform": "平台管理",
+    "platform": "支付管理",
     "merchantList": "商户列表",
     "merchantManage": "商户管理",
     "merchantChannelMerchant": "商户通道商户",

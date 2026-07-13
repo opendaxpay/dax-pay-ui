@@ -64,10 +64,10 @@
     },
     "mode": {
       "label": "Pay Mode",
-      "route": "Route Mode",
-      "direct": "Direct Mode",
-      "routeDesc": "Dynamically matched by merchant/method + app via routing engine",
-      "directDesc": "Directly decided by channel merchant + capability"
+      "route": "Follow Channel Routing",
+      "direct": "Explicit Channel Merchant",
+      "routeDesc": "Resolve channel merchant and capability via the app's channel routing",
+      "directDesc": "Decided by channel merchant + capability; skip channel routing"
     },
     "preview": {
       "title": "Request JSON",

@@ -1,13 +1,13 @@
 {
   "aggregate": {
-    "title": "QR Code & Aggregate Pay",
+    "title": "Aggregate Pay Config",
     "editModeLabel": "Config Level",
     "autoLaunch": "Auto Launch",
     "autoLaunchHint": "Automatically initiate payment after scanning, no manual click needed",
-    "autoModeHint": "System auto-derives payment method by scan environment, resolved via basic routing. No manual config needed.",
-    "methodModeHint": "Manually select payment method per scene, resolved via scene routing.",
-    "directModeHint": "Directly specify channel merchant and capability per scene, bypassing routing.",
-    "scene": "Scene",
+    "autoModeHint": "System derives pay method from open environment and follows app channel routing. No manual config needed.",
+    "methodModeHint": "Manually select pay method per open environment, then resolve via app channel routing.",
+    "directModeHint": "Explicitly set channel merchant and capability per open environment; skip channel routing.",
+    "scene": "Open Environment",
     "method": "Payment Method",
     "methodPlaceholder": "Select payment method",
     "channelMerchant": "Channel Merchant",
@@ -15,8 +15,8 @@
     "capability": "Capability",
     "capabilityPlaceholder": "Select capability",
     "autoDerived": "Auto-derived",
-    "saveConfirm": "Are you sure to save the QR code and aggregate pay config?",
-    "missingAppContext": "Please access QR code and aggregate pay config from app management",
+    "saveConfirm": "Save aggregate pay config?",
+    "missingAppContext": "Please open aggregate pay config from app management",
     "notSelected": "Not selected",
     "levelActive": "Active",
     "scenes": {
@@ -25,8 +25,8 @@
       "union_pay": "UnionPay",
       "douyin": "Douyin"
     },
-    "modeAuto": "Auto",
+    "modeAuto": "Follow Channel Routing",
     "modeMethod": "By Method",
-    "modeDirect": "Direct"
+    "modeDirect": "Explicit Channel Merchant"
   }
 }

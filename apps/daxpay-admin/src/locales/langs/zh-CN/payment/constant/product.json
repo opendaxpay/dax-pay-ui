@@ -25,7 +25,7 @@
     "unknown": "产品配置"
   },
   "productConfig": {
-    "title": "支付产品管理",
+    "title": "通道产品配置",
     "emptyDesc": "暂无支付产品数据",
     "prodLabel": "生产",
     "sandboxLabel": "沙箱",

@@ -1,7 +1,7 @@
 {
   "notifyConfig": {
-    "title": "通知配置",
-    "infoBanner": "通知配置用于接收平台主动推送的业务事件回调，请填写可被公网访问的 https 回调地址",
+    "title": "异步通知配置",
+    "infoBanner": "异步通知配置用于接收平台主动推送的业务事件回调，请填写可被公网访问的 https 回调地址",
     "notifyUrl": "回调地址",
     "notifyUrlTooltip": "事件通知将以 HTTP POST 方式推送到该地址，需以 https:// 开头",
     "notifyUrlPlaceholder": "https://您的回调接收地址",
@@ -17,7 +17,7 @@
     "statusDisable": "禁用",
     "remark": "备注",
     "remarkPlaceholder": "请输入备注",
-    "confirmSave": "确定要保存通知配置吗？",
+    "confirmSave": "确定要保存异步通知配置吗？",
     "saveSuccess": "保存成功"
   }
 }
