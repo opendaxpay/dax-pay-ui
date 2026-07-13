@@ -11,8 +11,9 @@
   import { type Role, RoleApi } from '#/api/iam/perm/role.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
-  import { ClientCode, clientCodeColorMap, clientCodeI18nMap, clientCodeOptions } from '#/enums/clientCode';
+  import { clientCodeColorMap, clientCodeI18nMap } from '#/enums/clientCode';
   import { FormEditType } from '#/enums/formEditType';
+  import { useClientOptions } from '#/hooks/useClientOptions';
   import { useDeleteConfirm } from '#/hooks/useDeleteConfirm';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
@@ -33,10 +34,8 @@
   // 查询条件
   const queryForm = ref<Record<string, any>>({});
 
-  // 终端类型选项(排除网关端)
-  const clientCodeSelectOptions = clientCodeOptions
-    .filter((item) => item.value !== ClientCode.GATEWAY)
-    .map((item) => ({ label: $t(item.label), value: item.value }));
+  // 终端类型选项(主数据, 排除网关端)
+  const { options: clientCodeSelectOptions } = useClientOptions(true);
 
   // 查询字段配置
   const queryFields = computed<QueryField[]>(() => [
@@ -60,7 +59,7 @@
       name: $t('common.clientType'),
       // 国际化：请选择终端类型
       placeholder: $t('iam.role.selectClientCode'),
-      selectList: clientCodeSelectOptions,
+      selectList: clientCodeSelectOptions.value,
     },
   ]);
 

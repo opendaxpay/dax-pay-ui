@@ -7,6 +7,7 @@
 
   import { SocialApi } from '#/api/iam/social.api';
   import { SocialLogo } from '#/components/social';
+  import { CLIENT_CODE } from '#/constants/client';
   import { useMessage } from '#/hooks/useMessage';
 
   defineOptions({ name: 'ProfileSocialBind' });
@@ -49,7 +50,7 @@
    * 绑定第三方账号(打开弹窗进行授权, 授权后弹窗自动关闭并通知刷新)
    */
   async function handleBind(source: string) {
-    const { data: url } = await SocialApi.render(source, 'admin', 'BIND');
+    const { data: url } = await SocialApi.render(source, CLIENT_CODE, 'BIND');
     if (url) {
       window.open(url, 'social-bind', 'width=600,height=700');
     }

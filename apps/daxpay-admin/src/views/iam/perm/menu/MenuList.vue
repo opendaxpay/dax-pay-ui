@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
 
-  import { nextTick, onMounted, ref } from 'vue';
+  import { computed, nextTick, onMounted, ref } from 'vue';
 
   import { $t, i18n } from '@vben/locales';
 
@@ -10,9 +10,10 @@
   import { type Menu, MenuApi, PermCodeApi } from '#/api/iam/perm/menu.api';
   import { SplitPane } from '#/components/split-pane';
   import { PermCodes } from '#/constants/perm-codes';
-  import { clientCodeOptions } from '#/enums/clientCode';
+  import { ClientCode } from '#/enums/clientCode';
   import { FormEditType } from '#/enums/formEditType';
   import { menuTypeColorMap, MenuTypeEnum, menuTypeI18nMap } from '#/enums/menuType';
+  import { useClientOptions } from '#/hooks/useClientOptions';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
@@ -31,14 +32,17 @@
   const menuEdit = ref();
   const permCodeManager = ref();
 
-  // 终端列表
-  const clients = clientCodeOptions.map((item) => ({
-    code: item.value,
-    name: $t(item.label),
-  }));
+  // 终端列表(主数据, 含 gateway 供菜单树维护)
+  const { options: clientOptions } = useClientOptions(false);
+  const clients = computed(() =>
+    clientOptions.value.map((item) => ({
+      code: item.value,
+      name: item.label,
+    })),
+  );
 
   // 当前选中的终端
-  const clientCode = ref('admin');
+  const clientCode = ref(ClientCode.ADMIN);
   // 搜索关键字
   const searchName = ref('');
   // 传给右侧面板的搜索关键字（主搜索命中子页面时联动）

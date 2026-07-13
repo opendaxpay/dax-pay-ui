@@ -10,6 +10,7 @@ import { defineStore } from 'pinia';
 
 import { AuthApi, TWO_FACTOR_REQUIRED_CODE } from '#/api/core/auth.api';
 import { UserCommonApi } from '#/api/core/user.api';
+import { CLIENT_CODE } from '#/constants/client';
 import { useMessage } from '#/hooks/useMessage';
 import { $t } from '#/locales';
 import { HOME_PATH } from '#/router/routes';
@@ -40,7 +41,7 @@ export const useAuthStore = defineStore('auth', () => {
       // 中文注释：登录协议固定对齐后端真实接口，避免继续命中 Mock 参数结构。
       const loginResult = await AuthApi.login({
         account: params.account,
-        client: 'admin',
+        client: CLIENT_CODE,
         loginType: 'password',
         password: encryptedPassword,
         // 验证码参数（登录失败达阈值后必传）
@@ -50,8 +51,7 @@ export const useAuthStore = defineStore('auth', () => {
 
       // 双因素认证挑战: 密码通过但需二次验证, 记录预认证令牌并切到验证界面
       if (loginResult.code === TWO_FACTOR_REQUIRED_CODE) {
-        twoFactorPreAuthToken.value = (loginResult.data as any)?.preAuthToken ?? '';
-        twoFactorRequired.value = true;
+        enterTwoFactor((loginResult.data as any)?.preAuthToken ?? '');
         return { userInfo: null };
       }
 
@@ -126,6 +126,14 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   /**
+   * 进入双因素挑战(密码登录或社交登录回调共用)
+   */
+  function enterTwoFactor(preAuthToken: string) {
+    twoFactorPreAuthToken.value = preAuthToken ?? '';
+    twoFactorRequired.value = true;
+  }
+
+  /**
    * 取消双因素认证(返回登录表单)
    */
   function cancelTwoFactor() {
@@ -164,6 +172,7 @@ export const useAuthStore = defineStore('auth', () => {
     $reset,
     authLogin,
     cancelTwoFactor,
+    enterTwoFactor,
     fetchUserInfo,
     loginLoading,
     logout,

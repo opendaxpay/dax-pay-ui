@@ -9,7 +9,7 @@
     "adminBaseUrl": "Admin URL",
     "adminBaseUrlDesc": "Base URL of the admin portal. Used to generate callback URLs when third-party login client=admin",
     "merchantBaseUrl": "Merchant URL",
-    "merchantBaseUrlDesc": "Base URL of the merchant portal. Used to generate callback URLs when third-party login client=merchant",
+    "merchantBaseUrlDesc": "Merchant portal origin. Used for client=merchant OAuth callbacks (/auth/oauth-callback/{source} and bind path). Must match the merchant frontend origin and be whitelisted in the OAuth console",
     "paymentGatewayBaseUrl": "Payment Gateway URL",
     "paymentGatewayBaseUrlDesc": "Access URL of the payment gateway page, used for payment page redirection",
     "backendBaseUrl": "Backend API URL",

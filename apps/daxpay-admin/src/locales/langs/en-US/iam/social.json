@@ -53,8 +53,10 @@
     "enabled": "Enabled",
     "enabledRequired": "Please select enable status",
     "callbackUrl": "Callback URL",
-    "callbackUrlHelp": "Fill the following addresses into the authorization callback URL configuration of the corresponding third-party platform",
+    "callbackUrlHelp": "Register these URLs in the third-party OAuth console; admin and merchant each need a full set",
     "callbackUrlEmpty": "Please set the admin access URL in the endpoint configuration first",
+    "callbackUrlEmptyAdmin": "Please set Admin Base URL in endpoint configuration first",
+    "callbackUrlEmptyMerchant": "Please set Merchant Base URL (merchantBaseUrl) in endpoint configuration; required for merchant social login",
     "loginCallback": "Login Callback",
     "bindCallback": "Bind Callback"
   },

@@ -1,15 +1,19 @@
 <script lang="ts" setup>
-  import { computed, onMounted } from 'vue';
+  import { computed, onMounted, ref } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
   import { useAccessStore } from '@vben/stores';
 
+  import { TWO_FACTOR_REQUIRED_CODE } from '#/api/core/auth.api';
   import { SocialApi } from '#/api/iam/social.api';
   import { SocialLogo } from '#/components/social';
+  import { CLIENT_CODE } from '#/constants/client';
   import { useMessage } from '#/hooks/useMessage';
   import { HOME_PATH } from '#/router/routes';
   import { useAuthStore } from '#/store';
+
+  import TwoFactorVerifyPanel from './components/TwoFactorVerifyPanel.vue';
 
   defineOptions({ name: 'OauthCallback' });
 
@@ -18,6 +22,9 @@
   const { message } = useMessage();
   const accessStore = useAccessStore();
   const authStore = useAuthStore();
+
+  // 是否展示页内 2FA 面板(社交登录触发挑战)
+  const showTwoFactor = ref(false);
 
   // 路径参数中的平台编码(如 gitee), 可能为空(旧地址兼容)
   const source = computed(() => (route.params.source as string) || '');
@@ -43,6 +50,7 @@
   /**
    * 处理社交登录回调(仅登录场景)
    * 支付宝回传 auth_code, 标准 OAuth 回传 code; 归一后统一走 SocialApi.exchangeLogin
+   * 若返回 40101 则进入双因素验证(与密码登录同协议)
    */
   onMounted(async () => {
     const { code, auth_code: authCode, state } = route.query;
@@ -54,7 +62,14 @@
       return;
     }
     try {
-      const res = await SocialApi.exchangeLogin(oauthCode, state as string, source.value, 'admin');
+      const res = await SocialApi.exchangeLogin(oauthCode, state as string, source.value, CLIENT_CODE);
+      // 双因素挑战: 拦截器对 40101 返回 body, 不当 reject
+      if (res.code === TWO_FACTOR_REQUIRED_CODE) {
+        const preAuthToken = (res.data as any)?.preAuthToken ?? '';
+        authStore.enterTwoFactor(preAuthToken);
+        showTwoFactor.value = true;
+        return;
+      }
       await handleResult(res.data?.token, res.data?.error);
     } catch {
       message.error($t('_core.authentication.oauthProcessFailed'));
@@ -98,12 +113,39 @@
       router.push('/auth/login');
     }
   }
+
+  /**
+   * 取消 2FA: 回登录页
+   */
+  function handleTwoFactorCancel() {
+    authStore.cancelTwoFactor();
+    showTwoFactor.value = false;
+    router.push('/auth/login');
+  }
 </script>
 
 <template>
   <div class="flex h-screen w-full flex-col items-center justify-center gap-4">
-    <!-- 平台图标(有 source 时显示, 强化用户感知) -->
-    <SocialLogo v-if="source" :source="source" :size="56" />
-    <a-spin size="large" :description="processingTip" />
+    <!-- 社交登录触发 2FA: 页内二次验证 -->
+    <template v-if="showTwoFactor || authStore.twoFactorRequired">
+      <SocialLogo v-if="source" :source="source" :size="48" />
+      <div class="w-full max-w-sm rounded-lg bg-background p-6 shadow">
+        <div class="mb-4 text-center text-lg font-medium">
+          {{ $t('_core.authentication.twoFactor.title') }}
+        </div>
+        <TwoFactorVerifyPanel />
+        <!-- 取消时回登录(覆盖面板默认 cancel 仅清状态) -->
+        <div class="mt-2 text-center">
+          <a-button type="link" size="small" @click="handleTwoFactorCancel">
+            {{ $t('common.back') }}
+          </a-button>
+        </div>
+      </div>
+    </template>
+    <template v-else>
+      <!-- 平台图标(有 source 时显示, 强化用户感知) -->
+      <SocialLogo v-if="source" :source="source" :size="56" />
+      <a-spin size="large" :description="processingTip" />
+    </template>
   </div>
 </template>

@@ -5,6 +5,7 @@
   import { $t } from '@vben/locales';
 
   import { SocialApi } from '#/api/iam/social.api';
+  import { CLIENT_CODE } from '#/constants/client';
 
   defineOptions({ name: 'SocialBindCallback' });
 
@@ -44,7 +45,7 @@
       return;
     }
     try {
-      const res = await SocialApi.exchangeBind(oauthCode, state as string, source.value, 'admin');
+      const res = await SocialApi.exchangeBind(oauthCode, state as string, source.value, CLIENT_CODE);
       if (res.data?.result === 'bind_success') {
         success.value = true;
         loading.value = false;

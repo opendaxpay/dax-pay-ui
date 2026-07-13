@@ -1,6 +1,7 @@
 import type { Result } from '#/types/web';
 
 import { defHttp } from '#/api/request';
+import { CLIENT_CODE } from '#/constants/client';
 
 /**
  * 第三方社交登录 API
@@ -9,11 +10,11 @@ export const SocialApi = {
   /**
    * 生成授权地址(前端拿到后跳转到第三方)
    * @param source 平台来源(wechat/qq/github 等)
-   * @param client 终端编码(admin/merchant)
+   * @param client 终端编码(admin/merchant), 默认运营端
    * @param mode 授权场景: BIND(已登录绑定) | LOGIN(未登录登录), 不传按登录态判断
    * @param redirect 成功后前端跳转路径
    */
-  render(source: string, client: string = 'admin', mode?: string, redirect?: string): Promise<Result<string>> {
+  render(source: string, client: string = CLIENT_CODE, mode?: string, redirect?: string): Promise<Result<string>> {
     return defHttp.get({
       url: `/social/render/${source}`,
       params: { client, mode, redirect },
@@ -42,7 +43,7 @@ export const SocialApi = {
     code: string,
     state: string,
     source: string,
-    client: string = 'admin',
+    client: string = CLIENT_CODE,
   ): Promise<Result<SocialExchangeResult>> {
     return defHttp.post({ url: '/social/exchange-login', params: { code, state, source, client } });
   },
@@ -55,7 +56,7 @@ export const SocialApi = {
     code: string,
     state: string,
     source: string,
-    client: string = 'admin',
+    client: string = CLIENT_CODE,
   ): Promise<Result<SocialExchangeResult>> {
     return defHttp.post({ url: '/social/exchange-bind', params: { code, state, source, client } });
   },
@@ -79,6 +80,13 @@ export const SocialLoginConfigApi = {
    */
   findAll(): Promise<Result<SocialLoginConfigResult[]>> {
     return defHttp.get({ url: '/social/login-config/find-all' });
+  },
+
+  /**
+   * 查询应在第三方开放平台登记的回调地址清单(运营/商户 × 平台 × 登录/绑定)
+   */
+  callbackUrls(): Promise<Result<SocialCallbackUrlItem[]>> {
+    return defHttp.get({ url: '/social/login-config/callback-urls' });
   },
 
   /**
@@ -123,6 +131,22 @@ export interface SocialBindResult {
   avatar?: string;
   /** 绑定时间 */
   createTime?: string;
+}
+
+/**
+ * 应登记的 OAuth 回调地址项
+ */
+export interface SocialCallbackUrlItem {
+  /** 终端 admin/merchant */
+  clientCode: string;
+  /** 平台编码 */
+  source: string;
+  /** LOGIN / BIND */
+  mode: string;
+  /** 完整回调 URL */
+  url: string;
+  /** 对应端 baseUrl 是否已配置 */
+  baseUrlConfigured: boolean;
 }
 
 /**

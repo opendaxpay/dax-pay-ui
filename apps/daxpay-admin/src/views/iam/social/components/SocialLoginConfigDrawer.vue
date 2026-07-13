@@ -29,8 +29,9 @@
   const { diffForm } = useFormEdit();
   const { copy } = useClipboard();
 
-  // 管理端访问地址(用于展示回调地址, 抽屉打开时从端点配置获取)
+  // 管理端/商户端访问地址(用于展示回调地址, 抽屉打开时从端点配置获取)
   const adminBaseUrl = ref('');
+  const merchantBaseUrl = ref('');
 
   const modalTitle = ref('');
   const submitLoading = ref(false);
@@ -88,22 +89,21 @@
   const BIND_CALLBACK_PATH = '/auth/social-bind-callback';
 
   /**
-   * 登录回调地址(adminBaseUrl + 登录回调路径 + 平台编码)
+   * 拼完整回调 URL
    */
-  const loginCallbackUrl = computed(() => {
-    const base = (adminBaseUrl.value || '').replace(/\/$/, '');
+  function buildCallbackUrl(baseUrl: string, path: string): string {
+    const base = (baseUrl || '').replace(/\/$/, '');
     const source = currentSource.value;
-    return base && source ? `${base}${LOGIN_CALLBACK_PATH}/${source}` : '';
-  });
+    return base && source ? `${base}${path}/${source}` : '';
+  }
 
-  /**
-   * 绑定回调地址(adminBaseUrl + 绑定回调路径 + 平台编码)
-   */
-  const bindCallbackUrl = computed(() => {
-    const base = (adminBaseUrl.value || '').replace(/\/$/, '');
-    const source = currentSource.value;
-    return base && source ? `${base}${BIND_CALLBACK_PATH}/${source}` : '';
-  });
+  /** 运营端登录/绑定回调 */
+  const adminLoginCallbackUrl = computed(() => buildCallbackUrl(adminBaseUrl.value, LOGIN_CALLBACK_PATH));
+  const adminBindCallbackUrl = computed(() => buildCallbackUrl(adminBaseUrl.value, BIND_CALLBACK_PATH));
+
+  /** 商户端登录/绑定回调(商户社交同等能力必需) */
+  const merchantLoginCallbackUrl = computed(() => buildCallbackUrl(merchantBaseUrl.value, LOGIN_CALLBACK_PATH));
+  const merchantBindCallbackUrl = computed(() => buildCallbackUrl(merchantBaseUrl.value, BIND_CALLBACK_PATH));
 
   /**
    * 复制文本到剪贴板
@@ -129,9 +129,10 @@
     () => props.visible,
     async (visible) => {
       if (!visible || !props.configItem) return;
-      // 获取管理端访问地址(用于回调地址展示, 不阻塞表单初始化)
+      // 获取运营/商户端访问地址(用于双端回调地址展示, 不阻塞表单初始化)
       UrlConfigApi.get().then((res) => {
         adminBaseUrl.value = res.data?.adminBaseUrl ?? '';
+        merchantBaseUrl.value = res.data?.merchantBaseUrl ?? '';
       });
       const item = props.configItem;
       isPlatformRedirect.value = !!item.platformRedirect;
@@ -260,7 +261,7 @@
         </template>
       </a-form>
 
-      <!-- 回调地址展示(辅助参考, 复制后粘贴到第三方平台授权回调配置) -->
+      <!-- 回调地址展示: 运营 + 商户双端(复制到第三方开放平台白名单) -->
       <div class="mt-2 rounded-lg bg-muted/40 p-4">
         <div class="mb-3 flex items-center gap-1.5">
           <span class="text-sm font-semibold">{{ $t('iam.social.form.callbackUrl') }}</span>
@@ -268,41 +269,82 @@
             <IconifyIcon icon="ant-design:question-circle-outlined" class="text-muted-foreground" />
           </a-tooltip>
         </div>
-        <a-alert
-          v-if="!loginCallbackUrl"
-          type="warning"
-          :message="$t('iam.social.form.callbackUrlEmpty')"
-          banner
-          class="!mb-0"
-        />
-        <template v-else>
-          <div class="mb-3">
-            <div class="mb-1 text-xs text-muted-foreground">
-              {{ $t('iam.social.form.loginCallback') }}
-            </div>
-            <a-input :value="loginCallbackUrl" readonly>
-              <template #suffix>
-                <a-button type="link" size="small" @click="handleCopy(loginCallbackUrl)">
-                  <IconifyIcon icon="ant-design:copy-outlined" />
-                  {{ $t('iam.social.action.copy') }}
-                </a-button>
-              </template>
-            </a-input>
+
+        <!-- 运营端 -->
+        <div class="mb-4">
+          <div class="mb-2 text-xs font-medium text-foreground">
+            {{ $t('iam.social.clientCode.admin') }}
           </div>
-          <div>
-            <div class="mb-1 text-xs text-muted-foreground">
-              {{ $t('iam.social.form.bindCallback') }}
+          <a-alert
+            v-if="!adminLoginCallbackUrl"
+            type="warning"
+            :message="$t('iam.social.form.callbackUrlEmptyAdmin')"
+            banner
+            class="!mb-0"
+          />
+          <template v-else>
+            <div class="mb-3">
+              <div class="mb-1 text-xs text-muted-foreground">{{ $t('iam.social.form.loginCallback') }}</div>
+              <a-input :value="adminLoginCallbackUrl" readonly>
+                <template #suffix>
+                  <a-button type="link" size="small" @click="handleCopy(adminLoginCallbackUrl)">
+                    <IconifyIcon icon="ant-design:copy-outlined" />
+                    {{ $t('iam.social.action.copy') }}
+                  </a-button>
+                </template>
+              </a-input>
             </div>
-            <a-input :value="bindCallbackUrl" readonly>
-              <template #suffix>
-                <a-button type="link" size="small" @click="handleCopy(bindCallbackUrl)">
-                  <IconifyIcon icon="ant-design:copy-outlined" />
-                  {{ $t('iam.social.action.copy') }}
-                </a-button>
-              </template>
-            </a-input>
+            <div>
+              <div class="mb-1 text-xs text-muted-foreground">{{ $t('iam.social.form.bindCallback') }}</div>
+              <a-input :value="adminBindCallbackUrl" readonly>
+                <template #suffix>
+                  <a-button type="link" size="small" @click="handleCopy(adminBindCallbackUrl)">
+                    <IconifyIcon icon="ant-design:copy-outlined" />
+                    {{ $t('iam.social.action.copy') }}
+                  </a-button>
+                </template>
+              </a-input>
+            </div>
+          </template>
+        </div>
+
+        <!-- 商户端(同等社交能力) -->
+        <div>
+          <div class="mb-2 text-xs font-medium text-foreground">
+            {{ $t('iam.social.clientCode.merchant') }}
           </div>
-        </template>
+          <a-alert
+            v-if="!merchantLoginCallbackUrl"
+            type="warning"
+            :message="$t('iam.social.form.callbackUrlEmptyMerchant')"
+            banner
+            class="!mb-0"
+          />
+          <template v-else>
+            <div class="mb-3">
+              <div class="mb-1 text-xs text-muted-foreground">{{ $t('iam.social.form.loginCallback') }}</div>
+              <a-input :value="merchantLoginCallbackUrl" readonly>
+                <template #suffix>
+                  <a-button type="link" size="small" @click="handleCopy(merchantLoginCallbackUrl)">
+                    <IconifyIcon icon="ant-design:copy-outlined" />
+                    {{ $t('iam.social.action.copy') }}
+                  </a-button>
+                </template>
+              </a-input>
+            </div>
+            <div>
+              <div class="mb-1 text-xs text-muted-foreground">{{ $t('iam.social.form.bindCallback') }}</div>
+              <a-input :value="merchantBindCallbackUrl" readonly>
+                <template #suffix>
+                  <a-button type="link" size="small" @click="handleCopy(merchantBindCallbackUrl)">
+                    <IconifyIcon icon="ant-design:copy-outlined" />
+                    {{ $t('iam.social.action.copy') }}
+                  </a-button>
+                </template>
+              </a-input>
+            </div>
+          </template>
+        </div>
       </div>
     </a-spin>
     <template #footer>

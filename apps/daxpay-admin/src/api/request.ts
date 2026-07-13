@@ -14,6 +14,7 @@ import {
 import { useAccessStore } from '@vben/stores';
 
 import { createNonceRequestInterceptor } from '#/api/interceptors/nonce';
+import { CLIENT_CODE } from '#/constants/client';
 import { useMessage } from '#/hooks/useMessage';
 import { useAuthStore } from '#/store';
 
@@ -54,7 +55,7 @@ function createRequestClient(baseURL: string, options?: RequestClientOptions) {
 
       config.headers.Authorization = accessStore.accessToken;
       config.headers['Accept-Language'] = preferences.app.locale;
-      config.headers['x-client-code'] = 'admin';
+      config.headers['x-client-code'] = CLIENT_CODE;
       return config;
     },
   });

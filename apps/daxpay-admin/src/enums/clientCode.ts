@@ -1,5 +1,7 @@
 /**
- * 终端类型枚举
+ * 终端类型枚举(身份域 code 常量)
+ *
+ * 下拉主数据请用 ClientApi.findAll / useClientOptions, 勿再散落硬编码 options.
  */
 export enum ClientCode {
   /** 运营端 */
@@ -11,7 +13,7 @@ export enum ClientCode {
 }
 
 /**
- * 终端类型选项配置
+ * @deprecated 请使用 useClientOptions() 从后端主数据加载; 仅作兜底/类型参考
  */
 export const clientCodeOptions = [
   { label: 'common.clientGateway', value: ClientCode.GATEWAY },
@@ -29,7 +31,7 @@ export const clientCodeColorMap: Record<string, string> = {
 };
 
 /**
- * 终端类型国际化Key映射
+ * 终端类型国际化Key映射(表格列等本地展示兜底)
  */
 export const clientCodeI18nMap: Record<string, string> = {
   [ClientCode.GATEWAY]: 'common.clientGateway',

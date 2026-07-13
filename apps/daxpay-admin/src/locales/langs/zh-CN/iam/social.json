@@ -53,8 +53,10 @@
     "enabled": "是否启用",
     "enabledRequired": "请选择是否启用",
     "callbackUrl": "回调地址",
-    "callbackUrlHelp": "将以下地址填写到对应第三方平台的授权回调地址配置中",
+    "callbackUrlHelp": "将以下地址填写到对应第三方平台的授权回调地址配置中；运营端与商户端各需登记一套",
     "callbackUrlEmpty": "请先在端点配置中设置管理端访问地址",
+    "callbackUrlEmptyAdmin": "请先在端点配置中设置「管理端访问地址」",
+    "callbackUrlEmptyMerchant": "请先在端点配置中设置「商户端访问地址」(merchantBaseUrl)，商户社交登录依赖该地址",
     "loginCallback": "登录回调",
     "bindCallback": "绑定回调"
   },

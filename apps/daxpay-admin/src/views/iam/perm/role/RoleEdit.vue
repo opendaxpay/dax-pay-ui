@@ -4,8 +4,8 @@
   import { $t } from '@vben/locales';
 
   import { type Role, RoleApi } from '#/api/iam/perm/role.api';
-  import { ClientCode, clientCodeOptions } from '#/enums/clientCode';
   import { FormEditType } from '#/enums/formEditType';
+  import { useClientOptions } from '#/hooks/useClientOptions';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
   import { useValidate } from '#/hooks/useValidate';
@@ -33,10 +33,8 @@
   // 角色表单数据
   const form = ref<Role>({});
 
-  // 终端类型选项（排除网关端）
-  const clientCodeSelectOptions = clientCodeOptions
-    .filter((item) => item.value !== ClientCode.GATEWAY)
-    .map((item) => ({ label: $t(item.label), value: item.value }));
+  // 终端类型选项(主数据, 排除网关端)
+  const { options: clientCodeSelectOptions } = useClientOptions(true);
 
   // 防抖判重校验
   const validateCodeDebounced = useDebounceValidator(formRef, 'code', validateCode, 500);

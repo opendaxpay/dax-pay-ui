@@ -5,6 +5,7 @@
 
   import { SocialApi } from '#/api/iam/social.api';
   import { SocialLogo } from '#/components/social';
+  import { CLIENT_CODE } from '#/constants/client';
 
   defineOptions({ name: 'AuthThirdPartyPanel' });
 
@@ -13,6 +14,8 @@
     mode: 'LOGIN',
     // 登录前的协议勾选守卫（触发调用方表单校验，返回是否已同意）
     ensureAgreement: undefined,
+    // 身份域终端, 默认运营端
+    client: CLIENT_CODE,
   });
 
   interface Props {
@@ -21,6 +24,8 @@
     mode?: 'BIND' | 'LOGIN';
     // 登录前的协议勾选守卫（触发调用方表单校验，返回是否已同意）
     ensureAgreement?: () => Promise<boolean>;
+    // 身份域 clientCode
+    client?: string;
   }
 
   // 已启用的第三方平台列表(由后端配置驱动)
@@ -43,7 +48,7 @@
       const ok = await props.ensureAgreement();
       if (!ok) return;
     }
-    const { data: url } = await SocialApi.render(source, 'admin', props.mode);
+    const { data: url } = await SocialApi.render(source, props.client, props.mode);
     if (url) {
       // 跳转到第三方授权页, 授权后由后端回调处理并重定向回前端 /oauth-callback
       window.location.href = url;

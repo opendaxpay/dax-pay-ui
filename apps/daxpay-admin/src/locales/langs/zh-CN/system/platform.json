@@ -9,7 +9,7 @@
     "adminBaseUrl": "管理端访问地址",
     "adminBaseUrlDesc": "运营管理端的基础访问地址, 第三方登录 client=admin 时使用此地址生成回调 URL",
     "merchantBaseUrl": "商户端访问地址",
-    "merchantBaseUrlDesc": "商户管理端的基础访问地址, 第三方登录 client=merchant 时使用此地址生成回调 URL",
+    "merchantBaseUrlDesc": "商户管理端的基础访问地址；第三方登录 client=merchant 时用此地址生成 /auth/oauth-callback/{source} 与绑定回调，须与商户前端 origin 一致并在开放平台白名单登记",
     "paymentGatewayBaseUrl": "支付网关前端地址",
     "paymentGatewayBaseUrlDesc": "支付收银台/网关页面的访问地址, 用于支付页面跳转",
     "backendBaseUrl": "后端 API 地址",

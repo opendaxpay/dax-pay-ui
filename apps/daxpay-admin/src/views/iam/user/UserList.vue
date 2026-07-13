@@ -11,7 +11,8 @@
   import { UserApi } from '#/api/iam/user.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
-  import { clientCodeColorMap, clientCodeI18nMap } from '#/enums/clientCode';
+  import { ClientCode, clientCodeColorMap, clientCodeI18nMap } from '#/enums/clientCode';
+  import { useClientOptions } from '#/hooks/useClientOptions';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
@@ -32,20 +33,25 @@
     color?: string;
   }
 
-  // Tab 配置列表
-  const tabItems: TabItem[] = [
-    // 运营端
-    { key: 'admin', label: 'common.clientAdmin', clientCode: 'admin', color: 'blue' },
-    // 商户端
-    { key: 'merchant', label: 'common.clientMerchant', clientCode: 'merchant', color: 'purple' },
-  ];
+  // 终端主数据(排除 gateway, 用户管理仅 admin/merchant)
+  const { options: clientOptions } = useClientOptions(true);
+
+  // Tab 列表由主数据生成
+  const tabItems = computed<TabItem[]>(() =>
+    clientOptions.value.map((item) => ({
+      key: item.value,
+      label: item.label,
+      clientCode: item.value,
+      color: clientCodeColorMap[item.value],
+    })),
+  );
 
   // 权限
   const { confirm, message } = useMessage();
   const { hasPermission, hasAnyPermission } = usePermission();
 
   // 当前选中的 Tab，默认选中运营端
-  const activeTab = ref('admin');
+  const activeTab = ref(ClientCode.ADMIN);
 
   // 表格引用
   const xTable = ref<VxeTableInstance>();
@@ -134,10 +140,10 @@
    */
   function handleTabChange(key: string) {
     activeTab.value = key;
-    const tabItem = tabItems.find((item) => item.key === key);
+    const tabItem = tabItems.value.find((item) => item.key === key);
     queryForm.value.clientCode = tabItem?.clientCode || '';
     // 只有运营端才显示新增按钮
-    showAddButton.value = queryForm.value.clientCode === 'admin';
+    showAddButton.value = queryForm.value.clientCode === ClientCode.ADMIN;
     pageConfig.value.currentPage = 1;
     queryPage();
   }
@@ -422,7 +428,8 @@
       <a-tabs v-model:active-key="activeTab" size="small" class="user-list-tabs" @change="handleTabChange">
         <a-tab-pane v-for="tab in tabItems" :key="tab.key">
           <template #tab>
-            <span>{{ /* 国际化：根据Tab项获取显示标签 */ $t(tab.label) }}</span>
+            <!-- 标签名来自后端终端主数据(已按当前语言) -->
+            <span>{{ tab.label }}</span>
           </template>
         </a-tab-pane>
       </a-tabs>

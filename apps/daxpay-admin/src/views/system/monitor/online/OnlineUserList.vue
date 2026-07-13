@@ -10,9 +10,10 @@
 
   import { OnlineUserApi } from '#/api/system/online-user.api';
   import { BQuery, type QueryField } from '#/components/query';
-  import { clientCodeColorMap, clientCodeI18nMap } from '#/enums/clientCode';
-  import { useMessage } from '#/hooks/useMessage';
   import { PermCodes } from '#/constants/perm-codes';
+  import { clientCodeColorMap, clientCodeI18nMap } from '#/enums/clientCode';
+  import { useClientOptions } from '#/hooks/useClientOptions';
+  import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
   // 权限
@@ -35,6 +36,9 @@
   // 查询条件
   const queryForm = ref<Record<string, any>>({});
 
+  // 终端类型下拉(主数据, 排除 gateway)
+  const { options: clientCodeOptions } = useClientOptions(true);
+
   // 查询字段配置
   const queryFields = computed<QueryField[]>(() => [
     // 用户名称
@@ -48,12 +52,6 @@
       name: $t('system.monitor.online-user.clientCode'),
       selectList: clientCodeOptions.value,
     },
-  ]);
-
-  // 终端类型下拉选项
-  const clientCodeOptions = computed(() => [
-    { label: $t('common.clientAdmin'), value: 'admin' },
-    { label: $t('common.clientMerchant'), value: 'merchant' },
   ]);
 
   // 分页配置
