@@ -278,12 +278,14 @@
 
       <!-- 步骤2 输入验证码 -->
       <div v-if="current === 1" class="tf-step">
-        <!-- 一次性密码框(6位分格, 中间3-3分隔) -->
-        <a-input-otp v-model:value="confirmCode" :length="6" size="large">
-          <template #separator>
-            <span style="flex: 1; text-align: center; color: hsl(var(--muted-foreground))">-</span>
-          </template>
-        </a-input-otp>
+        <!-- 一次性密码框(6位分格, 中间3-3分隔; 固定宽度居中, 见 .tf-otp / CSS) -->
+        <div class="tf-otp">
+          <a-input-otp v-model:value="confirmCode" :length="6" size="large">
+            <template #separator>
+              <span class="tf-otp-sep">-</span>
+            </template>
+          </a-input-otp>
+        </div>
         <div class="tf-step__actions">
           <a-button @click="current = 0">{{ $t('profile.twoFactor.prev') }}</a-button>
           <a-button
@@ -371,11 +373,11 @@
           <a-radio-button value="TOTP" class="w-1/2 text-center">{{ $t('profile.twoFactor.totp') }}</a-radio-button>
           <a-radio-button value="BACKUP" class="w-1/2 text-center">{{ $t('profile.twoFactor.backup') }}</a-radio-button>
         </a-radio-group>
-        <!-- TOTP 动态码: 一次性密码框(6位分格, 中间3-3分隔) -->
+        <!-- TOTP 动态码: 一次性密码框(6位分格, 中间3-3分隔; 固定宽度居中) -->
         <div v-if="confirmModalCodeType === 'TOTP'" class="tf-otp">
           <a-input-otp v-model:value="confirmModalCode" :length="6">
             <template #separator>
-              <span style="flex: 1; text-align: center; color: hsl(var(--muted-foreground))">-</span>
+              <span class="tf-otp-sep">-</span>
             </template>
           </a-input-otp>
         </div>
@@ -498,14 +500,40 @@
     letter-spacing: 1px;
   }
 
-  /* OTP 6格占满宽度, 中间分隔符弹性撑开分成3-3两组
-     用本组件元素(.tf-step / .tf-otp)做 :deep 锚点, teleport 后祖先仍带 scope id */
-  .tf-step :deep(.ant-otp),
+  /* OTP 固定宽度居中; 仅中间显示 3-3 分隔符
+     用本组件元素(.tf-otp)做 :deep 锚点, teleport 后祖先仍带 scope id */
+  .tf-otp {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
   .tf-otp :deep(.ant-otp) {
     display: flex;
-    width: 100%;
+    /* 固定宽度, 避免占满 Card 横向拉散 */
+    width: 320px;
+    max-width: 100%;
     align-items: center;
-    gap: 4px;
-    justify-content: space-between;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  /* antd 默认每位之间都有 separator, 先全部隐藏 */
+  .tf-otp :deep(.ant-otp-separator) {
+    display: none;
+  }
+
+  /* 只显示第 3 个输入后的 separator (DOM: wrap sep wrap sep wrap |sep| ...)
+     第 3 格为 nth-child(5), 其后 separator 为 nth-child(6) */
+  .tf-otp :deep(.ant-otp > .ant-otp-separator:nth-child(6)) {
+    display: inline-flex;
+    flex: none;
+    width: 16px;
+    justify-content: center;
+  }
+
+  .tf-otp-sep {
+    flex: none;
+    color: hsl(var(--muted-foreground));
   }
 </style>
