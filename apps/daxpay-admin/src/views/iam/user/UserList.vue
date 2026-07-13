@@ -201,32 +201,32 @@
         {
           key: 'assignRole',
           label: $t('iam.user.action.assignRole'),
-          disabled: !hasPermission(PermCodes.Iam.UserManager.ASSIGN_ROLE) || !isAdminClient.value,
+          disabled: !hasPermission(PermCodes.Iam.User.ASSIGN_ROLE) || !isAdminClient.value,
         },
         // 重置密码
         {
           key: 'resetPassword',
           label: $t('iam.user.action.resetPassword'),
-          disabled: !hasPermission(PermCodes.Iam.UserManager.RESET_PASSWORD),
+          disabled: !hasPermission(PermCodes.Iam.User.RESET_PASSWORD),
         },
         // 三方绑定
         {
           key: 'socialBind',
           label: $t('iam.user.action.socialBind'),
-          disabled: !hasPermission(PermCodes.Iam.UserManager.VIEW),
+          disabled: !hasPermission(PermCodes.Iam.User.VIEW),
         },
         { type: 'divider' },
         // 封禁
         {
           key: 'ban',
           label: $t('iam.user.action.ban'),
-          disabled: !hasPermission(PermCodes.Iam.UserManager.STATUS) || row.status === 'ban',
+          disabled: !hasPermission(PermCodes.Iam.User.STATUS) || row.status === 'ban',
         },
         // 解锁（后端 unlock 无条件置为 NORMAL，对 lock/ban 均生效）
         {
           key: 'unlock',
           label: $t('iam.user.action.unlock'),
-          disabled: !hasPermission(PermCodes.Iam.UserManager.STATUS) || row.status === 'normal',
+          disabled: !hasPermission(PermCodes.Iam.User.STATUS) || row.status === 'normal',
         },
       ],
       onClick: ({ key }: { key: string }) => {
@@ -272,19 +272,19 @@
         {
           key: 'ban',
           label: $t('iam.user.action.batchBan'),
-          disabled: selectedRows.value.length === 0 || !hasPermission(PermCodes.Iam.UserManager.STATUS),
+          disabled: selectedRows.value.length === 0 || !hasPermission(PermCodes.Iam.User.STATUS),
         },
         // 批量解锁
         {
           key: 'unlock',
           label: $t('iam.user.action.batchUnlock'),
-          disabled: selectedRows.value.length === 0 || !hasPermission(PermCodes.Iam.UserManager.STATUS),
+          disabled: selectedRows.value.length === 0 || !hasPermission(PermCodes.Iam.User.STATUS),
         },
         // 批量重置密码
         {
           key: 'resetPassword',
           label: $t('iam.user.action.batchResetPassword'),
-          disabled: selectedRows.value.length === 0 || !hasPermission(PermCodes.Iam.UserManager.RESET_PASSWORD),
+          disabled: selectedRows.value.length === 0 || !hasPermission(PermCodes.Iam.User.RESET_PASSWORD),
         },
       ],
       onClick: ({ key }: { key: string }) => {
@@ -438,14 +438,14 @@
             <a-space>
               <!-- 新增 -->
               <a-button
-                v-if="showAddButton && hasPermission(PermCodes.Iam.UserManager.MANAGE)"
+                v-if="showAddButton && hasPermission(PermCodes.Iam.User.MANAGE)"
                 type="primary"
                 @click="handleAdd"
               >
                 {{ $t('common.add') }}
               </a-button>
               <a-dropdown
-                v-if="hasAnyPermission([PermCodes.Iam.UserManager.STATUS, PermCodes.Iam.UserManager.RESET_PASSWORD])"
+                v-if="hasAnyPermission([PermCodes.Iam.User.STATUS, PermCodes.Iam.User.RESET_PASSWORD])"
                 :menu="getBatchActionMenu()"
               >
                 <!-- 操作 -->
@@ -509,12 +509,12 @@
                   <a-divider type="vertical" />
                 </template>
                 <!-- 查看 -->
-                <a v-if="hasPermission(PermCodes.Iam.UserManager.VIEW)" href="javascript:" @click="handleView(row)">{{
+                <a v-if="hasPermission(PermCodes.Iam.User.VIEW)" href="javascript:" @click="handleView(row)">{{
                   $t('common.view')
                 }}</a>
                 <!-- 编辑 -->
                 <a
-                  v-if="hasPermission(PermCodes.Iam.UserManager.MANAGE)"
+                  v-if="hasPermission(PermCodes.Iam.User.MANAGE)"
                   href="javascript:"
                   :class="isAdminClient ? '' : 'ant-typography-disabled'"
                   :style="isAdminClient ? '' : 'pointer-events: none; color: rgba(0, 0, 0, 0.25);'"

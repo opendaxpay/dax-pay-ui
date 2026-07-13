@@ -31,7 +31,7 @@
   const sandbox = ref(false);
 
   // 富友权限码
-  const canEdit = computed(() => hasPermission(PermCodes.Payment.Fuyou.MANAGE));
+  const canEdit = computed(() => hasPermission(PermCodes.Payment.Isv.MANAGE));
 
   const drawerTitle = $t('payment.channel.fuyouIsv.configTitle');
 

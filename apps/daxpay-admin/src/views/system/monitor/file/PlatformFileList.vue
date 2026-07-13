@@ -162,7 +162,7 @@
           <!-- 文件名称 -->
           <vxe-column field="filename" :title="$t('system.file.platform.field.filename')" :min-width="220">
             <template #default="{ row }">
-              <a v-if="hasPermission(PermCodes.System.FilePlatform.VIEW)" href="javascript:" @click="handleView(row)">{{
+              <a v-if="hasPermission(PermCodes.System.File.VIEW)" href="javascript:" @click="handleView(row)">{{
                 row.filename
               }}</a>
               <span v-else>{{ row.filename }}</span>
@@ -214,11 +214,11 @@
                   <a-divider type="vertical" />
                 </template>
                 <!-- 预览 -->
-                <a v-if="hasPermission(PermCodes.System.FilePlatform.VIEW)" href="javascript:" @click="handlePreview(row)">{{
+                <a v-if="hasPermission(PermCodes.System.File.VIEW)" href="javascript:" @click="handlePreview(row)">{{
                   $t('system.file.platform.action.preview')
                 }}</a>
                 <!-- 下载 -->
-                <a v-if="hasPermission(PermCodes.System.FilePlatform.VIEW)" href="javascript:" @click="handleDownload(row)">{{
+                <a v-if="hasPermission(PermCodes.System.File.VIEW)" href="javascript:" @click="handleDownload(row)">{{
                   $t('system.file.platform.action.download')
                 }}</a>
               </a-space>

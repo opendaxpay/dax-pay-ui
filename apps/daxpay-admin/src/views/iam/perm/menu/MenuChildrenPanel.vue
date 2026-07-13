@@ -241,7 +241,7 @@
               style="width: 280px"
             />
             <a-button
-              v-if="panelMode === 'menuChildren' && hasPermission(PermCodes.Iam.PermMenu.MANAGE)"
+              v-if="panelMode === 'menuChildren' && hasPermission(PermCodes.Iam.Menu.MANAGE)"
               type="primary"
               @click="emits('addGroup', selectedNode!)"
             >
@@ -250,7 +250,7 @@
             <a-button
               v-if="
                 (panelMode === 'menuChildren' || panelMode === 'groupSubpages') &&
-                hasPermission(PermCodes.Iam.PermMenu.MANAGE)
+                hasPermission(PermCodes.Iam.Menu.MANAGE)
               "
               type="primary"
               @click="emits('addSubpage', selectedNode!)"
@@ -271,7 +271,7 @@
           <vxe-column field="titleCn" :title="$t('iam.menu.titleCn')" :min-width="140">
             <template #default="{ row }">
               <a
-                v-if="hasPermission(PermCodes.Iam.PermMenu.VIEW)"
+                v-if="hasPermission(PermCodes.Iam.Menu.VIEW)"
                 href="javascript:"
                 class="vben-link"
                 @click="emits('view', row)"
@@ -296,7 +296,7 @@
                   <a-divider type="vertical" />
                 </template>
                 <a-button
-                  v-if="hasPermission(PermCodes.Iam.PermMenu.MANAGE)"
+                  v-if="hasPermission(PermCodes.Iam.Menu.MANAGE)"
                   type="link"
                   size="small"
                   @click="emits('edit', row)"
@@ -304,7 +304,7 @@
                   {{ $t('common.edit') }}
                 </a-button>
                 <a-button
-                  v-if="canManagePermCode(row) && hasPermission(PermCodes.Iam.PermMenu.MANAGE)"
+                  v-if="canManagePermCode(row) && hasPermission(PermCodes.Iam.Menu.MANAGE)"
                   type="link"
                   size="small"
                   @click="emits('managePermCode', row)"
@@ -312,7 +312,7 @@
                   {{ $t('iam.menu.managePermCode') }}
                 </a-button>
                 <a-button
-                  v-if="hasPermission(PermCodes.Iam.PermMenu.MANAGE)"
+                  v-if="hasPermission(PermCodes.Iam.Menu.MANAGE)"
                   type="link"
                   size="small"
                   danger

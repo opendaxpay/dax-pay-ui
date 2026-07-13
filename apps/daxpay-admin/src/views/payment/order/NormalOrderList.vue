@@ -356,8 +356,8 @@
    */
   function getActionMenu(row: NormalOrderResult): MenuProps {
     const items: { danger?: boolean; key: string; label: string }[] = [];
-    const canManage = hasPermission(PermCodes.Payment.Order.MANAGE);
-    const canRefund = hasPermission(PermCodes.Payment.Refund.MANAGE);
+    const canManage = hasPermission(PermCodes.Trade.Order.MANAGE);
+    const canRefund = hasPermission(PermCodes.Trade.Refund.MANAGE);
     const isTerminal = row.status === 'closed' || row.status === 'expired';
     // 退款(已支付 + 退款权限)
     if (canRefund && row.status === 'paid') {

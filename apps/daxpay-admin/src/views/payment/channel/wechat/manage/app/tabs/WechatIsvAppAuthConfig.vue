@@ -25,7 +25,7 @@
   const formState = ref<WechatIsvAppAuthConfig>({});
   const originalForm = ref<WechatIsvAppAuthConfig>({});
 
-  const canEdit = computed(() => hasPermission(PermCodes.Payment.WechatIsv.MANAGE));
+  const canEdit = computed(() => hasPermission(PermCodes.Payment.Isv.MANAGE));
 
   /** AppSecret 提示文案（按应用类型） */
   const appSecretTooltip = computed(() => {

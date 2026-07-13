@@ -242,7 +242,7 @@
                   {{ $t('common.view') }}
                 </a-button>
                 <a-button
-                  v-if="hasPermission(PermCodes.Payment.Refund.MANAGE)"
+                  v-if="hasPermission(PermCodes.Trade.Refund.MANAGE)"
                   type="link"
                   size="small"
                   :loading="actionLoading"

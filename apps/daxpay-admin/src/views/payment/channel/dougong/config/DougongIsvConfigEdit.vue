@@ -31,7 +31,7 @@
   const form = ref<DougongIsvKeyConfig>({} as DougongIsvKeyConfig);
   let rawForm: Record<string, any> = {};
 
-  const canEdit = computed(() => hasPermission(PermCodes.Payment.Dougong.MANAGE));
+  const canEdit = computed(() => hasPermission(PermCodes.Payment.Isv.MANAGE));
 
   // 斗拱服务商密钥配置
   const drawerTitle = $t('payment.channel.dougongIsv.configTitle');

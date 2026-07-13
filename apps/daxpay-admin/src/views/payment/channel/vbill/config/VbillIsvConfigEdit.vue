@@ -30,7 +30,7 @@
   // 当前环境(由管理页传入)
   const sandbox = ref(false);
 
-  const canEdit = computed(() => hasPermission(PermCodes.Payment.Vbill.MANAGE));
+  const canEdit = computed(() => hasPermission(PermCodes.Payment.Isv.MANAGE));
 
   const drawerTitle = $t('payment.channel.vbillIsv.configTitle');
 

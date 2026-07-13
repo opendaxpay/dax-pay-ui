@@ -368,11 +368,11 @@
           <vxe-toolbar ref="skeletonToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
             <template #buttons>
               <a-space>
-                <a-button v-if="hasPermission(PermCodes.Iam.PermMenu.MANAGE)" type="primary" @click="handleAdd">
+                <a-button v-if="hasPermission(PermCodes.Iam.Menu.MANAGE)" type="primary" @click="handleAdd">
                   {{ $t('common.add') }}
                 </a-button>
                 <a-button
-                  v-if="hasPermission(PermCodes.Iam.PermMenu.MANAGE)"
+                  v-if="hasPermission(PermCodes.Iam.Menu.MANAGE)"
                   :loading="scanLoading"
                   @click="handleScanPermCode"
                 >
@@ -439,7 +439,7 @@
                           <a-divider type="vertical" />
                         </template>
                         <a-button
-                          v-if="hasPermission(PermCodes.Iam.PermMenu.VIEW)"
+                          v-if="hasPermission(PermCodes.Iam.Menu.VIEW)"
                           type="link"
                           size="small"
                           @click.stop="handleView(row)"
@@ -447,7 +447,7 @@
                           {{ $t('common.view') }}
                         </a-button>
                         <a-button
-                          v-if="hasPermission(PermCodes.Iam.PermMenu.MANAGE)"
+                          v-if="hasPermission(PermCodes.Iam.Menu.MANAGE)"
                           type="link"
                           size="small"
                           @click.stop="handleEdit(row)"
@@ -455,7 +455,7 @@
                           {{ $t('common.edit') }}
                         </a-button>
                         <a-button
-                          v-if="canManagePermCode(row) && hasPermission(PermCodes.Iam.PermMenu.MANAGE)"
+                          v-if="canManagePermCode(row) && hasPermission(PermCodes.Iam.Menu.MANAGE)"
                           type="link"
                           size="small"
                           @click.stop="handleManagePermCode(row)"
@@ -463,7 +463,7 @@
                           {{ $t('iam.menu.managePermCode') }}
                         </a-button>
                         <a-dropdown
-                          v-if="hasPermission(PermCodes.Iam.PermMenu.MANAGE)"
+                          v-if="hasPermission(PermCodes.Iam.Menu.MANAGE)"
                           :menu="getActionMenu(row)"
                           @click.stop
                         >

@@ -123,7 +123,7 @@
         {
           key: 'kickout',
           label: $t('system.monitor.online-user.kickout'),
-          disabled: !hasPermission(PermCodes.Iam.OnlineUser.KICKOUT),
+          disabled: !hasPermission(PermCodes.Iam.Online.KICKOUT),
         },
       ],
       onClick: ({ key }: { key: string }) => {
@@ -144,7 +144,7 @@
         {
           key: 'kickout',
           label: $t('system.monitor.online-user.batchKickout'),
-          disabled: selectedRows.value.length === 0 || !hasPermission(PermCodes.Iam.OnlineUser.KICKOUT),
+          disabled: selectedRows.value.length === 0 || !hasPermission(PermCodes.Iam.Online.KICKOUT),
         },
       ],
       onClick: ({ key }: { key: string }) => {
@@ -190,7 +190,7 @@
         <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
           <template #buttons>
             <a-space>
-              <a-dropdown v-if="hasPermission(PermCodes.Iam.OnlineUser.KICKOUT)" :menu="getBatchActionMenu()">
+              <a-dropdown v-if="hasPermission(PermCodes.Iam.Online.KICKOUT)" :menu="getBatchActionMenu()">
                 <a-button>
                   {{ $t('common.operation') }}
                   <IconifyIcon icon="ant-design:down-outlined" class="inline" />

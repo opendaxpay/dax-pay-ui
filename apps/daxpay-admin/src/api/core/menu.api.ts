@@ -93,7 +93,7 @@ function filterButtonMenus(menus: PermMenuResult[]): PermMenuResult[] {
 
 /**
  * 过滤仅作权限锚点、无路由信息的菜单节点
- * 中文：如 payment:alipay:isv / payment:wechat:isv 仅用于 @PermCode menuCode 挂载，无 path/component
+ * 中文：如 payment:isv / payment:isv 仅用于 @PermCode menuCode 挂载，无 path/component
  */
 function filterPermissionAnchorMenus(menus: PermMenuResult[]): PermMenuResult[] {
   return menus

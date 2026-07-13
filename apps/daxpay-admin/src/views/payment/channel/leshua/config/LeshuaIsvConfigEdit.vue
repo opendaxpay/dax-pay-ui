@@ -31,7 +31,7 @@
   const sandbox = ref(false);
 
   // 乐刷权限码(参考 lakala, 需在 PermCodes 中注册)
-  const canEdit = computed(() => hasPermission(PermCodes.Payment.Lakala.MANAGE));
+  const canEdit = computed(() => hasPermission(PermCodes.Payment.Isv.MANAGE));
 
   const drawerTitle = $t('payment.channel.leshuaIsv.configTitle');
 

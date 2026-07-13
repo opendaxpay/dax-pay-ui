@@ -291,7 +291,7 @@
                   {{ $t('common.view') }}
                 </a-button>
                 <a-button
-                  v-if="hasPermission(PermCodes.Payment.Trade.MANAGE)"
+                  v-if="hasPermission(PermCodes.Trade.Fund.MANAGE)"
                   type="link"
                   size="small"
                   :loading="actionLoading"
@@ -300,7 +300,7 @@
                   {{ $t('payment.order.action.sync') }}
                 </a-button>
                 <a-button
-                  v-if="hasPermission(PermCodes.Payment.Trade.MANAGE)"
+                  v-if="hasPermission(PermCodes.Trade.Fund.MANAGE)"
                   type="link"
                   size="small"
                   danger

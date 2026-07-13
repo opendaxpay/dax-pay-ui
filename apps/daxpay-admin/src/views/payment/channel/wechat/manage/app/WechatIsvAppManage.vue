@@ -24,7 +24,7 @@
   const editRef = ref<InstanceType<typeof WechatIsvAppEdit>>();
   const detailRef = ref<InstanceType<typeof WechatIsvAppDetail>>();
 
-  const canAdd = computed(() => hasPermission(PermCodes.Payment.WechatIsv.MANAGE));
+  const canAdd = computed(() => hasPermission(PermCodes.Payment.Isv.MANAGE));
 
   function loadAppList() {
     loading.value = true;

@@ -24,7 +24,7 @@
   const editRef = ref<InstanceType<typeof AlipayIsvAppEdit>>();
   const detailRef = ref<InstanceType<typeof AlipayIsvAppDetail>>();
 
-  const canAdd = computed(() => hasPermission(PermCodes.Payment.AlipayIsv.MANAGE));
+  const canAdd = computed(() => hasPermission(PermCodes.Payment.Isv.MANAGE));
 
   /**
    * 加载应用列表

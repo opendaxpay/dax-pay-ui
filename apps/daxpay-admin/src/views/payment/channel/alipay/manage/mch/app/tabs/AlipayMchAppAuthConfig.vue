@@ -28,7 +28,7 @@
     userIdType: 'openid',
   });
 
-  const canEdit = computed(() => hasPermission(PermCodes.Channel.AlipayApp.MANAGE));
+  const canEdit = computed(() => hasPermission(PermCodes.Channel.App.MANAGE));
 
   /** 表单校验规则 */
   const formRules = computed(() => ({

@@ -227,14 +227,14 @@
           <a-button @click="emit('update:visible', false)">
             {{ $t('common.close') }}
           </a-button>
-          <a-button v-if="hasPermission(PermCodes.Merchant.NotifyConfig.UPDATE)" type="primary" @click="handleEdit">
+          <a-button v-if="hasPermission(PermCodes.Merchant.NotifyConfig.MANAGE)" type="primary" @click="handleEdit">
             {{ $t('common.edit') }}
           </a-button>
         </template>
         <template v-else>
           <a-button @click="handleCancel">{{ $t('common.cancelText') }}</a-button>
           <a-button
-            v-if="hasPermission(PermCodes.Merchant.NotifyConfig.UPDATE)"
+            v-if="hasPermission(PermCodes.Merchant.NotifyConfig.MANAGE)"
             type="primary"
             :loading="saving"
             @click="handleSave"

@@ -53,7 +53,7 @@
   const editRef = ref<InstanceType<typeof DouyinMchAppEdit>>();
   const detailRef = ref<InstanceType<typeof DouyinMchAppDetail>>();
 
-  const canAdd = computed(() => hasPermission(PermCodes.Channel.DouyinApp.MANAGE));
+  const canAdd = computed(() => hasPermission(PermCodes.Channel.App.MANAGE));
 
   const pageTitle = computed(() => {
     const base = $t('payment.channel.douyinMchApp.appManageTitle');
