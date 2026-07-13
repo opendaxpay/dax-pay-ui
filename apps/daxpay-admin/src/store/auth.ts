@@ -23,7 +23,7 @@ export const useAuthStore = defineStore('auth', () => {
 
   const loginLoading = ref(false);
 
-  // 双因素认证挑战状态
+  // 是否处于双因素二次验证
   const twoFactorRequired = ref(false);
   const twoFactorPreAuthToken = ref('');
 
@@ -36,9 +36,9 @@ export const useAuthStore = defineStore('auth', () => {
     let userInfo: null | UserInfo = null;
     try {
       loginLoading.value = true;
-      // 中文注释：对密码进行RSA加密
+      // 对密码进行 RSA 加密
       const encryptedPassword = await encryptPassword(params.password);
-      // 中文注释：登录协议固定对齐后端真实接口，避免继续命中 Mock 参数结构。
+      // 登录协议对齐后端真实接口, 避免命中 Mock 参数结构
       const loginResult = await AuthApi.login({
         account: params.account,
         client: CLIENT_CODE,
@@ -49,7 +49,7 @@ export const useAuthStore = defineStore('auth', () => {
         captchaCode: params.captchaCode,
       });
 
-      // 双因素认证挑战: 密码通过但需二次验证, 记录预认证令牌并切到验证界面
+      // 密码通过但需二次验证: 记录预认证令牌并切到验证界面
       if (loginResult.code === TWO_FACTOR_REQUIRED_CODE) {
         enterTwoFactor((loginResult.data as any)?.preAuthToken ?? '');
         return { userInfo: null };
@@ -106,7 +106,7 @@ export const useAuthStore = defineStore('auth', () => {
         accessStore.setAccessToken(accessToken);
         userInfo = await fetchUserInfo();
         userStore.setUserInfo(userInfo!);
-        // 清除 2FA 挑战状态
+        // 清除双因素二次验证状态
         twoFactorRequired.value = false;
         twoFactorPreAuthToken.value = '';
         await router.push(HOME_PATH);
@@ -126,7 +126,7 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   /**
-   * 进入双因素挑战(密码登录或社交登录回调共用)
+   * 进入双因素二次验证(密码登录或社交登录回调共用)
    */
   function enterTwoFactor(preAuthToken: string) {
     twoFactorPreAuthToken.value = preAuthToken ?? '';

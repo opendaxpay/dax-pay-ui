@@ -114,5 +114,5 @@ export interface SecondVerifyParams {
   codeType?: string;
 }
 
-/** 双因素认证挑战响应码(后端 TwoFactorRequiredException.CODE) */
+/** 需双因素二次验证的业务码(后端 TwoFactorRequiredException.CODE) */
 export const TWO_FACTOR_REQUIRED_CODE = 40_101;

@@ -23,7 +23,7 @@
   const accessStore = useAccessStore();
   const authStore = useAuthStore();
 
-  // 是否展示页内 2FA 面板(社交登录触发挑战)
+  // 是否展示页内 2FA 面板(社交登录触发二次验证)
   const showTwoFactor = ref(false);
 
   // 路径参数中的平台编码(如 gitee), 可能为空(旧地址兼容)
@@ -63,7 +63,7 @@
     }
     try {
       const res = await SocialApi.exchangeLogin(oauthCode, state as string, source.value, CLIENT_CODE);
-      // 双因素挑战: 拦截器对 40101 返回 body, 不当 reject
+      // 需二次验证: 拦截器对 40101 返回 body, 不按失败 reject
       if (res.code === TWO_FACTOR_REQUIRED_CODE) {
         const preAuthToken = (res.data as any)?.preAuthToken ?? '';
         authStore.enterTwoFactor(preAuthToken);

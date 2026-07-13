@@ -20,8 +20,8 @@ import { useAuthStore } from '#/store';
 
 const { apiURL } = useAppConfig(import.meta.env, import.meta.env.PROD);
 
-// 双因素认证挑战响应码(与后端 TwoFactorRequiredException.CODE 对齐)
-// 此码代表"密码通过但需二次验证", 非真正错误, 需放行返回 body(含 preAuthToken)
+// 需双因素二次验证的业务码(与后端 TwoFactorRequiredException.CODE 对齐)
+// 表示密码已通过但仍需二次验证, 不是真正错误; 应把响应体(含 preAuthToken)交给业务层
 const TWO_FACTOR_REQUIRED_CODE = 40_101;
 
 function createRequestClient(baseURL: string, options?: RequestClientOptions) {
@@ -76,7 +76,7 @@ function createRequestClient(baseURL: string, options?: RequestClientOptions) {
     }),
   );
 
-  // 双因素认证挑战拦截器: code=40101 时不当错误处理, 返回 body 供业务层识别切换二次验证
+  // 双因素二次验证拦截器: code=40101 时不按错误处理, 返回 body 供业务层切换二次验证页
   client.addResponseInterceptor({
     rejected: (error: any) => {
       const body = error?.response?.data;
