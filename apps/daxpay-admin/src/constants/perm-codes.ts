@@ -6,10 +6,11 @@
  * | 要点 | 说明 |
  * |------|------|
  * | 与后端对齐 | 值必须等于 @PermCode 扫描出的完整码 `menuCode:code` |
+ * | 后端常量 | `daxpay-platform-core` → `cn.daxpay.open.platform.core.code.PermCodes`（嵌套 interface：`MENU` + `Action`，非完整码） |
  * | 命名约定 | 全部使用下划线（`security_config` 非 `securityConfig`），键名用业务语义 |
  * | 粒度约定 | 标准为 `VIEW` + `MANAGE`（`MANAGE` 含增删改）；仅查看的只保留 `VIEW` |
  * | 特殊操作 | `PUBLISH`/`KICKOUT`/`RESET_PASSWORD`/`ASSIGN_ROLE`/`STATUS`/`SIGN`/`PAY`/`CREDENTIAL_CONFIG_UPDATE` 独立保留 |
- * | menu_code | 菜单注册（iam_perm_menu）用，**不**写入本文件 |
+ * | menu_code | 菜单注册（iam_perm_menu）用，**不**写入本文件；后端 `PermCodes.*.MENU` 与之对应 |
  * | 顶级域 | merchant / channel / payment / develop / device / iam / system 七域 |
  * | 使用方式 | 模板：`v-if="hasPermission(PermCodes....)"` / `hasAnyPermission([...])`（`usePermission`）；脚本：同上 |
  * | 已移除 | v-access 指令已删除，仅用 `usePermission` |
