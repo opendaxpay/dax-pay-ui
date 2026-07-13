@@ -27,7 +27,6 @@
    */
   function validateFile(file: File): boolean {
     if (file.size > MAX_FILE_SIZE) {
-      // 国际化：文件大小超出限制，最大10MB
       message.error($t('demos.file-upload.fileTooLarge'));
       return false;
     }
@@ -44,7 +43,6 @@
       return;
     }
 
-    // 国际化：上传中...
     const hideLoading = message.loading($t('demos.file-upload.uploading'), 0);
 
     const { filename } = await uploadPlatformFile(file, {
@@ -63,7 +61,6 @@
     publicFileList.value = [...publicFileList.value, uploadFile];
 
     hideLoading();
-    // 国际化：上传成功
     message.success($t('demos.file-upload.uploadSuccess'));
     options.onSuccess?.({}, file);
   }
@@ -78,7 +75,6 @@
       return;
     }
 
-    // 国际化：上传中...
     const hideLoading = message.loading($t('demos.file-upload.uploading'), 0);
 
     const { filename } = await uploadPlatformFile(file, {
@@ -97,7 +93,6 @@
     privateFileList.value = [...privateFileList.value, uploadFile];
 
     hideLoading();
-    // 国际化：上传成功
     message.success($t('demos.file-upload.uploadSuccess'));
     options.onSuccess?.({}, file);
   }
@@ -108,12 +103,10 @@
   async function handleRemovePublic(file: UploadFile) {
     const filename = file.uid;
     confirm({
-      // 国际化：确定要删除该文件吗？
       title: $t('demos.file-upload.deleteConfirm'),
       onOk: async () => {
         publicFiles.value = publicFiles.value.filter((f) => f.filename !== filename);
         publicFileList.value = publicFileList.value.filter((f) => f.uid !== file.uid);
-        // 国际化：删除成功
         message.success($t('demos.file-upload.deleteSuccess'));
       },
     });
@@ -126,12 +119,10 @@
   async function handleRemovePrivate(file: UploadFile) {
     const filename = file.uid;
     confirm({
-      // 国际化：确定要删除该文件吗？
       title: $t('demos.file-upload.deleteConfirm'),
       onOk: async () => {
         privateFiles.value = privateFiles.value.filter((f) => f.filename !== filename);
         privateFileList.value = privateFileList.value.filter((f) => f.uid !== file.uid);
-        // 国际化：删除成功
         message.success($t('demos.file-upload.deleteSuccess'));
       },
     });

@@ -27,7 +27,6 @@ const DEFAULT_DESCRIPTION_KEY = 'components.deleteConfirm.description';
 /** 全局单例状态，供 DeleteConfirmModal 绑定 */
 export const deleteConfirmState = reactive({
   visible: false,
-  // 国际化：确认删除标题
   title: $t('components.deleteConfirm.title'),
   name: '',
   verificationText: '',
@@ -52,7 +51,6 @@ export function closeDeleteConfirm() {
   deleteConfirmState.verificationText = '';
   deleteConfirmState.descriptionParams = {};
   deleteConfirmState.descriptionKey = DEFAULT_DESCRIPTION_KEY;
-  // 国际化：确认删除标题
   deleteConfirmState.title = $t('components.deleteConfirm.title');
 }
 
@@ -68,7 +66,6 @@ export function useDeleteConfirm() {
     deleteConfirmState.verificationText = options.verificationText;
     deleteConfirmState.descriptionKey = options.descriptionKey ?? DEFAULT_DESCRIPTION_KEY;
     deleteConfirmState.descriptionParams = { ...options.descriptionParams };
-    // 国际化：确认删除标题
     deleteConfirmState.title = options.title ?? $t('components.deleteConfirm.title');
     deleteConfirmState.onConfirm = options.onConfirm;
     deleteConfirmState.onCancel = options.onCancel ?? null;

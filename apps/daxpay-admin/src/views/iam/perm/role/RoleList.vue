@@ -43,21 +43,18 @@
       type: 'string',
       field: 'code',
       name: $t('iam.role.code'),
-      // 国际化：请输入角色编码
       placeholder: $t('iam.role.inputCode'),
     },
     {
       type: 'string',
       field: 'nameCn',
       name: $t('common.chineseName'),
-      // 国际化：请输入名称(中文)
       placeholder: $t('iam.role.inputNameCn'),
     },
     {
       type: 'list',
       field: 'clientCode',
       name: $t('common.clientType'),
-      // 国际化：请选择终端类型
       placeholder: $t('iam.role.selectClientCode'),
       selectList: clientCodeSelectOptions.value,
     },
@@ -164,7 +161,6 @@
     openDeleteConfirm({
       name: row.nameCn || row.code || '',
       verificationText: `iam/role/${row.code}`,
-      // 国际化：删除角色
       title: $t('iam.role.delete'),
       onConfirm: () =>
         RoleApi.delete(row.id!).then(() => {

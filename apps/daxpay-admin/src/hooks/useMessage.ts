@@ -22,11 +22,8 @@ function withConfirmDefaults(config: ModalConfig): ModalConfig {
   const { title, okText, cancelText, ...rest } = config;
   return {
     ...rest,
-    // 国际化：提示（与退出登录等通用二次确认一致）
     title: title ?? $t('common.prompt'),
-    // 国际化：确定
     okText: okText ?? $t('common.okText'),
-    // 国际化：取消
     cancelText: cancelText ?? $t('common.cancelText'),
   };
 }
@@ -39,7 +36,6 @@ function withAlertDefaults(config: ModalConfig, defaultTitleKey: string): ModalC
   return {
     ...rest,
     title: title ?? $t(defaultTitleKey),
-    // 国际化：确定
     okText: okText ?? $t('common.okText'),
   };
 }
@@ -71,7 +67,6 @@ export function useMessage() {
    * 提示信息框
    */
   function info(config: ModalConfig) {
-    // 国际化：提示
     const merged = withAlertDefaults(config, 'common.prompt');
     if (antdAppContext) {
       return antdAppContext.modal.info(merged);
@@ -83,7 +78,6 @@ export function useMessage() {
    * 警告信息框
    */
   function warning(config: ModalConfig) {
-    // 国际化：警告
     const merged = withAlertDefaults(config, 'common.warning');
     if (antdAppContext) {
       return antdAppContext.modal.warning(merged);
@@ -95,7 +89,6 @@ export function useMessage() {
    * 错误信息框
    */
   function error(config: ModalConfig) {
-    // 国际化：错误
     const merged = withAlertDefaults(config, 'common.error');
     if (antdAppContext) {
       return antdAppContext.modal.error(merged);
@@ -107,7 +100,6 @@ export function useMessage() {
    * 成功信息框
    */
   function success(config: ModalConfig) {
-    // 国际化：成功
     const merged = withAlertDefaults(config, 'common.success');
     if (antdAppContext) {
       return antdAppContext.modal.success(merged);

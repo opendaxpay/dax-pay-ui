@@ -69,15 +69,12 @@
   const functionCards = computed((): WorkbenchGroup[] => {
     const groups: WorkbenchGroup[] = [];
 
-    // 国际化：支付配置
     const paymentCards: WorkbenchCard[] = [];
     if (hasPermission(PermCodes.Merchant.AppRoute.VIEW)) {
       paymentCards.push({
         key: 'payRoute',
-        // 国际化：通道路由
         title: $t('payment.merchant.app.app.payRoute'),
         icon: 'ant-design:node-index-outlined',
-        // 国际化：配置支付方式的通道匹配与路由策略
         description: $t('payment.merchant.app.app.payRouteDesc'),
         route: '/payment/merchant/route',
       });
@@ -85,10 +82,8 @@
     if (hasPermission(PermCodes.Merchant.GatewayAggregate.VIEW)) {
       paymentCards.push({
         key: 'aggregateScan',
-        // 国际化：码牌和聚合支付
         title: $t('payment.merchant.app.app.aggregateScan'),
         icon: 'ant-design:qrcode-outlined',
-        // 国际化：配置聚合收款码与码牌支付规则，同时影响支付码牌相关配置
         description: $t('payment.merchant.app.app.aggregateScanDesc'),
         route: '/payment/merchant/aggregate',
       });
@@ -96,10 +91,8 @@
     if (hasPermission(PermCodes.Merchant.GatewayCashier.VIEW)) {
       paymentCards.push({
         key: 'cashier',
-        // 国际化：收银台配置
         title: $t('payment.merchant.app.app.cashierConfig'),
         icon: 'ant-design:desktop-outlined',
-        // 国际化：配置收银台展示项与支付方式
         description: $t('payment.merchant.app.app.cashierConfigDesc'),
         route: '/payment/merchant/cashier',
       });
@@ -107,69 +100,56 @@
     if (hasPermission(PermCodes.Merchant.NotifyConfig.VIEW)) {
       paymentCards.push({
         key: 'notify',
-        // 国际化：通知配置
         title: $t('payment.merchant.app.app.notifyConfig'),
         icon: 'ant-design:notification-outlined',
-        // 国际化：配置业务事件回调地址与订阅事件
         description: $t('payment.merchant.app.app.notifyConfigDesc'),
         action: 'notify',
       });
     }
     if (paymentCards.length > 0) {
       groups.push({
-        // 国际化：支付配置
         group: $t('payment.merchant.app.app.groupConfig'),
         color: 'green',
         cards: paymentCards,
       });
     }
 
-    // 国际化：应用管理
     const manageCards: WorkbenchCard[] = [];
     if (hasPermission(PermCodes.Merchant.App.MANAGE)) {
       manageCards.push({
         key: 'edit',
-        // 国际化：编辑
         title: $t('payment.merchant.app.app.edit'),
         icon: 'ant-design:edit-outlined',
-        // 国际化：修改应用名称、启用状态等基本信息
         description: $t('payment.merchant.app.app.editDesc'),
         action: 'edit',
       });
       if (appInfo.value.defaultApp) {
         manageCards.push({
           key: 'cancelDefault',
-          // 国际化：取消默认
           title: $t('payment.merchant.app.app.cancelDefault'),
           icon: 'ant-design:star-filled',
-          // 国际化：取消后需重新指定默认应用
           description: $t('payment.merchant.app.app.cancelDefaultDesc'),
           action: 'cancelDefault',
         });
       } else {
         manageCards.push({
           key: 'setDefault',
-          // 国际化：设为默认
           title: $t('payment.merchant.app.app.setDefault'),
           icon: 'ant-design:star-outlined',
-          // 国际化：未指定应用时，交易默认落到该应用
           description: $t('payment.merchant.app.app.setDefaultDesc'),
           action: 'setDefault',
         });
       }
       manageCards.push({
         key: 'delete',
-        // 国际化：删除
         title: $t('payment.merchant.app.app.delete'),
         icon: 'ant-design:delete-outlined',
-        // 国际化：删除后不可恢复，请谨慎操作
         description: $t('payment.merchant.app.app.deleteDesc'),
         action: 'delete',
       });
     }
     if (manageCards.length > 0) {
       groups.push({
-        // 国际化：应用管理
         group: $t('payment.merchant.app.app.groupManage'),
         color: 'blue',
         cards: manageCards,

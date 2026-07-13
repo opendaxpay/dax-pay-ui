@@ -39,7 +39,6 @@
    * 抽屉标题
    */
   const drawerTitle = computed(() => {
-    // 国际化：通知配置
     const title = $t('payment.merchant.notifyConfig.notifyConfig.title');
     return props.appName ? `${title} (${props.appName})` : title;
   });

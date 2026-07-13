@@ -67,9 +67,7 @@
       return;
     }
     confirm({
-      // 国际化：再次确认删除
       title: $t('components.deleteConfirm.finalTitle'),
-      // 国际化：最终确认文案
       content: $t('components.deleteConfirm.finalContent', { name: deleteConfirmState.name }),
       okText: $t('components.deleteConfirm.confirmDelete'),
       cancelText: $t('common.cancelText'),

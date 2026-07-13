@@ -30,20 +30,17 @@
   /** 功能卡片配置 */
   const functionCards = computed(() => [
     {
-      // 国际化：基础管理
       group: $t('payment.merchant.channelMerchant.groupBasic'),
       color: 'blue',
       cards: [
         {
           key: 'basicInfo',
-          // 国际化：基本信息
           title: $t('payment.merchant.channelMerchant.cardBasicInfo'),
           icon: 'ant-design:info-circle-outlined',
           description: $t('payment.merchant.channelMerchant.cardBasicInfoDesc'),
         },
         {
           key: 'editMerchantName',
-          // 国际化：修改商户名称
           title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
           icon: 'ant-design:edit-outlined',
           description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),
@@ -51,25 +48,20 @@
       ],
     },
     {
-      // 国际化：应用管理
       group: $t('payment.channel.alipayMchManage.groupApp'),
       color: 'green',
       cards: [
         {
           key: 'mchApp',
-          // 国际化：通道商户应用
           title: $t('payment.channel.alipayMchManage.cardMchApp'),
           icon: 'ant-design:appstore-outlined',
-          // 国际化：管理支付宝通道商户应用
           description: $t('payment.channel.alipayMchManage.cardMchAppDesc'),
           route: '/payment/merchant/channel-merchant/alipay-app-manage',
         },
         {
           key: 'capabilityBinding',
-          // 国际化：能力应用绑定
           title: $t('payment.channel.alipayMchManage.cardCapabilityBinding'),
           icon: 'ant-design:api-outlined',
-          // 国际化：配置各支付能力使用的应用
           description: $t('payment.channel.alipayMchManage.cardCapabilityBindingDesc'),
         },
       ],
@@ -121,7 +113,6 @@
         query: {
           mchNo: mchNo.value,
           channelMchNo: channelMchNo.value,
-          // 国际化：透传通道商户 id，使应用管理页返回时能回到详情页（product 由应用管理页按渠道常量推断）
           channelMerchantId: channelMerchant.value.id,
         },
       });

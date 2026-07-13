@@ -246,7 +246,6 @@
   /** 取消编辑前二次确认 */
   function cancelSceneConfigEdit() {
     confirm({
-      // 国际化：取消编辑二次确认
       content: $t('common.confirmCancelContent'),
       onOk() {
         return doCancelSceneConfigEdit();
@@ -311,7 +310,6 @@
       return;
     }
     confirm({
-      // 国际化：场景模式保存二次确认
       content: $t('payment.merchant.route.route.sceneSaveConfirm'),
       onOk() {
         return doSaveSceneConfig();

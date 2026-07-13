@@ -37,7 +37,7 @@ export const AuthApi = {
     return requestClient.post('/token/logout');
   },
   /**
-   * 双因素认证二次验证(密码通过后凭预认证令牌 + 动态码完成登录)
+   * 二次验证(密码通过后凭临时凭证 + 动态码完成登录)
    */
   secondVerify(data: SecondVerifyParams): Promise<Result<string>> {
     return requestClient.post('/token/second-verify', data);
@@ -103,10 +103,10 @@ export interface CaptchaDataResult {
 }
 
 /**
- * 双因素认证二次验证参数
+ * 二次验证参数
  */
 export interface SecondVerifyParams {
-  /** 预认证令牌 */
+  /** 临时凭证 preAuthToken */
   preAuthToken: string;
   /** 动态码或备用验证码 */
   code: string;
@@ -114,5 +114,5 @@ export interface SecondVerifyParams {
   codeType?: string;
 }
 
-/** 需双因素二次验证的业务码(后端 TwoFactorRequiredException.CODE) */
+/** 需二次验证的业务码(后端 TwoFactorRequiredException.CODE) */
 export const TWO_FACTOR_REQUIRED_CODE = 40_101;

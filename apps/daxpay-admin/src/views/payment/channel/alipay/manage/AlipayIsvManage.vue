@@ -18,16 +18,13 @@
    */
   const functionCards = computed(() => [
     {
-      // 国际化：应用管理
       group: $t('payment.channel.alipayManage.groupApp'),
       color: 'green',
       cards: [
         {
           key: 'isvApp',
-          // 国际化：服务商应用
           title: $t('payment.channel.alipayManage.cardIsvApp'),
           icon: 'ant-design:appstore-outlined',
-          // 国际化：查看支付宝开放平台应用列表
           description: $t('payment.channel.alipayManage.cardIsvAppDesc'),
           route: '/payment/config/product/app-manage',
         },

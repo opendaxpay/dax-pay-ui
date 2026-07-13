@@ -49,7 +49,6 @@ export enum ProductEnum {
  */
 export const productI18nMap: Record<string, string> = {
   [ProductEnum.ALIPAY_ISV]: 'payment.product.enum.alipayIsv',
-  // 国际化：支付宝(直连)产品
   [ProductEnum.ALIPAY]: 'payment.product.enum.alipay',
   [ProductEnum.WECHAT_ISV]: 'payment.product.enum.wechatIsv',
   [ProductEnum.WECHAT_PAY]: 'payment.product.enum.wechatPay',
@@ -64,13 +63,9 @@ export const productI18nMap: Record<string, string> = {
   [ProductEnum.LESHUA_PAY]: 'payment.product.enum.leshuaPay',
   [ProductEnum.ADA_PAY]: 'payment.product.enum.adaPay',
   [ProductEnum.DOUGONG_PAY]: 'payment.product.enum.dougongPay',
-  // 国际化：海科融通支付产品
   [ProductEnum.HKRT_PAY]: 'payment.product.enum.hkrtPay',
-  // 国际化：随行付支付产品
   [ProductEnum.VBILL_PAY]: 'payment.product.enum.vbillPay',
-  // 国际化：河马付(杉德旗下产品)
   [ProductEnum.HM_PAY]: 'payment.product.enum.hmPay',
-  // 国际化：富友支付产品
   [ProductEnum.FUYOU_PAY]: 'payment.product.enum.fuyouPay',
 };
 

@@ -58,7 +58,6 @@
     formRef.value?.validate().then(() => {
       const id = props.channelMerchant.id;
       if (!id) {
-        // 国际化: 缺少通道商户编号
         message.warning($t('payment.merchant.channelMerchant.missingId'));
         return;
       }

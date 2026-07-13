@@ -64,7 +64,6 @@
     }
     confirm({
       title: $t('common.confirm'),
-      // 国际化：确定要保存角色分配吗？
       content: $t('iam.user.action.confirmAssignRole'),
       okText: $t('common.okText'),
       cancelText: $t('common.cancelText'),

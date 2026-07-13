@@ -66,7 +66,6 @@
     if (!product) return '-';
     const i18nKey = productI18nMap[product];
     if (i18nKey) {
-      // 国际化：根据动态key获取支付产品名称
       return $t(i18nKey);
     }
     return productNameMap[product] || product;
@@ -85,7 +84,6 @@
    */
   function getSourceLabel(source: string) {
     if (source === 'manual') {
-      // 国际化：手动创建
       return $t('payment.merchant.channelMerchant.sourceManual');
     }
     return source || '-';
@@ -181,7 +179,6 @@
   function handleToggleEnable(record: ChannelMerchantResult, checked: boolean) {
     const isEnabling = checked;
     confirm({
-      // 国际化：确认启用/禁用该通道商户？
       title: isEnabling
         ? $t('payment.merchant.channelMerchant.confirmEnable')
         : $t('payment.merchant.channelMerchant.confirmDisable'),

@@ -166,7 +166,6 @@
       return;
     }
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
-    // 国际化：加载行政区划映射用于地址反查
     loadRegionMap();
     // 加载商户信息用于标题展示
     loadMerchantInfo();

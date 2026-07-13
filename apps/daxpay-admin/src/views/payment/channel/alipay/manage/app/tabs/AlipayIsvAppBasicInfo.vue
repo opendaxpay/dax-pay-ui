@@ -28,7 +28,6 @@
     openDeleteConfirm({
       name: props.app.appName || props.app.aliAppId || '',
       verificationText: props.app.aliAppId || '',
-      // 国际化：删除
       title: $t('payment.channel.alipayManage.delete'),
       onConfirm: () =>
         AlipayIsvAppApi.delete(props.app.id!).then(() => {

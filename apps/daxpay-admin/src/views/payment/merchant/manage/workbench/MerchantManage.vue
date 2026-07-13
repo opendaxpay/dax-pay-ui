@@ -46,19 +46,15 @@
         },
         {
           key: 'user',
-          // 国际化：用户管理
           title: $t('payment.merchant.workbench.workbench.cardUser'),
           icon: 'ant-design:user-outlined',
-          // 国际化：用户账号管理与权限分配
           description: $t('payment.merchant.workbench.workbench.cardUserDesc'),
           route: '/payment/merchant/user',
         },
         {
           key: 'store',
-          // 国际化：门店管理
           title: $t('payment.merchant.workbench.workbench.cardStore'),
           icon: 'ant-design:environment-outlined',
-          // 国际化：商户物理门店档案与位置信息管理
           description: $t('payment.merchant.workbench.workbench.cardStoreDesc'),
           route: '/payment/merchant/store',
         },
@@ -103,10 +99,8 @@
         },
         {
           key: 'wxDomainVerify',
-          // 国际化：微信域名验证（与菜单一致）
           title: $t('payment.merchant.workbench.workbench.cardWxDomainVerify'),
           icon: 'ant-design:safety-certificate-outlined',
-          // 国际化：上传与管理微信公众号 / 小程序业务域名校验文件
           description: $t('payment.merchant.workbench.workbench.cardWxDomainVerifyDesc'),
           route: '/payment/merchant/manage/wx-verify',
         },

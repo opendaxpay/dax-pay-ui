@@ -38,7 +38,6 @@
       {
         validator: (_rule, value) => {
           if (value && !phoneRegex.test(value)) {
-            // 国际化：手机号码格式错误
             return Promise.reject($t('authentication.mobileErrortip'));
           }
           return Promise.resolve();
@@ -47,9 +46,7 @@
       },
     ],
     code: [
-      // 国际化：请输入{0}位验证码
       { required: true, message: $t('authentication.codeTip', [CODE_LENGTH]), trigger: 'blur' },
-      // 国际化：请输入{0}位验证码
       { len: CODE_LENGTH, message: $t('authentication.codeTip', [CODE_LENGTH]), trigger: 'blur' },
     ],
   };

@@ -34,14 +34,12 @@
       type: 'string',
       field: 'code',
       name: $t('system.dict.code'),
-      // 国际化：请输入字典编码
       placeholder: $t('system.dict.inputCode'),
     },
     {
       type: 'string',
       field: 'nameCn',
       name: $t('common.chineseName'),
-      // 国际化：请输入中文名称
       placeholder: $t('system.dict.inputNameCn'),
     },
   ]);

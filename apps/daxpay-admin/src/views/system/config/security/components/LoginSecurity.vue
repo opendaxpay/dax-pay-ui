@@ -26,7 +26,6 @@
   function validateCaptchaTrigger(): Promise<void> {
     const { captchaTriggerAttempts, maxFailedAttempts } = formState.value;
     if (captchaTriggerAttempts != null && maxFailedAttempts != null && captchaTriggerAttempts > maxFailedAttempts) {
-      // 国际化：触发验证码的失败次数不能大于最大失败次数
       return Promise.reject(new Error($t('system.security.login-security.validation.captchaTriggerRange')));
     }
     return Promise.resolve();

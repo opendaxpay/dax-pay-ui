@@ -93,7 +93,6 @@
     { field: 'account', name: $t('iam.user.field.account'), placeholder: $t('common.pleaseInput') },
     { field: 'status', type: 'list', name: $t('iam.user.field.status'), selectList: statusOptions.value },
     { field: 'phone', name: $t('iam.user.field.phone'), placeholder: $t('common.pleaseInput') },
-    // 国际化：邮箱
     { field: 'email', name: $t('iam.user.field.email'), placeholder: $t('common.pleaseInput') },
   ]);
 

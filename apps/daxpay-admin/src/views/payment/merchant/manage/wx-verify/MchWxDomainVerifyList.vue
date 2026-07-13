@@ -157,7 +157,6 @@
    */
   function handleDelete(row: MchWxDomainVerifyVo) {
     confirm({
-      // 国际化：确认
       title: $t('common.confirm'),
       content: $t('payment.wxVerify.confirmDelete'),
       okText: $t('common.delete'),

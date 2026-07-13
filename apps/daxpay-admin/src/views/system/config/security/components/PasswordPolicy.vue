@@ -26,7 +26,6 @@
   function validateLengthRange(): Promise<void> {
     const { minLength, maxLength } = formState.value;
     if (minLength != null && maxLength != null && minLength > maxLength) {
-      // 国际化：最小长度不能大于最大长度
       return Promise.reject(new Error($t('system.security.password-policy.validation.lengthRange')));
     }
     return Promise.resolve();

@@ -51,9 +51,7 @@
    */
   function handleCancel() {
     confirm({
-      // 国际化: 确认
       title: $t('common.confirm'),
-      // 国际化: 确定要取消编辑吗?
       content: $t('common.confirmCancelContent'),
       okText: $t('common.okText'),
       cancelText: $t('common.cancelText'),
@@ -74,7 +72,6 @@
       .then(() => {
         confirm({
           cancelText: $t('common.cancelText'),
-          // 国际化: 确定要保存端点配置吗?
           content: $t('system.platform.url.confirmSaveContent'),
           okText: $t('common.okText'),
           onOk: async () => {

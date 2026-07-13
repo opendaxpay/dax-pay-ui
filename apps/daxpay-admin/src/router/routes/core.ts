@@ -142,7 +142,6 @@ const coreRoutes: RouteRecordRaw[] = [
           hideInMenu: true,
         },
       },
-      // 国际化：用户协议（公开页，登录前可访问）
       {
         name: 'AgreementTerms',
         path: 'agreement/terms',
@@ -153,7 +152,6 @@ const coreRoutes: RouteRecordRaw[] = [
           hideInMenu: true,
         },
       },
-      // 国际化：隐私政策（公开页，登录前可访问）
       {
         name: 'AgreementPrivacy',
         path: 'agreement/privacy',

@@ -61,7 +61,6 @@
     if (typeof placeholder === 'string') {
       return [placeholder, placeholder];
     }
-    // 国际化：时间范围占位符
     return [$t('components.query.startTime'), $t('components.query.endTime')];
   }
 
@@ -69,7 +68,6 @@
     rangeValue.value = val;
   }
 
-  // 国际化：日期范围快捷选项
   const dateRangeShortcuts = [
     {
       label: $t('components.query.today'),
@@ -80,7 +78,6 @@
       },
     },
     {
-      // 国际化：昨天
       label: $t('components.query.yesterday'),
       value: () => {
         const yesterday = new Date();
@@ -90,7 +87,6 @@
       },
     },
     {
-      // 国际化：近7天
       label: $t('components.query.last7Days'),
       value: () => {
         const end = new Date();
@@ -100,7 +96,6 @@
       },
     },
     {
-      // 国际化：近30天
       label: $t('components.query.last30Days'),
       value: () => {
         const end = new Date();
@@ -110,7 +105,6 @@
       },
     },
     {
-      // 国际化：本月
       label: $t('components.query.thisMonth'),
       value: () => {
         const now = new Date();
@@ -120,7 +114,6 @@
       },
     },
     {
-      // 国际化：上月
       label: $t('components.query.lastMonth'),
       value: () => {
         const now = new Date();

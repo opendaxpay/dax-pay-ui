@@ -45,21 +45,17 @@
       type: 'string',
       field: 'filename',
       name: $t('system.file.platform.field.filename'),
-      // 国际化：请输入文件名称
       placeholder: $t('system.file.platform.placeholder.filename'),
     },
     {
       type: 'string',
       field: 'originalFilename',
-      // 国际化：原始文件名
       name: $t('system.file.platform.field.originalFilename'),
-      // 国际化：请输入原始文件名
       placeholder: $t('system.file.platform.placeholder.originalFilename'),
     },
     {
       type: 'list',
       field: 'accessType',
-      // 国际化：访问类型
       name: $t('system.file.platform.field.accessType'),
       placeholder: $t('common.pleaseSelect'),
       selectList: accessTypeOptions.value,
@@ -67,9 +63,7 @@
     {
       type: 'string',
       field: 'bizType',
-      // 国际化：业务分类
       name: $t('system.file.platform.field.bizType'),
-      // 国际化：请输入业务分类
       placeholder: $t('system.file.platform.placeholder.bizType'),
     },
   ]);

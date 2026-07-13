@@ -60,7 +60,6 @@
                   [MenuTypeEnum.CATALOG, MenuTypeEnum.EMBEDDED, MenuTypeEnum.LINK, MenuTypeEnum.MENU] as string[]
                 ).includes(o.value),
               )
-              // 国际化：获取菜单类型选项的显示标签
               .map((o) => ({ label: $t(o.label), value: o.value }))
           );
         }
@@ -84,7 +83,6 @@
     return (
       menuTypeOptions
         .filter((o) => o.value !== MenuTypeEnum.SUBPAGE && o.value !== MenuTypeEnum.SUBPAGE_GROUP)
-        // 国际化：获取菜单类型选项的显示标签
         .map((o) => ({ label: $t(o.label), value: o.value }))
     );
   });
@@ -167,7 +165,6 @@
     if (!value || !form.value.clientCode || !showMenuCode.value) return;
     const { data: exists } = await MenuApi.checkMenuCodeExists(value, form.value.clientCode, form.value.id!);
     if (exists) {
-      // 国际化：菜单编码已存在
       throw $t('iam.menu.menuCodeExists');
     }
   }
@@ -178,7 +175,6 @@
   function validatePathFormat(_rule: any, value: string) {
     if (!value || !showPath.value) return Promise.resolve();
     if (!value.startsWith('/')) {
-      // 国际化：路径必须以 / 开头
       return Promise.reject($t('iam.menu.pathStartWith'));
     }
     return Promise.resolve();
@@ -374,7 +370,6 @@
    */
   function getDisplayTitle(row: Menu): string {
     if (row.i18nKey) {
-      // 国际化：根据国际化key获取显示标题
       return $t(row.i18nKey);
     }
     const locale = i18n.global.locale.value;

@@ -101,7 +101,6 @@
       formEditType.value,
       RoleApi.existsByCode,
       RoleApi.existsByCodeNotId,
-      // 国际化：角色编码已存在
       $t('iam.role.codeExists'),
     );
   }
@@ -117,7 +116,6 @@
       formEditType.value,
       RoleApi.existsByNameCn,
       RoleApi.existsByNameCnNotId,
-      // 国际化：中文名称已存在
       $t('iam.role.nameCnExists'),
     );
   }
@@ -133,7 +131,6 @@
       formEditType.value,
       RoleApi.existsByNameEn,
       RoleApi.existsByNameEnNotId,
-      // 国际化：英文名称已存在
       $t('iam.role.nameEnExists'),
     );
   }

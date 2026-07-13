@@ -91,12 +91,11 @@ export function calculatePasswordStrength(password: string, config: PasswordPoli
  */
 export function generatePasswordRules(config: PasswordPolicyValidateConfig) {
   return [
-    // 国际化：请输入密码
     { required: true, message: $t('iam.user.validation.passwordRequired') },
     {
       validator: (_rule: any, value: string) => {
         if (!value) return Promise.resolve();
-        // 中文注释：禁止输入中文字符
+        // 密码不允许中文
         if (/[\u4E00-\u9FA5]/.test(value)) {
           return Promise.reject($t('iam.user.validation.passwordNoChinese'));
         }
@@ -104,7 +103,6 @@ export function generatePasswordRules(config: PasswordPolicyValidateConfig) {
         const conditions = getPasswordConditions(value, config);
         const allSatisfied = conditions.every((c) => c.satisfied);
         if (!allSatisfied) {
-          // 国际化：密码不符合要求
           return Promise.reject($t('iam.user.passwordPolicy.notMeetRequirements'));
         }
         return Promise.resolve();
@@ -120,9 +118,7 @@ export function generatePasswordRules(config: PasswordPolicyValidateConfig) {
 export function generateAccountRules() {
   return [
     { required: true, message: $t('common.pleaseInput') },
-    // 国际化：账号长度为6-20个字符
     { min: 6, max: 20, message: $t('iam.user.validation.accountLength') },
-    // 国际化：账号只能包含字母、数字、下划线和中划线
     { pattern: /^[a-zA-Z0-9_-]+$/, message: $t('iam.user.validation.accountFormat') },
   ];
 }

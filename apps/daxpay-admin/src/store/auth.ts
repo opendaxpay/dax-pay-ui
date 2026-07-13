@@ -23,7 +23,7 @@ export const useAuthStore = defineStore('auth', () => {
 
   const loginLoading = ref(false);
 
-  // 是否处于双因素二次验证
+  // 是否处于二次验证
   const twoFactorRequired = ref(false);
   const twoFactorPreAuthToken = ref('');
 
@@ -49,7 +49,7 @@ export const useAuthStore = defineStore('auth', () => {
         captchaCode: params.captchaCode,
       });
 
-      // 密码通过但需二次验证: 记录预认证令牌并切到验证界面
+      // 密码通过但需二次验证: 记录临时凭证并切到验证界面
       if (loginResult.code === TWO_FACTOR_REQUIRED_CODE) {
         enterTwoFactor((loginResult.data as any)?.preAuthToken ?? '');
         return { userInfo: null };
@@ -91,7 +91,7 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   /**
-   * 双因素认证二次验证, 凭预认证令牌 + 动态码/备用码完成登录
+   * 二次验证: 临时凭证 + 动态码/备用码完成登录
    */
   async function twoFactorVerify(code: string, codeType: string = 'TOTP') {
     let userInfo: null | UserInfo = null;
@@ -106,7 +106,7 @@ export const useAuthStore = defineStore('auth', () => {
         accessStore.setAccessToken(accessToken);
         userInfo = await fetchUserInfo();
         userStore.setUserInfo(userInfo!);
-        // 清除双因素二次验证状态
+        // 清除二次验证状态
         twoFactorRequired.value = false;
         twoFactorPreAuthToken.value = '';
         await router.push(HOME_PATH);
@@ -126,7 +126,7 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   /**
-   * 进入双因素二次验证(密码登录或社交登录回调共用)
+   * 进入二次验证(密码登录或社交登录回调共用)
    */
   function enterTwoFactor(preAuthToken: string) {
     twoFactorPreAuthToken.value = preAuthToken ?? '';
@@ -134,7 +134,7 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   /**
-   * 取消双因素认证(返回登录表单)
+   * 取消二次验证(返回登录表单)
    */
   function cancelTwoFactor() {
     twoFactorRequired.value = false;

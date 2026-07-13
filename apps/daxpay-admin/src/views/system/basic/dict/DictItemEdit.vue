@@ -96,7 +96,6 @@
       formEditType.value,
       () => DictItemApi.existsByCode(code!, currentDictId!),
       (value, excludeId) => DictItemApi.existsByCodeNotId(value, currentDictId!, excludeId!),
-      // 国际化：编码已存在
       $t('system.dict.codeExists'),
     );
   }

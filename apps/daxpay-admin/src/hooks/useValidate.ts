@@ -27,7 +27,6 @@ async function existsByServer(
   formEditType: FormEditType | Ref<FormEditType>,
   existsFun: (value: string) => Promise<Result<boolean>>,
   existsNotIdFun: (value: string, id: string) => Promise<Result<boolean>>,
-  // 国际化：编码已存在提示
   errMsg = $t('hooks.validate.codeExists'),
 ): Promise<void> {
   if (!value) {

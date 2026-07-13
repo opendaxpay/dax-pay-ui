@@ -32,28 +32,23 @@
    */
   const functionCards = computed(() => [
     {
-      // 国际化: 基础管理
       group: $t('payment.merchant.channelMerchant.groupBasic'),
       color: 'blue',
       cards: [
         {
           key: 'basicInfo',
-          // 国际化: 基本信息
           title: $t('payment.merchant.channelMerchant.cardBasicInfo'),
           icon: 'ant-design:info-circle-outlined',
-          // 国际化: 查看通道商户基础配置信息
           description: $t('payment.merchant.channelMerchant.cardBasicInfoDesc'),
         },
         {
           key: 'mchConfig',
-          // 国际化: 商户配置
           title: $t('payment.channel.hkrtIsv.cardMchConfig'),
           icon: 'ant-design:setting-outlined',
           description: $t('payment.channel.hkrtIsv.cardMchConfigDesc'),
         },
         {
           key: 'editMerchantName',
-          // 国际化: 修改商户名称
           title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
           icon: 'ant-design:edit-outlined',
           description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),

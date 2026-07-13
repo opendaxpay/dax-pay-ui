@@ -62,7 +62,6 @@
    */
   const beforeUpload: UploadProps['beforeUpload'] = (file) => {
     if (file.size / 1024 > props.maxSize) {
-      // 国际化：文件过大提示
       message.error(
         $t('components.upload.fileTooLarge', {
           name: file.name,
@@ -86,11 +85,9 @@
       const result = await uploadImage(file, props.accessType);
       emit('update:modelValue', result.filename);
       emit('change', result.filename);
-      // 国际化：上传成功提示
       message.success($t('components.upload.uploadSuccess', { name: file.name }));
       onSuccess?.(result);
     } catch (error: any) {
-      // 国际化：上传失败提示
       message.error($t('components.upload.uploadFailed', { name: file.name }));
       onError?.(error);
     } finally {

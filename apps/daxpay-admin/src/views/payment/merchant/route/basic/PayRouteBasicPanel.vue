@@ -76,7 +76,6 @@
   /** 取消编辑前二次确认 */
   function cancelBasicConfigEdit() {
     confirm({
-      // 国际化：取消编辑二次确认
       content: $t('common.confirmCancelContent'),
       onOk() {
         return doCancelBasicConfigEdit();
@@ -107,7 +106,6 @@
       return;
     }
     confirm({
-      // 国际化：基础模式保存二次确认
       content: $t('payment.merchant.route.route.basicSaveConfirm'),
       onOk() {
         return doSaveBasicConfig();

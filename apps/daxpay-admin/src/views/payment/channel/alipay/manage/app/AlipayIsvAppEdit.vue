@@ -35,7 +35,6 @@
       formEditType.value,
       (value) => AlipayIsvAppApi.existsAliAppId(value),
       (value, excludeId) => AlipayIsvAppApi.existsAliAppIdNotId(value, excludeId),
-      // 国际化：应用 ID 重复
       $t('payment.channel.alipayManage.aliAppIdDuplicate'),
     );
   }

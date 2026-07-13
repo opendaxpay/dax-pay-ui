@@ -29,29 +29,23 @@
   /** 功能卡片配置(银联商务首期仅基本信息与密钥配置, 无应用管理) */
   const functionCards = computed(() => [
     {
-      // 国际化: 基础管理
       group: $t('payment.merchant.channelMerchant.groupBasic'),
       color: 'blue',
       cards: [
         {
           key: 'basicInfo',
-          // 国际化: 基本信息
           title: $t('payment.merchant.channelMerchant.cardBasicInfo'),
           icon: 'ant-design:info-circle-outlined',
-          // 国际化: 编辑通道商户基本信息
           description: $t('payment.merchant.channelMerchant.cardBasicInfoDesc'),
         },
         {
           key: 'keyConfig',
-          // 国际化: 密钥配置
           title: $t('payment.channel.umsManage.cardDirectKeyConfig'),
           icon: 'ant-design:key-outlined',
-          // 国际化: 配置通道商户密钥
           description: $t('payment.channel.umsManage.cardDirectKeyConfigDesc'),
         },
         {
           key: 'editMerchantName',
-          // 国际化: 修改商户名称
           title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
           icon: 'ant-design:edit-outlined',
           description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),

@@ -14,7 +14,6 @@ export function useFormEdit() {
     wrapperCol: {
       sm: { span: 13 },
     },
-    // 国际化：新增标题
     title: $t('hooks.formEdit.add'),
     modalWidth: 640,
     confirmLoading: false,
@@ -42,17 +41,14 @@ export function useFormEdit() {
     visible.value = true;
     switch (formEditType.value) {
       case FormEditType.Add: {
-        // 国际化：新增标题
         title.value = $t('hooks.formEdit.add');
         break;
       }
       case FormEditType.Edit: {
-        // 国际化：编辑标题
         title.value = $t('hooks.formEdit.edit');
         break;
       }
       case FormEditType.Show: {
-        // 国际化：查看标题
         title.value = $t('hooks.formEdit.view');
         break;
       }

@@ -93,7 +93,6 @@
       formEditType.value,
       DictApi.existsByCode,
       DictApi.existsByCodeNotId,
-      // 国际化：编码已存在
       $t('system.dict.codeExists'),
     );
   }

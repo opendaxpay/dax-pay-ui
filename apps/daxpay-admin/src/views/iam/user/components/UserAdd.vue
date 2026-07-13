@@ -98,7 +98,7 @@
     loading.value = true;
 
     try {
-      // 中文注释：对密码进行RSA加密
+      // RSA 加密密码后再提交
       const encryptedPassword = await encryptPassword(formState.value.password!);
       await UserApi.add({
         name: formState.value.name,

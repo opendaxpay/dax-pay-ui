@@ -29,27 +29,23 @@
   /** 功能卡片配置（服务商通道商户：仅基本信息） */
   const functionCards = computed(() => [
     {
-      // 国际化：基础管理
       group: $t('payment.merchant.channelMerchant.groupBasic'),
       color: 'blue',
       cards: [
         {
           key: 'basicInfo',
-          // 国际化：基本信息
           title: $t('payment.merchant.channelMerchant.cardBasicInfo'),
           icon: 'ant-design:info-circle-outlined',
           description: $t('payment.merchant.channelMerchant.cardBasicInfoDesc'),
         },
         {
           key: 'authOperation',
-          // 国际化：应用授权令牌
           title: $t('payment.merchant.channelMerchant.cardAuthOperation'),
           icon: 'ant-design:safety-certificate-outlined',
           description: $t('payment.merchant.channelMerchant.cardAuthOperationDesc'),
         },
         {
           key: 'editMerchantName',
-          // 国际化：修改商户名称
           title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
           icon: 'ant-design:edit-outlined',
           description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),

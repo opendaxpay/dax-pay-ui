@@ -35,7 +35,6 @@
    */
   async function sendQueue() {
     if (!queueContent.value) {
-      // 国际化：请输入消息内容
       message.warning($t('demos.artemis.messages.contentRequired'));
       return;
     }
@@ -43,7 +42,6 @@
       scene: 'QUEUE' as DemoScene,
       content: queueContent.value,
     });
-    // 国际化：发送成功
     message.success($t('demos.artemis.messages.sendSuccess'));
     queueContent.value = '';
     await refreshRecords();
@@ -89,11 +87,9 @@
    */
   function clearRecords() {
     confirm({
-      // 国际化：确定要清空全部消费记录吗？
       title: $t('demos.artemis.messages.clearConfirm'),
       onOk: async () => {
         await ArtemisDemoApi.clear();
-        // 国际化：清空成功
         message.success($t('demos.artemis.messages.clearSuccess'));
         await refreshRecords();
       },

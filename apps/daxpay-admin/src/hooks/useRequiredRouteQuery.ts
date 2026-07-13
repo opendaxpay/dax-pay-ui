@@ -39,7 +39,6 @@ export function useRequiredRouteQuery<K extends string = string>(options: UseReq
 
   const isRouteActive = computed(() => route.path === ownedPath);
 
-  // 国际化：query 值经 normalize 处理，保证为非 undefined 的字符串
   const query = computed((): Record<K, string> => {
     const result = {} as Record<K, string>;
     for (const key of options.keys) {
@@ -67,7 +66,6 @@ export function useRequiredRouteQuery<K extends string = string>(options: UseReq
         return;
       }
       if (!valid && options.showMessage !== false) {
-        // 国际化：路由必填参数缺失提示
         message.warning($t(toValue(options.messageKey)));
       }
     },

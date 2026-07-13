@@ -101,9 +101,7 @@
     // 如果公钥已存在，需要二次确认
     if (formState.value.publicKey) {
       confirm({
-        // 国际化：确认
         title: $t('common.confirm'),
-        // 国际化：公钥已存在，重新生成将覆盖原有公钥，确定要重新生成吗？
         content: $t('payment.merchant.credential.credential.confirmGenPublicKey'),
         okText: $t('common.okText'),
         cancelText: $t('common.cancelText'),
@@ -137,9 +135,7 @@
     // 如果密钥已存在，需要二次确认
     if (formState.value.secretKey) {
       confirm({
-        // 国际化：确认
         title: $t('common.confirm'),
-        // 国际化：通信密钥已存在，重新生成将覆盖原有密钥，确定要重新生成吗？
         content: $t('payment.merchant.credential.credential.confirmGenSecretKey'),
         okText: $t('common.okText'),
         cancelText: $t('common.cancelText'),
@@ -167,7 +163,6 @@
    */
   function handleCopy(text: string) {
     copy(text);
-    // 国际化：复制成功
     message.success($t('payment.merchant.credential.credential.copySuccess'));
   }
 
@@ -177,7 +172,6 @@
   function handleSave() {
     confirm({
       title: $t('common.confirm'),
-      // 国际化：确定要保存对接配置吗？
       content: $t('payment.merchant.credential.credential.confirmSave'),
       okText: $t('common.okText'),
       cancelText: $t('common.cancelText'),
@@ -191,7 +185,6 @@
           mchNo: mchNo.value,
         };
         await MerchantCredentialApi.update(submitData);
-        // 国际化：保存成功
         message.success($t('payment.merchant.credential.credential.saveSuccess'));
         saving.value = false;
         isEditing.value = false;

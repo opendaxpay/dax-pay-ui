@@ -36,20 +36,17 @@
   /** 功能卡片配置 */
   const functionCards = computed(() => [
     {
-      // 国际化：基础管理
       group: $t('payment.merchant.channelMerchant.groupBasic'),
       color: 'blue',
       cards: [
         {
           key: 'basicInfo',
-          // 国际化：基本信息
           title: $t('payment.merchant.channelMerchant.cardBasicInfo'),
           icon: 'ant-design:info-circle-outlined',
           description: $t('payment.merchant.channelMerchant.cardBasicInfoDesc'),
         },
         {
           key: 'editMerchantName',
-          // 国际化：修改商户名称
           title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
           icon: 'ant-design:edit-outlined',
           description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),
@@ -57,27 +54,23 @@
       ],
     },
     {
-      // 国际化：应用管理
       group: $t('payment.merchant.channelMerchant.groupApp'),
       color: 'green',
       cards: [
         {
           key: 'app',
-          // 国际化：应用管理
           title: $t('payment.merchant.channelMerchant.cardApp'),
           icon: 'ant-design:appstore-outlined',
           description: $t('payment.merchant.channelMerchant.cardAppDesc'),
         },
         {
           key: 'capability',
-          // 国际化：支付应用配置
           title: $t('payment.channel.wechatManage.cardCapabilityBinding'),
           icon: 'ant-design:api-outlined',
           description: $t('payment.channel.wechatManage.cardCapabilityBindingDesc'),
         },
         {
           key: 'authApp',
-          // 国际化：认证应用配置
           title: $t('payment.channel.wechatManage.cardAuthApp'),
           icon: 'ant-design:safety-certificate-outlined',
           description: $t('payment.channel.wechatManage.cardAuthAppDesc'),

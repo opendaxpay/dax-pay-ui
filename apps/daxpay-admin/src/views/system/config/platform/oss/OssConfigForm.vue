@@ -67,9 +67,7 @@
    */
   function handleCancel() {
     confirm({
-      // 国际化：确认
       title: $t('common.confirm'),
-      // 国际化：确定要取消编辑吗？
       content: $t('common.confirmCancelContent'),
       okText: $t('common.okText'),
       cancelText: $t('common.cancelText'),
@@ -88,7 +86,6 @@
     formRef.value?.validate().then(() => {
       confirm({
         cancelText: $t('common.cancelText'),
-        // 国际化：确定要保存OSS配置吗？
         content: $t('system.platform.oss.confirmSaveContent'),
         okText: $t('common.okText'),
         onOk: async () => {

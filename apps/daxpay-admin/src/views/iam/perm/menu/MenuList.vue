@@ -183,7 +183,6 @@
    */
   function getDisplayTitle(row: Menu): string {
     if (row.i18nKey) {
-      // 国际化：根据国际化 key 获取显示标题
       return $t(row.i18nKey);
     }
     const locale = i18n.global.locale.value;
@@ -289,7 +288,6 @@
    */
   function handleDeleteConfirm(row: Menu) {
     confirm({
-      // 国际化：是否删除该条数据
       title: $t('iam.menu.confirmDelete'),
       content: `${$t('iam.menu.titleCn')}: ${row.titleCn}`,
       okText: $t('common.okText'),

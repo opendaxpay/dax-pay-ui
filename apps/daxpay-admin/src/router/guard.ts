@@ -90,7 +90,7 @@ function setupAccessGuard(router: Router) {
         await authStore.fetchUserInfo();
       }
 
-      // 中文注释：每次刷新都重新获取权限码，确保权限变更实时生效
+      // 每次刷新重新拉取权限码，保证权限变更即时生效
       const { data: permCodes } = await AuthApi.getPermCodes();
       accessStore.setPermCodes(permCodes);
 
@@ -115,7 +115,7 @@ function setupAccessGuard(router: Router) {
         return { path: LOGIN_PATH, replace: true };
       }
       // 网络错误 / 后端服务不可用: token 仍在, 跳服务不可用提示页, 保留登录态供用户手动刷新重试
-      // 中文注释：记录用户原本想访问的页面，网络恢复后重试可回到该页而非首页；
+      // 记下目标页，服务恢复后重试回到该页而不是首页
       // 排除自身路径，避免 redirect 指向 /service-unavailable 形成循环
       const redirectPath = to.path === '/service-unavailable' ? HOME_PATH : to.fullPath;
       return {

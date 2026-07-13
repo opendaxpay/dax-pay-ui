@@ -72,7 +72,6 @@
     if (!product) return '-';
     const i18nKey = productI18nMap[product];
     if (i18nKey) {
-      // 国际化：根据动态key获取产品名称
       return $t(i18nKey);
     }
     return productNameMap[product] || product;
@@ -166,7 +165,6 @@
       return;
     }
     mchNo.value = routeContext.query.value.mchNo;
-    // 国际化：创建通道商户
     setTabTitle($t('payment.merchant.channelMerchant.createTitle'));
     loadMerchantInfo();
     loadProductList();

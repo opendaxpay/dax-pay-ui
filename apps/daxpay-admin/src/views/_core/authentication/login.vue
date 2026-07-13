@@ -34,7 +34,6 @@
   const formData = reactive({
     account: '',
     password: '',
-    // 国际化：验证码输入值
     captchaCode: '',
     // 是否已阅读并同意用户协议和隐私政策（从本地恢复，登录成功后持久化）
     agreed: localStorage.getItem(AGREEMENT_ACCEPTED_KEY) === 'true',
@@ -65,7 +64,6 @@
         trigger: 'blur',
       },
     ],
-    // 国际化：请先阅读并同意用户协议和隐私政策
     agreed: [
       {
         validator: (_rule, value) =>
@@ -181,7 +179,7 @@
       authStore.twoFactorRequired ? $t('_core.authentication.twoFactor.subtitle') : $t('authentication.loginSubtitle')
     "
   >
-    <!-- 双因素认证二次验证面板 -->
+    <!-- 二次验证面板 -->
     <TwoFactorVerifyPanel v-if="authStore.twoFactorRequired" />
 
     <a-form v-else ref="formRef" :model="formData" :rules="formRules" layout="vertical" @keypress.enter="handleLogin">

@@ -47,7 +47,6 @@
       : 'payment.constant.product.productConfig.switchToProdConfirm';
 
     confirm({
-      // 国际化：切换环境
       title: $t('payment.constant.product.productConfig.switchEnv'),
       content: $t(contentKey),
       onOk: () => {

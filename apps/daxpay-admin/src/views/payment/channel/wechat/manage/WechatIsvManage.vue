@@ -19,13 +19,11 @@ const capabilityRef = ref<InstanceType<typeof WechatIsvAppCapability> | null>(nu
   /** 功能卡片配置 */
   const functionCards = computed(() => [
     {
-      // 国际化：配置管理
       group: $t('payment.channel.wechatManage.groupConfig'),
       color: 'blue',
       cards: [
         {
           key: 'mchKey',
-          // 国际化：商户支付密钥
           title: $t('payment.channel.wechatManage.cardMchKey'),
           icon: 'ant-design:key-outlined',
           description: $t('payment.channel.wechatManage.cardMchKeyDesc'),
@@ -33,13 +31,11 @@ const capabilityRef = ref<InstanceType<typeof WechatIsvAppCapability> | null>(nu
       ],
     },
     {
-      // 国际化：应用管理
       group: $t('payment.channel.wechatManage.groupApp'),
       color: 'green',
       cards: [
         {
           key: 'isvApp',
-          // 国际化：微信服务商应用
           title: $t('payment.channel.wechatManage.cardIsvApp'),
           icon: 'ant-design:appstore-outlined',
           description: $t('payment.channel.wechatManage.cardIsvAppDesc'),
@@ -47,7 +43,6 @@ const capabilityRef = ref<InstanceType<typeof WechatIsvAppCapability> | null>(nu
         },
         {
           key: 'capabilityBinding',
-          // 国际化：能力应用绑定
           title: $t('payment.channel.wechatManage.cardCapabilityBinding'),
           icon: 'ant-design:api-outlined',
           description: $t('payment.channel.wechatManage.cardCapabilityBindingDesc'),

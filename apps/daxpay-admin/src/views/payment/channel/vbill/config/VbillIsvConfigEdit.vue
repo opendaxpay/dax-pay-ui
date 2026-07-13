@@ -36,7 +36,6 @@
 
   const rules = {
     orgId: [{ required: true, message: $t('payment.channel.vbillIsv.validation.orgId') }],
-    // 国际化: 脱敏字段始终必填, 编辑时预填脱敏值, 未修改由 diffForm 比对跳过更新
     publicKey: [{ required: true, message: $t('payment.channel.vbillIsv.validation.publicKey') }],
     privateKey: [{ required: true, message: $t('payment.channel.vbillIsv.validation.privateKey') }],
   };
