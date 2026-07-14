@@ -79,6 +79,6 @@
     "emptyPlatformConfig": "プラットフォーム設定がまだありません。入力して保存して作成します",
     "platformComingSoon": "このプラットフォームはまだ利用できません。 APPの準備ができたら処理されます",
     "cashierLimitTitle": "単一プラットフォームのレジミニ プログラム",
-    "cashierLimitDesc": "プラットフォーム全体で 1 つの WeChat と 1 つの Alipay キャッシャー ミニ プログラムを共有します。 openId と opAppId は、支払い時に同じ AppId を使用する必要があります。この AppId を各支払いチャネルに有料 AppId (多くの場合、公式 WeChat ISV のサービス プロバイダー ミニ プログラム、またはサードパーティ チャネルの sub_appid) として登録またはバインドします。すべてのチャンネルがそのまま使えるわけではありません。"
+    "cashierLimitDesc": "プラットフォーム全体で 1 つの WeChat と 1 つの Alipay キャッシャー ミニ プログラムを共有します。 openId と channelAppId は、支払い時に同じ AppId を使用する必要があります。この AppId を各支払いチャネルに有料 AppId (多くの場合、公式 WeChat ISV のサービス プロバイダー ミニ プログラム、またはサードパーティ チャネルの sub_appid) として登録またはバインドします。すべてのチャンネルがそのまま使えるわけではありません。"
   }
 }

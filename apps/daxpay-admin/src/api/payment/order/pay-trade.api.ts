@@ -85,8 +85,6 @@ export interface PayTradeResult extends MchEntity {
   channel?: string;
   /** 支付方式 */
   method?: string;
-  /** 其他支付方式 */
-  otherMethod?: string;
   /** 限制支付类型 */
   limitPay?: string;
   /** 支付渠道 */
@@ -95,6 +93,8 @@ export interface PayTradeResult extends MchEntity {
   amount?: number;
   /** 币种 */
   currency?: string;
+  /** 入账金额(分); 结算类成功=amount, 预授权冻结等=0 */
+  postedAmount?: number;
   /** 可退金额(分) */
   refundableBalance?: number;
   /** 资金状态 */

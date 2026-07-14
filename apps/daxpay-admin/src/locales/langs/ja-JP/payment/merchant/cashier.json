@@ -50,7 +50,6 @@
     },
     "capabilities": {
       "aggregate_pay_qrcode": "集合QRコード",
-      "aggregate_pay_barcode": "集約バーコード",
       "wechat_cashier": "WeChat ミニ レジ係",
       "wechat_jsapi": "WeChat JSAPI",
       "wechat_app": "WeChatアプリ",

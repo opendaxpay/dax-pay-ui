@@ -50,7 +50,6 @@
     },
     "capabilities": {
       "aggregate_pay_qrcode": "Mã QR tổng hợp",
-      "aggregate_pay_barcode": "Mã vạch tổng hợp",
       "wechat_cashier": "Nhân viên thu ngân mini WeChat",
       "wechat_jsapi": "WeChat JSAPI",
       "wechat_app": "Ứng dụng WeChat",

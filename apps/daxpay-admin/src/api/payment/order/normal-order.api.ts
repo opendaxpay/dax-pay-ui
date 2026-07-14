@@ -103,6 +103,8 @@ export interface NormalOrderResult extends MchEntity {
   channelMchNo?: string;
   /** 支付能力编码 */
   capability?: string;
+  /** 通道应用 AppId */
+  channelAppId?: string;
   /** 客户端IP */
   clientIp?: string;
   /** 终端设备编码 */

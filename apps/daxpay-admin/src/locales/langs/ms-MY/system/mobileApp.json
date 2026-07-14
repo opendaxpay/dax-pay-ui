@@ -79,6 +79,6 @@
     "emptyPlatformConfig": "Belum ada konfigurasi platform, isi dan simpan untuk mencipta",
     "platformComingSoon": "Platform ini belum tersedia lagi; akan dikendalikan apabila APP sedia",
     "cashierLimitTitle": "Program mini juruwang platform tunggal",
-    "cashierLimitDesc": "Seluruh platform berkongsi satu WeChat dan satu program mini juruwang Alipay. openId dan opAppId mesti menggunakan AppId yang sama pada masa pembayaran. Daftar atau ikat AppId ini dengan setiap saluran pembayaran sebagai AppId berbayar (selalunya program mini penyedia perkhidmatan untuk WeChat ISV rasmi, atau sub_appid untuk saluran pihak ketiga). Tidak semua saluran berfungsi di luar kotak."
+    "cashierLimitDesc": "Seluruh platform berkongsi satu WeChat dan satu program mini juruwang Alipay. openId dan channelAppId mesti menggunakan AppId yang sama pada masa pembayaran. Daftar atau ikat AppId ini dengan setiap saluran pembayaran sebagai AppId berbayar (selalunya program mini penyedia perkhidmatan untuk WeChat ISV rasmi, atau sub_appid untuk saluran pihak ketiga). Tidak semua saluran berfungsi di luar kotak."
   }
 }

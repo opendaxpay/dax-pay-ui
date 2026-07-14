@@ -50,7 +50,6 @@
     },
     "capabilities": {
       "aggregate_pay_qrcode": "Aggregate QR Code",
-      "aggregate_pay_barcode": "Aggregate Barcode",
       "wechat_cashier": "WeChat Mini Cashier",
       "wechat_jsapi": "WeChat JSAPI",
       "wechat_app": "WeChat App",

@@ -79,6 +79,6 @@
     "emptyPlatformConfig": "暫無平台配置，填寫後保存即可創建",
     "platformComingSoon": "該平台配置暫未開放，後續 APP 完善時再處理",
     "cashierLimitTitle": "平台唯一收銀台小程序",
-    "cashierLimitDesc": "全平台共用一套微信/支付寶收銀台小程序憑證。支付時 openId 與 opAppId 須同源；平台小程序 AppId 需在所用支付通道側綁定或報備為收款 AppId（官方服務商常見為服務商小程序，第三方通道一般為 sub_appid）。並非所有通道開箱即用。"
+    "cashierLimitDesc": "全平台共用一套微信/支付寶收銀台小程序憑證。支付時 openId 與 channelAppId 須同源；平台小程序 AppId 需在所用支付通道側綁定或報備為收款 AppId（官方服務商常見為服務商小程序，第三方通道一般為 sub_appid）。並非所有通道開箱即用。"
   }
 }

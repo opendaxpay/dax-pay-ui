@@ -85,5 +85,5 @@ export interface ChannelAuthUrlParam {
   /** 支付能力 */
   capability?: string;
   /** 指定认证应用 AppId */
-  opAppId?: string;
+  channelAppId?: string;
 }

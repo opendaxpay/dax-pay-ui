@@ -79,6 +79,6 @@
     "emptyPlatformConfig": "Chưa có cấu hình nền tảng nào, hãy điền và lưu để tạo",
     "platformComingSoon": "Nền tảng này chưa có sẵn; sẽ được xử lý khi APP sẵn sàng",
     "cashierLimitTitle": "Chương trình thu ngân mini nền tảng đơn",
-    "cashierLimitDesc": "Toàn bộ nền tảng chia sẻ một chương trình nhỏ thu ngân WeChat và một chương trình thu ngân Alipay. openId và opAppId phải sử dụng cùng một AppId tại thời điểm trả lương. Đăng ký hoặc liên kết AppId này với mỗi kênh thanh toán dưới dạng AppId trả phí (thường là chương trình nhỏ của nhà cung cấp dịch vụ cho ISV WeChat chính thức hoặc sub_appid cho các kênh của bên thứ ba). Không phải mọi kênh đều hoạt động tốt."
+    "cashierLimitDesc": "Toàn bộ nền tảng chia sẻ một chương trình nhỏ thu ngân WeChat và một chương trình thu ngân Alipay. openId và channelAppId phải sử dụng cùng một AppId tại thời điểm trả lương. Đăng ký hoặc liên kết AppId này với mỗi kênh thanh toán dưới dạng AppId trả phí (thường là chương trình nhỏ của nhà cung cấp dịch vụ cho ISV WeChat chính thức hoặc sub_appid cho các kênh của bên thứ ba). Không phải mọi kênh đều hoạt động tốt."
   }
 }

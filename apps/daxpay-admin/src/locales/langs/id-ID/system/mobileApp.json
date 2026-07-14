@@ -79,6 +79,6 @@
     "emptyPlatformConfig": "Belum ada konfigurasi platform, isi dan simpan untuk membuat",
     "platformComingSoon": "Platform ini belum tersedia; akan ditangani ketika APP siap",
     "cashierLimitTitle": "Program mini kasir platform tunggal",
-    "cashierLimitDesc": "Seluruh platform berbagi satu program mini kasir WeChat dan satu Alipay. openId dan opAppId harus menggunakan AppId yang sama pada waktu pembayaran. Daftarkan atau ikat AppId ini dengan setiap saluran pembayaran sebagai AppId berbayar (seringkali merupakan program mini penyedia layanan untuk WeChat ISV resmi, atau sub_appid untuk saluran pihak ketiga). Tidak semua saluran berfungsi dengan baik."
+    "cashierLimitDesc": "Seluruh platform berbagi satu program mini kasir WeChat dan satu Alipay. openId dan channelAppId harus menggunakan AppId yang sama pada waktu pembayaran. Daftarkan atau ikat AppId ini dengan setiap saluran pembayaran sebagai AppId berbayar (seringkali merupakan program mini penyedia layanan untuk WeChat ISV resmi, atau sub_appid untuk saluran pihak ketiga). Tidak semua saluran berfungsi dengan baik."
   }
 }

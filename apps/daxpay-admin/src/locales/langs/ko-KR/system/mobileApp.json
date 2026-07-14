@@ -79,6 +79,6 @@
     "emptyPlatformConfig": "아직 플랫폼 구성이 없습니다. 작성하고 저장하여 만드세요.",
     "platformComingSoon": "이 플랫폼은 아직 사용할 수 없습니다. 앱이 준비되면 처리됩니다.",
     "cashierLimitTitle": "단일 플랫폼 출납원 미니 프로그램",
-    "cashierLimitDesc": "전체 플랫폼은 하나의 WeChat과 하나의 Alipay 출납원 미니 프로그램을 공유합니다. openId와 opAppId는 결제 시 동일한 AppId를 사용해야 합니다. 이 AppId를 각 결제 채널에 유료 AppId(종종 공식 WeChat ISV의 경우 서비스 제공업체 미니 프로그램 또는 제3자 채널의 경우 sub_appid)로 등록하거나 바인딩합니다. 모든 채널이 기본적으로 작동하는 것은 아닙니다."
+    "cashierLimitDesc": "전체 플랫폼은 하나의 WeChat과 하나의 Alipay 출납원 미니 프로그램을 공유합니다. openId와 channelAppId는 결제 시 동일한 AppId를 사용해야 합니다. 이 AppId를 각 결제 채널에 유료 AppId(종종 공식 WeChat ISV의 경우 서비스 제공업체 미니 프로그램 또는 제3자 채널의 경우 sub_appid)로 등록하거나 바인딩합니다. 모든 채널이 기본적으로 작동하는 것은 아닙니다."
   }
 }

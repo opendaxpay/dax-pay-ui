@@ -522,6 +522,9 @@
           <a-descriptions-item :label="$t('payment.order.field.channelMchNo')">
             {{ detail.channelMchNo || '-' }}
           </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.channelAppId')">
+            {{ detail.channelAppId || '-' }}
+          </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.outOrderNo')">
             {{ detail.outOrderNo || '-' }}
           </a-descriptions-item>

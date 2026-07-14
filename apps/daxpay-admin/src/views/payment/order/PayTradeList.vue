@@ -358,6 +358,9 @@
           <a-descriptions-item :label="$t('payment.order.field.amount')">
             {{ formatAmount(detail.amount) }}
           </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.postedAmount')">
+            {{ formatAmount(detail.postedAmount) }}
+          </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.refundableBalance')">
             {{ formatAmount(detail.refundableBalance) }}
           </a-descriptions-item>
@@ -366,6 +369,9 @@
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.method')">
             {{ methodLabel(detail.method) }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.channelAppId')">
+            {{ detail.channelAppId || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.product')">
             {{ detail.product || '-' }}
