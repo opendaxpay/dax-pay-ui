@@ -1,0 +1,6 @@
+{
+  "daxpay_admin": "运营端管理员",
+  "agent_admin": "代理商管理员",
+  "daxpay_gateway": "支付网关",
+  "merchant_admin": "商户管理员"
+}

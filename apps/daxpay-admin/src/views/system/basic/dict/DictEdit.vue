@@ -37,14 +37,10 @@
 
   // 表单校验规则
   const rules = {
-    // 字典编码（含防抖判重）
     code: [{ required: true, message: $t('system.dict.inputCode') }, { validator: validateCodeDebounced }],
-    // 字典名称
     name: [{ required: true, message: $t('system.dict.inputName') }],
-    // 中文名称
-    nameCn: [{ required: true, message: $t('system.dict.inputNameCn') }],
-    // 英文名称
-    nameEn: [{ required: true, message: $t('system.dict.inputNameEn') }],
+    // 国际化Key校验
+    i18nKey: [{ required: true, message: $t('iam.menu.inputI18nKey') }],
   };
 
   /**
@@ -156,13 +152,9 @@
         <a-form-item :label="$t('system.dict.name')" name="name">
           <a-input v-model:value="form.name" :disabled="showable" :placeholder="$t('system.dict.inputName')" />
         </a-form-item>
-        <!-- 中文名称 -->
-        <a-form-item :label="$t('system.dict.nameCn')" name="nameCn">
-          <a-input v-model:value="form.nameCn" :disabled="showable" :placeholder="$t('system.dict.inputNameCn')" />
-        </a-form-item>
-        <!-- 英文名称 -->
-        <a-form-item :label="$t('system.dict.nameEn')" name="nameEn">
-          <a-input v-model:value="form.nameEn" :disabled="showable" :placeholder="$t('system.dict.inputNameEn')" />
+        <!-- 国际化Key -->
+        <a-form-item :label="$t('iam.menu.i18nKey')" name="i18nKey">
+          <a-input v-model:value="form.i18nKey" :disabled="showable" :placeholder="$t('iam.menu.inputI18nKey')" />
         </a-form-item>
         <!-- 启用状态 -->
         <a-form-item :label="$t('system.dict.enable')" name="enable">

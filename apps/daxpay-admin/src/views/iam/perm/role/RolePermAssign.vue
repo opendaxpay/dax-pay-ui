@@ -3,7 +3,7 @@
 
   import { computed, ref } from 'vue';
 
-  import { $t, i18n } from '@vben/locales';
+  import { $t } from '@vben/locales';
 
   import { RoleApi } from '#/api/iam/perm/role.api';
   import { RolePermApi } from '#/api/iam/perm/role-perm.api';
@@ -88,22 +88,15 @@
     return id ? `code-${id}` : '';
   }
 
-  /** 获取节点显示标题，根据当前语言环境返回对应标题 */
+  /** 获取节点显示标题，根据 i18nKey 翻译 */
   function getDisplayTitle(node: TreeNode): string {
+    const displayName = node.i18nKey ? $t(node.i18nKey) : '';
     if (node.type === 'code') {
-      const locale = i18n.global.locale.value;
-      const displayName = locale === 'en-US' ? node.nameEn || node.nameCn || '' : node.nameCn || node.nameEn || '';
       // 权限码标签
       const permCodeLabel = $t('iam.role.permCodeLabel');
       return node.code ? `${displayName} (${permCodeLabel})` : displayName;
     }
-    const locale = i18n.global.locale.value;
-    // 英文环境优先显示英文标题
-    if (locale === 'en-US') {
-      return node.titleEn || node.titleCn || '';
-    }
-    // 中文环境优先显示中文标题
-    return node.titleCn || node.titleEn || '';
+    return displayName;
   }
 
   /** 递归映射树节点，添加本地化显示标题 */

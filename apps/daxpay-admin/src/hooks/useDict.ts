@@ -2,18 +2,17 @@ import type { DictItem } from '#/api/core/dict.api';
 
 import { computed } from 'vue';
 
-import { preferences } from '@vben/preferences';
+import { i18n } from '@vben/locales';
 
 import { useDictStore } from '#/store';
 
 /**
  * 根据当前语言获取字典项显示名称
  * @param item 字典项
- * @returns 根据当前语言返回对应的名称
+ * @returns 翻译后的名称
  */
 function resolveDictLabel(item: DictItem): string {
-  const locale = preferences.app.locale;
-  return locale === 'en-US' ? item.nameEn! : item.nameCn!;
+  return item.i18nKey ? i18n.global.t(item.i18nKey) : '';
 }
 
 /**

@@ -46,12 +46,6 @@
       placeholder: $t('iam.role.inputCode'),
     },
     {
-      type: 'string',
-      field: 'nameCn',
-      name: $t('common.chineseName'),
-      placeholder: $t('iam.role.inputNameCn'),
-    },
-    {
       type: 'list',
       field: 'clientCode',
       name: $t('common.clientType'),
@@ -159,7 +153,7 @@
    */
   function handleDelete(row: Role) {
     openDeleteConfirm({
-      name: row.nameCn || row.code || '',
+      name: row.i18nKey ? $t(row.i18nKey) : row.code || '',
       verificationText: `iam/role/${row.code}`,
       title: $t('iam.role.delete'),
       onConfirm: () =>
@@ -209,10 +203,12 @@
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
           <!-- 角色编码 -->
           <vxe-column field="code" :title="$t('iam.role.code')" :min-width="150" />
-          <!-- 中文名称 -->
-          <vxe-column field="nameCn" :title="$t('common.chineseName')" :min-width="150" />
-          <!-- 英文名称 -->
-          <vxe-column field="nameEn" :title="$t('common.englishName')" :min-width="150" />
+          <!-- 角色名称 -->
+          <vxe-column field="i18nKey" :title="$t('iam.role.name')" :min-width="150">
+            <template #default="{ row }">
+              {{ row.i18nKey ? $t(row.i18nKey) : '' }}
+            </template>
+          </vxe-column>
           <!-- 终端类型 -->
           <vxe-column field="clientCode" :title="$t('common.clientType')" :min-width="120" align="center">
             <template #default="{ row }">

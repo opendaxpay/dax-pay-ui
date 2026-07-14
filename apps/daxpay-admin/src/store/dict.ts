@@ -28,8 +28,7 @@ export const useDictStore = defineStore('app-dict', {
       this.dict = data.map((o: DictItem) => ({
         dictCode: o.dictCode,
         code: o.code,
-        nameCn: o.nameCn,
-        nameEn: o.nameEn,
+        i18nKey: o.i18nKey,
       }));
       return this.dict;
     },

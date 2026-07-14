@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import { computed, ref } from 'vue';
 
-  import { $t, i18n } from '@vben/locales';
+  import { $t } from '@vben/locales';
 
   import { type UserRole, UserRoleApi } from '#/api/iam/user.api';
   import { useMessage } from '#/hooks/useMessage';
@@ -32,8 +32,7 @@
    * 根据当前语言获取角色名称
    */
   function getRoleName(item: UserRole): string {
-    const locale = i18n.global.locale.value;
-    return locale === 'en-US' ? item.nameEn || item.nameCn || '' : item.nameCn || item.nameEn || '';
+    return item.i18nKey ? $t(item.i18nKey) : '';
   }
 
   /**

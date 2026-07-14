@@ -38,17 +38,13 @@
 
   // 防抖判重校验
   const validateCodeDebounced = useDebounceValidator(formRef, 'code', validateCode, 500);
-  const validateNameCnDebounced = useDebounceValidator(formRef, 'nameCn', validateNameCn, 500);
-  const validateNameEnDebounced = useDebounceValidator(formRef, 'nameEn', validateNameEn, 500);
 
   // 表单校验规则
   const rules = {
     // 角色编码（含防抖判重）
     code: [{ required: true, message: $t('iam.role.inputCode') }, { validator: validateCodeDebounced }],
-    // 中文名称（含防抖判重）
-    nameCn: [{ required: true, message: $t('iam.role.inputNameCn') }, { validator: validateNameCnDebounced }],
-    // 英文名称（含防抖判重）
-    nameEn: [{ required: true, message: $t('iam.role.inputNameEn') }, { validator: validateNameEnDebounced }],
+    // 国际化Key
+    i18nKey: [{ required: true, message: $t('iam.menu.inputI18nKey') }],
     // 终端类型
     clientCode: [{ required: true, message: $t('iam.role.selectClientCode') }],
   };
@@ -83,8 +79,6 @@
   function resetForm() {
     // 清空防抖校验缓存，避免上次（新增/编辑）判重结果污染本次会话
     validateCodeDebounced.reset();
-    validateNameCnDebounced.reset();
-    validateNameEnDebounced.reset();
     nextTick(() => {
       formRef.value?.resetFields();
     });
@@ -102,36 +96,6 @@
       RoleApi.existsByCode,
       RoleApi.existsByCodeNotId,
       $t('iam.role.codeExists'),
-    );
-  }
-
-  /**
-   * 校验中文名称重复
-   */
-  async function validateNameCn() {
-    const { nameCn, id } = form.value;
-    return existsByServer(
-      nameCn,
-      id,
-      formEditType.value,
-      RoleApi.existsByNameCn,
-      RoleApi.existsByNameCnNotId,
-      $t('iam.role.nameCnExists'),
-    );
-  }
-
-  /**
-   * 校验英文名称重复
-   */
-  async function validateNameEn() {
-    const { nameEn, id } = form.value;
-    return existsByServer(
-      nameEn,
-      id,
-      formEditType.value,
-      RoleApi.existsByNameEn,
-      RoleApi.existsByNameEnNotId,
-      $t('iam.role.nameEnExists'),
     );
   }
 
@@ -189,13 +153,9 @@
         <a-form-item :label="$t('iam.role.code')" name="code" validate-first>
           <a-input v-model:value="form.code" :disabled="showable" :placeholder="$t('iam.role.inputCode')" />
         </a-form-item>
-        <!-- 中文名称 -->
-        <a-form-item :label="$t('iam.role.nameCn')" name="nameCn" validate-first>
-          <a-input v-model:value="form.nameCn" :disabled="showable" :placeholder="$t('iam.role.inputNameCn')" />
-        </a-form-item>
-        <!-- 英文名称 -->
-        <a-form-item :label="$t('iam.role.nameEn')" name="nameEn" validate-first>
-          <a-input v-model:value="form.nameEn" :disabled="showable" :placeholder="$t('iam.role.inputNameEn')" />
+        <!-- 国际化Key -->
+        <a-form-item :label="$t('iam.menu.i18nKey')" name="i18nKey">
+          <a-input v-model:value="form.i18nKey" :disabled="showable" :placeholder="$t('iam.menu.inputI18nKey')" />
         </a-form-item>
         <!-- 终端类型 -->
         <a-form-item :label="$t('common.clientType')" name="clientCode">

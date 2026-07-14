@@ -5,7 +5,7 @@
 
   import { computed, onMounted, ref } from 'vue';
 
-  import { $t, i18n } from '@vben/locales';
+  import { $t } from '@vben/locales';
 
   import { DictApi } from '#/api/system/dict/dict.api';
   import { DictItemApi } from '#/api/system/dict/dict-item.api';
@@ -37,13 +37,12 @@
   // 表格数据
   const tableData = ref<any[]>([]);
 
-  // 根据当前语言显示字典名称
+  // 显示字典名称（优先 i18nKey 翻译，fallback name）
   const displayDictName = computed(() => {
-    const locale = i18n.global.locale.value;
-    if (locale === 'en-US') {
-      return currentDict.value?.nameEn || currentDict.value?.name;
+    if (currentDict.value?.i18nKey) {
+      return $t(currentDict.value.i18nKey);
     }
-    return currentDict.value?.nameCn || currentDict.value?.name;
+    return currentDict.value?.name || '';
   });
 
   onMounted(() => {
@@ -157,10 +156,12 @@
       <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
       <!-- 字典项编码 -->
       <vxe-column field="code" :title="$t('system.dict.item.code')" :min-width="150" />
-      <!-- 中文名称 -->
-      <vxe-column field="nameCn" :title="$t('common.chineseName')" :min-width="150" />
-      <!-- 英文名称 -->
-      <vxe-column field="nameEn" :title="$t('common.englishName')" :min-width="150" />
+      <!-- 名称 -->
+      <vxe-column field="i18nKey" :title="$t('system.dict.item.name')" :min-width="150">
+        <template #default="{ row }">
+          {{ row.i18nKey ? $t(row.i18nKey) : '' }}
+        </template>
+      </vxe-column>
       <!-- 启用状态 -->
       <vxe-column field="enable" :title="$t('system.dict.enable')" :min-width="100" align="center">
         <template #default="{ row }">

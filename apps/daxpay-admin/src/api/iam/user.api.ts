@@ -188,10 +188,8 @@ export interface UserRole {
   id?: string;
   /** 角色编码 */
   code?: string;
-  /** 中文名称 */
-  nameCn?: string;
-  /** 英文名称 */
-  nameEn?: string;
+  /** 国际化key */
+  i18nKey?: string;
   /** 客户端编码 */
   clientCode?: string;
 }

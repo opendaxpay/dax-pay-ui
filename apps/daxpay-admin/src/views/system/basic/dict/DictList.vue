@@ -38,9 +38,9 @@
     },
     {
       type: 'string',
-      field: 'nameCn',
-      name: $t('common.chineseName'),
-      placeholder: $t('system.dict.inputNameCn'),
+      field: 'name',
+      name: $t('system.dict.name'),
+      placeholder: $t('system.dict.inputName'),
     },
   ]);
 
@@ -164,10 +164,12 @@
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
           <!-- 字典编码 -->
           <vxe-column field="code" :title="$t('system.dict.code')" :min-width="150" />
-          <!-- 中文名称 -->
-          <vxe-column field="nameCn" :title="$t('common.chineseName')" :min-width="150" />
-          <!-- 英文名称 -->
-          <vxe-column field="nameEn" :title="$t('common.englishName')" :min-width="150" />
+          <!-- 名称 -->
+          <vxe-column field="i18nKey" :title="$t('system.dict.name')" :min-width="150">
+            <template #default="{ row }">
+              {{ row.i18nKey ? $t(row.i18nKey) : row.name }}
+            </template>
+          </vxe-column>
           <!-- 启用状态 -->
           <vxe-column field="enable" :title="$t('system.dict.enable')" :min-width="100" align="center">
             <template #default="{ row }">

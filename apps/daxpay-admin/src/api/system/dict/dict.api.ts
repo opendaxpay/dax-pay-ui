@@ -64,10 +64,8 @@ export interface Dict extends BaseEntity {
   code?: string;
   /** 字典名称 */
   name?: string;
-  /** 中文名称 */
-  nameCn?: string;
-  /** 英文名称 */
-  nameEn?: string;
+  /** 国际化key */
+  i18nKey?: string;
   /** 是否启用 */
   enable?: boolean;
   /** 字典类型 */

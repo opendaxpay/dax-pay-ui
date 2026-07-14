@@ -3,7 +3,7 @@
 
   import { computed, nextTick, onMounted, ref } from 'vue';
 
-  import { $t, i18n } from '@vben/locales';
+  import { $t } from '@vben/locales';
 
   import { IconifyIcon } from '@vben-core/icons';
 
@@ -182,14 +182,7 @@
    * 获取显示标题
    */
   function getDisplayTitle(row: Menu): string {
-    if (row.i18nKey) {
-      return $t(row.i18nKey);
-    }
-    const locale = i18n.global.locale.value;
-    if (locale === 'en-US') {
-      return row.titleEn || '';
-    }
-    return row.titleCn || '';
+    return row.i18nKey ? $t(row.i18nKey) : '';
   }
 
   /**
@@ -289,7 +282,7 @@
   function handleDeleteConfirm(row: Menu) {
     confirm({
       title: $t('iam.menu.confirmDelete'),
-      content: `${$t('iam.menu.titleCn')}: ${row.titleCn}`,
+      content: `${$t('iam.menu.titleCn')}: ${getDisplayTitle(row)}`,
       okText: $t('common.okText'),
       cancelText: $t('common.cancelText'),
       onOk: () => {
@@ -401,7 +394,7 @@
                   :tree-config="{ childrenField: 'children' }"
                   @cell-click="handleSelectNode"
                 >
-                  <vxe-column field="titleCn" :title="$t('iam.menu.titleCn')" :min-width="160" tree-node>
+                  <vxe-column field="i18nKey" :title="$t('iam.menu.titleCn')" :min-width="160" tree-node>
                     <template #default="{ row }">
                       <IconifyIcon v-if="row.icon" :icon="row.icon" class="text-lg inline-block align-middle mr-2" />
                       <span>{{ getDisplayTitle(row) }}</span>

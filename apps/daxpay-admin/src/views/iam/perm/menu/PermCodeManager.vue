@@ -71,7 +71,7 @@
   <!-- 国际化：权限码 -->
   <a-drawer
     :open="visible"
-    :title="`${$t('iam.menu.managePermCode')} - ${menuContext.titleCn || ''}`"
+    :title="`${$t('iam.menu.managePermCode')} - ${menuContext.i18nKey ? $t(menuContext.i18nKey) : ''}`"
     :size="900"
     @close="handleClose"
   >
@@ -82,10 +82,12 @@
       <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
       <!-- 权限码 -->
       <vxe-column field="code" :title="$t('iam.menu.permCode')" :min-width="200" />
-      <!-- 中文名称 -->
-      <vxe-column field="nameCn" :title="$t('common.chineseName')" :min-width="120" />
-      <!-- 英文名称 -->
-      <vxe-column field="nameEn" :title="$t('common.englishName')" :min-width="120" />
+      <!-- 名称 -->
+      <vxe-column field="i18nKey" :title="$t('system.dict.item.name')" :min-width="120">
+        <template #default="{ row }">
+          {{ row.i18nKey ? $t(row.i18nKey) : '' }}
+        </template>
+      </vxe-column>
       <!-- 内置 -->
       <vxe-column field="internal" :title="$t('system.dict.internal')" :min-width="80" align="center">
         <template #default="{ row }">

@@ -1,6 +1,8 @@
 {
   "code": "角色编码",
   "name": "角色名称",
+  "i18nKey": "国际化Key",
+  "inputI18nKey": "请输入国际化Key",
   "nameCn": "中文名称",
   "nameEn": "英文名称",
   "clientCode": "终端类型",

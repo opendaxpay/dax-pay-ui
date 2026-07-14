@@ -1,5 +1,7 @@
 import type { Menu } from '#/api/iam/perm/menu.api';
 
+import { i18n } from '@vben/locales';
+
 import { MenuTypeEnum } from '#/enums/menuType';
 
 /**
@@ -126,9 +128,10 @@ export function getDirectMenusUnderCatalog(catalog: Menu, allMap: Map<string, Me
  */
 export function matchesMenuKeyword(node: Menu, keyword: string): boolean {
   const lower = keyword.toLowerCase();
+  // 匹配翻译后的菜单标题
+  const title = node.i18nKey ? i18n.global.t(node.i18nKey) : '';
   return !!(
-    node.titleCn?.toLowerCase().includes(lower) ||
-    node.titleEn?.toLowerCase().includes(lower) ||
+    title.toLowerCase().includes(lower) ||
     node.menuCode?.toLowerCase().includes(lower) ||
     node.path?.toLowerCase().includes(lower) ||
     node.component?.toLowerCase().includes(lower)

@@ -44,8 +44,8 @@
   const rules = {
     // 字典项编码（含防抖判重）
     code: [{ required: true, message: $t('system.dict.item.inputItemCode') }, { validator: validateCodeDebounced }],
-    // 中文名称
-    nameCn: [{ required: true, message: $t('system.dict.item.inputNameCn') }],
+    // 国际化Key
+    i18nKey: [{ required: true, message: $t('system.dict.item.inputI18nKey') }],
   };
 
   /**
@@ -158,13 +158,9 @@
         <a-form-item :label="$t('system.dict.item.code')" name="code" validate-first>
           <a-input v-model:value="form.code" :disabled="showable" :placeholder="$t('common.pleaseInput')" />
         </a-form-item>
-        <!-- 中文名称 -->
-        <a-form-item :label="$t('system.dict.item.nameCn')" name="nameCn">
-          <a-input v-model:value="form.nameCn" :disabled="showable" :placeholder="$t('system.dict.item.inputNameCn')" />
-        </a-form-item>
-        <!-- 英文名称 -->
-        <a-form-item :label="$t('system.dict.item.nameEn')" name="nameEn">
-          <a-input v-model:value="form.nameEn" :disabled="showable" :placeholder="$t('system.dict.item.inputNameEn')" />
+        <!-- 国际化Key -->
+        <a-form-item :label="$t('system.dict.item.i18nKey')" name="i18nKey">
+          <a-input v-model:value="form.i18nKey" :disabled="showable" :placeholder="$t('system.dict.item.inputI18nKey')" />
         </a-form-item>
         <!-- 排序 -->
         <a-form-item :label="$t('system.dict.item.sortNo')" name="sortNo">

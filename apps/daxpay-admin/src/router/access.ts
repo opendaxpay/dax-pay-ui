@@ -37,8 +37,8 @@ async function generateAccess(options: GenerateAccessOptions) {
         duration: 1.5,
       });
       const { data: menus } = await getAllMenusApi();
-      // 生成国际化翻译内容
-      injectMenuI18n(menus);
+      // 注入菜单标题国际化文案（数据源为静态语言包）
+      injectMenuI18n();
       return convertMenuListToRoutes(menus);
     },
     // 可以指定没有权限跳转403页面

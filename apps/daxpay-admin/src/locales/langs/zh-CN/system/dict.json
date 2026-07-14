@@ -26,6 +26,9 @@
   "item": {
     "title": "字典项管理",
     "code": "字典项编码",
+    "name": "名称",
+    "i18nKey": "国际化Key",
+    "inputI18nKey": "请输入国际化Key",
     "nameCn": "中文名称",
     "nameEn": "英文名称",
     "sortNo": "排序",

@@ -5,7 +5,7 @@
 
   import { computed, nextTick, onMounted, ref, watch } from 'vue';
 
-  import { $t, i18n } from '@vben/locales';
+  import { $t } from '@vben/locales';
 
   import { PermCodes } from '#/constants/perm-codes';
   import { menuTypeColorMap, MenuTypeEnum, menuTypeI18nMap } from '#/enums/menuType';
@@ -197,14 +197,7 @@
    * 获取显示标题
    */
   function getDisplayTitle(row: Menu): string {
-    if (row.i18nKey) {
-      return $t(row.i18nKey);
-    }
-    const locale = i18n.global.locale.value;
-    if (locale === 'en-US') {
-      return row.titleEn || '';
-    }
-    return row.titleCn || '';
+    return row.i18nKey ? $t(row.i18nKey) : '';
   }
 
   /**
@@ -267,7 +260,7 @@
           :data="tableData"
         >
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
-          <vxe-column field="titleCn" :title="$t('iam.menu.titleCn')" :min-width="140">
+          <vxe-column field="i18nKey" :title="$t('iam.menu.titleCn')" :min-width="140">
             <template #default="{ row }">
               <a
                 v-if="hasPermission(PermCodes.Iam.Menu.VIEW)"

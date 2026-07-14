@@ -22,10 +22,8 @@ export interface DictItem extends BaseEntity {
   dictCode?: string;
   /** 字典项编码 */
   code?: string;
-  /** 中文名称 */
-  nameCn?: string;
-  /** 英文名称 */
-  nameEn?: string;
+  /** 国际化key */
+  i18nKey?: string;
   /** 排序号 */
   sortNo?: number;
 }

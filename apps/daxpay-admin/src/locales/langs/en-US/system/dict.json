@@ -26,6 +26,9 @@
   "item": {
     "title": "Dict Item Management",
     "code": "Item Code",
+    "name": "Name",
+    "i18nKey": "I18n Key",
+    "inputI18nKey": "Please enter i18n key",
     "nameCn": "Chinese Name",
     "nameEn": "English Name",
     "sortNo": "Sort",

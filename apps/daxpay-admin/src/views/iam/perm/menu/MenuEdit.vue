@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import { computed, nextTick, ref, watch } from 'vue';
 
-  import { $t, i18n } from '@vben/locales';
+  import { $t } from '@vben/locales';
 
   import { type Menu, MenuApi } from '#/api/iam/perm/menu.api';
   import { IconPicker } from '#/components/icon-picker';
@@ -194,10 +194,6 @@
     ],
     // 上级菜单校验
     pid: [{ required: parentRequired.value, message: $t('iam.menu.selectParent') }],
-    // 中文标题校验
-    titleCn: [{ required: true, message: $t('iam.menu.inputTitleCn') }],
-    // 英文标题校验
-    titleEn: [{ required: true, message: $t('iam.menu.inputTitleEn') }],
     // 国际化Key校验
     i18nKey: [{ required: true, message: $t('iam.menu.inputI18nKey') }],
     // 路由路径校验
@@ -369,14 +365,7 @@
    * 获取显示标题（国际化处理）
    */
   function getDisplayTitle(row: Menu): string {
-    if (row.i18nKey) {
-      return $t(row.i18nKey);
-    }
-    const locale = i18n.global.locale.value;
-    if (locale === 'en-US') {
-      return row.titleEn || '';
-    }
-    return row.titleCn || '';
+    return row.i18nKey ? $t(row.i18nKey) : '';
   }
 
   /**
@@ -523,15 +512,7 @@
         </a-form-item>
 
         <!-- 第二区：显示信息 -->
-        <a-form-item :label="$t('iam.menu.titleCn')" name="titleCn" class="col-span-2 md:col-span-1">
-          <!-- 标题 -->
-          <a-input v-model:value="form.titleCn" :placeholder="$t('iam.menu.inputTitleCn')" :disabled="showable" />
-        </a-form-item>
-
-        <a-form-item :label="$t('iam.menu.titleEn')" name="titleEn" class="col-span-2 md:col-span-1">
-          <!-- 英文标题 -->
-          <a-input v-model:value="form.titleEn" :placeholder="$t('iam.menu.inputTitleEn')" :disabled="showable" />
-        </a-form-item>
+        <!-- titleCn/titleEn 表单项已移除：展示以 i18nKey 为准，文案真相源在语言包 -->
 
         <a-form-item :label="$t('iam.menu.i18nKey')" name="i18nKey" class="col-span-2 md:col-span-1">
           <!-- 国际化Key -->

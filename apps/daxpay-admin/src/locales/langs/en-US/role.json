@@ -1,0 +1,6 @@
+{
+  "daxpay_admin": "Platform Admin",
+  "agent_admin": "Agent Admin",
+  "daxpay_gateway": "Payment Gateway",
+  "merchant_admin": "Merchant Admin"
+}

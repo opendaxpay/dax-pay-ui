@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import { ref } from 'vue';
 
-  import { $t, i18n } from '@vben/locales';
+  import { $t } from '@vben/locales';
   import { formatDateTime } from '@vben/utils';
 
   import { type User, UserApi, type UserRole, UserRoleApi } from '#/api/iam/user.api';
@@ -26,8 +26,7 @@
    */
   function getRoleName(item: null | UserRole): string {
     if (!item) return '-';
-    const locale = i18n.global.locale.value;
-    return locale === 'en-US' ? item.nameEn || item.nameCn || '-' : item.nameCn || item.nameEn || '-';
+    return item.i18nKey ? $t(item.i18nKey) : '-';
   }
 
   /**

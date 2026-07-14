@@ -2,47 +2,14 @@ import type { RouteRecordStringComponent } from '@vben/types';
 
 import type { BaseEntity, Result } from '#/types/web';
 
-import { preferences } from '@vben/preferences';
-
 import { requestClient } from '#/api/request';
 import { MenuTypeEnum } from '#/enums/menuType';
-import { i18n } from '#/locales';
 
 /**
- * 提取菜单翻译数据并注入到 i18n
- */
-export function injectMenuI18n(menus: PermMenu[]) {
-  const zhCnMessages: Record<string, string> = {};
-  const enUsMessages: Record<string, string> = {};
-
-  function extractMessages(menu: PermMenu) {
-    if (menu.i18nKey) {
-      if (menu.titleCn) zhCnMessages[menu.i18nKey] = menu.titleCn;
-      if (menu.titleEn) enUsMessages[menu.i18nKey] = menu.titleEn;
-    }
-    menu.children?.forEach((child) => extractMessages(child));
-  }
-
-  menus.forEach((menu) => extractMessages(menu));
-
-  // 同时注入中英文内容
-  i18n.global.mergeLocaleMessage('zh', zhCnMessages);
-  i18n.global.mergeLocaleMessage('en', enUsMessages);
-}
-
-/**
- * 统一标题生成链路
- * 优先级：i18nKey > titleEn > titleCn
+ * 统一标题生成：返回 i18nKey，由路由框架负责翻译
  */
 function resolveMenuTitle(menu: PermMenu): string {
-  const locale = preferences.app.locale;
-  if (menu.i18nKey) {
-    return menu.i18nKey;
-  }
-  if (locale === 'en-US') {
-    return menu.titleEn || '';
-  }
-  return menu.titleCn || '';
+  return menu.i18nKey || '';
 }
 
 /**
@@ -347,10 +314,6 @@ export interface PermMenu extends BaseEntity {
   pid: string;
   /** 客户端编码 */
   clientCode: string;
-  /** 菜单标题-中文 */
-  titleCn?: string;
-  /** 菜单标题-英文 */
-  titleEn?: string;
   /** 国际化key */
   i18nKey?: string;
   /** 图标 */
@@ -397,10 +360,6 @@ export interface Menu extends BaseEntity {
   pid?: string;
   /** 菜单编码 */
   menuCode?: string;
-  /** 中文标题 */
-  titleCn?: string;
-  /** 英文标题 */
-  titleEn?: string;
   /** 国际化Key */
   i18nKey?: string;
   /** 图标 */
@@ -469,10 +428,8 @@ export interface PermCodeScanResult {
 export interface MenuPermCodeItem extends BaseEntity {
   /** 权限码 */
   code?: string;
-  /** 中文名称 */
-  nameCn?: string;
-  /** 英文名称 */
-  nameEn?: string;
+  /** 国际化key */
+  i18nKey?: string;
   /** 菜单编码 */
   menuCode?: string;
   /** 是否内置 */

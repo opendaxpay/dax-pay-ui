@@ -2,46 +2,27 @@ import type { RouteRecordStringComponent } from '@vben/types';
 
 import type { BaseEntity, Result } from '#/types/web';
 
-import { preferences } from '@vben/preferences';
-
 import { requestClient } from '#/api/request';
 import { i18n } from '#/locales';
+import zhCnMenuTitles from '../../locales/menu-titles/zh-CN.json';
+import enUsMenuTitles from '../../locales/menu-titles/en-US.json';
 
 /**
- * 提取菜单翻译数据并注入到 i18n
+ * 注入菜单标题国际化文案
+ * 数据源为静态语言包文件（menu-titles/*.json），不依赖 DB title_cn/title_en 列
+ * DB 仅存 i18n_key，文案真相源在语言包
  */
-export function injectMenuI18n(menus: PermMenuResult[]) {
-  const zhCnMessages: Record<string, string> = {};
-  const enUsMessages: Record<string, string> = {};
-
-  function extractMessages(menu: PermMenuResult) {
-    if (menu.i18nKey) {
-      if (menu.titleCn) zhCnMessages[menu.i18nKey] = menu.titleCn;
-      if (menu.titleEn) enUsMessages[menu.i18nKey] = menu.titleEn;
-    }
-    menu.children?.forEach((child) => extractMessages(child));
-  }
-
-  menus.forEach((menu) => extractMessages(menu));
-
-  // 同时注入中英文内容
-  i18n.global.mergeLocaleMessage('zh', zhCnMessages);
-  i18n.global.mergeLocaleMessage('en', enUsMessages);
+export function injectMenuI18n() {
+  // 中文：注入到 'zh' locale，vue-i18n implicit fallback 使 'zh-CN' 可命中
+  i18n.global.mergeLocaleMessage('zh', zhCnMenuTitles);
+  i18n.global.mergeLocaleMessage('en', enUsMenuTitles);
 }
 
 /**
- * 统一标题生成链路
- * 优先级：i18nKey > titleEn > titleCn
+ * 统一标题生成链路：返回 i18nKey，由框架 $t 翻译
  */
 function resolveMenuTitle(menu: PermMenuResult): string {
-  const locale = preferences.app.locale;
-  if (menu.i18nKey) {
-    return menu.i18nKey;
-  }
-  if (locale === 'en-US') {
-    return menu.titleEn || '';
-  }
-  return menu.titleCn || '';
+  return menu.i18nKey || '';
 }
 
 /**
@@ -283,10 +264,6 @@ export interface PermMenuResult extends BaseEntity {
   pid: string;
   /** 客户端编码 */
   clientCode: string;
-  /** 菜单标题-中文 */
-  titleCn?: string;
-  /** 菜单标题-英文 */
-  titleEn?: string;
   /** 国际化key */
   i18nKey?: string;
   /** 图标 */

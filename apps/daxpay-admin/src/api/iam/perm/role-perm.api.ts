@@ -68,18 +68,12 @@ export interface RolePermTreeNode extends BaseEntity {
   codeId?: string;
   /** 权限码编码 */
   code?: string;
-  /** 中文名称 */
-  nameCn?: string;
-  /** 英文名称 */
-  nameEn?: string;
+  /** 国际化key */
+  i18nKey?: string;
   /** 菜单编码，用于把权限码挂载到当前终端下的菜单实例 */
   menuCode?: string;
   /** 终端编码 */
   clientCode?: string;
-  /** 中文标题 */
-  titleCn?: string;
-  /** 英文标题 */
-  titleEn?: string;
   /** 菜单类型 */
   menuType?: string;
   /** 排序 */
@@ -94,10 +88,8 @@ export interface RolePermTreeNode extends BaseEntity {
 export interface RolePermAssignContext extends BaseEntity {
   /** 角色编码 */
   code?: string;
-  /** 中文名称 */
-  nameCn?: string;
-  /** 英文名称 */
-  nameEn?: string;
+  /** 国际化key */
+  i18nKey?: string;
   /** 终端编码 */
   clientCode?: string;
 }
