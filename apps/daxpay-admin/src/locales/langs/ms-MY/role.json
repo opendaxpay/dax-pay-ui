@@ -1,6 +1,4 @@
 {
-  "daxpay_admin": "Pentadbir Platform",
-  "agent_admin": "Pentadbir Agen",
-  "daxpay_gateway": "Gerbang Pembayaran",
-  "merchant_admin": "Admin saudagar"
+  "admin_admin": "Pentadbir Operasi",
+  "merchant_admin": "Admin Saudagar"
 }

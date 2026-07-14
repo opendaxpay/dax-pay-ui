@@ -43,6 +43,18 @@ export const menuTypeColorMap: Record<string, string> = {
 };
 
 /**
+ * 菜单类型小圆点 Tailwind class（树节点等轻量标识，与 menuTypeColorMap 语义一致）
+ */
+export const menuTypeDotClassMap: Record<string, string> = {
+  [MenuTypeEnum.CATALOG]: 'bg-blue-500',
+  [MenuTypeEnum.MENU]: 'bg-green-500',
+  [MenuTypeEnum.SUBPAGE]: 'bg-cyan-500',
+  [MenuTypeEnum.SUBPAGE_GROUP]: 'bg-indigo-500',
+  [MenuTypeEnum.EMBEDDED]: 'bg-orange-500',
+  [MenuTypeEnum.LINK]: 'bg-purple-500',
+};
+
+/**
  * 菜单类型国际化Key映射
  */
 export const menuTypeI18nMap: Record<string, string> = {

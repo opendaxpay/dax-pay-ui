@@ -1,6 +1,4 @@
 {
-  "daxpay_admin": "Quản trị viên nền tảng",
-  "agent_admin": "Quản trị viên đại lý",
-  "daxpay_gateway": "Cổng thanh toán",
+  "admin_admin": "Quản trị vận hành",
   "merchant_admin": "Quản trị viên người bán"
 }

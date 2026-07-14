@@ -1,6 +1,4 @@
 {
-  "daxpay_admin": "プラットフォーム管理者",
-  "agent_admin": "エージェント管理者",
-  "daxpay_gateway": "ペイメントゲートウェイ",
+  "admin_admin": "運営管理者",
   "merchant_admin": "販売者管理者"
 }
