@@ -8,7 +8,7 @@
   import { WebsiteConfigApi } from '#/api/system/website-config.api';
   import { BUploadImage } from '#/components/b-upload-image';
   import { useMessage } from '#/hooks/useMessage';
-  import { applyWebsiteBranding } from '#/logics/init-website-config';
+  import { persistWebsiteConfig } from '#/logics/init-website-config';
 
   const { confirm, message } = useMessage();
 
@@ -76,9 +76,10 @@
               await WebsiteConfigApi.update({ ...formState.value });
               message.success($t('common.saveSuccess'));
               isEditing.value = false;
-              await loadConfig();
-              // 立即刷新运营端品牌展示
-              applyWebsiteBranding(formState.value);
+              // 再拉一次以拿到服务端 contentHash, 避免本地 clientHash 与 MD5 不一致导致下次启动多余 re-apply
+              const { data } = await WebsiteConfigApi.get();
+              formState.value = data ? { ...data } : {};
+              persistWebsiteConfig(formState.value);
             } finally {
               saving.value = false;
             }
@@ -179,6 +180,23 @@
               </div>
             </a-form-item>
           </div>
+
+          <div class="config-grid">
+            <a-form-item name="companyWechat">
+              <div class="config-item config-item--block">
+                <div class="config-item__main">
+                  <!-- 国际化: 客服/商务微信号 -->
+                  <div class="config-item__label">{{ $t('system.platform.website.companyWechat') }}</div>
+                  <div class="config-item__desc">{{ $t('system.platform.website.companyWechatDesc') }}</div>
+                </div>
+                <a-input
+                  v-model:value="formState.companyWechat"
+                  :disabled="!isEditing"
+                  :placeholder="$t('system.platform.website.inputCompanyWechat')"
+                />
+              </div>
+            </a-form-item>
+          </div>
         </div>
 
         <!-- Logo -->
@@ -186,14 +204,15 @@
           <div class="config-section__title">{{ $t('system.platform.website.section.logo') }}</div>
 
           <div class="config-grid">
-            <a-form-item name="wholeLogo">
+            <a-form-item name="logo">
               <div class="config-item config-item--block">
                 <div class="config-item__main">
-                  <div class="config-item__label">{{ $t('system.platform.website.wholeLogo') }}</div>
-                  <div class="config-item__desc">{{ $t('system.platform.website.wholeLogoDesc') }}</div>
+                  <!-- 国际化: 亮色 Logo -->
+                  <div class="config-item__label">{{ $t('system.platform.website.logo') }}</div>
+                  <div class="config-item__desc">{{ $t('system.platform.website.logoDesc') }}</div>
                 </div>
                 <BUploadImage
-                  v-model="formState.wholeLogo"
+                  v-model="formState.logo"
                   access-type="public"
                   :disabled="!isEditing"
                   :showable="!isEditing"
@@ -201,14 +220,15 @@
               </div>
             </a-form-item>
 
-            <a-form-item name="simpleLogo">
+            <a-form-item name="logoDark">
               <div class="config-item config-item--block">
                 <div class="config-item__main">
-                  <div class="config-item__label">{{ $t('system.platform.website.simpleLogo') }}</div>
-                  <div class="config-item__desc">{{ $t('system.platform.website.simpleLogoDesc') }}</div>
+                  <!-- 国际化: 暗色 Logo -->
+                  <div class="config-item__label">{{ $t('system.platform.website.logoDark') }}</div>
+                  <div class="config-item__desc">{{ $t('system.platform.website.logoDarkDesc') }}</div>
                 </div>
                 <BUploadImage
-                  v-model="formState.simpleLogo"
+                  v-model="formState.logoDark"
                   access-type="public"
                   :disabled="!isEditing"
                   :showable="!isEditing"
@@ -358,20 +378,6 @@
                   v-model:value="formState.copyright"
                   :disabled="!isEditing"
                   :placeholder="$t('system.platform.website.inputCopyright')"
-                />
-              </div>
-            </a-form-item>
-
-            <a-form-item name="copyrightLink">
-              <div class="config-item config-item--block">
-                <div class="config-item__main">
-                  <div class="config-item__label">{{ $t('system.platform.website.copyrightLink') }}</div>
-                  <div class="config-item__desc">{{ $t('system.platform.website.copyrightLinkDesc') }}</div>
-                </div>
-                <a-input
-                  v-model:value="formState.copyrightLink"
-                  :disabled="!isEditing"
-                  :placeholder="$t('system.platform.website.inputCopyrightLink')"
                 />
               </div>
             </a-form-item>

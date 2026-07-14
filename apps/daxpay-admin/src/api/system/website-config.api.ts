@@ -32,10 +32,12 @@ export interface WebsiteConfig {
   companyPhone?: string;
   /** 公司邮箱 */
   companyEmail?: string;
-  /** 系统完整 logo */
-  wholeLogo?: string;
-  /** 系统简化 logo */
-  simpleLogo?: string;
+  /** 客服/商务微信号 */
+  companyWechat?: string;
+  /** 系统亮色 logo */
+  logo?: string;
+  /** 系统暗色 logo, 不传则复用亮色 */
+  logoDark?: string;
   /** 工信部 ICP 备案信息 */
   icpInfo?: string;
   /** 工信部 ICP 链接地址 */
@@ -54,6 +56,6 @@ export interface WebsiteConfig {
   icpPlusLink?: string;
   /** 版权信息 */
   copyright?: string;
-  /** 版权信息链接 */
-  copyrightLink?: string;
+  /** 配置内容哈希(只读, 供客户端缓存比对) */
+  contentHash?: string;
 }

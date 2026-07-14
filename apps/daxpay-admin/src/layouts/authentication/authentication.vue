@@ -3,12 +3,12 @@
 
   import { computed } from 'vue';
 
-  import { preferences, usePreferences } from '@vben/preferences';
+  import { usePreferences } from '@vben/preferences';
 
-  import Copyright from './copyright.vue';
   import AuthenticationFormView from './form.vue';
   import SloganIcon from './icons/slogan.vue';
   import Toolbar from './toolbar.vue';
+  import WebsiteFooter from './WebsiteFooter.vue';
 
   interface Props {
     appName?: string;
@@ -62,7 +62,8 @@
     <AuthenticationFormView v-if="authPanelLeft" class="min-h-full w-2/5 flex-1" data-side="left">
       <template v-if="copyright" #copyright>
         <slot name="copyright">
-          <Copyright v-if="preferences.copyright.enable" v-bind="preferences.copyright" />
+          <!-- 站点配置页脚: 联系方式 / 版权 / 备案 -->
+          <WebsiteFooter />
         </slot>
       </template>
     </AuthenticationFormView>
@@ -114,7 +115,7 @@
       >
         <template v-if="copyright" #copyright>
           <slot name="copyright">
-            <Copyright v-if="preferences.copyright.enable" v-bind="preferences.copyright" />
+            <WebsiteFooter />
           </slot>
         </template>
       </AuthenticationFormView>
@@ -124,7 +125,7 @@
     <AuthenticationFormView v-if="authPanelRight" class="min-h-full w-2/5 flex-1" data-side="right">
       <template v-if="copyright" #copyright>
         <slot name="copyright">
-          <Copyright v-if="preferences.copyright.enable" v-bind="preferences.copyright" />
+          <WebsiteFooter />
         </slot>
       </template>
     </AuthenticationFormView>
