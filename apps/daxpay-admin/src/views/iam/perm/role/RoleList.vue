@@ -70,27 +70,6 @@
   });
 
   /**
-   * 获取更多操作菜单配置
-   */
-  function getActionMenu(row: Role): MenuProps {
-    return {
-      items: [
-        // 分配权限
-        { key: 'assignPermission', label: $t('iam.role.assignPermission') },
-        // 删除
-        { key: 'delete', label: $t('common.delete'), danger: true, disabled: !!row.internal },
-      ],
-      onClick: ({ key }: { key: string }) => {
-        if (key === 'assignPermission') {
-          handleAssignPermission(row);
-        } else if (key === 'delete' && !row.internal) {
-          handleDelete(row);
-        }
-      },
-    };
-  }
-
-  /**
    * 查询分页数据
    */
   function queryPage() {
@@ -179,6 +158,45 @@
   }
 
   /**
+   * 是否展示「更多」菜单（需管理权限）
+   */
+  function hasMoreActions(): boolean {
+    return hasPermission(PermCodes.Iam.Role.MANAGE);
+  }
+
+  /**
+   * 更多操作：编辑、删除（低频/危险收纳，避免多语言下操作列溢出）
+   */
+  function getActionMenu(row: Role): MenuProps {
+    const items: NonNullable<MenuProps['items']> = [
+      {
+        key: 'edit',
+        label: $t('common.edit'),
+        disabled: !!row.internal,
+      },
+    ];
+    if (!row.internal) {
+      items.push({ type: 'divider' });
+      items.push({
+        key: 'delete',
+        label: $t('common.delete'),
+        danger: true,
+      });
+    }
+    return {
+      items,
+      onClick: ({ key }: { key: string }) => {
+        if (key === 'edit' && !row.internal) {
+          handleEdit(row);
+        }
+        if (key === 'delete' && !row.internal) {
+          handleDelete(row);
+        }
+      },
+    };
+  }
+
+  /**
    * 分页变化
    */
   function handlePageChange({ currentPage, pageSize }: any) {
@@ -242,31 +260,37 @@
           <vxe-column field="remark" :title="$t('iam.role.remark')" :min-width="150" />
           <!-- 创建时间 -->
           <vxe-column field="createTime" :title="$t('common.createTime')" :min-width="160" formatter="formatDateTime" />
-          <!-- 操作 -->
-          <vxe-column fixed="right" width="180" :show-overflow="false" :title="$t('common.operation')">
+          <!-- 操作：主列查看/分配权限 + 更多（编辑/删除），避免多语言文案溢出 -->
+          <vxe-column fixed="right" width="220" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">
               <a-space :size="2">
                 <template #separator>
                   <a-divider type="vertical" />
                 </template>
                 <!-- 查看 -->
-                <a v-if="hasPermission(PermCodes.Iam.Role.VIEW)" href="javascript:" @click="handleView(row)">{{
-                  $t('common.view')
-                }}</a>
-                <!-- 编辑 -->
-                <a
-                  v-if="!row.internal && hasPermission(PermCodes.Iam.Role.MANAGE)"
-                  href="javascript:"
-                  @click="handleEdit(row)"
-                  >{{ $t('common.edit') }}</a
+                <a-button
+                  v-if="hasPermission(PermCodes.Iam.Role.VIEW)"
+                  type="link"
+                  size="small"
+                  @click="handleView(row)"
                 >
-                <a v-else-if="row.internal" href="javascript:" disabled>{{ $t('common.edit') }}</a>
-                <!-- 更多 -->
-                <a-dropdown v-if="hasPermission(PermCodes.Iam.Role.MANAGE)" :menu="getActionMenu(row)">
-                  <a href="javascript:">
-                    {{ $t('iam.menu.more') }}
+                  {{ $t('common.view') }}
+                </a-button>
+                <!-- 分配权限（高频操作保留主列） -->
+                <a-button
+                  v-if="hasPermission(PermCodes.Iam.Role.MANAGE)"
+                  type="link"
+                  size="small"
+                  @click="handleAssignPermission(row)"
+                >
+                  {{ $t('iam.role.assignPermission') }}
+                </a-button>
+                <!-- 更多：编辑 / 删除 -->
+                <a-dropdown v-if="hasMoreActions()" :menu="getActionMenu(row)">
+                  <a-button type="link" size="small">
+                    {{ $t('common.more') }}
                     <IconifyIcon icon="ant-design:down-outlined" class="inline" />
-                  </a>
+                  </a-button>
                 </a-dropdown>
               </a-space>
             </template>

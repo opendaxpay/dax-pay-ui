@@ -29,7 +29,7 @@
   "selectedStats": "Đã chọn: {menu} menu · {code} mã",
   "cascadeCodes": "Bao gồm mã quyền khi chọn menu",
   "cascadeCodesTip": "Khi được bật, việc chọn menu cũng sẽ chọn tất cả các mã cấp phép bên dưới nó. Việc bỏ chọn một menu luôn xóa mã của nó.",
-  "codeMultiMountTip": "Mã quyền tương tự được đồng bộ hóa trên tất cả các menu được gắn trên đó",
+  "codeMultiMountTip": "Khi chọn, quyền này sẽ đồng bộ sang các menu khác dùng chung",
   "noChange": "Không có thay đổi quyền",
   "inputCode": "Vui lòng nhập mã vai trò",
   "inputName": "Vui lòng nhập tên vai trò",
