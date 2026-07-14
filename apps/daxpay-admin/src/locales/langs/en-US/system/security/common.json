@@ -1,6 +1,10 @@
 {
   "title": "Security Management",
   "description": "Manage system security settings by module",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "confirmSave": "Confirm save",
+  "confirmSaveContent": "Are you sure you want to save the current configuration?",
   "unit": {
     "char": "chars",
     "day": "days",

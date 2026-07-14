@@ -1,0 +1,12 @@
+{
+  "current": "現在のタイムゾーン",
+  "searchPlaceholder": "都市/タイムゾーン/オフセットを検索",
+  "region": {
+    "asia": "アジア",
+    "europe": "ヨーロッパ",
+    "america": "アメリカ",
+    "oceania": "オセアニア",
+    "africa": "アフリカ",
+    "universal": "ユニバーサル"
+  }
+}

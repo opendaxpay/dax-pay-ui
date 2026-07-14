@@ -1,0 +1,20 @@
+{
+  "account": "계정",
+  "userId": "사용자 ID",
+  "status": "상태",
+  "ip": "IP 주소",
+  "os": "OS",
+  "browser": "브라우저",
+  "msg": "메시지",
+  "loginTime": "로그인 시간",
+  "client": "고객",
+  "loginType": "로그인 유형",
+  "loginLocation": "위치",
+  "inputAccount": "계좌를 입력해주세요",
+  "selectStatus": "상태를 선택해주세요",
+  "detailTitle": "로그인 로그 세부정보",
+  "selectCleanDay": "이전에 로그 정리",
+  "cleanWarning": "경고",
+  "cleanConfirm": "지정된 날짜 이전의 로그를 삭제하시겠습니까? 이 작업은 취소할 수 없습니다.",
+  "cleanSuccess": "로그가 성공적으로 정리되었습니다."
+}

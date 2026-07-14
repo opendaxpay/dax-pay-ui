@@ -1,0 +1,12 @@
+{
+  "field": {
+    "provider": "지불 제공자",
+    "method": "결제 방법",
+    "code": "암호",
+    "icon": "상",
+    "name": "이름",
+    "sortNo": "종류",
+    "description": "설명"
+  },
+  "detail": "디렉토리 항목 세부정보"
+}

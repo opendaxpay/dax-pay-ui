@@ -1,0 +1,95 @@
+{
+  "common": {
+    "title": "サードパーティのプラットフォーム管理",
+    "description": "サードパーティのログインとオープン プラットフォームの認証情報の統合管理。"
+  },
+  "loginConfig": {
+    "title": "サードパーティのログイン構成",
+    "description": "WEB クライアントが使用する OAuth ログイン認証情報をプラットフォームごとに設定します。"
+  },
+  "alipay": {
+    "tabTitle": "Alipay アプリ構成",
+    "tabDescription": "認証ログインおよび支払いチャネル認証用の Alipay OAuth 認証情報",
+    "title": "Alipay アプリの認証構成",
+    "description": "ユーザー識別子 (userId) と支払いチャネル認証を取得するための認証ログイン用の Alipay OAuth 資格情報 (appId/秘密キー/証明書) を管理します。",
+    "usageTip": "この構成は、次の両方に役立ちます。 1) サードパーティ ログインでの Alipay 認証ログイン。 2) 支払いシナリオでのチャネル認証 (支払い用のユーザー ID を取得)。",
+    "confirmSaveContent": "Alipay アプリの設定を保存してもよろしいですか?",
+    "section": {
+      "basic": "基本構成",
+      "credential": "資格情報の構成"
+    },
+    "appId": "アプリID",
+    "appIdDesc": "Alipay Open Platformで作成されたアプリケーションのappId",
+    "inputAppId": "Alipay アプリ ID を入力してください",
+    "authType": "認証タイプ",
+    "authTypeDesc": "公開キーモードは Alipay 公開キーを使用し、証明書モードは 3 つの証明書を使用します",
+    "authTypeKey": "公開鍵",
+    "authTypeCert": "証明書",
+    "privateKey": "アプリの秘密キー",
+    "privateKeyDesc": "アプリの秘密キー (PEM 形式、公開キーと証明書モードの両方に必要)",
+    "inputPrivateKey": "アプリの秘密キーを入力してください",
+    "alipayPublicKey": "Alipay 公開キー",
+    "alipayPublicKeyDesc": "Alipay 公開キー (公開キー モードの場合、Alipay オープン プラットフォームの「アプリケーション情報」から取得)",
+    "inputAlipayPublicKey": "Alipayの公開キーを入力してください",
+    "appCert": "アプリの公開証明書",
+    "appCertDesc": "アプリのパブリック証明書 (証明書モードの場合、.crt ファイルをアップロード)",
+    "uploadAppCert": "アプリの公開証明書をアップロードする",
+    "alipayCert": "Alipay 公的証明書",
+    "alipayCertDesc": "Alipay 公開証明書 (証明書モードの場合、.crt ファイルをアップロード)",
+    "uploadAlipayCert": "Alipay 公開証明書をアップロードする",
+    "alipayRootCert": "Alipay ルート証明書",
+    "alipayRootCertDesc": "Alipay ルート証明書 (証明書モードの場合、.crt ファイルをアップロード)",
+    "uploadRootCert": "Alipay ルート証明書をアップロードする",
+    "validate": {
+      "appId": "アプリIDを入力してください",
+      "authType": "認証タイプを選択してください",
+      "privateKey": "アプリの秘密キーを入力してください",
+      "alipayPublicKey": "Alipayの公開キーを入力してください",
+      "appCert": "アプリの公開証明書をアップロードしてください",
+      "alipayCert": "Alipay の公的証明書をアップロードしてください",
+      "alipayRootCert": "Alipay ルート証明書をアップロードしてください"
+    }
+  },
+  "wechatMp": {
+    "tabTitle": "WeChat公式アカウントの設定",
+    "tabDescription": "ログインおよびテンプレート通知用の WeChat MP 認証情報",
+    "title": "WeChat公式アカウントの認証構成",
+    "description": "H5 OAuth openId および通知センター テンプレート メッセージの WeChat MP 資格情報 (appId/appSecret) を管理します。",
+    "usageTip": "この構成は次の機能を果たします。 1) WeChat MP H5 OAuth ログイン。 2) 通知センターのテンプレート メッセージの送信。",
+    "confirmSaveContent": "WeChat 公式アカウントの設定を保存してもよろしいですか?",
+    "section": {
+      "credential": "資格情報の構成"
+    },
+    "appId": "アプリID",
+    "appIdDesc": "WeChat 公式アカウント AppId (MP プラットフォームの「設定と開発 - 基本構成」から取得)",
+    "inputAppId": "WeChat MP アプリ ID を入力してください",
+    "appSecret": "アプリの秘密",
+    "appSecretDesc": "WeChat 公式アカウント AppSecret (MP プラットフォームの「設定と開発 - 基本構成」から取得)",
+    "inputAppSecret": "WeChat MP アプリの秘密を入力してください",
+    "validate": {
+      "appId": "アプリIDを入力してください",
+      "appSecret": "アプリのシークレットを入力してください"
+    }
+  },
+  "douyinH5": {
+    "tabTitle": "Douyin H5 アプリ",
+    "tabDescription": "H5 認証用の Douyin オープン プラットフォーム H5 認証情報",
+    "title": "Douyin H5 アプリ認証構成",
+    "description": "H5 認証シナリオの Douyin オープン プラットフォーム H5 アプリの資格情報 (クライアント キー / クライアント シークレット) を管理します。",
+    "usageTip": "この設定は、サードパーティのログイン設定の Douyin ログインとは独立しています。 Open Platform H5 クライアント キー/クライアント シークレットのみを管理します。",
+    "confirmSaveContent": "Douyin H5 アプリの設定を保存してもよろしいですか?",
+    "section": {
+      "credential": "資格情報の構成"
+    },
+    "clientKey": "クライアントキー",
+    "clientKeyDesc": "Douyin オープン プラットフォーム アプリのクライアント キー (オープン プラットフォームの「アプリの詳細」から)",
+    "inputClientKey": "クライアントキーを入力してください",
+    "clientSecret": "クライアントシークレット",
+    "clientSecretDesc": "Douyin オープン プラットフォーム アプリのクライアント シークレット (オープン プラットフォームの「アプリの詳細」から)",
+    "inputClientSecret": "クライアント シークレットを入力してください",
+    "validate": {
+      "clientKey": "クライアントキーを入力してください",
+      "clientSecret": "クライアント シークレットを入力してください"
+    }
+  }
+}

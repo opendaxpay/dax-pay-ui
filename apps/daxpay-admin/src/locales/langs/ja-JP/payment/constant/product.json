@@ -1,0 +1,43 @@
+{
+  "field": {
+    "code": "製品コード",
+    "name": "製品名",
+    "channel": "チャネル",
+    "description": "説明",
+    "icon": "アイコン",
+    "remark": "述べる",
+    "channelName": "チャンネル名",
+    "isv": "ISV",
+    "terminal": "ターミナルレポート",
+    "sandbox": "サンドボックス",
+    "apiCallMode": "API呼び出しモード",
+    "payIdType": "ペイ ID タイプ",
+    "capabilities": "支払い機能",
+    "features": "製品の特徴"
+  },
+  "features": "製品の特徴",
+  "detail": "製品詳細",
+  "sandboxSupported": "サポートされています",
+  "sandboxNotSupported": "サポートされていません",
+  "productName": {
+    "alipayIsv": "アリペイ (ISV)",
+    "wechatIsv": "WeChat Pay (ISV)",
+    "unknown": "製品構成"
+  },
+  "productConfig": {
+    "title": "チャネル製品構成",
+    "emptyDesc": "利用可能な支払い商品データがありません",
+    "prodLabel": "製品",
+    "sandboxLabel": "サンドボックス",
+    "prodConfigBtn": "生産",
+    "sandboxConfigBtn": "サンドボックス",
+    "switchEnv": "スイッチ環境",
+    "switchToSandboxConfirm": "サンドボックス環境に切り替えますか?すべてのトランザクションは、統合および機能テストに適したサンドボックス API エンドポイントを使用します。",
+    "switchToProdConfirm": "実稼働環境に切り替えますか?すべてのトランザクションは本番 API エンドポイントを使用し、実際の資金の流れが関与します。",
+    "nonIsvDisabledTip": "非 ISV 支払い商品は編集できません"
+  },
+  "placeholder": {
+    "name": "製品名を入力してください",
+    "code": "製品コードを入力してください"
+  }
+}

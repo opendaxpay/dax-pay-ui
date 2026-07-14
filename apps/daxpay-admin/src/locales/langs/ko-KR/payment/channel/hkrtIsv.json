@@ -1,0 +1,31 @@
+{
+  "title": "HKRT ISV 구성",
+  "groupConfig": "구성",
+  "configTitle": "HKRT ISV 키 구성",
+  "manageTitle": "HKRT 판매자 관리",
+  "basicConfig": "기본 구성",
+  "keyConfig": "키 구성",
+  "cardMchKey": "ISV 키",
+  "cardMchKeyDesc": "HKRT 에이전트 번호, 액세스 ID 및 서명 키 구성",
+  "agentNo": "대리인 번호",
+  "agentNoPlaceholder": "대리인 번호를 입력해주세요",
+  "accessId": "기관 ID에 액세스",
+  "accessIdPlaceholder": "접속 기관 ID를 입력해주세요.",
+  "accessKey": "서명 키",
+  "accessKeyPlaceholder": "서명 키를 입력하세요(MD5 대문자 서명의 경우).",
+  "groupMchConfig": "판매자 구성",
+  "cardMchConfig": "판매자 구성",
+  "cardMchConfigDesc": "채널 판매자를 위한 SAAS 터미널 번호 구성",
+  "mchConfigTitle": "판매자 구성",
+  "merchNo": "HKRT 판매자 번호",
+  "merchNoPlaceholder": "HKRT 판매자 번호를 입력하세요.",
+  "pn": "SAAS 터미널 번호",
+  "pnPlaceholder": "SAAS 터미널 번호를 입력하세요",
+  "validation": {
+    "agentNo": "대리인 번호를 입력해주세요",
+    "accessId": "접속 기관 ID를 입력해주세요.",
+    "accessKey": "서명 키를 입력하세요.",
+    "merchNo": "HKRT 판매자 번호를 입력하세요.",
+    "pn": "SAAS 터미널 번호를 입력하세요"
+  }
+}

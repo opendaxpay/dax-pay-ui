@@ -1,0 +1,31 @@
+{
+  "title": "HKRT ISV 構成",
+  "groupConfig": "構成",
+  "configTitle": "HKRT ISV キー構成",
+  "manageTitle": "HKRT加盟店管理",
+  "basicConfig": "基本構成",
+  "keyConfig": "キー構成",
+  "cardMchKey": "ISV キー",
+  "cardMchKeyDesc": "HKRT エージェント番号、アクセス ID、署名キーを設定する",
+  "agentNo": "エージェント番号",
+  "agentNoPlaceholder": "エージェント番号を入力してください",
+  "accessId": "機関IDにアクセスする",
+  "accessIdPlaceholder": "アクセス機関IDを入力してください",
+  "accessKey": "署名キー",
+  "accessKeyPlaceholder": "署名キーを入力してください (MD5 大文字署名の場合)",
+  "groupMchConfig": "販売者の設定",
+  "cardMchConfig": "販売者の設定",
+  "cardMchConfigDesc": "チャネル加盟店の SAAS 端末番号を構成する",
+  "mchConfigTitle": "販売者の設定",
+  "merchNo": "HKRT 加盟店番号",
+  "merchNoPlaceholder": "HKRT 販売者番号を入力してください",
+  "pn": "SAAS ターミナル番号",
+  "pnPlaceholder": "SAAS 端末番号を入力してください",
+  "validation": {
+    "agentNo": "エージェント番号を入力してください",
+    "accessId": "アクセス機関IDを入力してください",
+    "accessKey": "署名キーを入力してください",
+    "merchNo": "HKRT 販売者番号を入力してください",
+    "pn": "SAAS 端末番号を入力してください"
+  }
+}

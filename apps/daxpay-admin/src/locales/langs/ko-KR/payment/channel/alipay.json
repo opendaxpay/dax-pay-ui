@@ -1,0 +1,26 @@
+{
+  "aliAppId": "Alipay 앱 ID",
+  "authType": "인증 유형",
+  "signType": "표시 유형",
+  "alipayUserId": "알리페이 사용자 ID",
+  "alipayPublicKey": "Alipay 공개 키",
+  "privateKey": "개인 키",
+  "appCert": "앱 인증서",
+  "alipayCert": "알리페이 인증서",
+  "alipayRootCert": "Alipay 루트 인증서",
+  "certFields": "인증서 필드(인증 유형이 cert인 경우 필수)",
+  "authTypeCert": "자격증",
+  "authTypeKey": "공개 키",
+  "signTypeRsa2": "RSA2",
+  "validation": {
+    "aliAppIdRequired": "Alipay 앱 ID를 입력하세요.",
+    "authTypeRequired": "인증 유형을 선택하세요.",
+    "signTypeRequired": "간판 종류를 선택해주세요",
+    "alipayUserIdRequired": "Alipay 사용자 ID를 입력하세요.",
+    "alipayPublicKeyRequired": "Alipay 공개키를 입력해주세요",
+    "privateKeyRequired": "개인키를 입력해주세요",
+    "appCertRequired": "인증 유형이 인증서인 경우 앱 인증서가 필요합니다.",
+    "alipayCertRequired": "인증 유형이 인증서인 경우 Alipay 인증서가 필요합니다.",
+    "alipayRootCertRequired": "인증 유형이 cert인 경우 Alipay 루트 인증서가 필요합니다."
+  }
+}

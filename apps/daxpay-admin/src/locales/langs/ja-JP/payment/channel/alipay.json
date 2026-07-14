@@ -1,0 +1,26 @@
+{
+  "aliAppId": "Alipay アプリ ID",
+  "authType": "認証タイプ",
+  "signType": "サインの種類",
+  "alipayUserId": "Alipay ユーザー ID",
+  "alipayPublicKey": "Alipay 公開キー",
+  "privateKey": "秘密鍵",
+  "appCert": "アプリ証明書",
+  "alipayCert": "アリペイ証明書",
+  "alipayRootCert": "Alipay ルート証明書",
+  "certFields": "証明書フィールド (認証タイプが証明書の場合は必須)",
+  "authTypeCert": "証明書",
+  "authTypeKey": "公開鍵",
+  "signTypeRsa2": "RSA2",
+  "validation": {
+    "aliAppIdRequired": "Alipay アプリ ID を入力してください",
+    "authTypeRequired": "認証タイプを選択してください",
+    "signTypeRequired": "記号の種類を選択してください",
+    "alipayUserIdRequired": "Alipay ユーザー ID を入力してください",
+    "alipayPublicKeyRequired": "Alipayの公開キーを入力してください",
+    "privateKeyRequired": "秘密キーを入力してください",
+    "appCertRequired": "認証タイプが証明書の場合はアプリ証明書が必要です",
+    "alipayCertRequired": "認証タイプが証明書の場合、Alipay 証明書が必要です",
+    "alipayRootCertRequired": "認証タイプが証明書の場合、Alipay ルート証明書が必要です"
+  }
+}

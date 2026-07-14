@@ -1,0 +1,9 @@
+{
+  "placeholder": "행정구역을 선택해주세요",
+  "level": {
+    "province": "주",
+    "city": "도시",
+    "area": "구/군",
+    "street": "거리/마을"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "title": "VBill ISV 구성",
+  "groupConfig": "구성",
+  "configTitle": "VBill ISV 키 구성",
+  "manageTitle": "VBill 가맹점 관리",
+  "basicConfig": "기본 구성",
+  "keyConfig": "키 구성",
+  "cardMchKey": "ISV 키",
+  "cardMchKeyDesc": "VBill 조직 ID, RSA 공개/개인 키 구성",
+  "orgId": "Tianque 조직 ID",
+  "orgIdPlaceholder": "Tianque 파트너 조직 ID(orgId)를 입력하세요.",
+  "publicKey": "Tianque RSA 공개 키",
+  "publicKeyTooltip": "Tianque RSA 공개 키(X509 Base64), 응답/콜백 서명 확인용",
+  "privateKey": "판매자 RSA 개인 키",
+  "privateKeyTooltip": "판매자 RSA 개인 키(PKCS8 Base64), SHA1withRSA 서명",
+  "sandbox": "모래 상자",
+  "groupMchConfig": "판매자 구성",
+  "cardMchConfig": "판매자 구성",
+  "cardMchConfigDesc": "Tianque 판매자 번호 보기",
+  "mchConfigTitle": "판매자 구성",
+  "vbillMchNo": "Tianque 상인 번호",
+  "vbillMchNoPlaceholder": "Tianque 판매자 번호(mno)를 입력하세요.",
+  "validation": {
+    "orgId": "Tianque 조직 ID를 입력하세요.",
+    "publicKey": "Tianque RSA 공개 키를 입력하세요.",
+    "privateKey": "판매자 RSA 개인 키를 입력하세요.",
+    "vbillMchNo": "Tianque 판매자 번호를 입력하세요."
+  }
+}

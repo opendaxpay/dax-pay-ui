@@ -35,6 +35,8 @@ import {
   // VxeTextarea,
 } from 'vxe-pc-ui';
 import enUS from 'vxe-pc-ui/lib/language/en-US';
+import jaJP from 'vxe-pc-ui/lib/language/ja-JP';
+import koKR from 'vxe-pc-ui/lib/language/ko-KR';
 // 导入默认的语言
 import zhCN from 'vxe-pc-ui/lib/language/zh-CN';
 import zhHK from 'vxe-pc-ui/lib/language/zh-HK';
@@ -122,6 +124,8 @@ export function setupVbenVxeTable(setupOptions: SetupVxeTable) {
     'en-US': enUS,
     'zh-TW': zhTW,
     'zh-HK': zhHK,
+    'ja-JP': jaJP,
+    'ko-KR': koKR,
   };
 
   watch(

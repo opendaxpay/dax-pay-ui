@@ -1,0 +1,26 @@
+{
+  "auth": {
+    "profile": "설정",
+    "login": "로그인",
+    "codeLogin": "코드 로그인",
+    "qrcodeLogin": "QR코드 로그인",
+    "forgetPassword": "비밀번호를 잊으셨나요?",
+    "oauthCallback": "OAuth 콜백"
+  },
+  "dashboard": {
+    "title": "계기반",
+    "analytics": "해석학",
+    "workspace": "작업공간"
+  },
+  "payment": {
+    "title": "결제관리",
+    "platform": "결제관리",
+    "merchantList": "판매자 목록",
+    "merchantManage": "판매자 관리",
+    "merchantChannelMerchant": "판매자 채널 판매자",
+    "channelMerchantManage": "채널 판매자",
+    "channelMerchantList": "채널 판매자",
+    "channelMerchantDetail": "채널 판매자 세부정보",
+    "productList": "결제상품"
+  }
+}

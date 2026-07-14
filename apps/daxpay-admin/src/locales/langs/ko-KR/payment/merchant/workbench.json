@@ -1,0 +1,28 @@
+{
+  "workbench": {
+    "title": "상인 작업대",
+    "backToList": "목록으로 돌아가기",
+    "developing": "기능은 개발 중입니다. 계속 지켜봐 주시기 바랍니다...",
+    "groupBasic": "기본관리",
+    "groupPayment": "결제 구성",
+    "groupBusiness": "비즈니스 구성",
+    "cardMchInfo": "판매자 프로필",
+    "cardMchInfoDesc": "판매자 번호, 이름, 상태 및 기타 기본 정보",
+    "cardSecurity": "보안 구성",
+    "cardSecurityDesc": "비밀번호 정책, 로그인 보안, 세션 관리",
+    "cardProductPayConfig": "제품 지불 구성",
+    "cardProductPayConfigDesc": "가맹점 상품 결제 매개변수 및 샌드박스 환경 구성",
+    "cardChannelMerchant": "채널 판매자",
+    "cardChannelMerchantDesc": "결제 채널 전반에 걸친 가맹점 번호 구성 및 관리",
+    "cardApp": "앱 관리",
+    "cardAppDesc": "판매자 앱 생성 및 관리",
+    "cardCredentialConfig": "API 자격 증명",
+    "cardCredentialConfigDesc": "가맹점 공개키, 통신키, 플랫폼 공개키 및 기타 API 자격증명 구성",
+    "cardWxDomainVerify": "WeChat 도메인 확인",
+    "cardWxDomainVerifyDesc": "WeChat 공식 계정/미니 프로그램 비즈니스 도메인 확인 파일 업로드 및 관리",
+    "cardUser": "판매자 사용자",
+    "cardUserDesc": "사용자 계정 관리 및 권한 할당",
+    "cardStore": "매장관리",
+    "cardStoreDesc": "실제 매장 프로필 및 위치 관리"
+  }
+}

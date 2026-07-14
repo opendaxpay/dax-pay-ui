@@ -1,0 +1,22 @@
+{
+  "douyinMchId": "Douyin マーチャント ID",
+  "douyinMchIdPlaceholder": "Douyin Pay 販売者 ID を入力してください",
+  "dyAppId": "DouyinアプリID",
+  "dyAppIdPlaceholder": "Douyin アプリ ID を入力してください",
+  "appSecret": "アプリの秘密",
+  "appSecretPlaceholder": "Douyin アプリのシークレットを入力してください",
+  "validation": {
+    "douyinMchIdRequired": "Douyin 販売者 ID が必要です",
+    "dyAppIdRequired": "Douyin アプリ ID が必要です",
+    "appSecretRequired": "アプリのシークレットは必須です",
+    "merchantPrivateKeyRequired": "販売者の秘密キーが必要です",
+    "merchantSerialNumberRequired": "販売者証明書のシリアル番号が必要です",
+    "encryptKeyRequired": "暗号化キーが必要です"
+  },
+  "merchantPrivateKey": "販売者の秘密鍵",
+  "merchantPrivateKeyPlaceholder": "販売者の秘密キーを入力してください",
+  "merchantSerialNumber": "販売者証明書のシリアル番号",
+  "merchantSerialNumberPlaceholder": "販売者証明書のシリアル番号を入力してください",
+  "encryptKey": "暗号化キー",
+  "encryptKeyPlaceholder": "暗号化キーを入力してください"
+}

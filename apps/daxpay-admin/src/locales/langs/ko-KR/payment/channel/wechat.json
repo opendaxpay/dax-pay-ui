@@ -1,0 +1,24 @@
+{
+  "wxMchId": "위챗 판매자 ID",
+  "wxAppId": "위챗 앱 ID",
+  "apiKeyV3": "API V3 키",
+  "appSecret": "앱 비밀",
+  "publicKey": "공개 키",
+  "publicKeyId": "공개키 ID",
+  "privateKey": "API 인증서 개인 키",
+  "privateCert": "API 인증서",
+  "certSerialNo": "인증서 일련번호",
+  "wxAppSecret": "위챗 앱 비밀",
+  "wxAuthUrl": "위챗 인증 URL",
+  "validation": {
+    "wxMchIdRequired": "WeChat 판매자 ID를 입력하세요.",
+    "wxAppIdRequired": "WeChat 앱 ID를 입력하세요.",
+    "apiKeyV3Required": "API V3 키를 입력하세요.",
+    "appSecretRequired": "앱 비밀번호를 입력하세요",
+    "publicKeyRequired": "공개키를 입력해주세요",
+    "publicKeyIdRequired": "공개키 ID를 입력해주세요",
+    "privateCertRequired": "API 인증서를 입력하세요.",
+    "certSerialNoRequired": "인증서 일련번호를 입력하세요.",
+    "wxAppSecretRequired": "WeChat 앱 비밀번호를 입력하세요."
+  }
+}

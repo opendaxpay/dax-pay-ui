@@ -1,0 +1,18 @@
+{
+  "add": {
+    "title": "販売者の追加",
+    "mchInfo": "加盟店情報",
+    "mchNamePlaceholder": "販売者名を入力してください",
+    "mchShortNamePlaceholder": "販売者の略称を入力してください",
+    "subjectTypePlaceholder": "販売者のタイプを選択してください"
+  },
+  "manage": {
+    "info": {
+      "title": "販売者のプロフィール",
+      "backToWorkbench": "管理に戻る"
+    },
+    "manage": {
+      "title": "管理"
+    }
+  }
+}

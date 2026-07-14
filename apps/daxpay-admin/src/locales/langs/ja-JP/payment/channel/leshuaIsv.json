@@ -1,0 +1,31 @@
+{
+  "title": "Leshua ISV 構成",
+  "groupConfig": "構成管理",
+  "configTitle": "Leshua ISV キー構成",
+  "manageTitle": "レシュア マーチャント マネジメント",
+  "basicConfig": "基本構成",
+  "keyConfig": "キー構成",
+  "enable": "有効にする",
+  "lsMchNo": "レスア販売者ID",
+  "lsMchNoPlaceholder": "Leshua 販売者 ID (merchant_id) を入力してください",
+  "lsMchNoTooltip": "Leshua によって割り当てられた世界的に一意の販売者 ID (merchant_id)",
+  "tradeKey": "トレードキー",
+  "tradeKeyPlaceholder": "トレードキー（tradeKey）を入力してください",
+  "tradeKeyTooltip": "Leshua trade API 署名キー。リクエストの署名とレスポンス/コールバックの検証に使用されます。",
+  "notifyKey": "通知キー",
+  "notifyKeyPlaceholder": "通知キーを入力します (notifyKey、オプション)",
+  "signType": "サインの種類",
+  "signTypePlaceholder": "記号の種類を選択してください",
+  "lsIsvNo": "レスア ISV いいえ",
+  "lsIsvNoPlaceholder": "Leshua ISV 番号を入力してください (オンボーディング用、オプション)",
+  "cardMchKey": "ISV キー",
+  "cardMchKeyDesc": "Leshua マーチャント ID、取引キー、署名タイプを設定する",
+  "validation": {
+    "lsMchNo": "Leshua 販売者 ID を入力してください",
+    "tradeKey": "トレードキーを入力してください",
+    "signType": "記号の種類を選択してください"
+  },
+  "groupMchConfig": "販売者の構成",
+  "cardMchConfig": "販売者の構成",
+  "cardMchConfigDesc": "チャネルマーチャント Leshua マーチャント ID を構成する"
+}

@@ -1,0 +1,43 @@
+{
+  "field": {
+    "code": "제품 코드",
+    "name": "제품명",
+    "channel": "채널",
+    "description": "설명",
+    "icon": "상",
+    "remark": "주목",
+    "channelName": "채널 이름",
+    "isv": "ISV",
+    "terminal": "터미널 보고서",
+    "sandbox": "모래 상자",
+    "apiCallMode": "API 호출 모드",
+    "payIdType": "지불 ID 유형",
+    "capabilities": "결제 기능",
+    "features": "제품특징"
+  },
+  "features": "제품특징",
+  "detail": "제품 세부정보",
+  "sandboxSupported": "지원됨",
+  "sandboxNotSupported": "지원되지 않음",
+  "productName": {
+    "alipayIsv": "알리페이(ISV)",
+    "wechatIsv": "위챗페이(ISV)",
+    "unknown": "제품 구성"
+  },
+  "productConfig": {
+    "title": "채널 제품 구성",
+    "emptyDesc": "결제 제품 데이터가 없습니다.",
+    "prodLabel": "찌르다",
+    "sandboxLabel": "모래 상자",
+    "prodConfigBtn": "생산",
+    "sandboxConfigBtn": "모래 상자",
+    "switchEnv": "스위치 환경",
+    "switchToSandboxConfirm": "샌드박스 환경으로 전환하시겠습니까? 모든 트랜잭션은 통합 및 기능 테스트에 적합한 샌드박스 API 엔드포인트를 사용합니다.",
+    "switchToProdConfirm": "프로덕션 환경으로 전환하시겠습니까? 모든 거래는 생산 API 엔드포인트를 사용하며 실제 자금 흐름을 포함합니다.",
+    "nonIsvDisabledTip": "ISV 이외의 결제 상품은 편집할 수 없습니다."
+  },
+  "placeholder": {
+    "name": "제품명을 입력하세요",
+    "code": "제품 코드를 입력하세요"
+  }
+}

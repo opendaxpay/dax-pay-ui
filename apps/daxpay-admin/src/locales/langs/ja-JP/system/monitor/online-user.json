@@ -1,0 +1,9 @@
+{
+  "username": "ユーザー名",
+  "account": "アカウント",
+  "clientCode": "クライアント",
+  "loginTime": "ログイン時間",
+  "kickout": "キックアウト",
+  "batchKickout": "バッチキックアウト",
+  "confirmKickout": "選択したユーザーをキックアウトしてもよろしいですか?"
+}

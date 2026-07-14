@@ -1,0 +1,10 @@
+{
+  "title": "결제 제공업체",
+  "field": {
+    "provider": "결제 제공업체",
+    "method": "결제 방법",
+    "description": "설명",
+    "remark": "주목"
+  },
+  "detail": "디렉토리 항목 세부정보"
+}

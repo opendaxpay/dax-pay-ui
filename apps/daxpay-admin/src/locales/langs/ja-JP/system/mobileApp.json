@@ -1,0 +1,84 @@
+{
+  "title": "モバイルアプリ管理",
+  "card": {
+    "merchant": {
+      "name": "販売者アプリ",
+      "desc": "加盟店スタッフ向けモバイルアプリ"
+    },
+    "admin": {
+      "name": "管理者アプリ",
+      "desc": "プラットフォーマー向けモバイルアプリ"
+    },
+    "cashier": {
+      "name": "レジミニプログラム",
+      "desc": "消費者支払いのためのミニプログラム"
+    },
+    "comingSoon": "近日公開",
+    "enter": "設定する"
+  },
+  "platformNames": {
+    "wx_h5": "WeChat公式アカウント",
+    "wx_mini": "WeChat ミニ プログラム",
+    "alipay_mini": "Alipay ミニ プログラム",
+    "dy_mini": "抖音ミニプログラム",
+    "android": "Androidアプリ",
+    "ios": "iOSアプリ"
+  },
+  "fields": {
+    "appId": "アプリID",
+    "appIdPlaceholder": "アプリIDを入力してください",
+    "appIdRequired": "アプリIDを入力してください",
+    "wxAppId": "ミニプログラム AppId",
+    "wxAppIdPlaceholder": "WeChat ミニ プログラムの AppId を入力してください",
+    "appSecret": "アプリシークレット",
+    "appSecretPlaceholder": "AppSecretを入力してください",
+    "appSecretRequired": "AppSecretを入力してください",
+    "wxAppSecret": "ミニ プログラム AppSecret",
+    "wxAppSecretPlaceholder": "WeChat ミニ プログラム AppSecret を入力してください",
+    "originalId": "オリジナルID",
+    "originalIdPlaceholder": "元の ID を入力します (gh_...、オプション)",
+    "alipayAppId": "ミニプログラム AppId",
+    "alipayAppIdPlaceholder": "Alipay Mini プログラムの AppId を入力してください",
+    "authType": "認証タイプ",
+    "authTypeKey": "公開鍵",
+    "authTypeCert": "証明書",
+    "authTypeRequired": "認証タイプを選択してください",
+    "privateKey": "アプリの秘密キー",
+    "privateKeyPlaceholder": "アプリの秘密キーを入力します (PEM、両方のモードで必要)",
+    "privateKeyRequired": "アプリの秘密キーを入力してください",
+    "alipayPublicKey": "Alipay 公開キー",
+    "alipayPublicKeyPlaceholder": "Alipay 公開キーを入力します (公開キー モード)",
+    "alipayPublicKeyRequired": "Alipayの公開キーを入力してください",
+    "appCert": "アプリ公開鍵証明書",
+    "appCertRequired": "アプリの公開鍵証明書をアップロードしてください",
+    "uploadAppCert": "アプリの公開鍵証明書をアップロードする",
+    "alipayCert": "Alipay公開鍵証明書",
+    "alipayCertRequired": "Alipay 公開キー証明書をアップロードしてください",
+    "uploadAlipayCert": "Alipay公開鍵証明書をアップロードする",
+    "alipayRootCert": "Alipay ルート証明書",
+    "alipayRootCertRequired": "Alipay ルート証明書をアップロードしてください",
+    "uploadRootCert": "Alipay ルート証明書をアップロードする",
+    "dyAppId": "ミニプログラム AppId",
+    "dyAppIdPlaceholder": "Douyin ミニ プログラム AppId を入力してください",
+    "dyAppSecret": "ミニ プログラム AppSecret",
+    "dyAppSecretPlaceholder": "Douyin ミニ プログラム AppSecret に入る"
+  },
+  "detail": {
+    "back": "戻る",
+    "appConfig": "プラットフォームキー構成",
+    "appConfigPlaceholder": "プラットフォームキー構成をJSON形式で入力します",
+    "notifyConfig": "通知設定",
+    "notifyConfigPlaceholder": "通知設定をJSON形式で入力します",
+    "bindingEnabled": "サードパーティアカウントのバインドを有効にする",
+    "enabled": "有効",
+    "remark": "述べる",
+    "remarkPlaceholder": "備考を入力してください",
+    "save": "保存",
+    "saveSuccess": "正常に保存されました",
+    "notSupportedAppType": "サポートされていないアプリの種類",
+    "emptyPlatformConfig": "プラットフォーム設定がまだありません。入力して保存して作成します",
+    "platformComingSoon": "このプラットフォームはまだ利用できません。 APPの準備ができたら処理されます",
+    "cashierLimitTitle": "単一プラットフォームのレジミニ プログラム",
+    "cashierLimitDesc": "プラットフォーム全体で 1 つの WeChat と 1 つの Alipay キャッシャー ミニ プログラムを共有します。 openId と opAppId は、支払い時に同じ AppId を使用する必要があります。この AppId を各支払いチャネルに有料 AppId (多くの場合、公式 WeChat ISV のサービス プロバイダー ミニ プログラム、またはサードパーティ チャネルの sub_appid) として登録またはバインドします。すべてのチャンネルがそのまま使えるわけではありません。"
+  }
+}

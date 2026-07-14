@@ -1,0 +1,10 @@
+{
+  "title": "決済プロバイダー",
+  "field": {
+    "provider": "決済プロバイダー",
+    "method": "支払方法",
+    "description": "説明",
+    "remark": "述べる"
+  },
+  "detail": "ディレクトリ項目の詳細"
+}

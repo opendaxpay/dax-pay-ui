@@ -1,0 +1,28 @@
+{
+  "workbench": {
+    "title": "マーチャントワークベンチ",
+    "backToList": "リストに戻る",
+    "developing": "機能は開発中ですので、しばらくお待ちください...",
+    "groupBasic": "基本的な管理",
+    "groupPayment": "支払い設定",
+    "groupBusiness": "ビジネス構成",
+    "cardMchInfo": "販売者のプロフィール",
+    "cardMchInfoDesc": "加盟店番号、名前、ステータス、その他の基本情報",
+    "cardSecurity": "セキュリティ構成",
+    "cardSecurityDesc": "パスワードポリシー、ログインセキュリティ、セッション管理",
+    "cardProductPayConfig": "製品の支払い構成",
+    "cardProductPayConfigDesc": "販売者の製品支払いパラメータとサンドボックス環境の構成",
+    "cardChannelMerchant": "チャネルマーチャント",
+    "cardChannelMerchantDesc": "決済チャネル全体にわたる加盟店番号の設定と管理",
+    "cardApp": "アプリ管理",
+    "cardAppDesc": "販売者向けアプリの作成と管理",
+    "cardCredentialConfig": "API認証情報",
+    "cardCredentialConfigDesc": "マーチャント公開キー、通信キー、プラットフォーム公開キー、およびその他の API 認証情報の構成",
+    "cardWxDomainVerify": "WeChatドメインの検証",
+    "cardWxDomainVerifyDesc": "WeChat公式アカウント/ミニプログラムビジネスドメイン検証ファイルのアップロードと管理",
+    "cardUser": "販売者ユーザー",
+    "cardUserDesc": "ユーザーアカウントの管理と権限の割り当て",
+    "cardStore": "店舗管理",
+    "cardStoreDesc": "実店舗のプロファイルとロケーション管理"
+  }
+}

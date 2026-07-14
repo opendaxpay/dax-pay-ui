@@ -1,0 +1,18 @@
+{
+  "field": {
+    "code": "能力コード",
+    "name": "機能名",
+    "remark": "述べる",
+    "enabled": "有効",
+    "products": "リンクされた決済製品",
+    "provider": "有料プロバイダー",
+    "method": "支払方法",
+    "providerMethod": "プロバイダーとメソッド (リリース)"
+  },
+  "placeholder": {
+    "name": "機能名を入力してください",
+    "code": "機能コードを入力してください"
+  },
+  "detail": "支払い機能の詳細",
+  "edit": "支払い機能の編集"
+}

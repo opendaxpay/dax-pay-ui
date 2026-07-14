@@ -1,0 +1,50 @@
+{
+  "field": {
+    "code": "제품 코드",
+    "name": "제품명",
+    "channel": "채널",
+    "description": "설명",
+    "icon": "상",
+    "sortNo": "종류",
+    "remark": "주목",
+    "channelName": "채널 이름",
+    "isv": "ISV",
+    "terminal": "단말기",
+    "sandbox": "모래 상자",
+    "apiCallMode": "API 호출 모드",
+    "payIdType": "지불 ID 유형",
+    "capabilities": "지불 기능",
+    "features": "제품특징"
+  },
+  "features": "제품특징",
+  "detail": "제품 세부정보",
+  "editCapabilities": "지불 기능 구성",
+  "sandboxSupported": "지원됨",
+  "sandboxNotSupported": "지원되지 않음",
+  "enum": {
+    "alipayIsv": "알리페이(ISV)",
+    "alipay": "알리페이(직접)",
+    "wechat": "위챗페이(직접)",
+    "wechatPay": "위챗페이(직접)",
+    "wechatIsv": "위챗페이(ISV)",
+    "douyinPay": "Douyin Pay(직접)",
+    "umsQrcode": "UMS(C 스캔 B)",
+    "umsJsapi": "UMS(JSAPI)",
+    "umsApp": "UMS(앱)",
+    "umsMini": "UMS(미니 프로그램)",
+    "umsH5": "UMS (H5)",
+    "umsBarcode": "UMS(B 스캔 C)",
+    "lakalaPay": "라칼라페이",
+    "leshuaPay": "레슈아페이",
+    "adaPay": "아다페이",
+    "dougongPay": "두공",
+    "hkrtPay": "HKRT페이",
+    "vbillPay": "VBill",
+    "hmPay": "Hmpay",
+    "fuyouPay": "후요페이"
+  },
+  "placeholder": {
+    "name": "제품명을 입력하세요",
+    "channel": "채널 선택"
+  }
+}

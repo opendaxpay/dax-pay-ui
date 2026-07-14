@@ -1,0 +1,53 @@
+{
+  "title": "メッセージキューのデモ",
+  "description": "3 つの主要な Artemis JMS シナリオ (ポイントツーポイント、パブリッシュ/サブスクライブ、遅延メッセージ) を示します。",
+  "scene": {
+    "queue": {
+      "title": "ポイントツーポイントキュー",
+      "description": "メッセージは 1 つのコンシューマーのみによって消費されます (古典的な MQ シナリオ)"
+    },
+    "topic": {
+      "title": "発行/購読",
+      "description": "メッセージはすべてのサブスクライバにブロードキャストされます (同じノード上の A/B サブスクライバの両方がメッセージを受信します)。"
+    },
+    "delay": {
+      "title": "遅延メッセージ",
+      "description": "コンシューマは送信から N 秒後にメッセージを受信します (例: オーダー タイムアウト クローズ)"
+    }
+  },
+  "form": {
+    "content": "メッセージの内容",
+    "contentPlaceholder": "メッセージ内容を入力してください",
+    "delaySeconds": "遅延秒数",
+    "send": "送信",
+    "broadcast": "放送"
+  },
+  "records": {
+    "title": "消費記録",
+    "description": "コンシューマーによって処理されたレコード。2 秒ごとに自動更新されます。サービスの再起動時にクリアされます。",
+    "refresh": "リフレッシュ",
+    "clear": "クリア",
+    "empty": "まだ記録がありません。開始するには上記のメッセージを送信してください",
+    "columns": {
+      "scene": "シーン",
+      "content": "コンテンツ",
+      "sendTime": "送信時間",
+      "consumeTime": "時間を消費する",
+      "costMillis": "コスト(ミリ秒)",
+      "consumer": "消費者",
+      "producerTraceId": "プロデューサーのトレース ID",
+      "consumerTraceId": "コンシューマ TraceId",
+      "tracePropagated": "伝播されたトレース"
+    },
+    "traceStatus": {
+      "success": "伝播された",
+      "failed": "壊れた"
+    }
+  },
+  "messages": {
+    "sendSuccess": "正常に送信されました",
+    "clearSuccess": "無事クリアしました",
+    "clearConfirm": "すべての消費記録を消去しますか?",
+    "contentRequired": "メッセージ内容を入力してください"
+  }
+}

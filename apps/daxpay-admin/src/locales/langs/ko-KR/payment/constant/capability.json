@@ -1,0 +1,13 @@
+{
+  "field": {
+    "code": "기능 코드",
+    "name": "기능 이름",
+    "description": "설명",
+    "products": "연계결제상품"
+  },
+  "placeholder": {
+    "name": "기능 이름을 입력하세요.",
+    "code": "기능 코드를 입력하세요"
+  },
+  "detail": "결제 기능 세부정보"
+}

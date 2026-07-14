@@ -1,0 +1,223 @@
+{
+  "sign": {
+    "title": "개발에 서명하다",
+    "tabSign": "서명 생성",
+    "tabVerify": "서명 확인",
+    "field": {
+      "signParam": "서명할 매개변수(JSON)",
+      "signPrivateKey": "RSA 개인 키",
+      "signStr": "서명할 문자열",
+      "signValue": "부호 값(부호)",
+      "verifyParam": "확인할 매개변수(부호 없는 JSON)",
+      "verifySign": "부호값",
+      "verifyPublicKey": "RSA 공개 키"
+    },
+    "placeholder": {
+      "signParam": "예를 들어 {'{'}\"mchNo\": \"M0001\", \"금액\": 1{'}'}",
+      "signPrivateKey": "전체 RSA 개인 키(PKCS8)를 입력하세요.",
+      "verifyParam": "확인하려면 JSON 매개변수를 입력하세요.",
+      "verifySign": "Base64 서명 문자열",
+      "verifyPublicKey": "RSA 공개 키를 입력하세요."
+    },
+    "rule": {
+      "signParam": "서명하려면 매개변수를 입력하세요.",
+      "signPrivateKey": "개인키를 입력해주세요",
+      "verifyParam": "확인하려면 매개변수를 입력하세요.",
+      "verifySign": "부호값을 입력해주세요",
+      "verifyPublicKey": "공개키를 입력해주세요"
+    },
+    "btn": {
+      "genSign": "서명 생성",
+      "reset": "다시 놓기",
+      "verify": "서명 확인",
+      "copy": "복사"
+    },
+    "result": {
+      "divider": "서명 결과",
+      "verifySuccess": "합격",
+      "verifySuccessSub": "서명이 유효하며 매개변수가 변조되지 않았습니다.",
+      "verifyFail": "실패한",
+      "verifyFailSub": "서명이 잘못되었습니다. 매개변수 또는 공개 키를 확인하세요.",
+      "verifyEmpty": "매개변수를 입력하고 확인을 클릭하세요."
+    },
+    "msg": {
+      "genSuccess": "서명이 성공적으로 생성되었습니다.",
+      "verifyDone": "확인 완료",
+      "verifyPass": "확인 통과",
+      "verifyNotPass": "확인이 통과되지 않았습니다.",
+      "copySuccess": "복사됨",
+      "copyFail": "복사 실패"
+    }
+  },
+  "trade": {
+    "page": {
+      "title": "결제 개발",
+      "tag": "시뮬레이션된 판매자 API",
+      "warning": "이 페이지는 매개변수를 작성하고 서명만 합니다. 제출은 /unipay/pay(관리자 권한 경로 아님)에 대한 판매자 호출을 시뮬레이션합니다. 매개변수를 주의 깊게 확인하세요."
+    },
+    "card": {
+      "basic": "기본 정보",
+      "mchApp": "판매자 정보",
+      "param": "결제 매개변수",
+      "order": "주문 정보",
+      "preview": "미리보기 요청"
+    },
+    "mode": {
+      "label": "지불 모드",
+      "route": "채널 라우팅 따르기",
+      "direct": "명시적 채널 판매자",
+      "routeDesc": "앱의 채널 라우팅을 통해 채널 판매자 및 기능을 해결합니다.",
+      "directDesc": "채널 판매자 + 역량에 따라 결정됩니다. 채널 라우팅 건너뛰기"
+    },
+    "preview": {
+      "title": "JSON 요청",
+      "signBtn": "서명 미리보기",
+      "empty": "데이터 없음"
+    },
+    "field": {
+      "privateKey": "판매자 개인 키",
+      "mchNo": "상인",
+      "appId": "애플리케이션",
+      "channelMchNo": "채널 판매자",
+      "product": "결제상품",
+      "method": "결제 방법",
+      "capability": "능력",
+      "openId": "오픈아이디",
+      "authCode": "인증 코드",
+      "notifyUrl": "비동기 알림 URL",
+      "expiredTime": "만료 시간",
+      "bizOrderNo": "주문번호",
+      "amount": "금액(펜)",
+      "title": "제목",
+      "description": "설명"
+    },
+    "placeholder": {
+      "method": "결제 수단 선택",
+      "capability": "기능 선택",
+      "openId": "WeChat jsapi/mini에 필수",
+      "authCode": "바코드 결제에 필요",
+      "notifyUrl": "https://...",
+      "expiredTime": "비어 있는 경우 기본값은 30분입니다.",
+      "title": "테스트 순서",
+      "description": "결제 설명 입력"
+    },
+    "default": {
+      "titlePrefix": "테스트 페이"
+    },
+    "btn": {
+      "setPrivateKey": "키 설정",
+      "clearPrivateKey": "클리어 키",
+      "genOrderNo": "생성하다",
+      "reset": "다시 놓기",
+      "submit": "제출하다"
+    },
+    "privateKey": {
+      "modalTitle": "판매자 개인 키 설정",
+      "modalTip": "서명 요청에만 판매자 RSA 개인 키를 입력하세요(브라우저 로컬 캐시에 저장되며 관리자 권한 지불에는 사용되지 않음).",
+      "placeholder": "판매자 개인 키를 입력하세요",
+      "savedTip": "비공개 키가 저장되었습니다.",
+      "clearedTip": "비공개 키가 삭제되었습니다.",
+      "setTag": "세트",
+      "setLabel": "판매자 개인 키 세트",
+      "unsetTag": "설정되지 않음",
+      "clearConfirmTitle": "확인 지우기",
+      "clearConfirmContent": "판매자 개인 키를 삭제하시겠습니까? 다시 입력해야 합니다."
+    },
+    "result": {
+      "modalTitle": "결제결과(유니페이)",
+      "payLink": "결제 링크",
+      "jsapiParam": "JSAPI 매개변수",
+      "formData": "양식 데이터",
+      "markCode": "마크 코드",
+      "copyData": "지불 본문 복사",
+      "copyFull": "전체 응답 복사",
+      "rawResponse": "전체 DaxResult 응답",
+      "empty": "데이터 없음",
+      "field": {
+        "orderNo": "시스템 주문 번호"
+      }
+    },
+    "rule": {
+      "mchNo": "판매자를 선택해주세요.",
+      "bizOrderNo": "주문번호를 입력해주세요.",
+      "title": "제목을 입력해주세요",
+      "amount": "금액을 입력해주세요.",
+      "method": "결제수단을 선택해주세요",
+      "channelMchNo": "채널 판매자를 선택하세요.",
+      "capability": "기능을 선택해 주세요"
+    },
+    "msg": {
+      "signSuccess": "서명이 성공적으로 생성되었습니다.",
+      "paySuccess": "결제 요청이 성공했습니다.",
+      "payFail": "결제 요청 실패",
+      "inputPrivateKey": "판매자 개인키를 먼저 설정해주세요",
+      "copySuccess": "복사됨"
+    }
+  },
+  "auth": {
+    "title": "인증 개발",
+    "type": {
+      "alipay": "알리페이 H5",
+      "alipayMini": "알리페이 미니 프로그램",
+      "wechatMp": "위챗 공식 계정",
+      "wechatMini": "위챗 미니 프로그램",
+      "wechatChannel": "위챗페이",
+      "douyin": "두인 H5"
+    },
+    "tag": {
+      "alipay": "알리페이 H5",
+      "alipayMini": "알리페이 미니 프로그램",
+      "wechatMp": "위챗 공식 계정",
+      "wechatMini": "위챗 미니 프로그램",
+      "wechatChannel": "위챗페이",
+      "douyin": "두인 H5"
+    },
+    "guide": {
+      "title": "사용방법",
+      "desc": "인증 링크를 생성하고 Alipay 앱으로 스캔하세요. 결과는 자동으로 표시됩니다(타사 플랫폼 관리에 Alipay 구성이 필요하고 플랫폼 구성에 결제 게이트웨이 기본 URL이 필요함).",
+      "descAlipayMini": "Alipay 미니 프로그램 인증 디버깅은 아직 구현되지 않았습니다.",
+      "descWechatMp": "인증 링크를 생성하고 WeChat으로 스캔하여 웹 인증을 완료하세요. 결과는 자동으로 표시됩니다(타사 플랫폼 관리에 WeChat 공식 계정 구성이 필요하고 플랫폼 구성에 결제 게이트웨이 기본 URL이 필요함).",
+      "descWechatMini": "판매자 또는 관리자 미니 프로그램을 선택한 다음 스캔하여 사용자 ID를 가져옵니다(아직 인증이 구현되지 않음).",
+      "descWechatChannel": "판매자/채널 판매자/기능을 선택한 다음 인증 링크를 생성하고 WeChat으로 스캔하세요. WeChat Pay(직접/ISV) 구성을 확인하는 데 사용됩니다. 결제 상품은 채널 가맹점에서 자동 감지됩니다.",
+      "descDouyin": "인증 링크를 생성하고 Douyin 앱으로 스캔하여 자동 인증을 완료하세요. 결과는 자동으로 표시됩니다(타사 플랫폼 관리에 Douyin H5 앱 구성이 필요하고 플랫폼 구성에 결제 게이트웨이 기본 URL이 필요함)."
+    },
+    "btn": {
+      "generate": "인증 링크 생성",
+      "copy": "복사"
+    },
+    "qr": {
+      "tip": "Alipay로 스캔하여 승인하세요",
+      "tipWechat": "WeChat으로 스캔하여 승인하세요",
+      "tipDouyin": "승인하려면 Douyin으로 스캔하세요.",
+      "empty": "아직 QR 코드가 없습니다."
+    },
+    "form": {
+      "mchNo": "상인",
+      "channelMchNo": "채널 판매자",
+      "capability": "지불 기능",
+      "miniAppType": "미니 프로그램 쪽",
+      "rule": {
+        "mchNo": "판매자를 선택해주세요.",
+        "channelMchNo": "채널 판매자를 선택하세요.",
+        "capability": "지불 기능을 선택하십시오",
+        "miniAppType": "미니 프로그램 쪽을 선택해 주세요"
+      }
+    },
+    "miniAppType": {
+      "merchant": "상인",
+      "admin": "관리자"
+    },
+    "result": {
+      "divider": "인증 결과",
+      "openId": "오픈아이디",
+      "userId": "사용자 ID",
+      "accessToken": "액세스 토큰"
+    },
+    "msg": {
+      "success": "인증 결과 수신됨",
+      "notExist": "인증 결과를 찾을 수 없거나 만료되었습니다.",
+      "copySuccess": "복사됨",
+      "copyFail": "복사 실패"
+    }
+  }
+}

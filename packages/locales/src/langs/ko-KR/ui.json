@@ -1,0 +1,129 @@
+{
+  "formRules": {
+    "required": "{0}을 입력하세요.",
+    "selectRequired": "{0}을(를) 선택하세요.",
+    "minLength": "{0}은(는) {1}자 이상이어야 합니다.",
+    "maxLength": "{0}은(는) 최대 {1}자일 수 있습니다.",
+    "length": "{0}은(는) {1}자 길이여야 합니다.",
+    "alreadyExists": "{0} `{1}`이(가) 이미 존재합니다.",
+    "startWith": "{0}은 `{1}`로 시작해야 합니다.",
+    "invalidURL": "유효한 URL을 입력하세요.",
+    "sizeLimit": "파일 크기는 {0}MB를 초과할 수 없습니다.",
+    "previewWarning": "파일을 열 수 없습니다. 사용 가능한 URL이나 미리보기 주소가 없습니다."
+  },
+  "actionTitle": {
+    "edit": "{0} 수정",
+    "create": "{0} 만들기",
+    "delete": "{0} 삭제",
+    "view": "{0} 보기"
+  },
+  "actionMessage": {
+    "deleteConfirm": "{0}을(를) 삭제하시겠습니까?",
+    "deleting": "{0} 삭제 중...",
+    "deleteSuccess": "{0}이(가) 삭제되었습니다.",
+    "operationSuccess": "작업 성공",
+    "operationFailed": "작업 실패"
+  },
+  "placeholder": {
+    "input": "입력해주세요",
+    "select": "선택해주세요",
+    "upload": "업로드하려면 클릭하세요."
+  },
+  "captcha": {
+    "title": "보안인증을 완료해주세요",
+    "sliderSuccessText": "합격",
+    "sliderDefaultText": "슬라이더 및 드래그",
+    "alt": "img 태그 src 속성 값 지원",
+    "sliderRotateDefaultTip": "새로고침하려면 사진을 클릭하세요.",
+    "sliderTranslateDefaultTip": "새로고침하려면 사진을 클릭하세요.",
+    "sliderRotateFailTip": "검증 실패",
+    "sliderRotateSuccessTip": "검증 성공, 시간 {0}초",
+    "sliderTranslateFailTip": "검증 실패",
+    "sliderTranslateSuccessTip": "검증 성공, 시간 {0}초",
+    "refreshAriaLabel": "보안문자 새로고침",
+    "confirmAriaLabel": "선택 확인",
+    "confirm": "확인하다",
+    "pointAriaLabel": "클릭 포인트",
+    "clickInOrder": "순서대로 클릭해주세요"
+  },
+  "iconPicker": {
+    "placeholder": "아이콘을 선택하세요",
+    "search": "검색 아이콘..."
+  },
+  "jsonViewer": {
+    "copy": "복사",
+    "copied": "복사됨"
+  },
+  "crop": {
+    "title": "이미지 자르기",
+    "titleTip": "자르기 비율 {0}",
+    "confirm": "수확고",
+    "cancel": "자르기 취소",
+    "errorTip": "자르기 오류"
+  },
+  "fallback": {
+    "pageNotFound": "이런! 페이지를 찾을 수 없음",
+    "pageNotFoundDesc": "죄송합니다. 원하시는 페이지를 찾을 수 없습니다.",
+    "forbidden": "이런! 접근 불가",
+    "forbiddenDesc": "죄송합니다. 이 페이지에 액세스할 수 있는 권한이 없습니다.",
+    "internalError": "이런! 문제가 발생했습니다.",
+    "internalErrorDesc": "죄송합니다. 서버에 오류가 발생했습니다.",
+    "offline": "오프라인 페이지",
+    "offlineError": "이런! 네트워크 오류",
+    "offlineErrorDesc": "죄송합니다. 인터넷에 연결할 수 없습니다. 연결을 확인하세요.",
+    "comingSoon": "출시 예정",
+    "http": {
+      "requestTimeout": "요청 시간이 초과되었습니다. 나중에 다시 시도해 주세요.",
+      "networkError": "네트워크 오류가 발생했습니다. 인터넷 연결을 확인하고 다시 시도해 주세요.",
+      "badRequest": "잘못된 요청입니다. 입력 내용을 확인하고 다시 시도해 주세요.",
+      "unauthorized": "승인되지 않았습니다. 계속하려면 로그인하세요.",
+      "forbidden": "금지됨. 이 리소스에 액세스할 수 있는 권한이 없습니다.",
+      "notFound": "찾을 수 없습니다. 요청한 리소스를 찾을 수 없습니다.",
+      "internalServerError": "내부 서버 오류입니다. 문제가 발생했습니다. 나중에 다시 시도해 주세요."
+    }
+  },
+  "widgets": {
+    "document": "선적 서류 비치",
+    "setting": "설정",
+    "logoutTip": "로그아웃하시겠습니까?",
+    "viewAll": "모든 메시지 보기",
+    "notifications": "알림",
+    "markAllAsRead": "모두 읽기로 설정",
+    "clearNotifications": "분명한",
+    "checkUpdatesTitle": "새 버전 사용 가능",
+    "checkUpdatesDescription": "새로고침하고 최신 버전을 받으려면 클릭하세요.",
+    "search": {
+      "title": "찾다",
+      "searchNavigate": "탐색 탐색",
+      "select": "선택하다",
+      "navigate": "탐색",
+      "close": "닫다",
+      "noResults": "검색결과가 없습니다",
+      "noRecent": "검색 기록 없음",
+      "recent": "검색 기록"
+    },
+    "lockScreen": {
+      "title": "잠금 화면",
+      "screenButton": "잠금",
+      "password": "비밀번호",
+      "placeholder": "비밀번호를 입력해주세요",
+      "unlock": "잠금을 해제하려면 클릭하세요.",
+      "errorPasswordTip": "비밀번호 오류입니다. 다시 입력해 주세요.",
+      "backToLogin": "로그인으로 돌아가기",
+      "entry": "시스템에 들어가세요",
+      "greeting": {
+        "morning": "좋은 아침이에요",
+        "forenoon": "좋은 아침이에요",
+        "noon": "좋은 정오",
+        "afternoon": "좋은 오후에요",
+        "evening": "좋은 저녁이에요",
+        "night": "안녕히 주무세요"
+      },
+      "guest": "손님"
+    },
+    "timezone": {
+      "setTimezone": "시간대 설정",
+      "setSuccess": "시간대가 설정되었습니다."
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "title": "로그인 보안",
+  "description": "실패한 로그인 잠금 관리 및 창 설정 재설정",
+  "summary": {
+    "enabled": "보호 활성화됨",
+    "disabled": "보호가 비활성화되었습니다.",
+    "failedThreshold": "기준점 {count}회 실패",
+    "locked": "{minutes}분 동안 잠김",
+    "resetWindow": "재설정 기간 {minutes}분",
+    "captchaEnabled": "보안 문자 실행 {count}회",
+    "captchaDisabled": "보안문자가 비활성화되었습니다."
+  },
+  "section": {
+    "protection": "로그인 보호",
+    "lockout": "잠금 정책",
+    "captcha": "보안 문자 트리거"
+  },
+  "lockoutEnabled": {
+    "label": "로그인 실패 잠금 활성화",
+    "desc": "활성화되면 연속 실패가 임계값에 도달하면 계정이 잠깁니다."
+  },
+  "maxFailedAttempts": {
+    "label": "최대 시도 실패 횟수",
+    "desc": "이 개수를 초과하면 계정이 잠깁니다.",
+    "placeholder": "최대 실패 시도 횟수를 입력하세요."
+  },
+  "lockoutDurationMinutes": {
+    "label": "잠금 기간",
+    "desc": "계정 잠금 기간.",
+    "placeholder": "잠금 기간을 입력하세요."
+  },
+  "failureResetMinutes": {
+    "label": "실패 재설정 창",
+    "desc": "이 시간 내에 더 이상 오류가 발생하지 않으면 실패 횟수가 재설정됩니다.",
+    "placeholder": "재설정 기간을 입력하세요."
+  },
+  "captchaEnabled": {
+    "label": "보안 문자 트리거 활성화",
+    "desc": "활성화하면 연속 실패가 임계값에 도달한 후 보안 문자가 필요합니다."
+  },
+  "captchaTriggerAttempts": {
+    "label": "보안 문자 트리거 시도",
+    "desc": "실패 횟수가 이 값에 도달하면 보안 문자가 필요합니다.",
+    "placeholder": "트리거 시도 입력"
+  },
+  "validation": {
+    "captchaTriggerRange": "보안 문자 트리거 시도는 최대 실패 시도 횟수보다 클 수 없습니다."
+  }
+}

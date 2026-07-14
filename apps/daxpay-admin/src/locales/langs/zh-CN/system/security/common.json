@@ -1,7 +1,6 @@
 {
   "title": "安全管理",
   "description": "按模块维护系统安全配置",
-  "edit": "编辑",
   "cancel": "取消",
   "confirm": "确认",
   "confirmSave": "确认保存",

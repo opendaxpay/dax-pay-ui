@@ -1,0 +1,95 @@
+{
+  "common": {
+    "title": "타사 플랫폼 관리",
+    "description": "타사 로그인 및 개방형 플랫폼 자격 증명의 통합 관리."
+  },
+  "loginConfig": {
+    "title": "타사 로그인 구성",
+    "description": "각 플랫폼에 대해 웹 클라이언트에서 사용하는 OAuth 로그인 자격 증명을 구성합니다."
+  },
+  "alipay": {
+    "tabTitle": "Alipay 앱 구성",
+    "tabDescription": "인증 로그인 및 결제 채널 인증을 위한 Alipay OAuth 자격 증명",
+    "title": "Alipay 앱 인증 구성",
+    "description": "사용자 식별자(userId) 및 결제 채널 인증을 얻기 위해 인증 로그인을 위한 Alipay OAuth 자격 증명(appId/개인 키/인증서)을 관리하세요.",
+    "usageTip": "이 구성은 다음 두 가지를 모두 제공합니다. 1) 제3자 로그인의 Alipay 인증 로그인; 2) 결제 시나리오의 채널 인증(결제를 위한 사용자 식별자 가져오기)",
+    "confirmSaveContent": "Alipay 앱 구성을 저장하시겠습니까?",
+    "section": {
+      "basic": "기본 구성",
+      "credential": "자격 증명 구성"
+    },
+    "appId": "앱 ID",
+    "appIdDesc": "Alipay Open Platform에서 생성된 애플리케이션의 appId",
+    "inputAppId": "알리페이 앱 ID를 입력해주세요",
+    "authType": "인증 유형",
+    "authTypeDesc": "공개키 모드는 Alipay 공개키를 사용하고, 인증서 모드는 3개의 인증서를 사용합니다.",
+    "authTypeKey": "공개 키",
+    "authTypeCert": "자격증",
+    "privateKey": "앱 개인 키",
+    "privateKeyDesc": "앱 개인 키(PEM 형식, 공개 키 및 인증서 모드 모두에 필요)",
+    "inputPrivateKey": "앱 개인 키를 입력하세요",
+    "alipayPublicKey": "Alipay 공개 키",
+    "alipayPublicKeyDesc": "Alipay 공개 키(공개 키 모드의 경우 Alipay Open Platform '애플리케이션 정보'에서 획득)",
+    "inputAlipayPublicKey": "Alipay 공개키를 입력해주세요",
+    "appCert": "앱공인인증서",
+    "appCertDesc": "앱 공용 인증서(인증서 모드의 경우 .crt 파일 업로드)",
+    "uploadAppCert": "앱 공인인증서 업로드",
+    "alipayCert": "알리페이 공인인증서",
+    "alipayCertDesc": "Alipay 공인 인증서(인증서 모드의 경우 .crt 파일 업로드)",
+    "uploadAlipayCert": "Alipay 공인 인증서 업로드",
+    "alipayRootCert": "Alipay 루트 인증서",
+    "alipayRootCertDesc": "Alipay 루트 인증서(인증서 모드의 경우 .crt 파일 업로드)",
+    "uploadRootCert": "Alipay 루트 인증서 업로드",
+    "validate": {
+      "appId": "앱 ID를 입력하세요",
+      "authType": "인증 유형을 선택하세요.",
+      "privateKey": "앱 개인 키를 입력하세요",
+      "alipayPublicKey": "Alipay 공개키를 입력해주세요",
+      "appCert": "앱 공개 인증서를 업로드해주세요.",
+      "alipayCert": "Alipay 공인 인증서를 업로드해주세요.",
+      "alipayRootCert": "Alipay 루트 인증서를 업로드해주세요."
+    }
+  },
+  "wechatMp": {
+    "tabTitle": "WeChat 공식 계정 구성",
+    "tabDescription": "로그인 및 템플릿 알림을 위한 WeChat MP 자격 증명",
+    "title": "WeChat 공식 계정 인증 구성",
+    "description": "H5 OAuth openId 및 알림 센터 템플릿 메시지에 대한 WeChat MP 자격 증명(appId/appSecret)을 관리합니다.",
+    "usageTip": "이 구성은 다음을 수행합니다. 1) WeChat MP H5 OAuth 로그인; 2) 알림 센터 템플릿 메시지 전송.",
+    "confirmSaveContent": "WeChat 공식 계정 구성을 저장하시겠습니까?",
+    "section": {
+      "credential": "자격 증명 구성"
+    },
+    "appId": "앱 ID",
+    "appIdDesc": "WeChat 공식 계정 AppId(MP 플랫폼 '설정 및 개발 - 기본 구성'에서 가져옴)",
+    "inputAppId": "WeChat MP 앱 ID를 입력하세요.",
+    "appSecret": "앱 비밀",
+    "appSecretDesc": "WeChat 공식 계정 AppSecret(MP 플랫폼 '설정 및 개발 - 기본 구성'에서 가져옴)",
+    "inputAppSecret": "WeChat MP 앱 비밀번호를 입력하세요.",
+    "validate": {
+      "appId": "앱 ID를 입력하세요",
+      "appSecret": "앱 비밀번호를 입력하세요."
+    }
+  },
+  "douyinH5": {
+    "tabTitle": "Douyin H5 앱",
+    "tabDescription": "H5 인증을 위한 Douyin Open Platform H5 자격 증명",
+    "title": "Douyin H5 앱 인증 구성",
+    "description": "H5 인증 시나리오에 대한 Douyin Open Platform H5 앱 자격 증명(클라이언트 키/클라이언트 비밀번호)을 관리합니다.",
+    "usageTip": "이 구성은 타사 로그인 구성의 Douyin 로그인과 독립적입니다. Open Platform H5 클라이언트 키/클라이언트 비밀번호만 관리합니다.",
+    "confirmSaveContent": "Douyin H5 앱 구성을 저장하시겠습니까?",
+    "section": {
+      "credential": "자격 증명 구성"
+    },
+    "clientKey": "클라이언트 키",
+    "clientKeyDesc": "Douyin Open Platform 앱의 클라이언트 키(Open Platform '앱 세부정보'에서)",
+    "inputClientKey": "클라이언트 키를 입력하세요.",
+    "clientSecret": "클라이언트 비밀번호",
+    "clientSecretDesc": "Douyin Open Platform 앱의 클라이언트 비밀번호(Open Platform '앱 세부정보'에서)",
+    "inputClientSecret": "클라이언트 비밀번호를 입력하세요.",
+    "validate": {
+      "clientKey": "클라이언트 키를 입력하세요.",
+      "clientSecret": "클라이언트 비밀번호를 입력하세요."
+    }
+  }
+}

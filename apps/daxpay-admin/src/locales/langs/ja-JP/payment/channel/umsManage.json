@@ -1,0 +1,10 @@
+{
+  "manageTitle": "UMS加盟店管理",
+  "cardDirectKeyConfig": "キーコンフィグ",
+  "cardDirectKeyConfigDesc": "UMS マーチャントレベルのアプリ ID とキーを構成する",
+  "directKeyConfigTitle": "UMS キー構成",
+  "keyConfigSection": "マーチャントキー構成",
+  "environment": "環境",
+  "prodEnv": "生産",
+  "sandboxEnv": "サンドボックス"
+}

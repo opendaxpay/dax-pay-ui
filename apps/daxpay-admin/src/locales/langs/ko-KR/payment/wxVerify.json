@@ -1,0 +1,23 @@
+{
+  "title": "WeChat 도메인 확인",
+  "adminTitle": "WeChat 도메인 확인",
+  "upload": "확인 파일 업로드",
+  "uploadTip": "WeChat 도메인 확인 .txt 파일을 선택하세요.",
+  "uploadSuccess": "업로드 성공",
+  "uploadFail": "업로드 실패",
+  "confirmDelete": "이 확인 파일을 삭제하시겠습니까?",
+  "editTitle": "검증 파일 편집",
+  "field": {
+    "fileName": "파일 이름",
+    "mchNo": "판매자 번호",
+    "belong": "제자리에 있다",
+    "verifyCode": "콘텐츠 확인",
+    "remark": "주목",
+    "createTime": "시간 만들기",
+    "fileContent": "파일 내용"
+  },
+  "belong": {
+    "platform": "플랫폼",
+    "merchant": "상인"
+  }
+}

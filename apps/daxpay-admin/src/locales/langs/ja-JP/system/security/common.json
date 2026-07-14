@@ -1,0 +1,20 @@
+{
+  "title": "セキュリティ管理",
+  "description": "モジュールごとにシステムのセキュリティ設定を管理する",
+  "cancel": "キャンセル",
+  "confirm": "確認",
+  "confirmSave": "保存の確認",
+  "confirmSaveContent": "現在の設定を保存しますか？",
+  "unit": {
+    "char": "文字",
+    "day": "日",
+    "times": "回",
+    "minute": "分",
+    "hour": "時間",
+    "session": "セッション",
+    "second": "秒",
+    "window": "窓",
+    "count": "カウント",
+    "score": "ポイント"
+  }
+}

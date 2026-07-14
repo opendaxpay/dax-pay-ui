@@ -1,0 +1,9 @@
+{
+  "username": "사용자 이름",
+  "account": "계정",
+  "clientCode": "고객",
+  "loginTime": "로그인 시간",
+  "kickout": "킥아웃",
+  "batchKickout": "일괄 킥아웃",
+  "confirmKickout": "선택한 사용자를 정말로 추방하시겠습니까?"
+}

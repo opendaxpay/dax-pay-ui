@@ -1,0 +1,23 @@
+{
+  "title": "아다페이 구성",
+  "keyConfig": "키 구성",
+  "enable": "할 수 있게 하다",
+  "adapayAppId": "애플리케이션 ID",
+  "adapayAppIdPlaceholder": "Adapay 애플리케이션 ID를 입력하세요.",
+  "apiKey": "API 키",
+  "apiKeyPlaceholder": "Adapay API 키(인증 헤더)를 입력하세요.",
+  "merchantNo": "판매자 번호",
+  "merchantNoPlaceholder": "Adapay 판매자 번호를 입력하세요.",
+  "privateKey": "판매자 RSA 개인 키",
+  "privateKeyPlaceholder": "PKCS#8 Base64 개인 키를 입력하세요(요청 서명용).",
+  "publicKey": "플랫폼 공개 키",
+  "publicKeyPlaceholder": "X509 Base64 공개 키를 입력하세요(응답 확인을 위해 전역 기본값을 비워 두세요).",
+  "validation": {
+    "enable": "활성화 상태를 선택하세요.",
+    "adapayAppId": "Adapay 애플리케이션 ID를 입력하세요.",
+    "apiKey": "Adapay API 키를 입력하세요.",
+    "merchantNo": "Adapay 판매자 번호를 입력하세요.",
+    "privateKey": "판매자 RSA 개인 키를 입력하세요.",
+    "publicKey": "플랫폼 공개 키를 입력하세요."
+  }
+}

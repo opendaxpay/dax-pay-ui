@@ -1,0 +1,50 @@
+{
+  "field": {
+    "code": "製品コード",
+    "name": "製品名",
+    "channel": "チャネル",
+    "description": "説明",
+    "icon": "アイコン",
+    "sortNo": "選別",
+    "remark": "述べる",
+    "channelName": "チャンネル名",
+    "isv": "ISV",
+    "terminal": "ターミナル",
+    "sandbox": "サンドボックス",
+    "apiCallMode": "API呼び出しモード",
+    "payIdType": "ペイ ID タイプ",
+    "capabilities": "支払い能力",
+    "features": "製品の特徴"
+  },
+  "features": "製品の特徴",
+  "detail": "製品詳細",
+  "editCapabilities": "支払い機能の構成",
+  "sandboxSupported": "サポートされています",
+  "sandboxNotSupported": "サポートされていません",
+  "enum": {
+    "alipayIsv": "アリペイ (ISV)",
+    "alipay": "Alipay（ダイレクト）",
+    "wechat": "WeChat Pay (直接)",
+    "wechatPay": "WeChat Pay (直接)",
+    "wechatIsv": "WeChat Pay (ISV)",
+    "douyinPay": "Douyin Pay (直接)",
+    "umsQrcode": "UMS（CスキャンB）",
+    "umsJsapi": "UMS（JSAPI）",
+    "umsApp": "UMS（アプリ）",
+    "umsMini": "UMS（ミニプログラム）",
+    "umsH5": "UMS(H5)",
+    "umsBarcode": "UMS（BスキャンC）",
+    "lakalaPay": "ラカラ・ペイ",
+    "leshuaPay": "レスア・ペイ",
+    "adaPay": "アダペイ",
+    "dougongPay": "ドゥゴン",
+    "hkrtPay": "香港RT支払い",
+    "vbillPay": "Vビル",
+    "hmPay": "ハムペイ",
+    "fuyouPay": "芙蓉ペイ"
+  },
+  "placeholder": {
+    "name": "製品名を入力してください",
+    "channel": "チャンネルを選択する"
+  }
+}

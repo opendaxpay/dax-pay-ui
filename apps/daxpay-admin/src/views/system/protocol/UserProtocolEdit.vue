@@ -33,10 +33,14 @@
   const typeOptions = ref<any[]>([]);
   const clientTypeOptions = ref<any[]>([]);
 
-  // 默认语言选项(中文/英文)
+  // 默认语言选项（与 SUPPORT_LANGUAGES 对齐）
   const languageOptions = [
     { label: $t('system.protocol.languageZh'), value: 'zh-CN' },
     { label: $t('system.protocol.languageEn'), value: 'en-US' },
+    { label: $t('system.protocol.languageTw'), value: 'zh-TW' },
+    { label: $t('system.protocol.languageHk'), value: 'zh-HK' },
+    { label: $t('system.protocol.languageJa'), value: 'ja-JP' },
+    { label: $t('system.protocol.languageKo'), value: 'ko-KR' },
   ];
 
   onMounted(() => {

@@ -1,0 +1,17 @@
+{
+  "title": "Alipay ダイレクトマネジメント",
+  "groupApp": "アプリ管理",
+  "cardMchApp": "Alipay チャネル販売者アプリ",
+  "cardMchAppDesc": "Alipay チャネルの販売者アプリケーションを管理する",
+  "cardCapabilityBinding": "支払いアプリのセットアップ",
+  "cardCapabilityBindingDesc": "各支払い機能が支払いの開始に使用するアプリを決定する",
+  "capabilityTitle": "機能ごとにアプリを構成する",
+  "capabilityDesc": "各機能の支払いを開始するときにどの Alipay アプリを使用するかを指定します。アプリの種類によって自動照合するには、空のままにします。",
+  "capabilityTableCapability": "支払い能力",
+  "capabilityTableApp": "使用するアプリ",
+  "capabilitySelectPlaceholder": "空の場合はアプリの種類による自動一致",
+  "capabilityAutoTip": "自動",
+  "capabilityNoApp": "このチャネル販売者用にアプリがまだ作成されていません。最初にアプリを作成してください",
+  "capabilitySaveSuccess": "正常に保存されました",
+  "capabilityClearConfirm": "すべてのアプリの割り当てをクリアしますか?"
+}

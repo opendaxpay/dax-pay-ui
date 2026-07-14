@@ -1,0 +1,53 @@
+{
+  "title": "메시지 대기열 데모",
+  "description": "세 가지 핵심 Artemis JMS 시나리오(지점 간, 게시-구독 및 지연된 메시지)를 보여줍니다.",
+  "scene": {
+    "queue": {
+      "title": "지점 간 대기열",
+      "description": "하나의 소비자만 메시지를 소비합니다(클래식 MQ 시나리오)."
+    },
+    "topic": {
+      "title": "게시/구독",
+      "description": "메시지는 모든 구독자에게 브로드캐스팅됩니다(동일 노드의 A/B 구독자 모두 수신)."
+    },
+    "delay": {
+      "title": "지연된 메시지",
+      "description": "소비자는 전송 후 N초 후에 메시지를 받습니다(예: 주문 제한 시간 종료)."
+    }
+  },
+  "form": {
+    "content": "메시지 내용",
+    "contentPlaceholder": "메시지 내용을 입력해주세요",
+    "delaySeconds": "지연 초",
+    "send": "보내다",
+    "broadcast": "방송"
+  },
+  "records": {
+    "title": "소비기록",
+    "description": "소비자가 처리한 기록은 2초마다 자동으로 새로 고쳐집니다. 서비스를 다시 시작하면 지워집니다.",
+    "refresh": "새로 고치다",
+    "clear": "분명한",
+    "empty": "아직 기록이 없습니다. 시작하려면 위의 메시지를 보내세요.",
+    "columns": {
+      "scene": "장면",
+      "content": "콘텐츠",
+      "sendTime": "보내는 시간",
+      "consumeTime": "시간 소모",
+      "costMillis": "비용(ms)",
+      "consumer": "소비자",
+      "producerTraceId": "생산자 TraceId",
+      "consumerTraceId": "소비자 추적 ID",
+      "tracePropagated": "전파된 추적"
+    },
+    "traceStatus": {
+      "success": "전파됨",
+      "failed": "고장난"
+    }
+  },
+  "messages": {
+    "sendSuccess": "성공적으로 전송되었습니다",
+    "clearSuccess": "성공적으로 삭제됨",
+    "clearConfirm": "모든 소비 기록을 삭제하시겠습니까?",
+    "contentRequired": "메시지 내용을 입력해주세요"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "title": "보안 관리",
+  "description": "모듈별 시스템 보안 설정 관리",
+  "cancel": "취소",
+  "confirm": "확인",
+  "confirmSave": "저장 확인",
+  "confirmSaveContent": "현재 구성을 저장하시겠습니까?",
+  "unit": {
+    "char": "문자",
+    "day": "날",
+    "times": "타임스",
+    "minute": "분",
+    "hour": "시간",
+    "session": "세션",
+    "second": "초",
+    "window": "창문들",
+    "count": "세다",
+    "score": "전철기"
+  }
+}

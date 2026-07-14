@@ -1,0 +1,223 @@
+{
+  "sign": {
+    "title": "サイン開発",
+    "tabSign": "サインの生成",
+    "tabVerify": "署名の検証",
+    "field": {
+      "signParam": "署名するパラメータ (JSON)",
+      "signPrivateKey": "RSA秘密鍵",
+      "signStr": "署名される文字列",
+      "signValue": "符号値 (符号)",
+      "verifyParam": "検証するパラメータ (符号なしの JSON)",
+      "verifySign": "符号値",
+      "verifyPublicKey": "RSA公開鍵"
+    },
+    "placeholder": {
+      "signParam": "例えば{'{'}\"mchNo\": \"M0001\"、\"金額\": 1{'}'}",
+      "signPrivateKey": "完全な RSA 秘密キー (PKCS8) を入力します。",
+      "verifyParam": "確認するための JSON パラメータを入力します",
+      "verifySign": "Base64 署名文字列",
+      "verifyPublicKey": "RSA公開キーを入力してください"
+    },
+    "rule": {
+      "signParam": "署名するパラメータを入力してください",
+      "signPrivateKey": "秘密キーを入力してください",
+      "verifyParam": "確認するにはパラメータを入力してください",
+      "verifySign": "符号値を入力してください",
+      "verifyPublicKey": "公開キーを入力してください"
+    },
+    "btn": {
+      "genSign": "サインの生成",
+      "reset": "リセット",
+      "verify": "署名の検証",
+      "copy": "コピー"
+    },
+    "result": {
+      "divider": "署名結果",
+      "verifySuccess": "合格した",
+      "verifySuccessSub": "署名は有効であり、パラメータは改ざんされていません",
+      "verifyFail": "失敗した",
+      "verifyFailSub": "署名が無効です。パラメータまたは公開キーを確認してください",
+      "verifyEmpty": "パラメータを入力して「検証」をクリックします"
+    },
+    "msg": {
+      "genSuccess": "署名は正常に生成されました",
+      "verifyDone": "検証完了",
+      "verifyPass": "検証に合格しました",
+      "verifyNotPass": "検証に合格しませんでした",
+      "copySuccess": "コピーされました",
+      "copyFail": "コピーに失敗しました"
+    }
+  },
+  "trade": {
+    "page": {
+      "title": "決済開発",
+      "tag": "シミュレートされたマーチャント API",
+      "warning": "このページでは、params を構築して署名するだけです。 Submit は、/unipay/pay (管理者特権パスではない) へのマーチャント呼び出しをシミュレートします。パラメータを慎重に確認してください。"
+    },
+    "card": {
+      "basic": "基本情報",
+      "mchApp": "販売者情報",
+      "param": "支払いパラメータ",
+      "order": "注文情報",
+      "preview": "プレビューのリクエスト"
+    },
+    "mode": {
+      "label": "ペイモード",
+      "route": "チャンネルルーティングに従う",
+      "direct": "明示的なチャネル販売者",
+      "routeDesc": "アプリのチャネルルーティングを介してチャネルマーチャントと機能を解決します",
+      "directDesc": "チャネル販売業者と能力によって決定されます。チャンネルルーティングをスキップする"
+    },
+    "preview": {
+      "title": "JSONをリクエストする",
+      "signBtn": "署名プレビュー",
+      "empty": "データなし"
+    },
+    "field": {
+      "privateKey": "販売者の秘密鍵",
+      "mchNo": "商人",
+      "appId": "応用",
+      "channelMchNo": "チャネルマーチャント",
+      "product": "決済商品",
+      "method": "支払方法",
+      "capability": "能力",
+      "openId": "OpenID",
+      "authCode": "認証コード",
+      "notifyUrl": "非同期通知 URL",
+      "expiredTime": "有効期限",
+      "bizOrderNo": "注文番号",
+      "amount": "量（フェン）",
+      "title": "タイトル",
+      "description": "説明"
+    },
+    "placeholder": {
+      "method": "支払い方法を選択してください",
+      "capability": "機能の選択",
+      "openId": "WeChat jsapi/mini に必要",
+      "authCode": "バーコード決済に必要",
+      "notifyUrl": "https://...",
+      "expiredTime": "空の場合はデフォルトで 30 分",
+      "title": "テストの順序",
+      "description": "支払いの説明を入力してください"
+    },
+    "default": {
+      "titlePrefix": "テストペイ"
+    },
+    "btn": {
+      "setPrivateKey": "キーを設定する",
+      "clearPrivateKey": "クリアキー",
+      "genOrderNo": "生成する",
+      "reset": "リセット",
+      "submit": "提出する"
+    },
+    "privateKey": {
+      "modalTitle": "販売者の秘密キーを設定する",
+      "modalTip": "リクエストの署名のみにマーチャント RSA 秘密キーを入力します (ブラウザーのローカル キャッシュに保存され、管理者権限の支払いには使用されません)。",
+      "placeholder": "販売者の秘密キーを入力してください",
+      "savedTip": "秘密キーが保存されました",
+      "clearedTip": "秘密キーがクリアされました",
+      "setTag": "セット",
+      "setLabel": "販売者の秘密鍵セット",
+      "unsetTag": "未設定",
+      "clearConfirmTitle": "クリアの確認",
+      "clearConfirmContent": "販売者の秘密キーをクリアしてもよろしいですか?再入力する必要があります。"
+    },
+    "result": {
+      "modalTitle": "支払結果（unipay）",
+      "payLink": "支払いリンク",
+      "jsapiParam": "JSAPIパラメータ",
+      "formData": "フォームデータ",
+      "markCode": "マークコード",
+      "copyData": "支払い本文をコピーする",
+      "copyFull": "完全な応答をコピー",
+      "rawResponse": "完全な DaxResult 応答",
+      "empty": "データなし",
+      "field": {
+        "orderNo": "システム注文番号"
+      }
+    },
+    "rule": {
+      "mchNo": "販売者を選択してください",
+      "bizOrderNo": "注文番号を入力してください。",
+      "title": "タイトルを入力してください",
+      "amount": "金額を入力してください",
+      "method": "お支払い方法を選択してください",
+      "channelMchNo": "チャネル販売者を選択してください",
+      "capability": "機能を選択してください"
+    },
+    "msg": {
+      "signSuccess": "署名は正常に生成されました",
+      "paySuccess": "支払いリクエストが成功しました",
+      "payFail": "支払いリクエストが失敗しました",
+      "inputPrivateKey": "最初に販売者の秘密キーを設定してください",
+      "copySuccess": "コピーされました"
+    }
+  },
+  "auth": {
+    "title": "認証開発",
+    "type": {
+      "alipay": "アリペイ H5",
+      "alipayMini": "Alipay ミニ プログラム",
+      "wechatMp": "WeChat公式アカウント",
+      "wechatMini": "WeChat ミニ プログラム",
+      "wechatChannel": "ウィーチャットペイ",
+      "douyin": "ドゥイン H5"
+    },
+    "tag": {
+      "alipay": "アリペイ H5",
+      "alipayMini": "Alipay ミニ プログラム",
+      "wechatMp": "WeChat公式アカウント",
+      "wechatMini": "WeChat ミニ プログラム",
+      "wechatChannel": "ウィーチャットペイ",
+      "douyin": "ドゥイン H5"
+    },
+    "guide": {
+      "title": "使用方法",
+      "desc": "認証リンクを生成し、Alipay アプリでスキャンします。結果は自動的に表示されます (サードパーティ プラットフォーム管理の Alipay 構成と、プラットフォーム構成の支払いゲートウェイ ベース URL が必要です)。",
+      "descAlipayMini": "Alipay Mini プログラムの認証デバッグはまだ実装されていません。",
+      "descWechatMp": "認証リンクを生成し、WeChat でスキャンして Web 認証を完了します。結果は自動的に表示されます (サードパーティ プラットフォーム管理の WeChat 公式アカウント設定と、プラットフォーム設定の支払いゲートウェイ ベース URL が必要です)。",
+      "descWechatMini": "販売者または管理者ミニ プログラムを選択し、スキャンしてユーザー ID を取得します (認証はまだ実装されていません)。",
+      "descWechatChannel": "販売者/チャネル販売者/機能を選択し、認証リンクを生成して WeChat でスキャンします。 WeChat Pay (直接/ISV) 構成を検証するために使用されます。支払い商品はチャネル販売者から自動的に検出されます。",
+      "descDouyin": "認証リンクを生成し、Douyin アプリでスキャンしてサイレント認証を完了します。結果は自動的に表示されます (サードパーティ プラットフォーム管理の Douyin H5 アプリ構成と、プラットフォーム構成の支払いゲートウェイ ベース URL が必要です)。"
+    },
+    "btn": {
+      "generate": "認証リンクの生成",
+      "copy": "コピー"
+    },
+    "qr": {
+      "tip": "Alipayでスキャンして認証します",
+      "tipWechat": "WeChatでスキャンして認証します",
+      "tipDouyin": "Douyin でスキャンして認証します",
+      "empty": "QRコードはまだありません"
+    },
+    "form": {
+      "mchNo": "商人",
+      "channelMchNo": "チャネルマーチャント",
+      "capability": "支払い能力",
+      "miniAppType": "ミニプログラム側",
+      "rule": {
+        "mchNo": "販売者を選択してください",
+        "channelMchNo": "チャネル販売者を選択してください",
+        "capability": "支払い能力を選択してください",
+        "miniAppType": "ミニプログラム側を選択してください"
+      }
+    },
+    "miniAppType": {
+      "merchant": "商人",
+      "admin": "管理者"
+    },
+    "result": {
+      "divider": "認証結果",
+      "openId": "オープンID",
+      "userId": "ユーザーID",
+      "accessToken": "アクセストークン"
+    },
+    "msg": {
+      "success": "認証結果を受け取りました",
+      "notExist": "認証結果が見つからないか期限切れです",
+      "copySuccess": "コピーされました",
+      "copyFail": "コピーに失敗しました"
+    }
+  }
+}

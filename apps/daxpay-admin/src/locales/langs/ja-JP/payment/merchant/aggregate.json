@@ -1,0 +1,32 @@
+{
+  "aggregate": {
+    "title": "集計給与構成",
+    "editModeLabel": "構成レベル",
+    "autoLaunch": "自動起動",
+    "autoLaunchHint": "スキャン後に自動的に支払いが開始され、手動でクリックする必要はありません",
+    "autoModeHint": "システムはオープン環境から支払い方法を派生し、アプリ チャネルのルーティングに従います。手動構成は必要ありません。",
+    "methodModeHint": "オープン環境ごとに支払い方法を手動で選択し、アプリ チャネル ルーティング経由で解決します。",
+    "directModeHint": "オープン環境ごとにチャネルマーチャントと機能を明示的に設定します。チャンネルルーティングをスキップします。",
+    "scene": "オープンな環境",
+    "method": "支払方法",
+    "methodPlaceholder": "支払い方法を選択してください",
+    "channelMerchant": "チャネルマーチャント",
+    "channelMerchantPlaceholder": "チャネル販売業者を選択してください",
+    "capability": "能力",
+    "capabilityPlaceholder": "機能の選択",
+    "autoDerived": "自動派生",
+    "saveConfirm": "合計支払い設定を保存しますか?",
+    "missingAppContext": "アプリ管理から集計支払い設定を開いてください",
+    "notSelected": "未選択",
+    "levelActive": "アクティブ",
+    "scenes": {
+      "wechat_pay": "微信",
+      "alipay": "アリペイ",
+      "union_pay": "銀聯",
+      "douyin": "抖音"
+    },
+    "modeAuto": "チャンネルルーティングに従う",
+    "modeMethod": "方法別",
+    "modeDirect": "明示的なチャネル販売者"
+  }
+}

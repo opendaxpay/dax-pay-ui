@@ -1,0 +1,21 @@
+{
+  "title": "ファイルアップロードのデモ",
+  "description": "署名付き URL ファイルをプラットフォーム ストレージにアップロードするデモを行う",
+  "publicBucket": {
+    "title": "パブリックバケットのアップロード",
+    "description": "ファイルにはパブリック URL 経由で直接アクセスでき、画像や静的リソースなどに適しています。"
+  },
+  "loginBucket": {
+    "title": "プライベートバケットのアップロード",
+    "description": "ファイルにアクセスするには署名付き URL が必要で、機密ファイルや契約書などに適しています。"
+  },
+  "upload": "アップロード",
+  "delete": "消去",
+  "uploadSuccess": "アップロード成功",
+  "deleteSuccess": "削除に成功しました",
+  "deleteConfirm": "このファイルを削除してもよろしいですか?",
+  "fileTooLarge": "ファイルサイズが制限を超えています（最大10MB）",
+  "invalidFileType": "画像ファイルのみがサポートされています",
+  "uploading": "アップロード中...",
+  "accessUrl": "アクセスURL"
+}

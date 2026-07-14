@@ -1,0 +1,50 @@
+{
+  "title": "세션 관리",
+  "description": "온라인 기간, 동시 세션 및 정리 정책 관리",
+  "summary": {
+    "enabled": "제어 활성화됨",
+    "disabled": "제어 비활성화됨",
+    "online": "온라인 {hours}시간",
+    "active": "활성 {hours}시간",
+    "concurrent": "동시 {count} 세션",
+    "scope": "범위 {name}",
+    "strategy": "전략 {name}"
+  },
+  "section": {
+    "control": "세션 제어",
+    "limit": "온라인 및 동시 한도",
+    "policy": "오버플로 정책 및 정리"
+  },
+  "enabled": {
+    "label": "세션 관리 활성화",
+    "desc": "활성화되면 온라인 기간, 동시 세션 및 오버플로 처리가 제한됩니다."
+  },
+  "maxOnlineHours": {
+    "label": "최대 온라인 기간",
+    "desc": "세션당 최대 연속 온라인 시간입니다.",
+    "placeholder": "최대 온라인 기간을 입력하세요."
+  },
+  "activeTimeoutHours": {
+    "label": "최대 활성 기간",
+    "desc": "활동이 없으면 자동으로 만료됩니다. 0은 제한이 없음을 의미합니다.",
+    "placeholder": "최대 활동 기간을 입력하세요."
+  },
+  "maxConcurrentSessions": {
+    "label": "최대 동시 세션",
+    "desc": "계정당 최대 동시 세션 수입니다.",
+    "placeholder": "최대 동시 세션 입력"
+  },
+  "concurrentStrategy": {
+    "label": "동시 오버플로우 전략",
+    "desc": "동시 제한에 도달한 경우 새 세션을 처리하는 방법",
+    "newSession": "새 세션 허용",
+    "kickOldest": "가장 오래된 세션 종료",
+    "denyNew": "새 세션 거부"
+  },
+  "concurrentScope": {
+    "label": "동시 계산 범위",
+    "desc": "글로벌: 모든 터미널이 하나의 할당량 풀을 공유합니다. 장치별: 각 터미널 유형은 독립적으로 계산됩니다.",
+    "global": "글로벌",
+    "perDevice": "장치별"
+  }
+}

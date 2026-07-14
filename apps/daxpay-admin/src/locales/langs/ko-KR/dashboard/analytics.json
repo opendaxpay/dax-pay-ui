@@ -1,0 +1,52 @@
+{
+  "title": "해석학",
+  "subtitle": "{start} ~ {end} · 총 {days}일",
+  "customRange": "맞춤 범위",
+  "timeRange": {
+    "last7days": "7D",
+    "last30days": "30일",
+    "thisMonth": "이번 달",
+    "custom": "관습"
+  },
+  "overview": {
+    "totalAmount": "총액",
+    "totalOrders": "총 주문",
+    "avgAmount": "평균 금액",
+    "successRate": "성공률",
+    "refundAmount": "환불 금액",
+    "refundRate": "환불 비율",
+    "chainRatio": "엄마"
+  },
+  "tradeTrend": {
+    "title": "무역동향",
+    "amount": "양",
+    "orders": "명령",
+    "avgAmount": "평균 금액"
+  },
+  "payMethod": {
+    "title": "결제 채널"
+  },
+  "channelSuccess": {
+    "title": "채널 성공률"
+  },
+  "hourlyDist": {
+    "title": "시간별 배포"
+  },
+  "amountRange": {
+    "title": "금액 범위"
+  },
+  "channelVolume": {
+    "title": "채널 볼륨"
+  },
+  "refundTrend": {
+    "title": "환불 동향"
+  },
+  "merchantRank": {
+    "title": "판매자 순위",
+    "rank": "계급",
+    "merchant": "상인",
+    "amount": "양",
+    "orders": "명령",
+    "proportion": "공유하다"
+  }
+}

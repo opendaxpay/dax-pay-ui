@@ -1,0 +1,47 @@
+{
+  "platform": {
+    "title": "ストレージファイル",
+    "detailTitle": "ストレージファイルの詳細",
+    "field": {
+      "filename": "ファイル名",
+      "originalFilename": "元のファイル名",
+      "size": "ファイルサイズ",
+      "ext": "拡大",
+      "contentType": "MIME タイプ",
+      "url": "ファイルURL",
+      "basePath": "ベースパス",
+      "path": "ストレージパス",
+      "accessType": "アクセスタイプ",
+      "bizType": "業種",
+      "remark": "述べる",
+      "createTime": "時間を作る"
+    },
+    "placeholder": {
+      "filename": "ファイル名を入力してください",
+      "originalFilename": "元のファイル名を入力してください",
+      "size": "ファイルサイズを入力してください",
+      "ext": "ファイル拡張子を入力してください",
+      "contentType": "MIME タイプを入力してください",
+      "url": "ファイルの URL を入力してください",
+      "basePath": "ベースパスを入力してください",
+      "path": "ストレージパスを入力してください",
+      "bizType": "業種を入力してください",
+      "remark": "備考を入力してください"
+    },
+    "accessType": {
+      "public": "公共",
+      "private": "プライベート"
+    },
+    "action": {
+      "preview": "プレビュー",
+      "download": "ダウンロード",
+      "confirmDelete": "削除の確認",
+      "confirmDeleteContent": "このファイル レコードを削除してもよろしいですか?",
+      "deleteSuccess": "正常に削除されました"
+    },
+    "validate": {
+      "urlRequired": "ファイルの URL を入力してください",
+      "filenameRequired": "ファイル名を入力してください"
+    }
+  }
+}

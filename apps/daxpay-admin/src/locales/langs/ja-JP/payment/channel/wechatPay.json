@@ -1,0 +1,7 @@
+{
+  "mchId": "WeChat Pay 販売者 ID",
+  "mchIdPlaceholder": "WeChat Pay 販売者 ID を入力してください",
+  "validation": {
+    "mchId": "WeChat Pay 販売者 ID が必要です"
+  }
+}

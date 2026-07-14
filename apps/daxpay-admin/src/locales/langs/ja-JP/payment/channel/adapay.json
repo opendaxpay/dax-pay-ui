@@ -1,0 +1,23 @@
+{
+  "title": "Adapay の構成",
+  "keyConfig": "キー構成",
+  "enable": "有効にする",
+  "adapayAppId": "アプリケーションID",
+  "adapayAppIdPlaceholder": "Adapay アプリケーション ID を入力してください",
+  "apiKey": "APIキー",
+  "apiKeyPlaceholder": "Adapay API キー (認証ヘッダー) を入力してください",
+  "merchantNo": "販売者番号",
+  "merchantNoPlaceholder": "Adapay 販売者番号を入力してください",
+  "privateKey": "販売者の RSA 秘密キー",
+  "privateKeyPlaceholder": "PKCS#8 Base64 秘密キーを入力してください (リクエスト署名用)",
+  "publicKey": "プラットフォーム公開鍵",
+  "publicKeyPlaceholder": "X509 Base64 公開キーを入力してください (応答検証のため、グローバル デフォルトの場合は空のままにしておきます)",
+  "validation": {
+    "enable": "有効ステータスを選択してください",
+    "adapayAppId": "Adapay アプリケーション ID を入力してください",
+    "apiKey": "Adapay API キーを入力してください",
+    "merchantNo": "Adapay 販売者番号を入力してください",
+    "privateKey": "販売者の RSA 秘密キーを入力してください",
+    "publicKey": "プラットフォームの公開キーを入力してください"
+  }
+}

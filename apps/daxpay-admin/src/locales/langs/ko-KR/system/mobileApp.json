@@ -1,0 +1,84 @@
+{
+  "title": "모바일 앱 관리",
+  "card": {
+    "merchant": {
+      "name": "판매자 앱",
+      "desc": "판매자 직원을 위한 모바일 앱"
+    },
+    "admin": {
+      "name": "관리 앱",
+      "desc": "플랫폼 사업자를 위한 모바일 앱"
+    },
+    "cashier": {
+      "name": "캐셔 미니 프로그램",
+      "desc": "소비자 결제를 위한 미니 프로그램"
+    },
+    "comingSoon": "출시 예정",
+    "enter": "구성"
+  },
+  "platformNames": {
+    "wx_h5": "위챗 공식 계정",
+    "wx_mini": "위챗 미니 프로그램",
+    "alipay_mini": "알리페이 미니 프로그램",
+    "dy_mini": "Douyin 미니 프로그램",
+    "android": "안드로이드 앱",
+    "ios": "iOS 앱"
+  },
+  "fields": {
+    "appId": "앱 ID",
+    "appIdPlaceholder": "앱 ID 입력",
+    "appIdRequired": "앱 ID를 입력하세요.",
+    "wxAppId": "미니 프로그램 AppId",
+    "wxAppIdPlaceholder": "WeChat Mini 프로그램 AppId 입력",
+    "appSecret": "앱비밀",
+    "appSecretPlaceholder": "AppSecret 입력",
+    "appSecretRequired": "AppSecret을 입력하세요.",
+    "wxAppSecret": "미니 프로그램 AppSecret",
+    "wxAppSecretPlaceholder": "WeChat 미니 프로그램 AppSecret 입력",
+    "originalId": "원본 ID",
+    "originalIdPlaceholder": "원본 ID를 입력하세요(gh_..., 선택사항).",
+    "alipayAppId": "미니 프로그램 AppId",
+    "alipayAppIdPlaceholder": "Alipay 미니 프로그램 AppId 입력",
+    "authType": "인증 유형",
+    "authTypeKey": "공개 키",
+    "authTypeCert": "자격증",
+    "authTypeRequired": "인증 유형을 선택하세요.",
+    "privateKey": "앱 개인 키",
+    "privateKeyPlaceholder": "앱 개인 키 입력(PEM, 두 모드 모두에 필요)",
+    "privateKeyRequired": "앱 개인 키를 입력하세요",
+    "alipayPublicKey": "Alipay 공개 키",
+    "alipayPublicKeyPlaceholder": "Alipay 공개키 입력(공개키 모드)",
+    "alipayPublicKeyRequired": "Alipay 공개키를 입력해주세요",
+    "appCert": "앱 공개키 인증서",
+    "appCertRequired": "앱 공개키 인증서를 업로드해주세요.",
+    "uploadAppCert": "앱 공개키 인증서 업로드",
+    "alipayCert": "알리페이 공개키 인증서",
+    "alipayCertRequired": "Alipay 공개키 인증서를 업로드해주세요.",
+    "uploadAlipayCert": "Alipay 공개키 인증서 업로드",
+    "alipayRootCert": "Alipay 루트 인증서",
+    "alipayRootCertRequired": "Alipay 루트 인증서를 업로드해주세요.",
+    "uploadRootCert": "Alipay 루트 인증서 업로드",
+    "dyAppId": "미니 프로그램 AppId",
+    "dyAppIdPlaceholder": "Douyin 미니 프로그램 AppId 입력",
+    "dyAppSecret": "미니 프로그램 AppSecret",
+    "dyAppSecretPlaceholder": "Douyin 미니 프로그램 AppSecret을 입력하세요"
+  },
+  "detail": {
+    "back": "뒤쪽에",
+    "appConfig": "플랫폼 키 구성",
+    "appConfigPlaceholder": "플랫폼 키 구성을 JSON 형식으로 입력하세요.",
+    "notifyConfig": "알림 구성",
+    "notifyConfigPlaceholder": "JSON 형식으로 알림 구성을 입력하세요.",
+    "bindingEnabled": "타사 계정 바인딩 활성화",
+    "enabled": "활성화됨",
+    "remark": "주목",
+    "remarkPlaceholder": "비고를 입력하세요",
+    "save": "구하다",
+    "saveSuccess": "성공적으로 저장되었습니다",
+    "notSupportedAppType": "지원되지 않는 앱 유형",
+    "emptyPlatformConfig": "아직 플랫폼 구성이 없습니다. 작성하고 저장하여 만드세요.",
+    "platformComingSoon": "이 플랫폼은 아직 사용할 수 없습니다. 앱이 준비되면 처리됩니다.",
+    "cashierLimitTitle": "단일 플랫폼 출납원 미니 프로그램",
+    "cashierLimitDesc": "전체 플랫폼은 하나의 WeChat과 하나의 Alipay 출납원 미니 프로그램을 공유합니다. openId와 opAppId는 결제 시 동일한 AppId를 사용해야 합니다. 이 AppId를 각 결제 채널에 유료 AppId(종종 공식 WeChat ISV의 경우 서비스 제공업체 미니 프로그램 또는 제3자 채널의 경우 sub_appid)로 등록하거나 바인딩합니다. 모든 채널이 기본적으로 작동하는 것은 아닙니다."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "aggregate": {
+    "title": "종합 급여 구성",
+    "editModeLabel": "구성 수준",
+    "autoLaunch": "자동 실행",
+    "autoLaunchHint": "스캔 후 자동으로 결제 시작, 수동 클릭 필요 없음",
+    "autoModeHint": "시스템은 개방형 환경에서 결제 방법을 파생하고 앱 채널 라우팅을 따릅니다. 수동 구성이 필요하지 않습니다.",
+    "methodModeHint": "개방형 환경별로 결제 방법을 수동으로 선택한 다음 앱 채널 라우팅을 통해 해결하세요.",
+    "directModeHint": "개방형 환경별로 채널 판매자 및 기능을 명시적으로 설정합니다. 채널 라우팅을 건너뜁니다.",
+    "scene": "개방형 환경",
+    "method": "결제 방법",
+    "methodPlaceholder": "결제 수단 선택",
+    "channelMerchant": "채널 판매자",
+    "channelMerchantPlaceholder": "채널 판매자 선택",
+    "capability": "능력",
+    "capabilityPlaceholder": "기능 선택",
+    "autoDerived": "자동 파생",
+    "saveConfirm": "총 급여 구성을 저장하시겠습니까?",
+    "missingAppContext": "앱 관리에서 총 지불 구성을 열어주세요",
+    "notSelected": "선택되지 않음",
+    "levelActive": "활동적인",
+    "scenes": {
+      "wechat_pay": "위챗",
+      "alipay": "알리페이",
+      "union_pay": "유니온페이",
+      "douyin": "두음"
+    },
+    "modeAuto": "채널 라우팅 따르기",
+    "modeMethod": "방법별",
+    "modeDirect": "명시적 채널 판매자"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "title": "セッション管理",
+  "description": "オンライン期間、同時セッション、クリーンアップ ポリシーを管理します",
+  "summary": {
+    "enabled": "制御可能",
+    "disabled": "制御無効",
+    "online": "オンライン{hours}時間",
+    "active": "アクティブ {hours} 時間",
+    "concurrent": "同時{count}セッション",
+    "scope": "範囲 {name}",
+    "strategy": "戦略 {name}"
+  },
+  "section": {
+    "control": "セッション制御",
+    "limit": "オンラインおよび同時接続の制限",
+    "policy": "オーバーフローポリシーとクリーンアップ"
+  },
+  "enabled": {
+    "label": "セッション管理を有効にする",
+    "desc": "有効にすると、オンライン期間、同時セッション、およびオーバーフロー処理が制限されます。"
+  },
+  "maxOnlineHours": {
+    "label": "最大オンライン期間",
+    "desc": "セッションごとの最大連続オンライン時間。",
+    "placeholder": "最大オンライン期間を入力してください"
+  },
+  "activeTimeoutHours": {
+    "label": "最大アクティブ期間",
+    "desc": "非アクティブになると自動的に期限切れになります。0 は制限がないことを意味します。",
+    "placeholder": "最大アクティブ期間を入力してください"
+  },
+  "maxConcurrentSessions": {
+    "label": "最大同時セッション数",
+    "desc": "アカウントあたりの最大同時セッション数。",
+    "placeholder": "最大同時セッションを入力してください"
+  },
+  "concurrentStrategy": {
+    "label": "同時オーバーフロー戦略",
+    "desc": "同時接続制限に達したときに新しいセッションを処理する方法。",
+    "newSession": "新しいセッションを許可する",
+    "kickOldest": "最も古いセッションをキックする",
+    "denyNew": "新しいセッションを拒否する"
+  },
+  "concurrentScope": {
+    "label": "同時カウント範囲",
+    "desc": "グローバル: すべての端末が 1 つのクォータ プールを共有します。デバイスごと: 各端末タイプは個別にカウントされます。",
+    "global": "グローバル",
+    "perDevice": "デバイスごと"
+  }
+}

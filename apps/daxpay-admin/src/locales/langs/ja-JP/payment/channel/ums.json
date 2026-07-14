@@ -1,0 +1,23 @@
+{
+  "title": "UMS 構成",
+  "keyConfig": "キー構成",
+  "enable": "有効にする",
+  "umsAppId": "アプリケーションID",
+  "umsAppIdPlaceholder": "UMS アプリケーション ID を入力してください",
+  "appKey": "アプリケーションキー",
+  "appKeyPlaceholder": "UMS アプリケーション キーを入力してください",
+  "merchantNo": "販売者番号",
+  "merchantNoPlaceholder": "UMS加盟店番号を入力してください",
+  "terminalNo": "端子番号",
+  "terminalNoPlaceholder": "UMS端末番号を入力してください",
+  "secretKey": "秘密鍵",
+  "secretKeyPlaceholder": "秘密キーを入力してください (コールバック メッセージ検証用)",
+  "validation": {
+    "enable": "有効ステータスを選択してください",
+    "umsAppId": "UMS アプリケーション ID を入力してください",
+    "appKey": "UMS アプリケーション キーを入力してください",
+    "merchantNo": "UMS加盟店番号を入力してください",
+    "terminalNo": "UMS端末番号を入力してください",
+    "secretKey": "秘密キーを入力してください"
+  }
+}

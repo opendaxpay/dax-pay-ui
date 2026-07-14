@@ -1,0 +1,49 @@
+{
+  "title": "ログインセキュリティ",
+  "description": "失敗したログインのロックアウトを管理し、ウィンドウ設定をリセットする",
+  "summary": {
+    "enabled": "保護が有効になっています",
+    "disabled": "保護が無効になっています",
+    "failedThreshold": "しきい値 {count} 回失敗しました",
+    "locked": "{minutes}分ロックされました",
+    "resetWindow": "リセット時間枠 {minutes} 分",
+    "captchaEnabled": "キャプチャ トリガー {count} 回",
+    "captchaDisabled": "キャプチャが無効になっています"
+  },
+  "section": {
+    "protection": "ログイン保護",
+    "lockout": "ロックアウトポリシー",
+    "captcha": "キャプチャトリガー"
+  },
+  "lockoutEnabled": {
+    "label": "ログイン失敗ロックアウトを有効にする",
+    "desc": "有効にすると、連続失敗がしきい値に達すると、アカウントがロックされます。"
+  },
+  "maxFailedAttempts": {
+    "label": "失敗した試行の最大数",
+    "desc": "この回数を超えるとアカウントはロックされます。",
+    "placeholder": "最大失敗試行回数を入力してください"
+  },
+  "lockoutDurationMinutes": {
+    "label": "ロックアウト期間",
+    "desc": "アカウントのロックアウトの期間。",
+    "placeholder": "ロックアウト期間を入力してください"
+  },
+  "failureResetMinutes": {
+    "label": "障害リセットウィンドウ",
+    "desc": "この時間内にそれ以上の障害が発生しない場合、障害カウントはリセットされます。",
+    "placeholder": "リセット ウィンドウの期間を入力してください"
+  },
+  "captchaEnabled": {
+    "label": "キャプチャトリガーを有効にする",
+    "desc": "有効にすると、連続失敗がしきい値に達した後、キャプチャが必要になります。"
+  },
+  "captchaTriggerAttempts": {
+    "label": "キャプチャ トリガーの試行",
+    "desc": "失敗数がこの値に達すると、キャプチャが必要になります。",
+    "placeholder": "トリガー試行を入力してください"
+  },
+  "validation": {
+    "captchaTriggerRange": "キャプチャ トリガーの試行は最大失敗試行を超えることはできません"
+  }
+}

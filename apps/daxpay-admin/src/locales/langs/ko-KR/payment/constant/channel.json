@@ -1,0 +1,19 @@
+{
+  "field": {
+    "icon": "상",
+    "code": "채널 코드",
+    "name": "채널 이름",
+    "description": "설명"
+  },
+  "detail": "채널 세부정보",
+  "section": {
+    "products": "유료상품"
+  },
+  "empty": {
+    "products": "유료상품 없음"
+  },
+  "placeholder": {
+    "name": "채널 이름을 입력하세요",
+    "code": "채널 코드 입력"
+  }
+}

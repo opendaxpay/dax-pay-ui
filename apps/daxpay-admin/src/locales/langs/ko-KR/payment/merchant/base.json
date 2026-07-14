@@ -1,0 +1,32 @@
+{
+  "field": {
+    "mchNo": "판매자 번호",
+    "mchName": "판매자 이름",
+    "mchShortName": "짧은 이름",
+    "status": "상태",
+    "subjectType": "주제 유형",
+    "createTime": "시간 만들기",
+    "id": "ID"
+  },
+  "status": {
+    "enable": "활성화됨",
+    "disabled": "장애가 있는"
+  },
+  "subjectType": {
+    "micro": "마이크로 상인",
+    "individual": "개인사업자",
+    "enterprise": "기업"
+  },
+  "action": {
+    "confirmEnableContent": "이 판매자를 활성화하시겠습니까?",
+    "confirmDisableContent": "이 판매자를 비활성화하시겠습니까? 비활성화한 후에는 판매자 계정에 로그인할 수 없습니다."
+  },
+  "validation": {
+    "pleaseInputMchName": "판매자 이름을 입력하세요.",
+    "pleaseInputMchShortName": "판매자 약칭을 입력하세요.",
+    "pleaseInputAccount": "관리자 계정을 입력해주세요",
+    "pleaseConfirmPassword": "비밀번호를 확인해 주세요",
+    "pleaseSelectSubjectType": "주제 유형을 선택하세요.",
+    "pleaseSelectStatus": "상태를 선택해주세요"
+  }
+}

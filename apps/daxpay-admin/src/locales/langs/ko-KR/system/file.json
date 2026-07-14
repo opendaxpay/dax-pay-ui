@@ -1,0 +1,47 @@
+{
+  "platform": {
+    "title": "저장 파일",
+    "detailTitle": "저장 파일 세부정보",
+    "field": {
+      "filename": "파일 이름",
+      "originalFilename": "원본 파일 이름",
+      "size": "파일 크기",
+      "ext": "확대",
+      "contentType": "MIME 유형",
+      "url": "파일 URL",
+      "basePath": "기본 경로",
+      "path": "저장 경로",
+      "accessType": "액세스 유형",
+      "bizType": "사업 유형",
+      "remark": "주목",
+      "createTime": "시간 만들기"
+    },
+    "placeholder": {
+      "filename": "파일 이름을 입력하세요",
+      "originalFilename": "원본 파일 이름을 입력하세요.",
+      "size": "파일 크기를 입력하세요",
+      "ext": "파일 확장자를 입력하세요.",
+      "contentType": "MIME 유형을 입력하세요.",
+      "url": "파일 URL을 입력하세요.",
+      "basePath": "기본 경로를 입력하세요.",
+      "path": "저장 경로를 입력해주세요",
+      "bizType": "업종을 입력해주세요.",
+      "remark": "비고를 입력해주세요"
+    },
+    "accessType": {
+      "public": "공공의",
+      "private": "사적인"
+    },
+    "action": {
+      "preview": "시사",
+      "download": "다운로드",
+      "confirmDelete": "삭제 확인",
+      "confirmDeleteContent": "이 파일 기록을 삭제하시겠습니까?",
+      "deleteSuccess": "삭제되었습니다."
+    },
+    "validate": {
+      "urlRequired": "파일 URL을 입력하세요.",
+      "filenameRequired": "파일 이름을 입력하세요"
+    }
+  }
+}

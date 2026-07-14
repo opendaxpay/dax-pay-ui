@@ -1,0 +1,29 @@
+{
+  "title": "VBill ISV 構成",
+  "groupConfig": "構成",
+  "configTitle": "VBill ISV キー構成",
+  "manageTitle": "VBill 加盟店管理",
+  "basicConfig": "基本構成",
+  "keyConfig": "キーコンフィグ",
+  "cardMchKey": "ISV キー",
+  "cardMchKeyDesc": "VBill 組織 ID、RSA 公開/秘密キーを構成する",
+  "orgId": "Tianque 組織 ID",
+  "orgIdPlaceholder": "Tianque パートナー組織 ID (orgId) を入力してください",
+  "publicKey": "Tianque RSA 公開鍵",
+  "publicKeyTooltip": "Tianque RSA 公開キー (X509 Base64)、応答/コールバック署名検証用",
+  "privateKey": "販売者の RSA 秘密キー",
+  "privateKeyTooltip": "マーチャント RSA 秘密キー (PKCS8 Base64)、SHA1withRSA 署名",
+  "sandbox": "サンドボックス",
+  "groupMchConfig": "販売者の設定",
+  "cardMchConfig": "販売者の設定",
+  "cardMchConfigDesc": "Tianque 販売者番号を表示する",
+  "mchConfigTitle": "販売者の設定",
+  "vbillMchNo": "Tianque 商人番号",
+  "vbillMchNoPlaceholder": "Tianque 販売者番号 (mno) を入力してください",
+  "validation": {
+    "orgId": "Tianque 組織 ID を入力してください",
+    "publicKey": "Tianque RSA 公開キーを入力してください",
+    "privateKey": "販売者の RSA 秘密キーを入力してください",
+    "vbillMchNo": "Tianque 販売者番号を入力してください"
+  }
+}

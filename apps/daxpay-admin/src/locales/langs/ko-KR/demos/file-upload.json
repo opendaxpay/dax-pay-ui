@@ -1,0 +1,21 @@
+{
+  "title": "파일 업로드 데모",
+  "description": "플랫폼 저장소에 미리 서명된 URL 파일 업로드 시연",
+  "publicBucket": {
+    "title": "공개 버킷 업로드",
+    "description": "이미지, 정적 리소스 등에 적합한 공개 URL을 통해 파일에 직접 액세스할 수 있습니다."
+  },
+  "loginBucket": {
+    "title": "비공개 버킷 업로드",
+    "description": "파일에 액세스하려면 민감한 파일, 계약서 등에 적합한 미리 서명된 URL이 필요합니다."
+  },
+  "upload": "업로드",
+  "delete": "삭제",
+  "uploadSuccess": "업로드 성공",
+  "deleteSuccess": "삭제 성공",
+  "deleteConfirm": "이 파일을 삭제하시겠습니까?",
+  "fileTooLarge": "파일 크기가 한도(최대 10MB)를 초과했습니다.",
+  "invalidFileType": "이미지 파일만 지원됩니다.",
+  "uploading": "업로드 중...",
+  "accessUrl": "접속 URL"
+}

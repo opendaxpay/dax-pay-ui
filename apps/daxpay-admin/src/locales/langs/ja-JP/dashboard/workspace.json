@@ -1,0 +1,78 @@
+{
+  "greeting": {
+    "morning": "おはよう",
+    "afternoon": "こんにちは",
+    "evening": "こんばんは",
+    "subtitle": "DaxPay 管理者へようこそ"
+  },
+  "stat": {
+    "merchantCount": "商人",
+    "channelMerchantCount": "チャネル販売者",
+    "userCount": "ユーザー",
+    "todayLogin": "今日のログイン",
+    "onlineUser": "オンラインユーザー"
+  },
+  "widget": {
+    "workbenchHeader": "ワークスペース",
+    "quickEntry": "クイックエントリー",
+    "tradeOverview": "貿易概要",
+    "payOrder": "支払い命令",
+    "tradeTrend": "貿易動向",
+    "channelDist": "支払いチャネル",
+    "noticeList": "お知らせ"
+  },
+  "tradeOverview": {
+    "today": "今日",
+    "yesterday": "昨日",
+    "successAmount": "成功金額 (CNY)",
+    "successCount": "成功数",
+    "refundAmount": "払い戻し金額 (CNY)",
+    "refundCount": "払い戻し回数"
+  },
+  "payOrder": {
+    "developing": "支払い注文管理は開発中",
+    "status": {
+      "success": "成功",
+      "fail": "失敗した",
+      "closed": "閉店"
+    }
+  },
+  "tradeTrend": {
+    "last7days": "7日間",
+    "last30days": "30日"
+  },
+  "quickEntry": {
+    "merchant": "商人",
+    "app": "アプリケーション",
+    "channelMerchant": "チャネル販売者",
+    "notify": "通知",
+    "user": "ユーザー",
+    "dict": "辞書",
+    "loginLog": "ログインログ",
+    "security": "安全",
+    "payOrder": "支払い命令",
+    "refundOrder": "返金注文",
+    "payTrade": "ファンド取引",
+    "role": "役割",
+    "menu": "メニュー",
+    "operateLog": "操作ログ",
+    "notice": "お知らせ",
+    "productConfig": "チャネル製品構成",
+    "platformConfig": "プラットフォーム構成",
+    "onlineUser": "オンラインユーザー",
+    "analytics": "分析",
+    "developTrade": "決済開発",
+    "socialLogin": "サードパーティプラットフォームへのログイン",
+    "empty": "アクセス可能なクイックエントリはありません",
+    "edit": "編集",
+    "editTitle": "クイックエントリーの編集",
+    "selected": "選択済み (ドラッグして並べ替え)",
+    "available": "利用可能",
+    "allAdded": "すべて追加されました"
+  },
+  "notice": {
+    "important": "重要",
+    "normal": "普通",
+    "top": "トップ"
+  }
+}

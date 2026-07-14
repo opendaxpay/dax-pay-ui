@@ -1,0 +1,31 @@
+{
+  "title": "레슈아 ISV 구성",
+  "groupConfig": "구성 관리",
+  "configTitle": "Leshua ISV 키 구성",
+  "manageTitle": "레슈아 상인 관리",
+  "basicConfig": "기본 구성",
+  "keyConfig": "키 구성",
+  "enable": "할 수 있게 하다",
+  "lsMchNo": "레슈아 판매자 ID",
+  "lsMchNoPlaceholder": "Leshua 판매자 ID(merchant_id)를 입력하세요.",
+  "lsMchNoTooltip": "Leshua가 부여한 판매자 ID(merchant_id)는 전 세계적으로 고유합니다.",
+  "tradeKey": "거래 키",
+  "tradeKeyPlaceholder": "거래 키(tradeKey)를 입력하세요.",
+  "tradeKeyTooltip": "요청 서명 및 응답/콜백 확인에 사용되는 Leshua 거래 API 서명 키",
+  "notifyKey": "알림 키",
+  "notifyKeyPlaceholder": "알림 키 입력(notifyKey, 선택 사항)",
+  "signType": "표시 유형",
+  "signTypePlaceholder": "표지판 유형 선택",
+  "lsIsvNo": "레슈아 ISV 아니요",
+  "lsIsvNoPlaceholder": "Leshua ISV 번호 입력(온보딩용, 선택 사항)",
+  "cardMchKey": "ISV 키",
+  "cardMchKeyDesc": "Leshua 판매자 ID, 거래 키 및 서명 유형 구성",
+  "validation": {
+    "lsMchNo": "레슈아 판매자 ID를 입력해주세요",
+    "tradeKey": "거래키를 입력해주세요",
+    "signType": "간판 종류를 선택해주세요"
+  },
+  "groupMchConfig": "판매자 구성",
+  "cardMchConfig": "판매자 구성",
+  "cardMchConfigDesc": "채널 판매자 Leshua 판매자 ID 구성"
+}

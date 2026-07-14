@@ -1,0 +1,18 @@
+{
+  "field": {
+    "code": "기능 코드",
+    "name": "기능 이름",
+    "remark": "주목",
+    "enabled": "활성화됨",
+    "products": "연계결제상품",
+    "provider": "지불 제공자",
+    "method": "결제 방법",
+    "providerMethod": "공급자 및 방법(릴리스)"
+  },
+  "placeholder": {
+    "name": "기능 이름을 입력하세요.",
+    "code": "기능 코드를 입력하세요"
+  },
+  "detail": "결제 기능 세부정보",
+  "edit": "결제 능력 편집"
+}

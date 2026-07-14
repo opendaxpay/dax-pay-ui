@@ -1,0 +1,26 @@
+{
+  "auth": {
+    "profile": "設定",
+    "login": "ログイン",
+    "codeLogin": "コードログイン",
+    "qrcodeLogin": "QRコードログイン",
+    "forgetPassword": "パスワードを忘れた場合",
+    "oauthCallback": "OAuth コールバック"
+  },
+  "dashboard": {
+    "title": "ダッシュボード",
+    "analytics": "分析",
+    "workspace": "ワークスペース"
+  },
+  "payment": {
+    "title": "支払い管理",
+    "platform": "支払い管理",
+    "merchantList": "加盟店リスト",
+    "merchantManage": "加盟店管理",
+    "merchantChannelMerchant": "販売者チャネル 販売者",
+    "channelMerchantManage": "チャネルマーチャント",
+    "channelMerchantList": "チャネルマーチャント",
+    "channelMerchantDetail": "チャネル販売者の詳細",
+    "productList": "決済商品"
+  }
+}

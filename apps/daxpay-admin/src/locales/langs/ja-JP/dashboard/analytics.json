@@ -1,0 +1,52 @@
+{
+  "title": "分析",
+  "subtitle": "合計 {start} ～ {end} · {days} 日",
+  "customRange": "カスタム範囲",
+  "timeRange": {
+    "last7days": "7D",
+    "last30days": "30D",
+    "thisMonth": "今月",
+    "custom": "カスタム"
+  },
+  "overview": {
+    "totalAmount": "合計金額",
+    "totalOrders": "総注文数",
+    "avgAmount": "平均金額",
+    "successRate": "成功率",
+    "refundAmount": "返金額",
+    "refundRate": "返金率",
+    "chainRatio": "お母さん"
+  },
+  "tradeTrend": {
+    "title": "貿易動向",
+    "amount": "額",
+    "orders": "注文",
+    "avgAmount": "平均金額"
+  },
+  "payMethod": {
+    "title": "支払いチャネル"
+  },
+  "channelSuccess": {
+    "title": "チャネル成功率"
+  },
+  "hourlyDist": {
+    "title": "時間ごとの配信"
+  },
+  "amountRange": {
+    "title": "金額範囲"
+  },
+  "channelVolume": {
+    "title": "チャンネルボリューム"
+  },
+  "refundTrend": {
+    "title": "返金傾向"
+  },
+  "merchantRank": {
+    "title": "加盟店ランキング",
+    "rank": "ランク",
+    "merchant": "商人",
+    "amount": "額",
+    "orders": "注文",
+    "proportion": "共有"
+  }
+}

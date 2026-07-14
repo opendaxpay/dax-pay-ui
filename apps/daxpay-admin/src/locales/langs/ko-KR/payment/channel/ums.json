@@ -1,0 +1,23 @@
+{
+  "title": "UMS 구성",
+  "keyConfig": "키 구성",
+  "enable": "할 수 있게 하다",
+  "umsAppId": "애플리케이션 ID",
+  "umsAppIdPlaceholder": "UMS 애플리케이션 ID를 입력하세요.",
+  "appKey": "애플리케이션 키",
+  "appKeyPlaceholder": "UMS 애플리케이션 키를 입력하세요.",
+  "merchantNo": "판매자 번호",
+  "merchantNoPlaceholder": "UMS 판매자 번호를 입력하세요.",
+  "terminalNo": "터미널 번호",
+  "terminalNoPlaceholder": "UMS 단말기 번호를 입력해주세요",
+  "secretKey": "비밀키",
+  "secretKeyPlaceholder": "비밀키를 입력해주세요. (콜백 메시지 확인을 위해)",
+  "validation": {
+    "enable": "활성화 상태를 선택하세요.",
+    "umsAppId": "UMS 애플리케이션 ID를 입력하세요.",
+    "appKey": "UMS 애플리케이션 키를 입력하세요.",
+    "merchantNo": "UMS 판매자 번호를 입력하세요.",
+    "terminalNo": "UMS 단말기 번호를 입력해주세요",
+    "secretKey": "비밀키를 입력해주세요"
+  }
+}

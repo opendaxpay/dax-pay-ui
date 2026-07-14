@@ -1,0 +1,12 @@
+{
+  "field": {
+    "provider": "有料プロバイダー",
+    "method": "支払方法",
+    "code": "コード",
+    "icon": "アイコン",
+    "name": "名前",
+    "sortNo": "選別",
+    "description": "説明"
+  },
+  "detail": "ディレクトリ項目の詳細"
+}

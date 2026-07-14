@@ -1,4 +1,6 @@
 import enUS from 'vxe-pc-ui/lib/language/en-US';
+import jaJP from 'vxe-pc-ui/lib/language/ja-JP';
+import koKR from 'vxe-pc-ui/lib/language/ko-KR';
 import zhCN from 'vxe-pc-ui/lib/language/zh-CN';
 import zhHK from 'vxe-pc-ui/lib/language/zh-HK';
 import zhTW from 'vxe-pc-ui/lib/language/zh-TW';
@@ -11,6 +13,8 @@ VxeUI.setI18n('en-US', enUS.default);
 VxeUI.setI18n('zh-CN', zhCN.default);
 VxeUI.setI18n('zh-TW', zhTW.default);
 VxeUI.setI18n('zh-HK', zhHK.default);
+VxeUI.setI18n('ja-JP', jaJP.default);
+VxeUI.setI18n('ko-KR', koKR.default);
 
 /**
  * 是否设置暗黑模式

@@ -55,6 +55,7 @@
     "noAssignableRole": "No assignable roles",
     "passwordRequired": "Please enter password",
     "passwordLengthRange": "Password length must be between {min} and {max} characters",
+    "accountLength": "Account length must be 6-20 characters",
     "accountFormat": "Account can only contain letters, numbers, underscores and hyphens",
     "passwordNoChinese": "Password cannot contain Chinese characters",
     "cannotEditNonAdmin": "Cannot edit non-admin client users",

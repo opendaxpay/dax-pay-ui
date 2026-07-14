@@ -1,0 +1,7 @@
+{
+  "mchId": "위챗페이 가맹점 ID",
+  "mchIdPlaceholder": "WeChat Pay 판매자 ID를 입력하세요.",
+  "validation": {
+    "mchId": "WeChat Pay 판매자 ID가 필요합니다."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "field": {
+    "icon": "アイコン",
+    "code": "チャンネルコード",
+    "name": "チャンネル名",
+    "description": "説明"
+  },
+  "detail": "チャンネルの詳細",
+  "section": {
+    "products": "有料製品"
+  },
+  "empty": {
+    "products": "有料商品はありません"
+  },
+  "placeholder": {
+    "name": "チャンネル名を入力してください",
+    "code": "チャンネルコードを入力してください"
+  }
+}

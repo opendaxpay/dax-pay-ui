@@ -2,7 +2,13 @@
  * 支持的语言类型
  * 简体 / 英文 / 繁体台湾 / 繁体香港
  */
-export type SupportedLanguagesType = 'en-US' | 'zh-CN' | 'zh-TW' | 'zh-HK';
+export type SupportedLanguagesType =
+  | 'en-US'
+  | 'zh-CN'
+  | 'zh-TW'
+  | 'zh-HK'
+  | 'ja-JP'
+  | 'ko-KR';
 
 /**
  * 国际化消息值的类型定义

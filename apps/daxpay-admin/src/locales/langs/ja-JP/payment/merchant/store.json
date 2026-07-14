@@ -1,0 +1,28 @@
+{
+  "store": {
+    "title": "店舗管理",
+    "field": {
+      "storeNo": "店舗番号",
+      "storeName": "店名",
+      "contactPhone": "連絡先電話番号",
+      "logoUrl": "ストアのロゴ",
+      "facadeUrl": "店頭写真",
+      "interiorUrl": "室内写真",
+      "region": "地域",
+      "address": "住所",
+      "longitude": "経度",
+      "latitude": "緯度",
+      "status": "状態",
+      "remark": "述べる",
+      "createTime": "時間を作る"
+    },
+    "status": {
+      "enable": "有効",
+      "disabled": "無効"
+    },
+    "regionPlaceholder": "都道府県/市/区を選択してください",
+    "confirmDelete": "このストアを削除しますか?",
+    "validationStoreName": "店名を入力してください",
+    "validationStatus": "ステータスを選択してください"
+  }
+}

@@ -28,10 +28,14 @@
   const pageConfig = ref({ currentPage: 1, pageSize: 10, total: 0 });
   const tableData = ref<any[]>([]);
 
-  // 语言选项(中文/英文)
+  // 语言选项（与 SUPPORT_LANGUAGES 对齐）
   const languageOptions = [
     { label: $t('system.protocol.languageZh'), value: 'zh-CN' },
     { label: $t('system.protocol.languageEn'), value: 'en-US' },
+    { label: $t('system.protocol.languageTw'), value: 'zh-TW' },
+    { label: $t('system.protocol.languageHk'), value: 'zh-HK' },
+    { label: $t('system.protocol.languageJa'), value: 'ja-JP' },
+    { label: $t('system.protocol.languageKo'), value: 'ko-KR' },
   ];
 
   /** 打开版本管理 */

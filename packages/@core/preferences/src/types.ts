@@ -16,7 +16,13 @@ import type {
   ThemeModeType,
 } from '@vben-core/typings';
 
-type SupportedLanguagesType = 'en-US' | 'zh-CN' | 'zh-TW' | 'zh-HK';
+type SupportedLanguagesType =
+  | 'en-US'
+  | 'zh-CN'
+  | 'zh-TW'
+  | 'zh-HK'
+  | 'ja-JP'
+  | 'ko-KR';
 
 interface AppPreferences {
   /** 权限模式 */
