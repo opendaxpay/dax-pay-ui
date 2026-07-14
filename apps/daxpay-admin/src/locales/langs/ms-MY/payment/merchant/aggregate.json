@@ -1,0 +1,32 @@
+{
+  "aggregate": {
+    "title": "Konfigurasi Gaji Agregat",
+    "editModeLabel": "Tahap Konfigurasi",
+    "autoLaunch": "Pelancaran Auto",
+    "autoLaunchHint": "Mulakan pembayaran secara automatik selepas mengimbas, tiada klik manual diperlukan",
+    "autoModeHint": "Sistem memperoleh kaedah pembayaran daripada persekitaran terbuka dan mengikuti penghalaan saluran aplikasi. Tiada konfigurasi manual diperlukan.",
+    "methodModeHint": "Pilih kaedah bayar secara manual bagi setiap persekitaran terbuka, kemudian selesaikan melalui penghalaan saluran apl.",
+    "directModeHint": "Tetapkan pedagang saluran dan keupayaan secara eksplisit bagi setiap persekitaran terbuka; langkau penghalaan saluran.",
+    "scene": "Persekitaran Terbuka",
+    "method": "Kaedah Pembayaran",
+    "methodPlaceholder": "Pilih kaedah pembayaran",
+    "channelMerchant": "Peniaga Saluran",
+    "channelMerchantPlaceholder": "Pilih pedagang saluran",
+    "capability": "Keupayaan",
+    "capabilityPlaceholder": "Pilih keupayaan",
+    "autoDerived": "Terbitan automatik",
+    "saveConfirm": "Simpan konfigurasi gaji agregat?",
+    "missingAppContext": "Sila buka konfigurasi pembayaran agregat daripada pengurusan apl",
+    "notSelected": "Tidak dipilih",
+    "levelActive": "Aktif",
+    "scenes": {
+      "wechat_pay": "WeChat",
+      "alipay": "Alipay",
+      "union_pay": "UnionPay",
+      "douyin": "Douyin"
+    },
+    "modeAuto": "Ikuti Penghalaan Saluran",
+    "modeMethod": "Mengikut Kaedah",
+    "modeDirect": "Pedagang Saluran Eksplisit"
+  }
+}

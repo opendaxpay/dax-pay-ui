@@ -1,0 +1,23 @@
+{
+  "notifyConfig": {
+    "title": "Async แจ้งเตือนการกำหนดค่า",
+    "infoBanner": "Async แจ้งเตือนการกำหนดค่าได้รับการเรียกกลับกิจกรรมทางธุรกิจที่ผลักดันโดยแพลตฟอร์ม กรุณากรอก URL โทรกลับ https ที่สามารถเข้าถึงได้จากเครือข่ายสาธารณะ",
+    "notifyUrl": "URL โทรกลับ",
+    "notifyUrlTooltip": "การแจ้งเตือนกิจกรรมจะถูกส่งไปยัง URL นี้ผ่านทาง HTTP POST โดยต้องขึ้นต้นด้วย https://",
+    "notifyUrlPlaceholder": "https://your-callback-receiver-url",
+    "notifyWay": "วิธีการแจ้ง",
+    "notifyWayHint": "เวอร์ชันปัจจุบันรองรับเฉพาะการโทรกลับแบบอะซิงโครนัส HTTP เท่านั้น",
+    "subscribedEvents": "กิจกรรมที่สมัครเป็นสมาชิก",
+    "subscribedEventsTooltip": "เลือกประเภทกิจกรรมทางธุรกิจที่คุณต้องการรับ",
+    "eventPay": "จ่าย",
+    "eventCashouts": "ถอนเงิน",
+    "eventSettle": "ชำระ",
+    "status": "สถานะ",
+    "statusEnable": "เปิดใช้งาน",
+    "statusDisable": "ปิดการใช้งาน",
+    "remark": "หมายเหตุ",
+    "remarkPlaceholder": "กรุณาใส่หมายเหตุ",
+    "confirmSave": "บันทึกการตั้งค่าการแจ้งเตือน async หรือไม่",
+    "saveSuccess": "บันทึกเรียบร้อยแล้ว"
+  }
+}

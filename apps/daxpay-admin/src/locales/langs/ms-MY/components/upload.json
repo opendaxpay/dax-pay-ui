@@ -1,0 +1,6 @@
+{
+  "uploadImage": "Muat Naik Imej",
+  "fileTooLarge": "Saiz fail {name} ialah {size}, melebihi had maksimum {maxSize}, sila mampatkan imej sebelum memuat naik!",
+  "uploadSuccess": "{name} berjaya dimuat naik!",
+  "uploadFailed": "{name} muat naik gagal!"
+}

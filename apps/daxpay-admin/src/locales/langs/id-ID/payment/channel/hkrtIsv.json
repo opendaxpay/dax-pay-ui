@@ -1,0 +1,31 @@
+{
+  "title": "Konfigurasi ISV HKRT",
+  "groupConfig": "Konfigurasi",
+  "configTitle": "Konfigurasi Kunci ISV HKRT",
+  "manageTitle": "Manajemen Pedagang HKRT",
+  "basicConfig": "Konfigurasi Dasar",
+  "keyConfig": "Konfigurasi Kunci",
+  "cardMchKey": "Kunci ISV",
+  "cardMchKeyDesc": "Konfigurasikan nomor agen HKRT, ID akses dan kunci tanda tangan",
+  "agentNo": "Nomor Agen",
+  "agentNoPlaceholder": "Silakan masukkan nomor agen",
+  "accessId": "Akses ID Institusi",
+  "accessIdPlaceholder": "Silakan masukkan ID institusi akses",
+  "accessKey": "Kunci Tanda Tangan",
+  "accessKeyPlaceholder": "Silakan masukkan kunci tanda tangan (untuk penandatanganan huruf besar MD5)",
+  "groupMchConfig": "Konfigurasi Pedagang",
+  "cardMchConfig": "Konfigurasi Pedagang",
+  "cardMchConfigDesc": "Konfigurasikan nomor terminal SAAS untuk pedagang saluran",
+  "mchConfigTitle": "Konfigurasi Pedagang",
+  "merchNo": "Pedagang HKRT No",
+  "merchNoPlaceholder": "Silakan masukkan nomor pedagang HKRT",
+  "pn": "Terminal SAAS No",
+  "pnPlaceholder": "Silakan masukkan nomor terminal SAAS",
+  "validation": {
+    "agentNo": "Silakan masukkan nomor agen",
+    "accessId": "Silakan masukkan ID institusi akses",
+    "accessKey": "Silakan masukkan kunci tanda tangan",
+    "merchNo": "Silakan masukkan nomor pedagang HKRT",
+    "pn": "Silakan masukkan nomor terminal SAAS"
+  }
+}

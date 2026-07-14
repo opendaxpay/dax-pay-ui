@@ -1,0 +1,49 @@
+{
+  "title": "Keselamatan Log Masuk",
+  "description": "Urus kunci keluar log masuk yang gagal dan tetapkan semula tetapan tetingkap",
+  "summary": {
+    "enabled": "Perlindungan didayakan",
+    "disabled": "Perlindungan dilumpuhkan",
+    "failedThreshold": "Ambang gagal {count} kali",
+    "locked": "Dikunci {minutes} minit",
+    "resetWindow": "Tetapkan semula tetingkap {minutes} minit",
+    "captchaEnabled": "Pencetusan Captcha {count} kali",
+    "captchaDisabled": "Captcha dilumpuhkan"
+  },
+  "section": {
+    "protection": "Perlindungan Log Masuk",
+    "lockout": "Dasar Berkunci",
+    "captcha": "Pencetus Captcha"
+  },
+  "lockoutEnabled": {
+    "label": "Dayakan Sekat Kegagalan Log Masuk",
+    "desc": "Apabila didayakan, akaun akan dikunci selepas kegagalan berturut-turut mencapai ambang."
+  },
+  "maxFailedAttempts": {
+    "label": "Percubaan Max Gagal",
+    "desc": "Akaun akan dikunci selepas melebihi kiraan ini.",
+    "placeholder": "Masukkan percubaan gagal maks"
+  },
+  "lockoutDurationMinutes": {
+    "label": "Tempoh Lockout",
+    "desc": "Tempoh penguncian akaun.",
+    "placeholder": "Masukkan tempoh kunci keluar"
+  },
+  "failureResetMinutes": {
+    "label": "Tetingkap Set Semula Kegagalan",
+    "desc": "Kiraan kegagalan akan ditetapkan semula jika tiada kegagalan selanjutnya berlaku dalam masa ini.",
+    "placeholder": "Masukkan tempoh tetingkap tetapan semula"
+  },
+  "captchaEnabled": {
+    "label": "Dayakan Pencetus Captcha",
+    "desc": "Apabila didayakan, captcha akan diperlukan selepas kegagalan berturut-turut mencapai ambang."
+  },
+  "captchaTriggerAttempts": {
+    "label": "Percubaan Pencetus Captcha",
+    "desc": "Captcha akan diperlukan apabila kiraan kegagalan mencapai nilai ini.",
+    "placeholder": "Masukkan percubaan pencetus"
+  },
+  "validation": {
+    "captchaTriggerRange": "Percubaan pencetus Captcha tidak boleh lebih besar daripada percubaan gagal maksimum"
+  }
+}

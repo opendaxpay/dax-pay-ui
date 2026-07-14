@@ -1,0 +1,9 @@
+{
+  "username": "Nama pengguna",
+  "account": "Akaun",
+  "clientCode": "Pelanggan",
+  "loginTime": "Masa Log Masuk",
+  "kickout": "Kickout",
+  "batchKickout": "Tendang Keluar Berkelompok",
+  "confirmKickout": "Adakah anda pasti akan menendang keluar pengguna yang dipilih?"
+}

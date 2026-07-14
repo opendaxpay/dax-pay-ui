@@ -35,8 +35,12 @@ import {
   // VxeTextarea,
 } from 'vxe-pc-ui';
 import enUS from 'vxe-pc-ui/lib/language/en-US';
+import idID from 'vxe-pc-ui/lib/language/id-ID';
 import jaJP from 'vxe-pc-ui/lib/language/ja-JP';
 import koKR from 'vxe-pc-ui/lib/language/ko-KR';
+import msMY from 'vxe-pc-ui/lib/language/ms-MY';
+import thTH from 'vxe-pc-ui/lib/language/th-TH';
+import viVN from 'vxe-pc-ui/lib/language/vi-VN';
 // 导入默认的语言
 import zhCN from 'vxe-pc-ui/lib/language/zh-CN';
 import zhHK from 'vxe-pc-ui/lib/language/zh-HK';
@@ -126,14 +130,21 @@ export function setupVbenVxeTable(setupOptions: SetupVxeTable) {
     'zh-HK': zhHK,
     'ja-JP': jaJP,
     'ko-KR': koKR,
+    'id-ID': idID,
+    'vi-VN': viVN,
+    'th-TH': thTH,
+    'ms-MY': msMY,
   };
 
   watch(
     [() => isDark.value, () => locale.value],
     ([isDarkValue, localeValue]) => {
       VxeUI.setTheme(isDarkValue ? 'dark' : 'light');
-      VxeUI.setI18n(localeValue, localMap[localeValue]);
-      VxeUI.setLanguage(localeValue);
+      // 未知 locale 回退 en-US 语言包，避免 setI18n(undefined)
+      const pack = localMap[localeValue] ?? localMap['en-US'];
+      const lang = localMap[localeValue] ? localeValue : 'en-US';
+      VxeUI.setI18n(lang, pack);
+      VxeUI.setLanguage(lang);
     },
     {
       immediate: true,

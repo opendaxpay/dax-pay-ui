@@ -1,0 +1,24 @@
+{
+  "wxMchId": "ID người bán WeChat",
+  "wxAppId": "ID ứng dụng WeChat",
+  "apiKeyV3": "Khóa API V3",
+  "appSecret": "Bí mật ứng dụng",
+  "publicKey": "Khóa công khai",
+  "publicKeyId": "ID khóa công khai",
+  "privateKey": "Khóa riêng của chứng chỉ API",
+  "privateCert": "Chứng chỉ API",
+  "certSerialNo": "Số sê-ri chứng chỉ",
+  "wxAppSecret": "Bí mật ứng dụng WeChat",
+  "wxAuthUrl": "URL xác thực WeChat",
+  "validation": {
+    "wxMchIdRequired": "Vui lòng nhập ID người bán WeChat",
+    "wxAppIdRequired": "Vui lòng nhậpId ứng dụng WeChat",
+    "apiKeyV3Required": "Vui lòng nhập khóa API V3",
+    "appSecretRequired": "Vui lòng nhập bí mật ứng dụng",
+    "publicKeyRequired": "Vui lòng nhập khóa công khai",
+    "publicKeyIdRequired": "Vui lòng nhập ID khóa công khai",
+    "privateCertRequired": "Vui lòng nhập chứng chỉ API",
+    "certSerialNoRequired": "Vui lòng nhập số sê-ri chứng chỉ",
+    "wxAppSecretRequired": "Vui lòng nhập bí mật ứng dụng WeChat"
+  }
+}

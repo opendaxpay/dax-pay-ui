@@ -1,0 +1,43 @@
+{
+  "field": {
+    "code": "Kod Produk",
+    "name": "Nama Produk",
+    "channel": "Saluran",
+    "description": "Penerangan",
+    "icon": "ikon",
+    "remark": "Teguran",
+    "channelName": "Nama Saluran",
+    "isv": "ISV",
+    "terminal": "Laporan Terminal",
+    "sandbox": "Kotak pasir",
+    "apiCallMode": "Mod Panggilan API",
+    "payIdType": "Jenis ID Bayar",
+    "capabilities": "Keupayaan Pembayaran",
+    "features": "Ciri-ciri Produk"
+  },
+  "features": "Ciri-ciri Produk",
+  "detail": "Butiran Produk",
+  "sandboxSupported": "Disokong",
+  "sandboxNotSupported": "Tidak Disokong",
+  "productName": {
+    "alipayIsv": "Alipay (ISV)",
+    "wechatIsv": "WeChat Pay (ISV)",
+    "unknown": "Konfigurasi Produk"
+  },
+  "productConfig": {
+    "title": "Konfigurasi Produk Saluran",
+    "emptyDesc": "Tiada data produk pembayaran tersedia",
+    "prodLabel": "Prod",
+    "sandboxLabel": "Kotak pasir",
+    "prodConfigBtn": "Pengeluaran",
+    "sandboxConfigBtn": "Kotak pasir",
+    "switchEnv": "Tukar Persekitaran",
+    "switchToSandboxConfirm": "Tukar kepada persekitaran kotak pasir? Semua urus niaga akan menggunakan titik akhir API kotak pasir, sesuai untuk penyepaduan dan ujian fungsi.",
+    "switchToProdConfirm": "Beralih kepada persekitaran pengeluaran? Semua urus niaga akan menggunakan titik akhir API pengeluaran dan melibatkan aliran dana sebenar.",
+    "nonIsvDisabledTip": "Produk pembayaran bukan ISV tidak boleh diedit"
+  },
+  "placeholder": {
+    "name": "Masukkan nama produk",
+    "code": "Masukkan kod produk"
+  }
+}

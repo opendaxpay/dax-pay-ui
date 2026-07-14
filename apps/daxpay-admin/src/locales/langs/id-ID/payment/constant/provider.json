@@ -1,0 +1,12 @@
+{
+  "field": {
+    "provider": "Penyedia Pembayaran",
+    "method": "Metode Pembayaran",
+    "code": "Kode",
+    "icon": "Ikon",
+    "name": "Nama",
+    "sortNo": "Menyortir",
+    "description": "Keterangan"
+  },
+  "detail": "Detail Item Direktori"
+}

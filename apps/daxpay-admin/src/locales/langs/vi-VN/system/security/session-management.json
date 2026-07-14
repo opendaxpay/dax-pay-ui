@@ -1,0 +1,50 @@
+{
+  "title": "Quản lý phiên",
+  "description": "Quản lý thời lượng trực tuyến, phiên đồng thời và chính sách dọn dẹp",
+  "summary": {
+    "enabled": "Đã bật điều khiển",
+    "disabled": "Kiểm soát bị vô hiệu hóa",
+    "online": "Trực tuyến {hours} giờ",
+    "active": "Hoạt động {hours} giờ",
+    "concurrent": "{count} phiên đồng thời",
+    "scope": "Phạm vi {name}",
+    "strategy": "Chiến lược {name}"
+  },
+  "section": {
+    "control": "Kiểm soát phiên",
+    "limit": "Giới hạn trực tuyến và đồng thời",
+    "policy": "Chính sách tràn & dọn dẹp"
+  },
+  "enabled": {
+    "label": "Bật quản lý phiên",
+    "desc": "Khi được bật, thời lượng trực tuyến, phiên đồng thời và xử lý tràn sẽ bị hạn chế."
+  },
+  "maxOnlineHours": {
+    "label": "Thời lượng trực tuyến tối đa",
+    "desc": "Thời gian trực tuyến liên tục tối đa mỗi phiên.",
+    "placeholder": "Nhập thời lượng trực tuyến tối đa"
+  },
+  "activeTimeoutHours": {
+    "label": "Thời lượng hoạt động tối đa",
+    "desc": "Tự động hết hạn sau khi không hoạt động, 0 nghĩa là không có giới hạn.",
+    "placeholder": "Nhập thời lượng hoạt động tối đa"
+  },
+  "maxConcurrentSessions": {
+    "label": "Phiên đồng thời tối đa",
+    "desc": "Số phiên đồng thời tối đa cho mỗi tài khoản.",
+    "placeholder": "Nhập số phiên đồng thời tối đa"
+  },
+  "concurrentStrategy": {
+    "label": "Chiến lược tràn đồng thời",
+    "desc": "Cách xử lý các phiên mới khi đạt đến giới hạn đồng thời.",
+    "newSession": "Cho phép phiên mới",
+    "kickOldest": "Bắt đầu phiên cũ nhất",
+    "denyNew": "Từ chối phiên mới"
+  },
+  "concurrentScope": {
+    "label": "Phạm vi đếm đồng thời",
+    "desc": "Toàn cầu: tất cả các thiết bị đầu cuối chia sẻ một nhóm hạn ngạch; Trên mỗi thiết bị: mỗi loại thiết bị đầu cuối được tính độc lập.",
+    "global": "Toàn cầu",
+    "perDevice": "Mỗi thiết bị"
+  }
+}

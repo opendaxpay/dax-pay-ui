@@ -1,0 +1,31 @@
+{
+  "title": "การกำหนดค่า Leshua ISV",
+  "groupConfig": "การจัดการการกำหนดค่า",
+  "configTitle": "การกำหนดค่าคีย์ Leshua ISV",
+  "manageTitle": "การจัดการพ่อค้า Leshua",
+  "basicConfig": "การกำหนดค่าพื้นฐาน",
+  "keyConfig": "การกำหนดค่าที่สำคัญ",
+  "enable": "เปิดใช้งาน",
+  "lsMchNo": "รหัสผู้ค้า Leshua",
+  "lsMchNoPlaceholder": "ป้อนรหัสผู้ขาย Leshua (merchant_id)",
+  "lsMchNoTooltip": "รหัสผู้ขาย (merchant_id) ที่กำหนดโดย Leshua ซึ่งไม่ซ้ำกันทั่วโลก",
+  "tradeKey": "รหัสการค้า",
+  "tradeKeyPlaceholder": "ป้อนรหัสการค้า (tradeKey)",
+  "tradeKeyTooltip": "คีย์ลายเซ็น API การค้าของ Leshua ใช้สำหรับการลงนามคำขอและการตรวจสอบการตอบสนอง/การโทรกลับ",
+  "notifyKey": "แจ้งคีย์",
+  "notifyKeyPlaceholder": "ป้อนรหัสแจ้งเตือน (notifyKey, ตัวเลือก)",
+  "signType": "ประเภทสัญญาณ",
+  "signTypePlaceholder": "เลือกประเภทป้าย",
+  "lsIsvNo": "ISV เลชัว หมายเลข",
+  "lsIsvNoPlaceholder": "ป้อนหมายเลข Leshua ISV (สำหรับการเริ่มต้นใช้งาน ไม่บังคับ)",
+  "cardMchKey": "คีย์ ISV",
+  "cardMchKeyDesc": "กำหนดค่า ID ผู้ค้า Leshua รหัสการค้า และประเภทเครื่องหมาย",
+  "validation": {
+    "lsMchNo": "กรุณากรอกรหัสผู้ขาย Leshua",
+    "tradeKey": "กรุณากรอกรหัสการค้า",
+    "signType": "กรุณาเลือกประเภทป้าย"
+  },
+  "groupMchConfig": "การกำหนดค่าผู้ขาย",
+  "cardMchConfig": "การกำหนดค่าผู้ขาย",
+  "cardMchConfigDesc": "กำหนดค่า ID ผู้ค้า Leshua ของผู้ค้าช่องทาง"
+}

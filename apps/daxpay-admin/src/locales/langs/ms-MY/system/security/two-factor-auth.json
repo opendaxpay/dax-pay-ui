@@ -1,0 +1,26 @@
+{
+  "title": "Pengesahan Dua Faktor",
+  "description": "Uruskan pengesahan TOTP dan konfigurasi kod sandaran",
+  "summary": {
+    "enabled": "Pengesahan dua faktor didayakan",
+    "disabled": "Pengesahan dua faktor dilumpuhkan"
+  },
+  "section": {
+    "basic": "Tetapan Asas",
+    "other": "Tetapan Lain"
+  },
+  "enabled": {
+    "label": "Dayakan Pengesahan Dua Faktor",
+    "desc": "Apabila didayakan, pengguna boleh mendayakan pengesahan dua faktor untuk meningkatkan keselamatan akaun."
+  },
+  "issuer": {
+    "label": "Nama Pengeluar",
+    "desc": "Nama pengeluar dipaparkan dalam apl pengesah.",
+    "placeholder": "Masukkan nama pengeluar"
+  },
+  "backupCodesCount": {
+    "label": "Kiraan Kod Sandaran",
+    "desc": "Bilangan kod sandaran pengguna boleh menjana.",
+    "placeholder": "Masukkan kiraan kod sandaran"
+  }
+}

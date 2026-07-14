@@ -1,0 +1,76 @@
+{
+  "field": {
+    "name": "Nama",
+    "account": "Akun",
+    "phone": "Telepon",
+    "email": "E-mail",
+    "clientCode": "Klien",
+    "status": "Status",
+    "role": "Peran",
+    "roleList": "Daftar Peran",
+    "candidateRole": "Peran Kandidat",
+    "selectedRole": "Peran yang Dipilih",
+    "lastLoginTime": "Waktu Masuk Terakhir",
+    "detail": "Detil Pengguna",
+    "administrator": "Administrator"
+  },
+  "status": {
+    "normal": "Normal",
+    "lock": "Terkunci",
+    "ban": "Dilarang"
+  },
+  "action": {
+    "assignRole": "Tetapkan Peran",
+    "resetPassword": "Atur Ulang Kata Sandi",
+    "ban": "Melarang",
+    "unlock": "Membuka kunci",
+    "batchBan": "Larangan Batch",
+    "batchUnlock": "Buka Kunci Batch",
+    "batchResetPassword": "Atur Ulang Kata Sandi Batch",
+    "confirmAssignRole": "Apakah Anda yakin ingin menyimpan penetapan peran?",
+    "confirmBan": "Apakah Anda yakin akan mencekal pengguna tertentu?",
+    "confirmUnlock": "Apakah Anda yakin untuk membuka kunci pengguna yang dipilih?",
+    "confirmResetPassword": "Apakah Anda yakin untuk menyetel ulang sandi untuk pengguna tertentu?",
+    "socialBind": "Ikatan Sosial"
+  },
+  "social": {
+    "title": "Pengikatan Akun Sosial",
+    "bound": "Melompat",
+    "unbound": "Tidak terikat",
+    "unbindAction": "Memperlonggar",
+    "unbindConfirm": "Apakah Anda yakin akan melepaskan ikatan akun {name} pengguna ini?",
+    "unbindSuccess": "Pelepasan berhasil",
+    "noEnabled": "Tidak ada platform sosial yang diaktifkan"
+  },
+  "password": {
+    "password": "Kata sandi",
+    "newPassword": "Kata Sandi Baru",
+    "confirmPassword": "Konfirmasi Kata Sandi"
+  },
+  "validation": {
+    "nameLength": "Panjang nama harus antara 3 dan 15 karakter",
+    "passwordLength": "Panjang kata sandi harus antara 8 dan 32 karakter",
+    "assignRoleSingleTip": "Seorang pengguna hanya dapat diberikan satu peran, silakan pilih",
+    "pleaseSelectRole": "Silakan pilih peran",
+    "noAssignableRole": "Tidak ada peran yang dapat ditetapkan",
+    "passwordRequired": "Silakan masukkan kata sandi",
+    "passwordLengthRange": "Panjang kata sandi harus antara {min} dan {max} karakter",
+    "accountLength": "Panjang akun harus 6-20 karakter",
+    "accountFormat": "Akun hanya boleh berisi huruf, angka, garis bawah, dan tanda hubung",
+    "passwordNoChinese": "Kata sandi tidak boleh berisi karakter Cina",
+    "cannotEditNonAdmin": "Tidak dapat mengedit pengguna klien non-admin",
+    "cannotAssignRoleNonAdmin": "Tidak dapat menetapkan peran kepada pengguna klien non-admin"
+  },
+  "passwordPolicy": {
+    "requireUppercase": "Kata sandi harus mengandung huruf besar",
+    "requireLowercase": "Kata sandi harus mengandung huruf kecil",
+    "requireDigit": "Kata sandi harus mengandung angka",
+    "requireSpecialChar": "Kata sandi harus mengandung karakter khusus ({chars})",
+    "hintLength": "Panjangnya: {min}-{max} karakter",
+    "hintUppercase": "Setidaknya satu huruf besar",
+    "hintLowercase": "Setidaknya satu huruf kecil",
+    "hintDigit": "Setidaknya satu digit",
+    "hintSpecialChar": "Setidaknya satu karakter khusus ({chars})",
+    "notMeetRequirements": "Kata sandi tidak memenuhi persyaratan"
+  }
+}

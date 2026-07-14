@@ -1,0 +1,47 @@
+{
+  "platform": {
+    "title": "ไฟล์จัดเก็บข้อมูล",
+    "detailTitle": "รายละเอียดไฟล์การจัดเก็บ",
+    "field": {
+      "filename": "ชื่อไฟล์",
+      "originalFilename": "ชื่อไฟล์ต้นฉบับ",
+      "size": "ขนาดไฟล์",
+      "ext": "ส่วนขยาย",
+      "contentType": "ประเภทไมม์",
+      "url": "URL ของไฟล์",
+      "basePath": "เส้นทางฐาน",
+      "path": "เส้นทางการจัดเก็บ",
+      "accessType": "ประเภทการเข้าถึง",
+      "bizType": "ประเภทธุรกิจ",
+      "remark": "หมายเหตุ",
+      "createTime": "สร้างเวลา"
+    },
+    "placeholder": {
+      "filename": "กรุณากรอกชื่อไฟล์",
+      "originalFilename": "กรุณากรอกชื่อไฟล์ต้นฉบับ",
+      "size": "กรุณากรอกขนาดไฟล์",
+      "ext": "กรุณากรอกนามสกุลไฟล์",
+      "contentType": "กรุณากรอกประเภท MIME",
+      "url": "กรุณากรอก URL ของไฟล์",
+      "basePath": "กรุณากรอกเส้นทางฐาน",
+      "path": "กรุณากรอกเส้นทางการจัดเก็บ",
+      "bizType": "กรุณากรอกประเภทธุรกิจ",
+      "remark": "กรุณาใส่หมายเหตุ"
+    },
+    "accessType": {
+      "public": "สาธารณะ",
+      "private": "ส่วนตัว"
+    },
+    "action": {
+      "preview": "ดูตัวอย่าง",
+      "download": "ดาวน์โหลด",
+      "confirmDelete": "ลบการยืนยัน",
+      "confirmDeleteContent": "คุณแน่ใจหรือไม่ว่าต้องการลบบันทึกไฟล์นี้",
+      "deleteSuccess": "ลบเรียบร้อยแล้ว"
+    },
+    "validate": {
+      "urlRequired": "กรุณากรอก URL ของไฟล์",
+      "filenameRequired": "กรุณากรอกชื่อไฟล์"
+    }
+  }
+}

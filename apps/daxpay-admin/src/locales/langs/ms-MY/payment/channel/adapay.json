@@ -1,0 +1,23 @@
+{
+  "title": "Konfigurasi Adapay",
+  "keyConfig": "Konfigurasi Kekunci",
+  "enable": "Dayakan",
+  "adapayAppId": "ID Permohonan",
+  "adapayAppIdPlaceholder": "Sila masukkan ID permohonan Adapay",
+  "apiKey": "Kunci API",
+  "apiKeyPlaceholder": "Sila masukkan kunci API Adapay (Pengepala kebenaran)",
+  "merchantNo": "Peniaga No",
+  "merchantNoPlaceholder": "Sila masukkan nombor pedagang Adapay",
+  "privateKey": "Kunci Peribadi RSA Pedagang",
+  "privateKeyPlaceholder": "Sila masukkan kunci peribadi PKCS#8 Base64 (untuk menandatangani permintaan)",
+  "publicKey": "Kunci Awam Platform",
+  "publicKeyPlaceholder": "Sila masukkan kunci awam X509 Base64 (untuk pengesahan respons, biarkan kosong untuk lalai global)",
+  "validation": {
+    "enable": "Sila pilih dayakan status",
+    "adapayAppId": "Sila masukkan ID permohonan Adapay",
+    "apiKey": "Sila masukkan kunci API Adapay",
+    "merchantNo": "Sila masukkan nombor pedagang Adapay",
+    "privateKey": "Sila masukkan kunci peribadi RSA pedagang",
+    "publicKey": "Sila masukkan kunci awam platform"
+  }
+}

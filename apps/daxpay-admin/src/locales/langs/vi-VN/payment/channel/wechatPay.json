@@ -1,0 +1,7 @@
+{
+  "mchId": "ID người bán thanh toán WeChat",
+  "mchIdPlaceholder": "Nhập ID người bán WeChat Pay",
+  "validation": {
+    "mchId": "Cần có ID người bán WeChat Pay"
+  }
+}

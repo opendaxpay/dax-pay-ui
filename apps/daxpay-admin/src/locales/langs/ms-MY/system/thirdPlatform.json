@@ -1,0 +1,95 @@
+{
+  "common": {
+    "title": "Pengurusan Platform pihak ketiga",
+    "description": "Pengurusan bersatu log masuk pihak ketiga dan bukti kelayakan platform terbuka."
+  },
+  "loginConfig": {
+    "title": "Konfigurasi Log Masuk Pihak Ketiga",
+    "description": "Konfigurasikan bukti kelayakan log masuk OAuth yang digunakan oleh klien WEB untuk setiap platform."
+  },
+  "alipay": {
+    "tabTitle": "Konfigurasi Apl Alipay",
+    "tabDescription": "Bukti kelayakan Alipay OAuth untuk log masuk pengesahan dan pengesahan saluran pembayaran",
+    "title": "Konfigurasi Pengesahan Apl Alipay",
+    "description": "Urus bukti kelayakan Alipay OAuth (appId/kunci peribadi/sijil) untuk log masuk pengesahan untuk mendapatkan pengecam pengguna (userId) dan pengesahan saluran pembayaran.",
+    "usageTip": "Konfigurasi ini berfungsi untuk kedua-duanya: 1) Log masuk pengesahan Alipay dalam log masuk pihak ketiga; 2) Pengesahan saluran dalam senario pembayaran (dapatkan pengecam pengguna untuk pembayaran).",
+    "confirmSaveContent": "Adakah anda pasti menyimpan konfigurasi Apl Alipay?",
+    "section": {
+      "basic": "Konfigurasi Asas",
+      "credential": "Konfigurasi Tauliah"
+    },
+    "appId": "ID apl",
+    "appIdDesc": "AppId aplikasi yang dibuat pada Platform Terbuka Alipay",
+    "inputAppId": "Sila masukkan ID Apl Alipay",
+    "authType": "Jenis Pengesahan",
+    "authTypeDesc": "Mod kunci awam menggunakan kunci awam Alipay, mod Sijil menggunakan tiga sijil",
+    "authTypeKey": "Kunci Awam",
+    "authTypeCert": "Sijil",
+    "privateKey": "Kunci Peribadi Apl",
+    "privateKeyDesc": "Kunci persendirian apl (format PEM, diperlukan untuk kunci awam dan mod sijil)",
+    "inputPrivateKey": "Sila masukkan kunci peribadi apl",
+    "alipayPublicKey": "Kunci Awam Alipay",
+    "alipayPublicKeyDesc": "Kunci awam Alipay (untuk mod kunci awam, diperoleh daripada 'Maklumat Aplikasi' Platform Terbuka Alipay)",
+    "inputAlipayPublicKey": "Sila masukkan kunci awam Alipay",
+    "appCert": "Sijil Awam App",
+    "appCertDesc": "Sijil awam apl (untuk mod sijil, muat naik fail .crt)",
+    "uploadAppCert": "Muat naik Sijil Awam Apl",
+    "alipayCert": "Sijil Awam Alipay",
+    "alipayCertDesc": "Sijil awam Alipay (untuk mod sijil, muat naik fail .crt)",
+    "uploadAlipayCert": "Muat naik Sijil Awam Alipay",
+    "alipayRootCert": "Sijil Root Alipay",
+    "alipayRootCertDesc": "Sijil akar Alipay (untuk mod sijil, muat naik fail .crt)",
+    "uploadRootCert": "Muat naik Sijil Root Alipay",
+    "validate": {
+      "appId": "Sila masukkan ID Apl",
+      "authType": "Sila pilih jenis pengesahan",
+      "privateKey": "Sila masukkan kunci peribadi apl",
+      "alipayPublicKey": "Sila masukkan kunci awam Alipay",
+      "appCert": "Sila muat naik sijil awam apl",
+      "alipayCert": "Sila muat naik sijil awam Alipay",
+      "alipayRootCert": "Sila muat naik sijil akar Alipay"
+    }
+  },
+  "wechatMp": {
+    "tabTitle": "Konfigurasi Akaun Rasmi WeChat",
+    "tabDescription": "Bukti kelayakan MP WeChat untuk log masuk dan pemberitahuan templat",
+    "title": "Konfigurasi Pengesahan Akaun Rasmi WeChat",
+    "description": "Urus bukti kelayakan MP WeChat (appId/appSecret) untuk mesej templat H5 OAuth openId dan pusat pemberitahuan.",
+    "usageTip": "Konfigurasi ini berfungsi: 1) Log masuk WeChat MP H5 OAuth; 2) Penghantaran mesej templat pusat pemberitahuan.",
+    "confirmSaveContent": "Adakah anda pasti menyimpan konfigurasi Akaun Rasmi WeChat?",
+    "section": {
+      "credential": "Konfigurasi Tauliah"
+    },
+    "appId": "ID apl",
+    "appIdDesc": "AppId Akaun Rasmi WeChat (diperolehi daripada 'Tetapan & Pembangunan - Konfigurasi Asas' Platform MP)",
+    "inputAppId": "Sila masukkan ID Apl MP WeChat",
+    "appSecret": "Rahsia Apl",
+    "appSecretDesc": "Akaun Rasmi WeChat AppSecret (diperolehi daripada 'Tetapan & Pembangunan - Konfig Asas' Platform MP)",
+    "inputAppSecret": "Sila masukkan Rahsia Aplikasi MP WeChat",
+    "validate": {
+      "appId": "Sila masukkan ID Apl",
+      "appSecret": "Sila masukkan Rahsia Apl"
+    }
+  },
+  "douyinH5": {
+    "tabTitle": "Apl Douyin H5",
+    "tabDescription": "Bukti kelayakan Platform Terbuka Douyin H5 untuk kebenaran H5",
+    "title": "Konfigurasi Pengesahan Apl Douyin H5",
+    "description": "Urus bukti kelayakan aplikasi Douyin Open Platform H5 (Kunci Pelanggan / Rahsia Pelanggan) untuk senario kebenaran H5.",
+    "usageTip": "Konfigurasi ini bebas daripada log masuk Douyin di bawah Konfigurasi Log Masuk Pihak Ketiga. Ia hanya menguruskan Kunci Pelanggan H5 Platform Terbuka / Rahsia Pelanggan.",
+    "confirmSaveContent": "Adakah anda pasti menyimpan konfigurasi Apl Douyin H5?",
+    "section": {
+      "credential": "Konfigurasi Tauliah"
+    },
+    "clientKey": "Kunci Pelanggan",
+    "clientKeyDesc": "Kunci Pelanggan apl Douyin Open Platform (dari Open Platform 'Butiran Apl')",
+    "inputClientKey": "Sila masukkan Kunci Pelanggan",
+    "clientSecret": "Rahsia Pelanggan",
+    "clientSecretDesc": "Rahsia Pelanggan aplikasi Douyin Open Platform (dari Open Platform 'Butiran Apl')",
+    "inputClientSecret": "Sila masukkan Rahsia Pelanggan",
+    "validate": {
+      "clientKey": "Sila masukkan Kunci Pelanggan",
+      "clientSecret": "Sila masukkan Rahsia Pelanggan"
+    }
+  }
+}

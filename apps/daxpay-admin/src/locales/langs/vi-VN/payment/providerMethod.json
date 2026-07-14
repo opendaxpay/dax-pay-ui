@@ -1,0 +1,10 @@
+{
+  "title": "Nhà cung cấp thanh toán",
+  "field": {
+    "provider": "Nhà cung cấp thanh toán",
+    "method": "Phương thức thanh toán",
+    "description": "Sự miêu tả",
+    "remark": "Nhận xét"
+  },
+  "detail": "Chi tiết mục thư mục"
+}

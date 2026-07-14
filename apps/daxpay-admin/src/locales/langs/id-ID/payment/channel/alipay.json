@@ -1,0 +1,26 @@
+{
+  "aliAppId": "ID Aplikasi Alipay",
+  "authType": "Jenis Otentikasi",
+  "signType": "Jenis Tanda",
+  "alipayUserId": "ID Pengguna Alipay",
+  "alipayPublicKey": "Kunci Publik Alipay",
+  "privateKey": "Kunci Pribadi",
+  "appCert": "Sertifikat Aplikasi",
+  "alipayCert": "Sertifikat Alipay",
+  "alipayRootCert": "Sertifikat Root Alipay",
+  "certFields": "Bidang Sertifikat (diperlukan jika tipe autentikasi adalah sertifikat)",
+  "authTypeCert": "Sertifikat",
+  "authTypeKey": "Kunci Publik",
+  "signTypeRsa2": "RSA2",
+  "validation": {
+    "aliAppIdRequired": "Silakan masukkan ID aplikasi Alipay",
+    "authTypeRequired": "Silakan pilih jenis autentikasi",
+    "signTypeRequired": "Silakan pilih jenis tanda",
+    "alipayUserIdRequired": "Silakan masukkan ID pengguna Alipay",
+    "alipayPublicKeyRequired": "Silakan masukkan kunci publik Alipay",
+    "privateKeyRequired": "Silakan masukkan kunci pribadi",
+    "appCertRequired": "Sertifikat aplikasi diperlukan jika jenis autentikasinya adalah sertifikat",
+    "alipayCertRequired": "Sertifikat Alipay diperlukan jika jenis autentikasinya adalah sertifikat",
+    "alipayRootCertRequired": "Sertifikat root Alipay diperlukan jika jenis autentikasinya adalah sertifikat"
+  }
+}

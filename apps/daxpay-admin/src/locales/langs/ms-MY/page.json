@@ -1,0 +1,26 @@
+{
+  "auth": {
+    "profile": "tetapan",
+    "login": "Log masuk",
+    "codeLogin": "Log Masuk Kod",
+    "qrcodeLogin": "Log Masuk Kod QR",
+    "forgetPassword": "Lupa Kata Laluan",
+    "oauthCallback": "Panggilan Balik OAuth"
+  },
+  "dashboard": {
+    "title": "Papan pemuka",
+    "analytics": "Analitis",
+    "workspace": "Ruang kerja"
+  },
+  "payment": {
+    "title": "Pengurusan Pembayaran",
+    "platform": "Pengurusan Pembayaran",
+    "merchantList": "Senarai Peniaga",
+    "merchantManage": "Pengurusan Peniaga",
+    "merchantChannelMerchant": "Pedagang Saluran Pedagang",
+    "channelMerchantManage": "Peniaga Saluran",
+    "channelMerchantList": "Peniaga Saluran",
+    "channelMerchantDetail": "Butiran Pedagang Saluran",
+    "productList": "Produk Pembayaran"
+  }
+}

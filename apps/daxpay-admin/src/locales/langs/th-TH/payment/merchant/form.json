@@ -1,0 +1,18 @@
+{
+  "add": {
+    "title": "เพิ่มผู้ขาย",
+    "mchInfo": "ข้อมูลร้านค้า",
+    "mchNamePlaceholder": "กรุณากรอกชื่อร้านค้า",
+    "mchShortNamePlaceholder": "กรุณากรอกชื่อย่อของผู้ขาย",
+    "subjectTypePlaceholder": "กรุณาเลือกประเภทร้านค้า"
+  },
+  "manage": {
+    "info": {
+      "title": "โปรไฟล์ผู้ขาย",
+      "backToWorkbench": "กลับไปที่การจัดการ"
+    },
+    "manage": {
+      "title": "จัดการ"
+    }
+  }
+}

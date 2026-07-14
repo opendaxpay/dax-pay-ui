@@ -1,0 +1,22 @@
+{
+  "douyinMchId": "ID Pedagang Douyin",
+  "douyinMchIdPlaceholder": "Masukkan ID pedagang Douyin Pay",
+  "dyAppId": "ID Apl Douyin",
+  "dyAppIdPlaceholder": "Masukkan ID apl Douyin",
+  "appSecret": "Rahsia Apl",
+  "appSecretPlaceholder": "Masukkan rahsia aplikasi Douyin",
+  "validation": {
+    "douyinMchIdRequired": "ID pedagang Douyin diperlukan",
+    "dyAppIdRequired": "ID apl Douyin diperlukan",
+    "appSecretRequired": "Rahsia apl diperlukan",
+    "merchantPrivateKeyRequired": "Kunci persendirian pedagang diperlukan",
+    "merchantSerialNumberRequired": "Nombor siri sijil pedagang diperlukan",
+    "encryptKeyRequired": "Kunci penyulitan diperlukan"
+  },
+  "merchantPrivateKey": "Kunci Peribadi Pedagang",
+  "merchantPrivateKeyPlaceholder": "Masukkan kunci peribadi pedagang",
+  "merchantSerialNumber": "Nombor Siri Sijil Pedagang",
+  "merchantSerialNumberPlaceholder": "Masukkan nombor siri sijil pedagang",
+  "encryptKey": "Kunci Penyulitan",
+  "encryptKeyPlaceholder": "Masukkan kunci penyulitan"
+}

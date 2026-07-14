@@ -1,0 +1,26 @@
+{
+  "auth": {
+    "profile": "Pengaturan",
+    "login": "Login",
+    "codeLogin": "Kode Masuk",
+    "qrcodeLogin": "Masuk Kode QR",
+    "forgetPassword": "Lupa Kata Sandi",
+    "oauthCallback": "Panggilan Balik OAuth"
+  },
+  "dashboard": {
+    "title": "Dasbor",
+    "analytics": "Analisis",
+    "workspace": "Ruang kerja"
+  },
+  "payment": {
+    "title": "Manajemen Pembayaran",
+    "platform": "Manajemen Pembayaran",
+    "merchantList": "Daftar Pedagang",
+    "merchantManage": "Manajemen Pedagang",
+    "merchantChannelMerchant": "Pedagang Saluran Pedagang",
+    "channelMerchantManage": "Pedagang Saluran",
+    "channelMerchantList": "Pedagang Saluran",
+    "channelMerchantDetail": "Detail Pedagang Saluran",
+    "productList": "Produk Pembayaran"
+  }
+}

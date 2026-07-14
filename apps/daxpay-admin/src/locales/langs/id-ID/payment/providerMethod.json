@@ -1,0 +1,10 @@
+{
+  "title": "Penyedia Pembayaran",
+  "field": {
+    "provider": "Penyedia Pembayaran",
+    "method": "Metode Pembayaran",
+    "description": "Keterangan",
+    "remark": "Komentar"
+  },
+  "detail": "Detail Item Direktori"
+}

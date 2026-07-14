@@ -1,0 +1,10 @@
+{
+  "manageTitle": "Pengurusan Peniaga UMS",
+  "cardDirectKeyConfig": "Konfigurasi Kekunci",
+  "cardDirectKeyConfigDesc": "Konfigurasikan ID Apl dan kunci peringkat pedagang UMS",
+  "directKeyConfigTitle": "Konfigurasi Kunci UMS",
+  "keyConfigSection": "Konfigurasi Kunci Pedagang",
+  "environment": "Persekitaran",
+  "prodEnv": "Pengeluaran",
+  "sandboxEnv": "Kotak pasir"
+}

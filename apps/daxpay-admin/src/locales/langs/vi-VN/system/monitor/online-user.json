@@ -1,0 +1,9 @@
+{
+  "username": "Tên người dùng",
+  "account": "Tài khoản",
+  "clientCode": "Khách hàng",
+  "loginTime": "Thời gian đăng nhập",
+  "kickout": "Đá luân lưu",
+  "batchKickout": "Khai mạc hàng loạt",
+  "confirmKickout": "Bạn có chắc chắn loại bỏ những người dùng đã chọn không?"
+}

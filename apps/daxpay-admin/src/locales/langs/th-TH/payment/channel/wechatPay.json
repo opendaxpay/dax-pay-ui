@@ -1,0 +1,7 @@
+{
+  "mchId": "รหัสผู้ขาย WeChat Pay",
+  "mchIdPlaceholder": "ป้อนรหัสผู้ขาย WeChat Pay",
+  "validation": {
+    "mchId": "ต้องระบุรหัสผู้ขาย WeChat Pay"
+  }
+}

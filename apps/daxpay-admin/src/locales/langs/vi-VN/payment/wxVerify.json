@@ -1,0 +1,23 @@
+{
+  "title": "Xác minh tên miền WeChat",
+  "adminTitle": "Xác minh tên miền WeChat",
+  "upload": "Tải lên tệp xác minh",
+  "uploadTip": "Chọn tệp .txt xác minh tên miền WeChat",
+  "uploadSuccess": "Tải lên thành công",
+  "uploadFail": "Tải lên không thành công",
+  "confirmDelete": "Bạn có chắc chắn xóa tệp xác minh này không?",
+  "editTitle": "Chỉnh sửa tệp xác minh",
+  "field": {
+    "fileName": "Tên tệp",
+    "mchNo": "Số thương gia",
+    "belong": "Thuộc về",
+    "verifyCode": "Xác minh nội dung",
+    "remark": "Nhận xét",
+    "createTime": "Tạo thời gian",
+    "fileContent": "Nội dung tệp"
+  },
+  "belong": {
+    "platform": "Nền tảng",
+    "merchant": "Thương gia"
+  }
+}

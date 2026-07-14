@@ -1,0 +1,10 @@
+{
+  "title": "Xác nhận xóa",
+  "primaryWarning": "Cảnh báo: Hành động này không thể hoàn tác được. Hãy tiến hành thận trọng.",
+  "description": "Thao tác này sẽ xóa vĩnh viễn dữ liệu của {name}. Không thể hoàn tác hành động này.",
+  "instruction": "Để ngăn ngừa tai nạn, gõ như sau để xác nhận:",
+  "inputPlaceholder": "Nhập nội dung trên để xác nhận",
+  "confirmDelete": "Xác nhận Xóa",
+  "finalTitle": "Xác nhận xóa lần nữa",
+  "finalContent": "Bạn có chắc chắn muốn xóa \"{name}\" không? Không thể hoàn tác hành động này."
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Konfirmasi Penghapusan",
+  "primaryWarning": "Peringatan: Tindakan ini tidak dapat dibatalkan. Silakan lanjutkan dengan hati-hati.",
+  "description": "Ini akan menghapus data untuk {name} secara permanen. Tindakan ini tidak dapat dibatalkan.",
+  "instruction": "Untuk mencegah kecelakaan, ketikkan perintah berikut untuk mengonfirmasi:",
+  "inputPlaceholder": "Masukkan teks di atas untuk mengonfirmasi",
+  "confirmDelete": "Konfirmasi Hapus",
+  "finalTitle": "Konfirmasikan Penghapusan Lagi",
+  "finalContent": "Apakah Anda yakin ingin menghapus \"{name}\"? Tindakan ini tidak dapat dibatalkan."
+}

@@ -1,0 +1,26 @@
+{
+  "title": "Otentikasi Dua Faktor",
+  "description": "Kelola otentikasi TOTP dan konfigurasi kode cadangan",
+  "summary": {
+    "enabled": "Otentikasi dua faktor diaktifkan",
+    "disabled": "Otentikasi dua faktor dinonaktifkan"
+  },
+  "section": {
+    "basic": "Pengaturan Dasar",
+    "other": "Pengaturan Lainnya"
+  },
+  "enabled": {
+    "label": "Aktifkan Otentikasi Dua Faktor",
+    "desc": "Jika diaktifkan, pengguna dapat mengaktifkan autentikasi dua faktor untuk meningkatkan keamanan akun."
+  },
+  "issuer": {
+    "label": "Nama Penerbit",
+    "desc": "Nama penerbit ditampilkan di aplikasi pengautentikasi.",
+    "placeholder": "Masukkan nama penerbit"
+  },
+  "backupCodesCount": {
+    "label": "Jumlah Kode Cadangan",
+    "desc": "Jumlah kode cadangan yang dapat dihasilkan pengguna.",
+    "placeholder": "Masukkan jumlah kode cadangan"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "title": "Cấu hình ISV Hmpay",
+  "groupConfig": "Cấu hình",
+  "manageTitle": "Quản lý người bán Hmpay",
+  "cardMchKey": "Khóa ISV",
+  "cardMchKeyDesc": "Định cấu hình ID ứng dụng Sand, khóa RSA (Hmpay là sản phẩm thanh toán tổng hợp trong Sand)",
+  "cardMchConfig": "Cấu hình người bán",
+  "cardMchConfigDesc": "Định cấu hình Số thương gia cát, ID cửa hàng, v.v.",
+  "configTitle": "Cấu hình khóa ISV Hmpay",
+  "isvIdentity": "Danh tính ISV",
+  "keyConfig": "Cấu hình khóa",
+  "sandAppId": "ID ứng dụng cát",
+  "sandAppIdPlaceholder": "Vui lòng nhập ID ứng dụng Sand (sandAppId/app_id)",
+  "publicKey": "Khóa công khai cát",
+  "publicKeyTooltip": "Khóa công khai Sand RSA (định dạng PEM, để xác minh chữ ký gọi lại/phản hồi); bị che khi đã được định cấu hình, xóa và dán lại để cập nhật",
+  "publicKeyPlaceholder": "Dán khóa công khai Sand RSA (định dạng PEM, có dấu -----BEGIN/END)",
+  "privateKey": "Khóa riêng của người bán",
+  "privateKeyTooltip": "Khóa riêng RSA của người bán (định dạng PEM, để ký yêu cầu); bị che khi đã được định cấu hình, xóa và dán lại để cập nhật",
+  "privateKeyPlaceholder": "Dán khóa riêng RSA của người bán (định dạng PEM, có dấu -----BEGIN/END)",
+  "mchConfigTitle": "Cấu hình người bán Hmpay",
+  "merchantNo": "Người buôn cát số",
+  "merchantNoPlaceholder": "Vui lòng nhập Người bán cát số",
+  "storeId": "Mã cửa hàng",
+  "storeIdPlaceholder": "Vui lòng nhập ID cửa hàng (storeId)",
+  "validation": {
+    "sandAppId": "Vui lòng nhập ID ứng dụng Sand",
+    "privateKey": "Vui lòng nhập khóa riêng của người bán",
+    "publicKey": "Vui lòng nhập khóa công khai Sand",
+    "merchantNo": "Vui lòng nhập Người bán cát số"
+  }
+}

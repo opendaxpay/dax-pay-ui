@@ -1,0 +1,10 @@
+{
+  "manageTitle": "การจัดการผู้ค้า UMS",
+  "cardDirectKeyConfig": "การกำหนดค่าคีย์",
+  "cardDirectKeyConfigDesc": "กำหนดค่า ID และคีย์แอประดับผู้ค้า UMS",
+  "directKeyConfigTitle": "การกำหนดค่าคีย์ UMS",
+  "keyConfigSection": "การกำหนดค่าคีย์ผู้ค้า",
+  "environment": "สิ่งแวดล้อม",
+  "prodEnv": "การผลิต",
+  "sandboxEnv": "แซนด์บ็อกซ์"
+}

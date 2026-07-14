@@ -1,0 +1,53 @@
+{
+  "title": "Bản trình diễn hàng đợi tin nhắn",
+  "description": "Trình bày ba kịch bản cốt lõi của Artemis JMS: tin nhắn điểm-điểm, pub-sub và tin nhắn bị trì hoãn",
+  "scene": {
+    "queue": {
+      "title": "Hàng đợi điểm-điểm",
+      "description": "Một tin nhắn chỉ được sử dụng bởi một người tiêu dùng (kịch bản MQ cổ điển)"
+    },
+    "topic": {
+      "title": "Xuất bản/Đăng ký",
+      "description": "Một tin nhắn được phát tới tất cả người đăng ký (người đăng ký A/B trên cùng một nút đều nhận được tin nhắn đó)"
+    },
+    "delay": {
+      "title": "Tin nhắn bị trì hoãn",
+      "description": "Người tiêu dùng nhận được tin nhắn N giây sau khi gửi (ví dụ: hết thời gian chờ đặt hàng)"
+    }
+  },
+  "form": {
+    "content": "Nội dung tin nhắn",
+    "contentPlaceholder": "Vui lòng nhập nội dung tin nhắn",
+    "delaySeconds": "Giây trễ",
+    "send": "Gửi",
+    "broadcast": "Phát tin"
+  },
+  "records": {
+    "title": "Hồ sơ tiêu thụ",
+    "description": "Hồ sơ do người tiêu dùng xử lý, tự động làm mới sau mỗi 2 giây. Đã xóa khi khởi động lại dịch vụ.",
+    "refresh": "Làm cho khỏe lại",
+    "clear": "Thông thoáng",
+    "empty": "Chưa có hồ sơ nào, gửi tin nhắn ở trên để bắt đầu",
+    "columns": {
+      "scene": "Bối cảnh",
+      "content": "Nội dung",
+      "sendTime": "Gửi thời gian",
+      "consumeTime": "Tiêu tốn thời gian",
+      "costMillis": "Chi phí(ms)",
+      "consumer": "Người tiêu dùng",
+      "producerTraceId": "ID dấu vết nhà sản xuất",
+      "consumerTraceId": "ID theo dõi người tiêu dùng",
+      "tracePropagated": "Dấu vết được truyền bá"
+    },
+    "traceStatus": {
+      "success": "được nhân giống",
+      "failed": "Vỡ"
+    }
+  },
+  "messages": {
+    "sendSuccess": "Đã gửi thành công",
+    "clearSuccess": "Đã xóa thành công",
+    "clearConfirm": "Bạn có chắc chắn xóa tất cả hồ sơ tiêu thụ?",
+    "contentRequired": "Vui lòng nhập nội dung tin nhắn"
+  }
+}

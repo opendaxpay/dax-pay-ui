@@ -1,0 +1,20 @@
+{
+  "account": "Akaun",
+  "userId": "ID pengguna",
+  "status": "Status",
+  "ip": "Alamat IP",
+  "os": "OS",
+  "browser": "pelayar",
+  "msg": "Mesej",
+  "loginTime": "Masa Log Masuk",
+  "client": "Pelanggan",
+  "loginType": "Jenis Log Masuk",
+  "loginLocation": "Lokasi",
+  "inputAccount": "Sila masukkan akaun",
+  "selectStatus": "Sila pilih status",
+  "detailTitle": "Log Masuk Butiran",
+  "selectCleanDay": "Bersihkan balak sebelum ini",
+  "cleanWarning": "Amaran",
+  "cleanConfirm": "Adakah anda pasti akan memadamkan log sebelum tarikh yang ditentukan? Tindakan ini tidak boleh dibuat asal.",
+  "cleanSuccess": "Log berjaya dibersihkan"
+}

@@ -1,0 +1,53 @@
+{
+  "title": "Demo Baris Mesej",
+  "description": "Menunjukkan tiga teras senario Artemis JMS: point-to-point, pub-sub dan mesej tertunda",
+  "scene": {
+    "queue": {
+      "title": "Baris Baris Titik-ke-Titik",
+      "description": "Mesej digunakan oleh hanya seorang pengguna (senario MQ klasik)"
+    },
+    "topic": {
+      "title": "Terbitkan/Langgan",
+      "description": "Mesej disiarkan kepada semua pelanggan (pelanggan A/B pada nod yang sama menerimanya)"
+    },
+    "delay": {
+      "title": "Mesej Tertunda",
+      "description": "Pengguna menerima mesej N saat selepas menghantar (cth. tamat masa pesanan ditutup)"
+    }
+  },
+  "form": {
+    "content": "Kandungan Mesej",
+    "contentPlaceholder": "Sila masukkan kandungan mesej",
+    "delaySeconds": "Detik Kelewatan",
+    "send": "Hantar",
+    "broadcast": "Siarkan"
+  },
+  "records": {
+    "title": "Rekod Penggunaan",
+    "description": "Rekod diproses oleh pengguna, dimuat semula secara automatik setiap 2 saat. Dikosongkan semasa memulakan semula perkhidmatan.",
+    "refresh": "Segarkan semula",
+    "clear": "Jelas",
+    "empty": "Tiada rekod lagi, hantar mesej di atas untuk bermula",
+    "columns": {
+      "scene": "tempat kejadian",
+      "content": "kandungan",
+      "sendTime": "Hantar Masa",
+      "consumeTime": "Mengambil Masa",
+      "costMillis": "Kos(ms)",
+      "consumer": "Pengguna",
+      "producerTraceId": "TraceId Pengeluar",
+      "consumerTraceId": "TraceId Pengguna",
+      "tracePropagated": "Jejak Disebarkan"
+    },
+    "traceStatus": {
+      "success": "Disebarkan",
+      "failed": "Patah"
+    }
+  },
+  "messages": {
+    "sendSuccess": "Berjaya dihantar",
+    "clearSuccess": "Berjaya dibersihkan",
+    "clearConfirm": "Adakah anda pasti untuk mengosongkan semua rekod penggunaan?",
+    "contentRequired": "Sila masukkan kandungan mesej"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "current": "เขตเวลาปัจจุบัน",
+  "searchPlaceholder": "ค้นหาเมือง / เขตเวลา / ออฟเซ็ต",
+  "region": {
+    "asia": "เอเชีย",
+    "europe": "ยุโรป",
+    "america": "อเมริกา",
+    "oceania": "โอเชียเนีย",
+    "africa": "แอฟริกา",
+    "universal": "สากล"
+  }
+}

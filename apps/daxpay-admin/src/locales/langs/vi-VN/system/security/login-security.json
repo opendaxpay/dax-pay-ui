@@ -1,0 +1,49 @@
+{
+  "title": "Bảo mật đăng nhập",
+  "description": "Quản lý khóa đăng nhập không thành công và đặt lại cài đặt cửa sổ",
+  "summary": {
+    "enabled": "Đã bật bảo vệ",
+    "disabled": "Bảo vệ bị vô hiệu hóa",
+    "failedThreshold": "Ngưỡng không thành công {count} lần",
+    "locked": "Đã khóa {minutes} phút",
+    "resetWindow": "Đặt lại cửa sổ {minutes} phút",
+    "captchaEnabled": "Kích hoạt hình ảnh xác thực {count} lần",
+    "captchaDisabled": "Captcha đã bị vô hiệu hóa"
+  },
+  "section": {
+    "protection": "Bảo vệ đăng nhập",
+    "lockout": "Chính sách khóa",
+    "captcha": "Kích hoạt hình ảnh xác thực"
+  },
+  "lockoutEnabled": {
+    "label": "Kích hoạt khóa đăng nhập thất bại",
+    "desc": "Khi được bật, tài khoản sẽ bị khóa sau khi liên tiếp đạt ngưỡng."
+  },
+  "maxFailedAttempts": {
+    "label": "Số lần thất bại tối đa",
+    "desc": "Tài khoản sẽ bị khóa sau khi vượt quá số lượng này.",
+    "placeholder": "Nhập số lần thử thất bại tối đa"
+  },
+  "lockoutDurationMinutes": {
+    "label": "Thời lượng khóa",
+    "desc": "Thời gian khóa tài khoản.",
+    "placeholder": "Nhập thời gian khóa"
+  },
+  "failureResetMinutes": {
+    "label": "Cửa sổ đặt lại lỗi",
+    "desc": "Số lỗi sẽ được đặt lại nếu không có lỗi nào xảy ra trong thời gian này.",
+    "placeholder": "Nhập thời lượng cửa sổ đặt lại"
+  },
+  "captchaEnabled": {
+    "label": "Kích hoạt trình kích hoạt Captcha",
+    "desc": "Khi được bật, hình ảnh xác thực sẽ được yêu cầu sau khi đạt đến ngưỡng liên tiếp."
+  },
+  "captchaTriggerAttempts": {
+    "label": "Số lần kích hoạt Captcha",
+    "desc": "Captcha sẽ được yêu cầu khi số lỗi đạt đến giá trị này.",
+    "placeholder": "Nhập số lần kích hoạt"
+  },
+  "validation": {
+    "captchaTriggerRange": "Số lần kích hoạt hình ảnh xác thực không thể lớn hơn số lần thử thất bại tối đa"
+  }
+}

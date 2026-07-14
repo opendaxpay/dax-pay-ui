@@ -1,0 +1,29 @@
+{
+  "title": "การกำหนดค่า VBill ISV",
+  "groupConfig": "การกำหนดค่า",
+  "configTitle": "การกำหนดค่าคีย์ VBill ISV",
+  "manageTitle": "การจัดการผู้ค้า VBill",
+  "basicConfig": "การกำหนดค่าพื้นฐาน",
+  "keyConfig": "การกำหนดค่าคีย์",
+  "cardMchKey": "คีย์ ISV",
+  "cardMchKeyDesc": "กำหนดค่า ID องค์กร VBill, คีย์สาธารณะ/ส่วนตัว RSA",
+  "orgId": "รหัสองค์กร Tianque",
+  "orgIdPlaceholder": "โปรดป้อนรหัสองค์กรพันธมิตร Tianque (orgId)",
+  "publicKey": "คีย์สาธารณะ Tianque RSA",
+  "publicKeyTooltip": "รหัสสาธารณะ Tianque RSA (X509 Base64) สำหรับการตรวจสอบลายเซ็นตอบกลับ/โทรกลับ",
+  "privateKey": "รหัสส่วนตัว RSA ของผู้ขาย",
+  "privateKeyTooltip": "รหัสส่วนตัวของผู้ขาย RSA (PKCS8 Base64), การลงนาม SHA1 พร้อม RSA",
+  "sandbox": "แซนด์บ็อกซ์",
+  "groupMchConfig": "การกำหนดค่าผู้ขาย",
+  "cardMchConfig": "การกำหนดค่าผู้ขาย",
+  "cardMchConfigDesc": "ดูหมายเลขผู้ค้า Tianque",
+  "mchConfigTitle": "การกำหนดค่าผู้ขาย",
+  "vbillMchNo": "พ่อค้าเทียนเกอ หมายเลข",
+  "vbillMchNoPlaceholder": "กรุณากรอกหมายเลขผู้ค้า Tianque (mno)",
+  "validation": {
+    "orgId": "กรุณากรอกรหัสองค์กร Tianque",
+    "publicKey": "โปรดป้อนรหัสสาธารณะ Tianque RSA",
+    "privateKey": "โปรดป้อนรหัสส่วนตัว RSA ของผู้ขาย",
+    "vbillMchNo": "กรุณากรอกหมายเลขร้านค้า Tianque"
+  }
+}

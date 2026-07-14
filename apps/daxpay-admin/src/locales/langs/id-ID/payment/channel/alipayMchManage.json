@@ -1,0 +1,17 @@
+{
+  "title": "Manajemen Langsung Alipay",
+  "groupApp": "Manajemen Aplikasi",
+  "cardMchApp": "Aplikasi Pedagang Saluran Alipay",
+  "cardMchAppDesc": "Kelola aplikasi pedagang saluran Alipay",
+  "cardCapabilityBinding": "Pengaturan Aplikasi Pembayaran",
+  "cardCapabilityBindingDesc": "Putuskan aplikasi mana yang digunakan setiap kemampuan pembayaran untuk memulai pembayaran",
+  "capabilityTitle": "Konfigurasikan Aplikasi per Kemampuan",
+  "capabilityDesc": "Tentukan aplikasi Alipay mana yang akan digunakan saat melakukan pembayaran untuk setiap kemampuan. Biarkan kosong untuk mencocokkan secara otomatis berdasarkan jenis aplikasi.",
+  "capabilityTableCapability": "Kemampuan Pembayaran",
+  "capabilityTableApp": "Aplikasi untuk digunakan",
+  "capabilitySelectPlaceholder": "Cocokkan otomatis menurut jenis aplikasi jika kosong",
+  "capabilityAutoTip": "Mobil",
+  "capabilityNoApp": "Belum ada aplikasi yang dibuat untuk pedagang saluran ini, harap buat terlebih dahulu",
+  "capabilitySaveSuccess": "Berhasil disimpan",
+  "capabilityClearConfirm": "Hapus semua tugas aplikasi?"
+}

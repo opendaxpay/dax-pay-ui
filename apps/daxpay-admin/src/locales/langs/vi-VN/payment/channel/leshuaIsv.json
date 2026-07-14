@@ -1,0 +1,31 @@
+{
+  "title": "Cấu hình ISV Leshua",
+  "groupConfig": "Quản lý cấu hình",
+  "configTitle": "Cấu hình khóa Leshua ISV",
+  "manageTitle": "Quản lý thương gia Leshua",
+  "basicConfig": "Cấu hình cơ bản",
+  "keyConfig": "Cấu hình khóa",
+  "enable": "Cho phép",
+  "lsMchNo": "ID thương gia Leshua",
+  "lsMchNoPlaceholder": "Nhập ID người bán Leshua (merchant_id)",
+  "lsMchNoTooltip": "ID người bán (merchant_id) do Leshua chỉ định, duy nhất trên toàn cầu",
+  "tradeKey": "Khóa giao dịch",
+  "tradeKeyPlaceholder": "Nhập khóa giao dịch (tradeKey)",
+  "tradeKeyTooltip": "Khóa chữ ký API giao dịch Leshua, được sử dụng để ký yêu cầu và xác minh phản hồi/gọi lại",
+  "notifyKey": "Khóa thông báo",
+  "notifyKeyPlaceholder": "Nhập khóa thông báo (notifyKey, tùy chọn)",
+  "signType": "Loại dấu hiệu",
+  "signTypePlaceholder": "Chọn loại biển báo",
+  "lsIsvNo": "Leshua ISV Không",
+  "lsIsvNoPlaceholder": "Nhập số ISV của Leshua (để tham gia, tùy chọn)",
+  "cardMchKey": "Khóa ISV",
+  "cardMchKeyDesc": "Định cấu hình ID người bán Leshua, khóa giao dịch và loại ký hiệu",
+  "validation": {
+    "lsMchNo": "Vui lòng nhập ID người bán Leshua",
+    "tradeKey": "Vui lòng nhập khóa giao dịch",
+    "signType": "Vui lòng chọn loại biển báo"
+  },
+  "groupMchConfig": "Cấu hình người bán",
+  "cardMchConfig": "Cấu hình người bán",
+  "cardMchConfigDesc": "Định cấu hình ID người bán Leshua của kênh"
+}

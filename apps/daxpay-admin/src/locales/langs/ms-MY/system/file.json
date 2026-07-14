@@ -1,0 +1,47 @@
+{
+  "platform": {
+    "title": "Fail Storan",
+    "detailTitle": "Butiran Fail Storan",
+    "field": {
+      "filename": "Nama fail",
+      "originalFilename": "Nama fail asal",
+      "size": "Saiz Fail",
+      "ext": "Sambungan",
+      "contentType": "Jenis MIME",
+      "url": "URL fail",
+      "basePath": "Laluan Pangkalan",
+      "path": "Laluan Storan",
+      "accessType": "Jenis Akses",
+      "bizType": "Jenis Perniagaan",
+      "remark": "Teguran",
+      "createTime": "Cipta Masa"
+    },
+    "placeholder": {
+      "filename": "Sila masukkan nama fail",
+      "originalFilename": "Sila masukkan nama fail asal",
+      "size": "Sila masukkan saiz fail",
+      "ext": "Sila masukkan sambungan fail",
+      "contentType": "Sila masukkan jenis MIME",
+      "url": "Sila masukkan URL fail",
+      "basePath": "Sila masukkan laluan asas",
+      "path": "Sila masukkan laluan storan",
+      "bizType": "Sila masukkan jenis perniagaan",
+      "remark": "Sila masukkan catatan"
+    },
+    "accessType": {
+      "public": "Awam",
+      "private": "Persendirian"
+    },
+    "action": {
+      "preview": "Pratonton",
+      "download": "Muat turun",
+      "confirmDelete": "Padamkan Pengesahan",
+      "confirmDeleteContent": "Adakah anda pasti mahu memadamkan rekod fail ini?",
+      "deleteSuccess": "Berjaya dipadamkan"
+    },
+    "validate": {
+      "urlRequired": "Sila masukkan URL fail",
+      "filenameRequired": "Sila masukkan nama fail"
+    }
+  }
+}

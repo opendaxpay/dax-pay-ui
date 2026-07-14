@@ -1,0 +1,7 @@
+{
+  "mchId": "ID Pedagang WeChat Pay",
+  "mchIdPlaceholder": "Masukkan ID pedagang WeChat Pay",
+  "validation": {
+    "mchId": "ID pedagang WeChat Pay diperlukan"
+  }
+}

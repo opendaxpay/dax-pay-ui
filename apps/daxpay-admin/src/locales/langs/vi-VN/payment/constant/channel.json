@@ -1,0 +1,19 @@
+{
+  "field": {
+    "icon": "Biểu tượng",
+    "code": "Mã kênh",
+    "name": "Tên kênh",
+    "description": "Sự miêu tả"
+  },
+  "detail": "Chi tiết kênh",
+  "section": {
+    "products": "Sản phẩm thanh toán"
+  },
+  "empty": {
+    "products": "Không có sản phẩm trả tiền"
+  },
+  "placeholder": {
+    "name": "Nhập tên kênh",
+    "code": "Nhập mã kênh"
+  }
+}

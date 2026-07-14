@@ -1,0 +1,26 @@
+{
+  "aliAppId": "รหัสแอป Alipay",
+  "authType": "ประเภทการรับรองความถูกต้อง",
+  "signType": "ประเภทสัญญาณ",
+  "alipayUserId": "รหัสผู้ใช้อาลีเพย์",
+  "alipayPublicKey": "คีย์สาธารณะของ Alipay",
+  "privateKey": "คีย์ส่วนตัว",
+  "appCert": "ใบรับรองแอป",
+  "alipayCert": "ใบรับรองอาลีเพย์",
+  "alipayRootCert": "ใบรับรองหลัก Alipay",
+  "certFields": "ช่องใบรับรอง (จำเป็นเมื่อประเภทการรับรองความถูกต้องเป็นใบรับรอง)",
+  "authTypeCert": "ใบรับรอง",
+  "authTypeKey": "กุญแจสาธารณะ",
+  "signTypeRsa2": "อาร์เอสเอ2",
+  "validation": {
+    "aliAppIdRequired": "กรุณากรอกรหัสแอป Alipay",
+    "authTypeRequired": "โปรดเลือกประเภทการรับรองความถูกต้อง",
+    "signTypeRequired": "กรุณาเลือกประเภทป้าย",
+    "alipayUserIdRequired": "กรุณากรอกรหัสผู้ใช้ Alipay",
+    "alipayPublicKeyRequired": "กรุณากรอกรหัสสาธารณะ Alipay",
+    "privateKeyRequired": "กรุณาใส่รหัสส่วนตัว",
+    "appCertRequired": "ต้องมีใบรับรองแอปเมื่อมีประเภทการรับรองความถูกต้องเป็นใบรับรอง",
+    "alipayCertRequired": "จำเป็นต้องมีใบรับรอง Alipay เมื่อประเภทการรับรองความถูกต้องเป็นใบรับรอง",
+    "alipayRootCertRequired": "ต้องมีใบรับรองหลัก Alipay เมื่อประเภทการรับรองความถูกต้องเป็นใบรับรอง"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "manageTitle": "การจัดการผู้ค้า Adapay",
+  "cardDirectKeyConfig": "การกำหนดค่าคีย์",
+  "cardDirectKeyConfigDesc": "กำหนดค่ารหัสแอประดับผู้ค้า Adapay และคีย์การลงนาม",
+  "directKeyConfigTitle": "การกำหนดค่าคีย์ Adapay",
+  "keyConfigSection": "การกำหนดค่าคีย์ผู้ค้า",
+  "environment": "สิ่งแวดล้อม",
+  "prodEnv": "การผลิต",
+  "sandboxEnv": "แซนด์บ็อกซ์"
+}

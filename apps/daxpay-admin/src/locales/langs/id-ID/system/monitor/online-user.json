@@ -1,0 +1,9 @@
+{
+  "username": "Nama belakang",
+  "account": "Akun",
+  "clientCode": "Klien",
+  "loginTime": "Waktu Masuk",
+  "kickout": "tendangan keluar",
+  "batchKickout": "Penendangan Batch",
+  "confirmKickout": "Apakah Anda yakin akan mengeluarkan pengguna yang dipilih?"
+}

@@ -1,0 +1,32 @@
+{
+  "field": {
+    "mchNo": "หมายเลขผู้ขาย",
+    "mchName": "ชื่อผู้ค้า",
+    "mchShortName": "ชื่อสั้น",
+    "status": "สถานะ",
+    "subjectType": "ประเภทหัวเรื่อง",
+    "createTime": "สร้างเวลา",
+    "id": "บัตรประจำตัวประชาชน"
+  },
+  "status": {
+    "enable": "เปิดใช้งานแล้ว",
+    "disabled": "พิการ"
+  },
+  "subjectType": {
+    "micro": "พ่อค้าไมโคร",
+    "individual": "ธุรกิจส่วนบุคคล",
+    "enterprise": "องค์กร"
+  },
+  "action": {
+    "confirmEnableContent": "คุณแน่ใจหรือไม่ว่าต้องการเปิดใช้งานผู้ขายรายนี้",
+    "confirmDisableContent": "คุณแน่ใจหรือไม่ว่าต้องการปิดการใช้งานผู้ขายรายนี้ หลังจากปิดการใช้งานแล้ว บัญชีผู้ค้าจะไม่สามารถเข้าสู่ระบบได้"
+  },
+  "validation": {
+    "pleaseInputMchName": "กรุณากรอกชื่อร้านค้า",
+    "pleaseInputMchShortName": "กรุณากรอกชื่อย่อของผู้ขาย",
+    "pleaseInputAccount": "กรุณากรอกบัญชีผู้ดูแลระบบ",
+    "pleaseConfirmPassword": "กรุณายืนยันรหัสผ่าน",
+    "pleaseSelectSubjectType": "กรุณาเลือกประเภทหัวเรื่อง",
+    "pleaseSelectStatus": "กรุณาเลือกสถานะ"
+  }
+}

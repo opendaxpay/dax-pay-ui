@@ -51,5 +51,9 @@
     "statusDraft": "초안",
     "statusPublished": "게시됨",
     "statusArchived": "보관됨"
-  }
+  },
+  "languageId": "인도네시아어",
+  "languageVi": "베트남어",
+  "languageTh": "태국어",
+  "languageMs": "말레이어"
 }

@@ -1,0 +1,29 @@
+{
+  "title": "Cấu hình VBill ISV",
+  "groupConfig": "Cấu hình",
+  "configTitle": "Cấu hình khóa VBill ISV",
+  "manageTitle": "Quản lý thương mại VBill",
+  "basicConfig": "Cấu hình cơ bản",
+  "keyConfig": "Cấu hình khóa",
+  "cardMchKey": "Khóa ISV",
+  "cardMchKeyDesc": "Định cấu hình ID tổ chức VBill, khóa công khai/riêng tư RSA",
+  "orgId": "ID tổ chức Tianque",
+  "orgIdPlaceholder": "Vui lòng nhập ID tổ chức đối tác Tianque (orgId)",
+  "publicKey": "Khóa công khai Tianque RSA",
+  "publicKeyTooltip": "Khóa công khai Tianque RSA (X509 Base64), để xác minh chữ ký phản hồi/gọi lại",
+  "privateKey": "Khóa riêng RSA của người bán",
+  "privateKeyTooltip": "Khóa riêng RSA của người bán (PKCS8 Base64), ký SHA1withRSA",
+  "sandbox": "Hộp cát",
+  "groupMchConfig": "Cấu hình người bán",
+  "cardMchConfig": "Cấu hình người bán",
+  "cardMchConfigDesc": "Xem số thương gia Tianque",
+  "mchConfigTitle": "Cấu hình người bán",
+  "vbillMchNo": "Thương gia Tianque Không",
+  "vbillMchNoPlaceholder": "Vui lòng nhập số thương gia Tianque (mno)",
+  "validation": {
+    "orgId": "Vui lòng nhập ID tổ chức Tianque",
+    "publicKey": "Vui lòng nhập khóa công khai Tianque RSA",
+    "privateKey": "Vui lòng nhập khóa riêng RSA của người bán",
+    "vbillMchNo": "Vui lòng nhập thương gia Tianque Không"
+  }
+}

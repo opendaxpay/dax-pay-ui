@@ -1,0 +1,84 @@
+{
+  "title": "Quản lý ứng dụng di động",
+  "card": {
+    "merchant": {
+      "name": "Ứng dụng thương gia",
+      "desc": "Ứng dụng di động dành cho nhân viên bán hàng"
+    },
+    "admin": {
+      "name": "Ứng dụng quản trị",
+      "desc": "Ứng dụng di động dành cho nhà khai thác nền tảng"
+    },
+    "cashier": {
+      "name": "Chương trình thu ngân mini",
+      "desc": "Chương trình nhỏ thanh toán tiêu dùng"
+    },
+    "comingSoon": "Sắp ra mắt",
+    "enter": "Cấu hình"
+  },
+  "platformNames": {
+    "wx_h5": "Tài khoản chính thức của WeChat",
+    "wx_mini": "Chương trình nhỏ WeChat",
+    "alipay_mini": "Chương trình nhỏ của Alipay",
+    "dy_mini": "Chương trình nhỏ Douyin",
+    "android": "Ứng dụng Android",
+    "ios": "Ứng dụng iOS"
+  },
+  "fields": {
+    "appId": "Id ứng dụng",
+    "appIdPlaceholder": "Nhập ID ứng dụng",
+    "appIdRequired": "Vui lòng nhập AppId",
+    "wxAppId": "Id ứng dụng chương trình nhỏ",
+    "wxAppIdPlaceholder": "Nhập AppId của chương trình WeChat Mini",
+    "appSecret": "Ứng dụng bí mật",
+    "appSecretPlaceholder": "Nhập bí mật ứng dụng",
+    "appSecretRequired": "Vui lòng nhập AppSecret",
+    "wxAppSecret": "Chương trình nhỏ AppSecret",
+    "wxAppSecretPlaceholder": "Nhập ứng dụng WeChat Mini Program AppSecret",
+    "originalId": "Giấy tờ tùy thân gốc",
+    "originalIdPlaceholder": "Nhập ID gốc (gh_..., tùy chọn)",
+    "alipayAppId": "Id ứng dụng chương trình nhỏ",
+    "alipayAppIdPlaceholder": "Nhập AppId của chương trình Alipay Mini",
+    "authType": "Loại xác thực",
+    "authTypeKey": "Khóa công khai",
+    "authTypeCert": "Giấy chứng nhận",
+    "authTypeRequired": "Vui lòng chọn loại xác thực",
+    "privateKey": "Khóa riêng của ứng dụng",
+    "privateKeyPlaceholder": "Nhập khóa riêng của ứng dụng (PEM, bắt buộc cho cả hai chế độ)",
+    "privateKeyRequired": "Vui lòng nhập khóa riêng của ứng dụng",
+    "alipayPublicKey": "Khóa công khai Alipay",
+    "alipayPublicKeyPlaceholder": "Nhập khóa chung Alipay (chế độ khóa chung)",
+    "alipayPublicKeyRequired": "Vui lòng nhập khóa công khai Alipay",
+    "appCert": "Chứng chỉ khóa công khai của ứng dụng",
+    "appCertRequired": "Vui lòng tải lên chứng chỉ khóa công khai của ứng dụng",
+    "uploadAppCert": "Tải chứng chỉ khóa công khai của ứng dụng lên",
+    "alipayCert": "Chứng chỉ khóa công khai Alipay",
+    "alipayCertRequired": "Vui lòng tải lên chứng chỉ khóa công khai Alipay",
+    "uploadAlipayCert": "Tải lên chứng chỉ khóa công khai Alipay",
+    "alipayRootCert": "Chứng chỉ gốc Alipay",
+    "alipayRootCertRequired": "Vui lòng tải lên chứng chỉ gốc Alipay",
+    "uploadRootCert": "Tải lên chứng chỉ gốc Alipay",
+    "dyAppId": "Id ứng dụng chương trình nhỏ",
+    "dyAppIdPlaceholder": "Nhập AppId của chương trình Douyin Mini",
+    "dyAppSecret": "Chương trình nhỏ AppSecret",
+    "dyAppSecretPlaceholder": "Nhập Douyin Mini Program AppSecret"
+  },
+  "detail": {
+    "back": "Mặt sau",
+    "appConfig": "Cấu hình khóa nền tảng",
+    "appConfigPlaceholder": "Nhập cấu hình khóa nền tảng ở định dạng JSON",
+    "notifyConfig": "Cấu hình thông báo",
+    "notifyConfigPlaceholder": "Nhập cấu hình thông báo ở định dạng JSON",
+    "bindingEnabled": "Kích hoạt tính năng ràng buộc tài khoản của bên thứ ba",
+    "enabled": "Đã bật",
+    "remark": "Nhận xét",
+    "remarkPlaceholder": "Nhập nhận xét",
+    "save": "Cứu",
+    "saveSuccess": "Đã lưu thành công",
+    "notSupportedAppType": "Loại ứng dụng không được hỗ trợ",
+    "emptyPlatformConfig": "Chưa có cấu hình nền tảng nào, hãy điền và lưu để tạo",
+    "platformComingSoon": "Nền tảng này chưa có sẵn; sẽ được xử lý khi APP sẵn sàng",
+    "cashierLimitTitle": "Chương trình thu ngân mini nền tảng đơn",
+    "cashierLimitDesc": "Toàn bộ nền tảng chia sẻ một chương trình nhỏ thu ngân WeChat và một chương trình thu ngân Alipay. openId và opAppId phải sử dụng cùng một AppId tại thời điểm trả lương. Đăng ký hoặc liên kết AppId này với mỗi kênh thanh toán dưới dạng AppId trả phí (thường là chương trình nhỏ của nhà cung cấp dịch vụ cho ISV WeChat chính thức hoặc sub_appid cho các kênh của bên thứ ba). Không phải mọi kênh đều hoạt động tốt."
+  }
+}

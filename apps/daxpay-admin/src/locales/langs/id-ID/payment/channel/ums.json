@@ -1,0 +1,23 @@
+{
+  "title": "Konfigurasi UMS",
+  "keyConfig": "Konfigurasi Kunci",
+  "enable": "Memungkinkan",
+  "umsAppId": "ID Aplikasi",
+  "umsAppIdPlaceholder": "Silakan masukkan ID aplikasi UMS",
+  "appKey": "Kunci Aplikasi",
+  "appKeyPlaceholder": "Silakan masukkan kunci aplikasi UMS",
+  "merchantNo": "Nomor Pedagang",
+  "merchantNoPlaceholder": "Silakan masukkan nomor merchant UMS",
+  "terminalNo": "Nomor Terminal",
+  "terminalNoPlaceholder": "Silakan masukkan nomor terminal UMS",
+  "secretKey": "Kunci Rahasia",
+  "secretKeyPlaceholder": "Silakan masukkan kunci rahasia (untuk verifikasi pesan panggilan balik)",
+  "validation": {
+    "enable": "Silakan pilih aktifkan status",
+    "umsAppId": "Silakan masukkan ID aplikasi UMS",
+    "appKey": "Silakan masukkan kunci aplikasi UMS",
+    "merchantNo": "Silakan masukkan nomor merchant UMS",
+    "terminalNo": "Silakan masukkan nomor terminal UMS",
+    "secretKey": "Silakan masukkan kunci rahasia"
+  }
+}

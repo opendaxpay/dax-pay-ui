@@ -1,0 +1,21 @@
+{
+  "title": "Demo Unggah File",
+  "description": "Tunjukkan unggahan file URL yang telah ditentukan sebelumnya ke penyimpanan platform",
+  "publicBucket": {
+    "title": "Unggah Keranjang Publik",
+    "description": "File dapat diakses langsung melalui URL publik, cocok untuk gambar, sumber daya statis, dll."
+  },
+  "loginBucket": {
+    "title": "Unggah Keranjang Pribadi",
+    "description": "File memerlukan URL yang telah ditentukan sebelumnya untuk diakses, cocok untuk file sensitif, kontrak, dll."
+  },
+  "upload": "Mengunggah",
+  "delete": "Menghapus",
+  "uploadSuccess": "Unggahan berhasil",
+  "deleteSuccess": "Penghapusan berhasil",
+  "deleteConfirm": "Apakah Anda yakin ingin menghapus file ini?",
+  "fileTooLarge": "Ukuran file melebihi batas, maksimal 10MB",
+  "invalidFileType": "Hanya file gambar yang didukung",
+  "uploading": "Mengunggah...",
+  "accessUrl": "Akses URL"
+}

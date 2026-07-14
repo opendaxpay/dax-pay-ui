@@ -1,0 +1,31 @@
+{
+  "title": "Konfigurasi Leshua ISV",
+  "groupConfig": "Manajemen Konfigurasi",
+  "configTitle": "Konfigurasi Kunci Leshua ISV",
+  "manageTitle": "Manajemen Pedagang Leshua",
+  "basicConfig": "Konfigurasi Dasar",
+  "keyConfig": "Konfigurasi Kunci",
+  "enable": "Memungkinkan",
+  "lsMchNo": "ID Pedagang Leshua",
+  "lsMchNoPlaceholder": "Masukkan ID pedagang Leshua (merchant_id)",
+  "lsMchNoTooltip": "ID pedagang (merchant_id) yang ditetapkan oleh Leshua, unik secara global",
+  "tradeKey": "Kunci Perdagangan",
+  "tradeKeyPlaceholder": "Masukkan kunci perdagangan (tradeKey)",
+  "tradeKeyTooltip": "Kunci tanda tangan API perdagangan Leshua, digunakan untuk penandatanganan permintaan dan verifikasi respons/panggilan balik",
+  "notifyKey": "Beritahu Kunci",
+  "notifyKeyPlaceholder": "Masukkan kunci notifikasi (notifyKey, opsional)",
+  "signType": "Jenis Tanda",
+  "signTypePlaceholder": "Pilih jenis tanda",
+  "lsIsvNo": "Leshua ISV No",
+  "lsIsvNoPlaceholder": "Masukkan nomor Leshua ISV (untuk orientasi, opsional)",
+  "cardMchKey": "Kunci ISV",
+  "cardMchKeyDesc": "Konfigurasikan ID pedagang Leshua, kunci perdagangan, dan jenis tanda",
+  "validation": {
+    "lsMchNo": "Silakan masukkan ID pedagang Leshua",
+    "tradeKey": "Silakan masukkan kunci perdagangan",
+    "signType": "Silakan pilih jenis tanda"
+  },
+  "groupMchConfig": "Konfigurasi Pedagang",
+  "cardMchConfig": "Konfigurasi Pedagang",
+  "cardMchConfigDesc": "Konfigurasikan ID pedagang saluran Leshua"
+}

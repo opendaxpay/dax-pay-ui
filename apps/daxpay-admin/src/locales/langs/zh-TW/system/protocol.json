@@ -51,5 +51,9 @@
     "statusDraft": "草稿",
     "statusPublished": "已釋出",
     "statusArchived": "已歸檔"
-  }
+  },
+  "languageId": "印尼語",
+  "languageVi": "越南語",
+  "languageTh": "泰語",
+  "languageMs": "馬來語"
 }

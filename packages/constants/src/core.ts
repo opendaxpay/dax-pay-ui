@@ -5,12 +5,23 @@ export const LOGIN_PATH = '/auth/login';
 
 export interface LanguageOption {
   label: string;
-  value: 'en-US' | 'zh-CN' | 'zh-TW' | 'zh-HK' | 'ja-JP' | 'ko-KR';
+  value:
+    | 'en-US'
+    | 'zh-CN'
+    | 'zh-TW'
+    | 'zh-HK'
+    | 'ja-JP'
+    | 'ko-KR'
+    | 'id-ID'
+    | 'vi-VN'
+    | 'th-TH'
+    | 'ms-MY';
 }
 
 /**
  * Supported languages
  * 简体 / 英文 / 繁体（台湾）/ 繁体（香港）/ 日语 / 韩语
+ * + 东盟核心：印尼 / 越南 / 泰 / 马来
  */
 export const SUPPORT_LANGUAGES: LanguageOption[] = [
   {
@@ -36,5 +47,21 @@ export const SUPPORT_LANGUAGES: LanguageOption[] = [
   {
     label: '한국어',
     value: 'ko-KR',
+  },
+  {
+    label: 'Bahasa Indonesia',
+    value: 'id-ID',
+  },
+  {
+    label: 'Tiếng Việt',
+    value: 'vi-VN',
+  },
+  {
+    label: 'ภาษาไทย',
+    value: 'th-TH',
+  },
+  {
+    label: 'Bahasa Melayu',
+    value: 'ms-MY',
   },
 ];

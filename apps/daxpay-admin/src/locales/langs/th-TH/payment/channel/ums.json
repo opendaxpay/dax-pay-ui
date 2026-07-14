@@ -1,0 +1,23 @@
+{
+  "title": "การกำหนดค่า UMS",
+  "keyConfig": "การกำหนดค่าที่สำคัญ",
+  "enable": "เปิดใช้งาน",
+  "umsAppId": "รหัสแอปพลิเคชัน",
+  "umsAppIdPlaceholder": "โปรดป้อนรหัสแอปพลิเคชัน UMS",
+  "appKey": "รหัสแอปพลิเคชัน",
+  "appKeyPlaceholder": "กรุณากรอกรหัสแอปพลิเคชัน UMS",
+  "merchantNo": "หมายเลขผู้ขาย",
+  "merchantNoPlaceholder": "กรุณากรอกหมายเลขร้านค้า UMS",
+  "terminalNo": "เทอร์มินัลหมายเลข",
+  "terminalNoPlaceholder": "โปรดป้อนหมายเลขเทอร์มินัล UMS",
+  "secretKey": "รหัสลับ",
+  "secretKeyPlaceholder": "กรุณากรอกรหัสลับ (สำหรับการยืนยันข้อความโทรกลับ)",
+  "validation": {
+    "enable": "โปรดเลือกเปิดใช้งานสถานะ",
+    "umsAppId": "โปรดป้อนรหัสแอปพลิเคชัน UMS",
+    "appKey": "กรุณากรอกรหัสแอปพลิเคชัน UMS",
+    "merchantNo": "กรุณากรอกหมายเลขร้านค้า UMS",
+    "terminalNo": "โปรดป้อนหมายเลขเทอร์มินัล UMS",
+    "secretKey": "กรุณากรอกรหัสลับ"
+  }
+}

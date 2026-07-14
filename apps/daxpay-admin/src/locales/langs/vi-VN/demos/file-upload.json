@@ -1,0 +1,21 @@
+{
+  "title": "Bản demo tải lên tệp",
+  "description": "Chứng minh tải tệp URL được chỉ định lên bộ nhớ nền tảng",
+  "publicBucket": {
+    "title": "Tải lên nhóm công khai",
+    "description": "Các tập tin có thể được truy cập trực tiếp qua URL công khai, phù hợp với hình ảnh, tài nguyên tĩnh, v.v."
+  },
+  "loginBucket": {
+    "title": "Tải lên nhóm riêng tư",
+    "description": "Các tệp yêu cầu URL được chỉ định để truy cập, phù hợp với các tệp nhạy cảm, hợp đồng, v.v."
+  },
+  "upload": "Tải lên",
+  "delete": "Xóa bỏ",
+  "uploadSuccess": "Tải lên thành công",
+  "deleteSuccess": "Xóa thành công",
+  "deleteConfirm": "Bạn có chắc chắn muốn xóa tập tin này?",
+  "fileTooLarge": "Kích thước tệp vượt quá giới hạn, tối đa 10MB",
+  "invalidFileType": "Chỉ hỗ trợ các tập tin hình ảnh",
+  "uploading": "Đang tải lên...",
+  "accessUrl": "URL truy cập"
+}

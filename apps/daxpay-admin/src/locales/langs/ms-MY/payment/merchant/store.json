@@ -1,0 +1,28 @@
+{
+  "store": {
+    "title": "Pengurusan Stor",
+    "field": {
+      "storeNo": "Kedai No.",
+      "storeName": "Nama Kedai",
+      "contactPhone": "Hubungi Telefon",
+      "logoUrl": "Logo Kedai",
+      "facadeUrl": "Foto Etalase",
+      "interiorUrl": "Foto Dalaman",
+      "region": "Wilayah",
+      "address": "Alamat",
+      "longitude": "Longitud",
+      "latitude": "Latitud",
+      "status": "Status",
+      "remark": "Teguran",
+      "createTime": "Cipta Masa"
+    },
+    "status": {
+      "enable": "Didayakan",
+      "disabled": "Dilumpuhkan"
+    },
+    "regionPlaceholder": "Sila pilih wilayah / bandar / daerah",
+    "confirmDelete": "Padamkan kedai ini?",
+    "validationStoreName": "Sila masukkan nama kedai",
+    "validationStatus": "Sila pilih status"
+  }
+}

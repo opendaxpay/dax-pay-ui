@@ -1,0 +1,26 @@
+{
+  "aliAppId": "ID ứng dụng Alipay",
+  "authType": "Loại xác thực",
+  "signType": "Loại dấu hiệu",
+  "alipayUserId": "ID người dùng Alipay",
+  "alipayPublicKey": "Khóa công khai Alipay",
+  "privateKey": "Khóa riêng",
+  "appCert": "Chứng chỉ ứng dụng",
+  "alipayCert": "Chứng chỉ Alipay",
+  "alipayRootCert": "Chứng chỉ gốc Alipay",
+  "certFields": "Trường chứng chỉ (bắt buộc khi loại xác thực là chứng chỉ)",
+  "authTypeCert": "Giấy chứng nhận",
+  "authTypeKey": "Khóa công khai",
+  "signTypeRsa2": "RSA2",
+  "validation": {
+    "aliAppIdRequired": "Vui lòng nhập ID ứng dụng Alipay",
+    "authTypeRequired": "Vui lòng chọn loại xác thực",
+    "signTypeRequired": "Vui lòng chọn loại biển báo",
+    "alipayUserIdRequired": "Vui lòng nhập ID người dùng Alipay",
+    "alipayPublicKeyRequired": "Vui lòng nhập khóa công khai Alipay",
+    "privateKeyRequired": "Vui lòng nhập khóa riêng",
+    "appCertRequired": "Cần có chứng chỉ ứng dụng khi loại xác thực là chứng chỉ",
+    "alipayCertRequired": "Cần có chứng chỉ Alipay khi loại xác thực là chứng chỉ",
+    "alipayRootCertRequired": "Cần có chứng chỉ gốc Alipay khi loại xác thực là chứng chỉ"
+  }
+}

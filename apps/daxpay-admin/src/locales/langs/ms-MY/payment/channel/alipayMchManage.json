@@ -1,0 +1,17 @@
+{
+  "title": "Pengurusan Langsung Alipay",
+  "groupApp": "Pengurusan Apl",
+  "cardMchApp": "Aplikasi Pedagang Saluran Alipay",
+  "cardMchAppDesc": "Urus aplikasi pedagang saluran Alipay",
+  "cardCapabilityBinding": "Persediaan Apl Pembayaran",
+  "cardCapabilityBindingDesc": "Tentukan apl yang digunakan oleh setiap keupayaan pembayaran untuk memulakan pembayaran",
+  "capabilityTitle": "Konfigurasikan Apl setiap Keupayaan",
+  "capabilityDesc": "Tentukan apl Alipay yang hendak digunakan semasa memulakan pembayaran untuk setiap keupayaan. Biarkan kosong untuk memadankan automatik mengikut jenis apl.",
+  "capabilityTableCapability": "Keupayaan Pembayaran",
+  "capabilityTableApp": "Apl untuk digunakan",
+  "capabilitySelectPlaceholder": "Padanan automatik mengikut jenis apl jika kosong",
+  "capabilityAutoTip": "Auto",
+  "capabilityNoApp": "Belum ada apl dibuat untuk pedagang saluran ini, sila buat apl dahulu",
+  "capabilitySaveSuccess": "Berjaya disimpan",
+  "capabilityClearConfirm": "Kosongkan semua tugasan apl?"
+}

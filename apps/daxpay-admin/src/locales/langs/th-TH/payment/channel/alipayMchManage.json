@@ -1,0 +1,17 @@
+{
+  "title": "การจัดการโดยตรงของ Alipay",
+  "groupApp": "การจัดการแอป",
+  "cardMchApp": "แอพผู้ค้าช่องทาง Alipay",
+  "cardMchAppDesc": "จัดการแอพพลิเคชั่นร้านค้าช่องทาง Alipay",
+  "cardCapabilityBinding": "การตั้งค่าแอปการชำระเงิน",
+  "cardCapabilityBindingDesc": "ตัดสินใจว่าแอปใดที่ความสามารถในการชำระเงินแต่ละรายการใช้เพื่อเริ่มการชำระเงิน",
+  "capabilityTitle": "กำหนดค่าแอปตามความสามารถ",
+  "capabilityDesc": "ระบุแอป Alipay ที่จะใช้เมื่อเริ่มการชำระเงินสำหรับแต่ละความสามารถ เว้นว่างไว้เพื่อจับคู่อัตโนมัติตามประเภทแอป",
+  "capabilityTableCapability": "ความสามารถในการชำระเงิน",
+  "capabilityTableApp": "แอพที่จะใช้",
+  "capabilitySelectPlaceholder": "จับคู่อัตโนมัติตามประเภทแอปหากว่างเปล่า",
+  "capabilityAutoTip": "อัตโนมัติ",
+  "capabilityNoApp": "ยังไม่มีแอปที่สร้างขึ้นสำหรับผู้ขายช่องทางนี้ โปรดสร้างแอปก่อน",
+  "capabilitySaveSuccess": "บันทึกเรียบร้อยแล้ว",
+  "capabilityClearConfirm": "ล้างการกำหนดแอปทั้งหมดใช่ไหม"
+}

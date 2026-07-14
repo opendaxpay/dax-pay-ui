@@ -1,0 +1,24 @@
+{
+  "wxMchId": "ID Pedagang WeChat",
+  "wxAppId": "WeChat AppId",
+  "apiKeyV3": "Kunci API V3",
+  "appSecret": "Rahsia Apl",
+  "publicKey": "Kunci Awam",
+  "publicKeyId": "ID Kunci Awam",
+  "privateKey": "Kunci Peribadi Sijil API",
+  "privateCert": "Sijil API",
+  "certSerialNo": "No Siri Sijil",
+  "wxAppSecret": "Rahsia Aplikasi WeChat",
+  "wxAuthUrl": "URL Pengesahan WeChat",
+  "validation": {
+    "wxMchIdRequired": "Sila masukkan ID pedagang WeChat",
+    "wxAppIdRequired": "Sila masukkan WeChat appId",
+    "apiKeyV3Required": "Sila masukkan kunci API V3",
+    "appSecretRequired": "Sila masukkan rahsia apl",
+    "publicKeyRequired": "Sila masukkan kunci awam",
+    "publicKeyIdRequired": "Sila masukkan ID kunci awam",
+    "privateCertRequired": "Sila masukkan sijil API",
+    "certSerialNoRequired": "Sila masukkan nombor siri sijil",
+    "wxAppSecretRequired": "Sila masukkan rahsia aplikasi WeChat"
+  }
+}

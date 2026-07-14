@@ -1,0 +1,49 @@
+{
+  "title": "Keamanan Masuk",
+  "description": "Kelola penguncian login yang gagal dan setel ulang pengaturan jendela",
+  "summary": {
+    "enabled": "Perlindungan diaktifkan",
+    "disabled": "Perlindungan dinonaktifkan",
+    "failedThreshold": "Ambang batas gagal {count} kali",
+    "locked": "Terkunci {minutes} menit",
+    "resetWindow": "Setel ulang jendela {minutes} menit",
+    "captchaEnabled": "Pemicu Captcha {count} kali",
+    "captchaDisabled": "Captcha dinonaktifkan"
+  },
+  "section": {
+    "protection": "Perlindungan Masuk",
+    "lockout": "Kebijakan Penguncian",
+    "captcha": "Pemicu Captcha"
+  },
+  "lockoutEnabled": {
+    "label": "Aktifkan Penguncian Kegagalan Masuk",
+    "desc": "Jika diaktifkan, akun akan dikunci setelah kegagalan berturut-turut mencapai ambang batas."
+  },
+  "maxFailedAttempts": {
+    "label": "Upaya Max yang Gagal",
+    "desc": "Akun akan dikunci setelah melebihi jumlah ini.",
+    "placeholder": "Masukkan upaya maksimal yang gagal"
+  },
+  "lockoutDurationMinutes": {
+    "label": "Durasi Penguncian",
+    "desc": "Durasi penguncian akun.",
+    "placeholder": "Masukkan durasi penguncian"
+  },
+  "failureResetMinutes": {
+    "label": "Jendela Reset Kegagalan",
+    "desc": "Jumlah kegagalan akan diatur ulang jika tidak ada kegagalan lebih lanjut yang terjadi dalam jangka waktu tersebut.",
+    "placeholder": "Masukkan durasi jendela reset"
+  },
+  "captchaEnabled": {
+    "label": "Aktifkan Pemicu Captcha",
+    "desc": "Jika diaktifkan, captcha akan diperlukan setelah kegagalan berturut-turut mencapai ambang batas."
+  },
+  "captchaTriggerAttempts": {
+    "label": "Upaya Pemicu Captcha",
+    "desc": "Captcha akan diperlukan ketika jumlah kegagalan mencapai nilai ini.",
+    "placeholder": "Masukkan upaya pemicu"
+  },
+  "validation": {
+    "captchaTriggerRange": "Upaya pemicu captcha tidak boleh lebih besar dari upaya gagal maksimal"
+  }
+}

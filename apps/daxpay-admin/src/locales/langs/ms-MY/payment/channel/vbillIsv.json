@@ -1,0 +1,29 @@
+{
+  "title": "Konfigurasi ISV VBill",
+  "groupConfig": "Konfigurasi",
+  "configTitle": "Konfigurasi Kunci ISV VBill",
+  "manageTitle": "Pengurusan Pedagang VBill",
+  "basicConfig": "Konfigurasi Asas",
+  "keyConfig": "Konfigurasi Kekunci",
+  "cardMchKey": "Kunci ISV",
+  "cardMchKeyDesc": "Konfigurasikan ID org VBill, kunci awam/peribadi RSA",
+  "orgId": "ID Org Tianque",
+  "orgIdPlaceholder": "Sila masukkan ID org rakan kongsi Tianque (orgId)",
+  "publicKey": "Kunci Awam RSA Tianque",
+  "publicKeyTooltip": "Kunci awam Tianque RSA (X509 Base64), untuk pengesahan tandatangan respons/panggil balik",
+  "privateKey": "Kunci Peribadi RSA Pedagang",
+  "privateKeyTooltip": "Kunci persendirian RSA Pedagang (PKCS8 Base64), SHA1dengan tandatangan RSA",
+  "sandbox": "Kotak pasir",
+  "groupMchConfig": "Konfigurasi Pedagang",
+  "cardMchConfig": "Konfigurasi Pedagang",
+  "cardMchConfigDesc": "Lihat nombor pedagang Tianque",
+  "mchConfigTitle": "Konfigurasi Pedagang",
+  "vbillMchNo": "Tianque Merchant No",
+  "vbillMchNoPlaceholder": "Sila masukkan No pedagang Tianque (mno)",
+  "validation": {
+    "orgId": "Sila masukkan ID org Tianque",
+    "publicKey": "Sila masukkan kunci awam Tianque RSA",
+    "privateKey": "Sila masukkan kunci peribadi RSA pedagang",
+    "vbillMchNo": "Sila masukkan No. pedagang Tianque"
+  }
+}

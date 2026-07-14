@@ -1,0 +1,84 @@
+{
+  "title": "Manajemen Aplikasi Seluler",
+  "card": {
+    "merchant": {
+      "name": "Aplikasi Pedagang",
+      "desc": "Aplikasi seluler untuk staf pedagang"
+    },
+    "admin": {
+      "name": "Aplikasi Admin",
+      "desc": "Aplikasi seluler untuk operator platform"
+    },
+    "cashier": {
+      "name": "Program Mini Kasir",
+      "desc": "Program mini untuk pembayaran konsumen"
+    },
+    "comingSoon": "Segera hadir",
+    "enter": "Konfigurasikan"
+  },
+  "platformNames": {
+    "wx_h5": "Akun Resmi WeChat",
+    "wx_mini": "Program Mini WeChat",
+    "alipay_mini": "Program Mini Alipay",
+    "dy_mini": "Program Mini Douyin",
+    "android": "Aplikasi Android",
+    "ios": "Aplikasi iOS"
+  },
+  "fields": {
+    "appId": "ID Aplikasi",
+    "appIdPlaceholder": "Masukkan AppId",
+    "appIdRequired": "Silakan masukkan AppId",
+    "wxAppId": "ID Aplikasi Program Mini",
+    "wxAppIdPlaceholder": "Masukkan ID Aplikasi Program Mini WeChat",
+    "appSecret": "Rahasia Aplikasi",
+    "appSecretPlaceholder": "Masuk ke Rahasia Aplikasi",
+    "appSecretRequired": "Silakan masuk ke AppSecret",
+    "wxAppSecret": "Rahasia Aplikasi Program Mini",
+    "wxAppSecretPlaceholder": "Masuk ke Rahasia Aplikasi Program Mini WeChat",
+    "originalId": "tanda pengenal asli",
+    "originalIdPlaceholder": "Masukkan ID asli (gh_..., opsional)",
+    "alipayAppId": "ID Aplikasi Program Mini",
+    "alipayAppIdPlaceholder": "Masukkan ID Aplikasi Program Mini Alipay",
+    "authType": "Jenis Otentikasi",
+    "authTypeKey": "Kunci Publik",
+    "authTypeCert": "Sertifikat",
+    "authTypeRequired": "Silakan pilih jenis autentikasi",
+    "privateKey": "Kunci Pribadi Aplikasi",
+    "privateKeyPlaceholder": "Masukkan kunci pribadi aplikasi (PEM, diperlukan untuk kedua mode)",
+    "privateKeyRequired": "Silakan masukkan kunci pribadi aplikasi",
+    "alipayPublicKey": "Kunci Publik Alipay",
+    "alipayPublicKeyPlaceholder": "Masukkan kunci publik Alipay (mode kunci publik)",
+    "alipayPublicKeyRequired": "Silakan masukkan kunci publik Alipay",
+    "appCert": "Sertifikat Kunci Publik Aplikasi",
+    "appCertRequired": "Silakan unggah sertifikat kunci publik aplikasi",
+    "uploadAppCert": "Unggah sertifikat kunci publik aplikasi",
+    "alipayCert": "Sertifikat Kunci Publik Alipay",
+    "alipayCertRequired": "Silakan unggah sertifikat kunci publik Alipay",
+    "uploadAlipayCert": "Unggah sertifikat kunci publik Alipay",
+    "alipayRootCert": "Sertifikat Root Alipay",
+    "alipayRootCertRequired": "Silakan unggah sertifikat akar Alipay",
+    "uploadRootCert": "Unggah sertifikat akar Alipay",
+    "dyAppId": "ID Aplikasi Program Mini",
+    "dyAppIdPlaceholder": "Masukkan ID Aplikasi Program Mini Douyin",
+    "dyAppSecret": "Rahasia Aplikasi Program Mini",
+    "dyAppSecretPlaceholder": "Masuk ke Rahasia Aplikasi Program Mini Douyin"
+  },
+  "detail": {
+    "back": "Kembali",
+    "appConfig": "Konfigurasi Kunci Platform",
+    "appConfigPlaceholder": "Masukkan konfigurasi kunci platform dalam format JSON",
+    "notifyConfig": "Konfigurasi Pemberitahuan",
+    "notifyConfigPlaceholder": "Masukkan konfigurasi notifikasi dalam format JSON",
+    "bindingEnabled": "Aktifkan pengikatan akun pihak ketiga",
+    "enabled": "Diaktifkan",
+    "remark": "Komentar",
+    "remarkPlaceholder": "Masukkan komentar",
+    "save": "Menyimpan",
+    "saveSuccess": "Berhasil disimpan",
+    "notSupportedAppType": "Jenis aplikasi tidak didukung",
+    "emptyPlatformConfig": "Belum ada konfigurasi platform, isi dan simpan untuk membuat",
+    "platformComingSoon": "Platform ini belum tersedia; akan ditangani ketika APP siap",
+    "cashierLimitTitle": "Program mini kasir platform tunggal",
+    "cashierLimitDesc": "Seluruh platform berbagi satu program mini kasir WeChat dan satu Alipay. openId dan opAppId harus menggunakan AppId yang sama pada waktu pembayaran. Daftarkan atau ikat AppId ini dengan setiap saluran pembayaran sebagai AppId berbayar (seringkali merupakan program mini penyedia layanan untuk WeChat ISV resmi, atau sub_appid untuk saluran pihak ketiga). Tidak semua saluran berfungsi dengan baik."
+  }
+}

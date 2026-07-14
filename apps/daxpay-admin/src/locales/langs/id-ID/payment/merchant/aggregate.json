@@ -1,0 +1,32 @@
+{
+  "aggregate": {
+    "title": "Konfigurasi Pembayaran Agregat",
+    "editModeLabel": "Tingkat Konfigurasi",
+    "autoLaunch": "Peluncuran Otomatis",
+    "autoLaunchHint": "Secara otomatis memulai pembayaran setelah pemindaian, tidak perlu klik manual",
+    "autoModeHint": "Sistem memperoleh metode pembayaran dari lingkungan terbuka dan mengikuti perutean saluran aplikasi. Tidak diperlukan konfigurasi manual.",
+    "methodModeHint": "Pilih metode pembayaran per lingkungan terbuka secara manual, lalu selesaikan melalui perutean saluran aplikasi.",
+    "directModeHint": "Menetapkan pedagang saluran dan kemampuan secara eksplisit per lingkungan terbuka; lewati perutean saluran.",
+    "scene": "Lingkungan Terbuka",
+    "method": "Metode Pembayaran",
+    "methodPlaceholder": "Pilih metode pembayaran",
+    "channelMerchant": "Pedagang Saluran",
+    "channelMerchantPlaceholder": "Pilih pedagang saluran",
+    "capability": "Kemampuan",
+    "capabilityPlaceholder": "Pilih kemampuan",
+    "autoDerived": "Turunan otomatis",
+    "saveConfirm": "Simpan konfigurasi pembayaran agregat?",
+    "missingAppContext": "Silakan buka konfigurasi pembayaran agregat dari manajemen aplikasi",
+    "notSelected": "Tidak dipilih",
+    "levelActive": "Aktif",
+    "scenes": {
+      "wechat_pay": "Wechat wechat",
+      "alipay": "Alipay",
+      "union_pay": "UnionPay",
+      "douyin": "Douyin"
+    },
+    "modeAuto": "Ikuti Perutean Saluran",
+    "modeMethod": "Berdasarkan Metode",
+    "modeDirect": "Pedagang Saluran Eksplisit"
+  }
+}

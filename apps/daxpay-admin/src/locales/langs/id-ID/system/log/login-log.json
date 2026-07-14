@@ -1,0 +1,20 @@
+{
+  "account": "Akun",
+  "userId": "ID Pengguna",
+  "status": "Status",
+  "ip": "Alamat IP",
+  "os": "sistem operasi",
+  "browser": "Peramban",
+  "msg": "Pesan",
+  "loginTime": "Waktu Masuk",
+  "client": "Klien",
+  "loginType": "Jenis Masuk",
+  "loginLocation": "Lokasi",
+  "inputAccount": "Silakan masukkan akun",
+  "selectStatus": "Silakan pilih status",
+  "detailTitle": "Detil Log Masuk",
+  "selectCleanDay": "Bersihkan log sebelumnya",
+  "cleanWarning": "Peringatan",
+  "cleanConfirm": "Apakah Anda yakin untuk menghapus log sebelum tanggal yang ditentukan? Tindakan ini tidak dapat dibatalkan.",
+  "cleanSuccess": "Log berhasil dibersihkan"
+}

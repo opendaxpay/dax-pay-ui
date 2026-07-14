@@ -1,0 +1,18 @@
+{
+  "manageTitle": "Pengurusan Pedagang Langsung Douyin",
+  "cardDirectKeyConfig": "Konfigurasi Kekunci",
+  "cardDirectKeyConfigDesc": "Konfigurasikan kunci dan sijil peringkat pedagang Douyin Pay",
+  "directKeyConfigTitle": "Konfigurasi Kunci Langsung Douyin",
+  "keyConfigSection": "Konfigurasi Kunci Pedagang",
+  "cardCapabilityBinding": "Persediaan Apl Pembayaran",
+  "cardCapabilityBindingDesc": "Tentukan apl yang digunakan oleh setiap keupayaan pembayaran untuk memulakan pembayaran",
+  "capabilityTitle": "Konfigurasikan Apl setiap Keupayaan",
+  "capabilityDesc": "Tentukan apl Douyin yang hendak digunakan semasa memulakan pembayaran untuk setiap keupayaan. Biarkan kosong untuk memadankan automatik mengikut jenis apl.",
+  "capabilityNoApp": "Tiada aplikasi wujud di bawah pedagang saluran ini. Sila buat satu dahulu.",
+  "capabilityAutoTip": "Auto",
+  "capabilitySelectPlaceholder": "Padanan automatik mengikut jenis apl jika kosong",
+  "capabilitySaveSuccess": "Berjaya disimpan",
+  "appTypeMiniProgram": "Program Mini",
+  "appTypeMobileApp": "Apl Mudah Alih",
+  "appTypeWebApp": "Apl Web"
+}

@@ -1,0 +1,20 @@
+{
+  "title": "Quản lý an ninh",
+  "description": "Quản lý cài đặt bảo mật hệ thống theo mô-đun",
+  "cancel": "Hủy bỏ",
+  "confirm": "Xác nhận",
+  "confirmSave": "Xác nhận lưu",
+  "confirmSaveContent": "Bạn có chắc chắn muốn lưu cấu hình hiện tại không?",
+  "unit": {
+    "char": "ký tự",
+    "day": "ngày",
+    "times": "lần",
+    "minute": "phút",
+    "hour": "giờ",
+    "session": "phiên",
+    "second": "giây",
+    "window": "các cửa sổ",
+    "count": "đếm",
+    "score": "điểm"
+  }
+}

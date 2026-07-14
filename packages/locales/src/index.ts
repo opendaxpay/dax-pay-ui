@@ -37,6 +37,7 @@ export {
 };
 export {
   type ImportLocaleFn,
+  type LocaleMessageValue,
   type LocaleSetupOptions,
   type SupportedLanguagesType,
 } from './typing';

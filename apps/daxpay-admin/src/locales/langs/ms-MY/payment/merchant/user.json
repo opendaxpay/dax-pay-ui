@@ -1,0 +1,41 @@
+{
+  "title": "Pengguna Saudagar",
+  "field": {
+    "name": "Nama",
+    "account": "Akaun",
+    "phone": "telefon",
+    "email": "E-mel",
+    "status": "Status",
+    "administrator": "Pentadbir"
+  },
+  "action": {
+    "add": "Tambah Pengguna",
+    "edit": "Edit Pengguna",
+    "assignRole": "Berikan Peranan",
+    "resetPassword": "Tetapkan Semula Kata Laluan",
+    "ban": "Larangan",
+    "unlock": "Buka kunci",
+    "batchBan": "Larangan Berkelompok",
+    "batchUnlock": "Buka Kunci Kelompok",
+    "batchResetPassword": "Kata Laluan Tetapan Semula Kelompok",
+    "confirmBan": "Adakah anda pasti akan mengharamkan pengguna ini?",
+    "confirmUnlock": "Adakah anda pasti untuk membuka kunci pengguna ini?",
+    "confirmAssignRole": "Adakah anda pasti menyimpan tugasan peranan?"
+  },
+  "validation": {
+    "pleaseInputName": "Sila masukkan nama",
+    "pleaseInputAccount": "Sila masukkan akaun",
+    "accountExists": "Akaun sudah wujud",
+    "noAssignableRole": "Tiada peranan yang boleh diagihkan"
+  },
+  "password": {
+    "password": "Kata laluan",
+    "confirmPassword": "Sahkan Kata Laluan",
+    "newPassword": "Kata Laluan Baharu"
+  },
+  "status": {
+    "normal": "Biasalah",
+    "lock": "Terkunci",
+    "ban": "Diharamkan"
+  }
+}

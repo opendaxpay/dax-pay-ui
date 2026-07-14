@@ -1,0 +1,26 @@
+{
+  "auth": {
+    "profile": "Cài đặt",
+    "login": "Đăng nhập",
+    "codeLogin": "Mã đăng nhập",
+    "qrcodeLogin": "Đăng nhập bằng mã QR",
+    "forgetPassword": "Quên mật khẩu",
+    "oauthCallback": "Gọi lại OAuth"
+  },
+  "dashboard": {
+    "title": "Trang tổng quan",
+    "analytics": "Phân tích",
+    "workspace": "Không gian làm việc"
+  },
+  "payment": {
+    "title": "Quản lý thanh toán",
+    "platform": "Quản lý thanh toán",
+    "merchantList": "Danh sách người bán",
+    "merchantManage": "Quản lý thương gia",
+    "merchantChannelMerchant": "Kênh thương gia Thương gia",
+    "channelMerchantManage": "Người bán kênh",
+    "channelMerchantList": "Người bán kênh",
+    "channelMerchantDetail": "Chi tiết người bán kênh",
+    "productList": "Sản phẩm thanh toán"
+  }
+}

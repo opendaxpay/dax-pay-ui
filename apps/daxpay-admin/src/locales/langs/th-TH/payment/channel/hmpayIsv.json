@@ -1,0 +1,31 @@
+{
+  "title": "การกำหนดค่า Hmpay ISV",
+  "groupConfig": "การกำหนดค่า",
+  "manageTitle": "การจัดการผู้ค้า Hmpay",
+  "cardMchKey": "คีย์ ISV",
+  "cardMchKeyDesc": "กำหนดค่ารหัสแอป Sand, คีย์ RSA (Hmpay เป็นผลิตภัณฑ์การชำระเงินแบบรวมภายใต้ Sand)",
+  "cardMchConfig": "การกำหนดค่าผู้ขาย",
+  "cardMchConfigDesc": "กำหนดค่าหมายเลขผู้ค้า Sand, ID ร้านค้า ฯลฯ",
+  "configTitle": "การกำหนดค่าคีย์ Hmpay ISV",
+  "isvIdentity": "ไอเอสวี เอกลักษณ์",
+  "keyConfig": "การกำหนดค่าที่สำคัญ",
+  "sandAppId": "รหัสแอปแซนด์",
+  "sandAppIdPlaceholder": "โปรดป้อนรหัสแอป Sand (sandAppId/app_id)",
+  "publicKey": "ทรายกุญแจสาธารณะ",
+  "publicKeyTooltip": "คีย์สาธารณะ Sand RSA (รูปแบบ PEM สำหรับการตรวจสอบลายเซ็นการโทรกลับ/ตอบกลับ); มาสก์เมื่อกำหนดค่าแล้ว ล้างและวางใหม่เพื่ออัปเดต",
+  "publicKeyPlaceholder": "วางคีย์สาธารณะ RSA ของ Sand (รูปแบบ PEM พร้อมด้วยเครื่องหมาย -----BEGIN/END)",
+  "privateKey": "รหัสส่วนตัวของผู้ขาย",
+  "privateKeyTooltip": "รหัสส่วนตัวของผู้ค้า RSA (รูปแบบ PEM สำหรับการลงนามในคำขอ) มาสก์เมื่อกำหนดค่าแล้ว ล้างและวางใหม่เพื่ออัปเดต",
+  "privateKeyPlaceholder": "วางคีย์ส่วนตัว RSA ของผู้ขาย (รูปแบบ PEM พร้อมด้วยเครื่องหมาย -----BEGIN/END)",
+  "mchConfigTitle": "การกำหนดค่าผู้ค้า Hmpay",
+  "merchantNo": "พ่อค้าทรายหมายเลข",
+  "merchantNoPlaceholder": "กรุณากรอกหมายเลขผู้ค้าทราย",
+  "storeId": "รหัสร้านค้า",
+  "storeIdPlaceholder": "กรุณากรอกรหัสร้านค้า (storeId)",
+  "validation": {
+    "sandAppId": "โปรดป้อนรหัสแอป Sand",
+    "privateKey": "กรุณากรอกรหัสส่วนตัวของผู้ขาย",
+    "publicKey": "กรุณากรอกรหัสสาธารณะแซนด์",
+    "merchantNo": "กรุณากรอกหมายเลขผู้ค้าทราย"
+  }
+}

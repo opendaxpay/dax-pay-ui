@@ -1,0 +1,12 @@
+{
+  "field": {
+    "provider": "Pembekal Bayar",
+    "method": "Kaedah Pembayaran",
+    "code": "Kod",
+    "icon": "ikon",
+    "name": "Nama",
+    "sortNo": "Isih",
+    "description": "Penerangan"
+  },
+  "detail": "Butiran Item Direktori"
+}

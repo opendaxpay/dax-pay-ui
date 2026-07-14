@@ -1,0 +1,13 @@
+{
+  "field": {
+    "code": "Kod Keupayaan",
+    "name": "Nama Keupayaan",
+    "description": "Penerangan",
+    "products": "Produk Pembayaran Terpaut"
+  },
+  "placeholder": {
+    "name": "Masukkan nama keupayaan",
+    "code": "Masukkan kod keupayaan"
+  },
+  "detail": "Butiran Keupayaan Pembayaran"
+}

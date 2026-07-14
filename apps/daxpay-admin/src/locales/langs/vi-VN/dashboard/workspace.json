@@ -1,0 +1,78 @@
+{
+  "greeting": {
+    "morning": "Chào buổi sáng",
+    "afternoon": "Chào buổi chiều",
+    "evening": "Buổi tối vui vẻ",
+    "subtitle": "Chào mừng quay trở lại Quản trị viên DaxPay"
+  },
+  "stat": {
+    "merchantCount": "Thương gia",
+    "channelMerchantCount": "Người bán kênh",
+    "userCount": "Người dùng",
+    "todayLogin": "Đăng nhập hôm nay",
+    "onlineUser": "Người dùng trực tuyến"
+  },
+  "widget": {
+    "workbenchHeader": "Không gian làm việc",
+    "quickEntry": "Nhập nhanh",
+    "tradeOverview": "Tổng quan thương mại",
+    "payOrder": "Lệnh thanh toán",
+    "tradeTrend": "Xu hướng thương mại",
+    "channelDist": "Kênh thanh toán",
+    "noticeList": "Thông báo"
+  },
+  "tradeOverview": {
+    "today": "Hôm nay",
+    "yesterday": "Hôm qua",
+    "successAmount": "Số tiền thành công (CNY)",
+    "successCount": "Số lượng thành công",
+    "refundAmount": "Số tiền hoàn lại (CNY)",
+    "refundCount": "Số tiền hoàn lại"
+  },
+  "payOrder": {
+    "developing": "Quản lý lệnh thanh toán đang phát triển",
+    "status": {
+      "success": "Thành công",
+      "fail": "Thất bại",
+      "closed": "Đã đóng"
+    }
+  },
+  "tradeTrend": {
+    "last7days": "7 ngày",
+    "last30days": "30 ngày"
+  },
+  "quickEntry": {
+    "merchant": "Thương gia",
+    "app": "Ứng dụng",
+    "channelMerchant": "Người bán kênh",
+    "notify": "Thông báo",
+    "user": "Người dùng",
+    "dict": "Từ điển",
+    "loginLog": "Nhật ký đăng nhập",
+    "security": "Bảo vệ",
+    "payOrder": "Lệnh thanh toán",
+    "refundOrder": "Lệnh hoàn tiền",
+    "payTrade": "Giao dịch quỹ",
+    "role": "Vai trò",
+    "menu": "Thực đơn",
+    "operateLog": "Nhật ký vận hành",
+    "notice": "Thông báo",
+    "productConfig": "Cấu hình sản phẩm kênh",
+    "platformConfig": "Cấu hình nền tảng",
+    "onlineUser": "Người dùng trực tuyến",
+    "analytics": "Phân tích",
+    "developTrade": "Phát triển thanh toán",
+    "socialLogin": "Đăng nhập nền tảng của bên thứ ba",
+    "empty": "Không có mục nhập nhanh có thể truy cập",
+    "edit": "Biên tập",
+    "editTitle": "Chỉnh sửa nhập nhanh",
+    "selected": "Đã chọn (kéo để sắp xếp)",
+    "available": "Có sẵn",
+    "allAdded": "Tất cả đã thêm"
+  },
+  "notice": {
+    "important": "Quan trọng",
+    "normal": "Bình thường",
+    "top": "Đứng đầu"
+  }
+}

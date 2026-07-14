@@ -1,0 +1,20 @@
+{
+  "title": "Pengurusan Keselamatan",
+  "description": "Urus tetapan keselamatan sistem mengikut modul",
+  "cancel": "Batal",
+  "confirm": "sahkan",
+  "confirmSave": "Sahkan simpan",
+  "confirmSaveContent": "Adakah anda pasti mahu menyimpan konfigurasi semasa?",
+  "unit": {
+    "char": "aksara",
+    "day": "hari",
+    "times": "kali",
+    "minute": "minit",
+    "hour": "jam",
+    "session": "sesi",
+    "second": "detik",
+    "window": "tingkap",
+    "count": "mengira",
+    "score": "mata"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "workbench": {
+    "title": "Meja Kerja Pedagang",
+    "backToList": "Kembali ke Daftar",
+    "developing": "Fitur sedang dikembangkan, pantau terus...",
+    "groupBasic": "Manajemen Dasar",
+    "groupPayment": "Konfigurasi Pembayaran",
+    "groupBusiness": "Konfigurasi Bisnis",
+    "cardMchInfo": "Profil Pedagang",
+    "cardMchInfoDesc": "Merchant No., nama, status dan info dasar lainnya",
+    "cardSecurity": "Konfigurasi Keamanan",
+    "cardSecurityDesc": "Kebijakan kata sandi, keamanan login, manajemen sesi",
+    "cardProductPayConfig": "Konfigurasi Pembayaran Produk",
+    "cardProductPayConfigDesc": "Parameter pembayaran produk pedagang dan konfigurasi lingkungan sandbox",
+    "cardChannelMerchant": "Pedagang Saluran",
+    "cardChannelMerchantDesc": "Konfigurasi dan pengelolaan No. Merchant di seluruh saluran pembayaran",
+    "cardApp": "Manajemen Aplikasi",
+    "cardAppDesc": "Pembuatan dan pengelolaan aplikasi pedagang",
+    "cardCredentialConfig": "Kredensial API",
+    "cardCredentialConfigDesc": "Kunci publik pedagang, kunci komunikasi, kunci publik platform, dan konfigurasi kredensial API lainnya",
+    "cardWxDomainVerify": "Verifikasi Domain WeChat",
+    "cardWxDomainVerifyDesc": "Unggah dan kelola file verifikasi domain bisnis Akun Resmi WeChat / Program Mini",
+    "cardUser": "Pengguna Pedagang",
+    "cardUserDesc": "Manajemen akun pengguna dan penetapan izin",
+    "cardStore": "Manajemen Toko",
+    "cardStoreDesc": "Profil toko fisik dan manajemen lokasi"
+  }
+}

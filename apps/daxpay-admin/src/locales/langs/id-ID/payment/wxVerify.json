@@ -1,0 +1,23 @@
+{
+  "title": "Verifikasi Domain WeChat",
+  "adminTitle": "Verifikasi Domain WeChat",
+  "upload": "Unggah File Verifikasi",
+  "uploadTip": "Pilih file .txt verifikasi domain WeChat",
+  "uploadSuccess": "Pengunggahan berhasil",
+  "uploadFail": "Gagal mengunggah",
+  "confirmDelete": "Apakah Anda yakin akan menghapus file verifikasi ini?",
+  "editTitle": "Edit Verifikasi File",
+  "field": {
+    "fileName": "Nama File",
+    "mchNo": "Nomor Pedagang.",
+    "belong": "Milik",
+    "verifyCode": "Verifikasi Konten",
+    "remark": "Komentar",
+    "createTime": "Ciptakan Waktu",
+    "fileContent": "Konten Berkas"
+  },
+  "belong": {
+    "platform": "Platform",
+    "merchant": "Pedagang"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "field": {
+    "code": "Kod Produk",
+    "name": "Nama Produk",
+    "channel": "Saluran",
+    "description": "Penerangan",
+    "icon": "ikon",
+    "sortNo": "Isih",
+    "remark": "Teguran",
+    "channelName": "Nama Saluran",
+    "isv": "ISV",
+    "terminal": "Terminal",
+    "sandbox": "Kotak pasir",
+    "apiCallMode": "Mod Panggilan API",
+    "payIdType": "Jenis ID Bayar",
+    "capabilities": "Keupayaan Bayar",
+    "features": "Ciri-ciri Produk"
+  },
+  "features": "Ciri-ciri Produk",
+  "detail": "Butiran Produk",
+  "editCapabilities": "Konfigurasikan Keupayaan Bayar",
+  "sandboxSupported": "Disokong",
+  "sandboxNotSupported": "Tidak disokong",
+  "enum": {
+    "alipayIsv": "Alipay (ISV)",
+    "alipay": "Alipay (Terus)",
+    "wechat": "WeChat Pay (Terus)",
+    "wechatPay": "WeChat Pay (Terus)",
+    "wechatIsv": "WeChat Pay (ISV)",
+    "douyinPay": "Douyin Pay (Terus)",
+    "umsQrcode": "UMS (C Scan B)",
+    "umsJsapi": "UMS (JSAPI)",
+    "umsApp": "UMS (APP)",
+    "umsMini": "UMS (Program Mini)",
+    "umsH5": "UMS (H5)",
+    "umsBarcode": "UMS (B Scan C)",
+    "lakalaPay": "Lakala Pay",
+    "leshuaPay": "Leshua Pay",
+    "adaPay": "Adapay",
+    "dougongPay": "DouGong",
+    "hkrtPay": "Bayar HKRT",
+    "vbillPay": "VBill",
+    "hmPay": "Hmpay",
+    "fuyouPay": "Fuyou Bayar"
+  },
+  "placeholder": {
+    "name": "Masukkan nama produk",
+    "channel": "Pilih saluran"
+  }
+}

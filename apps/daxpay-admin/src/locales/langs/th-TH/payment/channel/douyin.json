@@ -1,0 +1,22 @@
+{
+  "douyinMchId": "ID ผู้ค้า Douyin",
+  "douyinMchIdPlaceholder": "กรอกรหัสผู้ขาย Douyin Pay",
+  "dyAppId": "รหัสแอป Douyin",
+  "dyAppIdPlaceholder": "กรอกรหัสแอป Douyin",
+  "appSecret": "ความลับของแอป",
+  "appSecretPlaceholder": "ป้อนความลับของแอป Douyin",
+  "validation": {
+    "douyinMchIdRequired": "ต้องระบุรหัสผู้ขาย Douyin",
+    "dyAppIdRequired": "ต้องระบุรหัสแอป Douyin",
+    "appSecretRequired": "ต้องมีความลับของแอป",
+    "merchantPrivateKeyRequired": "ต้องใช้รหัสส่วนตัวของผู้ขาย",
+    "merchantSerialNumberRequired": "ต้องระบุหมายเลขซีเรียลใบรับรองผู้ขาย",
+    "encryptKeyRequired": "จำเป็นต้องมีคีย์การเข้ารหัส"
+  },
+  "merchantPrivateKey": "รหัสส่วนตัวของผู้ขาย",
+  "merchantPrivateKeyPlaceholder": "ป้อนรหัสส่วนตัวของผู้ขาย",
+  "merchantSerialNumber": "หมายเลขซีเรียลใบรับรองผู้ค้า",
+  "merchantSerialNumberPlaceholder": "ป้อนหมายเลขซีเรียลใบรับรองผู้ขาย",
+  "encryptKey": "คีย์การเข้ารหัส",
+  "encryptKeyPlaceholder": "ป้อนคีย์เข้ารหัส"
+}

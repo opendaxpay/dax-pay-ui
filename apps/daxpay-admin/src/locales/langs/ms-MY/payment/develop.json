@@ -1,0 +1,223 @@
+{
+  "sign": {
+    "title": "Tanda Bangun",
+    "tabSign": "Menjana Tanda",
+    "tabVerify": "Sahkan Tanda",
+    "field": {
+      "signParam": "Param untuk ditandatangani (JSON)",
+      "signPrivateKey": "Kunci Peribadi RSA",
+      "signStr": "Rentetan untuk ditandatangani",
+      "signValue": "Nilai Tanda (tanda)",
+      "verifyParam": "Params untuk mengesahkan (JSON tanpa tanda)",
+      "verifySign": "Nilai Tanda",
+      "verifyPublicKey": "Kunci Awam RSA"
+    },
+    "placeholder": {
+      "signParam": "cth. {'{'}\"mchNo\": \"M0001\", \"amaun\": 1{'}'}",
+      "signPrivateKey": "Masukkan kunci peribadi RSA penuh (PKCS8)",
+      "verifyParam": "Masukkan param JSON untuk mengesahkan",
+      "verifySign": "Rentetan tanda asas64",
+      "verifyPublicKey": "Masukkan kunci awam RSA"
+    },
+    "rule": {
+      "signParam": "Sila masukkan params untuk ditandatangani",
+      "signPrivateKey": "Sila masukkan kunci peribadi",
+      "verifyParam": "Sila masukkan params untuk mengesahkan",
+      "verifySign": "Sila masukkan nilai tanda",
+      "verifyPublicKey": "Sila masukkan kunci awam"
+    },
+    "btn": {
+      "genSign": "Menjana Tanda",
+      "reset": "Tetapkan semula",
+      "verify": "Sahkan Tanda",
+      "copy": "salin"
+    },
+    "result": {
+      "divider": "Tandatangan Keputusan",
+      "verifySuccess": "lulus",
+      "verifySuccessSub": "Tandatangan adalah sah, params tidak diusik",
+      "verifyFail": "gagal",
+      "verifyFailSub": "Tandatangan tidak sah, semak params atau kunci awam",
+      "verifyEmpty": "Masukkan params dan klik sahkan"
+    },
+    "msg": {
+      "genSuccess": "Tanda berjaya dijana",
+      "verifyDone": "Pengesahan selesai",
+      "verifyPass": "Pengesahan lulus",
+      "verifyNotPass": "Pengesahan tidak lulus",
+      "copySuccess": "disalin",
+      "copyFail": "Salinan gagal"
+    }
+  },
+  "trade": {
+    "page": {
+      "title": "Membangunkan Pembayaran",
+      "tag": "Simulated Merchant API",
+      "warning": "Halaman ini hanya membina param dan menandatanganinya. Hantar mensimulasikan panggilan pedagang ke /unipay/pay (bukan laluan keistimewaan pentadbir). Sahkan params dengan teliti."
+    },
+    "card": {
+      "basic": "Maklumat Asas",
+      "mchApp": "Maklumat Peniaga",
+      "param": "Param Pembayaran",
+      "order": "Maklumat Pesanan",
+      "preview": "Minta Pratonton"
+    },
+    "mode": {
+      "label": "Mod Bayar",
+      "route": "Ikuti Penghalaan Saluran",
+      "direct": "Pedagang Saluran Eksplisit",
+      "routeDesc": "Selesaikan pedagang saluran dan keupayaan melalui penghalaan saluran apl",
+      "directDesc": "Diputuskan oleh pedagang saluran + keupayaan; langkau penghalaan saluran"
+    },
+    "preview": {
+      "title": "Minta JSON",
+      "signBtn": "Pratonton Tandatangan",
+      "empty": "Tiada data"
+    },
+    "field": {
+      "privateKey": "Kunci Peribadi Pedagang",
+      "mchNo": "saudagar",
+      "appId": "Permohonan",
+      "channelMchNo": "Peniaga Saluran",
+      "product": "Produk Pembayaran",
+      "method": "Kaedah Pembayaran",
+      "capability": "Keupayaan",
+      "openId": "OpenID",
+      "authCode": "Kod Pengesahan",
+      "notifyUrl": "URL Pemberitahuan Async",
+      "expiredTime": "Masa Tamat",
+      "bizOrderNo": "Pesanan No.",
+      "amount": "Jumlah (Fen)",
+      "title": "Tajuk",
+      "description": "Penerangan"
+    },
+    "placeholder": {
+      "method": "Pilih kaedah pembayaran",
+      "capability": "Pilih keupayaan",
+      "openId": "Diperlukan untuk WeChat jsapi/mini",
+      "authCode": "Diperlukan untuk bayaran kod bar",
+      "notifyUrl": "https://...",
+      "expiredTime": "Lalai 30 minit jika kosong",
+      "title": "Perintah ujian",
+      "description": "Masukkan perihalan pembayaran"
+    },
+    "default": {
+      "titlePrefix": "Uji Bayar"
+    },
+    "btn": {
+      "setPrivateKey": "Tetapkan Kunci",
+      "clearPrivateKey": "Kosongkan Kunci",
+      "genOrderNo": "Menjana",
+      "reset": "Tetapkan semula",
+      "submit": "Hantar"
+    },
+    "privateKey": {
+      "modalTitle": "Tetapkan Kunci Peribadi Pedagang",
+      "modalTip": "Masukkan kunci peribadi RSA pedagang untuk menandatangani permintaan sahaja (disimpan dalam cache setempat penyemak imbas; tidak digunakan untuk bayaran keistimewaan pentadbir).",
+      "placeholder": "Masukkan kunci peribadi pedagang",
+      "savedTip": "Kunci peribadi disimpan",
+      "clearedTip": "Kunci peribadi dikosongkan",
+      "setTag": "Tetapkan",
+      "setLabel": "Set kunci peribadi pedagang",
+      "unsetTag": "Tidak Ditetapkan",
+      "clearConfirmTitle": "Sahkan Kosong",
+      "clearConfirmContent": "Adakah anda pasti mahu mengosongkan kunci peribadi pedagang? Ia perlu dimasukkan semula."
+    },
+    "result": {
+      "modalTitle": "Keputusan Pembayaran (unipay)",
+      "payLink": "Pautan Pembayaran",
+      "jsapiParam": "JSAPI Params",
+      "formData": "Data Borang",
+      "markCode": "Kod Tandakan",
+      "copyData": "Salin Badan Bayar",
+      "copyFull": "Salin Respons Penuh",
+      "rawResponse": "Maklum Balas Penuh DaxResult",
+      "empty": "Tiada data",
+      "field": {
+        "orderNo": "Pesanan Sistem No."
+      }
+    },
+    "rule": {
+      "mchNo": "Sila pilih peniaga",
+      "bizOrderNo": "Sila masukkan no pesanan.",
+      "title": "Sila masukkan tajuk",
+      "amount": "Sila masukkan jumlah",
+      "method": "Sila pilih kaedah pembayaran",
+      "channelMchNo": "Sila pilih pedagang saluran",
+      "capability": "Sila pilih keupayaan"
+    },
+    "msg": {
+      "signSuccess": "Tanda berjaya dijana",
+      "paySuccess": "Permintaan pembayaran berjaya",
+      "payFail": "Permintaan pembayaran gagal",
+      "inputPrivateKey": "Sila tetapkan kunci peribadi pedagang dahulu",
+      "copySuccess": "disalin"
+    }
+  },
+  "auth": {
+    "title": "Membangunkan Pengesahan",
+    "type": {
+      "alipay": "Alipay H5",
+      "alipayMini": "Program Mini Alipay",
+      "wechatMp": "Akaun Rasmi WeChat",
+      "wechatMini": "Program Mini WeChat",
+      "wechatChannel": "WeChat Pay",
+      "douyin": "Douyin H5"
+    },
+    "tag": {
+      "alipay": "Alipay H5",
+      "alipayMini": "Program Mini Alipay",
+      "wechatMp": "Akaun Rasmi WeChat",
+      "wechatMini": "Program Mini WeChat",
+      "wechatChannel": "WeChat Pay",
+      "douyin": "Douyin H5"
+    },
+    "guide": {
+      "title": "Cara menggunakan",
+      "desc": "Hasilkan pautan pengesahan dan imbas menggunakan apl Alipay. Keputusan dipaparkan secara automatik (memerlukan konfigurasi Alipay dalam Pengurusan Platform Pihak Ketiga dan URL asas get laluan pembayaran dalam Konfigurasi Platform).",
+      "descAlipayMini": "Penyahpepijatan pengesahan Program Mini Alipay belum dilaksanakan lagi.",
+      "descWechatMp": "Hasilkan pautan pengesahan dan imbas dengan WeChat untuk melengkapkan kebenaran web. Keputusan dipaparkan secara automatik (memerlukan konfigurasi Akaun Rasmi WeChat dalam Pengurusan Platform Pihak Ketiga dan URL asas get laluan pembayaran dalam Konfigurasi Platform).",
+      "descWechatMini": "Pilih program mini pedagang atau pentadbir, kemudian imbas untuk mendapatkan ID pengguna (pengesahan belum dilaksanakan lagi).",
+      "descWechatChannel": "Pilih pedagang/pedagang saluran/keupayaan, kemudian jana pautan pengesahan dan imbas dengan WeChat. Digunakan untuk mengesahkan konfigurasi WeChat Pay (langsung/ISV); produk pembayaran dikesan secara automatik daripada pedagang saluran.",
+      "descDouyin": "Hasilkan pautan pengesahan dan imbas dengan apl Douyin untuk melengkapkan kebenaran senyap. Hasil carian dipaparkan secara automatik (memerlukan konfigurasi apl Douyin H5 dalam Pengurusan Platform Pihak Ketiga dan URL asas get laluan pembayaran dalam Konfigurasi Platform)."
+    },
+    "btn": {
+      "generate": "Hasilkan Pautan Pengesahan",
+      "copy": "salin"
+    },
+    "qr": {
+      "tip": "Imbas dengan Alipay untuk memberi kebenaran",
+      "tipWechat": "Imbas dengan WeChat untuk memberi kebenaran",
+      "tipDouyin": "Imbas dengan Douyin untuk memberi kebenaran",
+      "empty": "Tiada kod QR lagi"
+    },
+    "form": {
+      "mchNo": "saudagar",
+      "channelMchNo": "Peniaga Saluran",
+      "capability": "Keupayaan Bayar",
+      "miniAppType": "Sebelah Program Mini",
+      "rule": {
+        "mchNo": "Sila pilih peniaga",
+        "channelMchNo": "Sila pilih pedagang saluran",
+        "capability": "Sila pilih keupayaan membayar",
+        "miniAppType": "Sila pilih bahagian program mini"
+      }
+    },
+    "miniAppType": {
+      "merchant": "saudagar",
+      "admin": "Admin"
+    },
+    "result": {
+      "divider": "Keputusan Pengesahan",
+      "openId": "OpenId",
+      "userId": "UserId",
+      "accessToken": "Token Akses"
+    },
+    "msg": {
+      "success": "Keputusan pengesahan diterima",
+      "notExist": "Keputusan pengesahan tidak ditemui atau tamat tempoh",
+      "copySuccess": "disalin",
+      "copyFail": "Salinan gagal"
+    }
+  }
+}

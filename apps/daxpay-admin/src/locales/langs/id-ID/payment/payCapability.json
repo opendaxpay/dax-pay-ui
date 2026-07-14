@@ -1,0 +1,18 @@
+{
+  "field": {
+    "code": "Kode Kemampuan",
+    "name": "Nama Kemampuan",
+    "remark": "Komentar",
+    "enabled": "Diaktifkan",
+    "products": "Produk Pembayaran Tertaut",
+    "provider": "Penyedia Pembayaran",
+    "method": "Metode Pembayaran",
+    "providerMethod": "Penyedia & Metode (Rilis)"
+  },
+  "placeholder": {
+    "name": "Masukkan nama kemampuan",
+    "code": "Masukkan kode kemampuan"
+  },
+  "detail": "Detail Kemampuan Pembayaran",
+  "edit": "Edit Kemampuan Pembayaran"
+}

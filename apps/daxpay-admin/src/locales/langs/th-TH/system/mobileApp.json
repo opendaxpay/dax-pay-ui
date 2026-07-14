@@ -1,0 +1,84 @@
+{
+  "title": "การจัดการแอพมือถือ",
+  "card": {
+    "merchant": {
+      "name": "แอพผู้ค้า",
+      "desc": "แอพมือถือสำหรับพนักงานร้านค้า"
+    },
+    "admin": {
+      "name": "แอพผู้ดูแลระบบ",
+      "desc": "แอพมือถือสำหรับผู้ให้บริการแพลตฟอร์ม"
+    },
+    "cashier": {
+      "name": "แคชเชียร์มินิโปรแกรม",
+      "desc": "มินิโปรแกรมสำหรับการชำระเงินของผู้บริโภค"
+    },
+    "comingSoon": "เร็วๆ นี้",
+    "enter": "กำหนดค่า"
+  },
+  "platformNames": {
+    "wx_h5": "บัญชีอย่างเป็นทางการของ WeChat",
+    "wx_mini": "WeChat มินิโปรแกรม",
+    "alipay_mini": "อาลีเพย์ มินิโปรแกรม",
+    "dy_mini": "โด่วยิน มินิโปรแกรม",
+    "android": "แอพ Android",
+    "ios": "แอพ iOS"
+  },
+  "fields": {
+    "appId": "รหัสแอป",
+    "appIdPlaceholder": "ป้อนรหัสแอป",
+    "appIdRequired": "กรุณากรอกรหัสแอป",
+    "wxAppId": "รหัสแอปมินิโปรแกรม",
+    "wxAppIdPlaceholder": "เข้าสู่ AppId โปรแกรม WeChat Mini",
+    "appSecret": "AppSecret",
+    "appSecretPlaceholder": "เข้าสู่ AppSecret",
+    "appSecretRequired": "กรุณากรอก AppSecret",
+    "wxAppSecret": "มินิโปรแกรม AppSecret",
+    "wxAppSecretPlaceholder": "เข้าสู่ AppSecret โปรแกรม WeChat Mini",
+    "originalId": "บัตรประจำตัวเดิม",
+    "originalIdPlaceholder": "ป้อนรหัสเดิม (gh_..., ตัวเลือก)",
+    "alipayAppId": "รหัสแอปมินิโปรแกรม",
+    "alipayAppIdPlaceholder": "กรอกรหัสแอป Alipay Mini Program",
+    "authType": "ประเภทการรับรองความถูกต้อง",
+    "authTypeKey": "กุญแจสาธารณะ",
+    "authTypeCert": "ใบรับรอง",
+    "authTypeRequired": "โปรดเลือกประเภทการรับรองความถูกต้อง",
+    "privateKey": "รหัสส่วนตัวของแอป",
+    "privateKeyPlaceholder": "ป้อนรหัสส่วนตัวของแอป (PEM จำเป็นสำหรับทั้ง 2 โหมด)",
+    "privateKeyRequired": "โปรดป้อนรหัสส่วนตัวของแอป",
+    "alipayPublicKey": "คีย์สาธารณะของ Alipay",
+    "alipayPublicKeyPlaceholder": "ป้อนรหัสสาธารณะ Alipay (โหมดรหัสสาธารณะ)",
+    "alipayPublicKeyRequired": "กรุณากรอกรหัสสาธารณะ Alipay",
+    "appCert": "ใบรับรองคีย์สาธารณะของแอป",
+    "appCertRequired": "โปรดอัปโหลดใบรับรองคีย์สาธารณะของแอป",
+    "uploadAppCert": "อัปโหลดใบรับรองคีย์สาธารณะของแอป",
+    "alipayCert": "ใบรับรองคีย์สาธารณะของ Alipay",
+    "alipayCertRequired": "โปรดอัปโหลดใบรับรองคีย์สาธารณะ Alipay",
+    "uploadAlipayCert": "อัปโหลดใบรับรองคีย์สาธารณะของ Alipay",
+    "alipayRootCert": "ใบรับรองหลัก Alipay",
+    "alipayRootCertRequired": "กรุณาอัปโหลดใบรับรองหลัก Alipay",
+    "uploadRootCert": "อัปโหลดใบรับรองรูทของ Alipay",
+    "dyAppId": "รหัสแอปมินิโปรแกรม",
+    "dyAppIdPlaceholder": "ป้อน AppId โปรแกรมขนาดเล็ก Douyin",
+    "dyAppSecret": "มินิโปรแกรม AppSecret",
+    "dyAppSecretPlaceholder": "เข้าสู่ Douyin Mini Program AppSecret"
+  },
+  "detail": {
+    "back": "กลับ",
+    "appConfig": "การกำหนดค่าคีย์แพลตฟอร์ม",
+    "appConfigPlaceholder": "ป้อนการกำหนดค่าคีย์แพลตฟอร์มในรูปแบบ JSON",
+    "notifyConfig": "การกำหนดค่าการแจ้งเตือน",
+    "notifyConfigPlaceholder": "ป้อนการกำหนดค่าการแจ้งเตือนในรูปแบบ JSON",
+    "bindingEnabled": "เปิดใช้งานการผูกบัญชีบุคคลที่สาม",
+    "enabled": "เปิดใช้งานแล้ว",
+    "remark": "หมายเหตุ",
+    "remarkPlaceholder": "ใส่หมายเหตุ",
+    "save": "บันทึก",
+    "saveSuccess": "บันทึกเรียบร้อยแล้ว",
+    "notSupportedAppType": "ประเภทแอปที่ไม่รองรับ",
+    "emptyPlatformConfig": "ยังไม่มีการกำหนดค่าแพลตฟอร์ม กรอกและบันทึกเพื่อสร้าง",
+    "platformComingSoon": "แพลตฟอร์มนี้ยังไม่พร้อมใช้งาน จะได้รับการจัดการเมื่อแอปพร้อม",
+    "cashierLimitTitle": "มินิโปรแกรมแคชเชียร์แพลตฟอร์มเดียว",
+    "cashierLimitDesc": "แพลตฟอร์มทั้งหมดแชร์ WeChat หนึ่งรายการและมินิโปรแกรมแคชเชียร์ Alipay หนึ่งรายการ openId และ opAppId ต้องใช้ AppId เดียวกันในเวลาชำระเงิน ลงทะเบียนหรือผูก AppId นี้กับช่องทางการชำระเงินแต่ละช่องทางเป็น Pay AppId (มักจะเป็นโปรแกรมขนาดเล็กของผู้ให้บริการสำหรับ WeChat ISV อย่างเป็นทางการ หรือ sub_appid สำหรับช่องทางบุคคลที่สาม) ไม่ใช่ทุกช่องจะทำงานนอกกรอบ"
+  }
+}

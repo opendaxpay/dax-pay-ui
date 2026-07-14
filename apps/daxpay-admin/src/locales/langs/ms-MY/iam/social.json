@@ -1,0 +1,77 @@
+{
+  "title": "Log Masuk Platform Pihak Ketiga",
+  "emptyDesc": "Tiada data konfigurasi platform",
+  "clientCode": {
+    "label": "Pelanggan",
+    "admin": "Admin",
+    "merchant": "saudagar"
+  },
+  "platform": {
+    "weChat": "Platform Terbuka WeChat",
+    "weCom": "WeCom",
+    "qq": "QQ",
+    "github": "GitHub",
+    "gitee": "Gitee",
+    "google": "Google",
+    "feishu": "Feishu",
+    "dingTalk": "DingTalk",
+    "douyin": "Douyin",
+    "alipay": "Alipay"
+  },
+  "status": {
+    "enabled": "Didayakan",
+    "disabled": "Dilumpuhkan",
+    "unconfigured": "Tidak Dikonfigurasikan"
+  },
+  "badge": {
+    "platformRedirect": "Tahap platform"
+  },
+  "action": {
+    "config": "Konfigurasi",
+    "gotoConfig": "Pergi ke Config",
+    "gotoCredential": "Konfigurasi Bukti kelayakan",
+    "edit": "Sunting",
+    "enable": "Dayakan",
+    "disable": "Lumpuhkan",
+    "delete": "Padam",
+    "add": "Tambah Konfigurasi Platform",
+    "search": "Cari",
+    "reset": "Tetapkan semula",
+    "copy": "salin"
+  },
+  "form": {
+    "source": "Platform",
+    "clientId": "ID Pelanggan",
+    "clientIdPlaceholder": "Masukkan ID pelanggan (AppId)",
+    "clientIdHelp": "Biasanya AppId atau ClientID, tertakluk kepada nama platform sebenar",
+    "clientSecret": "Rahsia Pelanggan",
+    "clientSecretPlaceholder": "Masukkan rahsia pelanggan",
+    "clientSecretHelp": "Biasanya AppSecret atau ClientSecret, tertakluk kepada nama platform sebenar",
+    "clientSecretRequired": "Rahsia pelanggan tidak boleh kosong",
+    "agentId": "ID Ejen WeCom",
+    "agentIdPlaceholder": "Hanya diperlukan untuk WeCom",
+    "enabled": "Didayakan",
+    "enabledRequired": "Sila pilih dayakan status",
+    "callbackUrl": "URL panggilan balik",
+    "callbackUrlHelp": "Daftarkan URL ini dalam konsol OAuth pihak ketiga; admin dan peniaga masing-masing memerlukan set lengkap",
+    "callbackUrlEmpty": "Sila tetapkan URL akses pentadbir dalam konfigurasi titik akhir dahulu",
+    "callbackUrlEmptyAdmin": "Sila tetapkan URL Pangkalan Pentadbir dalam konfigurasi titik akhir dahulu",
+    "callbackUrlEmptyMerchant": "Sila tetapkan URL Pangkalan Pedagang (merchantBaseUrl) dalam konfigurasi titik akhir; diperlukan untuk log masuk sosial pedagang",
+    "loginCallback": "Log Masuk Panggilan Balik",
+    "bindCallback": "Ikat Panggilan Balik"
+  },
+  "confirm": {
+    "delete": "Adakah anda pasti akan memadamkan konfigurasi {name}?"
+  },
+  "tip": {
+    "addSuccess": "Berjaya ditambahkan",
+    "configSuccess": "Berjaya dikonfigurasikan",
+    "editSuccess": "Berjaya dikemas kini",
+    "enableSuccess": "Didayakan dengan jayanya",
+    "disableSuccess": "Berjaya dilumpuhkan",
+    "deleteSuccess": "Berjaya dipadamkan",
+    "copySuccess": "Disalin ke papan keratan",
+    "platformCredentialRequired": "Sila lengkapkan kelayakan peringkat platform sebelum mendayakan log masuk",
+    "platformCredentialHint": "Urus AppId/kunci dalam Alipay App Config; suis ini hanya mengawal sama ada log masuk Alipay tersedia"
+  }
+}

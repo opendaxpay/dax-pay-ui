@@ -10,15 +10,19 @@ import zhHkMenuTitles from '../../locales/menu-titles/zh-HK.json';
 import zhTwMenuTitles from '../../locales/menu-titles/zh-TW.json';
 import jaJpMenuTitles from '../../locales/menu-titles/ja-JP.json';
 import koKrMenuTitles from '../../locales/menu-titles/ko-KR.json';
+import idIdMenuTitles from '../../locales/menu-titles/id-ID.json';
+import viVnMenuTitles from '../../locales/menu-titles/vi-VN.json';
+import thThMenuTitles from '../../locales/menu-titles/th-TH.json';
+import msMyMenuTitles from '../../locales/menu-titles/ms-MY.json';
 
 /**
  * 注入菜单标题国际化文案
  * 数据源为静态语言包文件（menu-titles/*.json），不依赖 DB title_cn/title_en 列
  * DB 仅存 i18n_key，文案真相源在语言包
  *
- * 仅写入完整 locale（zh-CN/en-US/zh-TW/zh-HK/ja-JP/ko-KR）。
+ * 仅写入完整 locale（含东盟 id-ID/vi-VN/th-TH/ms-MY）。
  * 禁止把简体挂到短码 `zh`：vue-i18n 对 zh-TW/zh-HK 会回退 zh，会导致繁体界面菜单标题变简体。
- * en/ja/ko 短码可保留（与完整 locale 文案同语种，回退无害）。
+ * en/ja/ko/id/vi/th/ms 短码可保留（与完整 locale 文案同语种，回退无害）。
  * 语言切换时由 locales/loadMessages 再次并入对应 menu-titles，与本函数双保险。
  */
 export function injectMenuI18n() {
@@ -32,6 +36,14 @@ export function injectMenuI18n() {
   i18n.global.mergeLocaleMessage('ja', jaJpMenuTitles);
   i18n.global.mergeLocaleMessage('ko-KR', koKrMenuTitles);
   i18n.global.mergeLocaleMessage('ko', koKrMenuTitles);
+  i18n.global.mergeLocaleMessage('id-ID', idIdMenuTitles);
+  i18n.global.mergeLocaleMessage('id', idIdMenuTitles);
+  i18n.global.mergeLocaleMessage('vi-VN', viVnMenuTitles);
+  i18n.global.mergeLocaleMessage('vi', viVnMenuTitles);
+  i18n.global.mergeLocaleMessage('th-TH', thThMenuTitles);
+  i18n.global.mergeLocaleMessage('th', thThMenuTitles);
+  i18n.global.mergeLocaleMessage('ms-MY', msMyMenuTitles);
+  i18n.global.mergeLocaleMessage('ms', msMyMenuTitles);
 }
 
 /**

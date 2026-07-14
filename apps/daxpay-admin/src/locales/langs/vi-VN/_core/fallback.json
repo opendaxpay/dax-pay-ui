@@ -1,0 +1,12 @@
+{
+  "pageNotFound": "Ối! Không tìm thấy trang",
+  "pageNotFoundDesc": "Xin lỗi, chúng tôi không thể tìm thấy trang bạn đang tìm kiếm.",
+  "forbidden": "Ối! Truy cập bị từ chối",
+  "forbiddenDesc": "Rất tiếc, bạn không có quyền truy cập trang này.",
+  "internalError": "Ối! Đã xảy ra lỗi",
+  "internalErrorDesc": "Rất tiếc, máy chủ đã gặp lỗi.",
+  "offline": "Trang ngoại tuyến",
+  "offlineError": "Ối! Lỗi mạng",
+  "offlineErrorDesc": "Rất tiếc, không thể kết nối với internet. Vui lòng kiểm tra kết nối mạng của bạn và thử lại.",
+  "comingSoon": "Sắp ra mắt"
+}

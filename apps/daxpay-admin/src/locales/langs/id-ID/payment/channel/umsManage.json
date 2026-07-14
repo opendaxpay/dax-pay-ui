@@ -1,0 +1,10 @@
+{
+  "manageTitle": "Manajemen Pedagang UMS",
+  "cardDirectKeyConfig": "Konfigurasi Kunci",
+  "cardDirectKeyConfigDesc": "Konfigurasikan ID Aplikasi dan kunci tingkat pedagang UMS",
+  "directKeyConfigTitle": "Konfigurasi Kunci UMS",
+  "keyConfigSection": "Konfigurasi Kunci Pedagang",
+  "environment": "Lingkungan",
+  "prodEnv": "Produksi",
+  "sandboxEnv": "Bak pasir"
+}

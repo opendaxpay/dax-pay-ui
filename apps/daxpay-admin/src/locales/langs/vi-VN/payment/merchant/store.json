@@ -1,0 +1,28 @@
+{
+  "store": {
+    "title": "Quản lý cửa hàng",
+    "field": {
+      "storeNo": "Cửa hàng số",
+      "storeName": "Tên cửa hàng",
+      "contactPhone": "Điện thoại liên hệ",
+      "logoUrl": "Logo cửa hàng",
+      "facadeUrl": "Ảnh mặt tiền cửa hàng",
+      "interiorUrl": "Ảnh nội thất",
+      "region": "Vùng đất",
+      "address": "Địa chỉ",
+      "longitude": "Kinh độ",
+      "latitude": "Vĩ độ",
+      "status": "Trạng thái",
+      "remark": "Nhận xét",
+      "createTime": "Tạo thời gian"
+    },
+    "status": {
+      "enable": "Đã bật",
+      "disabled": "Tàn tật"
+    },
+    "regionPlaceholder": "Vui lòng chọn tỉnh/thành phố/quận",
+    "confirmDelete": "Xóa cửa hàng này?",
+    "validationStoreName": "Vui lòng nhập tên cửa hàng",
+    "validationStatus": "Vui lòng chọn trạng thái"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "title": "Manajemen Keamanan",
+  "description": "Kelola pengaturan keamanan sistem berdasarkan modul",
+  "cancel": "Membatalkan",
+  "confirm": "Mengonfirmasi",
+  "confirmSave": "Konfirmasikan penyimpanan",
+  "confirmSaveContent": "Apakah Anda yakin ingin menyimpan konfigurasi saat ini?",
+  "unit": {
+    "char": "karakter",
+    "day": "hari",
+    "times": "kali",
+    "minute": "menit",
+    "hour": "jam",
+    "session": "sesi",
+    "second": "detik",
+    "window": "jendela",
+    "count": "menghitung",
+    "score": "poin"
+  }
+}

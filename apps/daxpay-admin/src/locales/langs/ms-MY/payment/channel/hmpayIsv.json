@@ -1,0 +1,31 @@
+{
+  "title": "Konfigurasi ISV Hmpay",
+  "groupConfig": "Konfigurasi",
+  "manageTitle": "Pengurusan Peniaga Hmpay",
+  "cardMchKey": "Kunci ISV",
+  "cardMchKeyDesc": "Konfigurasikan ID apl Pasir, kunci RSA (Hmpay ialah produk pembayaran agregat di bawah Pasir)",
+  "cardMchConfig": "Konfigurasi Pedagang",
+  "cardMchConfigDesc": "Konfigurasikan No pedagang Pasir, ID kedai, dsb.",
+  "configTitle": "Konfigurasi Kunci ISV Hmpay",
+  "isvIdentity": "Identiti ISV",
+  "keyConfig": "Konfigurasi Kekunci",
+  "sandAppId": "ID Apl Pasir",
+  "sandAppIdPlaceholder": "Sila masukkan ID aplikasi Pasir (sandAppId/app_id)",
+  "publicKey": "Kunci Awam Pasir",
+  "publicKeyTooltip": "Kunci awam RSA Pasir (format PEM, untuk pengesahan tandatangan panggilan balik/balas); bertopeng apabila sudah dikonfigurasikan, kosongkan dan tampal semula untuk mengemas kini",
+  "publicKeyPlaceholder": "Tampal kunci awam RSA Pasir (format PEM, dengan penanda -----BEGIN/END)",
+  "privateKey": "Kunci Peribadi Pedagang",
+  "privateKeyTooltip": "Kunci persendirian RSA Pedagang (format PEM, untuk menandatangani permintaan); bertopeng apabila sudah dikonfigurasikan, kosongkan dan tampal semula untuk mengemas kini",
+  "privateKeyPlaceholder": "Tampalkan kunci persendirian RSA pedagang (format PEM, dengan penanda -----BEGIN/END)",
+  "mchConfigTitle": "Konfigurasi Pedagang Hmpay",
+  "merchantNo": "Peniaga Pasir No",
+  "merchantNoPlaceholder": "Sila masukkan saudagar pasir No",
+  "storeId": "ID kedai",
+  "storeIdPlaceholder": "Sila masukkan ID kedai (storeId)",
+  "validation": {
+    "sandAppId": "Sila masukkan ID apl Pasir",
+    "privateKey": "Sila masukkan kunci peribadi pedagang",
+    "publicKey": "Sila masukkan kunci awam Pasir",
+    "merchantNo": "Sila masukkan saudagar pasir No"
+  }
+}

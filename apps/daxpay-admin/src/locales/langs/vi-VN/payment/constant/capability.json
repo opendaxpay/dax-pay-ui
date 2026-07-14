@@ -1,0 +1,13 @@
+{
+  "field": {
+    "code": "Mã năng lực",
+    "name": "Tên khả năng",
+    "description": "Sự miêu tả",
+    "products": "Sản phẩm thanh toán được liên kết"
+  },
+  "placeholder": {
+    "name": "Nhập tên khả năng",
+    "code": "Nhập mã năng lực"
+  },
+  "detail": "Chi tiết khả năng thanh toán"
+}

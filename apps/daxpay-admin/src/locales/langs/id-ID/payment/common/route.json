@@ -1,0 +1,8 @@
+{
+  "missingMchNo": "Nomor pedagang tidak ada. Buka dari daftar pedagang",
+  "missingAppContext": "Buka perutean saluran dari Manajemen Aplikasi",
+  "productDetail": {
+    "notSupported": "Konfigurasi detail produk belum didukung",
+    "notSupportedDesc": "Konfigurasi detail untuk \"{product}\" belum diterapkan"
+  }
+}

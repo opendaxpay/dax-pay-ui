@@ -1,0 +1,84 @@
+{
+  "title": "Pengurusan Apl Mudah Alih",
+  "card": {
+    "merchant": {
+      "name": "Apl Pedagang",
+      "desc": "Aplikasi mudah alih untuk kakitangan peniaga"
+    },
+    "admin": {
+      "name": "Apl Pentadbir",
+      "desc": "Aplikasi mudah alih untuk pengendali platform"
+    },
+    "cashier": {
+      "name": "Program Mini Juruwang",
+      "desc": "Program mini untuk pembayaran pengguna"
+    },
+    "comingSoon": "Akan Datang",
+    "enter": "Konfigurasikan"
+  },
+  "platformNames": {
+    "wx_h5": "Akaun Rasmi WeChat",
+    "wx_mini": "Program Mini WeChat",
+    "alipay_mini": "Program Mini Alipay",
+    "dy_mini": "Program Mini Douyin",
+    "android": "Apl Android",
+    "ios": "Apl iOS"
+  },
+  "fields": {
+    "appId": "AppId",
+    "appIdPlaceholder": "Masukkan AppId",
+    "appIdRequired": "Sila masukkan AppId",
+    "wxAppId": "AppId Program Mini",
+    "wxAppIdPlaceholder": "Masukkan WeChat Mini Program AppId",
+    "appSecret": "AppSecret",
+    "appSecretPlaceholder": "Masukkan AppSecret",
+    "appSecretRequired": "Sila masukkan AppSecret",
+    "wxAppSecret": "Program Mini AppSecret",
+    "wxAppSecretPlaceholder": "Masukkan WeChat Mini Program AppSecret",
+    "originalId": "ID asal",
+    "originalIdPlaceholder": "Masukkan ID asal (gh_..., pilihan)",
+    "alipayAppId": "AppId Program Mini",
+    "alipayAppIdPlaceholder": "Masukkan Alipay Program Mini AppId",
+    "authType": "Jenis Pengesahan",
+    "authTypeKey": "Kunci Awam",
+    "authTypeCert": "Sijil",
+    "authTypeRequired": "Sila pilih jenis pengesahan",
+    "privateKey": "Kunci Peribadi Apl",
+    "privateKeyPlaceholder": "Masukkan kunci peribadi apl (PEM, diperlukan untuk kedua-dua mod)",
+    "privateKeyRequired": "Sila masukkan kunci peribadi apl",
+    "alipayPublicKey": "Kunci Awam Alipay",
+    "alipayPublicKeyPlaceholder": "Masukkan kunci awam Alipay (mod kunci awam)",
+    "alipayPublicKeyRequired": "Sila masukkan kunci awam Alipay",
+    "appCert": "Sijil Kunci Awam Apl",
+    "appCertRequired": "Sila muat naik sijil kunci awam apl",
+    "uploadAppCert": "Muat naik sijil kunci awam apl",
+    "alipayCert": "Sijil Kunci Awam Alipay",
+    "alipayCertRequired": "Sila muat naik sijil kunci awam Alipay",
+    "uploadAlipayCert": "Muat naik sijil kunci awam Alipay",
+    "alipayRootCert": "Sijil Root Alipay",
+    "alipayRootCertRequired": "Sila muat naik sijil akar Alipay",
+    "uploadRootCert": "Muat naik sijil akar Alipay",
+    "dyAppId": "AppId Program Mini",
+    "dyAppIdPlaceholder": "Masukkan Douyin Mini Program AppId",
+    "dyAppSecret": "Program Mini AppSecret",
+    "dyAppSecretPlaceholder": "Masukkan Douyin Mini Program AppSecret"
+  },
+  "detail": {
+    "back": "belakang",
+    "appConfig": "Konfigurasi Kunci Platform",
+    "appConfigPlaceholder": "Masukkan konfigurasi kunci platform dalam format JSON",
+    "notifyConfig": "Konfigurasi Pemberitahuan",
+    "notifyConfigPlaceholder": "Masukkan konfigurasi pemberitahuan dalam format JSON",
+    "bindingEnabled": "Dayakan pengikatan akaun pihak ketiga",
+    "enabled": "Didayakan",
+    "remark": "Teguran",
+    "remarkPlaceholder": "Masukkan catatan",
+    "save": "Jimat",
+    "saveSuccess": "Berjaya disimpan",
+    "notSupportedAppType": "Jenis apl tidak disokong",
+    "emptyPlatformConfig": "Belum ada konfigurasi platform, isi dan simpan untuk mencipta",
+    "platformComingSoon": "Platform ini belum tersedia lagi; akan dikendalikan apabila APP sedia",
+    "cashierLimitTitle": "Program mini juruwang platform tunggal",
+    "cashierLimitDesc": "Seluruh platform berkongsi satu WeChat dan satu program mini juruwang Alipay. openId dan opAppId mesti menggunakan AppId yang sama pada masa pembayaran. Daftar atau ikat AppId ini dengan setiap saluran pembayaran sebagai AppId berbayar (selalunya program mini penyedia perkhidmatan untuk WeChat ISV rasmi, atau sub_appid untuk saluran pihak ketiga). Tidak semua saluran berfungsi di luar kotak."
+  }
+}

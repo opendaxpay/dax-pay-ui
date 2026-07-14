@@ -1,0 +1,23 @@
+{
+  "title": "การกำหนดค่า Adapay",
+  "keyConfig": "การกำหนดค่าที่สำคัญ",
+  "enable": "เปิดใช้งาน",
+  "adapayAppId": "รหัสแอปพลิเคชัน",
+  "adapayAppIdPlaceholder": "กรุณากรอกรหัสแอปพลิเคชัน Adapay",
+  "apiKey": "คีย์ API",
+  "apiKeyPlaceholder": "โปรดป้อนคีย์ Adapay API (ส่วนหัวการอนุญาต)",
+  "merchantNo": "หมายเลขผู้ขาย",
+  "merchantNoPlaceholder": "กรุณากรอกหมายเลขร้านค้า Adapay",
+  "privateKey": "รหัสส่วนตัว RSA ของผู้ขาย",
+  "privateKeyPlaceholder": "โปรดป้อนรหัสส่วนตัว PKCS#8 Base64 (สำหรับการลงนามคำขอ)",
+  "publicKey": "คีย์สาธารณะของแพลตฟอร์ม",
+  "publicKeyPlaceholder": "โปรดป้อนคีย์สาธารณะ X509 Base64 (สำหรับการตรวจสอบการตอบกลับ ให้เว้นว่างไว้เพื่อใช้ค่าเริ่มต้นสากล)",
+  "validation": {
+    "enable": "โปรดเลือกเปิดใช้งานสถานะ",
+    "adapayAppId": "กรุณากรอกรหัสแอปพลิเคชัน Adapay",
+    "apiKey": "กรุณากรอกรหัส Adapay API",
+    "merchantNo": "กรุณากรอกหมายเลขร้านค้า Adapay",
+    "privateKey": "โปรดป้อนรหัสส่วนตัว RSA ของผู้ขาย",
+    "publicKey": "กรุณากรอกรหัสสาธารณะของแพลตฟอร์ม"
+  }
+}

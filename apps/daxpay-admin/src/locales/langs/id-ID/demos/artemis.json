@@ -1,0 +1,53 @@
+{
+  "title": "Demo Antrian Pesan",
+  "description": "Mendemonstrasikan tiga skenario inti Artemis JMS: pesan point-to-point, pub-sub, dan tertunda",
+  "scene": {
+    "queue": {
+      "title": "Antrian Titik-ke-Titik",
+      "description": "Sebuah pesan dikonsumsi hanya oleh satu konsumen (skenario MQ klasik)"
+    },
+    "topic": {
+      "title": "Publikasikan/Berlangganan",
+      "description": "Sebuah pesan disiarkan ke semua pelanggan (pelanggan A/B pada node yang sama keduanya menerimanya)"
+    },
+    "delay": {
+      "title": "Pesan Tertunda",
+      "description": "Konsumen menerima pesan N detik setelah pengiriman (misalnya batas waktu pesanan ditutup)"
+    }
+  },
+  "form": {
+    "content": "Isi Pesan",
+    "contentPlaceholder": "Silakan masukkan isi pesan",
+    "delaySeconds": "Detik Tunda",
+    "send": "Mengirim",
+    "broadcast": "Siaran"
+  },
+  "records": {
+    "title": "Catatan Konsumsi",
+    "description": "Catatan yang diproses oleh konsumen, disegarkan secara otomatis setiap 2 detik. Dihapus saat layanan dimulai ulang.",
+    "refresh": "Menyegarkan",
+    "clear": "Jernih",
+    "empty": "Belum ada catatan, kirim pesan di atas untuk memulai",
+    "columns": {
+      "scene": "Pemandangan",
+      "content": "Isi",
+      "sendTime": "Kirim Waktu",
+      "consumeTime": "Menghabiskan Waktu",
+      "costMillis": "Biaya (md)",
+      "consumer": "Konsumen",
+      "producerTraceId": "TraceId Produser",
+      "consumerTraceId": "TraceId Konsumen",
+      "tracePropagated": "Jejak Disebarkan"
+    },
+    "traceStatus": {
+      "success": "Diperbanyak",
+      "failed": "Rusak"
+    }
+  },
+  "messages": {
+    "sendSuccess": "Berhasil dikirim",
+    "clearSuccess": "Berhasil dibersihkan",
+    "clearConfirm": "Apakah Anda yakin untuk menghapus semua catatan konsumsi?",
+    "contentRequired": "Silakan masukkan isi pesan"
+  }
+}

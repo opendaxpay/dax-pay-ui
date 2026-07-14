@@ -1,0 +1,10 @@
+{
+  "manageTitle": "Quản lý thương mại UMS",
+  "cardDirectKeyConfig": "Cấu hình khóa",
+  "cardDirectKeyConfigDesc": "Định cấu hình khóa và ID ứng dụng cấp người bán UMS",
+  "directKeyConfigTitle": "Cấu hình khóa UMS",
+  "keyConfigSection": "Cấu hình khóa người bán",
+  "environment": "Môi trường",
+  "prodEnv": "Sản xuất",
+  "sandboxEnv": "Hộp cát"
+}

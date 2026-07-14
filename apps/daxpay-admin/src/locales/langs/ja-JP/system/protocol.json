@@ -51,5 +51,9 @@
     "statusDraft": "下書き",
     "statusPublished": "発行済み",
     "statusArchived": "アーカイブ済み"
-  }
+  },
+  "languageId": "インドネシア語",
+  "languageVi": "ベトナム語",
+  "languageTh": "タイ語",
+  "languageMs": "マレー語"
 }

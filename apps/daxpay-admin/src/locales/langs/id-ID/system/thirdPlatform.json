@@ -1,0 +1,95 @@
+{
+  "common": {
+    "title": "Manajemen Platform Pihak Ketiga",
+    "description": "Manajemen terpadu untuk login pihak ketiga dan kredensial platform terbuka."
+  },
+  "loginConfig": {
+    "title": "Konfigurasi Login Pihak Ketiga",
+    "description": "Konfigurasikan kredensial login OAuth yang digunakan oleh klien WEB untuk setiap platform."
+  },
+  "alipay": {
+    "tabTitle": "Konfigurasi Aplikasi Alipay",
+    "tabDescription": "Kredensial Alipay OAuth untuk login autentikasi dan autentikasi saluran pembayaran",
+    "title": "Konfigurasi Otentikasi Aplikasi Alipay",
+    "description": "Kelola kredensial Alipay OAuth (appId/kunci pribadi/sertifikat) untuk login autentikasi guna mendapatkan pengidentifikasi pengguna (userId) dan autentikasi saluran pembayaran.",
+    "usageTip": "Konfigurasi ini melayani keduanya: 1) Login autentikasi Alipay di login pihak ketiga; 2) Otentikasi saluran dalam skenario pembayaran (dapatkan pengenal pengguna untuk pembayaran).",
+    "confirmSaveContent": "Apakah Anda yakin untuk menyimpan konfigurasi Aplikasi Alipay?",
+    "section": {
+      "basic": "Konfigurasi Dasar",
+      "credential": "Konfigurasi Kredensial"
+    },
+    "appId": "ID Aplikasi",
+    "appIdDesc": "AppId dari aplikasi yang dibuat pada Platform Terbuka Alipay",
+    "inputAppId": "Silakan masukkan ID Aplikasi Alipay",
+    "authType": "Jenis Otentikasi",
+    "authTypeDesc": "Mode kunci publik menggunakan kunci publik Alipay, mode Sertifikat menggunakan tiga sertifikat",
+    "authTypeKey": "Kunci Publik",
+    "authTypeCert": "Sertifikat",
+    "privateKey": "Kunci Pribadi Aplikasi",
+    "privateKeyDesc": "Kunci pribadi aplikasi (format PEM, diperlukan untuk mode kunci publik dan sertifikat)",
+    "inputPrivateKey": "Silakan masukkan kunci pribadi aplikasi",
+    "alipayPublicKey": "Kunci Publik Alipay",
+    "alipayPublicKeyDesc": "Kunci publik Alipay (untuk mode kunci publik, diperoleh dari 'Info Aplikasi' Platform Terbuka Alipay)",
+    "inputAlipayPublicKey": "Silakan masukkan kunci publik Alipay",
+    "appCert": "Sertifikat Publik Aplikasi",
+    "appCertDesc": "Sertifikat publik aplikasi (untuk mode sertifikat, unggah file .crt)",
+    "uploadAppCert": "Unggah Sertifikat Publik Aplikasi",
+    "alipayCert": "Sertifikat Publik Alipay",
+    "alipayCertDesc": "Sertifikat publik Alipay (untuk mode sertifikat, unggah file .crt)",
+    "uploadAlipayCert": "Unggah Sertifikat Publik Alipay",
+    "alipayRootCert": "Sertifikat Root Alipay",
+    "alipayRootCertDesc": "Sertifikat root Alipay (untuk mode sertifikat, unggah file .crt)",
+    "uploadRootCert": "Unggah Sertifikat Root Alipay",
+    "validate": {
+      "appId": "Silakan masukkan ID Aplikasi",
+      "authType": "Silakan pilih jenis autentikasi",
+      "privateKey": "Silakan masukkan kunci pribadi aplikasi",
+      "alipayPublicKey": "Silakan masukkan kunci publik Alipay",
+      "appCert": "Silakan unggah sertifikat publik aplikasi",
+      "alipayCert": "Silakan unggah sertifikat publik Alipay",
+      "alipayRootCert": "Silakan unggah sertifikat akar Alipay"
+    }
+  },
+  "wechatMp": {
+    "tabTitle": "Konfigurasi Akun Resmi WeChat",
+    "tabDescription": "Kredensial WeChat MP untuk login dan pemberitahuan templat",
+    "title": "Konfigurasi Otentikasi Akun Resmi WeChat",
+    "description": "Kelola kredensial WeChat MP (appId/appSecret) untuk pesan template openId dan pusat notifikasi H5 OAuth.",
+    "usageTip": "Konfigurasi ini berfungsi: 1) login WeChat MP H5 OAuth; 2) Pengiriman pesan template pusat notifikasi.",
+    "confirmSaveContent": "Apakah Anda yakin untuk menyimpan konfigurasi Akun Resmi WeChat?",
+    "section": {
+      "credential": "Konfigurasi Kredensial"
+    },
+    "appId": "ID Aplikasi",
+    "appIdDesc": "AppId Akun Resmi WeChat (diperoleh dari 'Pengaturan & Pengembangan - Konfigurasi Dasar' Platform MP)",
+    "inputAppId": "Silakan masukkan ID Aplikasi WeChat MP",
+    "appSecret": "Rahasia Aplikasi",
+    "appSecretDesc": "AppSecret Akun Resmi WeChat (diperoleh dari 'Pengaturan & Pengembangan Platform MP - Konfigurasi Dasar')",
+    "inputAppSecret": "Silakan masukkan Rahasia Aplikasi WeChat MP",
+    "validate": {
+      "appId": "Silakan masukkan ID Aplikasi",
+      "appSecret": "Silakan masukkan Rahasia Aplikasi"
+    }
+  },
+  "douyinH5": {
+    "tabTitle": "Aplikasi Douyin H5",
+    "tabDescription": "Kredensial Douyin Open Platform H5 untuk otorisasi H5",
+    "title": "Konfigurasi Otentikasi Aplikasi Douyin H5",
+    "description": "Kelola kredensial aplikasi Douyin Open Platform H5 (Kunci Klien/Rahasia Klien) untuk skenario otorisasi H5.",
+    "usageTip": "Konfigurasi ini tidak tergantung pada login Douyin pada Konfigurasi Login Pihak Ketiga. Itu hanya mengelola Kunci Klien / Rahasia Klien Platform Terbuka H5.",
+    "confirmSaveContent": "Apakah Anda yakin untuk menyimpan konfigurasi Aplikasi Douyin H5?",
+    "section": {
+      "credential": "Konfigurasi Kredensial"
+    },
+    "clientKey": "Kunci Klien",
+    "clientKeyDesc": "Kunci Klien aplikasi Platform Terbuka Douyin (dari 'Rincian Aplikasi' Platform Terbuka)",
+    "inputClientKey": "Silakan masukkan Kunci Klien",
+    "clientSecret": "Rahasia Klien",
+    "clientSecretDesc": "Rahasia Klien aplikasi Platform Terbuka Douyin (dari 'Rincian Aplikasi' Platform Terbuka)",
+    "inputClientSecret": "Silakan masukkan Rahasia Klien",
+    "validate": {
+      "clientKey": "Silakan masukkan Kunci Klien",
+      "clientSecret": "Silakan masukkan Rahasia Klien"
+    }
+  }
+}

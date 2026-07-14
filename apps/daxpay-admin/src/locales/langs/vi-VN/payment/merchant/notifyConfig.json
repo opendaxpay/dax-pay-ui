@@ -1,0 +1,23 @@
+{
+  "notifyConfig": {
+    "title": "Cấu hình thông báo không đồng bộ",
+    "infoBanner": "Cấu hình thông báo Async nhận các lệnh gọi lại sự kiện kinh doanh do nền tảng đẩy. Vui lòng điền URL gọi lại https có thể truy cập từ mạng công cộng",
+    "notifyUrl": "URL gọi lại",
+    "notifyUrlTooltip": "Thông báo sự kiện sẽ được đẩy tới URL này qua HTTP POST, phải bắt đầu bằng https://",
+    "notifyUrlPlaceholder": "https://your-callback-receiver-url",
+    "notifyWay": "Phương thức thông báo",
+    "notifyWayHint": "Chỉ hỗ trợ gọi lại không đồng bộ HTTP trong phiên bản hiện tại",
+    "subscribedEvents": "Sự kiện đã đăng ký",
+    "subscribedEventsTooltip": "Chọn loại sự kiện kinh doanh bạn muốn nhận",
+    "eventPay": "Chi trả",
+    "eventCashouts": "Rút tiền",
+    "eventSettle": "Ổn định",
+    "status": "Trạng thái",
+    "statusEnable": "Cho phép",
+    "statusDisable": "Vô hiệu hóa",
+    "remark": "Nhận xét",
+    "remarkPlaceholder": "Vui lòng nhập nhận xét",
+    "confirmSave": "Lưu cấu hình thông báo không đồng bộ?",
+    "saveSuccess": "Đã lưu thành công"
+  }
+}

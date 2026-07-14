@@ -1,0 +1,34 @@
+{
+  "route": {
+    "title": "Ràng buộc kênh",
+    "editModeLabel": "Thứ nguyên cấu hình",
+    "setActiveMode": "Đặt là đang hoạt động",
+    "setActiveModeConfirm": "Đặt định tuyến kênh của ứng dụng này thành \"{mode}\". Các đơn đặt hàng mới sẽ giải quyết kênh thương mại bằng cách sử dụng cấu hình này. Tiếp tục?",
+    "alreadyActiveMode": "Đã có cấu hình hoạt động",
+    "activeModeTag": "Tích cực",
+    "modeBasic": "Theo mặc định thương hiệu",
+    "modeScene": "Bằng phương pháp",
+    "payCapability": "Khả năng thanh toán",
+    "payCapabilityPlaceholder": "Chọn một khả năng",
+    "sceneSaveConfirm": "Lưu theo phương pháp định tuyến? Điều này sẽ ghi đè người bán kênh và ánh xạ khả năng cho mỗi phương thức thanh toán.",
+    "basicProductNotSelected": "Không được chọn",
+    "channelMerchant": "Người bán kênh",
+    "channelMerchantPlaceholder": "Chọn một người bán kênh",
+    "channelMerchantNotFound": "Không có người bán kênh nào",
+    "sceneChannelMchCapabilityPairHint": "Chọn cả người bán kênh và khả năng hoặc để trống cả hai; lựa chọn một phần không được phép",
+    "basicSaveConfirm": "Lưu theo thương hiệu Định tuyến mặc định? Điều này sẽ ghi đè kênh mặc định của người bán trên mỗi nhà cung cấp dịch vụ thanh toán.",
+    "sceneRouteNotSelected": "Không được chọn",
+    "configTab": "Lộ trình",
+    "method": "Phương thức thanh toán",
+    "missingAppContext": "Định tuyến kênh mở từ Quản lý ứng dụng",
+    "providers": {
+      "aggregate_pay": "Tổng lương",
+      "wechat": "WeChat trả tiền",
+      "alipay": "Alipay",
+      "union_pay": "UnionPay",
+      "visa": "Visa",
+      "mastercard": "Mastercard",
+      "douyin": "Douyin Pay"
+    }
+  }
+}

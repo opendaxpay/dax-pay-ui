@@ -1,0 +1,28 @@
+{
+  "workbench": {
+    "title": "Bàn làm việc của thương gia",
+    "backToList": "Quay lại danh sách",
+    "developing": "Tính năng đang được phát triển, hãy theo dõi...",
+    "groupBasic": "Quản lý cơ bản",
+    "groupPayment": "Cấu hình thanh toán",
+    "groupBusiness": "Cấu hình doanh nghiệp",
+    "cardMchInfo": "Hồ sơ người bán",
+    "cardMchInfoDesc": "Số người bán, tên, trạng thái và thông tin cơ bản khác",
+    "cardSecurity": "Cấu hình bảo mật",
+    "cardSecurityDesc": "Chính sách mật khẩu, bảo mật đăng nhập, quản lý phiên",
+    "cardProductPayConfig": "Cấu hình thanh toán sản phẩm",
+    "cardProductPayConfigDesc": "Thông số thanh toán sản phẩm của người bán và cấu hình môi trường hộp cát",
+    "cardChannelMerchant": "Người bán kênh",
+    "cardChannelMerchantDesc": "Cấu hình và quản lý số người bán trên các kênh thanh toán",
+    "cardApp": "Quản lý ứng dụng",
+    "cardAppDesc": "Tạo và quản lý ứng dụng người bán",
+    "cardCredentialConfig": "Thông tin xác thực API",
+    "cardCredentialConfigDesc": "Khóa công khai của người bán, khóa liên lạc, khóa chung của nền tảng và cấu hình thông tin xác thực API khác",
+    "cardWxDomainVerify": "Xác minh tên miền WeChat",
+    "cardWxDomainVerifyDesc": "Tải lên và quản lý các tệp xác minh tên miền doanh nghiệp của Tài khoản chính thức / Chương trình nhỏ của WeChat",
+    "cardUser": "Người dùng thương gia",
+    "cardUserDesc": "Quản lý tài khoản người dùng và phân quyền",
+    "cardStore": "Quản lý cửa hàng",
+    "cardStoreDesc": "Hồ sơ cửa hàng vật lý và quản lý vị trí"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "workbench": {
+    "title": "Meja Kerja Pedagang",
+    "backToList": "Kembali ke Senarai",
+    "developing": "Ciri dalam pembangunan, nantikan...",
+    "groupBasic": "Pengurusan Asas",
+    "groupPayment": "Konfigurasi Pembayaran",
+    "groupBusiness": "Konfigurasi Perniagaan",
+    "cardMchInfo": "Profil Pedagang",
+    "cardMchInfoDesc": "No. Pedagang, nama, status dan maklumat asas lain",
+    "cardSecurity": "Konfigurasi Keselamatan",
+    "cardSecurityDesc": "Dasar kata laluan, keselamatan log masuk, pengurusan sesi",
+    "cardProductPayConfig": "Konfigurasi Bayaran Produk",
+    "cardProductPayConfigDesc": "Parameter pembayaran produk pedagang dan konfigurasi persekitaran kotak pasir",
+    "cardChannelMerchant": "Peniaga Saluran",
+    "cardChannelMerchantDesc": "Konfigurasi dan pengurusan No. Pedagang merentas saluran pembayaran",
+    "cardApp": "Pengurusan Apl",
+    "cardAppDesc": "Penciptaan dan pengurusan apl pedagang",
+    "cardCredentialConfig": "Bukti Kelayakan API",
+    "cardCredentialConfigDesc": "Kunci awam pedagang, kunci komunikasi, kunci awam platform dan konfigurasi kelayakan API yang lain",
+    "cardWxDomainVerify": "Pengesahan Domain WeChat",
+    "cardWxDomainVerifyDesc": "Muat naik dan urus fail pengesahan domain perniagaan Akaun Rasmi WeChat / Program Mini",
+    "cardUser": "Pengguna Saudagar",
+    "cardUserDesc": "Pengurusan akaun pengguna dan tugasan kebenaran",
+    "cardStore": "Pengurusan Stor",
+    "cardStoreDesc": "Profil kedai fizikal dan pengurusan lokasi"
+  }
+}

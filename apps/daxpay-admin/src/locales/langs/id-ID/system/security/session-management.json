@@ -1,0 +1,50 @@
+{
+  "title": "Manajemen Sesi",
+  "description": "Kelola durasi online, sesi bersamaan, dan kebijakan pembersihan",
+  "summary": {
+    "enabled": "Kontrol diaktifkan",
+    "disabled": "Kontrol dinonaktifkan",
+    "online": "Daring {hours} jam",
+    "active": "Aktif {hours} jam",
+    "concurrent": "Sesi {count} serentak",
+    "scope": "Lingkup {name}",
+    "strategy": "Strategi {name}"
+  },
+  "section": {
+    "control": "Kontrol Sesi",
+    "limit": "Batasan Online & Bersamaan",
+    "policy": "Kebijakan & Pembersihan Melimpah"
+  },
+  "enabled": {
+    "label": "Aktifkan Manajemen Sesi",
+    "desc": "Jika diaktifkan, durasi online, sesi bersamaan, dan penanganan luapan akan dibatasi."
+  },
+  "maxOnlineHours": {
+    "label": "Durasi Daring Maks",
+    "desc": "Waktu online berkelanjutan maksimum per sesi.",
+    "placeholder": "Masukkan durasi online maksimal"
+  },
+  "activeTimeoutHours": {
+    "label": "Durasi Aktif Maks",
+    "desc": "Otomatis kedaluwarsa setelah tidak ada aktivitas, 0 berarti tidak ada batas.",
+    "placeholder": "Masukkan durasi aktif maksimal"
+  },
+  "maxConcurrentSessions": {
+    "label": "Sesi Serentak Maks",
+    "desc": "Sesi serentak maksimum per akun.",
+    "placeholder": "Masukkan sesi serentak maksimal"
+  },
+  "concurrentStrategy": {
+    "label": "Strategi Overflow Bersamaan",
+    "desc": "Bagaimana menangani sesi baru ketika batas bersamaan tercapai.",
+    "newSession": "Izinkan Sesi Baru",
+    "kickOldest": "Tendang Sesi Terlama",
+    "denyNew": "Tolak Sesi Baru"
+  },
+  "concurrentScope": {
+    "label": "Lingkup Penghitungan Bersamaan",
+    "desc": "Global: semua terminal berbagi satu kumpulan kuota; Per Perangkat: setiap jenis terminal dihitung secara independen.",
+    "global": "Global",
+    "perDevice": "Per Perangkat"
+  }
+}

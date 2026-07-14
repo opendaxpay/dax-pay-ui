@@ -1,0 +1,78 @@
+{
+  "greeting": {
+    "morning": "selamat pagi",
+    "afternoon": "selamat petang",
+    "evening": "selamat petang",
+    "subtitle": "Selamat kembali ke DaxPay Admin"
+  },
+  "stat": {
+    "merchantCount": "Peniaga",
+    "channelMerchantCount": "Peniaga Saluran",
+    "userCount": "Pengguna",
+    "todayLogin": "Log Masuk Hari Ini",
+    "onlineUser": "Pengguna Dalam Talian"
+  },
+  "widget": {
+    "workbenchHeader": "Ruang kerja",
+    "quickEntry": "Kemasukan Cepat",
+    "tradeOverview": "Tinjauan Perdagangan",
+    "payOrder": "Pesanan Pembayaran",
+    "tradeTrend": "Trend Perdagangan",
+    "channelDist": "Saluran Pembayaran",
+    "noticeList": "Notis"
+  },
+  "tradeOverview": {
+    "today": "Hari ini",
+    "yesterday": "Semalam",
+    "successAmount": "Amaun Kejayaan (CNY)",
+    "successCount": "Kiraan Kejayaan",
+    "refundAmount": "Amaun Bayaran Balik (CNY)",
+    "refundCount": "Kiraan Bayaran Balik"
+  },
+  "payOrder": {
+    "developing": "Pengurusan pesanan pembayaran dalam pembangunan",
+    "status": {
+      "success": "Kejayaan",
+      "fail": "gagal",
+      "closed": "tertutup"
+    }
+  },
+  "tradeTrend": {
+    "last7days": "7 Hari",
+    "last30days": "30 Hari"
+  },
+  "quickEntry": {
+    "merchant": "Peniaga",
+    "app": "Aplikasi",
+    "channelMerchant": "Peniaga Saluran",
+    "notify": "Pemberitahuan",
+    "user": "Pengguna",
+    "dict": "Kamus",
+    "loginLog": "Log Masuk",
+    "security": "Keselamatan",
+    "payOrder": "Pesanan Pembayaran",
+    "refundOrder": "Bayaran Balik Pesanan",
+    "payTrade": "Dagangan Dana",
+    "role": "Peranan",
+    "menu": "Menu",
+    "operateLog": "Mengendalikan Log",
+    "notice": "Notis",
+    "productConfig": "Konfigurasi Produk Saluran",
+    "platformConfig": "Konfigurasi Platform",
+    "onlineUser": "Pengguna Dalam Talian",
+    "analytics": "Analitis",
+    "developTrade": "Membangunkan Pembayaran",
+    "socialLogin": "Log Masuk Platform Pihak Ketiga",
+    "empty": "Tiada entri pantas yang boleh diakses",
+    "edit": "Sunting",
+    "editTitle": "Edit Entri Pantas",
+    "selected": "Dipilih (seret untuk mengisih)",
+    "available": "Tersedia",
+    "allAdded": "Semua ditambah"
+  },
+  "notice": {
+    "important": "penting",
+    "normal": "Biasalah",
+    "top": "Atas"
+  }
+}

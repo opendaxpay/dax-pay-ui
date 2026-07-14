@@ -1,0 +1,31 @@
+{
+  "title": "การกำหนดค่า HKRT ISV",
+  "groupConfig": "การกำหนดค่า",
+  "configTitle": "การกำหนดค่าคีย์ HKRT ISV",
+  "manageTitle": "การจัดการผู้ค้า HKRT",
+  "basicConfig": "การกำหนดค่าพื้นฐาน",
+  "keyConfig": "การกำหนดค่าที่สำคัญ",
+  "cardMchKey": "คีย์ ISV",
+  "cardMchKeyDesc": "กำหนดค่าหมายเลขตัวแทน HKRT รหัสการเข้าถึง และรหัสลายเซ็น",
+  "agentNo": "หมายเลขตัวแทน",
+  "agentNoPlaceholder": "กรุณากรอกหมายเลขตัวแทน",
+  "accessId": "รหัสสถาบันการเข้าถึง",
+  "accessIdPlaceholder": "กรุณากรอก ID สถาบันการเข้าถึง",
+  "accessKey": "คีย์ลายเซ็น",
+  "accessKeyPlaceholder": "กรุณากรอกรหัสลายเซ็น (สำหรับการเซ็นชื่อตัวพิมพ์ใหญ่ MD5)",
+  "groupMchConfig": "การกำหนดค่าผู้ขาย",
+  "cardMchConfig": "การกำหนดค่าผู้ขาย",
+  "cardMchConfigDesc": "กำหนดค่าหมายเลขเทอร์มินัล SAAS สำหรับผู้ค้าช่องทาง",
+  "mchConfigTitle": "การกำหนดค่าผู้ขาย",
+  "merchNo": "หมายเลขผู้ค้า HKRT",
+  "merchNoPlaceholder": "กรุณากรอกหมายเลขร้านค้า HKRT",
+  "pn": "SAAS เทอร์มินัลหมายเลข",
+  "pnPlaceholder": "โปรดป้อนหมายเลขเทอร์มินัล SAAS",
+  "validation": {
+    "agentNo": "กรุณากรอกหมายเลขตัวแทน",
+    "accessId": "กรุณากรอก ID สถาบันการเข้าถึง",
+    "accessKey": "กรุณากรอกรหัสลายเซ็น",
+    "merchNo": "กรุณากรอกหมายเลขร้านค้า HKRT",
+    "pn": "โปรดป้อนหมายเลขเทอร์มินัล SAAS"
+  }
+}

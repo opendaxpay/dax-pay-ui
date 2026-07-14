@@ -1,0 +1,47 @@
+{
+  "platform": {
+    "title": "Berkas Penyimpanan",
+    "detailTitle": "Detail File Penyimpanan",
+    "field": {
+      "filename": "Nama file",
+      "originalFilename": "Nama File Asli",
+      "size": "Ukuran Berkas",
+      "ext": "Perpanjangan",
+      "contentType": "Tipe MIME",
+      "url": "URL berkas",
+      "basePath": "Jalur Dasar",
+      "path": "Jalur Penyimpanan",
+      "accessType": "Jenis Akses",
+      "bizType": "Jenis Bisnis",
+      "remark": "Komentar",
+      "createTime": "Ciptakan Waktu"
+    },
+    "placeholder": {
+      "filename": "Silakan masukkan nama file",
+      "originalFilename": "Silakan masukkan nama file asli",
+      "size": "Silakan masukkan ukuran file",
+      "ext": "Silakan masukkan ekstensi file",
+      "contentType": "Silakan masukkan jenis MIME",
+      "url": "Silakan masukkan URL berkas",
+      "basePath": "Silakan masukkan jalur dasar",
+      "path": "Silakan masukkan jalur penyimpanan",
+      "bizType": "Silakan masukkan jenis bisnis",
+      "remark": "Silakan masukkan komentar"
+    },
+    "accessType": {
+      "public": "Publik",
+      "private": "Pribadi"
+    },
+    "action": {
+      "preview": "Pratinjau",
+      "download": "Unduh",
+      "confirmDelete": "Hapus Konfirmasi",
+      "confirmDeleteContent": "Apakah Anda yakin ingin menghapus rekaman file ini?",
+      "deleteSuccess": "Berhasil dihapus"
+    },
+    "validate": {
+      "urlRequired": "Silakan masukkan URL berkas",
+      "filenameRequired": "Silakan masukkan nama file"
+    }
+  }
+}

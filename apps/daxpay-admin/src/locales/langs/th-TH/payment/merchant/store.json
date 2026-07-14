@@ -1,0 +1,28 @@
+{
+  "store": {
+    "title": "การจัดการร้านค้า",
+    "field": {
+      "storeNo": "หมายเลขร้านค้า",
+      "storeName": "ชื่อร้านค้า",
+      "contactPhone": "โทรศัพท์ติดต่อ",
+      "logoUrl": "โลโก้ร้าน",
+      "facadeUrl": "ภาพถ่ายหน้าร้าน",
+      "interiorUrl": "ภาพถ่ายภายใน",
+      "region": "ภูมิภาค",
+      "address": "ที่อยู่",
+      "longitude": "ลองจิจูด",
+      "latitude": "ละติจูด",
+      "status": "สถานะ",
+      "remark": "หมายเหตุ",
+      "createTime": "สร้างเวลา"
+    },
+    "status": {
+      "enable": "เปิดใช้งานแล้ว",
+      "disabled": "พิการ"
+    },
+    "regionPlaceholder": "กรุณาเลือกจังหวัด/เมือง/อำเภอ",
+    "confirmDelete": "ลบร้านค้านี้ใช่ไหม",
+    "validationStoreName": "กรุณากรอกชื่อร้านค้า",
+    "validationStatus": "กรุณาเลือกสถานะ"
+  }
+}

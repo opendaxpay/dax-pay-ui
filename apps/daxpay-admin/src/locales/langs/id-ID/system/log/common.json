@@ -1,0 +1,12 @@
+{
+  "clean": "Membersihkan",
+  "cleanDays": {
+    "d3": "3 hari yang lalu",
+    "d7": "7 hari yang lalu",
+    "d30": "30 hari yang lalu",
+    "d60": "60 hari yang lalu",
+    "d90": "90 hari yang lalu",
+    "d180": "180 hari yang lalu",
+    "d365": "365 hari yang lalu"
+  }
+}

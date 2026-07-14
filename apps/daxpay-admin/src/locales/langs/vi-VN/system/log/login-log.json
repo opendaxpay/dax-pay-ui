@@ -1,0 +1,20 @@
+{
+  "account": "Tài khoản",
+  "userId": "ID người dùng",
+  "status": "Trạng thái",
+  "ip": "Địa chỉ IP",
+  "os": "hệ điều hành",
+  "browser": "Trình duyệt",
+  "msg": "Tin nhắn",
+  "loginTime": "Thời gian đăng nhập",
+  "client": "Khách hàng",
+  "loginType": "Loại đăng nhập",
+  "loginLocation": "Vị trí",
+  "inputAccount": "Vui lòng nhập tài khoản",
+  "selectStatus": "Vui lòng chọn trạng thái",
+  "detailTitle": "Đăng nhập Chi tiết nhật ký",
+  "selectCleanDay": "Làm sạch nhật ký trước",
+  "cleanWarning": "Cảnh báo",
+  "cleanConfirm": "Bạn có chắc chắn xóa nhật ký trước ngày được chỉ định không? Không thể hoàn tác hành động này.",
+  "cleanSuccess": "Nhật ký được làm sạch thành công"
+}

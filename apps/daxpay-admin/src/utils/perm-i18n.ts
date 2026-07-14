@@ -1,7 +1,11 @@
 import { $t, i18n } from '#/locales';
 import enUsPerm from '../locales/langs/en-US/perm.json';
+import idIdPerm from '../locales/langs/id-ID/perm.json';
 import jaJpPerm from '../locales/langs/ja-JP/perm.json';
 import koKrPerm from '../locales/langs/ko-KR/perm.json';
+import msMyPerm from '../locales/langs/ms-MY/perm.json';
+import thThPerm from '../locales/langs/th-TH/perm.json';
+import viVnPerm from '../locales/langs/vi-VN/perm.json';
 import zhCnPerm from '../locales/langs/zh-CN/perm.json';
 import zhHkPerm from '../locales/langs/zh-HK/perm.json';
 import zhTwPerm from '../locales/langs/zh-TW/perm.json';
@@ -19,7 +23,7 @@ function toFlatPermMessages(bag: Record<string, string>): Record<string, string>
 
 /**
  * 注入权限码国际化文案（flat key）
- * 写入完整 locale zh-CN/en-US/zh-TW/zh-HK/ja-JP/ko-KR，以及短码 en/ja/ko
+ * 写入完整 locale（含东盟四语）以及短码 en/ja/ko/id/vi/th/ms
  * 禁止把简体挂到短码 `zh`：vue-i18n 对 zh-TW/zh-HK 会回退 zh，繁体界面会串成简体
  * 可重复调用：语言切换会 setLocaleMessage 覆盖整包，需在翻译前再次 merge
  */
@@ -30,6 +34,10 @@ export function injectPermI18n() {
   const hk = toFlatPermMessages(zhHkPerm as Record<string, string>);
   const ja = toFlatPermMessages(jaJpPerm as Record<string, string>);
   const ko = toFlatPermMessages(koKrPerm as Record<string, string>);
+  const id = toFlatPermMessages(idIdPerm as Record<string, string>);
+  const vi = toFlatPermMessages(viVnPerm as Record<string, string>);
+  const th = toFlatPermMessages(thThPerm as Record<string, string>);
+  const ms = toFlatPermMessages(msMyPerm as Record<string, string>);
   i18n.global.mergeLocaleMessage('zh-CN', zh);
   // 不注入短码 zh，避免 zh-TW/zh-HK 回退到简体
   i18n.global.mergeLocaleMessage('en-US', en);
@@ -40,6 +48,14 @@ export function injectPermI18n() {
   i18n.global.mergeLocaleMessage('ja', ja);
   i18n.global.mergeLocaleMessage('ko-KR', ko);
   i18n.global.mergeLocaleMessage('ko', ko);
+  i18n.global.mergeLocaleMessage('id-ID', id);
+  i18n.global.mergeLocaleMessage('id', id);
+  i18n.global.mergeLocaleMessage('vi-VN', vi);
+  i18n.global.mergeLocaleMessage('vi', vi);
+  i18n.global.mergeLocaleMessage('th-TH', th);
+  i18n.global.mergeLocaleMessage('th', th);
+  i18n.global.mergeLocaleMessage('ms-MY', ms);
+  i18n.global.mergeLocaleMessage('ms', ms);
 }
 
 /**

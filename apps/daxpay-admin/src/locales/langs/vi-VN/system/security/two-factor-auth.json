@@ -1,0 +1,26 @@
+{
+  "title": "Xác thực hai yếu tố",
+  "description": "Quản lý cấu hình xác thực TOTP và mã dự phòng",
+  "summary": {
+    "enabled": "Đã bật xác thực hai yếu tố",
+    "disabled": "Xác thực hai yếu tố bị vô hiệu hóa"
+  },
+  "section": {
+    "basic": "Cài đặt cơ bản",
+    "other": "Cài đặt khác"
+  },
+  "enabled": {
+    "label": "Kích hoạt xác thực hai yếu tố",
+    "desc": "Khi được bật, người dùng có thể kích hoạt xác thực hai yếu tố để tăng cường bảo mật tài khoản."
+  },
+  "issuer": {
+    "label": "Tên tổ chức phát hành",
+    "desc": "Tên nhà phát hành được hiển thị trong ứng dụng xác thực.",
+    "placeholder": "Nhập tên tổ chức phát hành"
+  },
+  "backupCodesCount": {
+    "label": "Số lượng mã dự phòng",
+    "desc": "Số lượng mã dự phòng mà người dùng có thể tạo.",
+    "placeholder": "Nhập số lượng mã dự phòng"
+  }
+}

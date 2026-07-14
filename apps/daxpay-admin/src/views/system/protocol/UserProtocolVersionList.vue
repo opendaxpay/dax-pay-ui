@@ -36,6 +36,10 @@
     { label: $t('system.protocol.languageHk'), value: 'zh-HK' },
     { label: $t('system.protocol.languageJa'), value: 'ja-JP' },
     { label: $t('system.protocol.languageKo'), value: 'ko-KR' },
+    { label: $t('system.protocol.languageId'), value: 'id-ID' },
+    { label: $t('system.protocol.languageVi'), value: 'vi-VN' },
+    { label: $t('system.protocol.languageTh'), value: 'th-TH' },
+    { label: $t('system.protocol.languageMs'), value: 'ms-MY' },
   ];
 
   /** 打开版本管理 */

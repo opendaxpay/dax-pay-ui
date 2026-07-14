@@ -1,0 +1,32 @@
+{
+  "aggregate": {
+    "title": "Cấu hình trả lương tổng hợp",
+    "editModeLabel": "Cấp độ cấu hình",
+    "autoLaunch": "Tự động khởi chạy",
+    "autoLaunchHint": "Tự động bắt đầu thanh toán sau khi quét, không cần nhấp chuột thủ công",
+    "autoModeHint": "Hệ thống lấy phương thức thanh toán từ môi trường mở và tuân theo định tuyến kênh ứng dụng. Không cần cấu hình thủ công.",
+    "methodModeHint": "Chọn phương thức thanh toán theo cách thủ công cho mỗi môi trường mở, sau đó giải quyết thông qua định tuyến kênh ứng dụng.",
+    "directModeHint": "Thiết lập rõ ràng khả năng và người bán kênh cho mỗi môi trường mở; bỏ qua định tuyến kênh.",
+    "scene": "Môi trường mở",
+    "method": "Phương thức thanh toán",
+    "methodPlaceholder": "Chọn phương thức thanh toán",
+    "channelMerchant": "Người bán kênh",
+    "channelMerchantPlaceholder": "Chọn kênh người bán",
+    "capability": "Khả năng",
+    "capabilityPlaceholder": "Chọn khả năng",
+    "autoDerived": "Tự động bắt nguồn",
+    "saveConfirm": "Lưu cấu hình thanh toán tổng hợp?",
+    "missingAppContext": "Vui lòng mở cấu hình thanh toán tổng hợp từ quản lý ứng dụng",
+    "notSelected": "Không được chọn",
+    "levelActive": "Tích cực",
+    "scenes": {
+      "wechat_pay": "WeChat",
+      "alipay": "Alipay",
+      "union_pay": "UnionPay",
+      "douyin": "Douyin"
+    },
+    "modeAuto": "Theo dõi định tuyến kênh",
+    "modeMethod": "Bằng phương pháp",
+    "modeDirect": "Người bán kênh rõ ràng"
+  }
+}

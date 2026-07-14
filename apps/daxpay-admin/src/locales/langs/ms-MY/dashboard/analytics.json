@@ -1,0 +1,52 @@
+{
+  "title": "Analitis",
+  "subtitle": "{start} hingga {end} · {days} hari jumlah",
+  "customRange": "Julat Tersuai",
+  "timeRange": {
+    "last7days": "7D",
+    "last30days": "30D",
+    "thisMonth": "Bulan ini",
+    "custom": "Adat"
+  },
+  "overview": {
+    "totalAmount": "Jumlah Jumlah",
+    "totalOrders": "Jumlah Pesanan",
+    "avgAmount": "Purata Jumlah",
+    "successRate": "Kadar Kejayaan",
+    "refundAmount": "Jumlah Bayaran Balik",
+    "refundRate": "Kadar Bayaran Balik",
+    "chainRatio": "Ibu"
+  },
+  "tradeTrend": {
+    "title": "Trend Perdagangan",
+    "amount": "Jumlah",
+    "orders": "Pesanan",
+    "avgAmount": "Purata Jumlah"
+  },
+  "payMethod": {
+    "title": "Saluran Pembayaran"
+  },
+  "channelSuccess": {
+    "title": "Kadar Kejayaan Saluran"
+  },
+  "hourlyDist": {
+    "title": "Pengagihan Setiap Jam"
+  },
+  "amountRange": {
+    "title": "Julat Jumlah"
+  },
+  "channelVolume": {
+    "title": "Kelantangan Saluran"
+  },
+  "refundTrend": {
+    "title": "Aliran Bayaran Balik"
+  },
+  "merchantRank": {
+    "title": "Kedudukan Pedagang",
+    "rank": "pangkat",
+    "merchant": "saudagar",
+    "amount": "Jumlah",
+    "orders": "Pesanan",
+    "proportion": "Kongsi"
+  }
+}

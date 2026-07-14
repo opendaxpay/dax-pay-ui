@@ -1,0 +1,12 @@
+{
+  "clean": "Lau dọn",
+  "cleanDays": {
+    "d3": "3 ngày trước",
+    "d7": "7 ngày trước",
+    "d30": "30 ngày trước",
+    "d60": "60 ngày trước",
+    "d90": "90 ngày trước",
+    "d180": "180 ngày trước",
+    "d365": "365 ngày trước"
+  }
+}

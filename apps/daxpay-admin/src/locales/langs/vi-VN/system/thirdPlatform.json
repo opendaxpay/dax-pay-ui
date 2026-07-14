@@ -1,0 +1,95 @@
+{
+  "common": {
+    "title": "Quản lý nền tảng của bên thứ ba",
+    "description": "Quản lý thống nhất thông tin đăng nhập của bên thứ ba và thông tin đăng nhập nền tảng mở."
+  },
+  "loginConfig": {
+    "title": "Cấu hình đăng nhập của bên thứ ba",
+    "description": "Định cấu hình thông tin đăng nhập OAuth được ứng dụng khách WEB sử dụng cho từng nền tảng."
+  },
+  "alipay": {
+    "tabTitle": "Cấu hình ứng dụng Alipay",
+    "tabDescription": "Thông tin đăng nhập Alipay OAuth để đăng nhập xác thực và xác thực kênh thanh toán",
+    "title": "Cấu hình xác thực ứng dụng Alipay",
+    "description": "Quản lý thông tin đăng nhập Alipay OAuth (appId/khóa riêng/chứng chỉ) để đăng nhập xác thực nhằm nhận mã định danh người dùng (userId) và xác thực kênh thanh toán.",
+    "usageTip": "Cấu hình này phục vụ cả: 1) Đăng nhập xác thực Alipay khi đăng nhập bên thứ ba; 2) Xác thực kênh trong các tình huống thanh toán (lấy mã định danh người dùng để thanh toán).",
+    "confirmSaveContent": "Bạn có chắc chắn lưu cấu hình Ứng dụng Alipay không?",
+    "section": {
+      "basic": "Cấu hình cơ bản",
+      "credential": "Cấu hình thông tin xác thực"
+    },
+    "appId": "ID ứng dụng",
+    "appIdDesc": "AppId của ứng dụng được tạo trên Nền tảng mở Alipay",
+    "inputAppId": "Vui lòng nhập ID ứng dụng Alipay",
+    "authType": "Loại xác thực",
+    "authTypeDesc": "Chế độ khóa chung sử dụng khóa chung Alipay, Chế độ chứng chỉ sử dụng ba chứng chỉ",
+    "authTypeKey": "Khóa công khai",
+    "authTypeCert": "Giấy chứng nhận",
+    "privateKey": "Khóa riêng của ứng dụng",
+    "privateKeyDesc": "Khóa riêng của ứng dụng (định dạng PEM, được yêu cầu cho cả chế độ khóa chung và chứng chỉ)",
+    "inputPrivateKey": "Vui lòng nhập khóa riêng của ứng dụng",
+    "alipayPublicKey": "Khóa công khai Alipay",
+    "alipayPublicKeyDesc": "Khóa công khai của Alipay (đối với chế độ khóa chung, được lấy từ 'Thông tin ứng dụng' của Nền tảng mở Alipay)",
+    "inputAlipayPublicKey": "Vui lòng nhập khóa công khai Alipay",
+    "appCert": "Chứng chỉ công khai của ứng dụng",
+    "appCertDesc": "Chứng chỉ công khai của ứng dụng (đối với chế độ chứng chỉ, tải lên tệp .crt)",
+    "uploadAppCert": "Tải chứng chỉ công khai của ứng dụng lên",
+    "alipayCert": "Chứng chỉ công cộng Alipay",
+    "alipayCertDesc": "Chứng chỉ công khai Alipay (đối với chế độ chứng chỉ, tải lên tệp .crt)",
+    "uploadAlipayCert": "Tải lên chứng chỉ công khai Alipay",
+    "alipayRootCert": "Chứng chỉ gốc Alipay",
+    "alipayRootCertDesc": "Chứng chỉ gốc Alipay (đối với chế độ chứng chỉ, tải lên tệp .crt)",
+    "uploadRootCert": "Tải lên chứng chỉ gốc Alipay",
+    "validate": {
+      "appId": "Vui lòng nhập ID ứng dụng",
+      "authType": "Vui lòng chọn loại xác thực",
+      "privateKey": "Vui lòng nhập khóa riêng của ứng dụng",
+      "alipayPublicKey": "Vui lòng nhập khóa công khai Alipay",
+      "appCert": "Vui lòng tải lên chứng chỉ công khai của ứng dụng",
+      "alipayCert": "Vui lòng tải lên chứng chỉ công khai Alipay",
+      "alipayRootCert": "Vui lòng tải lên chứng chỉ gốc Alipay"
+    }
+  },
+  "wechatMp": {
+    "tabTitle": "Cấu hình tài khoản chính thức của WeChat",
+    "tabDescription": "Thông tin xác thực WeChat MP để đăng nhập và thông báo mẫu",
+    "title": "Cấu hình xác thực tài khoản chính thức của WeChat",
+    "description": "Quản lý thông tin xác thực WeChat MP (appId/appSecret) cho các tin nhắn mẫu trung tâm thông báo và openId H5 OAuth.",
+    "usageTip": "Cấu hình này phục vụ: 1) Đăng nhập WeChat MP H5 OAuth; 2) Gửi tin nhắn mẫu trung tâm thông báo.",
+    "confirmSaveContent": "Bạn có chắc chắn lưu cấu hình Tài khoản chính thức của WeChat không?",
+    "section": {
+      "credential": "Cấu hình thông tin xác thực"
+    },
+    "appId": "ID ứng dụng",
+    "appIdDesc": "AppId tài khoản chính thức của WeChat (lấy từ 'Cài đặt & Phát triển - Cấu hình cơ bản' của Nền tảng MP)",
+    "inputAppId": "Vui lòng nhập ID ứng dụng WeChat MP",
+    "appSecret": "Bí mật ứng dụng",
+    "appSecretDesc": "AppSecret tài khoản chính thức của WeChat (có được từ 'Cài đặt & Phát triển - Cấu hình cơ bản' của Nền tảng MP)",
+    "inputAppSecret": "Vui lòng nhập Bí mật ứng dụng WeChat MP",
+    "validate": {
+      "appId": "Vui lòng nhập ID ứng dụng",
+      "appSecret": "Vui lòng nhập Bí mật ứng dụng"
+    }
+  },
+  "douyinH5": {
+    "tabTitle": "Ứng dụng Douyin H5",
+    "tabDescription": "Thông tin xác thực H5 của Douyin Open Platform để ủy quyền H5",
+    "title": "Cấu hình xác thực ứng dụng Douyin H5",
+    "description": "Quản lý thông tin xác thực ứng dụng Douyin Open Platform H5 (Khóa khách hàng / Bí mật khách hàng) cho các trường hợp ủy quyền H5.",
+    "usageTip": "Cấu hình này độc lập với đăng nhập Douyin trong Cấu hình đăng nhập của bên thứ ba. Nó chỉ quản lý Khóa khách hàng / Bí mật khách hàng H5 của nền tảng mở.",
+    "confirmSaveContent": "Bạn có chắc chắn lưu cấu hình Ứng dụng Douyin H5 không?",
+    "section": {
+      "credential": "Cấu hình thông tin xác thực"
+    },
+    "clientKey": "Khóa ứng dụng khách",
+    "clientKeyDesc": "Khóa ứng dụng khách của ứng dụng Nền tảng mở Douyin (từ 'Chi tiết ứng dụng' của Nền tảng mở)",
+    "inputClientKey": "Vui lòng nhập Khóa khách hàng",
+    "clientSecret": "Bí mật khách hàng",
+    "clientSecretDesc": "Bí mật khách hàng của ứng dụng Nền tảng mở Douyin (từ 'Chi tiết ứng dụng' của Nền tảng mở)",
+    "inputClientSecret": "Vui lòng nhập Bí mật khách hàng",
+    "validate": {
+      "clientKey": "Vui lòng nhập Khóa khách hàng",
+      "clientSecret": "Vui lòng nhập Bí mật khách hàng"
+    }
+  }
+}

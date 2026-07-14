@@ -1,0 +1,52 @@
+{
+  "title": "การวิเคราะห์",
+  "subtitle": "{start} ถึง {end} · รวม {days} วัน",
+  "customRange": "ช่วงที่กำหนดเอง",
+  "timeRange": {
+    "last7days": "7D",
+    "last30days": "30D",
+    "thisMonth": "เดือนนี้",
+    "custom": "กำหนดเอง"
+  },
+  "overview": {
+    "totalAmount": "จำนวนเงินทั้งหมด",
+    "totalOrders": "คำสั่งซื้อทั้งหมด",
+    "avgAmount": "จำนวนเงินเฉลี่ย",
+    "successRate": "อัตราความสำเร็จ",
+    "refundAmount": "จำนวนเงินคืน",
+    "refundRate": "อัตราการคืนเงิน",
+    "chainRatio": "แม่"
+  },
+  "tradeTrend": {
+    "title": "แนวโน้มการค้า",
+    "amount": "จำนวน",
+    "orders": "คำสั่งซื้อ",
+    "avgAmount": "จำนวนเงินเฉลี่ย"
+  },
+  "payMethod": {
+    "title": "ช่องทางการชำระเงิน"
+  },
+  "channelSuccess": {
+    "title": "อัตราความสำเร็จของช่อง"
+  },
+  "hourlyDist": {
+    "title": "การกระจายรายชั่วโมง"
+  },
+  "amountRange": {
+    "title": "ช่วงจำนวนเงิน"
+  },
+  "channelVolume": {
+    "title": "ปริมาณช่อง"
+  },
+  "refundTrend": {
+    "title": "แนวโน้มการคืนเงิน"
+  },
+  "merchantRank": {
+    "title": "การจัดอันดับผู้ค้า",
+    "rank": "อันดับ",
+    "merchant": "พ่อค้า",
+    "amount": "จำนวน",
+    "orders": "คำสั่งซื้อ",
+    "proportion": "แบ่งปัน"
+  }
+}

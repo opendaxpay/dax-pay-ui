@@ -1,0 +1,19 @@
+{
+  "query": "Pertanyaan",
+  "reset": "Mengatur ulang",
+  "expand": "Memperluas",
+  "collapse": "Runtuh",
+  "inputQueryValue": "Silakan masukkan nilai kueri",
+  "selectQueryValue": "Silakan pilih nilai kueri",
+  "selectDate": "Silakan pilih tanggal",
+  "selectTime": "Silakan pilih waktu",
+  "selectDateTime": "Silakan pilih tanggal waktu",
+  "startTime": "Waktu Mulai",
+  "endTime": "Akhir Waktu",
+  "today": "Hari ini",
+  "yesterday": "Kemarin",
+  "last7Days": "7 Hari Terakhir",
+  "last30Days": "30 Hari Terakhir",
+  "thisMonth": "Bulan ini",
+  "lastMonth": "Bulan Lalu"
+}

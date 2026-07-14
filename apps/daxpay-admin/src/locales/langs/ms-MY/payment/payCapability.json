@@ -1,0 +1,18 @@
+{
+  "field": {
+    "code": "Kod Keupayaan",
+    "name": "Nama Keupayaan",
+    "remark": "Teguran",
+    "enabled": "Didayakan",
+    "products": "Produk Pembayaran Terpaut",
+    "provider": "Pembekal Bayar",
+    "method": "Kaedah Pembayaran",
+    "providerMethod": "Pembekal & Kaedah (Keluaran)"
+  },
+  "placeholder": {
+    "name": "Masukkan nama keupayaan",
+    "code": "Masukkan kod keupayaan"
+  },
+  "detail": "Butiran Keupayaan Pembayaran",
+  "edit": "Edit Keupayaan Pembayaran"
+}

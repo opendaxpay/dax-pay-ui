@@ -1,0 +1,23 @@
+{
+  "title": "Cấu hình Adapay",
+  "keyConfig": "Cấu hình khóa",
+  "enable": "Cho phép",
+  "adapayAppId": "ID ứng dụng",
+  "adapayAppIdPlaceholder": "Vui lòng nhập ID ứng dụng Adapay",
+  "apiKey": "Khóa API",
+  "apiKeyPlaceholder": "Vui lòng nhập khóa API Adapay (Tiêu đề ủy quyền)",
+  "merchantNo": "Người bán số",
+  "merchantNoPlaceholder": "Vui lòng nhập số người bán Adapay",
+  "privateKey": "Khóa riêng RSA của người bán",
+  "privateKeyPlaceholder": "Vui lòng nhập khóa riêng PKCS#8 Base64 (để ký yêu cầu)",
+  "publicKey": "Khóa công khai của nền tảng",
+  "publicKeyPlaceholder": "Vui lòng nhập khóa chung X509 Base64 (để xác minh phản hồi, để trống cho mặc định chung)",
+  "validation": {
+    "enable": "Vui lòng chọn trạng thái bật",
+    "adapayAppId": "Vui lòng nhập ID ứng dụng Adapay",
+    "apiKey": "Vui lòng nhập khóa API Adapay",
+    "merchantNo": "Vui lòng nhập số người bán Adapay",
+    "privateKey": "Vui lòng nhập khóa riêng RSA của người bán",
+    "publicKey": "Vui lòng nhập khóa công khai của nền tảng"
+  }
+}

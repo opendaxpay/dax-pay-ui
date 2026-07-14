@@ -1,0 +1,43 @@
+{
+  "field": {
+    "code": "Mã sản phẩm",
+    "name": "Tên sản phẩm",
+    "channel": "Kênh",
+    "description": "Sự miêu tả",
+    "icon": "Biểu tượng",
+    "remark": "Nhận xét",
+    "channelName": "Tên kênh",
+    "isv": "ISV",
+    "terminal": "Báo cáo thiết bị đầu cuối",
+    "sandbox": "Hộp cát",
+    "apiCallMode": "Chế độ gọi API",
+    "payIdType": "Loại ID thanh toán",
+    "capabilities": "Khả năng thanh toán",
+    "features": "Tính năng sản phẩm"
+  },
+  "features": "Tính năng sản phẩm",
+  "detail": "Chi tiết sản phẩm",
+  "sandboxSupported": "Được hỗ trợ",
+  "sandboxNotSupported": "Không được hỗ trợ",
+  "productName": {
+    "alipayIsv": "Alipay (ISV)",
+    "wechatIsv": "Thanh toán WeChat (ISV)",
+    "unknown": "Cấu hình sản phẩm"
+  },
+  "productConfig": {
+    "title": "Cấu hình sản phẩm kênh",
+    "emptyDesc": "Không có dữ liệu sản phẩm thanh toán",
+    "prodLabel": "sản phẩm",
+    "sandboxLabel": "Hộp cát",
+    "prodConfigBtn": "Sản xuất",
+    "sandboxConfigBtn": "Hộp cát",
+    "switchEnv": "Chuyển đổi môi trường",
+    "switchToSandboxConfirm": "Chuyển sang môi trường hộp cát? Tất cả các giao dịch sẽ sử dụng điểm cuối API hộp cát, phù hợp cho việc tích hợp và thử nghiệm chức năng.",
+    "switchToProdConfirm": "Chuyển sang môi trường sản xuất? Tất cả các giao dịch sẽ sử dụng điểm cuối API sản xuất và liên quan đến dòng vốn thực.",
+    "nonIsvDisabledTip": "Không thể chỉnh sửa các sản phẩm thanh toán không phải ISV"
+  },
+  "placeholder": {
+    "name": "Nhập tên sản phẩm",
+    "code": "Nhập mã sản phẩm"
+  }
+}

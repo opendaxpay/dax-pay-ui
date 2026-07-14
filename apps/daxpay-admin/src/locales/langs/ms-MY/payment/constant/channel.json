@@ -1,0 +1,19 @@
+{
+  "field": {
+    "icon": "ikon",
+    "code": "Kod Saluran",
+    "name": "Nama Saluran",
+    "description": "Penerangan"
+  },
+  "detail": "Butiran Saluran",
+  "section": {
+    "products": "Produk Berbayar"
+  },
+  "empty": {
+    "products": "Tiada produk berbayar"
+  },
+  "placeholder": {
+    "name": "Masukkan nama saluran",
+    "code": "Masukkan kod saluran"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "title": "Konfigurasi UMS",
+  "keyConfig": "Konfigurasi Kekunci",
+  "enable": "Dayakan",
+  "umsAppId": "ID Permohonan",
+  "umsAppIdPlaceholder": "Sila masukkan ID permohonan UMS",
+  "appKey": "Kunci Aplikasi",
+  "appKeyPlaceholder": "Sila masukkan kunci permohonan UMS",
+  "merchantNo": "Peniaga No",
+  "merchantNoPlaceholder": "Sila masukkan nombor peniaga UMS",
+  "terminalNo": "Terminal No",
+  "terminalNoPlaceholder": "Sila masukkan nombor terminal UMS",
+  "secretKey": "Kunci Rahsia",
+  "secretKeyPlaceholder": "Sila masukkan kunci rahsia (untuk pengesahan mesej panggilan balik)",
+  "validation": {
+    "enable": "Sila pilih dayakan status",
+    "umsAppId": "Sila masukkan ID permohonan UMS",
+    "appKey": "Sila masukkan kunci permohonan UMS",
+    "merchantNo": "Sila masukkan nombor peniaga UMS",
+    "terminalNo": "Sila masukkan nombor terminal UMS",
+    "secretKey": "Sila masukkan kunci rahsia"
+  }
+}

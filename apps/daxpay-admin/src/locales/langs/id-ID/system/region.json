@@ -1,0 +1,9 @@
+{
+  "placeholder": "Silakan pilih wilayah administratif",
+  "level": {
+    "province": "Propinsi",
+    "city": "Kota",
+    "area": "Kabupaten/Kabupaten",
+    "street": "Jalan/Kota"
+  }
+}

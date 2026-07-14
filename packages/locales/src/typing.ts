@@ -1,6 +1,7 @@
 /**
  * 支持的语言类型
- * 简体 / 英文 / 繁体台湾 / 繁体香港
+ * 简体 / 英文 / 繁体台湾 / 繁体香港 / 日 / 韩
+ * + 东盟核心：印尼 / 越南 / 泰 / 马来
  */
 export type SupportedLanguagesType =
   | 'en-US'
@@ -8,7 +9,11 @@ export type SupportedLanguagesType =
   | 'zh-TW'
   | 'zh-HK'
   | 'ja-JP'
-  | 'ko-KR';
+  | 'ko-KR'
+  | 'id-ID'
+  | 'vi-VN'
+  | 'th-TH'
+  | 'ms-MY';
 
 /**
  * 国际化消息值的类型定义

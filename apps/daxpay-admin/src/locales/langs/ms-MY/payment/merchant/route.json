@@ -1,0 +1,34 @@
+{
+  "route": {
+    "title": "Pengikat Saluran",
+    "editModeLabel": "Dimensi konfigurasi",
+    "setActiveMode": "Tetapkan sebagai aktif",
+    "setActiveModeConfirm": "Tetapkan penghalaan saluran apl ini kepada \"{mode}\". Pesanan baharu akan menyelesaikan pedagang saluran menggunakan konfigurasi ini. teruskan?",
+    "alreadyActiveMode": "Sudah menjadi konfigurasi aktif",
+    "activeModeTag": "Aktif",
+    "modeBasic": "Mengikut Lalai Jenama",
+    "modeScene": "Mengikut Kaedah",
+    "payCapability": "Keupayaan pembayaran",
+    "payCapabilityPlaceholder": "Pilih keupayaan",
+    "sceneSaveConfirm": "Penghalaan Simpan Mengikut Kaedah? Ini akan menimpa pedagang saluran dan pemetaan keupayaan setiap kaedah bayaran.",
+    "basicProductNotSelected": "Tidak dipilih",
+    "channelMerchant": "Peniaga saluran",
+    "channelMerchantPlaceholder": "Pilih pedagang saluran",
+    "channelMerchantNotFound": "Tiada peniaga saluran tersedia",
+    "sceneChannelMchCapabilityPairHint": "Pilih kedua-dua pedagang saluran dan keupayaan, atau biarkan kedua-duanya kosong; pemilihan separa tidak dibenarkan",
+    "basicSaveConfirm": "Simpan Mengikut penghalaan Lalai Jenama? Ini akan menimpa pedagang saluran lalai bagi setiap pembekal bayaran.",
+    "sceneRouteNotSelected": "Tidak dipilih",
+    "configTab": "Penghalaan",
+    "method": "Kaedah Bayar",
+    "missingAppContext": "Buka penghalaan saluran daripada Pengurusan Apl",
+    "providers": {
+      "aggregate_pay": "Bayaran Agregat",
+      "wechat": "WeChat Pay",
+      "alipay": "Alipay",
+      "union_pay": "UnionPay",
+      "visa": "Visa",
+      "mastercard": "Mastercard",
+      "douyin": "Douyin Pay"
+    }
+  }
+}

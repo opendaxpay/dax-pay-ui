@@ -22,7 +22,11 @@ type SupportedLanguagesType =
   | 'zh-TW'
   | 'zh-HK'
   | 'ja-JP'
-  | 'ko-KR';
+  | 'ko-KR'
+  | 'id-ID'
+  | 'vi-VN'
+  | 'th-TH'
+  | 'ms-MY';
 
 interface AppPreferences {
   /** 权限模式 */

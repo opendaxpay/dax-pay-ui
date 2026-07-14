@@ -1,0 +1,32 @@
+{
+  "field": {
+    "mchNo": "Peniaga No.",
+    "mchName": "Nama Peniaga",
+    "mchShortName": "Nama Pendek",
+    "status": "Status",
+    "subjectType": "Jenis Mata Pelajaran",
+    "createTime": "Cipta Masa",
+    "id": "ID"
+  },
+  "status": {
+    "enable": "Didayakan",
+    "disabled": "Dilumpuhkan"
+  },
+  "subjectType": {
+    "micro": "Peniaga Mikro",
+    "individual": "Perniagaan Individu",
+    "enterprise": "Perusahaan"
+  },
+  "action": {
+    "confirmEnableContent": "Adakah anda pasti mahu mendayakan pedagang ini?",
+    "confirmDisableContent": "Adakah anda pasti mahu melumpuhkan pedagang ini? Selepas melumpuhkan, akaun pedagang tidak akan dapat log masuk."
+  },
+  "validation": {
+    "pleaseInputMchName": "Sila masukkan nama pedagang",
+    "pleaseInputMchShortName": "Sila masukkan nama pendek pedagang",
+    "pleaseInputAccount": "Sila masukkan akaun pentadbir",
+    "pleaseConfirmPassword": "Sila sahkan kata laluan",
+    "pleaseSelectSubjectType": "Sila pilih jenis subjek",
+    "pleaseSelectStatus": "Sila pilih status"
+  }
+}

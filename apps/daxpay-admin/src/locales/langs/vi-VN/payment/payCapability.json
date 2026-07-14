@@ -1,0 +1,18 @@
+{
+  "field": {
+    "code": "Mã năng lực",
+    "name": "Tên khả năng",
+    "remark": "Nhận xét",
+    "enabled": "Đã bật",
+    "products": "Sản phẩm thanh toán được liên kết",
+    "provider": "Nhà cung cấp thanh toán",
+    "method": "Phương thức thanh toán",
+    "providerMethod": "Nhà cung cấp & Phương thức (Phát hành)"
+  },
+  "placeholder": {
+    "name": "Nhập tên khả năng",
+    "code": "Nhập mã năng lực"
+  },
+  "detail": "Chi tiết khả năng thanh toán",
+  "edit": "Chỉnh sửa khả năng thanh toán"
+}

@@ -1,0 +1,22 @@
+{
+  "douyinMchId": "ID người bán Douyin",
+  "douyinMchIdPlaceholder": "Nhập ID người bán Douyin Pay",
+  "dyAppId": "ID ứng dụng Douyin",
+  "dyAppIdPlaceholder": "Nhập ID ứng dụng Douyin",
+  "appSecret": "Bí mật ứng dụng",
+  "appSecretPlaceholder": "Nhập bí mật ứng dụng Douyin",
+  "validation": {
+    "douyinMchIdRequired": "Cần có ID người bán Douyin",
+    "dyAppIdRequired": "Cần có ID ứng dụng Douyin",
+    "appSecretRequired": "Bí mật ứng dụng là bắt buộc",
+    "merchantPrivateKeyRequired": "Cần có khóa riêng của người bán",
+    "merchantSerialNumberRequired": "Cần có số sê-ri chứng chỉ người bán",
+    "encryptKeyRequired": "Cần có khóa mã hóa"
+  },
+  "merchantPrivateKey": "Khóa riêng của người bán",
+  "merchantPrivateKeyPlaceholder": "Nhập khóa riêng của người bán",
+  "merchantSerialNumber": "Số sê-ri chứng chỉ người bán",
+  "merchantSerialNumberPlaceholder": "Nhập số sê-ri chứng chỉ người bán",
+  "encryptKey": "Khóa mã hóa",
+  "encryptKeyPlaceholder": "Nhập khóa mã hóa"
+}

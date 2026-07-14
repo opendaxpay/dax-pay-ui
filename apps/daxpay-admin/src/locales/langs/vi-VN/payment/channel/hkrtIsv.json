@@ -1,0 +1,31 @@
+{
+  "title": "Cấu hình ISV HKRT",
+  "groupConfig": "Cấu hình",
+  "configTitle": "Cấu hình khóa HKRT ISV",
+  "manageTitle": "Quản lý thương gia HKRT",
+  "basicConfig": "Cấu hình cơ bản",
+  "keyConfig": "Cấu hình khóa",
+  "cardMchKey": "Khóa ISV",
+  "cardMchKeyDesc": "Định cấu hình số đại lý HKRT, ID truy cập và khóa chữ ký",
+  "agentNo": "Mã số đại lý",
+  "agentNoPlaceholder": "Vui lòng nhập số đại lý",
+  "accessId": "ID tổ chức truy cập",
+  "accessIdPlaceholder": "Vui lòng nhập ID tổ chức truy cập",
+  "accessKey": "Khóa chữ ký",
+  "accessKeyPlaceholder": "Vui lòng nhập key chữ ký (đối với chữ ký MD5 viết hoa)",
+  "groupMchConfig": "Cấu hình người bán",
+  "cardMchConfig": "Cấu hình người bán",
+  "cardMchConfigDesc": "Định cấu hình số thiết bị đầu cuối SAAS cho người bán kênh",
+  "mchConfigTitle": "Cấu hình người bán",
+  "merchNo": "HKRT Người bán số",
+  "merchNoPlaceholder": "Vui lòng nhập số người bán HKRT",
+  "pn": "Nhà ga SAAS số",
+  "pnPlaceholder": "Vui lòng nhập số thiết bị đầu cuối SAAS",
+  "validation": {
+    "agentNo": "Vui lòng nhập số đại lý",
+    "accessId": "Vui lòng nhập ID tổ chức truy cập",
+    "accessKey": "Vui lòng nhập key chữ ký",
+    "merchNo": "Vui lòng nhập số người bán HKRT",
+    "pn": "Vui lòng nhập số thiết bị đầu cuối SAAS"
+  }
+}

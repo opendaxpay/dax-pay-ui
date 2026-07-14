@@ -1,0 +1,50 @@
+{
+  "title": "Pengurusan Sesi",
+  "description": "Urus tempoh dalam talian, sesi serentak dan dasar pembersihan",
+  "summary": {
+    "enabled": "Kawalan didayakan",
+    "disabled": "Kawalan dilumpuhkan",
+    "online": "Dalam talian {hours} jam",
+    "active": "Aktif {hours} jam",
+    "concurrent": "{count} sesi serentak",
+    "scope": "Skop {name}",
+    "strategy": "Strategi {name}"
+  },
+  "section": {
+    "control": "Kawalan Sesi",
+    "limit": "Had Dalam Talian & Serentak",
+    "policy": "Dasar Limpahan & Pembersihan"
+  },
+  "enabled": {
+    "label": "Dayakan Pengurusan Sesi",
+    "desc": "Apabila didayakan, tempoh dalam talian, sesi serentak dan pengendalian limpahan akan dihadkan."
+  },
+  "maxOnlineHours": {
+    "label": "Tempoh Dalam Talian Maks",
+    "desc": "Masa dalam talian berterusan maksimum setiap sesi.",
+    "placeholder": "Masukkan tempoh maksimum dalam talian"
+  },
+  "activeTimeoutHours": {
+    "label": "Tempoh Aktif Maks",
+    "desc": "Auto tamat tempoh selepas tidak aktif, 0 bermakna tiada had.",
+    "placeholder": "Masukkan tempoh aktif maksimum"
+  },
+  "maxConcurrentSessions": {
+    "label": "Sesi Serentak Maks",
+    "desc": "Sesi serentak maksimum bagi setiap akaun.",
+    "placeholder": "Masukkan sesi serentak maks"
+  },
+  "concurrentStrategy": {
+    "label": "Strategi Limpahan Serentak",
+    "desc": "Cara mengendalikan sesi baharu apabila had serentak dicapai.",
+    "newSession": "Benarkan Sesi Baharu",
+    "kickOldest": "Tendang Sesi Tertua",
+    "denyNew": "Nafikan Sesi Baharu"
+  },
+  "concurrentScope": {
+    "label": "Skop Pengiraan Serentak",
+    "desc": "Global: semua terminal berkongsi satu kumpulan kuota; Setiap Peranti: setiap jenis terminal dikira secara bebas.",
+    "global": "Global",
+    "perDevice": "Setiap Peranti"
+  }
+}

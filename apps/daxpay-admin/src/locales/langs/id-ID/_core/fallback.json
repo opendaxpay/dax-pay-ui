@@ -1,0 +1,12 @@
+{
+  "pageNotFound": "Ups! Halaman Tidak Ditemukan",
+  "pageNotFoundDesc": "Maaf, kami tidak dapat menemukan halaman yang Anda cari.",
+  "forbidden": "Ups! Akses ditolak",
+  "forbiddenDesc": "Maaf, Anda tidak memiliki izin untuk mengakses halaman ini.",
+  "internalError": "Ups! Ada yang Salah",
+  "internalErrorDesc": "Maaf, server mengalami kesalahan.",
+  "offline": "Halaman Luar Talian",
+  "offlineError": "Ups! Kesalahan Jaringan",
+  "offlineErrorDesc": "Maaf, tidak dapat terhubung ke internet. Silakan periksa koneksi jaringan Anda dan coba lagi.",
+  "comingSoon": "Segera hadir"
+}

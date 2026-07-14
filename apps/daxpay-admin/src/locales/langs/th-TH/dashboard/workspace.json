@@ -1,0 +1,78 @@
+{
+  "greeting": {
+    "morning": "สวัสดีตอนเช้า",
+    "afternoon": "สวัสดีตอนบ่าย",
+    "evening": "สวัสดีตอนเย็น",
+    "subtitle": "ยินดีต้อนรับกลับสู่ผู้ดูแลระบบ DaxPay"
+  },
+  "stat": {
+    "merchantCount": "พ่อค้า",
+    "channelMerchantCount": "พ่อค้าช่องทาง",
+    "userCount": "ผู้ใช้",
+    "todayLogin": "วันนี้เข้าสู่ระบบ",
+    "onlineUser": "ผู้ใช้ออนไลน์"
+  },
+  "widget": {
+    "workbenchHeader": "พื้นที่ทำงาน",
+    "quickEntry": "เข้าด่วน",
+    "tradeOverview": "ภาพรวมการค้า",
+    "payOrder": "คำสั่งการชำระเงิน",
+    "tradeTrend": "แนวโน้มการค้า",
+    "channelDist": "ช่องทางการชำระเงิน",
+    "noticeList": "ประกาศ"
+  },
+  "tradeOverview": {
+    "today": "วันนี้",
+    "yesterday": "เมื่อวาน",
+    "successAmount": "จำนวนความสำเร็จ (CNY)",
+    "successCount": "นับความสำเร็จ",
+    "refundAmount": "จำนวนเงินคืน (CNY)",
+    "refundCount": "จำนวนการคืนเงิน"
+  },
+  "payOrder": {
+    "developing": "การจัดการคำสั่งการชำระเงินอยู่ระหว่างการพัฒนา",
+    "status": {
+      "success": "ความสำเร็จ",
+      "fail": "ล้มเหลว",
+      "closed": "ปิด"
+    }
+  },
+  "tradeTrend": {
+    "last7days": "7 วัน",
+    "last30days": "30 วัน"
+  },
+  "quickEntry": {
+    "merchant": "พ่อค้า",
+    "app": "การใช้งาน",
+    "channelMerchant": "พ่อค้าช่องทาง",
+    "notify": "การแจ้งเตือน",
+    "user": "ผู้ใช้",
+    "dict": "พจนานุกรม",
+    "loginLog": "บันทึกการเข้าสู่ระบบ",
+    "security": "ความปลอดภัย",
+    "payOrder": "คำสั่งการชำระเงิน",
+    "refundOrder": "การคืนเงินคำสั่งซื้อ",
+    "payTrade": "การซื้อขายกองทุน",
+    "role": "บทบาท",
+    "menu": "เมนู",
+    "operateLog": "ดำเนินการบันทึก",
+    "notice": "ประกาศ",
+    "productConfig": "การกำหนดค่าผลิตภัณฑ์ช่องทาง",
+    "platformConfig": "การกำหนดค่าแพลตฟอร์ม",
+    "onlineUser": "ผู้ใช้ออนไลน์",
+    "analytics": "การวิเคราะห์",
+    "developTrade": "การพัฒนาการชำระเงิน",
+    "socialLogin": "การเข้าสู่ระบบแพลตฟอร์มบุคคลที่สาม",
+    "empty": "ไม่มีรายการด่วนที่สามารถเข้าถึงได้",
+    "edit": "แก้ไข",
+    "editTitle": "แก้ไขรายการด่วน",
+    "selected": "เลือกแล้ว (ลากเพื่อจัดเรียง)",
+    "available": "มีอยู่",
+    "allAdded": "เพิ่มทั้งหมดแล้ว"
+  },
+  "notice": {
+    "important": "สำคัญ",
+    "normal": "ปกติ",
+    "top": "สูงสุด"
+  }
+}
