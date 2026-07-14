@@ -156,13 +156,6 @@
   }
 
   /**
-   * 跳转到验证码登录
-   */
-  function goToCodeLogin() {
-    router.push('/auth/code-login');
-  }
-
-  /**
    * 跳转到二维码登录
    */
   function goToQrCodeLogin() {
@@ -255,13 +248,8 @@
       </a-button>
     </a-form>
 
-    <!-- 暂时隐藏验证码登录/扫码登录入口, 后续需要时将 v-if 改为 true 即可恢复 -->
+    <!-- 暂时隐藏扫码登录入口, 后续需要时将 v-if 改为 true 即可恢复 -->
     <div v-if="false" class="mt-4 flex items-center justify-center gap-4 text-sm">
-      <a class="cursor-pointer text-gray-500 hover:text-blue-500" @click="goToCodeLogin">
-        <!-- 国际化：验证码登录 -->
-        {{ $t('_core.authentication.codeLogin') }}
-      </a>
-      <a-divider type="vertical" />
       <a class="cursor-pointer text-gray-500 hover:text-blue-500" @click="goToQrCodeLogin">
         <!-- 国际化：扫码登录 -->
         {{ $t('authentication.qrcodeLogin') }}

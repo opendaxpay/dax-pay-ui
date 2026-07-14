@@ -25,12 +25,10 @@ defineOptions({
 });
 
 const props = withDefaults(defineProps<Props>(), {
-  codeLoginPath: '/auth/code-login',
   formSchema: () => [],
   loading: false,
   qrCodeLoginPath: '/auth/qrcode-login',
   registerPath: '/auth/register',
-  showCodeLogin: true,
   showQrcodeLogin: true,
   showRegister: true,
   showThirdPartyLogin: true,
@@ -103,21 +101,9 @@ defineExpose({
       {{ submitButtonText || $t('common.login') }}
     </VbenButton>
 
-    <div
-      v-if="showCodeLogin || showQrcodeLogin"
-      class="mt-4 mb-2 flex items-center justify-between"
-    >
+    <div v-if="showQrcodeLogin" class="mt-4 mb-2 flex items-center justify-between">
       <VbenButton
-        v-if="showCodeLogin"
-        class="w-1/2"
-        variant="outline"
-        @click="handleGo(codeLoginPath)"
-      >
-        {{ $t('authentication.mobileLogin') }}
-      </VbenButton>
-      <VbenButton
-        v-if="showQrcodeLogin"
-        class="ml-4 w-1/2"
+        class="w-full"
         variant="outline"
         @click="handleGo(qrCodeLoginPath)"
       >

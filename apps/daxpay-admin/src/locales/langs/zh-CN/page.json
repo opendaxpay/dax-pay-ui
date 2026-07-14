@@ -2,7 +2,6 @@
   "auth": {
     "profile": "个人设置",
     "login": "登录",
-    "codeLogin": "验证码登录",
     "qrcodeLogin": "二维码登录",
     "forgetPassword": "忘记密码",
     "oauthCallback": "第三方登录回调"

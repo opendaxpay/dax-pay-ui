@@ -2,7 +2,6 @@
   "auth": {
     "profile": "Cài đặt",
     "login": "Đăng nhập",
-    "codeLogin": "Mã đăng nhập",
     "qrcodeLogin": "Đăng nhập bằng mã QR",
     "forgetPassword": "Quên mật khẩu",
     "oauthCallback": "Gọi lại OAuth"

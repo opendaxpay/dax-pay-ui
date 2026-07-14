@@ -2,7 +2,6 @@
   "auth": {
     "profile": "tetapan",
     "login": "Log masuk",
-    "codeLogin": "Log Masuk Kod",
     "qrcodeLogin": "Log Masuk Kod QR",
     "forgetPassword": "Lupa Kata Laluan",
     "oauthCallback": "Panggilan Balik OAuth"

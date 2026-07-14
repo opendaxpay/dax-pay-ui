@@ -1,6 +1,5 @@
 {
   "login": "Đăng nhập",
-  "codeLogin": "Mã đăng nhập",
   "qrcodeLogin": "Đăng nhập mã Qr",
   "forgetPassword": "Quên mật khẩu",
   "profile": "Hồ sơ",
@@ -18,8 +17,6 @@
   "oauthLoginSuccessWith": "{platform} đăng nhập thành công",
   "oauthUnknownPlatform": "Nền tảng không xác định",
   "passwordResetPending": "Việc đặt lại mật khẩu vẫn chưa khả dụng",
-  "codeSendPending": "Việc gửi mã xác minh chưa khả dụng",
-  "codeLoginPending": "Mã đăng nhập vẫn chưa có sẵn",
   "qrcodeRefreshPending": "Tính năng làm mới mã QR chưa khả dụng",
   "qrcodeLoadFailed": "Không tải được mã QR",
   "twoFactor": {

@@ -2,7 +2,6 @@
   "auth": {
     "profile": "Pengaturan",
     "login": "Login",
-    "codeLogin": "Kode Masuk",
     "qrcodeLogin": "Masuk Kode QR",
     "forgetPassword": "Lupa Kata Sandi",
     "oauthCallback": "Panggilan Balik OAuth"

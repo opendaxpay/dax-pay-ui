@@ -1,6 +1,5 @@
 {
   "login": "เข้าสู่ระบบ",
-  "codeLogin": "รหัสเข้าสู่ระบบ",
   "qrcodeLogin": "เข้าสู่ระบบรหัส Qr",
   "forgetPassword": "ลืมรหัสผ่าน",
   "profile": "ประวัติโดยย่อ",
@@ -18,8 +17,6 @@
   "oauthLoginSuccessWith": "{platform} เข้าสู่ระบบสำเร็จ",
   "oauthUnknownPlatform": "แพลตฟอร์มที่ไม่รู้จัก",
   "passwordResetPending": "การรีเซ็ตรหัสผ่านยังไม่สามารถใช้ได้",
-  "codeSendPending": "การส่งรหัสยืนยันยังไม่สามารถทำได้",
-  "codeLoginPending": "รหัสเข้าสู่ระบบยังไม่พร้อมใช้งาน",
   "qrcodeRefreshPending": "การรีเฟรชโค้ด QR ยังไม่พร้อมใช้งาน",
   "qrcodeLoadFailed": "ไม่สามารถโหลดโค้ด QR",
   "twoFactor": {

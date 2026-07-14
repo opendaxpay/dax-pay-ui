@@ -1,9 +1,5 @@
 interface AuthenticationProps {
   /**
-   * @zh_CN 验证码登录路径
-   */
-  codeLoginPath?: string;
-  /**
    * @zh_CN 是否处于加载处理状态
    */
   loading?: boolean;
@@ -18,10 +14,6 @@ interface AuthenticationProps {
    */
   registerPath?: string;
 
-  /**
-   * @zh_CN 是否显示验证码登录
-   */
-  showCodeLogin?: boolean;
   /**
    * @zh_CN 是否显示二维码登录
    */

@@ -384,10 +384,6 @@
     "adjust": "人工調賬",
     "order_profit": "訂單分潤"
   },
-  "sms_provider": {
-    "aliyun": "阿里雲",
-    "tencent": "騰訊雲"
-  },
   "onb_apply_type": {
     "merchant": "商户進件",
     "enterprise": "企業進件",

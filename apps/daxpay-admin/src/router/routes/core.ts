@@ -105,15 +105,6 @@ const coreRoutes: RouteRecordRaw[] = [
         },
       },
       {
-        name: 'CodeLogin',
-        path: 'code-login',
-        component: () => import('#/views/_core/authentication/code-login.vue'),
-        meta: {
-          // 验证码登录
-          title: $t('page.auth.codeLogin'),
-        },
-      },
-      {
         name: 'QrCodeLogin',
         path: 'qrcode-login',
         component: () => import('#/views/_core/authentication/qrcode-login.vue'),

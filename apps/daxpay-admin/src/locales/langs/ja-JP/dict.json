@@ -384,10 +384,6 @@
     "adjust": "人工调账",
     "order_profit": "订单分润"
   },
-  "sms_provider": {
-    "aliyun": "阿里云",
-    "tencent": "腾讯云"
-  },
   "onb_apply_type": {
     "merchant": "販売商品",
     "enterprise": "企画物",

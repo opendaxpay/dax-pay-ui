@@ -2,7 +2,6 @@
   "auth": {
     "profile": "設定",
     "login": "ログイン",
-    "codeLogin": "コードログイン",
     "qrcodeLogin": "QRコードログイン",
     "forgetPassword": "パスワードを忘れた場合",
     "oauthCallback": "OAuth コールバック"

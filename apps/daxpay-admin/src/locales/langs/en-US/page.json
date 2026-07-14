@@ -2,7 +2,6 @@
   "auth": {
     "profile": "Settings",
     "login": "Login",
-    "codeLogin": "Code Login",
     "qrcodeLogin": "QR Code Login",
     "forgetPassword": "Forget Password",
     "oauthCallback": "OAuth Callback"

@@ -1,6 +1,5 @@
 {
   "login": "Log masuk",
-  "codeLogin": "Log Masuk Kod",
   "qrcodeLogin": "Log Masuk Kod Qr",
   "forgetPassword": "Lupa Kata Laluan",
   "profile": "Profil",
@@ -18,8 +17,6 @@
   "oauthLoginSuccessWith": "{platform} log masuk berjaya",
   "oauthUnknownPlatform": "Platform tidak diketahui",
   "passwordResetPending": "Tetapan semula kata laluan belum tersedia",
-  "codeSendPending": "Penghantaran kod pengesahan masih belum tersedia",
-  "codeLoginPending": "Log masuk kod belum tersedia",
   "qrcodeRefreshPending": "Muat semula kod QR belum tersedia",
   "qrcodeLoadFailed": "Gagal memuatkan kod QR",
   "twoFactor": {

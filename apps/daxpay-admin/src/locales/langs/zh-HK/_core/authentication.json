@@ -1,6 +1,5 @@
 {
   "login": "登錄",
-  "codeLogin": "驗證碼登錄",
   "qrcodeLogin": "二維碼登錄",
   "forgetPassword": "忘記密碼",
   "profile": "個人中心",
@@ -18,8 +17,6 @@
   "oauthLoginSuccessWith": "{platform} 登錄成功",
   "oauthUnknownPlatform": "未知平台",
   "passwordResetPending": "密碼重置功能待接入",
-  "codeSendPending": "驗證碼發送功能待接入",
-  "codeLoginPending": "驗證碼登錄功能待接入",
   "qrcodeRefreshPending": "二維碼刷新功能待接入",
   "qrcodeLoadFailed": "二維碼加載失敗",
   "twoFactor": {

@@ -1,6 +1,5 @@
 {
   "login": "登录",
-  "codeLogin": "验证码登录",
   "qrcodeLogin": "二维码登录",
   "forgetPassword": "忘记密码",
   "profile": "个人中心",
@@ -18,8 +17,6 @@
   "oauthLoginSuccessWith": "{platform} 登录成功",
   "oauthUnknownPlatform": "未知平台",
   "passwordResetPending": "密码重置功能待接入",
-  "codeSendPending": "验证码发送功能待接入",
-  "codeLoginPending": "验证码登录功能待接入",
   "qrcodeRefreshPending": "二维码刷新功能待接入",
   "qrcodeLoadFailed": "二维码加载失败",
   "twoFactor": {

@@ -1,6 +1,5 @@
 {
   "login": "ログイン",
-  "codeLogin": "コードログイン",
   "qrcodeLogin": "QRコードログイン",
   "forgetPassword": "パスワードを忘れた場合",
   "profile": "プロフィール",
@@ -18,8 +17,6 @@
   "oauthLoginSuccessWith": "{platform} ログインに成功しました",
   "oauthUnknownPlatform": "不明なプラットフォーム",
   "passwordResetPending": "パスワードのリセットはまだ利用できません",
-  "codeSendPending": "認証コードの送信はまだ利用できません",
-  "codeLoginPending": "コードログインはまだ利用できません",
   "qrcodeRefreshPending": "QR コードの更新はまだ利用できません",
   "qrcodeLoadFailed": "QRコードの読み込みに失敗しました",
   "twoFactor": {
