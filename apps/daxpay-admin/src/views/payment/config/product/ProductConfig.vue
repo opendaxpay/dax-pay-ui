@@ -141,8 +141,8 @@
             "
             :styles="{ body: { padding: 0, display: 'flex', flexDirection: 'column', height: '100%' } }"
           >
-            <!-- 右上角：环境切换（仅支持沙箱时显示） -->
-            <div v-if="row.sandboxSupport" class="absolute top-2.5 right-2.5 z-20">
+            <!-- 右上角：环境切换（产品支持沙箱且全局沙箱已启用时显示） -->
+            <div v-if="row.sandboxSupport && sandboxEnabled" class="absolute top-2.5 right-2.5 z-20">
               <a-radio-group
                 :key="`env-${row.product}-${radioRefreshKey}`"
                 :value="getActiveEnvValue(row)"
