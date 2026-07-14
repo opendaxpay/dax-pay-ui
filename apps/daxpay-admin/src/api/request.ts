@@ -52,8 +52,11 @@ function createRequestClient(baseURL: string, options?: RequestClientOptions) {
   client.addRequestInterceptor({
     fulfilled: async (config) => {
       const accessStore = useAccessStore();
+      const token = accessStore.accessToken;
 
-      config.headers.Authorization = accessStore.accessToken;
+      // 与后端 sa-token.token-name=Accesstoken 对齐; Authorization 保留兼容
+      config.headers.Accesstoken = token;
+      config.headers.Authorization = token;
       config.headers['Accept-Language'] = preferences.app.locale;
       config.headers['x-client-code'] = CLIENT_CODE;
       return config;

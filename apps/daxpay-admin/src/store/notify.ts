@@ -95,8 +95,8 @@ export const useNotifyStore = defineStore('notify', () => {
   /**
    * 建立 SSE 实时推送连接
    *
-   * EventSource 不支持自定义请求头, 依赖同源 cookie 透传 Sa-Token 会话;
-   * 收到推送时刷新未读数与铃铛列表.
+   * EventSource 不支持自定义请求头, 依赖登录时写入的 Accesstoken 同源 Cookie
+   * (withCredentials) 透传 Sa-Token 会话; 收到推送时刷新未读数与铃铛列表.
    * 防重入: 已存在活跃连接(OPEN/CONNECTING)时直接复用, 不重复建立;
    * 出错时主动关闭并改用指数退避手动重连, 避免浏览器默认的固定重连风暴.
    */
