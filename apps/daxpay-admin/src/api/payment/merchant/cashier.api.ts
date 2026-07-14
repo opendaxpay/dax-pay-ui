@@ -11,7 +11,7 @@ export const CashierConfigApi = {
   list(params: {
     appId: string;
     cashierType: string;
-    scene?: string;
+    clientEnv?: string;
   }): Promise<Result<CashierItemResult[]>> {
     return defHttp.get({
       url: '/admin/gateway/cashier-config/list',
@@ -59,7 +59,7 @@ export interface CashierItemResult extends BaseEntity {
   /** 收银台类型: h5/web */
   cashierType?: string;
   /** H5 终端场景; WEB 为空 */
-  scene?: string;
+  clientEnv?: string;
   name?: string;
   icon?: string;
   recommend?: boolean;
@@ -77,7 +77,7 @@ export interface CashierItemParam {
   mchNo: string;
   appId: string;
   cashierType: string;
-  scene?: string;
+  clientEnv?: string;
   name: string;
   icon?: string;
   recommend?: boolean;

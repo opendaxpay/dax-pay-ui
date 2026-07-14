@@ -32,7 +32,7 @@
     "validationMethod": "Silakan pilih metode pembayaran",
     "validationChannelMch": "Silakan pilih pedagang saluran",
     "validationCapability": "Silakan pilih kemampuan",
-    "scenes": {
+    "clientEnvs": {
       "browser": "Peramban",
       "wechat_pay": "Wechat wechat",
       "alipay": "Alipay",

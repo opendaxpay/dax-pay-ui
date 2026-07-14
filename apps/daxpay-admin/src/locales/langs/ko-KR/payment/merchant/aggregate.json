@@ -19,7 +19,7 @@
     "missingAppContext": "앱 관리에서 총 지불 구성을 열어주세요",
     "notSelected": "선택되지 않음",
     "levelActive": "활동적인",
-    "scenes": {
+    "clientEnvs": {
       "wechat_pay": "위챗",
       "alipay": "알리페이",
       "union_pay": "유니온페이",

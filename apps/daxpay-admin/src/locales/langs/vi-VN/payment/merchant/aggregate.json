@@ -19,7 +19,7 @@
     "missingAppContext": "Vui lòng mở cấu hình thanh toán tổng hợp từ quản lý ứng dụng",
     "notSelected": "Không được chọn",
     "levelActive": "Tích cực",
-    "scenes": {
+    "clientEnvs": {
       "wechat_pay": "WeChat",
       "alipay": "Alipay",
       "union_pay": "UnionPay",

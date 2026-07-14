@@ -339,7 +339,9 @@
     "YZF": "翼支付",
     "CASHIER": "小程序收銀台"
   },
-  "cashier_scene": {
+  "client_env": {
+    "browser": "浏览器环境",
+    "douyin": "抖音环境",
     "wechat_pay": "微信場景",
     "alipay": "支付寶場景",
     "union_pay": "雲閃付場景"

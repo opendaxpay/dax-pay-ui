@@ -12,14 +12,14 @@
   import {
     AggregateConfigApi,
     type AggregateConfigResult,
-    type AggregateSceneParam,
+    type AggregateClientEnvParam,
   } from '#/api/payment/merchant/aggregate.api';
   import { PayRouteApi } from '#/api/payment/route/pay-route.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { useMessage } from '#/hooks/useMessage';
   import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
 
-  import { AGGREGATE_LEVEL, AGGREGATE_SCENES, type AggregateLevel } from './shared/constants';
+  import { AGGREGATE_LEVEL, AGGREGATE_CLIENT_ENVS, type AggregateLevel } from './shared/constants';
 
   defineOptions({ name: 'AggregateScanConfig' });
 
@@ -57,13 +57,13 @@
   // 编辑态
   const editLevel = ref<AggregateLevel>(AGGREGATE_LEVEL.AUTO);
   const autoLaunch = ref(false);
-  // 每场景的编辑数据: scene → { method, channelMchNo, capability }
-  const sceneForm = ref<Record<string, AggregateSceneParam>>({});
+  // 每客户端环境的编辑数据: clientEnv → { method, channelMchNo, capability }
+  const clientEnvForm = ref<Record<string, AggregateClientEnvParam>>({});
 
   // 候选数据
   const methodDirectory = ref<Record<string, LabelValue[]>>({}); // provider → 方式列表
-  const channelMchMap = ref<Record<string, LabelValue[]>>({}); // scene → 通道商户列表
-  const capabilityMap = ref<Record<string, LabelValue[]>>({}); // scene → 能力列表
+  const channelMchMap = ref<Record<string, LabelValue[]>>({}); // clientEnv → 通道商户列表
+  const capabilityMap = ref<Record<string, LabelValue[]>>({}); // clientEnv → 能力列表
 
   // 生效模式(服务端)
   const effectiveLevel = computed(() => config.value.level || AGGREGATE_LEVEL.AUTO);
@@ -82,31 +82,31 @@
   });
 
   /** 场景国际化名 */
-  function sceneLabel(scene: string) {
-    return $t(`payment.merchant.aggregate.aggregate.scenes.${scene}`);
+  function clientEnvLabel(clientEnv: string) {
+    return $t(`payment.merchant.aggregate.aggregate.clientEnvs.${clientEnv}`);
   }
 
   /** 初始化每场景编辑数据 */
   function initSceneForm() {
-    const form: Record<string, AggregateSceneParam> = {};
-    for (const sc of AGGREGATE_SCENES) {
-      const serverScene = config.value.scenes?.find((s) => s.scene === sc.scene);
-      form[sc.scene] = {
-        scene: sc.scene,
-        method: serverScene?.method || '',
-        channelMchNo: serverScene?.channelMchNo || '',
-        capability: serverScene?.capability || '',
+    const form: Record<string, AggregateClientEnvParam> = {};
+    for (const sc of AGGREGATE_CLIENT_ENVS) {
+      const serverEnv = config.value.clientEnvs?.find((s) => s.clientEnv === sc.clientEnv);
+      form[sc.clientEnv] = {
+        clientEnv: sc.clientEnv,
+        method: serverEnv?.method || '',
+        channelMchNo: serverEnv?.channelMchNo || '',
+        capability: serverEnv?.capability || '',
       };
     }
-    sceneForm.value = form;
+    clientEnvForm.value = form;
   }
 
   /** 获取某场景编辑数据 */
-  function getSceneData(scene: string) {
-    if (!sceneForm.value[scene]) {
-      sceneForm.value[scene] = { scene, method: '', channelMchNo: '', capability: '' };
+  function getClientEnvData(clientEnv: string) {
+    if (!clientEnvForm.value[clientEnv]) {
+      clientEnvForm.value[clientEnv] = { clientEnv, method: '', channelMchNo: '', capability: '' };
     }
-    return sceneForm.value[scene]!;
+    return clientEnvForm.value[clientEnv]!;
   }
 
   /** METHOD 模式: 某渠道下可选支付方式 */
@@ -115,13 +115,13 @@
   }
 
   /** DIRECT 模式: 某场景可选通道商户 */
-  function channelMchOptions(scene: string) {
-    return channelMchMap.value[scene] || [];
+  function channelMchOptions(clientEnv: string) {
+    return channelMchMap.value[clientEnv] || [];
   }
 
   /** DIRECT 模式: 某场景可选能力 */
-  function capabilityOptions(scene: string) {
-    return capabilityMap.value[scene] || [];
+  function capabilityOptions(clientEnv: string) {
+    return capabilityMap.value[clientEnv] || [];
   }
 
   /** 加载支付方式目录(METHOD 模式用) */
@@ -147,23 +147,23 @@
   async function loadChannelMchCandidates() {
     const map: Record<string, LabelValue[]> = {};
     await Promise.all(
-      AGGREGATE_SCENES.map(async (sc) => {
+      AGGREGATE_CLIENT_ENVS.map(async (sc) => {
         const { data } = await PayRouteApi.listSceneChannelMchCandidates({
           appId: appId.value,
           provider: sc.provider,
           method: sc.defaultMethod,
         });
-        map[sc.scene] = data || [];
+        map[sc.clientEnv] = data || [];
       }),
     );
     channelMchMap.value = map;
   }
 
   /** 某场景选中通道商户后加载能力候选 */
-  async function loadCapabilityForScene(scene: string, channelMchNo: string) {
-    const sc = AGGREGATE_SCENES.find((s) => s.scene === scene);
+  async function loadCapabilityForClientEnv(clientEnv: string, channelMchNo: string) {
+    const sc = AGGREGATE_CLIENT_ENVS.find((s) => s.clientEnv === clientEnv);
     if (!sc || !channelMchNo) {
-      capabilityMap.value = { ...capabilityMap.value, [scene]: [] };
+      capabilityMap.value = { ...capabilityMap.value, [clientEnv]: [] };
       return;
     }
     const { data } = await PayRouteApi.listSceneCapabilityCandidates({
@@ -172,7 +172,7 @@
       method: sc.defaultMethod,
       channelMchNo,
     });
-    capabilityMap.value = { ...capabilityMap.value, [scene]: data || [] };
+    capabilityMap.value = { ...capabilityMap.value, [clientEnv]: data || [] };
   }
 
   /** 加载应用信息 */
@@ -215,10 +215,10 @@
     } else if (editLevel.value === AGGREGATE_LEVEL.DIRECT) {
       await loadChannelMchCandidates();
       // 对已选通道商户的场景加载能力候选
-      for (const sc of AGGREGATE_SCENES) {
-        const sd = getSceneData(sc.scene);
+      for (const sc of AGGREGATE_CLIENT_ENVS) {
+        const sd = getClientEnvData(sc.clientEnv);
         if (sd.channelMchNo) {
-          await loadCapabilityForScene(sc.scene, sd.channelMchNo);
+          await loadCapabilityForClientEnv(sc.clientEnv, sd.channelMchNo);
         }
       }
     }
@@ -228,24 +228,24 @@
   function save() {
     // 按模式校验
     if (editLevel.value === AGGREGATE_LEVEL.METHOD) {
-      for (const sc of AGGREGATE_SCENES) {
-        if (!getSceneData(sc.scene).method) {
+      for (const sc of AGGREGATE_CLIENT_ENVS) {
+        if (!getClientEnvData(sc.clientEnv).method) {
           message.error(
             $t('payment.merchant.aggregate.aggregate.methodPlaceholder') +
               ': ' +
-              sceneLabel(sc.scene),
+              clientEnvLabel(sc.clientEnv),
           );
           return;
         }
       }
     } else if (editLevel.value === AGGREGATE_LEVEL.DIRECT) {
-      for (const sc of AGGREGATE_SCENES) {
-        const sd = getSceneData(sc.scene);
+      for (const sc of AGGREGATE_CLIENT_ENVS) {
+        const sd = getClientEnvData(sc.clientEnv);
         if (!sd.channelMchNo) {
           message.error(
             $t('payment.merchant.aggregate.aggregate.channelMerchantPlaceholder') +
               ': ' +
-              sceneLabel(sc.scene),
+              clientEnvLabel(sc.clientEnv),
           );
           return;
         }
@@ -255,16 +255,16 @@
     confirm({
       content: $t('payment.merchant.aggregate.aggregate.saveConfirm'),
       async onOk() {
-        const scenes =
+        const clientEnvs =
           editLevel.value === AGGREGATE_LEVEL.AUTO
             ? []
-            : Object.values(sceneForm.value);
+            : Object.values(clientEnvForm.value);
         await AggregateConfigApi.saveOrUpdate({
           mchNo: mchNo.value,
           appId: appId.value,
           level: editLevel.value,
           autoLaunch: autoLaunch.value,
-          scenes,
+          clientEnvs,
         });
         message.success($t('common.operationSuccess'));
         editing.value = false;
@@ -292,12 +292,12 @@
   });
 
   /** DIRECT 模式: 通道商户变更时加载能力候选并清空旧值 */
-  async function onChannelMchChange(scene: string, channelMchNo: any) {
-    const sd = getSceneData(scene);
+  async function onChannelMchChange(clientEnv: string, channelMchNo: any) {
+    const sd = getClientEnvData(clientEnv);
     sd.channelMchNo = channelMchNo || '';
     sd.capability = '';
     if (channelMchNo) {
-      await loadCapabilityForScene(scene, channelMchNo);
+      await loadCapabilityForClientEnv(clientEnv, channelMchNo);
     } else {
       capabilityMap.value = { ...capabilityMap.value, [scene]: [] };
     }
@@ -383,51 +383,51 @@
         </div>
 
         <!-- 场景配置 -->
-        <div class="scene-list">
-          <div v-for="sc in AGGREGATE_SCENES" :key="sc.scene" class="scene-row">
-            <div class="scene-label">
-              <span class="font-medium">{{ sceneLabel(sc.scene) }}</span>
+        <div class="client-env-list">
+          <div v-for="sc in AGGREGATE_CLIENT_ENVS" :key="sc.clientEnv" class="client-env-row">
+            <div class="client-env-label">
+              <span class="font-medium">{{ clientEnvLabel(sc.clientEnv) }}</span>
             </div>
 
             <!-- AUTO 模式: 只读提示 -->
-            <div v-if="editLevel === AGGREGATE_LEVEL.AUTO" class="scene-content">
+            <div v-if="editLevel === AGGREGATE_LEVEL.AUTO" class="client-env-content">
               <a-tag color="blue">
                 {{ $t('payment.merchant.aggregate.aggregate.autoDerived') }}: {{ findMethodLabel(sc.provider, sc.defaultMethod) }}
               </a-tag>
             </div>
 
             <!-- METHOD 模式: 选支付方式 -->
-            <div v-else-if="editLevel === AGGREGATE_LEVEL.METHOD" class="scene-content">
+            <div v-else-if="editLevel === AGGREGATE_LEVEL.METHOD" class="client-env-content">
               <a-select
-                :value="getSceneData(sc.scene).method"
+                :value="getClientEnvData(sc.clientEnv).method"
                 :options="methodOptions(sc.provider)"
                 :placeholder="$t('payment.merchant.aggregate.aggregate.methodPlaceholder')"
                 :disabled="!editing"
                 allow-clear
                 style="width: 240px"
-                @change="(val: any) => (getSceneData(sc.scene).method = val)"
+                @change="(val: any) => (getClientEnvData(sc.clientEnv).method = val)"
               />
             </div>
 
             <!-- DIRECT 模式: 选通道商户 + 能力 -->
-            <div v-else class="scene-content direct-content">
+            <div v-else class="client-env-content direct-content">
               <a-select
-                :value="getSceneData(sc.scene).channelMchNo"
-                :options="channelMchOptions(sc.scene)"
+                :value="getClientEnvData(sc.clientEnv).channelMchNo"
+                :options="channelMchOptions(sc.clientEnv)"
                 :placeholder="$t('payment.merchant.aggregate.aggregate.channelMerchantPlaceholder')"
                 :disabled="!editing"
                 allow-clear
                 style="width: 240px"
-                @change="(val: any) => onChannelMchChange(sc.scene, val)"
+                @change="(val: any) => onChannelMchChange(sc.clientEnv, val)"
               />
               <a-select
-                :value="getSceneData(sc.scene).capability"
-                :options="capabilityOptions(sc.scene)"
+                :value="getClientEnvData(sc.clientEnv).capability"
+                :options="capabilityOptions(sc.clientEnv)"
                 :placeholder="$t('payment.merchant.aggregate.aggregate.capabilityPlaceholder')"
-                :disabled="!editing || !getSceneData(sc.scene).channelMchNo"
+                :disabled="!editing || !getClientEnvData(sc.clientEnv).channelMchNo"
                 allow-clear
                 style="width: 240px"
-                @change="(val: any) => (getSceneData(sc.scene).capability = val)"
+                @change="(val: any) => (getClientEnvData(sc.clientEnv).capability = val)"
               />
             </div>
           </div>
@@ -438,7 +438,7 @@
 </template>
 
 <style scoped>
-  .scene-list {
+  .client-env-list {
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -447,18 +447,18 @@
     border-radius: 12px;
   }
 
-  .scene-row {
+  .client-env-row {
     display: flex;
     align-items: center;
     gap: 16px;
   }
 
-  .scene-label {
+  .client-env-label {
     flex-shrink: 0;
     width: 100px;
   }
 
-  .scene-content {
+  .client-env-content {
     display: flex;
     align-items: center;
     gap: 12px;

@@ -32,7 +32,7 @@
     "validationMethod": "お支払い方法を選択してください",
     "validationChannelMch": "チャネル販売者を選択してください",
     "validationCapability": "機能を選択してください",
-    "scenes": {
+    "clientEnvs": {
       "browser": "ブラウザ",
       "wechat_pay": "微信",
       "alipay": "アリペイ",

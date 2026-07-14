@@ -19,7 +19,7 @@
     "missingAppContext": "Please open aggregate pay config from app management",
     "notSelected": "Not selected",
     "levelActive": "Active",
-    "scenes": {
+    "clientEnvs": {
       "wechat_pay": "WeChat",
       "alipay": "Alipay",
       "union_pay": "UnionPay",

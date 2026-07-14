@@ -21,7 +21,7 @@
 
   import CashierItemEdit from './CashierItemEdit.vue';
   import {
-    CASHIER_H5_SCENES,
+    CASHIER_H5_CLIENT_ENVS,
     CASHIER_TYPE,
     RESOLVE_MODE,
     type CashierType,
@@ -64,15 +64,15 @@
 
   // 一级 / 二级 Tab
   const activeType = ref<CashierType>(CASHIER_TYPE.H5);
-  const activeScene = ref(CASHIER_H5_SCENES[0]!.scene);
+  const activeClientEnv = ref(CASHIER_H5_CLIENT_ENVS[0]!.clientEnv);
 
   const itemEditRef = ref<InstanceType<typeof CashierItemEdit>>();
 
   const canManage = computed(() => hasPermission(PermCodes.Merchant.GatewayCashier.MANAGE));
 
   /** 场景 i18n */
-  function sceneLabel(scene: string) {
-    return $t(`payment.merchant.cashier.cashier.scenes.${scene}`);
+  function clientEnvLabel(clientEnv: string) {
+    return $t(`payment.merchant.cashier.cashier.clientEnvs.${clientEnv}`);
   }
 
   /** 图标 i18n */
@@ -146,12 +146,12 @@
     if (!appId.value) return;
     loading.value = true;
     try {
-      const params: { appId: string; cashierType: string; scene?: string } = {
+      const params: { appId: string; cashierType: string; clientEnv?: string } = {
         appId: appId.value,
         cashierType: activeType.value,
       };
       if (activeType.value === CASHIER_TYPE.H5) {
-        params.scene = activeScene.value;
+        params.clientEnv = activeClientEnv.value;
       }
       const { data } = await CashierConfigApi.list(params);
       tableData.value = data || [];
@@ -174,7 +174,7 @@
       mchNo: mchNo.value,
       appId: appId.value,
       cashierType: activeType.value,
-      scene: activeType.value === CASHIER_TYPE.H5 ? activeScene.value : undefined,
+      clientEnv: activeType.value === CASHIER_TYPE.H5 ? activeClientEnv.value : undefined,
     });
   }
 
@@ -184,7 +184,7 @@
       mchNo: mchNo.value,
       appId: appId.value,
       cashierType: activeType.value,
-      scene: activeType.value === CASHIER_TYPE.H5 ? activeScene.value : undefined,
+      clientEnv: activeType.value === CASHIER_TYPE.H5 ? activeClientEnv.value : undefined,
       record: row,
     });
   }
@@ -202,7 +202,7 @@
     });
   }
 
-  watch([activeType, activeScene], () => {
+  watch([activeType, activeClientEnv], () => {
     if (!routeContext.isValid.value) return;
     loadList();
   });
@@ -257,9 +257,9 @@
 
       <!-- H5 二级终端 -->
       <div v-if="activeType === CASHIER_TYPE.H5" class="mb-4">
-        <a-radio-group v-model:value="activeScene" button-style="solid">
-          <a-radio-button v-for="sc in CASHIER_H5_SCENES" :key="sc.scene" :value="sc.scene">
-            {{ sceneLabel(sc.scene) }}
+        <a-radio-group v-model:value="activeClientEnv" button-style="solid">
+          <a-radio-button v-for="sc in CASHIER_H5_CLIENT_ENVS" :key="sc.clientEnv" :value="sc.clientEnv">
+            {{ clientEnvLabel(sc.clientEnv) }}
           </a-radio-button>
         </a-radio-group>
       </div>

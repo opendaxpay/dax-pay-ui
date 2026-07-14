@@ -19,7 +19,7 @@
     "missingAppContext": "请从应用管理进入聚合收款配置",
     "notSelected": "未选择",
     "levelActive": "生效中",
-    "scenes": {
+    "clientEnvs": {
       "wechat_pay": "微信环境",
       "alipay": "支付宝环境",
       "union_pay": "云闪付环境",

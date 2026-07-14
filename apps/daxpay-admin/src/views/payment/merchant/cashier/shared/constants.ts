@@ -15,22 +15,22 @@ export const RESOLVE_MODE = {
 export type ResolveMode = (typeof RESOLVE_MODE)[keyof typeof RESOLVE_MODE];
 
 /**
- * H5 终端场景
- * scene: 后端 CashierSceneEnum 编码
+ * H5 客户端环境
+ * clientEnv: 后端 ClientEnvEnum 编码
  * provider: 对应支付渠道(用于 DIRECT 候选过滤；browser 无固定 provider)
  */
-export interface CashierSceneConfig {
-  scene: string;
+export interface ClientEnvConfig {
+  clientEnv: string;
   provider?: string;
 }
 
-/** H5 五个终端桶 */
-export const CASHIER_H5_SCENES: CashierSceneConfig[] = [
-  { scene: 'browser' },
-  { scene: 'wechat_pay', provider: 'wechat' },
-  { scene: 'alipay', provider: 'alipay' },
-  { scene: 'union_pay', provider: 'union_pay' },
-  { scene: 'douyin', provider: 'douyin' },
+/** H5 五个客户端环境桶 */
+export const CASHIER_H5_CLIENT_ENVS: ClientEnvConfig[] = [
+  { clientEnv: 'browser' },
+  { clientEnv: 'wechat_pay', provider: 'wechat' },
+  { clientEnv: 'alipay', provider: 'alipay' },
+  { clientEnv: 'union_pay', provider: 'union_pay' },
+  { clientEnv: 'douyin', provider: 'douyin' },
 ];
 
 /**

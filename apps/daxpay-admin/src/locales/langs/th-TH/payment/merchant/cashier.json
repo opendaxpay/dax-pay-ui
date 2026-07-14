@@ -32,7 +32,7 @@
     "validationMethod": "กรุณาเลือกวิธีการชำระเงิน",
     "validationChannelMch": "กรุณาเลือกช่องทางร้านค้า",
     "validationCapability": "กรุณาเลือกความสามารถ",
-    "scenes": {
+    "clientEnvs": {
       "browser": "เบราว์เซอร์",
       "wechat_pay": "วีแชท",
       "alipay": "อาลีเพย์",

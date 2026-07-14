@@ -31,13 +31,13 @@ export interface AggregateConfigResult extends BaseEntity {
   /** 配置深度: auto/method/direct */
   level?: string;
   autoLaunch?: boolean;
-  scenes?: AggregateSceneResult[];
+  clientEnvs?: AggregateClientEnvResult[];
 }
 
 /** 场景配置结果 */
-export interface AggregateSceneResult {
+export interface AggregateClientEnvResult {
   /** 场景编码: wechat_pay/alipay/union_pay/douyin */
-  scene?: string;
+  clientEnv?: string;
   /** 支付方式(METHOD 模式) */
   method?: string;
   /** 通道商户号(DIRECT 模式) */
@@ -52,12 +52,12 @@ export interface AggregateConfigParam {
   appId: string;
   level: string;
   autoLaunch?: boolean;
-  scenes?: AggregateSceneParam[];
+  clientEnvs?: AggregateClientEnvParam[];
 }
 
 /** 场景配置参数 */
-export interface AggregateSceneParam {
-  scene?: string;
+export interface AggregateClientEnvParam {
+  clientEnv?: string;
   method?: string;
   channelMchNo?: string;
   capability?: string;

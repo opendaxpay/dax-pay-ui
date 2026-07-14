@@ -8,22 +8,22 @@ export const AGGREGATE_LEVEL = {
 export type AggregateLevel = (typeof AGGREGATE_LEVEL)[keyof typeof AGGREGATE_LEVEL];
 
 /**
- * 聚合扫码场景定义
- * scene: 后端 CashierSceneEnum 编码
+ * 聚合扫码客户端环境定义
+ * clientEnv: 后端 ClientEnvEnum 编码
  * provider: 对应的支付渠道（PayProviderEnum），用于过滤支付方式候选
- * defaultMethod: L1 自动推导的默认支付方式（与后端 SceneMethodDefaultResolver 对齐）
+ * defaultMethod: L1 自动推导的默认支付方式（与后端 ClientEnvMethodDefaultResolver 对齐）
  */
-export interface AggregateSceneConfig {
-  scene: string;
+export interface AggregateClientEnvConfig {
+  clientEnv: string;
   provider: string;
   defaultMethod: string;
 }
 
-export const AGGREGATE_SCENES: AggregateSceneConfig[] = [
-  { scene: 'wechat_pay', provider: 'wechat', defaultMethod: 'wechat_jsapi' },
-  { scene: 'alipay', provider: 'alipay', defaultMethod: 'alipay_jsapi' },
-  { scene: 'union_pay', provider: 'union_pay', defaultMethod: 'union_jsapi' },
-  { scene: 'douyin', provider: 'douyin', defaultMethod: 'douyin_jsapi' },
+export const AGGREGATE_CLIENT_ENVS: AggregateClientEnvConfig[] = [
+  { clientEnv: 'wechat_pay', provider: 'wechat', defaultMethod: 'wechat_jsapi' },
+  { clientEnv: 'alipay', provider: 'alipay', defaultMethod: 'alipay_jsapi' },
+  { clientEnv: 'union_pay', provider: 'union_pay', defaultMethod: 'union_jsapi' },
+  { clientEnv: 'douyin', provider: 'douyin', defaultMethod: 'douyin_jsapi' },
 ];
 
 // 模式显示名（与 i18n payment.merchant.route / aggregate 词表对齐；页面优先用 $t）

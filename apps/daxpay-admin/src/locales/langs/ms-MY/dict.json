@@ -339,10 +339,12 @@
     "YZF": "翼支付",
     "CASHIER": "小程序收银台"
   },
-  "cashier_scene": {
-    "wechat_pay": "微信场景",
-    "alipay": "支付宝场景",
-    "union_pay": "云闪付场景"
+  "client_env": {
+    "browser": "Browser",
+    "douyin": "Douyin",
+    "wechat_pay": "微信环境",
+    "alipay": "支付宝环境",
+    "union_pay": "云闪付环境"
   },
   "audio_bind_type": {
     "app": "应用",

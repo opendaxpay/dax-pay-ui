@@ -32,7 +32,7 @@
     "validationMethod": "결제수단을 선택해주세요",
     "validationChannelMch": "채널 판매자를 선택하세요.",
     "validationCapability": "능력을 선택해주세요",
-    "scenes": {
+    "clientEnvs": {
       "browser": "브라우저",
       "wechat_pay": "위챗",
       "alipay": "알리페이",

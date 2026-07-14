@@ -34,7 +34,7 @@
     mchNo: string;
     appId: string;
     cashierType: CashierType;
-    scene?: string;
+    clientEnv?: string;
   }>({
     mchNo: '',
     appId: '',
@@ -93,7 +93,7 @@
       mchNo: context.value.mchNo,
       appId: context.value.appId,
       cashierType: context.value.cashierType,
-      scene: context.value.cashierType === CASHIER_TYPE.H5 ? context.value.scene : undefined,
+      clientEnv: context.value.cashierType === CASHIER_TYPE.H5 ? context.value.clientEnv : undefined,
       name: '',
       icon: undefined,
       recommend: false,
@@ -258,7 +258,7 @@
     mchNo: string;
     appId: string;
     cashierType: CashierType;
-    scene?: string;
+    clientEnv?: string;
   }) {
     context.value = { ...opts };
     initFormEditType(FormEditType.Add);
@@ -272,14 +272,14 @@
     mchNo: string;
     appId: string;
     cashierType: CashierType;
-    scene?: string;
+    clientEnv?: string;
     record: CashierItemResult;
   }) {
     context.value = {
       mchNo: opts.mchNo,
       appId: opts.appId,
       cashierType: opts.cashierType,
-      scene: opts.scene,
+      clientEnv: opts.clientEnv,
     };
     initFormEditType(FormEditType.Edit);
     resetForm();
@@ -294,7 +294,7 @@
         mchNo: opts.mchNo,
         appId: opts.appId,
         cashierType: opts.cashierType,
-        scene: opts.cashierType === CASHIER_TYPE.H5 ? opts.scene : undefined,
+        clientEnv: opts.cashierType === CASHIER_TYPE.H5 ? opts.clientEnv : undefined,
         name: row.name || '',
         icon: row.icon || undefined,
         recommend: !!row.recommend,
@@ -327,7 +327,7 @@
         mchNo: context.value.mchNo,
         appId: context.value.appId,
         cashierType: context.value.cashierType,
-        scene: context.value.cashierType === CASHIER_TYPE.H5 ? context.value.scene : undefined,
+        clientEnv: context.value.cashierType === CASHIER_TYPE.H5 ? context.value.clientEnv : undefined,
         recommend: !!formState.value.recommend,
         sortNo: formState.value.sortNo ?? 0,
       };

@@ -19,7 +19,7 @@
     "missingAppContext": "โปรดเปิดการกำหนดค่าการชำระเงินรวมจากการจัดการแอป",
     "notSelected": "ไม่ได้เลือก",
     "levelActive": "คล่องแคล่ว",
-    "scenes": {
+    "clientEnvs": {
       "wechat_pay": "วีแชท",
       "alipay": "อาลีเพย์",
       "union_pay": "ยูเนี่ยนเพย์",

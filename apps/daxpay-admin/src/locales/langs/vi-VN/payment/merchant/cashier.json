@@ -32,7 +32,7 @@
     "validationMethod": "Vui lòng chọn phương thức thanh toán",
     "validationChannelMch": "Vui lòng chọn kênh người bán",
     "validationCapability": "Vui lòng chọn khả năng",
-    "scenes": {
+    "clientEnvs": {
       "browser": "Trình duyệt",
       "wechat_pay": "WeChat",
       "alipay": "Alipay",

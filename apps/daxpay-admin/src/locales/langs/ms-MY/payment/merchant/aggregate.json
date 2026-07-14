@@ -19,7 +19,7 @@
     "missingAppContext": "Sila buka konfigurasi pembayaran agregat daripada pengurusan apl",
     "notSelected": "Tidak dipilih",
     "levelActive": "Aktif",
-    "scenes": {
+    "clientEnvs": {
       "wechat_pay": "WeChat",
       "alipay": "Alipay",
       "union_pay": "UnionPay",
