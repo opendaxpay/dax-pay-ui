@@ -1,0 +1,31 @@
+{
+  "title": "河馬付服務商配置",
+  "groupConfig": "配置管理",
+  "manageTitle": "河馬付商戶管理",
+  "cardMchKey": "服務商金鑰",
+  "cardMchKeyDesc": "配置杉德代理號、RSA金鑰(河馬付為杉德旗下聚合支付產品)",
+  "cardMchConfig": "商戶配置",
+  "cardMchConfigDesc": "配置杉德商戶號、門店號等",
+  "configTitle": "河馬付服務商金鑰配置",
+  "isvIdentity": "服務商身份",
+  "keyConfig": "金鑰配置",
+  "sandAppId": "杉德代理號",
+  "sandAppIdPlaceholder": "請輸入杉德代理號(sandAppId/app_id)",
+  "publicKey": "杉德公鑰",
+  "publicKeyTooltip": "杉德RSA公鑰(PEM格式, 用於回撥/響應驗籤); 已配置時顯示為脫敏值, 如需更新請清空後重新貼上",
+  "publicKeyPlaceholder": "請貼上杉德RSA公鑰(PEM格式, 含-----BEGIN/END標記)",
+  "privateKey": "商戶私鑰",
+  "privateKeyTooltip": "商戶RSA私鑰(PEM格式, 用於請求籤名); 已配置時顯示為脫敏值, 如需更新請清空後重新貼上",
+  "privateKeyPlaceholder": "請貼上商戶RSA私鑰(PEM格式, 含-----BEGIN/END標記)",
+  "mchConfigTitle": "河馬付商戶配置",
+  "merchantNo": "杉德商戶號",
+  "merchantNoPlaceholder": "請輸入杉德商戶號",
+  "storeId": "門店號",
+  "storeIdPlaceholder": "請輸入門店號(storeId)",
+  "validation": {
+    "sandAppId": "請輸入杉德代理號",
+    "privateKey": "請輸入商戶私鑰",
+    "publicKey": "請輸入杉德公鑰",
+    "merchantNo": "請輸入杉德商戶號"
+  }
+}

@@ -30,10 +30,17 @@
   const hasRoles = computed(() => roleList.value.length > 0);
 
   /**
-   * 根据当前语言获取角色名称
+   * 根据当前语言获取角色名称（缺词条时回退 code）
    */
   function getRoleName(item: UserRole): string {
-    return item.i18nKey ? $t(item.i18nKey) : '';
+    if (!item.i18nKey) {
+      return item.code || '';
+    }
+    const text = $t(item.i18nKey);
+    if (!text || text === item.i18nKey) {
+      return item.code || item.i18nKey;
+    }
+    return text;
   }
 
   /**

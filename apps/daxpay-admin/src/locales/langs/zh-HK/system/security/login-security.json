@@ -1,0 +1,49 @@
+{
+  "title": "登錄安全",
+  "description": "維護失敗鎖定與統計窗口配置",
+  "summary": {
+    "enabled": "防護已啓用",
+    "disabled": "防護未啓用",
+    "failedThreshold": "失敗閾值 {count} 次",
+    "locked": "鎖定 {minutes} 分鐘",
+    "resetWindow": "重置窗口 {minutes} 分鐘",
+    "captchaEnabled": "驗證碼觸發 {count} 次",
+    "captchaDisabled": "驗證碼未啓用"
+  },
+  "section": {
+    "protection": "登錄防護",
+    "lockout": "鎖定策略",
+    "captcha": "驗證碼觸發"
+  },
+  "lockoutEnabled": {
+    "label": "啓用登錄失敗鎖定",
+    "desc": "開啓後，連續失敗達到閾值時將觸發鎖定。"
+  },
+  "maxFailedAttempts": {
+    "label": "最大失敗次數",
+    "desc": "超過該次數後進入鎖定狀態。",
+    "placeholder": "請輸入最大失敗次數"
+  },
+  "lockoutDurationMinutes": {
+    "label": "鎖定時長",
+    "desc": "賬號被鎖定後的持續時間。",
+    "placeholder": "請輸入鎖定時長"
+  },
+  "failureResetMinutes": {
+    "label": "失敗統計重置窗口",
+    "desc": "在該時間內未繼續失敗，則清空累計失敗次數。",
+    "placeholder": "請輸入重置窗口時長"
+  },
+  "captchaEnabled": {
+    "label": "啓用驗證碼觸發",
+    "desc": "開啓後，連續失敗達到閾值時將要求驗證碼。"
+  },
+  "captchaTriggerAttempts": {
+    "label": "觸發驗證碼的失敗次數",
+    "desc": "失敗次數達到該值後，登錄時需要驗證碼。",
+    "placeholder": "請輸入觸發次數"
+  },
+  "validation": {
+    "captchaTriggerRange": "觸發驗證碼的失敗次數不能大於最大失敗次數"
+  }
+}

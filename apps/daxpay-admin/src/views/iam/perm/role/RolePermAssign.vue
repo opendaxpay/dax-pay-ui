@@ -8,6 +8,7 @@
   import { RoleApi } from '#/api/iam/perm/role.api';
   import { RolePermApi } from '#/api/iam/perm/role-perm.api';
   import { useMessage } from '#/hooks/useMessage';
+  import { formatPermCodeTitle } from '#/utils/perm-i18n';
 
   /** ID值类型 */
   type IdValue = number | string;
@@ -56,8 +57,8 @@
   const menuChildrenMap = ref(new Map<KeyValue, KeyValue[]>());
   // 菜单对应的权限码映射表
   const menuCodeMap = ref(new Map<KeyValue, KeyValue[]>());
-  // 权限码对应的菜单映射表
-  const codeMenuMap = ref(new Map<KeyValue, KeyValue>());
+  // 权限码对应的菜单映射表（一码可挂多个同 menuCode 菜单，值为父菜单 id 列表）
+  const codeMenuMap = ref(new Map<KeyValue, KeyValue[]>());
   // 菜单ID值映射表
   const menuIdValueMap = ref(new Map<KeyValue, IdValue>());
   // 权限码ID值映射表
@@ -82,21 +83,34 @@
     return id ? `menu-${id}` : '';
   }
 
-  /** 将权限码ID转换为权限码key */
-  function toCodeKey(codeId?: IdValue | null): KeyValue {
-    const id = normalizeId(codeId);
-    return id ? `code-${id}` : '';
+  /** 将权限码ID + 所属菜单ID转换为树节点 key（一码多挂时保证全局唯一） */
+  function toCodeKey(codeId?: IdValue | null, menuId?: IdValue | null): KeyValue {
+    const c = normalizeId(codeId);
+    const m = normalizeId(menuId);
+    return c && m ? `code-${c}-menu-${m}` : '';
   }
 
-  /** 获取节点显示标题，根据 i18nKey 翻译 */
-  function getDisplayTitle(node: TreeNode): string {
-    const displayName = node.i18nKey ? $t(node.i18nKey) : '';
-    if (node.type === 'code') {
-      // 权限码标签
-      const permCodeLabel = $t('iam.role.permCodeLabel');
-      return node.code ? `${displayName} (${permCodeLabel})` : displayName;
+  /**
+   * 翻译菜单 i18nKey，缺失词条时回退 fallback（避免显示裸 key 或空白）
+   */
+  function translateOrFallback(i18nKey?: string, fallback = ''): string {
+    if (!i18nKey) {
+      return fallback;
     }
-    return displayName;
+    const text = $t(i18nKey);
+    // vue-i18n 缺词条时通常返回 key 本身
+    if (!text || text === i18nKey) {
+      return fallback || i18nKey;
+    }
+    return text;
+  }
+
+  /** 获取节点显示标题：菜单用 menu.* 词条，权限码用 perm 语言包 + 真实 code */
+  function getDisplayTitle(node: TreeNode): string {
+    if (node.type === 'code') {
+      return formatPermCodeTitle(node.i18nKey, node.code);
+    }
+    return translateOrFallback(node.i18nKey, '');
   }
 
   /** 递归映射树节点，添加本地化显示标题 */
@@ -163,7 +177,7 @@
     const nextMenuParentMap = new Map<KeyValue, KeyValue | undefined>();
     const nextMenuChildrenMap = new Map<KeyValue, KeyValue[]>();
     const nextMenuCodeMap = new Map<KeyValue, KeyValue[]>();
-    const nextCodeMenuMap = new Map<KeyValue, KeyValue>();
+    const nextCodeMenuMap = new Map<KeyValue, KeyValue[]>();
     const nextMenuIdValueMap = new Map<KeyValue, IdValue>();
     const nextCodeIdValueMap = new Map<KeyValue, IdValue>();
 
@@ -177,10 +191,19 @@
       }
     }
 
+    /** 确保权限码的父菜单列表已初始化 */
+    function ensureCodeMenus(codeId: KeyValue) {
+      if (!nextCodeMenuMap.has(codeId)) {
+        nextCodeMenuMap.set(codeId, []);
+      }
+    }
+
     /** 递归遍历节点构建索引 */
     function walk(currentNodes: TreeNode[], parentMenuId?: KeyValue) {
       currentNodes.forEach((node) => {
-        const nodeKey = String(node.key || (node.type === 'code' ? toCodeKey(node.codeId) : toMenuKey(node.id)));
+        const nodeKey = String(
+          node.key || (node.type === 'code' ? toCodeKey(node.codeId, parentMenuId) : toMenuKey(node.id)),
+        );
         nextNodeMap.set(nodeKey, node);
 
         if (node.type === 'code') {
@@ -188,7 +211,11 @@
           if (!codeId || !parentMenuId) {
             return;
           }
-          nextCodeMenuMap.set(codeId, parentMenuId);
+          ensureCodeMenus(codeId);
+          const parentMenus = nextCodeMenuMap.get(codeId)!;
+          if (!parentMenus.includes(parentMenuId)) {
+            parentMenus.push(parentMenuId);
+          }
           nextCodeIdValueMap.set(codeId, node.codeId as IdValue);
           ensureMenuChildren(parentMenuId);
           nextMenuCodeMap.get(parentMenuId)?.push(codeId);
@@ -253,12 +280,10 @@
     const checkedCodeSet = new Set(uniqueKeys(checkedCodeIds.value));
     const autoMenuSet = new Set<KeyValue>();
 
-    // 根据勾选的权限码，自动勾选对应的菜单
+    // 根据勾选的权限码，自动勾选其全部挂载父菜单
     checkedCodeSet.forEach((codeId) => {
-      const menuId = codeMenuMap.value.get(codeId);
-      if (menuId) {
-        autoMenuSet.add(menuId);
-      }
+      const menuIds = codeMenuMap.value.get(codeId) || [];
+      menuIds.forEach((menuId) => autoMenuSet.add(menuId));
     });
 
     autoCheckedMenuIds.value = [...autoMenuSet];
@@ -295,7 +320,11 @@
         }
       });
 
-    checkedKeys.value = uniqueKeys([...nextCheckedMenuKeys, ...[...checkedCodeSet].map((codeId) => toCodeKey(codeId))]);
+    // 每个 codeId 展开为所有挂载实例的树 key，保证勾选态与多实例节点同步
+    const nextCheckedCodeKeys = [...checkedCodeSet].flatMap((codeId) =>
+      (codeMenuMap.value.get(codeId) || []).map((menuId) => toCodeKey(codeId, menuId)),
+    );
+    checkedKeys.value = uniqueKeys([...nextCheckedMenuKeys, ...nextCheckedCodeKeys]);
     halfCheckedMenuKeys.value = uniqueKeys(nextHalfCheckedMenuKeys);
     manualCheckedMenuIds.value = [...manualMenuSet];
     checkedCodeIds.value = [...checkedCodeSet];

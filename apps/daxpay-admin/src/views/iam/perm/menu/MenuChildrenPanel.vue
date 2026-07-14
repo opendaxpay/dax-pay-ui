@@ -260,7 +260,7 @@
           :data="tableData"
         >
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
-          <vxe-column field="i18nKey" :title="$t('iam.menu.titleCn')" :min-width="140">
+          <vxe-column field="i18nKey" :title="$t('iam.menu.title')" :min-width="140">
             <template #default="{ row }">
               <a
                 v-if="hasPermission(PermCodes.Iam.Menu.VIEW)"

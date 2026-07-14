@@ -1,0 +1,77 @@
+{
+  "title": "三方登錄配置",
+  "emptyDesc": "暫無平台配置數據",
+  "clientCode": {
+    "label": "終端",
+    "admin": "運營端",
+    "merchant": "商户端"
+  },
+  "platform": {
+    "weChat": "微信開放平台",
+    "weCom": "企業微信",
+    "qq": "QQ",
+    "github": "GitHub",
+    "gitee": "Gitee",
+    "google": "Google",
+    "feishu": "飛書",
+    "dingTalk": "釘釘",
+    "douyin": "抖音",
+    "alipay": "支付寶"
+  },
+  "status": {
+    "enabled": "已啓用",
+    "disabled": "已停用",
+    "unconfigured": "未配置"
+  },
+  "badge": {
+    "platformRedirect": "平台級配置"
+  },
+  "action": {
+    "config": "配置",
+    "gotoConfig": "前往配置",
+    "gotoCredential": "前往配置憑據",
+    "edit": "編輯",
+    "enable": "啓用",
+    "disable": "禁用",
+    "delete": "刪除",
+    "add": "新增平台配置",
+    "search": "查詢",
+    "reset": "重置",
+    "copy": "複製"
+  },
+  "form": {
+    "source": "平台",
+    "clientId": "客户端ID",
+    "clientIdPlaceholder": "請輸入客户端ID(AppId)",
+    "clientIdHelp": "通常為AppId或ClientID，以平台實際名稱為準",
+    "clientSecret": "客户端密鑰",
+    "clientSecretPlaceholder": "輸入客户端密鑰",
+    "clientSecretHelp": "通常為AppSecret或ClientSecret，以平台實際名稱為準",
+    "clientSecretRequired": "客户端密鑰不可為空",
+    "agentId": "企業微信應用ID",
+    "agentIdPlaceholder": "僅企業微信需要",
+    "enabled": "是否啓用",
+    "enabledRequired": "請選擇是否啓用",
+    "callbackUrl": "回調地址",
+    "callbackUrlHelp": "將以下地址填寫到對應第三方平台的授權回調地址配置中；運營端與商户端各需登記一套",
+    "callbackUrlEmpty": "請先在端點配置中設置管理端訪問地址",
+    "callbackUrlEmptyAdmin": "請先在端點配置中設置「管理端訪問地址」",
+    "callbackUrlEmptyMerchant": "請先在端點配置中設置「商户端訪問地址」(merchantBaseUrl)，商户社交登錄依賴該地址",
+    "loginCallback": "登錄回調",
+    "bindCallback": "綁定回調"
+  },
+  "confirm": {
+    "delete": "確認刪除 {name} 配置嗎？"
+  },
+  "tip": {
+    "addSuccess": "新增成功",
+    "configSuccess": "配置成功",
+    "editSuccess": "修改成功",
+    "enableSuccess": "啓用成功",
+    "disableSuccess": "停用成功",
+    "deleteSuccess": "刪除成功",
+    "copySuccess": "已複製到剪貼板",
+    "platformCredentialRequired": "請先完成平台級憑據配置後再啓用登錄",
+    "platformCredentialHint": "AppId/密鑰等憑據請在「支付寶應用配置」中維護；此處僅控制是否開放三方登錄"
+  }
+}

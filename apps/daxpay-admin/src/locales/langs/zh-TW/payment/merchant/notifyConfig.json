@@ -1,0 +1,23 @@
+{
+  "notifyConfig": {
+    "title": "非同步通知配置",
+    "infoBanner": "非同步通知配置用於接收平臺主動推送的業務事件回撥，請填寫可被公網訪問的 https 回撥地址",
+    "notifyUrl": "回撥地址",
+    "notifyUrlTooltip": "事件通知將以 HTTP POST 方式推送到該地址，需以 https:// 開頭",
+    "notifyUrlPlaceholder": "https://您的回撥接收地址",
+    "notifyWay": "通知方式",
+    "notifyWayHint": "當前版本僅支援 HTTP 非同步回撥",
+    "subscribedEvents": "訂閱事件",
+    "subscribedEventsTooltip": "勾選需要接收通知的業務事件型別",
+    "eventPay": "支付",
+    "eventCashouts": "提現",
+    "eventSettle": "結算",
+    "status": "啟用狀態",
+    "statusEnable": "啟用",
+    "statusDisable": "停用",
+    "remark": "備註",
+    "remarkPlaceholder": "請輸入備註",
+    "confirmSave": "確定要儲存非同步通知配置嗎？",
+    "saveSuccess": "儲存成功"
+  }
+}

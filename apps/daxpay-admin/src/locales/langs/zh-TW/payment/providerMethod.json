@@ -1,0 +1,10 @@
+{
+  "title": "支付渠道",
+  "field": {
+    "provider": "支付渠道",
+    "method": "支付方式",
+    "description": "說明",
+    "remark": "備註"
+  },
+  "detail": "目錄項詳情"
+}

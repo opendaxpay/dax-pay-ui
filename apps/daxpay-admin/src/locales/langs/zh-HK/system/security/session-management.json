@@ -1,0 +1,50 @@
+{
+  "title": "會話管理",
+  "description": "維護在線時長、併發數量與清理策略",
+  "summary": {
+    "enabled": "控制已啓用",
+    "disabled": "控制未啓用",
+    "online": "在線 {hours} 小時",
+    "active": "活躍 {hours} 小時",
+    "concurrent": "併發 {count} 個",
+    "scope": "範圍 {name}",
+    "strategy": "策略 {name}"
+  },
+  "section": {
+    "control": "會話控制",
+    "limit": "在線與併發限制",
+    "policy": "超限策略與清理"
+  },
+  "enabled": {
+    "label": "啓用會話管理",
+    "desc": "開啓後，統一限制在線時長、併發數量和超限處理方式。"
+  },
+  "maxOnlineHours": {
+    "label": "最大在線時長",
+    "desc": "單次會話允許連續在線的最長時間。",
+    "placeholder": "請輸入最大在線時長"
+  },
+  "activeTimeoutHours": {
+    "label": "最大活躍時長",
+    "desc": "無操作多久後自動失效，0表示不限制。",
+    "placeholder": "請輸入最大活躍時長"
+  },
+  "maxConcurrentSessions": {
+    "label": "最大併發會話數",
+    "desc": "單個賬號允許同時在線的會話上限。",
+    "placeholder": "請輸入最大併發會話數"
+  },
+  "concurrentStrategy": {
+    "label": "併發超限處理策略",
+    "desc": "決定達到併發上限後如何處理新舊會話。",
+    "newSession": "允許新會話",
+    "kickOldest": "踢出最早會話",
+    "denyNew": "拒絕新會話"
+  },
+  "concurrentScope": {
+    "label": "併發計數範圍",
+    "desc": "全局共享:所有終端共用一個配額池;按終端獨立:每類終端各自計數互不影響。",
+    "global": "全局共享",
+    "perDevice": "按終端獨立"
+  }
+}

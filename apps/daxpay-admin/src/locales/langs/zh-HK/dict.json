@@ -1,0 +1,423 @@
+{
+  "id_type": {
+    "IDCard": "身份證",
+    "passport": "護照",
+    "ForeignGreenCard": "外國人綠卡",
+    "MilitaryID": "軍人證"
+  },
+  "sign_type": {
+    "hmac_sha256": "HMAC_SHA256",
+    "md5": "MD5",
+    "sm3": "SM3"
+  },
+  "merchant_status": {
+    "enable": "啓用",
+    "disabled": "禁用"
+  },
+  "mch_app_status": {
+    "enable": "啓用",
+    "disabled": "禁用"
+  },
+  "notify_content_type": {
+    "pay": "支付訂單變動通知",
+    "refund": "退款訂單變動通知",
+    "transfer": "轉賬訂單變動通知",
+    "allocation": "分賬訂單變動通知"
+  },
+  "merchant_notify_type": {
+    "none": "不啓用",
+    "http": "HTTP",
+    "mq": "消息隊列",
+    "websocket": "WebSocket"
+  },
+  "log_business_type": {
+    "add": "新增",
+    "update": "修改",
+    "delete": "刪除",
+    "grant": "授權",
+    "export": "導出",
+    "import": "導入",
+    "force": "強退",
+    "clean": "清空數據",
+    "other": "其它"
+  },
+  "channel": {
+    "wechat_pay": "微信支付(直連)",
+    "ali_pay": "支付寶(直連)",
+    "wechat_pay_isv": "微信支付(服務商)",
+    "union_pay": "雲閃付",
+    "alipay_isv": "支付寶(服務商)",
+    "leshua_pay": "樂刷支付",
+    "vbill_pay": "隨行付",
+    "ada_pay": "匯付天下",
+    "hkrt_pay": "海科融通",
+    "allin_yst2": "通聯支付(雲商通二代)",
+    "allin_syb": "通聯支付(收銀寶)",
+    "lakala_pay": "拉卡拉",
+    "fuyou_pay": "富友支付",
+    "sheng_pay": "盛付通",
+    "ysep_pay": "銀盛支付",
+    "quick_pay": "快錢支付",
+    "sand_pay": "杉德支付",
+    "yee_pay": "易寶支付",
+    "dougong_pay": "斗拱支付",
+    "ums_pay": "銀聯商務",
+    "jee_pay": "jeepay",
+    "easy_pay": "易支付",
+    "shouqianba_pay": "收錢吧",
+    "douyin_pay": "抖音支付"
+  },
+  "pay_refund_status": {
+    "no_refund": "未退款",
+    "refunding": "退款中",
+    "partial_refund": "部分退款",
+    "refunded": "全部退款"
+  },
+  "pay_status": {
+    "progress": "支付中",
+    "close": "支付關閉",
+    "cancel": "支付撤銷",
+    "success": "支付成功",
+    "fail": "支付失敗",
+    "timeout": "支付超時",
+    "wait": "待支付"
+  },
+  "refund_status": {
+    "close": "退款關閉",
+    "fail": "退款失敗",
+    "progress": "退款中",
+    "success": "退款成功"
+  },
+  "pay_alloc_status": {
+    "waiting": "待分賬",
+    "allocation": "已分賬"
+  },
+  "trade_flow_type": {
+    "pay": "支付",
+    "refund": "退款",
+    "transfer": "轉賬"
+  },
+  "trade_type": {
+    "pay": "支付",
+    "refund": "退款",
+    "transfer": "轉賬",
+    "allocation": "分賬",
+    "cashouts": "提現",
+    "settle": "結算"
+  },
+  "transfer_status": {
+    "progress": "轉賬中",
+    "success": "轉賬成功",
+    "close": "轉賬關閉",
+    "fail": "轉賬失敗"
+  },
+  "callback_status": {
+    "success": "成功",
+    "fail": "失敗",
+    "ignore": "忽略",
+    "exception": "異常",
+    "not_found": "未找到"
+  },
+  "close_type": {
+    "close": "關閉",
+    "cancel": "撤銷"
+  },
+  "notice_send_type": {
+    "auto": "自動發送",
+    "manual": "手動發送"
+  },
+  "reconcile_discrepancy_type": {
+    "consistent": "一致",
+    "local_not_exists": "本地訂單不存在",
+    "remote_not_exists": "遠程訂單不存在",
+    "not_match": "訂單信息不一致"
+  },
+  "reconcile_result": {
+    "consistent": "一致",
+    "inconsistent": "不一致"
+  },
+  "trade_status": {
+    "success": "成功",
+    "fail": "失敗",
+    "closed": "關閉",
+    "revoked": "撤銷",
+    "progress": "執行中",
+    "exception": "異常"
+  },
+  "allocation_result": {
+    "all_success": "全部成功",
+    "part_success": "部分成功",
+    "all_failed": "全部失敗",
+    "all_pending": "處理中"
+  },
+  "allocation_status": {
+    "processing": "分賬處理中",
+    "alloc_end": "分賬處理完成",
+    "finish_failed": "完結失敗",
+    "finish": "分賬完結",
+    "alloc_failed": "分賬失敗",
+    "ignore": "忽略"
+  },
+  "alloc_detail_result": {
+    "pending": "待分賬",
+    "success": "分賬成功",
+    "fail": "分賬失敗",
+    "ignore": "忽略分賬"
+  },
+  "transfer_payee_type": {
+    "user_id": "用户ID",
+    "open_id": "OpenId",
+    "login_name": "用户賬號"
+  },
+  "merchant_type": {
+    "common": "普通商户",
+    "partner": "特約商户"
+  },
+  "pay_method": {
+    "other": "其他支付方式",
+    "barcode": "通用付款碼支付",
+    "wechat_qr": "微信掃碼",
+    "wechat_jsapi": "微信jsapi",
+    "wechat_mini": "微信小程序",
+    "wechat_h5": "微信H5",
+    "wechat_app": "微信應用支付",
+    "alipay_qr": "支付寶掃碼",
+    "alipay_jsapi": "支付寶jsapi",
+    "alipay_mini": "支付寶小程序",
+    "alipay_pc": "支付寶電腦支付",
+    "alipay_h5": "支付寶H5",
+    "alipay_app": "支付寶應用支付",
+    "qrcode": "通用掃碼支付",
+    "wechat_cashier": "微信小程序收銀台",
+    "union_qr": "銀聯掃碼",
+    "union_jsapi": "銀聯jsapi",
+    "union_h5": "銀聯H5",
+    "alipay_order_code": "支付寶訂單碼",
+    "douyin_qr": "抖音掃碼",
+    "douyin_jsapi": "抖音JSAPI",
+    "douyin_h5": "抖音H5",
+    "douyin_app": "抖音APP"
+  },
+  "onb_apply_status": {
+    "draft": "草稿",
+    "pre_trial": "預審",
+    "apply": "申請中",
+    "pass": "通過",
+    "reject": "駁回",
+    "pre_trial_reject": "預審拒絕",
+    "generated": "已生成進件商户",
+    "completion": "數據補填",
+    "sign": "待簽署",
+    "error": "錯誤",
+    "closed": "關閉"
+  },
+  "user_status": {
+    "normal": "正常",
+    "lock": "鎖定",
+    "ban": "封禁(未實裝)"
+  },
+  "ls_alloc_apply_status": {
+    "0": "未開通",
+    "1": "已開通",
+    "2": "商户主動關閉",
+    "3": "待審核",
+    "4": "凍結",
+    "5": "註銷",
+    "6": "待籤合同",
+    "draft": "草稿",
+    "fail": "失敗"
+  },
+  "alloc_relation_type": {
+    "service_provider": "服務商",
+    "store": "門店",
+    "staff": "員工",
+    "store_owner": "店主",
+    "partner": "合作伙伴",
+    "headquarter": "總部",
+    "brand": "品牌方",
+    "distributor": "分銷商",
+    "user": "用户",
+    "supplier": "供應商",
+    "custom": "自定義"
+  },
+  "vbill_alloc_sign_type": {
+    "00": "接口簽約",
+    "01": "短信簽約",
+    "02": "線下籤約"
+  },
+  "terminal_device_type": {
+    "10": "條碼支付受理終端",
+    "11": "輔助受理終端",
+    "12": "行業終端",
+    "13": "MIS終端",
+    "01": "自動櫃員機",
+    "02": "傳統POS",
+    "03": "mPOS",
+    "04": "智能POS",
+    "05": "II型固定電話",
+    "06": "雲閃付終端",
+    "07": "保留使用",
+    "08": "手機POS",
+    "09": "刷臉付終端"
+  },
+  "channel_terminal_status": {
+    "submit": "已上報",
+    "logged": "已註銷",
+    "error": "錯誤",
+    "wait": "未報送",
+    "init": "初始化"
+  },
+  "vbill_alloc_apply_status": {
+    "draft": "草稿",
+    "00": "未簽約",
+    "02": "簽約成功",
+    "01": "簽約失敗",
+    "04": "審批中",
+    "03": "未簽約"
+  },
+  "ada_pay_corp_status": {
+    "wait": "待提交",
+    "processing": "處理中",
+    "success": "成功",
+    "submit_fail": "提交失敗",
+    "update_fail": "更新失敗"
+  },
+  "terminal_type": {
+    "wechat": "微信渠道報送",
+    "alipay": "支付寶渠道報送",
+    "union": "雲閃付渠道報送",
+    "common": "標準上報"
+  },
+  "gateway_pay_type": {
+    "pc": "PC收銀台支付",
+    "h5": "H5收銀台支付",
+    "aggregate": "聚合支付",
+    "mini_app": "小程序收銀台支付"
+  },
+  "adapay_settle_account_status": {
+    "wait": "待提交",
+    "success": "成功",
+    "logged": "已註銷",
+    "submit_fail": "失敗",
+    "logged_fail": "失敗"
+  },
+  "aggregate_pay_type": {
+    "wechat_pay": "微信支付",
+    "alipay": "支付寶",
+    "union_pay": "銀聯支付"
+  },
+  "gateway_cashier_type": {
+    "h5": "H5收銀台",
+    "pc": "PC收銀台",
+    "mini_app": "小程序收銀台"
+  },
+  "aggregate_bar_pay_type": {
+    "wechat_pay": "微信支付",
+    "alipay": "支付寶",
+    "union_pay": "銀聯支付"
+  },
+  "isv_status": {
+    "disabled": "禁用",
+    "enable": "啓用"
+  },
+  "channel_auth_type": {
+    "wechat": "微信",
+    "alipay": "支付寶",
+    "union_pay": "銀聯"
+  },
+  "ada_pay_method": {
+    "alipay_lite": "支付寶小程序支付"
+  },
+  "onb_apply_mch_type": {
+    "other": "其他",
+    "enterprise": "企業",
+    "individual": "個體工商户",
+    "personal": "小微商户",
+    "government": "黨政、機關、事業單位"
+  },
+  "vbill_pay_method": {
+    "YZF": "翼支付",
+    "CASHIER": "小程序收銀台"
+  },
+  "cashier_scene": {
+    "wechat_pay": "微信場景",
+    "alipay": "支付寶場景",
+    "union_pay": "雲閃付場景"
+  },
+  "audio_bind_type": {
+    "app": "應用",
+    "merchant": "商户",
+    "cashier_code": "碼牌"
+  },
+  "agent_cashouts_type": {
+    "bank": "銀行轉賬",
+    "alipay": "支付寶",
+    "wechat": "微信"
+  },
+  "agent_cashouts_fee_formula": {
+    "fixed_amount": "固定金額",
+    "fixed_rate": "固定比例",
+    "combined": "組合"
+  },
+  "agent_cashouts_status": {
+    "applying": "審核中",
+    "approved": "審核通過",
+    "rejected": "審核拒絕",
+    "approve_failed": "審核失敗",
+    "settling": "結算中",
+    "settlement_success": "結算成功",
+    "settlement_failed": "結算失敗",
+    "close": "關閉提現"
+  },
+  "settle_status": {
+    "not_settle": "未結算",
+    "settled": "已結算"
+  },
+  "onb_mch_source": {
+    "apply": "進件申請",
+    "manual": "手動創建",
+    "auth_bind": "認證綁定"
+  },
+  "wallet_flow_type": {
+    "refund_profit": "退款軋差",
+    "withdraw": "提現",
+    "adjust": "人工調賬",
+    "order_profit": "訂單分潤"
+  },
+  "sms_provider": {
+    "aliyun": "阿里雲",
+    "tencent": "騰訊雲"
+  },
+  "onb_apply_type": {
+    "merchant": "商户進件",
+    "enterprise": "企業進件",
+    "micro": "小微進件"
+  },
+  "alloc_receiver_type": {
+    "common": "通用類型",
+    "enterprise": "企業",
+    "person": "個人"
+  },
+  "payment_vendor": {
+    "wechat": "微信支付",
+    "alipay": "支付寶",
+    "union_pay": "銀聯",
+    "douyin": "抖音支付"
+  },
+  "pay_call_type": {
+    "from": "表單提交方式",
+    "qr_code": "掃碼支付(只支持PC)",
+    "jsapi": "JSAPI支付",
+    "link": "跳轉鏈接",
+    "mini_app": "小程序",
+    "app": "APP支付",
+    "bar_code": "條碼支付"
+  },
+  "alloc_receiver_bind_status": {
+    "wait": "未綁定",
+    "submit": "已綁定",
+    "logged": "已註銷",
+    "error": "錯誤",
+    "init": "初始化"
+  }
+}

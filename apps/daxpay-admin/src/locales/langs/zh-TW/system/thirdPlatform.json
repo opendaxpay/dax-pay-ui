@@ -1,0 +1,95 @@
+{
+  "common": {
+    "title": "三方平臺管理",
+    "description": "集中管理第三方登入與開放平臺憑據。"
+  },
+  "loginConfig": {
+    "title": "三方平臺登入配置",
+    "description": "配置 WEB 端使用各平臺的 OAuth 登入憑據。"
+  },
+  "alipay": {
+    "tabTitle": "支付寶應用配置",
+    "tabDescription": "支付寶 OAuth 憑據, 服務於授權登入與支付通道認證",
+    "title": "支付寶應用認證配置",
+    "description": "管理支付寶 OAuth 憑據(appId/私鑰/證書), 用於授權登入獲取使用者標識(userId)與支付通道認證。",
+    "usageTip": "本配置同時服務於: 1) 三方登入的支付寶授權登入; 2) 支付場景的通道認證(獲取支付所需的使用者標識)。",
+    "confirmSaveContent": "確定要儲存支付寶應用配置嗎?",
+    "section": {
+      "basic": "基礎配置",
+      "credential": "憑據配置"
+    },
+    "appId": "應用 AppId",
+    "appIdDesc": "支付寶開放平臺建立的應用 appId",
+    "inputAppId": "請輸入支付寶應用 AppId",
+    "authType": "鑑權方式",
+    "authTypeDesc": "公鑰模式使用支付寶公鑰, 證書模式使用三本證書",
+    "authTypeKey": "公鑰模式",
+    "authTypeCert": "證書模式",
+    "privateKey": "應用私鑰",
+    "privateKeyDesc": "應用私鑰(PEM 格式, 公鑰與證書模式都需要)",
+    "inputPrivateKey": "請輸入應用私鑰",
+    "alipayPublicKey": "支付寶公鑰",
+    "alipayPublicKeyDesc": "支付寶公鑰(公鑰模式使用, 在支付寶開放平臺「應用資訊」獲取)",
+    "inputAlipayPublicKey": "請輸入支付寶公鑰",
+    "appCert": "應用公鑰證書",
+    "appCertDesc": "應用公鑰證書(證書模式使用, 上傳 .crt 檔案)",
+    "uploadAppCert": "上傳應用公鑰證書",
+    "alipayCert": "支付寶公鑰證書",
+    "alipayCertDesc": "支付寶公鑰證書(證書模式使用, 上傳 .crt 檔案)",
+    "uploadAlipayCert": "上傳支付寶公鑰證書",
+    "alipayRootCert": "支付寶根證書",
+    "alipayRootCertDesc": "支付寶根證書(證書模式使用, 上傳 .crt 檔案)",
+    "uploadRootCert": "上傳支付寶根證書",
+    "validate": {
+      "appId": "請輸入應用 AppId",
+      "authType": "請選擇鑑權方式",
+      "privateKey": "請輸入應用私鑰",
+      "alipayPublicKey": "請輸入支付寶公鑰",
+      "appCert": "請上傳應用公鑰證書",
+      "alipayCert": "請上傳支付寶公鑰證書",
+      "alipayRootCert": "請上傳支付寶根證書"
+    }
+  },
+  "wechatMp": {
+    "tabTitle": "微信公眾號配置",
+    "tabDescription": "公眾號憑據, 服務於微信登入與模版通知",
+    "title": "微信公眾號認證配置",
+    "description": "管理微信公眾號憑據(appId/appSecret), 用於公眾號 H5 授權獲取使用者 openId, 以及通知中心模版訊息傳送。",
+    "usageTip": "本配置同時服務於: 1) 公眾號 H5 網頁授權登入; 2) 通知中心模版訊息傳送。",
+    "confirmSaveContent": "確定要儲存微信公眾號配置嗎?",
+    "section": {
+      "credential": "憑據配置"
+    },
+    "appId": "公眾號 AppId",
+    "appIdDesc": "微信公眾號的 AppId(在公眾平臺「設定與開發-基本配置」獲取)",
+    "inputAppId": "請輸入微信公眾號 AppId",
+    "appSecret": "公眾號 AppSecret",
+    "appSecretDesc": "微信公眾號的 AppSecret(在公眾平臺「設定與開發-基本配置」獲取)",
+    "inputAppSecret": "請輸入微信公眾號 AppSecret",
+    "validate": {
+      "appId": "請輸入公眾號 AppId",
+      "appSecret": "請輸入公眾號 AppSecret"
+    }
+  },
+  "douyinH5": {
+    "tabTitle": "抖音 H5 應用",
+    "tabDescription": "抖音開放平臺 H5 憑據，服務於 H5 場景授權",
+    "title": "抖音 H5 應用認證配置",
+    "description": "管理抖音開放平臺 H5 應用憑據(Client Key / Client Secret)，用於 H5 場景授權。",
+    "usageTip": "本配置獨立於「三方平臺登入配置」中的抖音登入，僅管理開放平臺 H5 應用 Client Key / Client Secret。",
+    "confirmSaveContent": "確定要儲存抖音 H5 應用配置嗎?",
+    "section": {
+      "credential": "憑據配置"
+    },
+    "clientKey": "Client Key",
+    "clientKeyDesc": "抖音開放平臺應用的 Client Key(在開放平臺「應用詳情」獲取)",
+    "inputClientKey": "請輸入 Client Key",
+    "clientSecret": "Client Secret",
+    "clientSecretDesc": "抖音開放平臺應用的 Client Secret(在開放平臺「應用詳情」獲取)",
+    "inputClientSecret": "請輸入 Client Secret",
+    "validate": {
+      "clientKey": "請輸入 Client Key",
+      "clientSecret": "請輸入 Client Secret"
+    }
+  }
+}

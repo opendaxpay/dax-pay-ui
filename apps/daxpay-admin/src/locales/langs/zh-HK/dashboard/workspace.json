@@ -1,0 +1,78 @@
+{
+  "greeting": {
+    "morning": "早上好",
+    "afternoon": "下午好",
+    "evening": "晚上好",
+    "subtitle": "歡迎回到 DaxPay 運營平台"
+  },
+  "stat": {
+    "merchantCount": "商户總數",
+    "channelMerchantCount": "通道商户",
+    "userCount": "用户總數",
+    "todayLogin": "今日登錄",
+    "onlineUser": "在線用户"
+  },
+  "widget": {
+    "workbenchHeader": "工作台",
+    "quickEntry": "快捷入口",
+    "tradeOverview": "交易概覽",
+    "payOrder": "支付訂單",
+    "tradeTrend": "交易趨勢",
+    "channelDist": "支付渠道",
+    "noticeList": "系統公告"
+  },
+  "tradeOverview": {
+    "today": "今日交易",
+    "yesterday": "昨日交易",
+    "successAmount": "成交金額(元)",
+    "successCount": "成交筆數",
+    "refundAmount": "退款金額(元)",
+    "refundCount": "退款筆數"
+  },
+  "payOrder": {
+    "developing": "支付訂單管理開發中",
+    "status": {
+      "success": "成功",
+      "fail": "失敗",
+      "closed": "已關閉"
+    }
+  },
+  "tradeTrend": {
+    "last7days": "近 7 天",
+    "last30days": "近 30 天"
+  },
+  "quickEntry": {
+    "merchant": "商户管理",
+    "app": "應用管理",
+    "channelMerchant": "通道商户",
+    "notify": "通知中心",
+    "user": "用户管理",
+    "dict": "字典管理",
+    "loginLog": "登錄日誌",
+    "security": "安全配置",
+    "payOrder": "支付訂單",
+    "refundOrder": "退款訂單",
+    "payTrade": "資金交易",
+    "role": "角色管理",
+    "menu": "菜單管理",
+    "operateLog": "操作日誌",
+    "notice": "通知公告",
+    "productConfig": "通道產品配置",
+    "platformConfig": "平台配置",
+    "onlineUser": "在線用户",
+    "analytics": "分析頁",
+    "developTrade": "支付調試",
+    "socialLogin": "三方平台登錄",
+    "empty": "暫無可訪問的快捷入口",
+    "edit": "編輯",
+    "editTitle": "編輯快捷入口",
+    "selected": "已選（拖拽排序）",
+    "available": "可選入口",
+    "allAdded": "已全部添加"
+  },
+  "notice": {
+    "important": "重要",
+    "normal": "普通",
+    "top": "置頂"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "title": "樂刷服務商配置",
+  "groupConfig": "配置管理",
+  "configTitle": "樂刷服務商金鑰配置",
+  "manageTitle": "樂刷商戶管理",
+  "basicConfig": "基礎配置",
+  "keyConfig": "金鑰配置",
+  "enable": "是否啟用",
+  "lsMchNo": "樂刷商戶號",
+  "lsMchNoPlaceholder": "請輸入樂刷商戶號(merchant_id)",
+  "lsMchNoTooltip": "樂刷開放平臺分配的商戶號(merchant_id), 全域性唯一",
+  "tradeKey": "交易金鑰",
+  "tradeKeyPlaceholder": "請輸入交易金鑰(tradeKey)",
+  "tradeKeyTooltip": "樂刷交易介面簽名金鑰, 用於請求籤名與響應/回撥驗籤",
+  "notifyKey": "非同步通知金鑰",
+  "notifyKeyPlaceholder": "請輸入非同步通知金鑰(notifyKey, 選填)",
+  "signType": "簽名型別",
+  "signTypePlaceholder": "請選擇簽名型別",
+  "lsIsvNo": "樂刷服務商號",
+  "lsIsvNoPlaceholder": "請輸入樂刷服務商號(進件場景, 選填)",
+  "cardMchKey": "服務商金鑰",
+  "cardMchKeyDesc": "配置樂刷商戶號、交易金鑰與簽名型別",
+  "validation": {
+    "lsMchNo": "請輸入樂刷商戶號",
+    "tradeKey": "請輸入交易金鑰",
+    "signType": "請選擇簽名型別"
+  },
+  "groupMchConfig": "商戶配置",
+  "cardMchConfig": "商戶配置",
+  "cardMchConfigDesc": "配置通道商戶樂刷商戶號"
+}

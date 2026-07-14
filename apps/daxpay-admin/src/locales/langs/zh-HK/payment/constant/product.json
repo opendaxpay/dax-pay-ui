@@ -1,0 +1,43 @@
+{
+  "field": {
+    "code": "產品編碼",
+    "name": "產品名稱",
+    "channel": "所屬通道",
+    "description": "產品介紹",
+    "icon": "圖標",
+    "remark": "備註",
+    "channelName": "通道名稱",
+    "isv": "服務商",
+    "terminal": "終端報備",
+    "sandbox": "沙箱",
+    "apiCallMode": "API調用模式",
+    "payIdType": "支付標識類型",
+    "capabilities": "支付能力",
+    "features": "產品特性"
+  },
+  "features": "產品特性",
+  "detail": "產品詳情",
+  "sandboxSupported": "支持",
+  "sandboxNotSupported": "不支持",
+  "productName": {
+    "alipayIsv": "支付寶(服務商)",
+    "wechatIsv": "微信支付(服務商)",
+    "unknown": "產品配置"
+  },
+  "productConfig": {
+    "title": "通道產品配置",
+    "emptyDesc": "暫無支付產品數據",
+    "prodLabel": "生產",
+    "sandboxLabel": "沙箱",
+    "prodConfigBtn": "生產配置",
+    "sandboxConfigBtn": "沙箱配置",
+    "switchEnv": "切換環境",
+    "switchToSandboxConfirm": "確定要切換到沙箱環境嗎？所有交易將會使用調用沙箱接口，適用於接口聯調與功能測試。",
+    "switchToProdConfirm": "確定要切換到生產環境嗎？所有交易將使用生產接口進行真實請求，併產生真實資金往來。",
+    "nonIsvDisabledTip": "非服務商類型的支付產品無法編輯"
+  },
+  "placeholder": {
+    "name": "請輸入產品名稱",
+    "code": "請輸入產品編碼"
+  }
+}

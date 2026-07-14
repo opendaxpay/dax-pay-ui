@@ -1,0 +1,34 @@
+{
+  "route": {
+    "title": "通道路由",
+    "editModeLabel": "配置維度",
+    "setActiveMode": "設為當前生效",
+    "setActiveModeConfirm": "將把本應用的通道路由設為「{mode}」，之後下單按該配置解析收款通道商戶。是否繼續？",
+    "alreadyActiveMode": "已是當前生效配置",
+    "activeModeTag": "生效中",
+    "modeBasic": "按渠道預設",
+    "modeScene": "按支付方式",
+    "payCapability": "支付能力",
+    "payCapabilityPlaceholder": "請選擇支付能力",
+    "sceneSaveConfirm": "確定要儲存「按支付方式」通道路由配置嗎？儲存後將覆蓋當前按支付方式對映的通道商戶與能力。",
+    "basicProductNotSelected": "未選擇",
+    "channelMerchant": "通道商戶",
+    "channelMerchantPlaceholder": "請選擇通道商戶",
+    "channelMerchantNotFound": "暫無可選通道商戶",
+    "sceneChannelMchCapabilityPairHint": "通道商戶與支付能力須同時選擇或同時留空，不可只填其中一項",
+    "basicSaveConfirm": "確定要儲存「按渠道預設」通道路由配置嗎？儲存後將覆蓋各支付渠道對應的預設通道商戶。",
+    "sceneRouteNotSelected": "未選擇",
+    "configTab": "路由配置",
+    "method": "支付方式",
+    "missingAppContext": "請從應用管理進入通道路由配置",
+    "providers": {
+      "aggregate_pay": "聚合支付",
+      "wechat": "微信支付",
+      "alipay": "支付寶",
+      "union_pay": "銀聯",
+      "visa": "Visa",
+      "mastercard": "萬事達",
+      "douyin": "抖音支付"
+    }
+  }
+}

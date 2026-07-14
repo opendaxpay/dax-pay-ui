@@ -1,0 +1,29 @@
+{
+  "title": "隨行付服務商配置",
+  "groupConfig": "配置管理",
+  "configTitle": "隨行付服務商金鑰配置",
+  "manageTitle": "隨行付商戶管理",
+  "basicConfig": "基礎配置",
+  "keyConfig": "金鑰配置",
+  "cardMchKey": "服務商金鑰",
+  "cardMchKeyDesc": "配置隨行付天闕機構ID、RSA公私鑰",
+  "orgId": "天闕機構ID",
+  "orgIdPlaceholder": "請輸入天闕合作機構ID(orgId)",
+  "publicKey": "天闕RSA公鑰",
+  "publicKeyTooltip": "天闕平臺RSA公鑰(X509 Base64), 用於響應/回撥驗籤",
+  "privateKey": "商戶RSA私鑰",
+  "privateKeyTooltip": "商戶RSA私鑰(PKCS8 Base64), SHA1withRSA 簽名",
+  "sandbox": "沙箱環境",
+  "groupMchConfig": "商戶配置",
+  "cardMchConfig": "商戶配置",
+  "cardMchConfigDesc": "檢視天闕商戶號",
+  "mchConfigTitle": "商戶配置",
+  "vbillMchNo": "天闕商戶號",
+  "vbillMchNoPlaceholder": "請輸入天闕商戶號(mno)",
+  "validation": {
+    "orgId": "請輸入天闕機構ID",
+    "publicKey": "請輸入天闕RSA公鑰",
+    "privateKey": "請輸入商戶RSA私鑰",
+    "vbillMchNo": "請輸入天闕商戶號"
+  }
+}

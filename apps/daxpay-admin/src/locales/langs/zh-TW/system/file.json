@@ -1,0 +1,47 @@
+{
+  "platform": {
+    "title": "儲存檔案",
+    "detailTitle": "儲存檔案詳情",
+    "field": {
+      "filename": "檔名稱",
+      "originalFilename": "原始檔名",
+      "size": "檔案大小",
+      "ext": "副檔名",
+      "contentType": "MIME型別",
+      "url": "檔案訪問地址",
+      "basePath": "基礎儲存路徑",
+      "path": "儲存路徑",
+      "accessType": "訪問型別",
+      "bizType": "業務分類",
+      "remark": "備註",
+      "createTime": "建立時間"
+    },
+    "placeholder": {
+      "filename": "請輸入檔名稱",
+      "originalFilename": "請輸入原始檔名",
+      "size": "請輸入檔案大小",
+      "ext": "請輸入副檔名",
+      "contentType": "請輸入MIME型別",
+      "url": "請輸入檔案訪問地址",
+      "basePath": "請輸入基礎儲存路徑",
+      "path": "請輸入儲存路徑",
+      "bizType": "請輸入業務分類",
+      "remark": "請輸入備註"
+    },
+    "accessType": {
+      "public": "公開檔案",
+      "private": "私有檔案"
+    },
+    "action": {
+      "preview": "預覽",
+      "download": "下載",
+      "confirmDelete": "刪除確認",
+      "confirmDeleteContent": "確定要刪除該檔案記錄嗎？",
+      "deleteSuccess": "刪除成功"
+    },
+    "validate": {
+      "urlRequired": "請輸入檔案訪問地址",
+      "filenameRequired": "請輸入檔名稱"
+    }
+  }
+}

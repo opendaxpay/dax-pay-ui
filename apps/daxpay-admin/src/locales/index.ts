@@ -11,6 +11,8 @@ import { $t, setupI18n as coreSetup, loadLocalesMapFromDir } from '@vben/locales
 import { preferences } from '@vben/preferences';
 
 import antdEnLocale from 'antdv-next/dist/locale/en_US';
+import antdHkLocale from 'antdv-next/dist/locale/zh_HK';
+import antdTwLocale from 'antdv-next/dist/locale/zh_TW';
 import antdDefaultLocale from 'antdv-next/dist/locale/zh_CN';
 import dayjs from 'dayjs';
 import { VxeUI } from 'vxe-table';
@@ -54,7 +56,14 @@ async function loadDayjsLocale(lang: SupportedLanguagesType) {
       locale = await import('dayjs/locale/zh-cn');
       break;
     }
-    // 默认使用中文
+    case 'zh-TW': {
+      locale = await import('dayjs/locale/zh-tw');
+      break;
+    }
+    case 'zh-HK': {
+      locale = await import('dayjs/locale/zh-hk');
+      break;
+    }
     default: {
       locale = await import('dayjs/locale/zh-cn');
     }
@@ -80,6 +89,14 @@ async function loadAntdLocale(lang: SupportedLanguagesType) {
       antdLocale.value = antdDefaultLocale;
       break;
     }
+    case 'zh-TW': {
+      antdLocale.value = antdTwLocale;
+      break;
+    }
+    case 'zh-HK': {
+      antdLocale.value = antdHkLocale;
+      break;
+    }
   }
 }
 
@@ -95,6 +112,14 @@ async function loadVxeLocale(lang: SupportedLanguagesType) {
     }
     case 'zh-CN': {
       VxeUI.setLanguage('zh-CN');
+      break;
+    }
+    case 'zh-TW': {
+      VxeUI.setLanguage('zh-TW');
+      break;
+    }
+    case 'zh-HK': {
+      VxeUI.setLanguage('zh-HK');
       break;
     }
   }

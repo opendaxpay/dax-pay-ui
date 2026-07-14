@@ -49,6 +49,7 @@
   "typeLinkTip": "Open an external URL in a new window; requires a link URL",
   "parentMenu": "Parent Menu",
   "selectParent": "Please select parent menu",
+  "title": "Title",
   "titleCn": "Title",
   "titleEn": "English Title",
   "i18nKey": "I18n Key",

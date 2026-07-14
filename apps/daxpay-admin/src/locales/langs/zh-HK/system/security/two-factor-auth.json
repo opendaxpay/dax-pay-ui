@@ -1,0 +1,26 @@
+{
+  "title": "雙因素認證",
+  "description": "維護TOTP認證與備用驗證碼配置",
+  "summary": {
+    "enabled": "雙因素認證已啓用",
+    "disabled": "雙因素認證未啓用"
+  },
+  "section": {
+    "basic": "基礎設置",
+    "other": "其他配置"
+  },
+  "enabled": {
+    "label": "啓用雙因素認證",
+    "desc": "開啓後，用户可啓用雙因素認證增強賬户安全。"
+  },
+  "issuer": {
+    "label": "發行者名稱",
+    "desc": "在認證器應用中顯示的發行者名稱。",
+    "placeholder": "請輸入發行者名稱"
+  },
+  "backupCodesCount": {
+    "label": "備用驗證碼數量",
+    "desc": "用户可生成的備用驗證碼數量。",
+    "placeholder": "請輸入備用驗證碼數量"
+  }
+}

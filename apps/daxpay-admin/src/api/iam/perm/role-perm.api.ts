@@ -58,7 +58,7 @@ export interface RolePermAssignResult {
  * 角色统一授权树节点
  */
 export interface RolePermTreeNode extends BaseEntity {
-  /** 节点key，菜单节点使用 menu-{id}，权限码节点使用 code-{codeId} */
+  /** 节点key：菜单 menu-{id}；权限码 code-{codeId}-menu-{menuId}（一码多挂时保证唯一） */
   key?: string;
   /** 节点类型 */
   type?: 'code' | 'menu';

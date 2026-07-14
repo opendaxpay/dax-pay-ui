@@ -1,0 +1,28 @@
+{
+  "store": {
+    "title": "門店管理",
+    "field": {
+      "storeNo": "門店號",
+      "storeName": "門店名稱",
+      "contactPhone": "聯繫人電話",
+      "logoUrl": "門店LOGO",
+      "facadeUrl": "門頭照",
+      "interiorUrl": "門店內景照",
+      "region": "所在地區",
+      "address": "詳細地址",
+      "longitude": "經度",
+      "latitude": "緯度",
+      "status": "狀態",
+      "remark": "備註",
+      "createTime": "創建時間"
+    },
+    "status": {
+      "enable": "啓用",
+      "disabled": "停用"
+    },
+    "regionPlaceholder": "請選擇省/市/區",
+    "confirmDelete": "確定刪除該門店嗎？",
+    "validationStoreName": "請輸入門店名稱",
+    "validationStatus": "請選擇狀態"
+  }
+}

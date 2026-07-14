@@ -1,0 +1,47 @@
+{
+  "platform": {
+    "title": "存儲文件",
+    "detailTitle": "存儲文件詳情",
+    "field": {
+      "filename": "文件名稱",
+      "originalFilename": "原始文件名",
+      "size": "文件大小",
+      "ext": "擴展名",
+      "contentType": "MIME類型",
+      "url": "文件訪問地址",
+      "basePath": "基礎存儲路徑",
+      "path": "存儲路徑",
+      "accessType": "訪問類型",
+      "bizType": "業務分類",
+      "remark": "備註",
+      "createTime": "創建時間"
+    },
+    "placeholder": {
+      "filename": "請輸入文件名稱",
+      "originalFilename": "請輸入原始文件名",
+      "size": "請輸入文件大小",
+      "ext": "請輸入文件擴展名",
+      "contentType": "請輸入MIME類型",
+      "url": "請輸入文件訪問地址",
+      "basePath": "請輸入基礎存儲路徑",
+      "path": "請輸入存儲路徑",
+      "bizType": "請輸入業務分類",
+      "remark": "請輸入備註"
+    },
+    "accessType": {
+      "public": "公開文件",
+      "private": "私有文件"
+    },
+    "action": {
+      "preview": "預覽",
+      "download": "下載",
+      "confirmDelete": "刪除確認",
+      "confirmDeleteContent": "確定要刪除該文件記錄嗎？",
+      "deleteSuccess": "刪除成功"
+    },
+    "validate": {
+      "urlRequired": "請輸入文件訪問地址",
+      "filenameRequired": "請輸入文件名稱"
+    }
+  }
+}

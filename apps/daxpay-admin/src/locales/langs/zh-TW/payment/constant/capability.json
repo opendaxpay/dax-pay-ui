@@ -1,0 +1,13 @@
+{
+  "field": {
+    "code": "能力編碼",
+    "name": "能力名稱",
+    "description": "能力介紹",
+    "products": "關聯支付產品"
+  },
+  "placeholder": {
+    "name": "請輸入能力名稱",
+    "code": "請輸入能力編碼"
+  },
+  "detail": "支付能力詳情"
+}

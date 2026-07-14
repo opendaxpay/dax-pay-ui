@@ -1,0 +1,22 @@
+{
+  "douyinMchId": "抖音商户號",
+  "douyinMchIdPlaceholder": "請輸入抖音支付商户號",
+  "dyAppId": "抖音應用 AppId",
+  "dyAppIdPlaceholder": "請輸入抖音應用 AppId",
+  "appSecret": "應用密鑰",
+  "appSecretPlaceholder": "請輸入抖音應用密鑰",
+  "validation": {
+    "douyinMchIdRequired": "請輸入抖音商户號",
+    "dyAppIdRequired": "請輸入抖音應用 AppId",
+    "appSecretRequired": "請輸入應用密鑰",
+    "merchantPrivateKeyRequired": "請輸入商户私鑰",
+    "merchantSerialNumberRequired": "請輸入商家公鑰證書序列號",
+    "encryptKeyRequired": "請輸入接口加密密鑰"
+  },
+  "merchantPrivateKey": "商户私鑰",
+  "merchantPrivateKeyPlaceholder": "請輸入商户私鑰",
+  "merchantSerialNumber": "商家公鑰證書序列號",
+  "merchantSerialNumberPlaceholder": "請輸入商家公鑰證書序列號",
+  "encryptKey": "接口加密密鑰",
+  "encryptKeyPlaceholder": "請輸入接口加密密鑰"
+}

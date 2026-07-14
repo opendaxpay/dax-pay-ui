@@ -49,6 +49,7 @@
   "typeLinkTip": "新窗口打开外部链接，需填写外链地址",
   "parentMenu": "上级菜单",
   "selectParent": "请选择父级菜单",
+  "title": "标题",
   "titleCn": "标题",
   "titleEn": "英文标题",
   "i18nKey": "国际化Key",

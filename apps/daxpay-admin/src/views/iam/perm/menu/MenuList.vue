@@ -282,7 +282,7 @@
   function handleDeleteConfirm(row: Menu) {
     confirm({
       title: $t('iam.menu.confirmDelete'),
-      content: `${$t('iam.menu.titleCn')}: ${getDisplayTitle(row)}`,
+      content: `${$t('iam.menu.title')}: ${getDisplayTitle(row)}`,
       okText: $t('common.okText'),
       cancelText: $t('common.cancelText'),
       onOk: () => {
@@ -394,7 +394,7 @@
                   :tree-config="{ childrenField: 'children' }"
                   @cell-click="handleSelectNode"
                 >
-                  <vxe-column field="i18nKey" :title="$t('iam.menu.titleCn')" :min-width="160" tree-node>
+                  <vxe-column field="i18nKey" :title="$t('iam.menu.title')" :min-width="160" tree-node>
                     <template #default="{ row }">
                       <IconifyIcon v-if="row.icon" :icon="row.icon" class="text-lg inline-block align-middle mr-2" />
                       <span>{{ getDisplayTitle(row) }}</span>

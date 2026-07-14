@@ -8,6 +8,7 @@
   import { $t } from '@vben/locales';
 
   import { PermCodeApi } from '#/api/iam/perm/menu.api';
+  import { translatePermCodeName } from '#/utils/perm-i18n';
 
   // 抽屉显示状态
   const visible = ref(false);
@@ -82,10 +83,10 @@
       <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
       <!-- 权限码 -->
       <vxe-column field="code" :title="$t('iam.menu.permCode')" :min-width="200" />
-      <!-- 名称 -->
+      <!-- 名称（权限码 perm 语言包，缺失回退 code） -->
       <vxe-column field="i18nKey" :title="$t('system.dict.item.name')" :min-width="120">
         <template #default="{ row }">
-          {{ row.i18nKey ? $t(row.i18nKey) : '' }}
+          {{ translatePermCodeName(row.i18nKey, row.code) }}
         </template>
       </vxe-column>
       <!-- 内置 -->

@@ -1,0 +1,84 @@
+{
+  "title": "移動端應用管理",
+  "card": {
+    "merchant": {
+      "name": "商戶端",
+      "desc": "商戶員工使用的移動應用"
+    },
+    "admin": {
+      "name": "管理端",
+      "desc": "平臺運營使用的移動應用"
+    },
+    "cashier": {
+      "name": "收銀臺小程式",
+      "desc": "消費者掃碼支付的小程式"
+    },
+    "comingSoon": "敬請期待",
+    "enter": "進入配置"
+  },
+  "platformNames": {
+    "wx_h5": "微信公眾號",
+    "wx_mini": "微信小程式",
+    "alipay_mini": "支付寶小程式",
+    "dy_mini": "抖音小程式",
+    "android": "安卓APP",
+    "ios": "iOS APP"
+  },
+  "fields": {
+    "appId": "AppId",
+    "appIdPlaceholder": "請輸入 AppId",
+    "appIdRequired": "請輸入 AppId",
+    "wxAppId": "小程式 AppId",
+    "wxAppIdPlaceholder": "請輸入微信小程式 AppId",
+    "appSecret": "AppSecret",
+    "appSecretPlaceholder": "請輸入 AppSecret",
+    "appSecretRequired": "請輸入 AppSecret",
+    "wxAppSecret": "小程式 AppSecret",
+    "wxAppSecretPlaceholder": "請輸入微信小程式 AppSecret",
+    "originalId": "原始 ID",
+    "originalIdPlaceholder": "請輸入小程式原始 ID(gh_ 開頭, 可選)",
+    "alipayAppId": "小程式 AppId",
+    "alipayAppIdPlaceholder": "請輸入支付寶小程式 AppId",
+    "authType": "鑑權方式",
+    "authTypeKey": "公鑰模式",
+    "authTypeCert": "證書模式",
+    "authTypeRequired": "請選擇鑑權方式",
+    "privateKey": "應用私鑰",
+    "privateKeyPlaceholder": "請輸入應用私鑰(PEM 格式, 公鑰與證書模式都需要)",
+    "privateKeyRequired": "請輸入應用私鑰",
+    "alipayPublicKey": "支付寶公鑰",
+    "alipayPublicKeyPlaceholder": "請輸入支付寶公鑰(公鑰模式使用)",
+    "alipayPublicKeyRequired": "請輸入支付寶公鑰",
+    "appCert": "應用公鑰證書",
+    "appCertRequired": "請上傳應用公鑰證書",
+    "uploadAppCert": "上傳應用公鑰證書",
+    "alipayCert": "支付寶公鑰證書",
+    "alipayCertRequired": "請上傳支付寶公鑰證書",
+    "uploadAlipayCert": "上傳支付寶公鑰證書",
+    "alipayRootCert": "支付寶根證書",
+    "alipayRootCertRequired": "請上傳支付寶根證書",
+    "uploadRootCert": "上傳支付寶根證書",
+    "dyAppId": "小程式 AppId",
+    "dyAppIdPlaceholder": "請輸入抖音小程式 AppId",
+    "dyAppSecret": "小程式 AppSecret",
+    "dyAppSecretPlaceholder": "請輸入抖音小程式 AppSecret"
+  },
+  "detail": {
+    "back": "返回",
+    "appConfig": "平臺金鑰配置",
+    "appConfigPlaceholder": "請輸入 JSON 格式的平臺金鑰配置",
+    "notifyConfig": "訊息通知配置",
+    "notifyConfigPlaceholder": "請輸入 JSON 格式的訊息通知配置",
+    "bindingEnabled": "啟用第三方賬號使用者繫結",
+    "enabled": "是否啟用",
+    "remark": "備註",
+    "remarkPlaceholder": "請輸入備註",
+    "save": "儲存",
+    "saveSuccess": "儲存成功",
+    "notSupportedAppType": "不支援的端型別",
+    "emptyPlatformConfig": "暫無平臺配置，填寫後儲存即可建立",
+    "platformComingSoon": "該平臺配置暫未開放，後續 APP 完善時再處理",
+    "cashierLimitTitle": "平臺唯一收銀臺小程式",
+    "cashierLimitDesc": "全平臺共用一套微信/支付寶收銀臺小程式憑證。支付時 openId 與 opAppId 須同源；平臺小程式 AppId 需在所用支付通道側繫結或報備為收款 AppId（官方服務商常見為服務商小程式，第三方通道一般為 sub_appid）。並非所有通道開箱即用。"
+  }
+}

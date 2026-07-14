@@ -1,0 +1,17 @@
+{
+  "title": "支付寶直連管理",
+  "groupApp": "應用管理",
+  "cardMchApp": "支付寶通道商户應用",
+  "cardMchAppDesc": "管理支付寶通道商户應用",
+  "cardCapabilityBinding": "支付應用配置",
+  "cardCapabilityBindingDesc": "決定每種支付能力用哪個應用發起支付",
+  "capabilityTitle": "配置各能力使用的應用",
+  "capabilityDesc": "為每種支付能力指定發起支付時使用的支付寶應用；留空則按應用類型自動匹配。",
+  "capabilityTableCapability": "支付能力",
+  "capabilityTableApp": "使用的應用",
+  "capabilitySelectPlaceholder": "留空則按應用類型自動匹配",
+  "capabilityAutoTip": "自動匹配",
+  "capabilityNoApp": "本通道商户尚未創建任何應用，請先前往應用管理創建應用",
+  "capabilitySaveSuccess": "保存成功",
+  "capabilityClearConfirm": "確定要清空全部應用配置嗎？"
+}

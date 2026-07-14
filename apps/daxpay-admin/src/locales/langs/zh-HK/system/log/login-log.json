@@ -1,0 +1,20 @@
+{
+  "account": "用户賬號",
+  "userId": "用户ID",
+  "status": "登錄狀態",
+  "ip": "登錄IP地址",
+  "os": "操作系統",
+  "browser": "瀏覽器類型",
+  "msg": "提示消息",
+  "loginTime": "訪問時間",
+  "client": "登錄終端",
+  "loginType": "登錄方式",
+  "loginLocation": "登錄地點",
+  "inputAccount": "請輸入用户賬號",
+  "selectStatus": "請選擇登錄狀態",
+  "detailTitle": "登錄日誌詳情",
+  "selectCleanDay": "清除多久前的日誌",
+  "cleanWarning": "警告",
+  "cleanConfirm": "是否清除指定日期前的日誌，該操作不可撤回",
+  "cleanSuccess": "清理日誌成功"
+}

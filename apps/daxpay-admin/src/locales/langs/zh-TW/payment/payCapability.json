@@ -1,0 +1,18 @@
+{
+  "field": {
+    "code": "能力編碼",
+    "name": "能力名稱",
+    "remark": "備註",
+    "enabled": "是否啟用",
+    "products": "關聯支付產品",
+    "provider": "支付渠道",
+    "method": "支付方式",
+    "providerMethod": "渠道與方式（發版）"
+  },
+  "placeholder": {
+    "name": "請輸入能力名稱",
+    "code": "請輸入能力編碼"
+  },
+  "detail": "支付能力詳情",
+  "edit": "編輯支付能力"
+}

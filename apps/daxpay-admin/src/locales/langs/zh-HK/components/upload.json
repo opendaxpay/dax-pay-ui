@@ -1,0 +1,6 @@
+{
+  "uploadImage": "上傳圖片",
+  "fileTooLarge": "{name} 文件大小為{size}, 超出了最大{maxSize}的限制，請壓縮圖片後上傳!",
+  "uploadSuccess": "{name} 上傳成功!",
+  "uploadFailed": "{name} 上傳失敗!"
+}

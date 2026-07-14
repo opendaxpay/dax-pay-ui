@@ -1,0 +1,10 @@
+{
+  "manageTitle": "銀聯商務商戶管理",
+  "cardDirectKeyConfig": "金鑰配置",
+  "cardDirectKeyConfigDesc": "配置銀聯商務商戶維度的應用ID和金鑰",
+  "directKeyConfigTitle": "銀聯商務金鑰配置",
+  "keyConfigSection": "商戶金鑰配置",
+  "environment": "環境",
+  "prodEnv": "生產",
+  "sandboxEnv": "沙箱"
+}

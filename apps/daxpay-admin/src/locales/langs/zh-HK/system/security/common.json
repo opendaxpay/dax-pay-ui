@@ -1,0 +1,21 @@
+{
+  "title": "安全管理",
+  "description": "按模塊維護系統安全配置",
+  "edit": "編輯",
+  "cancel": "取消",
+  "confirm": "確認",
+  "confirmSave": "確認保存",
+  "confirmSaveContent": "確定要保存當前配置嗎？",
+  "unit": {
+    "char": "位",
+    "day": "天",
+    "times": "次",
+    "minute": "分鐘",
+    "hour": "小時",
+    "session": "個",
+    "second": "秒",
+    "window": "個",
+    "count": "個",
+    "score": "分"
+  }
+}

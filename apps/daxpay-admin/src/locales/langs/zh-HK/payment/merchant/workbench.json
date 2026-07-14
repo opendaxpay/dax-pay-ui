@@ -1,0 +1,28 @@
+{
+  "workbench": {
+    "title": "商户工作台",
+    "backToList": "返回列表",
+    "developing": "功能開發中，敬請期待...",
+    "groupBasic": "基礎管理",
+    "groupPayment": "支付配置",
+    "groupBusiness": "業務配置",
+    "cardMchInfo": "商户資料",
+    "cardMchInfoDesc": "商户號、名稱、狀態等基本信息",
+    "cardSecurity": "安全配置",
+    "cardSecurityDesc": "密碼策略、登錄安全、會話管理",
+    "cardProductPayConfig": "支付產品配置",
+    "cardProductPayConfigDesc": "商户產品支付參數與沙箱調試環境配置",
+    "cardChannelMerchant": "通道商户",
+    "cardChannelMerchantDesc": "商户在各支付通道的商户號配置與管理",
+    "cardApp": "應用管理",
+    "cardAppDesc": "商户應用創建與管理",
+    "cardCredentialConfig": "對接配置",
+    "cardCredentialConfigDesc": "商户公鑰、通信密鑰、平台公鑰等對接密鑰配置",
+    "cardWxDomainVerify": "微信域名驗證",
+    "cardWxDomainVerifyDesc": "上傳與管理微信公眾號 / 小程序業務域名校驗文件",
+    "cardUser": "商户用户",
+    "cardUserDesc": "用户賬號管理與權限分配",
+    "cardStore": "門店管理",
+    "cardStoreDesc": "商户物理門店檔案與位置信息管理"
+  }
+}

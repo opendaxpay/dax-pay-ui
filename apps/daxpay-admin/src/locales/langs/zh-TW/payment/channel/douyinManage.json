@@ -1,0 +1,18 @@
+{
+  "manageTitle": "抖音直連商戶管理",
+  "cardDirectKeyConfig": "金鑰配置",
+  "cardDirectKeyConfigDesc": "配置抖音支付商戶維度的金鑰和證書",
+  "directKeyConfigTitle": "抖音直連金鑰配置",
+  "keyConfigSection": "商戶金鑰配置",
+  "cardCapabilityBinding": "支付應用配置",
+  "cardCapabilityBindingDesc": "決定每種支付能力用哪個應用發起支付",
+  "capabilityTitle": "配置各能力使用的應用",
+  "capabilityDesc": "為每種支付能力指定發起支付時使用的抖音應用；留空則按應用型別自動匹配。",
+  "capabilityNoApp": "當前通道商戶下暫無應用，請先建立應用",
+  "capabilityAutoTip": "自動匹配",
+  "capabilitySelectPlaceholder": "留空則按應用型別自動匹配",
+  "capabilitySaveSuccess": "儲存成功",
+  "appTypeMiniProgram": "小程式",
+  "appTypeMobileApp": "移動應用",
+  "appTypeWebApp": "網站應用"
+}

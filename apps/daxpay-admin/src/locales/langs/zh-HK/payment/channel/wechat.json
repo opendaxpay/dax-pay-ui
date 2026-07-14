@@ -1,0 +1,24 @@
+{
+  "wxMchId": "微信商户Id",
+  "wxAppId": "微信應用appId",
+  "apiKeyV3": "API V3密鑰",
+  "appSecret": "APPID接口密碼",
+  "publicKey": "支付公鑰",
+  "publicKeyId": "支付公鑰ID",
+  "privateKey": "API證書私鑰",
+  "privateCert": "API證書",
+  "certSerialNo": "證書序列號",
+  "wxAppSecret": "微信密鑰",
+  "wxAuthUrl": "微信授權認證地址",
+  "validation": {
+    "wxMchIdRequired": "請輸入微信商户Id",
+    "wxAppIdRequired": "請輸入微信應用appId",
+    "apiKeyV3Required": "請輸入API V3密鑰",
+    "appSecretRequired": "請輸入APPID接口密碼",
+    "publicKeyRequired": "請輸入支付公鑰",
+    "publicKeyIdRequired": "請輸入支付公鑰ID",
+    "privateCertRequired": "請輸入API證書",
+    "certSerialNoRequired": "請輸入證書序列號",
+    "wxAppSecretRequired": "請輸入微信密鑰"
+  }
+}

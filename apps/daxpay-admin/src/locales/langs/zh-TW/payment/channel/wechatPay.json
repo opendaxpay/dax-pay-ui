@@ -1,0 +1,7 @@
+{
+  "mchId": "微信支付商戶號",
+  "mchIdPlaceholder": "請輸入微信支付商戶號",
+  "validation": {
+    "mchId": "請輸入微信支付商戶號"
+  }
+}

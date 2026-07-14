@@ -1,0 +1,21 @@
+{
+  "title": "檔案上傳演示",
+  "description": "演示預簽名方式上傳檔案到平臺儲存",
+  "publicBucket": {
+    "title": "公開桶上傳",
+    "description": "檔案可通過公開URL直接訪問，適合圖片、靜態資源等"
+  },
+  "loginBucket": {
+    "title": "加密桶上傳",
+    "description": "檔案需要預簽名URL才能訪問，適合敏感檔案、合同等"
+  },
+  "upload": "上傳",
+  "delete": "刪除",
+  "uploadSuccess": "上傳成功",
+  "deleteSuccess": "刪除成功",
+  "deleteConfirm": "確定要刪除該檔案嗎？",
+  "fileTooLarge": "檔案大小超出限制，最大10MB",
+  "invalidFileType": "僅支援圖片檔案",
+  "uploading": "上傳中...",
+  "accessUrl": "訪問地址"
+}

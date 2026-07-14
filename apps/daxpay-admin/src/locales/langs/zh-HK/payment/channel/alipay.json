@@ -1,0 +1,26 @@
+{
+  "aliAppId": "支付寶商户appId",
+  "authType": "認證類型",
+  "signType": "簽名類型",
+  "alipayUserId": "支付寶商家用户ID",
+  "alipayPublicKey": "支付寶公鑰",
+  "privateKey": "應用私鑰",
+  "appCert": "應用公鑰證書",
+  "alipayCert": "支付寶公鑰證書",
+  "alipayRootCert": "支付寶CA根證書",
+  "certFields": "證書認證相關（認證類型=證書時必填）",
+  "authTypeCert": "證書",
+  "authTypeKey": "公鑰",
+  "signTypeRsa2": "RSA2",
+  "validation": {
+    "aliAppIdRequired": "請輸入支付寶商户appId",
+    "authTypeRequired": "請選擇認證類型",
+    "signTypeRequired": "請選擇簽名類型",
+    "alipayUserIdRequired": "請輸入支付寶商家用户ID",
+    "alipayPublicKeyRequired": "請輸入支付寶公鑰",
+    "privateKeyRequired": "請輸入應用私鑰",
+    "appCertRequired": "認證類型為證書時，應用公鑰證書為必填",
+    "alipayCertRequired": "認證類型為證書時，支付寶公鑰證書為必填",
+    "alipayRootCertRequired": "認證類型為證書時，支付寶CA根證書為必填"
+  }
+}

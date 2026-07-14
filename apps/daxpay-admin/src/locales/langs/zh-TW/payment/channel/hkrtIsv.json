@@ -1,0 +1,31 @@
+{
+  "title": "海科融通服務商配置",
+  "groupConfig": "配置管理",
+  "configTitle": "海科融通服務商金鑰配置",
+  "manageTitle": "海科融通商戶管理",
+  "basicConfig": "基礎配置",
+  "keyConfig": "金鑰配置",
+  "cardMchKey": "服務商金鑰",
+  "cardMchKeyDesc": "配置海科融通服務商編號、接入標識、簽名金鑰",
+  "agentNo": "服務商編號",
+  "agentNoPlaceholder": "請輸入服務商編號",
+  "accessId": "接入機構標識",
+  "accessIdPlaceholder": "請輸入接入機構標識",
+  "accessKey": "簽名金鑰",
+  "accessKeyPlaceholder": "請輸入簽名金鑰(MD5 大寫簽名用)",
+  "groupMchConfig": "商戶配置",
+  "cardMchConfig": "商戶配置",
+  "cardMchConfigDesc": "配置通道商戶SAAS終端號",
+  "mchConfigTitle": "商戶配置",
+  "merchNo": "海科商戶編號",
+  "merchNoPlaceholder": "請輸入海科商戶編號",
+  "pn": "SAAS終端號",
+  "pnPlaceholder": "請輸入SAAS終端號",
+  "validation": {
+    "agentNo": "請輸入服務商編號",
+    "accessId": "請輸入接入機構標識",
+    "accessKey": "請輸入簽名金鑰",
+    "merchNo": "請輸入海科商戶編號",
+    "pn": "請輸入SAAS終端號"
+  }
+}

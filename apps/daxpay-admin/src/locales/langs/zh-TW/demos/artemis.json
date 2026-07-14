@@ -1,0 +1,53 @@
+{
+  "title": "訊息佇列演示",
+  "description": "演示 Artemis JMS 的三類核心場景：點對點、釋出訂閱、延時訊息",
+  "scene": {
+    "queue": {
+      "title": "點對點佇列",
+      "description": "一條訊息只被一個消費者消費（最經典 MQ 場景）"
+    },
+    "topic": {
+      "title": "釋出訂閱",
+      "description": "一條訊息廣播給所有訂閱者（同節點註冊 A/B 兩個訂閱者，都會收到）"
+    },
+    "delay": {
+      "title": "延時訊息",
+      "description": "傳送後延時 N 秒消費者才收到（訂單超時關單等場景）"
+    }
+  },
+  "form": {
+    "content": "訊息內容",
+    "contentPlaceholder": "請輸入訊息內容",
+    "delaySeconds": "延時秒數",
+    "send": "傳送",
+    "broadcast": "廣播"
+  },
+  "records": {
+    "title": "消費記錄",
+    "description": "消費者處理後的訊息記錄，每 2 秒自動重新整理。重啟服務後清空。",
+    "refresh": "重新整理",
+    "clear": "清空",
+    "empty": "暫無消費記錄，先在上方傳送一條訊息試試",
+    "columns": {
+      "scene": "場景",
+      "content": "內容",
+      "sendTime": "傳送時間",
+      "consumeTime": "消費時間",
+      "costMillis": "耗時(ms)",
+      "consumer": "消費者",
+      "producerTraceId": "生產者traceId",
+      "consumerTraceId": "消費者traceId",
+      "tracePropagated": "trace貫穿"
+    },
+    "traceStatus": {
+      "success": "貫穿",
+      "failed": "斷裂"
+    }
+  },
+  "messages": {
+    "sendSuccess": "傳送成功",
+    "clearSuccess": "清空成功",
+    "clearConfirm": "確定要清空全部消費記錄嗎？",
+    "contentRequired": "請輸入訊息內容"
+  }
+}

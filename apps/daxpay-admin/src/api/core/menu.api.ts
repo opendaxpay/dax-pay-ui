@@ -6,16 +6,23 @@ import { requestClient } from '#/api/request';
 import { i18n } from '#/locales';
 import zhCnMenuTitles from '../../locales/menu-titles/zh-CN.json';
 import enUsMenuTitles from '../../locales/menu-titles/en-US.json';
+import zhHkMenuTitles from '../../locales/menu-titles/zh-HK.json';
+import zhTwMenuTitles from '../../locales/menu-titles/zh-TW.json';
 
 /**
  * 注入菜单标题国际化文案
  * 数据源为静态语言包文件（menu-titles/*.json），不依赖 DB title_cn/title_en 列
  * DB 仅存 i18n_key，文案真相源在语言包
+ *
+ * 写入完整 locale（zh-CN/en-US/zh-TW/zh-HK）与短码（zh/en），避免 fallback 差异导致侧栏标题未命中
  */
 export function injectMenuI18n() {
-  // 中文：注入到 'zh' locale，vue-i18n implicit fallback 使 'zh-CN' 可命中
+  i18n.global.mergeLocaleMessage('zh-CN', zhCnMenuTitles);
   i18n.global.mergeLocaleMessage('zh', zhCnMenuTitles);
+  i18n.global.mergeLocaleMessage('en-US', enUsMenuTitles);
   i18n.global.mergeLocaleMessage('en', enUsMenuTitles);
+  i18n.global.mergeLocaleMessage('zh-TW', zhTwMenuTitles);
+  i18n.global.mergeLocaleMessage('zh-HK', zhHkMenuTitles);
 }
 
 /**

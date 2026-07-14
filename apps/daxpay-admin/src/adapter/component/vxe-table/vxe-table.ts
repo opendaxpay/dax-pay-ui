@@ -1,5 +1,7 @@
 import enUS from 'vxe-pc-ui/lib/language/en-US';
 import zhCN from 'vxe-pc-ui/lib/language/zh-CN';
+import zhHK from 'vxe-pc-ui/lib/language/zh-HK';
+import zhTW from 'vxe-pc-ui/lib/language/zh-TW';
 import VXETable from 'vxe-table';
 import { VxeUI } from 'vxe-table';
 
@@ -7,6 +9,8 @@ import { VxeUI } from 'vxe-table';
 // 不知道为什么, 必须添加default之后才能正常使用
 VxeUI.setI18n('en-US', enUS.default);
 VxeUI.setI18n('zh-CN', zhCN.default);
+VxeUI.setI18n('zh-TW', zhTW.default);
+VxeUI.setI18n('zh-HK', zhHK.default);
 
 /**
  * 是否设置暗黑模式

@@ -1,0 +1,76 @@
+{
+  "field": {
+    "name": "名稱",
+    "account": "賬號",
+    "phone": "手機號",
+    "email": "郵箱",
+    "clientCode": "終端",
+    "status": "狀態",
+    "role": "角色",
+    "roleList": "角色列表",
+    "candidateRole": "候選角色",
+    "selectedRole": "已選角色",
+    "lastLoginTime": "最後登錄時間",
+    "detail": "用户詳情",
+    "administrator": "管理員"
+  },
+  "status": {
+    "normal": "正常",
+    "lock": "鎖定",
+    "ban": "封禁"
+  },
+  "action": {
+    "assignRole": "分配角色",
+    "resetPassword": "重置密碼",
+    "ban": "封禁",
+    "unlock": "解鎖",
+    "batchBan": "批量封禁",
+    "batchUnlock": "批量解鎖",
+    "batchResetPassword": "批量重置密碼",
+    "confirmAssignRole": "確定要保存角色分配嗎？",
+    "confirmBan": "確定要封禁選中的用户嗎？",
+    "confirmUnlock": "確定要解鎖選中的用户嗎？",
+    "confirmResetPassword": "確定要重置選中用户的密碼嗎？",
+    "socialBind": "三方綁定"
+  },
+  "social": {
+    "title": "三方賬號綁定",
+    "bound": "已綁定",
+    "unbound": "未綁定",
+    "unbindAction": "解綁",
+    "unbindConfirm": "確定要解綁該用户的 {name} 賬號嗎？",
+    "unbindSuccess": "解綁成功",
+    "noEnabled": "暫無啓用的第三方平台"
+  },
+  "password": {
+    "password": "密碼",
+    "newPassword": "新密碼",
+    "confirmPassword": "確認密碼"
+  },
+  "validation": {
+    "nameLength": "名稱長度為3-15個字符",
+    "accountLength": "賬號長度為6-20個字符",
+    "passwordLength": "密碼長度為8-32個字符",
+    "assignRoleSingleTip": "一個用户只能分配一個角色，請選擇",
+    "pleaseSelectRole": "請選擇角色",
+    "noAssignableRole": "無可分配的角色",
+    "passwordRequired": "請輸入密碼",
+    "passwordLengthRange": "密碼長度為{min}-{max}個字符",
+    "accountFormat": "賬號只能包含字母、數字、下劃線和中劃線",
+    "passwordNoChinese": "密碼不能包含中文字符",
+    "cannotEditNonAdmin": "不允許編輯非運營端用户",
+    "cannotAssignRoleNonAdmin": "不允許為非運營端用户分配角色"
+  },
+  "passwordPolicy": {
+    "requireUppercase": "密碼必須包含大寫字母",
+    "requireLowercase": "密碼必須包含小寫字母",
+    "requireDigit": "密碼必須包含數字",
+    "requireSpecialChar": "密碼必須包含特殊字符（{chars}）",
+    "hintLength": "長度{min}-{max}個字符",
+    "hintUppercase": "至少包含一個大寫字母",
+    "hintLowercase": "至少包含一個小寫字母",
+    "hintDigit": "至少包含一個數字",
+    "hintSpecialChar": "至少包含一個特殊字符（{chars}）",
+    "notMeetRequirements": "密碼不符合要求"
+  }
+}

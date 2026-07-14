@@ -149,11 +149,25 @@
   }
 
   /**
+   * 角色显示名：优先 i18n 词条，缺词条回退 code
+   */
+  function getRoleDisplayName(row: Role): string {
+    if (!row.i18nKey) {
+      return row.code || '';
+    }
+    const text = $t(row.i18nKey);
+    if (!text || text === row.i18nKey) {
+      return row.code || row.i18nKey;
+    }
+    return text;
+  }
+
+  /**
    * 删除
    */
   function handleDelete(row: Role) {
     openDeleteConfirm({
-      name: row.i18nKey ? $t(row.i18nKey) : row.code || '',
+      name: getRoleDisplayName(row),
       verificationText: `iam/role/${row.code}`,
       title: $t('iam.role.delete'),
       onConfirm: () =>
@@ -206,7 +220,7 @@
           <!-- 角色名称 -->
           <vxe-column field="i18nKey" :title="$t('iam.role.name')" :min-width="150">
             <template #default="{ row }">
-              {{ row.i18nKey ? $t(row.i18nKey) : '' }}
+              {{ getRoleDisplayName(row) }}
             </template>
           </vxe-column>
           <!-- 终端类型 -->
