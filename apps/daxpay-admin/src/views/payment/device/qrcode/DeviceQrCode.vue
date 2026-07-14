@@ -243,7 +243,7 @@
       await navigator.clipboard.writeText(qrCodeUrl.value);
       message.success($t('common.operationSuccess'));
     } catch {
-      message.error($t('common.operationFail'));
+      message.error($t('common.operationFailed'));
     }
   }
 

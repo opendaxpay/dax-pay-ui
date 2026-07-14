@@ -105,6 +105,17 @@
     "fail": "red",
     "close": "default"
   },
+  "tradeType": {
+    "normal": "普通支付"
+  },
+  "method": {
+    "jsapi": "JSAPI",
+    "qrcode": "扫码",
+    "h5": "H5",
+    "app": "APP",
+    "barcode": "付款码",
+    "wap": "WAP"
+  },
   "placeholder": {
     "bizOrderNo": "请输入商户订单号",
     "title": "请输入订单标题",

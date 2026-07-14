@@ -46,11 +46,12 @@
   );
 
   // 支付通道下拉(常用通道)
-  const channelOptions = [
-    { label: '支付宝', value: 'alipay' },
-    { label: '微信支付', value: 'wechat' },
-    { label: '抖音支付', value: 'douyin' },
-  ];
+  const channelOptions = computed(() =>
+    ['alipay', 'wechat', 'douyin'].map((v) => ({
+      label: $t(`payment.channel.common.${v}`),
+      value: v,
+    })),
+  );
 
   // 查询字段
   const queryFields = computed<QueryField[]>(() => [
@@ -82,7 +83,7 @@
       type: 'list',
       field: 'channel',
       name: $t('payment.order.field.channel'),
-      selectList: channelOptions,
+      selectList: channelOptions.value,
     },
     {
       type: 'date_time_range',
@@ -142,7 +143,7 @@
 
   function channelLabel(code?: string): string {
     if (!code) return '-';
-    return channelOptions.find((o) => o.value === code)?.label || code;
+    return channelOptions.value.find((o) => o.value === code)?.label || code;
   }
 
   /**

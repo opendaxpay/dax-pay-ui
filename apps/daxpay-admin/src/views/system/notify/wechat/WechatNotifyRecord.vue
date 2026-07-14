@@ -98,7 +98,7 @@
       content: $t('system.notify.confirmResend'),
       onOk: () => {
         WechatMessageApi.resend(row.id).then(() => {
-          message.success($t('common.operateSuccess'));
+          message.success($t('common.operationSuccess'));
           queryPage();
         });
       },

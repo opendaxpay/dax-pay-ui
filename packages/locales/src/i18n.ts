@@ -23,6 +23,8 @@ const i18n = createI18n({
   globalInjection: true,
   legacy: false,
   locale: '',
+  // 缺 key 时回退简体中文，避免界面直接露出 raw key
+  fallbackLocale: 'zh-CN',
   messages: {},
 });
 

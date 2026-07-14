@@ -140,5 +140,16 @@
     "refundAmountPlaceholder": "Masukkan jumlah bayaran balik",
     "refundReasonPlaceholder": "Masukkan sebab bayaran balik (pilihan)",
     "refundAmountExceed": "Jumlah bayaran balik tidak boleh melebihi jumlah yang boleh dikembalikan"
+  },
+  "tradeType": {
+    "normal": "Bayaran Biasa"
+  },
+  "method": {
+    "jsapi": "JSAPI",
+    "qrcode": "Kod QR",
+    "h5": "H5",
+    "app": "APP",
+    "barcode": "Kod Bar",
+    "wap": "WAP"
   }
 }

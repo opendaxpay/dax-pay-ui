@@ -140,5 +140,16 @@
     "refundAmountPlaceholder": "กรอกจำนวนเงินคืน",
     "refundReasonPlaceholder": "ป้อนเหตุผลการคืนเงิน (ไม่บังคับ)",
     "refundAmountExceed": "จำนวนเงินคืนต้องไม่เกินจำนวนเงินที่สามารถขอคืนได้"
+  },
+  "tradeType": {
+    "normal": "ชำระเงินปกติ"
+  },
+  "method": {
+    "jsapi": "JSAPI",
+    "qrcode": "สแกนโค้ด",
+    "h5": "H5",
+    "app": "APP",
+    "barcode": "บาร์โค้ด",
+    "wap": "WAP"
   }
 }

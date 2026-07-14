@@ -140,5 +140,16 @@
     "refundAmountPlaceholder": "Nhập số tiền hoàn lại",
     "refundReasonPlaceholder": "Nhập lý do hoàn tiền (tùy chọn)",
     "refundAmountExceed": "Số tiền hoàn lại không được vượt quá số tiền được hoàn lại"
+  },
+  "tradeType": {
+    "normal": "Thanh toán thường"
+  },
+  "method": {
+    "jsapi": "JSAPI",
+    "qrcode": "Quét mã",
+    "h5": "H5",
+    "app": "APP",
+    "barcode": "Mã vạch",
+    "wap": "WAP"
   }
 }

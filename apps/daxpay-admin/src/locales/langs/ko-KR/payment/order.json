@@ -140,5 +140,16 @@
     "refundAmountPlaceholder": "환불 금액 입력",
     "refundReasonPlaceholder": "환불 사유 입력(선택사항)",
     "refundAmountExceed": "환불 금액은 환불 금액을 초과할 수 없습니다."
+  },
+  "tradeType": {
+    "normal": "일반 결제"
+  },
+  "method": {
+    "jsapi": "JSAPI",
+    "qrcode": "QR 스캔",
+    "h5": "H5",
+    "app": "APP",
+    "barcode": "바코드",
+    "wap": "WAP"
   }
 }

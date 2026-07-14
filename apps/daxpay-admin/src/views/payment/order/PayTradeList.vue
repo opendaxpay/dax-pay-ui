@@ -46,24 +46,25 @@
   );
 
   // 交易形态下拉
-  const tradeTypeOptions = [{ label: '普通支付', value: 'normal' }];
+  const tradeTypeOptions = computed(() => [
+    { label: $t('payment.order.tradeType.normal'), value: 'normal' },
+  ]);
 
   // 支付通道下拉
-  const channelOptions = [
-    { label: '支付宝', value: 'alipay' },
-    { label: '微信支付', value: 'wechat' },
-    { label: '抖音支付', value: 'douyin' },
-  ];
+  const channelOptions = computed(() =>
+    ['alipay', 'wechat', 'douyin'].map((v) => ({
+      label: $t(`payment.channel.common.${v}`),
+      value: v,
+    })),
+  );
 
   // 支付方式下拉
-  const methodOptions = [
-    { label: 'JSAPI', value: 'jsapi' },
-    { label: '扫码', value: 'qrcode' },
-    { label: 'H5', value: 'h5' },
-    { label: 'APP', value: 'app' },
-    { label: '付款码', value: 'barcode' },
-    { label: 'WAP', value: 'wap' },
-  ];
+  const methodOptions = computed(() =>
+    ['jsapi', 'qrcode', 'h5', 'app', 'barcode', 'wap'].map((v) => ({
+      label: $t(`payment.order.method.${v}`),
+      value: v,
+    })),
+  );
 
   const queryFields = computed<QueryField[]>(() => [
     {
@@ -88,19 +89,19 @@
       type: 'list',
       field: 'tradeType',
       name: $t('payment.order.field.tradeType'),
-      selectList: tradeTypeOptions,
+      selectList: tradeTypeOptions.value,
     },
     {
       type: 'list',
       field: 'channel',
       name: $t('payment.order.field.channel'),
-      selectList: channelOptions,
+      selectList: channelOptions.value,
     },
     {
       type: 'list',
       field: 'method',
       name: $t('payment.order.field.method'),
-      selectList: methodOptions,
+      selectList: methodOptions.value,
     },
     {
       type: 'date_time_range',
@@ -170,12 +171,12 @@
 
   function channelLabel(code?: string): string {
     if (!code) return '-';
-    return channelOptions.find((o) => o.value === code)?.label || code;
+    return channelOptions.value.find((o) => o.value === code)?.label || code;
   }
 
   function methodLabel(code?: string): string {
     if (!code) return '-';
-    return methodOptions.find((o) => o.value === code)?.label || code;
+    return methodOptions.value.find((o) => o.value === code)?.label || code;
   }
 
   /**

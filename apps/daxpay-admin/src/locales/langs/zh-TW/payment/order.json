@@ -140,5 +140,16 @@
     "refundAmountPlaceholder": "請輸入退款金額",
     "refundReasonPlaceholder": "請輸入退款原因(可選)",
     "refundAmountExceed": "退款金額不能大於可退金額"
+  },
+  "tradeType": {
+    "normal": "普通支付"
+  },
+  "method": {
+    "jsapi": "JSAPI",
+    "qrcode": "掃碼",
+    "h5": "H5",
+    "app": "APP",
+    "barcode": "付款碼",
+    "wap": "WAP"
   }
 }

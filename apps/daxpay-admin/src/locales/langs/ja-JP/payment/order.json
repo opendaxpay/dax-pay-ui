@@ -140,5 +140,16 @@
     "refundAmountPlaceholder": "返金額を入力してください",
     "refundReasonPlaceholder": "返金理由を入力してください (オプション)",
     "refundAmountExceed": "払い戻し額は払い戻し可能額を超えることはできません"
+  },
+  "tradeType": {
+    "normal": "通常決済"
+  },
+  "method": {
+    "jsapi": "JSAPI",
+    "qrcode": "QRコード",
+    "h5": "H5",
+    "app": "APP",
+    "barcode": "バーコード",
+    "wap": "WAP"
   }
 }

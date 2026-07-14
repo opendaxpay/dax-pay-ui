@@ -140,5 +140,16 @@
     "refundAmountPlaceholder": "Enter refund amount",
     "refundReasonPlaceholder": "Enter refund reason (optional)",
     "refundAmountExceed": "Refund amount cannot exceed refundable amount"
+  },
+  "tradeType": {
+    "normal": "Normal Payment"
+  },
+  "method": {
+    "jsapi": "JSAPI",
+    "qrcode": "QR Code",
+    "h5": "H5",
+    "app": "APP",
+    "barcode": "Barcode",
+    "wap": "WAP"
   }
 }

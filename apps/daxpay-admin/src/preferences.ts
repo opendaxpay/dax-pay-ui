@@ -33,7 +33,9 @@ export const overridesPreferences = defineOverridesPreferences({
     persist: false,
   },
   shortcutKeys: {
+    // 默认关闭全局快捷键提示（Alt+Q 退出 / Alt+L 锁屏），避免用户下拉菜单出现裸快捷键文案
     globalLogout: false,
+    globalLockScreen: false,
   },
   theme: {
     mode: 'auto',

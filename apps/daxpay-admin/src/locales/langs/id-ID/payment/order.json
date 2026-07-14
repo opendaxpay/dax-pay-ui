@@ -140,5 +140,16 @@
     "refundAmountPlaceholder": "Masukkan jumlah pengembalian dana",
     "refundReasonPlaceholder": "Masukkan alasan pengembalian dana (opsional)",
     "refundAmountExceed": "Jumlah pengembalian dana tidak dapat melebihi jumlah yang dapat dikembalikan"
+  },
+  "tradeType": {
+    "normal": "Pembayaran Biasa"
+  },
+  "method": {
+    "jsapi": "JSAPI",
+    "qrcode": "Kode QR",
+    "h5": "H5",
+    "app": "APP",
+    "barcode": "Kode Batang",
+    "wap": "WAP"
   }
 }
