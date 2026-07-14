@@ -72,6 +72,10 @@ async function bootstrap(namespace: string) {
   // 配置 pinia-tore
   await initStores(app, { namespace });
 
+  // 拉取站点品牌配置(系统名/Logo/备案), 失败不阻断启动
+  const { initWebsiteConfig } = await import('./logics/init-website-config');
+  await initWebsiteConfig();
+
   // 初始化 tippy
   const { initTippy } = await import('@vben/common-ui/es/tippy');
   initTippy(app);

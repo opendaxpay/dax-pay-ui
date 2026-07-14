@@ -18,6 +18,12 @@ export const OssConfigApi = {
   update(data: OssConfig): Promise<Result<void>> {
     return defHttp.post({ url: '/platform/config/oss/update', data });
   },
+  /**
+   * 检查OSS连通性
+   */
+  check(data?: OssConfig): Promise<Result<ConnectivityCheckResult>> {
+    return defHttp.post({ url: '/platform/config/oss/check', data });
+  },
 };
 
 /**
@@ -48,4 +54,14 @@ export interface OssConfig {
   downloadExpireHours?: number;
   /** 基础存储路径 */
   basePath?: string;
+}
+
+/**
+ * 连通性检查结果
+ */
+export interface ConnectivityCheckResult {
+  success?: boolean;
+  message?: string;
+  statusCode?: number;
+  latencyMs?: number;
 }

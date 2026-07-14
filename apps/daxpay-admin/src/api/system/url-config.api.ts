@@ -18,6 +18,12 @@ export const UrlConfigApi = {
   update(data: UrlConfig): Promise<Result<void>> {
     return defHttp.post({ url: '/platform/config/url/update', data });
   },
+  /**
+   * 检查端点连通性
+   */
+  check(data: UrlCheckParam): Promise<Result<ConnectivityCheckResult>> {
+    return defHttp.post({ url: '/platform/config/url/check', data });
+  },
 };
 
 /**
@@ -32,4 +38,24 @@ export interface UrlConfig {
   paymentGatewayBaseUrl?: string;
   /** 后端 API 地址 */
   backendBaseUrl?: string;
+}
+
+/**
+ * 端点连通性检查参数
+ */
+export interface UrlCheckParam {
+  /** admin | merchant | paymentGateway | backend */
+  urlType: string;
+  /** 可选, 不传则用已保存配置 */
+  url?: string;
+}
+
+/**
+ * 连通性检查结果
+ */
+export interface ConnectivityCheckResult {
+  success?: boolean;
+  message?: string;
+  statusCode?: number;
+  latencyMs?: number;
 }

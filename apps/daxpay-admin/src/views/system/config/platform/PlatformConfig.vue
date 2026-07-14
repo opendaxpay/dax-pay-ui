@@ -5,6 +5,7 @@
 
   import OssConfigForm from './oss/OssConfigForm.vue';
   import UrlConfigForm from './url/UrlConfigForm.vue';
+  import WebsiteConfigForm from './website/WebsiteConfigForm.vue';
 
   defineOptions({ name: 'PlatformConfig' });
 
@@ -18,6 +19,13 @@
       label: $t('system.platform.url.title'),
       // 端点配置描述
       description: $t('system.platform.url.description'),
+    },
+    {
+      key: 'website',
+      // 站点配置标题
+      label: $t('system.platform.website.title'),
+      // 站点配置描述
+      description: $t('system.platform.website.description'),
     },
     {
       key: 'oss',
@@ -56,6 +64,7 @@
       <section class="platform-content">
         <div class="platform-content__scroll">
           <UrlConfigForm v-if="activeKey === 'url'" />
+          <WebsiteConfigForm v-if="activeKey === 'website'" />
           <OssConfigForm v-if="activeKey === 'oss'" />
         </div>
       </section>

@@ -13,6 +13,8 @@
   const formRef = ref();
   const loading = ref(false);
   const saving = ref(false);
+  // 测试连接中
+  const checking = ref(false);
   // 是否处于编辑状态
   const isEditing = ref(false);
   // 记录原始值，用于检测敏感字段是否被修改
@@ -110,6 +112,38 @@
       });
     }).catch(() => {});
   }
+
+  /**
+   * 测试 OSS 连通性
+   *
+   * 密钥未改时不传 accessKey/secretKey, 后端用库中真实密钥合并探测.
+   */
+  async function handleCheck() {
+    checking.value = true;
+    try {
+      const sensitiveData = diffForm(originalValues, formState, 'accessKey', 'secretKey');
+      const payload: OssConfig = {
+        endpoint: formState.value.endpoint,
+        region: formState.value.region,
+        publicBucket: formState.value.publicBucket,
+        privateBucket: formState.value.privateBucket,
+        publicBaseUrl: formState.value.publicBaseUrl,
+        privateBaseUrl: formState.value.privateBaseUrl,
+        pathStyleAccess: formState.value.pathStyleAccess,
+        basePath: formState.value.basePath,
+        ...sensitiveData,
+      };
+      const { data } = await OssConfigApi.check(payload);
+      if (data?.success) {
+        const latency = data.latencyMs != null ? ` (${data.latencyMs}ms)` : '';
+        message.success(`${data.message || $t('system.platform.oss.checkSuccess')}${latency}`);
+      } else {
+        message.error(data?.message || $t('system.platform.oss.checkFailed'));
+      }
+    } finally {
+      checking.value = false;
+    }
+  }
 </script>
 
 <template>
@@ -121,6 +155,10 @@
           <div class="module-overview__title">{{ $t('system.platform.oss.title') }}</div>
           <div class="module-actions">
             <a-space>
+              <!-- 测试连接: 编辑/只读均可 -->
+              <a-button :loading="checking" @click="handleCheck">
+                {{ $t('system.platform.oss.check') }}
+              </a-button>
               <!-- 非编辑状态：显示编辑按钮 -->
               <template v-if="!isEditing">
                 <a-button type="primary" @click="handleEdit">{{ $t('common.edit') }}</a-button>

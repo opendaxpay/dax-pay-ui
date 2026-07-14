@@ -1,9 +1,11 @@
 <script lang="ts" setup>
+  import type { UrlConfig } from '#/api/system/url-config.api';
+
   import { onMounted, ref } from 'vue';
 
   import { $t } from '@vben/locales';
 
-  import { type UrlConfig, UrlConfigApi } from '#/api/system/url-config.api';
+  import { UrlConfigApi } from '#/api/system/url-config.api';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
 
@@ -13,6 +15,8 @@
   const formRef = ref();
   const loading = ref(false);
   const saving = ref(false);
+  // 各字段检查中状态
+  const checking = ref<Record<string, boolean>>({});
   // 是否处于编辑状态
   const isEditing = ref(false);
   // 记录原始值(端点配置均为普通 URL 字符串, 无敏感字段, diffForm 仅用于检测变化)
@@ -96,6 +100,30 @@
       })
       .catch(() => {});
   }
+
+  /**
+   * 检查单个端点连通性
+   * @param urlType 端点类型
+   * @param field 表单字段名
+   */
+  async function handleCheck(urlType: string, field: keyof UrlConfig) {
+    const url = formState.value[field];
+    checking.value = { ...checking.value, [field]: true };
+    try {
+      const { data } = await UrlConfigApi.check({
+        urlType,
+        url: url || undefined,
+      });
+      if (data?.success) {
+        const latency = data.latencyMs != null ? ` (${data.latencyMs}ms)` : '';
+        message.success(`${data.message || $t('system.platform.url.checkSuccess')}${latency}`);
+      } else {
+        message.error(data?.message || $t('system.platform.url.checkFailed'));
+      }
+    } finally {
+      checking.value = { ...checking.value, [field]: false };
+    }
+  }
 </script>
 
 <template>
@@ -137,12 +165,21 @@
                 <div class="config-item__label">{{ $t('system.platform.url.adminBaseUrl') }}</div>
                 <div class="config-item__desc">{{ $t('system.platform.url.adminBaseUrlDesc') }}</div>
               </div>
-              <!-- 国际化: 请输入管理端访问地址 -->
-              <a-input
-                v-model:value="formState.adminBaseUrl"
-                :disabled="!isEditing"
-                :placeholder="$t('system.platform.url.inputAdminBaseUrl')"
-              />
+              <div class="url-field">
+                <!-- 国际化: 请输入管理端访问地址 -->
+                <a-input
+                  v-model:value="formState.adminBaseUrl"
+                  :disabled="!isEditing"
+                  :placeholder="$t('system.platform.url.inputAdminBaseUrl')"
+                />
+                <a-button
+                  type="primary"
+                  :loading="checking.adminBaseUrl"
+                  @click="handleCheck('admin', 'adminBaseUrl')"
+                >
+                  {{ $t('system.platform.url.check') }}
+                </a-button>
+              </div>
             </div>
           </a-form-item>
 
@@ -153,12 +190,21 @@
                 <div class="config-item__label">{{ $t('system.platform.url.merchantBaseUrl') }}</div>
                 <div class="config-item__desc">{{ $t('system.platform.url.merchantBaseUrlDesc') }}</div>
               </div>
-              <!-- 国际化: 请输入商户端访问地址 -->
-              <a-input
-                v-model:value="formState.merchantBaseUrl"
-                :disabled="!isEditing"
-                :placeholder="$t('system.platform.url.inputMerchantBaseUrl')"
-              />
+              <div class="url-field">
+                <!-- 国际化: 请输入商户端访问地址 -->
+                <a-input
+                  v-model:value="formState.merchantBaseUrl"
+                  :disabled="!isEditing"
+                  :placeholder="$t('system.platform.url.inputMerchantBaseUrl')"
+                />
+                <a-button
+                  type="primary"
+                  :loading="checking.merchantBaseUrl"
+                  @click="handleCheck('merchant', 'merchantBaseUrl')"
+                >
+                  {{ $t('system.platform.url.check') }}
+                </a-button>
+              </div>
             </div>
           </a-form-item>
 
@@ -169,12 +215,21 @@
                 <div class="config-item__label">{{ $t('system.platform.url.paymentGatewayBaseUrl') }}</div>
                 <div class="config-item__desc">{{ $t('system.platform.url.paymentGatewayBaseUrlDesc') }}</div>
               </div>
-              <!-- 国际化: 请输入支付网关前端地址 -->
-              <a-input
-                v-model:value="formState.paymentGatewayBaseUrl"
-                :disabled="!isEditing"
-                :placeholder="$t('system.platform.url.inputPaymentGatewayBaseUrl')"
-              />
+              <div class="url-field">
+                <!-- 国际化: 请输入支付网关前端地址 -->
+                <a-input
+                  v-model:value="formState.paymentGatewayBaseUrl"
+                  :disabled="!isEditing"
+                  :placeholder="$t('system.platform.url.inputPaymentGatewayBaseUrl')"
+                />
+                <a-button
+                  type="primary"
+                  :loading="checking.paymentGatewayBaseUrl"
+                  @click="handleCheck('paymentGateway', 'paymentGatewayBaseUrl')"
+                >
+                  {{ $t('system.platform.url.check') }}
+                </a-button>
+              </div>
             </div>
           </a-form-item>
 
@@ -185,12 +240,21 @@
                 <div class="config-item__label">{{ $t('system.platform.url.backendBaseUrl') }}</div>
                 <div class="config-item__desc">{{ $t('system.platform.url.backendBaseUrlDesc') }}</div>
               </div>
-              <!-- 国际化: 请输入后端 API 地址 -->
-              <a-input
-                v-model:value="formState.backendBaseUrl"
-                :disabled="!isEditing"
-                :placeholder="$t('system.platform.url.inputBackendBaseUrl')"
-              />
+              <div class="url-field">
+                <!-- 国际化: 请输入后端 API 地址 -->
+                <a-input
+                  v-model:value="formState.backendBaseUrl"
+                  :disabled="!isEditing"
+                  :placeholder="$t('system.platform.url.inputBackendBaseUrl')"
+                />
+                <a-button
+                  type="primary"
+                  :loading="checking.backendBaseUrl"
+                  @click="handleCheck('backend', 'backendBaseUrl')"
+                >
+                  {{ $t('system.platform.url.check') }}
+                </a-button>
+              </div>
             </div>
           </a-form-item>
         </div>
@@ -295,6 +359,17 @@
     font-size: 12px;
     line-height: 1.6;
     color: hsl(var(--muted-foreground));
+  }
+
+  .url-field {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    margin-top: 4px;
+  }
+
+  .url-field :deep(.ant-input) {
+    flex: 1;
   }
 
   .module-actions {
