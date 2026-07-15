@@ -20,10 +20,10 @@
     "notSelected": "ไม่ได้เลือก",
     "levelActive": "คล่องแคล่ว",
     "clientEnvs": {
-      "wechat_pay": "วีแชท",
       "alipay": "อาลีเพย์",
       "union_pay": "ยูเนี่ยนเพย์",
-      "douyin": "โต่วอิน"
+      "douyin": "โต่วอิน",
+      "wechat": "วีแชท"
     },
     "modeAuto": "ติดตามการกำหนดเส้นทางช่อง",
     "modeMethod": "โดยวิธีการ",

@@ -1,7 +1,7 @@
 // 支付渠道卡片展示（本地SVG；渠道列表以目录 API 为准）
 export interface PayProviderInfo {
   code: string;
-  // SVG 文件名（不含扩展名），与 code 可能不同，如 code=alipay → svgName=ali_pay
+  // SVG 文件名（不含扩展名）；优先与 code 一致
   svgName: string;
   name: string;
 }
@@ -9,7 +9,7 @@ export interface PayProviderInfo {
 export const PAY_PROVIDER_DISPLAY: PayProviderInfo[] = [
   { code: 'aggregate_pay', svgName: 'aggregate_pay', name: '聚合支付' },
   { code: 'wechat', svgName: 'wechat', name: '微信支付' },
-  { code: 'alipay', svgName: 'ali_pay', name: '支付宝' },
+  { code: 'alipay', svgName: 'alipay', name: '支付宝' },
   { code: 'union_pay', svgName: 'union_pay', name: '银联' },
   { code: 'visa', svgName: 'visa', name: 'Visa' },
   { code: 'mastercard', svgName: 'mastercard', name: 'Mastercard' },

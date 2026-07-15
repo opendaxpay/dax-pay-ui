@@ -10,7 +10,7 @@ export enum ProductEnum {
   ALIPAY = 'alipay',
   /** 支付宝(服务商) */
   ALIPAY_ISV = 'alipay_isv',
-  /** 斗拱(归属 ADA_PAY 通道) */
+  /** 斗拱(归属汇付天下 huifu 通道) */
   DOUGONG_PAY = 'dougong_pay',
   /** 抖音支付(直连) */
   DOUYIN_PAY = 'douyin_pay',
@@ -104,7 +104,7 @@ export const productChannelMap: Record<string, string> = {
   [ProductEnum.ALIPAY]: ChannelEnum.ALIPAY,
   [ProductEnum.WECHAT_ISV]: ChannelEnum.WECHAT,
   [ProductEnum.WECHAT_PAY]: ChannelEnum.WECHAT,
-  [ProductEnum.DOUYIN_PAY]: ChannelEnum.DOUYIN_PAY,
+  [ProductEnum.DOUYIN_PAY]: ChannelEnum.DOUYIN,
   [ProductEnum.UMS_QRCODE]: ChannelEnum.UMS_PAY,
   [ProductEnum.UMS_JSAPI]: ChannelEnum.UMS_PAY,
   [ProductEnum.UMS_APP]: ChannelEnum.UMS_PAY,
@@ -113,9 +113,9 @@ export const productChannelMap: Record<string, string> = {
   [ProductEnum.UMS_BARCODE]: ChannelEnum.UMS_PAY,
   [ProductEnum.LAKALA_PAY]: ChannelEnum.LAKALA_PAY,
   [ProductEnum.LESHUA_PAY]: ChannelEnum.LESHUA_PAY,
-  [ProductEnum.ADA_PAY]: ChannelEnum.ADA_PAY,
-  // 斗拱归属汇付天下(ADA_PAY)通道
-  [ProductEnum.DOUGONG_PAY]: ChannelEnum.ADA_PAY,
+  [ProductEnum.ADA_PAY]: ChannelEnum.HUIFU,
+  // 斗拱归属汇付天下(huifu)通道
+  [ProductEnum.DOUGONG_PAY]: ChannelEnum.HUIFU,
   [ProductEnum.HKRT_PAY]: ChannelEnum.HKRT_PAY,
   [ProductEnum.VBILL_PAY]: ChannelEnum.VBILL_PAY,
   // 河马付归属杉德通道
@@ -131,8 +131,8 @@ export const productChannelMap: Record<string, string> = {
  */
 export const productLogoMap: Record<string, string> = {
   // 支付宝
-  [ProductEnum.ALIPAY]: 'ali_pay',
-  [ProductEnum.ALIPAY_ISV]: 'ali_pay',
+  [ProductEnum.ALIPAY]: 'alipay',
+  [ProductEnum.ALIPAY_ISV]: 'alipay',
   // 微信
   [ProductEnum.WECHAT_PAY]: 'wechat',
   [ProductEnum.WECHAT_ISV]: 'wechat',

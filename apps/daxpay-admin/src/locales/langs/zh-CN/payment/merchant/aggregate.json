@@ -1,6 +1,6 @@
 {
   "aggregate": {
-    "title": "聚合收款配置",
+    "title": "聚合支付配置",
     "editModeLabel": "配置模式",
     "autoLaunch": "自动拉起支付",
     "autoLaunchHint": "扫码后自动发起支付,无需用户手动点击",
@@ -15,15 +15,15 @@
     "capability": "支付能力",
     "capabilityPlaceholder": "请选择支付能力",
     "autoDerived": "系统自动推导",
-    "saveConfirm": "确定要保存聚合收款配置吗?",
-    "missingAppContext": "请从应用管理进入聚合收款配置",
+    "saveConfirm": "确定要保存聚合支付配置吗?",
+    "missingAppContext": "请从应用管理进入聚合支付配置",
     "notSelected": "未选择",
     "levelActive": "生效中",
     "clientEnvs": {
-      "wechat_pay": "微信环境",
       "alipay": "支付宝环境",
       "union_pay": "云闪付环境",
-      "douyin": "抖音环境"
+      "douyin": "抖音环境",
+      "wechat": "微信环境"
     },
     "modeAuto": "跟随通道路由",
     "modeMethod": "指定支付方式",

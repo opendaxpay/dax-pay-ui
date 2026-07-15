@@ -20,7 +20,7 @@ export interface AggregateClientEnvConfig {
 }
 
 export const AGGREGATE_CLIENT_ENVS: AggregateClientEnvConfig[] = [
-  { clientEnv: 'wechat_pay', provider: 'wechat', defaultMethod: 'wechat_jsapi' },
+  { clientEnv: 'wechat', provider: 'wechat', defaultMethod: 'wechat_jsapi' },
   { clientEnv: 'alipay', provider: 'alipay', defaultMethod: 'alipay_jsapi' },
   { clientEnv: 'union_pay', provider: 'union_pay', defaultMethod: 'union_jsapi' },
   { clientEnv: 'douyin', provider: 'douyin', defaultMethod: 'douyin_jsapi' },

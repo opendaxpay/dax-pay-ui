@@ -1,0 +1,29 @@
+{
+  "codeConfig": {
+    "title": "QR Code Pay Config",
+    "editModeLabel": "Config mode",
+    "autoModeHint": "System derives pay method by open env and form (H5/mini), then follows app channel routing",
+    "methodModeHint": "Choose a pay method for each open env under H5 and Mini, then route by app config",
+    "directModeHint": "Pick channel merchant and capability for each open env under H5 and Mini, skip routing",
+    "methodPlaceholder": "Select pay method",
+    "channelMerchantPlaceholder": "Select channel merchant",
+    "capabilityPlaceholder": "Select capability",
+    "autoDerived": "Auto derived",
+    "saveConfirm": "Save QR code pay config?",
+    "missingAppContext": "Open this page from app management",
+    "levelActive": "Active",
+    "clientEnvs": {
+      "alipay": "Alipay",
+      "union_pay": "UnionPay",
+      "douyin": "Douyin",
+      "wechat": "WeChat"
+    },
+    "payForms": {
+      "h5": "H5",
+      "mini": "Mini Program"
+    },
+    "modeAuto": "Follow channel routing",
+    "modeMethod": "Specify method",
+    "modeDirect": "Direct"
+  }
+}

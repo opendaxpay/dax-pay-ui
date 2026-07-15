@@ -20,10 +20,10 @@
     "notSelected": "Không được chọn",
     "levelActive": "Tích cực",
     "clientEnvs": {
-      "wechat_pay": "WeChat",
       "alipay": "Alipay",
       "union_pay": "UnionPay",
-      "douyin": "Douyin"
+      "douyin": "Douyin",
+      "wechat": "WeChat"
     },
     "modeAuto": "Theo dõi định tuyến kênh",
     "modeMethod": "Bằng phương pháp",

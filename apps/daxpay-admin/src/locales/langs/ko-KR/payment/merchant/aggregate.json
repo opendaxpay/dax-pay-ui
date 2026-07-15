@@ -20,10 +20,10 @@
     "notSelected": "선택되지 않음",
     "levelActive": "활동적인",
     "clientEnvs": {
-      "wechat_pay": "위챗",
       "alipay": "알리페이",
       "union_pay": "유니온페이",
-      "douyin": "두음"
+      "douyin": "두음",
+      "wechat": "위챗"
     },
     "modeAuto": "채널 라우팅 따르기",
     "modeMethod": "방법별",

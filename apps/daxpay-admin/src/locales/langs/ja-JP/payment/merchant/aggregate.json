@@ -20,10 +20,10 @@
     "notSelected": "未選択",
     "levelActive": "アクティブ",
     "clientEnvs": {
-      "wechat_pay": "微信",
       "alipay": "アリペイ",
       "union_pay": "銀聯",
-      "douyin": "抖音"
+      "douyin": "抖音",
+      "wechat": "微信"
     },
     "modeAuto": "チャンネルルーティングに従う",
     "modeMethod": "方法別",

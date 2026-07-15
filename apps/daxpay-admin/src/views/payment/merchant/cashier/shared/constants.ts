@@ -28,7 +28,7 @@ export interface ClientEnvConfig {
 /** H5 五个客户端环境桶 */
 export const CASHIER_H5_CLIENT_ENVS: ClientEnvConfig[] = [
   { clientEnv: 'browser' },
-  { clientEnv: 'wechat_pay', provider: 'wechat' },
+  { clientEnv: 'wechat', provider: 'wechat' },
   { clientEnv: 'alipay', provider: 'alipay' },
   { clientEnv: 'union_pay', provider: 'union_pay' },
   { clientEnv: 'douyin', provider: 'douyin' },
@@ -36,7 +36,7 @@ export const CASHIER_H5_CLIENT_ENVS: ClientEnvConfig[] = [
 
 /** 小程序客户端环境桶（无 browser；含微信/支付宝/云闪付/抖音） */
 export const CASHIER_MINI_CLIENT_ENVS: ClientEnvConfig[] = [
-  { clientEnv: 'wechat_pay', provider: 'wechat' },
+  { clientEnv: 'wechat', provider: 'wechat' },
   { clientEnv: 'alipay', provider: 'alipay' },
   { clientEnv: 'union_pay', provider: 'union_pay' },
   { clientEnv: 'douyin', provider: 'douyin' },

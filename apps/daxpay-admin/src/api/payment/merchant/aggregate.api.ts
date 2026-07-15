@@ -36,7 +36,7 @@ export interface AggregateConfigResult extends BaseEntity {
 
 /** 场景配置结果 */
 export interface AggregateClientEnvResult {
-  /** 场景编码: wechat_pay/alipay/union_pay/douyin */
+  /** 场景编码: wechat/alipay/union_pay/douyin */
   clientEnv?: string;
   /** 支付方式(METHOD 模式) */
   method?: string;

@@ -20,10 +20,10 @@
     "notSelected": "未選擇",
     "levelActive": "生效中",
     "clientEnvs": {
-      "wechat_pay": "微信環境",
       "alipay": "支付寶環境",
       "union_pay": "雲閃付環境",
-      "douyin": "抖音環境"
+      "douyin": "抖音環境",
+      "wechat": "微信環境"
     },
     "modeAuto": "跟隨通道路由",
     "modeMethod": "指定支付方式",

@@ -182,8 +182,7 @@
     "wechat_h5": "微信H5",
     "wechat_app": "微信应用支付",
     "alipay_qr": "支付宝扫码",
-    "alipay_jsapi": "支付宝jsapi",
-    "alipay_mini": "支付宝小程序",
+    "alipay_jsapi": "อาลีเพย์ JSAPI (รวมมินิโปรแกรม)",
     "alipay_pc": "支付宝电脑支付",
     "alipay_h5": "支付宝H5",
     "alipay_app": "支付宝应用支付",
@@ -342,9 +341,9 @@
   "client_env": {
     "browser": "Browser",
     "douyin": "Douyin",
-    "wechat_pay": "微信环境",
     "alipay": "支付宝环境",
-    "union_pay": "云闪付环境"
+    "union_pay": "云闪付环境",
+    "wechat": "微信环境"
   },
   "audio_bind_type": {
     "app": "应用",

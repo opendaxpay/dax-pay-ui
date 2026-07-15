@@ -20,10 +20,10 @@
     "notSelected": "Tidak dipilih",
     "levelActive": "Aktif",
     "clientEnvs": {
-      "wechat_pay": "Wechat wechat",
       "alipay": "Alipay",
       "union_pay": "UnionPay",
-      "douyin": "Douyin"
+      "douyin": "Douyin",
+      "wechat": "Wechat wechat"
     },
     "modeAuto": "Ikuti Perutean Saluran",
     "modeMethod": "Berdasarkan Metode",

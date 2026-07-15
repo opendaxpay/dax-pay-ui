@@ -35,10 +35,10 @@
     "validationCapability": "Vui lòng chọn khả năng",
     "clientEnvs": {
       "browser": "Trình duyệt",
-      "wechat_pay": "WeChat",
       "alipay": "Alipay",
       "union_pay": "UnionPay",
-      "douyin": "Douyin"
+      "douyin": "Douyin",
+      "wechat": "WeChat"
     },
     "icons": {
       "aggregate_pay": "Tổng lương",
@@ -63,12 +63,7 @@
       "alipay_app": "Ứng dụng Alipay",
       "alipay_h5": "Alipay H5",
       "alipay_pc": "Máy tính Alipay",
-      "alipay_jsapi": "JSAPI của Alipay",
-      "alipay_mini": "Alipay nhỏ",
-      "union_pay_qr": "UnionPay QR",
-      "union_pay_barcode": "Mã vạch UnionPay",
-      "union_pay_h5": "UnionPay H5",
-      "union_pay_jsapi": "JSAPI của UnionPay",
+      "alipay_jsapi": "JSAPI Alipay (gồm Mini Program)",
       "douyin_qr": "Douyin QR",
       "douyin_jsapi": "Douyin JSAPI",
       "douyin_h5": "Douyin H5",
@@ -76,7 +71,11 @@
       "visa_card_gateway": "Cổng thị thực",
       "visa_card_present": "Visa hiện tại",
       "mastercard_card_gateway": "Cổng Mastercard",
-      "mastercard_card_present": "Quà tặng MasterCard"
+      "mastercard_card_present": "Quà tặng MasterCard",
+      "union_qr": "UnionPay QR",
+      "union_jsapi": "JSAPI của UnionPay",
+      "union_h5": "UnionPay H5",
+      "union_barcode": "Mã vạch UnionPay"
     }
   }
 }

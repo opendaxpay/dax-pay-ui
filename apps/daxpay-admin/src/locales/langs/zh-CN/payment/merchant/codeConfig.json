@@ -1,0 +1,29 @@
+{
+  "codeConfig": {
+    "title": "码牌支付配置",
+    "editModeLabel": "配置模式",
+    "autoModeHint": "系统按打开环境与码牌形态(H5/小程序)自动推导支付方式，跟随应用通道路由，无需手动配置",
+    "methodModeHint": "每个打开环境的 H5 与小程序分别指定支付方式，再按应用通道路由解析",
+    "directModeHint": "每个打开环境的 H5 与小程序分别指定通道商户和支付能力，跳过通道路由",
+    "methodPlaceholder": "请选择支付方式",
+    "channelMerchantPlaceholder": "请选择通道商户",
+    "capabilityPlaceholder": "请选择支付能力",
+    "autoDerived": "系统自动推导",
+    "saveConfirm": "确定要保存码牌支付配置吗?",
+    "missingAppContext": "请从应用管理进入码牌支付配置",
+    "levelActive": "生效中",
+    "clientEnvs": {
+      "alipay": "支付宝环境",
+      "union_pay": "云闪付环境",
+      "douyin": "抖音环境",
+      "wechat": "微信环境"
+    },
+    "payForms": {
+      "h5": "H5",
+      "mini": "小程序"
+    },
+    "modeAuto": "跟随通道路由",
+    "modeMethod": "指定支付方式",
+    "modeDirect": "直接指定"
+  }
+}
