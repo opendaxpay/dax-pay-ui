@@ -124,7 +124,7 @@ export interface PayTradeResult extends MchEntity {
   /** 银行卡类型 */
   bankType?: string;
   /** 付款码 */
-  barCode?: string;
+  authCode?: string;
   /** 活动类型 */
   promotionType?: string;
   /** 支付参数体 */

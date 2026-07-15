@@ -83,7 +83,7 @@
       "method": "Kaedah Pembayaran",
       "capability": "Keupayaan",
       "openId": "OpenID",
-      "authCode": "Kod Pengesahan",
+      "authCode": "Kod pembayaran",
       "notifyUrl": "URL Pemberitahuan Async",
       "expiredTime": "Masa Tamat",
       "bizOrderNo": "Pesanan No.",

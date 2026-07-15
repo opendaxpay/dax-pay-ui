@@ -83,7 +83,7 @@
       "method": "Payment Method",
       "capability": "Capability",
       "openId": "OpenID",
-      "authCode": "Auth Code",
+      "authCode": "Payment code",
       "notifyUrl": "Async Notify URL",
       "expiredTime": "Expire Time",
       "bizOrderNo": "Order No.",

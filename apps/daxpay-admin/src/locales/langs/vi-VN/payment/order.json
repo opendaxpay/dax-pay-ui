@@ -51,7 +51,6 @@
     "tradeProduct": "Sản phẩm kênh",
     "tradeWay": "Cách giao dịch kênh",
     "bankType": "Loại thẻ ngân hàng",
-    "barCode": "Mã vạch",
     "promotionType": "Loại khuyến mãi",
     "errorMsg": "Lỗi",
     "notifyUrl": "URL thông báo",
@@ -78,7 +77,8 @@
     "reason": "Lý do hoàn tiền",
     "finishTime": "Thời gian kết thúc",
     "orderAmount": "Số tiền đặt hàng",
-    "orderNo": "Số đơn đặt hàng ban đầu"
+    "orderNo": "Số đơn đặt hàng ban đầu",
+    "authCode": "Mã thanh toán"
   },
   "bizStatus": {
     "wait_pay": "Chờ",

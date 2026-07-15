@@ -51,7 +51,6 @@
     "tradeProduct": "Produk Saluran",
     "tradeWay": "Cara Perdagangan Saluran",
     "bankType": "Jenis Kartu Bank",
-    "barCode": "Kode Batang",
     "promotionType": "Jenis Promosi",
     "errorMsg": "Kesalahan",
     "notifyUrl": "Beritahu URL",
@@ -78,7 +77,8 @@
     "reason": "Alasan Pengembalian Dana",
     "finishTime": "Waktu Selesai",
     "orderAmount": "Jumlah Pesanan",
-    "orderNo": "Nomor Pesanan Asli."
+    "orderNo": "Nomor Pesanan Asli.",
+    "authCode": "Kode pembayaran"
   },
   "bizStatus": {
     "wait_pay": "Menunggu",

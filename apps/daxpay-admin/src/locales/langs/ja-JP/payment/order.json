@@ -51,7 +51,6 @@
     "tradeProduct": "チャネル製品",
     "tradeWay": "チャネルトレードウェイ",
     "bankType": "銀行カードの種類",
-    "barCode": "バーコード",
     "promotionType": "プロモーションの種類",
     "errorMsg": "エラー",
     "notifyUrl": "通知URL",
@@ -78,7 +77,8 @@
     "reason": "返金理由",
     "finishTime": "終了時間",
     "orderAmount": "注文金額",
-    "orderNo": "元の注文番号"
+    "orderNo": "元の注文番号",
+    "authCode": "支払いコード"
   },
   "bizStatus": {
     "wait_pay": "待っている",

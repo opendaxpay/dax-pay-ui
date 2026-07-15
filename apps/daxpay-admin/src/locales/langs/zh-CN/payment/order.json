@@ -51,7 +51,6 @@
     "tradeProduct": "通道支付产品",
     "tradeWay": "通道交易方式",
     "bankType": "银行卡类型",
-    "barCode": "付款码",
     "promotionType": "活动类型",
     "errorMsg": "错误信息",
     "notifyUrl": "异步通知地址",
@@ -78,7 +77,8 @@
     "reason": "退款原因",
     "finishTime": "退款完成时间",
     "orderAmount": "订单总金额",
-    "orderNo": "原支付订单号"
+    "orderNo": "原支付订单号",
+    "authCode": "付款码"
   },
   "bizStatus": {
     "wait_pay": "待支付",

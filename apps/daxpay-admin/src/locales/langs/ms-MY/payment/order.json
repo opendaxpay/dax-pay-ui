@@ -51,7 +51,6 @@
     "tradeProduct": "Produk Saluran",
     "tradeWay": "Cara Perdagangan Saluran",
     "bankType": "Jenis Kad Bank",
-    "barCode": "Kod Bar",
     "promotionType": "Jenis Promosi",
     "errorMsg": "ralat",
     "notifyUrl": "Beritahu URL",
@@ -78,7 +77,8 @@
     "reason": "Sebab Bayaran Balik",
     "finishTime": "Tamat Masa",
     "orderAmount": "Jumlah Pesanan",
-    "orderNo": "Pesanan Asal No."
+    "orderNo": "Pesanan Asal No.",
+    "authCode": "Kod pembayaran"
   },
   "bizStatus": {
     "wait_pay": "Menunggu",

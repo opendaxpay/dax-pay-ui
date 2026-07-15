@@ -51,7 +51,6 @@
     "tradeProduct": "Channel Product",
     "tradeWay": "Channel Trade Way",
     "bankType": "Bank Card Type",
-    "barCode": "Bar Code",
     "promotionType": "Promotion Type",
     "errorMsg": "Error",
     "notifyUrl": "Notify URL",
@@ -78,7 +77,8 @@
     "reason": "Refund Reason",
     "finishTime": "Finish Time",
     "orderAmount": "Order Amount",
-    "orderNo": "Original Order No."
+    "orderNo": "Original Order No.",
+    "authCode": "Payment code"
   },
   "bizStatus": {
     "wait_pay": "Waiting",

@@ -51,7 +51,6 @@
     "tradeProduct": "채널 제품",
     "tradeWay": "채널 무역 방식",
     "bankType": "은행 카드 유형",
-    "barCode": "바 코드",
     "promotionType": "프로모션 유형",
     "errorMsg": "오류",
     "notifyUrl": "알림 URL",
@@ -78,7 +77,8 @@
     "reason": "환불 사유",
     "finishTime": "종료 시간",
     "orderAmount": "주문금액",
-    "orderNo": "원래 주문 번호"
+    "orderNo": "원래 주문 번호",
+    "authCode": "결제 코드"
   },
   "bizStatus": {
     "wait_pay": "대기 중",

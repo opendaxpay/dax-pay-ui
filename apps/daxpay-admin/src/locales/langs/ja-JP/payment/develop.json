@@ -83,7 +83,7 @@
       "method": "支払方法",
       "capability": "能力",
       "openId": "OpenID",
-      "authCode": "認証コード",
+      "authCode": "支払いコード",
       "notifyUrl": "非同期通知 URL",
       "expiredTime": "有効期限",
       "bizOrderNo": "注文番号",
