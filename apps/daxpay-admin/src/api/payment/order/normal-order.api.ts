@@ -57,6 +57,8 @@ export interface NormalOrderQuery {
   method?: string;
   /** 支付产品 */
   product?: string;
+  /** 门店号 */
+  storeNo?: string;
   /** 创建时间-开始 */
   createTimeStart?: string;
   /** 创建时间-结束 */
@@ -109,6 +111,8 @@ export interface NormalOrderResult extends MchEntity {
   clientIp?: string;
   /** 终端设备编码 */
   terminalNo?: string;
+  /** 门店号 */
+  storeNo?: string;
   // ===== 资金凭证联表字段(详情) =====
   /** 资金交易号 */
   tradeNo?: string;

@@ -53,6 +53,8 @@ export interface RefundOrderQuery {
   status?: string;
   /** 支付通道 */
   channel?: string;
+  /** 门店号 */
+  storeNo?: string;
   /** 创建时间-开始 */
   createTimeStart?: string;
   /** 创建时间-结束 */
@@ -105,6 +107,8 @@ export interface RefundOrderResult extends MchEntity {
   product?: string;
   /** 支付方式 */
   method?: string;
+  /** 门店号 */
+  storeNo?: string;
   /** 错误信息 */
   errorMsg?: string;
 }
