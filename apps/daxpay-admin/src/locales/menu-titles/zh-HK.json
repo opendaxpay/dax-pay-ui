@@ -80,5 +80,8 @@
   "menu.payment.merchant.group.channelApp": "通道應用配置",
   "menu.payment.config.group.channelIsv": "通道服務商配置",
   "menu.payment.merchant.easypay": "易支付配置",
-  "menu.payment.merchant.codePayConfig": "碼牌支付配置"
+  "menu.payment.merchant.codePayConfig": "碼牌支付配置",
+  "menu.payment.risk": "支付風控",
+  "menu.payment.risk.blacklist": "黑名單管理",
+  "menu.payment.risk.hit": "風險命中記錄"
 }

@@ -149,6 +149,17 @@ export const PermCodes = {
         MANAGE: 'payment:config:wx-verify:manage',
       },
     },
+    /** 支付风控 */
+    Risk: {
+      Blacklist: {
+        VIEW: 'payment:risk:blacklist:view',
+        MANAGE: 'payment:risk:blacklist:manage',
+      },
+      Hit: {
+        VIEW: 'payment:risk:hit:view',
+        MANAGE: 'payment:risk:hit:manage',
+      },
+    },
   },
 
   /** 交易单据 */

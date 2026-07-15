@@ -80,5 +80,8 @@
   "menu.payment.merchant.group.channelApp": "채널 앱 구성",
   "menu.payment.config.group.channelIsv": "채널 ISV 구성",
   "menu.payment.merchant.easypay": "EasyPay 설정",
-  "menu.payment.merchant.codePayConfig": "코드 결제 구성"
+  "menu.payment.merchant.codePayConfig": "코드 결제 구성",
+  "menu.payment.risk": "결제 리스크",
+  "menu.payment.risk.blacklist": "블랙리스트",
+  "menu.payment.risk.hit": "리스크 적중"
 }

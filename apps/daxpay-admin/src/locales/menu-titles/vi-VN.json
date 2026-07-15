@@ -80,5 +80,8 @@
   "menu.payment.merchant.group.channelApp": "Cấu hình ứng dụng kênh",
   "menu.payment.config.group.channelIsv": "Cấu hình ISV kênh",
   "menu.payment.merchant.easypay": "EasyPay Config",
-  "menu.payment.merchant.codePayConfig": "Cấu hình thanh toán mã"
+  "menu.payment.merchant.codePayConfig": "Cấu hình thanh toán mã",
+  "menu.payment.risk": "Payment Risk",
+  "menu.payment.risk.blacklist": "Blacklist",
+  "menu.payment.risk.hit": "Risk Hits"
 }

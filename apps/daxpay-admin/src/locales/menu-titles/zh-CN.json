@@ -80,5 +80,8 @@
   "menu.payment.lakala.config": "拉卡拉服务商配置",
   "menu.payment.merchant.group.channelApp": "通道应用配置",
   "menu.payment.config.group.channelIsv": "通道服务商配置",
-  "menu.payment.merchant.easypay": "易支付配置"
+  "menu.payment.merchant.easypay": "易支付配置",
+  "menu.payment.risk": "支付风控",
+  "menu.payment.risk.blacklist": "黑名单管理",
+  "menu.payment.risk.hit": "风险命中记录"
 }

@@ -80,5 +80,8 @@
   "menu.payment.merchant.group.channelApp": "Konfigurasi Apl Saluran",
   "menu.payment.config.group.channelIsv": "Saluran ISV Config",
   "menu.payment.merchant.easypay": "EasyPay Config",
-  "menu.payment.merchant.codePayConfig": "Konfigurasi Bayaran Kod QR"
+  "menu.payment.merchant.codePayConfig": "Konfigurasi Bayaran Kod QR",
+  "menu.payment.risk": "Payment Risk",
+  "menu.payment.risk.blacklist": "Blacklist",
+  "menu.payment.risk.hit": "Risk Hits"
 }

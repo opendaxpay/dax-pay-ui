@@ -1,0 +1,78 @@
+{
+  "blacklist": {
+    "title": "Blacklist",
+    "add": "Add blacklist",
+    "editTitle": "Edit blacklist",
+    "viewTitle": "View blacklist",
+    "confirmDelete": "Delete this blacklist entry?",
+    "field": {
+      "type": "Type",
+      "value": "Value",
+      "channel": "Channel",
+      "channelAppId": "Channel AppId",
+      "status": "Status",
+      "reason": "Reason",
+      "expireTime": "Expire time",
+      "remark": "Remark",
+      "createTime": "Created at"
+    },
+    "type": {
+      "ip": "IP",
+      "open_id": "OpenId"
+    },
+    "status": {
+      "enable": "Enabled",
+      "disable": "Disabled"
+    },
+    "tip": {
+      "typeValueImmutable": "Type and value cannot be changed after creation",
+      "expireEmpty": "Leave empty for permanent"
+    }
+  },
+  "hit": {
+    "title": "Risk hits",
+    "handleTitle": "Handle hit",
+    "viewTitle": "View hit",
+    "field": {
+      "phase": "Phase",
+      "hitType": "Hit type",
+      "hitValue": "Hit value",
+      "mchNo": "Merchant No",
+      "appId": "App ID",
+      "tradeNo": "Trade No",
+      "orderNo": "Order No",
+      "bizOrderNo": "Biz order No",
+      "method": "Method",
+      "channel": "Channel",
+      "clientIp": "Client IP",
+      "openid": "OpenId",
+      "buyerId": "BuyerId",
+      "scene": "Scene",
+      "handleStatus": "Handle status",
+      "handleRemark": "Handle remark",
+      "handleTime": "Handle time",
+      "createTime": "Created at"
+    },
+    "phase": {
+      "before_pay": "Before pay",
+      "after_pay": "After pay"
+    },
+    "handleStatus": {
+      "pending": "Pending",
+      "ignored": "Ignored",
+      "added_blacklist": "Added to blacklist",
+      "merchant_disabled": "Merchant marked disabled",
+      "other": "Other"
+    },
+    "scene": {
+      "api": "API",
+      "gateway": "Gateway",
+      "code": "QR Code",
+      "manual": "Manual",
+      "unknown": "Unknown"
+    },
+    "action": {
+      "handle": "Handle"
+    }
+  }
+}

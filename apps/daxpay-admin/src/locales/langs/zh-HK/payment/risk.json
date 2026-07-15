@@ -1,0 +1,78 @@
+{
+  "blacklist": {
+    "title": "黑名单管理",
+    "add": "新增黑名单",
+    "editTitle": "编辑黑名单",
+    "viewTitle": "查看黑名单",
+    "confirmDelete": "确定删除该黑名单吗？",
+    "field": {
+      "type": "类型",
+      "value": "名单值",
+      "channel": "通道族",
+      "channelAppId": "通道应用AppId",
+      "status": "状态",
+      "reason": "拉黑原因",
+      "expireTime": "过期时间",
+      "remark": "备注",
+      "createTime": "创建时间"
+    },
+    "type": {
+      "ip": "IP",
+      "open_id": "OpenId"
+    },
+    "status": {
+      "enable": "启用",
+      "disable": "禁用"
+    },
+    "tip": {
+      "typeValueImmutable": "类型与名单值创建后不可修改",
+      "expireEmpty": "留空表示永久有效"
+    }
+  },
+  "hit": {
+    "title": "风险命中记录",
+    "handleTitle": "处理命中",
+    "viewTitle": "查看命中",
+    "field": {
+      "phase": "阶段",
+      "hitType": "命中类型",
+      "hitValue": "命中值",
+      "mchNo": "商户号",
+      "appId": "应用号",
+      "tradeNo": "交易号",
+      "orderNo": "订单号",
+      "bizOrderNo": "业务单号",
+      "method": "支付方式",
+      "channel": "通道",
+      "clientIp": "客户端IP",
+      "openid": "OpenId",
+      "buyerId": "BuyerId",
+      "scene": "来源场景",
+      "handleStatus": "处理状态",
+      "handleRemark": "处理说明",
+      "handleTime": "处理时间",
+      "createTime": "创建时间"
+    },
+    "phase": {
+      "before_pay": "事前拦截",
+      "after_pay": "事后命中"
+    },
+    "handleStatus": {
+      "pending": "待处理",
+      "ignored": "已忽略",
+      "added_blacklist": "已加入黑名单",
+      "merchant_disabled": "已标记停用商户",
+      "other": "其他"
+    },
+    "scene": {
+      "api": "API",
+      "gateway": "网关",
+      "code": "码牌",
+      "manual": "手工",
+      "unknown": "未知"
+    },
+    "action": {
+      "handle": "处理"
+    }
+  }
+}
