@@ -307,9 +307,9 @@
     "union_pay": "银联支付"
   },
   "gateway_cashier_type": {
-    "h5": "H5收银台",
-    "pc": "PC收银台",
-    "mini_app": "小程序收银台"
+    "h5": "Juruwang H5",
+    "web": "Juruwang WEB",
+    "mini": "Juruwang Mini Program"
   },
   "aggregate_bar_pay_type": {
     "wechat_pay": "微信支付",

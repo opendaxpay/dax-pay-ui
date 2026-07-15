@@ -4,6 +4,7 @@
     "missingAppContext": "アプリ管理からレジ設定にアクセスしてください",
     "typeH5": "H5",
     "typeWeb": "ウェブ",
+    "typeMini": "ミニプログラム",
     "addItem": "支払いアイテムの追加",
     "empty": "このオープン環境には支払いアイテムはありません",
     "confirmDelete": "この支払いアイテムを削除しますか?",

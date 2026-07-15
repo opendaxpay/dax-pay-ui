@@ -307,9 +307,9 @@
     "union_pay": "銀聯支付"
   },
   "gateway_cashier_type": {
-    "h5": "H5收銀臺",
-    "pc": "PC收銀臺",
-    "mini_app": "小程式收銀臺"
+    "h5": "H5收銀台",
+    "web": "WEB收銀台",
+    "mini": "小程式收銀台"
   },
   "aggregate_bar_pay_type": {
     "wechat_pay": "微信支付",

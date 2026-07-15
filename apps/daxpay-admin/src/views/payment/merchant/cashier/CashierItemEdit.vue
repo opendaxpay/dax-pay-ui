@@ -20,6 +20,7 @@
     CASHIER_ICON_OPTIONS,
     CASHIER_TYPE,
     RESOLVE_MODE,
+    cashierTypeRequiresClientEnv,
     type CashierType,
   } from './shared/constants';
 
@@ -93,7 +94,9 @@
       mchNo: context.value.mchNo,
       appId: context.value.appId,
       cashierType: context.value.cashierType,
-      clientEnv: context.value.cashierType === CASHIER_TYPE.H5 ? context.value.clientEnv : undefined,
+      clientEnv: cashierTypeRequiresClientEnv(context.value.cashierType)
+        ? context.value.clientEnv
+        : undefined,
       name: '',
       icon: undefined,
       recommend: false,
@@ -294,7 +297,7 @@
         mchNo: opts.mchNo,
         appId: opts.appId,
         cashierType: opts.cashierType,
-        clientEnv: opts.cashierType === CASHIER_TYPE.H5 ? opts.clientEnv : undefined,
+        clientEnv: cashierTypeRequiresClientEnv(opts.cashierType) ? opts.clientEnv : undefined,
         name: row.name || '',
         icon: row.icon || undefined,
         recommend: !!row.recommend,
@@ -327,7 +330,9 @@
         mchNo: context.value.mchNo,
         appId: context.value.appId,
         cashierType: context.value.cashierType,
-        clientEnv: context.value.cashierType === CASHIER_TYPE.H5 ? context.value.clientEnv : undefined,
+        clientEnv: cashierTypeRequiresClientEnv(context.value.cashierType)
+          ? context.value.clientEnv
+          : undefined,
         recommend: !!formState.value.recommend,
         sortNo: formState.value.sortNo ?? 0,
       };

@@ -307,9 +307,9 @@
     "union_pay": "银联支付"
   },
   "gateway_cashier_type": {
-    "h5": "H5收银台",
-    "pc": "พีซี 收银台",
-    "mini_app": "小程序收银台"
+    "h5": "แคชเชียร์ H5",
+    "web": "แคชเชียร์ WEB",
+    "mini": "แคชเชียร์มินิโปรแกรม"
   },
   "aggregate_bar_pay_type": {
     "wechat_pay": "微信支付",

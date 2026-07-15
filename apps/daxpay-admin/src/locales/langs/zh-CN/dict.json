@@ -308,8 +308,8 @@
   },
   "gateway_cashier_type": {
     "h5": "H5收银台",
-    "pc": "PC收银台",
-    "mini_app": "小程序收银台"
+    "web": "WEB收银台",
+    "mini": "小程序收银台"
   },
   "aggregate_bar_pay_type": {
     "wechat_pay": "微信支付",

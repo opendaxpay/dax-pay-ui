@@ -4,6 +4,7 @@
     "missingAppContext": "Sila akses konfigurasi juruwang daripada pengurusan aplikasi",
     "typeH5": "H5",
     "typeWeb": "WEB",
+    "typeMini": "Mini Program",
     "addItem": "Tambah Item Pembayaran",
     "empty": "Tiada item pembayaran untuk persekitaran terbuka ini",
     "confirmDelete": "Padamkan item pembayaran ini?",

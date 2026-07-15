@@ -4,6 +4,7 @@
     "missingAppContext": "Vui lòng truy cập cấu hình thu ngân từ quản lý ứng dụng",
     "typeH5": "H5",
     "typeWeb": "TRANG WEB",
+    "typeMini": "Mini Program",
     "addItem": "Thêm mục thanh toán",
     "empty": "Không có mục thanh toán nào cho môi trường mở này",
     "confirmDelete": "Xóa mục thanh toán này?",

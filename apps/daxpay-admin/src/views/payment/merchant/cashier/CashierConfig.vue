@@ -21,9 +21,10 @@
 
   import CashierItemEdit from './CashierItemEdit.vue';
   import {
-    CASHIER_H5_CLIENT_ENVS,
     CASHIER_TYPE,
     RESOLVE_MODE,
+    cashierTypeRequiresClientEnv,
+    clientEnvsForCashierType,
     type CashierType,
   } from './shared/constants';
 
@@ -64,11 +65,14 @@
 
   // 一级 / 二级 Tab
   const activeType = ref<CashierType>(CASHIER_TYPE.H5);
-  const activeClientEnv = ref(CASHIER_H5_CLIENT_ENVS[0]!.clientEnv);
+  const activeClientEnv = ref('browser');
 
   const itemEditRef = ref<InstanceType<typeof CashierItemEdit>>();
 
   const canManage = computed(() => hasPermission(PermCodes.Merchant.GatewayCashier.MANAGE));
+
+  /** 当前一级类型对应的 clientEnv 二级列表 */
+  const activeClientEnvOptions = computed(() => clientEnvsForCashierType(activeType.value));
 
   /** 场景 i18n */
   function clientEnvLabel(clientEnv: string) {
@@ -150,7 +154,7 @@
         appId: appId.value,
         cashierType: activeType.value,
       };
-      if (activeType.value === CASHIER_TYPE.H5) {
+      if (cashierTypeRequiresClientEnv(activeType.value)) {
         params.clientEnv = activeClientEnv.value;
       }
       const { data } = await CashierConfigApi.list(params);
@@ -174,7 +178,7 @@
       mchNo: mchNo.value,
       appId: appId.value,
       cashierType: activeType.value,
-      clientEnv: activeType.value === CASHIER_TYPE.H5 ? activeClientEnv.value : undefined,
+      clientEnv: cashierTypeRequiresClientEnv(activeType.value) ? activeClientEnv.value : undefined,
     });
   }
 
@@ -184,7 +188,7 @@
       mchNo: mchNo.value,
       appId: appId.value,
       cashierType: activeType.value,
-      clientEnv: activeType.value === CASHIER_TYPE.H5 ? activeClientEnv.value : undefined,
+      clientEnv: cashierTypeRequiresClientEnv(activeType.value) ? activeClientEnv.value : undefined,
       record: row,
     });
   }
@@ -201,6 +205,17 @@
       },
     });
   }
+
+  // 切换一级类型时，校正二级 clientEnv 落在当前列表内
+  watch(activeType, (type) => {
+    const options = clientEnvsForCashierType(type);
+    if (options.length === 0) {
+      return;
+    }
+    if (!options.some((o) => o.clientEnv === activeClientEnv.value)) {
+      activeClientEnv.value = options[0]!.clientEnv;
+    }
+  });
 
   watch([activeType, activeClientEnv], () => {
     if (!routeContext.isValid.value) return;
@@ -243,7 +258,7 @@
         </a-button>
       </template>
 
-      <!-- 一级: H5 / WEB -->
+      <!-- 一级: H5 / WEB / 小程序 -->
       <div class="mb-4">
         <a-radio-group v-model:value="activeType" button-style="solid">
           <a-radio-button :value="CASHIER_TYPE.H5">{{
@@ -252,13 +267,20 @@
           <a-radio-button :value="CASHIER_TYPE.WEB">{{
             $t('payment.merchant.cashier.cashier.typeWeb')
           }}</a-radio-button>
+          <a-radio-button :value="CASHIER_TYPE.MINI">{{
+            $t('payment.merchant.cashier.cashier.typeMini')
+          }}</a-radio-button>
         </a-radio-group>
       </div>
 
-      <!-- H5 二级终端 -->
-      <div v-if="activeType === CASHIER_TYPE.H5" class="mb-4">
+      <!-- H5 五档 / 小程序四档(含云闪付) 二级终端 -->
+      <div v-if="cashierTypeRequiresClientEnv(activeType)" class="mb-4">
         <a-radio-group v-model:value="activeClientEnv" button-style="solid">
-          <a-radio-button v-for="sc in CASHIER_H5_CLIENT_ENVS" :key="sc.clientEnv" :value="sc.clientEnv">
+          <a-radio-button
+            v-for="sc in activeClientEnvOptions"
+            :key="sc.clientEnv"
+            :value="sc.clientEnv"
+          >
             {{ clientEnvLabel(sc.clientEnv) }}
           </a-radio-button>
         </a-radio-group>

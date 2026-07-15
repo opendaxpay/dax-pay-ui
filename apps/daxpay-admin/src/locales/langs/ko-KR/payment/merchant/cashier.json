@@ -4,6 +4,7 @@
     "missingAppContext": "앱 관리에서 계산원 구성에 액세스하세요.",
     "typeH5": "H5",
     "typeWeb": "편물",
+    "typeMini": "미니프로그램",
     "addItem": "결제 항목 추가",
     "empty": "이 개방형 환경에는 결제 항목이 없습니다.",
     "confirmDelete": "이 결제 항목을 삭제하시겠습니까?",

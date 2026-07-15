@@ -56,9 +56,9 @@ export const CashierConfigApi = {
 export interface CashierItemResult extends BaseEntity {
   appId?: string;
   mchNo?: string;
-  /** 收银台类型: h5/web */
+  /** 收银台类型: h5/web/mini */
   cashierType?: string;
-  /** H5 终端场景; WEB 为空 */
+  /** H5 五档 / MINI 四档(含云闪付); WEB 为空 */
   clientEnv?: string;
   name?: string;
   icon?: string;

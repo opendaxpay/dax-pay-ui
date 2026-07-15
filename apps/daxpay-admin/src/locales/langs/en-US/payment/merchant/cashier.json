@@ -4,6 +4,7 @@
     "missingAppContext": "Please access cashier config from app management",
     "typeH5": "H5",
     "typeWeb": "WEB",
+    "typeMini": "Mini Program",
     "addItem": "Add Payment Item",
     "empty": "No payment items for this open environment",
     "confirmDelete": "Delete this payment item?",

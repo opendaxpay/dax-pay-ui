@@ -4,6 +4,7 @@
     "missingAppContext": "請從應用管理進入收銀臺配置",
     "typeH5": "H5",
     "typeWeb": "WEB",
+    "typeMini": "小程式",
     "addItem": "新增支付項",
     "empty": "當前開啟環境暫無支付項",
     "confirmDelete": "確定刪除該支付項嗎?",

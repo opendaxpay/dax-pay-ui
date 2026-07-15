@@ -4,6 +4,7 @@
     "missingAppContext": "Silakan akses konfigurasi kasir dari manajemen aplikasi",
     "typeH5": "H5",
     "typeWeb": "WEB",
+    "typeMini": "Mini Program",
     "addItem": "Tambahkan Item Pembayaran",
     "empty": "Tidak ada item pembayaran untuk lingkungan terbuka ini",
     "confirmDelete": "Hapus item pembayaran ini?",
