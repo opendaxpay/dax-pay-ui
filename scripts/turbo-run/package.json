@@ -1,6 +1,6 @@
 {
   "name": "@vben/turbo-run",
-  "version": "4.0.0",
+  "version": "4.0.0-beta1",
   "private": true,
   "license": "LGPL-3.0-or-later",
   "type": "module",

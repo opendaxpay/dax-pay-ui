@@ -1,6 +1,6 @@
 {
   "name": "@vben-core/shadcn-ui",
-  "version": "4.0.0",
+  "version": "4.0.0-beta1",
   "#main": "./dist/index.mjs",
   "#module": "./dist/index.mjs",
   "license": "LGPL-3.0-or-later",
