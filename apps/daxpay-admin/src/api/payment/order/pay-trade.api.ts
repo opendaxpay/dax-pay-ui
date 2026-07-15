@@ -59,6 +59,10 @@ export interface PayTradeQuery {
   method?: string;
   /** 支付产品 */
   product?: string;
+  /** 通道商户号 */
+  channelMchNo?: string;
+  /** 门店号 */
+  storeNo?: string;
   /** 关联容器ID */
   containerId?: string;
   /** 创建时间-开始 */
@@ -107,6 +111,10 @@ export interface PayTradeResult extends MchEntity {
   closeTime?: string;
   /** 订单来源 */
   source?: string;
+  /** 通道商户号 */
+  channelMchNo?: string;
+  /** 门店号 */
+  storeNo?: string;
   /** 通道订单号 */
   outOrderNo?: string;
   /** 透传订单号 */
