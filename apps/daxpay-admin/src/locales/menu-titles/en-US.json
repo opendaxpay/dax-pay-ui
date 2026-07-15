@@ -79,5 +79,6 @@
   "menu.payment.lakala.config": "Lakala ISV Configuration",
   "menu.payment.merchant.group.channelApp": "Channel App Config",
   "menu.payment.config.group.channelIsv": "Channel ISV Config",
-  "menu.payment.merchant.easypay": "EasyPay Config"
+  "menu.payment.merchant.easypay": "EasyPay Config",
+  "menu.payment.merchant.codePayConfig": "QR Code Pay Config"
 }

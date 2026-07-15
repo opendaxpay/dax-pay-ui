@@ -46,7 +46,9 @@
     "cancelDefaultDesc": "別のデフォルトアプリを割り当てる必要があります",
     "deleteDesc": "これを元に戻すことはできません。慎重に進めてください",
     "noActions": "利用可能なアクションはありません",
-    "openActionAria": "アプリ設定を開く"
+    "openActionAria": "アプリ設定を開く",
+    "codePayConfig": "QR Code Pay Config",
+    "codePayConfigDesc": "Configure QR code pay methods for H5 and mini program"
   },
   "easypay": {
     "v1Hint": "V1 は安全性が低いため、旧システム互換時のみ有効にしてください",

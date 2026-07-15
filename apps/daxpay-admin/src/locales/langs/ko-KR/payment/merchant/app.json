@@ -46,7 +46,9 @@
     "cancelDefaultDesc": "다른 기본 앱을 할당해야 합니다.",
     "deleteDesc": "이 작업은 취소할 수 없습니다. 주의해서 진행하세요",
     "noActions": "사용 가능한 작업이 없습니다.",
-    "openActionAria": "앱 구성 열기"
+    "openActionAria": "앱 구성 열기",
+    "codePayConfig": "QR Code Pay Config",
+    "codePayConfigDesc": "Configure QR code pay methods for H5 and mini program"
   },
   "easypay": {
     "v1Hint": "V1은 보안이 약하므로 레거시 호환 시에만 활성화하세요",

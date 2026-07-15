@@ -25,7 +25,6 @@
     "validationAppName": "Please enter app name",
     "validationStatus": "Please select status",
     "payRoute": "Channel Binding",
-    "aggregateScan": "Aggregate Pay Config",
     "notifyConfig": "Async Notify Config",
     "cashierConfig": "Cashier Config",
     "cashierConfigDesc": "Configure cashier items and payment method entries",
@@ -39,14 +38,17 @@
     "groupManage": "App Management",
     "groupDanger": "Danger Zone",
     "payRouteDesc": "Choose which channel merchant each wallet (WeChat/Alipay/…) uses for this app",
-    "aggregateScanDesc": "Configure aggregate QR and how scan resolves pay method and channel",
     "notifyConfigDesc": "Configure event callback URLs and subscriptions",
     "editDesc": "Edit app name, status and basic info",
     "setDefaultDesc": "Used when no app is specified for a transaction",
     "cancelDefaultDesc": "You will need to assign another default app",
     "deleteDesc": "This cannot be undone. Proceed with caution",
     "noActions": "No actions available",
-    "openActionAria": "Open app configuration"
+    "openActionAria": "Open app configuration",
+    "codePayConfig": "QR Code Pay Config",
+    "codePayConfigDesc": "Configure QR code pay methods for H5 and mini program",
+    "aggregateScan": "Aggregate Pay Config",
+    "aggregateScanDesc": "Configure aggregate scan pay methods and channels by open environment"
   },
   "easypay": {
     "v1Hint": "V1 is weakly secured; enable only for legacy clients",

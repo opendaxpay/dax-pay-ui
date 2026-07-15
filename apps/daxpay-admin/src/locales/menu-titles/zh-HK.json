@@ -66,7 +66,7 @@
   "menu.payment.merchant.channelMerchant.wechatIsvApp": "微信服務商子商户應用",
   "menu.develop.auth": "認證調試",
   "menu.system.notify.wechatConfig": "微信消息通知",
-  "menu.payment.merchant.aggregateScan": "聚合收款配置",
+  "menu.payment.merchant.aggregateScan": "聚合支付配置",
   "menu.payment.merchant.group.manage": "商户管理",
   "menu.payment.merchant.group.channelMerchant": "通道商户",
   "menu.payment.merchant.cashierConfig": "收銀台配置",
@@ -79,5 +79,6 @@
   "menu.payment.lakala.config": "拉卡拉服務商配置",
   "menu.payment.merchant.group.channelApp": "通道應用配置",
   "menu.payment.config.group.channelIsv": "通道服務商配置",
-  "menu.payment.merchant.easypay": "易支付配置"
+  "menu.payment.merchant.easypay": "易支付配置",
+  "menu.payment.merchant.codePayConfig": "碼牌支付配置"
 }

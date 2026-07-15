@@ -46,7 +46,9 @@
     "cancelDefaultDesc": "Anda perlu menetapkan apl lalai lain",
     "deleteDesc": "Ini tidak boleh dibuat asal. Teruskan dengan berhati-hati",
     "noActions": "Tiada tindakan tersedia",
-    "openActionAria": "Buka konfigurasi apl"
+    "openActionAria": "Buka konfigurasi apl",
+    "codePayConfig": "QR Code Pay Config",
+    "codePayConfigDesc": "Configure QR code pay methods for H5 and mini program"
   },
   "easypay": {
     "v1Hint": "V1 mempunyai keselamatan yang lemah; aktifkan hanya untuk klien lama",

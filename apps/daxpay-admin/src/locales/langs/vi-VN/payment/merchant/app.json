@@ -46,7 +46,9 @@
     "cancelDefaultDesc": "Bạn sẽ cần chỉ định một ứng dụng mặc định khác",
     "deleteDesc": "Điều này không thể hoàn tác được. Tiến hành thận trọng",
     "noActions": "Không có hành động nào",
-    "openActionAria": "Mở cấu hình ứng dụng"
+    "openActionAria": "Mở cấu hình ứng dụng",
+    "codePayConfig": "QR Code Pay Config",
+    "codePayConfigDesc": "Configure QR code pay methods for H5 and mini program"
   },
   "easypay": {
     "v1Hint": "V1 có bảo mật yếu; chỉ bật cho khách hàng cũ",

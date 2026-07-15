@@ -18,6 +18,10 @@
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { useMessage } from '#/hooks/useMessage';
   import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
+  import RouteHitPreviewBlock from '#/views/payment/merchant/shared/RouteHitPreviewBlock.vue';
+  import { useRouteHitPreview } from '#/views/payment/merchant/shared/useRouteHitPreview';
+  import { modeDisplayName } from '#/views/payment/merchant/route/shared/payRoute.labels';
+  import { PAY_ROUTE_MODE } from '#/views/payment/merchant/route/shared/payRoute.constants';
 
   import { AGGREGATE_LEVEL, AGGREGATE_CLIENT_ENVS, type AggregateLevel } from './shared/constants';
 
@@ -65,9 +69,23 @@
   const channelMchMap = ref<Record<string, LabelValue[]>>({}); // clientEnv → 通道商户列表
   const capabilityMap = ref<Record<string, LabelValue[]>>({}); // clientEnv → 能力列表
 
+  // 通道路由命中预览（与路由页同源；解构以便模板自动解包 ref）
+  const {
+    loading: routeHitLoading,
+    effectiveMode: routeEffectiveMode,
+    methodLabel: routeMethodLabel,
+    load: loadRouteHit,
+    preview: previewRouteHit,
+  } = useRouteHitPreview();
+
   // 生效模式(服务端)
   const effectiveLevel = computed(() => config.value.level || AGGREGATE_LEVEL.AUTO);
   const isLevelActive = computed(() => editLevel.value === effectiveLevel.value);
+
+  // AUTO / METHOD 需展示路由预览
+  const showRoutePreview = computed(
+    () => editLevel.value === AGGREGATE_LEVEL.AUTO || editLevel.value === AGGREGATE_LEVEL.METHOD,
+  );
 
   // 模式提示
   const modeHint = computed(() => {
@@ -79,6 +97,15 @@
       return $t('payment.merchant.aggregate.aggregate.methodModeHint');
     }
     return $t('payment.merchant.aggregate.aggregate.directModeHint');
+  });
+
+  // 当前通道路由模式文案
+  const routeModeLabel = computed(() => {
+    const mode = routeEffectiveMode.value;
+    if (!mode) {
+      return '—';
+    }
+    return modeDisplayName(mode === PAY_ROUTE_MODE.BASIC ? PAY_ROUTE_MODE.BASIC : PAY_ROUTE_MODE.SCENE);
   });
 
   /** 场景国际化名 */
@@ -139,8 +166,23 @@
 
   /** 查找支付方式的友好名称 */
   function findMethodLabel(provider: string, method: string): string {
+    const fromRoute = routeMethodLabel(method);
+    if (fromRoute && fromRoute !== method) {
+      return fromRoute;
+    }
     const list = methodDirectory.value[provider];
     return list?.find((m) => m.value === method)?.label || method;
+  }
+
+  /** 当前行用于路由预览的 method（AUTO 默认 / METHOD 手选） */
+  function resolveMethodForEnv(sc: (typeof AGGREGATE_CLIENT_ENVS)[number]): string {
+    if (editLevel.value === AGGREGATE_LEVEL.AUTO) {
+      return sc.defaultMethod;
+    }
+    if (editLevel.value === AGGREGATE_LEVEL.METHOD) {
+      return getClientEnvData(sc.clientEnv).method || '';
+    }
+    return '';
   }
 
   /** 加载通道商户候选(DIRECT 模式用) */
@@ -183,7 +225,7 @@
     appInfo.value = app || {};
   }
 
-  /** 加载配置 */
+  /** 加载配置 + 通道路由预览 */
   async function loadConfig() {
     if (!appId.value) return;
     loading.value = true;
@@ -192,8 +234,7 @@
     editLevel.value = (effectiveLevel.value as AggregateLevel) || AGGREGATE_LEVEL.AUTO;
     autoLaunch.value = config.value.autoLaunch || false;
     initSceneForm();
-    // 无条件加载方式目录, AUTO 模式也需要查找方式友好名称
-    await loadMethodDirectory();
+    await Promise.all([loadMethodDirectory(), loadRouteHit(appId.value)]);
     loading.value = false;
   }
 
@@ -201,6 +242,14 @@
   function handleBack() {
     router.push({
       path: '/payment/merchant/app/manage',
+      query: { mchNo: mchNo.value, appId: appId.value },
+    });
+  }
+
+  /** 跳转通道路由配置 */
+  function goPayRoute() {
+    router.push({
+      path: '/payment/merchant/route',
       query: { mchNo: mchNo.value, appId: appId.value },
     });
   }
@@ -224,41 +273,56 @@
     }
   }
 
+  /**
+   * 收集 METHOD/DIRECT 已填写行(配多少存多少)
+   * DIRECT 只填商户或只填能力视为不完整, 提示补全
+   */
+  function collectFilledClientEnvs(): AggregateClientEnvParam[] | null {
+    if (editLevel.value === AGGREGATE_LEVEL.AUTO) {
+      return [];
+    }
+    const filled: AggregateClientEnvParam[] = [];
+    for (const sc of AGGREGATE_CLIENT_ENVS) {
+      const sd = getClientEnvData(sc.clientEnv);
+      if (editLevel.value === AGGREGATE_LEVEL.METHOD) {
+        if (sd.method) {
+          filled.push({ ...sd });
+        }
+        continue;
+      }
+      // DIRECT
+      const hasMch = !!sd.channelMchNo;
+      const hasCap = !!sd.capability;
+      if (!hasMch && !hasCap) {
+        continue;
+      }
+      if (!hasMch || !hasCap) {
+        message.error(
+          $t('payment.merchant.aggregate.aggregate.partialRowIncomplete') +
+            ': ' +
+            clientEnvLabel(sc.clientEnv),
+        );
+        return null;
+      }
+      filled.push({ ...sd });
+    }
+    if (filled.length === 0) {
+      message.error($t('payment.merchant.aggregate.aggregate.atLeastOneRequired'));
+      return null;
+    }
+    return filled;
+  }
+
   /** 保存 */
   function save() {
-    // 按模式校验
-    if (editLevel.value === AGGREGATE_LEVEL.METHOD) {
-      for (const sc of AGGREGATE_CLIENT_ENVS) {
-        if (!getClientEnvData(sc.clientEnv).method) {
-          message.error(
-            $t('payment.merchant.aggregate.aggregate.methodPlaceholder') +
-              ': ' +
-              clientEnvLabel(sc.clientEnv),
-          );
-          return;
-        }
-      }
-    } else if (editLevel.value === AGGREGATE_LEVEL.DIRECT) {
-      for (const sc of AGGREGATE_CLIENT_ENVS) {
-        const sd = getClientEnvData(sc.clientEnv);
-        if (!sd.channelMchNo) {
-          message.error(
-            $t('payment.merchant.aggregate.aggregate.channelMerchantPlaceholder') +
-              ': ' +
-              clientEnvLabel(sc.clientEnv),
-          );
-          return;
-        }
-      }
+    const clientEnvs = collectFilledClientEnvs();
+    if (clientEnvs === null) {
+      return;
     }
 
     confirm({
       content: $t('payment.merchant.aggregate.aggregate.saveConfirm'),
       async onOk() {
-        const clientEnvs =
-          editLevel.value === AGGREGATE_LEVEL.AUTO
-            ? []
-            : Object.values(clientEnvForm.value);
         await AggregateConfigApi.saveOrUpdate({
           mchNo: mchNo.value,
           appId: appId.value,
@@ -299,7 +363,7 @@
     if (channelMchNo) {
       await loadCapabilityForClientEnv(clientEnv, channelMchNo);
     } else {
-      capabilityMap.value = { ...capabilityMap.value, [scene]: [] };
+      capabilityMap.value = { ...capabilityMap.value, [clientEnv]: [] };
     }
   }
 
@@ -345,7 +409,7 @@
         </div>
       </template>
 
-      <a-spin :spinning="loading">
+      <a-spin :spinning="loading || routeHitLoading">
         <!-- 公共参数: 自动拉起 -->
         <div class="mb-2">
           <a-checkbox v-model:checked="autoLaunch" :disabled="!editing">
@@ -359,7 +423,7 @@
         <a-divider class="!my-4" />
 
         <!-- 配置模式 -->
-        <div class="mb-5 flex items-center gap-3">
+        <div class="mb-5 flex flex-wrap items-center gap-3">
           <span class="text-sm font-medium">{{ $t('payment.merchant.aggregate.aggregate.editModeLabel') }}</span>
           <a-radio-group v-model:value="editLevel" button-style="solid" :disabled="!editing">
             <a-radio-button :value="AGGREGATE_LEVEL.AUTO">
@@ -378,57 +442,94 @@
         </div>
 
         <!-- 模式提示 -->
-        <div class="mb-5">
+        <div class="mb-4">
           <a-alert :message="modeHint" type="info" show-icon />
         </div>
 
-        <!-- 场景配置 -->
-        <div class="client-env-list">
-          <div v-for="sc in AGGREGATE_CLIENT_ENVS" :key="sc.clientEnv" class="client-env-row">
-            <div class="client-env-label">
-              <span class="font-medium">{{ clientEnvLabel(sc.clientEnv) }}</span>
+        <!-- 当前通道路由 + 跳转（AUTO/METHOD） -->
+        <div v-if="showRoutePreview" class="mb-5 flex flex-wrap items-center gap-2 text-sm">
+          <span class="text-muted-foreground">{{ $t('payment.merchant.aggregate.aggregate.currentRouteMode') }}:</span>
+          <a-tag color="blue">{{ routeModeLabel }}</a-tag>
+          <a-button type="link" size="small" class="!px-1" @click="goPayRoute">
+            {{ $t('payment.merchant.aggregate.aggregate.goPayRoute') }}
+            <IconifyIcon icon="ant-design:right-outlined" class="inline" />
+          </a-button>
+        </div>
+
+        <!-- 场景配置：表头一次 + 每环境单行横排 -->
+        <div class="env-table-wrap">
+          <div class="env-table" :class="showRoutePreview ? 'cols-route' : 'cols-direct'">
+            <!-- 表头 -->
+            <div class="env-grid-header">
+              <div>{{ $t('payment.merchant.aggregate.aggregate.scene') }}</div>
+              <div v-if="showRoutePreview">{{ $t('payment.merchant.aggregate.aggregate.method') }}</div>
+              <div>{{ $t('payment.merchant.route.route.channelMerchant') }}</div>
+              <div>{{ $t('payment.merchant.route.route.payCapability') }}</div>
             </div>
 
-            <!-- AUTO 模式: 只读提示 -->
-            <div v-if="editLevel === AGGREGATE_LEVEL.AUTO" class="client-env-content">
-              <a-tag color="blue">
-                {{ $t('payment.merchant.aggregate.aggregate.autoDerived') }}: {{ findMethodLabel(sc.provider, sc.defaultMethod) }}
-              </a-tag>
-            </div>
+            <!-- 数据行 -->
+            <div
+              v-for="sc in AGGREGATE_CLIENT_ENVS"
+              :key="sc.clientEnv"
+              class="env-grid-row"
+            >
+              <div class="cell-env font-medium">{{ clientEnvLabel(sc.clientEnv) }}</div>
 
-            <!-- METHOD 模式: 选支付方式 -->
-            <div v-else-if="editLevel === AGGREGATE_LEVEL.METHOD" class="client-env-content">
-              <a-select
-                :value="getClientEnvData(sc.clientEnv).method"
-                :options="methodOptions(sc.provider)"
-                :placeholder="$t('payment.merchant.aggregate.aggregate.methodPlaceholder')"
-                :disabled="!editing"
-                allow-clear
-                style="width: 240px"
-                @change="(val: any) => (getClientEnvData(sc.clientEnv).method = val)"
-              />
-            </div>
+              <!-- AUTO：只读支付方式 + 路由预览 -->
+              <template v-if="editLevel === AGGREGATE_LEVEL.AUTO">
+                <div class="cell-text" :title="findMethodLabel(sc.provider, sc.defaultMethod)">
+                  {{ findMethodLabel(sc.provider, sc.defaultMethod) }}
+                </div>
+                <RouteHitPreviewBlock
+                  :hit="previewRouteHit(sc.provider, sc.defaultMethod)"
+                  i18n-prefix="payment.merchant.aggregate.aggregate"
+                />
+              </template>
 
-            <!-- DIRECT 模式: 选通道商户 + 能力 -->
-            <div v-else class="client-env-content direct-content">
-              <a-select
-                :value="getClientEnvData(sc.clientEnv).channelMchNo"
-                :options="channelMchOptions(sc.clientEnv)"
-                :placeholder="$t('payment.merchant.aggregate.aggregate.channelMerchantPlaceholder')"
-                :disabled="!editing"
-                allow-clear
-                style="width: 240px"
-                @change="(val: any) => onChannelMchChange(sc.clientEnv, val)"
-              />
-              <a-select
-                :value="getClientEnvData(sc.clientEnv).capability"
-                :options="capabilityOptions(sc.clientEnv)"
-                :placeholder="$t('payment.merchant.aggregate.aggregate.capabilityPlaceholder')"
-                :disabled="!editing || !getClientEnvData(sc.clientEnv).channelMchNo"
-                allow-clear
-                style="width: 240px"
-                @change="(val: any) => (getClientEnvData(sc.clientEnv).capability = val)"
-              />
+              <!-- METHOD：选支付方式 + 路由预览 -->
+              <template v-else-if="editLevel === AGGREGATE_LEVEL.METHOD">
+                <div>
+                  <a-select
+                    :value="getClientEnvData(sc.clientEnv).method"
+                    :options="methodOptions(sc.provider)"
+                    :placeholder="$t('payment.merchant.aggregate.aggregate.methodPlaceholder')"
+                    :disabled="!editing"
+                    allow-clear
+                    class="w-full min-w-[160px]"
+                    @change="(val: any) => (getClientEnvData(sc.clientEnv).method = val || '')"
+                  />
+                </div>
+                <RouteHitPreviewBlock
+                  :hit="previewRouteHit(sc.provider, resolveMethodForEnv(sc))"
+                  i18n-prefix="payment.merchant.aggregate.aggregate"
+                />
+              </template>
+
+              <!-- DIRECT：通道商户 + 能力（跳过路由） -->
+              <template v-else>
+                <div>
+                  <a-select
+                    :value="getClientEnvData(sc.clientEnv).channelMchNo"
+                    :options="channelMchOptions(sc.clientEnv)"
+                    :placeholder="$t('payment.merchant.aggregate.aggregate.channelMerchantPlaceholder')"
+                    :disabled="!editing"
+                    allow-clear
+                    class="w-full min-w-[160px]"
+                    @change="(val: any) => onChannelMchChange(sc.clientEnv, val)"
+                  />
+                </div>
+                <div>
+                  <a-select
+                    :value="getClientEnvData(sc.clientEnv).capability"
+                    :options="capabilityOptions(sc.clientEnv)"
+                    :placeholder="$t('payment.merchant.aggregate.aggregate.capabilityPlaceholder')"
+                    :disabled="!editing || !getClientEnvData(sc.clientEnv).channelMchNo"
+                    allow-clear
+                    class="w-full min-w-[160px]"
+                    @change="(val: any) => (getClientEnvData(sc.clientEnv).capability = val)"
+                  />
+                </div>
+              </template>
             </div>
           </div>
         </div>
@@ -438,33 +539,62 @@
 </template>
 
 <style scoped>
-  .client-env-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  .env-table-wrap {
+    overflow-x: auto;
     padding: 16px;
     background: hsl(var(--muted) / 0.3);
     border-radius: 12px;
   }
 
-  .client-env-row {
-    display: flex;
+  .env-table {
+    min-width: 640px;
+  }
+
+  /* AUTO/METHOD：环境 | 支付方式 | 通道商户 | 支付能力 */
+  .env-table.cols-route .env-grid-header,
+  .env-table.cols-route .env-grid-row {
+    grid-template-columns: 110px minmax(160px, 1fr) minmax(160px, 1.2fr) minmax(140px, 1.1fr);
+  }
+
+  /* DIRECT：环境 | 通道商户 | 支付能力 */
+  .env-table.cols-direct .env-grid-header,
+  .env-table.cols-direct .env-grid-row {
+    grid-template-columns: 110px minmax(180px, 1.2fr) minmax(180px, 1.2fr);
+  }
+
+  .env-grid-header,
+  .env-grid-row {
+    display: grid;
     align-items: center;
-    gap: 16px;
+    gap: 12px 16px;
   }
 
-  .client-env-label {
-    flex-shrink: 0;
-    width: 100px;
+  .env-grid-header {
+    padding: 0 12px 10px;
+    font-size: 12px;
+    color: hsl(var(--muted-foreground));
   }
 
-  .client-env-content {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  .env-grid-row {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    background: hsl(var(--background));
+    border: 1px solid hsl(var(--border));
+    border-radius: 10px;
   }
 
-  .direct-content {
-    flex-wrap: wrap;
+  .env-grid-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .cell-env {
+    font-size: 13px;
+  }
+
+  .cell-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 13px;
   }
 </style>

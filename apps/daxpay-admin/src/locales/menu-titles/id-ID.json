@@ -79,5 +79,6 @@
   "menu.payment.lakala.config": "Konfigurasi ISV Lakala",
   "menu.payment.merchant.group.channelApp": "Konfigurasi Aplikasi Saluran",
   "menu.payment.config.group.channelIsv": "Konfigurasi ISV Saluran",
-  "menu.payment.merchant.easypay": "EasyPay Config"
+  "menu.payment.merchant.easypay": "EasyPay Config",
+  "menu.payment.merchant.codePayConfig": "Konfigurasi Bayar Kode QR"
 }

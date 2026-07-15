@@ -88,6 +88,15 @@
         route: '/payment/merchant/aggregate',
       });
     }
+    if (hasPermission(PermCodes.Merchant.GatewayCode.VIEW)) {
+      paymentCards.push({
+        key: 'codePayConfig',
+        title: $t('payment.merchant.app.app.codePayConfig'),
+        icon: 'ant-design:mobile-outlined',
+        description: $t('payment.merchant.app.app.codePayConfigDesc'),
+        route: '/payment/merchant/code-config',
+      });
+    }
     if (hasPermission(PermCodes.Merchant.GatewayCashier.VIEW)) {
       paymentCards.push({
         key: 'cashier',

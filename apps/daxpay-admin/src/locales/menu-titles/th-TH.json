@@ -79,5 +79,6 @@
   "menu.payment.lakala.config": "การกำหนดค่า Lakala ISV",
   "menu.payment.merchant.group.channelApp": "การกำหนดค่าแอปช่อง",
   "menu.payment.config.group.channelIsv": "การกำหนดค่า ISV ของช่องสัญญาณ",
-  "menu.payment.merchant.easypay": "EasyPay Config"
+  "menu.payment.merchant.easypay": "EasyPay Config",
+  "menu.payment.merchant.codePayConfig": "การกำหนดค่าชำระเงินรหัส"
 }

@@ -25,7 +25,6 @@
     "validationAppName": "請輸入應用名稱",
     "validationStatus": "請選擇狀態",
     "payRoute": "通道路由",
-    "aggregateScan": "聚合收款配置",
     "notifyConfig": "非同步通知配置",
     "cashierConfig": "收銀臺配置",
     "cashierConfigDesc": "配置收銀臺展示項與支付方式入口",
@@ -39,14 +38,17 @@
     "groupManage": "應用管理",
     "groupDanger": "危險操作",
     "payRouteDesc": "指定本應用微信/支付寶等收款走哪個通道商戶",
-    "aggregateScanDesc": "配置一碼多付與碼牌掃碼後如何選擇支付方式與通道",
     "notifyConfigDesc": "配置業務事件回撥地址與訂閱事件",
     "editDesc": "修改應用名稱、啟用狀態等基本資訊",
     "setDefaultDesc": "未指定應用時，交易預設落到該應用",
     "cancelDefaultDesc": "取消後需重新指定預設應用",
     "deleteDesc": "刪除後不可恢復，請謹慎操作",
     "noActions": "暫無可用操作",
-    "openActionAria": "進入應用配置"
+    "openActionAria": "進入應用配置",
+    "codePayConfig": "碼牌支付配置",
+    "codePayConfigDesc": "配置碼牌收款在 H5/小程序形態下的支付方式與通道",
+    "aggregateScan": "聚合支付配置",
+    "aggregateScanDesc": "配置聚合掃碼連結在各打開環境下的支付方式與通道"
   },
   "easypay": {
     "v1Hint": "V1 安全性較弱，僅兼容舊系統時開啟",
