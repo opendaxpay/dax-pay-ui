@@ -1,5 +1,9 @@
 {
   "auth": {
-    "profile": "윤곽"
+    "profile": "윤곽",
+    "login": "로그인",
+    "qrcodeLogin": "QR코드 로그인",
+    "forgetPassword": "비밀번호를 잊으셨나요?",
+    "oauthCallback": "서드파티 로그인 콜백"
   }
 }

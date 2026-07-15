@@ -2,8 +2,6 @@ import type { RouteRecordRaw } from 'vue-router';
 
 import { LOGIN_PATH } from '@vben/constants';
 
-import { $t } from '#/locales';
-
 /**
  * 首页路径常量
  * 不直接读 preferences.app.defaultHomePath：Vben 偏好合并用 defu（缓存优先），
@@ -33,7 +31,7 @@ const profileRoute: RouteRecordRaw = {
   component: () => import('#/views/profile/index.vue'),
   meta: {
     // 个人设置
-    title: $t('page.auth.profile'),
+    title: 'page.auth.profile',
     hideInMenu: true,
     hideInBreadcrumb: true,
     activePath: '/profile',
@@ -46,7 +44,7 @@ const socialBindCallbackRoute: RouteRecordRaw = {
   path: '/auth/social-bind-callback/:source?',
   component: () => import('#/views/_core/authentication/social-bind-callback.vue'),
   meta: {
-    title: $t('page.auth.oauthCallback'),
+    title: 'page.auth.oauthCallback',
     hideInMenu: true,
     hideInBreadcrumb: true,
     hideInTab: true,
@@ -60,7 +58,7 @@ const serviceUnavailableRoute: RouteRecordRaw = {
   component: () => import('#/views/_core/fallback/offline.vue'),
   meta: {
     // 服务不可用
-    title: $t('ui.fallback.offlineError'),
+    title: 'ui.fallback.offlineError',
     hideInMenu: true,
     hideInBreadcrumb: true,
     hideInTab: true,
@@ -101,7 +99,7 @@ const coreRoutes: RouteRecordRaw[] = [
         component: () => import('#/views/_core/authentication/login.vue'),
         meta: {
           // 登录
-          title: $t('page.auth.login'),
+          title: 'page.auth.login',
         },
       },
       {
@@ -110,7 +108,7 @@ const coreRoutes: RouteRecordRaw[] = [
         component: () => import('#/views/_core/authentication/qrcode-login.vue'),
         meta: {
           // 二维码登录
-          title: $t('page.auth.qrcodeLogin'),
+          title: 'page.auth.qrcodeLogin',
         },
       },
       {
@@ -119,7 +117,7 @@ const coreRoutes: RouteRecordRaw[] = [
         component: () => import('#/views/_core/authentication/forget-password.vue'),
         meta: {
           // 忘记密码
-          title: $t('page.auth.forgetPassword'),
+          title: 'page.auth.forgetPassword',
         },
       },
       {
@@ -129,7 +127,7 @@ const coreRoutes: RouteRecordRaw[] = [
         component: () => import('#/views/_core/authentication/oauth-callback.vue'),
         meta: {
           // 第三方登录回调
-          title: $t('page.auth.oauthCallback'),
+          title: 'page.auth.oauthCallback',
           hideInMenu: true,
         },
       },
@@ -139,7 +137,7 @@ const coreRoutes: RouteRecordRaw[] = [
         component: () => import('#/views/_core/authentication/agreement-terms.vue'),
         meta: {
           // 用户协议
-          title: $t('authentication.termsTitle'),
+          title: 'authentication.termsTitle',
           hideInMenu: true,
         },
       },
@@ -149,7 +147,7 @@ const coreRoutes: RouteRecordRaw[] = [
         component: () => import('#/views/_core/authentication/agreement-privacy.vue'),
         meta: {
           // 隐私政策
-          title: $t('authentication.privacyTitle'),
+          title: 'authentication.privacyTitle',
           hideInMenu: true,
         },
       },
@@ -168,7 +166,7 @@ const notifyCenterRoute: RouteRecordRaw = {
   component: () => import('#/views/system/notify/center/NotifyCenter.vue'),
   meta: {
     // 通知中心
-    title: $t('system.notify.centerTitle'),
+    title: 'system.notify.centerTitle',
     hideInMenu: true,
     hideInBreadcrumb: true,
     activePath: '/notify/center',

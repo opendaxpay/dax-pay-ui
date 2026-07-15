@@ -27,7 +27,8 @@ const DEFAULT_DESCRIPTION_KEY = 'components.deleteConfirm.description';
 /** 全局单例状态，供 DeleteConfirmModal 绑定 */
 export const deleteConfirmState = reactive({
   visible: false,
-  title: $t('components.deleteConfirm.title'),
+  // 初始为空串：避免模块加载期（早于 setupI18n 加载消息）调用 $t 触发 not-found 警告
+  title: '',
   name: '',
   verificationText: '',
   descriptionKey: DEFAULT_DESCRIPTION_KEY,

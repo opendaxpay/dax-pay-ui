@@ -1,5 +1,9 @@
 {
   "auth": {
-    "profile": "Profil"
+    "profile": "Profil",
+    "login": "Masuk",
+    "qrcodeLogin": "Masuk Kode QR",
+    "forgetPassword": "Lupa Kata Sandi",
+    "oauthCallback": "Callback Login Pihak Ketiga"
   }
 }

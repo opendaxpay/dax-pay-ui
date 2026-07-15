@@ -1,5 +1,9 @@
 {
   "auth": {
-    "profile": "Hồ sơ"
+    "profile": "Hồ sơ",
+    "login": "Đăng nhập",
+    "qrcodeLogin": "Đăng nhập bằng mã QR",
+    "forgetPassword": "Quên mật khẩu",
+    "oauthCallback": "Gọi lại đăng nhập bên thứ ba"
   }
 }

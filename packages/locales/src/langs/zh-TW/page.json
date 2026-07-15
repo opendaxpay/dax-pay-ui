@@ -1,5 +1,9 @@
 {
   "auth": {
-    "profile": "個人中心"
+    "profile": "個人中心",
+    "login": "登入",
+    "qrcodeLogin": "掃碼登入",
+    "forgetPassword": "忘記密碼",
+    "oauthCallback": "第三方登入回呼"
   }
 }

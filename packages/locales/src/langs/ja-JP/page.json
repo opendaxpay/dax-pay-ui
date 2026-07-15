@@ -1,5 +1,9 @@
 {
   "auth": {
-    "profile": "プロフィール"
+    "profile": "プロフィール",
+    "login": "ログイン",
+    "qrcodeLogin": "QRコードログイン",
+    "forgetPassword": "パスワードをお忘れですか?",
+    "oauthCallback": "サードパーティログインコールバック"
   }
 }
