@@ -47,5 +47,38 @@
     "deleteDesc": "This cannot be undone. Proceed with caution",
     "noActions": "No actions available",
     "openActionAria": "Open app configuration"
+  },
+  "easypay": {
+    "v1Hint": "V1 is weakly secured; enable only for legacy clients",
+    "useSystemKey": "Use system key pair",
+    "v2Url": "V2 API base URL",
+    "desc": "Expose EasyPay V1/V2 protocol APIs",
+    "title": "EasyPay Config",
+    "notifyHint": "Async notify is not sent in this release; poll query API",
+    "platformPublicKey": "Platform RSA public key",
+    "enableV1": "Enable V1",
+    "confirmSave": "Save EasyPay configuration?",
+    "md5Key": "V1 MD5 key",
+    "pid": "EasyPay merchant id (pid)",
+    "enableV2": "Enable V2",
+    "md5KeyPh": "Enter MD5 key",
+    "publicKey": "Merchant RSA public key",
+    "v1Url": "V1 API base URL",
+    "enable": "Enable",
+    "section": {
+      "endpoint": "Basics",
+      "v1": "V1 protocol",
+      "v2": "V2 protocol"
+    },
+    "pidDesc": "App-assigned EasyPay merchant id used as pid by integrators",
+    "v2UrlDesc": "V2 protocol API base URL to share with integrators",
+    "v1UrlDesc": "V1 protocol API base URL for legacy clients only",
+    "enableDesc": "When off, this app rejects EasyPay protocol requests",
+    "enableV2Desc": "Recommended; use V2 for new integrations",
+    "enableV1Desc": "V1 is weakly secured; enable only for legacy clients",
+    "md5KeyDesc": "MD5 key used for V1 request signing",
+    "useSystemKeyDesc": "Use the platform key pair so merchant public key is not required",
+    "publicKeyDesc": "Merchant RSA public key when using a custom key pair",
+    "platformPublicKeyDesc": "Platform public key for integrator signature verification"
   }
 }

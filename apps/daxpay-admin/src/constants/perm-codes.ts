@@ -71,6 +71,11 @@ export const PermCodes = {
       VIEW: 'merchant:gateway-cashier:view',
       MANAGE: 'merchant:gateway-cashier:manage',
     },
+    /** 易支付协议配置 menuCode=merchant:easypay */
+    EasyPay: {
+      VIEW: 'merchant:easypay:view',
+      MANAGE: 'merchant:easypay:manage',
+    },
     Store: {
       VIEW: 'merchant:store:view',
       MANAGE: 'merchant:store:manage',

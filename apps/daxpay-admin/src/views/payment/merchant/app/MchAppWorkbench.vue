@@ -106,6 +106,17 @@
         action: 'notify',
       });
     }
+    // 易支付协议配置：subpage /payment/merchant/easypay?mchNo&appId
+    if (hasPermission(PermCodes.Merchant.EasyPay.VIEW)) {
+      paymentCards.push({
+        key: 'easypay',
+        // 卡片标题与菜单 i18n_key 一致
+        title: $t('menu.payment.merchant.easypay'),
+        icon: 'ant-design:api-outlined',
+        description: $t('payment.merchant.app.easypay.desc'),
+        route: '/payment/merchant/easypay',
+      });
+    }
     if (paymentCards.length > 0) {
       groups.push({
         group: $t('payment.merchant.app.app.groupConfig'),

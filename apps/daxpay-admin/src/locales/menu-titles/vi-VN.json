@@ -78,5 +78,6 @@
   "menu.payment.merchant.appWorkbench": "Cấu hình ứng dụng",
   "menu.payment.lakala.config": "Cấu hình Lakala ISV",
   "menu.payment.merchant.group.channelApp": "Cấu hình ứng dụng kênh",
-  "menu.payment.config.group.channelIsv": "Cấu hình ISV kênh"
+  "menu.payment.config.group.channelIsv": "Cấu hình ISV kênh",
+  "menu.payment.merchant.easypay": "EasyPay Config"
 }

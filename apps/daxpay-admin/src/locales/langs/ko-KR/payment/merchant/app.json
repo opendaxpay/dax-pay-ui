@@ -47,5 +47,38 @@
     "deleteDesc": "이 작업은 취소할 수 없습니다. 주의해서 진행하세요",
     "noActions": "사용 가능한 작업이 없습니다.",
     "openActionAria": "앱 구성 열기"
+  },
+  "easypay": {
+    "v1Hint": "V1은 보안이 약하므로 레거시 호환 시에만 활성화하세요",
+    "useSystemKey": "시스템 키 쌍 사용",
+    "v2Url": "V2 연동 주소",
+    "desc": "EasyPay V1/V2 프로토콜 외부 연동",
+    "title": "EasyPay 설정",
+    "notifyHint": "이번 버전에서는 비동기 알림을 보내지 않습니다. query로 주문 상태를 폴링하세요",
+    "platformPublicKey": "플랫폼 RSA 공개키",
+    "enableV1": "V1 사용",
+    "confirmSave": "EasyPay 설정을 저장하시겠습니까?",
+    "md5Key": "V1 MD5 키",
+    "pid": "EasyPay 가맹점 번호(pid)",
+    "enableV2": "V2 사용",
+    "md5KeyPh": "MD5 키 입력",
+    "publicKey": "가맹점 RSA 공개키",
+    "v1Url": "V1 연동 주소",
+    "enable": "사용",
+    "section": {
+      "endpoint": "기본 연동",
+      "v1": "V1 프로토콜 설정",
+      "v2": "V2 프로토콜 설정"
+    },
+    "pidDesc": "앱별로 할당된 EasyPay 가맹점 번호. 연동측에서 pid로 사용",
+    "v2UrlDesc": "V2 프로토콜 API 루트 URL. 연동측에 공유",
+    "v1UrlDesc": "V1 프로토콜 API 루트 URL. 레거시 호환 전용",
+    "enableDesc": "끄면 해당 앱은 EasyPay 요청을 거부합니다",
+    "enableV2Desc": "권장. 신규 연동은 V2를 사용하세요",
+    "enableV1Desc": "V1은 보안이 약하므로 레거시 호환 시에만 활성화하세요",
+    "md5KeyDesc": "V1 서명용 MD5 키",
+    "useSystemKeyDesc": "플랫폼 키 쌍을 사용하면 가맹점 공개키를 입력할 필요가 없습니다",
+    "publicKeyDesc": "자체 키 쌍 사용 시 가맹점 RSA 공개키",
+    "platformPublicKeyDesc": "연동측 서명 검증용 플랫폼 공개키"
   }
 }

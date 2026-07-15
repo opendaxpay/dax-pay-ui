@@ -78,5 +78,6 @@
   "menu.payment.merchant.appWorkbench": "Konfigurasi Apl",
   "menu.payment.lakala.config": "Konfigurasi ISV Lakala",
   "menu.payment.merchant.group.channelApp": "Konfigurasi Apl Saluran",
-  "menu.payment.config.group.channelIsv": "Saluran ISV Config"
+  "menu.payment.config.group.channelIsv": "Saluran ISV Config",
+  "menu.payment.merchant.easypay": "EasyPay Config"
 }

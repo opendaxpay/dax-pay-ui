@@ -47,5 +47,38 @@
     "deleteDesc": "Ini tidak boleh dibuat asal. Teruskan dengan berhati-hati",
     "noActions": "Tiada tindakan tersedia",
     "openActionAria": "Buka konfigurasi apl"
+  },
+  "easypay": {
+    "v1Hint": "V1 mempunyai keselamatan yang lemah; aktifkan hanya untuk klien lama",
+    "useSystemKey": "Gunakan pasangan kunci sistem",
+    "v2Url": "URL asas API V2",
+    "desc": "Mendedahkan API protokol EasyPay V1/V2",
+    "title": "Konfigurasi EasyPay",
+    "notifyHint": "Pemberitahuan async tidak dihantar dalam keluaran ini; tinjau API query",
+    "platformPublicKey": "Kunci awam RSA platform",
+    "enableV1": "Aktifkan V1",
+    "confirmSave": "Simpan konfigurasi EasyPay?",
+    "md5Key": "Kunci MD5 V1",
+    "pid": "ID pedagang EasyPay (pid)",
+    "enableV2": "Aktifkan V2",
+    "md5KeyPh": "Masukkan kunci MD5",
+    "publicKey": "Kunci awam RSA pedagang",
+    "v1Url": "URL asas API V1",
+    "enable": "Aktifkan",
+    "section": {
+      "endpoint": "Asas",
+      "v1": "Protokol V1",
+      "v2": "Protokol V2"
+    },
+    "pidDesc": "ID pedagang EasyPay yang ditetapkan setiap aplikasi, digunakan sebagai pid oleh pengintegrasi",
+    "v2UrlDesc": "URL asas API protokol V2 untuk dikongsi dengan pengintegrasi",
+    "v1UrlDesc": "URL asas API protokol V1, hanya untuk klien lama",
+    "enableDesc": "Apabila dimatikan, aplikasi ini menolak permintaan protokol EasyPay",
+    "enableV2Desc": "Disyorkan; gunakan V2 untuk integrasi baharu",
+    "enableV1Desc": "V1 mempunyai keselamatan yang lemah; aktifkan hanya untuk klien lama",
+    "md5KeyDesc": "Kunci MD5 untuk penandatanganan permintaan V1",
+    "useSystemKeyDesc": "Gunakan pasangan kunci platform supaya kunci awam pedagang tidak diperlukan",
+    "publicKeyDesc": "Kunci awam RSA pedagang apabila menggunakan pasangan kunci tersuai",
+    "platformPublicKeyDesc": "Kunci awam platform untuk pengesahan tandatangan pengintegrasi"
   }
 }

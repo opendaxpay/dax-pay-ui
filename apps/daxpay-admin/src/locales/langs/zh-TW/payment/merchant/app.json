@@ -47,5 +47,38 @@
     "deleteDesc": "刪除後不可恢復，請謹慎操作",
     "noActions": "暫無可用操作",
     "openActionAria": "進入應用配置"
+  },
+  "easypay": {
+    "v1Hint": "V1 安全性較弱，僅兼容舊系統時開啟",
+    "useSystemKey": "使用系統密鑰",
+    "v2Url": "V2 對接地址",
+    "desc": "對外兼容易支付 V1/V2 協議接入",
+    "title": "易支付配置",
+    "notifyHint": "本期暫不發送異步通知，請使用 query 輪詢訂單狀態",
+    "platformPublicKey": "平台 RSA 公鑰",
+    "enableV1": "開啟 V1",
+    "confirmSave": "確定保存易支付配置嗎？",
+    "md5Key": "V1 MD5 密鑰",
+    "pid": "易支付商戶號(pid)",
+    "enableV2": "開啟 V2",
+    "md5KeyPh": "請輸入 MD5 密鑰",
+    "publicKey": "商戶 RSA 公鑰",
+    "v1Url": "V1 對接地址",
+    "enable": "啟用",
+    "section": {
+      "endpoint": "基礎對接",
+      "v1": "V1 協議配置",
+      "v2": "V2 協議配置"
+    },
+    "pidDesc": "系統按應用分配的易支付商戶號，對接方作為 pid 使用",
+    "v2UrlDesc": "V2 協議 API 根位址，複製給對接方",
+    "v1UrlDesc": "V1 協議 API 根位址，僅兼容舊系統時使用",
+    "enableDesc": "關閉後該應用將拒絕易支付協議請求",
+    "enableV2Desc": "建議開啟；新對接請走 V2",
+    "enableV1Desc": "V1 安全性較弱，僅兼容舊系統時開啟",
+    "md5KeyDesc": "V1 簽名用 MD5 密鑰",
+    "useSystemKeyDesc": "使用平台密鑰對時無需填寫商戶公鑰",
+    "publicKeyDesc": "商戶側 RSA 公鑰（自簽時填寫）",
+    "platformPublicKeyDesc": "平台公鑰，對接方驗簽使用"
   }
 }

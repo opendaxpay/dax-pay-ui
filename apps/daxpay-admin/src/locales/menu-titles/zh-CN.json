@@ -78,5 +78,6 @@
   "menu.payment.merchant.appWorkbench": "应用配置",
   "menu.payment.lakala.config": "拉卡拉服务商配置",
   "menu.payment.merchant.group.channelApp": "通道应用配置",
-  "menu.payment.config.group.channelIsv": "通道服务商配置"
+  "menu.payment.config.group.channelIsv": "通道服务商配置",
+  "menu.payment.merchant.easypay": "易支付配置"
 }

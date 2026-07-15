@@ -47,5 +47,38 @@
     "deleteDesc": "Điều này không thể hoàn tác được. Tiến hành thận trọng",
     "noActions": "Không có hành động nào",
     "openActionAria": "Mở cấu hình ứng dụng"
+  },
+  "easypay": {
+    "v1Hint": "V1 có bảo mật yếu; chỉ bật cho khách hàng cũ",
+    "useSystemKey": "Dùng cặp khóa hệ thống",
+    "v2Url": "URL cơ sở API V2",
+    "desc": "Cung cấp API giao thức EasyPay V1/V2",
+    "title": "Cấu hình EasyPay",
+    "notifyHint": "Bản này chưa gửi thông báo async; hãy polling query API",
+    "platformPublicKey": "Khóa công khai RSA nền tảng",
+    "enableV1": "Bật V1",
+    "confirmSave": "Lưu cấu hình EasyPay?",
+    "md5Key": "Khóa MD5 V1",
+    "pid": "ID merchant EasyPay (pid)",
+    "enableV2": "Bật V2",
+    "md5KeyPh": "Nhập khóa MD5",
+    "publicKey": "Khóa công khai RSA merchant",
+    "v1Url": "URL cơ sở API V1",
+    "enable": "Bật",
+    "section": {
+      "endpoint": "Cơ bản",
+      "v1": "Giao thức V1",
+      "v2": "Giao thức V2"
+    },
+    "pidDesc": "ID merchant EasyPay cấp theo ứng dụng, dùng làm pid bởi bên tích hợp",
+    "v2UrlDesc": "URL cơ sở API giao thức V2 để chia sẻ với bên tích hợp",
+    "v1UrlDesc": "URL cơ sở API giao thức V1, chỉ cho khách hàng cũ",
+    "enableDesc": "Khi tắt, ứng dụng này từ chối yêu cầu giao thức EasyPay",
+    "enableV2Desc": "Đề nghị; dùng V2 cho tích hợp mới",
+    "enableV1Desc": "V1 có bảo mật yếu; chỉ bật cho khách hàng cũ",
+    "md5KeyDesc": "Khóa MD5 dùng để ký yêu cầu V1",
+    "useSystemKeyDesc": "Dùng cặp khóa nền tảng nên không cần khóa công khai merchant",
+    "publicKeyDesc": "Khóa công khai RSA merchant khi dùng cặp khóa tùy chỉnh",
+    "platformPublicKeyDesc": "Khóa công khai nền tảng để bên tích hợp xác minh chữ ký"
   }
 }

@@ -47,5 +47,38 @@
     "deleteDesc": "これを元に戻すことはできません。慎重に進めてください",
     "noActions": "利用可能なアクションはありません",
     "openActionAria": "アプリ設定を開く"
+  },
+  "easypay": {
+    "v1Hint": "V1 は安全性が低いため、旧システム互換時のみ有効にしてください",
+    "useSystemKey": "システム鍵ペアを使用",
+    "v2Url": "V2 接続URL",
+    "desc": "EasyPay V1/V2 プロトコルによる外部連携",
+    "title": "EasyPay設定",
+    "notifyHint": "本バージョンでは非同期通知を送信しません。query で注文状態をポーリングしてください",
+    "platformPublicKey": "プラットフォーム RSA 公開鍵",
+    "enableV1": "V1 を有効化",
+    "confirmSave": "EasyPay 設定を保存しますか？",
+    "md5Key": "V1 MD5 鍵",
+    "pid": "EasyPay 加盟店番号 (pid)",
+    "enableV2": "V2 を有効化",
+    "md5KeyPh": "MD5 鍵を入力",
+    "publicKey": "加盟店 RSA 公開鍵",
+    "v1Url": "V1 接続URL",
+    "enable": "有効",
+    "section": {
+      "endpoint": "基本接続",
+      "v1": "V1 プロトコル設定",
+      "v2": "V2 プロトコル設定"
+    },
+    "pidDesc": "アプリ単位で割り当てられる EasyPay 加盟店番号。連携側は pid として使用",
+    "v2UrlDesc": "V2 プロトコル API のルートURL。連携側へ共有",
+    "v1UrlDesc": "V1 プロトコル API のルートURL。旧システム互換時のみ",
+    "enableDesc": "無効にすると当該アプリは EasyPay リクエストを拒否します",
+    "enableV2Desc": "推奨。新規連携は V2 を利用してください",
+    "enableV1Desc": "V1 は安全性が低いため、旧システム互換時のみ有効にしてください",
+    "md5KeyDesc": "V1 署名用の MD5 鍵",
+    "useSystemKeyDesc": "プラットフォーム鍵ペアを使う場合、加盟店公開鍵の入力は不要です",
+    "publicKeyDesc": "独自鍵ペア利用時の加盟店 RSA 公開鍵",
+    "platformPublicKeyDesc": "連携側の署名検証用プラットフォーム公開鍵"
   }
 }

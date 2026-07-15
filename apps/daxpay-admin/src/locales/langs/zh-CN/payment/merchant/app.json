@@ -47,5 +47,38 @@
     "deleteDesc": "删除后不可恢复，请谨慎操作",
     "noActions": "暂无可用操作",
     "openActionAria": "进入应用配置"
+  },
+  "easypay": {
+    "v1Hint": "V1 安全性较弱，仅兼容旧系统时开启",
+    "useSystemKey": "使用系统密钥",
+    "v2Url": "V2 对接地址",
+    "desc": "对外兼容易支付 V1/V2 协议接入",
+    "title": "易支付配置",
+    "notifyHint": "本期暂不发送异步通知，请使用 query 轮询订单状态",
+    "platformPublicKey": "平台 RSA 公钥",
+    "enableV1": "开启 V1",
+    "confirmSave": "确定保存易支付配置吗？",
+    "md5Key": "V1 MD5 密钥",
+    "pid": "易支付商户号(pid)",
+    "enableV2": "开启 V2",
+    "md5KeyPh": "请输入 MD5 密钥",
+    "publicKey": "商户 RSA 公钥",
+    "v1Url": "V1 对接地址",
+    "enable": "启用",
+    "section": {
+      "endpoint": "基础对接",
+      "v1": "V1 协议配置",
+      "v2": "V2 协议配置"
+    },
+    "pidDesc": "系统按应用分配的易支付商户号，对接方作为 pid 使用",
+    "v2UrlDesc": "V2 协议 API 根地址，复制给对接方",
+    "v1UrlDesc": "V1 协议 API 根地址，仅兼容旧系统时使用",
+    "enableDesc": "关闭后该应用将拒绝易支付协议请求",
+    "enableV2Desc": "推荐开启；新对接请走 V2",
+    "enableV1Desc": "V1 安全性较弱，仅兼容旧系统时开启",
+    "md5KeyDesc": "V1 签名用 MD5 密钥",
+    "useSystemKeyDesc": "使用平台密钥对时无需填写商户公钥",
+    "publicKeyDesc": "商户侧 RSA 公钥（自签时填写）",
+    "platformPublicKeyDesc": "平台公钥，对接方验签使用"
   }
 }

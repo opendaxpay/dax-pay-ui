@@ -78,5 +78,6 @@
   "menu.payment.merchant.appWorkbench": "앱 구성",
   "menu.payment.lakala.config": "Lakala ISV 구성",
   "menu.payment.merchant.group.channelApp": "채널 앱 구성",
-  "menu.payment.config.group.channelIsv": "채널 ISV 구성"
+  "menu.payment.config.group.channelIsv": "채널 ISV 구성",
+  "menu.payment.merchant.easypay": "EasyPay 설정"
 }
