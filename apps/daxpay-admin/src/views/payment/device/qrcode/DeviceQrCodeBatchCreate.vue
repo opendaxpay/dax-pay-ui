@@ -23,6 +23,8 @@
   const formState = ref<DeviceQrCodeBatchParam>({
     batchNo: '',
     count: 10,
+    // 默认 H5 码牌
+    programType: 'h5',
     amountType: 'random',
     status: 'enabled',
   });
@@ -33,6 +35,8 @@
     const rules: Record<string, any[]> = {
       batchNo: [{ required: true, message: $t('payment.device.qrcode.validateBatchNo') }],
       count: [{ required: true, message: $t('payment.device.qrcode.validateCount') }],
+      // 落地程序类型必选
+      programType: [{ required: true, message: $t('payment.device.qrcode.validateProgramType') }],
       amountType: [{ required: true, message: $t('payment.device.qrcode.validateAmountType') }],
       status: [{ required: true, message: $t('payment.device.qrcode.validateStatus') }],
     };
@@ -67,6 +71,7 @@
     formState.value = {
       batchNo: '',
       count: 10,
+      programType: 'h5',
       amountType: 'random',
       status: 'enabled',
       fixedAmount: undefined,
@@ -184,6 +189,13 @@
         </a-form-item>
         <a-form-item :label="$t('payment.device.qrcode.field.name')">
           <a-input v-model:value="formState.name" :placeholder="$t('common.pleaseInput')" />
+        </a-form-item>
+        <!-- 码牌类型: 创建后不可改, 决定扫码 path /h 或 /m -->
+        <a-form-item :label="$t('payment.device.qrcode.field.programType')" name="programType">
+          <a-radio-group v-model:value="formState.programType" button-style="solid">
+            <a-radio-button value="h5">{{ $t('payment.device.qrcode.programType.h5') }}</a-radio-button>
+            <a-radio-button value="mini_app">{{ $t('payment.device.qrcode.programType.mini_app') }}</a-radio-button>
+          </a-radio-group>
         </a-form-item>
         <a-form-item :label="$t('payment.device.qrcode.field.amountType')" name="amountType">
           <a-radio-group v-model:value="formState.amountType" button-style="solid">

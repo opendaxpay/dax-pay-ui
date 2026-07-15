@@ -13,7 +13,8 @@
     "fixedAmount": "Jumlah Tetap",
     "status": "Status",
     "remark": "Teguran",
-    "createTime": "Cipta Masa"
+    "createTime": "Cipta Masa",
+    "programType": "Jenis kod"
   },
   "status": {
     "enabled": "Didayakan",
@@ -54,5 +55,10 @@
   "qrCodeTip": "Imbas untuk masuk ke halaman pembayaran",
   "copyLink": "Salin Pautan",
   "download": "Muat turun Kod QR",
-  "amountLabel": "Jumlah"
+  "amountLabel": "Jumlah",
+  "programType": {
+    "h5": "H5",
+    "mini_app": "Program mini"
+  },
+  "validateProgramType": "Sila pilih jenis kod"
 }

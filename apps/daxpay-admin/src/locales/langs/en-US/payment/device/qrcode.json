@@ -13,7 +13,8 @@
     "fixedAmount": "Fixed Amount",
     "status": "Status",
     "remark": "Remark",
-    "createTime": "Create Time"
+    "createTime": "Create Time",
+    "programType": "Code type"
   },
   "status": {
     "enabled": "Enabled",
@@ -54,5 +55,10 @@
   "qrCodeTip": "Scan to enter the payment page",
   "copyLink": "Copy Link",
   "download": "Download QR Code",
-  "amountLabel": "Amount"
+  "amountLabel": "Amount",
+  "programType": {
+    "h5": "H5",
+    "mini_app": "Mini program"
+  },
+  "validateProgramType": "Please select code type"
 }

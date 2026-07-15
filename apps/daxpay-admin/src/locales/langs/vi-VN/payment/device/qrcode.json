@@ -13,7 +13,8 @@
     "fixedAmount": "Số tiền cố định",
     "status": "Trạng thái",
     "remark": "Nhận xét",
-    "createTime": "Tạo thời gian"
+    "createTime": "Tạo thời gian",
+    "programType": "Loại mã"
   },
   "status": {
     "enabled": "Đã bật",
@@ -54,5 +55,10 @@
   "qrCodeTip": "Quét để vào trang thanh toán",
   "copyLink": "Sao chép liên kết",
   "download": "Tải xuống mã QR",
-  "amountLabel": "Số lượng"
+  "amountLabel": "Số lượng",
+  "programType": {
+    "h5": "H5",
+    "mini_app": "Mini program"
+  },
+  "validateProgramType": "Vui lòng chọn loại mã"
 }

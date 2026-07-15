@@ -13,7 +13,8 @@
     "fixedAmount": "固定金额",
     "status": "状态",
     "remark": "备注",
-    "createTime": "创建时间"
+    "createTime": "创建时间",
+    "programType": "码牌类型"
   },
   "status": {
     "enabled": "启用",
@@ -54,5 +55,10 @@
   "qrCodeTip": "扫码即可进入支付页面",
   "copyLink": "复制链接",
   "download": "下载二维码",
-  "amountLabel": "金额"
+  "amountLabel": "金额",
+  "programType": {
+    "h5": "H5",
+    "mini_app": "小程序"
+  },
+  "validateProgramType": "请选择码牌类型"
 }

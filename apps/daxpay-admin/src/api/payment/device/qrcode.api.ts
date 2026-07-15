@@ -72,7 +72,7 @@ export const DeviceQrCodeApi = {
   },
 
   /**
-   * 获取码牌扫码链接(完整 H5 地址)
+   * 获取码牌扫码链接(完整地址, 按 programType 分流 /h 或 /m)
    */
   getCodeLink(code: string): Promise<Result<string>> {
     return defHttp.get({ url: '/admin/device/qrcode/get-code-link', params: { code } });
@@ -89,6 +89,8 @@ export interface DeviceQrCodeQuery {
   batchNo?: string;
   /** 商户号 */
   mchNo?: string;
+  /** 落地程序类型 h5/mini_app */
+  programType?: string;
   /** 金额类型 random/fixed */
   amountType?: string;
   /** 状态 enabled/disabled */
@@ -121,6 +123,8 @@ export interface DeviceQrCodeBatchParam {
   count?: number;
   /** 码牌名称 */
   name?: string;
+  /** 落地程序类型 h5/mini_app, 创建后不可改 */
+  programType?: string;
   /** 金额类型 random/fixed */
   amountType?: string;
   /** 固定金额(分) */
@@ -155,6 +159,8 @@ export interface DeviceQrCodeResult extends BaseEntity {
   mchName?: string;
   /** 关联应用号(空=商户默认应用) */
   appId?: string;
+  /** 落地程序类型 h5/mini_app */
+  programType?: string;
   /** 金额类型 random/fixed */
   amountType?: string;
   /** 固定金额(分) */

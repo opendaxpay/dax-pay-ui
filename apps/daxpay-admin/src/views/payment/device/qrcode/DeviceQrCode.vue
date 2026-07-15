@@ -59,6 +59,16 @@
     },
     {
       type: 'list',
+      field: 'programType',
+      name: $t('payment.device.qrcode.field.programType'),
+      placeholder: $t('common.pleaseSelect'),
+      selectList: [
+        { label: $t('payment.device.qrcode.programType.h5'), value: 'h5' },
+        { label: $t('payment.device.qrcode.programType.mini_app'), value: 'mini_app' },
+      ],
+    },
+    {
+      type: 'list',
       field: 'amountType',
       name: $t('payment.device.qrcode.field.amountType'),
       placeholder: $t('common.pleaseSelect'),
@@ -305,6 +315,22 @@
             </template>
           </vxe-column>
           <vxe-column field="name" :title="$t('payment.device.qrcode.field.name')" :min-width="140" />
+          <!-- 码牌类型: h5 → /h, mini_app → /m -->
+          <vxe-column
+            field="programType"
+            :title="$t('payment.device.qrcode.field.programType')"
+            :min-width="110"
+            align="center"
+          >
+            <template #default="{ row }">
+              <a-tag v-if="row.programType === 'mini_app'" color="purple">
+                {{ $t('payment.device.qrcode.programType.mini_app') }}
+              </a-tag>
+              <a-tag v-else color="blue">
+                {{ $t('payment.device.qrcode.programType.h5') }}
+              </a-tag>
+            </template>
+          </vxe-column>
           <vxe-column field="batchNo" :title="$t('payment.device.qrcode.field.batchNo')" :min-width="140">
             <template #default="{ row }">
               <span v-if="row.batchNo">{{ row.batchNo }}</span>

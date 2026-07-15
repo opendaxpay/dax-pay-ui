@@ -18,6 +18,8 @@
 
   // 编辑态只读展示用商户名称(不参与提交)
   const editMchName = ref('');
+  // 落地程序类型只读(创建后不可改)
+  const editProgramType = ref('h5');
 
   const formState = ref<DeviceQrCodeParam>({
     name: '',
@@ -56,6 +58,7 @@
       fixedAmount: undefined,
     };
     editMchName.value = '';
+    editProgramType.value = 'h5';
     formRef.value?.resetFields();
   }
 
@@ -79,6 +82,8 @@
         remark: row.remark,
       };
       editMchName.value = row.mchName || '';
+      // 类型只读展示, 不参与提交
+      editProgramType.value = row.programType || 'h5';
     } finally {
       confirmLoading.value = false;
     }
@@ -148,6 +153,15 @@
         <a-form-item :label="$t('payment.device.qrcode.field.mchNo')">
           <a-tag v-if="formState.mchNo" color="blue">{{ formState.mchNo }}</a-tag>
           <a-tag v-else color="default">{{ $t('payment.device.qrcode.unbound') }}</a-tag>
+        </a-form-item>
+        <!-- 码牌类型只读(创建后不可改) -->
+        <a-form-item :label="$t('payment.device.qrcode.field.programType')">
+          <a-tag v-if="editProgramType === 'mini_app'" color="purple">
+            {{ $t('payment.device.qrcode.programType.mini_app') }}
+          </a-tag>
+          <a-tag v-else color="blue">
+            {{ $t('payment.device.qrcode.programType.h5') }}
+          </a-tag>
         </a-form-item>
         <!-- 码牌名称 -->
         <a-form-item :label="$t('payment.device.qrcode.field.name')" name="name">

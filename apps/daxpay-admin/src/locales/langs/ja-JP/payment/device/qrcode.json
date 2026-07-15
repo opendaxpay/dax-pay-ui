@@ -13,7 +13,8 @@
     "fixedAmount": "定額",
     "status": "状態",
     "remark": "述べる",
-    "createTime": "時間を作る"
+    "createTime": "時間を作る",
+    "programType": "コード種別"
   },
   "status": {
     "enabled": "有効",
@@ -54,5 +55,10 @@
   "qrCodeTip": "スキャンして支払いページに入ります",
   "copyLink": "リンクをコピー",
   "download": "QRコードをダウンロード",
-  "amountLabel": "額"
+  "amountLabel": "額",
+  "programType": {
+    "h5": "H5",
+    "mini_app": "ミニプログラム"
+  },
+  "validateProgramType": "コード種別を選択してください"
 }

@@ -13,7 +13,8 @@
     "fixedAmount": "固定金額",
     "status": "狀態",
     "remark": "備註",
-    "createTime": "創建時間"
+    "createTime": "創建時間",
+    "programType": "碼牌類型"
   },
   "status": {
     "enabled": "啓用",
@@ -54,5 +55,10 @@
   "qrCodeTip": "掃碼即可進入支付頁面",
   "copyLink": "複製鏈接",
   "download": "下載二維碼",
-  "amountLabel": "金額"
+  "amountLabel": "金額",
+  "programType": {
+    "h5": "H5",
+    "mini_app": "小程序"
+  },
+  "validateProgramType": "請選擇碼牌類型"
 }

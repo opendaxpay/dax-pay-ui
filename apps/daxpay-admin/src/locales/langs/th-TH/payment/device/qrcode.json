@@ -13,7 +13,8 @@
     "fixedAmount": "จำนวนเงินคงที่",
     "status": "สถานะ",
     "remark": "หมายเหตุ",
-    "createTime": "สร้างเวลา"
+    "createTime": "สร้างเวลา",
+    "programType": "ประเภทโค้ด"
   },
   "status": {
     "enabled": "เปิดใช้งานแล้ว",
@@ -54,5 +55,10 @@
   "qrCodeTip": "สแกนเพื่อเข้าสู่หน้าชำระเงิน",
   "copyLink": "คัดลอกลิงค์",
   "download": "ดาวน์โหลดรหัส QR",
-  "amountLabel": "จำนวน"
+  "amountLabel": "จำนวน",
+  "programType": {
+    "h5": "H5",
+    "mini_app": "มินิโปรแกรม"
+  },
+  "validateProgramType": "โปรดเลือกประเภทโค้ด"
 }
