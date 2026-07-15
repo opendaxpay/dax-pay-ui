@@ -24,7 +24,7 @@ export const DevelopTradeApi = {
   },
 
   /**
-   * 传值模式: 按商户号筛选通道商户候选, provider 非空时仅返回声明支持该支付渠道的通道商户
+   * 直接指定: 按商户号筛选通道商户候选, provider 非空时仅返回声明支持该支付渠道的通道商户
    */
   channelMchCandidates(mchNo: string, provider?: string): Promise<Result<LabelValue[]>> {
     return defHttp.get({
@@ -34,7 +34,7 @@ export const DevelopTradeApi = {
   },
 
   /**
-   * 传值模式: 按通道商户筛选支付能力候选
+   * 直接指定: 按通道商户筛选支付能力候选
    */
   capabilityCandidates(channelMchNo: string): Promise<Result<LabelValue[]>> {
     return defHttp.get({
@@ -58,7 +58,7 @@ export interface PayParam {
   mchNo: string;
   /** 应用号 */
   appId?: string;
-  /** 通道商户号(调试/指定通道商户时传入) */
+  /** 通道商户号(调试/直接指定时传入) */
   channelMchNo?: string;
   /** 商户订单号 */
   bizOrderNo: string;
@@ -70,9 +70,9 @@ export interface PayParam {
   amount: number;
   /** 支付产品编码, 为空时由路由自动选择 */
   product?: string;
-  /** 支付方式编码(路由模式必填, 传值模式由后端从能力反推) */
+  /** 支付方式编码(跟随通道路由必填, 直接指定由后端从能力反推) */
   method?: string;
-  /** 支付能力编码(传值模式输入, 路由模式由后端回填) */
+  /** 支付能力编码(直接指定输入, 跟随通道路由由后端回填) */
   capability?: string;
   /** 用户标识 OpenId(微信 jsapi/mini 场景) */
   openId?: string;

@@ -18,7 +18,7 @@
     "sortNoPlaceholder": "ตัวเลขที่น้อยกว่าก่อน",
     "resolveMode": "โหมดการแก้ปัญหาการชำระเงิน",
     "modeMethod": "โดยวิธีการ",
-    "modeDirect": "ผู้ค้าช่องทางที่ชัดเจน",
+    "modeDirect": "ระบุโดยตรง",
     "method": "วิธีการชำระเงิน",
     "methodPlaceholder": "เลือกวิธีการชำระเงิน",
     "channelMerchant": "พ่อค้าช่องทาง",

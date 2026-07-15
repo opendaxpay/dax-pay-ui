@@ -65,9 +65,9 @@
     "mode": {
       "label": "Pay Mode",
       "route": "Follow Channel Routing",
-      "direct": "Explicit Channel Merchant",
+      "direct": "Specify Directly",
       "routeDesc": "Resolve channel merchant and capability via the app's channel routing",
-      "directDesc": "Decided by channel merchant + capability; skip channel routing"
+      "directDesc": "Directly specify channel merchant + capability; skip channel routing"
     },
     "preview": {
       "title": "Request JSON",

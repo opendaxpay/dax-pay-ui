@@ -18,7 +18,7 @@
     "sortNoPlaceholder": "Angka yang lebih kecil terlebih dahulu",
     "resolveMode": "Mode Penyelesaian Bayar",
     "modeMethod": "Berdasarkan Metode",
-    "modeDirect": "Pedagang Saluran Eksplisit",
+    "modeDirect": "Tentukan Langsung",
     "method": "Metode Pembayaran",
     "methodPlaceholder": "Pilih metode pembayaran",
     "channelMerchant": "Pedagang Saluran",

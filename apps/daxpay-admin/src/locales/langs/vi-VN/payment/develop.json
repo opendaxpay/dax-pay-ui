@@ -65,7 +65,7 @@
     "mode": {
       "label": "Chế độ thanh toán",
       "route": "Theo dõi định tuyến kênh",
-      "direct": "Người bán kênh rõ ràng",
+      "direct": "Chỉ định trực tiếp",
       "routeDesc": "Giải quyết khả năng và người bán kênh thông qua định tuyến kênh của ứng dụng",
       "directDesc": "Quyết định bởi người bán kênh + khả năng; bỏ qua định tuyến kênh"
     },

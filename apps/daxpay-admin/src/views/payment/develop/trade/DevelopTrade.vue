@@ -29,7 +29,7 @@
   // 私钥在 localStorage 中的键名
   const PRIVATE_KEY_STORAGE_KEY = 'daxpay_dev_private_key';
 
-  // 支付模式: route=路由模式(商户+方式+应用动态匹配) direct=直传模式(通道商户+能力直接决定)
+  // 支付模式: route=路由模式(商户+方式+应用动态匹配) direct=直接指定(通道商户+能力直接决定)
   const routeMode = ref<'direct' | 'route'>('route');
 
   // 私钥独立存储(标签+弹窗交互, 校验通过 form 自定义规则挂接)
@@ -61,7 +61,7 @@
     if (routeMode.value === 'route') {
       rules.method = [{ required: true, message: $t('payment.develop.trade.rule.method') }];
     } else {
-      // 直传模式: 通道商户与支付能力必填
+      // 直接指定: 通道商户与支付能力必填
       rules.channelMchNo = [{ required: true, message: $t('payment.develop.trade.rule.channelMchNo') }];
       rules.capability = [{ required: true, message: $t('payment.develop.trade.rule.capability') }];
     }
@@ -138,7 +138,7 @@
     }
   }
 
-  /** 商户变更: 刷新应用列表, 直传模式下重载通道商户候选 */
+  /** 商户变更: 刷新应用列表, 直接指定下重载通道商户候选 */
   function merchantChange() {
     form.appId = '';
     form.channelMchNo = '';
@@ -155,7 +155,7 @@
           value: item.appId ?? '',
         })) ?? [];
     });
-    // 直传模式: 商户变更即加载通道商户候选(不依赖支付方式)
+    // 直接指定: 商户变更即加载通道商户候选(不依赖支付方式)
     if (routeMode.value === 'direct') {
       loadChannelMchCandidates(form.mchNo);
     }
@@ -170,7 +170,7 @@
     }
   }
 
-  /** 模式切换: 清空通道相关字段, 直传模式重载通道商户候选 */
+  /** 模式切换: 清空通道相关字段, 直接指定重载通道商户候选 */
   function modeChange() {
     form.channelMchNo = '';
     form.capability = '';
@@ -269,7 +269,7 @@
 
   /**
    * 按当前模式组装提交参数(含公共字段 reqTime/nonceStr)
-   * 各模式只透传自身字段; 直传模式 method 由 unipay 路由反推
+   * 各模式只透传自身字段; 直接指定 method 由 unipay 路由反推
    */
   function buildPayload(): PayParam {
     const payload: PayParam = {
@@ -285,7 +285,7 @@
       payload.channelMchNo = undefined;
       payload.capability = undefined;
     } else {
-      // 直传模式: method 由后端从(通道商户, 能力)反推, 不透传
+      // 直接指定: method 由后端从(通道商户, 能力)反推, 不透传
       payload.method = undefined;
     }
     return cleanPayload(payload);
@@ -538,7 +538,7 @@
                       />
                     </a-form-item>
                   </a-col>
-                  <!-- 直传模式: 通道商户(必填) -->
+                  <!-- 直接指定: 通道商户(必填) -->
                   <a-col v-if="routeMode === 'direct'" :span="8">
                     <a-form-item :label="$t('payment.develop.trade.field.channelMchNo')" name="channelMchNo">
                       <a-select
@@ -552,7 +552,7 @@
                       />
                     </a-form-item>
                   </a-col>
-                  <!-- 直传模式: 支付能力(必填, 由通道商户+能力直接决定支付实现) -->
+                  <!-- 直接指定: 支付能力(必填, 由通道商户+能力直接决定支付实现) -->
                   <a-col v-if="routeMode === 'direct'" :span="8">
                     <a-form-item :label="$t('payment.develop.trade.field.capability')" name="capability">
                       <a-select

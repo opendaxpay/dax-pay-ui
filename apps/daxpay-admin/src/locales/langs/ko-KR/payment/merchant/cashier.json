@@ -18,7 +18,7 @@
     "sortNoPlaceholder": "작은 숫자부터 먼저",
     "resolveMode": "지불 해결 모드",
     "modeMethod": "방법별",
-    "modeDirect": "명시적 채널 판매자",
+    "modeDirect": "직접 지정",
     "method": "결제 방법",
     "methodPlaceholder": "결제 수단 선택",
     "channelMerchant": "채널 판매자",

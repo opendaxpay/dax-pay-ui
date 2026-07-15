@@ -18,7 +18,7 @@
     "sortNoPlaceholder": "Smaller numbers first",
     "resolveMode": "Pay Resolve Mode",
     "modeMethod": "By Method",
-    "modeDirect": "Explicit Channel Merchant",
+    "modeDirect": "Specify Directly",
     "method": "Payment Method",
     "methodPlaceholder": "Select payment method",
     "channelMerchant": "Channel Merchant",

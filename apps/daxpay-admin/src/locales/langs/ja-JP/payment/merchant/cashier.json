@@ -18,7 +18,7 @@
     "sortNoPlaceholder": "小さい数字から順に",
     "resolveMode": "支払い解決モード",
     "modeMethod": "方法別",
-    "modeDirect": "明示的なチャネル販売者",
+    "modeDirect": "直接指定",
     "method": "支払方法",
     "methodPlaceholder": "支払い方法を選択してください",
     "channelMerchant": "チャネルマーチャント",

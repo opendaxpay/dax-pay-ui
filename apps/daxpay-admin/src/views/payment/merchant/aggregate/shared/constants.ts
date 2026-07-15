@@ -30,5 +30,5 @@ export const AGGREGATE_CLIENT_ENVS: AggregateClientEnvConfig[] = [
 export const LEVEL_DISPLAY: Record<AggregateLevel, string> = {
   auto: '跟随通道路由',
   method: '指定支付方式',
-  direct: '指定通道商户',
+  direct: '直接指定',
 };

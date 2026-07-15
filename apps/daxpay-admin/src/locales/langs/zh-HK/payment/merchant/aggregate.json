@@ -27,6 +27,6 @@
     },
     "modeAuto": "跟隨通道路由",
     "modeMethod": "指定支付方式",
-    "modeDirect": "指定通道商户"
+    "modeDirect": "直接指定"
   }
 }

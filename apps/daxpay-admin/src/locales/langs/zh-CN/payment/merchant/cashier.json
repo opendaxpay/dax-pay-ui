@@ -18,7 +18,7 @@
     "sortNoPlaceholder": "数字越小越靠前",
     "resolveMode": "支付解析方式",
     "modeMethod": "指定支付方式",
-    "modeDirect": "指定通道商户",
+    "modeDirect": "直接指定",
     "method": "支付方式",
     "methodPlaceholder": "请选择支付方式",
     "channelMerchant": "通道商户",

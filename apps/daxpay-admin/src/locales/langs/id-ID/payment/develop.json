@@ -65,7 +65,7 @@
     "mode": {
       "label": "Modus Bayar",
       "route": "Ikuti Perutean Saluran",
-      "direct": "Pedagang Saluran Eksplisit",
+      "direct": "Tentukan Langsung",
       "routeDesc": "Selesaikan pedagang saluran dan kemampuan melalui perutean saluran aplikasi",
       "directDesc": "Diputuskan oleh pedagang saluran + kemampuan; lewati perutean saluran"
     },

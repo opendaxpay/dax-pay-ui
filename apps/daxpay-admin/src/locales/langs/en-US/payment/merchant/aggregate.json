@@ -6,7 +6,7 @@
     "autoLaunchHint": "Automatically initiate payment after scanning, no manual click needed",
     "autoModeHint": "System derives pay method from open environment and follows app channel routing. No manual config needed.",
     "methodModeHint": "Manually select pay method per open environment, then resolve via app channel routing.",
-    "directModeHint": "Explicitly set channel merchant and capability per open environment; skip channel routing.",
+    "directModeHint": "Directly specify channel merchant and capability per open environment; skip channel routing.",
     "scene": "Open Environment",
     "method": "Payment Method",
     "methodPlaceholder": "Select payment method",
@@ -27,6 +27,6 @@
     },
     "modeAuto": "Follow Channel Routing",
     "modeMethod": "By Method",
-    "modeDirect": "Explicit Channel Merchant"
+    "modeDirect": "Specify Directly"
   }
 }
