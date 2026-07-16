@@ -48,6 +48,9 @@
     "confirmArchive": "Lưu trữ phiên bản này?",
     "confirmDelete": "Bạn có chắc chắn xóa bản nháp này không?",
     "confirmClose": "Nội dung đã được thay đổi. Vẫn đóng? Những thay đổi chưa được lưu sẽ bị mất.",
+    "createFromThis": "Sao chép thành bản nháp",
+    "confirmReplaceByLanguage": "Đổi ngôn ngữ sẽ ghi đè nội dung hiện tại. Tiếp tục?",
+    "inheritedTip": "Đã tải nội dung từ phiên bản trước. Chỉnh sửa rồi lưu thành bản nháp mới.",
     "statusDraft": "Bản nháp",
     "statusPublished": "Đã xuất bản",
     "statusArchived": "Đã lưu trữ"

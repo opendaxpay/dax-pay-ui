@@ -18,6 +18,13 @@ export const UserProtocolVersionApi = {
   add(data: UserProtocolVersion): Promise<Result<void>> {
     return defHttp.post({ url: '/user/protocol/version/add', data });
   },
+  /** 查询新建草稿可继承的源版本(已发布优先, 否则最新归档) */
+  findInheritSource(protocolId: string, language: string): Promise<Result<UserProtocolVersion | null>> {
+    return defHttp.get({
+      url: '/user/protocol/version/find-inherit-source',
+      params: { protocolId, language },
+    });
+  },
   /** 编辑草稿内容(仅草稿可编辑) */
   update(data: UserProtocolVersion): Promise<Result<void>> {
     return defHttp.post({ url: '/user/protocol/version/update', data });

@@ -48,6 +48,9 @@
     "confirmArchive": "Archive this version?",
     "confirmDelete": "Are you sure to delete this draft?",
     "confirmClose": "The content has been changed. Close anyway? Unsaved changes will be lost.",
+    "createFromThis": "Copy as draft",
+    "confirmReplaceByLanguage": "Switching language will replace the current content. Continue?",
+    "inheritedTip": "Content loaded from the previous version. Edit and save as a new draft.",
     "statusDraft": "Draft",
     "statusPublished": "Published",
     "statusArchived": "Archived"

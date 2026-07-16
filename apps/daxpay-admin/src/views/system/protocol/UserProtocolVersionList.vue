@@ -1,8 +1,10 @@
 <script lang="ts" setup>
+  import type { MenuProps } from 'antdv-next';
   import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
 
   import { ref } from 'vue';
 
+  import { IconifyIcon } from '@vben-core/icons';
   import { $t } from '@vben/locales';
 
   import { UserProtocolVersionApi } from '#/api/system/protocol/user-protocol-version.api';
@@ -82,9 +84,14 @@
     queryPage();
   }
 
-  /** 新建草稿 */
+  /** 新建草稿(默认继承同语言上一版) */
   function handleAdd() {
     versionEdit.value.init(protocolId.value, undefined, FormEditType.Add);
+  }
+
+  /** 基于指定已发布/归档版本新建草稿 */
+  function handleCreateFrom(row: any) {
+    versionEdit.value.init(protocolId.value, undefined, FormEditType.Add, row.id);
   }
 
   /** 编辑草稿 */
@@ -143,6 +150,45 @@
         });
       },
     });
+  }
+
+  /**
+   * 更多操作菜单
+   * 草稿: 删除; 已发布: 归档
+   */
+  function getActionMenu(row: any): MenuProps {
+    const items: NonNullable<MenuProps['items']> = [];
+    if (row.status === 'DRAFT') {
+      items.push({
+        key: 'delete',
+        // 删除草稿
+        label: $t('common.delete'),
+        danger: true,
+      });
+    }
+    if (row.status === 'PUBLISHED') {
+      items.push({
+        key: 'archive',
+        // 归档
+        label: $t('system.protocol.version.archive'),
+      });
+    }
+    return {
+      items,
+      onClick: ({ key }: { key: string }) => {
+        if (key === 'delete') {
+          handleDelete(row);
+        }
+        if (key === 'archive') {
+          handleArchive(row);
+        }
+      },
+    };
+  }
+
+  /** 是否展示更多菜单 */
+  function hasMoreActions(row: any) {
+    return row.status === 'DRAFT' || row.status === 'PUBLISHED';
   }
 
   /** 分页变化 */
@@ -246,7 +292,7 @@
       <!-- 变更说明 -->
       <vxe-column field="summary" :title="$t('system.protocol.version.summary')" :min-width="160" />
       <!-- 操作 -->
-      <vxe-column fixed="right" width="240" :show-overflow="false" :title="$t('common.operation')">
+      <vxe-column fixed="right" :width="220" :show-overflow="false" :title="$t('common.operation')">
         <template #default="{ row }">
           <a-space :size="2">
             <template #separator>
@@ -256,22 +302,30 @@
             <a-button v-if="row.status === 'DRAFT'" type="link" size="small" @click="handleEdit(row)">{{
               $t('common.edit')
             }}</a-button>
-            <!-- 查看(非草稿) -->
-            <a-button v-if="row.status !== 'DRAFT'" type="link" size="small" @click="handleView(row)">{{
-              $t('common.view')
-            }}</a-button>
             <!-- 发布(仅草稿) -->
             <a-button v-if="row.status === 'DRAFT'" type="link" size="small" @click="handlePublish(row)">{{
               $t('system.protocol.version.publish')
             }}</a-button>
-            <!-- 归档(仅已发布) -->
-            <a-button v-if="row.status === 'PUBLISHED'" type="link" size="small" @click="handleArchive(row)">{{
-              $t('system.protocol.version.archive')
+            <!-- 查看(非草稿) -->
+            <a-button v-if="row.status !== 'DRAFT'" type="link" size="small" @click="handleView(row)">{{
+              $t('common.view')
             }}</a-button>
-            <!-- 删除(仅草稿) -->
-            <a-button v-if="row.status === 'DRAFT'" type="link" size="small" danger @click="handleDelete(row)">{{
-              $t('common.delete')
-            }}</a-button>
+            <!-- 基于此版本新建(已发布/归档) -->
+            <a-button
+              v-if="row.status === 'PUBLISHED' || row.status === 'ARCHIVED'"
+              type="link"
+              size="small"
+              @click="handleCreateFrom(row)"
+            >
+              {{ $t('system.protocol.version.createFromThis') }}
+            </a-button>
+            <!-- 更多: 草稿删除 / 已发布归档 -->
+            <a-dropdown v-if="hasMoreActions(row)" :menu="getActionMenu(row)">
+              <a-button type="link" size="small">
+                {{ $t('common.more') }}
+                <IconifyIcon icon="ant-design:down-outlined" class="inline" />
+              </a-button>
+            </a-dropdown>
           </a-space>
         </template>
       </vxe-column>

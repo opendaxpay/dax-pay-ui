@@ -48,6 +48,9 @@
     "confirmArchive": "このバージョンをアーカイブしますか?",
     "confirmDelete": "この下書きを削除してもよろしいですか?",
     "confirmClose": "内容が変更になりました。とにかく閉じますか？保存されていない変更は失われます。",
+    "createFromThis": "下書きにコピー",
+    "confirmReplaceByLanguage": "言語を切り替えると現在の本文が上書きされます。続けますか？",
+    "inheritedTip": "前のバージョンから内容を読み込みました。編集して新しい下書きとして保存できます",
     "statusDraft": "下書き",
     "statusPublished": "発行済み",
     "statusArchived": "アーカイブ済み"

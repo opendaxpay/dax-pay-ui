@@ -48,6 +48,9 @@
     "confirmArchive": "确认归档该版本吗？",
     "confirmDelete": "确认删除该草稿吗？",
     "confirmClose": "协议内容已有改动，确认关闭吗？关闭后未保存的内容将丢失。",
+    "createFromThis": "复制为草稿",
+    "confirmReplaceByLanguage": "切换语言将覆盖当前正文，是否继续？",
+    "inheritedTip": "已从上一版本载入内容，可直接修改后保存为新草稿",
     "statusDraft": "草稿",
     "statusPublished": "已发布",
     "statusArchived": "已归档"

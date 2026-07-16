@@ -30,6 +30,12 @@
   });
   // 协议正文初始内容(用于关闭时检测是否有未保存修改)
   const loadedContent = ref('');
+  // 最近一次继承载入的正文(用于语言切换时判断是否可自动覆盖)
+  const inheritedContent = ref('');
+  // 是否已从上一版本载入内容(展示提示)
+  const inherited = ref(false);
+  // 语言切换时用于回滚的上一次语言
+  const previousLanguage = ref('zh-CN');
 
   // 语言选项（与 SUPPORT_LANGUAGES 对齐）
   const languageOptions = [
@@ -53,27 +59,132 @@
     content: [{ required: true, message: $t('system.protocol.version.inputContent') }],
   };
 
-  /** 入口 */
-  function init(protocolId: string, id: string | undefined, editType: FormEditType) {
+  /**
+   * 入口
+   * @param protocolId 协议ID
+   * @param id 版本ID(编辑/查看时)
+   * @param editType 表单模式
+   * @param sourceVersionId 基于指定版本新建时传入源版本ID
+   */
+  function init(protocolId: string, id: string | undefined, editType: FormEditType, sourceVersionId?: string) {
     initFormEditType(editType);
     resetForm();
     form.value.protocolId = protocolId;
-    getInfo(id, editType);
+    previousLanguage.value = form.value.language ?? 'zh-CN';
+    getInfo(id, editType, sourceVersionId);
+  }
+
+  /** 将源版本字段预填到新建草稿表单(不带 id/状态/版本号, summary 清空) */
+  function applyInheritSource(source: UserProtocolVersion, protocolId: string) {
+    const content = source.content ?? '';
+    form.value = {
+      protocolId,
+      language: source.language || 'zh-CN',
+      contentFormat: source.contentFormat || 'MARKDOWN',
+      versionLabel: source.versionLabel,
+      title: source.title,
+      content,
+      contentHtml: source.contentHtml ?? '',
+      // 变更说明需重写
+      summary: '',
+    };
+    inheritedContent.value = content;
+    loadedContent.value = content;
+    inherited.value = true;
+    previousLanguage.value = form.value.language ?? 'zh-CN';
+  }
+
+  /** 按协议+语言拉取可继承源版本并预填; 无源则保持空白 */
+  async function loadInheritByLanguage(protocolId: string, language: string) {
+    const { data } = await UserProtocolVersionApi.findInheritSource(protocolId, language);
+    if (data) {
+      applyInheritSource(data, protocolId);
+      // 保持用户刚切换的目标语言(源可能同语言)
+      form.value.language = language;
+      previousLanguage.value = language;
+    } else {
+      form.value.language = language;
+      form.value.title = undefined;
+      form.value.versionLabel = undefined;
+      form.value.content = '';
+      form.value.contentHtml = '';
+      form.value.summary = '';
+      form.value.contentFormat = 'MARKDOWN';
+      inheritedContent.value = '';
+      loadedContent.value = '';
+      inherited.value = false;
+      previousLanguage.value = language;
+    }
   }
 
   /** 获取信息 */
-  function getInfo(id: string | undefined, editType: FormEditType) {
+  function getInfo(id: string | undefined, editType: FormEditType, sourceVersionId?: string) {
     if ([FormEditType.Edit, FormEditType.Show].includes(editType) && id) {
       confirmLoading.value = true;
-      UserProtocolVersionApi.findById(id).then(({ data }) => {
-        form.value = data;
-        // 记录正文初始值, 用于关闭时检测变动
-        loadedContent.value = data.content ?? '';
+      UserProtocolVersionApi.findById(id)
+        .then(({ data }) => {
+          form.value = data;
+          // 记录正文初始值, 用于关闭时检测变动
+          loadedContent.value = data.content ?? '';
+          inheritedContent.value = '';
+          inherited.value = false;
+          previousLanguage.value = data.language ?? 'zh-CN';
+        })
+        .finally(() => {
+          confirmLoading.value = false;
+        });
+      return;
+    }
+
+    // 新建: 基于指定版本 或 默认继承同语言上一版
+    if (editType === FormEditType.Add) {
+      const protocolId = form.value.protocolId!;
+      confirmLoading.value = true;
+      const loadPromise = sourceVersionId
+        ? UserProtocolVersionApi.findById(sourceVersionId).then(({ data }) => {
+            applyInheritSource(data, protocolId);
+          })
+        : loadInheritByLanguage(protocolId, form.value.language || 'zh-CN');
+      loadPromise.finally(() => {
         confirmLoading.value = false;
       });
-    } else {
-      confirmLoading.value = false;
+      return;
     }
+
+    confirmLoading.value = false;
+  }
+
+  /** 新建模式下切换语言: 未改过继承正文则自动覆盖, 否则二次确认 */
+  function handleLanguageChange(language: string) {
+    if (formEditType.value !== FormEditType.Add || !form.value.protocolId) {
+      previousLanguage.value = language;
+      return;
+    }
+    const content = form.value.content ?? '';
+    const canAutoReplace = !content || content === inheritedContent.value;
+    if (canAutoReplace) {
+      confirmLoading.value = true;
+      loadInheritByLanguage(form.value.protocolId, language).finally(() => {
+        confirmLoading.value = false;
+      });
+      return;
+    }
+    // 正文已手动改过, 确认后再覆盖
+    confirm({
+      title: $t('common.warning'),
+      // 切换语言将覆盖当前正文
+      content: $t('system.protocol.version.confirmReplaceByLanguage'),
+      onOk: () => {
+        confirmLoading.value = true;
+        return loadInheritByLanguage(form.value.protocolId!, language).finally(() => {
+          confirmLoading.value = false;
+        });
+      },
+      onCancel: () => {
+        // 取消时回滚语言选择
+        form.value.language = previousLanguage.value;
+      },
+    });
   }
 
   /** 重置表单 */
@@ -88,6 +199,9 @@
       contentHtml: '',
     };
     loadedContent.value = '';
+    inheritedContent.value = '';
+    inherited.value = false;
+    previousLanguage.value = 'zh-CN';
   }
 
   /** Markdown 渲染后的HTML */
@@ -148,6 +262,10 @@
       </a-space>
     </template>
     <a-spin :spinning="confirmLoading">
+      <!-- 已从上一版本载入提示 -->
+      <div v-if="inherited && !showable" class="mb-4">
+        <a-alert type="info" show-icon :message="$t('system.protocol.version.inheritedTip')" />
+      </div>
       <a-form ref="formRef" :model="form" :rules="rules" :label-col="{ span: 4 }" :wrapper-col="{ span: 18 }">
         <!-- 主键 -->
         <a-form-item label="ID" name="id" :hidden="true">
@@ -160,6 +278,7 @@
             :disabled="showable"
             :options="languageOptions"
             :placeholder="$t('common.pleaseSelect')"
+            @change="handleLanguageChange"
           />
         </a-form-item>
         <!-- 版本标签 -->

@@ -48,6 +48,9 @@
     "confirmArchive": "Arkibkan versi ini?",
     "confirmDelete": "Adakah anda pasti akan memadamkan draf ini?",
     "confirmClose": "Kandungan telah diubah. Tutup pula? Perubahan yang tidak disimpan akan hilang.",
+    "createFromThis": "Salin sebagai draf",
+    "confirmReplaceByLanguage": "Menukar bahasa akan menggantikan kandungan semasa. Teruskan?",
+    "inheritedTip": "Kandungan dimuatkan dari versi sebelumnya. Edit lalu simpan sebagai draf baharu.",
     "statusDraft": "Draf",
     "statusPublished": "Diterbitkan",
     "statusArchived": "Diarkibkan"
