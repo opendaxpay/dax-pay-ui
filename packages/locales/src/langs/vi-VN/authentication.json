@@ -43,6 +43,8 @@
   "termsTitle": "Điều khoản dịch vụ",
   "privacyTitle": "Chính sách bảo mật",
   "agreementContentPlaceholder": "Thỏa thuận này đang được soạn thảo và sẽ có trong bản phát hành trong tương lai.",
+  "agreementEmpty": "Nội dung thỏa thuận chưa được cấu hình. Vui lòng liên hệ quản trị viên để cấu hình.",
+  "agreementEffectiveTime": "Ngày có hiệu lực",
   "layout": {
     "center": "Căn giữa",
     "alignLeft": "Căn trái",

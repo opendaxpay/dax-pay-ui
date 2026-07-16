@@ -43,6 +43,8 @@
   "termsTitle": "用户协议",
   "privacyTitle": "隐私政策",
   "agreementContentPlaceholder": "协议内容正在完善中，正式版将在后续版本提供。",
+  "agreementEmpty": "暂未配置协议内容，请联系管理员配置后再查看。",
+  "agreementEffectiveTime": "生效时间",
   "layout": {
     "center": "居中",
     "alignLeft": "居左",

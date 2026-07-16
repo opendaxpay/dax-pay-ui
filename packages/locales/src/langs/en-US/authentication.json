@@ -43,6 +43,8 @@
   "termsTitle": "Terms of Service",
   "privacyTitle": "Privacy Policy",
   "agreementContentPlaceholder": "This agreement is being drafted and will be available in a future release.",
+  "agreementEmpty": "No agreement content has been configured. Please contact the administrator to configure it.",
+  "agreementEffectiveTime": "Effective Date",
   "layout": {
     "center": "Align Center",
     "alignLeft": "Align Left",

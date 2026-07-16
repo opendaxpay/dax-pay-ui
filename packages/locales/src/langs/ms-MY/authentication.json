@@ -43,6 +43,8 @@
   "termsTitle": "Syarat Perkhidmatan",
   "privacyTitle": "Dasar Privasi",
   "agreementContentPlaceholder": "Perjanjian ini sedang dirangka dan akan tersedia dalam keluaran akan datang.",
+  "agreementEmpty": "Kandungan perjanjian belum dikonfigurasi. Sila hubungi pentadbir untuk mengkonfigurasikannya.",
+  "agreementEffectiveTime": "Tarikh Berkuat Kuasa",
   "layout": {
     "center": "Jajarkan Tengah",
     "alignLeft": "Jajar Kiri",

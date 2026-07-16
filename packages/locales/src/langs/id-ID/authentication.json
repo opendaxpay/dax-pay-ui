@@ -43,6 +43,8 @@
   "termsTitle": "Ketentuan Layanan",
   "privacyTitle": "Kebijakan Privasi",
   "agreementContentPlaceholder": "Perjanjian ini sedang dirancang dan akan tersedia pada rilis mendatang.",
+  "agreementEmpty": "Konten perjanjian belum dikonfigurasi. Silakan hubungi administrator untuk mengonfigurasinya.",
+  "agreementEffectiveTime": "Tanggal Berlaku",
   "layout": {
     "center": "Sejajarkan Pusat",
     "alignLeft": "Sejajarkan ke Kiri",

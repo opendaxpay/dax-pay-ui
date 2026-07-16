@@ -43,6 +43,8 @@
   "termsTitle": "서비스 약관",
   "privacyTitle": "개인 정보 보호 정책",
   "agreementContentPlaceholder": "본 계약은 초안 작성 중이며 향후 릴리스에서 제공될 예정입니다.",
+  "agreementEmpty": "약관 내용이 구성되지 않았습니다. 관리자에게 문의하여 구성해 주세요.",
+  "agreementEffectiveTime": "시행일",
   "layout": {
     "center": "중심 정렬",
     "alignLeft": "왼쪽 정렬",

@@ -51,6 +51,30 @@ const socialBindCallbackRoute: RouteRecordRaw = {
   },
 };
 
+/** 协议展示页（独立全屏路由，不走 AuthPageLayout，免登录预览协议正文） */
+const agreementTermsRoute: RouteRecordRaw = {
+  name: 'AgreementTerms',
+  path: '/auth/agreement/terms',
+  component: () => import('#/views/_core/authentication/agreement-terms.vue'),
+  meta: {
+    // 用户协议
+    title: 'authentication.termsTitle',
+    hideInMenu: true,
+  },
+};
+
+/** 隐私政策展示页（独立全屏路由，不走 AuthPageLayout，免登录预览协议正文） */
+const agreementPrivacyRoute: RouteRecordRaw = {
+  name: 'AgreementPrivacy',
+  path: '/auth/agreement/privacy',
+  component: () => import('#/views/_core/authentication/agreement-privacy.vue'),
+  meta: {
+    // 隐私政策
+    title: 'authentication.privacyTitle',
+    hideInMenu: true,
+  },
+};
+
 // 服务不可用提示页（后端不可用时的兜底，独立全屏，不走权限拦截）
 const serviceUnavailableRoute: RouteRecordRaw = {
   name: 'ServiceUnavailable',
@@ -131,30 +155,13 @@ const coreRoutes: RouteRecordRaw[] = [
           hideInMenu: true,
         },
       },
-      {
-        name: 'AgreementTerms',
-        path: 'agreement/terms',
-        component: () => import('#/views/_core/authentication/agreement-terms.vue'),
-        meta: {
-          // 用户协议
-          title: 'authentication.termsTitle',
-          hideInMenu: true,
-        },
-      },
-      {
-        name: 'AgreementPrivacy',
-        path: 'agreement/privacy',
-        component: () => import('#/views/_core/authentication/agreement-privacy.vue'),
-        meta: {
-          // 隐私政策
-          title: 'authentication.privacyTitle',
-          hideInMenu: true,
-        },
-      },
     ],
   },
   // 第三方绑定回调（独立路由，弹窗模式）
   socialBindCallbackRoute,
+  // 协议展示页（独立全屏路由，不走 AuthPageLayout）
+  agreementTermsRoute,
+  agreementPrivacyRoute,
   // 服务不可用提示页（后端不可用兜底，独立全屏，不走权限拦截）
   serviceUnavailableRoute,
 ];

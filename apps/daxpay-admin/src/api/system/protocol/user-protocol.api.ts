@@ -46,9 +46,13 @@ export const UserProtocolApi = {
   clientTypeOptions(): Promise<Result<LabelValue[]>> {
     return defHttp.get({ url: '/user/protocol/client-type-options' });
   },
-  /** 查询默认协议内容(对外, 各端展示用) */
+  /** 查询默认协议内容(对外, 各端展示用; 协议未配置时会抛异常, 静默错误由调用方自行处理空态) */
   findDefault(type: string, clientType: string, language?: string): Promise<Result<UserProtocolContent>> {
-    return defHttp.get({ url: '/user/protocol/find-default', params: { type, clientType, language } });
+    return defHttp.get({
+      url: '/user/protocol/find-default',
+      params: { type, clientType, language },
+      silentError: true,
+    });
   },
 };
 

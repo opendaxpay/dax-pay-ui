@@ -93,6 +93,10 @@ function createRequestClient(baseURL: string, options?: RequestClientOptions) {
   // 通用的错误处理,如果没有进入上面的错误处理逻辑，就会进入这里
   client.addResponseInterceptor(
     errorMessageResponseInterceptor((msg: string, error) => {
+      // 静默错误(请求 config 中设置 silentError=true), 不弹全局 toast, 由业务自行处理
+      if (error?.config?.silentError) {
+        return;
+      }
       const { message } = useMessage();
       // HTTP 错误(401等)响应体在 response.data; 业务错误(200但code非0)在顶层 data
       const body = error?.response?.data ?? error?.data ?? {};

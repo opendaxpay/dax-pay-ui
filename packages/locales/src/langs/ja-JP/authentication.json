@@ -43,6 +43,8 @@
   "termsTitle": "利用規約",
   "privacyTitle": "プライバシーポリシー",
   "agreementContentPlaceholder": "この契約は現在草案中であり、将来のリリースで利用可能になる予定です。",
+  "agreementEmpty": "利用規約の内容が設定されていません。管理者にご連絡のうえ設定をご依頼ください。",
+  "agreementEffectiveTime": "発効日",
   "layout": {
     "center": "中央揃え",
     "alignLeft": "左揃え",

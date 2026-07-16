@@ -43,6 +43,8 @@
   "termsTitle": "使用者協議",
   "privacyTitle": "隱私政策",
   "agreementContentPlaceholder": "協議內容正在完善中，正式版將在後續版本提供。",
+  "agreementEmpty": "暫未配置協議內容，請聯繫管理員配置後再查看。",
+  "agreementEffectiveTime": "生效時間",
   "layout": {
     "center": "居中",
     "alignLeft": "居左",
