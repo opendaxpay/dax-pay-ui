@@ -24,6 +24,11 @@
       "contains": "含む",
       "exact": "完全一致"
     },
+    "matchModeHelp": "「含む」：テキスト内にワードが出現すればヒット。「完全一致」：テキスト全体がワードと同一の場合のみヒット。",
+    "placeholder": {
+      "word": "センシティブワードを入力（簡体字推奨）",
+      "remark": "任意の備考"
+    },
     "status": {
       "enable": "有効",
       "disable": "無効"
@@ -38,14 +43,41 @@
     }
   },
   "hit": {
+    "view": "ヒット詳細",
     "field": {
       "hitWord": "ヒットワード",
       "contentPreview": "原文要約",
       "scene": "シーン",
       "source": "ソース",
       "mchNo": "加盟店番号",
+      "appId": "アプリID",
+      "operatorId": "操作者",
       "clientIp": "クライアントIP",
+      "requestPath": "リクエストパス",
+      "remark": "備考",
       "createTime": "ヒット日時"
+    },
+    "scene": {
+      "pay_title": "支払タイトル",
+      "pay_description": "支払説明",
+      "goods_name": "商品名",
+      "goods_description": "商品説明",
+      "mch_name": "加盟店名",
+      "app_name": "アプリ名",
+      "store_name": "店舗名",
+      "user_name": "ユーザー名",
+      "qr_name": "QR名",
+      "notice": "お知らせ",
+      "protocol": "規約",
+      "manual_check": "テスト",
+      "general": "一般"
+    },
+    "source": {
+      "admin": "運営端",
+      "merchant": "加盟店端",
+      "unipay": "開放API",
+      "app_admin": "管理ミニアプリ",
+      "unknown": "不明"
     }
   },
   "config": {

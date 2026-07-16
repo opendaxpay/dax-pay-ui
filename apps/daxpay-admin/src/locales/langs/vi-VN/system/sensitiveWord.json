@@ -24,6 +24,11 @@
       "contains": "Chứa",
       "exact": "Chính xác"
     },
+    "matchModeHelp": "Chứa: trúng nếu từ xuất hiện trong văn bản. Chính xác: chỉ trúng khi toàn bộ văn bản bằng từ.",
+    "placeholder": {
+      "word": "Nhập từ nhạy cảm (nên dùng giản thể)",
+      "remark": "Ghi chú tùy chọn"
+    },
     "status": {
       "enable": "Bật",
       "disable": "Tắt"
@@ -38,14 +43,41 @@
     }
   },
   "hit": {
+    "view": "Chi tiết trúng",
     "field": {
       "hitWord": "Từ trúng",
       "contentPreview": "Tóm tắt nội dung",
       "scene": "Kịch bản",
       "source": "Nguồn",
       "mchNo": "Mã merchant",
+      "appId": "App ID",
+      "operatorId": "Người thao tác",
       "clientIp": "IP client",
+      "requestPath": "Đường dẫn yêu cầu",
+      "remark": "Ghi chú",
       "createTime": "Thời gian trúng"
+    },
+    "scene": {
+      "pay_title": "Tiêu đề thanh toán",
+      "pay_description": "Mô tả thanh toán",
+      "goods_name": "Tên hàng",
+      "goods_description": "Mô tả hàng",
+      "mch_name": "Tên merchant",
+      "app_name": "Tên ứng dụng",
+      "store_name": "Tên cửa hàng",
+      "user_name": "Tên người dùng",
+      "qr_name": "Tên mã QR",
+      "notice": "Thông báo",
+      "protocol": "Giao thức",
+      "manual_check": "Kiểm tra thủ công",
+      "general": "Chung"
+    },
+    "source": {
+      "admin": "Vận hành",
+      "merchant": "Merchant",
+      "unipay": "Open API",
+      "app_admin": "Mini-app admin",
+      "unknown": "Không rõ"
     }
   },
   "config": {

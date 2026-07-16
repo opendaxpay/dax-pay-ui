@@ -24,6 +24,11 @@
       "contains": "Mengandungi",
       "exact": "Tepat"
     },
+    "matchModeHelp": "Mengandungi: hit jika perkataan muncul dalam teks. Tepat: hit hanya jika keseluruhan teks sama dengan perkataan.",
+    "placeholder": {
+      "word": "Masukkan perkataan sensitif (Cina ringkas digalakkan)",
+      "remark": "Catatan pilihan"
+    },
     "status": {
       "enable": "Aktif",
       "disable": "Nyahaktif"
@@ -38,14 +43,41 @@
     }
   },
   "hit": {
+    "view": "Butiran hit",
     "field": {
       "hitWord": "Perkataan dikesan",
       "contentPreview": "Ringkasan teks",
       "scene": "Senario",
       "source": "Sumber",
       "mchNo": "No. peniaga",
+      "appId": "App ID",
+      "operatorId": "Operator",
       "clientIp": "IP klien",
+      "requestPath": "Laluan permintaan",
+      "remark": "Catatan",
       "createTime": "Masa hit"
+    },
+    "scene": {
+      "pay_title": "Tajuk bayar",
+      "pay_description": "Penerangan bayar",
+      "goods_name": "Nama barangan",
+      "goods_description": "Penerangan barangan",
+      "mch_name": "Nama peniaga",
+      "app_name": "Nama aplikasi",
+      "store_name": "Nama kedai",
+      "user_name": "Nama pengguna",
+      "qr_name": "Nama QR",
+      "notice": "Notis",
+      "protocol": "Protokol",
+      "manual_check": "Semakan manual",
+      "general": "Umum"
+    },
+    "source": {
+      "admin": "Admin",
+      "merchant": "Peniaga",
+      "unipay": "Open API",
+      "app_admin": "Mini-app admin",
+      "unknown": "Tidak diketahui"
     }
   },
   "config": {

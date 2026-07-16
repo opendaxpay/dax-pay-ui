@@ -24,6 +24,11 @@
       "contains": "Contains",
       "exact": "Exact"
     },
+    "matchModeHelp": "Contains: hit if the word appears in the text. Exact: hit only when the full text equals the word.",
+    "placeholder": {
+      "word": "Enter a sensitive word (Simplified Chinese preferred)",
+      "remark": "Optional remark"
+    },
     "status": {
       "enable": "Enabled",
       "disable": "Disabled"
@@ -38,14 +43,41 @@
     }
   },
   "hit": {
+    "view": "Hit detail",
     "field": {
       "hitWord": "Hit word",
       "contentPreview": "Content preview",
       "scene": "Scene",
       "source": "Source",
       "mchNo": "Merchant no.",
+      "appId": "App ID",
+      "operatorId": "Operator",
       "clientIp": "Client IP",
+      "requestPath": "Request path",
+      "remark": "Remark",
       "createTime": "Hit time"
+    },
+    "scene": {
+      "pay_title": "Pay title",
+      "pay_description": "Pay description",
+      "goods_name": "Goods name",
+      "goods_description": "Goods description",
+      "mch_name": "Merchant name",
+      "app_name": "App name",
+      "store_name": "Store name",
+      "user_name": "User name",
+      "qr_name": "QR name",
+      "notice": "Notice",
+      "protocol": "Protocol",
+      "manual_check": "Manual check",
+      "general": "General"
+    },
+    "source": {
+      "admin": "Admin",
+      "merchant": "Merchant",
+      "unipay": "Open API",
+      "app_admin": "Admin mini-app",
+      "unknown": "Unknown"
     }
   },
   "config": {

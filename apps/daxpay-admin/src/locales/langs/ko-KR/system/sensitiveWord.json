@@ -24,6 +24,11 @@
       "contains": "포함",
       "exact": "정확 일치"
     },
+    "matchModeHelp": "「포함」: 텍스트에 단어가 나타나면 적중. 「정확 일치」: 전체 텍스트가 단어와 같을 때만 적중.",
+    "placeholder": {
+      "word": "민감어를 입력하세요 (간체 권장)",
+      "remark": "선택 비고"
+    },
     "status": {
       "enable": "사용",
       "disable": "중지"
@@ -38,14 +43,41 @@
     }
   },
   "hit": {
+    "view": "적중 상세",
     "field": {
       "hitWord": "적중 단어",
       "contentPreview": "원문 요약",
       "scene": "장면",
       "source": "출처",
       "mchNo": "가맹점 번호",
+      "appId": "앱 ID",
+      "operatorId": "운영자",
       "clientIp": "클라이언트 IP",
+      "requestPath": "요청 경로",
+      "remark": "비고",
       "createTime": "적중 시간"
+    },
+    "scene": {
+      "pay_title": "결제 제목",
+      "pay_description": "결제 설명",
+      "goods_name": "상품명",
+      "goods_description": "상품 설명",
+      "mch_name": "가맹점명",
+      "app_name": "앱 이름",
+      "store_name": "매장명",
+      "user_name": "사용자 이름",
+      "qr_name": "QR 이름",
+      "notice": "공지",
+      "protocol": "약관",
+      "manual_check": "검사",
+      "general": "일반"
+    },
+    "source": {
+      "admin": "운영단",
+      "merchant": "가맹점단",
+      "unipay": "오픈 API",
+      "app_admin": "관리 미니앱",
+      "unknown": "알 수 없음"
     }
   },
   "config": {

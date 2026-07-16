@@ -17,10 +17,29 @@
   const { message } = useMessage();
   const formRef = ref();
 
-  const { visible, confirmLoading, title, initFormEditType, handleCancel, showable, formEditType } =
-    useFormEdit();
+  const {
+    visible,
+    confirmLoading,
+    title,
+    initFormEditType,
+    handleCancel,
+    showable,
+    formEditType,
+    labelCol,
+    wrapperCol,
+    modalWidth,
+  } = useFormEdit();
 
   const isAdd = computed(() => formEditType.value === FormEditType.Add);
+
+  // 分类下拉选项（用 options 避免子节点文案空白导致回显 code）
+  const categoryOptions = computed(() => [
+    { label: $t('system.sensitiveWord.word.category.politic'), value: 'politic' },
+    { label: $t('system.sensitiveWord.word.category.porn'), value: 'porn' },
+    { label: $t('system.sensitiveWord.word.category.violence'), value: 'violence' },
+    { label: $t('system.sensitiveWord.word.category.ad'), value: 'ad' },
+    { label: $t('system.sensitiveWord.word.category.custom'), value: 'custom' },
+  ]);
 
   const formState = ref<SensitiveWordParam>({
     id: '',
@@ -91,6 +110,7 @@
       } else {
         await SensitiveWordApi.update(formState.value);
       }
+      // 保存成功
       message.success($t('common.saveSuccess'));
       handleCancel();
       emit('ok');
@@ -103,53 +123,94 @@
 </script>
 
 <template>
-  <a-drawer
-    v-model:open="visible"
+  <a-modal
+    :open="visible"
     :title="title"
-    :width="480"
-    :destroy-on-close="true"
-    @close="handleCancel"
+    :confirm-loading="confirmLoading"
+    :width="modalWidth"
+    :mask-closable="showable"
+    :ok-text="$t('common.save')"
+    :cancel-text="$t('common.cancel')"
+    :ok-button-props="{ disabled: showable }"
+    @ok="handleOk"
+    @cancel="handleCancel"
   >
-    <a-form ref="formRef" :model="formState" layout="vertical" :disabled="showable">
-      <a-form-item
-        name="word"
-        :label="$t('system.sensitiveWord.word.field.word')"
-        :rules="[{ required: true, message: $t('common.pleaseInput') }]"
+    <a-spin :spinning="confirmLoading">
+      <a-form
+        ref="formRef"
+        :model="formState"
+        :label-col="labelCol"
+        :wrapper-col="wrapperCol"
+        class="form-compact"
+        :disabled="showable"
       >
-        <a-input v-model:value="formState.word" :maxlength="64" allow-clear />
-      </a-form-item>
-      <a-form-item name="category" :label="$t('system.sensitiveWord.word.field.category')">
-        <a-select v-model:value="formState.category">
-          <a-select-option value="politic">{{ $t('system.sensitiveWord.word.category.politic') }}</a-select-option>
-          <a-select-option value="porn">{{ $t('system.sensitiveWord.word.category.porn') }}</a-select-option>
-          <a-select-option value="violence">{{ $t('system.sensitiveWord.word.category.violence') }}</a-select-option>
-          <a-select-option value="ad">{{ $t('system.sensitiveWord.word.category.ad') }}</a-select-option>
-          <a-select-option value="custom">{{ $t('system.sensitiveWord.word.category.custom') }}</a-select-option>
-        </a-select>
-      </a-form-item>
-      <a-form-item name="matchMode" :label="$t('system.sensitiveWord.word.field.matchMode')">
-        <a-radio-group v-model:value="formState.matchMode" button-style="solid">
-          <a-radio-button value="contains">{{ $t('system.sensitiveWord.word.matchMode.contains') }}</a-radio-button>
-          <a-radio-button value="exact">{{ $t('system.sensitiveWord.word.matchMode.exact') }}</a-radio-button>
-        </a-radio-group>
-      </a-form-item>
-      <a-form-item name="status" :label="$t('system.sensitiveWord.word.field.status')">
-        <a-radio-group v-model:value="formState.status" button-style="solid">
-          <a-radio-button value="enable">{{ $t('system.sensitiveWord.word.status.enable') }}</a-radio-button>
-          <a-radio-button value="disable">{{ $t('system.sensitiveWord.word.status.disable') }}</a-radio-button>
-        </a-radio-group>
-      </a-form-item>
-      <a-form-item name="remark" :label="$t('system.sensitiveWord.word.field.remark')">
-        <a-textarea v-model:value="formState.remark" :rows="3" :maxlength="255" allow-clear />
-      </a-form-item>
-    </a-form>
-    <template #footer>
-      <a-space>
-        <a-button @click="handleCancel">{{ $t('common.cancel') }}</a-button>
-        <a-button v-if="!showable" type="primary" :loading="confirmLoading" @click="handleOk">
-          {{ $t('common.save') }}
-        </a-button>
-      </a-space>
-    </template>
-  </a-drawer>
+        <!-- 敏感词 -->
+        <a-form-item
+          name="word"
+          :label="$t('system.sensitiveWord.word.field.word')"
+          :rules="[{ required: true, message: $t('common.pleaseInput') }]"
+        >
+          <a-input
+            v-model:value="formState.word"
+            :maxlength="64"
+            allow-clear
+            :placeholder="$t('system.sensitiveWord.word.placeholder.word')"
+          />
+        </a-form-item>
+        <!-- 分类 -->
+        <a-form-item
+          name="category"
+          :label="$t('system.sensitiveWord.word.field.category')"
+          :rules="[{ required: true, message: $t('common.pleaseSelect') }]"
+        >
+          <a-select
+            v-model:value="formState.category"
+            :options="categoryOptions"
+            :placeholder="$t('common.pleaseSelect')"
+          />
+        </a-form-item>
+        <!-- 匹配模式（tooltip 说明包含 vs 精确） -->
+        <a-form-item
+          name="matchMode"
+          :label="$t('system.sensitiveWord.word.field.matchMode')"
+          :tooltip="$t('system.sensitiveWord.word.matchModeHelp')"
+          :rules="[{ required: true, message: $t('common.pleaseSelect') }]"
+        >
+          <a-radio-group v-model:value="formState.matchMode" button-style="solid">
+            <a-radio-button value="contains">
+              {{ $t('system.sensitiveWord.word.matchMode.contains') }}
+            </a-radio-button>
+            <a-radio-button value="exact">
+              {{ $t('system.sensitiveWord.word.matchMode.exact') }}
+            </a-radio-button>
+          </a-radio-group>
+        </a-form-item>
+        <!-- 状态 -->
+        <a-form-item
+          name="status"
+          :label="$t('system.sensitiveWord.word.field.status')"
+          :rules="[{ required: true, message: $t('common.pleaseSelect') }]"
+        >
+          <a-radio-group v-model:value="formState.status" button-style="solid">
+            <a-radio-button value="enable">
+              {{ $t('system.sensitiveWord.word.status.enable') }}
+            </a-radio-button>
+            <a-radio-button value="disable">
+              {{ $t('system.sensitiveWord.word.status.disable') }}
+            </a-radio-button>
+          </a-radio-group>
+        </a-form-item>
+        <!-- 备注 -->
+        <a-form-item name="remark" :label="$t('system.sensitiveWord.word.field.remark')">
+          <a-textarea
+            v-model:value="formState.remark"
+            :rows="3"
+            :maxlength="255"
+            allow-clear
+            :placeholder="$t('system.sensitiveWord.word.placeholder.remark')"
+          />
+        </a-form-item>
+      </a-form>
+    </a-spin>
+  </a-modal>
 </template>

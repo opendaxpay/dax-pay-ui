@@ -24,6 +24,11 @@
       "contains": "มีคำ",
       "exact": "ตรงทั้งหมด"
     },
+    "matchModeHelp": "「มีคำ」: เจอเมื่อคำปรากฏในข้อความ 「ตรงทั้งหมด」: เจอเมื่อข้อความทั้งก้อนเท่ากับคำเท่านั้น",
+    "placeholder": {
+      "word": "ป้อนคำละเอียดอ่อน (แนะนำตัวย่อ)",
+      "remark": "หมายเหตุ (ไม่บังคับ)"
+    },
     "status": {
       "enable": "เปิดใช้",
       "disable": "ปิดใช้"
@@ -38,14 +43,41 @@
     }
   },
   "hit": {
+    "view": "รายละเอียดการพบ",
     "field": {
       "hitWord": "คำที่พบ",
       "contentPreview": "สรุปข้อความ",
       "scene": "ฉาก",
       "source": "แหล่งที่มา",
       "mchNo": "รหัสร้านค้า",
+      "appId": "App ID",
+      "operatorId": "ผู้ดำเนินการ",
       "clientIp": "IP ลูกค้า",
+      "requestPath": "พาธคำขอ",
+      "remark": "หมายเหตุ",
       "createTime": "เวลาที่พบ"
+    },
+    "scene": {
+      "pay_title": "หัวข้อชำระเงิน",
+      "pay_description": "คำอธิบายชำระเงิน",
+      "goods_name": "ชื่อสินค้า",
+      "goods_description": "คำอธิบายสินค้า",
+      "mch_name": "ชื่อร้านค้า",
+      "app_name": "ชื่อแอป",
+      "store_name": "ชื่อสาขา",
+      "user_name": "ชื่อผู้ใช้",
+      "qr_name": "ชื่อ QR",
+      "notice": "ประกาศ",
+      "protocol": "ข้อตกลง",
+      "manual_check": "ตรวจด้วยตนเอง",
+      "general": "ทั่วไป"
+    },
+    "source": {
+      "admin": "ฝ่ายปฏิบัติการ",
+      "merchant": "ร้านค้า",
+      "unipay": "Open API",
+      "app_admin": "มินิแอปแอดมิน",
+      "unknown": "ไม่ทราบ"
     }
   },
   "config": {

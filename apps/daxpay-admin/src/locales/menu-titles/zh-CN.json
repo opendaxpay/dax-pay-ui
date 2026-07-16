@@ -84,7 +84,7 @@
   "menu.payment.risk": "支付风控",
   "menu.payment.risk.blacklist": "黑名单管理",
   "menu.payment.risk.hit": "风险命中记录",
-  "menu.system.sensitive": "敏感词",
+  "menu.system.sensitive": "敏感词管理",
   "menu.system.sensitive.word": "词库管理",
   "menu.system.sensitive.hit": "命中记录"
 }

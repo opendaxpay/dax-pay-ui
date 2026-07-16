@@ -24,6 +24,11 @@
       "contains": "包含",
       "exact": "精确"
     },
+    "matchModeHelp": "「包含」：文本中出现该词即命中；「精确」：整段文本与敏感词完全一致才命中",
+    "placeholder": {
+      "word": "请输入敏感词（建议简体）",
+      "remark": "可选备注说明"
+    },
     "status": {
       "enable": "启用",
       "disable": "禁用"
@@ -38,14 +43,41 @@
     }
   },
   "hit": {
+    "view": "查看命中记录",
     "field": {
       "hitWord": "命中词",
       "contentPreview": "原文摘要",
       "scene": "场景",
       "source": "来源",
       "mchNo": "商户号",
+      "appId": "应用号",
+      "operatorId": "操作人",
       "clientIp": "客户端IP",
+      "requestPath": "请求路径",
+      "remark": "备注",
       "createTime": "命中时间"
+    },
+    "scene": {
+      "pay_title": "支付标题",
+      "pay_description": "支付描述",
+      "goods_name": "商品名称",
+      "goods_description": "商品描述",
+      "mch_name": "商户名称",
+      "app_name": "应用名称",
+      "store_name": "门店名称",
+      "user_name": "用户名称",
+      "qr_name": "码牌名称",
+      "notice": "公告",
+      "protocol": "协议",
+      "manual_check": "试检",
+      "general": "通用"
+    },
+    "source": {
+      "admin": "运营端",
+      "merchant": "商户端",
+      "unipay": "开放支付",
+      "app_admin": "管理端小程序",
+      "unknown": "未知"
     }
   },
   "config": {

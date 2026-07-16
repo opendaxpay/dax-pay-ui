@@ -213,7 +213,8 @@
 
         <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
-          <vxe-column field="word" :title="$t('system.sensitiveWord.word.field.word')" :min-width="140" />
+          <!-- 弹性列统一 min-width：宽屏自然均分剩余空间，避免某一列独占撑满 -->
+          <vxe-column field="word" :title="$t('system.sensitiveWord.word.field.word')" :min-width="100" />
           <vxe-column field="category" :title="$t('system.sensitiveWord.word.field.category')" width="100">
             <template #default="{ row }">{{ categoryLabel(row.category) }}</template>
           </vxe-column>
@@ -237,8 +238,13 @@
               </a-tag>
             </template>
           </vxe-column>
-          <vxe-column field="remark" :title="$t('system.sensitiveWord.word.field.remark')" :min-width="120" />
-          <vxe-column field="createTime" :title="$t('system.sensitiveWord.word.field.createTime')" width="170" />
+          <vxe-column field="remark" :title="$t('system.sensitiveWord.word.field.remark')" :min-width="100" />
+          <vxe-column
+            field="createTime"
+            :title="$t('system.sensitiveWord.word.field.createTime')"
+            width="170"
+            formatter="formatDateTime"
+          />
           <vxe-column fixed="right" :width="200" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">
               <a-space :size="2">

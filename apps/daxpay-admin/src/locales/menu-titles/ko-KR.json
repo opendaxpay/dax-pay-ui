@@ -84,7 +84,7 @@
   "menu.payment.risk": "결제 리스크",
   "menu.payment.risk.blacklist": "블랙리스트",
   "menu.payment.risk.hit": "리스크 적중",
-  "menu.system.sensitive": "민감어",
+  "menu.system.sensitive": "민감어 관리",
   "menu.system.sensitive.word": "단어 관리",
   "menu.system.sensitive.hit": "적중 기록"
 }

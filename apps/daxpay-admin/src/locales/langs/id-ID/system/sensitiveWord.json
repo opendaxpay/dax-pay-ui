@@ -24,6 +24,11 @@
       "contains": "Mengandung",
       "exact": "Persis"
     },
+    "matchModeHelp": "Mengandung: hit jika kata muncul dalam teks. Persis: hit hanya jika seluruh teks sama dengan kata.",
+    "placeholder": {
+      "word": "Masukkan kata sensitif (Mandarin sederhana disarankan)",
+      "remark": "Catatan opsional"
+    },
     "status": {
       "enable": "Aktif",
       "disable": "Nonaktif"
@@ -38,14 +43,41 @@
     }
   },
   "hit": {
+    "view": "Detail hit",
     "field": {
       "hitWord": "Kata terdeteksi",
       "contentPreview": "Ringkasan teks",
       "scene": "Skenario",
       "source": "Sumber",
       "mchNo": "No. merchant",
+      "appId": "App ID",
+      "operatorId": "Operator",
       "clientIp": "IP klien",
+      "requestPath": "Path permintaan",
+      "remark": "Catatan",
       "createTime": "Waktu hit"
+    },
+    "scene": {
+      "pay_title": "Judul bayar",
+      "pay_description": "Deskripsi bayar",
+      "goods_name": "Nama barang",
+      "goods_description": "Deskripsi barang",
+      "mch_name": "Nama merchant",
+      "app_name": "Nama aplikasi",
+      "store_name": "Nama toko",
+      "user_name": "Nama pengguna",
+      "qr_name": "Nama QR",
+      "notice": "Pengumuman",
+      "protocol": "Protokol",
+      "manual_check": "Uji manual",
+      "general": "Umum"
+    },
+    "source": {
+      "admin": "Admin",
+      "merchant": "Merchant",
+      "unipay": "Open API",
+      "app_admin": "Mini-app admin",
+      "unknown": "Tidak diketahui"
     }
   },
   "config": {
