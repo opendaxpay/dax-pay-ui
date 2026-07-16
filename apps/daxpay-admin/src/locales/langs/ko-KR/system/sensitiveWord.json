@@ -81,8 +81,11 @@
     }
   },
   "config": {
-    "title": "민감어",
+    "title": "민감어 설정",
     "description": "플랫폼 텍스트 민감어 필터의 전역 스위치 및 정책",
+    "section": {
+      "policy": "필터 정책"
+    },
     "enabled": "필터 사용",
     "enabledTip": "끄면 모든 텍스트 검증이 통과됩니다(해외 배포 시 비활성화 가능)",
     "revealWord": "오류에 적중 단어 표시",

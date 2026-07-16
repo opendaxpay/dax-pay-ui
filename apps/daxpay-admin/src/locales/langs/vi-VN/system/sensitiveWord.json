@@ -81,8 +81,11 @@
     }
   },
   "config": {
-    "title": "Từ nhạy cảm",
+    "title": "Cấu hình từ nhạy cảm",
     "description": "Công tắc và chính sách lọc từ nhạy cảm toàn cục cho văn bản nền tảng",
+    "section": {
+      "policy": "Chính sách lọc"
+    },
     "enabled": "Bật bộ lọc",
     "enabledTip": "Tắt thì mọi kiểm tra văn bản đều qua (có thể tắt khi triển khai nước ngoài)",
     "revealWord": "Hiện từ trúng trong lỗi",

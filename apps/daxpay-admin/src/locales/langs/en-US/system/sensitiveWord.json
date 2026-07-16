@@ -81,8 +81,11 @@
     }
   },
   "config": {
-    "title": "Sensitive words",
+    "title": "Sensitive Word Config",
     "description": "Global switches for sensitive-word filtering (CN-focused content)",
+    "section": {
+      "policy": "Filter policy"
+    },
     "enabled": "Enable filtering",
     "enabledTip": "When off, all text checks pass (can disable for overseas)",
     "revealWord": "Reveal hit word in errors",

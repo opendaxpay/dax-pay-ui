@@ -81,8 +81,11 @@
     }
   },
   "config": {
-    "title": "Kata sensitif",
+    "title": "Konfigurasi kata sensitif",
     "description": "Saklar global dan kebijakan filter kata sensitif teks platform",
+    "section": {
+      "policy": "Kebijakan filter"
+    },
     "enabled": "Aktifkan filter",
     "enabledTip": "Jika dimatikan, semua teks lolos (dapat dimatikan untuk deployment luar negeri)",
     "revealWord": "Tampilkan kata terdeteksi pada error",

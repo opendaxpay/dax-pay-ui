@@ -81,8 +81,11 @@
     }
   },
   "config": {
-    "title": "Perkataan sensitif",
+    "title": "Konfigurasi perkataan sensitif",
     "description": "Suis global dan polisi penapis perkataan sensitif platform",
+    "section": {
+      "policy": "Polisi penapis"
+    },
     "enabled": "Dayakan penapis",
     "enabledTip": "Jika dimatikan, semua teks lulus (boleh dimatikan untuk luar negara)",
     "revealWord": "Papar perkataan dikesan dalam ralat",

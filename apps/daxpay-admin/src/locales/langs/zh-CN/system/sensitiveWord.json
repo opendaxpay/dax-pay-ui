@@ -81,8 +81,11 @@
     }
   },
   "config": {
-    "title": "敏感词",
+    "title": "敏感词配置",
     "description": "控制平台文本敏感词过滤的总开关与策略（国内主场景）",
+    "section": {
+      "policy": "过滤策略"
+    },
     "enabled": "启用敏感词过滤",
     "enabledTip": "关闭后所有文本校验放行（海外部署可关）",
     "revealWord": "错误回显命中词",
