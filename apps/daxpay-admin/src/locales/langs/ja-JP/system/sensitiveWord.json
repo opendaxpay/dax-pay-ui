@@ -1,0 +1,62 @@
+{
+  "tip": "辞書は簡体字中国語での登録を推奨します。照合前に繁体字→簡体字変換と全角正規化を行います。",
+  "word": {
+    "add": "センシティブワード追加",
+    "edit": "センシティブワード編集",
+    "view": "センシティブワード詳細",
+    "confirmDelete": "このセンシティブワードを削除しますか？",
+    "field": {
+      "word": "ワード",
+      "category": "分類",
+      "matchMode": "一致モード",
+      "status": "状態",
+      "remark": "備考",
+      "createTime": "作成日時"
+    },
+    "category": {
+      "politic": "政治",
+      "porn": "ポルノ",
+      "violence": "暴力",
+      "ad": "広告",
+      "custom": "カスタム"
+    },
+    "matchMode": {
+      "contains": "含む",
+      "exact": "完全一致"
+    },
+    "status": {
+      "enable": "有効",
+      "disable": "無効"
+    },
+    "check": {
+      "title": "テキスト検査",
+      "placeholder": "検査するテキストを入力",
+      "button": "検査",
+      "hit": "ヒット：{0}",
+      "clean": "センシティブワードなし",
+      "recordHit": "ヒット記録を保存"
+    }
+  },
+  "hit": {
+    "field": {
+      "hitWord": "ヒットワード",
+      "contentPreview": "原文要約",
+      "scene": "シーン",
+      "source": "ソース",
+      "mchNo": "加盟店番号",
+      "clientIp": "クライアントIP",
+      "createTime": "ヒット日時"
+    }
+  },
+  "config": {
+    "title": "センシティブワード",
+    "description": "プラットフォームのテキスト用センシティブワードフィルタの全体スイッチと方針",
+    "enabled": "フィルタを有効化",
+    "enabledTip": "オフにするとすべてのテキスト検証を通過します（海外展開時は無効化可）",
+    "revealWord": "エラーにヒットワードを表示",
+    "revealWordTip": "有効にするとAPIエラー文に具体的なワードが含まれるため、探査リスクがあります",
+    "recordHit": "ヒット監査を記録",
+    "recordHitTip": "遮断時にヒット記録テーブルへ書き込みます",
+    "confirmSaveContent": "保存後はオンラインの遮断方針に即時反映されます。保存しますか？"
+  }
+}

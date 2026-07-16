@@ -1,0 +1,78 @@
+{
+  "blacklist": {
+    "title": "Daftar hitam",
+    "add": "Tambah daftar hitam",
+    "editTitle": "Edit daftar hitam",
+    "viewTitle": "Lihat daftar hitam",
+    "confirmDelete": "Hapus entri daftar hitam ini?",
+    "field": {
+      "type": "Jenis",
+      "value": "Nilai",
+      "channel": "Saluran",
+      "channelAppId": "AppId saluran",
+      "status": "Status",
+      "reason": "Alasan",
+      "expireTime": "Waktu kedaluwarsa",
+      "remark": "Catatan",
+      "createTime": "Dibuat pada"
+    },
+    "type": {
+      "ip": "IP",
+      "open_id": "OpenId"
+    },
+    "status": {
+      "enable": "Aktif",
+      "disable": "Nonaktif"
+    },
+    "tip": {
+      "typeValueImmutable": "Jenis dan nilai tidak dapat diubah setelah dibuat",
+      "expireEmpty": "Kosongkan untuk permanen"
+    }
+  },
+  "hit": {
+    "title": "Hit risiko",
+    "handleTitle": "Tangani hit",
+    "viewTitle": "Lihat hit",
+    "field": {
+      "phase": "Fase",
+      "hitType": "Jenis hit",
+      "hitValue": "Nilai hit",
+      "mchNo": "No. merchant",
+      "appId": "App ID",
+      "tradeNo": "No. transaksi",
+      "orderNo": "No. order",
+      "bizOrderNo": "No. order bisnis",
+      "method": "Metode",
+      "channel": "Saluran",
+      "clientIp": "IP klien",
+      "openid": "OpenId",
+      "buyerId": "BuyerId",
+      "scene": "Skenario",
+      "handleStatus": "Status penanganan",
+      "handleRemark": "Catatan penanganan",
+      "handleTime": "Waktu penanganan",
+      "createTime": "Dibuat pada"
+    },
+    "phase": {
+      "before_pay": "Sebelum bayar",
+      "after_pay": "Setelah bayar"
+    },
+    "handleStatus": {
+      "pending": "Menunggu",
+      "ignored": "Diabaikan",
+      "added_blacklist": "Ditambah ke daftar hitam",
+      "merchant_disabled": "Merchant dinonaktifkan",
+      "other": "Lainnya"
+    },
+    "scene": {
+      "api": "API",
+      "gateway": "Gateway",
+      "code": "Kode QR",
+      "manual": "Manual",
+      "unknown": "Tidak diketahui"
+    },
+    "action": {
+      "handle": "Tangani"
+    }
+  }
+}

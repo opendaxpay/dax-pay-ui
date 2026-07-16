@@ -1,0 +1,62 @@
+{
+  "tip": "詞庫建議錄入簡體中文；系統匹配前會做繁轉簡與全角規範化。",
+  "word": {
+    "add": "新增敏感詞",
+    "edit": "編輯敏感詞",
+    "view": "查看敏感詞",
+    "confirmDelete": "確認刪除該敏感詞？",
+    "field": {
+      "word": "敏感詞",
+      "category": "分類",
+      "matchMode": "匹配模式",
+      "status": "狀態",
+      "remark": "備註",
+      "createTime": "建立時間"
+    },
+    "category": {
+      "politic": "政治",
+      "porn": "色情",
+      "violence": "暴力",
+      "ad": "廣告",
+      "custom": "自訂"
+    },
+    "matchMode": {
+      "contains": "包含",
+      "exact": "精確"
+    },
+    "status": {
+      "enable": "啟用",
+      "disable": "停用"
+    },
+    "check": {
+      "title": "試檢文字",
+      "placeholder": "輸入文字檢測是否命中敏感詞",
+      "button": "檢測",
+      "hit": "命中：{0}",
+      "clean": "未命中敏感詞",
+      "recordHit": "寫入命中記錄"
+    }
+  },
+  "hit": {
+    "field": {
+      "hitWord": "命中詞",
+      "contentPreview": "原文摘要",
+      "scene": "場景",
+      "source": "來源",
+      "mchNo": "商戶號",
+      "clientIp": "用戶端IP",
+      "createTime": "命中時間"
+    }
+  },
+  "config": {
+    "title": "敏感詞",
+    "description": "控制平台文字敏感詞過濾的總開關與策略（國內主場景）",
+    "enabled": "啟用敏感詞過濾",
+    "enabledTip": "關閉後所有文字校驗放行（海外部署可關）",
+    "revealWord": "錯誤回顯命中詞",
+    "revealWordTip": "開啟後對外錯誤文案會帶出具體敏感詞，有探測風險",
+    "recordHit": "記錄命中審計",
+    "recordHitTip": "攔截時寫入命中記錄表",
+    "confirmSaveContent": "儲存後將立即影響線上敏感詞攔截策略，確認儲存？"
+  }
+}

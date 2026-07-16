@@ -1,0 +1,62 @@
+{
+  "tip": "词库建议录入简体中文；系统匹配前会做繁转简与全角规范化。",
+  "word": {
+    "add": "新增敏感词",
+    "edit": "编辑敏感词",
+    "view": "查看敏感词",
+    "confirmDelete": "确认删除该敏感词？",
+    "field": {
+      "word": "敏感词",
+      "category": "分类",
+      "matchMode": "匹配模式",
+      "status": "状态",
+      "remark": "备注",
+      "createTime": "创建时间"
+    },
+    "category": {
+      "politic": "政治",
+      "porn": "色情",
+      "violence": "暴力",
+      "ad": "广告",
+      "custom": "自定义"
+    },
+    "matchMode": {
+      "contains": "包含",
+      "exact": "精确"
+    },
+    "status": {
+      "enable": "启用",
+      "disable": "禁用"
+    },
+    "check": {
+      "title": "试检文本",
+      "placeholder": "输入文本检测是否命中敏感词",
+      "button": "检测",
+      "hit": "命中：{0}",
+      "clean": "未命中敏感词",
+      "recordHit": "写入命中记录"
+    }
+  },
+  "hit": {
+    "field": {
+      "hitWord": "命中词",
+      "contentPreview": "原文摘要",
+      "scene": "场景",
+      "source": "来源",
+      "mchNo": "商户号",
+      "clientIp": "客户端IP",
+      "createTime": "命中时间"
+    }
+  },
+  "config": {
+    "title": "敏感词",
+    "description": "控制平台文本敏感词过滤的总开关与策略（国内主场景）",
+    "enabled": "启用敏感词过滤",
+    "enabledTip": "关闭后所有文本校验放行（海外部署可关）",
+    "revealWord": "错误回显命中词",
+    "revealWordTip": "开启后对外错误文案会带出具体敏感词，有探测风险",
+    "recordHit": "记录命中审计",
+    "recordHitTip": "拦截时写入命中记录表",
+    "confirmSaveContent": "保存后将立即影响线上敏感词拦截策略，确认保存？"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "tip": "Disyorkan daftar perkataan dalam Cina ringkas; sistem menormalkan ke ringkas dan separuh lebar sebelum padanan.",
+  "word": {
+    "add": "Tambah perkataan sensitif",
+    "edit": "Edit perkataan sensitif",
+    "view": "Lihat perkataan sensitif",
+    "confirmDelete": "Padam perkataan sensitif ini?",
+    "field": {
+      "word": "Perkataan",
+      "category": "Kategori",
+      "matchMode": "Mod padanan",
+      "status": "Status",
+      "remark": "Catatan",
+      "createTime": "Dicipta pada"
+    },
+    "category": {
+      "politic": "Politik",
+      "porn": "Pornografi",
+      "violence": "Keganasan",
+      "ad": "Iklan",
+      "custom": "Tersuai"
+    },
+    "matchMode": {
+      "contains": "Mengandungi",
+      "exact": "Tepat"
+    },
+    "status": {
+      "enable": "Aktif",
+      "disable": "Nyahaktif"
+    },
+    "check": {
+      "title": "Uji teks",
+      "placeholder": "Masukkan teks untuk diperiksa",
+      "button": "Periksa",
+      "hit": "Dikesan: {0}",
+      "clean": "Tiada perkataan sensitif",
+      "recordHit": "Rekod hit"
+    }
+  },
+  "hit": {
+    "field": {
+      "hitWord": "Perkataan dikesan",
+      "contentPreview": "Ringkasan teks",
+      "scene": "Senario",
+      "source": "Sumber",
+      "mchNo": "No. peniaga",
+      "clientIp": "IP klien",
+      "createTime": "Masa hit"
+    }
+  },
+  "config": {
+    "title": "Perkataan sensitif",
+    "description": "Suis global dan polisi penapis perkataan sensitif platform",
+    "enabled": "Dayakan penapis",
+    "enabledTip": "Jika dimatikan, semua teks lulus (boleh dimatikan untuk luar negara)",
+    "revealWord": "Papar perkataan dikesan dalam ralat",
+    "revealWordTip": "Jika aktif, mesej ralat API mengandungi perkataan sebenar (risiko probing)",
+    "recordHit": "Rekod audit hit",
+    "recordHitTip": "Tulis ke jadual hit apabila disekat",
+    "confirmSaveContent": "Simpan akan menjejaskan penapis dalam talian serta-merta. Teruskan?"
+  }
+}

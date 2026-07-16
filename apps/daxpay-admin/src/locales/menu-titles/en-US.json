@@ -83,5 +83,8 @@
   "menu.payment.merchant.codePayConfig": "QR Code Pay Config",
   "menu.payment.risk": "Payment Risk",
   "menu.payment.risk.blacklist": "Blacklist",
-  "menu.payment.risk.hit": "Risk Hits"
+  "menu.payment.risk.hit": "Risk Hits",
+  "menu.system.sensitive": "Sensitive Words",
+  "menu.system.sensitive.word": "Word List",
+  "menu.system.sensitive.hit": "Hit Records"
 }

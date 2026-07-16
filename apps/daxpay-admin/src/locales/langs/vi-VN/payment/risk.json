@@ -1,0 +1,78 @@
+{
+  "blacklist": {
+    "title": "Danh sách đen",
+    "add": "Thêm danh sách đen",
+    "editTitle": "Sửa danh sách đen",
+    "viewTitle": "Xem danh sách đen",
+    "confirmDelete": "Xóa mục danh sách đen này?",
+    "field": {
+      "type": "Loại",
+      "value": "Giá trị",
+      "channel": "Kênh",
+      "channelAppId": "AppId kênh",
+      "status": "Trạng thái",
+      "reason": "Lý do",
+      "expireTime": "Hết hạn",
+      "remark": "Ghi chú",
+      "createTime": "Thời gian tạo"
+    },
+    "type": {
+      "ip": "IP",
+      "open_id": "OpenId"
+    },
+    "status": {
+      "enable": "Bật",
+      "disable": "Tắt"
+    },
+    "tip": {
+      "typeValueImmutable": "Loại và giá trị không thể sửa sau khi tạo",
+      "expireEmpty": "Để trống nếu vĩnh viễn"
+    }
+  },
+  "hit": {
+    "title": "Lượt chặn rủi ro",
+    "handleTitle": "Xử lý lượt chặn",
+    "viewTitle": "Xem lượt chặn",
+    "field": {
+      "phase": "Giai đoạn",
+      "hitType": "Loại chặn",
+      "hitValue": "Giá trị chặn",
+      "mchNo": "Mã merchant",
+      "appId": "App ID",
+      "tradeNo": "Mã giao dịch",
+      "orderNo": "Mã đơn",
+      "bizOrderNo": "Mã đơn nghiệp vụ",
+      "method": "Phương thức",
+      "channel": "Kênh",
+      "clientIp": "IP client",
+      "openid": "OpenId",
+      "buyerId": "BuyerId",
+      "scene": "Kịch bản",
+      "handleStatus": "Trạng thái xử lý",
+      "handleRemark": "Ghi chú xử lý",
+      "handleTime": "Thời gian xử lý",
+      "createTime": "Thời gian tạo"
+    },
+    "phase": {
+      "before_pay": "Trước thanh toán",
+      "after_pay": "Sau thanh toán"
+    },
+    "handleStatus": {
+      "pending": "Chờ xử lý",
+      "ignored": "Bỏ qua",
+      "added_blacklist": "Đã thêm vào danh sách đen",
+      "merchant_disabled": "Merchant đã khóa",
+      "other": "Khác"
+    },
+    "scene": {
+      "api": "API",
+      "gateway": "Gateway",
+      "code": "Mã QR",
+      "manual": "Thủ công",
+      "unknown": "Không rõ"
+    },
+    "action": {
+      "handle": "Xử lý"
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "blacklist": {
+    "title": "Senarai hitam",
+    "add": "Tambah senarai hitam",
+    "editTitle": "Edit senarai hitam",
+    "viewTitle": "Lihat senarai hitam",
+    "confirmDelete": "Padam entri senarai hitam ini?",
+    "field": {
+      "type": "Jenis",
+      "value": "Nilai",
+      "channel": "Saluran",
+      "channelAppId": "AppId saluran",
+      "status": "Status",
+      "reason": "Sebab",
+      "expireTime": "Tamat tempoh",
+      "remark": "Catatan",
+      "createTime": "Dicipta pada"
+    },
+    "type": {
+      "ip": "IP",
+      "open_id": "OpenId"
+    },
+    "status": {
+      "enable": "Aktif",
+      "disable": "Nyahaktif"
+    },
+    "tip": {
+      "typeValueImmutable": "Jenis dan nilai tidak boleh diubah selepas dicipta",
+      "expireEmpty": "Biarkan kosong untuk kekal"
+    }
+  },
+  "hit": {
+    "title": "Hit risiko",
+    "handleTitle": "Urus hit",
+    "viewTitle": "Lihat hit",
+    "field": {
+      "phase": "Fasa",
+      "hitType": "Jenis hit",
+      "hitValue": "Nilai hit",
+      "mchNo": "No. peniaga",
+      "appId": "App ID",
+      "tradeNo": "No. dagangan",
+      "orderNo": "No. pesanan",
+      "bizOrderNo": "No. pesanan perniagaan",
+      "method": "Kaedah",
+      "channel": "Saluran",
+      "clientIp": "IP klien",
+      "openid": "OpenId",
+      "buyerId": "BuyerId",
+      "scene": "Senario",
+      "handleStatus": "Status urusan",
+      "handleRemark": "Catatan urusan",
+      "handleTime": "Masa urusan",
+      "createTime": "Dicipta pada"
+    },
+    "phase": {
+      "before_pay": "Sebelum bayar",
+      "after_pay": "Selepas bayar"
+    },
+    "handleStatus": {
+      "pending": "Menunggu",
+      "ignored": "Diabaikan",
+      "added_blacklist": "Ditambah ke senarai hitam",
+      "merchant_disabled": "Peniaga dinyahaktif",
+      "other": "Lain-lain"
+    },
+    "scene": {
+      "api": "API",
+      "gateway": "Gateway",
+      "code": "Kod QR",
+      "manual": "Manual",
+      "unknown": "Tidak diketahui"
+    },
+    "action": {
+      "handle": "Urus"
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "tip": "Prefer Simplified Chinese words. Matching applies traditional-to-simplified and full-width normalization.",
+  "word": {
+    "add": "Add word",
+    "edit": "Edit word",
+    "view": "View word",
+    "confirmDelete": "Delete this sensitive word?",
+    "field": {
+      "word": "Word",
+      "category": "Category",
+      "matchMode": "Match mode",
+      "status": "Status",
+      "remark": "Remark",
+      "createTime": "Created at"
+    },
+    "category": {
+      "politic": "Political",
+      "porn": "Pornography",
+      "violence": "Violence",
+      "ad": "Ads",
+      "custom": "Custom"
+    },
+    "matchMode": {
+      "contains": "Contains",
+      "exact": "Exact"
+    },
+    "status": {
+      "enable": "Enabled",
+      "disable": "Disabled"
+    },
+    "check": {
+      "title": "Check text",
+      "placeholder": "Enter text to check",
+      "button": "Check",
+      "hit": "Hit: {0}",
+      "clean": "No sensitive words",
+      "recordHit": "Record hit"
+    }
+  },
+  "hit": {
+    "field": {
+      "hitWord": "Hit word",
+      "contentPreview": "Content preview",
+      "scene": "Scene",
+      "source": "Source",
+      "mchNo": "Merchant no.",
+      "clientIp": "Client IP",
+      "createTime": "Hit time"
+    }
+  },
+  "config": {
+    "title": "Sensitive words",
+    "description": "Global switches for sensitive-word filtering (CN-focused content)",
+    "enabled": "Enable filtering",
+    "enabledTip": "When off, all text checks pass (can disable for overseas)",
+    "revealWord": "Reveal hit word in errors",
+    "revealWordTip": "Shows the matched word in API errors (probing risk)",
+    "recordHit": "Record hits",
+    "recordHitTip": "Write hit audit rows on block",
+    "confirmSaveContent": "Saving will affect online filtering immediately. Continue?"
+  }
+}

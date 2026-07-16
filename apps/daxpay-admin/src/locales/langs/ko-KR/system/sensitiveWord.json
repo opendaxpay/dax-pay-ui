@@ -1,0 +1,62 @@
+{
+  "tip": "단어는 간체 중국어로 등록하는 것을 권장합니다. 매칭 전 번체→간체 변환 및 전각 정규화를 수행합니다.",
+  "word": {
+    "add": "민감어 추가",
+    "edit": "민감어 편집",
+    "view": "민감어 보기",
+    "confirmDelete": "이 민감어를 삭제하시겠습니까?",
+    "field": {
+      "word": "민감어",
+      "category": "분류",
+      "matchMode": "일치 모드",
+      "status": "상태",
+      "remark": "비고",
+      "createTime": "생성 시간"
+    },
+    "category": {
+      "politic": "정치",
+      "porn": "음란",
+      "violence": "폭력",
+      "ad": "광고",
+      "custom": "사용자 정의"
+    },
+    "matchMode": {
+      "contains": "포함",
+      "exact": "정확 일치"
+    },
+    "status": {
+      "enable": "사용",
+      "disable": "중지"
+    },
+    "check": {
+      "title": "텍스트 검사",
+      "placeholder": "검사할 텍스트를 입력하세요",
+      "button": "검사",
+      "hit": "적중: {0}",
+      "clean": "민감어 없음",
+      "recordHit": "적중 기록 저장"
+    }
+  },
+  "hit": {
+    "field": {
+      "hitWord": "적중 단어",
+      "contentPreview": "원문 요약",
+      "scene": "장면",
+      "source": "출처",
+      "mchNo": "가맹점 번호",
+      "clientIp": "클라이언트 IP",
+      "createTime": "적중 시간"
+    }
+  },
+  "config": {
+    "title": "민감어",
+    "description": "플랫폼 텍스트 민감어 필터의 전역 스위치 및 정책",
+    "enabled": "필터 사용",
+    "enabledTip": "끄면 모든 텍스트 검증이 통과됩니다(해외 배포 시 비활성화 가능)",
+    "revealWord": "오류에 적중 단어 표시",
+    "revealWordTip": "켜면 API 오류 메시지에 구체적 단어가 포함되어 탐색 위험이 있습니다",
+    "recordHit": "적중 감사 기록",
+    "recordHitTip": "차단 시 적중 기록 테이블에 기록합니다",
+    "confirmSaveContent": "저장 후 온라인 차단 정책에 즉시 반영됩니다. 저장하시겠습니까?"
+  }
+}

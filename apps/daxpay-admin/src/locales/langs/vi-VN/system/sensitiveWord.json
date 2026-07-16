@@ -1,0 +1,62 @@
+{
+  "tip": "Nên đăng ký từ bằng tiếng Trung giản thể; hệ thống chuẩn hóa phồn thể→giản thể và full-width trước khi khớp.",
+  "word": {
+    "add": "Thêm từ nhạy cảm",
+    "edit": "Sửa từ nhạy cảm",
+    "view": "Xem từ nhạy cảm",
+    "confirmDelete": "Xóa từ nhạy cảm này?",
+    "field": {
+      "word": "Từ",
+      "category": "Phân loại",
+      "matchMode": "Chế độ khớp",
+      "status": "Trạng thái",
+      "remark": "Ghi chú",
+      "createTime": "Thời gian tạo"
+    },
+    "category": {
+      "politic": "Chính trị",
+      "porn": "Khiêu dâm",
+      "violence": "Bạo lực",
+      "ad": "Quảng cáo",
+      "custom": "Tùy chỉnh"
+    },
+    "matchMode": {
+      "contains": "Chứa",
+      "exact": "Chính xác"
+    },
+    "status": {
+      "enable": "Bật",
+      "disable": "Tắt"
+    },
+    "check": {
+      "title": "Kiểm tra văn bản",
+      "placeholder": "Nhập văn bản để kiểm tra",
+      "button": "Kiểm tra",
+      "hit": "Trúng: {0}",
+      "clean": "Không có từ nhạy cảm",
+      "recordHit": "Ghi nhận lượt trúng"
+    }
+  },
+  "hit": {
+    "field": {
+      "hitWord": "Từ trúng",
+      "contentPreview": "Tóm tắt nội dung",
+      "scene": "Kịch bản",
+      "source": "Nguồn",
+      "mchNo": "Mã merchant",
+      "clientIp": "IP client",
+      "createTime": "Thời gian trúng"
+    }
+  },
+  "config": {
+    "title": "Từ nhạy cảm",
+    "description": "Công tắc và chính sách lọc từ nhạy cảm toàn cục cho văn bản nền tảng",
+    "enabled": "Bật bộ lọc",
+    "enabledTip": "Tắt thì mọi kiểm tra văn bản đều qua (có thể tắt khi triển khai nước ngoài)",
+    "revealWord": "Hiện từ trúng trong lỗi",
+    "revealWordTip": "Bật thì thông báo lỗi API có từ cụ thể (rủi ro dò quét)",
+    "recordHit": "Ghi nhật ký trúng",
+    "recordHitTip": "Ghi vào bảng hit khi chặn",
+    "confirmSaveContent": "Lưu sẽ ảnh hưởng ngay bộ lọc online. Tiếp tục?"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "tip": "Disarankan mendaftarkan kata dalam bahasa Mandarin sederhana; sistem menormalisasi ke sederhana dan half-width sebelum pencocokan.",
+  "word": {
+    "add": "Tambah kata sensitif",
+    "edit": "Edit kata sensitif",
+    "view": "Lihat kata sensitif",
+    "confirmDelete": "Hapus kata sensitif ini?",
+    "field": {
+      "word": "Kata",
+      "category": "Kategori",
+      "matchMode": "Mode pencocokan",
+      "status": "Status",
+      "remark": "Catatan",
+      "createTime": "Dibuat pada"
+    },
+    "category": {
+      "politic": "Politik",
+      "porn": "Pornografi",
+      "violence": "Kekerasan",
+      "ad": "Iklan",
+      "custom": "Kustom"
+    },
+    "matchMode": {
+      "contains": "Mengandung",
+      "exact": "Persis"
+    },
+    "status": {
+      "enable": "Aktif",
+      "disable": "Nonaktif"
+    },
+    "check": {
+      "title": "Uji teks",
+      "placeholder": "Masukkan teks untuk diperiksa",
+      "button": "Periksa",
+      "hit": "Terdeteksi: {0}",
+      "clean": "Tidak ada kata sensitif",
+      "recordHit": "Catat hit"
+    }
+  },
+  "hit": {
+    "field": {
+      "hitWord": "Kata terdeteksi",
+      "contentPreview": "Ringkasan teks",
+      "scene": "Skenario",
+      "source": "Sumber",
+      "mchNo": "No. merchant",
+      "clientIp": "IP klien",
+      "createTime": "Waktu hit"
+    }
+  },
+  "config": {
+    "title": "Kata sensitif",
+    "description": "Saklar global dan kebijakan filter kata sensitif teks platform",
+    "enabled": "Aktifkan filter",
+    "enabledTip": "Jika dimatikan, semua teks lolos (dapat dimatikan untuk deployment luar negeri)",
+    "revealWord": "Tampilkan kata terdeteksi pada error",
+    "revealWordTip": "Jika aktif, pesan error API memuat kata konkret (risiko probing)",
+    "recordHit": "Catat audit hit",
+    "recordHitTip": "Menulis ke tabel hit saat diblokir",
+    "confirmSaveContent": "Penyimpanan akan langsung memengaruhi filter online. Lanjutkan?"
+  }
+}

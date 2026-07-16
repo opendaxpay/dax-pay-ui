@@ -1,0 +1,78 @@
+{
+  "blacklist": {
+    "title": "บัญชีดำ",
+    "add": "เพิ่มบัญชีดำ",
+    "editTitle": "แก้ไขบัญชีดำ",
+    "viewTitle": "ดูบัญชีดำ",
+    "confirmDelete": "ลบรายการบัญชีดำนี้?",
+    "field": {
+      "type": "ประเภท",
+      "value": "ค่า",
+      "channel": "ช่องทาง",
+      "channelAppId": "AppId ช่องทาง",
+      "status": "สถานะ",
+      "reason": "เหตุผล",
+      "expireTime": "หมดอายุ",
+      "remark": "หมายเหตุ",
+      "createTime": "สร้างเมื่อ"
+    },
+    "type": {
+      "ip": "IP",
+      "open_id": "OpenId"
+    },
+    "status": {
+      "enable": "เปิดใช้",
+      "disable": "ปิดใช้"
+    },
+    "tip": {
+      "typeValueImmutable": "ประเภทและค่าไม่สามารถแก้ไขหลังสร้าง",
+      "expireEmpty": "เว้นว่างหากถาวร"
+    }
+  },
+  "hit": {
+    "title": "การตรวจจับความเสี่ยง",
+    "handleTitle": "จัดการรายการ",
+    "viewTitle": "ดูรายการ",
+    "field": {
+      "phase": "ช่วง",
+      "hitType": "ประเภทการตรวจจับ",
+      "hitValue": "ค่าที่ตรวจจับ",
+      "mchNo": "รหัสร้านค้า",
+      "appId": "App ID",
+      "tradeNo": "เลขธุรกรรม",
+      "orderNo": "เลขออเดอร์",
+      "bizOrderNo": "เลขออเดอร์ธุรกิจ",
+      "method": "วิธีชำระ",
+      "channel": "ช่องทาง",
+      "clientIp": "IP ลูกค้า",
+      "openid": "OpenId",
+      "buyerId": "BuyerId",
+      "scene": "ฉาก",
+      "handleStatus": "สถานะจัดการ",
+      "handleRemark": "หมายเหตุจัดการ",
+      "handleTime": "เวลาจัดการ",
+      "createTime": "สร้างเมื่อ"
+    },
+    "phase": {
+      "before_pay": "ก่อนชำระ",
+      "after_pay": "หลังชำระ"
+    },
+    "handleStatus": {
+      "pending": "รอดำเนินการ",
+      "ignored": "เพิกเฉย",
+      "added_blacklist": "เพิ่มเข้าบัญชีดำแล้ว",
+      "merchant_disabled": "ปิดร้านค้าแล้ว",
+      "other": "อื่นๆ"
+    },
+    "scene": {
+      "api": "API",
+      "gateway": "Gateway",
+      "code": "คิวอาร์โค้ด",
+      "manual": "ด้วยตนเอง",
+      "unknown": "ไม่ทราบ"
+    },
+    "action": {
+      "handle": "จัดการ"
+    }
+  }
+}

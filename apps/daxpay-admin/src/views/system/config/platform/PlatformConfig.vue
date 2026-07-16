@@ -4,6 +4,7 @@
   import { $t } from '#/locales';
 
   import OssConfigForm from './oss/OssConfigForm.vue';
+  import SensitiveWordConfigForm from './sensitive-word/SensitiveWordConfigForm.vue';
   import UrlConfigForm from './url/UrlConfigForm.vue';
   import WebsiteConfigForm from './website/WebsiteConfigForm.vue';
 
@@ -33,6 +34,13 @@
       label: $t('system.platform.oss.title'),
       // OSS配置描述
       description: $t('system.platform.oss.description'),
+    },
+    {
+      key: 'sensitive-word',
+      // 敏感词策略标题
+      label: $t('system.sensitiveWord.config.title'),
+      // 敏感词策略描述
+      description: $t('system.sensitiveWord.config.description'),
     },
   ] as const;
 </script>
@@ -66,6 +74,7 @@
           <UrlConfigForm v-if="activeKey === 'url'" />
           <WebsiteConfigForm v-if="activeKey === 'website'" />
           <OssConfigForm v-if="activeKey === 'oss'" />
+          <SensitiveWordConfigForm v-if="activeKey === 'sensitive-word'" />
         </div>
       </section>
     </div>

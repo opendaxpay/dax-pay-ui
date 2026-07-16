@@ -83,5 +83,8 @@
   "menu.payment.merchant.codePayConfig": "コード支払設定",
   "menu.payment.risk": "支払リスク",
   "menu.payment.risk.blacklist": "ブラックリスト",
-  "menu.payment.risk.hit": "リスクヒット"
+  "menu.payment.risk.hit": "リスクヒット",
+  "menu.system.sensitive": "センシティブワード",
+  "menu.system.sensitive.word": "ワード一覧",
+  "menu.system.sensitive.hit": "ヒット記録"
 }

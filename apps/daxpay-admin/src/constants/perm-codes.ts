@@ -248,5 +248,14 @@ export const PermCodes = {
       MANAGE: 'system:protocol:manage',
       PUBLISH: 'system:protocol:publish',
     },
+    /** 敏感词词库 */
+    SensitiveWord: {
+      VIEW: 'system:sensitive-word:view',
+      MANAGE: 'system:sensitive-word:manage',
+    },
+    /** 敏感词命中记录 */
+    SensitiveWordHit: {
+      VIEW: 'system:sensitive-word-hit:view',
+    },
   },
 } as const;

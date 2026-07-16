@@ -83,5 +83,8 @@
   "menu.payment.merchant.codePayConfig": "Cấu hình thanh toán mã",
   "menu.payment.risk": "Payment Risk",
   "menu.payment.risk.blacklist": "Blacklist",
-  "menu.payment.risk.hit": "Risk Hits"
+  "menu.payment.risk.hit": "Risk Hits",
+  "menu.system.sensitive": "Từ nhạy cảm",
+  "menu.system.sensitive.word": "Danh sách từ",
+  "menu.system.sensitive.hit": "Lịch sử trúng"
 }

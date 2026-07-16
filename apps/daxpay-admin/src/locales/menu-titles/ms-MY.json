@@ -83,5 +83,8 @@
   "menu.payment.merchant.codePayConfig": "Konfigurasi Bayaran Kod QR",
   "menu.payment.risk": "Payment Risk",
   "menu.payment.risk.blacklist": "Blacklist",
-  "menu.payment.risk.hit": "Risk Hits"
+  "menu.payment.risk.hit": "Risk Hits",
+  "menu.system.sensitive": "Perkataan sensitif",
+  "menu.system.sensitive.word": "Senarai kata",
+  "menu.system.sensitive.hit": "Rekod hit"
 }

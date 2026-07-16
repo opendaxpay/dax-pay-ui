@@ -83,5 +83,8 @@
   "menu.payment.merchant.codePayConfig": "Konfigurasi Bayar Kode QR",
   "menu.payment.risk": "Payment Risk",
   "menu.payment.risk.blacklist": "Blacklist",
-  "menu.payment.risk.hit": "Risk Hits"
+  "menu.payment.risk.hit": "Risk Hits",
+  "menu.system.sensitive": "Kata sensitif",
+  "menu.system.sensitive.word": "Daftar kata",
+  "menu.system.sensitive.hit": "Catatan hit"
 }
