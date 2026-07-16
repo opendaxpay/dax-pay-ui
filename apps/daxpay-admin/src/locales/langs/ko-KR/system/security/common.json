@@ -1,6 +1,6 @@
 {
-  "title": "보안 관리",
-  "description": "모듈별 시스템 보안 설정 관리",
+  "title": "시스템 보안",
+  "description": "플랫폼 액세스 보안 정책(비밀번호, 로그인, 세션, 이중 인증, 재생 방지) 관리",
   "cancel": "취소",
   "confirm": "확인",
   "confirmSave": "저장 확인",
@@ -16,5 +16,9 @@
     "window": "창문들",
     "count": "세다",
     "score": "전철기"
+  },
+  "group": {
+    "access": "접근 보안",
+    "openApi": "오픈 API 보안"
   }
 }

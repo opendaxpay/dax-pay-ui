@@ -1,0 +1,26 @@
+{
+  "title": "防重放校驗",
+  "description": "防止登入、註冊、改密等敏感操作的請求被重放。",
+  "summary": {
+    "enabled": "防重放校驗：已啟用",
+    "disabled": "防重放校驗：未啟用"
+  },
+  "section": {
+    "basic": "基礎設定",
+    "params": "參數設定"
+  },
+  "enabled": {
+    "label": "啟用防重放校驗",
+    "desc": "關閉後，所有標記防重放的敏感操作介面（登入、註冊、改密等）將跳過 nonce 校驗。"
+  },
+  "nonceTimeoutSeconds": {
+    "label": "Nonce有效期",
+    "desc": "平台簽發的 nonce 在 Redis 中的快取時長，超過此值的請求將被拒絕。",
+    "placeholder": "請輸入有效期秒數"
+  },
+  "timestampToleranceSeconds": {
+    "label": "時間戳容差",
+    "desc": "請求時間戳與伺服器時間允許的最大偏差（雙向絕對值），超過此值視為過期請求。",
+    "placeholder": "請輸入容差秒數"
+  }
+}

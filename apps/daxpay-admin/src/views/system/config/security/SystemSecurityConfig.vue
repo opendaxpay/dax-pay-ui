@@ -3,16 +3,18 @@
 
   import { $t } from '#/locales';
 
+  import IamReplayProtect from './components/IamReplayProtect.vue';
   import LoginSecurity from './components/LoginSecurity.vue';
   import PasswordPolicy from './components/PasswordPolicy.vue';
   import SessionManagement from './components/SessionManagement.vue';
   import TwoFactorAuth from './components/TwoFactorAuth.vue';
 
-  defineOptions({ name: 'SecurityConfig' });
+  defineOptions({ name: 'SystemSecurityConfig' });
 
   const activeKey = ref<string>('passwordPolicy');
 
-  const tabs = [
+  // 左侧导航: 访问安全(IAM域)
+  const tabGroup = [
     {
       key: 'passwordPolicy',
       // 密码策略标题
@@ -41,6 +43,13 @@
       // 双因素认证描述
       description: $t('system.security.two-factor-auth.description'),
     },
+    {
+      key: 'iamReplayProtect',
+      // 防重放校验标题
+      label: $t('system.security.iam-replay-protect.title'),
+      // 防重放校验描述
+      description: $t('system.security.iam-replay-protect.description'),
+    },
   ] as const;
 </script>
 
@@ -48,23 +57,27 @@
   <div class="security-config-page">
     <div class="security-layout">
       <aside class="security-sidebar">
-        <!-- 安全管理标题 -->
+        <!-- 系统安全配置标题 -->
         <div class="security-sidebar__title">{{ $t('system.security.common.title') }}</div>
-        <!-- 安全管理描述 -->
+        <!-- 系统安全配置描述 -->
         <div class="security-sidebar__desc">{{ $t('system.security.common.description') }}</div>
 
         <div class="security-tab-list">
-          <button
-            v-for="tab in tabs"
-            :key="tab.key"
-            type="button"
-            class="security-tab-item"
-            :class="{ 'security-tab-item--active': activeKey === tab.key }"
-            @click="activeKey = tab.key"
-          >
-            <div class="security-tab-item__label">{{ tab.label }}</div>
-            <div class="security-tab-item__desc">{{ tab.description }}</div>
-          </button>
+          <div class="security-tab-group">
+            <!-- 访问安全组标题 -->
+            <div class="security-tab-group__title">{{ $t('system.security.common.group.access') }}</div>
+            <button
+              v-for="tab in tabGroup"
+              :key="tab.key"
+              type="button"
+              class="security-tab-item"
+              :class="{ 'security-tab-item--active': activeKey === tab.key }"
+              @click="activeKey = tab.key"
+            >
+              <div class="security-tab-item__label">{{ tab.label }}</div>
+              <div class="security-tab-item__desc">{{ tab.description }}</div>
+            </button>
+          </div>
         </div>
       </aside>
 
@@ -74,6 +87,7 @@
           <LoginSecurity v-else-if="activeKey === 'loginSecurity'" />
           <SessionManagement v-else-if="activeKey === 'sessionManagement'" />
           <TwoFactorAuth v-else-if="activeKey === 'twoFactorAuth'" />
+          <IamReplayProtect v-else-if="activeKey === 'iamReplayProtect'" />
         </div>
       </section>
     </div>
@@ -126,7 +140,22 @@
   .security-tab-list {
     display: flex;
     flex-direction: column;
+    gap: 16px;
+  }
+
+  .security-tab-group {
+    display: flex;
+    flex-direction: column;
     gap: 8px;
+  }
+
+  .security-tab-group__title {
+    padding: 0 16px 2px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: hsl(var(--muted-foreground));
   }
 
   .security-tab-item {

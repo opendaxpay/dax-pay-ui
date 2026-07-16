@@ -1,0 +1,34 @@
+{
+  "title": "Keselamatan Pembayaran",
+  "description": "Urus dasar keselamatan rantai transaksi pembayaran, termasuk anti-ulangan API dan kawalan risiko.",
+  "group": {
+    "paySecurity": "Keselamatan Pembayaran"
+  },
+  "risk": {
+    "title": "Kawalan Risiko Pembayaran",
+    "description": "Kawalan risiko senarai hitam pembayaran: sekat atau rekod sahaja.",
+    "summary": {
+      "enabled": "Kawalan Risiko: Aktif",
+      "disabled": "Kawalan Risiko: Mati",
+      "blockOn": "Hit: Sekat Pesanan",
+      "blockOff": "Hit: Rekod Sahaja",
+      "afterOn": "Rekod Pasca-Bayar: Aktif",
+      "afterOff": "Rekod Pasca-Bayar: Mati"
+    },
+    "section": {
+      "switch": "Suis Kawalan Risiko"
+    },
+    "riskEnabled": {
+      "label": "Suis Utama Kawalan Risiko",
+      "desc": "Apabila aktif, aliran pembayaran melakukan semakan senarai hitam; apabila dimatikan, semua semakan risiko dilangkau."
+    },
+    "riskBlockBeforePay": {
+      "label": "Sekat Pesanan semasa Hit",
+      "desc": "Apabila aktif, hit senarai hitam sebelum pembayaran akan menolak pesanan; apabila dimatikan, hit hanya direkod tanpa menyekat."
+    },
+    "riskCheckAfterPay": {
+      "label": "Rekod Hit Selepas Pembayaran",
+      "desc": "Apabila aktif, hit direkod selepas pembayaran berjaya untuk analisis pasca-peristiwa, tanpa menjejaskan dana."
+    }
+  }
+}

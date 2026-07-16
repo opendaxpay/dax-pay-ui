@@ -16,7 +16,6 @@
   "menu.demos": "시민",
   "menu.dashboard": "계기반",
   "menu.system.log.operate": "운영 로그",
-  "menu.system.config.security": "보안 구성",
   "menu.platform": "결제관리",
   "menu.system.log.login": "로그인 로그",
   "menu.dashboard.workspace": "작업공간",
@@ -48,7 +47,7 @@
   "menu.device": "장치 관리",
   "menu.demos.artemis": "메시지 대기열 데모",
   "menu.system.config.thirdPlatform": "타사 플랫폼 관리",
-  "menu.system.config.protocol": "사용자 프로토콜",
+  "menu.system.basic.protocol": "사용자 프로토콜",
   "menu.payment.merchant.profile": "판매자 프로필",
   "menu.develop.trade": "결제 개발",
   "menu.develop.sign": "개발에 서명하다",
@@ -86,5 +85,8 @@
   "menu.payment.risk.hit": "리스크 적중",
   "menu.system.sensitive": "민감어 관리",
   "menu.system.sensitive.word": "단어 관리",
-  "menu.system.sensitive.hit": "적중 기록"
+  "menu.system.sensitive.hit": "적중 기록",
+  "menu.system.security": "보안 관리",
+  "menu.system.security.system": "시스템 보안",
+  "menu.system.security.pay": "결제 보안"
 }

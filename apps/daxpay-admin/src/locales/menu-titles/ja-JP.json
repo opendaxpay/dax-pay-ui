@@ -16,7 +16,6 @@
   "menu.demos": "デモ",
   "menu.dashboard": "ダッシュボード",
   "menu.system.log.operate": "操作ログ",
-  "menu.system.config.security": "セキュリティ構成",
   "menu.platform": "支払い管理",
   "menu.system.log.login": "ログインログ",
   "menu.dashboard.workspace": "ワークスペース",
@@ -48,7 +47,7 @@
   "menu.device": "デバイス管理",
   "menu.demos.artemis": "メッセージキューのデモ",
   "menu.system.config.thirdPlatform": "サードパーティのプラットフォーム管理",
-  "menu.system.config.protocol": "ユーザープロトコル",
+  "menu.system.basic.protocol": "ユーザープロトコル",
   "menu.payment.merchant.profile": "販売者のプロフィール",
   "menu.develop.trade": "決済開発",
   "menu.develop.sign": "サイン開発",
@@ -86,5 +85,8 @@
   "menu.payment.risk.hit": "リスクヒット",
   "menu.system.sensitive": "センシティブワード管理",
   "menu.system.sensitive.word": "ワード一覧",
-  "menu.system.sensitive.hit": "ヒット記録"
+  "menu.system.sensitive.hit": "ヒット記録",
+  "menu.system.security": "セキュリティ管理",
+  "menu.system.security.system": "システムセキュリティ",
+  "menu.system.security.pay": "決済セキュリティ"
 }

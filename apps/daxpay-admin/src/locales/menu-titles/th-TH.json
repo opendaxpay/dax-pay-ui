@@ -16,7 +16,6 @@
   "menu.demos": "การสาธิต",
   "menu.dashboard": "แดชบอร์ด",
   "menu.system.log.operate": "ดำเนินการบันทึก",
-  "menu.system.config.security": "การกำหนดค่าความปลอดภัย",
   "menu.platform": "การจัดการการชำระเงิน",
   "menu.system.log.login": "เข้าสู่ระบบ",
   "menu.dashboard.workspace": "พื้นที่ทำงาน",
@@ -48,7 +47,7 @@
   "menu.device": "การจัดการอุปกรณ์",
   "menu.demos.artemis": "การสาธิตคิวข้อความ",
   "menu.system.config.thirdPlatform": "การจัดการแพลตฟอร์มของบุคคลที่สาม",
-  "menu.system.config.protocol": "โปรโตคอลผู้ใช้",
+  "menu.system.basic.protocol": "โปรโตคอลผู้ใช้",
   "menu.payment.merchant.profile": "โปรไฟล์ผู้ขาย",
   "menu.develop.trade": "การพัฒนาการชำระเงิน",
   "menu.develop.sign": "ลงชื่อ พัฒนา",
@@ -86,5 +85,8 @@
   "menu.payment.risk.hit": "Risk Hits",
   "menu.system.sensitive": "จัดการคำละเอียดอ่อน",
   "menu.system.sensitive.word": "รายการคำ",
-  "menu.system.sensitive.hit": "ประวัติการพบ"
+  "menu.system.sensitive.hit": "ประวัติการพบ",
+  "menu.system.security": "การจัดการความปลอดภัย",
+  "menu.system.security.system": "ความปลอดภัยระบบ",
+  "menu.system.security.pay": "ความปลอดภัยการชำระเงิน"
 }

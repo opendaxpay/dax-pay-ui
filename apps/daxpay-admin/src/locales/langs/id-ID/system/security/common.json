@@ -1,6 +1,6 @@
 {
-  "title": "Manajemen Keamanan",
-  "description": "Kelola pengaturan keamanan sistem berdasarkan modul",
+  "title": "Keamanan Sistem",
+  "description": "Kelola kebijakan keamanan akses platform (kata sandi, login, sesi, 2FA, anti-replay)",
   "cancel": "Membatalkan",
   "confirm": "Mengonfirmasi",
   "confirmSave": "Konfirmasikan penyimpanan",
@@ -16,5 +16,9 @@
     "window": "jendela",
     "count": "menghitung",
     "score": "poin"
+  },
+  "group": {
+    "access": "Keamanan Akses",
+    "openApi": "Keamanan API Terbuka"
   }
 }

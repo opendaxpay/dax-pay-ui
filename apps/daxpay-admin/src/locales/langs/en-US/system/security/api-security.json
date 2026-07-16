@@ -1,0 +1,32 @@
+{
+  "title": "Payment API Security",
+  "description": "Prevents replay of intercepted payment requests. Signature verification is always enabled.",
+  "summary": {
+    "nonceEnabled": "Nonce Anti-Replay: Enabled",
+    "nonceDisabled": "Nonce Anti-Replay: Disabled",
+    "reqTimeoutEnabled": "Timestamp Window: Enabled",
+    "reqTimeoutDisabled": "Timestamp Window: Disabled"
+  },
+  "section": {
+    "replay": "Anti-Replay Verification",
+    "params": "Parameter Settings"
+  },
+  "nonceVerifyEnabled": {
+    "label": "Nonce Anti-Replay",
+    "desc": "When enabled, each request nonce can only be consumed once within its TTL; duplicate submissions will be blocked."
+  },
+  "reqTimeoutEnabled": {
+    "label": "Request Timestamp Window",
+    "desc": "When enabled, requests whose timestamp differs from server time beyond the tolerance will be rejected."
+  },
+  "reqTimeoutSeconds": {
+    "label": "Timestamp Tolerance",
+    "desc": "Maximum allowed deviation (absolute, bidirectional) between request time and server time.",
+    "placeholder": "Enter tolerance in seconds"
+  },
+  "nonceTtlSeconds": {
+    "label": "Nonce TTL",
+    "desc": "How long the nonce is cached in Redis; duplicate requests beyond this duration will no longer be blocked.",
+    "placeholder": "Enter TTL in seconds"
+  }
+}

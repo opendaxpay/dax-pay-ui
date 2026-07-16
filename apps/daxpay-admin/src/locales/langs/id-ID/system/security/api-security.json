@@ -1,0 +1,32 @@
+{
+  "title": "Keamanan API Pembayaran",
+  "description": "Mencegah replay permintaan pembayaran yang disadap. Verifikasi tanda tangan selalu diaktifkan.",
+  "summary": {
+    "nonceEnabled": "Anti-Replay Nonce: Diaktifkan",
+    "nonceDisabled": "Anti-Replay Nonce: Dinonaktifkan",
+    "reqTimeoutEnabled": "Jendela Waktu: Diaktifkan",
+    "reqTimeoutDisabled": "Jendela Waktu: Dinonaktifkan"
+  },
+  "section": {
+    "replay": "Verifikasi Anti-Replay",
+    "params": "Pengaturan Parameter"
+  },
+  "nonceVerifyEnabled": {
+    "label": "Anti-Replay Nonce",
+    "desc": "Saat diaktifkan, setiap nonce permintaan hanya dapat dikonsumsi sekali dalam TTL-nya; pengiriman duplikat akan diblokir."
+  },
+  "reqTimeoutEnabled": {
+    "label": "Jendela Waktu Permintaan",
+    "desc": "Saat diaktifkan, permintaan yang selisih waktunya dengan server melebihi toleransi akan ditolak."
+  },
+  "reqTimeoutSeconds": {
+    "label": "Toleransi Waktu",
+    "desc": "Penyimpangan maksimum yang diizinkan (absolut, dua arah) antara waktu permintaan dan server.",
+    "placeholder": "Masukkan toleransi dalam detik"
+  },
+  "nonceTtlSeconds": {
+    "label": "TTL Nonce",
+    "desc": "Berapa lama nonce di-cache di Redis; permintaan duplikat melebihi durasi ini tidak akan diblokir lagi.",
+    "placeholder": "Masukkan TTL dalam detik"
+  }
+}

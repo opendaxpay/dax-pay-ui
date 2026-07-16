@@ -1,0 +1,26 @@
+{
+  "title": "Anti-Replay Protection",
+  "description": "Prevent replay attacks on sensitive operations like login, registration, and password changes.",
+  "summary": {
+    "enabled": "Anti-Replay: Enabled",
+    "disabled": "Anti-Replay: Disabled"
+  },
+  "section": {
+    "basic": "Basic Settings",
+    "params": "Parameter Settings"
+  },
+  "enabled": {
+    "label": "Enable Anti-Replay",
+    "desc": "When disabled, all replay-protected sensitive endpoints (login, register, change password, etc.) will skip nonce verification."
+  },
+  "nonceTimeoutSeconds": {
+    "label": "Nonce TTL",
+    "desc": "How long the platform-issued nonce is cached in Redis; requests exceeding this duration will be rejected.",
+    "placeholder": "Enter TTL in seconds"
+  },
+  "timestampToleranceSeconds": {
+    "label": "Timestamp Tolerance",
+    "desc": "Maximum allowed deviation (absolute, bidirectional) between request timestamp and server time.",
+    "placeholder": "Enter tolerance in seconds"
+  }
+}

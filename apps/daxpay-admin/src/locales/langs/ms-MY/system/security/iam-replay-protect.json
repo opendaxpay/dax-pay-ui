@@ -1,0 +1,26 @@
+{
+  "title": "Perlindungan Anti-Main Semula",
+  "description": "Halang serangan main semula pada operasi sensitif seperti log masuk, pendaftaran, dan ubah kata laluan.",
+  "summary": {
+    "enabled": "Anti-Main Semula: Diaktifkan",
+    "disabled": "Anti-Main Semula: Dinonaktifkan"
+  },
+  "section": {
+    "basic": "Tetapan Asas",
+    "params": "Tetapan Parameter"
+  },
+  "enabled": {
+    "label": "Aktifkan Anti-Main Semula",
+    "desc": "Apabila dinonaktifkan, semua endpoint operasi sensitif yang ditandakan anti-main semula (log masuk, daftar, ubah kata laluan, dll.) akan melangkau pengesahan nonce."
+  },
+  "nonceTimeoutSeconds": {
+    "label": "TTL Nonce",
+    "desc": "Berapa lama nonce yang dikeluarkan platform dicache dalam Redis; permintaan yang melebihi tempoh ini akan ditolak.",
+    "placeholder": "Masukkan TTL dalam saat"
+  },
+  "timestampToleranceSeconds": {
+    "label": "Toleransi Cap Masa",
+    "desc": "Sisihan maksimum yang dibenarkan (mutlak, dua hala) antara cap masa permintaan dan pelayan.",
+    "placeholder": "Masukkan toleransi dalam saat"
+  }
+}

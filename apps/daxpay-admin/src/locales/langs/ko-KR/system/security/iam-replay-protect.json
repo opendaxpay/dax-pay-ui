@@ -1,0 +1,26 @@
+{
+  "title": "재생 방지 검증",
+  "description": "로그인, 회원가입, 비밀번호 변경 등 민감한 작업의 재생 공격을 방지합니다.",
+  "summary": {
+    "enabled": "재생 방지: 활성화됨",
+    "disabled": "재생 방지: 비활성화됨"
+  },
+  "section": {
+    "basic": "기본 설정",
+    "params": "매개변수 설정"
+  },
+  "enabled": {
+    "label": "재생 방지 활성화",
+    "desc": "비활성화하면 재생 방지가 표시된 모든 민감한 작업 엔드포인트(로그인, 가입, 비밀번호 변경 등)가 nonce 검증을 건너뜁니다."
+  },
+  "nonceTimeoutSeconds": {
+    "label": "Nonce 유효 기간",
+    "desc": "플랫폼이 발급한 nonce의 Redis 캐시 기간입니다. 이 기간을 초과한 요청은 거부됩니다.",
+    "placeholder": "유효 기간(초) 입력"
+  },
+  "timestampToleranceSeconds": {
+    "label": "타임스탬프 허용 오차",
+    "desc": "요청 타임스탬프와 서버 시간 간의 최대 허용 편차(양방향 절대값)입니다.",
+    "placeholder": "허용 오차(초) 입력"
+  }
+}

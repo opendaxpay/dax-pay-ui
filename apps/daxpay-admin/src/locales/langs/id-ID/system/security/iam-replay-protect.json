@@ -1,0 +1,26 @@
+{
+  "title": "Perlindungan Anti-Replay",
+  "description": "Cegah serangan replay pada operasi sensitif seperti login, registrasi, dan ubah kata sandi.",
+  "summary": {
+    "enabled": "Anti-Replay: Diaktifkan",
+    "disabled": "Anti-Replay: Dinonaktifkan"
+  },
+  "section": {
+    "basic": "Pengaturan Dasar",
+    "params": "Pengaturan Parameter"
+  },
+  "enabled": {
+    "label": "Aktifkan Anti-Replay",
+    "desc": "Saat dinonaktifkan, semua endpoint operasi sensitif yang ditandai anti-replay (login, daftar, ubah kata sandi, dll.) akan melewati verifikasi nonce."
+  },
+  "nonceTimeoutSeconds": {
+    "label": "TTL Nonce",
+    "desc": "Berapa lama nonce yang diterbitkan platform disimpan di Redis; permintaan yang melebihi durasi ini akan ditolak.",
+    "placeholder": "Masukkan TTL dalam detik"
+  },
+  "timestampToleranceSeconds": {
+    "label": "Toleransi Stempel Waktu",
+    "desc": "Penyimpangan maksimum yang diizinkan (absolut, dua arah) antara stempel waktu permintaan dan server.",
+    "placeholder": "Masukkan toleransi dalam detik"
+  }
+}

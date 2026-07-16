@@ -1,0 +1,34 @@
+{
+  "title": "Pay Security",
+  "description": "Manage payment security policies including API anti-replay and risk control.",
+  "group": {
+    "paySecurity": "Payment Security"
+  },
+  "risk": {
+    "title": "Payment Risk Control",
+    "description": "Blacklist risk control: block orders or log only.",
+    "summary": {
+      "enabled": "Risk Control: On",
+      "disabled": "Risk Control: Off",
+      "blockOn": "Hit: Block Order",
+      "blockOff": "Hit: Log Only",
+      "afterOn": "Post-Pay Log: On",
+      "afterOff": "Post-Pay Log: Off"
+    },
+    "section": {
+      "switch": "Risk Control"
+    },
+    "riskEnabled": {
+      "label": "Risk Control Master Switch",
+      "desc": "When enabled, the payment flow performs blacklist checks; when disabled, all risk checks are skipped."
+    },
+    "riskBlockBeforePay": {
+      "label": "Block Order on Hit",
+      "desc": "When enabled, blacklist hits before payment will reject the order; when disabled, hits are only logged without blocking."
+    },
+    "riskCheckAfterPay": {
+      "label": "Post-Pay Hit Logging",
+      "desc": "When enabled, hits are recorded after successful payment for post-event analysis, without affecting funds."
+    }
+  }
+}

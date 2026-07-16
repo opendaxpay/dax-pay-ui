@@ -1,0 +1,32 @@
+{
+  "title": "支付API安全",
+  "description": "防止支付請求被截獲重放，簽名校驗始終啟用。",
+  "summary": {
+    "nonceEnabled": "Nonce防重放：已啟用",
+    "nonceDisabled": "Nonce防重放：未啟用",
+    "reqTimeoutEnabled": "時間窗口：已啟用",
+    "reqTimeoutDisabled": "時間窗口：未啟用"
+  },
+  "section": {
+    "replay": "防重放校驗",
+    "params": "參數設定"
+  },
+  "nonceVerifyEnabled": {
+    "label": "Nonce防重放校驗",
+    "desc": "啟用後，每個請求的隨機數（nonceStr）有效期內僅可消費一次，重複提交將被攔截。"
+  },
+  "reqTimeoutEnabled": {
+    "label": "請求時間窗口校驗",
+    "desc": "啟用後，請求時間（reqTime）與伺服器時間的差值超過容差閾值將被拒絕。"
+  },
+  "reqTimeoutSeconds": {
+    "label": "時間窗口容差",
+    "desc": "請求時間與伺服器時間允許的最大偏差（雙向絕對值），超過此值視為過期請求。",
+    "placeholder": "請輸入容差秒數"
+  },
+  "nonceTtlSeconds": {
+    "label": "Nonce有效期",
+    "desc": "隨機數在 Redis 中的快取時長，超過此值的重複請求將不再被攔截。",
+    "placeholder": "請輸入有效期秒數"
+  }
+}

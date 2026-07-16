@@ -1,6 +1,6 @@
 {
-  "title": "Quản lý an ninh",
-  "description": "Quản lý cài đặt bảo mật hệ thống theo mô-đun",
+  "title": "Bảo mật hệ thống",
+  "description": "Quản lý chính sách bảo mật truy cập nền tảng (mật khẩu, đăng nhập, phiên, 2FA, chống replay)",
   "cancel": "Hủy bỏ",
   "confirm": "Xác nhận",
   "confirmSave": "Xác nhận lưu",
@@ -16,5 +16,9 @@
     "window": "các cửa sổ",
     "count": "đếm",
     "score": "điểm"
+  },
+  "group": {
+    "access": "Bảo mật truy cập",
+    "openApi": "Bảo mật API mở"
   }
 }

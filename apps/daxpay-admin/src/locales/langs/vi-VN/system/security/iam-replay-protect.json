@@ -1,0 +1,26 @@
+{
+  "title": "Bảo vệ chống phát lại",
+  "description": "Ngăn tấn công phát lại trên các thao tác nhạy cảm như đăng nhập, đăng ký, đổi mật khẩu.",
+  "summary": {
+    "enabled": "Chống phát lại: Đã bật",
+    "disabled": "Chống phát lại: Đã tắt"
+  },
+  "section": {
+    "basic": "Cài đặt cơ bản",
+    "params": "Cài đặt tham số"
+  },
+  "enabled": {
+    "label": "Bật chống phát lại",
+    "desc": "Khi tắt, tất cả endpoint thao tác nhạy cảm được đánh dấu chống phát lại (đăng nhập, đăng ký, đổi mật khẩu, v.v.) sẽ bỏ qua xác thực nonce."
+  },
+  "nonceTimeoutSeconds": {
+    "label": "TTL Nonce",
+    "desc": "Thời gian nonce do nền tảng cấp được lưu trong Redis; yêu cầu vượt quá thời gian này sẽ bị từ chối.",
+    "placeholder": "Nhập TTL (giây)"
+  },
+  "timestampToleranceSeconds": {
+    "label": "Dung sai dấu thời gian",
+    "desc": "Độ lệch tối đa được phép (giá trị tuyệt đối, hai chiều) giữa dấu thời gian yêu cầu và máy chủ.",
+    "placeholder": "Nhập dung sai (giây)"
+  }
+}

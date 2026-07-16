@@ -1,0 +1,34 @@
+{
+  "title": "Keamanan Pembayaran",
+  "description": "Kelola kebijakan keamanan rantai transaksi pembayaran, termasuk anti-replay API dan kontrol risiko.",
+  "group": {
+    "paySecurity": "Keamanan Pembayaran"
+  },
+  "risk": {
+    "title": "Kontrol Risiko Pembayaran",
+    "description": "Kontrol risiko daftar hitam pembayaran: blokir atau hanya catat.",
+    "summary": {
+      "enabled": "Kontrol Risiko: Aktif",
+      "disabled": "Kontrol Risiko: Nonaktif",
+      "blockOn": "Hit: Blokir Pesanan",
+      "blockOff": "Hit: Catat Saja",
+      "afterOn": "Catatan Pascabayar: Aktif",
+      "afterOff": "Catatan Pascabayar: Nonaktif"
+    },
+    "section": {
+      "switch": "Saklar Kontrol Risiko"
+    },
+    "riskEnabled": {
+      "label": "Saklar Utama Kontrol Risiko",
+      "desc": "Saat aktif, alur pembayaran melakukan pemeriksaan daftar hitam; saat nonaktif, semua pemeriksaan risiko dilewati."
+    },
+    "riskBlockBeforePay": {
+      "label": "Blokir Pesanan saat Hit",
+      "desc": "Saat aktif, hit daftar hitam sebelum pembayaran akan menolak pesanan; saat nonaktif, hit hanya dicatat tanpa memblokir."
+    },
+    "riskCheckAfterPay": {
+      "label": "Pencatatan Hit Pasca Pembayaran",
+      "desc": "Saat aktif, hit dicatat setelah pembayaran berhasil untuk analisis pasca-peristiwa, tanpa memengaruhi dana."
+    }
+  }
+}

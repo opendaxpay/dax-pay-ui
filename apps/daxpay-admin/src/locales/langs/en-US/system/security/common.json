@@ -1,6 +1,6 @@
 {
-  "title": "Security Management",
-  "description": "Manage system security settings by module",
+  "title": "System Security",
+  "description": "Manage platform access security policies (password, login, session, 2FA, anti-replay)",
   "cancel": "Cancel",
   "confirm": "Confirm",
   "confirmSave": "Confirm save",
@@ -16,5 +16,9 @@
     "window": "windows",
     "count": "count",
     "score": "points"
+  },
+  "group": {
+    "access": "Access Security",
+    "openApi": "Open API Security"
   }
 }

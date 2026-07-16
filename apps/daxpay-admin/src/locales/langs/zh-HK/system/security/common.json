@@ -1,6 +1,6 @@
 {
-  "title": "安全管理",
-  "description": "按模塊維護系統安全配置",
+  "title": "系統安全配置",
+  "description": "管理平台訪問安全策略（密碼、登錄、會話、雙因素、防重放）",
   "cancel": "取消",
   "confirm": "確認",
   "confirmSave": "確認保存",
@@ -16,5 +16,9 @@
     "window": "個",
     "count": "個",
     "score": "分"
+  },
+  "group": {
+    "access": "存取安全",
+    "openApi": "開放介面安全"
   }
 }

@@ -1,0 +1,32 @@
+{
+  "title": "決済APIセキュリティ",
+  "description": "決済リクエストの傍受・リプレイを防止します。署名検証は常に有効です。",
+  "summary": {
+    "nonceEnabled": "Nonceリプレイ防止：有効",
+    "nonceDisabled": "Nonceリプレイ防止：無効",
+    "reqTimeoutEnabled": "タイムスタンプウィンドウ：有効",
+    "reqTimeoutDisabled": "タイムスタンプウィンドウ：無効"
+  },
+  "section": {
+    "replay": "リプレイ防止検証",
+    "params": "パラメータ設定"
+  },
+  "nonceVerifyEnabled": {
+    "label": "Nonceリプレイ防止",
+    "desc": "有効にすると、各リクエストのnonceはTTL内有効期間内で1回のみ消費可能で、重複送信はブロックされます。"
+  },
+  "reqTimeoutEnabled": {
+    "label": "リクエストタイムスタンプウィンドウ",
+    "desc": "有効にすると、タイムスタンプとサーバー時間の差が許容値を超えるリクエストは拒否されます。"
+  },
+  "reqTimeoutSeconds": {
+    "label": "タイムスタンプ許容誤差",
+    "desc": "リクエスト時間とサーバー時間の最大許容偏差（双方向絶対値）。",
+    "placeholder": "許容誤差（秒）を入力"
+  },
+  "nonceTtlSeconds": {
+    "label": "Nonce有効期間",
+    "desc": "Redis にキャッシュされる nonce の有効期間。この時間を超える重複リクエストはブロックされません。",
+    "placeholder": "有効期間（秒）を入力"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "title": "Keselamatan API Pembayaran",
+  "description": "Mencegah main semula permintaan pembayaran yang disadap. Pengesahan tandatangan sentiasa diaktifkan.",
+  "summary": {
+    "nonceEnabled": "Anti-Main Semula Nonce: Diaktifkan",
+    "nonceDisabled": "Anti-Main Semula Nonce: Dinonaktifkan",
+    "reqTimeoutEnabled": "Tetingkap Masa: Diaktifkan",
+    "reqTimeoutDisabled": "Tetingkap Masa: Dinonaktifkan"
+  },
+  "section": {
+    "replay": "Pengesahan Anti-Main Semula",
+    "params": "Tetapan Parameter"
+  },
+  "nonceVerifyEnabled": {
+    "label": "Anti-Main Semula Nonce",
+    "desc": "Apabila diaktifkan, setiap nonce permintaan hanya boleh dimakan sekali dalam TTLnya; penghantaran pendua akan disekat."
+  },
+  "reqTimeoutEnabled": {
+    "label": "Tetingkap Masa Permintaan",
+    "desc": "Apabila diaktifkan, permintaan yang cap masanya berbeza dengan pelayan melebihi toleransi akan ditolak."
+  },
+  "reqTimeoutSeconds": {
+    "label": "Toleransi Masa",
+    "desc": "Sisihan maksimum yang dibenarkan (mutlak, dua hala) antara masa permintaan dan pelayan.",
+    "placeholder": "Masukkan toleransi dalam saat"
+  },
+  "nonceTtlSeconds": {
+    "label": "TTL Nonce",
+    "desc": "Berapa lama nonce dicache dalam Redis; permintaan pendua melebihi tempoh ini tidak akan disekat lagi.",
+    "placeholder": "Masukkan TTL dalam saat"
+  }
+}

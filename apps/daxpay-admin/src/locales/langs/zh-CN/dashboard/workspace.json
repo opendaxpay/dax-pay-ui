@@ -49,7 +49,7 @@
     "user": "用户管理",
     "dict": "字典管理",
     "loginLog": "登录日志",
-    "security": "安全配置",
+    "security": "安全管理",
     "payOrder": "支付订单",
     "refundOrder": "退款订单",
     "payTrade": "资金交易",

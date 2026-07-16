@@ -1,0 +1,32 @@
+{
+  "title": "Bảo mật API Thanh toán",
+  "description": "Ngăn phát lại yêu cầu thanh toán bị chặn. Xác thực chữ ký luôn được bật.",
+  "summary": {
+    "nonceEnabled": "Chống phát lại Nonce: Đã bật",
+    "nonceDisabled": "Chống phát lại Nonce: Đã tắt",
+    "reqTimeoutEnabled": "Cửa sổ thời gian: Đã bật",
+    "reqTimeoutDisabled": "Cửa sổ thời gian: Đã tắt"
+  },
+  "section": {
+    "replay": "Xác thực chống phát lại",
+    "params": "Cài đặt tham số"
+  },
+  "nonceVerifyEnabled": {
+    "label": "Chống phát lại Nonce",
+    "desc": "Khi bật, mỗi nonce yêu cầu chỉ có thể được tiêu thụ một lần trong TTL; gửi trùng lặp sẽ bị chặn."
+  },
+  "reqTimeoutEnabled": {
+    "label": "Cửa sổ thời gian yêu cầu",
+    "desc": "Khi bật, yêu cầu có mốc thời gian lệch với máy chủ vượt quá dung sai sẽ bị từ chối."
+  },
+  "reqTimeoutSeconds": {
+    "label": "Dung sai thời gian",
+    "desc": "Độ lệch tối đa được phép (giá trị tuyệt đối, hai chiều) giữa thời gian yêu cầu và máy chủ.",
+    "placeholder": "Nhập dung sai (giây)"
+  },
+  "nonceTtlSeconds": {
+    "label": "TTL Nonce",
+    "desc": "Thời gian nonce được lưu trong Redis; yêu cầu trùng lặp vượt quá thời gian này sẽ không còn bị chặn.",
+    "placeholder": "Nhập TTL (giây)"
+  }
+}

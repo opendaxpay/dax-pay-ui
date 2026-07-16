@@ -102,7 +102,7 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
   },
   {
     key: 'security',
-    routeName: '/system/config/security',
+    routeName: '/system/config/security/system',
     icon: 'lucide:shield-check',
     titleKey: 'dashboard.workspace.quickEntry.security',
     color: 'bg-indigo-500',

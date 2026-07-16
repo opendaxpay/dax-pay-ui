@@ -1,0 +1,32 @@
+{
+  "title": "결제 API 보안",
+  "description": "가로챈 결제 요청의 재생을 방지합니다. 서명 검증은 항상 활성화됩니다.",
+  "summary": {
+    "nonceEnabled": "Nonce 재생 방지: 활성화됨",
+    "nonceDisabled": "Nonce 재생 방지: 비활성화됨",
+    "reqTimeoutEnabled": "타임스탬프 윈도우: 활성화됨",
+    "reqTimeoutDisabled": "타임스탬프 윈도우: 비활성화됨"
+  },
+  "section": {
+    "replay": "재생 방지 검증",
+    "params": "매개변수 설정"
+  },
+  "nonceVerifyEnabled": {
+    "label": "Nonce 재생 방지",
+    "desc": "활성화하면 각 요청의 nonce가 TTL 내에서 한 번만 소비 가능하며, 중복 제출은 차단됩니다."
+  },
+  "reqTimeoutEnabled": {
+    "label": "요청 타임스탬프 윈도우",
+    "desc": "활성화하면 타임스탬프와 서버 시간의 차이가 허용 오차를 초과하는 요청이 거부됩니다."
+  },
+  "reqTimeoutSeconds": {
+    "label": "타임스탬프 허용 오차",
+    "desc": "요청 시간과 서버 시간 간의 최대 허용 편차(양방향 절대값)입니다.",
+    "placeholder": "허용 오차(초) 입력"
+  },
+  "nonceTtlSeconds": {
+    "label": "Nonce 유효 기간",
+    "desc": "Redis에 캐시되는 nonce의 유효 기간입니다. 이 시간이 지나면 중복 요청이 더 이상 차단되지 않습니다.",
+    "placeholder": "유효 기간(초) 입력"
+  }
+}

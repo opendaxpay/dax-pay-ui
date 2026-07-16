@@ -1,0 +1,26 @@
+{
+  "title": "リプレイ防止",
+  "description": "ログイン、登録、パスワード変更などの機密操作のリプレイ攻撃を防止します。",
+  "summary": {
+    "enabled": "リプレイ防止：有効",
+    "disabled": "リプレイ防止：無効"
+  },
+  "section": {
+    "basic": "基本設定",
+    "params": "パラメータ設定"
+  },
+  "enabled": {
+    "label": "リプレイ防止を有効化",
+    "desc": "無効にすると、リプレイ防止マーク付きのすべての機密操作エンドポイント（ログイン、登録、パスワード変更など）が nonce 検証をスキップします。"
+  },
+  "nonceTimeoutSeconds": {
+    "label": "Nonce有効期間",
+    "desc": "プラットフォームが発行した nonce の Redis キャッシュ期間。この期間を超えたリクエストは拒否されます。",
+    "placeholder": "有効期間（秒）を入力"
+  },
+  "timestampToleranceSeconds": {
+    "label": "タイムスタンプ許容誤差",
+    "desc": "リクエストのタイムスタンプとサーバー時間の最大許容偏差（双方向絶対値）。",
+    "placeholder": "許容誤差（秒）を入力"
+  }
+}

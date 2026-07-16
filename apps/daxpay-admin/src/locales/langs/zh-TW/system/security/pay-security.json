@@ -1,0 +1,34 @@
+{
+  "title": "支付安全配置",
+  "description": "管理支付交易鏈路的安全策略，包括介面防重放與風控攔截。",
+  "group": {
+    "paySecurity": "支付安全"
+  },
+  "risk": {
+    "title": "支付風控",
+    "description": "支付黑名單風控，支援攔截或僅記錄。",
+    "summary": {
+      "enabled": "風控：已開啟",
+      "disabled": "風控：已關閉",
+      "blockOn": "命中：攔截下單",
+      "blockOff": "命中：僅記錄",
+      "afterOn": "事後補錄：開",
+      "afterOff": "事後補錄：關"
+    },
+    "section": {
+      "switch": "風控開關"
+    },
+    "riskEnabled": {
+      "label": "風控總開關",
+      "desc": "開啟後支付鏈路將執行黑名單檢查；關閉後所有風控檢查將被跳過。"
+    },
+    "riskBlockBeforePay": {
+      "label": "命中阻斷下單",
+      "desc": "開啟後，支付前命中黑名單將拒絕下單；關閉則僅記錄命中，不攔截交易。"
+    },
+    "riskCheckAfterPay": {
+      "label": "事後補錄命中",
+      "desc": "開啟後，支付成功後會補充記錄命中情況，用於事後分析，不影響資金態。"
+    }
+  }
+}

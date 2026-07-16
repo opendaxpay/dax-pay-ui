@@ -16,7 +16,6 @@
   "menu.demos": "Bản demo",
   "menu.dashboard": "Trang tổng quan",
   "menu.system.log.operate": "Nhật ký vận hành",
-  "menu.system.config.security": "Cấu hình bảo mật",
   "menu.platform": "Quản lý thanh toán",
   "menu.system.log.login": "Đăng nhập Nhật ký",
   "menu.dashboard.workspace": "Không gian làm việc",
@@ -48,7 +47,7 @@
   "menu.device": "Quản lý thiết bị",
   "menu.demos.artemis": "Bản trình diễn hàng đợi tin nhắn",
   "menu.system.config.thirdPlatform": "Quản lý nền tảng của bên thứ ba",
-  "menu.system.config.protocol": "Giao thức người dùng",
+  "menu.system.basic.protocol": "Giao thức người dùng",
   "menu.payment.merchant.profile": "Hồ sơ người bán",
   "menu.develop.trade": "Phát triển thanh toán",
   "menu.develop.sign": "Đăng ký phát triển",
@@ -86,5 +85,8 @@
   "menu.payment.risk.hit": "Risk Hits",
   "menu.system.sensitive": "Quản lý từ nhạy cảm",
   "menu.system.sensitive.word": "Danh sách từ",
-  "menu.system.sensitive.hit": "Lịch sử trúng"
+  "menu.system.sensitive.hit": "Lịch sử trúng",
+  "menu.system.security": "Quản lý bảo mật",
+  "menu.system.security.system": "Bảo mật hệ thống",
+  "menu.system.security.pay": "Bảo mật thanh toán"
 }

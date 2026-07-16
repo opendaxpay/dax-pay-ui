@@ -16,7 +16,6 @@
   "menu.demos": "演示",
   "menu.dashboard": "儀表板",
   "menu.system.log.operate": "操作日誌",
-  "menu.system.config.security": "安全配置",
   "menu.platform": "支付管理",
   "menu.system.log.login": "登入日誌",
   "menu.dashboard.workspace": "工作臺",
@@ -48,7 +47,7 @@
   "menu.device": "裝置管理",
   "menu.demos.artemis": "訊息佇列演示",
   "menu.system.config.thirdPlatform": "三方平臺管理",
-  "menu.system.config.protocol": "使用者協議",
+  "menu.system.basic.protocol": "使用者協議",
   "menu.payment.merchant.profile": "商戶資料",
   "menu.develop.trade": "支付除錯",
   "menu.develop.sign": "簽名除錯",
@@ -86,5 +85,8 @@
   "menu.payment.risk.hit": "風險命中記錄",
   "menu.system.sensitive": "敏感詞管理",
   "menu.system.sensitive.word": "詞庫管理",
-  "menu.system.sensitive.hit": "命中記錄"
+  "menu.system.sensitive.hit": "命中記錄",
+  "menu.system.security": "安全管理",
+  "menu.system.security.system": "系統安全配置",
+  "menu.system.security.pay": "支付安全配置"
 }

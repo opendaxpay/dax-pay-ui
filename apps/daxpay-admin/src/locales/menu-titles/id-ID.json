@@ -16,7 +16,6 @@
   "menu.demos": "Demo",
   "menu.dashboard": "Dasbor",
   "menu.system.log.operate": "Operasikan Log",
-  "menu.system.config.security": "Konfigurasi Keamanan",
   "menu.platform": "Manajemen Pembayaran",
   "menu.system.log.login": "Catatan Masuk",
   "menu.dashboard.workspace": "Ruang kerja",
@@ -48,7 +47,7 @@
   "menu.device": "Manajemen Perangkat",
   "menu.demos.artemis": "Demo Antrian Pesan",
   "menu.system.config.thirdPlatform": "Manajemen Platform Pihak Ketiga",
-  "menu.system.config.protocol": "Protokol Pengguna",
+  "menu.system.basic.protocol": "Protokol Pengguna",
   "menu.payment.merchant.profile": "Profil Pedagang",
   "menu.develop.trade": "Pembayaran Berkembang",
   "menu.develop.sign": "Tandatangani Kembangkan",
@@ -86,5 +85,8 @@
   "menu.payment.risk.hit": "Risk Hits",
   "menu.system.sensitive": "Kelola kata sensitif",
   "menu.system.sensitive.word": "Daftar kata",
-  "menu.system.sensitive.hit": "Catatan hit"
+  "menu.system.sensitive.hit": "Catatan hit",
+  "menu.system.security": "Manajemen Keamanan",
+  "menu.system.security.system": "Keamanan Sistem",
+  "menu.system.security.pay": "Keamanan Pembayaran"
 }

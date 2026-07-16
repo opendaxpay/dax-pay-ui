@@ -16,7 +16,6 @@
   "menu.demos": "Demos",
   "menu.dashboard": "Dashboard",
   "menu.system.log.operate": "Operate Log",
-  "menu.system.config.security": "Security Config",
   "menu.platform": "Payment Management",
   "menu.system.log.login": "Login Log",
   "menu.dashboard.workspace": "Workspace",
@@ -48,7 +47,7 @@
   "menu.device": "Device Management",
   "menu.demos.artemis": "Message Queue Demo",
   "menu.system.config.thirdPlatform": "Third-party Platform Management",
-  "menu.system.config.protocol": "User Protocol",
+  "menu.system.basic.protocol": "User Protocol",
   "menu.payment.merchant.profile": "Merchant Profile",
   "menu.develop.trade": "Payment Develop",
   "menu.develop.sign": "Sign Develop",
@@ -86,5 +85,8 @@
   "menu.payment.risk.hit": "Risk Hits",
   "menu.system.sensitive": "Sensitive Word Mgmt",
   "menu.system.sensitive.word": "Word List",
-  "menu.system.sensitive.hit": "Hit Records"
+  "menu.system.sensitive.hit": "Hit Records",
+  "menu.system.security": "Security Management",
+  "menu.system.security.system": "System Security",
+  "menu.system.security.pay": "Pay Security"
 }

@@ -1,6 +1,6 @@
 {
-  "title": "Pengurusan Keselamatan",
-  "description": "Urus tetapan keselamatan sistem mengikut modul",
+  "title": "Keselamatan Sistem",
+  "description": "Urus dasar keselamatan akses platform (kata laluan, log masuk, sesi, 2FA, anti-ulangan)",
   "cancel": "Batal",
   "confirm": "sahkan",
   "confirmSave": "Sahkan simpan",
@@ -16,5 +16,9 @@
     "window": "tingkap",
     "count": "mengira",
     "score": "mata"
+  },
+  "group": {
+    "access": "Keselamatan Akses",
+    "openApi": "Keselamatan API Terbuka"
   }
 }
