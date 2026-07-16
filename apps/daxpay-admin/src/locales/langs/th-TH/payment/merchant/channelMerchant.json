@@ -1,6 +1,7 @@
 {
   "title": "พ่อค้าช่องทาง",
   "channel": "ช่อง",
+  "belongMch": "เจ้าของผู้ค้า",
   "channelMerchantNo": "ช่องทางร้านค้าหมายเลข",
   "channelMerchantName": "ชื่อผู้ค้าช่องทาง",
   "channelMerchantShortName": "ชื่อย่อของผู้ค้าช่องทาง",

@@ -1,6 +1,7 @@
 {
   "title": "Channel Merchant",
   "channel": "Channel",
+  "belongMch": "Belonging Merchant",
   "channelMerchantNo": "Channel Merchant No.",
   "channelMerchantName": "Channel Merchant Name",
   "channelMerchantShortName": "Channel Merchant Short Name",

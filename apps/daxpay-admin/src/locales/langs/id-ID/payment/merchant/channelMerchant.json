@@ -1,6 +1,7 @@
 {
   "title": "Pedagang Saluran",
   "channel": "Saluran",
+  "belongMch": "Pedagang Pemilik",
   "channelMerchantNo": "Nomor Pedagang Saluran.",
   "channelMerchantName": "Nama Pedagang Saluran",
   "channelMerchantShortName": "Nama Pendek Pedagang Saluran",

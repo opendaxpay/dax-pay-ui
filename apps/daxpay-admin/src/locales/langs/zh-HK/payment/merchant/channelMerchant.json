@@ -1,6 +1,7 @@
 {
   "title": "通道商户",
   "channel": "所屬通道",
+  "belongMch": "所屬商戶",
   "channelMerchantNo": "通道商户號",
   "channelMerchantName": "通道商户名稱",
   "channelMerchantShortName": "通道商户簡稱",

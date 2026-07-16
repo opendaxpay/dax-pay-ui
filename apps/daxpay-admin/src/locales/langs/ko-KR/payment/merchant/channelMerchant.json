@@ -1,6 +1,7 @@
 {
   "title": "채널 판매자",
   "channel": "채널",
+  "belongMch": "소속 가맹점",
   "channelMerchantNo": "채널 판매자 번호",
   "channelMerchantName": "채널 판매자 이름",
   "channelMerchantShortName": "채널 판매자 약칭",

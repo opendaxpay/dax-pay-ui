@@ -1,6 +1,7 @@
 {
   "title": "Người bán kênh",
   "channel": "Kênh",
+  "belongMch": "Người bán sở hữu",
   "channelMerchantNo": "Số người bán kênh",
   "channelMerchantName": "Tên người bán kênh",
   "channelMerchantShortName": "Tên ngắn của người bán kênh",
