@@ -3,7 +3,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { type UserProtocol, UserProtocolApi } from '#/api/system/protocol/user-protocol.api';
+  import { type UserProtocol, UserProtocolApi } from '#/api/system/basic/protocol/user-protocol.api';
   import { FormEditType } from '#/enums/formEditType';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';

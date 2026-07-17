@@ -5,7 +5,10 @@
 
   import { MdEditor, MdPreview } from 'md-editor-v3';
 
-  import { type UserProtocolVersion, UserProtocolVersionApi } from '#/api/system/protocol/user-protocol-version.api';
+  import {
+    type UserProtocolVersion,
+    UserProtocolVersionApi,
+  } from '#/api/system/basic/protocol/user-protocol-version.api';
   import { FormEditType } from '#/enums/formEditType';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';

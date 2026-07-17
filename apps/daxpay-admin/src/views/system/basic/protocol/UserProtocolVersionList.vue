@@ -4,10 +4,11 @@
 
   import { ref } from 'vue';
 
-  import { IconifyIcon } from '@vben-core/icons';
   import { $t } from '@vben/locales';
 
-  import { UserProtocolVersionApi } from '#/api/system/protocol/user-protocol-version.api';
+  import { IconifyIcon } from '@vben-core/icons';
+
+  import { UserProtocolVersionApi } from '#/api/system/basic/protocol/user-protocol-version.api';
   import { FormEditType } from '#/enums/formEditType';
   import { useMessage } from '#/hooks/useMessage';
 

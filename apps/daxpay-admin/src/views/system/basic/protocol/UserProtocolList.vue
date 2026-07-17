@@ -8,7 +8,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { UserProtocolApi } from '#/api/system/protocol/user-protocol.api';
+  import { UserProtocolApi } from '#/api/system/basic/protocol/user-protocol.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { FormEditType } from '#/enums/formEditType';
   import { useMessage } from '#/hooks/useMessage';
@@ -223,12 +223,8 @@
 
   /** 确认复制 */
   async function confirmCopy() {
-    try {
-      await copyFormRef.value?.validate();
-    } catch {
-      // 校验失败: 表单已显示错误提示; 拒绝以阻止 modal 关闭
-      return Promise.reject();
-    }
+    // 校验失败: 表单已显示错误提示; 抛出异常以阻止 modal 关闭
+    await copyFormRef.value?.validate();
     return UserProtocolApi.copyToClient(copySourceId.value, copyForm.value.clientType!).then(() => {
       message.success($t('common.operationSuccess'));
       copyVisible.value = false;

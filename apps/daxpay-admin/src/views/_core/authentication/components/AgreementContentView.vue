@@ -6,7 +6,7 @@
   import dayjs from 'dayjs';
   import { MdPreview } from 'md-editor-v3';
 
-  import { UserProtocolApi, type UserProtocolContent } from '#/api/system/protocol/user-protocol.api';
+  import { UserProtocolApi, type UserProtocolContent } from '#/api/system/basic/protocol/user-protocol.api';
 
   import 'md-editor-v3/lib/preview.css';
 
