@@ -26,7 +26,8 @@
     },
     "tip": {
       "typeValueImmutable": "Loại và giá trị không thể sửa sau khi tạo",
-      "expireEmpty": "Để trống nếu vĩnh viễn"
+      "expireEmpty": "Để trống nếu vĩnh viễn",
+      "openIdCodePayHint": "openId blacklist only applies to trades that already have a user identity before pay (e.g. code-plate/aggregate JSAPI or mini). If code-plate uses a method without openId, this list cannot block the user before payment."
     }
   },
   "hit": {

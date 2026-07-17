@@ -26,7 +26,8 @@
     },
     "tip": {
       "typeValueImmutable": "ประเภทและค่าไม่สามารถแก้ไขหลังสร้าง",
-      "expireEmpty": "เว้นว่างหากถาวร"
+      "expireEmpty": "เว้นว่างหากถาวร",
+      "openIdCodePayHint": "openId blacklist only applies to trades that already have a user identity before pay (e.g. code-plate/aggregate JSAPI or mini). If code-plate uses a method without openId, this list cannot block the user before payment."
     }
   },
   "hit": {

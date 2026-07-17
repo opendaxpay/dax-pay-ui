@@ -22,6 +22,29 @@ export const CodeConfigApi = {
       data,
     });
   },
+
+  /**
+   * DIRECT: 按商户+支付渠道列通道商户候选（不绑默认 JSAPI method）
+   */
+  listDirectChannelMchCandidates(params: {
+    mchNo: string
+    provider: string
+  }): Promise<Result<LabelValue[]>> {
+    return defHttp.get({
+      url: '/admin/gateway/code-config/direct-channel-mch-candidates',
+      params,
+    });
+  },
+
+  /**
+   * DIRECT: 按通道商户列全部已挂载支付能力（含 H5/主扫等）
+   */
+  listDirectCapabilityCandidates(channelMchNo: string): Promise<Result<LabelValue[]>> {
+    return defHttp.get({
+      url: '/admin/gateway/code-config/direct-capability-candidates',
+      params: { channelMchNo },
+    });
+  },
 };
 
 /** 码牌支付策略配置结果 */

@@ -40,6 +40,7 @@
     "directModeHint": "Chỉ chỉ định thương nhân kênh và năng lực H5/mini khi cần; bỏ qua định tuyến",
     "atLeastOneRequired": "Cần cấu hình ít nhất một môi trường và hình thái",
     "partialRowIncomplete": "Thương nhân kênh và năng lực phải điền đủ",
-    "methodModeHint": "Chỉ cấu hình phương thức H5/mini khi cần; thương nhân kênh theo định tuyến"
+    "methodModeHint": "Chỉ cấu hình phương thức H5/mini khi cần; thương nhân kênh theo định tuyến",
+    "openIdRiskHint": "When using openId risk blacklist for pre-pay blocking, code-plate environments must use methods that can obtain a user identity (e.g. WeChat JSAPI/mini, Alipay JSAPI). H5 redirect / QR methods without openId cannot be blocked by openId before payment (IP blacklist still works)."
   }
 }

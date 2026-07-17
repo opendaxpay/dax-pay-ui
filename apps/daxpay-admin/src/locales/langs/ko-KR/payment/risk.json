@@ -26,7 +26,8 @@
     },
     "tip": {
       "typeValueImmutable": "Type and value cannot be changed after creation",
-      "expireEmpty": "Leave empty for permanent"
+      "expireEmpty": "Leave empty for permanent",
+      "openIdCodePayHint": "openId 목록은 결제 전 사용자 식별자가 이미 있는 거래에만 적용됩니다(코드 플레이트/집계 JSAPI·미니 등). openId 없는 방식은 결제 전 차단이 불가합니다."
     }
   },
   "hit": {

@@ -40,6 +40,7 @@
     "directModeHint": "กำหนดร้านค้าช่องทางและความสามารถ H5/มินิ เฉพาะที่ใช้ ข้ามเส้นทาง",
     "atLeastOneRequired": "ตั้งค่าอย่างน้อยหนึ่งสภาพแวดล้อมและรูปแบบ",
     "partialRowIncomplete": "ต้องกรอกร้านค้าช่องทางและความสามารถครบ",
-    "methodModeHint": "กำหนดวิธีชำระ H5/มินิ เฉพาะที่ใช้ ร้านค้าช่องทางตามเส้นทาง"
+    "methodModeHint": "กำหนดวิธีชำระ H5/มินิ เฉพาะที่ใช้ ร้านค้าช่องทางตามเส้นทาง",
+    "openIdRiskHint": "When using openId risk blacklist for pre-pay blocking, code-plate environments must use methods that can obtain a user identity (e.g. WeChat JSAPI/mini, Alipay JSAPI). H5 redirect / QR methods without openId cannot be blocked by openId before payment (IP blacklist still works)."
   }
 }

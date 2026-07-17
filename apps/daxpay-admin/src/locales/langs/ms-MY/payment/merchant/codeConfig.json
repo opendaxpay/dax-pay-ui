@@ -40,6 +40,7 @@
     "directModeHint": "Tetapkan peniaga saluran dan keupayaan H5/mini hanya bila perlu; langkau perutean",
     "atLeastOneRequired": "Konfigurasi sekurang-kurangnya satu persekitaran dan bentuk",
     "partialRowIncomplete": "Peniaga saluran dan keupayaan mesti diisi bersama",
-    "methodModeHint": "Tetapkan kaedah H5/mini hanya yang diperlukan; peniaga saluran ikut perutean"
+    "methodModeHint": "Tetapkan kaedah H5/mini hanya yang diperlukan; peniaga saluran ikut perutean",
+    "openIdRiskHint": "When using openId risk blacklist for pre-pay blocking, code-plate environments must use methods that can obtain a user identity (e.g. WeChat JSAPI/mini, Alipay JSAPI). H5 redirect / QR methods without openId cannot be blocked by openId before payment (IP blacklist still works)."
   }
 }

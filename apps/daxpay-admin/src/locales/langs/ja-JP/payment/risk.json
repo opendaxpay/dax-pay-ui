@@ -26,7 +26,8 @@
     },
     "tip": {
       "typeValueImmutable": "Type and value cannot be changed after creation",
-      "expireEmpty": "Leave empty for permanent"
+      "expireEmpty": "Leave empty for permanent",
+      "openIdCodePayHint": "openId リストは支払前にユーザー識別子を取得済みの取引にのみ有効です（コードプレート/集約の JSAPI・ミニ等）。openId 不要の方式では支払前に遮断できません。"
     }
   },
   "hit": {

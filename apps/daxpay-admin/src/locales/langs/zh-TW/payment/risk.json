@@ -26,7 +26,8 @@
     },
     "tip": {
       "typeValueImmutable": "类型与名单值创建后不可修改",
-      "expireEmpty": "留空表示永久有效"
+      "expireEmpty": "留空表示永久有效",
+      "openIdCodePayHint": "openId 名單僅對下單前已取得使用者標識的交易生效（例如碼牌/聚合的 JSAPI、小程式支付）。碼牌若使用免 openId 的支付方式，該名單無法在支付前攔截該使用者。"
     }
   },
   "hit": {

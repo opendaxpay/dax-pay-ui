@@ -290,40 +290,37 @@
     return { total, ok, gapLabels };
   });
 
-  /** DIRECT: 按每行默认 method 拉通道商户 */
+  /**
+   * DIRECT: 按商户+渠道列通道商户（不绑默认 JSAPI method，与路由直接指定一致）
+   */
   async function loadChannelMchCandidates() {
     const map: Record<string, LabelValue[]> = {};
     await Promise.all(
-      CODE_CLIENT_ENVS.flatMap((sc) =>
-        CODE_PAY_FORMS.map(async (pf) => {
-          const method = defaultMethodFor(sc.clientEnv, pf);
-          const key = rowKey(sc.clientEnv, pf);
-          const { data } = await PayRouteApi.listSceneChannelMchCandidates({
-            appId: appId.value,
-            provider: sc.provider,
-            method,
-          });
-          map[key] = data || [];
-        }),
-      ),
+      CODE_CLIENT_ENVS.map(async (sc) => {
+        const { data } = await CodeConfigApi.listDirectChannelMchCandidates({
+          mchNo: mchNo.value,
+          provider: sc.provider,
+        });
+        const list = data || [];
+        // 同环境 H5/mini 共用同一批通道商户候选
+        for (const pf of CODE_PAY_FORMS) {
+          map[rowKey(sc.clientEnv, pf)] = list;
+        }
+      }),
     );
     channelMchMap.value = map;
   }
 
+  /**
+   * DIRECT: 按通道商户列全部已挂载能力（含 H5/主扫），供 needOpenId 与真实能力对齐
+   */
   async function loadCapabilityForRow(clientEnv: string, payForm: CodePayForm, channelMchNo: string) {
-    const sc = CODE_CLIENT_ENVS.find((s) => s.clientEnv === clientEnv);
     const key = rowKey(clientEnv, payForm);
-    if (!sc || !channelMchNo) {
+    if (!channelMchNo) {
       capabilityMap.value = { ...capabilityMap.value, [key]: [] };
       return;
     }
-    const method = defaultMethodFor(clientEnv, payForm);
-    const { data } = await PayRouteApi.listSceneCapabilityCandidates({
-      appId: appId.value,
-      provider: sc.provider,
-      method,
-      channelMchNo,
-    });
+    const { data } = await CodeConfigApi.listDirectCapabilityCandidates(channelMchNo);
     capabilityMap.value = { ...capabilityMap.value, [key]: data || [] };
   }
 
@@ -533,6 +530,14 @@
 
         <div class="mb-4">
           <a-alert :message="modeHint" type="info" show-icon />
+        </div>
+        <!-- openId 风控与码牌支付方式关系说明 -->
+        <div class="mb-4">
+          <a-alert
+            :message="$t('payment.merchant.codeConfig.codeConfig.openIdRiskHint')"
+            type="warning"
+            show-icon
+          />
         </div>
 
         <div v-if="showRoutePreview" class="mb-5 flex flex-wrap items-center gap-3 text-sm">
