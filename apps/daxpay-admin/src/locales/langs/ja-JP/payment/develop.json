@@ -219,5 +219,96 @@
       "copySuccess": "コピーされました",
       "copyFail": "コピーに失敗しました"
     }
+  },
+  "gateway": {
+    "page": {
+      "title": "ゲートウェイ決済デバッグ",
+      "tag": "マーチャントAPIシミュレート",
+      "warning": "このページはパラメータの組み立てと署名のみ行います。送信後、/unipay/gateway/pre-pay を呼び出してレジ/集合QRランディングページを生成します（管理特権チャネルではありません）。パラメータをご確認ください。"
+    },
+    "card": {
+      "mchApp": "マーチャント情報",
+      "order": "注文情報",
+      "param": "拡張パラメータ",
+      "preview": "リクエストプレビュー"
+    },
+    "gatewayType": {
+      "label": "ゲートウェイ種別",
+      "cashier": "統合レジ",
+      "aggregate": "集合QR",
+      "cashierDesc": "レジランディングページを生成し、ユーザーが支払い方法を選択",
+      "aggregateDesc": "集合QRリンクを生成し、一つのコードで複数支払いを自動識別"
+    },
+    "preview": {
+      "title": "リクエストJSON",
+      "signBtn": "署名プレビュー生成",
+      "empty": "データなし"
+    },
+    "field": {
+      "privateKey": "マーチャント秘密鍵",
+      "mchNo": "マーチャント",
+      "appId": "アプリ",
+      "bizOrderNo": "注文番号",
+      "amount": "支払金額(分)",
+      "title": "支払タイトル",
+      "description": "支払説明",
+      "notifyUrl": "非同期通知URL",
+      "returnUrl": "同期リダイレクトURL",
+      "expiredTime": "有効期限",
+      "storeNo": "店舗番号"
+    },
+    "placeholder": {
+      "notifyUrl": "https://...",
+      "returnUrl": "https://...",
+      "expiredTime": "空欄で30分",
+      "storeNo": "オフライン店舗番号",
+      "title": "テスト注文",
+      "description": "支払説明を入力"
+    },
+    "default": {
+      "titlePrefix": "テストゲートウェイ決済"
+    },
+    "btn": {
+      "setPrivateKey": "秘密鍵設定",
+      "genOrderNo": "生成",
+      "reset": "リセット",
+      "submit": "事前注文送信"
+    },
+    "privateKey": {
+      "modalTitle": "マーチャント秘密鍵設定",
+      "modalTip": "マーチャントRSA秘密鍵を入力してください。リクエスト署名にのみ使用されます（ブラウザローカルキャッシュにのみ保存、管理特権注文には使用されません）。",
+      "placeholder": "マーチャント秘密鍵を入力",
+      "savedTip": "秘密鍵を保存しました",
+      "clearedTip": "秘密鍵をクリアしました",
+      "setTag": "設定済み",
+      "setLabel": "マーチャント秘密鍵設定済み",
+      "unsetTag": "未設定",
+      "clearConfirmTitle": "クリア確認",
+      "clearConfirmContent": "マーチャント秘密鍵をクリアしてよろしいですか？再入力が必要になります。"
+    },
+    "result": {
+      "modalTitle": "事前注文結果 (unipay)",
+      "url": "ゲートウェイランディングURL",
+      "copyUrl": "URLコピー",
+      "openUrl": "開く",
+      "orderNo": "プラットフォーム注文番号",
+      "status": "ステータス",
+      "rawResponse": "完全なDaxResultレスポンス",
+      "copyFull": "完全なレスポンスをコピー"
+    },
+    "rule": {
+      "mchNo": "マーチャントを選択してください",
+      "bizOrderNo": "注文番号を入力してください",
+      "title": "支払タイトルを入力してください",
+      "amount": "支払金額を入力してください",
+      "gatewayPayType": "ゲートウェイ種別を選択してください"
+    },
+    "msg": {
+      "signSuccess": "署名を生成しました",
+      "prePaySuccess": "事前注文リクエスト成功",
+      "prePayFail": "事前注文リクエスト失敗",
+      "inputPrivateKey": "先にマーチャント秘密鍵を設定してください",
+      "copySuccess": "コピーしました"
+    }
   }
 }

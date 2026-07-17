@@ -219,5 +219,96 @@
       "copySuccess": "Copied",
       "copyFail": "Copy failed"
     }
+  },
+  "gateway": {
+    "page": {
+      "title": "Gateway Pay Debug",
+      "tag": "Simulate Merchant API",
+      "warning": "This page only assembles parameters and signs. On submit it simulates a merchant call to /unipay/gateway/pre-pay to generate a cashier/aggregate landing page (not an admin privileged channel). Please verify parameters."
+    },
+    "card": {
+      "mchApp": "Merchant",
+      "order": "Order",
+      "param": "Extra Parameters",
+      "preview": "Request Preview"
+    },
+    "gatewayType": {
+      "label": "Gateway Type",
+      "cashier": "Unified Cashier",
+      "aggregate": "Aggregate QR",
+      "cashierDesc": "Generate a cashier landing page where users choose a payment method",
+      "aggregateDesc": "Generate an aggregate QR link, one code for multiple payment methods"
+    },
+    "preview": {
+      "title": "Request JSON",
+      "signBtn": "Generate Sign Preview",
+      "empty": "No data"
+    },
+    "field": {
+      "privateKey": "Merchant Private Key",
+      "mchNo": "Merchant",
+      "appId": "App",
+      "bizOrderNo": "Order No.",
+      "amount": "Amount (cents)",
+      "title": "Payment Title",
+      "description": "Description",
+      "notifyUrl": "Async Notify URL",
+      "returnUrl": "Sync Return URL",
+      "expiredTime": "Expire Time",
+      "storeNo": "Store No."
+    },
+    "placeholder": {
+      "notifyUrl": "https://...",
+      "returnUrl": "https://...",
+      "expiredTime": "Default 30 min",
+      "storeNo": "Offline store number",
+      "title": "Test order",
+      "description": "Enter payment description"
+    },
+    "default": {
+      "titlePrefix": "Test Gateway Pay"
+    },
+    "btn": {
+      "setPrivateKey": "Set Key",
+      "genOrderNo": "Generate",
+      "reset": "Reset",
+      "submit": "Submit Pre-pay"
+    },
+    "privateKey": {
+      "modalTitle": "Set Merchant Private Key",
+      "modalTip": "Enter the merchant RSA private key. It is only used for request signing (stored in browser local cache only, not used for admin privileged ordering).",
+      "placeholder": "Enter merchant private key",
+      "savedTip": "Private key saved",
+      "clearedTip": "Private key cleared",
+      "setTag": "Set",
+      "setLabel": "Merchant private key set",
+      "unsetTag": "Not set",
+      "clearConfirmTitle": "Confirm Clear",
+      "clearConfirmContent": "Are you sure to clear the merchant private key? You will need to re-enter it."
+    },
+    "result": {
+      "modalTitle": "Pre-pay Result (unipay)",
+      "url": "Gateway Landing Page URL",
+      "copyUrl": "Copy URL",
+      "openUrl": "Open",
+      "orderNo": "Platform Order No.",
+      "status": "Status",
+      "rawResponse": "Full DaxResult Response",
+      "copyFull": "Copy Full Response"
+    },
+    "rule": {
+      "mchNo": "Please select a merchant",
+      "bizOrderNo": "Please enter order no.",
+      "title": "Please enter payment title",
+      "amount": "Please enter amount",
+      "gatewayPayType": "Please select gateway type"
+    },
+    "msg": {
+      "signSuccess": "Sign generated",
+      "prePaySuccess": "Pre-pay request succeeded",
+      "prePayFail": "Pre-pay request failed",
+      "inputPrivateKey": "Please set merchant private key first",
+      "copySuccess": "Copied"
+    }
   }
 }

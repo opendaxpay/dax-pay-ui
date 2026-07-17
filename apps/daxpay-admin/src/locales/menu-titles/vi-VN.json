@@ -64,6 +64,7 @@
   "menu.device.qrcode": "Quản lý mã QR",
   "menu.payment.merchant.channelMerchant.wechatIsvApp": "Ứng dụng người bán phụ WeChat ISV",
   "menu.develop.auth": "Xác thực phát triển",
+  "menu.develop.gateway": "Gỡ lỗi thanh toán cổng",
   "menu.system.notify.wechatConfig": "Thông báo tin nhắn Wechat",
   "menu.payment.merchant.aggregateScan": "Cấu hình trả lương tổng hợp",
   "menu.payment.merchant.group.manage": "Quản lý thương gia",

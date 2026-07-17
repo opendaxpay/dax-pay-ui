@@ -64,6 +64,7 @@
   "menu.device.qrcode": "QR Code Management",
   "menu.payment.merchant.channelMerchant.wechatIsvApp": "WeChat ISV Sub-merchant App",
   "menu.develop.auth": "Auth Develop",
+  "menu.develop.gateway": "Gateway Pay Debug",
   "menu.system.notify.wechatConfig": "Wechat Message Notification",
   "menu.payment.merchant.aggregateScan": "Aggregate Pay Config",
   "menu.payment.merchant.group.manage": "Merchant Management",

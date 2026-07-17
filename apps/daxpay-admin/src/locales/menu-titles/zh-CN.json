@@ -64,6 +64,7 @@
   "menu.device.qrcode": "码牌管理",
   "menu.payment.merchant.channelMerchant.wechatIsvApp": "微信服务商子商户应用",
   "menu.develop.auth": "认证调试",
+  "menu.develop.gateway": "网关支付调试",
   "menu.system.notify.wechatConfig": "微信消息通知",
   "menu.payment.merchant.aggregateScan": "聚合支付配置",
   "menu.payment.merchant.codePayConfig": "码牌支付配置",

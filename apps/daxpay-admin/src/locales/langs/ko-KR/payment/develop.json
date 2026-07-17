@@ -219,5 +219,96 @@
       "copySuccess": "복사됨",
       "copyFail": "복사 실패"
     }
+  },
+  "gateway": {
+    "page": {
+      "title": "게이트웨이 결제 디버그",
+      "tag": "가맹점 API 시뮬레이션",
+      "warning": "이 페이지는 매개변수 조립 및 서명만 수행합니다. 제출 시 /unipay/gateway/pre-pay 를 호출하여 캐시어/통합 QR 랜딩 페이지를 생성합니다 (관리자 권한 채널 아님). 매개변수를 확인해 주세요."
+    },
+    "card": {
+      "mchApp": "가맹점 정보",
+      "order": "주문 정보",
+      "param": "확장 매개변수",
+      "preview": "요청 미리보기"
+    },
+    "gatewayType": {
+      "label": "게이트웨이 유형",
+      "cashier": "통합 캐시어",
+      "aggregate": "통합 QR",
+      "cashierDesc": "캐시어 랜딩 페이지 생성, 사용자가 결제 방법 선택",
+      "aggregateDesc": "통합 QR 링크 생성, 하나의 코드로 다중 결제 자동 식별"
+    },
+    "preview": {
+      "title": "요청 JSON",
+      "signBtn": "서명 미리보기 생성",
+      "empty": "데이터 없음"
+    },
+    "field": {
+      "privateKey": "가맹점 개인키",
+      "mchNo": "가맹점",
+      "appId": "앱",
+      "bizOrderNo": "주문번호",
+      "amount": "결제 금액(분)",
+      "title": "결제 제목",
+      "description": "결제 설명",
+      "notifyUrl": "비동기 알림 URL",
+      "returnUrl": "동기 리다이렉트 URL",
+      "expiredTime": "만료 시간",
+      "storeNo": "매장 번호"
+    },
+    "placeholder": {
+      "notifyUrl": "https://...",
+      "returnUrl": "https://...",
+      "expiredTime": "비워두면 30분",
+      "storeNo": "오프라인 매장 번호",
+      "title": "테스트 주문",
+      "description": "결제 설명 입력"
+    },
+    "default": {
+      "titlePrefix": "테스트 게이트웨이 결제"
+    },
+    "btn": {
+      "setPrivateKey": "키 설정",
+      "genOrderNo": "생성",
+      "reset": "재설정",
+      "submit": "사전 주문 제출"
+    },
+    "privateKey": {
+      "modalTitle": "가맹점 개인키 설정",
+      "modalTip": "가맹점 RSA 개인키를 입력하세요. 요청 서명에만 사용됩니다 (브라우저 로컬 캐시에만 저장, 관리자 권한 주문에는 사용되지 않음).",
+      "placeholder": "가맹점 개인키 입력",
+      "savedTip": "개인키가 저장되었습니다",
+      "clearedTip": "개인키가 삭제되었습니다",
+      "setTag": "설정됨",
+      "setLabel": "가맹점 개인키 설정됨",
+      "unsetTag": "미설정",
+      "clearConfirmTitle": "삭제 확인",
+      "clearConfirmContent": "가맹점 개인키를 삭제하시겠습니까? 다시 입력해야 합니다."
+    },
+    "result": {
+      "modalTitle": "사전 주문 결과 (unipay)",
+      "url": "게이트웨이 랜딩 URL",
+      "copyUrl": "URL 복사",
+      "openUrl": "열기",
+      "orderNo": "플랫폼 주문번호",
+      "status": "상태",
+      "rawResponse": "전체 DaxResult 응답",
+      "copyFull": "전체 응답 복사"
+    },
+    "rule": {
+      "mchNo": "가맹점을 선택해 주세요",
+      "bizOrderNo": "주문번호를 입력해 주세요",
+      "title": "결제 제목을 입력해 주세요",
+      "amount": "결제 금액을 입력해 주세요",
+      "gatewayPayType": "게이트웨이 유형을 선택해 주세요"
+    },
+    "msg": {
+      "signSuccess": "서명이 생성되었습니다",
+      "prePaySuccess": "사전 주문 요청 성공",
+      "prePayFail": "사전 주문 요청 실패",
+      "inputPrivateKey": "먼저 가맹점 개인키를 설정해 주세요",
+      "copySuccess": "복사되었습니다"
+    }
   }
 }

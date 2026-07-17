@@ -219,5 +219,96 @@
       "copySuccess": "disalin",
       "copyFail": "Salinan gagal"
     }
+  },
+  "gateway": {
+    "page": {
+      "title": "Nyahpepij Bayaran Gateway",
+      "tag": "Simulasi API Merchant",
+      "warning": "Halaman ini hanya merakit parameter dan menandatangani. Apabila dihantar, ia akan mensimulasikan panggilan merchant ke /unipay/gateway/pre-pay untuk menjana halaman pendarat juruwang/QR agregat (bukan saluran keistimewaan admin). Sila sahkan parameter."
+    },
+    "card": {
+      "mchApp": "Maklumat Merchant",
+      "order": "Maklumat Pesanan",
+      "param": "Parameter Tambahan",
+      "preview": "Pratonton Permintaan"
+    },
+    "gatewayType": {
+      "label": "Jenis Gateway",
+      "cashier": "Juruwang Bersatu",
+      "aggregate": "QR Agregat",
+      "cashierDesc": "Jana halaman pendarat juruwang, pengguna memilih kaedah pembayaran",
+      "aggregateDesc": "Jana pautan QR agregat, satu kod untuk pelbagai pembayaran"
+    },
+    "preview": {
+      "title": "JSON Permintaan",
+      "signBtn": "Jana Pratonton Tandatangan",
+      "empty": "Tiada data"
+    },
+    "field": {
+      "privateKey": "Kunci Peribadi Merchant",
+      "mchNo": "Merchant",
+      "appId": "Aplikasi",
+      "bizOrderNo": "No. Pesanan",
+      "amount": "Jumlah (sen)",
+      "title": "Tajuk Pembayaran",
+      "description": "Penerangan",
+      "notifyUrl": "URL Pemberitahuan Async",
+      "returnUrl": "URL Pulang Sync",
+      "expiredTime": "Masa Tamat",
+      "storeNo": "No. Kedai"
+    },
+    "placeholder": {
+      "notifyUrl": "https://...",
+      "returnUrl": "https://...",
+      "expiredTime": "Lalai 30 min",
+      "storeNo": "Nombor kedai luar talian",
+      "title": "Pesanan ujian",
+      "description": "Masukkan penerangan pembayaran"
+    },
+    "default": {
+      "titlePrefix": "Uji Gateway Pay"
+    },
+    "btn": {
+      "setPrivateKey": "Tetapkan Kunci",
+      "genOrderNo": "Jana",
+      "reset": "Set Semula",
+      "submit": "Hantar Pra-bayar"
+    },
+    "privateKey": {
+      "modalTitle": "Tetapkan Kunci Peribadi Merchant",
+      "modalTip": "Masukkan kunci peribadi RSA merchant. Hanya digunakan untuk menandatangani permintaan (disimpan dalam cache tempatan pelayar, tidak digunakan untuk pesanan keistimewaan admin).",
+      "placeholder": "Masukkan kunci peribadi merchant",
+      "savedTip": "Kunci peribadi disimpan",
+      "clearedTip": "Kunci peribadi dikosongkan",
+      "setTag": "Ditetapkan",
+      "setLabel": "Kunci peribadi merchant ditetapkan",
+      "unsetTag": "Tidak ditetapkan",
+      "clearConfirmTitle": "Sahkan Kosongkan",
+      "clearConfirmContent": "Adakah anda pasti mahu mengosongkan kunci peribadi merchant? Anda perlu memasukkannya semula."
+    },
+    "result": {
+      "modalTitle": "Keputusan Pra-bayar (unipay)",
+      "url": "URL Halaman Pendarat Gateway",
+      "copyUrl": "Salin URL",
+      "openUrl": "Buka",
+      "orderNo": "No. Pesanan Platform",
+      "status": "Status",
+      "rawResponse": "Respons DaxResult Penuh",
+      "copyFull": "Salin Respons Penuh"
+    },
+    "rule": {
+      "mchNo": "Sila pilih merchant",
+      "bizOrderNo": "Sila masukkan no. pesanan",
+      "title": "Sila masukkan tajuk pembayaran",
+      "amount": "Sila masukkan jumlah",
+      "gatewayPayType": "Sila pilih jenis gateway"
+    },
+    "msg": {
+      "signSuccess": "Tandatangan dijana",
+      "prePaySuccess": "Permintaan pra-bayar berjaya",
+      "prePayFail": "Permintaan pra-bayar gagal",
+      "inputPrivateKey": "Sila tetapkan kunci peribadi merchant terlebih dahulu",
+      "copySuccess": "Disalin"
+    }
   }
 }

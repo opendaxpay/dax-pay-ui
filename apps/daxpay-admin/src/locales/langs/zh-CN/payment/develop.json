@@ -219,5 +219,96 @@
       "copySuccess": "复制成功",
       "copyFail": "复制失败"
     }
+  },
+  "gateway": {
+    "page": {
+      "title": "网关支付调试",
+      "tag": "模拟商户 API",
+      "warning": "本页仅组装参数并签名，提交后将模拟商户调用 /unipay/gateway/pre-pay 生成收银台/聚合扫码落地页（非管理端特权通道），请确认参数无误。"
+    },
+    "card": {
+      "mchApp": "商户信息",
+      "order": "订单信息",
+      "param": "扩展参数",
+      "preview": "请求预览"
+    },
+    "gatewayType": {
+      "label": "网关支付类型",
+      "cashier": "统一收银台",
+      "aggregate": "聚合扫码",
+      "cashierDesc": "生成收银台落地页，用户在页面选择支付方式",
+      "aggregateDesc": "生成聚合扫码链接，一码多付自动识别"
+    },
+    "preview": {
+      "title": "请求参数 JSON",
+      "signBtn": "生成签名预览",
+      "empty": "暂无数据"
+    },
+    "field": {
+      "privateKey": "商户私钥",
+      "mchNo": "商户",
+      "appId": "应用",
+      "bizOrderNo": "订单号",
+      "amount": "支付金额(分)",
+      "title": "支付标题",
+      "description": "支付描述",
+      "notifyUrl": "异步通知地址",
+      "returnUrl": "同步跳转地址",
+      "expiredTime": "支付超时时间",
+      "storeNo": "门店号"
+    },
+    "placeholder": {
+      "notifyUrl": "https://...",
+      "returnUrl": "https://...",
+      "expiredTime": "留空默认 30 分钟",
+      "storeNo": "线下经营门店号",
+      "title": "测试订单",
+      "description": "请输入支付描述"
+    },
+    "default": {
+      "titlePrefix": "测试网关支付"
+    },
+    "btn": {
+      "setPrivateKey": "设置私钥",
+      "genOrderNo": "生成",
+      "reset": "重置表单",
+      "submit": "提交预下单"
+    },
+    "privateKey": {
+      "modalTitle": "设置商户私钥",
+      "modalTip": "请输入商户 RSA 私钥，仅用于生成请求签名（仅保存在浏览器本地缓存中，不会用于管理端特权下单）。",
+      "placeholder": "请输入商户私钥",
+      "savedTip": "私钥保存成功",
+      "clearedTip": "私钥已清除",
+      "setTag": "已设置",
+      "setLabel": "已设置商户私钥",
+      "unsetTag": "未设置",
+      "clearConfirmTitle": "确认清除",
+      "clearConfirmContent": "确定要清除已设置的商户私钥吗？清除后需重新输入。"
+    },
+    "result": {
+      "modalTitle": "预下单结果 (unipay)",
+      "url": "网关落地页 URL",
+      "copyUrl": "复制链接",
+      "openUrl": "打开",
+      "orderNo": "平台网关单号",
+      "status": "业务状态",
+      "rawResponse": "完整 DaxResult 响应",
+      "copyFull": "复制完整响应"
+    },
+    "rule": {
+      "mchNo": "请选择商户",
+      "bizOrderNo": "请输入订单号",
+      "title": "请输入支付标题",
+      "amount": "请输入支付金额",
+      "gatewayPayType": "请选择网关支付类型"
+    },
+    "msg": {
+      "signSuccess": "签名生成成功",
+      "prePaySuccess": "预下单请求成功",
+      "prePayFail": "预下单请求失败",
+      "inputPrivateKey": "请先设置商户私钥",
+      "copySuccess": "复制成功"
+    }
   }
 }

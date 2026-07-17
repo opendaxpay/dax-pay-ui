@@ -219,5 +219,96 @@
       "copySuccess": "Đã sao chép",
       "copyFail": "Sao chép không thành công"
     }
+  },
+  "gateway": {
+    "page": {
+      "title": "Gỡ lỗi thanh toán cổng",
+      "tag": "Mô phỏng API merchant",
+      "warning": "Trang này chỉ lắp ráp tham số và ký. Khi gửi, sẽ mô phỏng lệnh gọi merchant đến /unipay/gateway/pre-pay để tạo trang đích quầy thu ngân/QR tổng hợp (không phải kênh đặc quyền quản trị). Vui lòng xác minh tham số."
+    },
+    "card": {
+      "mchApp": "Thông tin merchant",
+      "order": "Thông tin đơn hàng",
+      "param": "Tham số mở rộng",
+      "preview": "Xem trước yêu cầu"
+    },
+    "gatewayType": {
+      "label": "Loại cổng",
+      "cashier": "Quầy thu ngân thống nhất",
+      "aggregate": "QR tổng hợp",
+      "cashierDesc": "Tạo trang đích quầy thu ngân, người dùng chọn phương thức thanh toán",
+      "aggregateDesc": "Tạo liên kết QR tổng hợp, một mã cho nhiều phương thức thanh toán"
+    },
+    "preview": {
+      "title": "JSON yêu cầu",
+      "signBtn": "Tạo xem trước chữ ký",
+      "empty": "Không có dữ liệu"
+    },
+    "field": {
+      "privateKey": "Khóa riêng merchant",
+      "mchNo": "Merchant",
+      "appId": "Ứng dụng",
+      "bizOrderNo": "Số đơn hàng",
+      "amount": "Số tiền (xu)",
+      "title": "Tiêu đề thanh toán",
+      "description": "Mô tả",
+      "notifyUrl": "URL thông báo bất đồng bộ",
+      "returnUrl": "URL trả về đồng bộ",
+      "expiredTime": "Thời gian hết hạn",
+      "storeNo": "Số cửa hàng"
+    },
+    "placeholder": {
+      "notifyUrl": "https://...",
+      "returnUrl": "https://...",
+      "expiredTime": "Mặc định 30 phút",
+      "storeNo": "Số cửa hàng ngoại tuyến",
+      "title": "Đơn hàng thử nghiệm",
+      "description": "Nhập mô tả thanh toán"
+    },
+    "default": {
+      "titlePrefix": "Test cổng thanh toán"
+    },
+    "btn": {
+      "setPrivateKey": "Thiết lập khóa",
+      "genOrderNo": "Tạo",
+      "reset": "Đặt lại",
+      "submit": "Gửi đặt trước"
+    },
+    "privateKey": {
+      "modalTitle": "Thiết lập khóa riêng merchant",
+      "modalTip": "Nhập khóa riêng RSA merchant. Chỉ được sử dụng để ký yêu cầu (chỉ lưu trong bộ nhớ đệm cục bộ trình duyệt, không dùng cho đặt hàng đặc quyền quản trị).",
+      "placeholder": "Nhập khóa riêng merchant",
+      "savedTip": "Đã lưu khóa riêng",
+      "clearedTip": "Đã xóa khóa riêng",
+      "setTag": "Đã thiết lập",
+      "setLabel": "Đã thiết lập khóa riêng merchant",
+      "unsetTag": "Chưa thiết lập",
+      "clearConfirmTitle": "Xác nhận xóa",
+      "clearConfirmContent": "Bạn có chắc muốn xóa khóa riêng merchant? Bạn sẽ cần nhập lại."
+    },
+    "result": {
+      "modalTitle": "Kết quả đặt trước (unipay)",
+      "url": "URL trang đích cổng",
+      "copyUrl": "Sao chép URL",
+      "openUrl": "Mở",
+      "orderNo": "Số đơn hàng nền tảng",
+      "status": "Trạng thái",
+      "rawResponse": "Phản hồi DaxResult đầy đủ",
+      "copyFull": "Sao chép phản hồi đầy đủ"
+    },
+    "rule": {
+      "mchNo": "Vui lòng chọn merchant",
+      "bizOrderNo": "Vui lòng nhập số đơn hàng",
+      "title": "Vui lòng nhập tiêu đề thanh toán",
+      "amount": "Vui lòng nhập số tiền",
+      "gatewayPayType": "Vui lòng chọn loại cổng"
+    },
+    "msg": {
+      "signSuccess": "Đã tạo chữ ký",
+      "prePaySuccess": "Yêu cầu đặt trước thành công",
+      "prePayFail": "Yêu cầu đặt trước thất bại",
+      "inputPrivateKey": "Vui lòng thiết lập khóa riêng merchant trước",
+      "copySuccess": "Đã sao chép"
+    }
   }
 }

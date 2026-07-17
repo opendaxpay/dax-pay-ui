@@ -64,6 +64,7 @@
   "menu.device.qrcode": "การจัดการรหัส QR",
   "menu.payment.merchant.channelMerchant.wechatIsvApp": "แอพผู้ค้าย่อย WeChat ISV",
   "menu.develop.auth": "รับรองความถูกต้องพัฒนา",
+  "menu.develop.gateway": "ดีบักการชำระเงินเกตเวย์",
   "menu.system.notify.wechatConfig": "การแจ้งเตือนข้อความ Wechat",
   "menu.payment.merchant.aggregateScan": "การกำหนดค่าการชำระเงินรวม",
   "menu.payment.merchant.group.manage": "การจัดการผู้ค้า",

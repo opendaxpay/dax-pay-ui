@@ -193,6 +193,10 @@ export const PermCodes = {
     Auth: {
       VIEW: 'develop:auth:view',
     },
+    Gateway: {
+      VIEW: 'develop:gateway:view',
+      SIGN: 'develop:gateway:sign',
+    },
   },
 
   Device: {

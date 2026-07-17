@@ -64,6 +64,7 @@
   "menu.device.qrcode": "QRコード管理",
   "menu.payment.merchant.channelMerchant.wechatIsvApp": "WeChat ISV サブマーチャント アプリ",
   "menu.develop.auth": "認証開発",
+  "menu.develop.gateway": "ゲートウェイ決済デバッグ",
   "menu.system.notify.wechatConfig": "Wechatメッセージ通知",
   "menu.payment.merchant.aggregateScan": "集計給与構成",
   "menu.payment.merchant.group.manage": "加盟店管理",

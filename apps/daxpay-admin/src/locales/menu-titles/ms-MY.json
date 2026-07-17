@@ -64,6 +64,7 @@
   "menu.device.qrcode": "Pengurusan Kod QR",
   "menu.payment.merchant.channelMerchant.wechatIsvApp": "Apl Sub-peniaga WeChat ISV",
   "menu.develop.auth": "Membangunkan Pengesahan",
+  "menu.develop.gateway": "Nyahpepij Bayaran Gateway",
   "menu.system.notify.wechatConfig": "Pemberitahuan Mesej Wechat",
   "menu.payment.merchant.aggregateScan": "Konfigurasi Gaji Agregat",
   "menu.payment.merchant.group.manage": "Pengurusan Peniaga",
