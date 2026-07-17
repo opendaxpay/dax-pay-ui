@@ -341,7 +341,7 @@
           <vxe-column field="mchName" :title="$t('payment.device.qrcode.field.merchant')" :min-width="160">
             <template #default="{ row }">
               <div v-if="row.mchNo" class="flex flex-col">
-                <span>{{ row.mchName || row.mchNo }}</span>
+                <span>{{ row.mchName || '-' }}</span>
                 <span class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
               </div>
               <a-tag v-else color="default">{{ $t('payment.device.qrcode.unbound') }}</a-tag>

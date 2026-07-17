@@ -169,7 +169,7 @@
           <vxe-column field="mchName" :title="$t('payment.risk.hit.field.merchant')" :min-width="160">
             <template #default="{ row }">
               <div class="flex flex-col">
-                <span>{{ row.mchName || row.mchNo || '-' }}</span>
+                <span>{{ row.mchName || '-' }}</span>
                 <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
               </div>
             </template>

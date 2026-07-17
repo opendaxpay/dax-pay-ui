@@ -261,7 +261,7 @@
           <vxe-column field="mchName" :title="$t('payment.order.field.merchant')" :min-width="160">
             <template #default="{ row }">
               <div class="flex flex-col">
-                <span>{{ row.mchName || row.mchNo || '-' }}</span>
+                <span>{{ row.mchName || '-' }}</span>
                 <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
               </div>
             </template>
@@ -345,8 +345,8 @@
         <a-divider orientation="left" plain>{{ $t('payment.order.trade.detail') }}</a-divider>
         <a-descriptions :column="2" size="small" bordered>
           <a-descriptions-item :label="$t('payment.order.field.merchant')">
-            {{ detail.mchName || detail.mchNo || '-' }}
-            <span v-if="detail.mchName && detail.mchNo" class="text-muted-foreground"> ({{ detail.mchNo }})</span>
+            {{ detail.mchName || '-' }}
+            <span v-if="detail.mchNo" class="text-muted-foreground"> ({{ detail.mchNo }})</span>
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.tradeNo')">
             {{ detail.tradeNo || '-' }}

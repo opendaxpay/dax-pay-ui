@@ -235,7 +235,7 @@
             <template #default="{ row }">
               <template v-if="row.platform">-</template>
               <div v-else class="flex flex-col">
-                <span>{{ row.mchName || row.mchNo || '-' }}</span>
+                <span>{{ row.mchName || '-' }}</span>
                 <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
               </div>
             </template>
