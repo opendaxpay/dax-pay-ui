@@ -112,27 +112,6 @@
   }
 
   /**
-   * 获取操作菜单配置
-   */
-  function getActionMenu(row: any): MenuProps {
-    return {
-      items: [
-        // 强制下线
-        {
-          key: 'kickout',
-          label: $t('system.monitor.online-user.kickout'),
-          disabled: !hasPermission(PermCodes.Iam.Online.KICKOUT),
-        },
-      ],
-      onClick: ({ key }: { key: string }) => {
-        if (key === 'kickout') {
-          handleKickout([row.sessionId]);
-        }
-      },
-    };
-  }
-
-  /**
    * 获取批量操作菜单配置
    */
   function getBatchActionMenu(): MenuProps {
@@ -231,15 +210,18 @@
             min-width="160"
             formatter="formatDateTime"
           />
-          <!-- 操作 -->
-          <vxe-column fixed="right" width="100" :show-overflow="false" :title="$t('common.operation')">
+          <!-- 操作：单按钮直接展示，加宽以容纳多语言文案 -->
+          <vxe-column fixed="right" width="160" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">
-              <a-dropdown :menu="getActionMenu(row)">
-                <a href="javascript:">
-                  {{ $t('common.more') }}
-                  <IconifyIcon icon="ant-design:down-outlined" class="inline" />
-                </a>
-              </a-dropdown>
+              <a-button
+                v-if="hasPermission(PermCodes.Iam.Online.KICKOUT)"
+                type="link"
+                size="small"
+                danger
+                @click="handleKickout([row.sessionId])"
+              >
+                {{ $t('system.monitor.online-user.kickout') }}
+              </a-button>
             </template>
           </vxe-column>
         </vxe-table>
