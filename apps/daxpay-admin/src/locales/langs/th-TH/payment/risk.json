@@ -51,7 +51,8 @@
       "handleStatus": "สถานะจัดการ",
       "handleRemark": "หมายเหตุจัดการ",
       "handleTime": "เวลาจัดการ",
-      "createTime": "สร้างเมื่อ"
+      "createTime": "สร้างเมื่อ",
+      "merchant": "ร้านค้า"
     },
     "phase": {
       "before_pay": "ก่อนชำระ",

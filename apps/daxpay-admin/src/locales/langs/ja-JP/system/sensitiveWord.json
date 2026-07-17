@@ -55,7 +55,8 @@
       "clientIp": "クライアントIP",
       "requestPath": "リクエストパス",
       "remark": "備考",
-      "createTime": "ヒット日時"
+      "createTime": "ヒット日時",
+      "merchant": "加盟店"
     },
     "scene": {
       "pay_title": "支払タイトル",

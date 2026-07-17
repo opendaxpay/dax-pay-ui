@@ -14,7 +14,8 @@
     "verifyCode": "驗證內容",
     "remark": "備註",
     "createTime": "創建時間",
-    "fileContent": "文件內容"
+    "fileContent": "文件內容",
+    "merchant": "商戶"
   },
   "belong": {
     "platform": "平台",

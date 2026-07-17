@@ -14,7 +14,8 @@
     "verifyCode": "Sahkan Kandungan",
     "remark": "Teguran",
     "createTime": "Cipta Masa",
-    "fileContent": "Kandungan Fail"
+    "fileContent": "Kandungan Fail",
+    "merchant": "Peniaga"
   },
   "belong": {
     "platform": "Platform",

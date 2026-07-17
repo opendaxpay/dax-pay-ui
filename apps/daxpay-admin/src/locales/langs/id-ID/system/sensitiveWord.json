@@ -55,7 +55,8 @@
       "clientIp": "IP klien",
       "requestPath": "Path permintaan",
       "remark": "Catatan",
-      "createTime": "Waktu hit"
+      "createTime": "Waktu hit",
+      "merchant": "Merchant"
     },
     "scene": {
       "pay_title": "Judul bayar",

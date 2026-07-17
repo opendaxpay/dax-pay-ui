@@ -88,6 +88,8 @@ export interface PlatformWxDomainVerifyParam {
 export interface PlatformWxDomainVerifyVo extends BaseEntity {
   /** 商户号（平台级为空） */
   mchNo?: string;
+  /** 商户名称(由 mchNo 翻译; 平台级为空) */
+  mchName?: string;
   /** 是否平台级 */
   platform?: boolean;
   /** 文件名（如 MP_verify_xxx.txt） */

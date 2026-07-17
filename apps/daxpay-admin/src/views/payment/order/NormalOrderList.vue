@@ -416,6 +416,15 @@
         <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }" />
         <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
+          <!-- 商户: 名称上 + 号下小字两排 -->
+          <vxe-column field="mchName" :title="$t('payment.order.field.merchant')" :min-width="160">
+            <template #default="{ row }">
+              <div class="flex flex-col">
+                <span>{{ row.mchName || row.mchNo || '-' }}</span>
+                <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
+              </div>
+            </template>
+          </vxe-column>
           <vxe-column field="bizOrderNo" :title="$t('payment.order.field.bizOrderNo')" :min-width="180" show-overflow />
           <vxe-column field="title" :title="$t('payment.order.field.title')" :min-width="160" show-overflow />
           <vxe-column field="amount" :title="$t('payment.order.field.amount')" :min-width="100" align="right">
@@ -490,6 +499,10 @@
       <a-spin :spinning="drawerLoading">
         <a-divider orientation="left" plain>{{ $t('payment.order.normal.detail') }}</a-divider>
         <a-descriptions :column="2" size="small" bordered>
+          <a-descriptions-item :label="$t('payment.order.field.merchant')">
+            {{ detail.mchName || detail.mchNo || '-' }}
+            <span v-if="detail.mchName && detail.mchNo" class="text-muted-foreground"> ({{ detail.mchNo }})</span>
+          </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.bizOrderNo')">
             {{ detail.bizOrderNo || '-' }}
           </a-descriptions-item>

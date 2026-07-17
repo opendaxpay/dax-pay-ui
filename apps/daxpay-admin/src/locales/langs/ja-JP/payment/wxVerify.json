@@ -14,7 +14,8 @@
     "verifyCode": "コンテンツの検証",
     "remark": "述べる",
     "createTime": "時間を作る",
-    "fileContent": "ファイルの内容"
+    "fileContent": "ファイルの内容",
+    "merchant": "加盟店"
   },
   "belong": {
     "platform": "プラットフォーム",

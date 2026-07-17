@@ -14,7 +14,8 @@
     "verifyCode": "Xác minh nội dung",
     "remark": "Nhận xét",
     "createTime": "Tạo thời gian",
-    "fileContent": "Nội dung tệp"
+    "fileContent": "Nội dung tệp",
+    "merchant": "Thương nhân"
   },
   "belong": {
     "platform": "Nền tảng",

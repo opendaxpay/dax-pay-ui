@@ -78,7 +78,8 @@
     "finishTime": "Finish Time",
     "orderAmount": "Order Amount",
     "orderNo": "Original Order No.",
-    "authCode": "Payment code"
+    "authCode": "Payment code",
+    "merchant": "Merchant"
   },
   "bizStatus": {
     "wait_pay": "Waiting",

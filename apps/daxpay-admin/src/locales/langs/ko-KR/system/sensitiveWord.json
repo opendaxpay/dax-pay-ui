@@ -55,7 +55,8 @@
       "clientIp": "클라이언트 IP",
       "requestPath": "요청 경로",
       "remark": "비고",
-      "createTime": "적중 시간"
+      "createTime": "적중 시간",
+      "merchant": "가맹점"
     },
     "scene": {
       "pay_title": "결제 제목",

@@ -55,7 +55,8 @@
       "clientIp": "IP ลูกค้า",
       "requestPath": "พาธคำขอ",
       "remark": "หมายเหตุ",
-      "createTime": "เวลาที่พบ"
+      "createTime": "เวลาที่พบ",
+      "merchant": "ร้านค้า"
     },
     "scene": {
       "pay_title": "หัวข้อชำระเงิน",

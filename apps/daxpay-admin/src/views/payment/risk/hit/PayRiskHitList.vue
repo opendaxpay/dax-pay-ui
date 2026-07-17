@@ -165,8 +165,15 @@
           <vxe-column field="hitType" :title="$t('payment.risk.hit.field.hitType')" width="100" />
           <!-- 命中值 -->
           <vxe-column field="hitValue" :title="$t('payment.risk.hit.field.hitValue')" :min-width="160" />
-          <!-- 商户号 -->
-          <vxe-column field="mchNo" :title="$t('payment.risk.hit.field.mchNo')" width="120" />
+          <!-- 商户: 名称上 + 号下小字两排 -->
+          <vxe-column field="mchName" :title="$t('payment.risk.hit.field.merchant')" :min-width="160">
+            <template #default="{ row }">
+              <div class="flex flex-col">
+                <span>{{ row.mchName || row.mchNo || '-' }}</span>
+                <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
+              </div>
+            </template>
+          </vxe-column>
           <!-- 交易号 -->
           <vxe-column field="tradeNo" :title="$t('payment.risk.hit.field.tradeNo')" :min-width="140" />
           <!-- 处理状态 -->

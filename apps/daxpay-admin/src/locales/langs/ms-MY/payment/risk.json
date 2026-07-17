@@ -51,7 +51,8 @@
       "handleStatus": "Status urusan",
       "handleRemark": "Catatan urusan",
       "handleTime": "Masa urusan",
-      "createTime": "Dicipta pada"
+      "createTime": "Dicipta pada",
+      "merchant": "Peniaga"
     },
     "phase": {
       "before_pay": "Sebelum bayar",

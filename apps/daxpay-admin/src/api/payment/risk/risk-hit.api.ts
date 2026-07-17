@@ -48,6 +48,8 @@ export interface PayRiskHitVo extends BaseEntity {
   hitValue?: string;
   blacklistId?: string;
   mchNo?: string;
+  /** 商户名称(由 mchNo 翻译) */
+  mchName?: string;
   appId?: string;
   tradeNo?: string;
   orderNo?: string;

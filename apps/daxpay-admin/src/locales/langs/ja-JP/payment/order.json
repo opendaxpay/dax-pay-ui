@@ -78,7 +78,8 @@
     "finishTime": "終了時間",
     "orderAmount": "注文金額",
     "orderNo": "元の注文番号",
-    "authCode": "支払いコード"
+    "authCode": "支払いコード",
+    "merchant": "加盟店"
   },
   "bizStatus": {
     "wait_pay": "待っている",

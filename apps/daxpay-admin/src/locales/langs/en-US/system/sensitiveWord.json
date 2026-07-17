@@ -55,7 +55,8 @@
       "clientIp": "Client IP",
       "requestPath": "Request path",
       "remark": "Remark",
-      "createTime": "Hit time"
+      "createTime": "Hit time",
+      "merchant": "Merchant"
     },
     "scene": {
       "pay_title": "Pay title",

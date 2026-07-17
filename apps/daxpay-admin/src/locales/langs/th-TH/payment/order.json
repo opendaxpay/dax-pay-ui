@@ -78,7 +78,8 @@
     "finishTime": "เสร็จสิ้นเวลา",
     "orderAmount": "จำนวนการสั่งซื้อ",
     "orderNo": "หมายเลขคำสั่งซื้อเดิม",
-    "authCode": "รหัสชำระเงิน"
+    "authCode": "รหัสชำระเงิน",
+    "merchant": "ร้านค้า"
   },
   "bizStatus": {
     "wait_pay": "ซึ่งรอคอย",

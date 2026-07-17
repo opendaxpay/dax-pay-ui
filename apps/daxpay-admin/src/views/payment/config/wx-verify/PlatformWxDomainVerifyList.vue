@@ -225,15 +225,19 @@
               </a-tag>
             </template>
           </vxe-column>
-          <!-- 国际化：商户号 -->
+          <!-- 国际化：商户(名称上 + 号下小字; 平台级显示 -) -->
           <vxe-column
-            field="mchNo"
-            :title="$t('payment.wxVerify.field.mchNo')"
-            :min-width="140"
+            field="mchName"
+            :title="$t('payment.wxVerify.field.merchant')"
+            :min-width="160"
             show-overflow
           >
             <template #default="{ row }">
-              {{ row.platform ? '-' : row.mchNo }}
+              <template v-if="row.platform">-</template>
+              <div v-else class="flex flex-col">
+                <span>{{ row.mchName || row.mchNo || '-' }}</span>
+                <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
+              </div>
             </template>
           </vxe-column>
           <!-- 国际化：验证码 -->

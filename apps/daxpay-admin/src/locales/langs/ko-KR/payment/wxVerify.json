@@ -14,7 +14,8 @@
     "verifyCode": "콘텐츠 확인",
     "remark": "주목",
     "createTime": "시간 만들기",
-    "fileContent": "파일 내용"
+    "fileContent": "파일 내용",
+    "merchant": "가맹점"
   },
   "belong": {
     "platform": "플랫폼",

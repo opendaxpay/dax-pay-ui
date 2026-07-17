@@ -55,7 +55,8 @@
       "clientIp": "用戶端IP",
       "requestPath": "請求路徑",
       "remark": "備註",
-      "createTime": "命中時間"
+      "createTime": "命中時間",
+      "merchant": "商戶"
     },
     "scene": {
       "pay_title": "支付標題",

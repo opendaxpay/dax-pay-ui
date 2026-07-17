@@ -51,7 +51,8 @@
       "handleStatus": "处理状态",
       "handleRemark": "处理说明",
       "handleTime": "处理时间",
-      "createTime": "创建时间"
+      "createTime": "创建时间",
+      "merchant": "商户"
     },
     "phase": {
       "before_pay": "事前拦截",

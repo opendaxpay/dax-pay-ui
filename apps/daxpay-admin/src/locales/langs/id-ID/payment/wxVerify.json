@@ -14,7 +14,8 @@
     "verifyCode": "Verifikasi Konten",
     "remark": "Komentar",
     "createTime": "Ciptakan Waktu",
-    "fileContent": "Konten Berkas"
+    "fileContent": "Konten Berkas",
+    "merchant": "Merchant"
   },
   "belong": {
     "platform": "Platform",

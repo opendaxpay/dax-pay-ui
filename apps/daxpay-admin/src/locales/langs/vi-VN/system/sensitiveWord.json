@@ -55,7 +55,8 @@
       "clientIp": "IP client",
       "requestPath": "Đường dẫn yêu cầu",
       "remark": "Ghi chú",
-      "createTime": "Thời gian trúng"
+      "createTime": "Thời gian trúng",
+      "merchant": "Thương nhân"
     },
     "scene": {
       "pay_title": "Tiêu đề thanh toán",

@@ -78,7 +78,8 @@
     "finishTime": "Waktu Selesai",
     "orderAmount": "Jumlah Pesanan",
     "orderNo": "Nomor Pesanan Asli.",
-    "authCode": "Kode pembayaran"
+    "authCode": "Kode pembayaran",
+    "merchant": "Merchant"
   },
   "bizStatus": {
     "wait_pay": "Menunggu",

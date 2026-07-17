@@ -78,7 +78,8 @@
     "finishTime": "Tamat Masa",
     "orderAmount": "Jumlah Pesanan",
     "orderNo": "Pesanan Asal No.",
-    "authCode": "Kod pembayaran"
+    "authCode": "Kod pembayaran",
+    "merchant": "Peniaga"
   },
   "bizStatus": {
     "wait_pay": "Menunggu",

@@ -78,7 +78,8 @@
     "finishTime": "종료 시간",
     "orderAmount": "주문금액",
     "orderNo": "원래 주문 번호",
-    "authCode": "결제 코드"
+    "authCode": "결제 코드",
+    "merchant": "가맹점"
   },
   "bizStatus": {
     "wait_pay": "대기 중",

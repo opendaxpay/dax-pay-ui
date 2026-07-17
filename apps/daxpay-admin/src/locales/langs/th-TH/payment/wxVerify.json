@@ -14,7 +14,8 @@
     "verifyCode": "ตรวจสอบเนื้อหา",
     "remark": "หมายเหตุ",
     "createTime": "สร้างเวลา",
-    "fileContent": "เนื้อหาไฟล์"
+    "fileContent": "เนื้อหาไฟล์",
+    "merchant": "ร้านค้า"
   },
   "belong": {
     "platform": "แพลตฟอร์ม",

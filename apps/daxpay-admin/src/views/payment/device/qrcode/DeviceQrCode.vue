@@ -337,12 +337,13 @@
               <span v-else style="color: var(--text-color-placeholder)">-</span>
             </template>
           </vxe-column>
-          <!-- 主显商户名, 悬停展示商户号; 未绑定无 tooltip -->
+          <!-- 商户: 已绑定名称上+号下小字; 未绑定 tag -->
           <vxe-column field="mchName" :title="$t('payment.device.qrcode.field.merchant')" :min-width="160">
             <template #default="{ row }">
-              <a-tooltip v-if="row.mchNo" :title="$t('payment.device.qrcode.mchNoTooltip', { mchNo: row.mchNo })">
-                <a-tag color="blue">{{ row.mchName || row.mchNo }}</a-tag>
-              </a-tooltip>
+              <div v-if="row.mchNo" class="flex flex-col">
+                <span>{{ row.mchName || row.mchNo }}</span>
+                <span class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
+              </div>
               <a-tag v-else color="default">{{ $t('payment.device.qrcode.unbound') }}</a-tag>
             </template>
           </vxe-column>

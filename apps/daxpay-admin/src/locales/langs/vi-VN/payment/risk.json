@@ -51,7 +51,8 @@
       "handleStatus": "Trạng thái xử lý",
       "handleRemark": "Ghi chú xử lý",
       "handleTime": "Thời gian xử lý",
-      "createTime": "Thời gian tạo"
+      "createTime": "Thời gian tạo",
+      "merchant": "Thương nhân"
     },
     "phase": {
       "before_pay": "Trước thanh toán",

@@ -14,7 +14,8 @@
     "verifyCode": "Verify Content",
     "remark": "Remark",
     "createTime": "Create Time",
-    "fileContent": "File Content"
+    "fileContent": "File Content",
+    "merchant": "Merchant"
   },
   "belong": {
     "platform": "Platform",

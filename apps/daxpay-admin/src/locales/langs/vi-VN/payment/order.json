@@ -78,7 +78,8 @@
     "finishTime": "Thời gian kết thúc",
     "orderAmount": "Số tiền đặt hàng",
     "orderNo": "Số đơn đặt hàng ban đầu",
-    "authCode": "Mã thanh toán"
+    "authCode": "Mã thanh toán",
+    "merchant": "Thương nhân"
   },
   "bizStatus": {
     "wait_pay": "Chờ",

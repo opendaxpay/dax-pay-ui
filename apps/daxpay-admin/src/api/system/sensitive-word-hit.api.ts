@@ -35,6 +35,8 @@ export interface SensitiveWordHitVo extends BaseEntity {
   scene?: string;
   source?: string;
   mchNo?: string;
+  /** 商户名称(本轮后端可能为空) */
+  mchName?: string;
   appId?: string;
   operatorId?: string;
   clientIp?: string;

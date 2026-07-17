@@ -78,7 +78,8 @@
     "finishTime": "退款完成時間",
     "orderAmount": "訂單總金額",
     "orderNo": "原支付訂單號",
-    "authCode": "付款碼"
+    "authCode": "付款碼",
+    "merchant": "商戶"
   },
   "bizStatus": {
     "wait_pay": "待支付",

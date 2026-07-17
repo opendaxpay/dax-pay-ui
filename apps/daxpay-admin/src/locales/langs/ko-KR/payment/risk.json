@@ -51,7 +51,8 @@
       "handleStatus": "Handle status",
       "handleRemark": "Handle remark",
       "handleTime": "Handle time",
-      "createTime": "Created at"
+      "createTime": "Created at",
+      "merchant": "가맹점"
     },
     "phase": {
       "before_pay": "Before pay",
