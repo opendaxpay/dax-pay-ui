@@ -16,6 +16,7 @@
   "menu.demos": "演示",
   "menu.dashboard": "儀表板",
   "menu.system.log.operate": "操作日誌",
+  "menu.system.log.unipay": "支付接口日誌",
   "menu.platform": "支付管理",
   "menu.system.log.login": "登錄日誌",
   "menu.dashboard.workspace": "工作台",

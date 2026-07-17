@@ -86,6 +86,8 @@ export interface PayParam {
   expiredTime?: string;
   /** 客户端 IP(可选, 未传时由 unipay 从 HTTP 请求提取) */
   clientIp?: string;
+  /** 请求ID(商户生成, 审计索引, 必填) */
+  reqId?: string;
   /** 随机串 */
   nonceStr?: string;
   /** 请求时间(北京时间 yyyy-MM-dd HH:mm:ss) */

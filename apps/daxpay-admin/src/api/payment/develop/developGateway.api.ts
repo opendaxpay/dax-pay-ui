@@ -60,6 +60,8 @@ export interface GatewayPrePayParam {
   expiredTime?: string;
   /** 门店号 */
   storeNo?: string;
+  /** 请求ID(商户生成, 审计索引, 必填) */
+  reqId?: string;
   /** 随机串 */
   nonceStr?: string;
   /** 请求时间(北京时间 yyyy-MM-dd HH:mm:ss) */

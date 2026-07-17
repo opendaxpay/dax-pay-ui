@@ -16,6 +16,7 @@
   "menu.demos": "Demos",
   "menu.dashboard": "Dashboard",
   "menu.system.log.operate": "Operate Log",
+  "menu.system.log.unipay": "Payment API Log",
   "menu.platform": "Payment Management",
   "menu.system.log.login": "Login Log",
   "menu.dashboard.workspace": "Workspace",

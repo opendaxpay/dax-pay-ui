@@ -16,6 +16,7 @@
   "menu.demos": "시민",
   "menu.dashboard": "계기반",
   "menu.system.log.operate": "운영 로그",
+  "menu.system.log.unipay": "결제 API 로그",
   "menu.platform": "결제관리",
   "menu.system.log.login": "로그인 로그",
   "menu.dashboard.workspace": "작업공간",

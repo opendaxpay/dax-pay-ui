@@ -16,6 +16,7 @@
   "menu.demos": "Bản demo",
   "menu.dashboard": "Trang tổng quan",
   "menu.system.log.operate": "Nhật ký vận hành",
+  "menu.system.log.unipay": "Nhật ký API thanh toán",
   "menu.platform": "Quản lý thanh toán",
   "menu.system.log.login": "Đăng nhập Nhật ký",
   "menu.dashboard.workspace": "Không gian làm việc",

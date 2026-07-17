@@ -16,6 +16,7 @@
   "menu.demos": "การสาธิต",
   "menu.dashboard": "แดชบอร์ด",
   "menu.system.log.operate": "ดำเนินการบันทึก",
+  "menu.system.log.unipay": "ล็อก API ชำระเงิน",
   "menu.platform": "การจัดการการชำระเงิน",
   "menu.system.log.login": "เข้าสู่ระบบ",
   "menu.dashboard.workspace": "พื้นที่ทำงาน",

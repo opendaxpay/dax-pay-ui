@@ -16,6 +16,7 @@
   "menu.demos": "デモ",
   "menu.dashboard": "ダッシュボード",
   "menu.system.log.operate": "操作ログ",
+  "menu.system.log.unipay": "決済APIログ",
   "menu.platform": "支払い管理",
   "menu.system.log.login": "ログインログ",
   "menu.dashboard.workspace": "ワークスペース",

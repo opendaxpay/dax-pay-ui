@@ -256,6 +256,16 @@
     return s;
   }
 
+  /** 生成请求 ID(审计索引用, 32 位) */
+  function genReqId(): string {
+    const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let s = '';
+    for (let i = 0; i < 32; i++) {
+      s += chars[Math.floor(Math.random() * chars.length)];
+    }
+    return s;
+  }
+
   /** 剔除空串/null/undefined, 避免参与签名或污染请求体 */
   function cleanPayload(raw: PayParam): PayParam {
     const cleaned: Record<string, any> = {};
@@ -268,13 +278,14 @@
   }
 
   /**
-   * 按当前模式组装提交参数(含公共字段 reqTime/nonceStr)
+   * 按当前模式组装提交参数(含公共字段 reqId/reqTime/nonceStr)
    * 各模式只透传自身字段; 直接指定 method 由 unipay 路由反推
    */
   function buildPayload(): PayParam {
     const payload: PayParam = {
       ...form,
       // 每次组参刷新公共字段, 贴近真实商户 SDK
+      reqId: genReqId(),
       reqTime: formatReqTimeCst(),
       nonceStr: genNonceStr(),
       // 签名由后续步骤写入, 预览阶段不带旧 sign

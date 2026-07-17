@@ -220,6 +220,10 @@ export const PermCodes = {
         VIEW: 'system:log:operate:view',
         MANAGE: 'system:log:operate:manage',
       },
+      Unipay: {
+        VIEW: 'system:log:unipay:view',
+        MANAGE: 'system:log:unipay:manage',
+      },
     },
     Notify: {
       VIEW: 'system:notify:notice:view',

@@ -16,6 +16,7 @@
   "menu.demos": "tunjuk cara",
   "menu.dashboard": "Papan pemuka",
   "menu.system.log.operate": "Kendalikan Log",
+  "menu.system.log.unipay": "Log API Pembayaran",
   "menu.platform": "Pengurusan Pembayaran",
   "menu.system.log.login": "Log Masuk",
   "menu.dashboard.workspace": "Ruang kerja",

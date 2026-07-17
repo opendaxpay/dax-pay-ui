@@ -192,6 +192,16 @@
     return s;
   }
 
+  /** 生成请求 ID(审计索引用, 32 位) */
+  function genReqId(): string {
+    const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let s = '';
+    for (let i = 0; i < 32; i++) {
+      s += chars[Math.floor(Math.random() * chars.length)];
+    }
+    return s;
+  }
+
   /** 剔除空串/null/undefined, 避免参与签名或污染请求体 */
   function cleanPayload(raw: GatewayPrePayParam): GatewayPrePayParam {
     const cleaned: Record<string, any> = {};
@@ -204,12 +214,13 @@
   }
 
   /**
-   * 组装提交参数(含公共字段 reqTime/nonceStr)
+   * 组装提交参数(含公共字段 reqId/reqTime/nonceStr)
    */
   function buildPayload(): GatewayPrePayParam {
     const payload: GatewayPrePayParam = {
       ...form,
       // 每次组参刷新公共字段, 贴近真实商户 SDK
+      reqId: genReqId(),
       reqTime: formatReqTimeCst(),
       nonceStr: genNonceStr(),
       // 签名由后续步骤写入, 预览阶段不带旧 sign

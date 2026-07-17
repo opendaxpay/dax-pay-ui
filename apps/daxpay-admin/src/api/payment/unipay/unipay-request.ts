@@ -21,6 +21,8 @@ export interface DaxResult<T = unknown> {
   data?: T;
   sign?: string;
   resTime?: string;
+  /** 请求ID(回显) */
+  reqId?: string;
   traceId?: string;
 }
 
