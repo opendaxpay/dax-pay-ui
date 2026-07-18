@@ -14,7 +14,10 @@
     "status": "状态",
     "remark": "备注",
     "createTime": "创建时间",
-    "programType": "码牌类型"
+    "programType": "码牌类型",
+    "storeNo": "门店号",
+    "store": "门店",
+    "storeName": "门店名称"
   },
   "status": {
     "enabled": "启用",
@@ -43,7 +46,7 @@
   "validateFixedAmount": "请输入固定金额",
   "validateStatus": "请选择状态",
   "pleaseSelectMch": "请选择商户",
-  "pleaseSelectApp": "不选则使用商户默认应用",
+  "pleaseSelectApp": "请选择应用(可空则使用默认应用)",
   "enable": "启用",
   "disable": "停用",
   "confirmDelete": "确定要删除该码牌吗？",
@@ -60,5 +63,18 @@
     "h5": "H5",
     "mini_app": "小程序"
   },
-  "validateProgramType": "请选择码牌类型"
+  "validateProgramType": "请选择码牌类型",
+  "bindStore": "绑定门店",
+  "unbindStore": "解绑门店",
+  "confirmUnbindStore": "确定要解绑所选码牌的门店吗？解绑后码牌将不再关联门店。",
+  "pleaseSelectStore": "请选择门店",
+  "validateStoreNo": "请选择门店",
+  "storeBindNeedSameMch": "批量绑定门店时须选择同一商户下的码牌",
+  "storeBindNeedMerchant": "请先为码牌绑定商户后再绑定门店",
+  "batchActions": "批量操作",
+  "bindApp": "绑定应用",
+  "unbindApp": "解绑应用",
+  "confirmUnbindApp": "确定要解绑所选码牌的应用吗？解绑后支付将使用商户默认应用。",
+  "validateAppId": "请选择应用",
+  "defaultStoreHint": "默认门店(若已配置)"
 }

@@ -14,7 +14,10 @@
     "status": "Status",
     "remark": "Remark",
     "createTime": "Create Time",
-    "programType": "Code type"
+    "programType": "Code type",
+    "storeNo": "Store No.",
+    "store": "Store",
+    "storeName": "Store Name"
   },
   "status": {
     "enabled": "Enabled",
@@ -24,7 +27,7 @@
     "random": "Custom Amount",
     "fixed": "Fixed Amount"
   },
-  "defaultApp": "Default App",
+  "defaultApp": "Default app",
   "unbound": "Unbound",
   "mchNoTooltip": "Merchant No.: {mchNo}",
   "batchCreate": "Batch Create",
@@ -43,7 +46,7 @@
   "validateFixedAmount": "Please enter the fixed amount",
   "validateStatus": "Please select a status",
   "pleaseSelectMch": "Please select a merchant",
-  "pleaseSelectApp": "Leave empty to use the merchant default app",
+  "pleaseSelectApp": "Select app (empty = default app)",
   "enable": "Enable",
   "disable": "Disable",
   "confirmDelete": "Are you sure to delete this QR code board?",
@@ -60,5 +63,18 @@
     "h5": "H5",
     "mini_app": "Mini program"
   },
-  "validateProgramType": "Please select code type"
+  "validateProgramType": "Please select code type",
+  "bindStore": "Bind Store",
+  "unbindStore": "Unbind Store",
+  "confirmUnbindStore": "Unbind the store from selected boards? They will no longer be linked to a store.",
+  "pleaseSelectStore": "Please select a store",
+  "validateStoreNo": "Please select a store",
+  "storeBindNeedSameMch": "Selected boards must belong to the same merchant when binding a store",
+  "storeBindNeedMerchant": "Please bind a merchant before binding a store",
+  "batchActions": "Batch Actions",
+  "bindApp": "Bind App",
+  "unbindApp": "Unbind App",
+  "confirmUnbindApp": "Unbind app from selected boards? Payment will use the merchant default app.",
+  "validateAppId": "Please select an app",
+  "defaultStoreHint": "Default store (if configured)"
 }

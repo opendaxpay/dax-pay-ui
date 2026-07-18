@@ -1,9 +1,12 @@
 <script lang="ts" setup>
+  import type { MenuProps } from 'antdv-next';
   import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
 
   import { computed, onMounted, ref } from 'vue';
 
   import { $t } from '@vben/locales';
+
+  import { IconifyIcon } from '@vben-core/icons';
 
   import { DeviceQrCodeApi, type DeviceQrCodeResult } from '#/api/payment/device/qrcode.api';
   import { BQuery, type QueryField } from '#/components/query';
@@ -37,6 +40,13 @@
       type: 'string',
       field: 'mchNo',
       name: $t('payment.device.qrcode.field.mchNo'),
+      placeholder: $t('common.pleaseInput'),
+    },
+    {
+      type: 'string',
+      field: 'storeNo',
+      // 门店号
+      name: $t('payment.device.qrcode.field.storeNo'),
       placeholder: $t('common.pleaseInput'),
     },
     {
@@ -199,6 +209,29 @@
   }
 
   /**
+   * 工具栏批量操作菜单(仅绑定/解绑商户; 应用/门店在绑商户弹窗可选)
+   */
+  function getBatchActionMenu(): MenuProps {
+    return {
+      items: [
+        { key: 'bindMerchant', label: $t('payment.device.qrcode.bindMerchant') },
+        {
+          key: 'unbindMerchant',
+          label: $t('payment.device.qrcode.unbindMerchant'),
+          danger: true,
+        },
+      ],
+      onClick: ({ key }: { key: string }) => {
+        if (key === 'bindMerchant') {
+          handleBindMerchant();
+        } else if (key === 'unbindMerchant') {
+          handleUnbindMerchant();
+        }
+      },
+    };
+  }
+
+  /**
    * 删除码牌
    */
   function handleDelete(row: DeviceQrCodeResult) {
@@ -277,19 +310,17 @@
                 @click="handleBatchCreate"
                 >{{ $t('payment.device.qrcode.batchCreate') }}</a-button
               >
-              <a-button
+              <!-- 批量操作: 仅绑/解商户(应用/门店在绑商户弹窗可选) -->
+              <a-dropdown
                 v-if="hasPermission(PermCodes.Device.QrCode.MANAGE)"
                 :disabled="selectedRows.length === 0"
-                @click="handleBindMerchant"
-                >{{ $t('payment.device.qrcode.bindMerchant') }}</a-button
+                :menu="getBatchActionMenu()"
               >
-              <a-button
-                v-if="hasPermission(PermCodes.Device.QrCode.MANAGE)"
-                :disabled="selectedRows.length === 0"
-                danger
-                @click="handleUnbindMerchant"
-                >{{ $t('payment.device.qrcode.unbindMerchant') }}</a-button
-              >
+                <a-button :disabled="selectedRows.length === 0">
+                  {{ $t('payment.device.qrcode.batchActions') }}
+                  <IconifyIcon icon="ant-design:down-outlined" class="inline" />
+                </a-button>
+              </a-dropdown>
             </a-space>
           </template>
         </vxe-toolbar>
@@ -345,6 +376,29 @@
                 <span class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
               </div>
               <a-tag v-else color="default">{{ $t('payment.device.qrcode.unbound') }}</a-tag>
+            </template>
+          </vxe-column>
+          <!-- 应用: 有 appId 显示号; 空=默认应用 -->
+          <vxe-column field="appId" :title="$t('payment.device.qrcode.field.appId')" :min-width="140">
+            <template #default="{ row }">
+              <span v-if="row.appId">{{ row.appId }}</span>
+              <span v-else-if="row.mchNo" style="color: var(--text-color-placeholder)">{{
+                $t('payment.device.qrcode.defaultApp')
+              }}</span>
+              <span v-else style="color: var(--text-color-placeholder)">-</span>
+            </template>
+          </vxe-column>
+          <!-- 门店: 名称上+号下小字; 未绑显示「默认门店」提示(支付侧 resolve) -->
+          <vxe-column field="storeName" :title="$t('payment.device.qrcode.field.store')" :min-width="160">
+            <template #default="{ row }">
+              <div v-if="row.storeNo" class="flex flex-col">
+                <span>{{ row.storeName || '-' }}</span>
+                <span class="text-xs text-muted-foreground">{{ row.storeNo }}</span>
+              </div>
+              <span v-else-if="row.mchNo" style="color: var(--text-color-placeholder)">{{
+                $t('payment.device.qrcode.defaultStoreHint')
+              }}</span>
+              <span v-else style="color: var(--text-color-placeholder)">-</span>
             </template>
           </vxe-column>
           <!-- 金额类型 + 固定金额合并: 固定显示金额, 自定义显示类型文案 -->

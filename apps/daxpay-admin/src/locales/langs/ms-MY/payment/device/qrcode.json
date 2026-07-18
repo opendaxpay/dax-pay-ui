@@ -14,7 +14,10 @@
     "status": "Status",
     "remark": "Teguran",
     "createTime": "Cipta Masa",
-    "programType": "Jenis kod"
+    "programType": "Jenis kod",
+    "storeNo": "No. Kedai",
+    "store": "Kedai",
+    "storeName": "Nama Kedai"
   },
   "status": {
     "enabled": "Didayakan",
@@ -24,7 +27,7 @@
     "random": "Amaun Tersuai",
     "fixed": "Jumlah Tetap"
   },
-  "defaultApp": "Apl Lalai",
+  "defaultApp": "Aplikasi lalai",
   "unbound": "Tidak terikat",
   "mchNoTooltip": "No. Pedagang: {mchNo}",
   "batchCreate": "Buat Kelompok",
@@ -43,7 +46,7 @@
   "validateFixedAmount": "Sila masukkan jumlah tetap",
   "validateStatus": "Sila pilih status",
   "pleaseSelectMch": "Sila pilih peniaga",
-  "pleaseSelectApp": "Biarkan kosong untuk menggunakan apl lalai pedagang",
+  "pleaseSelectApp": "Pilih aplikasi (kosong = lalai)",
   "enable": "Dayakan",
   "disable": "Lumpuhkan",
   "confirmDelete": "Adakah anda pasti akan memadamkan papan kod QR ini?",
@@ -60,5 +63,18 @@
     "h5": "H5",
     "mini_app": "Program mini"
   },
-  "validateProgramType": "Sila pilih jenis kod"
+  "validateProgramType": "Sila pilih jenis kod",
+  "bindStore": "Ikat Kedai",
+  "unbindStore": "Nyahikat Kedai",
+  "confirmUnbindStore": "Nyahikat kedai dari papan terpilih? Selepas itu tidak lagi dikaitkan dengan kedai.",
+  "pleaseSelectStore": "Sila pilih kedai",
+  "validateStoreNo": "Sila pilih kedai",
+  "storeBindNeedSameMch": "Apabila mengikat kedai secara kelompok, pilih papan di bawah peniaga yang sama",
+  "storeBindNeedMerchant": "Ikat peniaga dahulu sebelum mengikat kedai",
+  "batchActions": "Tindakan Pukal",
+  "bindApp": "Ikat Aplikasi",
+  "unbindApp": "Nyahikat Aplikasi",
+  "confirmUnbindApp": "Nyahikat aplikasi dari papan terpilih? Bayaran akan guna aplikasi lalai peniaga.",
+  "validateAppId": "Sila pilih aplikasi",
+  "defaultStoreHint": "Kedai lalai (jika dikonfigurasi)"
 }

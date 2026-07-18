@@ -14,7 +14,10 @@
     "status": "Status",
     "remark": "Komentar",
     "createTime": "Ciptakan Waktu",
-    "programType": "Tipe kode"
+    "programType": "Tipe kode",
+    "storeNo": "No. Toko",
+    "store": "Toko",
+    "storeName": "Nama Toko"
   },
   "status": {
     "enabled": "Diaktifkan",
@@ -24,7 +27,7 @@
     "random": "Jumlah Khusus",
     "fixed": "Jumlah Tetap"
   },
-  "defaultApp": "Aplikasi Bawaan",
+  "defaultApp": "Aplikasi default",
   "unbound": "Tidak terikat",
   "mchNoTooltip": "Nomor Pedagang: {mchNo}",
   "batchCreate": "Pembuatan Batch",
@@ -43,7 +46,7 @@
   "validateFixedAmount": "Silakan masukkan jumlah tetap",
   "validateStatus": "Silakan pilih status",
   "pleaseSelectMch": "Silakan pilih pedagang",
-  "pleaseSelectApp": "Biarkan kosong untuk menggunakan aplikasi default pedagang",
+  "pleaseSelectApp": "Pilih aplikasi (kosong = default)",
   "enable": "Memungkinkan",
   "disable": "Cacat",
   "confirmDelete": "Apakah Anda yakin akan menghapus papan kode QR ini?",
@@ -60,5 +63,18 @@
     "h5": "H5",
     "mini_app": "Mini program"
   },
-  "validateProgramType": "Pilih tipe kode"
+  "validateProgramType": "Pilih tipe kode",
+  "bindStore": "Ikat Toko",
+  "unbindStore": "Lepas Toko",
+  "confirmUnbindStore": "Lepas toko dari papan terpilih? Setelah dilepas tidak terhubung toko.",
+  "pleaseSelectStore": "Pilih toko",
+  "validateStoreNo": "Pilih toko",
+  "storeBindNeedSameMch": "Saat mengikat toko batch, pilih papan dari merchant yang sama",
+  "storeBindNeedMerchant": "Ikat merchant dulu sebelum mengikat toko",
+  "batchActions": "Operasi Massal",
+  "bindApp": "Ikat Aplikasi",
+  "unbindApp": "Lepas Aplikasi",
+  "confirmUnbindApp": "Lepas aplikasi dari papan terpilih? Pembayaran akan memakai aplikasi default merchant.",
+  "validateAppId": "Pilih aplikasi",
+  "defaultStoreHint": "Toko default (jika dikonfigurasi)"
 }

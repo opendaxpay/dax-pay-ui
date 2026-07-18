@@ -14,7 +14,10 @@
     "status": "สถานะ",
     "remark": "หมายเหตุ",
     "createTime": "สร้างเวลา",
-    "programType": "ประเภทโค้ด"
+    "programType": "ประเภทโค้ด",
+    "storeNo": "รหัสสาขา",
+    "store": "สาขา",
+    "storeName": "ชื่อสาขา"
   },
   "status": {
     "enabled": "เปิดใช้งานแล้ว",
@@ -43,7 +46,7 @@
   "validateFixedAmount": "กรุณากรอกจำนวนเงินที่แน่นอน",
   "validateStatus": "โปรดเลือกสถานะ",
   "pleaseSelectMch": "กรุณาเลือกร้านค้า",
-  "pleaseSelectApp": "เว้นว่างไว้เพื่อใช้แอปเริ่มต้นของผู้ขาย",
+  "pleaseSelectApp": "เลือกแอป (ว่าง = เริ่มต้น)",
   "enable": "เปิดใช้งาน",
   "disable": "ปิดการใช้งาน",
   "confirmDelete": "คุณแน่ใจหรือว่าจะลบบอร์ดโค้ด QR นี้",
@@ -60,5 +63,18 @@
     "h5": "H5",
     "mini_app": "มินิโปรแกรม"
   },
-  "validateProgramType": "โปรดเลือกประเภทโค้ด"
+  "validateProgramType": "โปรดเลือกประเภทโค้ด",
+  "bindStore": "ผูกสาขา",
+  "unbindStore": "ยกเลิกผูกสาขา",
+  "confirmUnbindStore": "ยกเลิกการผูกสาขาของป้ายที่เลือกหรือไม่? หลังยกเลิกจะไม่เชื่อมสาขา",
+  "pleaseSelectStore": "กรุณาเลือกสาขา",
+  "validateStoreNo": "กรุณาเลือกสาขา",
+  "storeBindNeedSameMch": "เมื่อผูกสาขาแบบชุดต้องเลือกป้ายภายใต้ร้านค้าเดียวกัน",
+  "storeBindNeedMerchant": "กรุณาผูกผู้ค้าก่อนผูกสาขา",
+  "batchActions": "การดำเนินการแบบชุด",
+  "bindApp": "ผูกแอป",
+  "unbindApp": "ยกเลิกผูกแอป",
+  "confirmUnbindApp": "ยกเลิกการผูกแอปของป้ายที่เลือกหรือไม่? หลังยกเลิกจะใช้แอปเริ่มต้นของผู้ค้า",
+  "validateAppId": "กรุณาเลือกแอป",
+  "defaultStoreHint": "สาขาเริ่มต้น (ถ้ามี)"
 }

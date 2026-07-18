@@ -51,6 +51,34 @@ export const DeviceQrCodeApi = {
   },
 
   /**
+   * 批量绑定应用
+   */
+  bindApp(data: DeviceQrCodeBindAppParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/device/qrcode/bind-app', data });
+  },
+
+  /**
+   * 批量解绑应用
+   */
+  unbindApp(ids: string[]): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/device/qrcode/unbind-app', data: ids });
+  },
+
+  /**
+   * 批量绑定门店
+   */
+  bindStore(data: DeviceQrCodeBindStoreParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/device/qrcode/bind-store', data });
+  },
+
+  /**
+   * 批量解绑门店
+   */
+  unbindStore(ids: string[]): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/device/qrcode/unbind-store', data: ids });
+  },
+
+  /**
    * 修改码牌
    */
   update(data: DeviceQrCodeParam): Promise<Result<void>> {
@@ -89,6 +117,8 @@ export interface DeviceQrCodeQuery {
   batchNo?: string;
   /** 商户号 */
   mchNo?: string;
+  /** 绑定门店号 */
+  storeNo?: string;
   /** 落地程序类型 h5/mini_app */
   programType?: string;
   /** 金额类型 random/fixed */
@@ -143,6 +173,24 @@ export interface DeviceQrCodeBindMerchantParam {
   mchNo: string;
   /** 关联应用号 */
   appId?: string;
+  /** 绑定门店号(可空, 空则清空原门店) */
+  storeNo?: string;
+}
+
+/** 绑定应用参数 */
+export interface DeviceQrCodeBindAppParam {
+  /** 码牌主键列表 */
+  ids: string[];
+  /** 应用号 */
+  appId: string;
+}
+
+/** 绑定门店参数 */
+export interface DeviceQrCodeBindStoreParam {
+  /** 码牌主键列表 */
+  ids: string[];
+  /** 门店号 */
+  storeNo: string;
 }
 
 /** 支付码牌结果 */
@@ -159,6 +207,10 @@ export interface DeviceQrCodeResult extends BaseEntity {
   mchName?: string;
   /** 关联应用号(空=商户默认应用) */
   appId?: string;
+  /** 绑定门店号 */
+  storeNo?: string;
+  /** 门店名称(由 storeNo 翻译) */
+  storeName?: string;
   /** 落地程序类型 h5/mini_app */
   programType?: string;
   /** 金额类型 random/fixed */

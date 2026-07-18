@@ -14,7 +14,10 @@
     "status": "Trạng thái",
     "remark": "Nhận xét",
     "createTime": "Tạo thời gian",
-    "programType": "Loại mã"
+    "programType": "Loại mã",
+    "storeNo": "Mã cửa hàng",
+    "store": "Cửa hàng",
+    "storeName": "Tên cửa hàng"
   },
   "status": {
     "enabled": "Đã bật",
@@ -43,7 +46,7 @@
   "validateFixedAmount": "Vui lòng nhập số tiền cố định",
   "validateStatus": "Vui lòng chọn một trạng thái",
   "pleaseSelectMch": "Vui lòng chọn một người bán",
-  "pleaseSelectApp": "Để trống để sử dụng ứng dụng mặc định của người bán",
+  "pleaseSelectApp": "Chọn ứng dụng (trống = mặc định)",
   "enable": "Cho phép",
   "disable": "Vô hiệu hóa",
   "confirmDelete": "Bạn có chắc chắn xóa bảng mã QR này không?",
@@ -60,5 +63,18 @@
     "h5": "H5",
     "mini_app": "Mini program"
   },
-  "validateProgramType": "Vui lòng chọn loại mã"
+  "validateProgramType": "Vui lòng chọn loại mã",
+  "bindStore": "Gán cửa hàng",
+  "unbindStore": "Bỏ gán cửa hàng",
+  "confirmUnbindStore": "Bỏ gán cửa hàng cho mã đã chọn? Sau khi bỏ sẽ không còn liên kết cửa hàng.",
+  "pleaseSelectStore": "Vui lòng chọn cửa hàng",
+  "validateStoreNo": "Vui lòng chọn cửa hàng",
+  "storeBindNeedSameMch": "Khi gán cửa hàng hàng loạt, phải chọn mã thuộc cùng thương nhân",
+  "storeBindNeedMerchant": "Hãy gán thương nhân trước khi gán cửa hàng",
+  "batchActions": "Thao tác hàng loạt",
+  "bindApp": "Gán ứng dụng",
+  "unbindApp": "Bỏ gán ứng dụng",
+  "confirmUnbindApp": "Bỏ gán ứng dụng cho mã đã chọn? Thanh toán sẽ dùng ứng dụng mặc định của thương nhân.",
+  "validateAppId": "Vui lòng chọn ứng dụng",
+  "defaultStoreHint": "Cửa hàng mặc định (nếu có)"
 }

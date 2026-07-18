@@ -14,7 +14,10 @@
     "status": "상태",
     "remark": "주목",
     "createTime": "시간 만들기",
-    "programType": "코드 유형"
+    "programType": "코드 유형",
+    "storeNo": "매장 번호",
+    "store": "매장",
+    "storeName": "매장명"
   },
   "status": {
     "enabled": "활성화됨",
@@ -43,7 +46,7 @@
   "validateFixedAmount": "정해진 금액을 입력해주세요",
   "validateStatus": "상태를 선택해 주세요",
   "pleaseSelectMch": "판매자를 선택해주세요.",
-  "pleaseSelectApp": "판매자 기본 앱을 사용하려면 비워두세요.",
+  "pleaseSelectApp": "앱 선택(비우면 기본 앱)",
   "enable": "할 수 있게 하다",
   "disable": "장애를 입히다",
   "confirmDelete": "이 QR 코드 보드를 삭제하시겠습니까?",
@@ -60,5 +63,18 @@
     "h5": "H5",
     "mini_app": "미니프로그램"
   },
-  "validateProgramType": "코드 유형을 선택하세요"
+  "validateProgramType": "코드 유형을 선택하세요",
+  "bindStore": "매장 연결",
+  "unbindStore": "매장 연결 해제",
+  "confirmUnbindStore": "선택한 코드판의 매장 연결을 해제하시겠습니까? 해제 후 매장에 연결되지 않습니다.",
+  "pleaseSelectStore": "매장을 선택하세요",
+  "validateStoreNo": "매장을 선택하세요",
+  "storeBindNeedSameMch": "매장 일괄 연결 시 동일 가맹점의 코드판을 선택해야 합니다",
+  "storeBindNeedMerchant": "매장 연결 전에 먼저 가맹점을 연결하세요",
+  "batchActions": "일괄 작업",
+  "bindApp": "앱 연결",
+  "unbindApp": "앱 연결 해제",
+  "confirmUnbindApp": "선택한 코드판의 앱 연결을 해제하시겠습니까? 해제 후 가맹점 기본 앱을 사용합니다.",
+  "validateAppId": "앱을 선택하세요",
+  "defaultStoreHint": "기본 매장(설정된 경우)"
 }

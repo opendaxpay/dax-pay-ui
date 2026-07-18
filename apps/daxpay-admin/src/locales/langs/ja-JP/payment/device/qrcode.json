@@ -14,7 +14,10 @@
     "status": "状態",
     "remark": "述べる",
     "createTime": "時間を作る",
-    "programType": "コード種別"
+    "programType": "コード種別",
+    "storeNo": "店舗番号",
+    "store": "店舗",
+    "storeName": "店舗名"
   },
   "status": {
     "enabled": "有効",
@@ -24,7 +27,7 @@
     "random": "カスタム金額",
     "fixed": "定額"
   },
-  "defaultApp": "デフォルトのアプリ",
+  "defaultApp": "デフォルトアプリ",
   "unbound": "束縛されていない",
   "mchNoTooltip": "販売者番号: {mchNo}",
   "batchCreate": "バッチ作成",
@@ -43,7 +46,7 @@
   "validateFixedAmount": "固定金額を入力してください",
   "validateStatus": "ステータスを選択してください",
   "pleaseSelectMch": "販売者を選択してください",
-  "pleaseSelectApp": "販売者のデフォルトアプリを使用するには、空白のままにしてください",
+  "pleaseSelectApp": "アプリを選択(空=デフォルト)",
   "enable": "有効にする",
   "disable": "無効にする",
   "confirmDelete": "このQRコードボードを削除してもよろしいですか？",
@@ -60,5 +63,18 @@
     "h5": "H5",
     "mini_app": "ミニプログラム"
   },
-  "validateProgramType": "コード種別を選択してください"
+  "validateProgramType": "コード種別を選択してください",
+  "bindStore": "店舗を紐付け",
+  "unbindStore": "店舗の紐付け解除",
+  "confirmUnbindStore": "選択したコード札の店舗紐付けを解除しますか？解除後は店舗に紐づきません。",
+  "pleaseSelectStore": "店舗を選択してください",
+  "validateStoreNo": "店舗を選択してください",
+  "storeBindNeedSameMch": "店舗を一括紐付けする場合、同一加盟店のコード札を選択してください",
+  "storeBindNeedMerchant": "先に加盟店を紐付けてから店舗を紐付けてください",
+  "batchActions": "一括操作",
+  "bindApp": "アプリを紐付け",
+  "unbindApp": "アプリの紐付け解除",
+  "confirmUnbindApp": "選択したコード札のアプリ紐付けを解除しますか？解除後は加盟店のデフォルトアプリを使用します。",
+  "validateAppId": "アプリを選択してください",
+  "defaultStoreHint": "デフォルト店舗(設定時)"
 }
