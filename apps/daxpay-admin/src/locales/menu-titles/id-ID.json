@@ -93,6 +93,6 @@
   "menu.system.security": "Manajemen Keamanan",
   "menu.system.security.system": "Keamanan Sistem",
   "menu.system.security.pay": "Keamanan Pembayaran",
-  "menu.device.terminal.system": "Terminal Sistem",
+  "menu.payment.merchant.terminal": "Terminal Sistem",
   "menu.device.terminal.channel": "Terminal Saluran"
 }

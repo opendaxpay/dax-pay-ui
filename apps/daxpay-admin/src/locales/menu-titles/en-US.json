@@ -93,6 +93,6 @@
   "menu.system.security": "Security Management",
   "menu.system.security.system": "System Security",
   "menu.system.security.pay": "Pay Security",
-  "menu.device.terminal.system": "System Terminals",
+  "menu.payment.merchant.terminal": "System Terminals",
   "menu.device.terminal.channel": "Channel Terminals"
 }

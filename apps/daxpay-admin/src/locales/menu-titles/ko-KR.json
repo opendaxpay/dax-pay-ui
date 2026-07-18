@@ -93,6 +93,6 @@
   "menu.system.security": "보안 관리",
   "menu.system.security.system": "시스템 보안",
   "menu.system.security.pay": "결제 보안",
-  "menu.device.terminal.system": "시스템 단말",
+  "menu.payment.merchant.terminal": "시스템 단말",
   "menu.device.terminal.channel": "채널 단말"
 }

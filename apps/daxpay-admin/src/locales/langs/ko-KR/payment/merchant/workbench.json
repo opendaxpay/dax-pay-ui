@@ -23,6 +23,8 @@
     "cardUser": "판매자 사용자",
     "cardUserDesc": "사용자 계정 관리 및 권한 할당",
     "cardStore": "매장관리",
-    "cardStoreDesc": "실제 매장 프로필 및 위치 관리"
+    "cardStoreDesc": "실제 매장 프로필 및 위치 관리",
+    "cardTerminal": "시스템 단말",
+    "cardTerminalDesc": "머천트 논리 단말 및 채널 단말 바인딩 관리"
   }
 }

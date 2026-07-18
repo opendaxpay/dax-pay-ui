@@ -23,6 +23,8 @@
     "cardUser": "商户用户",
     "cardUserDesc": "用户賬號管理與權限分配",
     "cardStore": "門店管理",
-    "cardStoreDesc": "商户物理門店檔案與位置信息管理"
+    "cardStoreDesc": "商户物理門店檔案與位置信息管理",
+    "cardTerminal": "系統終端",
+    "cardTerminalDesc": "商户邏輯終端編號與通道終端綁定管理"
   }
 }

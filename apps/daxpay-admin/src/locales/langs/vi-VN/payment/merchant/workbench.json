@@ -23,6 +23,8 @@
     "cardUser": "Người dùng thương gia",
     "cardUserDesc": "Quản lý tài khoản người dùng và phân quyền",
     "cardStore": "Quản lý cửa hàng",
-    "cardStoreDesc": "Hồ sơ cửa hàng vật lý và quản lý vị trí"
+    "cardStoreDesc": "Hồ sơ cửa hàng vật lý và quản lý vị trí",
+    "cardTerminal": "Thiết bị hệ thống",
+    "cardTerminalDesc": "Quản lý mã thiết bị logic của thương gia và liên kết thiết bị kênh"
   }
 }

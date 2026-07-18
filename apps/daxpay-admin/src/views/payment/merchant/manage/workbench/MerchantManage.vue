@@ -58,6 +58,15 @@
           description: $t('payment.merchant.workbench.workbench.cardStoreDesc'),
           route: '/payment/merchant/store',
         },
+        {
+          key: 'terminal',
+          // 系统终端
+          title: $t('payment.merchant.workbench.workbench.cardTerminal'),
+          icon: 'ant-design:monitor-outlined',
+          // 商户逻辑终端编号与通道终端绑定管理
+          description: $t('payment.merchant.workbench.workbench.cardTerminalDesc'),
+          route: '/payment/merchant/terminal',
+        },
       ],
     },
     {

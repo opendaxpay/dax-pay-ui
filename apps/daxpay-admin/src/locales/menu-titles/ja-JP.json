@@ -93,6 +93,6 @@
   "menu.system.security": "セキュリティ管理",
   "menu.system.security.system": "システムセキュリティ",
   "menu.system.security.pay": "決済セキュリティ",
-  "menu.device.terminal.system": "システム端末",
+  "menu.payment.merchant.terminal": "システム端末",
   "menu.device.terminal.channel": "チャネル端末"
 }

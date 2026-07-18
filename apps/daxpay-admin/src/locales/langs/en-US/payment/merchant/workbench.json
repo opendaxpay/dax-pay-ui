@@ -23,6 +23,8 @@
     "cardUser": "Merchant User",
     "cardUserDesc": "User account management and permission assignment",
     "cardStore": "Store Management",
-    "cardStoreDesc": "Physical store profiles and location management"
+    "cardStoreDesc": "Physical store profiles and location management",
+    "cardTerminal": "System Terminals",
+    "cardTerminalDesc": "Merchant logical terminal codes and channel terminal binding management"
   }
 }

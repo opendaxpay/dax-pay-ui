@@ -93,6 +93,6 @@
   "menu.system.security": "Quản lý bảo mật",
   "menu.system.security.system": "Bảo mật hệ thống",
   "menu.system.security.pay": "Bảo mật thanh toán",
-  "menu.device.terminal.system": "Thiết bị hệ thống",
+  "menu.payment.merchant.terminal": "Thiết bị hệ thống",
   "menu.device.terminal.channel": "Thiết bị kênh"
 }

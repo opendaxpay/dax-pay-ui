@@ -23,6 +23,8 @@
     "cardUser": "Pengguna Saudagar",
     "cardUserDesc": "Pengurusan akaun pengguna dan tugasan kebenaran",
     "cardStore": "Pengurusan Stor",
-    "cardStoreDesc": "Profil kedai fizikal dan pengurusan lokasi"
+    "cardStoreDesc": "Profil kedai fizikal dan pengurusan lokasi",
+    "cardTerminal": "Terminal Sistem",
+    "cardTerminalDesc": "Urus kod terminal logik pedagang dan pengikatan terminal saluran"
   }
 }

@@ -23,6 +23,8 @@
     "cardUser": "販売者ユーザー",
     "cardUserDesc": "ユーザーアカウントの管理と権限の割り当て",
     "cardStore": "店舗管理",
-    "cardStoreDesc": "実店舗のプロファイルとロケーション管理"
+    "cardStoreDesc": "実店舗のプロファイルとロケーション管理",
+    "cardTerminal": "システム端末",
+    "cardTerminalDesc": "マーチャント論理端末とチャネル端末のバインド管理"
   }
 }

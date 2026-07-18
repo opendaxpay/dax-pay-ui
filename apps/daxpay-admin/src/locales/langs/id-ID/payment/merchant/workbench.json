@@ -23,6 +23,8 @@
     "cardUser": "Pengguna Pedagang",
     "cardUserDesc": "Manajemen akun pengguna dan penetapan izin",
     "cardStore": "Manajemen Toko",
-    "cardStoreDesc": "Profil toko fisik dan manajemen lokasi"
+    "cardStoreDesc": "Profil toko fisik dan manajemen lokasi",
+    "cardTerminal": "Terminal Sistem",
+    "cardTerminalDesc": "Kelola kode terminal logis pedagang dan pengikatan terminal saluran"
   }
 }
