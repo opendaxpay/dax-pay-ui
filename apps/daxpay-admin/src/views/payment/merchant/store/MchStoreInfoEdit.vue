@@ -22,6 +22,7 @@
     mchNo: '',
     storeName: '',
     status: 'enable',
+    defaultStore: false,
   });
 
   const statusOptions = computed(() => [
@@ -32,6 +33,8 @@
   const formRules = computed(() => ({
     storeName: [{ required: true, message: $t('payment.merchant.store.store.validationStoreName') }],
     status: [{ required: true, message: $t('payment.merchant.store.store.validationStatus') }],
+    // 默认门店必选
+    defaultStore: [{ required: true, message: $t('payment.merchant.store.store.validationDefaultStore') }],
   }));
 
   /**
@@ -42,6 +45,7 @@
       mchNo: mchNo.value,
       storeName: '',
       status: 'enable',
+      defaultStore: false,
     };
     formRef.value?.resetFields();
   }
@@ -76,6 +80,7 @@
         longitude: row.longitude,
         latitude: row.latitude,
         status: row.status || 'enable',
+        defaultStore: !!row.defaultStore,
         remark: row.remark,
       };
     } finally {
@@ -157,6 +162,13 @@
         <!-- 状态 -->
         <a-form-item :label="$t('payment.merchant.store.store.field.status')" name="status">
           <a-select v-model:value="formState.status" :disabled="showable" :options="statusOptions" />
+        </a-form-item>
+        <!-- 默认门店(必选) -->
+        <a-form-item :label="$t('payment.merchant.store.store.defaultStore')" name="defaultStore">
+          <a-radio-group v-model:value="formState.defaultStore" button-style="solid" :disabled="showable">
+            <a-radio-button :value="true">{{ $t('common.yes') }}</a-radio-button>
+            <a-radio-button :value="false">{{ $t('common.no') }}</a-radio-button>
+          </a-radio-group>
         </a-form-item>
         <!-- 联系人电话 -->
         <a-form-item :label="$t('payment.merchant.store.store.field.contactPhone')">

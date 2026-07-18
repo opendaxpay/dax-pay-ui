@@ -23,6 +23,12 @@
     "regionPlaceholder": "请选择省/市/区",
     "confirmDelete": "确定删除该门店吗？",
     "validationStoreName": "请输入门店名称",
-    "validationStatus": "请选择状态"
+    "validationStatus": "请选择状态",
+    "defaultStore": "默认门店",
+    "setDefault": "设为默认",
+    "clearDefault": "取消默认",
+    "confirmSetDefault": "确定将该门店设为默认吗？同商户下其它默认标记将取消。",
+    "confirmClearDefault": "确定取消该门店的默认标记吗？",
+    "validationDefaultStore": "请选择是否为默认门店"
   }
 }

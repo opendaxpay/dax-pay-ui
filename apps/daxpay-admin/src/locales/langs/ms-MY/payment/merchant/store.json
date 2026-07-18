@@ -23,6 +23,12 @@
     "regionPlaceholder": "Sila pilih wilayah / bandar / daerah",
     "confirmDelete": "Padamkan kedai ini?",
     "validationStoreName": "Sila masukkan nama kedai",
-    "validationStatus": "Sila pilih status"
+    "validationStatus": "Sila pilih status",
+    "defaultStore": "Kedai Lalai",
+    "setDefault": "Tetapkan Lalai",
+    "clearDefault": "Nyah lalai",
+    "confirmSetDefault": "Tetapkan kedai ini sebagai lalai? Tanda lalai lain peniaga akan dikosongkan.",
+    "confirmClearDefault": "Nyah tanda lalai kedai ini?",
+    "validationDefaultStore": "Sila pilih sama ada kedai lalai"
   }
 }

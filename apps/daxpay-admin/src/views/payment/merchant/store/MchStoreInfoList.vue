@@ -223,6 +223,36 @@
       },
     });
   }
+
+  /**
+   * 设为默认门店
+   */
+  function handleSetDefault(row: MchStoreInfoResult) {
+    confirm({
+      content: $t('payment.merchant.store.store.confirmSetDefault'),
+      onOk() {
+        return MchStoreInfoApi.setDefault(row.id!).then(() => {
+          message.success($t('common.operationSuccess'));
+          queryPage();
+        });
+      },
+    });
+  }
+
+  /**
+   * 取消默认门店
+   */
+  function handleClearDefault(row: MchStoreInfoResult) {
+    confirm({
+      content: $t('payment.merchant.store.store.confirmClearDefault'),
+      onOk() {
+        return MchStoreInfoApi.clearDefault(row.id!).then(() => {
+          message.success($t('common.operationSuccess'));
+          queryPage();
+        });
+      },
+    });
+  }
 </script>
 
 <template>
@@ -278,7 +308,23 @@
               <span v-else>{{ row.storeNo }}</span>
             </template>
           </vxe-column>
-          <vxe-column field="storeName" :title="$t('payment.merchant.store.store.field.storeName')" :min-width="160" />
+          <vxe-column field="storeName" :title="$t('payment.merchant.store.store.field.storeName')" :min-width="160">
+            <template #default="{ row }">
+              <span>{{ row.storeName }}</span>
+            </template>
+          </vxe-column>
+          <!-- 默认门店: 独立成列, 不与名称挤在一起 -->
+          <vxe-column
+            field="defaultStore"
+            :title="$t('payment.merchant.store.store.defaultStore')"
+            :width="100"
+            align="center"
+          >
+            <template #default="{ row }">
+              <a-tag v-if="row.defaultStore" color="processing">{{ $t('common.yes') }}</a-tag>
+              <span v-else class="text-muted-foreground">{{ $t('common.no') }}</span>
+            </template>
+          </vxe-column>
           <vxe-column
             field="contactPhone"
             :title="$t('payment.merchant.store.store.field.contactPhone')"
@@ -308,7 +354,7 @@
             :min-width="180"
             formatter="formatDateTime"
           />
-          <vxe-column fixed="right" width="140" :show-overflow="false" :title="$t('common.operation')">
+          <vxe-column fixed="right" width="220" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">
               <a-space :size="2">
                 <template #separator>
@@ -320,6 +366,20 @@
                   size="small"
                   @click="handleEdit(row)"
                   >{{ $t('common.edit') }}</a-button
+                >
+                <a-button
+                  v-if="hasPermission(PermCodes.Merchant.Store.MANAGE) && !row.defaultStore"
+                  type="link"
+                  size="small"
+                  @click="handleSetDefault(row)"
+                  >{{ $t('payment.merchant.store.store.setDefault') }}</a-button
+                >
+                <a-button
+                  v-if="hasPermission(PermCodes.Merchant.Store.MANAGE) && row.defaultStore"
+                  type="link"
+                  size="small"
+                  @click="handleClearDefault(row)"
+                  >{{ $t('payment.merchant.store.store.clearDefault') }}</a-button
                 >
                 <a-button
                   v-if="hasPermission(PermCodes.Merchant.Store.MANAGE)"

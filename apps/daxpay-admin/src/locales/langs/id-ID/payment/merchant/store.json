@@ -23,6 +23,12 @@
     "regionPlaceholder": "Silakan pilih provinsi/kota/kabupaten",
     "confirmDelete": "Hapus toko ini?",
     "validationStoreName": "Silakan masukkan nama toko",
-    "validationStatus": "Silakan pilih status"
+    "validationStatus": "Silakan pilih status",
+    "defaultStore": "Toko Default",
+    "setDefault": "Jadikan Default",
+    "clearDefault": "Hapus Default",
+    "confirmSetDefault": "Jadikan toko ini default? Tanda default lain di merchant akan dihapus.",
+    "confirmClearDefault": "Hapus tanda default toko ini?",
+    "validationDefaultStore": "Silakan pilih apakah ini toko default"
   }
 }

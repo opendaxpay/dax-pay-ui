@@ -23,6 +23,12 @@
     "regionPlaceholder": "都道府県/市/区を選択してください",
     "confirmDelete": "このストアを削除しますか?",
     "validationStoreName": "店名を入力してください",
-    "validationStatus": "ステータスを選択してください"
+    "validationStatus": "ステータスを選択してください",
+    "defaultStore": "デフォルト店舗",
+    "setDefault": "デフォルトに設定",
+    "clearDefault": "デフォルト解除",
+    "confirmSetDefault": "この店舗をデフォルトにしますか？同一加盟店の他のデフォルトは解除されます。",
+    "confirmClearDefault": "この店舗のデフォルトを解除しますか？",
+    "validationDefaultStore": "デフォルト店舗にするか選択してください"
   }
 }

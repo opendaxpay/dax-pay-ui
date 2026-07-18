@@ -23,6 +23,12 @@
     "regionPlaceholder": "도/시/군을 선택해주세요.",
     "confirmDelete": "이 매장을 삭제하시겠습니까?",
     "validationStoreName": "매장명을 입력해주세요",
-    "validationStatus": "상태를 선택해주세요"
+    "validationStatus": "상태를 선택해주세요",
+    "defaultStore": "기본 매장",
+    "setDefault": "기본으로 설정",
+    "clearDefault": "기본 해제",
+    "confirmSetDefault": "이 매장을 기본으로 설정하시겠습니까? 동일 가맹점의 다른 기본 표시는 해제됩니다.",
+    "confirmClearDefault": "이 매장의 기본 표시를 해제하시겠습니까?",
+    "validationDefaultStore": "기본 매장 여부를 선택해주세요"
   }
 }

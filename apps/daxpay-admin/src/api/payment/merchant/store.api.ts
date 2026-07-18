@@ -42,6 +42,20 @@ export const MchStoreInfoApi = {
   delete(id: string): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/mch/store/delete', params: { id } });
   },
+
+  /**
+   * 设为默认门店
+   */
+  setDefault(id: string): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/mch/store/set-default', params: { id } });
+  },
+
+  /**
+   * 取消默认门店
+   */
+  clearDefault(id: string): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/mch/store/clear-default', params: { id } });
+  },
 };
 
 /** 门店查询参数 */
@@ -84,6 +98,8 @@ export interface MchStoreInfoParam {
   latitude?: number;
   /** 状态 enable / disabled */
   status?: string;
+  /** 是否默认门店 */
+  defaultStore?: boolean;
   /** 备注 */
   remark?: string;
 }
@@ -114,6 +130,8 @@ export interface MchStoreInfoResult extends BaseEntity {
   latitude?: number;
   /** 状态 */
   status?: string;
+  /** 是否默认门店 */
+  defaultStore?: boolean;
   /** 备注 */
   remark?: string;
 }
