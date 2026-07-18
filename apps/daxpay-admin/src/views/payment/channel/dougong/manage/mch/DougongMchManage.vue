@@ -9,10 +9,10 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { DougongChannelMerchantApi } from '#/api/payment/channel/dougong/channel-merchant.api';
+  import DougongMchConfigEdit from '#/views/payment/channel/dougong/config/DougongMchConfigEdit.vue';
+  import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/merchant/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
   import CommonChannelMerchantBasicInfo from '#/views/payment/merchant/channel-merchant/detail/CommonChannelMerchantBasicInfo.vue';
-
-  import DougongMchConfigEdit from '#/views/payment/channel/dougong/config/DougongMchConfigEdit.vue';
 
   defineOptions({ name: 'DougongMchManage' });
 
@@ -146,6 +146,7 @@
             :class="getGroupColorClass(group.color)"
           ></div>
         </a-card>
+        <TerminalCardPlaceholder v-if="group.group === $t('payment.merchant.channelMerchant.groupBasic')" />
       </div>
     </div>
 

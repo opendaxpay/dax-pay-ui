@@ -111,5 +111,10 @@
   "alipaySubMerchantNoRequired": "กรุณากรอกหมายเลขร้านค้าย่อย",
   "wechatSubMerchantNo": "ผู้ค้ารายย่อยเลขที่",
   "wechatSubMerchantNoPlaceholder": "กรุณากรอกหมายเลขร้านค้าย่อย WeChat",
-  "wechatSubMerchantNoRequired": "กรุณากรอกหมายเลขร้านค้าย่อย"
+  "wechatSubMerchantNoRequired": "กรุณากรอกหมายเลขร้านค้าย่อย",
+  "groupTerminal": "บัญชีเทอร์มินัล",
+  "cardTerminal": "บัญชีเทอร์มินัล",
+  "cardTerminalDesc": "ลงทะเบียนหมายเลขเทอร์มินัลช่องทางและผูกกับเทอร์มินัลระบบ",
+  "cardTerminalBadge": "กำลังพัฒนา",
+  "cardTerminalTooltip": "กำลังออกแบบ field terminal ตามช่องทาง ยังไม่เปิดให้ใช้งาน"
 }

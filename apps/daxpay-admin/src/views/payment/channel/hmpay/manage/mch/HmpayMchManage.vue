@@ -10,6 +10,7 @@
 
   import { HmpayChannelMerchantApi } from '#/api/payment/channel/hmpay/channel-merchant.api';
   import HmpayMchConfigEdit from '#/views/payment/channel/hmpay/config/HmpayMchConfigEdit.vue';
+  import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/merchant/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
   import CommonChannelMerchantBasicInfo from '#/views/payment/merchant/channel-merchant/detail/CommonChannelMerchantBasicInfo.vue';
 
@@ -35,7 +36,7 @@
 
   /**
    * 功能卡片配置
-    * 河马付(杉德)服务商模式, 商户有杉德商户号/门店号等配置, 创建后可查看/配置
+   * 河马付(杉德)服务商模式, 商户有杉德商户号/门店号等配置, 创建后可查看/配置
    */
   const functionCards = computed(() => [
     {
@@ -156,6 +157,7 @@
             :class="getGroupColorClass(group.color)"
           ></div>
         </a-card>
+        <TerminalCardPlaceholder v-if="group.group === $t('payment.merchant.channelMerchant.groupBasic')" />
       </div>
     </div>
 

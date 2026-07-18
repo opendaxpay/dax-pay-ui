@@ -111,5 +111,10 @@
   "alipaySubMerchantNoRequired": "Silakan masukkan nomor sub-pedagang.",
   "wechatSubMerchantNo": "Sub-pedagang No.",
   "wechatSubMerchantNoPlaceholder": "Silakan masukkan nomor sub-pedagang WeChat.",
-  "wechatSubMerchantNoRequired": "Silakan masukkan nomor sub-pedagang."
+  "wechatSubMerchantNoRequired": "Silakan masukkan nomor sub-pedagang.",
+  "groupTerminal": "Buku Terminal",
+  "cardTerminal": "Buku Terminal",
+  "cardTerminalDesc": "Daftarkan nomor terminal saluran dan tautkan ke terminal sistem",
+  "cardTerminalBadge": "Dalam Pengembangan",
+  "cardTerminalTooltip": "Desain field terminal per saluran sedang berjalan, belum tersedia"
 }

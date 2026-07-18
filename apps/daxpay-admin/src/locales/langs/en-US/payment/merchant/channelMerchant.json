@@ -111,5 +111,10 @@
   "alipaySubMerchantNoRequired": "Please enter sub-merchant no.",
   "wechatSubMerchantNo": "Sub-merchant No.",
   "wechatSubMerchantNoPlaceholder": "Please enter WeChat sub-merchant no.",
-  "wechatSubMerchantNoRequired": "Please enter sub-merchant no."
+  "wechatSubMerchantNoRequired": "Please enter sub-merchant no.",
+  "groupTerminal": "Terminal Ledger",
+  "cardTerminal": "Terminal Ledger",
+  "cardTerminalDesc": "Register channel-side terminal numbers and bind system terminals",
+  "cardTerminalBadge": "In Dev",
+  "cardTerminalTooltip": "Channel-specific terminal fields design in progress, not yet available"
 }

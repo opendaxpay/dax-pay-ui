@@ -111,5 +111,10 @@
   "alipaySubMerchantNoRequired": "請輸入子商户號",
   "wechatSubMerchantNo": "特約商户號",
   "wechatSubMerchantNoPlaceholder": "請輸入微信特約商户號",
-  "wechatSubMerchantNoRequired": "請輸入特約商户號"
+  "wechatSubMerchantNoRequired": "請輸入特約商户號",
+  "groupTerminal": "終端台帳",
+  "cardTerminal": "終端台帳",
+  "cardTerminalDesc": "登記本通道商戶下的通道側終端號, 並可綁定系統終端",
+  "cardTerminalBadge": "開發中",
+  "cardTerminalTooltip": "終端差異化欄位設計中,暫未開放"
 }

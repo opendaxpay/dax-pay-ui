@@ -7,6 +7,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/merchant/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
 
   import UmsDirectChannelMerchantBasicInfo from './UmsDirectChannelMerchantBasicInfo.vue';
@@ -138,6 +139,7 @@
                 :class="getGroupColorClass(group.color)"
               ></div>
             </a-card>
+            <TerminalCardPlaceholder v-if="group.group === $t('payment.merchant.channelMerchant.groupBasic')" />
           </div>
         </div>
       </div>

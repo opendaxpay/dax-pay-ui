@@ -111,5 +111,10 @@
   "alipaySubMerchantNoRequired": "Vui lòng nhập số người bán phụ.",
   "wechatSubMerchantNo": "Số người bán phụ",
   "wechatSubMerchantNoPlaceholder": "Vui lòng nhập số người bán phụ WeChat.",
-  "wechatSubMerchantNoRequired": "Vui lòng nhập số người bán phụ."
+  "wechatSubMerchantNoRequired": "Vui lòng nhập số người bán phụ.",
+  "groupTerminal": "Sổ thiết bị",
+  "cardTerminal": "Sổ thiết bị",
+  "cardTerminalDesc": "Đăng ký số thiết bị kênh và liên kết với thiết bị hệ thống",
+  "cardTerminalBadge": "Đang phát triển",
+  "cardTerminalTooltip": "Đang thiết kế trường terminal theo kênh, chưa mở"
 }

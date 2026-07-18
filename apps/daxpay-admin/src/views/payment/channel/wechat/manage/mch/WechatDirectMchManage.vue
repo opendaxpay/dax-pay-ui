@@ -9,6 +9,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { ProductEnum } from '#/enums/payment/productEnum';
+  import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/merchant/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
 
   import WechatDirectChannelMerchantBasicInfo from './WechatDirectChannelMerchantBasicInfo.vue';
@@ -168,6 +169,7 @@
             :class="getGroupColorClass(group.color)"
           ></div>
         </a-card>
+        <TerminalCardPlaceholder v-if="group.group === $t('payment.merchant.channelMerchant.groupBasic')" />
       </div>
     </div>
 

@@ -111,5 +111,10 @@
   "alipaySubMerchantNoRequired": "请输入子商户号",
   "wechatSubMerchantNo": "特约商户号",
   "wechatSubMerchantNoPlaceholder": "请输入微信特约商户号",
-  "wechatSubMerchantNoRequired": "请输入特约商户号"
+  "wechatSubMerchantNoRequired": "请输入特约商户号",
+  "groupTerminal": "终端台账",
+  "cardTerminal": "终端台账",
+  "cardTerminalDesc": "登记本通道商户下的通道侧终端号, 并可绑定系统终端",
+  "cardTerminalBadge": "开发中",
+  "cardTerminalTooltip": "终端差异化字段设计中,暂未开放"
 }

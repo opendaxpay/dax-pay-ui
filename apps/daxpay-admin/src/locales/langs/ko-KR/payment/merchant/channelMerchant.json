@@ -111,5 +111,10 @@
   "alipaySubMerchantNoRequired": "하위 판매자 번호를 입력하세요.",
   "wechatSubMerchantNo": "하위 판매자 번호",
   "wechatSubMerchantNoPlaceholder": "WeChat 하위 판매자 번호를 입력하세요.",
-  "wechatSubMerchantNoRequired": "하위 판매자 번호를 입력하세요."
+  "wechatSubMerchantNoRequired": "하위 판매자 번호를 입력하세요.",
+  "groupTerminal": "단말 대장",
+  "cardTerminal": "단말 대장",
+  "cardTerminalDesc": "본 채널 가맹점의 단말 번호를 등록하고 시스템 단말에 연결합니다",
+  "cardTerminalBadge": "개발 중",
+  "cardTerminalTooltip": "채널별 단말 필드 설계 중, 미오픈"
 }
