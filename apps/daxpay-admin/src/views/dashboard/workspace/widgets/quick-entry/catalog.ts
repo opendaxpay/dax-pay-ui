@@ -233,7 +233,7 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
   },
   {
     key: 'socialLogin',
-    routeName: '/system/config/social',
+    routeName: '/system/config/third-platform/ThirdPlatform',
     icon: 'lucide:share-2',
     titleKey: 'dashboard.workspace.quickEntry.socialLogin',
     color: 'bg-fuchsia-500',
