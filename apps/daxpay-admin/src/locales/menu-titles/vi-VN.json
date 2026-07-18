@@ -35,7 +35,9 @@
   "menu.payment.platform.provider": "Phương thức thanh toán",
   "menu.payment.merchant.user": "Người dùng thương gia",
   "menu.payment.merchant.app": "Quản lý ứng dụng",
-  "menu.trade.normalPay": "Lệnh thanh toán",
+  "menu.trade.payOrder": "Lệnh thanh toán",
+  "menu.trade.normalPay": "Lệnh thường",
+  "menu.trade.gatewayOrder": "Lệnh Gateway",
   "menu.payment.merchant.channelMerchant.alipayApp": "Ứng dụng Alipay",
   "menu.payment.merchant.channelMerchant.detail": "Quản lý người bán kênh",
   "menu.payment.merchant.channelMerchant.wechatApp": "Ứng dụng WeChat",
@@ -55,10 +57,10 @@
   "menu.payment.merchant.channelMerchant": "Người bán kênh",
   "menu.payment.merchant.channelMerchant.douyinApp": "Ứng dụng Douyin",
   "menu.payment.config.productConfig": "Cấu hình sản phẩm kênh",
-  "menu.device.assistant": "Thiết bị hỗ trợ thanh toán",
+  "menu.device.assistant": "Quản lý thiết bị đầu cuối",
   "menu.payment.config.wechatApp": "Ứng dụng WeChat ISV",
   "menu.payment.platform.provider.manage": "Nhà cung cấp thanh toán",
-  "menu.trade.payTrade": "Giao dịch quỹ",
+  "menu.trade.payTrade": "Giao dịch thanh toán",
   "menu.system.notify.notice": "Thông báo",
   "menu.system.notify": "Trung tâm thông báo",
   "menu.payment.config.alipayApp": "Ứng dụng ISV của Alipay",
@@ -90,5 +92,7 @@
   "menu.system.sensitive.hit": "Lịch sử trúng",
   "menu.system.security": "Quản lý bảo mật",
   "menu.system.security.system": "Bảo mật hệ thống",
-  "menu.system.security.pay": "Bảo mật thanh toán"
+  "menu.system.security.pay": "Bảo mật thanh toán",
+  "menu.device.terminal.system": "Thiết bị hệ thống",
+  "menu.device.terminal.channel": "Thiết bị kênh"
 }

@@ -35,7 +35,9 @@
   "menu.payment.platform.provider": "Metode Pembayaran",
   "menu.payment.merchant.user": "Pengguna Pedagang",
   "menu.payment.merchant.app": "Manajemen Aplikasi",
-  "menu.trade.normalPay": "Perintah Pembayaran",
+  "menu.trade.payOrder": "Pesanan Pembayaran",
+  "menu.trade.normalPay": "Pesanan Normal",
+  "menu.trade.gatewayOrder": "Pesanan Gateway",
   "menu.payment.merchant.channelMerchant.alipayApp": "Aplikasi Alipay",
   "menu.payment.merchant.channelMerchant.detail": "Manajemen Pedagang Saluran",
   "menu.payment.merchant.channelMerchant.wechatApp": "Aplikasi WeChat",
@@ -55,10 +57,10 @@
   "menu.payment.merchant.channelMerchant": "Pedagang Saluran",
   "menu.payment.merchant.channelMerchant.douyinApp": "Aplikasi Douyin",
   "menu.payment.config.productConfig": "Konfigurasi Produk Saluran",
-  "menu.device.assistant": "Terminal Asisten Pembayaran",
+  "menu.device.assistant": "Manajemen Terminal",
   "menu.payment.config.wechatApp": "Aplikasi WeChat ISV",
   "menu.payment.platform.provider.manage": "Penyedia Pembayaran",
-  "menu.trade.payTrade": "Perdagangan Dana",
+  "menu.trade.payTrade": "Transaksi Pembayaran",
   "menu.system.notify.notice": "Pemberitahuan",
   "menu.system.notify": "Pusat Pemberitahuan",
   "menu.payment.config.alipayApp": "Aplikasi Alipay ISV",
@@ -90,5 +92,7 @@
   "menu.system.sensitive.hit": "Catatan hit",
   "menu.system.security": "Manajemen Keamanan",
   "menu.system.security.system": "Keamanan Sistem",
-  "menu.system.security.pay": "Keamanan Pembayaran"
+  "menu.system.security.pay": "Keamanan Pembayaran",
+  "menu.device.terminal.system": "Terminal Sistem",
+  "menu.device.terminal.channel": "Terminal Saluran"
 }

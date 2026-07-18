@@ -35,7 +35,9 @@
   "menu.payment.platform.provider": "支付方式",
   "menu.payment.merchant.user": "商户用户",
   "menu.payment.merchant.app": "应用管理",
-  "menu.trade.normalPay": "支付订单",
+  "menu.trade.payOrder": "支付订单",
+  "menu.trade.normalPay": "普通订单",
+  "menu.trade.gatewayOrder": "网关订单",
   "menu.payment.merchant.channelMerchant.alipayApp": "支付宝应用",
   "menu.payment.merchant.channelMerchant.detail": "通道商户管理",
   "menu.payment.merchant.channelMerchant.wechatApp": "微信应用",
@@ -55,10 +57,10 @@
   "menu.payment.merchant.channelMerchant": "通道商户",
   "menu.payment.merchant.channelMerchant.douyinApp": "抖音应用",
   "menu.payment.config.productConfig": "通道产品配置",
-  "menu.device.assistant": "辅助支付终端",
+  "menu.device.assistant": "终端管理",
   "menu.payment.config.wechatApp": "微信服务商应用",
   "menu.payment.platform.provider.manage": "支付渠道",
-  "menu.trade.payTrade": "资金交易",
+  "menu.trade.payTrade": "支付交易",
   "menu.system.notify.notice": "通知公告",
   "menu.system.notify": "通知中心",
   "menu.payment.config.alipayApp": "支付宝服务商应用",
@@ -90,5 +92,7 @@
   "menu.system.sensitive.hit": "命中记录",
   "menu.system.security": "安全管理",
   "menu.system.security.system": "系统安全配置",
-  "menu.system.security.pay": "支付安全配置"
+  "menu.system.security.pay": "支付安全配置",
+  "menu.device.terminal.system": "系统终端",
+  "menu.device.terminal.channel": "通道终端"
 }

@@ -35,7 +35,9 @@
   "menu.payment.platform.provider": "결제 방법",
   "menu.payment.merchant.user": "판매자 사용자",
   "menu.payment.merchant.app": "앱 관리",
-  "menu.trade.normalPay": "지불 주문",
+  "menu.trade.payOrder": "결제 주문",
+  "menu.trade.normalPay": "일반 주문",
+  "menu.trade.gatewayOrder": "게이트웨이 주문",
   "menu.payment.merchant.channelMerchant.alipayApp": "알리페이 앱",
   "menu.payment.merchant.channelMerchant.detail": "채널 판매자 관리",
   "menu.payment.merchant.channelMerchant.wechatApp": "위챗 앱",
@@ -55,10 +57,10 @@
   "menu.payment.merchant.channelMerchant": "채널 판매자",
   "menu.payment.merchant.channelMerchant.douyinApp": "두인 앱",
   "menu.payment.config.productConfig": "채널 제품 구성",
-  "menu.device.assistant": "결제 보조 단말기",
+  "menu.device.assistant": "단말 관리",
   "menu.payment.config.wechatApp": "위챗 ISV 애플리케이션",
   "menu.payment.platform.provider.manage": "결제 제공업체",
-  "menu.trade.payTrade": "펀드거래",
+  "menu.trade.payTrade": "결제 거래",
   "menu.system.notify.notice": "공고",
   "menu.system.notify": "알림 센터",
   "menu.payment.config.alipayApp": "알리페이 ISV 애플리케이션",
@@ -90,5 +92,7 @@
   "menu.system.sensitive.hit": "적중 기록",
   "menu.system.security": "보안 관리",
   "menu.system.security.system": "시스템 보안",
-  "menu.system.security.pay": "결제 보안"
+  "menu.system.security.pay": "결제 보안",
+  "menu.device.terminal.system": "시스템 단말",
+  "menu.device.terminal.channel": "채널 단말"
 }

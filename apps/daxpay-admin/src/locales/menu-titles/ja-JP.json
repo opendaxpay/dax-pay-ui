@@ -35,7 +35,9 @@
   "menu.payment.platform.provider": "支払方法",
   "menu.payment.merchant.user": "販売者ユーザー",
   "menu.payment.merchant.app": "アプリ管理",
-  "menu.trade.normalPay": "支払い命令",
+  "menu.trade.payOrder": "支払注文",
+  "menu.trade.normalPay": "通常注文",
+  "menu.trade.gatewayOrder": "ゲートウェイ注文",
   "menu.payment.merchant.channelMerchant.alipayApp": "アリペイアプリ",
   "menu.payment.merchant.channelMerchant.detail": "チャネル加盟店管理",
   "menu.payment.merchant.channelMerchant.wechatApp": "WeChatアプリ",
@@ -55,10 +57,10 @@
   "menu.payment.merchant.channelMerchant": "チャネルマーチャント",
   "menu.payment.merchant.channelMerchant.douyinApp": "Douyinアプリ",
   "menu.payment.config.productConfig": "チャネル製品構成",
-  "menu.device.assistant": "決済アシスタント端末",
+  "menu.device.assistant": "端末管理",
   "menu.payment.config.wechatApp": "WeChat ISV アプリケーション",
   "menu.payment.platform.provider.manage": "決済プロバイダー",
-  "menu.trade.payTrade": "ファンド取引",
+  "menu.trade.payTrade": "支払取引",
   "menu.system.notify.notice": "通知",
   "menu.system.notify": "通知センター",
   "menu.payment.config.alipayApp": "Alipay ISV アプリケーション",
@@ -90,5 +92,7 @@
   "menu.system.sensitive.hit": "ヒット記録",
   "menu.system.security": "セキュリティ管理",
   "menu.system.security.system": "システムセキュリティ",
-  "menu.system.security.pay": "決済セキュリティ"
+  "menu.system.security.pay": "決済セキュリティ",
+  "menu.device.terminal.system": "システム端末",
+  "menu.device.terminal.channel": "チャネル端末"
 }
