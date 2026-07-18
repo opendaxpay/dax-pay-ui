@@ -10,7 +10,7 @@
 
   const emit = defineEmits(['ok']);
 
-  const { message } = useMessage();
+  const { message, confirm } = useMessage();
 
   const formRef = ref();
   const mchNo = ref('');
@@ -24,6 +24,9 @@
     status: 'enable',
     defaultApp: false,
   });
+
+  // 编辑场景下记录原始状态, 用于检测"默认应用从启用变为停用"以触发二次确认
+  const originalStatus = ref<string>('enable');
 
   const statusOptions = computed(() => [
     { label: $t('payment.merchant.app.app.statusEnable'), value: 'enable' },
@@ -75,6 +78,8 @@
         status: row.status || 'enable',
         defaultApp: !!row.defaultApp,
       };
+      // 记录原始状态, 用于 handleOk 检测停用默认应用
+      originalStatus.value = row.status || 'enable';
     } finally {
       confirmLoading.value = false;
     }
@@ -82,6 +87,9 @@
 
   /**
    * 保存
+   *
+   * 默认应用从启用变为停用时弹二次确认(与 MchStoreInfoEdit 对齐):
+   * 停用后未传 appId 的下单将因回落默认应用失败而阻断。
    */
   async function handleOk() {
     try {
@@ -89,6 +97,24 @@
     } catch {
       // 校验失败：表单已显示错误提示
       return;
+    }
+    // 编辑场景: 默认应用从启用变停用, 弹二次确认警告
+    if (
+      formEditType.value === FormEditType.Edit &&
+      formState.value.defaultApp &&
+      originalStatus.value === 'enable' &&
+      formState.value.status === 'disabled'
+    ) {
+      const ok = await new Promise<boolean>((resolve) => {
+        confirm({
+          content: $t('payment.merchant.app.app.confirmDisableDefault'),
+          onOk: () => resolve(true),
+          onCancel: () => resolve(false),
+        });
+      });
+      if (!ok) {
+        return;
+      }
     }
     confirmLoading.value = true;
     try {

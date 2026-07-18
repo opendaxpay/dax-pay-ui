@@ -1,7 +1,11 @@
 {
   "normal": {
-    "title": "Payment Orders",
-    "detail": "Payment Order Detail"
+    "title": "Normal Pay",
+    "detail": "Normal Pay Detail"
+  },
+  "gateway": {
+    "title": "Gateway Pay",
+    "detail": "Gateway Pay Detail"
   },
   "trade": {
     "title": "Fund Trades",
@@ -10,15 +14,21 @@
   "refund": {
     "title": "Refund Orders",
     "detail": "Refund Order Detail",
+    "statusLabel": "Refund Status",
+    "section": {
+      "identity": "Identity",
+      "fund": "Related Fund Trade",
+      "amount": "Amount & Status",
+      "channel": "Channel Snapshot",
+      "notify": "Notify & Audit"
+    },
     "status": {
-      "init": "Initial",
       "progress": "Refunding",
       "success": "Success",
       "fail": "Failed",
       "close": "Closed"
     },
     "statusColor": {
-      "init": "default",
       "progress": "processing",
       "success": "green",
       "fail": "red",
@@ -27,7 +37,7 @@
   },
   "field": {
     "bizOrderNo": "Merchant Order No.",
-    "tradeNo": "Trade No.",
+    "tradeNo": "Fund Trade No.",
     "title": "Title",
     "description": "Description",
     "amount": "Amount(Yuan)",
@@ -41,7 +51,7 @@
     "provider": "Provider",
     "outOrderNo": "Channel Order No.",
     "transOrderNo": "Trans Order No.",
-    "relationOrderNo": "Relation Order No.",
+    "relationOrderNo": "Channel Relation No.",
     "postedAmount": "Posted(Yuan)",
     "refundableBalance": "Refundable(Yuan)",
     "payBody": "Pay Body",
@@ -77,13 +87,16 @@
     "reason": "Refund Reason",
     "finishTime": "Finish Time",
     "orderAmount": "Order Amount",
-    "orderNo": "Original Order No.",
+    "orderNo": "Platform Order No.",
     "authCode": "Payment code",
-    "merchant": "Merchant"
+    "merchant": "Merchant",
+    "storeNo": "Store No."
   },
   "bizStatus": {
     "wait_pay": "Waiting",
+    "paying": "Paying",
     "paid": "Paid",
+    "failed": "Failed",
     "closed": "Closed",
     "expired": "Expired"
   },
@@ -92,11 +105,14 @@
     "processing": "Processing",
     "success": "Success",
     "fail": "Failed",
-    "close": "Closed"
+    "close": "Closed",
+    "cancel": "Cancelled"
   },
   "bizStatusColor": {
     "wait_pay": "orange",
+    "paying": "processing",
     "paid": "green",
+    "failed": "red",
     "closed": "default",
     "expired": "red"
   },
@@ -105,18 +121,26 @@
     "processing": "processing",
     "success": "green",
     "fail": "red",
-    "close": "default"
+    "close": "default",
+    "cancel": "default"
+  },
+  "tradeType": {
+    "normal": "Normal Payment"
+  },
+  "gatewayType": {
+    "cashier": "Cashier",
+    "aggregate": "Aggregate Scan"
   },
   "placeholder": {
     "bizOrderNo": "Enter merchant order no.",
     "title": "Enter title",
-    "tradeNo": "Enter trade no.",
+    "tradeNo": "Enter fund trade no.",
     "outOrderNo": "Enter channel order no.",
     "amountMin": "Min amount(cents)",
     "amountMax": "Max amount(cents)",
     "refundNo": "Enter refund no.",
     "bizRefundNo": "Enter biz refund no.",
-    "orderNo": "Enter original order no."
+    "orderNo": "Enter platform order no."
   },
   "action": {
     "sync": "Sync Status",
@@ -142,9 +166,6 @@
     "refundAmountPlaceholder": "Enter refund amount",
     "refundReasonPlaceholder": "Enter refund reason (optional)",
     "refundAmountExceed": "Refund amount cannot exceed refundable amount"
-  },
-  "tradeType": {
-    "normal": "Normal Payment"
   },
   "method": {
     "jsapi": "JSAPI",

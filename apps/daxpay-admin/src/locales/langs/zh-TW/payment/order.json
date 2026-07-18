@@ -1,7 +1,11 @@
 {
   "normal": {
-    "title": "支付訂單",
-    "detail": "支付訂單詳情"
+    "title": "普通支付",
+    "detail": "普通支付詳情"
+  },
+  "gateway": {
+    "title": "網關支付",
+    "detail": "網關支付詳情"
   },
   "trade": {
     "title": "資金交易",
@@ -10,15 +14,21 @@
   "refund": {
     "title": "退款訂單",
     "detail": "退款訂單詳情",
+    "statusLabel": "退款狀態",
+    "section": {
+      "identity": "身份資訊",
+      "fund": "關聯資金",
+      "amount": "金額與狀態",
+      "channel": "通道快照",
+      "notify": "通知與審計"
+    },
     "status": {
-      "init": "初始化",
       "progress": "退款中",
       "success": "退款成功",
       "fail": "退款失敗",
       "close": "退款關閉"
     },
     "statusColor": {
-      "init": "default",
       "progress": "processing",
       "success": "green",
       "fail": "red",
@@ -41,7 +51,7 @@
     "provider": "支付渠道",
     "outOrderNo": "通道訂單號",
     "transOrderNo": "透傳訂單號",
-    "relationOrderNo": "關聯訂單號",
+    "relationOrderNo": "上送通道關聯號",
     "postedAmount": "入帳金額(元)",
     "refundableBalance": "可退金額(元)",
     "payBody": "支付引數體",
@@ -77,35 +87,42 @@
     "reason": "退款原因",
     "finishTime": "退款完成時間",
     "orderAmount": "訂單總金額",
-    "orderNo": "原支付訂單號",
+    "orderNo": "平台業務單號",
     "authCode": "付款碼",
-    "merchant": "商戶"
+    "merchant": "商戶",
+    "storeNo": "門店號"
   },
   "bizStatus": {
     "wait_pay": "待支付",
     "paid": "已支付",
     "closed": "已關閉",
-    "expired": "已過期"
+    "expired": "已過期",
+    "paying": "支付中",
+    "failed": "支付失敗"
   },
   "fundStatus": {
     "init": "初始化",
     "processing": "處理中",
     "success": "成功",
     "fail": "失敗",
-    "close": "已關閉"
+    "close": "已關閉",
+    "cancel": "已撤銷"
   },
   "bizStatusColor": {
     "wait_pay": "orange",
     "paid": "green",
     "closed": "default",
-    "expired": "red"
+    "expired": "red",
+    "paying": "processing",
+    "failed": "red"
   },
   "fundStatusColor": {
     "init": "default",
     "processing": "processing",
     "success": "green",
     "fail": "red",
-    "close": "default"
+    "close": "default",
+    "cancel": "default"
   },
   "placeholder": {
     "bizOrderNo": "請輸入商戶訂單號",
@@ -143,9 +160,6 @@
     "refundReasonPlaceholder": "請輸入退款原因(可選)",
     "refundAmountExceed": "退款金額不能大於可退金額"
   },
-  "tradeType": {
-    "normal": "普通支付"
-  },
   "method": {
     "jsapi": "JSAPI",
     "qrcode": "掃碼",
@@ -153,5 +167,13 @@
     "app": "APP",
     "barcode": "付款碼",
     "wap": "WAP"
+  },
+  "tradeType": {
+    "normal": "普通支付",
+    "gateway": "網關支付"
+  },
+  "gatewayType": {
+    "cashier": "收銀台",
+    "aggregate": "聚合掃碼"
   }
 }

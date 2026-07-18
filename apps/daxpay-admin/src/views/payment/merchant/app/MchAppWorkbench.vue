@@ -59,7 +59,6 @@
 
   const loading = ref(false);
   const appInfo = ref<MchAppInfoResult>({});
-  const appCount = ref(0);
   const appEditRef = ref<InstanceType<typeof MchAppInfoEdit>>();
   const notifyDrawerVisible = ref(false);
 
@@ -225,7 +224,6 @@
         size: 200,
       });
       const records = data?.records || [];
-      appCount.value = records.length;
       const app = records.find((a) => a.appId === appId.value);
       if (!app) {
         message.warning($t('payment.merchant.app.app.appNotFound'));
@@ -315,9 +313,12 @@
 
   /**
    * 删除应用
+   *
+   * 默认应用禁止删除(与 MchAppInfoService.delete 后端校验对齐),
+   * 需先把其他应用设为默认, 再删除当前应用。
    */
   function handleDelete() {
-    if (appInfo.value.defaultApp && appCount.value > 1) {
+    if (appInfo.value.defaultApp) {
       message.warning($t('payment.merchant.app.app.deleteDefaultBlocked'));
       return;
     }

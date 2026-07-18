@@ -48,7 +48,8 @@
     "noActions": "사용 가능한 작업이 없습니다.",
     "openActionAria": "앱 구성 열기",
     "codePayConfig": "QR Code Pay Config",
-    "codePayConfigDesc": "Configure QR code pay methods for H5 and mini program"
+    "codePayConfigDesc": "Configure QR code pay methods for H5 and mini program",
+    "confirmDisableDefault": "이 앱은 기본 앱입니다. 비활성화하면 appId 미지정 주문의 폴백이 실패합니다. 비활성화할까요?"
   },
   "easypay": {
     "v1Hint": "V1은 보안이 약하므로 레거시 호환 시에만 활성화하세요",

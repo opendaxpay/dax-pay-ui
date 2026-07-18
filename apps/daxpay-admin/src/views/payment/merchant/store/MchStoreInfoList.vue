@@ -79,6 +79,11 @@
 
   const tableData = ref<MchStoreInfoResult[]>([]);
 
+  // 是否有门店但没有默认门店(用于告警横幅)
+  const hasStoreWithoutDefault = computed(() => {
+    return tableData.value.length > 0 && !tableData.value.some((s) => s.defaultStore);
+  });
+
   // 行政区划 code -> name 映射, 用于列表反查省市区
   const regionMap = ref<Map<string, string>>(new Map());
 
@@ -211,8 +216,15 @@
 
   /**
    * 删除门店
+   *
+   * 默认门店禁止删除(与 MchStoreInfoService.delete 后端校验对齐),
+   * 需先把其他门店设为默认, 再删除当前门店。
    */
   function handleDelete(row: MchStoreInfoResult) {
+    if (row.defaultStore) {
+      message.warning($t('payment.merchant.store.store.deleteDefaultBlocked'));
+      return;
+    }
     confirm({
       content: $t('payment.merchant.store.store.confirmDelete'),
       onOk() {
@@ -282,6 +294,11 @@
       </template>
       <BQuery :fields="queryFields" :query-params="queryForm" @query="queryPage" @reset="resetQuery" />
     </a-card>
+
+    <!-- 国际化：有门店但未设置默认门店时提示 -->
+    <div v-if="hasStoreWithoutDefault && !loading" class="mt-4">
+      <a-alert :message="$t('payment.merchant.store.store.noDefaultStoreTip')" type="warning" show-icon />
+    </div>
 
     <div class="mt-4">
       <a-card>

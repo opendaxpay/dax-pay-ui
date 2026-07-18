@@ -29,6 +29,9 @@
     "clearDefault": "取消預設",
     "confirmSetDefault": "確定將該門店設為預設嗎？同商戶下其它預設標記將取消。",
     "confirmClearDefault": "確定取消該門店的預設標記嗎？",
-    "validationDefaultStore": "請選擇是否為預設門店"
+    "validationDefaultStore": "請選擇是否為預設門店",
+    "deleteDefaultBlocked": "預設門店不可刪除，請先把其他門店設為預設",
+    "noDefaultStoreTip": "您還沒有設定預設門店，請選擇一個門店設為預設",
+    "confirmDisableDefault": "該門店是預設門店，停用後將無法作為回落，未指定 storeNo 的下單會失敗，確認停用？"
   }
 }

@@ -9,9 +9,10 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { NormalOrderApi, type NormalOrderQuery, type NormalOrderResult } from '#/api/payment/order/normal-order.api';
-  import { type PayRefundParam, RefundOrderApi } from '#/api/payment/order/refund-order.api';
+  import { type RefundParam, RefundOrderApi } from '#/api/payment/order/refund-order.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
+  import { productI18nMap, productNameMap } from '#/enums/payment';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
@@ -47,7 +48,7 @@
   const refundFetching = ref(false);
   const refundFormRef = ref();
   // refundForm.amount 以「元」存储, 提交时再×100转分
-  const refundForm = ref<{ amount?: number; orderNo?: string; reason?: string }>({ amount: undefined, reason: '' });
+  const refundForm = ref<{ amount?: number; tradeNo?: string; reason?: string }>({ amount: undefined, reason: '' });
   const refundRow = ref<NormalOrderResult | null>(null);
   // 可退金额(元), 作为退款金额输入框上限
   const refundableYuan = computed(() => (refundRow.value?.refundableBalance ?? 0) / 100);
@@ -70,27 +71,19 @@
     ],
   }));
 
-  // 业务状态下拉
+  // 业务状态下拉（含 failed）
   const statusOptions = computed(() =>
-    ['wait_pay', 'paid', 'closed', 'expired'].map((v) => ({
+    ['wait_pay', 'paid', 'failed', 'closed', 'expired'].map((v) => ({
       label: $t(`payment.order.bizStatus.${v}`),
       value: v,
     })),
   );
 
-  // 支付通道下拉(常用通道)
-  const channelOptions = computed(() =>
-    ['alipay', 'wechat', 'douyin'].map((v) => ({
-      label: $t(`payment.channel.common.${v}`),
-      value: v,
-    })),
-  );
-
-  // 支付方式下拉(常用方式)
-  const methodOptions = computed(() =>
-    ['jsapi', 'qrcode', 'h5', 'app', 'barcode', 'wap'].map((v) => ({
-      label: $t(`payment.order.method.${v}`),
-      value: v,
+  // 支付产品下拉（主数据产品码）
+  const productOptions = computed(() =>
+    Object.keys(productNameMap).map((code) => ({
+      label: productLabel(code),
+      value: code,
     })),
   );
 
@@ -116,15 +109,16 @@
     },
     {
       type: 'list',
-      field: 'channel',
-      name: $t('payment.order.field.channel'),
-      selectList: channelOptions.value,
+      field: 'product',
+      // 支付产品
+      name: $t('payment.order.field.product'),
+      selectList: productOptions.value,
     },
     {
-      type: 'list',
-      field: 'method',
-      name: $t('payment.order.field.method'),
-      selectList: methodOptions.value,
+      type: 'string',
+      field: 'capability',
+      // 支付能力
+      name: $t('payment.order.field.capability'),
     },
     {
       type: 'date_time_range',
@@ -192,14 +186,29 @@
     return status ? $t(`payment.order.bizStatusColor.${status}`) : 'default';
   }
 
-  function channelLabel(code?: string): string {
+  /**
+   * 支付产品展示名
+   */
+  function productLabel(code?: string): string {
     if (!code) return '-';
-    return channelOptions.value.find((o) => o.value === code)?.label || code;
+    const i18nKey = productI18nMap[code];
+    if (i18nKey) {
+      const text = $t(i18nKey);
+      if (text && text !== i18nKey) {
+        return text;
+      }
+    }
+    return productNameMap[code] || code;
   }
 
-  function methodLabel(code?: string): string {
+  /**
+   * 支付能力展示名（复用收银台能力字典）
+   */
+  function capabilityLabel(code?: string): string {
     if (!code) return '-';
-    return methodOptions.value.find((o) => o.value === code)?.label || code;
+    const i18nKey = `payment.merchant.cashier.cashier.capabilities.${code}`;
+    const text = $t(i18nKey);
+    return text && text !== i18nKey ? text : code;
   }
 
   /**
@@ -296,7 +305,7 @@
       // 用详情回填(含 tradeNo/refundableBalance/bizOrderNo)
       refundRow.value = data || row;
       refundForm.value = {
-        orderNo: data?.tradeNo,
+        tradeNo: data?.tradeNo,
         // 分转元, 默认填满可退金额
         amount: (data?.refundableBalance ?? 0) / 100,
         reason: '',
@@ -321,8 +330,8 @@
     }
     // 元转分提交
     const amountYuan = refundForm.value.amount ?? 0;
-    const param: PayRefundParam = {
-      orderNo: refundForm.value.orderNo,
+    const param: RefundParam = {
+      tradeNo: refundForm.value.tradeNo,
       bizOrderNo: refundRow.value.bizOrderNo,
       amount: Math.round(amountYuan * 100),
       reason: refundForm.value.reason,
@@ -425,6 +434,7 @@
               </div>
             </template>
           </vxe-column>
+          <vxe-column field="orderNo" :title="$t('payment.order.field.orderNo')" :min-width="200" show-overflow />
           <vxe-column field="bizOrderNo" :title="$t('payment.order.field.bizOrderNo')" :min-width="180" show-overflow />
           <vxe-column field="title" :title="$t('payment.order.field.title')" :min-width="160" show-overflow />
           <vxe-column field="amount" :title="$t('payment.order.field.amount')" :min-width="100" align="right">
@@ -439,19 +449,12 @@
               </a-tag>
             </template>
           </vxe-column>
-          <vxe-column field="channel" :title="$t('payment.order.field.channel')" :min-width="100">
-            <template #default="{ row }">{{ channelLabel(row.channel) }}</template>
+          <vxe-column field="product" :title="$t('payment.order.field.product')" :min-width="140" show-overflow>
+            <template #default="{ row }">{{ productLabel(row.product) }}</template>
           </vxe-column>
-          <vxe-column field="method" :title="$t('payment.order.field.method')" :min-width="90">
-            <template #default="{ row }">{{ methodLabel(row.method) }}</template>
+          <vxe-column field="capability" :title="$t('payment.order.field.capability')" :min-width="140" show-overflow>
+            <template #default="{ row }">{{ capabilityLabel(row.capability) }}</template>
           </vxe-column>
-          <vxe-column field="tradeNo" :title="$t('payment.order.field.tradeNo')" :min-width="200" show-overflow />
-          <vxe-column
-            field="payTime"
-            :title="$t('payment.order.field.payTime')"
-            :min-width="160"
-            formatter="formatDateTime"
-          />
           <vxe-column
             field="createTime"
             :title="$t('payment.order.field.createTime')"
@@ -503,6 +506,9 @@
             {{ detail.mchName || '-' }}
             <span v-if="detail.mchNo" class="text-muted-foreground"> ({{ detail.mchNo }})</span>
           </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.orderNo')">
+            {{ detail.orderNo || '-' }}
+          </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.bizOrderNo')">
             {{ detail.bizOrderNo || '-' }}
           </a-descriptions-item>
@@ -523,14 +529,17 @@
           <a-descriptions-item :label="$t('payment.order.field.currency')">
             {{ detail.currency || '-' }}
           </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.product')">
+            {{ productLabel(detail.product) }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.capability')">
+            {{ capabilityLabel(detail.capability) }}
+          </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.channel')">
-            {{ channelLabel(detail.channel) }}
+            {{ detail.channel || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.method')">
-            {{ methodLabel(detail.method) }}
-          </a-descriptions-item>
-          <a-descriptions-item :label="$t('payment.order.field.product')">
-            {{ detail.product || '-' }}
+            {{ detail.method || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.channelMchNo')">
             {{ detail.channelMchNo || '-' }}
@@ -543,6 +552,9 @@
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.fundStatus')">
             {{ detail.fundStatus ? $t(`payment.order.fundStatus.${detail.fundStatus}`) : '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.storeNo')">
+            {{ detail.storeNo || '-' }}
           </a-descriptions-item>
         </a-descriptions>
 

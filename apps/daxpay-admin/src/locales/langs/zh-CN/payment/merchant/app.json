@@ -48,7 +48,8 @@
     "cancelDefaultDesc": "取消后需重新指定默认应用",
     "deleteDesc": "删除后不可恢复，请谨慎操作",
     "noActions": "暂无可用操作",
-    "openActionAria": "进入应用配置"
+    "openActionAria": "进入应用配置",
+    "confirmDisableDefault": "该应用是默认应用，停用后将无法作为回落，未指定 appId 的下单会失败，确认停用？"
   },
   "easypay": {
     "v1Hint": "V1 安全性较弱，仅兼容旧系统时开启",

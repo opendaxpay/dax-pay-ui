@@ -48,7 +48,8 @@
     "noActions": "利用可能なアクションはありません",
     "openActionAria": "アプリ設定を開く",
     "codePayConfig": "QR Code Pay Config",
-    "codePayConfigDesc": "Configure QR code pay methods for H5 and mini program"
+    "codePayConfigDesc": "Configure QR code pay methods for H5 and mini program",
+    "confirmDisableDefault": "このアプリはデフォルトアプリです。無効化すると appId 未指定の注文のフォールバックが失敗します。無効化しますか？"
   },
   "easypay": {
     "v1Hint": "V1 は安全性が低いため、旧システム互換時のみ有効にしてください",

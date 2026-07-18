@@ -1,7 +1,11 @@
 {
   "normal": {
-    "title": "支払い命令",
-    "detail": "支払い注文の詳細"
+    "title": "通常支払い",
+    "detail": "通常支払い詳細"
+  },
+  "gateway": {
+    "title": "ゲートウェイ支払い",
+    "detail": "ゲートウェイ支払い詳細"
   },
   "trade": {
     "title": "ファンド取引",
@@ -10,24 +14,30 @@
   "refund": {
     "title": "返金注文",
     "detail": "返金注文の詳細",
+    "statusLabel": "返金状態",
+    "section": {
+      "identity": "基本情報",
+      "fund": "関連資金",
+      "amount": "金額と状態",
+      "channel": "チャネル",
+      "notify": "通知"
+    },
     "status": {
-      "init": "イニシャル",
-      "progress": "払い戻し",
-      "success": "成功",
-      "fail": "失敗した",
-      "close": "閉店"
+      "progress": "返金中",
+      "success": "返金成功",
+      "fail": "返金失敗",
+      "close": "返金クローズ"
     },
     "statusColor": {
-      "init": "デフォルト",
-      "progress": "処理",
-      "success": "緑",
-      "fail": "赤",
-      "close": "デフォルト"
+      "progress": "processing",
+      "success": "green",
+      "fail": "red",
+      "close": "default"
     }
   },
   "field": {
     "bizOrderNo": "販売者の注文番号",
-    "tradeNo": "商号",
+    "tradeNo": "資金取引番号",
     "title": "タイトル",
     "description": "説明",
     "amount": "金額(元)",
@@ -41,7 +51,7 @@
     "provider": "プロバイダー",
     "outOrderNo": "チャンネル注文番号",
     "transOrderNo": "トランスオーダー番号",
-    "relationOrderNo": "関係注文番号",
+    "relationOrderNo": "Channel Relation No.",
     "postedAmount": "計上金額(元)",
     "refundableBalance": "返金可能(元)",
     "payBody": "本体を支払う",
@@ -77,35 +87,42 @@
     "reason": "返金理由",
     "finishTime": "終了時間",
     "orderAmount": "注文金額",
-    "orderNo": "元の注文番号",
+    "orderNo": "Platform Order No.",
     "authCode": "支払いコード",
-    "merchant": "加盟店"
+    "merchant": "加盟店",
+    "storeNo": "ストア番号"
   },
   "bizStatus": {
     "wait_pay": "待っている",
     "paid": "有料",
     "closed": "閉店",
-    "expired": "期限切れ"
+    "expired": "期限切れ",
+    "paying": "支払中",
+    "failed": "支払失敗"
   },
   "fundStatus": {
     "init": "イニシャル",
     "processing": "処理",
     "success": "成功",
     "fail": "失敗した",
-    "close": "閉店"
+    "close": "閉店",
+    "cancel": "取消済"
   },
   "bizStatusColor": {
     "wait_pay": "オレンジ",
     "paid": "緑",
     "closed": "デフォルト",
-    "expired": "赤"
+    "expired": "赤",
+    "paying": "processing",
+    "failed": "red"
   },
   "fundStatusColor": {
     "init": "デフォルト",
     "processing": "処理",
     "success": "緑",
     "fail": "赤",
-    "close": "デフォルト"
+    "close": "デフォルト",
+    "cancel": "default"
   },
   "placeholder": {
     "bizOrderNo": "販売者の注文番号を入力してください。",
@@ -143,9 +160,6 @@
     "refundReasonPlaceholder": "返金理由を入力してください (オプション)",
     "refundAmountExceed": "払い戻し額は払い戻し可能額を超えることはできません"
   },
-  "tradeType": {
-    "normal": "通常決済"
-  },
   "method": {
     "jsapi": "JSAPI",
     "qrcode": "QRコード",
@@ -153,5 +167,13 @@
     "app": "APP",
     "barcode": "バーコード",
     "wap": "WAP"
+  },
+  "tradeType": {
+    "normal": "通常支払い",
+    "gateway": "ゲートウェイ"
+  },
+  "gatewayType": {
+    "cashier": "Cashier",
+    "aggregate": "Aggregate"
   }
 }

@@ -1,7 +1,11 @@
 {
   "normal": {
-    "title": "支付订单",
-    "detail": "支付订单详情"
+    "title": "普通支付",
+    "detail": "普通支付详情"
+  },
+  "gateway": {
+    "title": "网关支付",
+    "detail": "网关支付详情"
   },
   "trade": {
     "title": "资金交易",
@@ -10,15 +14,21 @@
   "refund": {
     "title": "退款订单",
     "detail": "退款订单详情",
+    "statusLabel": "退款状态",
+    "section": {
+      "identity": "身份信息",
+      "fund": "关联资金",
+      "amount": "金额与状态",
+      "channel": "通道快照",
+      "notify": "通知与审计"
+    },
     "status": {
-      "init": "初始化",
       "progress": "退款中",
       "success": "退款成功",
       "fail": "退款失败",
       "close": "退款关闭"
     },
     "statusColor": {
-      "init": "default",
       "progress": "processing",
       "success": "green",
       "fail": "red",
@@ -38,10 +48,11 @@
     "method": "支付方式",
     "product": "支付产品",
     "tradeType": "交易形态",
+    "gatewayType": "网关类型",
     "provider": "支付渠道",
     "outOrderNo": "通道订单号",
     "transOrderNo": "透传订单号",
-    "relationOrderNo": "关联订单号",
+    "relationOrderNo": "上送通道关联号",
     "postedAmount": "入账金额(元)",
     "refundableBalance": "可退金额(元)",
     "payBody": "支付参数体",
@@ -77,13 +88,16 @@
     "reason": "退款原因",
     "finishTime": "退款完成时间",
     "orderAmount": "订单总金额",
-    "orderNo": "原支付订单号",
+    "orderNo": "平台业务单号",
     "authCode": "付款码",
-    "merchant": "商户"
+    "merchant": "商户",
+    "storeNo": "门店号"
   },
   "bizStatus": {
     "wait_pay": "待支付",
+    "paying": "支付中",
     "paid": "已支付",
+    "failed": "支付失败",
     "closed": "已关闭",
     "expired": "已过期"
   },
@@ -92,11 +106,14 @@
     "processing": "处理中",
     "success": "成功",
     "fail": "失败",
-    "close": "已关闭"
+    "close": "已关闭",
+    "cancel": "已撤销"
   },
   "bizStatusColor": {
     "wait_pay": "orange",
+    "paying": "processing",
     "paid": "green",
+    "failed": "red",
     "closed": "default",
     "expired": "red"
   },
@@ -105,10 +122,16 @@
     "processing": "processing",
     "success": "green",
     "fail": "red",
-    "close": "default"
+    "close": "default",
+    "cancel": "default"
   },
   "tradeType": {
-    "normal": "普通支付"
+    "normal": "普通支付",
+    "gateway": "网关支付"
+  },
+  "gatewayType": {
+    "cashier": "收银台",
+    "aggregate": "聚合扫码"
   },
   "method": {
     "jsapi": "JSAPI",
@@ -127,7 +150,7 @@
     "amountMax": "最大金额(分)",
     "refundNo": "请输入退款号",
     "bizRefundNo": "请输入商户退款号",
-    "orderNo": "请输入原支付订单号"
+    "orderNo": "请输入平台业务单号"
   },
   "action": {
     "sync": "同步状态",

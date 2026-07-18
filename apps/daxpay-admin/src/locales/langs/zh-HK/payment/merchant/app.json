@@ -48,7 +48,8 @@
     "codePayConfig": "碼牌支付配置",
     "codePayConfigDesc": "配置碼牌收款在 H5/小程序形態下的支付方式與通道",
     "aggregateScan": "聚合支付配置",
-    "aggregateScanDesc": "配置聚合掃碼連結在各打開環境下的支付方式與通道"
+    "aggregateScanDesc": "配置聚合掃碼連結在各打開環境下的支付方式與通道",
+    "confirmDisableDefault": "該應用是預設應用，停用後將無法作為回落，未指定 appId 的下單會失敗，確認停用？"
   },
   "easypay": {
     "v1Hint": "V1 安全性較弱，僅兼容舊系統時開啟",

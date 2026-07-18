@@ -37,31 +37,18 @@
   const detail = ref<PayTradeResult>({});
   const actionLoading = ref(false);
 
-  // 资金状态下拉
+  // 资金状态下拉（含 cancel）
   const statusOptions = computed(() =>
-    ['init', 'processing', 'success', 'fail', 'close'].map((v) => ({
+    ['init', 'processing', 'success', 'fail', 'close', 'cancel'].map((v) => ({
       label: $t(`payment.order.fundStatus.${v}`),
       value: v,
     })),
   );
 
-  // 交易形态下拉
-  const tradeTypeOptions = computed(() => [
-    { label: $t('payment.order.tradeType.normal'), value: 'normal' },
-  ]);
-
-  // 支付通道下拉
-  const channelOptions = computed(() =>
-    ['alipay', 'wechat', 'douyin'].map((v) => ({
-      label: $t(`payment.channel.common.${v}`),
-      value: v,
-    })),
-  );
-
-  // 支付方式下拉
-  const methodOptions = computed(() =>
-    ['jsapi', 'qrcode', 'h5', 'app', 'barcode', 'wap'].map((v) => ({
-      label: $t(`payment.order.method.${v}`),
+  // 交易形态下拉（与 PayTradeTypeEnum 已落地形态对齐）
+  const tradeTypeOptions = computed(() =>
+    ['normal', 'gateway'].map((v) => ({
+      label: $t(`payment.order.tradeType.${v}`),
       value: v,
     })),
   );
@@ -92,16 +79,9 @@
       selectList: tradeTypeOptions.value,
     },
     {
-      type: 'list',
-      field: 'channel',
-      name: $t('payment.order.field.channel'),
-      selectList: channelOptions.value,
-    },
-    {
-      type: 'list',
-      field: 'method',
-      name: $t('payment.order.field.method'),
-      selectList: methodOptions.value,
+      type: 'string',
+      field: 'channelMchNo',
+      name: $t('payment.order.field.channelMchNo'),
     },
     {
       type: 'date_time_range',
@@ -167,16 +147,6 @@
    */
   function statusColor(status?: string): string {
     return status ? $t(`payment.order.fundStatusColor.${status}`) : 'default';
-  }
-
-  function channelLabel(code?: string): string {
-    if (!code) return '-';
-    return channelOptions.value.find((o) => o.value === code)?.label || code;
-  }
-
-  function methodLabel(code?: string): string {
-    if (!code) return '-';
-    return methodOptions.value.find((o) => o.value === code)?.label || code;
   }
 
   /**
@@ -267,10 +237,20 @@
             </template>
           </vxe-column>
           <vxe-column field="tradeNo" :title="$t('payment.order.field.tradeNo')" :min-width="200" show-overflow />
-          <vxe-column field="outOrderNo" :title="$t('payment.order.field.outOrderNo')" :min-width="200" show-overflow />
-          <vxe-column field="bizOrderNo" :title="$t('payment.order.field.bizOrderNo')" :min-width="180" show-overflow />
+          <vxe-column field="tradeType" :title="$t('payment.order.field.tradeType')" :min-width="100">
+            <template #default="{ row }">
+              {{ row.tradeType ? $t(`payment.order.tradeType.${row.tradeType}`) : '-' }}
+            </template>
+          </vxe-column>
+          <vxe-column field="outOrderNo" :title="$t('payment.order.field.outOrderNo')" :min-width="180" show-overflow />
           <vxe-column field="amount" :title="$t('payment.order.field.amount')" :min-width="100" align="right">
             <template #default="{ row }">{{ formatAmount(row.amount) }}</template>
+          </vxe-column>
+          <vxe-column field="postedAmount" :title="$t('payment.order.field.postedAmount')" :min-width="100" align="right">
+            <template #default="{ row }">{{ formatAmount(row.postedAmount) }}</template>
+          </vxe-column>
+          <vxe-column field="refundableBalance" :title="$t('payment.order.field.refundableBalance')" :min-width="100" align="right">
+            <template #default="{ row }">{{ formatAmount(row.refundableBalance) }}</template>
           </vxe-column>
           <vxe-column field="status" :title="$t('payment.order.field.fundStatus')" :min-width="100" align="center">
             <template #default="{ row }">
@@ -279,19 +259,20 @@
               </a-tag>
             </template>
           </vxe-column>
-          <vxe-column field="channel" :title="$t('payment.order.field.channel')" :min-width="100">
-            <template #default="{ row }">{{ channelLabel(row.channel) }}</template>
-          </vxe-column>
-          <vxe-column field="method" :title="$t('payment.order.field.method')" :min-width="90">
-            <template #default="{ row }">{{ methodLabel(row.method) }}</template>
-          </vxe-column>
+          <vxe-column field="channelMchNo" :title="$t('payment.order.field.channelMchNo')" :min-width="140" show-overflow />
+          <vxe-column
+            field="payTime"
+            :title="$t('payment.order.field.payTime')"
+            :min-width="160"
+            formatter="formatDateTime"
+          />
           <vxe-column
             field="createTime"
             :title="$t('payment.order.field.createTime')"
             :min-width="160"
             formatter="formatDateTime"
           />
-          <vxe-column :title="$t('common.operation')" width="200" fixed="right" :show-overflow="false">
+          <vxe-column :title="$t('common.operation')" width="220" fixed="right" :show-overflow="false">
             <template #default="{ row }">
               <a-space :size="2">
                 <template #separator>
@@ -351,8 +332,14 @@
           <a-descriptions-item :label="$t('payment.order.field.tradeNo')">
             {{ detail.tradeNo || '-' }}
           </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.tradeType')">
+            {{ detail.tradeType ? $t(`payment.order.tradeType.${detail.tradeType}`) : '-' }}
+          </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.outOrderNo')">
             {{ detail.outOrderNo || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.orderNo')">
+            {{ detail.containerOrderNo || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.bizOrderNo')">
             {{ detail.bizOrderNo || '-' }}
@@ -378,10 +365,10 @@
             {{ formatAmount(detail.refundableBalance) }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.channel')">
-            {{ channelLabel(detail.channel) }}
+            {{ detail.channel || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.method')">
-            {{ methodLabel(detail.method) }}
+            {{ detail.method || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.channelAppId')">
             {{ detail.channelAppId || '-' }}
@@ -391,6 +378,9 @@
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.provider')">
             {{ detail.provider || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.channelMchNo')">
+            {{ detail.channelMchNo || '-' }}
           </a-descriptions-item>
         </a-descriptions>
 
@@ -419,6 +409,9 @@
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.source')">
             {{ detail.source || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.storeNo')">
+            {{ detail.storeNo || '-' }}
           </a-descriptions-item>
         </a-descriptions>
 

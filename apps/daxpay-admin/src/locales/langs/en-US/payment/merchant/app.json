@@ -48,7 +48,8 @@
     "codePayConfig": "QR Code Pay Config",
     "codePayConfigDesc": "Configure QR code pay methods for H5 and mini program",
     "aggregateScan": "Aggregate Pay Config",
-    "aggregateScanDesc": "Configure aggregate scan pay methods and channels by open environment"
+    "aggregateScanDesc": "Configure aggregate scan pay methods and channels by open environment",
+    "confirmDisableDefault": "This is the default app. Disabling it will break fallback for orders without appId. Continue?"
   },
   "easypay": {
     "v1Hint": "V1 is weakly secured; enable only for legacy clients",
