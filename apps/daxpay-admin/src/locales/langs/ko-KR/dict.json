@@ -182,7 +182,7 @@
     "wechat_h5": "微信H5",
     "wechat_app": "微信应用支付",
     "alipay_qr": "支付宝扫码",
-    "alipay_jsapi": "알리페이 JSAPI（미니 프로그램 포함）",
+    "alipay_jsapi": "알리페이 JSAPI",
     "alipay_pc": "支付宝电脑支付",
     "alipay_h5": "支付宝H5",
     "alipay_app": "支付宝应用支付",
