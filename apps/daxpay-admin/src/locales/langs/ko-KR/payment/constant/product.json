@@ -32,8 +32,8 @@
     "prodConfigBtn": "생산",
     "sandboxConfigBtn": "모래 상자",
     "switchEnv": "스위치 환경",
-    "switchToSandboxConfirm": "샌드박스 환경으로 전환하시겠습니까? 모든 트랜잭션은 통합 및 기능 테스트에 적합한 샌드박스 API 엔드포인트를 사용합니다.",
-    "switchToProdConfirm": "프로덕션 환경으로 전환하시겠습니까? 모든 거래는 생산 API 엔드포인트를 사용하며 실제 자금 흐름을 포함합니다.",
+    "switchToSandboxConfirm": "샌드박스 환경으로 전환하시겠습니까? 전환 후 새로 생성되는 채널 가맹점의 기본 환경과 결제 라우팅 대상에만 영향을 미치며, 기존 채널 가맹점은 각자의 원래 환경을 유지합니다.",
+    "switchToProdConfirm": "프로덕션 환경으로 전환하시겠습니까? 전환 후 새로 생성되는 채널 가맹점의 기본 환경과 결제 라우팅 대상에만 영향을 미치며, 기존 채널 가맹점은 각자의 원래 환경을 유지합니다.",
     "nonIsvDisabledTip": "ISV 이외의 결제 상품은 편집할 수 없습니다."
   },
   "placeholder": {

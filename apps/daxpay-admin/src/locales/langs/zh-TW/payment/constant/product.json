@@ -32,8 +32,8 @@
     "prodConfigBtn": "生產配置",
     "sandboxConfigBtn": "沙箱配置",
     "switchEnv": "切換環境",
-    "switchToSandboxConfirm": "確定要切換到沙箱環境嗎？所有交易將會使用呼叫沙箱介面，適用於介面聯調與功能測試。",
-    "switchToProdConfirm": "確定要切換到生產環境嗎？所有交易將使用生產介面進行真實請求，併產生真實資金往來。",
+    "switchToSandboxConfirm": "確定要切換到沙箱環境嗎？切換後僅影響「新建通道商戶的預設環境」與「支付路由目標」，已建立的通道商戶保持各自原環境不變。",
+    "switchToProdConfirm": "確定要切換到生產環境嗎？切換後僅影響「新建通道商戶的預設環境」與「支付路由目標」，已建立的通道商戶保持各自原環境不變。",
     "nonIsvDisabledTip": "非服務商型別的支付產品無法編輯"
   },
   "placeholder": {

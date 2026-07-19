@@ -32,8 +32,8 @@
     "prodConfigBtn": "Production",
     "sandboxConfigBtn": "Sandbox",
     "switchEnv": "Switch Environment",
-    "switchToSandboxConfirm": "Switch to sandbox environment? All transactions will use sandbox API endpoints, suitable for integration and functional testing.",
-    "switchToProdConfirm": "Switch to production environment? All transactions will use production API endpoints and involve real fund flows.",
+    "switchToSandboxConfirm": "Switch to sandbox environment? This only affects the default environment for newly created channel merchants and the payment routing target. Existing channel merchants retain their original environment.",
+    "switchToProdConfirm": "Switch to production environment? This only affects the default environment for newly created channel merchants and the payment routing target. Existing channel merchants retain their original environment.",
     "nonIsvDisabledTip": "Non-ISV payment products cannot be edited"
   },
   "placeholder": {

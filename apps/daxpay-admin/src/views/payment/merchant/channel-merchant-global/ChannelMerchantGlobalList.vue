@@ -217,15 +217,16 @@
           <!-- 环境状态（仅有沙箱数据时显示，其余可通过 toolbar custom 自定义） -->
           <vxe-column
             v-if="list.some((r) => r.sandboxSupport)"
-            field="activeEnv"
+            field="sandbox"
             :title="$t('payment.merchant.channelMerchant.envStatus')"
             :min-width="100"
             align="center"
           >
             <template #default="{ row }">
-              <a-tag v-if="row.sandboxSupport" :color="row.activeEnv === 'sandbox' ? 'orange' : 'blue'">
+              <!-- 环境标签读通道商户固化的 sandbox 字段(创建时按当时产品 activeEnv 写入, 不随产品切换改变) -->
+              <a-tag v-if="row.sandboxSupport" :color="row.sandbox ? 'orange' : 'blue'">
                 {{
-                  row.activeEnv === 'sandbox'
+                  row.sandbox
                     ? $t('payment.constant.product.productConfig.sandboxLabel')
                     : $t('payment.constant.product.productConfig.prodLabel')
                 }}
