@@ -241,7 +241,7 @@
 
       <template #extra>
         <template v-if="!isEditing">
-          <a-button v-if="hasPermission(PermCodes.Action.MANAGE)" type="primary" @click="handleEdit">{{
+          <a-button v-if="hasPermission(PermCodes.Merchant.Credential.MANAGE)" type="primary" @click="handleEdit">{{
             $t('common.edit')
           }}</a-button>
         </template>
@@ -249,7 +249,7 @@
           <a-space>
             <a-button @click="handleCancel">{{ $t('common.cancelText') }}</a-button>
             <a-button
-              v-if="hasPermission(PermCodes.Action.MANAGE)"
+              v-if="hasPermission(PermCodes.Merchant.Credential.MANAGE)"
               type="primary"
               :loading="saving"
               @click="handleSave"
