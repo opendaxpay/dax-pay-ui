@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import type { LabelValue } from '#/types/web';
+  import type { ChannelMchOption, LabelValue } from '#/types/web';
 
   import { computed, onMounted, ref, watch } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
@@ -8,22 +8,23 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import {
+    type AggregateClientEnvParam,
     AggregateConfigApi,
     type AggregateConfigResult,
-    type AggregateClientEnvParam,
   } from '#/api/payment/merchant/aggregate.api';
+  import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import { PayRouteApi } from '#/api/payment/route/pay-route.api';
+  import ChannelMerchantSelect from '#/components/channel/ChannelMerchantSelect.vue';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { useMessage } from '#/hooks/useMessage';
   import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
+  import { PAY_ROUTE_MODE } from '#/views/payment/merchant/route/shared/payRoute.constants';
+  import { modeDisplayName } from '#/views/payment/merchant/route/shared/payRoute.labels';
   import RouteHitPreviewBlock from '#/views/payment/merchant/shared/RouteHitPreviewBlock.vue';
   import { useRouteHitPreview } from '#/views/payment/merchant/shared/useRouteHitPreview';
-  import { modeDisplayName } from '#/views/payment/merchant/route/shared/payRoute.labels';
-  import { PAY_ROUTE_MODE } from '#/views/payment/merchant/route/shared/payRoute.constants';
 
-  import { AGGREGATE_LEVEL, AGGREGATE_CLIENT_ENVS, type AggregateLevel } from './shared/constants';
+  import { AGGREGATE_CLIENT_ENVS, AGGREGATE_LEVEL, type AggregateLevel } from './shared/constants';
 
   defineOptions({ name: 'AggregateScanConfig' });
 
@@ -66,7 +67,7 @@
 
   // 候选数据
   const methodDirectory = ref<Record<string, LabelValue[]>>({}); // provider → 方式列表
-  const channelMchMap = ref<Record<string, LabelValue[]>>({}); // clientEnv → 通道商户列表
+  const channelMchMap = ref<Record<string, ChannelMchOption[]>>({}); // clientEnv → 通道商户列表
   const capabilityMap = ref<Record<string, LabelValue[]>>({}); // clientEnv → 能力列表
 
   // 通道路由命中预览（与路由页同源；解构以便模板自动解包 ref）
@@ -187,7 +188,7 @@
 
   /** 加载通道商户候选(DIRECT 模式用) */
   async function loadChannelMchCandidates() {
-    const map: Record<string, LabelValue[]> = {};
+    const map: Record<string, ChannelMchOption[]> = {};
     await Promise.all(
       AGGREGATE_CLIENT_ENVS.map(async (sc) => {
         const { data } = await PayRouteApi.listSceneChannelMchCandidates({
@@ -298,9 +299,7 @@
       }
       if (!hasMch || !hasCap) {
         message.error(
-          $t('payment.merchant.aggregate.aggregate.partialRowIncomplete') +
-            ': ' +
-            clientEnvLabel(sc.clientEnv),
+          $t('payment.merchant.aggregate.aggregate.partialRowIncomplete') + ': ' + clientEnvLabel(sc.clientEnv),
         );
         return null;
       }
@@ -391,9 +390,7 @@
             </template>
           </a-button>
           <span class="text-lg font-bold">{{ $t('payment.merchant.aggregate.aggregate.title') }}</span>
-          <span v-if="appInfo.appName" class="text-sm text-muted-foreground">
-            ({{ appInfo.appName }})
-          </span>
+          <span v-if="appInfo.appName" class="text-sm text-muted-foreground"> ({{ appInfo.appName }}) </span>
         </div>
       </template>
 
@@ -468,11 +465,7 @@
             </div>
 
             <!-- 数据行 -->
-            <div
-              v-for="sc in AGGREGATE_CLIENT_ENVS"
-              :key="sc.clientEnv"
-              class="env-grid-row"
-            >
+            <div v-for="sc in AGGREGATE_CLIENT_ENVS" :key="sc.clientEnv" class="env-grid-row">
               <div class="cell-env font-medium">{{ clientEnvLabel(sc.clientEnv) }}</div>
 
               <!-- AUTO：只读支付方式 + 路由预览 -->
@@ -508,13 +501,12 @@
               <!-- DIRECT：通道商户 + 能力（跳过路由） -->
               <template v-else>
                 <div>
-                  <a-select
+                  <ChannelMerchantSelect
                     :value="getClientEnvData(sc.clientEnv).channelMchNo"
                     :options="channelMchOptions(sc.clientEnv)"
                     :placeholder="$t('payment.merchant.aggregate.aggregate.channelMerchantPlaceholder')"
                     :disabled="!editing"
-                    allow-clear
-                    class="w-full min-w-[160px]"
+                    root-class-name="w-full min-w-[160px]"
                     @change="(val: any) => onChannelMchChange(sc.clientEnv, val)"
                   />
                 </div>

@@ -1,5 +1,5 @@
 import type { PayProviderMethod } from '#/api/payment/masterdata/provider.api';
-import type { BaseEntity, LabelValue, Result } from '#/types/web';
+import type { BaseEntity, ChannelMchOption, LabelValue, Result } from '#/types/web';
 
 import { defHttp } from '#/api/request';
 
@@ -31,7 +31,7 @@ export const PayRouteApi = {
   },
 
   /** 通道路由白名单目录下全部 (provider|method) 通道商户候选 */
-  listSceneChannelMchCandidatesBatch(params: { appId: string }): Promise<Result<Record<string, LabelValue[]>>> {
+  listSceneChannelMchCandidatesBatch(params: { appId: string }): Promise<Result<Record<string, ChannelMchOption[]>>> {
     return defHttp.get({
       url: '/admin/merchant/pay-route/scene-config/channel-mch-candidates-batch',
       params,
@@ -39,7 +39,7 @@ export const PayRouteApi = {
   },
 
   /** 目录项下商户已开通的通道商户候选 */
-  listSceneChannelMchCandidates(params: PayRouteSceneChannelMchCandidatesQuery): Promise<Result<LabelValue[]>> {
+  listSceneChannelMchCandidates(params: PayRouteSceneChannelMchCandidatesQuery): Promise<Result<ChannelMchOption[]>> {
     return defHttp.get({
       url: '/admin/merchant/pay-route/scene-config/channel-mch-candidates',
       params,

@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import type { AuthResult, AuthUrlResult, ChannelAuthUrlParam } from '#/api/payment/develop/developAuth.api';
-  import type { LabelValue } from '#/types/web';
+  import type { ChannelMchOption, LabelValue } from '#/types/web';
 
   import { computed, onBeforeUnmount, onMounted, reactive, ref } from 'vue';
 
@@ -13,6 +13,7 @@
   import { DevelopAuthApi } from '#/api/payment/develop/developAuth.api';
   import { DevelopTradeApi } from '#/api/payment/develop/developTrade.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
+  import ChannelMerchantSelect from '#/components/channel/ChannelMerchantSelect.vue';
   import { QrCode } from '#/components/qrcode';
   import { useMessage } from '#/hooks/useMessage';
 
@@ -26,7 +27,7 @@
   } as const;
 
   /** 认证类型 */
-  type AuthType = 'alipay' | 'alipayMini' | 'wechatChannel' | 'wechatMini' | 'wechatMp' | 'douyin';
+  type AuthType = 'alipay' | 'alipayMini' | 'douyin' | 'wechatChannel' | 'wechatMini' | 'wechatMp';
   const authType = ref<AuthType>('alipay');
 
   const { message } = useMessage();
@@ -55,7 +56,7 @@
 
   /** 下拉选项 */
   const mchNoOptions = ref<LabelValue[]>([]);
-  const channelMchNoOptions = ref<LabelValue[]>([]);
+  const channelMchNoOptions = ref<ChannelMchOption[]>([]);
   const capabilityOptions = ref<LabelValue[]>([]);
 
   /** 微信小程序端类型选项 */
@@ -207,12 +208,12 @@
             : authType.value === 'douyin'
               ? DevelopAuthApi.generateDouyinAuthUrl()
               : DevelopAuthApi.generateChannelAuthUrl({
-                channel: 'wechat',
-                authType: 'wechat',
-                mchNo: form.mchNo,
-                channelMchNo: form.channelMchNo,
-                capability: form.capability,
-              } as ChannelAuthUrlParam);
+                  channel: 'wechat',
+                  authType: 'wechat',
+                  mchNo: form.mchNo,
+                  channelMchNo: form.channelMchNo,
+                  capability: form.capability,
+                } as ChannelAuthUrlParam);
       const { data } = await promise;
       authUrl.value = data ?? {};
       if (data?.queryCode) {
@@ -248,7 +249,15 @@
       <template #extra>
         <a-space :size="8">
           <a-tag color="blue">OAuth2.0</a-tag>
-          <a-tag :color="authType === 'alipay' || authType === 'alipayMini' ? 'processing' : authType === 'douyin' ? 'black' : 'green'">
+          <a-tag
+            :color="
+              authType === 'alipay' || authType === 'alipayMini'
+                ? 'processing'
+                : authType === 'douyin'
+                  ? 'black'
+                  : 'green'
+            "
+          >
             {{ tagLabel }}
           </a-tag>
         </a-space>
@@ -303,13 +312,7 @@
 
               <!-- 微信支付：商户参数表单 -->
               <div v-if="authType === 'wechatChannel'" class="form-panel">
-                <a-form
-                  ref="formRef"
-                  layout="vertical"
-                  class="channel-auth-form"
-                  :model="form"
-                  :rules="formRules"
-                >
+                <a-form ref="formRef" layout="vertical" class="channel-auth-form" :model="form" :rules="formRules">
                   <a-form-item :label="$t('payment.develop.auth.form.mchNo')" name="mchNo">
                     <a-select
                       v-model:value="form.mchNo"
@@ -322,17 +325,18 @@
                     />
                   </a-form-item>
                   <a-form-item :label="$t('payment.develop.auth.form.channelMchNo')" name="channelMchNo">
-                    <a-select
+                    <ChannelMerchantSelect
                       v-model:value="form.channelMchNo"
                       :options="channelMchNoOptions"
                       :placeholder="$t('payment.develop.auth.form.rule.channelMchNo')"
-                      show-search
-                      :filter-option="filterOption"
-                      allow-clear
                       @change="channelMchNoChange"
                     />
                   </a-form-item>
-                  <a-form-item :label="$t('payment.develop.auth.form.capability')" name="capability" class="form-item-last">
+                  <a-form-item
+                    :label="$t('payment.develop.auth.form.capability')"
+                    name="capability"
+                    class="form-item-last"
+                  >
                     <a-select
                       v-model:value="form.capability"
                       :options="capabilityOptions"

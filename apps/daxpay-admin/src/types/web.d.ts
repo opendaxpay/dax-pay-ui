@@ -84,6 +84,20 @@ export interface LabelValue {
 }
 
 /**
+ * 通道商户下拉选项(扩展 LabelValue, 携带通道/产品编码用于展示支付产品图标)
+ */
+export interface ChannelMchOption extends LabelValue {
+  /** 通道商户号(等于 value) */
+  channelMchNo: string;
+  /** 通道商户名称(空时回退到 channelMchNo) */
+  channelMerchantName?: string;
+  /** 所属支付通道编码(如 wechat / alipay) */
+  channel?: string;
+  /** 所属支付产品编码(如 wechat_pay / lakala_pay), 优先用于匹配产品图标 */
+  product?: string;
+}
+
+/**
  * 分页表格列表对象
  */
 export interface TablePageModel<T = any> {

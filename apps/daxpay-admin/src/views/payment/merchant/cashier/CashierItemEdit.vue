@@ -1,27 +1,24 @@
 <script lang="ts" setup>
-  import type { LabelValue } from '#/types/web';
+  import type { ChannelMchOption, LabelValue } from '#/types/web';
 
   import { computed, ref } from 'vue';
 
   import { $t } from '@vben/locales';
 
-  import {
-    CashierConfigApi,
-    type CashierItemParam,
-    type CashierItemResult,
-  } from '#/api/payment/merchant/cashier.api';
+  import { CashierConfigApi, type CashierItemParam, type CashierItemResult } from '#/api/payment/merchant/cashier.api';
   import { PayRouteApi } from '#/api/payment/route/pay-route.api';
-   import { FormEditType } from '#/enums/formEditType';
-   import { useFormEdit } from '#/hooks/useFormEdit';
-   import { useMessage } from '#/hooks/useMessage';
-   import { getProviderSvgUrl } from '#/views/payment/shared/payProviderDisplay';
+  import ChannelMerchantSelect from '#/components/channel/ChannelMerchantSelect.vue';
+  import { FormEditType } from '#/enums/formEditType';
+  import { useFormEdit } from '#/hooks/useFormEdit';
+  import { useMessage } from '#/hooks/useMessage';
+  import { getProviderSvgUrl } from '#/views/payment/shared/payProviderDisplay';
 
   import {
     CASHIER_ICON_OPTIONS,
     CASHIER_TYPE,
-    RESOLVE_MODE,
-    cashierTypeRequiresClientEnv,
     type CashierType,
+    cashierTypeRequiresClientEnv,
+    RESOLVE_MODE,
   } from './shared/constants';
 
   const emit = defineEmits<{ ok: [] }>();
@@ -32,10 +29,10 @@
   const { visible, confirmLoading, title, initFormEditType, handleCancel, formEditType, showable } = useFormEdit();
 
   const context = ref<{
-    mchNo: string;
     appId: string;
     cashierType: CashierType;
     clientEnv?: string;
+    mchNo: string;
   }>({
     mchNo: '',
     appId: '',
@@ -43,7 +40,7 @@
   });
 
   // DIRECT 模式：通道商户扁平选项（去重）+ 商户→method 组合映射 + 能力→provider 映射（图标联动）
-  const channelMchOptions = ref<LabelValue[]>([]);
+  const channelMchOptions = ref<ChannelMchOption[]>([]);
   const channelMchCombosMap = ref<Record<string, Array<{ method: string; provider: string }>>>({});
   const capabilityProviderMap = ref<Record<string, string>>({});
 
@@ -78,12 +75,8 @@
     if (formState.value.resolveMode === RESOLVE_MODE.METHOD) {
       rules.method = [{ required: true, message: $t('payment.merchant.cashier.cashier.validationMethod') }];
     } else {
-      rules.channelMchNo = [
-        { required: true, message: $t('payment.merchant.cashier.cashier.validationChannelMch') },
-      ];
-      rules.capability = [
-        { required: true, message: $t('payment.merchant.cashier.cashier.validationCapability') },
-      ];
+      rules.channelMchNo = [{ required: true, message: $t('payment.merchant.cashier.cashier.validationChannelMch') }];
+      rules.capability = [{ required: true, message: $t('payment.merchant.cashier.cashier.validationCapability') }];
     }
     return rules;
   });
@@ -94,9 +87,7 @@
       mchNo: context.value.mchNo,
       appId: context.value.appId,
       cashierType: context.value.cashierType,
-      clientEnv: cashierTypeRequiresClientEnv(context.value.cashierType)
-        ? context.value.clientEnv
-        : undefined,
+      clientEnv: cashierTypeRequiresClientEnv(context.value.cashierType) ? context.value.clientEnv : undefined,
       name: '',
       icon: undefined,
       recommend: false,
@@ -145,7 +136,7 @@
       return;
     }
     // 按 channelMchNo 去重，同时收集每商户的全部 provider|method 组合
-    const labelMap = new Map<string, string>();
+    const optionMap = new Map<string, ChannelMchOption>();
     const combosMap: Record<string, Array<{ method: string; provider: string }>> = {};
     for (const [key, list] of Object.entries(data)) {
       const parts = key.split('|');
@@ -155,17 +146,14 @@
         continue;
       }
       for (const item of list || []) {
-        labelMap.set(item.value, item.label);
+        optionMap.set(item.value, item);
         if (!combosMap[item.value]) {
           combosMap[item.value] = [];
         }
         combosMap[item.value]!.push({ method, provider });
       }
     }
-    channelMchOptions.value = [...labelMap.entries()].map(([value, label]) => ({
-      label,
-      value,
-    }));
+    channelMchOptions.value = [...optionMap.values()];
     channelMchCombosMap.value = combosMap;
   }
 
@@ -203,8 +191,7 @@
     }
     capabilityProviderMap.value = capProviderMap;
     // label 统一用 i18n 翻译
-    const toLabel = (code: string) =>
-      $t(`payment.merchant.cashier.cashier.capabilities.${code}`) || code;
+    const toLabel = (code: string) => $t(`payment.merchant.cashier.cashier.capabilities.${code}`) || code;
     let options = [...capLabelMap.keys()].map((value) => ({
       label: toLabel(value),
       value,
@@ -257,12 +244,7 @@
   }
 
   /** 新增 */
-  async function show(opts: {
-    mchNo: string;
-    appId: string;
-    cashierType: CashierType;
-    clientEnv?: string;
-  }) {
+  async function show(opts: { appId: string; cashierType: CashierType; clientEnv?: string; mchNo: string }) {
     context.value = { ...opts };
     initFormEditType(FormEditType.Add);
     resetForm();
@@ -272,10 +254,10 @@
 
   /** 编辑 */
   async function showEdit(opts: {
-    mchNo: string;
     appId: string;
     cashierType: CashierType;
     clientEnv?: string;
+    mchNo: string;
     record: CashierItemResult;
   }) {
     context.value = {
@@ -330,9 +312,7 @@
         mchNo: context.value.mchNo,
         appId: context.value.appId,
         cashierType: context.value.cashierType,
-        clientEnv: cashierTypeRequiresClientEnv(context.value.cashierType)
-          ? context.value.clientEnv
-          : undefined,
+        clientEnv: cashierTypeRequiresClientEnv(context.value.cashierType) ? context.value.clientEnv : undefined,
         recommend: !!formState.value.recommend,
         sortNo: formState.value.sortNo ?? 0,
       };
@@ -343,11 +323,9 @@
         payload.channelMchNo = undefined;
         payload.capability = undefined;
       }
-      if (formEditType.value === FormEditType.Edit) {
-        await CashierConfigApi.update(payload);
-      } else {
-        await CashierConfigApi.save(payload);
-      }
+      await (formEditType.value === FormEditType.Edit
+        ? CashierConfigApi.update(payload)
+        : CashierConfigApi.save(payload));
       message.success($t('common.operationSuccess'));
       handleCancel();
       emit('ok');
@@ -369,13 +347,7 @@
     @close="handleCancel"
   >
     <a-spin :spinning="confirmLoading">
-      <a-form
-        ref="formRef"
-        :model="formState"
-        :rules="formRules"
-        layout="vertical"
-        class="pt-2"
-      >
+      <a-form ref="formRef" :model="formState" :rules="formRules" layout="vertical" class="pt-2">
         <a-row :gutter="16">
           <a-col :span="12">
             <a-form-item :label="$t('payment.merchant.cashier.cashier.name')" name="name">
@@ -432,16 +404,11 @@
 
           <template v-else>
             <a-col :span="12">
-              <a-form-item
-                :label="$t('payment.merchant.cashier.cashier.channelMerchant')"
-                name="channelMchNo"
-              >
-                <a-select
-                  v-model:value="formState.channelMchNo"
-                  :disabled="showable"
-                  show-search
-                  option-filter-prop="label"
+              <a-form-item :label="$t('payment.merchant.cashier.cashier.channelMerchant')" name="channelMchNo">
+                <ChannelMerchantSelect
+                  :value="formState.channelMchNo"
                   :options="channelMchOptions"
+                  :disabled="showable"
                   :placeholder="$t('payment.merchant.cashier.cashier.channelMerchantPlaceholder')"
                   @change="onChannelMchChange"
                 />
@@ -465,12 +432,8 @@
           <a-col :span="12">
             <a-form-item :label="$t('payment.merchant.cashier.cashier.recommend')" name="recommend">
               <a-radio-group v-model:value="formState.recommend" button-style="solid" :disabled="showable">
-                <a-radio-button :value="false">{{
-                  $t('payment.merchant.cashier.cashier.recommendNo')
-                }}</a-radio-button>
-                <a-radio-button :value="true">{{
-                  $t('payment.merchant.cashier.cashier.recommendYes')
-                }}</a-radio-button>
+                <a-radio-button :value="false">{{ $t('payment.merchant.cashier.cashier.recommendNo') }}</a-radio-button>
+                <a-radio-button :value="true">{{ $t('payment.merchant.cashier.cashier.recommendYes') }}</a-radio-button>
               </a-radio-group>
             </a-form-item>
           </a-col>

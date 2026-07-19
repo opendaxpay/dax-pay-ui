@@ -1,5 +1,5 @@
 import type { PayProviderMethod } from '#/api/payment/masterdata/provider.api';
-import type { LabelValue, Result } from '#/types/web';
+import type { ChannelMchOption, LabelValue, Result } from '#/types/web';
 
 import { defHttp } from '#/api/request';
 
@@ -26,7 +26,7 @@ export const DevelopTradeApi = {
   /**
    * 直接指定: 按商户号筛选通道商户候选, provider 非空时仅返回声明支持该支付渠道的通道商户
    */
-  channelMchCandidates(mchNo: string, provider?: string): Promise<Result<LabelValue[]>> {
+  channelMchCandidates(mchNo: string, provider?: string): Promise<Result<ChannelMchOption[]>> {
     return defHttp.get({
       url: '/admin/develop/trade/channel-mch-candidates',
       params: { mchNo, provider },

@@ -1,4 +1,4 @@
-import type { BaseEntity, LabelValue, Result } from '#/types/web';
+import type { BaseEntity, ChannelMchOption, LabelValue, Result } from '#/types/web';
 
 import { defHttp } from '#/api/request';
 
@@ -26,10 +26,7 @@ export const CodeConfigApi = {
   /**
    * DIRECT: 按商户+支付渠道列通道商户候选（不绑默认 JSAPI method）
    */
-  listDirectChannelMchCandidates(params: {
-    mchNo: string
-    provider: string
-  }): Promise<Result<LabelValue[]>> {
+  listDirectChannelMchCandidates(params: { mchNo: string; provider: string }): Promise<Result<ChannelMchOption[]>> {
     return defHttp.get({
       url: '/admin/gateway/code-config/direct-channel-mch-candidates',
       params,

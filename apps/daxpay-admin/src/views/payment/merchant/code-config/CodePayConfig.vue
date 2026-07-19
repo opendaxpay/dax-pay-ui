@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import type { LabelValue } from '#/types/web';
+  import type { ChannelMchOption, LabelValue } from '#/types/web';
 
   import { computed, onMounted, ref, watch } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
@@ -8,26 +8,27 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import {
+    type CodeClientEnvParam,
     CodeConfigApi,
     type CodeConfigResult,
-    type CodeClientEnvParam,
   } from '#/api/payment/merchant/code-config.api';
+  import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import { PayRouteApi } from '#/api/payment/route/pay-route.api';
+  import ChannelMerchantSelect from '#/components/channel/ChannelMerchantSelect.vue';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { useMessage } from '#/hooks/useMessage';
   import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
+  import { PAY_ROUTE_MODE } from '#/views/payment/merchant/route/shared/payRoute.constants';
+  import { modeDisplayName } from '#/views/payment/merchant/route/shared/payRoute.labels';
   import RouteHitPreviewBlock from '#/views/payment/merchant/shared/RouteHitPreviewBlock.vue';
   import { useRouteHitPreview } from '#/views/payment/merchant/shared/useRouteHitPreview';
-  import { modeDisplayName } from '#/views/payment/merchant/route/shared/payRoute.labels';
-  import { PAY_ROUTE_MODE } from '#/views/payment/merchant/route/shared/payRoute.constants';
 
   import {
-    CODE_LEVEL,
     CODE_CLIENT_ENVS,
-    CODE_PAY_FORMS,
+    CODE_LEVEL,
     CODE_PAY_FORM,
+    CODE_PAY_FORMS,
     type CodeLevel,
     type CodePayForm,
     defaultMethodFor,
@@ -71,7 +72,7 @@
   const clientEnvForm = ref<Record<string, CodeClientEnvParam>>({});
 
   const methodDirectory = ref<Record<string, LabelValue[]>>({});
-  const channelMchMap = ref<Record<string, LabelValue[]>>({});
+  const channelMchMap = ref<Record<string, ChannelMchOption[]>>({});
   const capabilityMap = ref<Record<string, LabelValue[]>>({});
 
   // 通道路由命中预览（与路由页同源；解构以便模板自动解包 ref）
@@ -86,9 +87,7 @@
   const effectiveLevel = computed(() => config.value.level || CODE_LEVEL.AUTO);
   const isLevelActive = computed(() => editLevel.value === effectiveLevel.value);
 
-  const showRoutePreview = computed(
-    () => editLevel.value === CODE_LEVEL.AUTO || editLevel.value === CODE_LEVEL.METHOD,
-  );
+  const showRoutePreview = computed(() => editLevel.value === CODE_LEVEL.AUTO || editLevel.value === CODE_LEVEL.METHOD);
 
   const modeHint = computed(() => {
     if (editLevel.value === CODE_LEVEL.AUTO) {
@@ -124,9 +123,7 @@
     for (const sc of CODE_CLIENT_ENVS) {
       for (const pf of CODE_PAY_FORMS) {
         const key = rowKey(sc.clientEnv, pf);
-        const serverEnv = config.value.clientEnvs?.find(
-          (s) => s.clientEnv === sc.clientEnv && s.payForm === pf,
-        );
+        const serverEnv = config.value.clientEnvs?.find((s) => s.clientEnv === sc.clientEnv && s.payForm === pf);
         form[key] = {
           clientEnv: sc.clientEnv,
           payForm: pf,
@@ -203,8 +200,8 @@
    */
   type DisplayFormRow = {
     key: string;
-    payForms: CodePayForm[];
     merged: boolean;
+    payForms: CodePayForm[];
     /** 预览/展示用主形态（合并时取 H5） */
     primaryForm: CodePayForm;
   };
@@ -233,11 +230,7 @@
   }
 
   /** 未配置时：同环境另一形态已配置则强调告警，否则灰色降噪 */
-  function emptyToneFor(
-    provider: string,
-    clientEnv: string,
-    payForm: CodePayForm,
-  ): 'soft' | 'emphasize' {
+  function emptyToneFor(provider: string, clientEnv: string, payForm: CodePayForm): 'emphasize' | 'soft' {
     const method = resolveMethodForRow(clientEnv, payForm);
     if (!method) {
       return 'soft';
@@ -279,11 +272,11 @@
         const hit = previewRouteHit(sc.provider, method);
         if (hit.status === 'ok') {
           ok += 1;
-        } else if (hit.status === 'notConfigured' || hit.status === 'noStrategy') {
-          // 仅收集「同环境另一形态已配」的缺口，避免刷屏
-          if (emptyToneFor(sc.provider, sc.clientEnv, pf) === 'emphasize') {
-            gapLabels.push(`${clientEnvLabel(sc.clientEnv)} · ${payFormLabel(pf)}`);
-          }
+        } else if (
+          (hit.status === 'notConfigured' || hit.status === 'noStrategy') && // 仅收集「同环境另一形态已配」的缺口，避免刷屏
+          emptyToneFor(sc.provider, sc.clientEnv, pf) === 'emphasize'
+        ) {
+          gapLabels.push(`${clientEnvLabel(sc.clientEnv)} · ${payFormLabel(pf)}`);
         }
       }
     }
@@ -294,7 +287,7 @@
    * DIRECT: 按商户+渠道列通道商户（不绑默认 JSAPI method，与路由直接指定一致）
    */
   async function loadChannelMchCandidates() {
-    const map: Record<string, LabelValue[]> = {};
+    const map: Record<string, ChannelMchOption[]> = {};
     await Promise.all(
       CODE_CLIENT_ENVS.map(async (sc) => {
         const { data } = await CodeConfigApi.listDirectChannelMchCandidates({
@@ -491,9 +484,7 @@
             </template>
           </a-button>
           <span class="text-lg font-bold">{{ $t('payment.merchant.codeConfig.codeConfig.title') }}</span>
-          <span v-if="appInfo.appName" class="text-sm text-muted-foreground">
-            ({{ appInfo.appName }})
-          </span>
+          <span v-if="appInfo.appName" class="text-sm text-muted-foreground"> ({{ appInfo.appName }}) </span>
         </div>
       </template>
 
@@ -533,27 +524,24 @@
         </div>
         <!-- openId 风控与码牌支付方式关系说明 -->
         <div class="mb-4">
-          <a-alert
-            :message="$t('payment.merchant.codeConfig.codeConfig.openIdRiskHint')"
-            type="warning"
-            show-icon
-          />
+          <a-alert :message="$t('payment.merchant.codeConfig.codeConfig.openIdRiskHint')" type="warning" show-icon />
         </div>
 
         <div v-if="showRoutePreview" class="mb-5 flex flex-wrap items-center gap-3 text-sm">
-          <span class="text-muted-foreground">{{ $t('payment.merchant.codeConfig.codeConfig.currentRouteMode') }}:</span>
+          <span class="text-muted-foreground"
+            >{{ $t('payment.merchant.codeConfig.codeConfig.currentRouteMode') }}:</span
+          >
           <a-tag color="blue">{{ routeModeLabel }}</a-tag>
           <template v-if="routeCoverage">
             <span class="text-muted-foreground">
-              {{ $t('payment.merchant.codeConfig.codeConfig.routeCoverage', {
-                ok: routeCoverage.ok,
-                total: routeCoverage.total,
-              }) }}
+              {{
+                $t('payment.merchant.codeConfig.codeConfig.routeCoverage', {
+                  ok: routeCoverage.ok,
+                  total: routeCoverage.total,
+                })
+              }}
             </span>
-            <span
-              v-if="routeCoverage.gapLabels.length"
-              class="text-xs text-orange-500"
-            >
+            <span v-if="routeCoverage.gapLabels.length > 0" class="text-xs text-orange-500">
               {{ $t('payment.merchant.codeConfig.codeConfig.routeGaps') }}:
               {{ routeCoverage.gapLabels.join(' · ') }}
             </span>
@@ -577,11 +565,7 @@
                 <div>{{ $t('payment.merchant.route.route.payCapability') }}</div>
               </div>
 
-              <div
-                v-for="drow in displayFormRows(sc.clientEnv)"
-                :key="drow.key"
-                class="env-grid-row"
-              >
+              <div v-for="drow in displayFormRows(sc.clientEnv)" :key="drow.key" class="env-grid-row">
                 <!-- 形态：合并时展示 H5 + 小程序 -->
                 <div class="form-tags">
                   <template v-if="drow.merged">
@@ -589,11 +573,7 @@
                     <span class="text-muted-foreground text-xs">/</span>
                     <a-tag color="purple" class="!m-0">{{ payFormLabel(CODE_PAY_FORM.MINI) }}</a-tag>
                   </template>
-                  <a-tag
-                    v-else
-                    :color="drow.primaryForm === CODE_PAY_FORM.MINI ? 'purple' : 'blue'"
-                    class="!m-0"
-                  >
+                  <a-tag v-else :color="drow.primaryForm === CODE_PAY_FORM.MINI ? 'purple' : 'blue'" class="!m-0">
                     {{ payFormLabel(drow.primaryForm) }}
                   </a-tag>
                 </div>
@@ -636,13 +616,12 @@
                 <!-- DIRECT -->
                 <template v-else>
                   <div>
-                    <a-select
+                    <ChannelMerchantSelect
                       :value="getRow(sc.clientEnv, drow.primaryForm).channelMchNo"
                       :options="channelMchOptions(sc.clientEnv, drow.primaryForm)"
                       :placeholder="$t('payment.merchant.codeConfig.codeConfig.channelMerchantPlaceholder')"
                       :disabled="!editing"
-                      allow-clear
-                      class="w-full min-w-[160px]"
+                      root-class-name="w-full min-w-[160px]"
                       @change="(val: any) => onChannelMchChange(sc.clientEnv, drow.primaryForm, val)"
                     />
                   </div>

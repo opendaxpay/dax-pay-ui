@@ -3,7 +3,7 @@
 
   import type { PayParam, PayResult } from '#/api/payment/develop/developTrade.api';
   import type { DaxResult } from '#/api/payment/unipay/unipay-request';
-  import type { LabelValue } from '#/types/web';
+  import type { ChannelMchOption, LabelValue } from '#/types/web';
 
   import { computed, onMounted, reactive, ref } from 'vue';
 
@@ -16,6 +16,7 @@
   import { MchAppInfoApi } from '#/api/payment/merchant/mch-app-info.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { uniPay } from '#/api/payment/unipay/unipay-trade.api';
+  import ChannelMerchantSelect from '#/components/channel/ChannelMerchantSelect.vue';
   import { QrCode } from '#/components/qrcode';
   import { useMessage } from '#/hooks/useMessage';
 
@@ -51,7 +52,7 @@
         {
           validator: async () => {
             if (!privateKey.value) {
-              return Promise.reject(new Error($t('payment.develop.trade.msg.inputPrivateKey')));
+              throw new Error($t('payment.develop.trade.msg.inputPrivateKey'));
             }
           },
         },
@@ -86,7 +87,7 @@
   const mchNoOptions = ref<LabelValue[]>([]);
   const mchAppOptions = ref<LabelValue[]>([]);
   const methodOptions = ref<LabelValue[]>([]);
-  const channelMchNoOptions = ref<LabelValue[]>([]);
+  const channelMchNoOptions = ref<ChannelMchOption[]>([]);
   const capabilityOptions = ref<LabelValue[]>([]);
 
   // ===== 调试结果(完整 unipay DaxResult) =====
@@ -552,13 +553,10 @@
                   <!-- 直接指定: 通道商户(必填) -->
                   <a-col v-if="routeMode === 'direct'" :span="8">
                     <a-form-item :label="$t('payment.develop.trade.field.channelMchNo')" name="channelMchNo">
-                      <a-select
+                      <ChannelMerchantSelect
                         v-model:value="form.channelMchNo"
-                        show-search
                         :options="channelMchNoOptions"
                         :placeholder="$t('payment.develop.trade.field.channelMchNo')"
-                        :filter-option="filterOption"
-                        allow-clear
                         @change="channelMchNoChange"
                       />
                     </a-form-item>
@@ -789,13 +787,9 @@
     >
       <!-- 响应摘要 -->
       <div class="mb-4 flex flex-wrap items-center gap-2">
-        <a-tag :color="resultData.code === 0 ? 'success' : 'error'">
-          code: {{ resultData.code }}
-        </a-tag>
+        <a-tag :color="resultData.code === 0 ? 'success' : 'error'"> code: {{ resultData.code }} </a-tag>
         <span class="text-sm text-muted-foreground">{{ resultData.msg }}</span>
-        <span v-if="resultData.traceId" class="text-xs text-muted-foreground">
-          traceId: {{ resultData.traceId }}
-        </span>
+        <span v-if="resultData.traceId" class="text-xs text-muted-foreground"> traceId: {{ resultData.traceId }} </span>
       </div>
 
       <template v-if="hasPayBody">
