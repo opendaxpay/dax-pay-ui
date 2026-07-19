@@ -57,7 +57,7 @@
     </div>
     <div class="mt-1 flex items-center text-xs">
       <span
-        v-if="chainRatio !== null"
+        v-if="chainRatio !== null && Number.isFinite(chainRatio)"
         :class="chainRatio >= 0 ? 'text-red-500' : 'text-emerald-500'"
       >
         <!-- 涨跌色遵循中国惯例：涨红跌绿 -->

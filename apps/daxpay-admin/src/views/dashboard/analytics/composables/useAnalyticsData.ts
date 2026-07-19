@@ -49,11 +49,16 @@ function fenToYuan(fen?: number): number {
 
 /**
  * 环比百分比计算
+ *
+ * 防护策略：后端 Long 字段可能返回 null(无上期数据)，或前端派生计算产生 NaN/Infinity。
+ * Number.isFinite 一次性拦截 null/undefined/NaN/Infinity 四类无效输入，
+ * prev=0 时无法计算环比(除零)，统一返回 null(显示 "—")。
+ *
  * @returns null 表示无法计算(prev 缺数据或为 0)
  */
-function chainRatio(curr?: number, prev?: number): null | number {
-  if (curr === undefined || prev === undefined || prev === 0) return null;
-  return Math.round(((curr - prev) / prev) * 1000) / 10;
+function chainRatio(curr?: null | number, prev?: null | number): null | number {
+  if (!Number.isFinite(curr) || !Number.isFinite(prev) || prev === 0) return null;
+  return Math.round(((curr as number - (prev as number)) / (prev as number)) * 1000) / 10;
 }
 
 /**
@@ -267,7 +272,8 @@ function buildAnalyticsData(input: {
   // ===== channelSuccess(渠道成功率) =====
   const channelSuccess = (providerSuccessRes ?? []).map((i) => ({
     name: providerLabel(i.provider),
-    rate: i.rate ?? 0,
+    // 后端 NULLIF 防除零, 这里 Number.isFinite 二次兜底防异常值
+    rate: Number.isFinite(i.rate) ? (i.rate as number) : 0,
   }));
 
   // ===== hourlyDist(24 小时时段, 取 count 数组) =====
@@ -285,7 +291,8 @@ function buildAnalyticsData(input: {
     amount: fenToYuan(i.amount),
     merchantName: i.merchantName ?? '-',
     orders: i.orders ?? 0,
-    proportion: i.proportion ?? 0,
+    // 后端 computeProportion 已防除零, 这里 Number.isFinite 二次兜底防异常值
+    proportion: Number.isFinite(i.proportion) ? (i.proportion as number) : 0,
   }));
 
   return { amountRange, channelSuccess, channelVolume, hourlyDist, merchantRank, overview, payMethod, refundTrend, tradeTrend };
