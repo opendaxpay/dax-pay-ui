@@ -12,7 +12,10 @@
     "selectedRole": "選択された役割",
     "lastLoginTime": "最終ログイン時間",
     "detail": "ユーザーの詳細",
-    "administrator": "管理者"
+    "administrator": "管理者",
+    "registerTime": "登録時間",
+    "loginCount": "ログイン回数",
+    "lastLoginIp": "最終ログイン IP"
   },
   "status": {
     "normal": "普通",
@@ -59,7 +62,8 @@
     "accountFormat": "アカウントには文字、数字、アンダースコア、ハイフンのみを含めることができます",
     "passwordNoChinese": "パスワードに漢字を含めることはできません",
     "cannotEditNonAdmin": "管理者以外のクライアント ユーザーは編集できません",
-    "cannotAssignRoleNonAdmin": "管理者以外のクライアント ユーザーにロールを割り当てることはできません"
+    "cannotAssignRoleNonAdmin": "管理者以外のクライアント ユーザーにロールを割り当てることはできません",
+    "accountPattern": "アカウントは英字、数字、アンダースコアのみ使用できます"
   },
   "passwordPolicy": {
     "requireUppercase": "パスワードには大文字が含まれている必要があります",

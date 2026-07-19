@@ -12,7 +12,10 @@
     "selectedRole": "Vai trò đã chọn",
     "lastLoginTime": "Lần đăng nhập cuối cùng",
     "detail": "Chi tiết người dùng",
-    "administrator": "Quản trị viên"
+    "administrator": "Quản trị viên",
+    "registerTime": "Thời gian đăng ký",
+    "loginCount": "Số lần đăng nhập",
+    "lastLoginIp": "IP đăng nhập cuối"
   },
   "status": {
     "normal": "Bình thường",
@@ -59,7 +62,8 @@
     "accountFormat": "Tài khoản chỉ có thể chứa chữ cái, số, dấu gạch dưới và dấu gạch nối",
     "passwordNoChinese": "Mật khẩu không được chứa ký tự tiếng Trung",
     "cannotEditNonAdmin": "Không thể chỉnh sửa người dùng khách hàng không phải quản trị viên",
-    "cannotAssignRoleNonAdmin": "Không thể chỉ định vai trò cho người dùng khách hàng không phải quản trị viên"
+    "cannotAssignRoleNonAdmin": "Không thể chỉ định vai trò cho người dùng khách hàng không phải quản trị viên",
+    "accountPattern": "Tài khoản chỉ được chứa chữ cái, số và dấu gạch dưới"
   },
   "passwordPolicy": {
     "requireUppercase": "Mật khẩu phải chứa chữ in hoa",

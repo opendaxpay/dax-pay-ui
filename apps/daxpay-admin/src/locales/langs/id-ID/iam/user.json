@@ -12,7 +12,10 @@
     "selectedRole": "Peran yang Dipilih",
     "lastLoginTime": "Waktu Masuk Terakhir",
     "detail": "Detil Pengguna",
-    "administrator": "Administrator"
+    "administrator": "Administrator",
+    "registerTime": "Waktu Pendaftaran",
+    "loginCount": "Jumlah Login",
+    "lastLoginIp": "IP Login Terakhir"
   },
   "status": {
     "normal": "Normal",
@@ -59,7 +62,8 @@
     "accountFormat": "Akun hanya boleh berisi huruf, angka, garis bawah, dan tanda hubung",
     "passwordNoChinese": "Kata sandi tidak boleh berisi karakter Cina",
     "cannotEditNonAdmin": "Tidak dapat mengedit pengguna klien non-admin",
-    "cannotAssignRoleNonAdmin": "Tidak dapat menetapkan peran kepada pengguna klien non-admin"
+    "cannotAssignRoleNonAdmin": "Tidak dapat menetapkan peran kepada pengguna klien non-admin",
+    "accountPattern": "Akun hanya boleh berisi huruf, angka, dan garis bawah"
   },
   "passwordPolicy": {
     "requireUppercase": "Kata sandi harus mengandung huruf besar",

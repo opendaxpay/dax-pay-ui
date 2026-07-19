@@ -106,11 +106,11 @@
           </a-tag>
         </a-descriptions-item>
         <!-- 商户号 -->
-        <a-descriptions-item :label="$t('payment.merchant.field.mchNo')">
+        <a-descriptions-item :label="$t('payment.merchant.base.field.mchNo')">
           {{ userInfo.mchNo }}
         </a-descriptions-item>
         <!-- 商户名称 -->
-        <a-descriptions-item :label="$t('payment.merchant.field.mchName')">
+        <a-descriptions-item :label="$t('payment.merchant.base.field.mchName')">
           {{ userInfo.mchName }}
         </a-descriptions-item>
         <!-- 注册时间 -->

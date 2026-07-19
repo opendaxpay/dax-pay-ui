@@ -12,7 +12,10 @@
     "selectedRole": "Selected Role",
     "lastLoginTime": "Last Login Time",
     "detail": "User Detail",
-    "administrator": "Administrator"
+    "administrator": "Administrator",
+    "registerTime": "Registration Time",
+    "loginCount": "Login Count",
+    "lastLoginIp": "Last Login IP"
   },
   "status": {
     "normal": "Normal",
@@ -59,7 +62,8 @@
     "accountFormat": "Account can only contain letters, numbers, underscores and hyphens",
     "passwordNoChinese": "Password cannot contain Chinese characters",
     "cannotEditNonAdmin": "Cannot edit non-admin client users",
-    "cannotAssignRoleNonAdmin": "Cannot assign roles to non-admin client users"
+    "cannotAssignRoleNonAdmin": "Cannot assign roles to non-admin client users",
+    "accountPattern": "Account can only contain letters, numbers and underscores"
   },
   "passwordPolicy": {
     "requireUppercase": "Password must contain uppercase letter",

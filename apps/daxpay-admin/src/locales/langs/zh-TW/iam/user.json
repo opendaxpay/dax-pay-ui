@@ -12,7 +12,10 @@
     "selectedRole": "已選角色",
     "lastLoginTime": "最後登入時間",
     "detail": "使用者詳情",
-    "administrator": "管理員"
+    "administrator": "管理員",
+    "registerTime": "註冊時間",
+    "loginCount": "登入次數",
+    "lastLoginIp": "最後登入 IP"
   },
   "status": {
     "normal": "正常",
@@ -59,7 +62,8 @@
     "accountFormat": "賬號只能包含字母、數字、下劃線和中劃線",
     "passwordNoChinese": "密碼不能包含中文字元",
     "cannotEditNonAdmin": "不允許編輯非運營端使用者",
-    "cannotAssignRoleNonAdmin": "不允許為非運營端使用者分配角色"
+    "cannotAssignRoleNonAdmin": "不允許為非運營端使用者分配角色",
+    "accountPattern": "帳號只能包含字母、數字、底線"
   },
   "passwordPolicy": {
     "requireUppercase": "密碼必須包含大寫字母",

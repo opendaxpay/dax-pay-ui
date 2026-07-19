@@ -12,7 +12,10 @@
     "selectedRole": "선택된 역할",
     "lastLoginTime": "마지막 로그인 시간",
     "detail": "사용자 세부정보",
-    "administrator": "관리자"
+    "administrator": "관리자",
+    "registerTime": "가입 시간",
+    "loginCount": "로그인 횟수",
+    "lastLoginIp": "최근 로그인 IP"
   },
   "status": {
     "normal": "정상",
@@ -59,7 +62,8 @@
     "accountFormat": "계정에는 문자, 숫자, 밑줄, 하이픈만 포함할 수 있습니다.",
     "passwordNoChinese": "비밀번호에는 한자가 포함될 수 없습니다.",
     "cannotEditNonAdmin": "관리자가 아닌 클라이언트 사용자는 편집할 수 없습니다.",
-    "cannotAssignRoleNonAdmin": "관리자가 아닌 클라이언트 사용자에게 역할을 할당할 수 없습니다."
+    "cannotAssignRoleNonAdmin": "관리자가 아닌 클라이언트 사용자에게 역할을 할당할 수 없습니다.",
+    "accountPattern": "계정은 문자, 숫자, 밑줄만 포함할 수 있습니다"
   },
   "passwordPolicy": {
     "requireUppercase": "비밀번호에는 대문자가 포함되어야 합니다.",

@@ -12,7 +12,10 @@
     "selectedRole": "Peranan Terpilih",
     "lastLoginTime": "Masa Log Masuk Terakhir",
     "detail": "Butiran Pengguna",
-    "administrator": "Pentadbir"
+    "administrator": "Pentadbir",
+    "registerTime": "Masa Pendaftaran",
+    "loginCount": "Kiraan Log Masuk",
+    "lastLoginIp": "IP Log Masuk Terakhir"
   },
   "status": {
     "normal": "Biasalah",
@@ -59,7 +62,8 @@
     "accountFormat": "Akaun hanya boleh mengandungi huruf, nombor, garis bawah dan sempang",
     "passwordNoChinese": "Kata laluan tidak boleh mengandungi aksara Cina",
     "cannotEditNonAdmin": "Tidak boleh mengedit pengguna pelanggan bukan pentadbir",
-    "cannotAssignRoleNonAdmin": "Tidak boleh memberikan peranan kepada pengguna pelanggan bukan pentadbir"
+    "cannotAssignRoleNonAdmin": "Tidak boleh memberikan peranan kepada pengguna pelanggan bukan pentadbir",
+    "accountPattern": "Akaun hanya boleh mengandungi huruf, nombor dan garis bawah"
   },
   "passwordPolicy": {
     "requireUppercase": "Kata laluan mesti mengandungi huruf besar",
