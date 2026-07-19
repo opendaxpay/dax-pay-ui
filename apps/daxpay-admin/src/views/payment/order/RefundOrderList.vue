@@ -8,6 +8,7 @@
   import { RefundOrderApi, type RefundOrderQuery, type RefundOrderResult } from '#/api/payment/order/refund-order.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
+  import { productI18nMap, productNameMap } from '#/enums/payment';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
@@ -20,7 +21,6 @@
   const xTable = ref<VxeTableInstance>();
   const xToolbar = ref<VxeToolbarInstance>();
 
-  // 查询条件
   const queryForm = ref<RefundOrderQuery>({});
 
   const pageConfig = ref({
@@ -31,29 +31,35 @@
 
   const tableData = ref<RefundOrderResult[]>([]);
 
-  // 详情抽屉
   const drawerVisible = ref(false);
   const drawerLoading = ref(false);
   const detail = ref<RefundOrderResult>({});
   const actionLoading = ref(false);
 
-  // 退款状态下拉
+  // 退款状态（无 init）
   const statusOptions = computed(() =>
-    ['init', 'progress', 'success', 'fail', 'close'].map((v) => ({
+    ['progress', 'success', 'fail', 'close'].map((v) => ({
       label: $t(`payment.order.refund.status.${v}`),
       value: v,
     })),
   );
 
-  // 支付通道下拉(常用通道)
-  const channelOptions = computed(() =>
-    ['alipay', 'wechat', 'douyin'].map((v) => ({
-      label: $t(`payment.channel.common.${v}`),
+  // 交易类型（原支付形态）
+  const tradeTypeOptions = computed(() =>
+    ['normal', 'gateway'].map((v) => ({
+      label: $t(`payment.order.tradeType.${v}`),
       value: v,
     })),
   );
 
-  // 查询字段
+  // 支付产品
+  const productOptions = computed(() =>
+    Object.keys(productNameMap).map((code) => ({
+      label: productLabel(code),
+      value: code,
+    })),
+  );
+
   const queryFields = computed<QueryField[]>(() => [
     {
       type: 'string',
@@ -63,9 +69,10 @@
     },
     {
       type: 'string',
-      field: 'orderNo',
-      name: $t('payment.order.field.orderNo'),
-      placeholder: $t('payment.order.placeholder.orderNo'),
+      field: 'tradeNo',
+      // 资金交易号
+      name: $t('payment.order.field.tradeNo'),
+      placeholder: $t('payment.order.placeholder.tradeNo'),
     },
     {
       type: 'string',
@@ -76,14 +83,23 @@
     {
       type: 'list',
       field: 'status',
-      name: $t('payment.order.field.bizStatus'),
+      // 退款状态
+      name: $t('payment.order.refund.statusLabel'),
       selectList: statusOptions.value,
     },
     {
       type: 'list',
-      field: 'channel',
-      name: $t('payment.order.field.channel'),
-      selectList: channelOptions.value,
+      field: 'tradeType',
+      // 交易类型
+      name: $t('payment.order.field.tradeType'),
+      selectList: tradeTypeOptions.value,
+    },
+    {
+      type: 'list',
+      field: 'product',
+      // 支付产品
+      name: $t('payment.order.field.product'),
+      selectList: productOptions.value,
     },
     {
       type: 'date_time_range',
@@ -94,9 +110,6 @@
     },
   ]);
 
-  /**
-   * 分页查询
-   */
   function queryPage() {
     loading.value = true;
     return RefundOrderApi.page({
@@ -126,29 +139,33 @@
     queryPage();
   }
 
-  /**
-   * 金额分转元
-   */
   function formatAmount(amount?: number): string {
     if (amount === null || amount === undefined) return '-';
     return (amount / 100).toFixed(2);
   }
 
-  /**
-   * 退款状态颜色
-   */
   function statusColor(status?: string): string {
     return status ? $t(`payment.order.refund.statusColor.${status}`) : 'default';
   }
 
-  function channelLabel(code?: string): string {
+  function productLabel(code?: string): string {
     if (!code) return '-';
-    return channelOptions.value.find((o) => o.value === code)?.label || code;
+    const i18nKey = productI18nMap[code];
+    if (i18nKey) {
+      const text = $t(i18nKey);
+      if (text && text !== i18nKey) {
+        return text;
+      }
+    }
+    return productNameMap[code] || code;
   }
 
-  /**
-   * 查看详情
-   */
+  function tradeTypeLabel(code?: string): string {
+    if (!code) return '-';
+    const text = $t(`payment.order.tradeType.${code}`);
+    return text && text !== `payment.order.tradeType.${code}` ? text : code;
+  }
+
   async function handleView(row: RefundOrderResult) {
     drawerVisible.value = true;
     drawerLoading.value = true;
@@ -160,9 +177,6 @@
     }
   }
 
-  /**
-   * 同步退款状态
-   */
   function handleSync(row: RefundOrderResult) {
     confirm({
       title: $t('payment.order.action.syncConfirmTitle'),
@@ -203,39 +217,35 @@
         <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }" />
         <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
-          <!-- 商户: 名称上 + 号下小字两排 -->
           <vxe-column field="mchName" :title="$t('payment.order.field.merchant')" :min-width="160">
             <template #default="{ row }">
               <div class="flex flex-col">
-                <span>{{ row.mchName || '-' }}</span>
+                <span>{{ row.mchName || row.mchNo || '-' }}</span>
                 <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
               </div>
             </template>
           </vxe-column>
           <vxe-column field="refundNo" :title="$t('payment.order.field.refundNo')" :min-width="200" show-overflow />
-          <vxe-column field="orderNo" :title="$t('payment.order.field.orderNo')" :min-width="200" show-overflow />
+          <vxe-column field="tradeNo" :title="$t('payment.order.field.tradeNo')" :min-width="200" show-overflow />
           <vxe-column field="bizOrderNo" :title="$t('payment.order.field.bizOrderNo')" :min-width="180" show-overflow />
           <vxe-column field="amount" :title="$t('payment.order.field.amount')" :min-width="100" align="right">
             <template #default="{ row }">
               {{ formatAmount(row.amount) }}
             </template>
           </vxe-column>
-          <vxe-column field="status" :title="$t('payment.order.field.bizStatus')" :min-width="100" align="center">
+          <vxe-column field="status" :title="$t('payment.order.refund.statusLabel')" :min-width="100" align="center">
             <template #default="{ row }">
               <a-tag :color="statusColor(row.status)">
                 {{ $t(`payment.order.refund.status.${row.status}`) }}
               </a-tag>
             </template>
           </vxe-column>
-          <vxe-column field="channel" :title="$t('payment.order.field.channel')" :min-width="100">
-            <template #default="{ row }">{{ channelLabel(row.channel) }}</template>
+          <vxe-column field="tradeType" :title="$t('payment.order.field.tradeType')" :min-width="110">
+            <template #default="{ row }">{{ tradeTypeLabel(row.tradeType) }}</template>
           </vxe-column>
-          <vxe-column
-            field="finishTime"
-            :title="$t('payment.order.field.finishTime')"
-            :min-width="160"
-            formatter="formatDateTime"
-          />
+          <vxe-column field="product" :title="$t('payment.order.field.product')" :min-width="140" show-overflow>
+            <template #default="{ row }">{{ productLabel(row.product) }}</template>
+          </vxe-column>
           <vxe-column
             field="createTime"
             :title="$t('payment.order.field.createTime')"
@@ -275,18 +285,22 @@
       </a-card>
     </div>
 
-    <!-- 详情抽屉 -->
     <a-drawer
       v-model:open="drawerVisible"
       :title="$t('payment.order.refund.detail')"
-      :size="700"
+      :size="720"
       @close="handleDrawerClose"
     >
       <a-spin :spinning="drawerLoading">
-        <a-descriptions :column="2" size="small" bordered>
+        <!-- 身份信息 -->
+        <div class="mb-4 text-sm font-medium">{{ $t('payment.order.refund.section.identity') }}</div>
+        <a-descriptions :column="2" size="small" bordered class="mb-4">
           <a-descriptions-item :label="$t('payment.order.field.merchant')">
-            {{ detail.mchName || '-' }}
-            <span v-if="detail.mchNo" class="text-muted-foreground"> ({{ detail.mchNo }})</span>
+            {{ detail.mchName || detail.mchNo || '-' }}
+            <span v-if="detail.mchName && detail.mchNo" class="text-muted-foreground"> ({{ detail.mchNo }})</span>
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.appId')">
+            {{ detail.appId || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.refundNo')">
             {{ detail.refundNo || '-' }}
@@ -294,31 +308,50 @@
           <a-descriptions-item :label="$t('payment.order.field.bizRefundNo')">
             {{ detail.bizRefundNo || '-' }}
           </a-descriptions-item>
-          <a-descriptions-item :label="$t('payment.order.field.orderNo')">
-            {{ detail.orderNo || '-' }}
+          <a-descriptions-item :label="$t('payment.order.field.title')" :span="2">
+            {{ detail.title || '-' }}
+          </a-descriptions-item>
+        </a-descriptions>
+
+        <!-- 关联资金 -->
+        <div class="mb-4 text-sm font-medium">{{ $t('payment.order.refund.section.fund') }}</div>
+        <a-descriptions :column="2" size="small" bordered class="mb-4">
+          <a-descriptions-item :label="$t('payment.order.field.tradeNo')">
+            {{ detail.tradeNo || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.tradeType')">
+            {{ tradeTypeLabel(detail.tradeType) }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.bizOrderNo')">
             {{ detail.bizOrderNo || '-' }}
           </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.outOrderNo')">
+            {{ detail.outOrderNo || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.relationOrderNo')">
+            {{ detail.relationOrderNo || '-' }}
+          </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.outRefundNo')">
             {{ detail.outRefundNo || '-' }}
           </a-descriptions-item>
-          <a-descriptions-item :label="$t('payment.order.field.bizStatus')">
+        </a-descriptions>
+
+        <!-- 金额与状态 -->
+        <div class="mb-4 text-sm font-medium">{{ $t('payment.order.refund.section.amount') }}</div>
+        <a-descriptions :column="2" size="small" bordered class="mb-4">
+          <a-descriptions-item :label="$t('payment.order.refund.statusLabel')">
             <a-tag :color="statusColor(detail.status)">
               {{ detail.status ? $t(`payment.order.refund.status.${detail.status}`) : '-' }}
             </a-tag>
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.currency')">
+            {{ detail.currency || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.amount')">
             {{ formatAmount(detail.amount) }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.orderAmount')">
             {{ formatAmount(detail.orderAmount) }}
-          </a-descriptions-item>
-          <a-descriptions-item :label="$t('payment.order.field.channel')">
-            {{ channelLabel(detail.channel) }}
-          </a-descriptions-item>
-          <a-descriptions-item :label="$t('payment.order.field.method')">
-            {{ detail.method || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.reason')" :span="2">
             {{ detail.reason || '-' }}
@@ -331,6 +364,40 @@
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.errorMsg')" :span="2">
             {{ detail.errorMsg || '-' }}
+          </a-descriptions-item>
+        </a-descriptions>
+
+        <!-- 通道快照（产品为主，不展示能力） -->
+        <div class="mb-4 text-sm font-medium">{{ $t('payment.order.refund.section.channel') }}</div>
+        <a-descriptions :column="2" size="small" bordered class="mb-4">
+          <a-descriptions-item :label="$t('payment.order.field.product')">
+            {{ productLabel(detail.product) }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.channel')">
+            {{ detail.channel || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.channelMchNo')">
+            {{ detail.channelMchNo || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.channelAppId')">
+            {{ detail.channelAppId || '-' }}
+          </a-descriptions-item>
+        </a-descriptions>
+
+        <!-- 通知与审计 -->
+        <div class="mb-4 text-sm font-medium">{{ $t('payment.order.refund.section.notify') }}</div>
+        <a-descriptions :column="2" size="small" bordered>
+          <a-descriptions-item :label="$t('payment.order.field.notifyUrl')" :span="2">
+            {{ detail.notifyUrl || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.attach')" :span="2">
+            {{ detail.attach || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.clientIp')">
+            {{ detail.clientIp || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.storeNo')">
+            {{ detail.storeNo || '-' }}
           </a-descriptions-item>
         </a-descriptions>
       </a-spin>

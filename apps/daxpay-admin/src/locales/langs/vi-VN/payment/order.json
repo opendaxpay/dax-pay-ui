@@ -1,7 +1,11 @@
 {
   "normal": {
-    "title": "Lệnh thanh toán",
-    "detail": "Chi tiết đơn hàng thanh toán"
+    "title": "Thanh toán thường",
+    "detail": "Chi tiết thanh toán thường"
+  },
+  "gateway": {
+    "title": "Thanh toán cổng",
+    "detail": "Chi tiết thanh toán cổng"
   },
   "trade": {
     "title": "Giao dịch quỹ",
@@ -10,24 +14,30 @@
   "refund": {
     "title": "Lệnh hoàn tiền",
     "detail": "Chi tiết đơn hàng hoàn tiền",
+    "statusLabel": "Refund Status",
+    "section": {
+      "identity": "Identity",
+      "fund": "Fund",
+      "amount": "Amount",
+      "channel": "Channel",
+      "notify": "Notify"
+    },
     "status": {
-      "init": "Ban đầu",
-      "progress": "Hoàn tiền",
-      "success": "Thành công",
-      "fail": "Thất bại",
-      "close": "Đã đóng"
+      "progress": "Refunding",
+      "success": "Success",
+      "fail": "Failed",
+      "close": "Closed"
     },
     "statusColor": {
-      "init": "mặc định",
-      "progress": "xử lý",
-      "success": "màu xanh lá",
-      "fail": "màu đỏ",
-      "close": "mặc định"
+      "progress": "processing",
+      "success": "green",
+      "fail": "red",
+      "close": "default"
     }
   },
   "field": {
     "bizOrderNo": "Số đơn đặt hàng của người bán",
-    "tradeNo": "Số giao dịch",
+    "tradeNo": "Fund Trade No.",
     "title": "Tiêu đề",
     "description": "Sự miêu tả",
     "amount": "Số tiền(Nhân dân tệ)",
@@ -41,7 +51,7 @@
     "provider": "nhà cung cấp",
     "outOrderNo": "Số thứ tự kênh",
     "transOrderNo": "Số đơn hàng chuyển khoản",
-    "relationOrderNo": "Số thứ tự quan hệ",
+    "relationOrderNo": "Channel Relation No.",
     "postedAmount": "Số đã ghi sổ(Nhân dân tệ)",
     "refundableBalance": "Có thể hoàn lại(Nhân dân tệ)",
     "payBody": "Cơ quan thanh toán",
@@ -77,7 +87,7 @@
     "reason": "Lý do hoàn tiền",
     "finishTime": "Thời gian kết thúc",
     "orderAmount": "Số tiền đặt hàng",
-    "orderNo": "Số đơn đặt hàng ban đầu",
+    "orderNo": "Platform Order No.",
     "authCode": "Mã thanh toán",
     "merchant": "Thương nhân"
   },
@@ -85,27 +95,33 @@
     "wait_pay": "Chờ",
     "paid": "Trả",
     "closed": "Đã đóng",
-    "expired": "Hết hạn"
+    "expired": "Hết hạn",
+    "paying": "Paying",
+    "failed": "Failed"
   },
   "fundStatus": {
     "init": "Ban đầu",
     "processing": "Xử lý",
     "success": "Thành công",
     "fail": "Thất bại",
-    "close": "Đã đóng"
+    "close": "Đã đóng",
+    "cancel": "Cancelled"
   },
   "bizStatusColor": {
     "wait_pay": "quả cam",
     "paid": "màu xanh lá",
     "closed": "mặc định",
-    "expired": "màu đỏ"
+    "expired": "màu đỏ",
+    "paying": "processing",
+    "failed": "red"
   },
   "fundStatusColor": {
     "init": "mặc định",
     "processing": "xử lý",
     "success": "màu xanh lá",
     "fail": "màu đỏ",
-    "close": "mặc định"
+    "close": "mặc định",
+    "cancel": "default"
   },
   "placeholder": {
     "bizOrderNo": "Nhập số đơn đặt hàng của người bán.",
@@ -143,9 +159,6 @@
     "refundReasonPlaceholder": "Nhập lý do hoàn tiền (tùy chọn)",
     "refundAmountExceed": "Số tiền hoàn lại không được vượt quá số tiền được hoàn lại"
   },
-  "tradeType": {
-    "normal": "Thanh toán thường"
-  },
   "method": {
     "jsapi": "JSAPI",
     "qrcode": "Quét mã",
@@ -153,5 +166,13 @@
     "app": "APP",
     "barcode": "Mã vạch",
     "wap": "WAP"
+  },
+  "tradeType": {
+    "normal": "Normal Pay",
+    "gateway": "Gateway Pay"
+  },
+  "gatewayType": {
+    "cashier": "Cashier",
+    "aggregate": "Aggregate"
   }
 }

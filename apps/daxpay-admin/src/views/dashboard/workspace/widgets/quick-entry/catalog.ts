@@ -113,7 +113,7 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
   // 以下为可选扩展入口（默认不显示，用户在编辑抽屉按需添加）
   {
     key: 'payOrder',
-    routeName: '/trade/normal-pay',
+    routeName: '/trade/pay-order/normal',
     icon: 'lucide:receipt',
     titleKey: 'dashboard.workspace.quickEntry.payOrder',
     color: 'bg-blue-600',

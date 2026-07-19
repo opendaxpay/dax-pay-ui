@@ -1,7 +1,11 @@
 {
   "normal": {
-    "title": "คำสั่งการชำระเงิน",
-    "detail": "รายละเอียดการสั่งซื้อการชำระเงิน"
+    "title": "ชำระเงินปกติ",
+    "detail": "รายละเอียดชำระเงินปกติ"
+  },
+  "gateway": {
+    "title": "ชำระเงินเกตเวย์",
+    "detail": "รายละเอียดชำระเงินเกตเวย์"
   },
   "trade": {
     "title": "การซื้อขายกองทุน",
@@ -10,24 +14,30 @@
   "refund": {
     "title": "การคืนเงินคำสั่งซื้อ",
     "detail": "รายละเอียดการขอคืนเงิน",
+    "statusLabel": "Refund Status",
+    "section": {
+      "identity": "Identity",
+      "fund": "Fund",
+      "amount": "Amount",
+      "channel": "Channel",
+      "notify": "Notify"
+    },
     "status": {
-      "init": "อักษรย่อ",
-      "progress": "การคืนเงิน",
-      "success": "ความสำเร็จ",
-      "fail": "ล้มเหลว",
-      "close": "ปิด"
+      "progress": "Refunding",
+      "success": "Success",
+      "fail": "Failed",
+      "close": "Closed"
     },
     "statusColor": {
-      "init": "ค่าเริ่มต้น",
-      "progress": "กำลังประมวลผล",
-      "success": "สีเขียว",
-      "fail": "สีแดง",
-      "close": "ค่าเริ่มต้น"
+      "progress": "processing",
+      "success": "green",
+      "fail": "red",
+      "close": "default"
     }
   },
   "field": {
     "bizOrderNo": "เลขที่ใบสั่งซื้อของผู้ขาย",
-    "tradeNo": "หมายเลขการค้า",
+    "tradeNo": "Fund Trade No.",
     "title": "ชื่อ",
     "description": "คำอธิบาย",
     "amount": "จำนวนเงิน(หยวน)",
@@ -41,7 +51,7 @@
     "provider": "ผู้ให้บริการ",
     "outOrderNo": "ช่องทางการสั่งซื้อเลขที่",
     "transOrderNo": "หมายเลขคำสั่งทรานส์",
-    "relationOrderNo": "ความสัมพันธ์เลขที่คำสั่ง",
+    "relationOrderNo": "Channel Relation No.",
     "postedAmount": "ยอดเข้าบัญชี (หยวน)",
     "refundableBalance": "สามารถขอคืนเงินได้ (หยวน)",
     "payBody": "จ่ายร่างกาย",
@@ -77,7 +87,7 @@
     "reason": "เหตุผลในการคืนเงิน",
     "finishTime": "เสร็จสิ้นเวลา",
     "orderAmount": "จำนวนการสั่งซื้อ",
-    "orderNo": "หมายเลขคำสั่งซื้อเดิม",
+    "orderNo": "Platform Order No.",
     "authCode": "รหัสชำระเงิน",
     "merchant": "ร้านค้า"
   },
@@ -85,27 +95,33 @@
     "wait_pay": "ซึ่งรอคอย",
     "paid": "จ่าย",
     "closed": "ปิด",
-    "expired": "หมดอายุแล้ว"
+    "expired": "หมดอายุแล้ว",
+    "paying": "Paying",
+    "failed": "Failed"
   },
   "fundStatus": {
     "init": "อักษรย่อ",
     "processing": "กำลังประมวลผล",
     "success": "ความสำเร็จ",
     "fail": "ล้มเหลว",
-    "close": "ปิด"
+    "close": "ปิด",
+    "cancel": "Cancelled"
   },
   "bizStatusColor": {
     "wait_pay": "ส้ม",
     "paid": "สีเขียว",
     "closed": "ค่าเริ่มต้น",
-    "expired": "สีแดง"
+    "expired": "สีแดง",
+    "paying": "processing",
+    "failed": "red"
   },
   "fundStatusColor": {
     "init": "ค่าเริ่มต้น",
     "processing": "กำลังประมวลผล",
     "success": "สีเขียว",
     "fail": "สีแดง",
-    "close": "ค่าเริ่มต้น"
+    "close": "ค่าเริ่มต้น",
+    "cancel": "default"
   },
   "placeholder": {
     "bizOrderNo": "ป้อนหมายเลขคำสั่งซื้อของร้านค้า",
@@ -143,9 +159,6 @@
     "refundReasonPlaceholder": "ป้อนเหตุผลการคืนเงิน (ไม่บังคับ)",
     "refundAmountExceed": "จำนวนเงินคืนต้องไม่เกินจำนวนเงินที่สามารถขอคืนได้"
   },
-  "tradeType": {
-    "normal": "ชำระเงินปกติ"
-  },
   "method": {
     "jsapi": "JSAPI",
     "qrcode": "สแกนโค้ด",
@@ -153,5 +166,13 @@
     "app": "APP",
     "barcode": "บาร์โค้ด",
     "wap": "WAP"
+  },
+  "tradeType": {
+    "normal": "Normal Pay",
+    "gateway": "Gateway Pay"
+  },
+  "gatewayType": {
+    "cashier": "Cashier",
+    "aggregate": "Aggregate"
   }
 }

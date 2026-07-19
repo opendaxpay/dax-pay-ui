@@ -45,18 +45,18 @@ export interface NormalOrderQuery {
   mchNo?: string;
   /** 应用号 */
   appId?: string;
+  /** 平台业务单号 */
+  orderNo?: string;
   /** 商户业务单号 */
   bizOrderNo?: string;
   /** 订单标题 */
   title?: string;
   /** 业务状态 */
   status?: string;
-  /** 支付通道 */
-  channel?: string;
-  /** 支付方式 */
-  method?: string;
   /** 支付产品 */
   product?: string;
+  /** 支付能力 */
+  capability?: string;
   /** 门店号 */
   storeNo?: string;
   /** 创建时间-开始 */
@@ -71,8 +71,12 @@ export interface NormalOrderQuery {
 
 /** 业务订单结果(含详情联表字段) */
 export interface NormalOrderResult extends MchEntity {
+  /** 平台业务单号 */
+  orderNo?: string;
   /** 商户业务单号 */
   bizOrderNo?: string;
+  /** 订单来源 */
+  source?: string;
   /** 标题 */
   title?: string;
   /** 描述 */
@@ -97,14 +101,14 @@ export interface NormalOrderResult extends MchEntity {
   method?: string;
   /** 支付产品 */
   product?: string;
+  /** 支付能力 */
+  capability?: string;
   /** 支付成功时间 */
   payTime?: string;
   /** 关闭时间 */
   closeTime?: string;
   /** 通道商户号 */
   channelMchNo?: string;
-  /** 支付能力编码 */
-  capability?: string;
   /** 通道应用 AppId */
   channelAppId?: string;
   /** 客户端IP */

@@ -53,12 +53,7 @@ export interface PayTradeQuery {
   status?: string;
   /** 交易形态 */
   tradeType?: string;
-  /** 支付通道 */
-  channel?: string;
-  /** 支付方式 */
-  method?: string;
-  /** 支付产品 */
-  product?: string;
+  // pay_trade 无 channel/method/product 列，不可筛选
   /** 通道商户号 */
   channelMchNo?: string;
   /** 门店号 */
@@ -142,6 +137,8 @@ export interface PayTradeResult extends MchEntity {
   /** 错误信息 */
   errorMsg?: string;
   // ===== 容器联表字段(详情) =====
+  /** 容器平台业务单号 */
+  containerOrderNo?: string;
   /** 商户业务单号 */
   bizOrderNo?: string;
   /** 订单标题 */

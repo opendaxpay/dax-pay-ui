@@ -1,93 +1,83 @@
 <script lang="ts" setup>
   import type { DashboardData } from '../types';
 
+  import { onMounted, ref } from 'vue';
+  import { useRouter } from 'vue-router';
+
   import { IconifyIcon } from '@vben/icons';
   import { $t } from '@vben/locales';
+  import { formatDateTime } from '@vben/utils';
 
-  import { useMessage } from '#/hooks/useMessage';
+  import { NormalOrderApi, type NormalOrderResult } from '#/api/payment/order/normal-order.api';
+  import { channelI18nMap } from '#/enums/payment/channelEnum';
 
   interface Props {
-    /** 工作台聚合数据（支付订单暂无后端 API，保留以统一 widget props 契约） */
+    /** 工作台聚合数据（支付订单独立拉数据，保留以统一 widget props 契约） */
     data?: DashboardData;
   }
 
   defineOptions({ name: 'PayOrderListWidget' });
 
-  // 支付订单暂无后端 API，保留 data prop 以统一 widget 渲染契约
+  // 支付订单独立拉取数据，不消费聚合统计；保留 data prop 以统一 widget 渲染契约
   withDefaults(defineProps<Props>(), {
     data: undefined,
   });
 
-  const { message } = useMessage();
+  const router = useRouter();
 
-  // 订单状态枚举
-  type OrderStatus = 'closed' | 'fail' | 'success';
+  const loading = ref(false);
+  const orders = ref<NormalOrderResult[]>([]);
 
-  interface MockOrder {
-    // 订单号
-    orderNo: string;
-    // 商品标题
-    title: string;
-    // 金额（元）
-    amount: string;
-    // 状态
-    status: OrderStatus;
-    // 支付渠道 code（对应 payment.channel.common.*）
-    channel: string;
-    // 时间（mock 字符串，直接展示）
-    time: string;
+  /** 拉取最近支付订单（按创建时间倒序取 20 条） */
+  async function load() {
+    loading.value = true;
+    try {
+      const res = await NormalOrderApi.page({ current: 1, size: 20 });
+      orders.value = res?.data?.records || [];
+    } finally {
+      loading.value = false;
+    }
   }
 
-  // 订单标题模板池
-  const titlePool = [
-    '会员包年套餐',
-    '商品购买',
-    'VIP月卡续费',
-    '电子书-架构之道',
-    '课程订阅-进阶',
-    '实物商品-配件',
-    '软件授权-年度',
-    '礼品卡充值',
-    '直播打赏',
-    '云服务-包月',
-  ];
-  const channelPool = ['wechat', 'alipay', 'unionPay'];
-  // 状态权重：success 出现概率更高
-  const statusPool: OrderStatus[] = ['success', 'success', 'success', 'fail', 'closed'];
-  const amountPool = ['299.00', '59.90', '19.90', '45.00', '199.00', '128.00', '88.88', '599.00', '36.50', '1080.00'];
+  onMounted(load);
 
-  // 生成 20 条 mock 订单数据（后端支付订单管理 API 就绪后替换为真实请求结果）
-  const mockOrders: MockOrder[] = Array.from({ length: 20 }).map((_, i) => {
-    // 日期从 06-27 往前推，每 4 条一天
-    const day = String(27 - Math.floor(i / 4)).padStart(2, '0');
-    const hour = String(8 + (i % 14)).padStart(2, '0');
-    const min = String((i * 13) % 60).padStart(2, '0');
-    const seq = String(1001 + i);
-    return {
-      orderNo: `PAY202606${day}${hour}${min}${seq}`,
-      title: i >= titlePool.length ? `${titlePool[i % titlePool.length]!} #${seq}` : titlePool[i]!,
-      amount: amountPool[i % amountPool.length]!,
-      status: statusPool[i % statusPool.length]!,
-      channel: channelPool[i % channelPool.length]!,
-      time: `2026-06-${day} ${hour}:${min}`,
-    } as MockOrder;
-  });
-
-  /** 订单状态 → a-tag color 映射 */
-  function statusColor(status: OrderStatus): string {
-    if (status === 'success') return 'green';
-    if (status === 'fail') return 'red';
-    return 'default';
+  /** 跳转到普通支付订单列表（"更多"按钮） */
+  function goAll() {
+    router.push({ name: '/trade/pay-order/normal' }).catch(() => {});
   }
 
-  /** 订单状态 → i18n key */
-  function statusLabel(status: OrderStatus): string {
-    return $t(`dashboard.workspace.payOrder.status.${status}`);
+  /** 金额分转元 */
+  function formatAmount(amount?: number): string {
+    if (amount === null || amount === undefined) return '-';
+    return (amount / 100).toFixed(2);
   }
 
-  /** "更多"按钮：支付订单管理页尚未开发，提示开发中 */
-  function handleMore() {
-    message.info($t('dashboard.workspace.payOrder.developing'));
+  /** 业务状态颜色：复用订单页 bizStatusColor 配置 */
+  function statusColor(status?: string): string {
+    return status ? $t(`payment.order.bizStatusColor.${status}`) : 'default';
+  }
+
+  /** 业务状态文案：复用订单页 bizStatus 配置 */
+  function statusLabel(status?: string): string {
+    return status ? $t(`payment.order.bizStatus.${status}`) : '-';
+  }
+
+  /** 支付通道展示名：channelI18nMap 取 i18n key 再翻译，无映射时降级原 code */
+  function channelLabel(channel?: string): string {
+    if (!channel) return '-';
+    const i18nKey = channelI18nMap[channel];
+    if (i18nKey) {
+      const text = $t(i18nKey);
+      if (text && text !== i18nKey) return text;
+    }
+    return channel;
+  }
+
+  /** 时间格式化：优先支付成功时间，降级创建时间 */
+  function fmtTime(order: NormalOrderResult): string {
+    const time = order.payTime || order.createTime;
+    if (!time) return '-';
+    return formatDateTime(time) || '-';
   }
 </script>
 
@@ -100,27 +90,31 @@
       </div>
     </template>
     <template #extra>
-      <a-button type="link" size="small" @click="handleMore">{{ $t('common.more') }}</a-button>
+      <a-button type="link" size="small" @click="goAll">{{ $t('common.more') }}</a-button>
     </template>
 
+    <a-skeleton v-if="loading" active :paragraph="{ rows: 5 }" />
+    <a-empty v-else-if="orders.length === 0" class="!my-6" />
     <!-- 订单列表：固定高度滚动，与左右卡片等高协调 -->
-    <ul class="pay-order-scroll flex max-h-[230px] flex-col gap-3 overflow-y-auto pr-1">
-      <li v-for="(order, index) in mockOrders" :key="index" class="flex flex-col gap-1">
+    <ul v-else class="pay-order-scroll flex max-h-[230px] flex-col gap-3 overflow-y-auto pr-1">
+      <li v-for="(order, index) in orders" :key="order.id ?? index" class="flex flex-col gap-1">
         <!-- 行1：状态标签 + 标题 + 金额 -->
         <div class="flex items-center gap-2">
           <a-tag :color="statusColor(order.status)" class="!m-0 !shrink-0 text-xs">
             {{ statusLabel(order.status) }}
           </a-tag>
-          <span class="text-foreground/80 flex-1 truncate text-sm">{{ order.title }}</span>
-          <span class="text-foreground shrink-0 text-sm font-semibold tabular-nums">¥{{ order.amount }}</span>
+          <span class="text-foreground/80 flex-1 truncate text-sm">{{ order.title || '-' }}</span>
+          <span class="text-foreground shrink-0 text-sm font-semibold tabular-nums"
+            >¥{{ formatAmount(order.amount) }}</span
+          >
         </div>
         <!-- 行2：订单号 · 渠道 · 时间 -->
         <p class="text-foreground/40 truncate text-xs">
-          <span>{{ order.orderNo }}</span>
+          <span>{{ order.orderNo || '-' }}</span>
           <span class="mx-1">·</span>
-          <span>{{ $t(`payment.channel.common.${order.channel}`) }}</span>
+          <span>{{ channelLabel(order.channel) }}</span>
           <span class="mx-1">·</span>
-          <span>{{ order.time }}</span>
+          <span>{{ fmtTime(order) }}</span>
         </p>
       </li>
     </ul>
