@@ -39,6 +39,20 @@ import zhCnMenuTitles from './menu-titles/zh-CN.json';
 import zhHkMenuTitles from './menu-titles/zh-HK.json';
 import zhTwMenuTitles from './menu-titles/zh-TW.json';
 
+// 顶层 flat key: 供 packages/@core/ui-kit/popup-ui 等框架组件 fallback 使用
+// (框架组件用 $t('cancel')/$t('confirm')/$t('expand')/$t('collapse') 无命名空间)
+// 不走 langs/ 目录(keyPath 会带文件名前缀),由 loadMessages 直接展开到顶层
+import enUsFlat from './flat/en-US.json';
+import idIdFlat from './flat/id-ID.json';
+import jaJpFlat from './flat/ja-JP.json';
+import koKrFlat from './flat/ko-KR.json';
+import msMyFlat from './flat/ms-MY.json';
+import thThFlat from './flat/th-TH.json';
+import viVnFlat from './flat/vi-VN.json';
+import zhCnFlat from './flat/zh-CN.json';
+import zhHkFlat from './flat/zh-HK.json';
+import zhTwFlat from './flat/zh-TW.json';
+
 const antdLocale = ref<Locale>(antdDefaultLocale);
 
 const modules = import.meta.glob('./langs/**/*.json');
@@ -82,6 +96,43 @@ function getMenuTitlesFor(lang: SupportedLanguagesType): Record<string, string> 
   }
 }
 
+/** 按完整 locale 取顶层 flat key 包(框架组件 fallback 文案) */
+function getFlatMessagesFor(lang: SupportedLanguagesType): Record<string, string> {
+  switch (lang) {
+    case 'en-US': {
+      return enUsFlat as Record<string, string>;
+    }
+    case 'zh-TW': {
+      return zhTwFlat as Record<string, string>;
+    }
+    case 'zh-HK': {
+      return zhHkFlat as Record<string, string>;
+    }
+    case 'ja-JP': {
+      return jaJpFlat as Record<string, string>;
+    }
+    case 'ko-KR': {
+      return koKrFlat as Record<string, string>;
+    }
+    case 'id-ID': {
+      return idIdFlat as Record<string, string>;
+    }
+    case 'vi-VN': {
+      return viVnFlat as Record<string, string>;
+    }
+    case 'th-TH': {
+      return thThFlat as Record<string, string>;
+    }
+    case 'ms-MY': {
+      return msMyFlat as Record<string, string>;
+    }
+    case 'zh-CN':
+    default: {
+      return zhCnFlat as Record<string, string>;
+    }
+  }
+}
+
 /**
  * 加载应用特有的语言包
  * 每次语言切换都会走这里：业务 langs + menu-titles 一并 merge，
@@ -94,9 +145,11 @@ async function loadMessages(
   const [appLocaleMessages] = await Promise.all([localesMap[lang]?.(), loadThirdPartyMessage(lang)]);
   const base = (appLocaleMessages?.default ?? {}) as Record<string, LocaleMessageValue>;
   // 菜单标题真相源：menu-titles/{lang}.json，与 injectMenuI18n 同源
+  // 顶层 flat key: 框架组件 fallback 文案(cancel/confirm/expand/collapse)
   return {
     ...base,
     ...getMenuTitlesFor(lang),
+    ...getFlatMessagesFor(lang),
   };
 }
 
