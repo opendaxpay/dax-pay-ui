@@ -416,5 +416,9 @@
     "logged": "已注销",
     "error": "错误",
     "init": "初期化"
+  },
+  "alipay_auth_type": {
+    "public_key": "公開鍵",
+    "cert": "証明書"
   }
 }
