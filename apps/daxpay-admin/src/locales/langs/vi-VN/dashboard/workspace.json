@@ -18,7 +18,7 @@
     "tradeOverview": "Tổng quan thương mại",
     "payOrder": "Lệnh thanh toán",
     "tradeTrend": "Xu hướng thương mại",
-    "channelDist": "Kênh thanh toán",
+    "providerDist": "Phân bố phương thức thanh toán",
     "noticeList": "Thông báo"
   },
   "tradeOverview": {
@@ -28,14 +28,6 @@
     "successCount": "Số lượng thành công",
     "refundAmount": "Số tiền hoàn lại (CNY)",
     "refundCount": "Số tiền hoàn lại"
-  },
-  "payOrder": {
-    "developing": "Quản lý lệnh thanh toán đang phát triển",
-    "status": {
-      "success": "Thành công",
-      "fail": "Thất bại",
-      "closed": "Đã đóng"
-    }
   },
   "tradeTrend": {
     "last7days": "7 ngày",

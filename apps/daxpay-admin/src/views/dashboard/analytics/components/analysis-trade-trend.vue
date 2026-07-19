@@ -10,11 +10,14 @@
 
   const props = withDefaults(defineProps<Props>(), {
     data: undefined,
+    loading: false,
   });
 
   interface Props {
     /** 交易趋势序列（日期 + 多度量） */
     data?: TrendSeries;
+    /** 加载中(显示骨架屏) */
+    loading?: boolean;
   }
 
   // 度量切换：交易额 / 交易笔数 / 客单价
@@ -69,6 +72,7 @@
       </a-radio-group>
     </template>
 
-    <EchartsUI ref="chartRef" class="h-[320px]" />
+    <a-skeleton v-if="loading" active :paragraph="{ rows: 6 }" />
+    <EchartsUI v-else ref="chartRef" class="h-[320px]" />
   </a-card>
 </template>

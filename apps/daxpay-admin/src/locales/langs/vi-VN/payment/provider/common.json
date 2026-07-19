@@ -1,0 +1,9 @@
+{
+  "aggregatePay": "Thanh toán tổng hợp",
+  "wechat": "WeChat Pay",
+  "alipay": "Alipay",
+  "unionPay": "UnionPay",
+  "visa": "Visa",
+  "mastercard": "Mastercard",
+  "douyin": "Douyin Pay"
+}

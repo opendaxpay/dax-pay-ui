@@ -10,11 +10,14 @@
 
   const props = withDefaults(defineProps<Props>(), {
     data: undefined,
+    loading: false,
   });
 
   interface Props {
     /** 各支付方式交易额占比 */
     data?: NameValue[];
+    /** 加载中(显示骨架屏) */
+    loading?: boolean;
   }
 
   const chartRef = ref<EchartsUIType>();
@@ -46,6 +49,7 @@
   <a-card variant="borderless" class="!h-full min-h-[320px] !bg-card">
     <template #title>{{ $t('dashboard.analytics.payMethod.title') }}</template>
 
-    <EchartsUI ref="chartRef" class="h-[320px]" />
+    <a-skeleton v-if="loading" active :paragraph="{ rows: 6 }" />
+    <EchartsUI v-else ref="chartRef" class="h-[320px]" />
   </a-card>
 </template>

@@ -14,8 +14,8 @@
 
   defineOptions({ name: 'Analytics' });
 
-  // 全局时间范围（预设 + 自定义互斥）+ 派生数据（mock，后端聚合 API 就绪后替换）
-  const { activePreset, customRange, data, isCustom, subtitle } = useAnalyticsData();
+  // 全局时间范围（预设 + 自定义互斥）+ 派生数据(异步加载, 8 个维度并发)
+  const { activePreset, customRange, data, isCustom, loading, subtitle } = useAnalyticsData();
 </script>
 
 <template>
@@ -41,40 +41,40 @@
     </div>
 
     <!-- 指标卡片行：规模(总额/笔数/客单价) + 质量(成功率/退款额/退款率) -->
-    <AnalysisOverview :data="data.overview" />
+    <AnalysisOverview :data="data.overview" :loading="loading" />
 
     <!-- 图表网格：核心趋势 → 洞察三连 → 深度 → 明细 -->
     <a-row :gutter="[16, 16]" align="stretch" class="!mt-4">
       <!-- 第二行：交易趋势(多度量) + 支付方式占比 -->
       <a-col :span="16">
-        <AnalysisTradeTrend :data="data.tradeTrend" />
+        <AnalysisTradeTrend :data="data.tradeTrend" :loading="loading" />
       </a-col>
       <a-col :span="8">
-        <AnalysisPayMethod :data="data.payMethod" />
+        <AnalysisPayMethod :data="data.payMethod" :loading="loading" />
       </a-col>
 
       <!-- 第三行：洞察三连（渠道质量/时段/金额区间） -->
       <a-col :span="8">
-        <AnalysisChannelSuccess :data="data.channelSuccess" />
+        <AnalysisChannelSuccess :data="data.channelSuccess" :loading="loading" />
       </a-col>
       <a-col :span="8">
-        <AnalysisHourlyDist :data="data.hourlyDist" />
+        <AnalysisHourlyDist :data="data.hourlyDist" :loading="loading" />
       </a-col>
       <a-col :span="8">
-        <AnalysisAmountRange :data="data.amountRange" />
+        <AnalysisAmountRange :data="data.amountRange" :loading="loading" />
       </a-col>
 
       <!-- 第四行：渠道交易量 + 退款趋势 -->
       <a-col :span="12">
-        <AnalysisChannelVolume :data="data.channelVolume" />
+        <AnalysisChannelVolume :data="data.channelVolume" :loading="loading" />
       </a-col>
       <a-col :span="12">
-        <AnalysisRefundTrend :data="data.refundTrend" />
+        <AnalysisRefundTrend :data="data.refundTrend" :loading="loading" />
       </a-col>
 
       <!-- 第五行：商户交易额排名明细 -->
       <a-col :span="24">
-        <AnalysisMerchantRank :data="data.merchantRank" />
+        <AnalysisMerchantRank :data="data.merchantRank" :loading="loading" />
       </a-col>
     </a-row>
   </div>

@@ -18,7 +18,7 @@
     "tradeOverview": "貿易概要",
     "payOrder": "支払い命令",
     "tradeTrend": "貿易動向",
-    "channelDist": "支払いチャネル",
+    "providerDist": "決済方法分布",
     "noticeList": "お知らせ"
   },
   "tradeOverview": {
@@ -28,14 +28,6 @@
     "successCount": "成功数",
     "refundAmount": "払い戻し金額 (CNY)",
     "refundCount": "払い戻し回数"
-  },
-  "payOrder": {
-    "developing": "支払い注文管理は開発中",
-    "status": {
-      "success": "成功",
-      "fail": "失敗した",
-      "closed": "閉店"
-    }
   },
   "tradeTrend": {
     "last7days": "7日間",

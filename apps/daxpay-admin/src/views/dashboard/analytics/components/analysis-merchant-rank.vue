@@ -9,11 +9,14 @@
 
   const props = withDefaults(defineProps<Props>(), {
     data: () => [],
+    loading: false,
   });
 
   interface Props {
     /** 商户交易额排名 Top10 */
     data?: MerchantRankItem[];
+    /** 加载中(显示骨架屏) */
+    loading?: boolean;
   }
 
   // 表格列定义（排名 / 商户 / 交易额 / 笔数 / 占比）
@@ -45,6 +48,7 @@
 <template>
   <a-card variant="borderless" class="!bg-card">
     <template #title>{{ $t('dashboard.analytics.merchantRank.title') }}</template>
-    <a-table :columns="columns" :data-source="dataSource" :pagination="false" row-key="merchantName" size="small" />
+    <a-skeleton v-if="loading" active :paragraph="{ rows: 5 }" />
+    <a-table v-else :columns="columns" :data-source="dataSource" :pagination="false" row-key="merchantName" size="small" />
   </a-card>
 </template>

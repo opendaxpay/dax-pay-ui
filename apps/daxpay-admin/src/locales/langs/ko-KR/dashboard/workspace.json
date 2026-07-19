@@ -18,7 +18,7 @@
     "tradeOverview": "무역개요",
     "payOrder": "지불 주문",
     "tradeTrend": "무역동향",
-    "channelDist": "결제 채널",
+    "providerDist": "결제 수단 분포",
     "noticeList": "공지사항"
   },
   "tradeOverview": {
@@ -28,14 +28,6 @@
     "successCount": "성공 횟수",
     "refundAmount": "환불 금액(CNY)",
     "refundCount": "환불 횟수"
-  },
-  "payOrder": {
-    "developing": "결제 주문 관리 개발 중",
-    "status": {
-      "success": "성공",
-      "fail": "실패한",
-      "closed": "닫은"
-    }
   },
   "tradeTrend": {
     "last7days": "7일",

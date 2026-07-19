@@ -10,11 +10,14 @@
 
   const props = withDefaults(defineProps<Props>(), {
     data: undefined,
+    loading: false,
   });
 
   interface Props {
     /** 单笔金额区间分桶（用户消费特征） */
     data?: AmountRangeItem[];
+    /** 加载中(显示骨架屏) */
+    loading?: boolean;
   }
 
   const chartRef = ref<EchartsUIType>();
@@ -51,6 +54,7 @@
   <a-card variant="borderless" class="!h-full min-h-[320px] !bg-card">
     <template #title>{{ $t('dashboard.analytics.amountRange.title') }}</template>
 
-    <EchartsUI ref="chartRef" class="h-[320px]" />
+    <a-skeleton v-if="loading" active :paragraph="{ rows: 6 }" />
+    <EchartsUI v-else ref="chartRef" class="h-[320px]" />
   </a-card>
 </template>

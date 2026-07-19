@@ -6,6 +6,11 @@ import { $t } from '@vben/locales';
 
 import dayjs from 'dayjs';
 
+import { DashboardTradeApi } from '#/api/payment/dashboard/trade-dashboard.api';
+import { providerI18nMap, providerNameMap } from '#/enums/payment/providerEnum';
+
+import { emptyAnalyticsData } from '../types';
+
 /** 预设范围 → [start, end]（YYYY-MM-DD）；本月取月初到今天（未来无数据） */
 function computePreset(key: PresetKey): DateRange {
   const today = dayjs();
@@ -25,128 +30,47 @@ function computePreset(key: PresetKey): DateRange {
   }
 }
 
-/** 按 [start, end] 生成日期标签（MM-DD，含首尾） */
-function genDateLabels(start: string, end: string): string[] {
-  const labels: string[] = [];
-  let cur = dayjs(start);
-  const last = dayjs(end);
-  while (cur.isBefore(last) || cur.isSame(last, 'day')) {
-    labels.push(cur.format('MM-DD'));
-    cur = cur.add(1, 'day');
+/** 支付渠道编码 → 展示名: 优先 i18n 映射, 无映射时降级原编码 */
+function providerLabel(provider?: string): string {
+  if (!provider) return '-';
+  const i18nKey = providerI18nMap[provider];
+  if (i18nKey) {
+    const text = $t(i18nKey);
+    if (text && text !== i18nKey) return text;
   }
-  return labels;
+  return providerNameMap[provider] ?? provider;
 }
 
-/** 基于索引的稳定波动函数（同输入同输出，避免每次切换数据跳变） */
-function wave(i: number, seed: number): number {
-  return Math.sin(i * 0.8 + seed) * 0.5 + Math.cos(i * 1.3 + seed) * 0.3;
+/** 金额分(后端) → 元(前端展示), 保留整数 */
+function fenToYuan(fen?: number): number {
+  if (!fen || fen <= 0) return 0;
+  return Math.round(fen / 100);
 }
 
-/** 按日期范围构造全量 mock 数据（后端聚合 API 就绪后替换为真实请求） */
-function buildData(start: string, end: string): AnalyticsData {
-  const dates = genDateLabels(start, end);
-  const n = dates.length;
-
-  // 交易额（元）：基线 + 上升趋势 + 周期波动
-  const amounts = dates.map((_, i) => Math.round(50_000 + i * 600 + wave(i, 1) * 12_000));
-  // 交易笔数
-  const orders = dates.map((_, i) => Math.round(800 + i * 8 + wave(i, 2) * 120));
-  // 客单价 = 交易额 / 笔数
-  const avgAmounts = amounts.map((a, i) => Math.round(a / (orders[i] || 1)));
-
-  // 汇总指标
-  const totalAmount = amounts.reduce((s, v) => s + v, 0);
-  const totalOrders = orders.reduce((s, v) => s + v, 0);
-  const refundAmount = Math.round(totalAmount * 0.038);
-  const avgAmount = Math.round(totalAmount / totalOrders);
-
-  // 环比百分比（mock，随范围稳定）
-  const ratio = (base: number, seed: number) => Math.round((base + wave(n, seed) * 5) * 10) / 10;
-
-  // 退款趋势（元）
-  const refundTrendAmounts = dates.map((_, i) => Math.round(1800 + wave(i, 3) * 600 + i * 20));
-
-  // 24h 时段分布：模拟双高峰（午间 12 点、晚间 20 点），凌晨低谷
-  const hourlyDist = Array.from({ length: 24 }).map((_, h) => {
-    const noonPeak = Math.exp(-Math.pow((h - 12) / 4, 2)) * 1000;
-    const eveningPeak = Math.exp(-Math.pow((h - 20) / 3, 2)) * 800;
-    const noise = wave(h, 4) * 100;
-    return Math.max(50, Math.round(noonPeak + eveningPeak + noise + 100));
-  });
-
-  return {
-    overview: [
-      { key: 'totalAmount', value: totalAmount, prefix: '¥', chainRatio: ratio(8.5, 1) },
-      { key: 'totalOrders', value: totalOrders, chainRatio: ratio(6.2, 2) },
-      { key: 'avgAmount', value: avgAmount, prefix: '¥', chainRatio: ratio(2.1, 3) },
-      { key: 'successRate', value: 97.6, suffix: '%', chainRatio: ratio(0.3, 4) },
-      { key: 'refundAmount', value: refundAmount, prefix: '¥', chainRatio: ratio(-3.4, 5) },
-      { key: 'refundRate', value: 3.8, suffix: '%', chainRatio: ratio(-1.2, 6) },
-    ],
-    tradeTrend: { amounts, avgAmounts, dates, orders },
-    payMethod: [
-      { name: $t('payment.channel.common.wechat'), value: 38 },
-      { name: $t('payment.channel.common.alipay'), value: 28 },
-      { name: $t('payment.channel.common.unionPay'), value: 18 },
-      { name: $t('payment.channel.common.visa'), value: 8 },
-      { name: $t('payment.channel.common.mastercard'), value: 5 },
-      { name: $t('payment.channel.common.douyin'), value: 3 },
-    ],
-    channelSuccess: [
-      { name: $t('payment.channel.common.alipay'), rate: 99.2 },
-      { name: $t('payment.channel.common.wechat'), rate: 98.7 },
-      { name: $t('payment.channel.common.unionPay'), rate: 97.5 },
-      { name: $t('payment.channel.common.douyin'), rate: 96.3 },
-      { name: $t('payment.channel.common.visa'), rate: 95.8 },
-      { name: $t('payment.channel.common.mastercard'), rate: 94.6 },
-    ],
-    hourlyDist,
-    amountRange: [
-      { count: 3200, range: '0-50' },
-      { count: 5800, range: '50-200' },
-      { count: 4200, range: '200-1000' },
-      { count: 1800, range: '1000-5000' },
-      { count: 600, range: '5000+' },
-    ],
-    channelVolume: [
-      { name: $t('payment.channel.common.wechat'), value: 45_000 },
-      { name: $t('payment.channel.common.alipay'), value: 32_000 },
-      { name: $t('payment.channel.common.unionPay'), value: 12_000 },
-      { name: $t('payment.channel.common.visa'), value: 8000 },
-      { name: $t('payment.channel.common.mastercard'), value: 6000 },
-      { name: $t('payment.channel.common.douyin'), value: 3000 },
-    ],
-    refundTrend: { amounts: refundTrendAmounts, dates },
-    merchantRank: [
-      { amount: 520_000, merchantName: '云端科技有限公司', orders: 12_300, proportion: 18.5 },
-      { amount: 438_000, merchantName: '数聚信息科技', orders: 9800, proportion: 15.6 },
-      { amount: 362_000, merchantName: '极客电子商务', orders: 8600, proportion: 12.9 },
-      { amount: 298_000, merchantName: '智慧零售集团', orders: 7200, proportion: 10.6 },
-      { amount: 245_000, merchantName: '新橙科技', orders: 5900, proportion: 8.7 },
-      { amount: 198_000, merchantName: '环球贸易有限公司', orders: 4700, proportion: 7.1 },
-      { amount: 165_000, merchantName: '蓝海传媒', orders: 3900, proportion: 5.9 },
-      { amount: 132_000, merchantName: '星辰网络', orders: 3100, proportion: 4.7 },
-      { amount: 98_000, merchantName: '迅捷物流', orders: 2300, proportion: 3.5 },
-      { amount: 76_000, merchantName: '橙意生活', orders: 1800, proportion: 2.7 },
-    ],
-  };
+/**
+ * 环比百分比计算
+ * @returns null 表示无法计算(prev 缺数据或为 0)
+ */
+function chainRatio(curr?: number, prev?: number): null | number {
+  if (curr === undefined || prev === undefined || prev === 0) return null;
+  return Math.round(((curr - prev) / prev) * 1000) / 10;
 }
 
+/**
+ * 分析页聚合数据异步加载 composable
+ *
+ * 按 dateRange 触发 8 个 API 并发加载(Promise.allSettled), 单个失败时该字段保留空,
+ * 不影响其他图表。chainRatio(环比) 由前端基于后端返回的 curr/prev 字段计算。
+ */
 export function useAnalyticsData() {
-  // 当前模式（预设 key 或 'custom' 自定义）
   const activePreset = ref<PresetKey>('last7days');
-  // 自定义日期范围（仅 custom 模式生效）
   const customRange = ref<DateRange | undefined>(undefined);
-
-  // 是否自定义模式（控制 RangePicker 启用/禁用）
   const isCustom = computed(() => activePreset.value === 'custom');
 
-  // 选预设时清空自定义范围（避免残留）
   watch(activePreset, (key) => {
     if (key !== 'custom') customRange.value = undefined;
   });
 
-  // 真实数据源：custom 走自定义范围（未选时兜底近7天），否则走预设
   const dateRange = computed<DateRange>(() => {
     if (activePreset.value === 'custom') {
       return customRange.value ?? computePreset('last7days');
@@ -154,15 +78,172 @@ export function useAnalyticsData() {
     return computePreset(activePreset.value);
   });
 
-  // 副标题：动态日期摘要（与右侧选择器联动）
   const subtitle = computed(() => {
     const [start, end] = dateRange.value;
     const days = dayjs(end).diff(dayjs(start), 'day') + 1;
     return $t('dashboard.analytics.subtitle', { days, end, start });
   });
 
-  // 按日期范围派生的全量数据
-  const data = computed(() => buildData(dateRange.value[0], dateRange.value[1]));
+  const data = ref<AnalyticsData>(emptyAnalyticsData());
+  const loading = ref(false);
 
-  return { activePreset, customRange, data, isCustom, subtitle };
+  /** 公共参数(start/end 同时传时优先区间模式) */
+  function commonParams() {
+    const [start, end] = dateRange.value;
+    return { end, start };
+  }
+
+  /** 并发加载所有维度, allSettled 保证单个失败不阻塞其他 */
+  async function load() {
+    loading.value = true;
+    try {
+      const params = commonParams();
+      const results = await Promise.allSettled([
+        DashboardTradeApi.overview(params),
+        DashboardTradeApi.trend(params),
+        DashboardTradeApi.refundTrend(params),
+        DashboardTradeApi.providerDist(params),
+        DashboardTradeApi.providerSuccess(params),
+        DashboardTradeApi.hourlyDist(params),
+        DashboardTradeApi.amountRange(params),
+        DashboardTradeApi.merchantRank({ ...params, limit: 10 }),
+      ]);
+
+      // 失败的维度单独记录到控制台(开发期可见, 生产静默)
+      const labels = ['overview', 'trend', 'refundTrend', 'providerDist', 'providerSuccess', 'hourlyDist', 'amountRange', 'merchantRank'] as const;
+      results.forEach((r, i) => {
+        if (r.status === 'rejected') console.warn(`[analytics] ${labels[i]} 加载失败:`, r.reason);
+      });
+
+      const overviewRes = results[0].status === 'fulfilled' ? results[0].value?.data : undefined;
+      const trendRes = results[1].status === 'fulfilled' ? results[1].value?.data : undefined;
+      const refundTrendRes = results[2].status === 'fulfilled' ? results[2].value?.data : undefined;
+      const providerDistRes = results[3].status === 'fulfilled' ? results[3].value?.data : undefined;
+      const providerSuccessRes = results[4].status === 'fulfilled' ? results[4].value?.data : undefined;
+      const hourlyDistRes = results[5].status === 'fulfilled' ? results[5].value?.data : undefined;
+      const amountRangeRes = results[6].status === 'fulfilled' ? results[6].value?.data : undefined;
+      const merchantRankRes = results[7].status === 'fulfilled' ? results[7].value?.data : undefined;
+
+      data.value = buildAnalyticsData({
+        amountRangeRes,
+        hourlyDistRes,
+        merchantRankRes,
+        overviewRes,
+        providerDistRes,
+        providerSuccessRes,
+        refundTrendRes,
+        trendRes,
+      });
+    } finally {
+      loading.value = false;
+    }
+  }
+
+  // dateRange 变化即触发加载
+  watch(dateRange, load, { immediate: true });
+
+  return { activePreset, customRange, data, isCustom, loading, subtitle };
+}
+
+/** 将各 API 响应组装为 AnalyticsData */
+function buildAnalyticsData(input: {
+  amountRangeRes?: { bucket?: string; count?: number }[];
+  hourlyDistRes?: { amount?: number; count?: number; hour?: number }[];
+  merchantRankRes?: { amount?: number; merchantName?: string; orders?: number; proportion?: number }[];
+  overviewRes?: {
+    prevRefundAmount?: number;
+    prevRefundCount?: number;
+    prevSuccessAmount?: number;
+    prevSuccessCount?: number;
+    prevTotalOrders?: number;
+    refundAmount?: number;
+    refundCount?: number;
+    successAmount?: number;
+    successCount?: number;
+    totalOrders?: number;
+  };
+  providerDistRes?: { amount?: number; count?: number; provider?: string }[];
+  providerSuccessRes?: { provider?: string; rate?: number }[];
+  refundTrendRes?: { amount?: number; count?: number; date?: string }[];
+  trendRes?: { amount?: number; count?: number; date?: string }[];
+}): AnalyticsData {
+  const { overviewRes, trendRes, refundTrendRes, providerDistRes, providerSuccessRes, hourlyDistRes, amountRangeRes, merchantRankRes } = input;
+
+  // ===== overview 6 卡片(含环比) =====
+  const ov = overviewRes ?? {};
+  const successAmountYuan = fenToYuan(ov.successAmount);
+  const refundAmountYuan = fenToYuan(ov.refundAmount);
+  const successCount = ov.successCount ?? 0;
+  const totalOrders = ov.totalOrders ?? 0;
+  const avgAmount = successCount > 0 ? Math.round((successAmountYuan / successCount) * 100) / 100 : 0;
+  // 成功率口径: success_count / total_orders * 100(分子分母时间基准不同, 见后端 Mapper 注释)
+  const successRate = totalOrders > 0 ? Math.round((successCount / totalOrders) * 1000) / 10 : 0;
+  const refundRate = successAmountYuan > 0 ? Math.round((refundAmountYuan / successAmountYuan) * 1000) / 10 : 0;
+
+  const overview = [
+    { key: 'totalAmount', value: successAmountYuan, prefix: '¥', chainRatio: chainRatio(ov.successAmount, ov.prevSuccessAmount) },
+    { key: 'totalOrders', value: successCount, chainRatio: chainRatio(ov.successCount, ov.prevSuccessCount) },
+    { key: 'avgAmount', value: avgAmount, prefix: '¥', chainRatio: chainRatio(avgAmount, ov.prevSuccessAmount && ov.prevSuccessCount ? Math.round((ov.prevSuccessAmount / 100 / ov.prevSuccessCount) * 100) / 100 : undefined) },
+    { key: 'successRate', value: successRate, suffix: '%', chainRatio: chainRatio(ov.successCount && ov.totalOrders ? successRate : undefined, ov.prevSuccessCount && ov.prevTotalOrders ? Math.round((ov.prevSuccessCount / ov.prevTotalOrders) * 1000) / 10 : undefined) },
+    { key: 'refundAmount', value: refundAmountYuan, prefix: '¥', chainRatio: chainRatio(ov.refundAmount, ov.prevRefundAmount) },
+    { key: 'refundRate', value: refundRate, suffix: '%', chainRatio: null },
+  ];
+
+  // ===== tradeTrend(按日期 + 多度量) =====
+  // dates 保留 yyyy-MM-dd 原值(与 a-tooltip / 前端期望一致), amounts/orders 取后端原值, avgAmounts 派生
+  const trendList = trendRes ?? [];
+  const tradeTrend = {
+    amounts: trendList.map((i) => fenToYuan(i.amount)),
+    avgAmounts: trendList.map((i) => {
+      const yuan = fenToYuan(i.amount);
+      const cnt = i.count ?? 0;
+      return cnt > 0 ? Math.round((yuan / cnt) * 100) / 100 : 0;
+    }),
+    dates: trendList.map((i) => i.date ?? ''),
+    orders: trendList.map((i) => i.count ?? 0),
+  };
+
+  // ===== refundTrend(按日期) =====
+  const refundTrend = {
+    amounts: (refundTrendRes ?? []).map((i) => fenToYuan(i.amount)),
+    dates: (refundTrendRes ?? []).map((i) => i.date ?? ''),
+  };
+
+  // ===== payMethod(支付方式占比饼图, 用 provider amount) =====
+  const payMethod = (providerDistRes ?? []).map((i) => ({
+    name: providerLabel(i.provider),
+    value: fenToYuan(i.amount),
+  }));
+
+  // ===== channelVolume(渠道交易量柱状图, 用 provider count) =====
+  const channelVolume = (providerDistRes ?? []).map((i) => ({
+    name: providerLabel(i.provider),
+    value: i.count ?? 0,
+  }));
+
+  // ===== channelSuccess(渠道成功率) =====
+  const channelSuccess = (providerSuccessRes ?? []).map((i) => ({
+    name: providerLabel(i.provider),
+    rate: i.rate ?? 0,
+  }));
+
+  // ===== hourlyDist(24 小时时段, 取 count 数组) =====
+  // 后端返回 0-23 已补齐, 取 count 字段(原前端约定: 柱状图值)
+  const hourlyDist = (hourlyDistRes ?? []).map((i) => i.count ?? 0);
+
+  // ===== amountRange(金额区间分桶) =====
+  const amountRange = (amountRangeRes ?? []).map((i) => ({
+    count: i.count ?? 0,
+    range: i.bucket ?? '',
+  }));
+
+  // ===== merchantRank =====
+  const merchantRank = (merchantRankRes ?? []).map((i) => ({
+    amount: fenToYuan(i.amount),
+    merchantName: i.merchantName ?? '-',
+    orders: i.orders ?? 0,
+    proportion: i.proportion ?? 0,
+  }));
+
+  return { amountRange, channelSuccess, channelVolume, hourlyDist, merchantRank, overview, payMethod, refundTrend, tradeTrend };
 }

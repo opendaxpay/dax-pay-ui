@@ -18,7 +18,7 @@
     "tradeOverview": "交易概覽",
     "payOrder": "支付訂單",
     "tradeTrend": "交易趨勢",
-    "channelDist": "支付渠道",
+    "providerDist": "支付渠道分佈",
     "noticeList": "系統公告"
   },
   "tradeOverview": {
@@ -28,14 +28,6 @@
     "successCount": "成交筆數",
     "refundAmount": "退款金額(元)",
     "refundCount": "退款筆數"
-  },
-  "payOrder": {
-    "developing": "支付訂單管理開發中",
-    "status": {
-      "success": "成功",
-      "fail": "失敗",
-      "closed": "已關閉"
-    }
   },
   "tradeTrend": {
     "last7days": "近 7 天",

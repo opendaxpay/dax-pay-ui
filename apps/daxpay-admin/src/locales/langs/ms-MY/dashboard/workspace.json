@@ -18,7 +18,7 @@
     "tradeOverview": "Tinjauan Perdagangan",
     "payOrder": "Pesanan Pembayaran",
     "tradeTrend": "Trend Perdagangan",
-    "channelDist": "Saluran Pembayaran",
+    "providerDist": "Agihan Kaedah Pembayaran",
     "noticeList": "Notis"
   },
   "tradeOverview": {
@@ -28,14 +28,6 @@
     "successCount": "Kiraan Kejayaan",
     "refundAmount": "Amaun Bayaran Balik (CNY)",
     "refundCount": "Kiraan Bayaran Balik"
-  },
-  "payOrder": {
-    "developing": "Pengurusan pesanan pembayaran dalam pembangunan",
-    "status": {
-      "success": "Kejayaan",
-      "fail": "gagal",
-      "closed": "tertutup"
-    }
   },
   "tradeTrend": {
     "last7days": "7 Hari",

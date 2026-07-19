@@ -7,11 +7,14 @@
 
   const props = withDefaults(defineProps<Props>(), {
     data: () => [],
+    loading: false,
   });
 
   interface Props {
     /** 6 个指标卡片数据（规模 + 质量） */
     data?: OverviewStat[];
+    /** 加载中(显示骨架屏) */
+    loading?: boolean;
   }
 
   // 数值千分位格式化
@@ -22,7 +25,14 @@
 
 <template>
   <a-row :gutter="[16, 16]">
-    <a-col v-for="item in props.data" :key="item.key" :span="4">
+    <template v-if="loading">
+      <a-col v-for="i in 6" :key="i" :span="4">
+        <a-card variant="borderless" class="!bg-card">
+          <a-skeleton active :paragraph="{ rows: 2 }" />
+        </a-card>
+      </a-col>
+    </template>
+    <a-col v-for="item in props.data" v-else :key="item.key" :span="4">
       <a-card variant="borderless" class="!bg-card">
         <div class="text-foreground/60 text-sm">
           {{ $t(`dashboard.analytics.overview.${item.key}`) }}
@@ -34,9 +44,10 @@
         </div>
         <div class="mt-1 flex items-center text-xs">
           <!-- 涨跌色遵循中国惯例：涨红跌绿（西方为涨绿跌红） -->
-          <span :class="item.chainRatio >= 0 ? 'text-red-500' : 'text-emerald-500'">
+          <span v-if="item.chainRatio !== null" :class="item.chainRatio >= 0 ? 'text-red-500' : 'text-emerald-500'">
             {{ item.chainRatio >= 0 ? '↑' : '↓' }} {{ Math.abs(item.chainRatio) }}%
           </span>
+          <span v-else class="text-foreground/40">—</span>
           <span class="text-foreground/40 ml-1">{{ $t('dashboard.analytics.overview.chainRatio') }}</span>
         </div>
       </a-card>

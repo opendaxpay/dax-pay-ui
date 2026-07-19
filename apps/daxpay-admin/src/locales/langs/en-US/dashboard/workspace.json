@@ -18,7 +18,7 @@
     "tradeOverview": "Trade Overview",
     "payOrder": "Payment Orders",
     "tradeTrend": "Trade Trend",
-    "channelDist": "Payment Channel",
+    "providerDist": "Payment Method Distribution",
     "noticeList": "Notices"
   },
   "tradeOverview": {
@@ -28,14 +28,6 @@
     "successCount": "Success Count",
     "refundAmount": "Refund Amount (CNY)",
     "refundCount": "Refund Count"
-  },
-  "payOrder": {
-    "developing": "Payment order management in development",
-    "status": {
-      "success": "Success",
-      "fail": "Failed",
-      "closed": "Closed"
-    }
   },
   "tradeTrend": {
     "last7days": "7 Days",

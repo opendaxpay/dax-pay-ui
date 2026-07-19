@@ -1,8 +1,8 @@
 import type { LayoutItem, WidgetMeta } from './types';
 
-import ChannelDistributionWidget from './widgets/channel-distribution.widget.vue';
 import NoticeListWidget from './widgets/notice-list.widget.vue';
 import PayOrderListWidget from './widgets/pay-order-list.widget.vue';
+import ProviderDistributionWidget from './widgets/provider-distribution.widget.vue';
 import QuickEntryWidget from './widgets/quick-entry.widget.vue';
 import TradeOverviewWidget from './widgets/trade-overview.widget.vue';
 import TradeTrendWidget from './widgets/trade-trend.widget.vue';
@@ -69,9 +69,9 @@ export const WIDGET_REGISTRY: WidgetMeta[] = [
     defaultOrder: 6,
   },
   {
-    id: 'channel-distribution',
-    component: ChannelDistributionWidget,
-    titleKey: 'dashboard.workspace.widget.channelDist',
+    id: 'provider-distribution',
+    component: ProviderDistributionWidget,
+    titleKey: 'dashboard.workspace.widget.providerDist',
     icon: 'lucide:pie-chart',
     defaultSpan: 8,
     defaultOrder: 5,

@@ -18,7 +18,7 @@
     "tradeOverview": "ภาพรวมการค้า",
     "payOrder": "คำสั่งการชำระเงิน",
     "tradeTrend": "แนวโน้มการค้า",
-    "channelDist": "ช่องทางการชำระเงิน",
+    "providerDist": "การกระจายวิธีการชำระเงิน",
     "noticeList": "ประกาศ"
   },
   "tradeOverview": {
@@ -28,14 +28,6 @@
     "successCount": "นับความสำเร็จ",
     "refundAmount": "จำนวนเงินคืน (CNY)",
     "refundCount": "จำนวนการคืนเงิน"
-  },
-  "payOrder": {
-    "developing": "การจัดการคำสั่งการชำระเงินอยู่ระหว่างการพัฒนา",
-    "status": {
-      "success": "ความสำเร็จ",
-      "fail": "ล้มเหลว",
-      "closed": "ปิด"
-    }
   },
   "tradeTrend": {
     "last7days": "7 วัน",

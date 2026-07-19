@@ -17,8 +17,8 @@ export interface OverviewStat {
   prefix?: string;
   /** 数值后缀（如 %） */
   suffix?: string;
-  /** 环比百分比（正数上升、负数下降） */
-  chainRatio: number;
+  /** 环比百分比（正数上升、负数下降）; null 表示无上期数据, 不展示 */
+  chainRatio: null | number;
 }
 
 /** 折线图序列数据（日期 + 多度量） */
@@ -59,7 +59,7 @@ export interface MerchantRankItem {
   proportion: number;
 }
 
-/** 分析页聚合数据（由 useAnalyticsData 按 timeRange 派生） */
+/** 分析页聚合数据（由 useAnalyticsData 按 timeRange 异步加载组装） */
 export interface AnalyticsData {
   overview: OverviewStat[];
   tradeTrend: TrendSeries;
@@ -70,4 +70,19 @@ export interface AnalyticsData {
   channelVolume: NameValue[];
   refundTrend: { amounts: number[]; dates: string[] };
   merchantRank: MerchantRankItem[];
+}
+
+/** 空数据(初次加载前的占位, 所有图表显示空状态) */
+export function emptyAnalyticsData(): AnalyticsData {
+  return {
+    overview: [],
+    tradeTrend: { amounts: [], avgAmounts: [], dates: [], orders: [] },
+    payMethod: [],
+    channelSuccess: [],
+    hourlyDist: [],
+    amountRange: [],
+    channelVolume: [],
+    refundTrend: { amounts: [], dates: [] },
+    merchantRank: [],
+  };
 }
