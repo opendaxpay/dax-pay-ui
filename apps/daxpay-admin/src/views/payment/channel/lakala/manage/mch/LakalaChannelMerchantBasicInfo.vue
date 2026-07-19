@@ -113,9 +113,10 @@
         </a-descriptions-item>
         <!-- 国际化: 环境状态(仅支持沙箱的产品显示) -->
         <a-descriptions-item v-if="showEnvStatus" :label="$t('payment.merchant.channelMerchant.envStatus')">
-          <a-tag :color="channelMerchant.activeEnv === 'sandbox' ? 'orange' : 'blue'">
+          <!-- 环境标签读通道商户固化的 sandbox 字段(创建时按当时产品 activeEnv 写入, 不随产品切换改变) -->
+          <a-tag :color="channelMerchant.sandbox ? 'orange' : 'blue'">
             {{
-              channelMerchant.activeEnv === 'sandbox'
+              channelMerchant.sandbox
                 ? $t('payment.constant.product.productConfig.sandboxLabel')
                 : $t('payment.constant.product.productConfig.prodLabel')
             }}
