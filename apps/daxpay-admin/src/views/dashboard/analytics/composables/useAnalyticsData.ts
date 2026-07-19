@@ -87,6 +87,19 @@ export function useAnalyticsData() {
   const data = ref<AnalyticsData>(emptyAnalyticsData());
   const loading = ref(false);
 
+  /** 各维度加载错误状态(true=加载失败, 显示 error 占位 + 重试) */
+  const errors = ref({
+    amountRange: false,
+    channelSuccess: false,
+    channelVolume: false,
+    hourlyDist: false,
+    merchantRank: false,
+    overview: false,
+    payMethod: false,
+    refundTrend: false,
+    tradeTrend: false,
+  });
+
   /** 公共参数(start/end 同时传时优先区间模式) */
   function commonParams() {
     const [start, end] = dateRange.value;
@@ -109,11 +122,36 @@ export function useAnalyticsData() {
         DashboardTradeApi.merchantRank({ ...params, limit: 10 }),
       ]);
 
-      // 失败的维度单独记录到控制台(开发期可见, 生产静默)
-      const labels = ['overview', 'trend', 'refundTrend', 'providerDist', 'providerSuccess', 'hourlyDist', 'amountRange', 'merchantRank'] as const;
+      // 失败的维度记录到 errors(供组件显示 error 占位), 同时 console.warn 便于开发期排查
+      const labels = [
+        'overview',
+        'tradeTrend',
+        'refundTrend',
+        'payMethod', // providerDist 同时驱动 payMethod 和 channelVolume
+        'channelSuccess',
+        'hourlyDist',
+        'amountRange',
+        'merchantRank',
+      ] as const;
       results.forEach((r, i) => {
-        if (r.status === 'rejected') console.warn(`[analytics] ${labels[i]} 加载失败:`, r.reason);
+        if (r.status === 'rejected') {
+          console.warn(`[analytics] ${labels[i]} 加载失败:`, r.reason);
+        }
       });
+
+      // providerDist 失败影响 payMethod + channelVolume 两个组件
+      const providerDistFailed = results[3].status === 'rejected';
+      errors.value = {
+        amountRange: results[6].status === 'rejected',
+        channelSuccess: results[4].status === 'rejected',
+        channelVolume: providerDistFailed,
+        hourlyDist: results[5].status === 'rejected',
+        merchantRank: results[7].status === 'rejected',
+        overview: results[0].status === 'rejected',
+        payMethod: providerDistFailed,
+        refundTrend: results[2].status === 'rejected',
+        tradeTrend: results[1].status === 'rejected',
+      };
 
       const overviewRes = results[0].status === 'fulfilled' ? results[0].value?.data : undefined;
       const trendRes = results[1].status === 'fulfilled' ? results[1].value?.data : undefined;
@@ -139,10 +177,15 @@ export function useAnalyticsData() {
     }
   }
 
+  /** 手动重试(用户点击重试按钮) */
+  function reload() {
+    load();
+  }
+
   // dateRange 变化即触发加载
   watch(dateRange, load, { immediate: true });
 
-  return { activePreset, customRange, data, isCustom, loading, subtitle };
+  return { activePreset, customRange, data, errors, isCustom, loading, reload, subtitle };
 }
 
 /** 将各 API 响应组装为 AnalyticsData */

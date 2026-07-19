@@ -1,15 +1,18 @@
 <script lang="ts" setup>
   import type { AmountRangeItem } from '../types';
 
-  import { onMounted, ref, watch } from 'vue';
+  import { computed, onMounted, ref, watch } from 'vue';
 
   import { $t } from '@vben/locales';
   import { EchartsUI, type EchartsUIType, useEcharts } from '@vben/plugins/echarts';
+
+  import ChartCard from '#/components/charts/ChartCard.vue';
 
   defineOptions({ name: 'AnalysisAmountRange' });
 
   const props = withDefaults(defineProps<Props>(), {
     data: undefined,
+    error: false,
     loading: false,
   });
 
@@ -18,14 +21,24 @@
     data?: AmountRangeItem[];
     /** 加载中(显示骨架屏) */
     loading?: boolean;
+    /** 加载失败(显示错误占位) */
+    error?: boolean;
   }
+
+  defineEmits<{ retry: [] }>();
 
   const chartRef = ref<EchartsUIType>();
   const { renderEcharts } = useEcharts(chartRef);
 
+  // 空判断: 无数据或所有桶都是 0
+  const isEmpty = computed(() => {
+    if (!props.data || props.data.length === 0) return true;
+    return props.data.every((i) => !i.count);
+  });
+
   /** 渲染金额区间柱状图（识别小额高频 / 大额低频） */
   function render(): void {
-    if (!props.data) return;
+    if (!props.data || isEmpty.value) return;
     renderEcharts({
       grid: { bottom: '8%', containLabel: true, left: '3%', right: '4%', top: '8%' },
       series: [
@@ -51,10 +64,15 @@
 </script>
 
 <template>
-  <a-card variant="borderless" class="!h-full min-h-[320px] !bg-card">
+  <ChartCard
+    :empty="isEmpty"
+    :error="error"
+    :loading="loading"
+    min-height="320px"
+    skeleton-rows="6"
+    @retry="$emit('retry')"
+  >
     <template #title>{{ $t('dashboard.analytics.amountRange.title') }}</template>
-
-    <a-skeleton v-if="loading" active :paragraph="{ rows: 6 }" />
-    <EchartsUI v-else ref="chartRef" class="h-[320px]" />
-  </a-card>
+    <EchartsUI ref="chartRef" class="h-[320px]" />
+  </ChartCard>
 </template>

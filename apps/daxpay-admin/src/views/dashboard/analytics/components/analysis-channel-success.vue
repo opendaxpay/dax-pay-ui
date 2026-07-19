@@ -1,15 +1,18 @@
 <script lang="ts" setup>
   import type { ChannelSuccessItem } from '../types';
 
-  import { onMounted, ref, watch } from 'vue';
+  import { computed, onMounted, ref, watch } from 'vue';
 
   import { $t } from '@vben/locales';
   import { EchartsUI, type EchartsUIType, useEcharts } from '@vben/plugins/echarts';
+
+  import ChartCard from '#/components/charts/ChartCard.vue';
 
   defineOptions({ name: 'AnalysisChannelSuccess' });
 
   const props = withDefaults(defineProps<Props>(), {
     data: undefined,
+    error: false,
     loading: false,
   });
 
@@ -18,14 +21,20 @@
     data?: ChannelSuccessItem[];
     /** 加载中(显示骨架屏) */
     loading?: boolean;
+    /** 加载失败(显示错误占位) */
+    error?: boolean;
   }
+
+  defineEmits<{ retry: [] }>();
 
   const chartRef = ref<EchartsUIType>();
   const { renderEcharts } = useEcharts(chartRef);
 
+  const isEmpty = computed(() => !props.data || props.data.length === 0);
+
   /** 渲染横向柱状图（Y轴渠道名，X轴成功率%） */
   function render(): void {
-    if (!props.data) return;
+    if (!props.data || isEmpty.value) return;
     renderEcharts({
       grid: { bottom: '3%', containLabel: true, left: '3%', right: '8%', top: '5%' },
       series: [
@@ -57,10 +66,15 @@
 </script>
 
 <template>
-  <a-card variant="borderless" class="!h-full min-h-[320px] !bg-card">
+  <ChartCard
+    :empty="isEmpty"
+    :error="error"
+    :loading="loading"
+    min-height="320px"
+    skeleton-rows="6"
+    @retry="$emit('retry')"
+  >
     <template #title>{{ $t('dashboard.analytics.channelSuccess.title') }}</template>
-
-    <a-skeleton v-if="loading" active :paragraph="{ rows: 6 }" />
-    <EchartsUI v-else ref="chartRef" class="h-[320px]" />
-  </a-card>
+    <EchartsUI ref="chartRef" class="h-[320px]" />
+  </ChartCard>
 </template>

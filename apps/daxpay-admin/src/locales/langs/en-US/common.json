@@ -79,5 +79,6 @@
   "none": "None",
   "nonceInvalid": "Request verification expired, please retry",
   "timestampExpired": "Request timestamp expired, please retry",
-  "nonceMissing": "Anti-replay verification parameter missing"
+  "nonceMissing": "Anti-replay verification parameter missing",
+  "retry": "Retry"
 }

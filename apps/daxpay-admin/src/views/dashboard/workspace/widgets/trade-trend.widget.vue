@@ -4,6 +4,7 @@
   import { nextTick, onMounted, ref, watch } from 'vue';
 
   import { $t } from '@vben/locales';
+  import { IconifyIcon } from '@vben/icons';
   import { EchartsUI, type EchartsUIType, useEcharts } from '@vben/plugins/echarts';
 
   import { DashboardTradeApi, type TradeTrendItemResult } from '#/api/payment/dashboard/trade-dashboard.api';
@@ -28,15 +29,20 @@
   const { renderEcharts } = useEcharts(chartRef);
 
   const loading = ref(false);
+  const error = ref(false);
   const trendData = ref<TradeTrendItemResult[]>([]);
 
   /** 拉取指定天数的交易趋势 */
   async function load() {
     loading.value = true;
+    error.value = false;
     try {
       const days = activeRange.value === '7days' ? 7 : 30;
       const res = await DashboardTradeApi.trend({ days });
       trendData.value = res?.data || [];
+    } catch (e) {
+      error.value = true;
+      trendData.value = [];
     } finally {
       loading.value = false;
       // 首次从骨架屏切到 EchartsUI 需等 DOM 挂载后再渲染
@@ -98,6 +104,18 @@
     </template>
 
     <a-skeleton v-if="loading && trendData.length === 0" active :paragraph="{ rows: 5 }" />
+    <div
+      v-else-if="error"
+      class="flex flex-col items-center justify-center gap-2 py-8"
+    >
+      <IconifyIcon icon="ant-design:warning-outlined" class="text-foreground/40 size-8" />
+      <p class="text-foreground/60 text-sm">{{ $t('common.loadFailed') }}</p>
+      <a-button size="small" type="primary" @click="load">{{ $t('common.retry') }}</a-button>
+    </div>
+    <a-empty
+      v-else-if="trendData.length === 0 || trendData.every((i) => (i.amount ?? 0) === 0)"
+      class="!my-10"
+    />
     <EchartsUI v-else ref="chartRef" class="h-[280px]" />
   </a-card>
 </template>

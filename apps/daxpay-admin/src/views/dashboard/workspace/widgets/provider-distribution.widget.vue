@@ -4,6 +4,7 @@
   import { nextTick, onMounted, ref } from 'vue';
 
   import { $t } from '@vben/locales';
+  import { IconifyIcon } from '@vben/icons';
   import { EchartsUI, type EchartsUIType, useEcharts } from '@vben/plugins/echarts';
 
   import { DashboardTradeApi, type ProviderDistItemResult } from '#/api/payment/dashboard/trade-dashboard.api';
@@ -25,6 +26,7 @@
   const { renderEcharts } = useEcharts(chartRef);
 
   const loading = ref(false);
+  const error = ref(false);
   const distData = ref<ProviderDistItemResult[]>([]);
 
   /** 支付渠道编码 → 展示名: 优先 i18n 映射, 无映射时降级原编码 */
@@ -41,9 +43,13 @@
   /** 拉取近 30 天支付渠道分布 */
   async function load() {
     loading.value = true;
+    error.value = false;
     try {
       const res = await DashboardTradeApi.providerDist({ days: 30 });
       distData.value = res?.data || [];
+    } catch (e) {
+      error.value = true;
+      distData.value = [];
     } finally {
       loading.value = false;
       await nextTick();
@@ -87,6 +93,15 @@
     </template>
 
     <a-skeleton v-if="loading && distData.length === 0" active :paragraph="{ rows: 5 }" />
+    <div
+      v-else-if="error"
+      class="flex flex-col items-center justify-center gap-2 py-8"
+    >
+      <IconifyIcon icon="ant-design:warning-outlined" class="text-foreground/40 size-8" />
+      <p class="text-foreground/60 text-sm">{{ $t('common.loadFailed') }}</p>
+      <a-button size="small" type="primary" @click="load">{{ $t('common.retry') }}</a-button>
+    </div>
+    <a-empty v-else-if="distData.length === 0" class="!my-10" />
     <EchartsUI v-else ref="chartRef" class="h-[280px]" />
   </a-card>
 </template>

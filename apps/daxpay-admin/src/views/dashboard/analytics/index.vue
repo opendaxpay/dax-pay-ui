@@ -15,7 +15,7 @@
   defineOptions({ name: 'Analytics' });
 
   // 全局时间范围（预设 + 自定义互斥）+ 派生数据(异步加载, 8 个维度并发)
-  const { activePreset, customRange, data, isCustom, loading, subtitle } = useAnalyticsData();
+  const { activePreset, customRange, data, errors, isCustom, loading, reload, subtitle } = useAnalyticsData();
 </script>
 
 <template>
@@ -41,40 +41,85 @@
     </div>
 
     <!-- 指标卡片行：规模(总额/笔数/客单价) + 质量(成功率/退款额/退款率) -->
-    <AnalysisOverview :data="data.overview" :loading="loading" />
+    <AnalysisOverview
+      :data="data.overview"
+      :error="errors.overview"
+      :loading="loading"
+      @retry="reload"
+    />
 
     <!-- 图表网格：核心趋势 → 洞察三连 → 深度 → 明细 -->
     <a-row :gutter="[16, 16]" align="stretch" class="!mt-4">
       <!-- 第二行：交易趋势(多度量) + 支付方式占比 -->
       <a-col :span="16">
-        <AnalysisTradeTrend :data="data.tradeTrend" :loading="loading" />
+        <AnalysisTradeTrend
+          :data="data.tradeTrend"
+          :error="errors.tradeTrend"
+          :loading="loading"
+          @retry="reload"
+        />
       </a-col>
       <a-col :span="8">
-        <AnalysisPayMethod :data="data.payMethod" :loading="loading" />
+        <AnalysisPayMethod
+          :data="data.payMethod"
+          :error="errors.payMethod"
+          :loading="loading"
+          @retry="reload"
+        />
       </a-col>
 
       <!-- 第三行：洞察三连（渠道质量/时段/金额区间） -->
       <a-col :span="8">
-        <AnalysisChannelSuccess :data="data.channelSuccess" :loading="loading" />
+        <AnalysisChannelSuccess
+          :data="data.channelSuccess"
+          :error="errors.channelSuccess"
+          :loading="loading"
+          @retry="reload"
+        />
       </a-col>
       <a-col :span="8">
-        <AnalysisHourlyDist :data="data.hourlyDist" :loading="loading" />
+        <AnalysisHourlyDist
+          :data="data.hourlyDist"
+          :error="errors.hourlyDist"
+          :loading="loading"
+          @retry="reload"
+        />
       </a-col>
       <a-col :span="8">
-        <AnalysisAmountRange :data="data.amountRange" :loading="loading" />
+        <AnalysisAmountRange
+          :data="data.amountRange"
+          :error="errors.amountRange"
+          :loading="loading"
+          @retry="reload"
+        />
       </a-col>
 
       <!-- 第四行：渠道交易量 + 退款趋势 -->
       <a-col :span="12">
-        <AnalysisChannelVolume :data="data.channelVolume" :loading="loading" />
+        <AnalysisChannelVolume
+          :data="data.channelVolume"
+          :error="errors.channelVolume"
+          :loading="loading"
+          @retry="reload"
+        />
       </a-col>
       <a-col :span="12">
-        <AnalysisRefundTrend :data="data.refundTrend" :loading="loading" />
+        <AnalysisRefundTrend
+          :data="data.refundTrend"
+          :error="errors.refundTrend"
+          :loading="loading"
+          @retry="reload"
+        />
       </a-col>
 
       <!-- 第五行：商户交易额排名明细 -->
       <a-col :span="24">
-        <AnalysisMerchantRank :data="data.merchantRank" :loading="loading" />
+        <AnalysisMerchantRank
+          :data="data.merchantRank"
+          :error="errors.merchantRank"
+          :loading="loading"
+          @retry="reload"
+        />
       </a-col>
     </a-row>
   </div>

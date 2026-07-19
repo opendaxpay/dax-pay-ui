@@ -79,5 +79,6 @@
   "none": "无",
   "nonceInvalid": "请求验证已失效，请重试",
   "timestampExpired": "请求时间戳已过期，请重试",
-  "nonceMissing": "请求缺少防重放验证参数"
+  "nonceMissing": "请求缺少防重放验证参数",
+  "retry": "重试"
 }

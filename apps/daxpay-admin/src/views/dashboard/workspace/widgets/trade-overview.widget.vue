@@ -24,14 +24,19 @@
   const activeTab = ref<'today' | 'yesterday'>('today');
 
   const loading = ref(false);
+  const error = ref(false);
   const overview = ref<TradeOverviewResult>({});
 
   /** 拉取指定日期的概览统计 */
   async function load() {
     loading.value = true;
+    error.value = false;
     try {
       const res = await DashboardTradeApi.overview({ date: activeTab.value });
       overview.value = res?.data || {};
+    } catch (e) {
+      error.value = true;
+      overview.value = {};
     } finally {
       loading.value = false;
     }
@@ -41,25 +46,13 @@
   watch(activeTab, load);
   onMounted(load);
 
-  /** 金额分转元(千分位 + 2 位小数), null/undefined 显示 '-' */
-  function formatAmount(fen?: number): string {
-    if (fen === null || fen === undefined) return '-';
-    return (fen / 100).toLocaleString('en-US', {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-  }
-
-  /** 数值千分位格式化 */
-  function formatCount(count?: number): string {
-    if (count === null || count === undefined) return '-';
-    return count.toLocaleString('en-US');
-  }
-
-  const successAmount = computed(() => formatAmount(overview.value.successAmount));
-  const successCount = computed(() => formatCount(overview.value.successCount));
-  const refundAmount = computed(() => formatAmount(overview.value.refundAmount));
-  const refundCount = computed(() => formatCount(overview.value.refundCount));
+  /** 金额分→元(用于 StatCard, 0 显示 ¥0 灰色, undefined 显示 —) */
+  const successAmountYuan = computed(() =>
+    overview.value.successAmount === undefined ? undefined : Math.round(overview.value.successAmount / 100),
+  );
+  const refundAmountYuan = computed(() =>
+    overview.value.refundAmount === undefined ? undefined : Math.round(overview.value.refundAmount / 100),
+  );
 </script>
 
 <template>
@@ -78,12 +71,27 @@
     </template>
 
     <a-skeleton v-if="loading" active :paragraph="{ rows: 3 }" />
+    <div
+      v-else-if="error"
+      class="flex flex-col items-center justify-center gap-2 py-8"
+    >
+      <IconifyIcon icon="ant-design:warning-outlined" class="text-foreground/40 size-8" />
+      <p class="text-foreground/60 text-sm">{{ $t('common.loadFailed') }}</p>
+      <a-button size="small" type="primary" @click="load">{{ $t('common.retry') }}</a-button>
+    </div>
     <!-- 主指标 + 副指标：垂直分布，主指标贴顶、副指标贴底，等高无空白 -->
     <div v-else class="flex h-full flex-col justify-between">
       <div>
         <p class="text-foreground/60 text-sm">{{ $t('dashboard.workspace.tradeOverview.successAmount') }}</p>
-        <p class="text-primary mt-1 text-[40px] font-semibold leading-none tabular-nums">
-          {{ successAmount }}
+        <p
+          class="mt-1 text-[40px] font-semibold leading-none tabular-nums"
+          :class="successAmountYuan === 0 ? 'text-foreground/40' : 'text-primary'"
+        >
+          <span v-if="successAmountYuan === undefined">—</span>
+          <template v-else>
+            <span class="mr-0.5 text-base">¥</span>
+            {{ successAmountYuan.toLocaleString('en-US') }}
+          </template>
         </p>
       </div>
 
@@ -91,15 +99,31 @@
       <div class="mt-8 flex justify-between">
         <div>
           <p class="text-foreground/50 text-xs">{{ $t('dashboard.workspace.tradeOverview.successCount') }}</p>
-          <span class="text-foreground mt-1 block text-lg font-semibold tabular-nums">{{ successCount }}</span>
+          <span
+            class="text-foreground mt-1 block text-lg font-semibold tabular-nums"
+            :class="overview.successCount === 0 ? 'text-foreground/40' : ''"
+          >
+            {{ overview.successCount === undefined ? '—' : overview.successCount.toLocaleString('en-US') }}
+          </span>
         </div>
         <div>
           <p class="text-foreground/50 text-xs">{{ $t('dashboard.workspace.tradeOverview.refundAmount') }}</p>
-          <span class="text-foreground mt-1 block text-lg font-semibold tabular-nums">{{ refundAmount }}</span>
+          <span
+            class="text-foreground mt-1 block text-lg font-semibold tabular-nums"
+            :class="refundAmountYuan === 0 ? 'text-foreground/40' : ''"
+          >
+            <template v-if="refundAmountYuan === undefined">—</template>
+            <template v-else>¥{{ refundAmountYuan.toLocaleString('en-US') }}</template>
+          </span>
         </div>
         <div>
           <p class="text-foreground/50 text-xs">{{ $t('dashboard.workspace.tradeOverview.refundCount') }}</p>
-          <span class="text-foreground mt-1 block text-lg font-semibold tabular-nums">{{ refundCount }}</span>
+          <span
+            class="text-foreground mt-1 block text-lg font-semibold tabular-nums"
+            :class="overview.refundCount === 0 ? 'text-foreground/40' : ''"
+          >
+            {{ overview.refundCount === undefined ? '—' : overview.refundCount.toLocaleString('en-US') }}
+          </span>
         </div>
       </div>
     </div>

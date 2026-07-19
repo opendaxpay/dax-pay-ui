@@ -1,12 +1,17 @@
 <script lang="ts" setup>
   import type { OverviewStat } from '../types';
 
+  import { IconifyIcon } from '@vben/icons';
   import { $t } from '@vben/locales';
+
+  import StatCard from '#/components/charts/StatCard.vue';
 
   defineOptions({ name: 'AnalysisOverview' });
 
   const props = withDefaults(defineProps<Props>(), {
     data: () => [],
+    emptyText: '',
+    error: false,
     loading: false,
   });
 
@@ -15,42 +20,50 @@
     data?: OverviewStat[];
     /** 加载中(显示骨架屏) */
     loading?: boolean;
+    /** 加载失败(显示错误占位 + 重试) */
+    error?: boolean;
+    /** 空状态文案(预留, 默认走 a-empty 自带文案) */
+    emptyText?: string;
   }
 
-  // 数值千分位格式化
-  function formatNum(v: number): string {
-    return v.toLocaleString('en-US');
-  }
+  defineEmits<{ retry: [] }>();
 </script>
 
 <template>
   <a-row :gutter="[16, 16]">
-    <template v-if="loading">
+    <!-- 错误占位: 跨 24 列显示 a-result + 重试 -->
+    <a-col v-if="error" :span="24">
+      <a-card variant="borderless" class="!bg-card">
+        <div class="flex flex-col items-center justify-center gap-2 py-4">
+          <IconifyIcon icon="ant-design:warning-outlined" class="text-foreground/40 size-8" />
+          <p class="text-foreground/60 text-sm">{{ $t('common.loadFailed') }}</p>
+          <a-button size="small" type="primary" @click="$emit('retry')">{{ $t('common.retry') }}</a-button>
+        </div>
+      </a-card>
+    </a-col>
+    <!-- 加载中: 6 个 skeleton 卡片占位 -->
+    <template v-else-if="loading">
       <a-col v-for="i in 6" :key="i" :span="4">
         <a-card variant="borderless" class="!bg-card">
           <a-skeleton active :paragraph="{ rows: 2 }" />
         </a-card>
       </a-col>
     </template>
-    <a-col v-for="item in props.data" v-else :key="item.key" :span="4">
+    <!-- 无数据: 跨 24 列 a-empty -->
+    <a-col v-else-if="props.data.length === 0" :span="24">
       <a-card variant="borderless" class="!bg-card">
-        <div class="text-foreground/60 text-sm">
-          {{ $t(`dashboard.analytics.overview.${item.key}`) }}
-        </div>
-        <div class="mt-2 text-2xl font-semibold tabular-nums">
-          <span v-if="item.prefix" class="mr-0.5 text-base">{{ item.prefix }}</span>
-          {{ formatNum(item.value) }}
-          <span v-if="item.suffix" class="ml-0.5 text-base">{{ item.suffix }}</span>
-        </div>
-        <div class="mt-1 flex items-center text-xs">
-          <!-- 涨跌色遵循中国惯例：涨红跌绿（西方为涨绿跌红） -->
-          <span v-if="item.chainRatio !== null" :class="item.chainRatio >= 0 ? 'text-red-500' : 'text-emerald-500'">
-            {{ item.chainRatio >= 0 ? '↑' : '↓' }} {{ Math.abs(item.chainRatio) }}%
-          </span>
-          <span v-else class="text-foreground/40">—</span>
-          <span class="text-foreground/40 ml-1">{{ $t('dashboard.analytics.overview.chainRatio') }}</span>
-        </div>
+        <a-empty :description="emptyText || $t('common.noData')" class="!my-6" />
       </a-card>
+    </a-col>
+    <!-- 正常: 6 个 StatCard(0 自动灰色, undefined 自动 —) -->
+    <a-col v-for="item in props.data" v-else :key="item.key" :span="4">
+      <StatCard
+        :chain-ratio="item.chainRatio"
+        :label="$t(`dashboard.analytics.overview.${item.key}`)"
+        :prefix="item.prefix"
+        :suffix="item.suffix"
+        :value="item.value"
+      />
     </a-col>
   </a-row>
 </template>

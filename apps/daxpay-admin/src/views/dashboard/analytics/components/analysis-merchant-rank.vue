@@ -5,10 +5,13 @@
 
   import { $t } from '@vben/locales';
 
+  import ChartCard from '#/components/charts/ChartCard.vue';
+
   defineOptions({ name: 'AnalysisMerchantRank' });
 
   const props = withDefaults(defineProps<Props>(), {
     data: () => [],
+    error: false,
     loading: false,
   });
 
@@ -17,7 +20,13 @@
     data?: MerchantRankItem[];
     /** 加载中(显示骨架屏) */
     loading?: boolean;
+    /** 加载失败(显示错误占位) */
+    error?: boolean;
   }
+
+  defineEmits<{ retry: [] }>();
+
+  const isEmpty = computed(() => !props.data || props.data.length === 0);
 
   // 表格列定义（排名 / 商户 / 交易额 / 笔数 / 占比）
   const columns = computed(() => [
@@ -46,9 +55,21 @@
 </script>
 
 <template>
-  <a-card variant="borderless" class="!bg-card">
+  <ChartCard
+    :empty="isEmpty"
+    :error="error"
+    :loading="loading"
+    min-height="200px"
+    skeleton-rows="5"
+    @retry="$emit('retry')"
+  >
     <template #title>{{ $t('dashboard.analytics.merchantRank.title') }}</template>
-    <a-skeleton v-if="loading" active :paragraph="{ rows: 5 }" />
-    <a-table v-else :columns="columns" :data-source="dataSource" :pagination="false" row-key="merchantName" size="small" />
-  </a-card>
+    <a-table
+      :columns="columns"
+      :data-source="dataSource"
+      :pagination="false"
+      row-key="merchantName"
+      size="small"
+    />
+  </ChartCard>
 </template>
