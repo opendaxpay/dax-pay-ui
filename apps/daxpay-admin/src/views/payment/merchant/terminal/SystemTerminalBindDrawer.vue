@@ -104,7 +104,7 @@
 </script>
 
 <template>
-  <a-drawer v-model:open="visible" :title="title" :width="640" :destroy-on-close="true">
+  <a-drawer v-model:open="visible" :title="title" :size="640" :destroy-on-hidden="true">
     <a-spin :spinning="loading">
       <div v-if="hasPermission(PermCodes.Merchant.Terminal.MANAGE)" class="mb-4 flex gap-2">
         <a-select
@@ -126,27 +126,29 @@
 
       <div class="mb-2 font-medium">{{ $t('payment.device.terminal.boundChannel') }}</div>
       <a-empty v-if="boundList.length === 0" :description="$t('payment.device.terminal.noBound')" />
-      <a-list v-else :data-source="boundList" bordered>
-        <template #renderItem="{ item }">
-          <a-list-item>
-            <a-list-item-meta
-              :title="item.name"
-              :description="`${item.channelMchNo || '-'} · ${item.type || '-'} · ${item.outTerminalNo || '-'}`"
-            />
-            <template #actions>
-              <a-button
-                v-if="hasPermission(PermCodes.Merchant.Terminal.MANAGE)"
-                type="link"
-                size="small"
-                danger
-                @click="handleUnbind(item)"
-              >
-                {{ $t('payment.device.terminal.unbind') }}
-              </a-button>
-            </template>
-          </a-list-item>
-        </template>
-      </a-list>
+      <div v-else class="space-y-3">
+        <div
+          v-for="(item, index) in boundList"
+          :key="item.id || index"
+          class="flex items-center justify-between border-b border-gray-100 py-3 last:border-0"
+        >
+          <div class="min-w-0 flex-1">
+            <div class="truncate font-medium">{{ item.name }}</div>
+            <div class="truncate text-sm text-gray-500">
+              {{ `${item.channelMchNo || '-'} · ${item.type || '-'} · ${item.outTerminalNo || '-'}` }}
+            </div>
+          </div>
+          <a-button
+            v-if="hasPermission(PermCodes.Merchant.Terminal.MANAGE)"
+            type="link"
+            size="small"
+            danger
+            @click="handleUnbind(item)"
+          >
+            {{ $t('payment.device.terminal.unbind') }}
+          </a-button>
+        </div>
+      </div>
     </a-spin>
   </a-drawer>
 </template>
