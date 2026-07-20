@@ -12,7 +12,7 @@ import type {
 
 import { computed, useAttrs } from 'vue';
 // @ts-expect-error - vue-json-viewer does not expose compatible typings for this import path
-import VueJsonViewer from 'vue-json-viewer';
+import VueJsonViewerRaw from 'vue-json-viewer';
 
 import { $t } from '@vben/locales';
 
@@ -42,6 +42,11 @@ const emit = defineEmits<{
   valueClick: [value: JsonViewerValue];
 }>();
 
+// vue-json-viewer@3.0.4 是 webpack4 UMD 老包, Vite/esbuild 预构建后 default 导出是
+// { default: Component, __esModule: true } 命名空间对象, 真组件挂在 .default 上
+// 直接渲染整个命名空间对象会触发 "Component is missing template or render function"
+const VueJsonViewer = (VueJsonViewerRaw as any).default || VueJsonViewerRaw;
+
 const attrs: SetupContext['attrs'] = useAttrs();
 
 function handleClick(event: MouseEvent) {
@@ -66,14 +71,35 @@ function handleClick(event: MouseEvent) {
   emit('click', event);
 }
 
+/**
+ * 递归将对象转换为带 Object.prototype 原型的普通对象 {}
+ * 修复: json-bigint 解析返回 Object.create(null) 对象 (无原型链),
+ * 与 vue-json-viewer 内部 this.ordered.hasOwnProperty(o) 直接调用冲突,
+ * 报 "obj.hasOwnProperty is not a function"
+ */
+function deepToPlain<T>(value: T): T {
+  if (value === null || typeof value !== 'object') {
+    return value;
+  }
+  if (Array.isArray(value)) {
+    return value.map((item) => deepToPlain(item)) as unknown as T;
+  }
+  const plain: Record<string, any> = {};
+  for (const key of Object.keys(value)) {
+    plain[key] = deepToPlain((value as Record<string, any>)[key]);
+  }
+  return plain as unknown as T;
+}
+
 // 支持显示 bigint 数据，如较长的订单号
 const jsonData = computed<Record<string, any>>(() => {
   if (typeof props.value !== 'string') {
-    return props.value || {};
+    return props.value ? deepToPlain(props.value) : {};
   }
 
   try {
-    return JsonBigint({ storeAsString: true }).parse(props.value);
+    const parsed = JsonBigint({ storeAsString: true }).parse(props.value);
+    return deepToPlain(parsed);
   } catch (error) {
     console.error('JSON parse error:', error);
     return {};

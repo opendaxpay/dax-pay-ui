@@ -27,17 +27,23 @@
 
 <template>
   <!-- 国际化：登录日志详情 -->
-  <a-modal
+  <a-drawer
     v-bind="$attrs"
-    :loading="confirmLoading"
-    :width="700"
     :title="$t('system.log.login-log.detailTitle')"
+    :size="1100"
     :open="visible"
-    :footer="null"
-    @cancel="visible = false"
+    :destroy-on-hidden="true"
+    @close="visible = false"
   >
     <a-spin :spinning="confirmLoading">
-      <a-descriptions :column="2" size="small" bordered>
+      <!-- label 固定宽度且不换行, 防止内容撑宽列导致 label 被挤压 -->
+      <a-descriptions
+        class="login-log-desc"
+        :column="2"
+        size="small"
+        bordered
+        :label-style="{ width: '110px', whiteSpace: 'nowrap' }"
+      >
         <!-- 用户账号 -->
         <a-descriptions-item :label="$t('system.log.login-log.account')">
           {{ data.account }}
@@ -58,7 +64,7 @@
         </a-descriptions-item>
         <!-- 登录IP -->
         <a-descriptions-item :label="$t('system.log.login-log.ip')">
-          {{ data.ip }}
+          <span class="break-all">{{ data.ip }}</span>
         </a-descriptions-item>
         <!-- 登录地点 -->
         <a-descriptions-item :label="$t('system.log.login-log.loginLocation')">
@@ -74,7 +80,7 @@
         </a-descriptions-item>
         <!-- 提示消息 -->
         <a-descriptions-item :label="$t('system.log.login-log.msg')">
-          {{ data.msg }}
+          <span class="break-all">{{ data.msg }}</span>
         </a-descriptions-item>
         <!-- 登录时间 -->
         <a-descriptions-item :label="$t('system.log.login-log.loginTime')">
@@ -82,5 +88,12 @@
         </a-descriptions-item>
       </a-descriptions>
     </a-spin>
-  </a-modal>
+  </a-drawer>
 </template>
+
+<style scoped>
+  /* 固定列宽, 避免长 token 内容反向挤压 label 列导致换行 */
+  .login-log-desc :deep(.ant-descriptions-view > table) {
+    table-layout: fixed;
+  }
+</style>
