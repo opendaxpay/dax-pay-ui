@@ -40,7 +40,6 @@
     "directModeHint": "필요한 환경의 H5/미니만 채널 가맹점과 능력 지정(일부만 가능). 채널 라우팅을 건너뜁니다",
     "atLeastOneRequired": "환경×형태를 하나 이상 설정하세요",
     "partialRowIncomplete": "채널 가맹점과 결제 능력은 함께 입력해야 합니다",
-    "methodModeHint": "필요한 환경의 H5/미니만 결제 방식 지정(일부만 가능). 채널 가맹점은 채널 라우팅을 따릅니다",
-    "openIdRiskHint": "openId 리스크 블랙리스트로 결제 전 차단을 쓰려면 코드 플레이트 환경에 사용자 식별자를 받을 수 있는 결제 방식(위챗 JSAPI/미니, 알리페이 JSAPI 등)을 설정하세요. openId 없는 H5/QR 은 결제 전 openId 차단이 불가합니다(IP 목록은 유효)."
+    "methodModeHint": "필요한 환경의 H5/미니만 결제 방식 지정(일부만 가능). 채널 가맹점은 채널 라우팅을 따릅니다"
   }
 }

@@ -40,7 +40,6 @@
     "directModeHint": "必要な環境の H5/ミニだけチャネル加盟店と能力を指定（一部のみ可）。通道路由をスキップします",
     "atLeastOneRequired": "少なくとも1つの環境×形態を設定してください",
     "partialRowIncomplete": "チャネル加盟店と支払能力は両方必須です",
-    "methodModeHint": "必要な環境の H5/ミニだけ支払い方法を指定（一部のみ可）。チャネル加盟店は通道路由に従います",
-    "openIdRiskHint": "openId リスクブラックリストで支払前遮断を行う場合、コードプレート側はユーザー識別子を取得できる決済方式（WeChat JSAPI/ミニ、Alipay JSAPI 等）を設定してください。openId 不要の H5/QR では支払前に openId で遮断できません（IP リストは有効）。"
+    "methodModeHint": "必要な環境の H5/ミニだけ支払い方法を指定（一部のみ可）。チャネル加盟店は通道路由に従います"
   }
 }

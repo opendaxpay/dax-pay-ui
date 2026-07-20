@@ -40,7 +40,6 @@
     "directModeHint": "按需為各環境的 H5、小程序指定通道商戶和支付能力（可只配部分項），跳過通道路由",
     "atLeastOneRequired": "請至少設定一項環境與形態",
     "partialRowIncomplete": "通道商戶與支付能力須同時填寫",
-    "methodModeHint": "按需為各環境的 H5、小程序指定支付方式（可只配部分項），通道商戶跟隨通道路由",
-    "openIdRiskHint": "若使用 openId 類型風控黑名單做支付前攔截，碼牌對應環境須配置可取得使用者標識的支付方式（如微信 JSAPI/小程式、支付寶 JSAPI 等）。若配置 H5 跳轉、主掃等免 openId 方式，將無法在支付前依使用者 openId 攔截（IP 名單仍有效）。"
+    "methodModeHint": "按需為各環境的 H5、小程序指定支付方式（可只配部分項），通道商戶跟隨通道路由"
   }
 }

@@ -522,10 +522,6 @@
         <div class="mb-4">
           <a-alert :message="modeHint" type="info" show-icon />
         </div>
-        <!-- openId 风控与码牌支付方式关系说明 -->
-        <div class="mb-4">
-          <a-alert :message="$t('payment.merchant.codeConfig.codeConfig.openIdRiskHint')" type="warning" show-icon />
-        </div>
 
         <div v-if="showRoutePreview" class="mb-5 flex flex-wrap items-center gap-3 text-sm">
           <span class="text-muted-foreground"
