@@ -128,7 +128,7 @@
     v-model:open="visible"
     :title="title"
     :confirm-loading="confirmLoading"
-    :destroy-on-close="true"
+    :destroy-on-hidden="true"
     @ok="handleOk"
     @cancel="handleCancel"
   >

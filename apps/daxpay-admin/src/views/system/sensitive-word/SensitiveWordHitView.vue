@@ -56,7 +56,7 @@
     :title="$t('system.sensitiveWord.hit.view')"
     :footer="null"
     :width="640"
-    destroy-on-close
+    destroy-on-hidden
     @cancel="handleClose"
   >
     <a-spin :spinning="loading">

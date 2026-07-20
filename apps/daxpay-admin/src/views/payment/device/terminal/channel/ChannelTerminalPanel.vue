@@ -152,7 +152,7 @@
     v-model:open="visible"
     :title="drawerTitle"
     :width="960"
-    :destroy-on-close="true"
+    :destroy-on-hidden="true"
     :body-style="{ paddingBottom: '24px' }"
   >
     <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
