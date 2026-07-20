@@ -27,7 +27,7 @@
     "tip": {
       "typeValueImmutable": "类型与名单值创建后不可修改",
       "expireEmpty": "留空表示永久有效",
-      "openIdCodePayHint": "openId 名單在網關支付場景自動啟用事前攔截：JSAPI/小程式原生走 openId；主掃、微信/支付寶/抖音內 H5 等可識別環境會在支付前靜默取得 openId 攔截；外部瀏覽器、付款碼、APP 等無法事前取得 openId 的方式將降級為 IP 校驗 + 支付成功後補錄命中。"
+      "openIdBoundaryHint": "付款碼/APP/外部瀏覽器場景僅做事後補錄。"
     }
   },
   "hit": {

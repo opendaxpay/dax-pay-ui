@@ -27,7 +27,7 @@
     "tip": {
       "typeValueImmutable": "Type and value cannot be changed after creation",
       "expireEmpty": "Leave empty for permanent",
-      "openIdCodePayHint": "openId 목록은 게이트웨이 결제 전반에서 사전 차단을 자동 활성화합니다: JSAPI/미니는 기본적으로 openId를 휴대; QR, 위챗/알리페이/도우인 인앱 H5 등 식별 가능 환경은 결제 전 사일런트 취득 후 차단; 외부 브라우저, 바코드, APP 등 사전 취득 불가 방식은 IP 체크 + 결제 성공 후 사후 기록으로 폴백합니다."
+      "openIdBoundaryHint": "바코드/APP/외부 브라우저 시나리오는 사후 기록만 합니다."
     }
   },
   "hit": {

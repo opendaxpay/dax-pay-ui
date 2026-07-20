@@ -152,10 +152,10 @@
             <a-radio-button value="open_id">{{ $t('payment.risk.blacklist.type.open_id') }}</a-radio-button>
           </a-radio-group>
         </a-form-item>
-        <!-- openId 类型：与码牌 JSAPI 等取 openId 方式的关系提示 -->
+        <!-- openId 类型：场景边界提示 -->
         <div v-if="formState.type === 'open_id'" class="mb-4 px-2">
           <a-alert
-            :message="$t('payment.risk.blacklist.tip.openIdCodePayHint')"
+            :message="$t('payment.risk.blacklist.tip.openIdBoundaryHint')"
             type="warning"
             show-icon
           />

@@ -150,15 +150,6 @@
       <BQuery :fields="queryFields" :query-params="queryForm" @query="queryPage" @reset="resetQuery" />
     </a-card>
 
-    <!-- openId 名单与码牌支付方式关系说明 -->
-    <div class="mt-4">
-      <a-alert
-        :message="$t('payment.risk.blacklist.tip.openIdCodePayHint')"
-        type="info"
-        show-icon
-      />
-    </div>
-
     <div class="mt-4">
       <a-card>
         <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">

@@ -27,7 +27,7 @@
     "tip": {
       "typeValueImmutable": "Jenis dan nilai tidak dapat diubah setelah dibuat",
       "expireEmpty": "Kosongkan untuk permanen",
-      "openIdCodePayHint": "openId blacklist only applies to trades that already have a user identity before pay (e.g. code-plate/aggregate JSAPI or mini). If code-plate uses a method without openId, this list cannot block the user before payment."
+      "openIdBoundaryHint": "Barcode/APP/external browser scenarios fall back to post-pay hit recording only."
     }
   },
   "hit": {
