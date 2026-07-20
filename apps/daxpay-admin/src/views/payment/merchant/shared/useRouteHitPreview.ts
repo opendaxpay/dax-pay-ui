@@ -68,16 +68,20 @@ export function useRouteHitPreview() {
     }
     loading.value = true;
     try {
-      const [{ data: strategy }, { data: basicRows }, { data: sceneRows }, { data: directory }] =
-        await Promise.all([
-          PayRouteApi.getOrInitStrategy(appId),
-          PayRouteApi.listBasicConfig(appId),
-          PayRouteApi.listSceneConfig(appId),
-          PayRouteApi.listMethodDirectoryFlat(),
-        ]);
+      // 先确保 strategy 已落库（首次打开会创建），避免与依赖它的 basic/scene 查询并发竞态
+      // 后端 listBasicConfig/listSceneConfig 内部 requireStrategy 是「必须存在」语义，
+      // 若与 getOrInitStrategy 并发，可能在 strategy 落库前到达后端而抛 routeStrategyNotExist
+      const { data: strategy } = await PayRouteApi.getOrInitStrategy(appId);
 
       // get-or-init 成功则有 mode；异常为空时 preview 返回 noStrategy
       routeMode.value = strategy?.mode ? normalizePayRouteMode(strategy.mode) : '';
+
+      // strategy 存在后再并发拉取依赖数据
+      const [{ data: basicRows }, { data: sceneRows }, { data: directory }] = await Promise.all([
+        PayRouteApi.listBasicConfig(appId),
+        PayRouteApi.listSceneConfig(appId),
+        PayRouteApi.listMethodDirectoryFlat(),
+      ]);
 
       // 目录：method 标签与 provider 映射
       const labelMap: Record<string, string> = {};
