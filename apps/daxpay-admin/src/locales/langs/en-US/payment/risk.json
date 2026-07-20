@@ -27,7 +27,7 @@
     "tip": {
       "typeValueImmutable": "Type and value cannot be changed after creation",
       "expireEmpty": "Leave empty for permanent",
-      "openIdCodePayHint": "openId blacklist only applies to trades that already have a user identity before pay (e.g. code-plate/aggregate JSAPI or mini). If code-plate uses a method without openId, this list cannot block the user before payment."
+      "openIdCodePayHint": "openId blacklist is enforced across gateway payments: JSAPI/mini natively carries openId; QR, wechat/alipay/douyin in-app H5 silently acquires openId before pay; external browsers, barcode, APP and other methods unable to pre-acquire openId fall back to IP check + post-pay hit recording."
     }
   },
   "hit": {

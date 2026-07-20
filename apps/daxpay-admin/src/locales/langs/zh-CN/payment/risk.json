@@ -27,7 +27,7 @@
     "tip": {
       "typeValueImmutable": "类型与名单值创建后不可修改",
       "expireEmpty": "留空表示永久有效",
-      "openIdCodePayHint": "openId 名单仅对下单前已拿到用户标识的交易生效（例如码牌/聚合的 JSAPI、小程序支付）。码牌若使用免 openId 的支付方式，该名单无法在支付前拦截该用户。"
+      "openIdCodePayHint": "openId 名单在网关支付场景自动启用事前拦截：JSAPI/小程序原生走 openId；主扫、微信/支付宝/抖音内 H5 等可识别环境会在支付前静默获取 openId 拦截；外部浏览器、付款码、APP 等无法事前获取 openId 的方式将降级为 IP 校验 + 支付成功后补录命中。"
     }
   },
   "hit": {

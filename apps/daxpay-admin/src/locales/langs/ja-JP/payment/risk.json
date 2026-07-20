@@ -27,7 +27,7 @@
     "tip": {
       "typeValueImmutable": "Type and value cannot be changed after creation",
       "expireEmpty": "Leave empty for permanent",
-      "openIdCodePayHint": "openId リストは支払前にユーザー識別子を取得済みの取引にのみ有効です（コードプレート/集約の JSAPI・ミニ等）。openId 不要の方式では支払前に遮断できません。"
+      "openIdCodePayHint": "openId リストはゲートウェイ決済全体で事前遮断を自動有効化します：JSAPI/ミニは本来 openId を携帯；QR・WeChat/Alipay/Douyin 内 H5 など識別可能な環境は決済前にサイレント取得して遮断；外部ブラウザ・バーコード・APP など事前取得不可の方式は IP チェック + 決済成功後の事後記録にフォールバックします。"
     }
   },
   "hit": {
