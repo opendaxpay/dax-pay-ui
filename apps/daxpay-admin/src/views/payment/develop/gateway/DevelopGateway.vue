@@ -12,6 +12,7 @@
 
   import { JsonViewer } from '@vben/common-ui';
   import { $t } from '@vben/locales';
+  import { formatDateTime } from '@vben/utils';
 
   import { IconifyIcon } from '@vben-core/icons';
 
@@ -653,17 +654,6 @@
       :width="640"
       destroy-on-hidden
     >
-      <!-- 响应摘要 -->
-      <div class="mb-4 flex flex-wrap items-center gap-2">
-        <a-tag :color="resultData.code === 0 ? 'success' : 'error'">
-          code: {{ resultData.code }}
-        </a-tag>
-        <span class="text-sm text-muted-foreground">{{ resultData.msg }}</span>
-        <span v-if="resultData.traceId" class="text-xs text-muted-foreground">
-          traceId: {{ resultData.traceId }}
-        </span>
-      </div>
-
       <template v-if="gatewayUrl">
         <div class="flex flex-col items-center">
           <!-- 落地页 URL 二维码(扫码进入收银台/聚合页测试) -->
@@ -708,7 +698,7 @@
       <div class="mb-1 mt-2 text-xs font-medium text-muted-foreground">
         {{ $t('payment.develop.gateway.result.rawResponse') }}
       </div>
-      <JsonViewer class="json-viewer-box mb-3" :value="resultData" :expand-depth="2" boxed copyable />
+      <JsonViewer class="json-viewer-box mb-3" :value="resultData" :expand-depth="0" boxed copyable />
 
       <div class="flex gap-2">
         <a-button block @click="copyFullResult">

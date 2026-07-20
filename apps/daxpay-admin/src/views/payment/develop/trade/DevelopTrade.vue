@@ -9,6 +9,7 @@
 
   import { JsonViewer } from '@vben/common-ui';
   import { $t } from '@vben/locales';
+  import { formatDateTime } from '@vben/utils';
 
   import { IconifyIcon } from '@vben-core/icons';
 
@@ -93,6 +94,17 @@
   // ===== 调试结果(完整 unipay DaxResult) =====
   const resultVisible = ref(false);
   const resultData = ref<DaxResult<PayResult>>({ code: 0 });
+
+  // 完整 DaxResult(展示用): 把 resTime 从 ISO 8601 (如 2026-07-19T13:34:58.8753181Z)
+  // 格式化为本地 yyyy-MM-dd HH:mm:ss, 便于联调阅读; 格式化失败保留原值
+  const displayResultData = computed<DaxResult<PayResult>>(() => {
+    const raw = resultData.value;
+    if (!raw?.resTime) {
+      return raw;
+    }
+    const formatted = formatDateTime(raw.resTime);
+    return { ...raw, resTime: formatted || raw.resTime };
+  });
 
   // ===== 签名预览(请求预览卡内联展示) =====
   const signPreview = reactive({
@@ -785,13 +797,6 @@
       :width="640"
       destroy-on-hidden
     >
-      <!-- 响应摘要 -->
-      <div class="mb-4 flex flex-wrap items-center gap-2">
-        <a-tag :color="resultData.code === 0 ? 'success' : 'error'"> code: {{ resultData.code }} </a-tag>
-        <span class="text-sm text-muted-foreground">{{ resultData.msg }}</span>
-        <span v-if="resultData.traceId" class="text-xs text-muted-foreground"> traceId: {{ resultData.traceId }} </span>
-      </div>
-
       <template v-if="hasPayBody">
         <div class="flex flex-col items-center">
           <!-- 扫码支付/支付链接: qr_code + link 渲染二维码 -->
@@ -849,7 +854,7 @@
       <div class="mb-1 mt-2 text-xs font-medium text-muted-foreground">
         {{ $t('payment.develop.trade.result.rawResponse') }}
       </div>
-      <JsonViewer class="json-viewer-box mb-3" :value="resultData" :expand-depth="2" boxed copyable />
+      <JsonViewer class="json-viewer-box mb-3" :value="displayResultData" :expand-depth="0" boxed copyable />
 
       <div class="flex gap-2">
         <a-button v-if="hasPayBody" block type="primary" @click="copyResultData">
