@@ -35,8 +35,8 @@
       "desc": "Khi bật, trúng được ghi nhận sau thanh toán thành công để phân tích sự cố, không ảnh hưởng trạng thái tiền."
     },
     "riskOpenIdLevel": {
-      "label": "Cấp độ chặn openId",
-      "desc": "Bình thường: chỉ chặn phương thức native JSAPI/Mini. Tăng cường: ép OAuth lấy openId cho H5/QR trong môi trường nhận diện được.",
+      "label": "Cấp độ chặn mã định danh người dùng",
+      "desc": "Bình thường: chỉ chặn phương thức native JSAPI/Mini. Tăng cường: ép OAuth lấy mã định danh người dùng cho H5/QR trong môi trường nhận diện được.",
       "normal": "Bình thường",
       "enhanced": "Tăng cường"
     },

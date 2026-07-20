@@ -35,8 +35,8 @@
       "desc": "Saat aktif, hit dicatat setelah pembayaran berhasil untuk analisis pasca-peristiwa, tanpa memengaruhi dana."
     },
     "riskOpenIdLevel": {
-      "label": "Level Intersepsi openId",
-      "desc": "Normal: hanya blokir metode native JSAPI/Mini. Ditingkatkan: juga memaksa OAuth untuk mendapatkan openId pada H5/QR dalam lingkungan yang dikenali.",
+      "label": "Level Intersepsi Identifier Pengguna",
+      "desc": "Normal: hanya blokir metode native JSAPI/Mini. Ditingkatkan: juga memaksa OAuth untuk mendapatkan identifier pengguna pada H5/QR dalam lingkungan yang dikenali.",
       "normal": "Normal",
       "enhanced": "Ditingkatkan"
     },

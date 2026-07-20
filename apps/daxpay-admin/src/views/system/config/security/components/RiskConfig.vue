@@ -37,7 +37,7 @@
       formState.value.riskCheckAfterPay
         ? $t('system.security.pay-security.risk.summary.afterOn')
         : $t('system.security.pay-security.risk.summary.afterOff'),
-      // openId 拦截级别
+      // 用户标识拦截级别
       formState.value.riskOpenIdLevel === 'enhanced'
         ? $t('system.security.pay-security.risk.summary.levelEnhanced')
         : $t('system.security.pay-security.risk.summary.levelNormal'),
@@ -196,14 +196,14 @@
             {{ $t('system.security.pay-security.risk.section.strategy') }}
           </div>
 
-          <!-- openId 拦截级别 -->
+          <!-- 用户标识拦截级别 -->
           <div class="config-item">
             <div class="config-item__main">
-              <!-- openId 拦截级别标签 -->
+              <!-- 用户标识拦截级别标签 -->
               <div class="config-item__label">{{
                 $t('system.security.pay-security.risk.riskOpenIdLevel.label')
               }}</div>
-              <!-- openId 拦截级别描述 -->
+              <!-- 用户标识拦截级别描述 -->
               <div class="config-item__desc">{{ $t('system.security.pay-security.risk.riskOpenIdLevel.desc') }}</div>
             </div>
             <a-radio-group

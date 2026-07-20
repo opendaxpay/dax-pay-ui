@@ -35,8 +35,8 @@
       "desc": "When enabled, hits are recorded after successful payment for post-event analysis, without affecting funds."
     },
     "riskOpenIdLevel": {
-      "label": "openId Interception Level",
-      "desc": "Normal: only block JSAPI/Mini native methods. Enhanced: also force OAuth to acquire openId for H5/QR-code in recognizable environments.",
+      "label": "User Identifier Interception Level",
+      "desc": "Normal: only block JSAPI/Mini native methods. Enhanced: also force OAuth to acquire user identifier for H5/QR-code in recognizable environments.",
       "normal": "Normal",
       "enhanced": "Enhanced"
     },

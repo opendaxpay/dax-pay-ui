@@ -35,8 +35,8 @@
       "desc": "Apabila aktif, hit direkod selepas pembayaran berjaya untuk analisis pasca-peristiwa, tanpa menjejaskan dana."
     },
     "riskOpenIdLevel": {
-      "label": "Tahap Sekatan openId",
-      "desc": "Biasa: hanya sekat kaedah native JSAPI/Mini. Diperkuat: juga memaksa OAuth untuk mendapatkan openId pada H5/QR dalam persekitaran yang dikenali.",
+      "label": "Tahap Sekatan Pengecam Pengguna",
+      "desc": "Biasa: hanya sekat kaedah native JSAPI/Mini. Diperkuat: juga memaksa OAuth untuk mendapatkan pengecam pengguna pada H5/QR dalam persekitaran yang dikenali.",
       "normal": "Biasa",
       "enhanced": "Diperkuat"
     },
