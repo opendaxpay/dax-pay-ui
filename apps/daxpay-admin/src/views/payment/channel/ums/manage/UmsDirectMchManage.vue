@@ -153,7 +153,11 @@
 
     <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 
-    <UmsDirectKeyConfigEdit ref="keyConfigRef" :channel-mch-no="channelMchNo" />
+    <UmsDirectKeyConfigEdit
+      ref="keyConfigRef"
+      :channel-mch-no="channelMchNo"
+      :product="channelMerchant.product"
+    />
   </div>
 </template>
 

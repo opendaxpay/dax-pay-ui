@@ -7,11 +7,13 @@
 
   import { AlipayMchAppApi, type AlipayMchAppKeyConfig } from '#/api/payment/channel/alipay/mch-app.api';
   import { PermCodes } from '#/constants/perm-codes';
+  import { ProductEnum } from '#/enums/payment/productEnum';
   import { useDict } from '#/hooks/useDict';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
   import { readFileAsText } from '#/utils/file';
+  import { resolveProductSandbox } from '#/utils/pay-product-env';
 
   const props = defineProps<{
     aliAppId?: string;
@@ -28,7 +30,7 @@
   const loading = ref(false);
   const saving = ref(false);
   const isEditing = ref(false);
-  // 是否沙箱环境
+  // 跟随支付产品生效环境(只读, 禁止在密钥页切换)
   const sandbox = ref(false);
   const formRef = ref();
   const formState = ref<AlipayMchAppKeyConfig>({
@@ -67,26 +69,30 @@
     ],
   }));
 
-  /** 加载密钥配置 */
-  function loadConfig() {
+  /** 加载密钥配置(自动跟随支付宝直连产品生效环境) */
+  async function loadConfig() {
     if (!props.alipayDirectAppId) {
       return;
     }
     loading.value = true;
-    AlipayMchAppApi.findKeyConfigByAlipayDirectAppId(props.alipayDirectAppId, sandbox.value)
-      .then(({ data }) => {
-        formState.value = {
-          authType: 'public_key',
-          ...data,
-          alipayDirectAppId: props.alipayDirectAppId,
-          mchNo: props.mchNo,
-          channelMchNo: props.channelMchNo,
-        };
-        originalForm.value = { ...formState.value };
-      })
-      .finally(() => {
-        loading.value = false;
-      });
+    try {
+      // 环境由支付产品配置决定, 商户密钥页不可切换
+      sandbox.value = await resolveProductSandbox(ProductEnum.ALIPAY);
+      const { data } = await AlipayMchAppApi.findKeyConfigByAlipayDirectAppId(
+        props.alipayDirectAppId,
+        sandbox.value,
+      );
+      formState.value = {
+        authType: 'public_key',
+        ...data,
+        alipayDirectAppId: props.alipayDirectAppId,
+        mchNo: props.mchNo,
+        channelMchNo: props.channelMchNo,
+      };
+      originalForm.value = { ...formState.value };
+    } finally {
+      loading.value = false;
+    }
   }
 
   function handleEdit() {
@@ -177,8 +183,6 @@
     () => props.alipayDirectAppId,
     (alipayDirectAppId) => {
       if (alipayDirectAppId) {
-        // 切换应用默认加载生产环境配置
-        sandbox.value = false;
         isEditing.value = false;
         loadConfig();
       }
@@ -221,12 +225,18 @@
         >
           <a-divider orientation="left">{{ $t('payment.channel.alipayIsv.basicConfig') }}</a-divider>
 
-          <!-- 国际化: 环境(生产/沙箱切换) -->
+          <!-- 国际化: 跟随支付产品生效环境(只读, 不可在此切换) -->
           <a-form-item :label="$t('payment.channel.alipayIsv.environment')">
-            <a-radio-group v-model:value="sandbox" button-style="solid" @change="loadConfig">
-              <a-radio-button :value="false">{{ $t('payment.channel.alipayIsv.prodEnv') }}</a-radio-button>
-              <a-radio-button :value="true">{{ $t('payment.channel.alipayIsv.sandboxEnv') }}</a-radio-button>
-            </a-radio-group>
+            <a-tag :color="sandbox ? 'orange' : 'blue'">
+              {{
+                sandbox
+                  ? $t('payment.channel.alipayIsv.sandboxEnv')
+                  : $t('payment.channel.alipayIsv.prodEnv')
+              }}
+            </a-tag>
+            <span class="ml-2 text-xs text-muted-foreground">
+              {{ $t('payment.common.envFollowProductHint') }}
+            </span>
           </a-form-item>
 
           <a-form-item :label="$t('payment.channel.alipayIsv.aliAppId')">

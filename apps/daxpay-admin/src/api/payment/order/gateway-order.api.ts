@@ -9,7 +9,9 @@ export const GatewayOrderApi = {
   /**
    * 分页查询网关业务订单
    */
-  page(params: GatewayOrderQuery & { current?: number; size?: number }): Promise<Result<PageResult<GatewayOrderResult>>> {
+  page(
+    params: GatewayOrderQuery & { current?: number; size?: number },
+  ): Promise<Result<PageResult<GatewayOrderResult>>> {
     return defHttp.get({ url: '/admin/order/gateway-pay/page', params });
   },
 

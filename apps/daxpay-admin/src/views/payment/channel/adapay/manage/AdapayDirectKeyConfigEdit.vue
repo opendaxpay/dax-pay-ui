@@ -5,9 +5,11 @@
 
   import { AdapayDirectChannelMerchantApi, type AdapayDirectKeyConfig } from '#/api/payment/channel/adapay/channel-merchant.api';
   import { PermCodes } from '#/constants/perm-codes';
+  import { ProductEnum } from '#/enums/payment/productEnum';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
+  import { resolveProductSandbox } from '#/utils/pay-product-env';
 
   defineOptions({ name: 'AdapayDirectKeyConfigEdit' });
 
@@ -28,7 +30,7 @@
   const form = ref<AdapayDirectKeyConfig>({} as AdapayDirectKeyConfig);
   let rawForm: Record<string, any> = {};
 
-  // 是否沙箱环境
+  // 跟随支付产品生效环境(只读, 禁止在密钥页切换)
   const sandbox = ref(false);
 
   const canEdit = computed(() => hasPermission(PermCodes.Channel.Merchant.MANAGE));
@@ -41,26 +43,27 @@
     privateKey: [{ required: true, message: $t('payment.channel.adapay.validation.privateKey') }],
   };
 
-  /** 打开抽屉并加载密钥配置 */
-  function init() {
+  /** 打开抽屉并加载密钥配置(自动跟随产品生效环境) */
+  async function init() {
     visible.value = true;
-    // 默认加载生产环境配置
-    sandbox.value = false;
     resetForm();
-    loadConfig();
+    await loadConfig();
   }
 
-  function loadConfig() {
+  async function loadConfig() {
     if (!props.channelMchNo) return;
     confirmLoading.value = true;
-    AdapayDirectChannelMerchantApi.findKeyConfig(props.channelMchNo, sandbox.value)
-      .then(({ data }) => {
-        rawForm = { ...data };
-        form.value = { ...data } as AdapayDirectKeyConfig;
-      })
-      .finally(() => {
-        confirmLoading.value = false;
-      });
+    try {
+      sandbox.value = await resolveProductSandbox(ProductEnum.ADA_PAY);
+      const { data } = await AdapayDirectChannelMerchantApi.findKeyConfig(
+        props.channelMchNo,
+        sandbox.value,
+      );
+      rawForm = { ...data };
+      form.value = { ...data } as AdapayDirectKeyConfig;
+    } finally {
+      confirmLoading.value = false;
+    }
   }
 
   function handleOk() {
@@ -116,12 +119,18 @@
       >
         <a-divider orientation="left">{{ $t('payment.channel.adapayManage.keyConfigSection') }}</a-divider>
 
-        <!-- 国际化: 环境(生产/沙箱切换) -->
+        <!-- 国际化: 跟随支付产品生效环境(只读) -->
         <a-form-item :label="$t('payment.channel.adapayManage.environment')">
-          <a-radio-group v-model:value="sandbox" button-style="solid" @change="loadConfig">
-            <a-radio-button :value="false">{{ $t('payment.channel.adapayManage.prodEnv') }}</a-radio-button>
-            <a-radio-button :value="true">{{ $t('payment.channel.adapayManage.sandboxEnv') }}</a-radio-button>
-          </a-radio-group>
+          <a-tag :color="sandbox ? 'orange' : 'blue'">
+            {{
+              sandbox
+                ? $t('payment.channel.adapayManage.sandboxEnv')
+                : $t('payment.channel.adapayManage.prodEnv')
+            }}
+          </a-tag>
+          <span class="ml-2 text-xs text-muted-foreground">
+            {{ $t('payment.common.envFollowProductHint') }}
+          </span>
         </a-form-item>
 
         <!-- 国际化: Adapay 商户号(创建时录入, 不可修改) -->

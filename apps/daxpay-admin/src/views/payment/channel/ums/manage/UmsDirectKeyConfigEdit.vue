@@ -8,11 +8,14 @@
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
+  import { resolveProductSandbox } from '#/utils/pay-product-env';
 
   defineOptions({ name: 'UmsDirectKeyConfigEdit' });
 
   const props = defineProps<{
     channelMchNo: string;
+    /** 支付产品编码(银联商务多产品, 用于读取生效环境) */
+    product?: string;
   }>();
 
   const emit = defineEmits<{
@@ -28,7 +31,7 @@
   const form = ref<UmsDirectKeyConfig>({} as UmsDirectKeyConfig);
   let rawForm: Record<string, any> = {};
 
-  // 是否沙箱环境
+  // 跟随支付产品生效环境(只读, 禁止在密钥页切换)
   const sandbox = ref(false);
 
   const canEdit = computed(() => hasPermission(PermCodes.Channel.Merchant.MANAGE));
@@ -42,26 +45,29 @@
     secretKey: [{ required: true, message: $t('payment.channel.ums.validation.secretKey') }],
   };
 
-  /** 打开抽屉并加载密钥配置 */
-  function init() {
+  /** 打开抽屉并加载密钥配置(自动跟随产品生效环境) */
+  async function init() {
     visible.value = true;
-    // 默认加载生产环境配置
-    sandbox.value = false;
     resetForm();
-    loadConfig();
+    await loadConfig();
   }
 
-  function loadConfig() {
+  async function loadConfig() {
     if (!props.channelMchNo) return;
     confirmLoading.value = true;
-    UmsDirectChannelMerchantApi.findKeyConfig(props.channelMchNo, sandbox.value)
-      .then(({ data }) => {
-        rawForm = { ...data };
-        form.value = { ...data } as UmsDirectKeyConfig;
-      })
-      .finally(() => {
-        confirmLoading.value = false;
-      });
+    try {
+      // 银联商务多产品, 优先用通道商户所属 product
+      const product = props.product || 'ums_qrcode';
+      sandbox.value = await resolveProductSandbox(product);
+      const { data } = await UmsDirectChannelMerchantApi.findKeyConfig(
+        props.channelMchNo,
+        sandbox.value,
+      );
+      rawForm = { ...data };
+      form.value = { ...data } as UmsDirectKeyConfig;
+    } finally {
+      confirmLoading.value = false;
+    }
   }
 
   function handleOk() {
@@ -117,12 +123,18 @@
       >
         <a-divider orientation="left">{{ $t('payment.channel.umsManage.keyConfigSection') }}</a-divider>
 
-        <!-- 国际化: 环境(生产/沙箱切换) -->
+        <!-- 国际化: 跟随支付产品生效环境(只读) -->
         <a-form-item :label="$t('payment.channel.umsManage.environment')">
-          <a-radio-group v-model:value="sandbox" button-style="solid" @change="loadConfig">
-            <a-radio-button :value="false">{{ $t('payment.channel.umsManage.prodEnv') }}</a-radio-button>
-            <a-radio-button :value="true">{{ $t('payment.channel.umsManage.sandboxEnv') }}</a-radio-button>
-          </a-radio-group>
+          <a-tag :color="sandbox ? 'orange' : 'blue'">
+            {{
+              sandbox
+                ? $t('payment.channel.umsManage.sandboxEnv')
+                : $t('payment.channel.umsManage.prodEnv')
+            }}
+          </a-tag>
+          <span class="ml-2 text-xs text-muted-foreground">
+            {{ $t('payment.common.envFollowProductHint') }}
+          </span>
         </a-form-item>
 
         <!-- 国际化: 银联商务商户号(mid, 创建时录入, 不可修改) -->

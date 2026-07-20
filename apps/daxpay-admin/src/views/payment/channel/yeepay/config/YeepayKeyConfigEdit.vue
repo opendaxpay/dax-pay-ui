@@ -8,6 +8,7 @@ import {
   type YeepayDirectKeyConfigParam,
 } from '#/api/payment/channel/yeepay/channel-merchant.api';
 import { useMessage } from '#/hooks/useMessage';
+import { resolveProductSandbox } from '#/utils/pay-product-env';
 
 defineOptions({ name: 'YeepayKeyConfigEdit' });
 
@@ -19,7 +20,9 @@ const formRef = ref();
 
 // 当前编辑的通道商户号
 const channelMchNo = ref('');
-// 是否沙箱环境
+// 所属支付产品(用于读取生效环境)
+const product = ref('');
+// 跟随支付产品生效环境(只读, 禁止在密钥页切换)
 const sandbox = ref(false);
 // 已配置标志(回显用)
 const configured = ref({
@@ -55,11 +58,12 @@ const rules = {
   ],
 };
 
-/** 由通用框架初始化(传入通道商户号后加载密钥配置并打开弹窗) */
-async function init(mchNo: string) {
+/** 由通用框架初始化(传入通道商户号与产品编码后加载密钥配置并打开弹窗) */
+async function init(mchNo: string, productCode?: string) {
   channelMchNo.value = mchNo;
-  // 默认加载生产环境配置
-  sandbox.value = false;
+  product.value = productCode || 'yee_pay';
+  // 跟随支付产品生效环境
+  sandbox.value = await resolveProductSandbox(product.value);
   visible.value = true;
   form.value = {
     channelMchNo: mchNo,
@@ -73,7 +77,7 @@ async function init(mchNo: string) {
   await loadConfig();
 }
 
-/** 加载当前环境(生产/沙箱)的密钥配置(脱敏返回) */
+/** 加载当前产品生效环境对应的密钥配置(脱敏返回) */
 async function loadConfig() {
   if (!channelMchNo.value) return;
   const { data } = await YeepayChannelMerchantApi.findKeyConfig(channelMchNo.value, sandbox.value);
@@ -113,12 +117,14 @@ defineExpose({ init });
     @ok="handleSubmit"
   >
     <a-form ref="formRef" :model="form" :rules="rules" layout="vertical">
-      <!-- 国际化: 环境(生产/沙箱切换) -->
+      <!-- 国际化: 跟随支付产品生效环境(只读) -->
       <a-form-item :label="$t('payment.channel.yeepay.environment')">
-        <a-radio-group v-model:value="sandbox" button-style="solid" @change="loadConfig">
-          <a-radio-button :value="false">{{ $t('payment.channel.yeepay.prodEnv') }}</a-radio-button>
-          <a-radio-button :value="true">{{ $t('payment.channel.yeepay.sandboxEnv') }}</a-radio-button>
-        </a-radio-group>
+        <a-tag :color="sandbox ? 'orange' : 'blue'">
+          {{ sandbox ? $t('payment.channel.yeepay.sandboxEnv') : $t('payment.channel.yeepay.prodEnv') }}
+        </a-tag>
+        <span class="ml-2 text-xs text-muted-foreground">
+          {{ $t('payment.common.envFollowProductHint') }}
+        </span>
       </a-form-item>
       <a-form-item :label="$t('payment.channel.yeepay.appKey')" name="appKey">
         <a-textarea
