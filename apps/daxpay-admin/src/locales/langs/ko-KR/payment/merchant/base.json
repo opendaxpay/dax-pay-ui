@@ -19,7 +19,8 @@
   },
   "action": {
     "confirmEnableContent": "이 판매자를 활성화하시겠습니까?",
-    "confirmDisableContent": "이 판매자를 비활성화하시겠습니까? 비활성화한 후에는 판매자 계정에 로그인할 수 없습니다."
+    "confirmDisableContent": "이 판매자를 비활성화하시겠습니까? 비활성화한 후에는 판매자 계정에 로그인할 수 없습니다.",
+    "delete": "가맹점 삭제"
   },
   "validation": {
     "pleaseInputMchName": "판매자 이름을 입력하세요.",

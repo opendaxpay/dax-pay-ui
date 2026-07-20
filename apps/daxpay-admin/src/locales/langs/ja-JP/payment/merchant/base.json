@@ -19,7 +19,8 @@
   },
   "action": {
     "confirmEnableContent": "この販売者を有効にしてもよろしいですか?",
-    "confirmDisableContent": "この販売者を無効にしてもよろしいですか?無効にすると、販売アカウントはログインできなくなります。"
+    "confirmDisableContent": "この販売者を無効にしてもよろしいですか?無効にすると、販売アカウントはログインできなくなります。",
+    "delete": "マーチャントを削除"
   },
   "validation": {
     "pleaseInputMchName": "販売者名を入力してください",

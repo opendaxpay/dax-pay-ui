@@ -14,6 +14,7 @@
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
   import { productChannelMap, productI18nMap, productNameMap } from '#/enums/payment';
+  import { useDeleteConfirm } from '#/hooks/useDeleteConfirm';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
   import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
@@ -28,6 +29,7 @@
     fallbackPath: '/payment/merchant',
   });
   const { confirm, message } = useMessage();
+  const { openDeleteConfirm } = useDeleteConfirm();
   const { hasPermission } = usePermission();
 
   // 通道商户新增权限
@@ -207,6 +209,23 @@
     });
   }
 
+  /**
+   * 删除通道商户（强确认：用户必须输入通道商户名称匹配才能确认）
+   */
+  function handleDelete(record: ChannelMerchantResult) {
+    openDeleteConfirm({
+      name: record.channelMerchantName || '',
+      verificationText: record.channelMerchantName || '',
+      title: $t('payment.merchant.channelMerchant.confirmDeleteOk'),
+      descriptionKey: 'payment.merchant.channelMerchant.confirmDeleteDesc',
+      onConfirm: () =>
+        ChannelMerchantApi.delete(record.id!).then(() => {
+          message.success($t('payment.merchant.channelMerchant.deleteSuccess'));
+          loadList();
+        }),
+    });
+  }
+
   onMounted(() => {
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
     if (!routeContext.isValid.value) {
@@ -327,12 +346,27 @@
           :show-overflow="true"
         />
 
-        <vxe-column fixed="right" width="100" :show-overflow="false" :title="$t('common.operation')">
+        <vxe-column fixed="right" width="200" :show-overflow="false" :title="$t('common.operation')">
           <template #default="{ row }">
-            <!-- 管理 -->
-            <a-button type="link" size="small" @click="handleManage(row)">
-              {{ $t('payment.merchant.channelMerchant.manage') }}
-            </a-button>
+            <a-space :size="2">
+              <template #separator>
+                <a-divider type="vertical" />
+              </template>
+              <!-- 管理 -->
+              <a-button type="link" size="small" @click="handleManage(row)">
+                {{ $t('payment.merchant.channelMerchant.manage') }}
+              </a-button>
+              <!-- 删除（危险操作，强确认） -->
+              <a-button
+                v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)"
+                type="link"
+                size="small"
+                danger
+                @click="handleDelete(row)"
+              >
+                {{ $t('common.delete') }}
+              </a-button>
+            </a-space>
           </template>
         </vxe-column>
       </vxe-table>

@@ -19,7 +19,8 @@
   },
   "action": {
     "confirmEnableContent": "確定要啓用該商户嗎？",
-    "confirmDisableContent": "確定要禁用該商户嗎？禁用後商户賬號將無法登錄。"
+    "confirmDisableContent": "確定要禁用該商户嗎？禁用後商户賬號將無法登錄。",
+    "delete": "刪除商戶"
   },
   "validation": {
     "pleaseInputMchName": "請輸入商户名稱",

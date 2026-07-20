@@ -46,7 +46,7 @@
   "confirmDisable": "确认禁用该通道商户？",
   "confirmDisableDesc": "禁用后该通道商户支付将不可用",
   "confirmDelete": "确认删除该通道商户？",
-  "confirmDeleteDesc": "删除后不可恢复",
+  "confirmDeleteDesc": "删除后该通道商户及其所有配置将不可使用，且操作不可撤销。请输入通道商户名称以确认删除。",
   "confirmEnableOk": "确认启用",
   "confirmDisableOk": "确认禁用",
   "confirmDeleteOk": "确认删除",

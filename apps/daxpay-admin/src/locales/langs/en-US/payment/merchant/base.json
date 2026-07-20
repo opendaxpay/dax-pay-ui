@@ -19,7 +19,8 @@
   },
   "action": {
     "confirmEnableContent": "Are you sure you want to enable this merchant?",
-    "confirmDisableContent": "Are you sure you want to disable this merchant? After disabling, the merchant account will not be able to log in."
+    "confirmDisableContent": "Are you sure you want to disable this merchant? After disabling, the merchant account will not be able to log in.",
+    "delete": "Delete Merchant"
   },
   "validation": {
     "pleaseInputMchName": "Please enter merchant name",

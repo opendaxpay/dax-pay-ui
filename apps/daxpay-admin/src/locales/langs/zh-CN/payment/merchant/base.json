@@ -19,7 +19,8 @@
   },
   "action": {
     "confirmEnableContent": "确定要启用该商户吗？",
-    "confirmDisableContent": "确定要禁用该商户吗？禁用后商户账号将无法登录。"
+    "confirmDisableContent": "确定要禁用该商户吗？禁用后商户账号将无法登录。",
+    "delete": "删除商户"
   },
   "validation": {
     "pleaseInputMchName": "请输入商户名称",

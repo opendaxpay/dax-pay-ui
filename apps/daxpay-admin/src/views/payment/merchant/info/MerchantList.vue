@@ -6,15 +6,19 @@
 
   import { $t } from '@vben/locales';
 
-  import { type MerchantInfo, MerchantApi } from '#/api/payment/merchant/merchant.api';
+  import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
+  import { useDeleteConfirm } from '#/hooks/useDeleteConfirm';
+  import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
   import MerchantAdd from './MerchantAdd.vue';
 
   const router = useRouter();
   const { hasPermission } = usePermission();
+  const { openDeleteConfirm } = useDeleteConfirm();
+  const { message } = useMessage();
 
   // 商户新增权限
   const loading = ref(false);
@@ -104,6 +108,22 @@
   function handleManage(row: MerchantInfo) {
     router.push({ path: '/payment/merchant/manage', query: { mchNo: row.mchNo! } });
   }
+
+  /**
+   * 删除商户（强确认：用户必须输入商户名称匹配才能确认）
+   */
+  function handleDelete(row: MerchantInfo) {
+    openDeleteConfirm({
+      name: row.mchName || '',
+      verificationText: row.mchName || '',
+      title: $t('payment.merchant.base.action.delete'),
+      onConfirm: () =>
+        MerchantApi.delete(row.id!).then(() => {
+          message.success($t('common.deleteSuccess'));
+          queryPage();
+        }),
+    });
+  }
 </script>
 
 <template>
@@ -161,16 +181,34 @@
               <a-tag v-else color="red">{{ $t('payment.merchant.base.status.disabled') }}</a-tag>
             </template>
           </vxe-column>
-          <vxe-column field="createTime" :title="$t('payment.merchant.base.field.createTime')" :min-width="180" formatter="formatDateTime" />
-          <vxe-column fixed="right" width="100" :show-overflow="false" :title="$t('common.operation')">
+          <vxe-column
+            field="createTime"
+            :title="$t('payment.merchant.base.field.createTime')"
+            :min-width="180"
+            formatter="formatDateTime"
+          />
+          <vxe-column fixed="right" width="200" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">
-              <a
-                v-if="hasPermission(PermCodes.Merchant.Info.VIEW)"
-                href="javascript:"
-                class="vben-link"
-                @click="handleManage(row)"
-                >{{ $t('payment.merchant.manage.manage.title') }}</a
-              >
+              <a-space :size="2">
+                <template #separator>
+                  <a-divider type="vertical" />
+                </template>
+                <a-button
+                  v-if="hasPermission(PermCodes.Merchant.Info.VIEW)"
+                  type="link"
+                  size="small"
+                  @click="handleManage(row)"
+                  >{{ $t('payment.merchant.manage.manage.title') }}</a-button
+                >
+                <a-button
+                  v-if="hasPermission(PermCodes.Merchant.Info.MANAGE)"
+                  type="link"
+                  size="small"
+                  danger
+                  @click="handleDelete(row)"
+                  >{{ $t('common.delete') }}</a-button
+                >
+              </a-space>
             </template>
           </vxe-column>
         </vxe-table>
