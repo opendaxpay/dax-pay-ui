@@ -189,7 +189,8 @@
       "tip": "Scan with Alipay to authorize",
       "tipWechat": "Scan with WeChat to authorize",
       "tipDouyin": "Scan with Douyin to authorize",
-      "empty": "No QR code yet"
+      "empty": "No QR code yet",
+      "consumed": "QR code has been used. Please regenerate the authorization link."
     },
     "form": {
       "mchNo": "Merchant",

@@ -189,7 +189,8 @@
       "tip": "Alipayでスキャンして認証します",
       "tipWechat": "WeChatでスキャンして認証します",
       "tipDouyin": "Douyin でスキャンして認証します",
-      "empty": "QRコードはまだありません"
+      "empty": "QRコードはまだありません",
+      "consumed": "QRコードは使用済みです。認証リンクを再生成してください。"
     },
     "form": {
       "mchNo": "商人",

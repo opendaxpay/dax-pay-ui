@@ -87,6 +87,9 @@
         : $t('payment.develop.auth.qr.tipWechat'),
   );
 
+  /** 二维码已被扫码消费(轮询到成功态): 阻止重复扫码, 引导重新生成 */
+  const qrConsumed = computed(() => authResult.value.status === AuthStatus.SUCCESS);
+
   /** 当前标签文案 */
   const tagLabel = computed(() => {
     if (authType.value === 'wechatMp') return $t('payment.develop.auth.tag.wechatMp');
@@ -381,8 +384,17 @@
           <a-col :xs="24" :lg="13" class="auth-display-col">
             <div class="display-section">
               <div v-if="authUrl.authUrl" class="qr-block">
-                <div class="qr-card">
-                  <QrCode :value="authUrl.authUrl" :width="220" :margin="0" />
+                <div class="qr-card-wrap">
+                  <div class="qr-card">
+                    <QrCode :value="authUrl.authUrl" :width="220" :margin="0" />
+                  </div>
+                  <!-- 二维码已扫码消费: 蒙层提示重新生成, 避免重复扫码触发会话失效错误 -->
+                  <div v-if="qrConsumed" class="qr-consumed-mask">
+                    <IconifyIcon icon="lucide:check-circle-2" class="qr-consumed-icon" />
+                    <p class="qr-consumed-text">
+                      {{ $t('payment.develop.auth.qr.consumed') }}
+                    </p>
+                  </div>
                 </div>
                 <p class="qr-tip">
                   <IconifyIcon icon="lucide:scan-line" class="qr-tip-icon" />
@@ -545,6 +557,43 @@
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 1px 2px rgb(0 0 0 / 6%);
+  }
+
+  /* 二维码卡片 wrapper(包裹卡片与消费蒙层, 提供相对定位基准) */
+  .qr-card-wrap {
+    position: relative;
+    display: inline-block;
+  }
+
+  /* 二维码已扫码消费蒙层: 半透明白底 + 模糊底层二维码, 阻止重复扫码 */
+  .qr-consumed-mask {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px;
+    background: rgb(255 255 255 / 92%);
+    backdrop-filter: blur(2px);
+    border-radius: 12px;
+    text-align: center;
+  }
+
+  .qr-consumed-icon {
+    font-size: 40px;
+    color: #16a34a;
+  }
+
+  .qr-consumed-text {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #6b7280;
+    word-break: break-all;
   }
 
   .qr-tip {

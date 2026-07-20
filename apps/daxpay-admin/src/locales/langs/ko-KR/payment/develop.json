@@ -189,7 +189,8 @@
       "tip": "Alipay로 스캔하여 승인하세요",
       "tipWechat": "WeChat으로 스캔하여 승인하세요",
       "tipDouyin": "승인하려면 Douyin으로 스캔하세요.",
-      "empty": "아직 QR 코드가 없습니다."
+      "empty": "아직 QR 코드가 없습니다.",
+      "consumed": "QR 코드가 사용되었습니다. 인증 링크를 다시 생성해 주세요."
     },
     "form": {
       "mchNo": "상인",

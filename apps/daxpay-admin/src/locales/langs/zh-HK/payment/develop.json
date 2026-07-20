@@ -189,7 +189,8 @@
       "tip": "請使用支付寶掃碼授權",
       "tipWechat": "請使用微信掃碼授權",
       "tipDouyin": "請使用抖音掃碼授權",
-      "empty": "暫未生成二維碼"
+      "empty": "暫未生成二維碼",
+      "consumed": "QR Code 已使用，請重新產生授權鏈接"
     },
     "form": {
       "mchNo": "商户",
