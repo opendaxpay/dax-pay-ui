@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { onMounted, ref } from 'vue';
+  import { computed, onMounted, ref } from 'vue';
   import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
@@ -7,9 +7,9 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { PayProductConfigApi, type PayProductConfigResult } from '#/api/payment/config/pay-product-config.api';
-  import { PayEnvApi } from '#/api/payment/masterdata/pay-env.api';
   import ChannelLogo from '#/components/channel/ChannelLogo.vue';
   import { useMessage } from '#/hooks/useMessage';
+  import { useEnvStore } from '#/store';
 
   defineOptions({ name: 'ProductConfig' });
 
@@ -19,8 +19,11 @@
   const loading = ref(false);
   const productList = ref<PayProductConfigResult[]>([]);
   const radioRefreshKey = ref(0);
-  // 全局沙箱环境开关(后端控制), 关闭时不展示沙箱相关选项
-  const sandboxEnabled = ref(false);
+
+  // 全局沙箱环境状态(复用 store, 与 Layout 横幅共享同一份缓存)
+  const envStore = useEnvStore();
+  // 模板内仍以 sandboxEnabled 名称访问, 保持原 UI 逻辑不变
+  const sandboxEnabled = computed(() => envStore.sandboxEnabled);
 
   /**
    * 获取当前激活的环境值
@@ -95,17 +98,10 @@
   }
 
   /**
-   * 加载全局沙箱环境开关状态
+   * 加载全局沙箱环境开关状态(复用全局 store, 避免重复请求)
    */
   function loadSandboxEnabled() {
-    PayEnvApi.sandboxEnabled()
-      .then(({ data }) => {
-        sandboxEnabled.value = !!data;
-      })
-      .catch(() => {
-        // 查询失败按关闭处理, 仅展示生产环境
-        sandboxEnabled.value = false;
-      });
+    envStore.loadSandboxEnabled();
   }
 
   onMounted(() => {
@@ -124,6 +120,15 @@
           }}</span>
         </div>
       </template>
+
+      <!-- 沙箱模式提示: 仅在全局沙箱开关开启时显示 -->
+      <div v-if="sandboxEnabled" class="mb-4">
+        <a-alert
+          :message="$t('payment.common.env.sandboxProductConfigTip')"
+          type="warning"
+          show-icon
+        />
+      </div>
 
       <a-spin :spinning="loading">
         <div v-if="productList.length === 0 && !loading" class="flex items-center justify-center empty-container">
@@ -177,7 +182,10 @@
               >
                 <div
                   class="config-slot prod-slot"
-                  :class="[{ 'border-r border-border': row.sandboxSupport && sandboxEnabled }, { 'config-slot-disabled': !row.isv }]"
+                  :class="[
+                    { 'border-r border-border': row.sandboxSupport && sandboxEnabled },
+                    { 'config-slot-disabled': !row.isv },
+                  ]"
                   @click.stop="row.isv && openDetailPage(row, false)"
                 >
                   <div class="flex items-center gap-1.5">
