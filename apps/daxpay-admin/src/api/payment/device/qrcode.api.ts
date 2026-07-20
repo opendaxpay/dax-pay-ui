@@ -171,7 +171,7 @@ export interface DeviceQrCodeBindMerchantParam {
   ids: string[];
   /** 商户号 */
   mchNo: string;
-  /** 关联应用号 */
+  /** 应用 */
   appId?: string;
   /** 绑定门店号(可空, 空则清空原门店) */
   storeNo?: string;
@@ -181,7 +181,7 @@ export interface DeviceQrCodeBindMerchantParam {
 export interface DeviceQrCodeBindAppParam {
   /** 码牌主键列表 */
   ids: string[];
-  /** 应用号 */
+  /** 应用 */
   appId: string;
 }
 
@@ -205,7 +205,7 @@ export interface DeviceQrCodeResult extends BaseEntity {
   mchNo?: string;
   /** 商户名称(由 mchNo 翻译) */
   mchName?: string;
-  /** 关联应用号(空=商户默认应用) */
+  /** 应用(空=商户默认应用) */
   appId?: string;
   /** 绑定门店号 */
   storeNo?: string;

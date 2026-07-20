@@ -8,7 +8,7 @@
     "mchNo": "商户号",
     "mchName": "商户名称",
     "merchant": "商户",
-    "appId": "关联应用",
+    "appId": "应用",
     "amountType": "金额类型",
     "fixedAmount": "固定金额",
     "status": "状态",
