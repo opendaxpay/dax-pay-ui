@@ -1,0 +1,42 @@
+{
+  "payProduct": {
+    "title": "Parameter Produk Pembayaran",
+    "description": "Beberapa produk pembayaran belum menyelesaikan konfigurasi parameter saluran"
+  },
+  "platformWebsite": {
+    "title": "Informasi Situs",
+    "description": "Nama sistem, logo, pendaftaran ICP dan info tampilan situs lainnya belum dikonfigurasi"
+  },
+  "platformUrl": {
+    "title": "URL Platform",
+    "description": "URL API backend atau URL admin belum dikonfigurasi, memengaruhi callback dan login pihak ketiga"
+  },
+  "platformOss": {
+    "title": "Penyimpanan Objek",
+    "description": "Penyimpanan objek belum dikonfigurasi, fitur unggah berkas tidak tersedia"
+  },
+  "socialLogin": {
+    "title": "Login Sosial",
+    "description": "Beberapa platform login sosial yang diaktifkan belum menyelesaikan konfigurasi parameter"
+  },
+  "mchApp": {
+    "title": "Aplikasi Merchant",
+    "description": "Belum ada aplikasi merchant yang dibuat atau diaktifkan"
+  },
+  "mchCredential": {
+    "title": "Kredensial API",
+    "description": "Kredensial komunikasi merchant (kunci publik / kunci rahasia) belum dibuat"
+  },
+  "channelMerchant": {
+    "title": "Merchant Saluran",
+    "description": "Belum ada merchant saluran yang diaktifkan dikonfigurasi"
+  },
+  "payRoute": {
+    "title": "Rute Pembayaran",
+    "description": "Beberapa aplikasi belum mengonfigurasi strategi rute pembayaran"
+  },
+  "mchNotify": {
+    "title": "Konfigurasi Notifikasi",
+    "description": "Beberapa aplikasi belum mengonfigurasi URL notifikasi callback"
+  }
+}

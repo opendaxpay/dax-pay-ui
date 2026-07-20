@@ -1,0 +1,42 @@
+{
+  "payProduct": {
+    "title": "支付产品参数",
+    "description": "有支付产品尚未完成通道参数配置"
+  },
+  "platformWebsite": {
+    "title": "站点信息",
+    "description": "系统名称、Logo、ICP 备案等站点展示信息未配置"
+  },
+  "platformUrl": {
+    "title": "平台访问地址",
+    "description": "后端 API 地址或管理端地址未配置,影响回调与第三方登录"
+  },
+  "platformOss": {
+    "title": "对象存储",
+    "description": "对象存储未配置,文件上传能力不可用"
+  },
+  "socialLogin": {
+    "title": "社交登录",
+    "description": "有已启用的社交登录平台未完成参数配置"
+  },
+  "mchApp": {
+    "title": "商户应用",
+    "description": "尚未创建或启用任何商户应用"
+  },
+  "mchCredential": {
+    "title": "API 凭证",
+    "description": "商户通信凭证(公钥/密钥)未生成"
+  },
+  "channelMerchant": {
+    "title": "通道商户",
+    "description": "尚未配置任何启用的通道商户"
+  },
+  "payRoute": {
+    "title": "支付路由",
+    "description": "部分应用尚未配置支付路由策略"
+  },
+  "mchNotify": {
+    "title": "通知配置",
+    "description": "部分应用未配置回调通知地址"
+  }
+}

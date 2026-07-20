@@ -1,0 +1,42 @@
+{
+  "payProduct": {
+    "title": "Tham Số Sản Phẩm Thanh Toán",
+    "description": "Một số sản phẩm thanh toán chưa hoàn tất cấu hình tham số kênh"
+  },
+  "platformWebsite": {
+    "title": "Thông Tin Trang Web",
+    "description": "Tên hệ thống, logo, đăng ký ICP và thông tin hiển thị trang khác chưa được cấu hình"
+  },
+  "platformUrl": {
+    "title": "URL Nền Tảng",
+    "description": "URL API backend hoặc URL quản trị chưa được cấu hình, ảnh hưởng đến callback và đăng nhập bên thứ ba"
+  },
+  "platformOss": {
+    "title": "Lưu Trữ Đối Tượng",
+    "description": "Lưu trữ đối tượng chưa được cấu hình, tính năng tải lên tệp không khả dụng"
+  },
+  "socialLogin": {
+    "title": "Đăng Nhập Mạng Xã Hội",
+    "description": "Một số nền tảng đăng nhập mạng xã hội đã kích hoạt chưa hoàn tất cấu hình tham số"
+  },
+  "mchApp": {
+    "title": "Ứng Dụng Merchant",
+    "description": "Chưa có ứng dụng merchant nào được tạo hoặc kích hoạt"
+  },
+  "mchCredential": {
+    "title": "Thông Tin Xác Thực API",
+    "description": "Thông tin xác thực giao tiếp merchant (khóa công khai / khóa bí mật) chưa được tạo"
+  },
+  "channelMerchant": {
+    "title": "Merchant Kênh",
+    "description": "Chưa có merchant kênh kích hoạt nào được cấu hình"
+  },
+  "payRoute": {
+    "title": "Tuyến Thanh Toán",
+    "description": "Một số ứng dụng chưa cấu hình chiến lược tuyến thanh toán"
+  },
+  "mchNotify": {
+    "title": "Cấu Hình Thông Báo",
+    "description": "Một số ứng dụng chưa cấu hình URL thông báo callback"
+  }
+}

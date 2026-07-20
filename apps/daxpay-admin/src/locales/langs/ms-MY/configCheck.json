@@ -1,0 +1,42 @@
+{
+  "payProduct": {
+    "title": "Parameter Produk Pembayaran",
+    "description": "Sesetengah produk pembayaran belum melengkapkan konfigurasi parameter saluran"
+  },
+  "platformWebsite": {
+    "title": "Maklumat Tapak",
+    "description": "Nama sistem, logo, pendaftaran ICP dan maklumat paparan tapak lain belum dikonfigurasi"
+  },
+  "platformUrl": {
+    "title": "URL Platform",
+    "description": "URL API bahagian belakang atau URL pentadbir belum dikonfigurasi, menjejaskan panggilan balik dan log masuk pihak ketiga"
+  },
+  "platformOss": {
+    "title": "Storan Objek",
+    "description": "Storan objek belum dikonfigurasi, ciri muat naik fail tidak tersedia"
+  },
+  "socialLogin": {
+    "title": "Log Masuk Sosial",
+    "description": "Sesetengah platform log masuk sosial yang diaktifkan belum melengkapkan konfigurasi parameter"
+  },
+  "mchApp": {
+    "title": "Aplikasi Pedagang",
+    "description": "Tiada aplikasi pedagang telah dicipta atau diaktifkan"
+  },
+  "mchCredential": {
+    "title": "Kelayakan API",
+    "description": "Kelayakan komunikasi pedagang (kunci awam / kunci rahsia) belum dijana"
+  },
+  "channelMerchant": {
+    "title": "Pedagang Saluran",
+    "description": "Tiada pedagang saluran yang diaktifkan telah dikonfigurasi"
+  },
+  "payRoute": {
+    "title": "Laluan Pembayaran",
+    "description": "Sesetengah aplikasi belum mengkonfigurasi strategi laluan pembayaran"
+  },
+  "mchNotify": {
+    "title": "Konfigurasi Pemberitahuan",
+    "description": "Sesetengah aplikasi belum mengkonfigurasi URL pemberitahuan panggilan balik"
+  }
+}

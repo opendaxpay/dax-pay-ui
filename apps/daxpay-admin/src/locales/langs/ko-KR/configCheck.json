@@ -1,0 +1,42 @@
+{
+  "payProduct": {
+    "title": "결제 상품 매개변수",
+    "description": "채널 매개변수 설정이 완료되지 않은 결제 상품이 있습니다"
+  },
+  "platformWebsite": {
+    "title": "사이트 정보",
+    "description": "시스템 이름, 로고, ICP 신고 등 사이트 표시 정보가 설정되지 않았습니다"
+  },
+  "platformUrl": {
+    "title": "플랫폼 URL",
+    "description": "백엔드 API 주소 또는 관리자 URL이 설정되지 않아 콜백과 서드파티 로그인에 영향이 있습니다"
+  },
+  "platformOss": {
+    "title": "오브젝트 스토리지",
+    "description": "오브젝트 스토리지가 설정되지 않아 파일 업로드 기능을 사용할 수 없습니다"
+  },
+  "socialLogin": {
+    "title": "소셜 로그인",
+    "description": "활성화된 소셜 로그인 플랫폼 중 매개변수 설정이 완료되지 않은 곳이 있습니다"
+  },
+  "mchApp": {
+    "title": "가맹점 앱",
+    "description": "생성되거나 활성화된 가맹점 앱이 없습니다"
+  },
+  "mchCredential": {
+    "title": "API 자격 증명",
+    "description": "가맹점 통신 자격 증명(공개키/비밀키)이 생성되지 않았습니다"
+  },
+  "channelMerchant": {
+    "title": "채널 가맹점",
+    "description": "활성화된 채널 가맹점이 설정되지 않았습니다"
+  },
+  "payRoute": {
+    "title": "결제 라우팅",
+    "description": "일부 앱의 결제 라우팅 전략이 설정되지 않았습니다"
+  },
+  "mchNotify": {
+    "title": "알림 설정",
+    "description": "일부 앱의 콜백 알림 URL이 설정되지 않았습니다"
+  }
+}
