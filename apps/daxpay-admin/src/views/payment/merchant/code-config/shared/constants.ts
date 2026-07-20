@@ -37,13 +37,14 @@ export const CODE_PAY_FORMS: CodePayForm[] = [CODE_PAY_FORM.H5, CODE_PAY_FORM.MI
 export function defaultMethodFor(clientEnv: string, payForm: CodePayForm): string {
   if (payForm === CODE_PAY_FORM.MINI) {
     if (clientEnv === 'wechat') return 'wechat_mini';
-    // 支付宝官方 JSAPI 即小程序场景, 与 H5 统一 alipay_jsapi
+    // 支付宝官方 JSAPI 即小程序场景, 小程序仅走 jsapi
     if (clientEnv === 'alipay') return 'alipay_jsapi';
     if (clientEnv === 'union_pay') return 'union_jsapi';
     if (clientEnv === 'douyin') return 'douyin_jsapi';
   }
   if (clientEnv === 'wechat') return 'wechat_jsapi';
-  if (clientEnv === 'alipay') return 'alipay_jsapi';
+  // 支付宝 H5 默认扫码: 免 OAuth, 预下单返回支付链接
+  if (clientEnv === 'alipay') return 'alipay_qr';
   if (clientEnv === 'union_pay') return 'union_jsapi';
   if (clientEnv === 'douyin') return 'douyin_jsapi';
   return '';

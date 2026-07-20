@@ -21,7 +21,8 @@ export interface AggregateClientEnvConfig {
 
 export const AGGREGATE_CLIENT_ENVS: AggregateClientEnvConfig[] = [
   { clientEnv: 'wechat', provider: 'wechat', defaultMethod: 'wechat_jsapi' },
-  { clientEnv: 'alipay', provider: 'alipay', defaultMethod: 'alipay_jsapi' },
+  // 支付宝 H5 默认扫码: 免 OAuth, 预下单返回支付链接
+  { clientEnv: 'alipay', provider: 'alipay', defaultMethod: 'alipay_qr' },
   { clientEnv: 'union_pay', provider: 'union_pay', defaultMethod: 'union_jsapi' },
   { clientEnv: 'douyin', provider: 'douyin', defaultMethod: 'douyin_jsapi' },
 ];
