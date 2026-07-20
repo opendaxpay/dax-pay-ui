@@ -44,6 +44,7 @@
   "disabled": "Nonaktif",
   "chineseName": "Nama Cina",
   "englishName": "Nama Inggris",
+  "adminSuffix": "Admin",
   "adminInfo": "Informasi Admin",
   "account": "Akun",
   "password": "Kata sandi",

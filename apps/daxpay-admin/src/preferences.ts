@@ -9,7 +9,9 @@ export const overridesPreferences = defineOverridesPreferences({
   // overrides
   app: {
     accessMode: 'backend',
-    name: 'DaxPay Admin',
+    // 仅纯品牌名; 端后缀('管理端'/'Admin')由 init-website-config.ts 用 i18n 拼接,
+    // 避免模块加载期 i18n 字典未就绪 + 防止与后缀拼接产生双重后缀
+    name: 'DaxPay',
     defaultHomePath: '/workspace',
   },
   logo: {

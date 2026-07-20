@@ -44,6 +44,7 @@
   "disabled": "비활성",
   "chineseName": "중국어 이름",
   "englishName": "영어 이름",
+  "adminSuffix": "관리자",
   "adminInfo": "관리자 정보",
   "account": "계정",
   "password": "비밀번호",

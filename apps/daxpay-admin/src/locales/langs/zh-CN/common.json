@@ -56,6 +56,7 @@
   "confirmCancelContent": "确定要撤销当前修改吗？已修改的内容将丢失。",
   "chineseName": "中文名称",
   "englishName": "英文名称",
+  "adminSuffix": "管理端",
   "adminInfo": "管理员信息",
   "account": "账号",
   "password": "密码",

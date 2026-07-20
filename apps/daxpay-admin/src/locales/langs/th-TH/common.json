@@ -44,6 +44,7 @@
   "disabled": "ปิดใช้งาน",
   "chineseName": "ชื่อจีน",
   "englishName": "ชื่อภาษาอังกฤษ",
+  "adminSuffix": "ผู้ดูแลระบบ",
   "adminInfo": "ข้อมูลผู้ดูแลระบบ",
   "account": "บัญชี",
   "password": "รหัสผ่าน",

@@ -44,6 +44,7 @@
   "disabled": "無効",
   "chineseName": "中国語名",
   "englishName": "英語名",
+  "adminSuffix": "管理者",
   "adminInfo": "管理者情報",
   "account": "アカウント",
   "password": "パスワード",

@@ -1,18 +1,24 @@
 import type { WebsiteConfig } from '#/api/system/website-config.api';
 
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 import { updatePreferences } from '@vben/preferences';
 
 import { WebsiteConfigApi } from '#/api/system/website-config.api';
 import { useApiPrefix } from '#/hooks/useApiPrefix';
+// 国际化: i18n 实例与 $t 用于拼接管理端后缀('管理端'/'Admin'...)
+import { $t, i18n } from '#/locales';
 
 /** localStorage 键: 站点配置缓存 envelope */
 const STORAGE_KEY = 'daxpay-website-config';
 
-/** 运营端静态默认品牌(配置为空时回落) */
+/** 运营端静态默认品牌(配置为空时回落)
+ *  注意: 此处仅保留纯品牌名, 不含任何端后缀;
+ *  后缀('管理端'/'Admin')由 applyWebsiteBranding 用 i18n 动态拼接,
+ *  避免与语言相关的后缀在此硬编码导致双重后缀或语言错配.
+ */
 const DEFAULT_BRAND = {
-  systemName: 'DaxPay Admin',
+  systemName: 'DaxPay',
   logo: '/logo.png',
   logoDark: '/logo-dark.png',
   favicon: '/favicon.ico',
@@ -94,7 +100,10 @@ export function applyWebsiteBranding(config: WebsiteConfig) {
       ? logoUrl
       : DEFAULT_BRAND.logoDark;
 
-  const systemName = config.systemName?.trim() || DEFAULT_BRAND.systemName;
+  // 管理端原始品牌名(后端配置或默认)
+  const rawName = config.systemName?.trim() || DEFAULT_BRAND.systemName;
+  // 管理端统一追加 i18n 后缀('管理端'/'Admin'...), 区分 H5/小程序等其他端, 避免各端名称完全相同
+  const systemName = `${rawName} ${$t('common.adminSuffix')}`;
 
   const copyrightText = config.copyright?.trim() || config.companyName?.trim() || '';
   const hasCopyrightContent = !!(
@@ -149,7 +158,9 @@ function applyFavicon(logoId: string, apiPrefix: string) {
 // ---------- getters(商业版风格, 页面只读 getter) ----------
 
 export function getSystemName() {
-  return websiteConfig.value.systemName?.trim() || DEFAULT_BRAND.systemName;
+  // 管理端统一拼接后缀, 与 applyWebsiteBranding 写入 preferences.app.name 保持一致
+  const rawName = websiteConfig.value.systemName?.trim() || DEFAULT_BRAND.systemName;
+  return `${rawName} ${$t('common.adminSuffix')}`;
 }
 
 export function getLogoUrl() {
@@ -303,3 +314,16 @@ function clientHash(data: WebsiteConfig): string {
   }
   return (hash >>> 0).toString(16);
 }
+
+// 监听语言切换, 重新 apply branding 让后缀('管理端'/'Admin'...)跟随语言重算.
+// 时序安全: 本模块在 bootstrap.ts 中通过 await import() 动态加载,
+// 调用时机晚于 setupI18n, 故 i18n.global.locale 在此处已可用.
+watch(
+  () => i18n.global.locale.value,
+  () => {
+    // 仅当已加载站点配置时才重 apply, 避免初始化前用空对象覆盖默认品牌
+    if (Object.keys(websiteConfig.value).length > 0) {
+      applyWebsiteBranding(websiteConfig.value);
+    }
+  },
+);
