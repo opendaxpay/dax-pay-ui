@@ -13,10 +13,14 @@
       "blockOn": "히트: 주문 차단",
       "blockOff": "히트: 기록만",
       "afterOn": "사후 기록: 켜짐",
-      "afterOff": "사후 기록: 꺼짐"
+      "afterOff": "사후 기록: 꺼짐",
+      "levelNormal": "레벨: 일반",
+      "levelEnhanced": "레벨: 강화",
+      "overseasOn": "해외 IP: 차단"
     },
     "section": {
-      "switch": "리스크 관리 스위치"
+      "switch": "리스크 관리 스위치",
+      "strategy": "차단 전략"
     },
     "riskEnabled": {
       "label": "리스크 관리 마스터 스위치",
@@ -29,6 +33,17 @@
     "riskCheckAfterPay": {
       "label": "결제 후 히트 기록",
       "desc": "켜면 결제 성공 후 히트를 기록하여 사후 분석에 사용합니다. 자금 상태에 영향을 주지 않습니다."
+    },
+    "riskOpenIdLevel": {
+      "label": "openId 차단 레벨",
+      "desc": "일반 차단: JSAPI/미니 등 네이티브 방식만 차단. 강화 차단: H5/QR 결제 등 인식 가능 환경에서 OAuth 를 강제하여 openId 를 획득 후 차단.",
+      "normal": "일반 차단",
+      "enhanced": "강화 차단"
+    },
+    "blockOverseasIp": {
+      "label": "해외 IP 차단",
+      "desc": "중국 본토 외 해외 IP 에서의 결제 요청을 차단. 중국 지역에서 일반적인 리스크 관리 전략.",
+      "comingSoon": "이 기능은 향후 버전에서 제공됩니다."
     }
   }
 }

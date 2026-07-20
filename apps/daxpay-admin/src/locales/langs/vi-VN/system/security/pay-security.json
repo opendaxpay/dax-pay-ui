@@ -13,10 +13,14 @@
       "blockOn": "Trúng: Chặn đơn",
       "blockOff": "Trúng: Chỉ ghi nhận",
       "afterOn": "Ghi nhận sau: Bật",
-      "afterOff": "Ghi nhận sau: Tắt"
+      "afterOff": "Ghi nhận sau: Tắt",
+      "levelNormal": "Cấp độ: Bình thường",
+      "levelEnhanced": "Cấp độ: Tăng cường",
+      "overseasOn": "IP nước ngoài: Chặn"
     },
     "section": {
-      "switch": "Công tắc kiểm soát rủi ro"
+      "switch": "Công tắc kiểm soát rủi ro",
+      "strategy": "Chiến lược chặn"
     },
     "riskEnabled": {
       "label": "Công tắc chính kiểm soát rủi ro",
@@ -29,6 +33,17 @@
     "riskCheckAfterPay": {
       "label": "Ghi nhận trúng sau thanh toán",
       "desc": "Khi bật, trúng được ghi nhận sau thanh toán thành công để phân tích sự cố, không ảnh hưởng trạng thái tiền."
+    },
+    "riskOpenIdLevel": {
+      "label": "Cấp độ chặn openId",
+      "desc": "Bình thường: chỉ chặn phương thức native JSAPI/Mini. Tăng cường: ép OAuth lấy openId cho H5/QR trong môi trường nhận diện được.",
+      "normal": "Bình thường",
+      "enhanced": "Tăng cường"
+    },
+    "blockOverseasIp": {
+      "label": "Chặn IP nước ngoài",
+      "desc": "Chặn yêu cầu thanh toán từ IP nước ngoài (ngoài Trung Quốc đại lục), chiến lược kiểm soát rủi ro phổ biến tại khu vực Trung Quốc.",
+      "comingSoon": "Tính năng này sẽ có trong bản phát hành sau."
     }
   }
 }

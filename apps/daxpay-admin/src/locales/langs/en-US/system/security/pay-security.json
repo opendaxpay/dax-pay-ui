@@ -13,10 +13,14 @@
       "blockOn": "Hit: Block Order",
       "blockOff": "Hit: Log Only",
       "afterOn": "Post-Pay Log: On",
-      "afterOff": "Post-Pay Log: Off"
+      "afterOff": "Post-Pay Log: Off",
+      "levelNormal": "Level: Normal",
+      "levelEnhanced": "Level: Enhanced",
+      "overseasOn": "Overseas IP: Block"
     },
     "section": {
-      "switch": "Risk Control"
+      "switch": "Risk Control",
+      "strategy": "Interception Strategy"
     },
     "riskEnabled": {
       "label": "Risk Control Master Switch",
@@ -29,6 +33,17 @@
     "riskCheckAfterPay": {
       "label": "Post-Pay Hit Logging",
       "desc": "When enabled, hits are recorded after successful payment for post-event analysis, without affecting funds."
+    },
+    "riskOpenIdLevel": {
+      "label": "openId Interception Level",
+      "desc": "Normal: only block JSAPI/Mini native methods. Enhanced: also force OAuth to acquire openId for H5/QR-code in recognizable environments.",
+      "normal": "Normal",
+      "enhanced": "Enhanced"
+    },
+    "blockOverseasIp": {
+      "label": "Overseas IP Blocking",
+      "desc": "Block payment requests from overseas IPs (outside mainland China), a common risk control strategy for the China region.",
+      "comingSoon": "This feature will be available in a future release."
     }
   }
 }

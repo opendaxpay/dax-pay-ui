@@ -13,10 +13,14 @@
       "blockOn": "Hit: Sekat Pesanan",
       "blockOff": "Hit: Rekod Sahaja",
       "afterOn": "Rekod Pasca-Bayar: Aktif",
-      "afterOff": "Rekod Pasca-Bayar: Mati"
+      "afterOff": "Rekod Pasca-Bayar: Mati",
+      "levelNormal": "Tahap: Biasa",
+      "levelEnhanced": "Tahap: Diperkuat",
+      "overseasOn": "IP Luar Negara: Sekat"
     },
     "section": {
-      "switch": "Suis Kawalan Risiko"
+      "switch": "Suis Kawalan Risiko",
+      "strategy": "Strategi Sekatan"
     },
     "riskEnabled": {
       "label": "Suis Utama Kawalan Risiko",
@@ -29,6 +33,17 @@
     "riskCheckAfterPay": {
       "label": "Rekod Hit Selepas Pembayaran",
       "desc": "Apabila aktif, hit direkod selepas pembayaran berjaya untuk analisis pasca-peristiwa, tanpa menjejaskan dana."
+    },
+    "riskOpenIdLevel": {
+      "label": "Tahap Sekatan openId",
+      "desc": "Biasa: hanya sekat kaedah native JSAPI/Mini. Diperkuat: juga memaksa OAuth untuk mendapatkan openId pada H5/QR dalam persekitaran yang dikenali.",
+      "normal": "Biasa",
+      "enhanced": "Diperkuat"
+    },
+    "blockOverseasIp": {
+      "label": "Sekatan IP Luar Negara",
+      "desc": "Sekat permintaan pembayaran dari IP luar negara (luar tanah besar China), strategi kawalan risiko biasa di wilayah China.",
+      "comingSoon": "Ciri ini akan tersedia dalam keluaran akan datang."
     }
   }
 }

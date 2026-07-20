@@ -213,4 +213,8 @@ export interface PaySecurityConfig {
   riskBlockBeforePay?: boolean;
   /** 支付成功后是否补录命中（用于事后分析） */
   riskCheckAfterPay?: boolean;
+  /** openId 拦截级别（normal=正常拦截 / enhanced=增强拦截） */
+  riskOpenIdLevel?: string;
+  /** 海外 IP 拦截（占位字段, 默认关闭, 后续接入） */
+  blockOverseasIp?: boolean;
 }

@@ -13,10 +13,14 @@
       "blockOn": "命中：攔截下單",
       "blockOff": "命中：僅記錄",
       "afterOn": "事後補錄：開",
-      "afterOff": "事後補錄：關"
+      "afterOff": "事後補錄：關",
+      "levelNormal": "攔截級別：正常",
+      "levelEnhanced": "攔截級別：增強",
+      "overseasOn": "海外 IP：攔截"
     },
     "section": {
-      "switch": "風控開關"
+      "switch": "風控開關",
+      "strategy": "攔截策略"
     },
     "riskEnabled": {
       "label": "風控總開關",
@@ -29,6 +33,17 @@
     "riskCheckAfterPay": {
       "label": "事後補錄命中",
       "desc": "開啟後，支付成功後會補充記錄命中情況，用於事後分析，不影響資金態。"
+    },
+    "riskOpenIdLevel": {
+      "label": "openId 攔截級別",
+      "desc": "正常攔截：僅對 JSAPI/小程式等原生方式攔截；增強攔截：對 H5/主掃等可識別環境也強制 OAuth 取 openId 攔截。",
+      "normal": "正常攔截",
+      "enhanced": "增強攔截"
+    },
+    "blockOverseasIp": {
+      "label": "海外 IP 攔截",
+      "desc": "攔截境外 IP（中國大陸以外）發起的支付請求，中國區常用風控策略。",
+      "comingSoon": "該功能將在後續版本接入。"
     }
   }
 }

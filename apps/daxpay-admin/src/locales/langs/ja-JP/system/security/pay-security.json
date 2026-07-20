@@ -13,10 +13,14 @@
       "blockOn": "ヒット：注文拒否",
       "blockOff": "ヒット：記録のみ",
       "afterOn": "事後記録：オン",
-      "afterOff": "事後記録：オフ"
+      "afterOff": "事後記録：オフ",
+      "levelNormal": "レベル：通常",
+      "levelEnhanced": "レベル：強化",
+      "overseasOn": "海外 IP：ブロック"
     },
     "section": {
-      "switch": "リスク管理スイッチ"
+      "switch": "リスク管理スイッチ",
+      "strategy": "ブロック戦略"
     },
     "riskEnabled": {
       "label": "リスク管理メインスイッチ",
@@ -29,6 +33,17 @@
     "riskCheckAfterPay": {
       "label": "決済後ヒット記録",
       "desc": "オンの場合、決済成功後にヒットを記録し、事後分析に使用します。資金状態には影響しません。"
+    },
+    "riskOpenIdLevel": {
+      "label": "openId ブロック レベル",
+      "desc": "通常ブロック：JSAPI/ミニなどネイティブ方式のみブロック。強化ブロック：H5/QR 決済など識別可能環境でも OAuth を強制し openId を取得してブロック。",
+      "normal": "通常ブロック",
+      "enhanced": "強化ブロック"
+    },
+    "blockOverseasIp": {
+      "label": "海外 IP ブロック",
+      "desc": "中国本土以外の海外 IP からの決済リクエストをブロック。中国地域で一般的なリスク管理戦略。",
+      "comingSoon": "この機能は今後のバージョンで提供されます。"
     }
   }
 }

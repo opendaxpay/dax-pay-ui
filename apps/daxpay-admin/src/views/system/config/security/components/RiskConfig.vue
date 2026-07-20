@@ -20,13 +20,13 @@
 
   const formState = ref<PaySecurityConfig>({} as PaySecurityConfig);
 
-  // 概要标签：总开关关闭仅展示关闭态；开启时同步展示阻断/事后补录
+  // 概要标签：总开关关闭仅展示关闭态；开启时同步展示阻断/事后补录/拦截级别
   const summaryItems = computed(() => {
     if (!formState.value.riskEnabled) {
       // 风控：已关闭
       return [$t('system.security.pay-security.risk.summary.disabled')];
     }
-    return [
+    const items = [
       // 风控：已开启
       $t('system.security.pay-security.risk.summary.enabled'),
       // 命中：拦截下单 / 仅记录
@@ -37,7 +37,16 @@
       formState.value.riskCheckAfterPay
         ? $t('system.security.pay-security.risk.summary.afterOn')
         : $t('system.security.pay-security.risk.summary.afterOff'),
+      // openId 拦截级别
+      formState.value.riskOpenIdLevel === 'enhanced'
+        ? $t('system.security.pay-security.risk.summary.levelEnhanced')
+        : $t('system.security.pay-security.risk.summary.levelNormal'),
     ];
+    // 海外 IP 拦截（占位, 默认关闭, 仅开启时展示）
+    if (formState.value.blockOverseasIp) {
+      items.push($t('system.security.pay-security.risk.summary.overseasOn'));
+    }
+    return items;
   });
 
   /**
@@ -178,6 +187,55 @@
               v-model:checked="formState.riskCheckAfterPay"
               :disabled="!isEditing || !formState.riskEnabled"
             />
+          </div>
+        </div>
+
+        <!-- 拦截策略 -->
+        <div class="config-section">
+          <div class="config-section__title">
+            {{ $t('system.security.pay-security.risk.section.strategy') }}
+          </div>
+
+          <!-- openId 拦截级别 -->
+          <div class="config-item">
+            <div class="config-item__main">
+              <!-- openId 拦截级别标签 -->
+              <div class="config-item__label">{{
+                $t('system.security.pay-security.risk.riskOpenIdLevel.label')
+              }}</div>
+              <!-- openId 拦截级别描述 -->
+              <div class="config-item__desc">{{ $t('system.security.pay-security.risk.riskOpenIdLevel.desc') }}</div>
+            </div>
+            <a-radio-group
+              v-model:value="formState.riskOpenIdLevel"
+              button-style="solid"
+              :disabled="!isEditing || !formState.riskEnabled"
+            >
+              <!-- 正常拦截 -->
+              <a-radio-button value="normal">
+                {{ $t('system.security.pay-security.risk.riskOpenIdLevel.normal') }}
+              </a-radio-button>
+              <!-- 增强拦截 -->
+              <a-radio-button value="enhanced">
+                {{ $t('system.security.pay-security.risk.riskOpenIdLevel.enhanced') }}
+              </a-radio-button>
+            </a-radio-group>
+          </div>
+
+          <!-- 海外 IP 拦截（占位, 后续接入） -->
+          <div class="config-item">
+            <div class="config-item__main">
+              <!-- 海外 IP 拦截标签 -->
+              <div class="config-item__label">{{
+                $t('system.security.pay-security.risk.blockOverseasIp.label')
+              }}</div>
+              <!-- 海外 IP 拦截描述 -->
+              <div class="config-item__desc">{{ $t('system.security.pay-security.risk.blockOverseasIp.desc') }}</div>
+            </div>
+            <!-- 海外 IP 拦截: 后续版本接入, 当前禁用 -->
+            <a-tooltip :title="$t('system.security.pay-security.risk.blockOverseasIp.comingSoon')">
+              <a-switch v-model:checked="formState.blockOverseasIp" disabled />
+            </a-tooltip>
           </div>
         </div>
       </a-form>

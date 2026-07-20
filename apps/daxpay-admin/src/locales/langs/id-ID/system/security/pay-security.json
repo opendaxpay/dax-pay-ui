@@ -13,10 +13,14 @@
       "blockOn": "Hit: Blokir Pesanan",
       "blockOff": "Hit: Catat Saja",
       "afterOn": "Catatan Pascabayar: Aktif",
-      "afterOff": "Catatan Pascabayar: Nonaktif"
+      "afterOff": "Catatan Pascabayar: Nonaktif",
+      "levelNormal": "Level: Normal",
+      "levelEnhanced": "Level: Ditingkatkan",
+      "overseasOn": "IP Luar Negeri: Blokir"
     },
     "section": {
-      "switch": "Saklar Kontrol Risiko"
+      "switch": "Saklar Kontrol Risiko",
+      "strategy": "Strategi Intersepsi"
     },
     "riskEnabled": {
       "label": "Saklar Utama Kontrol Risiko",
@@ -29,6 +33,17 @@
     "riskCheckAfterPay": {
       "label": "Pencatatan Hit Pasca Pembayaran",
       "desc": "Saat aktif, hit dicatat setelah pembayaran berhasil untuk analisis pasca-peristiwa, tanpa memengaruhi dana."
+    },
+    "riskOpenIdLevel": {
+      "label": "Level Intersepsi openId",
+      "desc": "Normal: hanya blokir metode native JSAPI/Mini. Ditingkatkan: juga memaksa OAuth untuk mendapatkan openId pada H5/QR dalam lingkungan yang dikenali.",
+      "normal": "Normal",
+      "enhanced": "Ditingkatkan"
+    },
+    "blockOverseasIp": {
+      "label": "Pemblokiran IP Luar Negeri",
+      "desc": "Blokir permintaan pembayaran dari IP luar negeri (di luar Tiongkok daratan), strategi pengendalian risiko umum di wilayah Tiongkok.",
+      "comingSoon": "Fitur ini akan tersedia di rilis mendatang."
     }
   }
 }
