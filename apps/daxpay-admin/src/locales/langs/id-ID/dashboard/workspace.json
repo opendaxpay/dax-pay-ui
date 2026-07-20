@@ -17,9 +17,11 @@
     "quickEntry": "Entri Cepat",
     "tradeOverview": "Ikhtisar Perdagangan",
     "payOrder": "Perintah Pembayaran",
+    "payTrade": "Perdagangan Dana",
     "tradeTrend": "Tren Perdagangan",
     "providerDist": "Distribusi Metode Pembayaran",
-    "noticeList": "Pemberitahuan"
+    "noticeList": "Pemberitahuan",
+    "configAlert": "Konfigurasi Tertunda"
   },
   "tradeOverview": {
     "today": "Hari ini",
@@ -66,5 +68,9 @@
     "important": "Penting",
     "normal": "Normal",
     "top": "Atas"
+  },
+  "configAlert": {
+    "bannerTitle": "{n} konfigurasi tertunda",
+    "viewDetail": "Lihat Detail"
   }
 }

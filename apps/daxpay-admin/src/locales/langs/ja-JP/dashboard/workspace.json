@@ -17,9 +17,11 @@
     "quickEntry": "クイックエントリー",
     "tradeOverview": "貿易概要",
     "payOrder": "支払い命令",
+    "payTrade": "ファンド取引",
     "tradeTrend": "貿易動向",
     "providerDist": "決済方法分布",
-    "noticeList": "お知らせ"
+    "noticeList": "お知らせ",
+    "configAlert": "設定未完了"
   },
   "tradeOverview": {
     "today": "今日",
@@ -66,5 +68,9 @@
     "important": "重要",
     "normal": "普通",
     "top": "トップ"
+  },
+  "configAlert": {
+    "bannerTitle": "{n} 件の設定が未完了です",
+    "viewDetail": "詳細を表示"
   }
 }

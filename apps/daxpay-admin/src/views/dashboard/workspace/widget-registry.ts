@@ -1,7 +1,7 @@
 import type { LayoutItem, WidgetMeta } from './types';
 
 import NoticeListWidget from './widgets/notice-list.widget.vue';
-import PayOrderListWidget from './widgets/pay-order-list.widget.vue';
+import PayTradeListWidget from './widgets/pay-trade-list.widget.vue';
 import ProviderDistributionWidget from './widgets/provider-distribution.widget.vue';
 import QuickEntryWidget from './widgets/quick-entry.widget.vue';
 import TradeOverviewWidget from './widgets/trade-overview.widget.vue';
@@ -40,25 +40,25 @@ export const WIDGET_REGISTRY: WidgetMeta[] = [
     titleKey: 'dashboard.workspace.widget.tradeOverview',
     icon: 'lucide:wallet',
     defaultSpan: 8,
-    defaultOrder: 2,
-  },
-  {
-    // 支付订单：中栏，最近订单明细（mock 数据，后端订单管理 API 就绪后替换）
-    id: 'pay-order-list',
-    component: PayOrderListWidget,
-    titleKey: 'dashboard.workspace.widget.payOrder',
-    icon: 'lucide:receipt-text',
-    defaultSpan: 8,
     defaultOrder: 3,
   },
   {
-    // 系统公告：右栏，与交易概览、支付订单三栏并排
+    // 资金交易：中栏，最近资金交易明细
+    id: 'pay-trade-list',
+    component: PayTradeListWidget,
+    titleKey: 'dashboard.workspace.widget.payTrade',
+    icon: 'lucide:arrow-left-right',
+    defaultSpan: 8,
+    defaultOrder: 4,
+  },
+  {
+    // 系统公告：右栏，与交易概览、资金交易三栏并排
     id: 'notice-list',
     component: NoticeListWidget,
     titleKey: 'dashboard.workspace.widget.noticeList',
     icon: 'lucide:bell',
     defaultSpan: 8,
-    defaultOrder: 4,
+    defaultOrder: 5,
   },
   {
     id: 'trade-trend',
@@ -66,7 +66,7 @@ export const WIDGET_REGISTRY: WidgetMeta[] = [
     titleKey: 'dashboard.workspace.widget.tradeTrend',
     icon: 'lucide:trending-up',
     defaultSpan: 16,
-    defaultOrder: 6,
+    defaultOrder: 7,
   },
   {
     id: 'provider-distribution',
@@ -74,7 +74,7 @@ export const WIDGET_REGISTRY: WidgetMeta[] = [
     titleKey: 'dashboard.workspace.widget.providerDist',
     icon: 'lucide:pie-chart',
     defaultSpan: 8,
-    defaultOrder: 5,
+    defaultOrder: 6,
   },
 ];
 

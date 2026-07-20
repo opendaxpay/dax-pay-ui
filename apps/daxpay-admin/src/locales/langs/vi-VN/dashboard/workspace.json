@@ -17,9 +17,11 @@
     "quickEntry": "Nhập nhanh",
     "tradeOverview": "Tổng quan thương mại",
     "payOrder": "Lệnh thanh toán",
+    "payTrade": "Giao dịch quỹ",
     "tradeTrend": "Xu hướng thương mại",
     "providerDist": "Phân bố phương thức thanh toán",
-    "noticeList": "Thông báo"
+    "noticeList": "Thông báo",
+    "configAlert": "Cấu hình chưa hoàn tất"
   },
   "tradeOverview": {
     "today": "Hôm nay",
@@ -66,5 +68,9 @@
     "important": "Quan trọng",
     "normal": "Bình thường",
     "top": "Đứng đầu"
+  },
+  "configAlert": {
+    "bannerTitle": "Có {n} cấu hình chưa hoàn tất",
+    "viewDetail": "Xem chi tiết"
   }
 }

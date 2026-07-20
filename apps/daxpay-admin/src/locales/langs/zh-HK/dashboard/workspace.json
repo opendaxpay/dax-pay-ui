@@ -17,9 +17,11 @@
     "quickEntry": "快捷入口",
     "tradeOverview": "交易概覽",
     "payOrder": "支付訂單",
+    "payTrade": "資金交易",
     "tradeTrend": "交易趨勢",
     "providerDist": "支付渠道分佈",
-    "noticeList": "系統公告"
+    "noticeList": "系統公告",
+    "configAlert": "配置待完成"
   },
   "tradeOverview": {
     "today": "今日交易",
@@ -66,5 +68,9 @@
     "important": "重要",
     "normal": "普通",
     "top": "置頂"
+  },
+  "configAlert": {
+    "bannerTitle": "您有 {n} 項配置待完成",
+    "viewDetail": "查看詳情"
   }
 }

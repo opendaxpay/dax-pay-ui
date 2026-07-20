@@ -17,9 +17,11 @@
     "quickEntry": "Quick Entry",
     "tradeOverview": "Trade Overview",
     "payOrder": "Payment Orders",
+    "payTrade": "Fund Trades",
     "tradeTrend": "Trade Trend",
     "providerDist": "Payment Method Distribution",
-    "noticeList": "Notices"
+    "noticeList": "Notices",
+    "configAlert": "Pending Config"
   },
   "tradeOverview": {
     "today": "Today",
@@ -66,5 +68,9 @@
     "important": "Important",
     "normal": "Normal",
     "top": "Top"
+  },
+  "configAlert": {
+    "bannerTitle": "You have {n} configuration(s) pending",
+    "viewDetail": "View Details"
   }
 }

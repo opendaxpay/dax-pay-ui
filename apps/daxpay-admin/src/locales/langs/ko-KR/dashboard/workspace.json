@@ -17,9 +17,11 @@
     "quickEntry": "빠른 입장",
     "tradeOverview": "무역개요",
     "payOrder": "지불 주문",
+    "payTrade": "펀드거래",
     "tradeTrend": "무역동향",
     "providerDist": "결제 수단 분포",
-    "noticeList": "공지사항"
+    "noticeList": "공지사항",
+    "configAlert": "설정 미완료"
   },
   "tradeOverview": {
     "today": "오늘",
@@ -66,5 +68,9 @@
     "important": "중요한",
     "normal": "정상",
     "top": "맨 위"
+  },
+  "configAlert": {
+    "bannerTitle": "{n}개의 설정이 미완료입니다",
+    "viewDetail": "상세 보기"
   }
 }

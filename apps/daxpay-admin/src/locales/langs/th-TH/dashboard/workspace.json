@@ -17,9 +17,11 @@
     "quickEntry": "เข้าด่วน",
     "tradeOverview": "ภาพรวมการค้า",
     "payOrder": "คำสั่งการชำระเงิน",
+    "payTrade": "การซื้อขายกองทุน",
     "tradeTrend": "แนวโน้มการค้า",
     "providerDist": "การกระจายวิธีการชำระเงิน",
-    "noticeList": "ประกาศ"
+    "noticeList": "ประกาศ",
+    "configAlert": "การกำหนดค่าค้างอยู่"
   },
   "tradeOverview": {
     "today": "วันนี้",
@@ -66,5 +68,9 @@
     "important": "สำคัญ",
     "normal": "ปกติ",
     "top": "สูงสุด"
+  },
+  "configAlert": {
+    "bannerTitle": "มีการกำหนดค้าง {n} รายการ",
+    "viewDetail": "ดูรายละเอียด"
   }
 }

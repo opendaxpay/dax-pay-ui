@@ -17,9 +17,11 @@
     "quickEntry": "Kemasukan Cepat",
     "tradeOverview": "Tinjauan Perdagangan",
     "payOrder": "Pesanan Pembayaran",
+    "payTrade": "Dagangan Dana",
     "tradeTrend": "Trend Perdagangan",
     "providerDist": "Agihan Kaedah Pembayaran",
-    "noticeList": "Notis"
+    "noticeList": "Notis",
+    "configAlert": "Konfigurasi Tertunggak"
   },
   "tradeOverview": {
     "today": "Hari ini",
@@ -66,5 +68,9 @@
     "important": "penting",
     "normal": "Biasalah",
     "top": "Atas"
+  },
+  "configAlert": {
+    "bannerTitle": "{n} konfigurasi tertunggak",
+    "viewDetail": "Lihat Butiran"
   }
 }
