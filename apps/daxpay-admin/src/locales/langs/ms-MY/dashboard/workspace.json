@@ -71,6 +71,7 @@
   },
   "configAlert": {
     "bannerTitle": "{n} konfigurasi tertunggak",
-    "viewDetail": "Lihat Butiran"
+    "viewDetail": "Lihat Butiran",
+    "allComplete": "Semua konfigurasi selesai"
   }
 }

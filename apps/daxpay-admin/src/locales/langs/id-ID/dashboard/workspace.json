@@ -71,6 +71,7 @@
   },
   "configAlert": {
     "bannerTitle": "{n} konfigurasi tertunda",
-    "viewDetail": "Lihat Detail"
+    "viewDetail": "Lihat Detail",
+    "allComplete": "Semua konfigurasi selesai"
   }
 }

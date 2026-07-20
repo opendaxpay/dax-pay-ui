@@ -71,6 +71,7 @@
   },
   "configAlert": {
     "bannerTitle": "您有 {n} 項配置待完成",
-    "viewDetail": "查看詳情"
+    "viewDetail": "查看詳情",
+    "allComplete": "配置已完善"
   }
 }

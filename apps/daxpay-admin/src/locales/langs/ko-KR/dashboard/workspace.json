@@ -71,6 +71,7 @@
   },
   "configAlert": {
     "bannerTitle": "{n}개의 설정이 미완료입니다",
-    "viewDetail": "상세 보기"
+    "viewDetail": "상세 보기",
+    "allComplete": "모든 설정이 완료되었습니다"
   }
 }

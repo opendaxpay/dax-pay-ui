@@ -71,6 +71,7 @@
   },
   "configAlert": {
     "bannerTitle": "Có {n} cấu hình chưa hoàn tất",
-    "viewDetail": "Xem chi tiết"
+    "viewDetail": "Xem chi tiết",
+    "allComplete": "Tất cả cấu hình đã hoàn tất"
   }
 }

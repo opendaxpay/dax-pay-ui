@@ -71,6 +71,7 @@
   },
   "configAlert": {
     "bannerTitle": "{n} 件の設定が未完了です",
-    "viewDetail": "詳細を表示"
+    "viewDetail": "詳細を表示",
+    "allComplete": "すべての設定が完了しています"
   }
 }

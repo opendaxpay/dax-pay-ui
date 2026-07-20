@@ -71,6 +71,7 @@
   },
   "configAlert": {
     "bannerTitle": "You have {n} configuration(s) pending",
-    "viewDetail": "View Details"
+    "viewDetail": "View Details",
+    "allComplete": "All configurations complete"
   }
 }

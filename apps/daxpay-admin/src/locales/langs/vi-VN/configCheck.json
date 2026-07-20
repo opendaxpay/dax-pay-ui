@@ -1,8 +1,4 @@
 {
-  "payProduct": {
-    "title": "Tham Số Sản Phẩm Thanh Toán",
-    "description": "Một số sản phẩm thanh toán chưa hoàn tất cấu hình tham số kênh"
-  },
   "platformWebsite": {
     "title": "Thông Tin Trang Web",
     "description": "Tên hệ thống, logo, đăng ký ICP và thông tin hiển thị trang khác chưa được cấu hình"

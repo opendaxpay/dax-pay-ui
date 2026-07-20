@@ -1,8 +1,4 @@
 {
-  "payProduct": {
-    "title": "Payment Product",
-    "description": "Some payment products have not completed channel parameter configuration"
-  },
   "platformWebsite": {
     "title": "Site Information",
     "description": "System name, logo, ICP filing and other site display info are not configured"

@@ -1,8 +1,4 @@
 {
-  "payProduct": {
-    "title": "Parameter Produk Pembayaran",
-    "description": "Beberapa produk pembayaran belum menyelesaikan konfigurasi parameter saluran"
-  },
   "platformWebsite": {
     "title": "Informasi Situs",
     "description": "Nama sistem, logo, pendaftaran ICP dan info tampilan situs lainnya belum dikonfigurasi"

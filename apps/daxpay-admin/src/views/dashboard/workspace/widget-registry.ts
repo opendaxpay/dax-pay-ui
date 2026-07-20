@@ -1,5 +1,6 @@
 import type { LayoutItem, WidgetMeta } from './types';
 
+import ConfigAlertWidget from './widgets/config-alert.widget.vue';
 import NoticeListWidget from './widgets/notice-list.widget.vue';
 import PayTradeListWidget from './widgets/pay-trade-list.widget.vue';
 import ProviderDistributionWidget from './widgets/provider-distribution.widget.vue';
@@ -32,6 +33,15 @@ export const WIDGET_REGISTRY: WidgetMeta[] = [
     icon: 'lucide:mouse-pointer-click',
     defaultSpan: 24,
     defaultOrder: 1,
+  },
+  {
+    // 配置待完成: 提示未完成的平台级配置项, 点击跳转对应配置页
+    id: 'config-alert',
+    component: ConfigAlertWidget,
+    titleKey: 'dashboard.workspace.widget.configAlert',
+    icon: 'lucide:list-checks',
+    defaultSpan: 8,
+    defaultOrder: 2,
   },
   {
     // 交易概览：左栏，三栏并排的第一栏

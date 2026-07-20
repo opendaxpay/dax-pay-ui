@@ -1,8 +1,4 @@
 {
-  "payProduct": {
-    "title": "決済商品パラメータ",
-    "description": "チャネルパラメータの設定が未完了の決済商品があります"
-  },
   "platformWebsite": {
     "title": "サイト情報",
     "description": "システム名、ロゴ、ICP備案などのサイト表示情報が未設定です"

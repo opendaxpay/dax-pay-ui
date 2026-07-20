@@ -71,6 +71,7 @@
   },
   "configAlert": {
     "bannerTitle": "มีการกำหนดค้าง {n} รายการ",
-    "viewDetail": "ดูรายละเอียด"
+    "viewDetail": "ดูรายละเอียด",
+    "allComplete": "การกำหนดค่าเสร็จสมบูรณ์ทั้งหมด"
   }
 }

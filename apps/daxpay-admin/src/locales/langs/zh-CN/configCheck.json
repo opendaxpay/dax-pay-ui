@@ -1,8 +1,4 @@
 {
-  "payProduct": {
-    "title": "支付产品参数",
-    "description": "有支付产品尚未完成通道参数配置"
-  },
   "platformWebsite": {
     "title": "站点信息",
     "description": "系统名称、Logo、ICP 备案等站点展示信息未配置"

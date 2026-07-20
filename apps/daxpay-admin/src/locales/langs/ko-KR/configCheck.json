@@ -1,8 +1,4 @@
 {
-  "payProduct": {
-    "title": "결제 상품 매개변수",
-    "description": "채널 매개변수 설정이 완료되지 않은 결제 상품이 있습니다"
-  },
   "platformWebsite": {
     "title": "사이트 정보",
     "description": "시스템 이름, 로고, ICP 신고 등 사이트 표시 정보가 설정되지 않았습니다"
