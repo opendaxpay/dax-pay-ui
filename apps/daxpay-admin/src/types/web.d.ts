@@ -10,14 +10,14 @@ export interface PageParam {
 
 /**
  * 通用响应类
+ *
+ * traceId 不再通过响应体返回, 改由响应头 `x-trace-id` 透传, 用于排障关联。
  */
 export interface Result<T = any> {
   /** 响应码 */
   code: number;
   /** 响应消息 */
   msg: string;
-  /** 追踪ID */
-  traceId: null | string | undefined;
   /** 响应数据 */
   data: T;
 }

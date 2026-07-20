@@ -23,7 +23,6 @@ export interface DaxResult<T = unknown> {
   resTime?: string;
   /** 请求ID(回显) */
   reqId?: string;
-  traceId?: string;
 }
 
 function createUnipayClient(baseURL: string, options?: RequestClientOptions) {
