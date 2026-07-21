@@ -18,6 +18,7 @@
     "remark": "Komentar",
     "remarkPlaceholder": "Silakan masukkan komentar",
     "confirmSave": "Simpan konfigurasi pemberitahuan async?",
-    "saveSuccess": "Berhasil disimpan"
+    "saveSuccess": "Berhasil disimpan",
+    "eventRefund": "Refund"
   }
 }

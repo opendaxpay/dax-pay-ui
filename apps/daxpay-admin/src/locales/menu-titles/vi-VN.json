@@ -94,5 +94,6 @@
   "menu.system.security.system": "Bảo mật hệ thống",
   "menu.system.security.pay": "Bảo mật thanh toán",
   "menu.payment.merchant.terminal": "Thiết bị hệ thống",
-  "menu.device.terminal.channel": "Thiết bị kênh"
+  "menu.device.terminal.channel": "Thiết bị kênh",
+  "menu.trade.mchNotice": "Thông báo merchant"
 }

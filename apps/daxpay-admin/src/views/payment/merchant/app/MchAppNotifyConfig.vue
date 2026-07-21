@@ -44,10 +44,11 @@
   });
 
   /**
-   * 订阅事件选项(对应 TradeTypeEnum: pay/cashouts/settle)
+   * 订阅事件选项(前缀匹配: pay→pay.*, refund→refund.*)
    */
   const eventOptions = computed(() => [
     { label: $t('payment.merchant.notifyConfig.notifyConfig.eventPay'), value: 'pay' },
+    { label: $t('payment.merchant.notifyConfig.notifyConfig.eventRefund'), value: 'refund' },
     { label: $t('payment.merchant.notifyConfig.notifyConfig.eventCashouts'), value: 'cashouts' },
     { label: $t('payment.merchant.notifyConfig.notifyConfig.eventSettle'), value: 'settle' },
   ]);

@@ -94,5 +94,6 @@
   "menu.system.security.system": "システムセキュリティ",
   "menu.system.security.pay": "決済セキュリティ",
   "menu.payment.merchant.terminal": "システム端末",
-  "menu.device.terminal.channel": "チャネル端末"
+  "menu.device.terminal.channel": "チャネル端末",
+  "menu.trade.mchNotice": "加盟店通知"
 }

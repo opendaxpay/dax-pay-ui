@@ -46,6 +46,7 @@
   "menu.payment.config": "支付配置",
   "menu.payment.merchant.store": "门店管理",
   "menu.trade.refundOrder": "退款订单",
+  "menu.trade.mchNotice": "商户通知",
   "menu.develop": "开发调试",
   "menu.device": "设备管理",
   "menu.demos.artemis": "消息队列演示",

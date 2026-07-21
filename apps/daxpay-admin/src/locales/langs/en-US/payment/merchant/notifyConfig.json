@@ -18,6 +18,7 @@
     "remark": "Remark",
     "remarkPlaceholder": "Please enter remark",
     "confirmSave": "Save async notify config?",
-    "saveSuccess": "Saved successfully"
+    "saveSuccess": "Saved successfully",
+    "eventRefund": "Refund"
   }
 }

@@ -94,5 +94,6 @@
   "menu.system.security.system": "Keamanan Sistem",
   "menu.system.security.pay": "Keamanan Pembayaran",
   "menu.payment.merchant.terminal": "Terminal Sistem",
-  "menu.device.terminal.channel": "Terminal Saluran"
+  "menu.device.terminal.channel": "Terminal Saluran",
+  "menu.trade.mchNotice": "Notifikasi Merchant"
 }

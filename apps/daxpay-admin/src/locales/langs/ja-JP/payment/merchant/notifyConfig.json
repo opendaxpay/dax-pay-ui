@@ -18,6 +18,7 @@
     "remark": "述べる",
     "remarkPlaceholder": "備考を入力してください",
     "confirmSave": "非同期通知設定を保存しますか?",
-    "saveSuccess": "正常に保存されました"
+    "saveSuccess": "正常に保存されました",
+    "eventRefund": "返金"
   }
 }

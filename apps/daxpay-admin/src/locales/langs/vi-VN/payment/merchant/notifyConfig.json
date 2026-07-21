@@ -18,6 +18,7 @@
     "remark": "Nhận xét",
     "remarkPlaceholder": "Vui lòng nhập nhận xét",
     "confirmSave": "Lưu cấu hình thông báo không đồng bộ?",
-    "saveSuccess": "Đã lưu thành công"
+    "saveSuccess": "Đã lưu thành công",
+    "eventRefund": "Hoàn tiền"
   }
 }

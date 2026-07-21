@@ -46,6 +46,7 @@
   "menu.payment.config": "Payment Config",
   "menu.payment.merchant.store": "Store Management",
   "menu.trade.refundOrder": "Refund Orders",
+  "menu.trade.mchNotice": "Merchant Notify",
   "menu.develop": "Develop",
   "menu.device": "Device Management",
   "menu.demos.artemis": "Message Queue Demo",

@@ -185,6 +185,10 @@ export const PermCodes = {
       VIEW: 'trade:gateway-order:view',
       MANAGE: 'trade:gateway-order:manage',
     },
+    Notice: {
+      VIEW: 'trade:mch-notice:view',
+      MANAGE: 'trade:mch-notice:manage',
+    },
   },
 
   Develop: {

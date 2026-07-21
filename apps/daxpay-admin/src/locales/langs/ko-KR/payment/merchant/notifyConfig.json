@@ -18,6 +18,7 @@
     "remark": "주목",
     "remarkPlaceholder": "비고를 입력해주세요",
     "confirmSave": "비동기 알림 구성을 저장하시겠습니까?",
-    "saveSuccess": "성공적으로 저장되었습니다"
+    "saveSuccess": "성공적으로 저장되었습니다",
+    "eventRefund": "환불"
   }
 }

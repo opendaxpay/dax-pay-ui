@@ -18,6 +18,7 @@
     "remark": "备注",
     "remarkPlaceholder": "请输入备注",
     "confirmSave": "确定要保存异步通知配置吗？",
-    "saveSuccess": "保存成功"
+    "saveSuccess": "保存成功",
+    "eventRefund": "退款"
   }
 }

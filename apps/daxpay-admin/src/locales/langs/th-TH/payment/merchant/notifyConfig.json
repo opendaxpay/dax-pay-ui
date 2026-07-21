@@ -18,6 +18,7 @@
     "remark": "หมายเหตุ",
     "remarkPlaceholder": "กรุณาใส่หมายเหตุ",
     "confirmSave": "บันทึกการตั้งค่าการแจ้งเตือน async หรือไม่",
-    "saveSuccess": "บันทึกเรียบร้อยแล้ว"
+    "saveSuccess": "บันทึกเรียบร้อยแล้ว",
+    "eventRefund": "คืนเงิน"
   }
 }

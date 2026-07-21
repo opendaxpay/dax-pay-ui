@@ -18,6 +18,7 @@
     "remark": "備註",
     "remarkPlaceholder": "請輸入備註",
     "confirmSave": "確定要儲存非同步通知配置嗎？",
-    "saveSuccess": "儲存成功"
+    "saveSuccess": "儲存成功",
+    "eventRefund": "退款"
   }
 }
