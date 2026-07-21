@@ -1,10 +1,7 @@
 <script setup lang="ts">
   import type { FormInstance } from 'antdv-next';
 
-  import type {
-    GatewayPrePayParam,
-    GatewayPrePayResult,
-  } from '#/api/payment/develop/developGateway.api';
+  import type { GatewayPrePayParam, GatewayPrePayResult } from '#/api/payment/develop/developGateway.api';
   import type { DaxResult } from '#/api/payment/unipay/unipay-request';
   import type { LabelValue } from '#/types/web';
 
@@ -12,7 +9,6 @@
 
   import { JsonViewer } from '@vben/common-ui';
   import { $t } from '@vben/locales';
-  import { formatDateTime } from '@vben/utils';
 
   import { IconifyIcon } from '@vben-core/icons';
 
@@ -52,7 +48,7 @@
         {
           validator: async () => {
             if (!privateKey.value) {
-              return Promise.reject(new Error($t('payment.develop.gateway.msg.inputPrivateKey')));
+              throw new Error($t('payment.develop.gateway.msg.inputPrivateKey'));
             }
           },
         },
@@ -237,6 +233,10 @@
 
   /** 生成签名预览(内联展示, 不弹结果) */
   async function handleSignPreview() {
+    // 重入守卫: :loading DOM 更新有 nextTick 延迟, 连点会绕过按钮 disabled
+    if (signPreviewLoading.value) {
+      return;
+    }
     try {
       await formRef.value?.validateFields(['privateKey']);
     } catch {
@@ -274,6 +274,11 @@
    * 1. admin 仅签名  2. 浏览器 POST /unipay/gateway/pre-pay
    */
   async function handlePrePay() {
+    // 重入守卫: :loading DOM 更新有 nextTick 延迟, 连点会绕过按钮 disabled,
+    // 可能导致签名/预下单竞态, 触发后端 20052 验签失败
+    if (loading.value) {
+      return;
+    }
     // 表单字段校验(含私钥自定义规则)
     try {
       await formRef.value?.validate();
@@ -290,6 +295,11 @@
         param: payload,
         privateKey: privateKey.value,
       });
+      // 防御性校验: 签名接口异常/返回空时, 不允许带空 sign 撞预下单(否则后端必抛验签失败)
+      if (!signRes?.sign) {
+        message.error($t('payment.develop.gateway.msg.signFail'));
+        return;
+      }
       payload.sign = signRes?.sign;
       signPreview.signStr = signRes?.signStr ?? '';
       signPreview.sign = signRes?.sign ?? '';
@@ -405,8 +415,12 @@
                 <!-- 网关支付类型 -->
                 <a-form-item :label="$t('payment.develop.gateway.gatewayType.label')" name="gatewayPayType">
                   <a-radio-group v-model:value="form.gatewayPayType" button-style="solid">
-                    <a-radio-button value="cashier">{{ $t('payment.develop.gateway.gatewayType.cashier') }}</a-radio-button>
-                    <a-radio-button value="aggregate">{{ $t('payment.develop.gateway.gatewayType.aggregate') }}</a-radio-button>
+                    <a-radio-button value="cashier">{{
+                      $t('payment.develop.gateway.gatewayType.cashier')
+                    }}</a-radio-button>
+                    <a-radio-button value="aggregate">{{
+                      $t('payment.develop.gateway.gatewayType.aggregate')
+                    }}</a-radio-button>
                   </a-radio-group>
                   <div class="mt-1 text-xs text-muted-foreground">
                     {{
@@ -532,7 +546,10 @@
                   </a-col>
                   <a-col :span="12">
                     <a-form-item :label="$t('payment.develop.gateway.field.title')" name="title">
-                      <a-input v-model:value="form.title" :placeholder="$t('payment.develop.gateway.placeholder.title')">
+                      <a-input
+                        v-model:value="form.title"
+                        :placeholder="$t('payment.develop.gateway.placeholder.title')"
+                      >
                         <template #suffix>
                           <a-button size="small" type="link" @click="form.title = genDefaultTitle()">
                             <template #icon><IconifyIcon icon="ant-design:reload-outlined" /></template>
@@ -563,7 +580,13 @@
                   </div>
                 </template>
                 <template #extra>
-                  <a-button size="small" type="primary" :loading="signPreviewLoading" @click="handleSignPreview">
+                  <a-button
+                    size="small"
+                    type="primary"
+                    :loading="signPreviewLoading"
+                    :disabled="signPreviewLoading"
+                    @click="handleSignPreview"
+                  >
                     <template #icon><IconifyIcon icon="ant-design:safety-certificate-outlined" /></template>
                     {{ $t('payment.develop.gateway.preview.signBtn') }}
                   </a-button>
@@ -617,7 +640,15 @@
               <template #icon><IconifyIcon icon="ant-design:undo-outlined" /></template>
               {{ $t('payment.develop.gateway.btn.reset') }}
             </a-button>
-            <a-button class="action-btn" danger size="large" type="primary" :loading="loading" @click="handlePrePay">
+            <a-button
+              class="action-btn"
+              danger
+              size="large"
+              type="primary"
+              :loading="loading"
+              :disabled="loading"
+              @click="handlePrePay"
+            >
               <template #icon><IconifyIcon icon="ant-design:rocket-outlined" /></template>
               {{ $t('payment.develop.gateway.btn.submit') }}
             </a-button>

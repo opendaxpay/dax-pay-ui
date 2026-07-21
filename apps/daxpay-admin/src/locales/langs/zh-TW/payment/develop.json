@@ -306,6 +306,7 @@
     },
     "msg": {
       "signSuccess": "簽名產生成功",
+      "signFail": "簽名產生失敗,請重試",
       "prePaySuccess": "預下單請求成功",
       "prePayFail": "預下單請求失敗",
       "inputPrivateKey": "請先設定商戶私鑰",

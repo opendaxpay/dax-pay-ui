@@ -305,6 +305,7 @@
     },
     "msg": {
       "signSuccess": "Tandatangan dijana",
+      "signFail": "Penjanaan tandatangan gagal, sila cuba lagi",
       "prePaySuccess": "Permintaan pra-bayar berjaya",
       "prePayFail": "Permintaan pra-bayar gagal",
       "inputPrivateKey": "Sila tetapkan kunci peribadi merchant terlebih dahulu",

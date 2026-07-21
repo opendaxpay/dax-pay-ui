@@ -306,6 +306,7 @@
     },
     "msg": {
       "signSuccess": "Sign generated",
+      "signFail": "Sign generation failed, please retry",
       "prePaySuccess": "Pre-pay request succeeded",
       "prePayFail": "Pre-pay request failed",
       "inputPrivateKey": "Please set merchant private key first",

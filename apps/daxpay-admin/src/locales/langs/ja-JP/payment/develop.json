@@ -306,6 +306,7 @@
     },
     "msg": {
       "signSuccess": "署名を生成しました",
+      "signFail": "署名生成に失敗しました。再試行してください",
       "prePaySuccess": "事前注文リクエスト成功",
       "prePayFail": "事前注文リクエスト失敗",
       "inputPrivateKey": "先にマーチャント秘密鍵を設定してください",

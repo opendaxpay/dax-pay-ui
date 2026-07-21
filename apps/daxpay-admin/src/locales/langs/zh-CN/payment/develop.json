@@ -306,6 +306,7 @@
     },
     "msg": {
       "signSuccess": "签名生成成功",
+      "signFail": "签名生成失败,请重试",
       "prePaySuccess": "预下单请求成功",
       "prePayFail": "预下单请求失败",
       "inputPrivateKey": "请先设置商户私钥",

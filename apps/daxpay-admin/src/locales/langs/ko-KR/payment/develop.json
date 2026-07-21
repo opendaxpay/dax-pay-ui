@@ -306,6 +306,7 @@
     },
     "msg": {
       "signSuccess": "서명이 생성되었습니다",
+      "signFail": "서명 생성에 실패했습니다. 다시 시도해 주세요",
       "prePaySuccess": "사전 주문 요청 성공",
       "prePayFail": "사전 주문 요청 실패",
       "inputPrivateKey": "먼저 가맹점 개인키를 설정해 주세요",

@@ -305,6 +305,7 @@
     },
     "msg": {
       "signSuccess": "Đã tạo chữ ký",
+      "signFail": "Tạo chữ ký thất bại, vui lòng thử lại",
       "prePaySuccess": "Yêu cầu đặt trước thành công",
       "prePayFail": "Yêu cầu đặt trước thất bại",
       "inputPrivateKey": "Vui lòng thiết lập khóa riêng merchant trước",
