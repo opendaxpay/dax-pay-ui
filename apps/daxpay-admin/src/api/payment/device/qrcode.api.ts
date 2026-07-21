@@ -207,6 +207,8 @@ export interface DeviceQrCodeResult extends BaseEntity {
   mchName?: string;
   /** 应用(空=商户默认应用) */
   appId?: string;
+  /** 应用名称(由 appId 翻译) */
+  appName?: string;
   /** 绑定门店号 */
   storeNo?: string;
   /** 门店名称(由 storeNo 翻译) */

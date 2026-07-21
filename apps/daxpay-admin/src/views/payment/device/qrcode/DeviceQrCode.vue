@@ -378,10 +378,13 @@
               <a-tag v-else color="default">{{ $t('payment.device.qrcode.unbound') }}</a-tag>
             </template>
           </vxe-column>
-          <!-- 应用: 有 appId 显示号; 空=默认应用 -->
-          <vxe-column field="appId" :title="$t('payment.device.qrcode.field.appId')" :min-width="140">
+          <!-- 应用: 名称上+号下小字; 空=默认应用 -->
+          <vxe-column field="appId" :title="$t('payment.device.qrcode.field.appId')" :min-width="160">
             <template #default="{ row }">
-              <span v-if="row.appId">{{ row.appId }}</span>
+              <div v-if="row.appId" class="flex flex-col">
+                <span>{{ row.appName || '-' }}</span>
+                <span class="text-xs text-muted-foreground">{{ row.appId }}</span>
+              </div>
               <span v-else-if="row.mchNo" style="color: var(--text-color-placeholder)">{{
                 $t('payment.device.qrcode.defaultApp')
               }}</span>
