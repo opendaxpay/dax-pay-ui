@@ -1,0 +1,18 @@
+{
+  "title": "回调记录",
+  "tradeNo": "交易号",
+  "outTradeNo": "通道交易号",
+  "channel": "支付通道",
+  "callbackType": "回调类型",
+  "status": "处理状态",
+  "errorMsg": "错误信息",
+  "notifyInfo": "通知报文",
+  "createTime": "通知时间",
+  "placeholderTradeNo": "请输入交易号",
+  "placeholderOutTradeNo": "请输入通道交易号",
+  "typePay": "支付",
+  "typeRefund": "退款",
+  "detail": "回调详情",
+  "channelMchNo": "通道商户号",
+  "placeholderChannelMchNo": "请输入通道商户号"
+}

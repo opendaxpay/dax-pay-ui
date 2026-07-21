@@ -95,5 +95,7 @@
   "menu.system.security.pay": "支付安全配置",
   "menu.payment.merchant.terminal": "系統終端",
   "menu.device.terminal.channel": "通道終端",
-  "menu.trade.mchNotice": "商戶通知"
+  "menu.trade.mchNotice": "商戶通知",
+  "menu.trade.callbackRecord": "回調記錄",
+  "menu.trade.record": "交易記錄"
 }

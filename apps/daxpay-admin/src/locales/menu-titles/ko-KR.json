@@ -95,5 +95,7 @@
   "menu.system.security.pay": "결제 보안",
   "menu.payment.merchant.terminal": "시스템 단말",
   "menu.device.terminal.channel": "채널 단말",
-  "menu.trade.mchNotice": "가맹점 알림"
+  "menu.trade.mchNotice": "가맹점 알림",
+  "menu.trade.callbackRecord": "콜백 기록",
+  "menu.trade.record": "거래 기록"
 }

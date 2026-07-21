@@ -189,6 +189,9 @@ export const PermCodes = {
       VIEW: 'trade:mch-notice:view',
       MANAGE: 'trade:mch-notice:manage',
     },
+    CallbackRecord: {
+      VIEW: 'trade:callback-record:view',
+    },
   },
 
   Develop: {

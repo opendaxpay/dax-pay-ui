@@ -1,0 +1,18 @@
+{
+  "title": "บันทึกการเรียกกลับ",
+  "tradeNo": "หมายเลขธุรกรรม",
+  "outTradeNo": "หมายเลขธุรกรรมช่องทาง",
+  "channel": "ช่องทางชำระเงิน",
+  "callbackType": "ประเภทการเรียกกลับ",
+  "status": "สถานะ",
+  "errorMsg": "ข้อผิดพลาด",
+  "notifyInfo": "เพย์โหลดการแจ้งเตือน",
+  "createTime": "เวลาแจ้งเตือน",
+  "placeholderTradeNo": "กรอกหมายเลขธุรกรรม",
+  "placeholderOutTradeNo": "กรอกหมายเลขธุรกรรมช่องทาง",
+  "typePay": "ชำระเงิน",
+  "typeRefund": "คืนเงิน",
+  "detail": "รายละเอียดการเรียกกลับ",
+  "channelMchNo": "รหัสร้านค้าช่องทาง",
+  "placeholderChannelMchNo": "กรอกรหัสร้านค้าช่องทาง"
+}

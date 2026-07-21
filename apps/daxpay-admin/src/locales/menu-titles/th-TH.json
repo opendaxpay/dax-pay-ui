@@ -95,5 +95,7 @@
   "menu.system.security.pay": "ความปลอดภัยการชำระเงิน",
   "menu.payment.merchant.terminal": "เทอร์มินัลระบบ",
   "menu.device.terminal.channel": "เทอร์มินัลช่องทาง",
-  "menu.trade.mchNotice": "การแจ้งเตือนร้านค้า"
+  "menu.trade.mchNotice": "การแจ้งเตือนร้านค้า",
+  "menu.trade.callbackRecord": "บันทึกการเรียกกลับ",
+  "menu.trade.record": "บันทึกธุรกรรม"
 }

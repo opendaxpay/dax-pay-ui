@@ -95,5 +95,7 @@
   "menu.system.security.system": "System Security",
   "menu.system.security.pay": "Pay Security",
   "menu.payment.merchant.terminal": "System Terminals",
-  "menu.device.terminal.channel": "Channel Terminals"
+  "menu.device.terminal.channel": "Channel Terminals",
+  "menu.trade.callbackRecord": "Callback Records",
+  "menu.trade.record": "Trade Records"
 }

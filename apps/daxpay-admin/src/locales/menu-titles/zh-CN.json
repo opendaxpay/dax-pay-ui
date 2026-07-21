@@ -95,5 +95,7 @@
   "menu.system.security.system": "系统安全配置",
   "menu.system.security.pay": "支付安全配置",
   "menu.payment.merchant.terminal": "系统终端",
-  "menu.device.terminal.channel": "通道终端"
+  "menu.device.terminal.channel": "通道终端",
+  "menu.trade.callbackRecord": "回调记录",
+  "menu.trade.record": "交易记录"
 }

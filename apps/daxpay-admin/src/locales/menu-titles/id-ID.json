@@ -95,5 +95,7 @@
   "menu.system.security.pay": "Keamanan Pembayaran",
   "menu.payment.merchant.terminal": "Terminal Sistem",
   "menu.device.terminal.channel": "Terminal Saluran",
-  "menu.trade.mchNotice": "Notifikasi Merchant"
+  "menu.trade.mchNotice": "Notifikasi Merchant",
+  "menu.trade.callbackRecord": "Catatan Callback",
+  "menu.trade.record": "Catatan Transaksi"
 }

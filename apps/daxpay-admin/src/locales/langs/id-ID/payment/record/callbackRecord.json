@@ -1,0 +1,18 @@
+{
+  "title": "Catatan Callback",
+  "tradeNo": "No. Transaksi",
+  "outTradeNo": "No. Transaksi Channel",
+  "channel": "Channel",
+  "callbackType": "Jenis Callback",
+  "status": "Status",
+  "errorMsg": "Kesalahan",
+  "notifyInfo": "Payload Notifikasi",
+  "createTime": "Waktu Notifikasi",
+  "placeholderTradeNo": "Masukkan no. transaksi",
+  "placeholderOutTradeNo": "Masukkan no. transaksi channel",
+  "typePay": "Bayar",
+  "typeRefund": "Refund",
+  "detail": "Detail Callback",
+  "channelMchNo": "No. Pedagang Saluran",
+  "placeholderChannelMchNo": "Masukkan no. pedagang saluran"
+}

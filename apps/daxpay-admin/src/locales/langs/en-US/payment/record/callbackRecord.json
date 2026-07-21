@@ -1,0 +1,18 @@
+{
+  "title": "Callback Records",
+  "tradeNo": "Trade No.",
+  "outTradeNo": "Channel Trade No.",
+  "channel": "Channel",
+  "callbackType": "Callback Type",
+  "status": "Status",
+  "errorMsg": "Error",
+  "notifyInfo": "Notify Payload",
+  "createTime": "Notify Time",
+  "placeholderTradeNo": "Enter trade no.",
+  "placeholderOutTradeNo": "Enter channel trade no.",
+  "typePay": "Pay",
+  "typeRefund": "Refund",
+  "detail": "Callback Detail",
+  "channelMchNo": "Channel Merchant No.",
+  "placeholderChannelMchNo": "Enter channel merchant no."
+}

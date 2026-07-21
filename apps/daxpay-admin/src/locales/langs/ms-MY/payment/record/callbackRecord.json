@@ -1,0 +1,18 @@
+{
+  "title": "Rekod Callback",
+  "tradeNo": "No. Dagangan",
+  "outTradeNo": "No. Dagangan Saluran",
+  "channel": "Saluran",
+  "callbackType": "Jenis Callback",
+  "status": "Status",
+  "errorMsg": "Ralat",
+  "notifyInfo": "Payload Pemberitahuan",
+  "createTime": "Masa Pemberitahuan",
+  "placeholderTradeNo": "Masukkan no. dagangan",
+  "placeholderOutTradeNo": "Masukkan no. dagangan saluran",
+  "typePay": "Bayar",
+  "typeRefund": "Bayaran Balik",
+  "detail": "Butiran Callback",
+  "channelMchNo": "No. Pedagang Saluran",
+  "placeholderChannelMchNo": "Masukkan no. pedagang saluran"
+}

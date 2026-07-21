@@ -95,5 +95,7 @@
   "menu.system.security.pay": "Bảo mật thanh toán",
   "menu.payment.merchant.terminal": "Thiết bị hệ thống",
   "menu.device.terminal.channel": "Thiết bị kênh",
-  "menu.trade.mchNotice": "Thông báo merchant"
+  "menu.trade.mchNotice": "Thông báo merchant",
+  "menu.trade.callbackRecord": "Bản ghi callback",
+  "menu.trade.record": "Nhật ký giao dịch"
 }
