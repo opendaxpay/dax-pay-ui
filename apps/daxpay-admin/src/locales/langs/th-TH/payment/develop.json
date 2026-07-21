@@ -125,6 +125,7 @@
     },
     "result": {
       "modalTitle": "ผลการชำระเงิน (unipay)",
+      "failModalTitle": "การชำระเงินล้มเหลว (unipay)",
       "payLink": "ลิงค์ชำระเงิน",
       "jsapiParam": "พารามิเตอร์ JSAPI",
       "formData": "ข้อมูลแบบฟอร์ม",
@@ -288,6 +289,7 @@
     },
     "result": {
       "modalTitle": "ผลคำสั่งซื้อล่วงหน้า (unipay)",
+      "failModalTitle": "คำสั่งซื้อล่วงหน้าล้มเหลว (unipay)",
       "url": "URL หน้าเกตเวย์",
       "copyUrl": "คัดลอก URL",
       "openUrl": "เปิด",

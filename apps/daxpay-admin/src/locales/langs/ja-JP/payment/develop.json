@@ -125,6 +125,7 @@
     },
     "result": {
       "modalTitle": "支払結果（unipay）",
+      "failModalTitle": "支払失敗（unipay）",
       "payLink": "支払いリンク",
       "jsapiParam": "JSAPIパラメータ",
       "formData": "フォームデータ",
@@ -289,6 +290,7 @@
     },
     "result": {
       "modalTitle": "事前注文結果 (unipay)",
+      "failModalTitle": "事前注文失敗 (unipay)",
       "url": "ゲートウェイランディングURL",
       "copyUrl": "URLコピー",
       "openUrl": "開く",

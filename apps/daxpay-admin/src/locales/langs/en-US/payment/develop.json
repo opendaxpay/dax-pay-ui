@@ -125,6 +125,7 @@
     },
     "result": {
       "modalTitle": "Payment Result (unipay)",
+      "failModalTitle": "Payment Failed (unipay)",
       "payLink": "Payment Link",
       "jsapiParam": "JSAPI Params",
       "formData": "Form Data",
@@ -289,6 +290,7 @@
     },
     "result": {
       "modalTitle": "Pre-pay Result (unipay)",
+      "failModalTitle": "Pre-pay Failed (unipay)",
       "url": "Gateway Landing Page URL",
       "copyUrl": "Copy URL",
       "openUrl": "Open",

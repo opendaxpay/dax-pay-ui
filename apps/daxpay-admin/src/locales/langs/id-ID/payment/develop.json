@@ -125,6 +125,7 @@
     },
     "result": {
       "modalTitle": "Hasil Pembayaran (unipay)",
+      "failModalTitle": "Pembayaran Gagal (unipay)",
       "payLink": "Tautan Pembayaran",
       "jsapiParam": "Param JSAPI",
       "formData": "Data Formulir",
@@ -288,6 +289,7 @@
     },
     "result": {
       "modalTitle": "Hasil Pre-pay (unipay)",
+      "failModalTitle": "Pre-pay Gagal (unipay)",
       "url": "URL Halaman Gateway",
       "copyUrl": "Salin URL",
       "openUrl": "Buka",

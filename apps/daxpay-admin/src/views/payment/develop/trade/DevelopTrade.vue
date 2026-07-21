@@ -94,6 +94,14 @@
   // ===== 调试结果(完整 unipay DaxResult) =====
   const resultVisible = ref(false);
   const resultData = ref<DaxResult<PayResult>>({ code: 0 });
+  // 业务失败(code≠0)时仍弹窗看完整响应, 用失败标题/Alert 区分成功态
+  const resultSuccess = computed(() => resultData.value?.code === 0);
+  // 结果弹窗标题: 成功「支付结果」/ 失败「支付失败」
+  const resultModalTitle = computed(() =>
+    resultSuccess.value
+      ? $t('payment.develop.trade.result.modalTitle')
+      : $t('payment.develop.trade.result.failModalTitle'),
+  );
 
   // 完整 DaxResult(展示用): 把 resTime 从 ISO 8601 (如 2026-07-19T13:34:58.8753181Z)
   // 格式化为本地 yyyy-MM-dd HH:mm:ss, 便于联调阅读; 格式化失败保留原值
@@ -789,14 +797,22 @@
       />
     </a-modal>
 
-    <!-- 调试结果弹窗(完整 unipay DaxResult) -->
+    <!-- 调试结果弹窗(完整 unipay DaxResult; 失败也弹窗便于联调) -->
     <a-modal
       v-model:open="resultVisible"
-      :title="$t('payment.develop.trade.result.modalTitle')"
+      :title="resultModalTitle"
       :footer="null"
       :width="640"
       destroy-on-hidden
     >
+      <!-- 业务失败: 顶部错误提示(文案取 DaxResult.msg) -->
+      <div v-if="!resultSuccess" class="mb-3">
+        <a-alert
+          type="error"
+          show-icon
+          :message="resultData.msg || $t('payment.develop.trade.msg.payFail')"
+        />
+      </div>
       <template v-if="hasPayBody">
         <div class="flex flex-col items-center">
           <!-- 扫码支付/支付链接: qr_code + link 渲染二维码 -->

@@ -125,6 +125,7 @@
     },
     "result": {
       "modalTitle": "결제결과(유니페이)",
+      "failModalTitle": "결제실패(유니페이)",
       "payLink": "결제 링크",
       "jsapiParam": "JSAPI 매개변수",
       "formData": "양식 데이터",
@@ -289,6 +290,7 @@
     },
     "result": {
       "modalTitle": "사전 주문 결과 (unipay)",
+      "failModalTitle": "사전 주문 실패 (unipay)",
       "url": "게이트웨이 랜딩 URL",
       "copyUrl": "URL 복사",
       "openUrl": "열기",

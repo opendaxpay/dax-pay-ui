@@ -75,6 +75,14 @@
   // ===== 调试结果(完整 unipay DaxResult) =====
   const resultVisible = ref(false);
   const resultData = ref<DaxResult<GatewayPrePayResult>>({ code: 0 });
+  // 业务失败(code≠0)时仍弹窗看完整响应, 用失败标题/Alert 区分成功态
+  const resultSuccess = computed(() => resultData.value?.code === 0);
+  // 结果弹窗标题: 成功「预下单结果」/ 失败「预下单失败」
+  const resultModalTitle = computed(() =>
+    resultSuccess.value
+      ? $t('payment.develop.gateway.result.modalTitle')
+      : $t('payment.develop.gateway.result.failModalTitle'),
+  );
 
   // ===== 签名预览(请求预览卡内联展示) =====
   const signPreview = reactive({
@@ -677,14 +685,22 @@
       />
     </a-modal>
 
-    <!-- 调试结果弹窗(完整 unipay DaxResult) -->
+    <!-- 调试结果弹窗(完整 unipay DaxResult; 失败也弹窗便于联调) -->
     <a-modal
       v-model:open="resultVisible"
-      :title="$t('payment.develop.gateway.result.modalTitle')"
+      :title="resultModalTitle"
       :footer="null"
       :width="640"
       destroy-on-hidden
     >
+      <!-- 业务失败: 顶部错误提示(文案取 DaxResult.msg) -->
+      <div v-if="!resultSuccess" class="mb-3">
+        <a-alert
+          type="error"
+          show-icon
+          :message="resultData.msg || $t('payment.develop.gateway.msg.prePayFail')"
+        />
+      </div>
       <template v-if="gatewayUrl">
         <div class="flex flex-col items-center">
           <!-- 落地页 URL 二维码(扫码进入收银台/聚合页测试) -->

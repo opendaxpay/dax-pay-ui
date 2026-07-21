@@ -125,6 +125,7 @@
     },
     "result": {
       "modalTitle": "支付結果 (unipay)",
+      "failModalTitle": "支付失敗 (unipay)",
       "payLink": "支付鏈接",
       "jsapiParam": "JSAPI 參數",
       "formData": "表單數據",
@@ -289,6 +290,7 @@
     },
     "result": {
       "modalTitle": "預下單結果 (unipay)",
+      "failModalTitle": "預下單失敗 (unipay)",
       "url": "網關落地頁 URL",
       "copyUrl": "複製連結",
       "openUrl": "打開",

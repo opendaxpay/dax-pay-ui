@@ -125,6 +125,7 @@
     },
     "result": {
       "modalTitle": "Kết quả thanh toán (unipay)",
+      "failModalTitle": "Thanh toán thất bại (unipay)",
       "payLink": "Liên kết thanh toán",
       "jsapiParam": "Thông số JSAPI",
       "formData": "Dữ liệu biểu mẫu",
@@ -288,6 +289,7 @@
     },
     "result": {
       "modalTitle": "Kết quả đặt trước (unipay)",
+      "failModalTitle": "Đặt trước thất bại (unipay)",
       "url": "URL trang đích cổng",
       "copyUrl": "Sao chép URL",
       "openUrl": "Mở",
