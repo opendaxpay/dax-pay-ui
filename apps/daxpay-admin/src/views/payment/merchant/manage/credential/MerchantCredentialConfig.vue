@@ -177,8 +177,8 @@
       cancelText: $t('common.cancelText'),
       onOk: async () => {
         saving.value = true;
-        // 使用 diffForm 处理敏感字段，未修改的字段返回 undefined
-        const sensitiveData = diffForm(originalForm, formState, 'publicKey', 'secretKey');
+        // 使用 diffForm 处理敏感字段，未修改的字段返回 undefined（公钥可公开，仅通信密钥需脱敏防回写）
+        const sensitiveData = diffForm(originalForm, formState, 'secretKey');
         const submitData: MerchantCredentialParam = {
           ...formState.value,
           ...sensitiveData,
