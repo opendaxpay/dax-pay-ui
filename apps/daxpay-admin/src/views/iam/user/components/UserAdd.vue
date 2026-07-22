@@ -8,6 +8,8 @@
   import { type UserAddForm, UserApi } from '#/api/iam/user.api';
   import { SecurityApi } from '#/api/system/security.api';
   import { InputPassword } from '#/components/input-password';
+  import { FormEditType } from '#/enums/formEditType';
+  import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
   import { useValidate } from '#/hooks/useValidate';
   import { generateAccountRules, generatePasswordRules } from '#/utils/password-validator';
@@ -17,13 +19,10 @@
 
   const { message } = useMessage();
   const { useDebounceValidator } = useValidate();
+  const { visible, confirmLoading, title, initFormEditType, handleCancel } = useFormEdit();
 
   // 表单引用
   const formRef = ref();
-  // 抽屉状态
-  const visible = ref(false);
-  // 加载状态
-  const loading = ref(false);
   // 密码策略配置
   const passwordConfig = ref<PasswordPolicyValidateConfig>({});
 
@@ -77,15 +76,11 @@
   }
 
   async function show() {
-    visible.value = true;
+    initFormEditType(FormEditType.Add);
     resetForm();
     // 获取密码策略配置
     const { data } = await SecurityApi.getPasswordPolicyValidateConfig();
     passwordConfig.value = data;
-  }
-
-  function handleCancel() {
-    visible.value = false;
   }
 
   async function handleOk() {
@@ -95,7 +90,7 @@
       // 校验失败：表单已显示错误提示
       return;
     }
-    loading.value = true;
+    confirmLoading.value = true;
 
     try {
       // RSA 加密密码后再提交
@@ -110,7 +105,7 @@
       handleCancel();
       emit('ok');
     } finally {
-      loading.value = false;
+      confirmLoading.value = false;
     }
   }
 
@@ -124,12 +119,15 @@
 </script>
 
 <template>
-  <a-drawer
-    v-model:open="visible"
-    :title="$t('common.add')"
-    :size="500"
-    :styles="{ footer: { textAlign: 'right' } }"
-    @close="handleCancel"
+  <a-modal
+    :open="visible"
+    :title="title"
+    :width="600"
+    :confirm-loading="confirmLoading"
+    :ok-text="$t('common.save')"
+    :cancel-text="$t('common.cancel')"
+    @ok="handleOk"
+    @cancel="handleCancel"
   >
     <a-form
       ref="formRef"
@@ -161,14 +159,5 @@
         <a-input-password v-model:value="formState.confirmPassword" :placeholder="$t('common.pleaseInput')" />
       </a-form-item>
     </a-form>
-
-    <template #footer>
-      <a-space>
-        <a-button @click="handleCancel">{{ $t('common.cancel') }}</a-button>
-        <a-button type="primary" :loading="loading" @click="handleOk">
-          {{ $t('common.save') }}
-        </a-button>
-      </a-space>
-    </template>
-  </a-drawer>
+  </a-modal>
 </template>
