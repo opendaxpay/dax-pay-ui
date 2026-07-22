@@ -84,7 +84,13 @@
       "logo": "biểu tượng",
       "filing": "Thông tin nộp hồ sơ",
       "copyright": "Bản quyền"
-    }
+    },
+    "emailInvalid": "Định dạng email không hợp lệ",
+    "linkMustHttp": "Liên kết phải bắt đầu bằng http:// hoặc https://",
+    "systemNameMax": "Tên hệ thống không được vượt quá 50 ký tự",
+    "companyNameMax": "Tên công ty không được vượt quá 100 ký tự",
+    "companyWechatMax": "ID WeChat không được vượt quá 50 ký tự",
+    "copyrightMax": "Thông tin bản quyền không được vượt quá 200 ký tự"
   },
   "oss": {
     "title": "Cấu hình OSS",

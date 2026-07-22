@@ -84,7 +84,13 @@
       "logo": "Logo",
       "filing": "Maklumat Pemfailan",
       "copyright": "Hak Cipta"
-    }
+    },
+    "emailInvalid": "Format e-mel tidak sah",
+    "linkMustHttp": "Pautan mesti bermula dengan http:// atau https://",
+    "systemNameMax": "Nama sistem tidak boleh melebihi 50 aksara",
+    "companyNameMax": "Nama syarikat tidak boleh melebihi 100 aksara",
+    "companyWechatMax": "ID WeChat tidak boleh melebihi 50 aksara",
+    "copyrightMax": "Teks hak cipta tidak boleh melebihi 200 aksara"
   },
   "oss": {
     "title": "Konfigurasi OSS",

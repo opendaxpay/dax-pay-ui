@@ -84,7 +84,13 @@
       "logo": "logo",
       "filing": "Info Pengarsipan",
       "copyright": "Hak cipta"
-    }
+    },
+    "emailInvalid": "Format email tidak valid",
+    "linkMustHttp": "Tautan harus diawali dengan http:// atau https://",
+    "systemNameMax": "Nama sistem tidak boleh lebih dari 50 karakter",
+    "companyNameMax": "Nama perusahaan tidak boleh lebih dari 100 karakter",
+    "companyWechatMax": "ID WeChat tidak boleh lebih dari 50 karakter",
+    "copyrightMax": "Teks hak cipta tidak boleh lebih dari 200 karakter"
   },
   "oss": {
     "title": "Konfigurasi OSS",

@@ -84,7 +84,13 @@
       "logo": "심벌 마크",
       "filing": "제출 정보",
       "copyright": "저작권"
-    }
+    },
+    "emailInvalid": "이메일 형식이 올바르지 않습니다",
+    "linkMustHttp": "링크는 http:// 또는 https://로 시작해야 합니다",
+    "systemNameMax": "시스템 이름은 50자를 초과할 수 없습니다",
+    "companyNameMax": "회사명은 100자를 초과할 수 없습니다",
+    "companyWechatMax": "위챗 ID는 50자를 초과할 수 없습니다",
+    "copyrightMax": "저작권 정보는 200자를 초과할 수 없습니다"
   },
   "oss": {
     "title": "OSS 구성",

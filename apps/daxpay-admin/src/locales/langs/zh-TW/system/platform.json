@@ -84,7 +84,13 @@
       "logo": "Logo",
       "filing": "備案資訊",
       "copyright": "版權資訊"
-    }
+    },
+    "emailInvalid": "郵箱格式不正確",
+    "linkMustHttp": "連結必須以 http:// 或 https:// 開頭",
+    "systemNameMax": "系統名稱長度不能超過50個字元",
+    "companyNameMax": "公司全稱長度不能超過100個字元",
+    "companyWechatMax": "微訊號長度不能超過50個字元",
+    "copyrightMax": "版權資訊長度不能超過200個字元"
   },
   "oss": {
     "title": "OSS配置",

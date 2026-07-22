@@ -79,6 +79,12 @@
     "inputIcpPlusLink": "请输入电信增值业务许可链接地址",
     "inputCopyright": "请输入版权信息",
     "confirmSaveContent": "确定要保存站点配置吗？",
+    "emailInvalid": "邮箱格式不正确",
+    "linkMustHttp": "链接必须以 http:// 或 https:// 开头",
+    "systemNameMax": "系统名称长度不能超过50个字符",
+    "companyNameMax": "公司全称长度不能超过100个字符",
+    "companyWechatMax": "微信号长度不能超过50个字符",
+    "copyrightMax": "版权信息长度不能超过200个字符",
     "section": {
       "basic": "基础信息",
       "logo": "Logo",

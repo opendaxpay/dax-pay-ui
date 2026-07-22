@@ -20,6 +20,48 @@
   // 表单数据
   const formState = ref<WebsiteConfig>({});
 
+  // 备案链接: 空可过, 有值须以 http:// 或 https:// 开头
+  const httpLinkRule = {
+    validator: (_: unknown, value: string) => {
+      if (!value) {
+        return Promise.resolve();
+      }
+      if (/^https?:\/\/.+$/.test(value)) {
+        return Promise.resolve();
+      }
+      // 链接必须以 http:// 或 https:// 开头
+      return Promise.reject($t('system.platform.website.linkMustHttp'));
+    },
+    trigger: 'blur',
+  };
+
+  // 选填校验: 空可过; 有值才校邮箱/链接/长度 (对齐后端 Bean Validation)
+  const formRules = {
+    // 系统名称最长 50
+    systemName: [{ max: 50, message: $t('system.platform.website.systemNameMax'), trigger: 'blur' }],
+    // 公司全称最长 100
+    companyName: [{ max: 100, message: $t('system.platform.website.companyNameMax'), trigger: 'blur' }],
+    // 公司邮箱: 空可过, 有值须合法邮箱
+    companyEmail: [
+      {
+        type: 'email',
+        // 空串转 undefined, 避免 antd type:email 把空值当非法
+        transform: (value: string) => (value ? value : undefined),
+        // 邮箱格式不正确
+        message: $t('system.platform.website.emailInvalid'),
+        trigger: 'blur',
+      },
+    ],
+    // 微信号最长 50
+    companyWechat: [{ max: 50, message: $t('system.platform.website.companyWechatMax'), trigger: 'blur' }],
+    icpLink: [httpLinkRule],
+    mpsLink: [httpLinkRule],
+    pcacLink: [httpLinkRule],
+    icpPlusLink: [httpLinkRule],
+    // 版权信息最长 200
+    copyright: [{ max: 200, message: $t('system.platform.website.copyrightMax'), trigger: 'blur' }],
+  };
+
   onMounted(() => {
     loadConfig();
   });
@@ -116,7 +158,7 @@
         <div class="module-overview__desc">{{ $t('system.platform.website.description') }}</div>
       </div>
 
-      <a-form ref="formRef" :model="formState" layout="vertical" class="module-form">
+      <a-form ref="formRef" :model="formState" :rules="formRules" layout="vertical" class="module-form">
         <!-- 基础信息 -->
         <div class="config-section">
           <div class="config-section__title">{{ $t('system.platform.website.section.basic') }}</div>
@@ -430,6 +472,11 @@
 
   .module-form :deep(.ant-form-item) {
     margin-bottom: 0;
+  }
+
+  /* 校验失败时留出错误文案空间, 避免贴紧下一格 */
+  .module-form :deep(.ant-form-item-with-help) {
+    margin-bottom: 12px;
   }
 
   .config-section {

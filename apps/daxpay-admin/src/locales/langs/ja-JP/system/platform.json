@@ -84,7 +84,13 @@
       "logo": "ロゴ",
       "filing": "ファイリング情報",
       "copyright": "著作権"
-    }
+    },
+    "emailInvalid": "メール形式が正しくありません",
+    "linkMustHttp": "リンクは http:// または https:// で始まる必要があります",
+    "systemNameMax": "システム名は50文字以内にしてください",
+    "companyNameMax": "会社名は100文字以内にしてください",
+    "companyWechatMax": "WeChat ID は50文字以内にしてください",
+    "copyrightMax": "著作権情報は200文字以内にしてください"
   },
   "oss": {
     "title": "OSS 構成",
