@@ -2,7 +2,6 @@
   "title": "Bản ghi callback",
   "tradeNo": "Mã giao dịch",
   "outTradeNo": "Mã giao dịch kênh",
-  "channel": "Kênh thanh toán",
   "callbackType": "Loại callback",
   "status": "Trạng thái",
   "errorMsg": "Lỗi",
@@ -13,6 +12,6 @@
   "typePay": "Thanh toán",
   "typeRefund": "Hoàn tiền",
   "detail": "Chi tiết callback",
-  "channelMchNo": "Mã merchant kênh",
+  "channelMchNo": "Người bán kênh",
   "placeholderChannelMchNo": "Nhập mã merchant kênh"
 }

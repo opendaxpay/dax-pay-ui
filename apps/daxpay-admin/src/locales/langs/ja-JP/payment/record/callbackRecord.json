@@ -2,7 +2,6 @@
   "title": "コールバック記録",
   "tradeNo": "取引番号",
   "outTradeNo": "チャネル取引番号",
-  "channel": "決済チャネル",
   "callbackType": "コールバック種別",
   "status": "処理状態",
   "errorMsg": "エラー情報",
@@ -13,6 +12,6 @@
   "typePay": "支払",
   "typeRefund": "返金",
   "detail": "コールバック詳細",
-  "channelMchNo": "チャネル加盟店番号",
+  "channelMchNo": "チャネル加盟店",
   "placeholderChannelMchNo": "チャネル加盟店番号を入力"
 }

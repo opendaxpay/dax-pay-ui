@@ -2,7 +2,6 @@
   "title": "Catatan Callback",
   "tradeNo": "No. Transaksi",
   "outTradeNo": "No. Transaksi Channel",
-  "channel": "Channel",
   "callbackType": "Jenis Callback",
   "status": "Status",
   "errorMsg": "Kesalahan",
@@ -13,6 +12,6 @@
   "typePay": "Bayar",
   "typeRefund": "Refund",
   "detail": "Detail Callback",
-  "channelMchNo": "No. Pedagang Saluran",
+  "channelMchNo": "Pedagang Saluran",
   "placeholderChannelMchNo": "Masukkan no. pedagang saluran"
 }

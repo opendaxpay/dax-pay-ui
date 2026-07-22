@@ -24,7 +24,7 @@ export interface PayCallbackRecordQuery {
   channelMchNo?: string;
   tradeNo?: string;
   outTradeNo?: string;
-  channel?: string;
+  product?: string;
   callbackType?: string;
   status?: string;
 }
@@ -33,9 +33,10 @@ export interface PayCallbackRecordQuery {
 export interface PayCallbackRecordResult extends MchEntity {
   appId?: string;
   channelMchNo?: string;
+  channelMerchantName?: string;
   tradeNo?: string;
   outTradeNo?: string;
-  channel?: string;
+  product?: string;
   callbackType?: string;
   notifyInfo?: string;
   status?: string;

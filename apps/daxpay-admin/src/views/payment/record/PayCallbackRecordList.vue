@@ -11,12 +11,12 @@
     type PayCallbackRecordResult,
   } from '#/api/payment/record/callback-record.api';
   import { BQuery, type QueryField } from '#/components/query';
+  import { productI18nMap, productNameMap } from '#/enums/payment';
   import { useDict } from '#/hooks/useDict';
 
   defineOptions({ name: 'PayCallbackRecordList' });
 
-  const { dictConvert, dictItems: channelOptions } = useDict('channel');
-  const { dictItems: statusOptions } = useDict('callback_status');
+  const { dictConvert, dictItems: statusOptions } = useDict('callback_status');
 
   const loading = ref(false);
   const xTable = ref<VxeTableInstance>();
@@ -35,11 +35,19 @@
     { label: $t('payment.record.callbackRecord.typeRefund'), value: 'refund' },
   ]);
 
+  // 支付产品
+  const productOptions = computed(() =>
+    Object.keys(productNameMap).map((code) => ({
+      label: productLabel(code),
+      value: code,
+    })),
+  );
+
   const queryFields = computed<QueryField[]>(() => [
     {
       type: 'string',
       field: 'channelMchNo',
-      // 通道商户号
+      // 通道商户
       name: $t('payment.record.callbackRecord.channelMchNo'),
       placeholder: $t('payment.record.callbackRecord.placeholderChannelMchNo'),
     },
@@ -58,25 +66,25 @@
       placeholder: $t('payment.record.callbackRecord.placeholderOutTradeNo'),
     },
     {
-      type: 'select',
-      field: 'channel',
-      // 支付通道
-      name: $t('payment.record.callbackRecord.channel'),
-      options: channelOptions.value,
+      type: 'list',
+      field: 'product',
+      // 支付产品
+      name: $t('payment.order.field.product'),
+      selectList: productOptions.value,
     },
     {
-      type: 'select',
+      type: 'list',
       field: 'callbackType',
       // 回调类型
       name: $t('payment.record.callbackRecord.callbackType'),
-      options: callbackTypeOptions.value,
+      selectList: callbackTypeOptions.value,
     },
     {
-      type: 'select',
+      type: 'list',
       field: 'status',
       // 处理状态
       name: $t('payment.record.callbackRecord.status'),
-      options: statusOptions.value,
+      selectList: statusOptions.value,
     },
     {
       type: 'string',
@@ -89,6 +97,18 @@
     if (type === 'pay') return $t('payment.record.callbackRecord.typePay');
     if (type === 'refund') return $t('payment.record.callbackRecord.typeRefund');
     return type || '-';
+  }
+
+  function productLabel(code?: string): string {
+    if (!code) return '-';
+    const i18nKey = productI18nMap[code];
+    if (i18nKey) {
+      const text = $t(i18nKey);
+      if (text && text !== i18nKey) {
+        return text;
+      }
+    }
+    return productNameMap[code] || code;
   }
 
   function formatNotifyInfo(raw?: string) {
@@ -158,12 +178,6 @@
             </template>
           </vxe-column>
           <vxe-column
-            field="channelMchNo"
-            :title="$t('payment.record.callbackRecord.channelMchNo')"
-            :min-width="160"
-            show-overflow
-          />
-          <vxe-column
             field="tradeNo"
             :title="$t('payment.record.callbackRecord.tradeNo')"
             :min-width="200"
@@ -175,11 +189,6 @@
             :min-width="200"
             show-overflow
           />
-          <vxe-column field="channel" :title="$t('payment.record.callbackRecord.channel')" :min-width="120">
-            <template #default="{ row }">
-              {{ dictConvert('channel', row.channel) || row.channel || '-' }}
-            </template>
-          </vxe-column>
           <vxe-column
             field="callbackType"
             :title="$t('payment.record.callbackRecord.callbackType')"
@@ -198,6 +207,21 @@
             :min-width="180"
             show-overflow
           />
+          <vxe-column field="product" :title="$t('payment.order.field.product')" :min-width="140" show-overflow>
+            <template #default="{ row }">{{ productLabel(row.product) }}</template>
+          </vxe-column>
+          <vxe-column
+            field="channelMchNo"
+            :title="$t('payment.record.callbackRecord.channelMchNo')"
+            :min-width="160"
+          >
+            <template #default="{ row }">
+              <div class="flex flex-col">
+                <span>{{ row.channelMerchantName || row.channelMchNo || '-' }}</span>
+                <span v-if="row.channelMchNo" class="text-xs text-muted-foreground">{{ row.channelMchNo }}</span>
+              </div>
+            </template>
+          </vxe-column>
           <vxe-column
             field="createTime"
             :title="$t('payment.record.callbackRecord.createTime')"
@@ -239,11 +263,15 @@
         <div>{{ $t('payment.record.callbackRecord.tradeNo') }}: {{ detail.tradeNo || '-' }}</div>
         <div>{{ $t('payment.record.callbackRecord.outTradeNo') }}: {{ detail.outTradeNo || '-' }}</div>
         <div>
-          {{ $t('payment.record.callbackRecord.channelMchNo') }}: {{ detail.channelMchNo || '-' }}
+          {{ $t('payment.order.field.product') }}:
+          {{ productLabel(detail.product) }}
         </div>
         <div>
-          {{ $t('payment.record.callbackRecord.channel') }}:
-          {{ dictConvert('channel', detail.channel) || detail.channel || '-' }}
+          {{ $t('payment.record.callbackRecord.channelMchNo') }}:
+          {{ detail.channelMerchantName || detail.channelMchNo || '-' }}
+          <span v-if="detail.channelMerchantName && detail.channelMchNo" class="text-muted-foreground">
+            ({{ detail.channelMchNo }})
+          </span>
         </div>
         <div>
           {{ $t('payment.record.callbackRecord.callbackType') }}: {{ callbackTypeLabel(detail.callbackType) }}

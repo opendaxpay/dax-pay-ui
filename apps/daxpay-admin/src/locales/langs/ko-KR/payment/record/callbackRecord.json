@@ -2,7 +2,6 @@
   "title": "콜백 기록",
   "tradeNo": "거래번호",
   "outTradeNo": "채널 거래번호",
-  "channel": "결제 채널",
   "callbackType": "콜백 유형",
   "status": "처리 상태",
   "errorMsg": "오류 정보",
@@ -13,6 +12,6 @@
   "typePay": "결제",
   "typeRefund": "환불",
   "detail": "콜백 상세",
-  "channelMchNo": "채널 가맹점번호",
+  "channelMchNo": "채널 가맹점",
   "placeholderChannelMchNo": "채널 가맹점번호 입력"
 }

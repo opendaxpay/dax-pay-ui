@@ -2,7 +2,6 @@
   "title": "Callback Records",
   "tradeNo": "Trade No.",
   "outTradeNo": "Channel Trade No.",
-  "channel": "Channel",
   "callbackType": "Callback Type",
   "status": "Status",
   "errorMsg": "Error",
@@ -13,6 +12,6 @@
   "typePay": "Pay",
   "typeRefund": "Refund",
   "detail": "Callback Detail",
-  "channelMchNo": "Channel Merchant No.",
+  "channelMchNo": "Channel Merchant",
   "placeholderChannelMchNo": "Enter channel merchant no."
 }
