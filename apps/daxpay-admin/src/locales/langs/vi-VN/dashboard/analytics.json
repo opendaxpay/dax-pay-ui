@@ -3,6 +3,8 @@
   "subtitle": "{start} tới {end} · tổng cộng {days} ngày",
   "customRange": "Phạm vi tùy chỉnh",
   "timeRange": {
+    "today": "Hôm nay",
+    "yesterday": "Hôm qua",
     "last7days": "7D",
     "last30days": "30D",
     "thisMonth": "Tháng này",
@@ -15,7 +17,8 @@
     "successRate": "Tỷ lệ thành công",
     "refundAmount": "Số tiền hoàn lại",
     "refundRate": "Tỷ lệ hoàn tiền",
-    "chainRatio": "Mẹ"
+    "chainRatio": "Mẹ",
+    "chainRatioNew": "Mới"
   },
   "tradeTrend": {
     "title": "Xu hướng thương mại",
@@ -30,7 +33,8 @@
     "title": "Tỷ lệ thành công của kênh"
   },
   "hourlyDist": {
-    "title": "Phân phối hàng giờ"
+    "title": "Phân bố theo giờ (TB ngày)",
+    "tooltip": "{hour}:00 — TB {count} đơn/ngày"
   },
   "amountRange": {
     "title": "Phạm vi số tiền"

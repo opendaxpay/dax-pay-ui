@@ -1,11 +1,14 @@
 /** 时间范围模式（预设快捷选项 + 自定义） */
-export type PresetKey = 'custom' | 'last7days' | 'last30days' | 'thisMonth';
+export type PresetKey = 'today' | 'yesterday' | 'custom' | 'last7days' | 'last30days' | 'thisMonth';
 
 /** 日期范围 [开始, 结束]，格式 YYYY-MM-DD */
 export type DateRange = [string, string];
 
 /** 趋势度量（交易趋势图 extra 区切换） */
 export type TrendMetric = 'amount' | 'avgAmount' | 'orders';
+
+/** 环比三态: 可算百分比 / 上期无基数本期有值(新增) / 无法展示 */
+export type ChainRatioResult = { type: 'new' } | { type: 'pct'; value: number } | null;
 
 /** 指标卡片单项 */
 export interface OverviewStat {
@@ -17,8 +20,8 @@ export interface OverviewStat {
   prefix?: string;
   /** 数值后缀（如 %） */
   suffix?: string;
-  /** 环比百分比（正数上升、负数下降）; null 表示无上期数据, 不展示 */
-  chainRatio: null | number;
+  /** 环比: pct=百分比 / new=上期无基数本期有值 / null=无意义 */
+  chainRatio: ChainRatioResult;
 }
 
 /** 折线图序列数据（日期 + 多度量） */
@@ -27,6 +30,14 @@ export interface TrendSeries {
   amounts: number[];
   orders: number[];
   avgAmounts: number[];
+}
+
+/** 退款趋势（金额 + 笔数，笔数用于空态判断） */
+export interface RefundTrendSeries {
+  dates: string[];
+  amounts: number[];
+  /** 每日退款笔数；空态优先看笔数，避免小额被误判为空 */
+  counts: number[];
 }
 
 /** 通用名称-数值对（饼图 / 柱状图） */
@@ -68,7 +79,7 @@ export interface AnalyticsData {
   hourlyDist: number[];
   amountRange: AmountRangeItem[];
   channelVolume: NameValue[];
-  refundTrend: { amounts: number[]; dates: string[] };
+  refundTrend: RefundTrendSeries;
   merchantRank: MerchantRankItem[];
 }
 
@@ -82,7 +93,7 @@ export function emptyAnalyticsData(): AnalyticsData {
     hourlyDist: [],
     amountRange: [],
     channelVolume: [],
-    refundTrend: { amounts: [], dates: [] },
+    refundTrend: { amounts: [], counts: [], dates: [] },
     merchantRank: [],
   };
 }

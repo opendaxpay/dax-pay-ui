@@ -3,6 +3,8 @@
   "subtitle": "{start} hingga {end} · {days} hari total",
   "customRange": "Rentang Kustom",
   "timeRange": {
+    "today": "Hari ini",
+    "yesterday": "Kemarin",
     "last7days": "7D",
     "last30days": "30D",
     "thisMonth": "Bulan ini",
@@ -15,7 +17,8 @@
     "successRate": "Tingkat Keberhasilan",
     "refundAmount": "Jumlah Pengembalian Dana",
     "refundRate": "Tingkat Pengembalian Dana",
-    "chainRatio": "Mama"
+    "chainRatio": "Mama",
+    "chainRatioNew": "Baru"
   },
   "tradeTrend": {
     "title": "Tren Perdagangan",
@@ -30,7 +33,8 @@
     "title": "Tingkat Keberhasilan Saluran"
   },
   "hourlyDist": {
-    "title": "Distribusi Setiap Jam"
+    "title": "Distribusi Jam (Rata-rata Harian)",
+    "tooltip": "{hour}:00 — rata-rata {count} order/hari"
   },
   "amountRange": {
     "title": "Kisaran Jumlah"

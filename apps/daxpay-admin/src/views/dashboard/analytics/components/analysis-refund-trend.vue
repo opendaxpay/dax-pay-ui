@@ -5,6 +5,7 @@
   import { EchartsUI, type EchartsUIType, useEcharts } from '@vben/plugins/echarts';
 
   import ChartCard from '#/components/charts/ChartCard.vue';
+  import { formatYuan } from '#/utils/pay-amount';
 
   defineOptions({ name: 'AnalysisRefundTrend' });
 
@@ -15,8 +16,8 @@
   });
 
   interface Props {
-    /** 退款趋势（日期 + 退款额） */
-    data?: { amounts: number[]; dates: string[] };
+    /** 退款趋势（日期 + 退款额 + 笔数） */
+    data?: { amounts: number[]; counts: number[]; dates: string[] };
     /** 加载中(显示骨架屏) */
     loading?: boolean;
     /** 加载失败(显示错误占位) */
@@ -28,10 +29,10 @@
   const chartRef = ref<EchartsUIType>();
   const { renderEcharts } = useEcharts(chartRef);
 
-  // 空判断: 无日期或所有退款额都是 0
+  // 空判断: 无日期或所有退款笔数都是 0（按笔数，避免小额被当成空）
   const isEmpty = computed(() => {
     if (!props.data || props.data.dates.length === 0) return true;
-    return props.data.amounts.every((v) => !v);
+    return (props.data.counts ?? []).every((v) => !v);
   });
 
   /** 渲染退款额折线图（带面积渐变） */
@@ -39,7 +40,10 @@
     if (!props.data || isEmpty.value) return;
     renderEcharts({
       grid: { bottom: '8%', containLabel: true, left: '3%', right: '4%', top: '10%' },
-      tooltip: { trigger: 'axis' },
+      tooltip: {
+        trigger: 'axis',
+        valueFormatter: (val: any) => `¥${formatYuan(Number(val))}`,
+      },
       xAxis: {
         axisLabel: { fontSize: 11 },
         boundaryGap: false,

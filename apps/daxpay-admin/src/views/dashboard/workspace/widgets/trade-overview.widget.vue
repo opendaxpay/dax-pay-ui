@@ -7,6 +7,7 @@
   import { $t } from '@vben/locales';
 
   import { DashboardTradeApi, type TradeOverviewResult } from '#/api/payment/dashboard/trade-dashboard.api';
+  import { fenToYuanOrUndefined, formatYuan, toNumber } from '#/utils/pay-amount';
 
   interface Props {
     /** 工作台聚合数据（交易概览独立拉数据，保留以统一 widget props 契约） */
@@ -46,13 +47,11 @@
   watch(activeTab, load);
   onMounted(load);
 
-  /** 金额分→元(用于 StatCard, 0 显示 ¥0 灰色, undefined 显示 —) */
-  const successAmountYuan = computed(() =>
-    overview.value.successAmount === undefined ? undefined : Math.round(overview.value.successAmount / 100),
-  );
-  const refundAmountYuan = computed(() =>
-    overview.value.refundAmount === undefined ? undefined : Math.round(overview.value.refundAmount / 100),
-  );
+  /** 金额分→元(用于展示, 0 显示 ¥0.00 灰色, undefined 显示 —) */
+  const successAmountYuan = computed(() => fenToYuanOrUndefined(overview.value.successAmount));
+  const refundAmountYuan = computed(() => fenToYuanOrUndefined(overview.value.refundAmount));
+  const successCount = computed(() => toNumber(overview.value.successCount));
+  const refundCount = computed(() => toNumber(overview.value.refundCount));
 </script>
 
 <template>
@@ -90,7 +89,7 @@
           <span v-if="successAmountYuan === undefined">—</span>
           <template v-else>
             <span class="mr-0.5 text-base">¥</span>
-            {{ successAmountYuan.toLocaleString('en-US') }}
+            {{ formatYuan(successAmountYuan) }}
           </template>
         </p>
       </div>
@@ -101,9 +100,9 @@
           <p class="text-foreground/50 text-xs">{{ $t('dashboard.workspace.tradeOverview.successCount') }}</p>
           <span
             class="text-foreground mt-1 block text-lg font-semibold tabular-nums"
-            :class="overview.successCount === 0 ? 'text-foreground/40' : ''"
+            :class="successCount === 0 ? 'text-foreground/40' : ''"
           >
-            {{ overview.successCount === undefined ? '—' : overview.successCount.toLocaleString('en-US') }}
+            {{ successCount === undefined ? '—' : successCount.toLocaleString('en-US') }}
           </span>
         </div>
         <div>
@@ -113,16 +112,16 @@
             :class="refundAmountYuan === 0 ? 'text-foreground/40' : ''"
           >
             <template v-if="refundAmountYuan === undefined">—</template>
-            <template v-else>¥{{ refundAmountYuan.toLocaleString('en-US') }}</template>
+            <template v-else>¥{{ formatYuan(refundAmountYuan) }}</template>
           </span>
         </div>
         <div>
           <p class="text-foreground/50 text-xs">{{ $t('dashboard.workspace.tradeOverview.refundCount') }}</p>
           <span
             class="text-foreground mt-1 block text-lg font-semibold tabular-nums"
-            :class="overview.refundCount === 0 ? 'text-foreground/40' : ''"
+            :class="refundCount === 0 ? 'text-foreground/40' : ''"
           >
-            {{ overview.refundCount === undefined ? '—' : overview.refundCount.toLocaleString('en-US') }}
+            {{ refundCount === undefined ? '—' : refundCount.toLocaleString('en-US') }}
           </span>
         </div>
       </div>

@@ -3,6 +3,9 @@
 
   import { $t } from '@vben/locales';
 
+  /** 环比三态: pct / new / null(无意义显示 —) */
+  type ChainRatioResult = { type: 'new' } | { type: 'pct'; value: number } | null;
+
   interface Props {
     /** 指标标签(i18n key 或已翻译文本) */
     label: string;
@@ -12,8 +15,8 @@
     prefix?: string;
     /** 数值后缀(如 %) */
     suffix?: string;
-    /** 环比百分比(正涨负跌, null 表示无上期数据) */
-    chainRatio?: null | number;
+    /** 环比三态: pct / new / null(无意义显示 —) */
+    chainRatio?: ChainRatioResult;
     /** 是否归零显示(0 显示 ¥0 但灰色, undefined 显示 —) */
     zeroAsEmpty?: boolean;
   }
@@ -35,8 +38,14 @@
     return 'normal';
   });
 
-  /** 格式化数值(千分位) */
+  /** 格式化数值(千分位)；金额(¥ 前缀)固定 2 位小数 */
   function formatNum(v: number): string {
+    if (props.prefix === '¥') {
+      return v.toLocaleString('en-US', {
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2,
+      });
+    }
     return v.toLocaleString('en-US');
   }
 </script>
@@ -56,15 +65,25 @@
       </template>
     </div>
     <div class="mt-1 flex items-center text-xs">
+      <!-- 环比百分比: 涨红跌绿 -->
       <span
-        v-if="chainRatio !== null && Number.isFinite(chainRatio)"
-        :class="chainRatio >= 0 ? 'text-red-500' : 'text-emerald-500'"
+        v-if="chainRatio?.type === 'pct'"
+        :class="chainRatio.value >= 0 ? 'text-red-500' : 'text-emerald-500'"
       >
-        <!-- 涨跌色遵循中国惯例：涨红跌绿 -->
-        {{ chainRatio >= 0 ? '↑' : '↓' }} {{ Math.abs(chainRatio) }}%
+        {{ chainRatio.value >= 0 ? '↑' : '↓' }} {{ Math.abs(chainRatio.value) }}%
+      </span>
+      <!-- 上期无基数、本期有值: 显示「新增」, 不造假百分比 -->
+      <span v-else-if="chainRatio?.type === 'new'" class="text-primary">
+        {{ $t('dashboard.analytics.overview.chainRatioNew') }}
       </span>
       <span v-else class="text-foreground/40">—</span>
-      <span class="text-foreground/40 ml-1">{{ $t('dashboard.analytics.overview.chainRatio') }}</span>
+      <!-- new 态已含「新增」语义, 不再追加「环比」 -->
+      <span
+        v-if="chainRatio?.type !== 'new'"
+        class="text-foreground/40 ml-1"
+      >
+        {{ $t('dashboard.analytics.overview.chainRatio') }}
+      </span>
     </div>
   </a-card>
 </template>

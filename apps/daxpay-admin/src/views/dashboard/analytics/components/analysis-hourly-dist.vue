@@ -15,7 +15,7 @@
   });
 
   interface Props {
-    /** 24 小时交易分布（长度 24 数组，下标即小时） */
+    /** 时段日均笔数（长度 24 数组，下标即小时） */
     data?: number[];
     /** 加载中(显示骨架屏) */
     loading?: boolean;
@@ -34,7 +34,7 @@
     return props.data.every((v) => !v);
   });
 
-  /** 渲染 24 小时段柱状图（识别交易高峰时段） */
+  /** 渲染时段日均柱状图（识别交易高峰时段，跨多天可对比） */
   function render(): void {
     if (!props.data || isEmpty.value) return;
     const hours = Array.from({ length: 24 }).map((_, i) => `${i}`);
@@ -48,7 +48,17 @@
           type: 'bar',
         },
       ],
-      tooltip: { formatter: '{b}:00 — {c}', trigger: 'axis' },
+      // 日均笔数: {b}=小时, {c}=日均 count
+      tooltip: {
+        formatter: (params: any) => {
+          const p = Array.isArray(params) ? params[0] : params;
+          const hour = p?.axisValue ?? p?.name ?? '';
+          const count = p?.data ?? p?.value ?? 0;
+          // 日均笔数提示
+          return $t('dashboard.analytics.hourlyDist.tooltip', { count, hour });
+        },
+        trigger: 'axis',
+      },
       xAxis: { axisLabel: { fontSize: 11 }, type: 'category', data: hours },
       yAxis: { axisLabel: { fontSize: 11 }, type: 'value' },
     });

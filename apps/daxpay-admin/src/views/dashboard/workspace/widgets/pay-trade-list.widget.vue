@@ -9,6 +9,7 @@
   import { formatDateTime } from '@vben/utils';
 
   import { PayTradeApi, type PayTradeResult } from '#/api/payment/order/pay-trade.api';
+  import { fenToYuan, formatYuan } from '#/utils/pay-amount';
 
   interface Props {
     /** 工作台聚合数据（资金交易独立拉数据，保留以统一 widget props 契约） */
@@ -46,9 +47,9 @@
   }
 
   /** 金额分转元 */
-  function formatAmount(amount?: number): string {
-    if (amount === null || amount === undefined) return '-';
-    return (amount / 100).toFixed(2);
+  function formatAmount(amount?: number | string): string {
+    if (amount === null || amount === undefined || amount === '') return '-';
+    return formatYuan(fenToYuan(amount));
   }
 
   /** 资金状态颜色：复用资金交易页 fundStatusColor 配置 */

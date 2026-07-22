@@ -3,6 +3,8 @@
   "subtitle": "{start} ถึง {end} · รวม {days} วัน",
   "customRange": "ช่วงที่กำหนดเอง",
   "timeRange": {
+    "today": "วันนี้",
+    "yesterday": "เมื่อวาน",
     "last7days": "7D",
     "last30days": "30D",
     "thisMonth": "เดือนนี้",
@@ -15,7 +17,8 @@
     "successRate": "อัตราความสำเร็จ",
     "refundAmount": "จำนวนเงินคืน",
     "refundRate": "อัตราการคืนเงิน",
-    "chainRatio": "แม่"
+    "chainRatio": "แม่",
+    "chainRatioNew": "ใหม่"
   },
   "tradeTrend": {
     "title": "แนวโน้มการค้า",
@@ -30,7 +33,8 @@
     "title": "อัตราความสำเร็จของช่อง"
   },
   "hourlyDist": {
-    "title": "การกระจายรายชั่วโมง"
+    "title": "การกระจายรายชั่วโมง (เฉลี่ยต่อวัน)",
+    "tooltip": "{hour}:00 — เฉลี่ย {count} รายการ/วัน"
   },
   "amountRange": {
     "title": "ช่วงจำนวนเงิน"

@@ -3,6 +3,8 @@
   "subtitle": "{start} to {end} · {days} days total",
   "customRange": "Custom Range",
   "timeRange": {
+    "today": "Today",
+    "yesterday": "Yesterday",
     "last7days": "7D",
     "last30days": "30D",
     "thisMonth": "This Month",
@@ -15,7 +17,9 @@
     "successRate": "Success Rate",
     "refundAmount": "Refund Amount",
     "refundRate": "Refund Rate",
-    "chainRatio": "MoM"
+    "chainRatio": "MoM",
+    "chainRatioNew": "New",
+    "chainRatioNew": "New"
   },
   "tradeTrend": {
     "title": "Trade Trend",
@@ -30,7 +34,8 @@
     "title": "Channel Success Rate"
   },
   "hourlyDist": {
-    "title": "Hourly Distribution"
+    "title": "Hourly Distribution (Daily Avg)",
+    "tooltip": "{hour}:00 — {count} orders / day"
   },
   "amountRange": {
     "title": "Amount Range"

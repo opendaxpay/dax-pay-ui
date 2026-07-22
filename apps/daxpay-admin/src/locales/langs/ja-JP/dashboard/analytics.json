@@ -3,6 +3,8 @@
   "subtitle": "合計 {start} ～ {end} · {days} 日",
   "customRange": "カスタム範囲",
   "timeRange": {
+    "today": "今日",
+    "yesterday": "昨日",
     "last7days": "7D",
     "last30days": "30D",
     "thisMonth": "今月",
@@ -15,7 +17,8 @@
     "successRate": "成功率",
     "refundAmount": "返金額",
     "refundRate": "返金率",
-    "chainRatio": "お母さん"
+    "chainRatio": "お母さん",
+    "chainRatioNew": "新規"
   },
   "tradeTrend": {
     "title": "貿易動向",
@@ -30,7 +33,8 @@
     "title": "チャネル成功率"
   },
   "hourlyDist": {
-    "title": "時間ごとの配信"
+    "title": "時間帯分布（日平均）",
+    "tooltip": "{hour}:00 — 日平均 {count} 件"
   },
   "amountRange": {
     "title": "金額範囲"

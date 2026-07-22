@@ -6,6 +6,7 @@
   import { $t } from '@vben/locales';
 
   import ChartCard from '#/components/charts/ChartCard.vue';
+  import { formatYuan } from '#/utils/pay-amount';
 
   defineOptions({ name: 'AnalysisMerchantRank' });
 
@@ -46,7 +47,7 @@
   const dataSource = computed(() =>
     (props.data || []).map((item, i) => ({
       ...item,
-      amount: `¥${item.amount.toLocaleString('en-US')}`,
+      amount: `¥${formatYuan(item.amount)}`,
       orders: item.orders.toLocaleString('en-US'),
       proportion: `${item.proportion}%`,
       rank: i + 1,

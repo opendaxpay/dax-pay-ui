@@ -9,6 +9,7 @@
 
   import { DashboardTradeApi, type ProviderDistItemResult } from '#/api/payment/dashboard/trade-dashboard.api';
   import { providerI18nMap } from '#/enums/payment/providerEnum';
+  import { fenToYuan, formatYuan, toNumber } from '#/utils/pay-amount';
 
   interface Props {
     /** 工作台聚合数据（支付渠道分布独立拉数据，保留以统一 widget props 契约） */
@@ -61,8 +62,8 @@
   function render(): void {
     const data = distData.value.map((i) => ({
       name: providerLabel(i.provider),
-      // 金额分转元(仅影响 tooltip 展示, 占比按 value 相对计算)
-      value: Math.round((i.amount ?? 0) / 100),
+      // 金额分转元(保留 2 位小数; 占比按 value 相对计算)
+      value: fenToYuan(i.amount),
     }));
     renderEcharts({
       legend: { bottom: 0, orient: 'horizontal' },
@@ -76,7 +77,7 @@
       ],
       tooltip: {
         trigger: 'item',
-        valueFormatter: (val: any) => `¥${Number(val).toLocaleString('en-US')}`,
+        valueFormatter: (val: any) => `¥${formatYuan(Number(val))}`,
       },
     });
   }
@@ -101,7 +102,7 @@
       <p class="text-foreground/60 text-sm">{{ $t('common.loadFailed') }}</p>
       <a-button size="small" type="primary" @click="load">{{ $t('common.retry') }}</a-button>
     </div>
-    <a-empty v-else-if="distData.length === 0" class="!my-10" />
+    <a-empty v-else-if="distData.length === 0 || distData.every((i) => (toNumber(i.count) ?? 0) === 0)" class="!my-10" />
     <EchartsUI v-else ref="chartRef" class="h-[280px]" />
   </a-card>
 </template>

@@ -32,16 +32,18 @@
 
   const isEmpty = computed(() => !props.data || props.data.length === 0);
 
-  /** 渲染横向柱状图（Y轴渠道名，X轴成功率%） */
+  /** 渲染横向柱状图（Y轴渠道名，X轴成功率% 固定 0–100，避免 min=90 导致低成功率柱不可见） */
   function render(): void {
     if (!props.data || isEmpty.value) return;
     renderEcharts({
-      grid: { bottom: '3%', containLabel: true, left: '3%', right: '8%', top: '5%' },
+      grid: { bottom: '3%', containLabel: true, left: '3%', right: '12%', top: '5%' },
       series: [
         {
+          barMaxWidth: 28,
           barWidth: '55%',
           data: props.data.map((i) => i.rate),
           itemStyle: { borderRadius: [0, 4, 4, 0] },
+          // 成功率标签: 右侧显示具体百分比
           label: { formatter: '{c}%', position: 'right', show: true },
           type: 'bar',
         },
@@ -49,8 +51,9 @@
       tooltip: { formatter: '{b}: {c}%', trigger: 'axis' },
       xAxis: {
         axisLabel: { fontSize: 11, formatter: '{value}%' },
+        // 固定 0–100: 原先 min:90 会让 <90% 的柱完全消失, ≥90% 的柱只剩细缝, 观感像空图
         max: 100,
-        min: 90,
+        min: 0,
         type: 'value',
       },
       yAxis: {

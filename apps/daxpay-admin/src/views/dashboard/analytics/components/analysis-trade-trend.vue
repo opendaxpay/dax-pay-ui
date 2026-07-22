@@ -7,6 +7,7 @@
   import { EchartsUI, type EchartsUIType, useEcharts } from '@vben/plugins/echarts';
 
   import ChartCard from '#/components/charts/ChartCard.vue';
+  import { formatYuan } from '#/utils/pay-amount';
 
   defineOptions({ name: 'AnalysisTradeTrend' });
 
@@ -33,10 +34,10 @@
   const chartRef = ref<EchartsUIType>();
   const { renderEcharts } = useEcharts(chartRef);
 
-  // 空数据判断: 无日期或所有金额都是 0
+  // 空数据判断: 无日期或所有笔数都是 0（按笔数，避免小额成交被当成空）
   const isEmpty = computed(() => {
     if (!props.data || props.data.dates.length === 0) return true;
-    return props.data.amounts.every((v) => !v);
+    return props.data.orders.every((v) => !v);
   });
 
   /** 按当前度量渲染折线图（带面积渐变） */
@@ -50,7 +51,11 @@
           : props.data.avgAmounts;
     renderEcharts({
       grid: { bottom: '8%', containLabel: true, left: '3%', right: '4%', top: '10%' },
-      tooltip: { trigger: 'axis' },
+      tooltip: {
+        trigger: 'axis',
+        valueFormatter: (val: any) =>
+          activeMetric.value === 'orders' ? String(val) : `¥${formatYuan(Number(val))}`,
+      },
       xAxis: {
         axisLabel: { fontSize: 11 },
         boundaryGap: false,

@@ -3,6 +3,8 @@
   "subtitle": "{start} 至 {end} · 共 {days} 天",
   "customRange": "自定义范围",
   "timeRange": {
+    "today": "今天",
+    "yesterday": "昨天",
     "last7days": "近7天",
     "last30days": "近30天",
     "thisMonth": "本月",
@@ -15,7 +17,9 @@
     "successRate": "支付成功率",
     "refundAmount": "退款金额",
     "refundRate": "退款率",
-    "chainRatio": "环比"
+    "chainRatio": "环比",
+    "chainRatioNew": "新增",
+    "chainRatioNew": "新增"
   },
   "tradeTrend": {
     "title": "交易趋势",
@@ -30,7 +34,8 @@
     "title": "渠道成功率"
   },
   "hourlyDist": {
-    "title": "24小时交易分布"
+    "title": "时段分布（日均）",
+    "tooltip": "{hour}:00 — 日均 {count} 笔"
   },
   "amountRange": {
     "title": "单笔金额区间"

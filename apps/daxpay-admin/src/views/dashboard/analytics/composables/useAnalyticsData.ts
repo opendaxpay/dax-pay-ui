@@ -1,4 +1,4 @@
-import type { AnalyticsData, DateRange, PresetKey } from '../types';
+import type { AnalyticsData, ChainRatioResult, DateRange, PresetKey } from '../types';
 
 import { computed, ref, watch } from 'vue';
 
@@ -8,24 +8,33 @@ import dayjs from 'dayjs';
 
 import { DashboardTradeApi } from '#/api/payment/dashboard/trade-dashboard.api';
 import { providerI18nMap, providerNameMap } from '#/enums/payment/providerEnum';
+import { fenToYuan, toNumber } from '#/utils/pay-amount';
 
 import { emptyAnalyticsData } from '../types';
 
 /** 预设范围 → [start, end]（YYYY-MM-DD）；本月取月初到今天（未来无数据） */
 function computePreset(key: PresetKey): DateRange {
   const today = dayjs();
+  const todayStr = today.format('YYYY-MM-DD');
   switch (key) {
+    case 'today': {
+      return [todayStr, todayStr];
+    }
+    case 'yesterday': {
+      const y = today.subtract(1, 'day').format('YYYY-MM-DD');
+      return [y, y];
+    }
     case 'last7days': {
-      return [today.subtract(6, 'day').format('YYYY-MM-DD'), today.format('YYYY-MM-DD')];
+      return [today.subtract(6, 'day').format('YYYY-MM-DD'), todayStr];
     }
     case 'last30days': {
-      return [today.subtract(29, 'day').format('YYYY-MM-DD'), today.format('YYYY-MM-DD')];
+      return [today.subtract(29, 'day').format('YYYY-MM-DD'), todayStr];
     }
     case 'thisMonth': {
-      return [today.startOf('month').format('YYYY-MM-DD'), today.format('YYYY-MM-DD')];
+      return [today.startOf('month').format('YYYY-MM-DD'), todayStr];
     }
     default: {
-      return [today.subtract(6, 'day').format('YYYY-MM-DD'), today.format('YYYY-MM-DD')];
+      return [today.subtract(6, 'day').format('YYYY-MM-DD'), todayStr];
     }
   }
 }
@@ -41,24 +50,23 @@ function providerLabel(provider?: string): string {
   return providerNameMap[provider] ?? provider;
 }
 
-/** 金额分(后端) → 元(前端展示), 保留整数 */
-function fenToYuan(fen?: number): number {
-  if (!fen || fen <= 0) return 0;
-  return Math.round(fen / 100);
-}
-
 /**
- * 环比百分比计算
+ * 环比三态计算
  *
- * 防护策略：后端 Long 字段可能返回 null(无上期数据)，或前端派生计算产生 NaN/Infinity。
- * Number.isFinite 一次性拦截 null/undefined/NaN/Infinity 四类无效输入，
- * prev=0 时无法计算环比(除零)，统一返回 null(显示 "—")。
+ * - 上期 > 0: { type:'pct', value } 正常涨跌百分比
+ * - 上期 = 0 且本期 > 0: { type:'new' } 上期无基数, 不造假百分比
+ * - 其余(缺数据 / 双 0): null → 显示 —
  *
- * @returns null 表示无法计算(prev 缺数据或为 0)
+ * 后端 Long 经 JavaLongTypeModule 序列化为字符串，须先 toNumber。
  */
-function chainRatio(curr?: null | number, prev?: null | number): null | number {
-  if (!Number.isFinite(curr) || !Number.isFinite(prev) || prev === 0) return null;
-  return Math.round(((curr as number - (prev as number)) / (prev as number)) * 1000) / 10;
+function chainRatio(curr?: null | number | string, prev?: null | number | string): ChainRatioResult {
+  const c = toNumber(curr);
+  const p = toNumber(prev);
+  if (c === undefined || p === undefined) return null;
+  if (p === 0) {
+    return c > 0 ? { type: 'new' } : null;
+  }
+  return { type: 'pct', value: Math.round(((c - p) / p) * 1000) / 10 };
 }
 
 /**
@@ -195,25 +203,30 @@ export function useAnalyticsData() {
 
 /** 将各 API 响应组装为 AnalyticsData */
 function buildAnalyticsData(input: {
-  amountRangeRes?: { bucket?: string; count?: number }[];
-  hourlyDistRes?: { amount?: number; count?: number; hour?: number }[];
-  merchantRankRes?: { amount?: number; merchantName?: string; orders?: number; proportion?: number }[];
+  amountRangeRes?: { bucket?: string; count?: number | string }[];
+  hourlyDistRes?: { amount?: number | string; count?: number | string; hour?: number }[];
+  merchantRankRes?: {
+    amount?: number | string;
+    merchantName?: string;
+    orders?: number | string;
+    proportion?: number;
+  }[];
   overviewRes?: {
-    prevRefundAmount?: number;
-    prevRefundCount?: number;
-    prevSuccessAmount?: number;
-    prevSuccessCount?: number;
-    prevTotalOrders?: number;
-    refundAmount?: number;
-    refundCount?: number;
-    successAmount?: number;
-    successCount?: number;
-    totalOrders?: number;
+    prevRefundAmount?: number | string;
+    prevRefundCount?: number | string;
+    prevSuccessAmount?: number | string;
+    prevSuccessCount?: number | string;
+    prevTotalOrders?: number | string;
+    refundAmount?: number | string;
+    refundCount?: number | string;
+    successAmount?: number | string;
+    successCount?: number | string;
+    totalOrders?: number | string;
   };
-  providerDistRes?: { amount?: number; count?: number; provider?: string }[];
+  providerDistRes?: { amount?: number | string; count?: number | string; provider?: string }[];
   providerSuccessRes?: { provider?: string; rate?: number }[];
-  refundTrendRes?: { amount?: number; count?: number; date?: string }[];
-  trendRes?: { amount?: number; count?: number; date?: string }[];
+  refundTrendRes?: { amount?: number | string; count?: number | string; date?: string }[];
+  trendRes?: { amount?: number | string; count?: number | string; date?: string }[];
 }): AnalyticsData {
   const { overviewRes, trendRes, refundTrendRes, providerDistRes, providerSuccessRes, hourlyDistRes, amountRangeRes, merchantRankRes } = input;
 
@@ -221,39 +234,53 @@ function buildAnalyticsData(input: {
   const ov = overviewRes ?? {};
   const successAmountYuan = fenToYuan(ov.successAmount);
   const refundAmountYuan = fenToYuan(ov.refundAmount);
-  const successCount = ov.successCount ?? 0;
-  const totalOrders = ov.totalOrders ?? 0;
+  const successCount = toNumber(ov.successCount) ?? 0;
+  const totalOrders = toNumber(ov.totalOrders) ?? 0;
+  const prevSuccessCount = toNumber(ov.prevSuccessCount) ?? 0;
+  const prevTotalOrders = toNumber(ov.prevTotalOrders) ?? 0;
+  // 客单价: 元 / 笔, 保留 2 位
   const avgAmount = successCount > 0 ? Math.round((successAmountYuan / successCount) * 100) / 100 : 0;
+  const prevAvgAmount =
+    prevSuccessCount > 0 ? Math.round((fenToYuan(ov.prevSuccessAmount) / prevSuccessCount) * 100) / 100 : undefined;
   // 成功率口径: success_count / total_orders * 100(分子分母时间基准不同, 见后端 Mapper 注释)
   const successRate = totalOrders > 0 ? Math.round((successCount / totalOrders) * 1000) / 10 : 0;
+  const prevSuccessRate =
+    prevTotalOrders > 0 ? Math.round((prevSuccessCount / prevTotalOrders) * 1000) / 10 : undefined;
   const refundRate = successAmountYuan > 0 ? Math.round((refundAmountYuan / successAmountYuan) * 1000) / 10 : 0;
 
   const overview = [
     { key: 'totalAmount', value: successAmountYuan, prefix: '¥', chainRatio: chainRatio(ov.successAmount, ov.prevSuccessAmount) },
     { key: 'totalOrders', value: successCount, chainRatio: chainRatio(ov.successCount, ov.prevSuccessCount) },
-    { key: 'avgAmount', value: avgAmount, prefix: '¥', chainRatio: chainRatio(avgAmount, ov.prevSuccessAmount && ov.prevSuccessCount ? Math.round((ov.prevSuccessAmount / 100 / ov.prevSuccessCount) * 100) / 100 : undefined) },
-    { key: 'successRate', value: successRate, suffix: '%', chainRatio: chainRatio(ov.successCount && ov.totalOrders ? successRate : undefined, ov.prevSuccessCount && ov.prevTotalOrders ? Math.round((ov.prevSuccessCount / ov.prevTotalOrders) * 1000) / 10 : undefined) },
+    { key: 'avgAmount', value: avgAmount, prefix: '¥', chainRatio: chainRatio(avgAmount, prevAvgAmount) },
+    {
+      key: 'successRate',
+      value: successRate,
+      suffix: '%',
+      chainRatio: chainRatio(totalOrders > 0 ? successRate : undefined, prevSuccessRate),
+    },
     { key: 'refundAmount', value: refundAmountYuan, prefix: '¥', chainRatio: chainRatio(ov.refundAmount, ov.prevRefundAmount) },
     { key: 'refundRate', value: refundRate, suffix: '%', chainRatio: null },
   ];
 
   // ===== tradeTrend(按日期 + 多度量) =====
-  // dates 保留 yyyy-MM-dd 原值(与 a-tooltip / 前端期望一致), amounts/orders 取后端原值, avgAmounts 派生
+  // dates 保留 yyyy-MM-dd; amounts 为元(2 位小数); orders 为笔数(已 Number 归一)
   const trendList = trendRes ?? [];
   const tradeTrend = {
     amounts: trendList.map((i) => fenToYuan(i.amount)),
     avgAmounts: trendList.map((i) => {
       const yuan = fenToYuan(i.amount);
-      const cnt = i.count ?? 0;
+      const cnt = toNumber(i.count) ?? 0;
       return cnt > 0 ? Math.round((yuan / cnt) * 100) / 100 : 0;
     }),
     dates: trendList.map((i) => i.date ?? ''),
-    orders: trendList.map((i) => i.count ?? 0),
+    orders: trendList.map((i) => toNumber(i.count) ?? 0),
   };
 
   // ===== refundTrend(按日期) =====
   const refundTrend = {
     amounts: (refundTrendRes ?? []).map((i) => fenToYuan(i.amount)),
+    // 笔数用于空态判断(有成交但金额极小也不应显示 empty)
+    counts: (refundTrendRes ?? []).map((i) => toNumber(i.count) ?? 0),
     dates: (refundTrendRes ?? []).map((i) => i.date ?? ''),
   };
 
@@ -266,7 +293,7 @@ function buildAnalyticsData(input: {
   // ===== channelVolume(渠道交易量柱状图, 用 provider count) =====
   const channelVolume = (providerDistRes ?? []).map((i) => ({
     name: providerLabel(i.provider),
-    value: i.count ?? 0,
+    value: toNumber(i.count) ?? 0,
   }));
 
   // ===== channelSuccess(渠道成功率) =====
@@ -276,13 +303,13 @@ function buildAnalyticsData(input: {
     rate: Number.isFinite(i.rate) ? (i.rate as number) : 0,
   }));
 
-  // ===== hourlyDist(24 小时时段, 取 count 数组) =====
-  // 后端返回 0-23 已补齐, 取 count 字段(原前端约定: 柱状图值)
-  const hourlyDist = (hourlyDistRes ?? []).map((i) => i.count ?? 0);
+  // ===== hourlyDist(24 小时时段日均笔数数组) =====
+  // 后端已按区间天数日均化, 取 count 字段(原前端约定: 柱状图值)
+  const hourlyDist = (hourlyDistRes ?? []).map((i) => toNumber(i.count) ?? 0);
 
   // ===== amountRange(金额区间分桶) =====
   const amountRange = (amountRangeRes ?? []).map((i) => ({
-    count: i.count ?? 0,
+    count: toNumber(i.count) ?? 0,
     range: i.bucket ?? '',
   }));
 
@@ -290,7 +317,7 @@ function buildAnalyticsData(input: {
   const merchantRank = (merchantRankRes ?? []).map((i) => ({
     amount: fenToYuan(i.amount),
     merchantName: i.merchantName ?? '-',
-    orders: i.orders ?? 0,
+    orders: toNumber(i.orders) ?? 0,
     // 后端 computeProportion 已防除零, 这里 Number.isFinite 二次兜底防异常值
     proportion: Number.isFinite(i.proportion) ? (i.proportion as number) : 0,
   }));

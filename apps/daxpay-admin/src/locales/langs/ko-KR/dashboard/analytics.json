@@ -3,6 +3,8 @@
   "subtitle": "{start} ~ {end} · 총 {days}일",
   "customRange": "맞춤 범위",
   "timeRange": {
+    "today": "오늘",
+    "yesterday": "어제",
     "last7days": "7D",
     "last30days": "30일",
     "thisMonth": "이번 달",
@@ -15,7 +17,8 @@
     "successRate": "성공률",
     "refundAmount": "환불 금액",
     "refundRate": "환불 비율",
-    "chainRatio": "엄마"
+    "chainRatio": "엄마",
+    "chainRatioNew": "신규"
   },
   "tradeTrend": {
     "title": "무역동향",
@@ -30,7 +33,8 @@
     "title": "채널 성공률"
   },
   "hourlyDist": {
-    "title": "시간별 배포"
+    "title": "시간대 분포(일평균)",
+    "tooltip": "{hour}:00 — 일평균 {count}건"
   },
   "amountRange": {
     "title": "금액 범위"

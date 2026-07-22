@@ -31,6 +31,8 @@
       <!-- 右：预设切换 + 自定义范围（选「自定义」才启用 picker） -->
       <div class="flex items-center gap-3">
         <a-radio-group v-model:value="activePreset" button-style="solid">
+          <a-radio-button value="today">{{ $t('dashboard.analytics.timeRange.today') }}</a-radio-button>
+          <a-radio-button value="yesterday">{{ $t('dashboard.analytics.timeRange.yesterday') }}</a-radio-button>
           <a-radio-button value="last7days">{{ $t('dashboard.analytics.timeRange.last7days') }}</a-radio-button>
           <a-radio-button value="last30days">{{ $t('dashboard.analytics.timeRange.last30days') }}</a-radio-button>
           <a-radio-button value="thisMonth">{{ $t('dashboard.analytics.timeRange.thisMonth') }}</a-radio-button>

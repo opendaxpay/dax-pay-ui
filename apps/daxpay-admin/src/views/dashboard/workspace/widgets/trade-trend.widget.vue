@@ -8,6 +8,7 @@
   import { EchartsUI, type EchartsUIType, useEcharts } from '@vben/plugins/echarts';
 
   import { DashboardTradeApi, type TradeTrendItemResult } from '#/api/payment/dashboard/trade-dashboard.api';
+  import { fenToYuan, formatYuan, toNumber } from '#/utils/pay-amount';
 
   interface Props {
     /** 工作台聚合数据（交易趋势独立拉数据，保留以统一 widget props 契约） */
@@ -53,14 +54,14 @@
 
   /** 按当前数据渲染折线图 */
   function render(): void {
-    // 日期截取 MM-DD 作为 x 轴; 金额分转元
+    // 日期截取 MM-DD 作为 x 轴; 金额分转元(保留 2 位小数)
     const labels = trendData.value.map((i) => i.date?.slice(5) || '');
-    const amounts = trendData.value.map((i) => Math.round((i.amount ?? 0) / 100));
+    const amounts = trendData.value.map((i) => fenToYuan(i.amount));
     renderEcharts({
       grid: { bottom: '8%', containLabel: true, left: '3%', right: '4%', top: '10%' },
       tooltip: {
         trigger: 'axis',
-        valueFormatter: (val: any) => `¥${Number(val).toLocaleString('en-US')}`,
+        valueFormatter: (val: any) => `¥${formatYuan(Number(val))}`,
       },
       xAxis: {
         axisLabel: { fontSize: 11 },
@@ -113,7 +114,7 @@
       <a-button size="small" type="primary" @click="load">{{ $t('common.retry') }}</a-button>
     </div>
     <a-empty
-      v-else-if="trendData.length === 0 || trendData.every((i) => (i.amount ?? 0) === 0)"
+      v-else-if="trendData.length === 0 || trendData.every((i) => (toNumber(i.count) ?? 0) === 0)"
       class="!my-10"
     />
     <EchartsUI v-else ref="chartRef" class="h-[280px]" />

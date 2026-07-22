@@ -3,6 +3,8 @@
   "subtitle": "{start} hingga {end} · {days} hari jumlah",
   "customRange": "Julat Tersuai",
   "timeRange": {
+    "today": "Hari ini",
+    "yesterday": "Semalam",
     "last7days": "7D",
     "last30days": "30D",
     "thisMonth": "Bulan ini",
@@ -15,7 +17,8 @@
     "successRate": "Kadar Kejayaan",
     "refundAmount": "Jumlah Bayaran Balik",
     "refundRate": "Kadar Bayaran Balik",
-    "chainRatio": "Ibu"
+    "chainRatio": "Ibu",
+    "chainRatioNew": "Baharu"
   },
   "tradeTrend": {
     "title": "Trend Perdagangan",
@@ -30,7 +33,8 @@
     "title": "Kadar Kejayaan Saluran"
   },
   "hourlyDist": {
-    "title": "Pengagihan Setiap Jam"
+    "title": "Taburan Jam (Purata Harian)",
+    "tooltip": "{hour}:00 — purata {count} pesanan/hari"
   },
   "amountRange": {
     "title": "Julat Jumlah"

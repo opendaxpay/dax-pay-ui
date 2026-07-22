@@ -57,7 +57,7 @@ export const DashboardTradeApi = {
   },
 
   /**
-   * 24 小时时段分布(各小时成交金额 + 笔数, 已补齐 0-23)
+   * 时段分布(日均): 各小时成交金额 + 笔数已按区间天数日均化, 补齐 0-23
    */
   hourlyDist(params: { days?: number; end?: string; start?: string }): Promise<Result<HourlyDistItemResult[]>> {
     return defHttp.get({ url: '/admin/dashboard/trade/hourly-dist', params });
@@ -79,25 +79,25 @@ export const DashboardTradeApi = {
   },
 };
 
-/** 交易概览结果(金额单位: 分) */
+/** 交易概览结果(金额单位: 分; Long 字段可能为 number 或 JSON 字符串) */
 export interface TradeOverviewResult {
   // ===== 本期 =====
   /** 成交金额(分) */
-  successAmount?: number;
+  successAmount?: number | string;
   /** 成交笔数 */
-  successCount?: number;
+  successCount?: number | string;
   /** 退款金额(分) */
-  refundAmount?: number;
+  refundAmount?: number | string;
   /** 退款笔数 */
-  refundCount?: number;
+  refundCount?: number | string;
   /** 总下单笔数(含成功/失败/关闭, 用于成功率分母, 按 create_time 口径) */
-  totalOrders?: number;
+  totalOrders?: number | string;
   // ===== 上期(用于环比, undefined 表示上期无数据) =====
-  prevSuccessAmount?: number;
-  prevSuccessCount?: number;
-  prevRefundAmount?: number;
-  prevRefundCount?: number;
-  prevTotalOrders?: number;
+  prevSuccessAmount?: number | string;
+  prevSuccessCount?: number | string;
+  prevRefundAmount?: number | string;
+  prevRefundCount?: number | string;
+  prevTotalOrders?: number | string;
 }
 
 /** 交易趋势单项(日期 + 金额 + 笔数) */
@@ -105,16 +105,16 @@ export interface TradeTrendItemResult {
   /** 日期(yyyy-MM-dd) */
   date?: string;
   /** 成交金额(分) */
-  amount?: number;
+  amount?: number | string;
   /** 成交笔数 */
-  count?: number;
+  count?: number | string;
 }
 
 /** 退款趋势单项 */
 export interface RefundTrendItemResult {
   date?: string;
-  amount?: number;
-  count?: number;
+  amount?: number | string;
+  count?: number | string;
 }
 
 /** 支付渠道分布单项 */
@@ -122,9 +122,9 @@ export interface ProviderDistItemResult {
   /** 支付渠道编码(如 wechat/alipay/union_pay) */
   provider?: string;
   /** 成交金额(分) */
-  amount?: number;
+  amount?: number | string;
   /** 成交笔数 */
-  count?: number;
+  count?: number | string;
 }
 
 /** 支付渠道成功率单项 */
@@ -135,14 +135,14 @@ export interface ProviderSuccessItemResult {
   rate?: number;
 }
 
-/** 24 小时时段分布单项 */
+/** 时段分布单项(日均: 区间汇总 ÷ 天数) */
 export interface HourlyDistItemResult {
   /** 小时(0-23) */
   hour?: number;
-  /** 成交金额(分) */
-  amount?: number;
-  /** 成交笔数 */
-  count?: number;
+  /** 日均成交金额(分) */
+  amount?: number | string;
+  /** 日均成交笔数 */
+  count?: number | string;
 }
 
 /** 金额区间分桶单项 */
@@ -150,7 +150,7 @@ export interface AmountRangeItemResult {
   /** 区间标签(如 '0-50', '5000+') */
   bucket?: string;
   /** 笔数 */
-  count?: number;
+  count?: number | string;
 }
 
 /** 商户交易额排名单项 */
@@ -160,9 +160,9 @@ export interface MerchantRankItemResult {
   /** 商户名称 */
   merchantName?: string;
   /** 成交金额(分) */
-  amount?: number;
+  amount?: number | string;
   /** 成交笔数 */
-  orders?: number;
+  orders?: number | string;
   /** 占比百分比(0-100) */
   proportion?: number;
 }
