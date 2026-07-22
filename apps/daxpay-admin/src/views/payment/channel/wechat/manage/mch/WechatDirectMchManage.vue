@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
+  import type { ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
 
   import { computed, ref } from 'vue';
   import { useRouter } from 'vue-router';
@@ -10,7 +10,7 @@
 
   import { ProductEnum } from '#/enums/payment/productEnum';
   import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
-  import ChannelMerchantNameEditModal from '#/views/payment/merchant/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
+  import ChannelMerchantNameEditModal from '#/views/payment/global/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
 
   import WechatDirectChannelMerchantBasicInfo from './WechatDirectChannelMerchantBasicInfo.vue';
   import WechatDirectKeyConfigEdit from './WechatDirectKeyConfigEdit.vue';
@@ -113,7 +113,7 @@
     if (card.key === 'appManage') {
       const id = channelMerchant.value.id;
       router.push({
-        path: '/payment/merchant/channel-merchant/wechat-app-manage',
+        path: '/payment/global/channel-merchant/wechat-app-manage',
         query: {
           mchNo: mchNo.value,
           channelMchNo: channelMchNo.value,

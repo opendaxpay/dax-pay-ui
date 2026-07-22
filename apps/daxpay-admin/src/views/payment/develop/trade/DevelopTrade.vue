@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import type { FormInstance } from 'antdv-next';
 
-  import type { PayParam, PayResult } from '#/api/payment/develop/developTrade.api';
+  import type { PayParam, PayResult } from '#/api/payment/develop/develop-trade.api';
   import type { DaxResult } from '#/api/payment/unipay/unipay-request';
   import type { ChannelMchOption, LabelValue } from '#/types/web';
 
@@ -13,7 +13,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { DevelopTradeApi } from '#/api/payment/develop/developTrade.api';
+  import { DevelopTradeApi } from '#/api/payment/develop/develop-trade.api';
   import { MchAppInfoApi } from '#/api/payment/merchant/mch-app-info.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { uniPay } from '#/api/payment/unipay/unipay-trade.api';

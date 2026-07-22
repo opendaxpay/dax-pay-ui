@@ -7,7 +7,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { DevelopSignApi } from '#/api/payment/develop/developSign.api';
+  import { DevelopSignApi } from '#/api/payment/develop/develop-sign.api';
   import { useMessage } from '#/hooks/useMessage';
 
   defineOptions({ name: 'DevelopSign' });

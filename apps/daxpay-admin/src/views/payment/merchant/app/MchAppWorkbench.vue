@@ -75,7 +75,7 @@
         title: $t('payment.merchant.app.app.payRoute'),
         icon: 'ant-design:node-index-outlined',
         description: $t('payment.merchant.app.app.payRouteDesc'),
-        route: '/payment/merchant/route',
+        route: '/payment/route',
       });
     }
     if (hasPermission(PermCodes.Merchant.GatewayAggregate.VIEW)) {

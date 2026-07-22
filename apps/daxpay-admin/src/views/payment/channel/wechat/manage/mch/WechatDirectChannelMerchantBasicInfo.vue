@@ -7,7 +7,7 @@ import {
   type WechatDirectChannelMerchantConfig,
   WechatDirectChannelMerchantApi,
 } from '#/api/payment/channel/wechat/channel-merchant.api';
-import { type ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
+import { type ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
 
 defineOptions({ name: 'WechatDirectChannelMerchantBasicInfo' });
 

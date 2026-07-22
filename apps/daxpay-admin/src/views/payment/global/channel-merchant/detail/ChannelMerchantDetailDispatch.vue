@@ -6,7 +6,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { ChannelMerchantApi, type ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
+  import { ChannelMerchantApi, type ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { productI18nMap, productNameMap, ProductEnum } from '#/enums/payment';
   import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
@@ -43,7 +43,7 @@
     }),
     fallbackPath: computed(() => {
       const no = normalizeRouteQueryValue(route.query.mchNo);
-      return no ? { path: '/payment/merchant/channel-merchant', query: { mchNo: no } } : '/payment/merchant';
+      return no ? { path: '/payment/global/channel-merchant', query: { mchNo: no } } : '/payment/merchant';
     }),
   });
 
@@ -180,7 +180,7 @@
   /** 返回通道商户列表 */
   function goBack() {
     router.push({
-      path: '/payment/merchant/channel-merchant',
+      path: '/payment/global/channel-merchant',
       query: { mchNo: mchNo.value },
     });
   }

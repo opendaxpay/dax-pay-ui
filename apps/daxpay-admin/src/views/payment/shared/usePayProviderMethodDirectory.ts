@@ -4,7 +4,7 @@ import { ref } from 'vue';
 
 import { PayRouteApi } from '#/api/payment/route/pay-route.api';
 
-import { ROUTE_PAY_PROVIDERS } from '../merchant/route/shared/payRoute.constants';
+import { ROUTE_PAY_PROVIDERS } from '../route/shared/payRoute.constants';
 
 /** 通道路由页：已启用渠道+方式扁平目录（`PayRouteApi.listMethodDirectoryFlat`） */
 export function usePayProviderMethodDirectory() {

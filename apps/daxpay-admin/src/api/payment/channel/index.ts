@@ -14,11 +14,11 @@ export * as AdapayChannel from './adapay';
 export * as HkrtChannel from './hkrt';
 export * as DougongChannel from './dougong';
 
-// 通用通道商户（无命名冲突，直接导出）
-export { ChannelMerchantApi } from './channel-merchant.api';
+// 通用通道商户（已迁至 payment/global；无命名冲突，直接导出）
+export { ChannelMerchantApi } from '../global/channel-merchant/channel-merchant.api';
 export type {
   ChannelMerchantBaseCreateParam,
   ChannelMerchantEditParam,
   ChannelMerchantQueryParam,
   ChannelMerchantResult,
-} from './channel-merchant.api';
+} from '../global/channel-merchant/channel-merchant.api';

@@ -6,7 +6,7 @@ import type {
   ChannelMerchantEditParam,
   ChannelMerchantQueryParam,
   ChannelMerchantResult,
-} from './channel-merchant.api';
+} from '../channel-merchant/channel-merchant.api';
 
 /**
  * 通道商户全局管理 API（运营平台-综合管理）

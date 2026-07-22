@@ -3,7 +3,7 @@ import type { DashboardData } from '../types';
 import { reactive } from 'vue';
 
 import { UserApi } from '#/api/iam/user.api';
-import { ChannelMerchantApi } from '#/api/payment/channel/channel-merchant.api';
+import { ChannelMerchantApi } from '#/api/payment/global/channel-merchant/channel-merchant.api';
 import { MerchantApi } from '#/api/payment/merchant/merchant.api';
 
 /**

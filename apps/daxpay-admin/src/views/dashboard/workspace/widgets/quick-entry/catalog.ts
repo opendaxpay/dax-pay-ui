@@ -52,7 +52,7 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
   },
   {
     key: 'channelMerchant',
-    routeName: '/payment/merchant/channel-merchant',
+    routeName: '/payment/global/channel-merchant',
     icon: 'lucide:plug',
     titleKey: 'dashboard.workspace.quickEntry.channelMerchant',
     color: 'bg-violet-500',

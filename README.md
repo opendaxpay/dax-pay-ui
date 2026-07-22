@@ -10,7 +10,7 @@
 
 ## 项目简介
 
-DaxPay Admin 是 DaxPay 支付系统的运营管理后台前端，基于 Vue Vben Admin 5 二次开发。提供商户管理、支付通道配置、支付主数据、IAM 权限、系统管理、工作台分析等功能，支持中英文国际化。
+DaxPay Admin 是 DaxPay 支付系统的运营管理后台前端，基于 Vue Vben Admin 5 二次开发。提供商户管理、支付通道配置、支付主数据、IAM 权限、系统管理、工作台分析等功能；文案与菜单标题支持多语（见 `locales/` 与 Agents.md）。
 
 ## 技术栈
 
@@ -40,14 +40,15 @@ dax-pay-ui/
 │           │   ├── core/                # 核心（auth, dict, menu, user…）
 │           │   ├── iam/                 # IAM（perm, social, user…）
 │           │   ├── payment/             # 支付业务
-│           │   │   ├── channel/         # 各通道接口
+│           │   │   ├── channel/         # 各通道私有接口
+│           │   │   ├── global/          # 跨通道公共壳 API（channel-merchant…）
 │           │   │   ├── config/          # 产品等配置
 │           │   │   ├── develop/         # 开发联调
-│           │   │   ├── device/          # 设备
+│           │   │   ├── device/          # 设备 / 终端
 │           │   │   ├── masterdata/      # 支付主数据
 │           │   │   ├── merchant/        # 商户
 │           │   │   ├── order/           # 订单
-│           │   │   ├── route/           # 路由配置 API
+│           │   │   ├── route/           # 支付路由 API
 │           │   │   └── unipay/          # 统一支付联调 API
 │           │   └── system/              # 系统管理
 │           ├── assets/                  # 静态资源（渠道图标等）
@@ -55,7 +56,7 @@ dax-pay-ui/
 │           ├── enums/                   # 枚举定义
 │           ├── hooks/                   # 自定义 Hooks
 │           ├── layouts/                 # 布局
-│           ├── locales/langs/           # 国际化（en-US / zh-CN）
+│           ├── locales/                 # 业务文案 + menu-titles（多语）
 │           ├── router/                  # 路由（动态菜单 + 静态 core）
 │           ├── store/                   # 状态管理
 │           ├── views/                   # 页面视图（约定见 views/README.md）
@@ -64,13 +65,13 @@ dax-pay-ui/
 │           │   ├── demos/               # 演示页
 │           │   ├── iam/                 # 用户 / 角色 / 菜单 / 社交
 │           │   ├── payment/             # 支付业务（主体）
+│           │   │   ├── global/          # 跨通道公共壳（channel-merchant…）
 │           │   │   ├── channel/         # 按通道分包（alipay、wechat…）
-│           │   │   ├── config/          # 产品配置等
-│           │   │   ├── develop/         # 开发联调
-│           │   │   ├── device/          # 设备
-│           │   │   ├── masterdata/      # 支付主数据
-│           │   │   ├── merchant/        # 商户 / 应用 / 路由等
-│           │   │   ├── order/           # 订单
+│           │   │   ├── merchant/        # 商户 / 应用 / 门店等
+│           │   │   ├── route/           # 支付路由
+│           │   │   ├── device/          # 设备 / 终端
+│           │   │   ├── order/ notice/ record/ risk/
+│           │   │   ├── masterdata/ config/ develop/
 │           │   │   └── shared/          # 支付域 TS 工具（非路由页）
 │           │   ├── profile/             # 个人中心
 │           │   └── system/              # 系统配置 / 日志 / 监控 / 通知
@@ -147,16 +148,12 @@ pnpm build:admin
 
 ## 国际化
 
-项目支持中英文国际化，翻译文件按业务域拆分（`zh-CN` / `en-US` 对称）：
+业务文案在 `apps/daxpay-admin/src/locales/langs/{locale}/`（多语对称）；菜单标题在 `locales/menu-titles/{locale}.json`。语种与回退规则见仓库根 `AGENTS.md`。
 
 ```
-apps/daxpay-admin/src/locales/langs/
-├── en-US/
-│   ├── _core/ · components/ · dashboard/ · demos/
-│   ├── hooks/ · iam/ · payment/ · system/
-│   ├── common.json · page.json · profile.json · timezone.json
-└── zh-CN/
-    └── (同上结构)
+apps/daxpay-admin/src/locales/
+├── langs/{zh-CN,en-US,zh-TW,...}/   # 业务文案（按域拆分）
+└── menu-titles/{locale}.json        # 菜单标题（flat key）
 ```
 
 ## 开发规范

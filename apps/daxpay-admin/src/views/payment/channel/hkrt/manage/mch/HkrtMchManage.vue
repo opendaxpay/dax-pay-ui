@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
+  import type { ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
 
   import { computed, ref } from 'vue';
 
@@ -9,7 +9,7 @@
 
   import { HkrtChannelMerchantApi } from '#/api/payment/channel/hkrt/channel-merchant.api';
   import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
-  import ChannelMerchantNameEditModal from '#/views/payment/merchant/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
+  import ChannelMerchantNameEditModal from '#/views/payment/global/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
 
   import HkrtChannelMerchantBasicInfo from './HkrtChannelMerchantBasicInfo.vue';
   import HkrtMchConfigEdit from './HkrtMchConfigEdit.vue';

@@ -65,7 +65,7 @@
           icon: 'ant-design:monitor-outlined',
           // 商户逻辑终端编号与通道终端绑定管理
           description: $t('payment.merchant.workbench.workbench.cardTerminalDesc'),
-          route: '/payment/merchant/terminal',
+          route: '/payment/device/terminal/system',
         },
       ],
     },
@@ -81,7 +81,7 @@
           icon: 'ant-design:shop-outlined',
           // 商户在各支付通道的商户号配置与管理
           description: $t('payment.merchant.workbench.workbench.cardChannelMerchantDesc'),
-          route: '/payment/merchant/channel-merchant',
+          route: '/payment/global/channel-merchant',
         },
         {
           key: 'app',

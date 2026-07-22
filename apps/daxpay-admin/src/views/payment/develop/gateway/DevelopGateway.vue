@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import type { FormInstance } from 'antdv-next';
 
-  import type { GatewayPrePayParam, GatewayPrePayResult } from '#/api/payment/develop/developGateway.api';
+  import type { GatewayPrePayParam, GatewayPrePayResult } from '#/api/payment/develop/develop-gateway.api';
   import type { DaxResult } from '#/api/payment/unipay/unipay-request';
   import type { LabelValue } from '#/types/web';
 
@@ -12,7 +12,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { DevelopGatewayApi } from '#/api/payment/develop/developGateway.api';
+  import { DevelopGatewayApi } from '#/api/payment/develop/develop-gateway.api';
   import { MchAppInfoApi } from '#/api/payment/merchant/mch-app-info.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { uniGatewayPrePay } from '#/api/payment/unipay/unipay-trade.api';

@@ -7,8 +7,8 @@ import type { DaxResult } from './unipay-request';
 import type {
   GatewayPrePayParam,
   GatewayPrePayResult,
-} from '#/api/payment/develop/developGateway.api';
-import type { PayParam, PayResult } from '#/api/payment/develop/developTrade.api';
+} from '#/api/payment/develop/develop-gateway.api';
+import type { PayParam, PayResult } from '#/api/payment/develop/develop-trade.api';
 
 import { unipayPost } from './unipay-request';
 

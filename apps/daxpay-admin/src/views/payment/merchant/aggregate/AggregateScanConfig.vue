@@ -19,8 +19,8 @@
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { useMessage } from '#/hooks/useMessage';
   import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
-  import { PAY_ROUTE_MODE } from '#/views/payment/merchant/route/shared/payRoute.constants';
-  import { modeDisplayName } from '#/views/payment/merchant/route/shared/payRoute.labels';
+  import { PAY_ROUTE_MODE } from '#/views/payment/route/shared/payRoute.constants';
+  import { modeDisplayName } from '#/views/payment/route/shared/payRoute.labels';
   import RouteHitPreviewBlock from '#/views/payment/merchant/shared/RouteHitPreviewBlock.vue';
   import { useRouteHitPreview } from '#/views/payment/merchant/shared/useRouteHitPreview';
 
@@ -250,7 +250,7 @@
   /** 跳转通道路由配置 */
   function goPayRoute() {
     router.push({
-      path: '/payment/merchant/route',
+      path: '/payment/route',
       query: { mchNo: mchNo.value, appId: appId.value },
     });
   }

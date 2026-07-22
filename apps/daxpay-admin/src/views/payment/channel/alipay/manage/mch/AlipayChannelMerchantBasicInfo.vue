@@ -10,7 +10,7 @@ import {
   type AlipayDirectChannelMerchantConfig,
   type AlipayIsvChannelMerchantConfig,
 } from '#/api/payment/channel/alipay/channel-merchant.api';
-import { type ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
+import { type ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
 import { ProductEnum } from '#/enums/payment/productEnum';
 
 defineOptions({ name: 'AlipayChannelMerchantBasicInfo' });

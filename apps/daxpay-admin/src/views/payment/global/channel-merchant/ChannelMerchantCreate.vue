@@ -137,7 +137,7 @@
     if (currentStep.value === 0) {
       // 第一步：返回通道商户管理列表页面
       router.push({
-        path: '/payment/merchant/channel-merchant',
+        path: '/payment/global/channel-merchant',
         query: { mchNo: mchNo.value },
       });
     } else {

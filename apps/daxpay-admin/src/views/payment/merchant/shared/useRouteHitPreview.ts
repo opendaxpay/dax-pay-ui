@@ -8,8 +8,8 @@ import {
 import {
   PAY_ROUTE_MODE,
   type PayRouteMode,
-} from '#/views/payment/merchant/route/shared/payRoute.constants';
-import { normalizePayRouteMode } from '#/views/payment/merchant/route/shared/payRoute.labels';
+} from '#/views/payment/route/shared/payRoute.constants';
+import { normalizePayRouteMode } from '#/views/payment/route/shared/payRoute.labels';
 
 /** 通道路由命中预览状态 */
 export type RouteHitPreviewStatus = 'ok' | 'notConfigured' | 'noStrategy' | 'emptyMethod';

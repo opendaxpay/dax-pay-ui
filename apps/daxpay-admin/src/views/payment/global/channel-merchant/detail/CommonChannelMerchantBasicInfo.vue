@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
+  import type { ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
 
   import { computed, ref } from 'vue';
 

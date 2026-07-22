@@ -8,7 +8,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { ChannelMerchantApi, type ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
+  import { ChannelMerchantApi, type ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
   import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import ChannelLogo from '#/components/channel/ChannelLogo.vue';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
@@ -96,7 +96,7 @@
    */
   function handleManage(record: ChannelMerchantResult) {
     router.push({
-      path: '/payment/merchant/channel-merchant/detail',
+      path: '/payment/global/channel-merchant/detail',
       query: {
         mchNo: mchNo.value,
         id: record.id!,
@@ -160,7 +160,7 @@
    */
   function handleCreate() {
     router.push({
-      path: '/payment/merchant/channel-merchant/create',
+      path: '/payment/global/channel-merchant/create',
       query: { mchNo: mchNo.value },
     });
   }

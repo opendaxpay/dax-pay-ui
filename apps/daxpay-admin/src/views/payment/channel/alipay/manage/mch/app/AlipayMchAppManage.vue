@@ -37,9 +37,9 @@
       // product 由本页所属渠道决定（支付宝直连），无需从路由读取
       const product = ProductEnum.ALIPAY;
       if (mchNo && id) {
-        return { path: '/payment/merchant/channel-merchant/detail', query: { mchNo, id, product } };
+        return { path: '/payment/global/channel-merchant/detail', query: { mchNo, id, product } };
       }
-      return mchNo ? { path: '/payment/merchant/channel-merchant', query: { mchNo } } : '/payment/merchant';
+      return mchNo ? { path: '/payment/global/channel-merchant', query: { mchNo } } : '/payment/merchant';
     }),
   });
 
@@ -89,12 +89,12 @@
       // product 由本页所属渠道决定（支付宝直连）
       const product = ProductEnum.ALIPAY;
       router.push({
-        path: '/payment/merchant/channel-merchant/detail',
+        path: '/payment/global/channel-merchant/detail',
         query: { mchNo: mchNo.value, id, product },
       });
     } else {
       router.push({
-        path: '/payment/merchant/channel-merchant',
+        path: '/payment/global/channel-merchant',
         query: { mchNo: mchNo.value },
       });
     }

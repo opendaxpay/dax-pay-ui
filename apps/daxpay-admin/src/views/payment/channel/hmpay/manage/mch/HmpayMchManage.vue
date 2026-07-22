@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
+  import type { ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
   import type { HmpayIsvChannelMerchant } from '#/api/payment/channel/hmpay/channel-merchant.api';
 
   import { computed, ref } from 'vue';
@@ -11,8 +11,8 @@
   import { HmpayChannelMerchantApi } from '#/api/payment/channel/hmpay/channel-merchant.api';
   import HmpayMchConfigEdit from '#/views/payment/channel/hmpay/config/HmpayMchConfigEdit.vue';
   import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
-  import ChannelMerchantNameEditModal from '#/views/payment/merchant/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
-  import CommonChannelMerchantBasicInfo from '#/views/payment/merchant/channel-merchant/detail/CommonChannelMerchantBasicInfo.vue';
+  import ChannelMerchantNameEditModal from '#/views/payment/global/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
+  import CommonChannelMerchantBasicInfo from '#/views/payment/global/channel-merchant/detail/CommonChannelMerchantBasicInfo.vue';
 
   defineOptions({ name: 'HmpayMchManage' });
 

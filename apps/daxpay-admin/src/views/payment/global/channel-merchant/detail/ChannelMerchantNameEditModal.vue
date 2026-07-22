@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-  import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
+  import type { ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
 
   import { nextTick, reactive, ref } from 'vue';
 
   import { $t } from '@vben/locales';
 
-  import { ChannelMerchantApi } from '#/api/payment/channel/channel-merchant.api';
+  import { ChannelMerchantApi } from '#/api/payment/global/channel-merchant/channel-merchant.api';
   import { useMessage } from '#/hooks/useMessage';
 
   defineOptions({ name: 'ChannelMerchantNameEditModal' });

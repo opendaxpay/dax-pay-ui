@@ -6,8 +6,8 @@
 
   import { $t } from '@vben/locales';
 
-  import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
-  import { ChannelMerchantGlobalApi } from '#/api/payment/channel/channel-merchant-global.api';
+  import type { ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
+  import { ChannelMerchantGlobalApi } from '#/api/payment/global/channel-merchant-global/channel-merchant-global.api';
   import ChannelLogo from '#/components/channel/ChannelLogo.vue';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
@@ -95,7 +95,7 @@
    */
   function handleManage(record: ChannelMerchantResult) {
     router.push({
-      path: '/payment/merchant/channel-merchant/detail',
+      path: '/payment/global/channel-merchant/detail',
       query: {
         mchNo: record.mchNo!,
         id: record.id!,

@@ -39,10 +39,10 @@
       const id = normalizeRouteQueryValue(route.query.channelMerchantId);
       const product = normalizeRouteQueryValue(route.query.product);
       if (mchNo && id && product) {
-        return { path: '/payment/merchant/channel-merchant/detail', query: { mchNo, id, product } };
+        return { path: '/payment/global/channel-merchant/detail', query: { mchNo, id, product } };
       }
       return mchNo
-        ? { path: '/payment/merchant/channel-merchant', query: { mchNo } }
+        ? { path: '/payment/global/channel-merchant', query: { mchNo } }
         : '/payment/merchant';
     }),
   });
@@ -91,12 +91,12 @@
     if (id) {
       const product = normalizeRouteQueryValue(route.query.product) || ProductEnum.WECHAT_ISV;
       router.push({
-        path: '/payment/merchant/channel-merchant/detail',
+        path: '/payment/global/channel-merchant/detail',
         query: { mchNo: mchNo.value, id, product },
       });
     } else {
       router.push({
-        path: '/payment/merchant/channel-merchant',
+        path: '/payment/global/channel-merchant',
         query: { mchNo: mchNo.value },
       });
     }

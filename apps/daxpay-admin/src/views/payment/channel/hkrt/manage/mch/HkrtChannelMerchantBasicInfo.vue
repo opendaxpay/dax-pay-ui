@@ -3,7 +3,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { type ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
+  import { type ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
   import {
     HkrtChannelMerchantApi,
     type HkrtIsvChannelMerchant,

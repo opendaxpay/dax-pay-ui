@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { AuthResult, AuthUrlResult, ChannelAuthUrlParam } from '#/api/payment/develop/developAuth.api';
+  import type { AuthResult, AuthUrlResult, ChannelAuthUrlParam } from '#/api/payment/develop/develop-auth.api';
   import type { ChannelMchOption, LabelValue } from '#/types/web';
 
   import { computed, onBeforeUnmount, onMounted, reactive, ref } from 'vue';
@@ -10,8 +10,8 @@
 
   import { useIntervalFn } from '@vueuse/core';
 
-  import { DevelopAuthApi } from '#/api/payment/develop/developAuth.api';
-  import { DevelopTradeApi } from '#/api/payment/develop/developTrade.api';
+  import { DevelopAuthApi } from '#/api/payment/develop/develop-auth.api';
+  import { DevelopTradeApi } from '#/api/payment/develop/develop-trade.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import ChannelMerchantSelect from '#/components/channel/ChannelMerchantSelect.vue';
   import { QrCode } from '#/components/qrcode';

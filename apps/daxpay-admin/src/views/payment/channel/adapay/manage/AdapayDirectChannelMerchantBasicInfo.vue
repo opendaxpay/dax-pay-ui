@@ -3,7 +3,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { type ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
+  import { type ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
   import { productI18nMap, productNameMap } from '#/enums/payment';
 
   defineOptions({ name: 'AdapayDirectChannelMerchantBasicInfo' });

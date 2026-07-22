@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import type { ChannelMerchantResult } from '#/api/payment/channel/channel-merchant.api';
+  import type { ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
 
   import { computed, ref } from 'vue';
   import { useRouter } from 'vue-router';
@@ -9,7 +9,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
-  import ChannelMerchantNameEditModal from '#/views/payment/merchant/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
+  import ChannelMerchantNameEditModal from '#/views/payment/global/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
 
   import AlipayChannelMerchantBasicInfo from './AlipayChannelMerchantBasicInfo.vue';
   import AlipayMchAppCapability from './AlipayMchAppCapability.vue';
@@ -57,7 +57,7 @@
           title: $t('payment.channel.alipayMchManage.cardMchApp'),
           icon: 'ant-design:appstore-outlined',
           description: $t('payment.channel.alipayMchManage.cardMchAppDesc'),
-          route: '/payment/merchant/channel-merchant/alipay-app-manage',
+          route: '/payment/global/channel-merchant/alipay-app-manage',
         },
         {
           key: 'capabilityBinding',

@@ -5,7 +5,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { PAY_ROUTE_MODE } from '#/views/payment/merchant/route/shared/payRoute.constants';
+  import { PAY_ROUTE_MODE } from '#/views/payment/route/shared/payRoute.constants';
 
   defineOptions({ name: 'RouteHitPreviewBlock' });
 

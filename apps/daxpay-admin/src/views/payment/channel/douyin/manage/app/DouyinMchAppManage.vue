@@ -37,10 +37,10 @@
       // product 由本页所属渠道决定（抖音直连），无需从路由读取
       const product = ProductEnum.DOUYIN_PAY;
       if (mchNo && id) {
-        return { path: '/payment/merchant/channel-merchant/detail', query: { mchNo, id, product } };
+        return { path: '/payment/global/channel-merchant/detail', query: { mchNo, id, product } };
       }
       return mchNo
-        ? { path: '/payment/merchant/channel-merchant', query: { mchNo } }
+        ? { path: '/payment/global/channel-merchant', query: { mchNo } }
         : '/payment/merchant';
     }),
   });
@@ -89,12 +89,12 @@
       // product 由本页所属渠道决定（抖音直连）
       const product = ProductEnum.DOUYIN_PAY;
       router.push({
-        path: '/payment/merchant/channel-merchant/detail',
+        path: '/payment/global/channel-merchant/detail',
         query: { mchNo: mchNo.value, id, product },
       });
     } else {
       router.push({
-        path: '/payment/merchant/channel-merchant',
+        path: '/payment/global/channel-merchant',
         query: { mchNo: mchNo.value },
       });
     }
