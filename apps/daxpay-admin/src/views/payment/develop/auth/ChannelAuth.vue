@@ -211,7 +211,6 @@
             : authType.value === 'douyin'
               ? DevelopAuthApi.generateDouyinAuthUrl()
               : DevelopAuthApi.generateChannelAuthUrl({
-                  channel: 'wechat',
                   authType: 'wechat',
                   mchNo: form.mchNo,
                   channelMchNo: form.channelMchNo,

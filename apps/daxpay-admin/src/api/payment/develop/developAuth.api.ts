@@ -70,8 +70,6 @@ export interface AuthResult {
 
 /** 微信支付授权链接参数 */
 export interface ChannelAuthUrlParam {
-  /** 通道(固定 wechat) */
-  channel: string;
   /** 认证类型(固定 wechat) */
   authType: string;
   /** 支付产品(wechat_pay 直连 / wechat_isv 服务商), 可选, 缺失时后端从通道商户号反查 */
