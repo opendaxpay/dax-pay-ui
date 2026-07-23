@@ -1,0 +1,18 @@
+{
+  "add": {
+    "title": "Thêm người bán",
+    "mchInfo": "Thông tin người bán",
+    "mchNamePlaceholder": "Vui lòng nhập tên người bán",
+    "mchShortNamePlaceholder": "Vui lòng nhập tên viết tắt của người bán",
+    "subjectTypePlaceholder": "Vui lòng chọn loại người bán"
+  },
+  "manage": {
+    "info": {
+      "title": "Hồ sơ người bán",
+      "backToWorkbench": "Quay lại Quản lý"
+    },
+    "manage": {
+      "title": "Quản lý"
+    }
+  }
+}

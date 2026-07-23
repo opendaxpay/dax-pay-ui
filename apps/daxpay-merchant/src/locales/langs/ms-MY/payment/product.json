@@ -1,0 +1,24 @@
+{
+  "enum": {
+    "alipayIsv": "Alipay (ISV)",
+    "alipay": "Alipay (Terus)",
+    "wechat": "WeChat Pay (Terus)",
+    "wechatPay": "WeChat Pay (Terus)",
+    "wechatIsv": "WeChat Pay (ISV)",
+    "douyinPay": "Douyin Pay (Terus)",
+    "umsQrcode": "UMS (C Scan B)",
+    "umsJsapi": "UMS (JSAPI)",
+    "umsApp": "UMS (APP)",
+    "umsMini": "UMS (Program Mini)",
+    "umsH5": "UMS (H5)",
+    "umsBarcode": "UMS (B Scan C)",
+    "lakalaPay": "Lakala Pay",
+    "leshuaPay": "Leshua Pay",
+    "adaPay": "Adapay",
+    "dougongPay": "DouGong",
+    "hkrtPay": "Bayar HKRT",
+    "vbillPay": "VBill",
+    "hmPay": "Hmpay",
+    "fuyouPay": "Fuyou Bayar"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "add": {
+    "title": "Tambahkan Pedagang",
+    "mchInfo": "Informasi Pedagang",
+    "mchNamePlaceholder": "Silakan masukkan nama pedagang",
+    "mchShortNamePlaceholder": "Silakan masukkan nama pendek pedagang",
+    "subjectTypePlaceholder": "Silakan pilih jenis pedagang"
+  },
+  "manage": {
+    "info": {
+      "title": "Profil Pedagang",
+      "backToWorkbench": "Kembali ke Manajemen"
+    },
+    "manage": {
+      "title": "Mengelola"
+    }
+  }
+}

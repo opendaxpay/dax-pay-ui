@@ -1,0 +1,24 @@
+{
+  "title": "微信域名驗證",
+  "adminTitle": "微信域名驗證",
+  "upload": "上傳驗證檔案",
+  "uploadTip": "請選擇微信下載的域名驗證 .txt 檔案",
+  "uploadSuccess": "上傳成功",
+  "uploadFail": "上傳失敗",
+  "confirmDelete": "確定刪除該驗證檔案嗎？",
+  "editTitle": "編輯驗證檔案",
+  "field": {
+    "fileName": "檔名",
+    "mchNo": "商戶號",
+    "belong": "歸屬",
+    "verifyCode": "驗證內容",
+    "remark": "備註",
+    "createTime": "建立時間",
+    "fileContent": "檔案內容",
+    "merchant": "商戶"
+  },
+  "belong": {
+    "platform": "平臺",
+    "merchant": "商戶"
+  }
+}

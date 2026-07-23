@@ -89,7 +89,9 @@
     "orderAmount": "จำนวนการสั่งซื้อ",
     "orderNo": "Platform Order No.",
     "authCode": "รหัสชำระเงิน",
-    "merchant": "ร้านค้า"
+    "merchant": "ร้านค้า",
+    "gatewayType": "ประเภทเกตเวย์",
+    "storeNo": "รหัสร้าน"
   },
   "bizStatus": {
     "wait_pay": "ซึ่งรอคอย",

@@ -1,0 +1,18 @@
+{
+  "add": {
+    "title": "新增商戶",
+    "mchInfo": "商戶資訊",
+    "mchNamePlaceholder": "請輸入商戶名稱",
+    "mchShortNamePlaceholder": "請輸入商戶簡稱",
+    "subjectTypePlaceholder": "請選擇商戶型別"
+  },
+  "manage": {
+    "info": {
+      "title": "商戶資料",
+      "backToWorkbench": "返回管理頁"
+    },
+    "manage": {
+      "title": "管理"
+    }
+  }
+}

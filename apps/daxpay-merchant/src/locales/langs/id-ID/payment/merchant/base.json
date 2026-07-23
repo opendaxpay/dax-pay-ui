@@ -1,0 +1,33 @@
+{
+  "field": {
+    "mchNo": "Nomor Pedagang.",
+    "mchName": "Nama Pedagang",
+    "mchShortName": "Nama Pendek",
+    "status": "Status",
+    "subjectType": "Jenis Subjek",
+    "createTime": "Ciptakan Waktu",
+    "id": "PENGENAL"
+  },
+  "status": {
+    "enable": "Diaktifkan",
+    "disabled": "Dengan disabilitas"
+  },
+  "subjectType": {
+    "micro": "Pedagang Mikro",
+    "individual": "Bisnis Perorangan",
+    "enterprise": "Perusahaan"
+  },
+  "action": {
+    "confirmEnableContent": "Apakah Anda yakin ingin mengaktifkan pedagang ini?",
+    "confirmDisableContent": "Apakah Anda yakin ingin menonaktifkan pedagang ini? Setelah dinonaktifkan, akun pedagang tidak akan bisa login.",
+    "delete": "Hapus"
+  },
+  "validation": {
+    "pleaseInputMchName": "Silakan masukkan nama pedagang",
+    "pleaseInputMchShortName": "Silakan masukkan nama pendek pedagang",
+    "pleaseInputAccount": "Silakan masukkan akun administrator",
+    "pleaseConfirmPassword": "Mohon konfirmasi kata sandinya",
+    "pleaseSelectSubjectType": "Silakan pilih jenis subjek",
+    "pleaseSelectStatus": "Silakan pilih status"
+  }
+}

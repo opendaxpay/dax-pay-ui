@@ -1,0 +1,24 @@
+{
+  "title": "ยืนยันโดเมน WeChat",
+  "adminTitle": "ยืนยันโดเมน WeChat",
+  "upload": "อัปโหลดไฟล์ยืนยัน",
+  "uploadTip": "เลือกไฟล์ .txt สำหรับการยืนยันโดเมน WeChat",
+  "uploadSuccess": "อัปโหลดสำเร็จ",
+  "uploadFail": "การอัปโหลดล้มเหลว",
+  "confirmDelete": "คุณแน่ใจหรือว่าจะลบไฟล์การยืนยันนี้",
+  "editTitle": "แก้ไขไฟล์ยืนยัน",
+  "field": {
+    "fileName": "ชื่อไฟล์",
+    "mchNo": "หมายเลขผู้ขาย",
+    "belong": "เป็นของ",
+    "verifyCode": "ตรวจสอบเนื้อหา",
+    "remark": "หมายเหตุ",
+    "createTime": "สร้างเวลา",
+    "fileContent": "เนื้อหาไฟล์",
+    "merchant": "ร้านค้า"
+  },
+  "belong": {
+    "platform": "แพลตฟอร์ม",
+    "merchant": "พ่อค้า"
+  }
+}

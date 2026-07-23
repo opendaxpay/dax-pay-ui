@@ -1,0 +1,45 @@
+{
+  "codeConfig": {
+    "title": "QR Code Pay Config",
+    "editModeLabel": "Config mode",
+    "methodPlaceholder": "Select pay method",
+    "channelMerchantPlaceholder": "Select channel merchant",
+    "capabilityPlaceholder": "Select capability",
+    "saveConfirm": "Save QR code pay config?",
+    "missingAppContext": "Open this page from app management",
+    "levelActive": "Active",
+    "clientEnvs": {
+      "alipay": "Alipay",
+      "union_pay": "UnionPay",
+      "douyin": "Douyin",
+      "wechat": "WeChat"
+    },
+    "payForms": {
+      "h5": "H5",
+      "mini": "Mini Program"
+    },
+    "modeAuto": "Follow channel routing",
+    "modeMethod": "Specify method",
+    "modeDirect": "Direct",
+    "routeNotConfigured": "Belum dikonfigurasi dalam perutean saluran",
+    "routeNoStrategy": "Sila konfigurasi perutean saluran dahulu",
+    "autoModeHint": "Kaedah bayaran dipilih auto mengikut persekitaran dan bentuk (H5/mini); peniaga saluran ikut perutean saluran — tiada tetapan manual",
+    "defaultMethod": "Kaedah lalai",
+    "autoDerived": "Kaedah lalai",
+    "routeMode": "Mod laluan",
+    "goPayRoute": "Konfigurasi perutean saluran",
+    "method": "Kaedah bayaran",
+    "routePreviewTitle": "Pratonton padanan laluan saluran",
+    "currentRouteMode": "Laluan saluran semasa",
+    "capabilityRuntimeDerived": "Ditentukan semasa runtime oleh strategi produk",
+    "openEnv": "Persekitaran",
+    "payForm": "Bentuk",
+    "routeNotConfiguredShort": "Belum ditetapkan",
+    "routeGaps": "Perlu lengkap",
+    "routeCoverage": "Padanan laluan {ok}/{total}",
+    "directModeHint": "Tetapkan peniaga saluran dan keupayaan H5/mini hanya bila perlu; langkau perutean",
+    "atLeastOneRequired": "Konfigurasi sekurang-kurangnya satu persekitaran dan bentuk",
+    "partialRowIncomplete": "Peniaga saluran dan keupayaan mesti diisi bersama",
+    "methodModeHint": "Tetapkan kaedah H5/mini hanya yang diperlukan; peniaga saluran ikut perutean"
+  }
+}

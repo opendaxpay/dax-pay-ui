@@ -34,7 +34,7 @@
     "last30days": "30 Days"
   },
   "quickEntry": {
-    "merchant": "Merchants",
+    "merchant": "Merchant Profile",
     "app": "Applications",
     "channelMerchant": "Channel Merchants",
     "notify": "Notifications",
@@ -44,7 +44,7 @@
     "security": "Security Management",
     "payOrder": "Payment Orders",
     "refundOrder": "Refund Orders",
-    "payTrade": "Fund Trades",
+    "payTrade": "Payment Trades",
     "role": "Roles",
     "menu": "Menus",
     "operateLog": "Operate Logs",
@@ -61,7 +61,8 @@
     "selected": "Selected (drag to sort)",
     "available": "Available",
     "allAdded": "All added",
-    "profile": "Profile"
+    "profile": "Profile",
+    "credential": "Integration Config"
   },
   "notice": {
     "important": "Important",

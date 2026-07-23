@@ -1,0 +1,41 @@
+{
+  "title": "ผู้ใช้ร้านค้า",
+  "field": {
+    "name": "ชื่อ",
+    "account": "บัญชี",
+    "phone": "โทรศัพท์",
+    "email": "อีเมล",
+    "status": "สถานะ",
+    "administrator": "ผู้ดูแลระบบ"
+  },
+  "action": {
+    "add": "เพิ่มผู้ใช้",
+    "edit": "แก้ไขผู้ใช้",
+    "assignRole": "มอบหมายบทบาท",
+    "resetPassword": "รีเซ็ตรหัสผ่าน",
+    "ban": "ห้าม",
+    "unlock": "ปลดล็อค",
+    "batchBan": "แบตช์แบน",
+    "batchUnlock": "ปลดล็อคเป็นกลุ่ม",
+    "batchResetPassword": "รีเซ็ตรหัสผ่านเป็นกลุ่ม",
+    "confirmBan": "คุณแน่ใจหรือว่าจะแบนผู้ใช้รายนี้?",
+    "confirmUnlock": "คุณแน่ใจหรือว่าจะปลดล็อคผู้ใช้รายนี้?",
+    "confirmAssignRole": "คุณแน่ใจหรือไม่ที่จะบันทึกการมอบหมายบทบาท"
+  },
+  "validation": {
+    "pleaseInputName": "กรุณากรอกชื่อ",
+    "pleaseInputAccount": "กรุณากรอกบัญชี",
+    "accountExists": "มีบัญชีอยู่แล้ว",
+    "noAssignableRole": "ไม่มีบทบาทที่ได้รับมอบหมาย"
+  },
+  "password": {
+    "password": "รหัสผ่าน",
+    "confirmPassword": "ยืนยันรหัสผ่าน",
+    "newPassword": "รหัสผ่านใหม่"
+  },
+  "status": {
+    "normal": "ปกติ",
+    "lock": "ล็อคแล้ว",
+    "ban": "ห้าม"
+  }
+}

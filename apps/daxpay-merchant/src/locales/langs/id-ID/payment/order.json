@@ -89,7 +89,9 @@
     "orderAmount": "Jumlah Pesanan",
     "orderNo": "Platform Order No.",
     "authCode": "Kode pembayaran",
-    "merchant": "Merchant"
+    "merchant": "Merchant",
+    "gatewayType": "Jenis Gateway",
+    "storeNo": "No. Toko"
   },
   "bizStatus": {
     "wait_pay": "Menunggu",

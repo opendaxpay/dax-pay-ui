@@ -34,7 +34,7 @@
     "last30days": "近 30 天"
   },
   "quickEntry": {
-    "merchant": "商户管理",
+    "merchant": "商户资料",
     "app": "应用管理",
     "channelMerchant": "通道商户",
     "notify": "通知中心",
@@ -44,7 +44,7 @@
     "security": "安全管理",
     "payOrder": "支付订单",
     "refundOrder": "退款订单",
-    "payTrade": "资金交易",
+    "payTrade": "支付交易",
     "role": "角色管理",
     "menu": "菜单管理",
     "operateLog": "操作日志",
@@ -61,7 +61,8 @@
     "selected": "已选（拖拽排序）",
     "available": "可选入口",
     "allAdded": "已全部添加",
-    "profile": "个人中心"
+    "profile": "个人中心",
+    "credential": "对接配置"
   },
   "notice": {
     "important": "重要",

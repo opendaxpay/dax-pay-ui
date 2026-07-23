@@ -1,0 +1,24 @@
+{
+  "enum": {
+    "alipayIsv": "Alipay (ISV)",
+    "alipay": "Alipay (Langsung)",
+    "wechat": "Pembayaran WeChat (Langsung)",
+    "wechatPay": "Pembayaran WeChat (Langsung)",
+    "wechatIsv": "Pembayaran WeChat (ISV)",
+    "douyinPay": "Douyin Bayar (Langsung)",
+    "umsQrcode": "UMS (C Pindai B)",
+    "umsJsapi": "UMS (JSAPI)",
+    "umsApp": "UMS (aplikasi)",
+    "umsMini": "UMS (Program Mini)",
+    "umsH5": "UMS (H5)",
+    "umsBarcode": "UMS (B Pindai C)",
+    "lakalaPay": "Lakala Membayar",
+    "leshuaPay": "Pembayaran Leshua",
+    "adaPay": "Adapay",
+    "dougongPay": "DouGong",
+    "hkrtPay": "Pembayaran HKRT",
+    "vbillPay": "VBill",
+    "hmPay": "Hmpay",
+    "fuyouPay": "Fuyou Bayar"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "title": "Pengesahan Domain WeChat",
+  "adminTitle": "Pengesahan Domain WeChat",
+  "upload": "Muat Naik Sahkan Fail",
+  "uploadTip": "Pilih fail .txt pengesahan domain WeChat",
+  "uploadSuccess": "Muat naik berjaya",
+  "uploadFail": "Muat naik gagal",
+  "confirmDelete": "Adakah anda pasti akan memadamkan fail pengesahan ini?",
+  "editTitle": "Edit Sahkan Fail",
+  "field": {
+    "fileName": "Nama Fail",
+    "mchNo": "Peniaga No.",
+    "belong": "kepunyaan",
+    "verifyCode": "Sahkan Kandungan",
+    "remark": "Teguran",
+    "createTime": "Cipta Masa",
+    "fileContent": "Kandungan Fail",
+    "merchant": "Peniaga"
+  },
+  "belong": {
+    "platform": "Platform",
+    "merchant": "saudagar"
+  }
+}

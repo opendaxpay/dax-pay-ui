@@ -1,0 +1,24 @@
+{
+  "enum": {
+    "alipayIsv": "支付寶(服務商)",
+    "alipay": "支付寶(直連)",
+    "wechat": "微信支付(直連)",
+    "wechatPay": "微信支付(直連)",
+    "wechatIsv": "微信支付(服務商)",
+    "douyinPay": "抖音支付(直連)",
+    "umsQrcode": "銀聯商務(C掃B)",
+    "umsJsapi": "銀聯商務(公眾號)",
+    "umsApp": "銀聯商務(APP)",
+    "umsMini": "銀聯商務(小程式)",
+    "umsH5": "銀聯商務(H5)",
+    "umsBarcode": "銀聯商務(B掃C)",
+    "lakalaPay": "拉卡拉支付",
+    "leshuaPay": "樂刷支付",
+    "adaPay": "Adapay",
+    "dougongPay": "斗拱",
+    "hkrtPay": "海科融通支付",
+    "vbillPay": "隨行付",
+    "hmPay": "河馬付",
+    "fuyouPay": "富友支付"
+  }
+}

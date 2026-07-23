@@ -1,0 +1,43 @@
+{
+  "aggregate": {
+    "title": "Konfigurasi Pembayaran Agregat",
+    "editModeLabel": "Tingkat Konfigurasi",
+    "autoLaunch": "Peluncuran Otomatis",
+    "autoLaunchHint": "Secara otomatis memulai pembayaran setelah pemindaian, tidak perlu klik manual",
+    "scene": "Lingkungan Terbuka",
+    "method": "Metode Pembayaran",
+    "methodPlaceholder": "Pilih metode pembayaran",
+    "channelMerchant": "Pedagang Saluran",
+    "channelMerchantPlaceholder": "Pilih pedagang saluran",
+    "capability": "Kemampuan",
+    "capabilityPlaceholder": "Pilih kemampuan",
+    "saveConfirm": "Simpan konfigurasi pembayaran agregat?",
+    "missingAppContext": "Silakan buka konfigurasi pembayaran agregat dari manajemen aplikasi",
+    "notSelected": "Tidak dipilih",
+    "levelActive": "Aktif",
+    "clientEnvs": {
+      "alipay": "Alipay",
+      "union_pay": "UnionPay",
+      "douyin": "Douyin",
+      "wechat": "Wechat wechat"
+    },
+    "modeAuto": "Ikuti Perutean Saluran",
+    "modeMethod": "Berdasarkan Metode",
+    "modeDirect": "Tentukan Langsung",
+    "currentRouteMode": "Rute saluran saat ini",
+    "defaultMethod": "Metode default",
+    "autoDerived": "Metode default",
+    "capabilityRuntimeDerived": "Ditentukan runtime oleh strategi produk",
+    "routeMode": "Mode rute",
+    "goPayRoute": "Atur perutean saluran",
+    "routePreviewTitle": "Pratinjau hit rute saluran",
+    "routeNotConfigured": "Belum dikonfigurasi di perutean saluran",
+    "autoModeHint": "Metode bayar dipilih otomatis menurut lingkungan buka; pedagang saluran mengikuti perutean saluran — tanpa pengaturan manual",
+    "routeNoStrategy": "Konfigurasi perutean saluran terlebih dahulu",
+    "routeNotConfiguredShort": "Belum diatur",
+    "directModeHint": "Atur pedagang saluran dan kemampuan hanya yang dibutuhkan; lewati perutean saluran",
+    "atLeastOneRequired": "Konfigurasi minimal satu lingkungan buka",
+    "partialRowIncomplete": "Pedagang saluran dan kemampuan harus diisi bersama",
+    "methodModeHint": "Atur metode bayar hanya untuk lingkungan yang dibutuhkan; pedagang saluran mengikuti perutean"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "notifyConfig": {
+    "title": "Async Notify Config",
+    "infoBanner": "Async notify config receives business event callbacks pushed by the platform. Please fill in an https callback URL accessible from the public network",
+    "notifyUrl": "Callback URL",
+    "notifyUrlTooltip": "Event notifications will be pushed to this URL via HTTP POST, must start with https://",
+    "notifyUrlPlaceholder": "https://your-callback-receiver-url",
+    "notifyWay": "Notify Method",
+    "notifyWayHint": "Only HTTP async callback is supported in the current version",
+    "subscribedEvents": "Subscribed Events",
+    "subscribedEventsTooltip": "Select the business event types you want to receive",
+    "eventPay": "Pay",
+    "eventCashouts": "Cashout",
+    "eventSettle": "Settle",
+    "status": "Status",
+    "statusEnable": "Enable",
+    "statusDisable": "Disable",
+    "remark": "Remark",
+    "remarkPlaceholder": "Please enter remark",
+    "confirmSave": "Save async notify config?",
+    "saveSuccess": "Saved successfully",
+    "eventRefund": "Refund"
+  }
+}

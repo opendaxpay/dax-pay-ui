@@ -1,0 +1,37 @@
+{
+  "store": {
+    "title": "Quản lý cửa hàng",
+    "field": {
+      "storeNo": "Cửa hàng số",
+      "storeName": "Tên cửa hàng",
+      "contactPhone": "Điện thoại liên hệ",
+      "logoUrl": "Logo cửa hàng",
+      "facadeUrl": "Ảnh mặt tiền cửa hàng",
+      "interiorUrl": "Ảnh nội thất",
+      "region": "Vùng đất",
+      "address": "Địa chỉ",
+      "longitude": "Kinh độ",
+      "latitude": "Vĩ độ",
+      "status": "Trạng thái",
+      "remark": "Nhận xét",
+      "createTime": "Tạo thời gian"
+    },
+    "status": {
+      "enable": "Đã bật",
+      "disabled": "Tàn tật"
+    },
+    "regionPlaceholder": "Vui lòng chọn tỉnh/thành phố/quận",
+    "confirmDelete": "Xóa cửa hàng này?",
+    "validationStoreName": "Vui lòng nhập tên cửa hàng",
+    "validationStatus": "Vui lòng chọn trạng thái",
+    "defaultStore": "Cửa hàng mặc định",
+    "setDefault": "Đặt mặc định",
+    "clearDefault": "Bỏ mặc định",
+    "confirmSetDefault": "Đặt cửa hàng này làm mặc định? Các mặc định khác của thương nhân sẽ bị xóa.",
+    "confirmClearDefault": "Bỏ đánh dấu mặc định cửa hàng này?",
+    "validationDefaultStore": "Vui lòng chọn có phải cửa hàng mặc định",
+    "deleteDefaultBlocked": "Không thể xóa cửa hàng mặc định. Hãy hủy mặc định trước.",
+    "noDefaultStoreTip": "Chưa có cửa hàng mặc định",
+    "confirmDisableDefault": "Hủy trạng thái cửa hàng mặc định?"
+  }
+}

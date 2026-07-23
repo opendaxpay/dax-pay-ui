@@ -34,7 +34,7 @@
     "last30days": "30일"
   },
   "quickEntry": {
-    "merchant": "상인",
+    "merchant": "가맹점 정보",
     "app": "응용",
     "channelMerchant": "채널 판매자",
     "notify": "알림 센터",
@@ -44,7 +44,7 @@
     "security": "보안 관리",
     "payOrder": "지불 주문",
     "refundOrder": "주문 환불",
-    "payTrade": "펀드거래",
+    "payTrade": "결제 거래",
     "role": "역할",
     "menu": "메뉴",
     "operateLog": "로그 운영",
@@ -61,7 +61,8 @@
     "selected": "선택됨(정렬하려면 드래그하세요)",
     "available": "사용 가능",
     "allAdded": "모두 추가됨",
-    "profile": "프로필"
+    "profile": "프로필",
+    "credential": "연동 설정"
   },
   "notice": {
     "important": "중요한",

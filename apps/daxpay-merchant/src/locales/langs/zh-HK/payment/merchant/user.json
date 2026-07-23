@@ -1,0 +1,41 @@
+{
+  "title": "商户用户",
+  "field": {
+    "name": "姓名",
+    "account": "賬號",
+    "phone": "手機號",
+    "email": "郵箱",
+    "status": "狀態",
+    "administrator": "管理員"
+  },
+  "action": {
+    "add": "新增用户",
+    "edit": "編輯用户",
+    "assignRole": "分配角色",
+    "resetPassword": "重置密碼",
+    "ban": "封禁",
+    "unlock": "解鎖",
+    "batchBan": "批量封禁",
+    "batchUnlock": "批量解鎖",
+    "batchResetPassword": "批量重置密碼",
+    "confirmBan": "確認要封禁該用户嗎？",
+    "confirmUnlock": "確認要解鎖該用户嗎？",
+    "confirmAssignRole": "確定要保存角色分配嗎？"
+  },
+  "validation": {
+    "pleaseInputName": "請輸入姓名",
+    "pleaseInputAccount": "請輸入賬號",
+    "accountExists": "賬號已存在",
+    "noAssignableRole": "沒有可分配的角色"
+  },
+  "password": {
+    "password": "密碼",
+    "confirmPassword": "確認密碼",
+    "newPassword": "新密碼"
+  },
+  "status": {
+    "normal": "正常",
+    "lock": "鎖定",
+    "ban": "封禁"
+  }
+}

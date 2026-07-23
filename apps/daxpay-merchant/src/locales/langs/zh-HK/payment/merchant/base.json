@@ -1,0 +1,33 @@
+{
+  "field": {
+    "mchNo": "商户號",
+    "mchName": "商户名稱",
+    "mchShortName": "商户簡稱",
+    "status": "狀態",
+    "subjectType": "主體類型",
+    "createTime": "創建時間",
+    "id": "主鍵"
+  },
+  "status": {
+    "enable": "啓用",
+    "disabled": "禁用"
+  },
+  "subjectType": {
+    "micro": "小微商户",
+    "individual": "個體工商户",
+    "enterprise": "企業"
+  },
+  "action": {
+    "confirmEnableContent": "確定要啓用該商户嗎？",
+    "confirmDisableContent": "確定要禁用該商户嗎？禁用後商户賬號將無法登錄。",
+    "delete": "刪除商戶"
+  },
+  "validation": {
+    "pleaseInputMchName": "請輸入商户名稱",
+    "pleaseInputMchShortName": "請輸入商户簡稱",
+    "pleaseInputAccount": "請輸入管理員賬號",
+    "pleaseConfirmPassword": "請確認密碼",
+    "pleaseSelectSubjectType": "請選擇主體類型",
+    "pleaseSelectStatus": "請選擇狀態"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "store": {
+    "title": "매장관리",
+    "field": {
+      "storeNo": "매장번호",
+      "storeName": "상점 이름",
+      "contactPhone": "연락처 전화",
+      "logoUrl": "매장 로고",
+      "facadeUrl": "매장 사진",
+      "interiorUrl": "인테리어 사진",
+      "region": "지역",
+      "address": "주소",
+      "longitude": "경도",
+      "latitude": "위도",
+      "status": "상태",
+      "remark": "주목",
+      "createTime": "시간 만들기"
+    },
+    "status": {
+      "enable": "활성화됨",
+      "disabled": "장애가 있는"
+    },
+    "regionPlaceholder": "도/시/군을 선택해주세요.",
+    "confirmDelete": "이 매장을 삭제하시겠습니까?",
+    "validationStoreName": "매장명을 입력해주세요",
+    "validationStatus": "상태를 선택해주세요",
+    "defaultStore": "기본 매장",
+    "setDefault": "기본으로 설정",
+    "clearDefault": "기본 해제",
+    "confirmSetDefault": "이 매장을 기본으로 설정하시겠습니까? 동일 가맹점의 다른 기본 표시는 해제됩니다.",
+    "confirmClearDefault": "이 매장의 기본 표시를 해제하시겠습니까?",
+    "validationDefaultStore": "기본 매장 여부를 선택해주세요",
+    "deleteDefaultBlocked": "기본 매장은 삭제할 수 없습니다. 먼저 다른 매장을 기본으로 설정하세요",
+    "noDefaultStoreTip": "기본 매장이 설정되지 않았습니다. 매장을 하나 선택해 기본으로 설정하세요",
+    "confirmDisableDefault": "이 매장은 기본 매장입니다. 비활성화하면 storeNo 미지정 주문의 폴백이 실패합니다. 비활성화할까요?"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "aggregate": {
+    "title": "聚合收款配置",
+    "editModeLabel": "配置模式",
+    "autoLaunch": "自動拉起支付",
+    "autoLaunchHint": "掃碼後自動發起支付,無需使用者手動點選",
+    "scene": "開啟環境",
+    "method": "支付方式",
+    "methodPlaceholder": "請選擇支付方式",
+    "channelMerchant": "通道商戶號",
+    "channelMerchantPlaceholder": "請選擇通道商戶",
+    "capability": "支付能力",
+    "capabilityPlaceholder": "請選擇支付能力",
+    "saveConfirm": "確定要儲存聚合收款配置嗎?",
+    "missingAppContext": "請從應用管理進入聚合收款配置",
+    "notSelected": "未選擇",
+    "levelActive": "生效中",
+    "clientEnvs": {
+      "alipay": "支付寶環境",
+      "union_pay": "雲閃付環境",
+      "douyin": "抖音環境",
+      "wechat": "微信環境"
+    },
+    "modeAuto": "跟隨通道路由",
+    "modeMethod": "指定支付方式",
+    "modeDirect": "直接指定",
+    "currentRouteMode": "目前通道路由",
+    "defaultMethod": "預設支付方式",
+    "autoDerived": "預設支付方式",
+    "capabilityRuntimeDerived": "執行時由產品策略決定",
+    "routeMode": "路由維度",
+    "goPayRoute": "前往設定通道路由",
+    "routePreviewTitle": "通道路由命中預覽",
+    "routeNotConfigured": "通道路由未設定",
+    "autoModeHint": "依開啟環境自動選擇支付方式，通道商戶跟隨通道路由，無需手動設定",
+    "routeNoStrategy": "請先設定通道路由",
+    "routeNotConfiguredShort": "未設定",
+    "directModeHint": "按需為開啟環境指定通道商戶和支付能力（可只配部分環境），跳過通道路由",
+    "atLeastOneRequired": "請至少設定一個開啟環境",
+    "partialRowIncomplete": "通道商戶與支付能力須同時填寫",
+    "methodModeHint": "按需為開啟環境指定支付方式（可只配部分環境），通道商戶跟隨通道路由"
+  }
+}

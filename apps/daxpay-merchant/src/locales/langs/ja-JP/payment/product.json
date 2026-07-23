@@ -1,0 +1,24 @@
+{
+  "enum": {
+    "alipayIsv": "アリペイ (ISV)",
+    "alipay": "Alipay（ダイレクト）",
+    "wechat": "WeChat Pay (直接)",
+    "wechatPay": "WeChat Pay (直接)",
+    "wechatIsv": "WeChat Pay (ISV)",
+    "douyinPay": "Douyin Pay (直接)",
+    "umsQrcode": "UMS（CスキャンB）",
+    "umsJsapi": "UMS（JSAPI）",
+    "umsApp": "UMS（アプリ）",
+    "umsMini": "UMS（ミニプログラム）",
+    "umsH5": "UMS(H5)",
+    "umsBarcode": "UMS（BスキャンC）",
+    "lakalaPay": "ラカラ・ペイ",
+    "leshuaPay": "レスア・ペイ",
+    "adaPay": "アダペイ",
+    "dougongPay": "ドゥゴン",
+    "hkrtPay": "香港RT支払い",
+    "vbillPay": "Vビル",
+    "hmPay": "ハムペイ",
+    "fuyouPay": "芙蓉ペイ"
+  }
+}

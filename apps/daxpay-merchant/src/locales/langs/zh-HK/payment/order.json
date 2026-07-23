@@ -90,7 +90,8 @@
     "orderNo": "平台業務單號",
     "authCode": "付款碼",
     "merchant": "商戶",
-    "storeNo": "門店號"
+    "storeNo": "門店號",
+    "gatewayType": "網關類型"
   },
   "bizStatus": {
     "wait_pay": "待支付",

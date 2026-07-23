@@ -1,0 +1,17 @@
+{
+  "title": "コールバック記録",
+  "tradeNo": "取引番号",
+  "outTradeNo": "チャネル取引番号",
+  "callbackType": "コールバック種別",
+  "status": "処理状態",
+  "errorMsg": "エラー情報",
+  "notifyInfo": "通知ペイロード",
+  "createTime": "通知日時",
+  "placeholderTradeNo": "取引番号を入力",
+  "placeholderOutTradeNo": "チャネル取引番号を入力",
+  "typePay": "支払",
+  "typeRefund": "返金",
+  "detail": "コールバック詳細",
+  "channelMchNo": "チャネル加盟店",
+  "placeholderChannelMchNo": "チャネル加盟店番号を入力"
+}

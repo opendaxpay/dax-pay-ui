@@ -1,0 +1,24 @@
+{
+  "title": "WeChatドメインの検証",
+  "adminTitle": "WeChatドメインの検証",
+  "upload": "検証ファイルをアップロードする",
+  "uploadTip": "WeChat ドメイン検証 .txt ファイルを選択します",
+  "uploadSuccess": "アップロードに成功しました",
+  "uploadFail": "アップロードに失敗しました",
+  "confirmDelete": "この確認ファイルを削除してもよろしいですか?",
+  "editTitle": "検証ファイルの編集",
+  "field": {
+    "fileName": "ファイル名",
+    "mchNo": "販売者番号",
+    "belong": "属する",
+    "verifyCode": "コンテンツの検証",
+    "remark": "述べる",
+    "createTime": "時間を作る",
+    "fileContent": "ファイルの内容",
+    "merchant": "加盟店"
+  },
+  "belong": {
+    "platform": "プラットフォーム",
+    "merchant": "商人"
+  }
+}

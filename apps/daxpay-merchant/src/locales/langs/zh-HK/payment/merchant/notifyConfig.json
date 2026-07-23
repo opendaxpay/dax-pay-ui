@@ -1,0 +1,24 @@
+{
+  "notifyConfig": {
+    "title": "異步通知配置",
+    "infoBanner": "異步通知配置用於接收平台主動推送的業務事件回調，請填寫可被公網訪問的 https 回調地址",
+    "notifyUrl": "回調地址",
+    "notifyUrlTooltip": "事件通知將以 HTTP POST 方式推送到該地址，需以 https:// 開頭",
+    "notifyUrlPlaceholder": "https://您的回調接收地址",
+    "notifyWay": "通知方式",
+    "notifyWayHint": "當前版本僅支持 HTTP 異步回調",
+    "subscribedEvents": "訂閲事件",
+    "subscribedEventsTooltip": "勾選需要接收通知的業務事件類型",
+    "eventPay": "支付",
+    "eventCashouts": "提現",
+    "eventSettle": "結算",
+    "status": "啓用狀態",
+    "statusEnable": "啓用",
+    "statusDisable": "禁用",
+    "remark": "備註",
+    "remarkPlaceholder": "請輸入備註",
+    "confirmSave": "確定要保存異步通知配置嗎？",
+    "saveSuccess": "保存成功",
+    "eventRefund": "退款"
+  }
+}

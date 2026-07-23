@@ -1,0 +1,24 @@
+{
+  "notifyConfig": {
+    "title": "Konfigurasi Pemberitahuan Async",
+    "infoBanner": "Konfigurasi pemberitahuan Async menerima panggilan balik acara perniagaan yang ditolak oleh platform. Sila isikan URL panggilan balik https yang boleh diakses daripada rangkaian awam",
+    "notifyUrl": "URL panggilan balik",
+    "notifyUrlTooltip": "Pemberitahuan acara akan ditolak ke URL ini melalui HTTP POST, mesti bermula dengan https://",
+    "notifyUrlPlaceholder": "https://url-penerima-panggilan-balik-anda",
+    "notifyWay": "Kaedah Makluman",
+    "notifyWayHint": "Hanya panggil balik tak segerak HTTP disokong dalam versi semasa",
+    "subscribedEvents": "Acara Langganan",
+    "subscribedEventsTooltip": "Pilih jenis acara perniagaan yang ingin anda terima",
+    "eventPay": "bayar",
+    "eventCashouts": "Pengeluaran tunai",
+    "eventSettle": "Settle",
+    "status": "Status",
+    "statusEnable": "Dayakan",
+    "statusDisable": "Lumpuhkan",
+    "remark": "Teguran",
+    "remarkPlaceholder": "Sila masukkan catatan",
+    "confirmSave": "Simpan konfigurasi pemberitahuan async?",
+    "saveSuccess": "Berjaya disimpan",
+    "eventRefund": "Bayaran balik"
+  }
+}

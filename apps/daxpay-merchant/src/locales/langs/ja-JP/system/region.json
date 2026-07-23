@@ -1,0 +1,9 @@
+{
+  "placeholder": "行政地域を選択してください",
+  "level": {
+    "province": "州",
+    "city": "市",
+    "area": "地区/郡",
+    "street": "通り/街"
+  }
+}

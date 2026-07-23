@@ -1,0 +1,24 @@
+{
+  "notifyConfig": {
+    "title": "비동기 알림 구성",
+    "infoBanner": "비동기 알림 구성은 플랫폼에서 푸시한 비즈니스 이벤트 콜백을 수신합니다. 공용 네트워크에서 액세스할 수 있는 https 콜백 URL을 입력하세요.",
+    "notifyUrl": "콜백 URL",
+    "notifyUrlTooltip": "이벤트 알림은 HTTP POST를 통해 이 URL로 푸시되며 https://로 시작해야 합니다.",
+    "notifyUrlPlaceholder": "https://귀하의 콜백-수신자-url",
+    "notifyWay": "알림 방법",
+    "notifyWayHint": "현재 버전에서는 HTTP 비동기 콜백만 지원됩니다.",
+    "subscribedEvents": "구독한 이벤트",
+    "subscribedEventsTooltip": "받고 싶은 비즈니스 이벤트 유형을 선택하세요.",
+    "eventPay": "지불하다",
+    "eventCashouts": "현금화",
+    "eventSettle": "해결하다",
+    "status": "상태",
+    "statusEnable": "할 수 있게 하다",
+    "statusDisable": "장애를 입히다",
+    "remark": "주목",
+    "remarkPlaceholder": "비고를 입력해주세요",
+    "confirmSave": "비동기 알림 구성을 저장하시겠습니까?",
+    "saveSuccess": "성공적으로 저장되었습니다",
+    "eventRefund": "환불"
+  }
+}

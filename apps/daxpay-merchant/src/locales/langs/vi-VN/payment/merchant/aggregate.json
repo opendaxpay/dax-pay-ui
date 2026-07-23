@@ -1,0 +1,43 @@
+{
+  "aggregate": {
+    "title": "Cấu hình trả lương tổng hợp",
+    "editModeLabel": "Cấp độ cấu hình",
+    "autoLaunch": "Tự động khởi chạy",
+    "autoLaunchHint": "Tự động bắt đầu thanh toán sau khi quét, không cần nhấp chuột thủ công",
+    "scene": "Môi trường mở",
+    "method": "Phương thức thanh toán",
+    "methodPlaceholder": "Chọn phương thức thanh toán",
+    "channelMerchant": "Người bán kênh",
+    "channelMerchantPlaceholder": "Chọn kênh người bán",
+    "capability": "Khả năng",
+    "capabilityPlaceholder": "Chọn khả năng",
+    "saveConfirm": "Lưu cấu hình thanh toán tổng hợp?",
+    "missingAppContext": "Vui lòng mở cấu hình thanh toán tổng hợp từ quản lý ứng dụng",
+    "notSelected": "Không được chọn",
+    "levelActive": "Tích cực",
+    "clientEnvs": {
+      "alipay": "Alipay",
+      "union_pay": "UnionPay",
+      "douyin": "Douyin",
+      "wechat": "WeChat"
+    },
+    "modeAuto": "Theo dõi định tuyến kênh",
+    "modeMethod": "Bằng phương pháp",
+    "modeDirect": "Chỉ định trực tiếp",
+    "currentRouteMode": "Định tuyến kênh hiện tại",
+    "defaultMethod": "Phương thức mặc định",
+    "autoDerived": "Phương thức mặc định",
+    "capabilityRuntimeDerived": "Xác định lúc chạy bởi chiến lược sản phẩm",
+    "routeMode": "Chế độ định tuyến",
+    "goPayRoute": "Cấu hình định tuyến kênh",
+    "routePreviewTitle": "Xem trước khớp định tuyến kênh",
+    "routeNotConfigured": "Chưa cấu hình định tuyến kênh",
+    "autoModeHint": "Tự chọn phương thức theo môi trường mở; thương nhân kênh theo định tuyến kênh, không cần cấu hình tay",
+    "routeNoStrategy": "Vui lòng cấu hình định tuyến kênh trước",
+    "routeNotConfiguredShort": "Chưa cấu hình",
+    "directModeHint": "Chỉ chỉ định thương nhân kênh và năng lực khi cần; bỏ qua định tuyến kênh",
+    "atLeastOneRequired": "Cần cấu hình ít nhất một môi trường",
+    "partialRowIncomplete": "Thương nhân kênh và năng lực phải điền đủ",
+    "methodModeHint": "Chỉ cấu hình phương thức cho môi trường cần dùng; thương nhân kênh theo định tuyến"
+  }
+}

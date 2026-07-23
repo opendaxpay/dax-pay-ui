@@ -1,0 +1,37 @@
+{
+  "store": {
+    "title": "การจัดการร้านค้า",
+    "field": {
+      "storeNo": "หมายเลขร้านค้า",
+      "storeName": "ชื่อร้านค้า",
+      "contactPhone": "โทรศัพท์ติดต่อ",
+      "logoUrl": "โลโก้ร้าน",
+      "facadeUrl": "ภาพถ่ายหน้าร้าน",
+      "interiorUrl": "ภาพถ่ายภายใน",
+      "region": "ภูมิภาค",
+      "address": "ที่อยู่",
+      "longitude": "ลองจิจูด",
+      "latitude": "ละติจูด",
+      "status": "สถานะ",
+      "remark": "หมายเหตุ",
+      "createTime": "สร้างเวลา"
+    },
+    "status": {
+      "enable": "เปิดใช้งานแล้ว",
+      "disabled": "พิการ"
+    },
+    "regionPlaceholder": "กรุณาเลือกจังหวัด/เมือง/อำเภอ",
+    "confirmDelete": "ลบร้านค้านี้ใช่ไหม",
+    "validationStoreName": "กรุณากรอกชื่อร้านค้า",
+    "validationStatus": "กรุณาเลือกสถานะ",
+    "defaultStore": "สาขาเริ่มต้น",
+    "setDefault": "ตั้งเป็นค่าเริ่มต้น",
+    "clearDefault": "ยกเลิกค่าเริ่มต้น",
+    "confirmSetDefault": "ตั้งสาขานี้เป็นค่าเริ่มต้นหรือไม่? ค่าเริ่มต้นอื่นของผู้ค้าจะถูกยกเลิก",
+    "confirmClearDefault": "ยกเลิกการเป็นสาขาเริ่มต้นหรือไม่?",
+    "validationDefaultStore": "กรุณาเลือกว่าเป็นสาขาเริ่มต้นหรือไม่",
+    "deleteDefaultBlocked": "ไม่สามารถลบร้านเริ่มต้นได้ กรุณายกเลิกสถานะเริ่มต้นก่อน",
+    "noDefaultStoreTip": "ยังไม่มีร้านเริ่มต้น",
+    "confirmDisableDefault": "ยกเลิกสถานะร้านเริ่มต้น?"
+  }
+}

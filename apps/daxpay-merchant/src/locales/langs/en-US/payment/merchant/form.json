@@ -1,0 +1,18 @@
+{
+  "add": {
+    "title": "Add Merchant",
+    "mchInfo": "Merchant Information",
+    "mchNamePlaceholder": "Please enter merchant name",
+    "mchShortNamePlaceholder": "Please enter merchant short name",
+    "subjectTypePlaceholder": "Please select merchant type"
+  },
+  "manage": {
+    "info": {
+      "title": "Merchant Profile",
+      "backToWorkbench": "Back to Management"
+    },
+    "manage": {
+      "title": "Manage"
+    }
+  }
+}

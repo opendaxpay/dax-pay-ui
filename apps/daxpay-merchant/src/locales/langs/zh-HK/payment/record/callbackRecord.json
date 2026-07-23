@@ -1,0 +1,17 @@
+{
+  "title": "回調記錄",
+  "tradeNo": "交易號",
+  "outTradeNo": "通道交易號",
+  "callbackType": "回調類型",
+  "status": "處理狀態",
+  "errorMsg": "錯誤資訊",
+  "notifyInfo": "通知報文",
+  "createTime": "通知時間",
+  "placeholderTradeNo": "請輸入交易號",
+  "placeholderOutTradeNo": "請輸入通道交易號",
+  "typePay": "支付",
+  "typeRefund": "退款",
+  "detail": "回調詳情",
+  "channelMchNo": "通道商戶",
+  "placeholderChannelMchNo": "請輸入通道商戶號"
+}

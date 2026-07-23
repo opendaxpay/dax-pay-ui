@@ -1,0 +1,45 @@
+{
+  "codeConfig": {
+    "title": "QR Code Pay Config",
+    "editModeLabel": "Config mode",
+    "methodPlaceholder": "Select pay method",
+    "channelMerchantPlaceholder": "Select channel merchant",
+    "capabilityPlaceholder": "Select capability",
+    "saveConfirm": "Save QR code pay config?",
+    "missingAppContext": "Open this page from app management",
+    "levelActive": "Active",
+    "clientEnvs": {
+      "alipay": "Alipay",
+      "union_pay": "UnionPay",
+      "douyin": "Douyin",
+      "wechat": "WeChat"
+    },
+    "payForms": {
+      "h5": "H5",
+      "mini": "Mini Program"
+    },
+    "modeAuto": "Follow channel routing",
+    "modeMethod": "Specify method",
+    "modeDirect": "Direct",
+    "routeNotConfigured": "チャネルルーティング未設定",
+    "routeNoStrategy": "先にチャネルルーティングを設定してください",
+    "autoModeHint": "起動環境と形態（H5/ミニ）に応じて支払い方法を自動選択し、チャネル加盟店は通道路由に従います（手動設定不要）",
+    "defaultMethod": "デフォルト支払い方法",
+    "autoDerived": "デフォルト支払い方法",
+    "routeMode": "ルート種別",
+    "goPayRoute": "チャネルルーティング設定へ",
+    "method": "支払い方法",
+    "routePreviewTitle": "チャネルルート一致プレビュー",
+    "currentRouteMode": "現在のチャネルルート",
+    "capabilityRuntimeDerived": "実行時に製品戦略で決定",
+    "openEnv": "起動環境",
+    "payForm": "形態",
+    "routeNotConfiguredShort": "未設定",
+    "routeGaps": "要補完",
+    "routeCoverage": "ルート命中 {ok}/{total}",
+    "directModeHint": "必要な環境の H5/ミニだけチャネル加盟店と能力を指定（一部のみ可）。通道路由をスキップします",
+    "atLeastOneRequired": "少なくとも1つの環境×形態を設定してください",
+    "partialRowIncomplete": "チャネル加盟店と支払能力は両方必須です",
+    "methodModeHint": "必要な環境の H5/ミニだけ支払い方法を指定（一部のみ可）。チャネル加盟店は通道路由に従います"
+  }
+}

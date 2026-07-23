@@ -1,0 +1,43 @@
+{
+  "aggregate": {
+    "title": "集計給与構成",
+    "editModeLabel": "構成レベル",
+    "autoLaunch": "自動起動",
+    "autoLaunchHint": "スキャン後に自動的に支払いが開始され、手動でクリックする必要はありません",
+    "scene": "オープンな環境",
+    "method": "支払方法",
+    "methodPlaceholder": "支払い方法を選択してください",
+    "channelMerchant": "チャネルマーチャント",
+    "channelMerchantPlaceholder": "チャネル販売業者を選択してください",
+    "capability": "能力",
+    "capabilityPlaceholder": "機能の選択",
+    "saveConfirm": "合計支払い設定を保存しますか?",
+    "missingAppContext": "アプリ管理から集計支払い設定を開いてください",
+    "notSelected": "未選択",
+    "levelActive": "アクティブ",
+    "clientEnvs": {
+      "alipay": "アリペイ",
+      "union_pay": "銀聯",
+      "douyin": "抖音",
+      "wechat": "微信"
+    },
+    "modeAuto": "チャンネルルーティングに従う",
+    "modeMethod": "方法別",
+    "modeDirect": "直接指定",
+    "currentRouteMode": "現在のチャネルルート",
+    "defaultMethod": "デフォルト支払い方法",
+    "autoDerived": "デフォルト支払い方法",
+    "capabilityRuntimeDerived": "実行時に製品戦略で決定",
+    "routeMode": "ルート種別",
+    "goPayRoute": "チャネルルーティング設定へ",
+    "routePreviewTitle": "チャネルルート一致プレビュー",
+    "routeNotConfigured": "チャネルルーティング未設定",
+    "autoModeHint": "起動環境に応じて支払い方法を自動選択し、チャネル加盟店は通道路由に従います（手動設定不要）",
+    "routeNoStrategy": "先にチャネルルーティングを設定してください",
+    "routeNotConfiguredShort": "未設定",
+    "directModeHint": "必要な環境だけチャネル加盟店と能力を指定（一部のみ可）。通道路由をスキップします",
+    "atLeastOneRequired": "少なくとも1つの起動環境を設定してください",
+    "partialRowIncomplete": "チャネル加盟店と支払能力は両方必須です",
+    "methodModeHint": "必要な起動環境だけ支払い方法を指定（一部のみ可）。チャネル加盟店は通道路由に従います"
+  }
+}

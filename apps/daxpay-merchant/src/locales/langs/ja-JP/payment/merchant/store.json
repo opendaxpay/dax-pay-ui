@@ -1,0 +1,37 @@
+{
+  "store": {
+    "title": "店舗管理",
+    "field": {
+      "storeNo": "店舗番号",
+      "storeName": "店名",
+      "contactPhone": "連絡先電話番号",
+      "logoUrl": "ストアのロゴ",
+      "facadeUrl": "店頭写真",
+      "interiorUrl": "室内写真",
+      "region": "地域",
+      "address": "住所",
+      "longitude": "経度",
+      "latitude": "緯度",
+      "status": "状態",
+      "remark": "述べる",
+      "createTime": "時間を作る"
+    },
+    "status": {
+      "enable": "有効",
+      "disabled": "無効"
+    },
+    "regionPlaceholder": "都道府県/市/区を選択してください",
+    "confirmDelete": "このストアを削除しますか?",
+    "validationStoreName": "店名を入力してください",
+    "validationStatus": "ステータスを選択してください",
+    "defaultStore": "デフォルト店舗",
+    "setDefault": "デフォルトに設定",
+    "clearDefault": "デフォルト解除",
+    "confirmSetDefault": "この店舗をデフォルトにしますか？同一加盟店の他のデフォルトは解除されます。",
+    "confirmClearDefault": "この店舗のデフォルトを解除しますか？",
+    "validationDefaultStore": "デフォルト店舗にするか選択してください",
+    "deleteDefaultBlocked": "デフォルトストアは削除できません。先に別のストアをデフォルトに設定してください",
+    "noDefaultStoreTip": "デフォルトストアが設定されていません。いずれかのストアをデフォルトに設定してください",
+    "confirmDisableDefault": "このストアはデフォルトストアです。無効化すると storeNo 未指定の注文のフォールバックが失敗します。無効化しますか？"
+  }
+}

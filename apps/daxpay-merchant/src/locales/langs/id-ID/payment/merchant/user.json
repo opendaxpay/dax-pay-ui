@@ -1,0 +1,41 @@
+{
+  "title": "Pengguna Pedagang",
+  "field": {
+    "name": "Nama",
+    "account": "Akun",
+    "phone": "Telepon",
+    "email": "E-mail",
+    "status": "Status",
+    "administrator": "Administrator"
+  },
+  "action": {
+    "add": "Tambahkan Pengguna",
+    "edit": "Sunting Pengguna",
+    "assignRole": "Tetapkan Peran",
+    "resetPassword": "Atur Ulang Kata Sandi",
+    "ban": "Melarang",
+    "unlock": "Membuka kunci",
+    "batchBan": "Larangan Batch",
+    "batchUnlock": "Buka Kunci Batch",
+    "batchResetPassword": "Atur Ulang Kata Sandi Batch",
+    "confirmBan": "Apakah Anda yakin akan mencekal pengguna ini?",
+    "confirmUnlock": "Apakah Anda yakin untuk membuka kunci pengguna ini?",
+    "confirmAssignRole": "Apakah Anda yakin untuk menyimpan penetapan peran?"
+  },
+  "validation": {
+    "pleaseInputName": "Silakan masukkan nama",
+    "pleaseInputAccount": "Silakan masukkan akun",
+    "accountExists": "Akun sudah ada",
+    "noAssignableRole": "Tidak ada peran yang dapat ditetapkan"
+  },
+  "password": {
+    "password": "Kata sandi",
+    "confirmPassword": "Konfirmasi Kata Sandi",
+    "newPassword": "Kata Sandi Baru"
+  },
+  "status": {
+    "normal": "Normal",
+    "lock": "Terkunci",
+    "ban": "Dilarang"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "enum": {
+    "alipayIsv": "Alipay (ISV)",
+    "alipay": "Alipay (Trực tiếp)",
+    "wechat": "WeChat Pay (Trực tiếp)",
+    "wechatPay": "WeChat Pay (Trực tiếp)",
+    "wechatIsv": "Thanh toán WeChat (ISV)",
+    "douyinPay": "Douyin Pay (Trực tiếp)",
+    "umsQrcode": "UMS (Quét C B)",
+    "umsJsapi": "UMS (JSAPI)",
+    "umsApp": "UMS (ỨNG DỤNG)",
+    "umsMini": "UMS (Chương trình nhỏ)",
+    "umsH5": "UMS (H5)",
+    "umsBarcode": "UMS (B Quét C)",
+    "lakalaPay": "Lakala Pay",
+    "leshuaPay": "Leshua Pay",
+    "adaPay": "Adapay",
+    "dougongPay": "Đấu Công",
+    "hkrtPay": "HKRT trả tiền",
+    "vbillPay": "Hóa đơn",
+    "hmPay": "Hmpay",
+    "fuyouPay": "Fuyou Pay"
+  }
+}

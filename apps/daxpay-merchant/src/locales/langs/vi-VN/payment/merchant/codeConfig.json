@@ -1,0 +1,45 @@
+{
+  "codeConfig": {
+    "title": "QR Code Pay Config",
+    "editModeLabel": "Config mode",
+    "methodPlaceholder": "Select pay method",
+    "channelMerchantPlaceholder": "Select channel merchant",
+    "capabilityPlaceholder": "Select capability",
+    "saveConfirm": "Save QR code pay config?",
+    "missingAppContext": "Open this page from app management",
+    "levelActive": "Active",
+    "clientEnvs": {
+      "alipay": "Alipay",
+      "union_pay": "UnionPay",
+      "douyin": "Douyin",
+      "wechat": "WeChat"
+    },
+    "payForms": {
+      "h5": "H5",
+      "mini": "Mini Program"
+    },
+    "modeAuto": "Follow channel routing",
+    "modeMethod": "Specify method",
+    "modeDirect": "Direct",
+    "routeNotConfigured": "Chưa cấu hình định tuyến kênh",
+    "routeNoStrategy": "Vui lòng cấu hình định tuyến kênh trước",
+    "autoModeHint": "Tự chọn phương thức theo môi trường và hình thái (H5/mini); thương nhân kênh theo định tuyến kênh, không cần cấu hình tay",
+    "defaultMethod": "Phương thức mặc định",
+    "autoDerived": "Phương thức mặc định",
+    "routeMode": "Chế độ định tuyến",
+    "goPayRoute": "Cấu hình định tuyến kênh",
+    "method": "Phương thức",
+    "routePreviewTitle": "Xem trước khớp định tuyến kênh",
+    "currentRouteMode": "Định tuyến kênh hiện tại",
+    "capabilityRuntimeDerived": "Xác định lúc chạy bởi chiến lược sản phẩm",
+    "openEnv": "Môi trường",
+    "payForm": "Hình thái",
+    "routeNotConfiguredShort": "Chưa cấu hình",
+    "routeGaps": "Cần bổ sung",
+    "routeCoverage": "Trúng tuyến {ok}/{total}",
+    "directModeHint": "Chỉ chỉ định thương nhân kênh và năng lực H5/mini khi cần; bỏ qua định tuyến",
+    "atLeastOneRequired": "Cần cấu hình ít nhất một môi trường và hình thái",
+    "partialRowIncomplete": "Thương nhân kênh và năng lực phải điền đủ",
+    "methodModeHint": "Chỉ cấu hình phương thức H5/mini khi cần; thương nhân kênh theo định tuyến"
+  }
+}

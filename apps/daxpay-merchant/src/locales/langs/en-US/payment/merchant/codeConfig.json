@@ -1,0 +1,45 @@
+{
+  "codeConfig": {
+    "title": "QR Code Pay Config",
+    "editModeLabel": "Config mode",
+    "methodPlaceholder": "Select pay method",
+    "channelMerchantPlaceholder": "Select channel merchant",
+    "capabilityPlaceholder": "Select capability",
+    "saveConfirm": "Save QR code pay config?",
+    "missingAppContext": "Open this page from app management",
+    "levelActive": "Active",
+    "clientEnvs": {
+      "alipay": "Alipay",
+      "union_pay": "UnionPay",
+      "douyin": "Douyin",
+      "wechat": "WeChat"
+    },
+    "payForms": {
+      "h5": "H5",
+      "mini": "Mini Program"
+    },
+    "modeAuto": "Follow channel routing",
+    "modeMethod": "Specify method",
+    "modeDirect": "Direct",
+    "routeNotConfigured": "Not configured in channel routing",
+    "routeNoStrategy": "Configure channel routing first",
+    "autoModeHint": "Pay method is chosen by open environment and form (H5/mini); channel merchant follows channel routing — no manual setup",
+    "defaultMethod": "Default method",
+    "autoDerived": "Default method",
+    "routeMode": "Route mode",
+    "goPayRoute": "Configure channel routing",
+    "method": "Payment method",
+    "routePreviewTitle": "Channel route hit preview",
+    "currentRouteMode": "Current channel route",
+    "capabilityRuntimeDerived": "Resolved at runtime by product strategy",
+    "openEnv": "Open env",
+    "payForm": "Form",
+    "routeNotConfiguredShort": "Not set",
+    "routeGaps": "Gaps",
+    "routeCoverage": "Route hit {ok}/{total}",
+    "directModeHint": "Set channel merchant and capability only where needed; skip channel routing",
+    "atLeastOneRequired": "Configure at least one environment and form",
+    "partialRowIncomplete": "Channel merchant and capability must both be set",
+    "methodModeHint": "Set pay methods only for env/forms you need; channel merchant follows channel routing"
+  }
+}

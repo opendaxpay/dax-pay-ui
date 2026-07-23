@@ -1,0 +1,34 @@
+{
+  "route": {
+    "title": "チャネルバインディング",
+    "editModeLabel": "構成ディメンション",
+    "setActiveMode": "アクティブとして設定",
+    "setActiveModeConfirm": "このアプリのチャンネル ルーティングを「{mode}」に設定します。新しい注文は、この構成を使用してチャネル販売者を解決します。続く？",
+    "alreadyActiveMode": "すでにアクティブな構成",
+    "activeModeTag": "アクティブ",
+    "modeBasic": "ブランドデフォルトによる",
+    "modeScene": "方法別",
+    "payCapability": "支払い機能",
+    "payCapabilityPlaceholder": "機能を選択してください",
+    "sceneSaveConfirm": "メソッドルーティングで保存しますか?これにより、チャネル販売者と支払い方法ごとの機能マッピングが上書きされます。",
+    "basicProductNotSelected": "未選択",
+    "channelMerchant": "チャネル販売者",
+    "channelMerchantPlaceholder": "チャネル販売者を選択してください",
+    "channelMerchantNotFound": "利用可能なチャネル販売者がいません",
+    "sceneChannelMchCapabilityPairHint": "チャネルマーチャントと機能の両方を選択するか、両方を空のままにします。部分的な選択は許可されません",
+    "basicSaveConfirm": "ブランドデフォルトのルーティングで保存しますか?これにより、有料プロバイダーごとのデフォルトのチャネル販売者が上書きされます。",
+    "sceneRouteNotSelected": "未選択",
+    "configTab": "ルーティング",
+    "method": "支払い方法",
+    "missingAppContext": "アプリ管理からのオープンチャネルルーティング",
+    "providers": {
+      "aggregate_pay": "総支払額",
+      "wechat": "ウィーチャットペイ",
+      "alipay": "アリペイ",
+      "union_pay": "銀聯",
+      "visa": "ビザ",
+      "mastercard": "マスターカード",
+      "douyin": "ドゥインペイ"
+    }
+  }
+}

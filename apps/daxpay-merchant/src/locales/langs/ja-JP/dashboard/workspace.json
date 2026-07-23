@@ -34,7 +34,7 @@
     "last30days": "30日"
   },
   "quickEntry": {
-    "merchant": "商人",
+    "merchant": "加盟店情報",
     "app": "アプリケーション",
     "channelMerchant": "チャネル販売者",
     "notify": "通知センター",
@@ -44,7 +44,7 @@
     "security": "セキュリティ管理",
     "payOrder": "支払い命令",
     "refundOrder": "返金注文",
-    "payTrade": "ファンド取引",
+    "payTrade": "支払取引",
     "role": "役割",
     "menu": "メニュー",
     "operateLog": "操作ログ",
@@ -61,7 +61,8 @@
     "selected": "選択済み (ドラッグして並べ替え)",
     "available": "利用可能",
     "allAdded": "すべて追加されました",
-    "profile": "プロフィール"
+    "profile": "プロフィール",
+    "credential": "連携設定"
   },
   "notice": {
     "important": "重要",

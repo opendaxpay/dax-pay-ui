@@ -1,3 +1,5 @@
+import { PermCodes } from '#/constants/perm-codes';
+
 /** 快捷入口元信息 */
 export interface QuickEntryMeta {
   /** 入口唯一 key（与后端 entries 数组元素一致，两端复用） */
@@ -22,6 +24,7 @@ export interface QuickEntryMeta {
  * 快捷入口目录（Web 商户端）
  *
  * 单一事实源：所有可用入口在此声明，widget 与编辑抽屉共用
+ * routeName 必须等于菜单 path（前端 name = menu.path）
  * profile / notify / analytics 均为 core 路由，无菜单权限门槛
  */
 export const ENTRY_CATALOG: QuickEntryMeta[] = [
@@ -55,6 +58,50 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     perms: [],
     defaultVisible: true,
     defaultOrder: 3,
+  },
+  {
+    key: 'merchant',
+    // 商户资料（菜单 path）
+    routeName: '/mch/info',
+    icon: 'lucide:badge-info',
+    titleKey: 'dashboard.workspace.quickEntry.merchant',
+    color: 'bg-sky-500',
+    perms: [PermCodes.Merchant.Info.VIEW],
+    defaultVisible: true,
+    defaultOrder: 4,
+  },
+  {
+    key: 'app',
+    // 应用管理
+    routeName: '/mch/app',
+    icon: 'lucide:app-window',
+    titleKey: 'dashboard.workspace.quickEntry.app',
+    color: 'bg-emerald-500',
+    perms: [PermCodes.Merchant.App.VIEW],
+    defaultVisible: true,
+    defaultOrder: 5,
+  },
+  {
+    key: 'credential',
+    // 对接配置
+    routeName: '/mch/credential',
+    icon: 'lucide:key',
+    titleKey: 'dashboard.workspace.quickEntry.credential',
+    color: 'bg-violet-500',
+    perms: [PermCodes.Merchant.Credential.VIEW],
+    defaultVisible: true,
+    defaultOrder: 6,
+  },
+  {
+    key: 'payTrade',
+    // 支付交易 / 资金交易
+    routeName: '/trade/pay-trade',
+    icon: 'lucide:arrow-left-right',
+    titleKey: 'dashboard.workspace.quickEntry.payTrade',
+    color: 'bg-teal-500',
+    perms: [PermCodes.Trade.Fund.VIEW],
+    defaultVisible: true,
+    defaultOrder: 7,
   },
 ];
 

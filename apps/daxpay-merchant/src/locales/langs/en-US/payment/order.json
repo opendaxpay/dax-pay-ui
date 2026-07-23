@@ -90,7 +90,8 @@
     "orderNo": "Platform Order No.",
     "authCode": "Payment code",
     "merchant": "Merchant",
-    "storeNo": "Store No."
+    "storeNo": "Store No.",
+    "gatewayType": "Gateway Type"
   },
   "bizStatus": {
     "wait_pay": "Waiting",
@@ -125,7 +126,8 @@
     "cancel": "default"
   },
   "tradeType": {
-    "normal": "Normal Payment"
+    "normal": "Normal Payment",
+    "gateway": "Gateway Payment"
   },
   "gatewayType": {
     "cashier": "Cashier",

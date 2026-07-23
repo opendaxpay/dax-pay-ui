@@ -1,0 +1,34 @@
+{
+  "route": {
+    "title": "Pengikatan Saluran",
+    "editModeLabel": "Dimensi konfigurasi",
+    "setActiveMode": "Tetapkan sebagai aktif",
+    "setActiveModeConfirm": "Setel perutean saluran aplikasi ini ke \"{mode}\". Pesanan baru akan diselesaikan oleh pedagang saluran menggunakan konfigurasi ini. Melanjutkan?",
+    "alreadyActiveMode": "Konfigurasinya sudah aktif",
+    "activeModeTag": "Aktif",
+    "modeBasic": "Berdasarkan Default Merek",
+    "modeScene": "Berdasarkan Metode",
+    "payCapability": "Kemampuan pembayaran",
+    "payCapabilityPlaceholder": "Pilih kemampuan",
+    "sceneSaveConfirm": "Simpan Dengan Metode perutean? Ini akan menimpa pedagang saluran dan pemetaan kemampuan per metode pembayaran.",
+    "basicProductNotSelected": "Tidak dipilih",
+    "channelMerchant": "Pedagang saluran",
+    "channelMerchantPlaceholder": "Pilih pedagang saluran",
+    "channelMerchantNotFound": "Tidak ada pedagang saluran yang tersedia",
+    "sceneChannelMchCapabilityPairHint": "Pilih pedagang saluran dan kemampuan, atau biarkan keduanya kosong; seleksi parsial tidak diperbolehkan",
+    "basicSaveConfirm": "Simpan Berdasarkan Merek Perutean default? Tindakan ini akan menimpa pedagang saluran default per penyedia pembayaran.",
+    "sceneRouteNotSelected": "Tidak dipilih",
+    "configTab": "Rute",
+    "method": "Metode Pembayaran",
+    "missingAppContext": "Buka perutean saluran dari Manajemen Aplikasi",
+    "providers": {
+      "aggregate_pay": "Pembayaran Agregat",
+      "wechat": "Pembayaran WeChat",
+      "alipay": "Alipay",
+      "union_pay": "UnionPay",
+      "visa": "Visa",
+      "mastercard": "MasterCard",
+      "douyin": "Pembayaran Douyin"
+    }
+  }
+}

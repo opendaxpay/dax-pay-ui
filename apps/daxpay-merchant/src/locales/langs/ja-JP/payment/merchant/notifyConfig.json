@@ -1,0 +1,24 @@
+{
+  "notifyConfig": {
+    "title": "非同期通知構成",
+    "infoBanner": "非同期通知構成は、プラットフォームによってプッシュされたビジネス イベント コールバックを受信します。パブリック ネットワークからアクセスできる https コールバック URL を入力してください",
+    "notifyUrl": "コールバック URL",
+    "notifyUrlTooltip": "イベント通知は HTTP POST 経由でこの URL にプッシュされます。https:// で始まる必要があります。",
+    "notifyUrlPlaceholder": "https://あなたのコールバック受信者のURL",
+    "notifyWay": "通知方法",
+    "notifyWayHint": "現在のバージョンでは HTTP 非同期コールバックのみがサポートされています",
+    "subscribedEvents": "サブスクライブされたイベント",
+    "subscribedEventsTooltip": "受信したいビジネス イベントの種類を選択してください",
+    "eventPay": "支払う",
+    "eventCashouts": "キャッシュアウト",
+    "eventSettle": "解決する",
+    "status": "状態",
+    "statusEnable": "有効にする",
+    "statusDisable": "無効にする",
+    "remark": "述べる",
+    "remarkPlaceholder": "備考を入力してください",
+    "confirmSave": "非同期通知設定を保存しますか?",
+    "saveSuccess": "正常に保存されました",
+    "eventRefund": "返金"
+  }
+}

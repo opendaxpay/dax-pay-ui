@@ -1,0 +1,37 @@
+{
+  "store": {
+    "title": "Store Management",
+    "field": {
+      "storeNo": "Store No.",
+      "storeName": "Store Name",
+      "contactPhone": "Contact Phone",
+      "logoUrl": "Store Logo",
+      "facadeUrl": "Storefront Photo",
+      "interiorUrl": "Interior Photo",
+      "region": "Region",
+      "address": "Address",
+      "longitude": "Longitude",
+      "latitude": "Latitude",
+      "status": "Status",
+      "remark": "Remark",
+      "createTime": "Create Time"
+    },
+    "status": {
+      "enable": "Enabled",
+      "disabled": "Disabled"
+    },
+    "regionPlaceholder": "Please select province / city / district",
+    "confirmDelete": "Delete this store?",
+    "validationStoreName": "Please enter store name",
+    "validationStatus": "Please select status",
+    "defaultStore": "Default Store",
+    "setDefault": "Set Default",
+    "clearDefault": "Clear Default",
+    "confirmSetDefault": "Set this store as default? Other default marks for the merchant will be cleared.",
+    "confirmClearDefault": "Clear the default mark for this store?",
+    "validationDefaultStore": "Please select whether it is the default store",
+    "deleteDefaultBlocked": "Default store cannot be deleted. Please set another store as default first",
+    "noDefaultStoreTip": "You haven't set a default store yet. Please select a store as default",
+    "confirmDisableDefault": "This is the default store. Disabling it will break fallback for orders without storeNo. Continue?"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "route": {
+    "title": "채널 바인딩",
+    "editModeLabel": "구성 차원",
+    "setActiveMode": "활성으로 설정",
+    "setActiveModeConfirm": "이 앱의 채널 라우팅을 \"{mode}\"으로 설정하세요. 새로운 주문은 이 구성을 사용하여 채널 판매자를 해결합니다. 계속하다?",
+    "alreadyActiveMode": "이미 활성 구성입니다.",
+    "activeModeTag": "활동적인",
+    "modeBasic": "브랜드 기본값별",
+    "modeScene": "방법별",
+    "payCapability": "결제 기능",
+    "payCapabilityPlaceholder": "기능을 선택하세요",
+    "sceneSaveConfirm": "방법별 저장 라우팅? 이렇게 하면 채널 판매자와 결제 수단별 기능 매핑을 덮어쓰게 됩니다.",
+    "basicProductNotSelected": "선택되지 않음",
+    "channelMerchant": "채널 가맹점",
+    "channelMerchantPlaceholder": "채널 판매자 선택",
+    "channelMerchantNotFound": "사용 가능한 채널 판매자가 없습니다.",
+    "sceneChannelMchCapabilityPairHint": "채널 판매자와 기능을 모두 선택하거나 둘 다 비워 두세요. 부분 선택은 허용되지 않습니다",
+    "basicSaveConfirm": "브랜드별 기본 라우팅으로 저장하시겠습니까? 이렇게 하면 유료 공급자별 기본 채널 판매자를 덮어쓰게 됩니다.",
+    "sceneRouteNotSelected": "선택되지 않음",
+    "configTab": "라우팅",
+    "method": "결제 방법",
+    "missingAppContext": "앱 관리에서 채널 라우팅 열기",
+    "providers": {
+      "aggregate_pay": "총액지불",
+      "wechat": "위챗페이",
+      "alipay": "알리페이",
+      "union_pay": "유니온페이",
+      "visa": "비자",
+      "mastercard": "마스터 카드",
+      "douyin": "두인페이"
+    }
+  }
+}

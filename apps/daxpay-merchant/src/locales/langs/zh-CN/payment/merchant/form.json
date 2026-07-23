@@ -1,0 +1,18 @@
+{
+  "add": {
+    "title": "新增商户",
+    "mchInfo": "商户信息",
+    "mchNamePlaceholder": "请输入商户名称",
+    "mchShortNamePlaceholder": "请输入商户简称",
+    "subjectTypePlaceholder": "请选择商户类型"
+  },
+  "manage": {
+    "info": {
+      "title": "商户资料",
+      "backToWorkbench": "返回管理页"
+    },
+    "manage": {
+      "title": "管理"
+    }
+  }
+}

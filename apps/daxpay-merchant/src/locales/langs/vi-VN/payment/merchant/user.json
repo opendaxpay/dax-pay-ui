@@ -1,0 +1,41 @@
+{
+  "title": "Người dùng thương gia",
+  "field": {
+    "name": "Tên",
+    "account": "Tài khoản",
+    "phone": "Điện thoại",
+    "email": "E-mail",
+    "status": "Trạng thái",
+    "administrator": "Quản trị viên"
+  },
+  "action": {
+    "add": "Thêm người dùng",
+    "edit": "Chỉnh sửa người dùng",
+    "assignRole": "Gán vai trò",
+    "resetPassword": "Đặt lại mật khẩu",
+    "ban": "cấm",
+    "unlock": "Mở khóa",
+    "batchBan": "Lệnh cấm hàng loạt",
+    "batchUnlock": "Mở khóa hàng loạt",
+    "batchResetPassword": "Đặt lại mật khẩu hàng loạt",
+    "confirmBan": "Bạn có chắc chắn cấm người dùng này?",
+    "confirmUnlock": "Bạn có chắc chắn mở khóa người dùng này không?",
+    "confirmAssignRole": "Bạn có chắc chắn lưu phân công vai trò không?"
+  },
+  "validation": {
+    "pleaseInputName": "Vui lòng nhập tên",
+    "pleaseInputAccount": "Vui lòng nhập tài khoản",
+    "accountExists": "Tài khoản đã tồn tại",
+    "noAssignableRole": "Không có vai trò có thể chuyển nhượng"
+  },
+  "password": {
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "newPassword": "Mật khẩu mới"
+  },
+  "status": {
+    "normal": "Bình thường",
+    "lock": "Đã khóa",
+    "ban": "Bị cấm"
+  }
+}

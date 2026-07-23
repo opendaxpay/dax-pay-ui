@@ -34,7 +34,7 @@
     "last30days": "30 Hari"
   },
   "quickEntry": {
-    "merchant": "Peniaga",
+    "merchant": "Profil Pedagang",
     "app": "Aplikasi",
     "channelMerchant": "Peniaga Saluran",
     "notify": "Pusat Pemberitahuan",
@@ -44,7 +44,7 @@
     "security": "Pengurusan Keselamatan",
     "payOrder": "Pesanan Pembayaran",
     "refundOrder": "Bayaran Balik Pesanan",
-    "payTrade": "Dagangan Dana",
+    "payTrade": "Dagangan Bayaran",
     "role": "Peranan",
     "menu": "Menu",
     "operateLog": "Mengendalikan Log",
@@ -61,7 +61,8 @@
     "selected": "Dipilih (seret untuk mengisih)",
     "available": "Tersedia",
     "allAdded": "Semua ditambah",
-    "profile": "Profil"
+    "profile": "Profil",
+    "credential": "Konfigurasi Integrasi"
   },
   "notice": {
     "important": "penting",

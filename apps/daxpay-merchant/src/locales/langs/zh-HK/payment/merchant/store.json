@@ -1,0 +1,37 @@
+{
+  "store": {
+    "title": "門店管理",
+    "field": {
+      "storeNo": "門店號",
+      "storeName": "門店名稱",
+      "contactPhone": "聯繫人電話",
+      "logoUrl": "門店LOGO",
+      "facadeUrl": "門頭照",
+      "interiorUrl": "門店內景照",
+      "region": "所在地區",
+      "address": "詳細地址",
+      "longitude": "經度",
+      "latitude": "緯度",
+      "status": "狀態",
+      "remark": "備註",
+      "createTime": "創建時間"
+    },
+    "status": {
+      "enable": "啓用",
+      "disabled": "停用"
+    },
+    "regionPlaceholder": "請選擇省/市/區",
+    "confirmDelete": "確定刪除該門店嗎？",
+    "validationStoreName": "請輸入門店名稱",
+    "validationStatus": "請選擇狀態",
+    "defaultStore": "預設門店",
+    "setDefault": "設為預設",
+    "clearDefault": "取消預設",
+    "confirmSetDefault": "確定將該門店設為預設嗎？同商戶下其它預設標記將取消。",
+    "confirmClearDefault": "確定取消該門店的預設標記嗎？",
+    "validationDefaultStore": "請選擇是否為預設門店",
+    "deleteDefaultBlocked": "預設門店不可刪除，請先把其他門店設為預設",
+    "noDefaultStoreTip": "您還沒有設定預設門店，請選擇一個門店設為預設",
+    "confirmDisableDefault": "該門店是預設門店，停用後將無法作為回落，未指定 storeNo 的下單會失敗，確認停用？"
+  }
+}

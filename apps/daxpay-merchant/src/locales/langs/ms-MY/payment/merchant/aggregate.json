@@ -1,0 +1,43 @@
+{
+  "aggregate": {
+    "title": "Konfigurasi Gaji Agregat",
+    "editModeLabel": "Tahap Konfigurasi",
+    "autoLaunch": "Pelancaran Auto",
+    "autoLaunchHint": "Mulakan pembayaran secara automatik selepas mengimbas, tiada klik manual diperlukan",
+    "scene": "Persekitaran Terbuka",
+    "method": "Kaedah Pembayaran",
+    "methodPlaceholder": "Pilih kaedah pembayaran",
+    "channelMerchant": "Peniaga Saluran",
+    "channelMerchantPlaceholder": "Pilih pedagang saluran",
+    "capability": "Keupayaan",
+    "capabilityPlaceholder": "Pilih keupayaan",
+    "saveConfirm": "Simpan konfigurasi gaji agregat?",
+    "missingAppContext": "Sila buka konfigurasi pembayaran agregat daripada pengurusan apl",
+    "notSelected": "Tidak dipilih",
+    "levelActive": "Aktif",
+    "clientEnvs": {
+      "alipay": "Alipay",
+      "union_pay": "UnionPay",
+      "douyin": "Douyin",
+      "wechat": "WeChat"
+    },
+    "modeAuto": "Ikuti Penghalaan Saluran",
+    "modeMethod": "Mengikut Kaedah",
+    "modeDirect": "Tentukan Langsung",
+    "currentRouteMode": "Laluan saluran semasa",
+    "defaultMethod": "Kaedah lalai",
+    "autoDerived": "Kaedah lalai",
+    "capabilityRuntimeDerived": "Ditentukan semasa runtime oleh strategi produk",
+    "routeMode": "Mod laluan",
+    "goPayRoute": "Konfigurasi perutean saluran",
+    "routePreviewTitle": "Pratonton padanan laluan saluran",
+    "routeNotConfigured": "Belum dikonfigurasi dalam perutean saluran",
+    "autoModeHint": "Kaedah bayaran dipilih auto mengikut persekitaran buka; peniaga saluran ikut perutean saluran — tiada tetapan manual",
+    "routeNoStrategy": "Sila konfigurasi perutean saluran dahulu",
+    "routeNotConfiguredShort": "Belum ditetapkan",
+    "directModeHint": "Tetapkan peniaga saluran dan keupayaan hanya bila perlu; langkau perutean saluran",
+    "atLeastOneRequired": "Konfigurasi sekurang-kurangnya satu persekitaran",
+    "partialRowIncomplete": "Peniaga saluran dan keupayaan mesti diisi bersama",
+    "methodModeHint": "Tetapkan kaedah bayaran hanya untuk persekitaran diperlukan; peniaga saluran ikut perutean"
+  }
+}

@@ -90,7 +90,8 @@
     "orderNo": "Platform Order No.",
     "authCode": "支払いコード",
     "merchant": "加盟店",
-    "storeNo": "ストア番号"
+    "storeNo": "ストア番号",
+    "gatewayType": "ゲートウェイ種別"
   },
   "bizStatus": {
     "wait_pay": "待っている",

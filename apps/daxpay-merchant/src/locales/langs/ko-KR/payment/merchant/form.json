@@ -1,0 +1,18 @@
+{
+  "add": {
+    "title": "판매자 추가",
+    "mchInfo": "판매자 정보",
+    "mchNamePlaceholder": "판매자 이름을 입력하세요.",
+    "mchShortNamePlaceholder": "판매자 약칭을 입력하세요.",
+    "subjectTypePlaceholder": "판매자 유형을 선택하세요."
+  },
+  "manage": {
+    "info": {
+      "title": "판매자 프로필",
+      "backToWorkbench": "관리로 돌아가기"
+    },
+    "manage": {
+      "title": "관리하다"
+    }
+  }
+}

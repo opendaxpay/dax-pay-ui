@@ -1,0 +1,41 @@
+{
+  "title": "판매자 사용자",
+  "field": {
+    "name": "이름",
+    "account": "계정",
+    "phone": "핸드폰",
+    "email": "이메일",
+    "status": "상태",
+    "administrator": "관리자"
+  },
+  "action": {
+    "add": "사용자 추가",
+    "edit": "사용자 편집",
+    "assignRole": "역할 할당",
+    "resetPassword": "비밀번호 재설정",
+    "ban": "반",
+    "unlock": "터놓다",
+    "batchBan": "일괄 금지",
+    "batchUnlock": "일괄 잠금 해제",
+    "batchResetPassword": "일괄 재설정 비밀번호",
+    "confirmBan": "이 사용자를 차단하시겠습니까?",
+    "confirmUnlock": "이 사용자를 잠금 해제하시겠습니까?",
+    "confirmAssignRole": "역할 할당을 저장하시겠습니까?"
+  },
+  "validation": {
+    "pleaseInputName": "이름을 입력해주세요",
+    "pleaseInputAccount": "계좌를 입력해주세요",
+    "accountExists": "계정이 이미 존재합니다.",
+    "noAssignableRole": "할당 가능한 역할 없음"
+  },
+  "password": {
+    "password": "비밀번호",
+    "confirmPassword": "비밀번호 확인",
+    "newPassword": "새 비밀번호"
+  },
+  "status": {
+    "normal": "정상",
+    "lock": "잠김",
+    "ban": "금지됨"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "route": {
+    "title": "Channel Binding",
+    "editModeLabel": "Config dimension",
+    "setActiveMode": "Set as active",
+    "setActiveModeConfirm": "Set this app's channel routing to \"{mode}\". New orders will resolve the channel merchant using this config. Continue?",
+    "alreadyActiveMode": "Already the active config",
+    "activeModeTag": "Active",
+    "modeBasic": "By Brand Default",
+    "modeScene": "By Method",
+    "payCapability": "Payment capability",
+    "payCapabilityPlaceholder": "Select a capability",
+    "sceneSaveConfirm": "Save By Method routing? This will overwrite the channel merchant and capability mapping per pay method.",
+    "basicProductNotSelected": "Not selected",
+    "channelMerchant": "Channel merchant",
+    "channelMerchantPlaceholder": "Select a channel merchant",
+    "channelMerchantNotFound": "No channel merchants available",
+    "sceneChannelMchCapabilityPairHint": "Select both channel merchant and capability, or leave both empty; partial selection is not allowed",
+    "basicSaveConfirm": "Save By Brand Default routing? This will overwrite the default channel merchant per pay provider.",
+    "sceneRouteNotSelected": "Not selected",
+    "configTab": "Routing",
+    "method": "Pay Method",
+    "missingAppContext": "Open channel routing from App Management",
+    "providers": {
+      "aggregate_pay": "Aggregate Pay",
+      "wechat": "WeChat Pay",
+      "alipay": "Alipay",
+      "union_pay": "UnionPay",
+      "visa": "Visa",
+      "mastercard": "Mastercard",
+      "douyin": "Douyin Pay"
+    }
+  }
+}

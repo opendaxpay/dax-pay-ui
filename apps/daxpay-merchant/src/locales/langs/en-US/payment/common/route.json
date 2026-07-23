@@ -1,0 +1,8 @@
+{
+  "missingMchNo": "Missing merchant number. Open from the merchant list",
+  "missingAppContext": "Open channel routing from App Management",
+  "productDetail": {
+    "notSupported": "Product detail configuration is not yet supported",
+    "notSupportedDesc": "Detail configuration for \"{product}\" is not yet implemented"
+  }
+}

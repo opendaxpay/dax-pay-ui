@@ -1,0 +1,41 @@
+{
+  "title": "販売者ユーザー",
+  "field": {
+    "name": "名前",
+    "account": "アカウント",
+    "phone": "電話",
+    "email": "電子メール",
+    "status": "状態",
+    "administrator": "管理者"
+  },
+  "action": {
+    "add": "ユーザーの追加",
+    "edit": "ユーザーの編集",
+    "assignRole": "役割の割り当て",
+    "resetPassword": "パスワードのリセット",
+    "ban": "禁止",
+    "unlock": "ロックを解除する",
+    "batchBan": "バッチ禁止",
+    "batchUnlock": "一括ロック解除",
+    "batchResetPassword": "パスワードの一括リセット",
+    "confirmBan": "このユーザーを禁止してもよろしいですか?",
+    "confirmUnlock": "このユーザーのロックを解除してもよろしいですか?",
+    "confirmAssignRole": "役割の割り当てを保存してもよろしいですか?"
+  },
+  "validation": {
+    "pleaseInputName": "名前を入力してください",
+    "pleaseInputAccount": "アカウントを入力してください",
+    "accountExists": "アカウントはすでに存在します",
+    "noAssignableRole": "割り当て可能な役割はありません"
+  },
+  "password": {
+    "password": "パスワード",
+    "confirmPassword": "パスワードを認証する",
+    "newPassword": "新しいパスワード"
+  },
+  "status": {
+    "normal": "普通",
+    "lock": "ロックされています",
+    "ban": "禁止"
+  }
+}
