@@ -1,0 +1,22 @@
+{
+  "mchApp": {
+    "title": "Aplikasi Pedagang",
+    "description": "Tiada aplikasi pedagang telah dicipta atau diaktifkan"
+  },
+  "mchCredential": {
+    "title": "Kelayakan API",
+    "description": "Kelayakan komunikasi pedagang (kunci awam / kunci rahsia) belum dijana"
+  },
+  "channelMerchant": {
+    "title": "Pedagang Saluran",
+    "description": "Tiada pedagang saluran yang diaktifkan telah dikonfigurasi"
+  },
+  "payRoute": {
+    "title": "Laluan Pembayaran",
+    "description": "Sesetengah aplikasi belum mengkonfigurasi strategi laluan pembayaran"
+  },
+  "mchNotify": {
+    "title": "Konfigurasi Pemberitahuan",
+    "description": "Sesetengah aplikasi belum mengkonfigurasi URL pemberitahuan panggilan balik"
+  }
+}

@@ -1,5 +1,14 @@
 {
   "menu.dashboard": "Dasbor",
   "menu.dashboard.workspace": "Ruang kerja",
-  "menu.dashboard.analytics": "Analisis"
+  "menu.dashboard.analytics": "Analisis",
+  "menu.trade": "Manajemen Transaksi",
+  "menu.trade.payTrade": "Transaksi Pembayaran",
+  "menu.trade.normalPay": "Pesanan Normal",
+  "menu.trade.refundOrder": "Pesanan Refund",
+  "menu.trade.payOrder": "Pesanan Pembayaran",
+  "menu.trade.gatewayOrder": "Pesanan Gateway",
+  "menu.trade.record": "Catatan Transaksi",
+  "menu.trade.mchNotice": "Notifikasi Merchant",
+  "menu.trade.callbackRecord": "Catatan Callback"
 }

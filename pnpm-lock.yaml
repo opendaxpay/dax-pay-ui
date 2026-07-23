@@ -545,6 +545,9 @@ importers:
 
   apps/daxpay-admin:
     dependencies:
+      '@daxpay/ui-biz':
+        specifier: workspace:*
+        version: link:../../packages/business/ui-biz
       '@iconify/json':
         specifier: 'catalog:'
         version: 2.2.489
@@ -645,6 +648,9 @@ importers:
 
   apps/daxpay-merchant:
     dependencies:
+      '@daxpay/ui-biz':
+        specifier: workspace:*
+        version: link:../../packages/business/ui-biz
       '@iconify/json':
         specifier: 'catalog:'
         version: 2.2.489
@@ -1272,6 +1278,24 @@ importers:
       '@vueuse/core':
         specifier: 'catalog:'
         version: 14.3.0(vue@3.5.38(typescript@5.9.3))
+      vue:
+        specifier: 3.5.38
+        version: 3.5.38(typescript@5.9.3)
+
+  packages/business/ui-biz:
+    dependencies:
+      '@vben-core/icons':
+        specifier: workspace:*
+        version: link:../../@core/base/icons
+      '@vben/locales':
+        specifier: workspace:*
+        version: link:../../locales
+      '@vben/utils':
+        specifier: workspace:*
+        version: link:../../utils
+      antdv-next:
+        specifier: 'catalog:'
+        version: 1.3.7(vue@3.5.38(typescript@5.9.3))
       vue:
         specifier: 3.5.38
         version: 3.5.38(typescript@5.9.3)

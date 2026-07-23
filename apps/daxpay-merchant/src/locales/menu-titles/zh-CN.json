@@ -1,5 +1,14 @@
 {
   "menu.dashboard": "仪表板",
   "menu.dashboard.workspace": "工作台",
-  "menu.dashboard.analytics": "分析页"
+  "menu.dashboard.analytics": "分析页",
+  "menu.trade": "交易管理",
+  "menu.trade.payTrade": "支付交易",
+  "menu.trade.normalPay": "普通订单",
+  "menu.trade.refundOrder": "退款订单",
+  "menu.trade.payOrder": "支付订单",
+  "menu.trade.gatewayOrder": "网关订单",
+  "menu.trade.record": "交易记录",
+  "menu.trade.mchNotice": "商户通知",
+  "menu.trade.callbackRecord": "回调记录"
 }

@@ -1,0 +1,22 @@
+{
+  "mchApp": {
+    "title": "Merchant App",
+    "description": "No merchant app has been created or enabled"
+  },
+  "mchCredential": {
+    "title": "API Credential",
+    "description": "Merchant communication credentials (public key / secret key) have not been generated"
+  },
+  "channelMerchant": {
+    "title": "Channel Merchant",
+    "description": "No enabled channel merchant has been configured"
+  },
+  "payRoute": {
+    "title": "Payment Route",
+    "description": "Some apps have not configured a payment route strategy"
+  },
+  "mchNotify": {
+    "title": "Notification Config",
+    "description": "Some apps have not configured a callback notification URL"
+  }
+}

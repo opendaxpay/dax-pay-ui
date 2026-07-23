@@ -1,4 +1,6 @@
 // 支付渠道卡片展示（本地SVG；渠道列表以目录 API 为准）
+import { resolveChannelLogoUrl } from '@daxpay/ui-biz/channel';
+
 export interface PayProviderInfo {
   code: string;
   // SVG 文件名（不含扩展名）；优先与 code 一致
@@ -20,15 +22,11 @@ export function findPayProviderDisplay(code: string) {
   return PAY_PROVIDER_DISPLAY.find((item) => item.code === code);
 }
 
-/** 获取支付渠道本地 SVG 的 URL */
+/** 获取支付渠道本地 SVG 的 URL（资源在 @daxpay/ui-biz） */
 export function getProviderSvgUrl(code: string): string | undefined {
   const item = findPayProviderDisplay(code);
   if (!item) {
     return undefined;
   }
-  try {
-    return new URL(`/src/assets/channel/${item.svgName}.svg`, import.meta.url).href;
-  } catch {
-    return undefined;
-  }
+  return resolveChannelLogoUrl(item.svgName);
 }

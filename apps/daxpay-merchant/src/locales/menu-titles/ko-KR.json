@@ -1,5 +1,14 @@
 {
   "menu.dashboard": "계기반",
   "menu.dashboard.workspace": "작업공간",
-  "menu.dashboard.analytics": "해석학"
+  "menu.dashboard.analytics": "해석학",
+  "menu.trade": "거래 관리",
+  "menu.trade.payTrade": "결제 거래",
+  "menu.trade.normalPay": "일반 주문",
+  "menu.trade.refundOrder": "환불 주문",
+  "menu.trade.payOrder": "결제 주문",
+  "menu.trade.gatewayOrder": "게이트웨이 주문",
+  "menu.trade.record": "거래 기록",
+  "menu.trade.mchNotice": "가맹점 알림",
+  "menu.trade.callbackRecord": "콜백 기록"
 }

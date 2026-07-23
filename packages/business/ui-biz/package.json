@@ -1,0 +1,48 @@
+{
+  "name": "@daxpay/ui-biz",
+  "version": "4.0.0-beta1",
+  "license": "LGPL-3.0-or-later",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css",
+    "**/*.vue",
+    "**/*.svg"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./query": {
+      "types": "./src/components/query/index.ts",
+      "default": "./src/components/query/index.ts"
+    },
+    "./channel": {
+      "types": "./src/components/channel/index.ts",
+      "default": "./src/components/channel/index.ts"
+    },
+    "./enums/payment": {
+      "types": "./src/enums/payment/index.ts",
+      "default": "./src/enums/payment/index.ts"
+    },
+    "./enums/payment/channelEnum": {
+      "types": "./src/enums/payment/channelEnum.ts",
+      "default": "./src/enums/payment/channelEnum.ts"
+    },
+    "./enums/payment/productEnum": {
+      "types": "./src/enums/payment/productEnum.ts",
+      "default": "./src/enums/payment/productEnum.ts"
+    },
+    "./enums/payment/providerEnum": {
+      "types": "./src/enums/payment/providerEnum.ts",
+      "default": "./src/enums/payment/providerEnum.ts"
+    }
+  },
+  "dependencies": {
+    "@vben-core/icons": "workspace:*",
+    "@vben/locales": "workspace:*",
+    "@vben/utils": "workspace:*",
+    "antdv-next": "catalog:",
+    "vue": "catalog:"
+  }
+}

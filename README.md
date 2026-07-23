@@ -10,7 +10,7 @@
 
 ## 项目简介
 
-DaxPay Admin 是 DaxPay 支付系统的运营管理后台前端，基于 Vue Vben Admin 5 二次开发。提供商户管理、支付通道配置、支付主数据、IAM 权限、系统管理、工作台分析等功能；文案与菜单标题支持多语（见 `locales/` 与 Agents.md）。
+DaxPay UI 是 DaxPay 支付系统的 Web 管理端 monorepo，基于 Vue Vben Admin 5 二次开发。当前包含运营端 `daxpay-admin` 与商户端 `daxpay-merchant`（阶段 1 脚手架：可登录 + 静态工作台，业务菜单后续接入）。文案与菜单标题支持多语（见 `locales/` 与 Agents.md）。
 
 ## 技术栈
 
@@ -33,49 +33,16 @@ DaxPay Admin 是 DaxPay 支付系统的运营管理后台前端，基于 Vue Vbe
 ```
 dax-pay-ui/
 ├── apps/
-│   └── daxpay-admin/                    # 运营管理后台（当前唯一 app）
+│   ├── daxpay-admin/                    # 运营管理后台（端口 6999）
+│   │   └── src/                         # 结构见下；views 约定见 apps/daxpay-admin/src/views/README.md
+│   └── daxpay-merchant/                 # 商户端（端口 7999；CLIENT_CODE=merchant）
 │       └── src/
-│           ├── adapter/                 # 适配器（组件适配、表单适配）
-│           ├── api/                     # API 接口层
-│           │   ├── core/                # 核心（auth, dict, menu, user…）
-│           │   ├── iam/                 # IAM（perm, social, user…）
-│           │   ├── payment/             # 支付业务
-│           │   │   ├── channel/         # 各通道私有接口
-│           │   │   ├── global/          # 跨通道公共壳 API（channel-merchant…）
-│           │   │   ├── config/          # 产品等配置
-│           │   │   ├── develop/         # 开发联调
-│           │   │   ├── device/          # 设备 / 终端
-│           │   │   ├── masterdata/      # 支付主数据
-│           │   │   ├── merchant/        # 商户
-│           │   │   ├── order/           # 订单
-│           │   │   ├── route/           # 支付路由 API
-│           │   │   └── unipay/          # 统一支付联调 API
-│           │   └── system/              # 系统管理
-│           ├── assets/                  # 静态资源（渠道图标等）
-│           ├── components/              # 跨域可复用业务组件
-│           ├── enums/                   # 枚举定义
-│           ├── hooks/                   # 自定义 Hooks
-│           ├── layouts/                 # 布局
-│           ├── locales/                 # 业务文案 + menu-titles（多语）
-│           ├── router/                  # 路由（动态菜单 + 静态 core）
-│           ├── store/                   # 状态管理
-│           ├── views/                   # 页面视图（约定见 views/README.md）
-│           │   ├── _core/               # 登录 / 鉴权 / fallback
-│           │   ├── dashboard/           # 工作台、数据分析
-│           │   ├── demos/               # 演示页
-│           │   ├── iam/                 # 用户 / 角色 / 菜单 / 社交
-│           │   ├── payment/             # 支付业务（主体）
-│           │   │   ├── global/          # 跨通道公共壳（channel-merchant…）
-│           │   │   ├── channel/         # 按通道分包（alipay、wechat…）
-│           │   │   ├── merchant/        # 商户 / 应用 / 门店等
-│           │   │   ├── route/           # 支付路由
-│           │   │   ├── device/          # 设备 / 终端
-│           │   │   ├── order/ notice/ record/ risk/
-│           │   │   ├── masterdata/ config/ develop/
-│           │   │   └── shared/          # 支付域 TS 工具（非路由页）
-│           │   ├── profile/             # 个人中心
-│           │   └── system/              # 系统配置 / 日志 / 监控 / 通知
-│           └── utils/                   # 工具函数
+│           ├── api/core|iam|system      # 登录/菜单/个人中心/通知等壳层 API
+│           ├── constants/client.ts      # CLIENT_CODE = 'merchant'
+│           ├── views/_core/             # 登录 / 鉴权 / fallback
+│           ├── views/dashboard/workspace/  # 静态工作台壳（阶段1）
+│           ├── views/profile/           # 个人中心
+│           └── views/system/notify/     # 通知中心
 │
 ├── packages/                            # Vben 内核与共享包
 │   ├── @core/                           # 核心（design / icons / shared / ui-kit）
@@ -86,10 +53,9 @@ dax-pay-ui/
 │
 ├── internal/                            # lint / tsconfig / vite-config / node-utils
 └── scripts/                             # 构建与部署脚本
-    ├── deploy/                          # Docker 部署
-    ├── turbo-run/                       # Turbo 运行器
-    └── vsh/                             # Vben Shell 工具
 ```
+
+运营端 `daxpay-admin` 业务目录仍按域划分（`api/payment`、`views/payment/{global,channel,merchant,route,…}` 等），细则见 [`apps/daxpay-admin/src/views/README.md`](apps/daxpay-admin/src/views/README.md)。
 
 **菜单 component 约定**：值为 `/` + `views` 内相对路径（无 `.vue` 后缀），例如 `/payment/merchant/info/MerchantList`。页面目录与命名细则见 [`apps/daxpay-admin/src/views/README.md`](apps/daxpay-admin/src/views/README.md)。
 
@@ -110,18 +76,22 @@ cd dax-pay-ui
 pnpm install
 
 # 3. 启动开发服务器
-pnpm dev:admin
+pnpm dev:admin      # 运营端 http://localhost:6999
+pnpm dev:merchant   # 商户端 http://localhost:7999
 
-# 4. 构建生产版本
-pnpm build:admin
+# 4. 构建生产版本（turbo build 会扫到各 app）
+pnpm build
 ```
+
+> 商户端登录需运营端已创建的商户用户；阶段 1 尚无 `client_code=merchant` 菜单种子，登录后侧栏可为空，静态 `/workspace` 可打开。
 
 ### 常用命令
 
 | 命令 | 说明 |
 |------|------|
-| `pnpm dev:admin` | 启动管理后台开发服务器 |
-| `pnpm build:admin` | 构建管理后台生产版本 |
+| `pnpm dev:admin` | 启动运营端开发服务器（6999） |
+| `pnpm dev:merchant` | 启动商户端开发服务器（7999） |
+| `pnpm build` | 构建全部应用 |
 | `pnpm lint` | 代码检查 |
 | `pnpm format` | Prettier格式化 |
 | `pnpm check:type` | TypeScript类型检查 |
@@ -148,10 +118,11 @@ pnpm build:admin
 
 ## 国际化
 
-业务文案在 `apps/daxpay-admin/src/locales/langs/{locale}/`（多语对称）；菜单标题在 `locales/menu-titles/{locale}.json`。语种与回退规则见仓库根 `AGENTS.md`。
+业务文案在各 app 的 `src/locales/langs/{locale}/`（多语对称）；菜单标题在 `locales/menu-titles/{locale}.json`。语种与回退规则见仓库根 `AGENTS.md`。
 
 ```
-apps/daxpay-admin/src/locales/
+apps/daxpay-admin/src/locales/      # 运营端
+apps/daxpay-merchant/src/locales/  # 商户端
 ├── langs/{zh-CN,en-US,zh-TW,...}/   # 业务文案（按域拆分）
 └── menu-titles/{locale}.json        # 菜单标题（flat key）
 ```

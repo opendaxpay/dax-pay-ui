@@ -1,6 +1,6 @@
-import { PAY_ROUTE_MODE, type PayRouteMode } from './payRoute.constants';
-
 import { $t } from '@vben/locales';
+
+import { PAY_ROUTE_MODE, type PayRouteMode } from './payRoute.constants';
 
 /** 国际化：支付渠道展示名 */
 export function providerLabel(code: string) {

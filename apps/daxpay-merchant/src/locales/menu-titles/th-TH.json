@@ -1,5 +1,14 @@
 {
   "menu.dashboard": "แดชบอร์ด",
   "menu.dashboard.workspace": "พื้นที่ทำงาน",
-  "menu.dashboard.analytics": "การวิเคราะห์"
+  "menu.dashboard.analytics": "การวิเคราะห์",
+  "menu.trade": "การจัดการธุรกรรม",
+  "menu.trade.payTrade": "ธุรกรรมการชำระเงิน",
+  "menu.trade.normalPay": "คำสั่งปกติ",
+  "menu.trade.refundOrder": "คำสั่งคืนเงิน",
+  "menu.trade.payOrder": "คำสั่งชำระเงิน",
+  "menu.trade.gatewayOrder": "คำสั่งเกตเวย์",
+  "menu.trade.record": "บันทึกธุรกรรม",
+  "menu.trade.mchNotice": "การแจ้งเตือนร้านค้า",
+  "menu.trade.callbackRecord": "บันทึกคอลแบ็ก"
 }

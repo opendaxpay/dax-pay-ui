@@ -1,0 +1,9 @@
+{
+  "aggregatePay": "Pembayaran Agregat",
+  "wechat": "Pembayaran WeChat",
+  "alipay": "Alipay",
+  "unionPay": "UnionPay",
+  "visa": "Visa",
+  "mastercard": "Mastercard",
+  "douyin": "Pembayaran Douyin"
+}

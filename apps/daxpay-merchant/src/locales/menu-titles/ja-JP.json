@@ -1,5 +1,14 @@
 {
   "menu.dashboard": "ダッシュボード",
   "menu.dashboard.workspace": "ワークスペース",
-  "menu.dashboard.analytics": "分析"
+  "menu.dashboard.analytics": "分析",
+  "menu.trade": "取引管理",
+  "menu.trade.payTrade": "支払取引",
+  "menu.trade.normalPay": "通常注文",
+  "menu.trade.refundOrder": "返金注文",
+  "menu.trade.payOrder": "支払注文",
+  "menu.trade.gatewayOrder": "ゲートウェイ注文",
+  "menu.trade.record": "取引記録",
+  "menu.trade.mchNotice": "加盟店通知",
+  "menu.trade.callbackRecord": "コールバック記録"
 }

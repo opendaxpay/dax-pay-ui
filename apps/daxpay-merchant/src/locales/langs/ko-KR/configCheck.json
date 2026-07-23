@@ -1,0 +1,22 @@
+{
+  "mchApp": {
+    "title": "가맹점 앱",
+    "description": "생성되거나 활성화된 가맹점 앱이 없습니다"
+  },
+  "mchCredential": {
+    "title": "API 자격 증명",
+    "description": "가맹점 통신 자격 증명(공개키/비밀키)이 생성되지 않았습니다"
+  },
+  "channelMerchant": {
+    "title": "채널 가맹점",
+    "description": "활성화된 채널 가맹점이 설정되지 않았습니다"
+  },
+  "payRoute": {
+    "title": "결제 라우팅",
+    "description": "일부 앱의 결제 라우팅 전략이 설정되지 않았습니다"
+  },
+  "mchNotify": {
+    "title": "알림 설정",
+    "description": "일부 앱의 콜백 알림 URL이 설정되지 않았습니다"
+  }
+}

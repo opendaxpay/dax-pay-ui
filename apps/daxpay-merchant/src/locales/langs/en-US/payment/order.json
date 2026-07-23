@@ -1,4 +1,105 @@
 {
+  "normal": {
+    "title": "Normal Pay",
+    "detail": "Normal Pay Detail"
+  },
+  "gateway": {
+    "title": "Gateway Pay",
+    "detail": "Gateway Pay Detail"
+  },
+  "trade": {
+    "title": "Fund Trades",
+    "detail": "Fund Trade Detail"
+  },
+  "refund": {
+    "title": "Refund Orders",
+    "detail": "Refund Order Detail",
+    "statusLabel": "Refund Status",
+    "section": {
+      "identity": "Identity",
+      "fund": "Related Fund Trade",
+      "amount": "Amount & Status",
+      "channel": "Channel Snapshot",
+      "notify": "Notify & Audit"
+    },
+    "status": {
+      "progress": "Refunding",
+      "success": "Success",
+      "fail": "Failed",
+      "close": "Closed"
+    },
+    "statusColor": {
+      "progress": "processing",
+      "success": "green",
+      "fail": "red",
+      "close": "default"
+    }
+  },
+  "field": {
+    "bizOrderNo": "Merchant Order No.",
+    "tradeNo": "Fund Trade No.",
+    "title": "Title",
+    "description": "Description",
+    "amount": "Amount(Yuan)",
+    "currency": "Currency",
+    "bizStatus": "Biz Status",
+    "fundStatus": "Fund Status",
+    "channel": "Channel",
+    "method": "Pay Method",
+    "product": "Product",
+    "tradeType": "Trade Type",
+    "provider": "Provider",
+    "outOrderNo": "Channel Order No.",
+    "transOrderNo": "Trans Order No.",
+    "relationOrderNo": "Channel Relation No.",
+    "postedAmount": "Posted(Yuan)",
+    "refundableBalance": "Refundable(Yuan)",
+    "payBody": "Pay Body",
+    "payBodyType": "Pay Body Type",
+    "buyerId": "Buyer ID",
+    "openid": "OpenID",
+    "tradeProduct": "Channel Product",
+    "tradeWay": "Channel Trade Way",
+    "bankType": "Bank Card Type",
+    "promotionType": "Promotion Type",
+    "errorMsg": "Error",
+    "notifyUrl": "Notify URL",
+    "returnUrl": "Return URL",
+    "attach": "Attach",
+    "expiredTime": "Expired Time",
+    "payTime": "Pay Time",
+    "closeTime": "Close Time",
+    "channelMchNo": "Channel Merchant No.",
+    "capability": "Capability",
+    "channelAppId": "Channel App ID",
+    "clientIp": "Client IP",
+    "terminalNo": "Terminal No.",
+    "containerId": "Container ID",
+    "containerStatus": "Container Status",
+    "source": "Source",
+    "limitPay": "Limit Pay",
+    "mchNo": "Merchant No.",
+    "appId": "App ID",
+    "createTime": "Create Time",
+    "refundNo": "Refund No.",
+    "bizRefundNo": "Biz Refund No.",
+    "outRefundNo": "Channel Refund No.",
+    "reason": "Refund Reason",
+    "finishTime": "Finish Time",
+    "orderAmount": "Order Amount",
+    "orderNo": "Platform Order No.",
+    "authCode": "Payment code",
+    "merchant": "Merchant",
+    "storeNo": "Store No."
+  },
+  "bizStatus": {
+    "wait_pay": "Waiting",
+    "paying": "Paying",
+    "paid": "Paid",
+    "failed": "Failed",
+    "closed": "Closed",
+    "expired": "Expired"
+  },
   "fundStatus": {
     "init": "Initial",
     "processing": "Processing",
@@ -7,6 +108,14 @@
     "close": "Closed",
     "cancel": "Cancelled"
   },
+  "bizStatusColor": {
+    "wait_pay": "orange",
+    "paying": "processing",
+    "paid": "green",
+    "failed": "red",
+    "closed": "default",
+    "expired": "red"
+  },
   "fundStatusColor": {
     "init": "default",
     "processing": "processing",
@@ -14,5 +123,56 @@
     "fail": "red",
     "close": "default",
     "cancel": "default"
+  },
+  "tradeType": {
+    "normal": "Normal Payment"
+  },
+  "gatewayType": {
+    "cashier": "Cashier",
+    "aggregate": "Aggregate Scan"
+  },
+  "placeholder": {
+    "bizOrderNo": "Enter merchant order no.",
+    "title": "Enter title",
+    "tradeNo": "Enter fund trade no.",
+    "outOrderNo": "Enter channel order no.",
+    "amountMin": "Min amount(cents)",
+    "amountMax": "Max amount(cents)",
+    "refundNo": "Enter refund no.",
+    "bizRefundNo": "Enter biz refund no.",
+    "orderNo": "Enter platform order no."
+  },
+  "action": {
+    "sync": "Sync Status",
+    "close": "Close Order",
+    "cancel": "Cancel Order",
+    "refund": "Refund",
+    "syncSuccess": "Sync succeeded",
+    "closeSuccess": "Order closed",
+    "cancelSuccess": "Order cancelled",
+    "refundSuccess": "Refund initiated",
+    "syncConfirmTitle": "Confirm Sync",
+    "syncConfirmContent": "Will query the latest status from the payment channel, continue?",
+    "closeConfirmTitle": "Confirm Close",
+    "closeConfirmContent": "The order cannot be paid after closing, continue?",
+    "cancelConfirmTitle": "Confirm Cancel",
+    "cancelConfirmContent": "This will cancel the paid transaction via the payment channel, continue?",
+    "refundConfirmTitle": "Confirm Refund",
+    "refundConfirmContent": "Will refund {amount} from the original order, continue?",
+    "refundableBalanceLabel": "Refundable Amount",
+    "cents": "cents",
+    "refundAmountLabel": "Refund Amount(Yuan)",
+    "refundReasonLabel": "Refund Reason",
+    "refundAmountPlaceholder": "Enter refund amount",
+    "refundReasonPlaceholder": "Enter refund reason (optional)",
+    "refundAmountExceed": "Refund amount cannot exceed refundable amount"
+  },
+  "method": {
+    "jsapi": "JSAPI",
+    "qrcode": "QR Code",
+    "h5": "H5",
+    "app": "APP",
+    "barcode": "Barcode",
+    "wap": "WAP"
   }
 }

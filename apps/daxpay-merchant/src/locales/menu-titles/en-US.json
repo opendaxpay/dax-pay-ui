@@ -1,5 +1,14 @@
 {
   "menu.dashboard": "Dashboard",
   "menu.dashboard.workspace": "Workspace",
-  "menu.dashboard.analytics": "Analytics"
+  "menu.dashboard.analytics": "Analytics",
+  "menu.trade": "Transactions",
+  "menu.trade.payTrade": "Payment Transactions",
+  "menu.trade.normalPay": "Normal Orders",
+  "menu.trade.refundOrder": "Refund Orders",
+  "menu.trade.payOrder": "Payment Orders",
+  "menu.trade.gatewayOrder": "Gateway Orders",
+  "menu.trade.record": "Trade Records",
+  "menu.trade.mchNotice": "Merchant Notify",
+  "menu.trade.callbackRecord": "Callback Records"
 }

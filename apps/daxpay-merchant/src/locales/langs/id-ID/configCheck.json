@@ -1,0 +1,22 @@
+{
+  "mchApp": {
+    "title": "Aplikasi Merchant",
+    "description": "Belum ada aplikasi merchant yang dibuat atau diaktifkan"
+  },
+  "mchCredential": {
+    "title": "Kredensial API",
+    "description": "Kredensial komunikasi merchant (kunci publik / kunci rahasia) belum dibuat"
+  },
+  "channelMerchant": {
+    "title": "Merchant Saluran",
+    "description": "Belum ada merchant saluran yang diaktifkan dikonfigurasi"
+  },
+  "payRoute": {
+    "title": "Rute Pembayaran",
+    "description": "Beberapa aplikasi belum mengonfigurasi strategi rute pembayaran"
+  },
+  "mchNotify": {
+    "title": "Konfigurasi Notifikasi",
+    "description": "Beberapa aplikasi belum mengonfigurasi URL notifikasi callback"
+  }
+}

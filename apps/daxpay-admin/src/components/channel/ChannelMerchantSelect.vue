@@ -3,7 +3,7 @@
 
   import { computed } from 'vue';
 
-  import ChannelLogo from './ChannelLogo.vue';
+  import { ChannelLogo } from '@daxpay/ui-biz/channel';
 
   /**
    * 通道商户下拉选择

@@ -1,0 +1,22 @@
+{
+  "mchApp": {
+    "title": "マーチャントアプリ",
+    "description": "マーチャントアプリが作成または有効化されていません"
+  },
+  "mchCredential": {
+    "title": "API認証情報",
+    "description": "マーチャント通信認証情報(公開鍵/秘密鍵)が生成されていません"
+  },
+  "channelMerchant": {
+    "title": "チャネルマーチャント",
+    "description": "有効なチャネルマーチャントが設定されていません"
+  },
+  "payRoute": {
+    "title": "決済ルーティング",
+    "description": "一部のアプリで決済ルーティング戦略が未設定です"
+  },
+  "mchNotify": {
+    "title": "通知設定",
+    "description": "一部のアプリでコールバック通知URLが未設定です"
+  }
+}

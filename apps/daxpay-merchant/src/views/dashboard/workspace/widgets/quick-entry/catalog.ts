@@ -1,5 +1,3 @@
-import { PermCodes } from '#/constants/perm-codes';
-
 /** 快捷入口元信息 */
 export interface QuickEntryMeta {
   /** 入口唯一 key（与后端 entries 数组元素一致，两端复用） */
@@ -12,7 +10,7 @@ export interface QuickEntryMeta {
   titleKey: string;
   /** 图标背景色（Tailwind 颜色类） */
   color: string;
-  /** 所需权限码（任一即可） */
+  /** 所需权限码（任一即可；空数组表示登录即可访问） */
   perms: string[];
   /** 默认是否显示（首次访问 / 重置用） */
   defaultVisible: boolean;
@@ -24,6 +22,7 @@ export interface QuickEntryMeta {
  * 快捷入口目录（Web 商户端）
  *
  * 单一事实源：所有可用入口在此声明，widget 与编辑抽屉共用
+ * profile / notify / analytics 均为 core 路由，无菜单权限门槛
  */
 export const ENTRY_CATALOG: QuickEntryMeta[] = [
   {
@@ -42,7 +41,8 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     icon: 'lucide:bell',
     titleKey: 'dashboard.workspace.quickEntry.notify',
     color: 'bg-amber-500',
-    perms: [PermCodes.System.Notify.VIEW],
+    // 通知中心为 core 硬编码路由，商户端无 system:notify 菜单权限
+    perms: [],
     defaultVisible: true,
     defaultOrder: 2,
   },

@@ -1,4 +1,104 @@
 {
+  "normal": {
+    "title": "Pembayaran Normal",
+    "detail": "Detail Pembayaran Normal"
+  },
+  "gateway": {
+    "title": "Pembayaran Gateway",
+    "detail": "Detail Pembayaran Gateway"
+  },
+  "trade": {
+    "title": "Perdagangan Dana",
+    "detail": "Detail Perdagangan Dana"
+  },
+  "refund": {
+    "title": "Pengembalian Dana Pesanan",
+    "detail": "Detail Pengembalian Dana Pesanan",
+    "statusLabel": "Refund Status",
+    "section": {
+      "identity": "Identity",
+      "fund": "Fund",
+      "amount": "Amount",
+      "channel": "Channel",
+      "notify": "Notify"
+    },
+    "status": {
+      "progress": "Refunding",
+      "success": "Success",
+      "fail": "Failed",
+      "close": "Closed"
+    },
+    "statusColor": {
+      "progress": "processing",
+      "success": "green",
+      "fail": "red",
+      "close": "default"
+    }
+  },
+  "field": {
+    "bizOrderNo": "Nomor Pesanan Pedagang.",
+    "tradeNo": "Fund Trade No.",
+    "title": "Judul",
+    "description": "Keterangan",
+    "amount": "Jumlah (Yuan)",
+    "currency": "Mata uang",
+    "bizStatus": "Status Bisnis",
+    "fundStatus": "Status Dana",
+    "channel": "Saluran",
+    "method": "Metode Pembayaran",
+    "product": "Produk",
+    "tradeType": "Jenis Perdagangan",
+    "provider": "Penyedia",
+    "outOrderNo": "Nomor Pesanan Saluran.",
+    "transOrderNo": "Nomor Pesanan Trans.",
+    "relationOrderNo": "Channel Relation No.",
+    "postedAmount": "Jumlah dibukukan (Yuan)",
+    "refundableBalance": "Dapat dikembalikan (Yuan)",
+    "payBody": "Badan Bayar",
+    "payBodyType": "Tipe Tubuh Bayar",
+    "buyerId": "ID Pembeli",
+    "openid": "ID Terbuka",
+    "tradeProduct": "Produk Saluran",
+    "tradeWay": "Cara Perdagangan Saluran",
+    "bankType": "Jenis Kartu Bank",
+    "promotionType": "Jenis Promosi",
+    "errorMsg": "Kesalahan",
+    "notifyUrl": "Beritahu URL",
+    "returnUrl": "URL kembali",
+    "attach": "Menempel",
+    "expiredTime": "Waktu Kedaluwarsa",
+    "payTime": "Waktu Bayar",
+    "closeTime": "Waktu Tutup",
+    "channelMchNo": "Nomor Pedagang Saluran.",
+    "capability": "Kemampuan",
+    "channelAppId": "Aplikasi Saluran",
+    "clientIp": "IP klien",
+    "terminalNo": "Nomor Terminal.",
+    "containerId": "ID Kontainer",
+    "containerStatus": "Status Kontainer",
+    "source": "Sumber",
+    "limitPay": "Batasi Pembayaran",
+    "mchNo": "Nomor Pedagang.",
+    "appId": "ID Aplikasi",
+    "createTime": "Ciptakan Waktu",
+    "refundNo": "Nomor Pengembalian Dana.",
+    "bizRefundNo": "Nomor Pengembalian Bisnis.",
+    "outRefundNo": "Nomor Pengembalian Dana Saluran.",
+    "reason": "Alasan Pengembalian Dana",
+    "finishTime": "Waktu Selesai",
+    "orderAmount": "Jumlah Pesanan",
+    "orderNo": "Platform Order No.",
+    "authCode": "Kode pembayaran",
+    "merchant": "Merchant"
+  },
+  "bizStatus": {
+    "wait_pay": "Menunggu",
+    "paid": "Dibayar",
+    "closed": "Tertutup",
+    "expired": "Kedaluwarsa",
+    "paying": "Paying",
+    "failed": "Failed"
+  },
   "fundStatus": {
     "init": "Awal",
     "processing": "Pengolahan",
@@ -7,6 +107,14 @@
     "close": "Tertutup",
     "cancel": "Cancelled"
   },
+  "bizStatusColor": {
+    "wait_pay": "oranye",
+    "paid": "hijau",
+    "closed": "bawaan",
+    "expired": "merah",
+    "paying": "processing",
+    "failed": "red"
+  },
   "fundStatusColor": {
     "init": "bawaan",
     "processing": "pengolahan",
@@ -14,5 +122,57 @@
     "fail": "merah",
     "close": "bawaan",
     "cancel": "default"
+  },
+  "placeholder": {
+    "bizOrderNo": "Masukkan nomor pesanan pedagang.",
+    "title": "Masukkan judul",
+    "tradeNo": "Masukkan no perdagangan.",
+    "outOrderNo": "Masukkan nomor pesanan saluran.",
+    "amountMin": "Jumlah minimum (sen)",
+    "amountMax": "Jumlah maksimum (sen)",
+    "refundNo": "Masukkan no pengembalian dana.",
+    "bizRefundNo": "Masukkan no pengembalian dana bisnis.",
+    "orderNo": "Masukkan nomor pesanan asli."
+  },
+  "action": {
+    "sync": "Status Sinkronisasi",
+    "close": "Tutup Pesanan",
+    "cancel": "Batalkan Pesanan",
+    "refund": "Pengembalian dana",
+    "syncSuccess": "Sinkronisasi berhasil",
+    "closeSuccess": "Pesanan ditutup",
+    "cancelSuccess": "Pesanan dibatalkan",
+    "refundSuccess": "Pengembalian dana dimulai",
+    "syncConfirmTitle": "Konfirmasikan Sinkronisasi",
+    "syncConfirmContent": "Akan menanyakan status terkini dari saluran pembayaran, lanjutkan?",
+    "closeConfirmTitle": "Konfirmasi Tutup",
+    "closeConfirmContent": "Pesanan tidak bisa dibayar setelah ditutup, lanjutkan?",
+    "cancelConfirmTitle": "Konfirmasi Batal",
+    "cancelConfirmContent": "Ini akan membatalkan transaksi berbayar melalui saluran pembayaran, lanjutkan?",
+    "refundConfirmTitle": "Konfirmasi Pengembalian Dana",
+    "refundConfirmContent": "Akankah pengembalian dana {amount} dari pesanan awal, lanjutkan?",
+    "refundableBalanceLabel": "Jumlah yang Dapat Dikembalikan",
+    "cents": "sen",
+    "refundAmountLabel": "Jumlah Pengembalian Dana (Yuan)",
+    "refundReasonLabel": "Alasan Pengembalian Dana",
+    "refundAmountPlaceholder": "Masukkan jumlah pengembalian dana",
+    "refundReasonPlaceholder": "Masukkan alasan pengembalian dana (opsional)",
+    "refundAmountExceed": "Jumlah pengembalian dana tidak dapat melebihi jumlah yang dapat dikembalikan"
+  },
+  "method": {
+    "jsapi": "JSAPI",
+    "qrcode": "Kode QR",
+    "h5": "H5",
+    "app": "APP",
+    "barcode": "Kode Batang",
+    "wap": "WAP"
+  },
+  "tradeType": {
+    "normal": "Normal Pay",
+    "gateway": "Gateway Pay"
+  },
+  "gatewayType": {
+    "cashier": "Cashier",
+    "aggregate": "Aggregate"
   }
 }

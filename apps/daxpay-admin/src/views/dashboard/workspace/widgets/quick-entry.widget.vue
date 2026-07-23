@@ -34,11 +34,11 @@
   // 编辑抽屉显隐
   const editVisible = ref(false);
 
-  // 实际渲染序列：用户自定义 ?? 默认，按权限过滤
+  // 实际渲染序列：用户自定义 ?? 默认，按权限过滤（空 perms 表示登录即可访问）
   const entries = computed(() => {
     const keys = quickEntryStore.entries ?? DEFAULT_ENTRIES;
-    return resolveEntries(keys).filter((e) =>
-      e.perms.some((p) => hasPermission(p)),
+    return resolveEntries(keys).filter(
+      (e) => e.perms.length === 0 || e.perms.some((p) => hasPermission(p)),
     );
   });
 

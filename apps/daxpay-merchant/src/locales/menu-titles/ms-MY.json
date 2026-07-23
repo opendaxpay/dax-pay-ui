@@ -1,5 +1,14 @@
 {
   "menu.dashboard": "Papan pemuka",
   "menu.dashboard.workspace": "Ruang kerja",
-  "menu.dashboard.analytics": "Analitis"
+  "menu.dashboard.analytics": "Analitis",
+  "menu.trade": "Pengurusan Transaksi",
+  "menu.trade.payTrade": "Transaksi Pembayaran",
+  "menu.trade.normalPay": "Pesanan Biasa",
+  "menu.trade.refundOrder": "Pesanan Bayaran Balik",
+  "menu.trade.payOrder": "Pesanan Pembayaran",
+  "menu.trade.gatewayOrder": "Pesanan Gateway",
+  "menu.trade.record": "Rekod Transaksi",
+  "menu.trade.mchNotice": "Pemberitahuan Merchant",
+  "menu.trade.callbackRecord": "Rekod Callback"
 }

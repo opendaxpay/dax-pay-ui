@@ -1,5 +1,14 @@
 {
   "menu.dashboard": "Trang tổng quan",
   "menu.dashboard.workspace": "Không gian làm việc",
-  "menu.dashboard.analytics": "Phân tích"
+  "menu.dashboard.analytics": "Phân tích",
+  "menu.trade": "Quản lý giao dịch",
+  "menu.trade.payTrade": "Giao dịch thanh toán",
+  "menu.trade.normalPay": "Đơn thường",
+  "menu.trade.refundOrder": "Đơn hoàn tiền",
+  "menu.trade.payOrder": "Đơn thanh toán",
+  "menu.trade.gatewayOrder": "Đơn cổng",
+  "menu.trade.record": "Nhật ký giao dịch",
+  "menu.trade.mchNotice": "Thông báo merchant",
+  "menu.trade.callbackRecord": "Nhật ký callback"
 }

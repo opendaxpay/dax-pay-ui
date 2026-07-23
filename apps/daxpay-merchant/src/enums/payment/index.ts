@@ -1,3 +1,1 @@
-export * from './channelEnum';
-export * from './productEnum';
-export * from './providerEnum';
+export * from '@daxpay/ui-biz/enums/payment';

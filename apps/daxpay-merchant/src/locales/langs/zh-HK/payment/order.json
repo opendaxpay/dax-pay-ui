@@ -1,4 +1,105 @@
 {
+  "normal": {
+    "title": "普通支付",
+    "detail": "普通支付詳情"
+  },
+  "gateway": {
+    "title": "網關支付",
+    "detail": "網關支付詳情"
+  },
+  "trade": {
+    "title": "資金交易",
+    "detail": "資金交易詳情"
+  },
+  "refund": {
+    "title": "退款訂單",
+    "detail": "退款訂單詳情",
+    "statusLabel": "退款狀態",
+    "section": {
+      "identity": "身份資訊",
+      "fund": "關聯資金",
+      "amount": "金額與狀態",
+      "channel": "通道快照",
+      "notify": "通知與審計"
+    },
+    "status": {
+      "progress": "退款中",
+      "success": "退款成功",
+      "fail": "退款失敗",
+      "close": "退款關閉"
+    },
+    "statusColor": {
+      "progress": "processing",
+      "success": "green",
+      "fail": "red",
+      "close": "default"
+    }
+  },
+  "field": {
+    "bizOrderNo": "商户訂單號",
+    "tradeNo": "資金交易號",
+    "title": "訂單標題",
+    "description": "訂單描述",
+    "amount": "金額(元)",
+    "currency": "幣種",
+    "bizStatus": "業務狀態",
+    "fundStatus": "資金狀態",
+    "channel": "支付通道",
+    "method": "支付方式",
+    "product": "支付產品",
+    "tradeType": "交易形態",
+    "provider": "支付渠道",
+    "outOrderNo": "通道訂單號",
+    "transOrderNo": "透傳訂單號",
+    "relationOrderNo": "上送通道關聯號",
+    "postedAmount": "入帳金額(元)",
+    "refundableBalance": "可退金額(元)",
+    "payBody": "支付參數體",
+    "payBodyType": "參數體類型",
+    "buyerId": "付款用户ID",
+    "openid": "OpenID",
+    "tradeProduct": "通道支付產品",
+    "tradeWay": "通道交易方式",
+    "bankType": "銀行卡類型",
+    "promotionType": "活動類型",
+    "errorMsg": "錯誤信息",
+    "notifyUrl": "異步通知地址",
+    "returnUrl": "同步跳轉地址",
+    "attach": "商户附加參數",
+    "expiredTime": "過期時間",
+    "payTime": "支付成功時間",
+    "closeTime": "關閉時間",
+    "channelMchNo": "通道商户號",
+    "capability": "支付能力",
+    "channelAppId": "通道應用",
+    "clientIp": "客户端IP",
+    "terminalNo": "終端編碼",
+    "containerId": "關聯容器ID",
+    "containerStatus": "容器業務狀態",
+    "source": "訂單來源",
+    "limitPay": "限制支付類型",
+    "mchNo": "商户號",
+    "appId": "應用號",
+    "createTime": "創建時間",
+    "refundNo": "退款號",
+    "bizRefundNo": "商户退款號",
+    "outRefundNo": "通道退款流水號",
+    "reason": "退款原因",
+    "finishTime": "退款完成時間",
+    "orderAmount": "訂單總金額",
+    "orderNo": "平台業務單號",
+    "authCode": "付款碼",
+    "merchant": "商戶",
+    "storeNo": "門店號"
+  },
+  "bizStatus": {
+    "wait_pay": "待支付",
+    "paid": "已支付",
+    "closed": "已關閉",
+    "expired": "已過期",
+    "paying": "支付中",
+    "failed": "支付失敗"
+  },
   "fundStatus": {
     "init": "初始化",
     "processing": "處理中",
@@ -7,6 +108,14 @@
     "close": "已關閉",
     "cancel": "已撤銷"
   },
+  "bizStatusColor": {
+    "wait_pay": "orange",
+    "paid": "green",
+    "closed": "default",
+    "expired": "red",
+    "paying": "processing",
+    "failed": "red"
+  },
   "fundStatusColor": {
     "init": "default",
     "processing": "processing",
@@ -14,5 +123,57 @@
     "fail": "red",
     "close": "default",
     "cancel": "default"
+  },
+  "placeholder": {
+    "bizOrderNo": "請輸入商户訂單號",
+    "title": "請輸入訂單標題",
+    "tradeNo": "請輸入資金交易號",
+    "outOrderNo": "請輸入通道訂單號",
+    "amountMin": "最小金額(分)",
+    "amountMax": "最大金額(分)",
+    "refundNo": "請輸入退款號",
+    "bizRefundNo": "請輸入商户退款號",
+    "orderNo": "請輸入原支付訂單號"
+  },
+  "action": {
+    "sync": "同步狀態",
+    "close": "關閉訂單",
+    "cancel": "撤銷訂單",
+    "refund": "退款",
+    "syncSuccess": "同步成功",
+    "closeSuccess": "關閉成功",
+    "cancelSuccess": "撤銷成功",
+    "refundSuccess": "退款發起成功",
+    "syncConfirmTitle": "確認同步狀態",
+    "syncConfirmContent": "將主動向支付通道查詢該訂單的最新狀態,是否繼續?",
+    "closeConfirmTitle": "確認關閉訂單",
+    "closeConfirmContent": "關閉後訂單將不可繼續支付,是否繼續?",
+    "cancelConfirmTitle": "確認撤銷訂單",
+    "cancelConfirmContent": "撤銷將通過支付通道撤銷該筆已支付交易,是否繼續?",
+    "refundConfirmTitle": "確認發起退款",
+    "refundConfirmContent": "退款將從原支付訂單扣除 {amount} 元,是否繼續?",
+    "refundableBalanceLabel": "可退金額",
+    "cents": "分",
+    "refundAmountLabel": "退款金額(元)",
+    "refundReasonLabel": "退款原因",
+    "refundAmountPlaceholder": "請輸入退款金額",
+    "refundReasonPlaceholder": "請輸入退款原因(可選)",
+    "refundAmountExceed": "退款金額不能大於可退金額"
+  },
+  "method": {
+    "jsapi": "JSAPI",
+    "qrcode": "掃碼",
+    "h5": "H5",
+    "app": "APP",
+    "barcode": "付款碼",
+    "wap": "WAP"
+  },
+  "tradeType": {
+    "normal": "普通支付",
+    "gateway": "網關支付"
+  },
+  "gatewayType": {
+    "cashier": "收銀台",
+    "aggregate": "聚合掃碼"
   }
 }

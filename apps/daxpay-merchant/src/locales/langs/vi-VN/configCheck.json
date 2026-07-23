@@ -1,0 +1,22 @@
+{
+  "mchApp": {
+    "title": "Ứng Dụng Merchant",
+    "description": "Chưa có ứng dụng merchant nào được tạo hoặc kích hoạt"
+  },
+  "mchCredential": {
+    "title": "Thông Tin Xác Thực API",
+    "description": "Thông tin xác thực giao tiếp merchant (khóa công khai / khóa bí mật) chưa được tạo"
+  },
+  "channelMerchant": {
+    "title": "Merchant Kênh",
+    "description": "Chưa có merchant kênh kích hoạt nào được cấu hình"
+  },
+  "payRoute": {
+    "title": "Tuyến Thanh Toán",
+    "description": "Một số ứng dụng chưa cấu hình chiến lược tuyến thanh toán"
+  },
+  "mchNotify": {
+    "title": "Cấu Hình Thông Báo",
+    "description": "Một số ứng dụng chưa cấu hình URL thông báo callback"
+  }
+}

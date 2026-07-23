@@ -1,4 +1,105 @@
 {
+  "normal": {
+    "title": "일반 결제",
+    "detail": "일반 결제 상세"
+  },
+  "gateway": {
+    "title": "게이트웨이 결제",
+    "detail": "게이트웨이 결제 상세"
+  },
+  "trade": {
+    "title": "펀드거래",
+    "detail": "펀드거래내역"
+  },
+  "refund": {
+    "title": "주문 환불",
+    "detail": "환불 주문 세부정보",
+    "statusLabel": "환불 상태",
+    "section": {
+      "identity": "신원",
+      "fund": "관련 자금",
+      "amount": "금액 및 상태",
+      "channel": "채널",
+      "notify": "알림"
+    },
+    "status": {
+      "progress": "환불 중",
+      "success": "환불 성공",
+      "fail": "환불 실패",
+      "close": "환불 종료"
+    },
+    "statusColor": {
+      "progress": "processing",
+      "success": "green",
+      "fail": "red",
+      "close": "default"
+    }
+  },
+  "field": {
+    "bizOrderNo": "판매자 주문번호",
+    "tradeNo": "자금 거래번호",
+    "title": "제목",
+    "description": "설명",
+    "amount": "금액(위안)",
+    "currency": "통화",
+    "bizStatus": "사업현황",
+    "fundStatus": "자금현황",
+    "channel": "채널",
+    "method": "결제 방법",
+    "product": "제품",
+    "tradeType": "거래 유형",
+    "provider": "공급자",
+    "outOrderNo": "채널 주문번호",
+    "transOrderNo": "트랜스 주문번호",
+    "relationOrderNo": "Channel Relation No.",
+    "postedAmount": "입금금액(위안)",
+    "refundableBalance": "환불가능(위안)",
+    "payBody": "페이 바디",
+    "payBodyType": "급여 신체 유형",
+    "buyerId": "구매자 ID",
+    "openid": "오픈아이디",
+    "tradeProduct": "채널 제품",
+    "tradeWay": "채널 무역 방식",
+    "bankType": "은행 카드 유형",
+    "promotionType": "프로모션 유형",
+    "errorMsg": "오류",
+    "notifyUrl": "알림 URL",
+    "returnUrl": "반환 URL",
+    "attach": "붙이다",
+    "expiredTime": "만료된 시간",
+    "payTime": "급여 시간",
+    "closeTime": "마감 시간",
+    "channelMchNo": "채널 판매자 번호",
+    "capability": "능력",
+    "channelAppId": "채널 앱",
+    "clientIp": "클라이언트 IP",
+    "terminalNo": "터미널 번호",
+    "containerId": "컨테이너 ID",
+    "containerStatus": "컨테이너 상태",
+    "source": "원천",
+    "limitPay": "급여 한도",
+    "mchNo": "판매자 번호",
+    "appId": "앱 ID",
+    "createTime": "시간 만들기",
+    "refundNo": "환불번호",
+    "bizRefundNo": "비즈환급번호",
+    "outRefundNo": "채널 환불 번호",
+    "reason": "환불 사유",
+    "finishTime": "종료 시간",
+    "orderAmount": "주문금액",
+    "orderNo": "Platform Order No.",
+    "authCode": "결제 코드",
+    "merchant": "가맹점",
+    "storeNo": "매장 번호"
+  },
+  "bizStatus": {
+    "wait_pay": "대기 중",
+    "paid": "유급의",
+    "closed": "닫은",
+    "expired": "만료됨",
+    "paying": "결제 중",
+    "failed": "결제 실패"
+  },
   "fundStatus": {
     "init": "초기의",
     "processing": "처리",
@@ -7,6 +108,14 @@
     "close": "닫은",
     "cancel": "취소됨"
   },
+  "bizStatusColor": {
+    "wait_pay": "주황색",
+    "paid": "녹색",
+    "closed": "기본",
+    "expired": "빨간색",
+    "paying": "processing",
+    "failed": "red"
+  },
   "fundStatusColor": {
     "init": "기본",
     "processing": "처리",
@@ -14,5 +123,57 @@
     "fail": "빨간색",
     "close": "기본",
     "cancel": "default"
+  },
+  "placeholder": {
+    "bizOrderNo": "가맹점 주문번호를 입력하세요.",
+    "title": "제목을 입력하세요",
+    "tradeNo": "거래번호를 입력하세요.",
+    "outOrderNo": "채널 주문번호를 입력하세요.",
+    "amountMin": "최소금액(센트)",
+    "amountMax": "최대금액(센트)",
+    "refundNo": "환불번호를 입력하세요.",
+    "bizRefundNo": "비즈니스 환불 번호를 입력하세요.",
+    "orderNo": "원래 주문번호를 입력하세요."
+  },
+  "action": {
+    "sync": "동기화 상태",
+    "close": "주문 마감",
+    "cancel": "주문 취소",
+    "refund": "환불하다",
+    "syncSuccess": "동기화 성공",
+    "closeSuccess": "주문이 마감되었습니다.",
+    "cancelSuccess": "주문이 취소됨",
+    "refundSuccess": "환불 시작됨",
+    "syncConfirmTitle": "동기화 확인",
+    "syncConfirmContent": "결제 채널에서 최신 상태를 쿼리하시겠습니까? 계속하시겠습니까?",
+    "closeConfirmTitle": "닫기 확인",
+    "closeConfirmContent": "종료 후 주문을 결제할 수 없습니다. 계속하시겠습니까?",
+    "cancelConfirmTitle": "확인 취소",
+    "cancelConfirmContent": "결제 채널을 통한 유료 거래가 취소됩니다. 계속하시겠습니까?",
+    "refundConfirmTitle": "환불 확인",
+    "refundConfirmContent": "원래 주문에서 {amount}을(를) 환불하시겠습니까? 계속하시겠습니까?",
+    "refundableBalanceLabel": "환불 가능 금액",
+    "cents": "센트",
+    "refundAmountLabel": "환불금액(위안)",
+    "refundReasonLabel": "환불 사유",
+    "refundAmountPlaceholder": "환불 금액 입력",
+    "refundReasonPlaceholder": "환불 사유 입력(선택사항)",
+    "refundAmountExceed": "환불 금액은 환불 금액을 초과할 수 없습니다."
+  },
+  "method": {
+    "jsapi": "JSAPI",
+    "qrcode": "QR 스캔",
+    "h5": "H5",
+    "app": "APP",
+    "barcode": "바코드",
+    "wap": "WAP"
+  },
+  "tradeType": {
+    "normal": "일반 결제",
+    "gateway": "게이트웨이"
+  },
+  "gatewayType": {
+    "cashier": "Cashier",
+    "aggregate": "Aggregate"
   }
 }

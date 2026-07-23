@@ -1,0 +1,22 @@
+{
+  "mchApp": {
+    "title": "商户应用",
+    "description": "尚未创建或启用任何商户应用"
+  },
+  "mchCredential": {
+    "title": "API 凭证",
+    "description": "商户通信凭证(公钥/密钥)未生成"
+  },
+  "channelMerchant": {
+    "title": "通道商户",
+    "description": "尚未配置任何启用的通道商户"
+  },
+  "payRoute": {
+    "title": "支付路由",
+    "description": "部分应用尚未配置支付路由策略"
+  },
+  "mchNotify": {
+    "title": "通知配置",
+    "description": "部分应用未配置回调通知地址"
+  }
+}
