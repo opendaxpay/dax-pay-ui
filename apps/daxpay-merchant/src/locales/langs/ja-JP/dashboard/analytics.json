@@ -1,0 +1,62 @@
+{
+  "title": "分析",
+  "subtitle": "合計 {start} ～ {end} · {days} 日",
+  "customRange": "カスタム範囲",
+  "timeRange": {
+    "today": "今日",
+    "yesterday": "昨日",
+    "last7days": "7D",
+    "last30days": "30D",
+    "thisMonth": "今月",
+    "custom": "カスタム"
+  },
+  "overview": {
+    "totalAmount": "合計金額",
+    "totalOrders": "総注文数",
+    "avgAmount": "平均金額",
+    "successRate": "成功率",
+    "refundAmount": "返金額",
+    "refundRate": "返金率",
+    "chainRatio": "お母さん",
+    "chainRatioNew": "新規"
+  },
+  "tradeTrend": {
+    "title": "貿易動向",
+    "amount": "額",
+    "orders": "注文",
+    "avgAmount": "平均金額"
+  },
+  "payMethod": {
+    "title": "支払いチャネル"
+  },
+  "channelSuccess": {
+    "title": "チャネル成功率"
+  },
+  "hourlyDist": {
+    "title": "時間帯分布（日平均）",
+    "tooltip": "{hour}:00 — 日平均 {count} 件"
+  },
+  "amountRange": {
+    "title": "金額範囲"
+  },
+  "channelVolume": {
+    "title": "チャンネルボリューム"
+  },
+  "refundTrend": {
+    "title": "返金傾向"
+  },
+  "dimRank": {
+    "title": "ディメンション別取引額ランキング",
+    "rank": "順位",
+    "name": "名称",
+    "amount": "取引額",
+    "orders": "件数",
+    "proportion": "割合",
+    "unspecifiedStore": "未指定店舗",
+    "dim": {
+      "channelMch": "チャネル加盟店",
+      "app": "アプリ",
+      "store": "店舗"
+    }
+  }
+}

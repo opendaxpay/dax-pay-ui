@@ -1,0 +1,77 @@
+{
+  "greeting": {
+    "morning": "おはよう",
+    "afternoon": "こんにちは",
+    "evening": "こんばんは",
+    "subtitle": "DaxPay マーチャントへようこそ"
+  },
+  "stat": {
+    "appCount": "アプリ",
+    "storeCount": "店舗",
+    "channelMerchantCount": "チャネル加盟店"
+  },
+  "widget": {
+    "workbenchHeader": "ワークスペース",
+    "quickEntry": "クイックエントリー",
+    "tradeOverview": "貿易概要",
+    "payOrder": "支払い命令",
+    "payTrade": "ファンド取引",
+    "tradeTrend": "貿易動向",
+    "providerDist": "決済方法分布",
+    "noticeList": "お知らせ",
+    "configAlert": "設定未完了"
+  },
+  "tradeOverview": {
+    "today": "今日",
+    "yesterday": "昨日",
+    "successAmount": "成功金額 (CNY)",
+    "successCount": "成功数",
+    "refundAmount": "払い戻し金額 (CNY)",
+    "refundCount": "払い戻し回数"
+  },
+  "tradeTrend": {
+    "last7days": "7日間",
+    "last30days": "30日"
+  },
+  "quickEntry": {
+    "merchant": "商人",
+    "app": "アプリケーション",
+    "channelMerchant": "チャネル販売者",
+    "notify": "通知センター",
+    "user": "ユーザー",
+    "dict": "辞書",
+    "loginLog": "ログインログ",
+    "security": "セキュリティ管理",
+    "payOrder": "支払い命令",
+    "refundOrder": "返金注文",
+    "payTrade": "ファンド取引",
+    "role": "役割",
+    "menu": "メニュー",
+    "operateLog": "操作ログ",
+    "notice": "お知らせ",
+    "productConfig": "チャネル製品構成",
+    "platformConfig": "プラットフォーム構成",
+    "onlineUser": "オンラインユーザー",
+    "analytics": "分析",
+    "developTrade": "決済開発",
+    "socialLogin": "サードパーティプラットフォームへのログイン",
+    "empty": "アクセス可能なクイックエントリはありません",
+    "edit": "編集",
+    "editTitle": "クイックエントリーの編集",
+    "selected": "選択済み (ドラッグして並べ替え)",
+    "available": "利用可能",
+    "allAdded": "すべて追加されました",
+    "profile": "プロフィール"
+  },
+  "notice": {
+    "important": "重要",
+    "normal": "普通",
+    "top": "トップ"
+  },
+  "configAlert": {
+    "bannerTitle": "{n} 件の設定が未完了です",
+    "viewDetail": "詳細を表示",
+    "allComplete": "すべての設定が完了しています"
+  },
+  "scaffoldTitle": "ワークスペース"
+}

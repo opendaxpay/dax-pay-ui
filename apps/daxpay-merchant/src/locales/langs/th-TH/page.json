@@ -1,0 +1,25 @@
+{
+  "auth": {
+    "profile": "การตั้งค่า",
+    "login": "เข้าสู่ระบบ",
+    "qrcodeLogin": "เข้าสู่ระบบรหัส QR",
+    "forgetPassword": "ลืมรหัสผ่าน",
+    "oauthCallback": "การโทรกลับ OAuth"
+  },
+  "dashboard": {
+    "title": "แดชบอร์ด",
+    "analytics": "การวิเคราะห์",
+    "workspace": "พื้นที่ทำงาน"
+  },
+  "payment": {
+    "title": "การจัดการการชำระเงิน",
+    "platform": "การจัดการการชำระเงิน",
+    "merchantList": "รายชื่อผู้ค้า",
+    "merchantManage": "การจัดการผู้ค้า",
+    "merchantChannelMerchant": "ผู้ค้าช่องทางผู้ค้า",
+    "channelMerchantManage": "พ่อค้าช่องทาง",
+    "channelMerchantList": "พ่อค้าช่องทาง",
+    "channelMerchantDetail": "รายละเอียดร้านค้าช่องทาง",
+    "productList": "สินค้าชำระเงิน"
+  }
+}

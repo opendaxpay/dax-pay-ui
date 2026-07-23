@@ -1,0 +1,77 @@
+{
+  "title": "การเข้าสู่ระบบแพลตฟอร์มบุคคลที่สาม",
+  "emptyDesc": "ไม่มีข้อมูลการกำหนดค่าแพลตฟอร์ม",
+  "clientCode": {
+    "label": "ลูกค้า",
+    "admin": "ผู้ดูแลระบบ",
+    "merchant": "พ่อค้า"
+  },
+  "platform": {
+    "weChat": "แพลตฟอร์มเปิด WeChat",
+    "weCom": "วีคอม",
+    "qq": "คิวคิว",
+    "github": "GitHub",
+    "gitee": "กีตี",
+    "google": "Google",
+    "feishu": "เฟยซู",
+    "dingTalk": "ติงทอล์ค",
+    "douyin": "โต่วอิน",
+    "alipay": "อาลีเพย์"
+  },
+  "status": {
+    "enabled": "เปิดใช้งานแล้ว",
+    "disabled": "พิการ",
+    "unconfigured": "ไม่ได้กำหนดค่า"
+  },
+  "badge": {
+    "platformRedirect": "ระดับแพลตฟอร์ม"
+  },
+  "action": {
+    "config": "การกำหนดค่า",
+    "gotoConfig": "ไปที่การกำหนดค่า",
+    "gotoCredential": "กำหนดค่าข้อมูลรับรอง",
+    "edit": "แก้ไข",
+    "enable": "เปิดใช้งาน",
+    "disable": "ปิดการใช้งาน",
+    "delete": "ลบ",
+    "add": "เพิ่มการกำหนดค่าแพลตฟอร์ม",
+    "search": "ค้นหา",
+    "reset": "รีเซ็ต",
+    "copy": "สำเนา"
+  },
+  "form": {
+    "source": "แพลตฟอร์ม",
+    "clientId": "รหัสลูกค้า",
+    "clientIdPlaceholder": "ป้อนรหัสลูกค้า (AppId)",
+    "clientIdHelp": "โดยปกติแล้ว AppId หรือ ClientID ขึ้นอยู่กับชื่อแพลตฟอร์มจริง",
+    "clientSecret": "ความลับของลูกค้า",
+    "clientSecretPlaceholder": "ป้อนความลับของลูกค้า",
+    "clientSecretHelp": "โดยปกติแล้ว AppSecret หรือ ClientSecret ขึ้นอยู่กับชื่อแพลตฟอร์มจริง",
+    "clientSecretRequired": "รหัสลับไคลเอ็นต์ไม่สามารถเว้นว่างได้",
+    "agentId": "รหัสตัวแทน WeCom",
+    "agentIdPlaceholder": "จำเป็นสำหรับ WeCom เท่านั้น",
+    "enabled": "เปิดใช้งานแล้ว",
+    "enabledRequired": "โปรดเลือกเปิดใช้งานสถานะ",
+    "callbackUrl": "URL โทรกลับ",
+    "callbackUrlHelp": "ลงทะเบียน URL เหล่านี้ในคอนโซล OAuth ของบุคคลที่สาม ผู้ดูแลระบบและผู้ขายต่างก็ต้องการอุปกรณ์ครบชุด",
+    "callbackUrlEmpty": "โปรดตั้งค่า URL การเข้าถึงของผู้ดูแลระบบในการกำหนดค่าปลายทางก่อน",
+    "callbackUrlEmptyAdmin": "โปรดตั้งค่า Admin Base URL ในการกำหนดค่าปลายทางก่อน",
+    "callbackUrlEmptyMerchant": "โปรดตั้งค่า Merchant Base URL (merchantBaseUrl) ในการกำหนดค่าปลายทาง จำเป็นสำหรับการเข้าสู่ระบบโซเชียลของผู้ขาย",
+    "loginCallback": "เข้าสู่ระบบ โทรกลับ",
+    "bindCallback": "ผูกโทรกลับ"
+  },
+  "confirm": {
+    "delete": "คุณแน่ใจหรือไม่ที่จะลบการกำหนดค่า {name}"
+  },
+  "tip": {
+    "addSuccess": "เพิ่มเรียบร้อยแล้ว",
+    "configSuccess": "กำหนดค่าเรียบร้อยแล้ว",
+    "editSuccess": "อัปเดตเรียบร้อยแล้ว",
+    "enableSuccess": "เปิดใช้งานเรียบร้อยแล้ว",
+    "disableSuccess": "ปิดการใช้งานเรียบร้อยแล้ว",
+    "deleteSuccess": "ลบเรียบร้อยแล้ว",
+    "copySuccess": "คัดลอกไปยังคลิปบอร์ดแล้ว",
+    "platformCredentialRequired": "กรุณากรอกข้อมูลรับรองระดับแพลตฟอร์มก่อนเปิดใช้งานการเข้าสู่ระบบ",
+    "platformCredentialHint": "จัดการ AppId/keys ในการกำหนดค่าแอป Alipay สวิตช์นี้ควบคุมเฉพาะว่าสามารถเข้าสู่ระบบ Alipay ได้หรือไม่"
+  }
+}

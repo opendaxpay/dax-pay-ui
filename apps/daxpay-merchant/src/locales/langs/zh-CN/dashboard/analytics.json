@@ -1,0 +1,62 @@
+{
+  "title": "分析页",
+  "subtitle": "{start} 至 {end} · 共 {days} 天",
+  "customRange": "自定义范围",
+  "timeRange": {
+    "today": "今天",
+    "yesterday": "昨天",
+    "last7days": "近7天",
+    "last30days": "近30天",
+    "thisMonth": "本月",
+    "custom": "自定义"
+  },
+  "overview": {
+    "totalAmount": "交易总额",
+    "totalOrders": "交易笔数",
+    "avgAmount": "客单价",
+    "successRate": "支付成功率",
+    "refundAmount": "退款金额",
+    "refundRate": "退款率",
+    "chainRatio": "环比",
+    "chainRatioNew": "新增"
+  },
+  "tradeTrend": {
+    "title": "交易趋势",
+    "amount": "交易额",
+    "orders": "交易笔数",
+    "avgAmount": "客单价"
+  },
+  "payMethod": {
+    "title": "支付渠道占比"
+  },
+  "channelSuccess": {
+    "title": "渠道成功率"
+  },
+  "hourlyDist": {
+    "title": "时段分布（日均）",
+    "tooltip": "{hour}:00 — 日均 {count} 笔"
+  },
+  "amountRange": {
+    "title": "单笔金额区间"
+  },
+  "channelVolume": {
+    "title": "渠道交易量"
+  },
+  "refundTrend": {
+    "title": "退款趋势"
+  },
+  "dimRank": {
+    "title": "维度交易额排名",
+    "rank": "排名",
+    "name": "名称",
+    "amount": "交易额",
+    "orders": "笔数",
+    "proportion": "占比",
+    "unspecifiedStore": "未指定门店",
+    "dim": {
+      "channelMch": "通道商户",
+      "app": "应用",
+      "store": "门店"
+    }
+  }
+}

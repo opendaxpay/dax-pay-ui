@@ -1,0 +1,52 @@
+{
+  "name": "daxpay-merchant",
+  "version": "4.0.0-beta1",
+  "license": "LGPL-3.0-or-later",
+  "type": "module",
+  "scripts": {
+    "build": "pnpm vite build --mode production",
+    "build:analyze": "pnpm vite build --mode analyze",
+    "dev": "pnpm vite --mode development",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit --skipLibCheck"
+  },
+  "imports": {
+    "#/*": "./src/*"
+  },
+  "dependencies": {
+    "@iconify/json": "catalog:",
+    "@vben-core/icons": "workspace:*",
+    "@vben/access": "workspace:*",
+    "@vben/common-ui": "workspace:*",
+    "@vben/constants": "workspace:*",
+    "@vben/hooks": "workspace:*",
+    "@vben/icons": "workspace:*",
+    "@vben/layouts": "workspace:*",
+    "@vben/locales": "workspace:*",
+    "@vben/plugins": "workspace:*",
+    "@vben/preferences": "workspace:*",
+    "@vben/request": "workspace:*",
+    "@vben/stores": "workspace:*",
+    "@vben/styles": "workspace:*",
+    "@vben/types": "workspace:*",
+    "@vben/utils": "workspace:*",
+    "@vueuse/core": "catalog:",
+    "antdv-next": "catalog:",
+    "dayjs": "catalog:",
+    "jsencrypt": "catalog:",
+    "md-editor-v3": "catalog:",
+    "pinia": "catalog:",
+    "qrcode": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:",
+    "vuedraggable": "^4.1.0",
+    "vxe-pc-ui": "catalog:",
+    "vxe-table": "catalog:"
+  },
+  "devDependencies": {
+    "@types/qrcode": "catalog:",
+    "axios": "catalog:",
+    "esbuild": "catalog:",
+    "less": "catalog:"
+  }
+}

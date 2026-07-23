@@ -1,0 +1,32 @@
+{
+  "login": "Login",
+  "qrcodeLogin": "Qr Code Login",
+  "forgetPassword": "Forget Password",
+  "profile": "Profile",
+  "pageTitle": "DaxPay Payment Operations Platform",
+  "pageDesc": "Secure, stable and efficient payment operations solution",
+  "oauthLoginSuccess": "Login successful",
+  "oauthBindSuccess": "Social account bound successfully",
+  "oauthNotBind": "This social account is not bound. Please log in first and bind it in your profile",
+  "oauthStateInvalid": "Authorization has expired. Please try again",
+  "oauthFailed": "Authorization login failed",
+  "oauthProcessFailed": "Failed to process authorization login",
+  "oauthProcessing": "Processing login...",
+  "oauthProcessingWith": "{platform} authorization in progress...",
+  "oauthFailedWith": "{platform} authorization failed",
+  "oauthLoginSuccessWith": "{platform} login successful",
+  "oauthUnknownPlatform": "Unknown platform",
+  "passwordResetPending": "Password reset is not yet available",
+  "qrcodeRefreshPending": "QR code refresh is not yet available",
+  "qrcodeLoadFailed": "Failed to load QR code",
+  "twoFactor": {
+    "title": "Two-Factor Verification",
+    "subtitle": "Enter the verification code to complete login",
+    "totp": "Authenticator Code",
+    "backup": "Backup Code",
+    "codePlaceholder": "Enter the 6-digit verification code",
+    "backupPlaceholder": "Enter the backup code",
+    "submit": "Verify and Login",
+    "cancel": "Back"
+  }
+}

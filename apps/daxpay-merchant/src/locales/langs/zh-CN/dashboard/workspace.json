@@ -1,0 +1,77 @@
+{
+  "greeting": {
+    "morning": "早上好",
+    "afternoon": "下午好",
+    "evening": "晚上好",
+    "subtitle": "欢迎回到 DaxPay 商户平台"
+  },
+  "stat": {
+    "appCount": "应用",
+    "storeCount": "门店",
+    "channelMerchantCount": "通道商户"
+  },
+  "widget": {
+    "workbenchHeader": "工作台",
+    "quickEntry": "快捷入口",
+    "tradeOverview": "交易概览",
+    "payOrder": "支付订单",
+    "payTrade": "资金交易",
+    "tradeTrend": "交易趋势",
+    "providerDist": "支付渠道分布",
+    "noticeList": "系统公告",
+    "configAlert": "配置待完成"
+  },
+  "tradeOverview": {
+    "today": "今日交易",
+    "yesterday": "昨日交易",
+    "successAmount": "成交金额(元)",
+    "successCount": "成交笔数",
+    "refundAmount": "退款金额(元)",
+    "refundCount": "退款笔数"
+  },
+  "tradeTrend": {
+    "last7days": "近 7 天",
+    "last30days": "近 30 天"
+  },
+  "quickEntry": {
+    "merchant": "商户管理",
+    "app": "应用管理",
+    "channelMerchant": "通道商户",
+    "notify": "通知中心",
+    "user": "用户管理",
+    "dict": "字典管理",
+    "loginLog": "登录日志",
+    "security": "安全管理",
+    "payOrder": "支付订单",
+    "refundOrder": "退款订单",
+    "payTrade": "资金交易",
+    "role": "角色管理",
+    "menu": "菜单管理",
+    "operateLog": "操作日志",
+    "notice": "通知公告",
+    "productConfig": "通道产品配置",
+    "platformConfig": "平台配置",
+    "onlineUser": "在线用户",
+    "analytics": "分析页",
+    "developTrade": "支付调试",
+    "socialLogin": "三方平台登录",
+    "empty": "暂无可访问的快捷入口",
+    "edit": "编辑",
+    "editTitle": "编辑快捷入口",
+    "selected": "已选（拖拽排序）",
+    "available": "可选入口",
+    "allAdded": "已全部添加",
+    "profile": "个人中心"
+  },
+  "notice": {
+    "important": "重要",
+    "normal": "普通",
+    "top": "置顶"
+  },
+  "configAlert": {
+    "bannerTitle": "您有 {n} 项配置待完成",
+    "viewDetail": "查看详情",
+    "allComplete": "配置已完善"
+  },
+  "scaffoldTitle": "工作台"
+}

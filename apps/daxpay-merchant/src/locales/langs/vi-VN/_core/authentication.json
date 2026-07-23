@@ -1,0 +1,32 @@
+{
+  "login": "Đăng nhập",
+  "qrcodeLogin": "Đăng nhập mã Qr",
+  "forgetPassword": "Quên mật khẩu",
+  "profile": "Hồ sơ",
+  "pageTitle": "Nền tảng hoạt động thanh toán DaxPay",
+  "pageDesc": "Giải pháp hoạt động thanh toán an toàn, ổn định và hiệu quả",
+  "oauthLoginSuccess": "Đăng nhập thành công",
+  "oauthBindSuccess": "Tài khoản xã hội được liên kết thành công",
+  "oauthNotBind": "Tài khoản xã hội này không bị ràng buộc. Vui lòng đăng nhập trước và liên kết nó trong hồ sơ của bạn",
+  "oauthStateInvalid": "Giấy phép đã hết hạn. Vui lòng thử lại",
+  "oauthFailed": "Đăng nhập ủy quyền không thành công",
+  "oauthProcessFailed": "Không thể xử lý đăng nhập ủy quyền",
+  "oauthProcessing": "Đang xử lý đăng nhập...",
+  "oauthProcessingWith": "{platform} đang tiến hành ủy quyền...",
+  "oauthFailedWith": "{platform} ủy quyền không thành công",
+  "oauthLoginSuccessWith": "{platform} đăng nhập thành công",
+  "oauthUnknownPlatform": "Nền tảng không xác định",
+  "passwordResetPending": "Việc đặt lại mật khẩu vẫn chưa khả dụng",
+  "qrcodeRefreshPending": "Tính năng làm mới mã QR chưa khả dụng",
+  "qrcodeLoadFailed": "Không tải được mã QR",
+  "twoFactor": {
+    "title": "Xác minh hai yếu tố",
+    "subtitle": "Nhập mã xác minh để hoàn tất đăng nhập",
+    "totp": "Mã xác thực",
+    "backup": "Mã dự phòng",
+    "codePlaceholder": "Nhập mã xác minh gồm 6 chữ số",
+    "backupPlaceholder": "Nhập mã dự phòng",
+    "submit": "Xác minh và đăng nhập",
+    "cancel": "Mặt sau"
+  }
+}

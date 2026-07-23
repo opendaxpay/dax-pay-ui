@@ -1,0 +1,107 @@
+import { createApp, watchEffect } from 'vue';
+
+import { registerLoadingDirective } from '@vben/common-ui/es/loading';
+import { preferences } from '@vben/preferences';
+import { initStores } from '@vben/stores';
+import '@vben/styles';
+import '@vben/styles/antdv-next';
+import { useTitle } from '@vueuse/core';
+import { formatDate, formatDateTime } from '@vben/utils';
+import lucide from '@iconify/json/json/lucide.json';
+import simpleIcons from '@iconify/json/json/simple-icons.json';
+import { addCollection } from '@vben/icons';
+import Antd from 'antdv-next';
+import VxeUI from 'vxe-pc-ui';
+import VxeUITable from 'vxe-table';
+
+import { setDark } from '#/adapter/component/vxe-table/vxe-table';
+import { $t, setupI18n } from '#/locales';
+
+import { initComponentAdapter } from './adapter/component';
+import { initSetupVbenForm } from './adapter/form';
+import App from './app.vue';
+import { router } from './router';
+
+// vxe 样式入口
+import '#/adapter/component/vxe-table/index.less';
+// 项目公共样式入口
+import '#/styles/index.less';
+
+async function bootstrap(namespace: string) {
+  // 预加载图标集到内存: lucide(通用UI图标) + simple-icons(品牌图标)
+  // 使菜单图标与图标选择弹窗均可离线渲染,不再依赖在线 API
+  addCollection(lucide);
+  addCollection(simpleIcons);
+
+  // 初始化组件适配器
+  await initComponentAdapter();
+
+  // 初始化表单组件
+  await initSetupVbenForm();
+
+  const app = createApp(App);
+
+  // 注册 Antd Next
+  app.use(Antd);
+  // 注册 VxeTable
+  app.use(VxeUITable);
+  // 注册 VxeUI
+  app.use(VxeUI);
+
+  // 注册全局 vxe-table 日期格式化器, 使 formatter="formatDateTime" 生效
+  VxeUI.formats.add('formatDate', {
+    tableCellFormatMethod({ cellValue }) {
+      return formatDate(cellValue);
+    },
+  });
+  VxeUI.formats.add('formatDateTime', {
+    tableCellFormatMethod({ cellValue }) {
+      return formatDateTime(cellValue);
+    },
+  });
+
+  // 注册v-loading指令
+  registerLoadingDirective(app, {
+    loading: 'loading', // 在这里可以自定义指令名称，也可以明确提供false表示不注册这个指令
+    spinning: 'spinning',
+  });
+
+  // 国际化 i18n 配置
+  await setupI18n(app);
+
+  // 配置 pinia-tore
+  await initStores(app, { namespace });
+
+  // 拉取站点品牌配置(系统名/Logo/备案), 失败不阻断启动
+  const { initWebsiteConfig } = await import('./logics/init-website-config');
+  await initWebsiteConfig();
+
+  // 初始化 tippy
+  const { initTippy } = await import('@vben/common-ui/es/tippy');
+  initTippy(app);
+
+  // 配置路由及路由守卫
+  app.use(router);
+
+  // 配置Motion插件
+  const { MotionPlugin } = await import('@vben/plugins/motion');
+  app.use(MotionPlugin);
+
+  // 动态更新标题
+  watchEffect(() => {
+    if (preferences.app.dynamicTitle) {
+      const routeTitle = router.currentRoute.value.meta?.title;
+      const pageTitle = (routeTitle ? `${$t(routeTitle)} - ` : '') + preferences.app.name;
+      useTitle(pageTitle);
+    }
+  });
+
+  // 监听主题变化，同步 VxeTable 暗黑模式
+  watchEffect(() => {
+    setDark(preferences.theme.mode === 'dark');
+  });
+
+  app.mount('#app');
+}
+
+export { bootstrap };

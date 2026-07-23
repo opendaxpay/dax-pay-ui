@@ -1,0 +1,6 @@
+{
+  "uploadImage": "Tải hình ảnh lên",
+  "fileTooLarge": "Kích thước tệp {name} là {size}, vượt quá giới hạn tối đa {maxSize}, vui lòng nén hình ảnh trước khi tải lên!",
+  "uploadSuccess": "{name} đã tải lên thành công!",
+  "uploadFailed": "{name} tải lên không thành công!"
+}

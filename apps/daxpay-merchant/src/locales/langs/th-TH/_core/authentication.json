@@ -1,0 +1,32 @@
+{
+  "login": "เข้าสู่ระบบ",
+  "qrcodeLogin": "เข้าสู่ระบบรหัส Qr",
+  "forgetPassword": "ลืมรหัสผ่าน",
+  "profile": "ประวัติโดยย่อ",
+  "pageTitle": "แพลตฟอร์มการดำเนินการชำระเงิน DaxPay",
+  "pageDesc": "โซลูชันการดำเนินการชำระเงินที่ปลอดภัย เสถียร และมีประสิทธิภาพ",
+  "oauthLoginSuccess": "เข้าสู่ระบบสำเร็จ",
+  "oauthBindSuccess": "ผูกบัญชีโซเชียลเรียบร้อยแล้ว",
+  "oauthNotBind": "บัญชีโซเชียลนี้ไม่ได้ถูกผูกมัด กรุณาเข้าสู่ระบบก่อนและผูกไว้ในโปรไฟล์ของคุณ",
+  "oauthStateInvalid": "การอนุญาตหมดอายุแล้ว โปรดลองอีกครั้ง",
+  "oauthFailed": "การเข้าสู่ระบบการให้สิทธิ์ล้มเหลว",
+  "oauthProcessFailed": "ล้มเหลวในการประมวลผลการเข้าสู่ระบบการให้สิทธิ์",
+  "oauthProcessing": "กำลังประมวลผลการเข้าสู่ระบบ...",
+  "oauthProcessingWith": "{platform} อยู่ระหว่างการอนุมัติ...",
+  "oauthFailedWith": "{platform} การอนุญาตล้มเหลว",
+  "oauthLoginSuccessWith": "{platform} เข้าสู่ระบบสำเร็จ",
+  "oauthUnknownPlatform": "แพลตฟอร์มที่ไม่รู้จัก",
+  "passwordResetPending": "การรีเซ็ตรหัสผ่านยังไม่สามารถใช้ได้",
+  "qrcodeRefreshPending": "การรีเฟรชโค้ด QR ยังไม่พร้อมใช้งาน",
+  "qrcodeLoadFailed": "ไม่สามารถโหลดโค้ด QR",
+  "twoFactor": {
+    "title": "การยืนยันแบบสองปัจจัย",
+    "subtitle": "ป้อนรหัสยืนยันเพื่อเข้าสู่ระบบให้เสร็จสิ้น",
+    "totp": "รหัสยืนยันตัวตน",
+    "backup": "รหัสสำรอง",
+    "codePlaceholder": "กรอกรหัสยืนยัน 6 หลัก",
+    "backupPlaceholder": "ป้อนรหัสสำรอง",
+    "submit": "ตรวจสอบและเข้าสู่ระบบ",
+    "cancel": "กลับ"
+  }
+}

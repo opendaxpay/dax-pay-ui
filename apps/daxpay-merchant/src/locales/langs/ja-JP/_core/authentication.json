@@ -1,0 +1,32 @@
+{
+  "login": "ログイン",
+  "qrcodeLogin": "QRコードログイン",
+  "forgetPassword": "パスワードを忘れた場合",
+  "profile": "プロフィール",
+  "pageTitle": "DaxPay 決済運用プラットフォーム",
+  "pageDesc": "安全、安定、効率的な決済業務ソリューション",
+  "oauthLoginSuccess": "ログイン成功",
+  "oauthBindSuccess": "ソーシャルアカウントが正常にバインドされました",
+  "oauthNotBind": "このソーシャル アカウントは拘束されていません。まずログインしてプロフィールにバインドしてください",
+  "oauthStateInvalid": "認証の有効期限が切れました。もう一度試してください",
+  "oauthFailed": "認証ログインに失敗しました",
+  "oauthProcessFailed": "認証ログインの処理に失敗しました",
+  "oauthProcessing": "ログインを処理しています...",
+  "oauthProcessingWith": "{platform} 認証が進行中です...",
+  "oauthFailedWith": "{platform} 認証に失敗しました",
+  "oauthLoginSuccessWith": "{platform} ログインに成功しました",
+  "oauthUnknownPlatform": "不明なプラットフォーム",
+  "passwordResetPending": "パスワードのリセットはまだ利用できません",
+  "qrcodeRefreshPending": "QR コードの更新はまだ利用できません",
+  "qrcodeLoadFailed": "QRコードの読み込みに失敗しました",
+  "twoFactor": {
+    "title": "2要素認証",
+    "subtitle": "認証コードを入力してログインを完了します",
+    "totp": "認証コード",
+    "backup": "バックアップコード",
+    "codePlaceholder": "6桁の認証コードを入力してください",
+    "backupPlaceholder": "バックアップコードを入力してください",
+    "submit": "確認してログイン",
+    "cancel": "戻る"
+  }
+}

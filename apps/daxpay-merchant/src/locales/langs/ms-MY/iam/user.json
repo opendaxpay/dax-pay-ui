@@ -1,0 +1,80 @@
+{
+  "field": {
+    "name": "Nama",
+    "account": "Akaun",
+    "phone": "telefon",
+    "email": "E-mel",
+    "clientCode": "Pelanggan",
+    "status": "Status",
+    "role": "Peranan",
+    "roleList": "Senarai Peranan",
+    "candidateRole": "Peranan Calon",
+    "selectedRole": "Peranan Terpilih",
+    "lastLoginTime": "Masa Log Masuk Terakhir",
+    "detail": "Butiran Pengguna",
+    "administrator": "Pentadbir",
+    "registerTime": "Masa Pendaftaran",
+    "loginCount": "Kiraan Log Masuk",
+    "lastLoginIp": "IP Log Masuk Terakhir"
+  },
+  "status": {
+    "normal": "Biasalah",
+    "lock": "Terkunci",
+    "ban": "Diharamkan"
+  },
+  "action": {
+    "assignRole": "Berikan Peranan",
+    "resetPassword": "Tetapkan Semula Kata Laluan",
+    "ban": "Larangan",
+    "unlock": "Buka kunci",
+    "batchBan": "Larangan Berkelompok",
+    "batchUnlock": "Buka Kunci Kelompok",
+    "batchResetPassword": "Kata Laluan Tetapan Semula Kelompok",
+    "confirmAssignRole": "Adakah anda pasti mahu menyimpan tugasan peranan?",
+    "confirmBan": "Adakah anda pasti melarang pengguna terpilih?",
+    "confirmUnlock": "Adakah anda pasti untuk membuka kunci pengguna terpilih?",
+    "confirmResetPassword": "Adakah anda pasti untuk menetapkan semula kata laluan untuk pengguna terpilih?",
+    "socialBind": "Ikatan Sosial"
+  },
+  "social": {
+    "title": "Pengikatan Akaun Sosial",
+    "bound": "Terikat",
+    "unbound": "Tidak Terikat",
+    "unbindAction": "Buka ikatan",
+    "unbindConfirm": "Adakah anda pasti akan menyahikat akaun {name} pengguna ini?",
+    "unbindSuccess": "Lepas ikatan berjaya",
+    "noEnabled": "Tiada platform sosial yang didayakan"
+  },
+  "password": {
+    "password": "Kata laluan",
+    "newPassword": "Kata Laluan Baharu",
+    "confirmPassword": "Sahkan Kata Laluan"
+  },
+  "validation": {
+    "nameLength": "Panjang nama mestilah antara 3 dan 15 aksara",
+    "passwordLength": "Panjang kata laluan mestilah antara 8 dan 32 aksara",
+    "assignRoleSingleTip": "Seorang pengguna hanya boleh diberikan satu peranan, sila pilih",
+    "pleaseSelectRole": "Sila pilih peranan",
+    "noAssignableRole": "Tiada peranan yang boleh diagihkan",
+    "passwordRequired": "Sila masukkan kata laluan",
+    "passwordLengthRange": "Panjang kata laluan mestilah antara {min} dan {max} aksara",
+    "accountLength": "Panjang akaun mestilah 6-20 aksara",
+    "accountFormat": "Akaun hanya boleh mengandungi huruf, nombor, garis bawah dan sempang",
+    "passwordNoChinese": "Kata laluan tidak boleh mengandungi aksara Cina",
+    "cannotEditNonAdmin": "Tidak boleh mengedit pengguna pelanggan bukan pentadbir",
+    "cannotAssignRoleNonAdmin": "Tidak boleh memberikan peranan kepada pengguna pelanggan bukan pentadbir",
+    "accountPattern": "Akaun hanya boleh mengandungi huruf, nombor dan garis bawah"
+  },
+  "passwordPolicy": {
+    "requireUppercase": "Kata laluan mesti mengandungi huruf besar",
+    "requireLowercase": "Kata laluan mesti mengandungi huruf kecil",
+    "requireDigit": "Kata laluan mesti mengandungi digit",
+    "requireSpecialChar": "Kata laluan mesti mengandungi aksara khas ({chars})",
+    "hintLength": "Panjang: {min}-{max} aksara",
+    "hintUppercase": "Sekurang-kurangnya satu huruf besar",
+    "hintLowercase": "Sekurang-kurangnya satu huruf kecil",
+    "hintDigit": "Sekurang-kurangnya satu digit",
+    "hintSpecialChar": "Sekurang-kurangnya satu watak istimewa ({chars})",
+    "notMeetRequirements": "Kata laluan tidak memenuhi keperluan"
+  }
+}

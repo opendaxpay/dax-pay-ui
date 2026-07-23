@@ -1,0 +1,25 @@
+{
+  "auth": {
+    "profile": "Settings",
+    "login": "Login",
+    "qrcodeLogin": "QR Code Login",
+    "forgetPassword": "Forget Password",
+    "oauthCallback": "OAuth Callback"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "analytics": "Analytics",
+    "workspace": "Workspace"
+  },
+  "payment": {
+    "title": "Payment Management",
+    "platform": "Payment Management",
+    "merchantList": "Merchant List",
+    "merchantManage": "Merchant Management",
+    "merchantChannelMerchant": "Merchant Channel Merchant",
+    "channelMerchantManage": "Channel Merchant",
+    "channelMerchantList": "Channel Merchant",
+    "channelMerchantDetail": "Channel Merchant Detail",
+    "productList": "Payment Product"
+  }
+}

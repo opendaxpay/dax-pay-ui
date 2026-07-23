@@ -1,0 +1,10 @@
+{
+  "title": "Confirm Deletion",
+  "primaryWarning": "Warning: This action cannot be undone. Please proceed with caution.",
+  "description": "This will permanently delete data for {name}. This action cannot be undone.",
+  "instruction": "To prevent accidents, type the following to confirm:",
+  "inputPlaceholder": "Enter the text above to confirm",
+  "confirmDelete": "Confirm Delete",
+  "finalTitle": "Confirm Deletion Again",
+  "finalContent": "Are you sure you want to delete \"{name}\"? This action cannot be undone."
+}

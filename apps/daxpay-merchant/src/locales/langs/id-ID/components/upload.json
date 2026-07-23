@@ -1,0 +1,6 @@
+{
+  "uploadImage": "Unggah Gambar",
+  "fileTooLarge": "Ukuran file {name} adalah {size}, melebihi batas maksimum {maxSize}, harap kompres gambar sebelum diunggah!",
+  "uploadSuccess": "{name} berhasil diunggah!",
+  "uploadFailed": "{name} unggahan gagal!"
+}

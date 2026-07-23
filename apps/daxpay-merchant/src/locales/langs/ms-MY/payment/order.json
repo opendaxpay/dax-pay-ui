@@ -1,0 +1,18 @@
+{
+  "fundStatus": {
+    "init": "Permulaan",
+    "processing": "Memproses",
+    "success": "Kejayaan",
+    "fail": "gagal",
+    "close": "tertutup",
+    "cancel": "Cancelled"
+  },
+  "fundStatusColor": {
+    "init": "lalai",
+    "processing": "pemprosesan",
+    "success": "hijau",
+    "fail": "merah",
+    "close": "lalai",
+    "cancel": "default"
+  }
+}

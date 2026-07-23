@@ -1,0 +1,12 @@
+{
+  "pageNotFound": "哎呀！未找到頁面",
+  "pageNotFoundDesc": "抱歉，我們無法找到您要找的頁面。",
+  "forbidden": "哎呀！訪問被拒絕",
+  "forbiddenDesc": "抱歉，您沒有權限訪問此頁面。",
+  "internalError": "哎呀！出錯了",
+  "internalErrorDesc": "抱歉，服務器遇到錯誤。",
+  "offline": "離線頁面",
+  "offlineError": "哎呀！網絡錯誤",
+  "offlineErrorDesc": "抱歉，無法連接到互聯網，請檢查您的網絡連接並重試。",
+  "comingSoon": "即將推出"
+}

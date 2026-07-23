@@ -1,0 +1,62 @@
+{
+  "title": "Analitis",
+  "subtitle": "{start} hingga {end} · {days} hari jumlah",
+  "customRange": "Julat Tersuai",
+  "timeRange": {
+    "today": "Hari ini",
+    "yesterday": "Semalam",
+    "last7days": "7D",
+    "last30days": "30D",
+    "thisMonth": "Bulan ini",
+    "custom": "Adat"
+  },
+  "overview": {
+    "totalAmount": "Jumlah Jumlah",
+    "totalOrders": "Jumlah Pesanan",
+    "avgAmount": "Purata Jumlah",
+    "successRate": "Kadar Kejayaan",
+    "refundAmount": "Jumlah Bayaran Balik",
+    "refundRate": "Kadar Bayaran Balik",
+    "chainRatio": "Ibu",
+    "chainRatioNew": "Baharu"
+  },
+  "tradeTrend": {
+    "title": "Trend Perdagangan",
+    "amount": "Jumlah",
+    "orders": "Pesanan",
+    "avgAmount": "Purata Jumlah"
+  },
+  "payMethod": {
+    "title": "Saluran Pembayaran"
+  },
+  "channelSuccess": {
+    "title": "Kadar Kejayaan Saluran"
+  },
+  "hourlyDist": {
+    "title": "Taburan Jam (Purata Harian)",
+    "tooltip": "{hour}:00 — purata {count} pesanan/hari"
+  },
+  "amountRange": {
+    "title": "Julat Jumlah"
+  },
+  "channelVolume": {
+    "title": "Kelantangan Saluran"
+  },
+  "refundTrend": {
+    "title": "Aliran Bayaran Balik"
+  },
+  "dimRank": {
+    "title": "Kedudukan Dagangan Mengikut Dimensi",
+    "rank": "Kedudukan",
+    "name": "Nama",
+    "amount": "Jumlah",
+    "orders": "Pesanan",
+    "proportion": "Peratus",
+    "unspecifiedStore": "Kedai tidak ditentukan",
+    "dim": {
+      "channelMch": "Merchant Saluran",
+      "app": "Aplikasi",
+      "store": "Kedai"
+    }
+  }
+}

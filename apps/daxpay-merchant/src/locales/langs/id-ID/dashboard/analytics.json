@@ -1,0 +1,62 @@
+{
+  "title": "Analisis",
+  "subtitle": "{start} hingga {end} · {days} hari total",
+  "customRange": "Rentang Kustom",
+  "timeRange": {
+    "today": "Hari ini",
+    "yesterday": "Kemarin",
+    "last7days": "7D",
+    "last30days": "30D",
+    "thisMonth": "Bulan ini",
+    "custom": "Kebiasaan"
+  },
+  "overview": {
+    "totalAmount": "Jumlah Total",
+    "totalOrders": "Jumlah Pesanan",
+    "avgAmount": "Jumlah Rata-rata",
+    "successRate": "Tingkat Keberhasilan",
+    "refundAmount": "Jumlah Pengembalian Dana",
+    "refundRate": "Tingkat Pengembalian Dana",
+    "chainRatio": "Mama",
+    "chainRatioNew": "Baru"
+  },
+  "tradeTrend": {
+    "title": "Tren Perdagangan",
+    "amount": "Jumlah",
+    "orders": "Pesanan",
+    "avgAmount": "Jumlah Rata-rata"
+  },
+  "payMethod": {
+    "title": "Saluran Pembayaran"
+  },
+  "channelSuccess": {
+    "title": "Tingkat Keberhasilan Saluran"
+  },
+  "hourlyDist": {
+    "title": "Distribusi Jam (Rata-rata Harian)",
+    "tooltip": "{hour}:00 — rata-rata {count} order/hari"
+  },
+  "amountRange": {
+    "title": "Kisaran Jumlah"
+  },
+  "channelVolume": {
+    "title": "Volume Saluran"
+  },
+  "refundTrend": {
+    "title": "Tren Pengembalian Dana"
+  },
+  "dimRank": {
+    "title": "Peringkat Transaksi per Dimensi",
+    "rank": "Peringkat",
+    "name": "Nama",
+    "amount": "Jumlah",
+    "orders": "Pesanan",
+    "proportion": "Proporsi",
+    "unspecifiedStore": "Toko tidak ditentukan",
+    "dim": {
+      "channelMch": "Merchant Saluran",
+      "app": "Aplikasi",
+      "store": "Toko"
+    }
+  }
+}

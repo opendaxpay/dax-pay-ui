@@ -1,0 +1,18 @@
+{
+  "fundStatus": {
+    "init": "イニシャル",
+    "processing": "処理",
+    "success": "成功",
+    "fail": "失敗した",
+    "close": "閉店",
+    "cancel": "取消済"
+  },
+  "fundStatusColor": {
+    "init": "デフォルト",
+    "processing": "処理",
+    "success": "緑",
+    "fail": "赤",
+    "close": "デフォルト",
+    "cancel": "default"
+  }
+}

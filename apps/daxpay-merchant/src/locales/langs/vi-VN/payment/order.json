@@ -1,0 +1,18 @@
+{
+  "fundStatus": {
+    "init": "Ban đầu",
+    "processing": "Xử lý",
+    "success": "Thành công",
+    "fail": "Thất bại",
+    "close": "Đã đóng",
+    "cancel": "Cancelled"
+  },
+  "fundStatusColor": {
+    "init": "mặc định",
+    "processing": "xử lý",
+    "success": "màu xanh lá",
+    "fail": "màu đỏ",
+    "close": "mặc định",
+    "cancel": "default"
+  }
+}

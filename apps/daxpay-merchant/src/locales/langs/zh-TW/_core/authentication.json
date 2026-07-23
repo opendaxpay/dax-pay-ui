@@ -1,0 +1,32 @@
+{
+  "login": "登入",
+  "qrcodeLogin": "二維碼登入",
+  "forgetPassword": "忘記密碼",
+  "profile": "個人中心",
+  "pageTitle": "DaxPay 支付運營管理平臺",
+  "pageDesc": "安全、穩定、高效的支付運營解決方案",
+  "oauthLoginSuccess": "登入成功",
+  "oauthBindSuccess": "三方賬號繫結成功",
+  "oauthNotBind": "該三方賬號未繫結，請先登入後在個人中心繫結",
+  "oauthStateInvalid": "授權狀態已過期，請重新操作",
+  "oauthFailed": "授權登入失敗",
+  "oauthProcessFailed": "授權登入處理失敗",
+  "oauthProcessing": "正在處理登入...",
+  "oauthProcessingWith": "{platform} 授權處理中...",
+  "oauthFailedWith": "{platform} 授權登入失敗",
+  "oauthLoginSuccessWith": "{platform} 登入成功",
+  "oauthUnknownPlatform": "未知平臺",
+  "passwordResetPending": "密碼重置功能待接入",
+  "qrcodeRefreshPending": "二維碼重新整理功能待接入",
+  "qrcodeLoadFailed": "二維碼載入失敗",
+  "twoFactor": {
+    "title": "雙因素驗證",
+    "subtitle": "請輸入驗證碼以完成登入",
+    "totp": "動態碼",
+    "backup": "備用碼",
+    "codePlaceholder": "請輸入6位動態驗證碼",
+    "backupPlaceholder": "請輸入備用驗證碼",
+    "submit": "驗證並登入",
+    "cancel": "返回"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "field": {
+    "name": "Tên",
+    "account": "Tài khoản",
+    "phone": "Điện thoại",
+    "email": "E-mail",
+    "clientCode": "Khách hàng",
+    "status": "Trạng thái",
+    "role": "Vai trò",
+    "roleList": "Danh sách vai trò",
+    "candidateRole": "Vai trò ứng viên",
+    "selectedRole": "Vai trò đã chọn",
+    "lastLoginTime": "Lần đăng nhập cuối cùng",
+    "detail": "Chi tiết người dùng",
+    "administrator": "Quản trị viên",
+    "registerTime": "Thời gian đăng ký",
+    "loginCount": "Số lần đăng nhập",
+    "lastLoginIp": "IP đăng nhập cuối"
+  },
+  "status": {
+    "normal": "Bình thường",
+    "lock": "Đã khóa",
+    "ban": "Bị cấm"
+  },
+  "action": {
+    "assignRole": "Gán vai trò",
+    "resetPassword": "Đặt lại mật khẩu",
+    "ban": "cấm",
+    "unlock": "Mở khóa",
+    "batchBan": "Lệnh cấm hàng loạt",
+    "batchUnlock": "Mở khóa hàng loạt",
+    "batchResetPassword": "Đặt lại mật khẩu hàng loạt",
+    "confirmAssignRole": "Bạn có chắc chắn muốn lưu sự phân công vai trò không?",
+    "confirmBan": "Bạn có chắc chắn cấm người dùng đã chọn không?",
+    "confirmUnlock": "Bạn có chắc chắn mở khóa những người dùng đã chọn không?",
+    "confirmResetPassword": "Bạn có chắc chắn đặt lại mật khẩu cho những người dùng đã chọn không?",
+    "socialBind": "Ràng buộc xã hội"
+  },
+  "social": {
+    "title": "Ràng buộc tài khoản xã hội",
+    "bound": "ràng buộc",
+    "unbound": "Không ràng buộc",
+    "unbindAction": "Hủy liên kết",
+    "unbindConfirm": "Bạn có chắc chắn hủy liên kết tài khoản {name} của người dùng này không?",
+    "unbindSuccess": "Hủy liên kết thành công",
+    "noEnabled": "Không có nền tảng xã hội được kích hoạt"
+  },
+  "password": {
+    "password": "Mật khẩu",
+    "newPassword": "Mật khẩu mới",
+    "confirmPassword": "Xác nhận mật khẩu"
+  },
+  "validation": {
+    "nameLength": "Độ dài tên phải từ 3 đến 15 ký tự",
+    "passwordLength": "Độ dài mật khẩu phải từ 8 đến 32 ký tự",
+    "assignRoleSingleTip": "Một người dùng chỉ có thể được chỉ định một vai trò, vui lòng chọn",
+    "pleaseSelectRole": "Vui lòng chọn một vai trò",
+    "noAssignableRole": "Không có vai trò có thể gán",
+    "passwordRequired": "Vui lòng nhập mật khẩu",
+    "passwordLengthRange": "Độ dài mật khẩu phải nằm trong khoảng {min} và {max} ký tự",
+    "accountLength": "Độ dài tài khoản phải từ 6-20 ký tự",
+    "accountFormat": "Tài khoản chỉ có thể chứa chữ cái, số, dấu gạch dưới và dấu gạch nối",
+    "passwordNoChinese": "Mật khẩu không được chứa ký tự tiếng Trung",
+    "cannotEditNonAdmin": "Không thể chỉnh sửa người dùng khách hàng không phải quản trị viên",
+    "cannotAssignRoleNonAdmin": "Không thể chỉ định vai trò cho người dùng khách hàng không phải quản trị viên",
+    "accountPattern": "Tài khoản chỉ được chứa chữ cái, số và dấu gạch dưới"
+  },
+  "passwordPolicy": {
+    "requireUppercase": "Mật khẩu phải chứa chữ in hoa",
+    "requireLowercase": "Mật khẩu phải chứa chữ thường",
+    "requireDigit": "Mật khẩu phải chứa chữ số",
+    "requireSpecialChar": "Mật khẩu phải chứa ký tự đặc biệt ({chars})",
+    "hintLength": "Độ dài: {min}-{max} ký tự",
+    "hintUppercase": "Ít nhất một chữ cái viết hoa",
+    "hintLowercase": "Ít nhất một chữ cái viết thường",
+    "hintDigit": "Ít nhất một chữ số",
+    "hintSpecialChar": "Ít nhất một ký tự đặc biệt ({chars})",
+    "notMeetRequirements": "Mật khẩu không đáp ứng yêu cầu"
+  }
+}

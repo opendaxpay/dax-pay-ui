@@ -1,0 +1,77 @@
+{
+  "greeting": {
+    "morning": "Selamat pagi",
+    "afternoon": "Selamat siang",
+    "evening": "Selamat malam",
+    "subtitle": "Selamat datang kembali di DaxPay Merchant"
+  },
+  "stat": {
+    "appCount": "Aplikasi",
+    "storeCount": "Toko",
+    "channelMerchantCount": "Merchant Saluran"
+  },
+  "widget": {
+    "workbenchHeader": "Ruang kerja",
+    "quickEntry": "Entri Cepat",
+    "tradeOverview": "Ikhtisar Perdagangan",
+    "payOrder": "Perintah Pembayaran",
+    "payTrade": "Perdagangan Dana",
+    "tradeTrend": "Tren Perdagangan",
+    "providerDist": "Distribusi Metode Pembayaran",
+    "noticeList": "Pemberitahuan",
+    "configAlert": "Konfigurasi Tertunda"
+  },
+  "tradeOverview": {
+    "today": "Hari ini",
+    "yesterday": "Kemarin",
+    "successAmount": "Jumlah Keberhasilan (CNY)",
+    "successCount": "Hitungan Keberhasilan",
+    "refundAmount": "Jumlah Pengembalian Dana (CNY)",
+    "refundCount": "Jumlah Pengembalian Dana"
+  },
+  "tradeTrend": {
+    "last7days": "7 hari",
+    "last30days": "30 Hari"
+  },
+  "quickEntry": {
+    "merchant": "Pedagang",
+    "app": "Aplikasi",
+    "channelMerchant": "Pedagang Saluran",
+    "notify": "Pusat Notifikasi",
+    "user": "Pengguna",
+    "dict": "Kamus",
+    "loginLog": "Log Masuk",
+    "security": "Manajemen Keamanan",
+    "payOrder": "Perintah Pembayaran",
+    "refundOrder": "Pengembalian Dana Pesanan",
+    "payTrade": "Perdagangan Dana",
+    "role": "Peran",
+    "menu": "Menu",
+    "operateLog": "Operasikan Log",
+    "notice": "Pemberitahuan",
+    "productConfig": "Konfigurasi Produk Saluran",
+    "platformConfig": "Konfigurasi Platform",
+    "onlineUser": "Pengguna Daring",
+    "analytics": "Analitik",
+    "developTrade": "Pembayaran Berkembang",
+    "socialLogin": "Login Platform Pihak Ketiga",
+    "empty": "Tidak ada entri cepat yang dapat diakses",
+    "edit": "Sunting",
+    "editTitle": "Edit Entri Cepat",
+    "selected": "Dipilih (seret untuk mengurutkan)",
+    "available": "Tersedia",
+    "allAdded": "Semua ditambahkan",
+    "profile": "Profil"
+  },
+  "notice": {
+    "important": "Penting",
+    "normal": "Normal",
+    "top": "Atas"
+  },
+  "configAlert": {
+    "bannerTitle": "{n} konfigurasi tertunda",
+    "viewDetail": "Lihat Detail",
+    "allComplete": "Semua konfigurasi selesai"
+  },
+  "scaffoldTitle": "Workspace"
+}

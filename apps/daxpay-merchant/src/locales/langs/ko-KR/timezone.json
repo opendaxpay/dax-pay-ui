@@ -1,0 +1,12 @@
+{
+  "current": "현재 시간대",
+  "searchPlaceholder": "도시/시간대/오프셋 검색",
+  "region": {
+    "asia": "아시아",
+    "europe": "유럽",
+    "america": "미국",
+    "oceania": "오세아니아",
+    "africa": "아프리카",
+    "universal": "만능인"
+  }
+}

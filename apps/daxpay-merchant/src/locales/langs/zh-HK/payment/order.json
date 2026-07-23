@@ -1,0 +1,18 @@
+{
+  "fundStatus": {
+    "init": "初始化",
+    "processing": "處理中",
+    "success": "成功",
+    "fail": "失敗",
+    "close": "已關閉",
+    "cancel": "已撤銷"
+  },
+  "fundStatusColor": {
+    "init": "default",
+    "processing": "processing",
+    "success": "green",
+    "fail": "red",
+    "close": "default",
+    "cancel": "default"
+  }
+}

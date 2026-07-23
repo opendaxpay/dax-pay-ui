@@ -1,0 +1,6 @@
+{
+  "uploadImage": "Upload Image",
+  "fileTooLarge": "File {name} size is {size}, exceeds the maximum limit of {maxSize}, please compress the image before uploading!",
+  "uploadSuccess": "{name} uploaded successfully!",
+  "uploadFailed": "{name} upload failed!"
+}

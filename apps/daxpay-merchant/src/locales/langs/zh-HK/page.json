@@ -1,0 +1,25 @@
+{
+  "auth": {
+    "profile": "個人設置",
+    "login": "登錄",
+    "qrcodeLogin": "二維碼登錄",
+    "forgetPassword": "忘記密碼",
+    "oauthCallback": "第三方登錄回調"
+  },
+  "dashboard": {
+    "title": "儀表盤",
+    "analytics": "分析頁",
+    "workspace": "工作台"
+  },
+  "payment": {
+    "title": "支付管理",
+    "platform": "支付管理",
+    "merchantList": "商户列表",
+    "merchantManage": "商户管理",
+    "merchantChannelMerchant": "商户通道商户",
+    "channelMerchantManage": "通道商户",
+    "channelMerchantList": "通道商户",
+    "channelMerchantDetail": "通道商户詳情",
+    "productList": "支付產品"
+  }
+}

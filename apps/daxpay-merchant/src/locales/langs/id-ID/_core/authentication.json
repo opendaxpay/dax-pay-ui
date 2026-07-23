@@ -1,0 +1,32 @@
+{
+  "login": "Login",
+  "qrcodeLogin": "Masuk Kode Qr",
+  "forgetPassword": "Lupa Kata Sandi",
+  "profile": "Profil",
+  "pageTitle": "Platform Operasi Pembayaran DaxPay",
+  "pageDesc": "Solusi operasi pembayaran yang aman, stabil dan efisien",
+  "oauthLoginSuccess": "Masuk berhasil",
+  "oauthBindSuccess": "Akun sosial berhasil diikat",
+  "oauthNotBind": "Akun sosial ini tidak terikat. Silakan login terlebih dahulu dan ikat di profil Anda",
+  "oauthStateInvalid": "Otorisasi telah habis masa berlakunya. Silakan coba lagi",
+  "oauthFailed": "Login otorisasi gagal",
+  "oauthProcessFailed": "Gagal memproses login otorisasi",
+  "oauthProcessing": "Memproses masuk...",
+  "oauthProcessingWith": "{platform} otorisasi sedang berlangsung...",
+  "oauthFailedWith": "{platform} otorisasi gagal",
+  "oauthLoginSuccessWith": "{platform} login berhasil",
+  "oauthUnknownPlatform": "Platform tidak dikenal",
+  "passwordResetPending": "Penyetelan ulang kata sandi belum tersedia",
+  "qrcodeRefreshPending": "Penyegaran kode QR belum tersedia",
+  "qrcodeLoadFailed": "Gagal memuat kode QR",
+  "twoFactor": {
+    "title": "Verifikasi Dua Faktor",
+    "subtitle": "Masukkan kode verifikasi untuk menyelesaikan login",
+    "totp": "Kode Autentikator",
+    "backup": "Kode Cadangan",
+    "codePlaceholder": "Masukkan kode verifikasi 6 digit",
+    "backupPlaceholder": "Masukkan kode cadangan",
+    "submit": "Verifikasi dan Masuk",
+    "cancel": "Kembali"
+  }
+}

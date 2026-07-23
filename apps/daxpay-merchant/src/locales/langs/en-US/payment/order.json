@@ -1,0 +1,18 @@
+{
+  "fundStatus": {
+    "init": "Initial",
+    "processing": "Processing",
+    "success": "Success",
+    "fail": "Failed",
+    "close": "Closed",
+    "cancel": "Cancelled"
+  },
+  "fundStatusColor": {
+    "init": "default",
+    "processing": "processing",
+    "success": "green",
+    "fail": "red",
+    "close": "default",
+    "cancel": "default"
+  }
+}

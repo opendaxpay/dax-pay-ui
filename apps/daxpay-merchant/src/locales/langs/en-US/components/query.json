@@ -1,0 +1,19 @@
+{
+  "query": "Query",
+  "reset": "Reset",
+  "expand": "Expand",
+  "collapse": "Collapse",
+  "inputQueryValue": "Please enter query value",
+  "selectQueryValue": "Please select query value",
+  "selectDate": "Please select date",
+  "selectTime": "Please select time",
+  "selectDateTime": "Please select date time",
+  "startTime": "Start Time",
+  "endTime": "End Time",
+  "today": "Today",
+  "yesterday": "Yesterday",
+  "last7Days": "Last 7 Days",
+  "last30Days": "Last 30 Days",
+  "thisMonth": "This Month",
+  "lastMonth": "Last Month"
+}

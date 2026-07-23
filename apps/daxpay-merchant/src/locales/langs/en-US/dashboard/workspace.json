@@ -1,0 +1,77 @@
+{
+  "greeting": {
+    "morning": "Good morning",
+    "afternoon": "Good afternoon",
+    "evening": "Good evening",
+    "subtitle": "Welcome back to DaxPay Merchant"
+  },
+  "stat": {
+    "appCount": "Applications",
+    "storeCount": "Stores",
+    "channelMerchantCount": "Channel Merchants"
+  },
+  "widget": {
+    "workbenchHeader": "Workspace",
+    "quickEntry": "Quick Entry",
+    "tradeOverview": "Trade Overview",
+    "payOrder": "Payment Orders",
+    "payTrade": "Fund Trades",
+    "tradeTrend": "Trade Trend",
+    "providerDist": "Payment Method Distribution",
+    "noticeList": "Notices",
+    "configAlert": "Pending Config"
+  },
+  "tradeOverview": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "successAmount": "Success Amount (CNY)",
+    "successCount": "Success Count",
+    "refundAmount": "Refund Amount (CNY)",
+    "refundCount": "Refund Count"
+  },
+  "tradeTrend": {
+    "last7days": "7 Days",
+    "last30days": "30 Days"
+  },
+  "quickEntry": {
+    "merchant": "Merchants",
+    "app": "Applications",
+    "channelMerchant": "Channel Merchants",
+    "notify": "Notifications",
+    "user": "Users",
+    "dict": "Dictionaries",
+    "loginLog": "Login Logs",
+    "security": "Security Management",
+    "payOrder": "Payment Orders",
+    "refundOrder": "Refund Orders",
+    "payTrade": "Fund Trades",
+    "role": "Roles",
+    "menu": "Menus",
+    "operateLog": "Operate Logs",
+    "notice": "Notices",
+    "productConfig": "Channel Product Config",
+    "platformConfig": "Platform Config",
+    "onlineUser": "Online Users",
+    "analytics": "Analytics",
+    "developTrade": "Payment Develop",
+    "socialLogin": "Third-party Platform Login",
+    "empty": "No accessible quick entries",
+    "edit": "Edit",
+    "editTitle": "Edit Quick Entry",
+    "selected": "Selected (drag to sort)",
+    "available": "Available",
+    "allAdded": "All added",
+    "profile": "Profile"
+  },
+  "notice": {
+    "important": "Important",
+    "normal": "Normal",
+    "top": "Top"
+  },
+  "configAlert": {
+    "bannerTitle": "You have {n} configuration(s) pending",
+    "viewDetail": "View Details",
+    "allComplete": "All configurations complete"
+  },
+  "scaffoldTitle": "Workspace"
+}

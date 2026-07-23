@@ -1,0 +1,12 @@
+{
+  "pageNotFound": "Aduh! Halaman Tidak Ditemui",
+  "pageNotFoundDesc": "Maaf, kami tidak menemui halaman yang anda cari.",
+  "forbidden": "Aduh! Akses Ditolak",
+  "forbiddenDesc": "Maaf, anda tiada kebenaran untuk mengakses halaman ini.",
+  "internalError": "Aduh! Sesuatu yang tidak kena",
+  "internalErrorDesc": "Maaf, pelayan mengalami ralat.",
+  "offline": "Halaman Luar Talian",
+  "offlineError": "Aduh! Ralat Rangkaian",
+  "offlineErrorDesc": "Maaf, tidak dapat menyambung ke Internet. Sila semak sambungan rangkaian anda dan cuba lagi.",
+  "comingSoon": "Akan Datang"
+}

@@ -1,0 +1,77 @@
+{
+  "title": "Đăng nhập nền tảng của bên thứ ba",
+  "emptyDesc": "Không có dữ liệu cấu hình nền tảng",
+  "clientCode": {
+    "label": "Khách hàng",
+    "admin": "Quản trị viên",
+    "merchant": "Thương gia"
+  },
+  "platform": {
+    "weChat": "Nền tảng mở WeChat",
+    "weCom": "WeCom",
+    "qq": "QQ",
+    "github": "GitHub",
+    "gitee": "Gite",
+    "google": "Google",
+    "feishu": "Feishu",
+    "dingTalk": "DingTalk",
+    "douyin": "Douyin",
+    "alipay": "Alipay"
+  },
+  "status": {
+    "enabled": "Đã bật",
+    "disabled": "Tàn tật",
+    "unconfigured": "Chưa được định cấu hình"
+  },
+  "badge": {
+    "platformRedirect": "Cấp nền tảng"
+  },
+  "action": {
+    "config": "Cấu hình",
+    "gotoConfig": "Đi đến cấu hình",
+    "gotoCredential": "Định cấu hình thông tin xác thực",
+    "edit": "Biên tập",
+    "enable": "Cho phép",
+    "disable": "Vô hiệu hóa",
+    "delete": "Xóa bỏ",
+    "add": "Thêm cấu hình nền tảng",
+    "search": "Tìm kiếm",
+    "reset": "Cài lại",
+    "copy": "Sao chép"
+  },
+  "form": {
+    "source": "Nền tảng",
+    "clientId": "ID khách hàng",
+    "clientIdPlaceholder": "Nhập ID khách hàng (AppId)",
+    "clientIdHelp": "Thường là AppId hoặc ClientID, tùy thuộc vào tên nền tảng thực tế",
+    "clientSecret": "Bí mật khách hàng",
+    "clientSecretPlaceholder": "Nhập bí mật của khách hàng",
+    "clientSecretHelp": "Thông thường AppSecret hoặc ClientSecret, tùy thuộc vào tên nền tảng thực tế",
+    "clientSecretRequired": "Bí mật của khách hàng không được để trống",
+    "agentId": "ID đại lý WeCom",
+    "agentIdPlaceholder": "Chỉ bắt buộc đối với WeCom",
+    "enabled": "Đã bật",
+    "enabledRequired": "Vui lòng chọn trạng thái bật",
+    "callbackUrl": "URL gọi lại",
+    "callbackUrlHelp": "Đăng ký các URL này trong bảng điều khiển OAuth của bên thứ ba; quản trị viên và người bán mỗi người cần một bộ đầy đủ",
+    "callbackUrlEmpty": "Trước tiên hãy đặt URL truy cập quản trị viên trong cấu hình điểm cuối",
+    "callbackUrlEmptyAdmin": "Trước tiên, vui lòng đặt URL cơ sở quản trị trong cấu hình điểm cuối",
+    "callbackUrlEmptyMerchant": "Vui lòng đặt URL cơ sở người bán (merchantBaseUrl) trong cấu hình điểm cuối; cần thiết để đăng nhập vào mạng xã hội của người bán",
+    "loginCallback": "Đăng nhập Gọi lại",
+    "bindCallback": "Liên kết gọi lại"
+  },
+  "confirm": {
+    "delete": "Bạn có chắc chắn xóa cấu hình {name} không?"
+  },
+  "tip": {
+    "addSuccess": "Đã thêm thành công",
+    "configSuccess": "Đã cấu hình thành công",
+    "editSuccess": "Đã cập nhật thành công",
+    "enableSuccess": "Đã bật thành công",
+    "disableSuccess": "Đã tắt thành công",
+    "deleteSuccess": "Đã xóa thành công",
+    "copySuccess": "Đã sao chép vào bảng nhớ tạm",
+    "platformCredentialRequired": "Vui lòng hoàn thành thông tin xác thực cấp nền tảng trước khi cho phép đăng nhập",
+    "platformCredentialHint": "Quản lý AppId/khóa trong Cấu hình ứng dụng Alipay; công tắc này chỉ kiểm soát xem có đăng nhập Alipay hay không"
+  }
+}

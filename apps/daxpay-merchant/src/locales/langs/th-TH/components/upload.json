@@ -1,0 +1,6 @@
+{
+  "uploadImage": "อัพโหลดรูปภาพ",
+  "fileTooLarge": "ไฟล์ {name} มีขนาด {size} เกินขีดจำกัดสูงสุดที่ {maxSize} โปรดบีบอัดรูปภาพก่อนอัปโหลด!",
+  "uploadSuccess": "{name} อัปโหลดสำเร็จแล้ว!",
+  "uploadFailed": "{name} การอัปโหลดล้มเหลว!"
+}

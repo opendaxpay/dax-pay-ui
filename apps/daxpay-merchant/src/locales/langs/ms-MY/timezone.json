@@ -1,0 +1,12 @@
+{
+  "current": "Zon waktu semasa",
+  "searchPlaceholder": "Cari bandar / zon waktu / offset",
+  "region": {
+    "asia": "Asia",
+    "europe": "Eropah",
+    "america": "Amerika",
+    "oceania": "Oceania",
+    "africa": "Afrika",
+    "universal": "Sejagat"
+  }
+}

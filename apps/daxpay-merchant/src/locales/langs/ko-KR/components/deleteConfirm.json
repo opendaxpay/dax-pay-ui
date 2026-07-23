@@ -1,0 +1,10 @@
+{
+  "title": "삭제 확인",
+  "primaryWarning": "경고: 이 작업은 취소할 수 없습니다. 주의해서 진행하시기 바랍니다.",
+  "description": "{name}의 데이터가 영구적으로 삭제됩니다. 이 작업은 취소할 수 없습니다.",
+  "instruction": "사고를 예방하려면 다음을 입력하여 확인하세요.",
+  "inputPlaceholder": "확인하려면 위의 텍스트를 입력하세요.",
+  "confirmDelete": "삭제 확인",
+  "finalTitle": "삭제 다시 확인",
+  "finalContent": "정말로 \"{name}\"을(를) 삭제하시겠습니까? 이 작업은 취소할 수 없습니다."
+}

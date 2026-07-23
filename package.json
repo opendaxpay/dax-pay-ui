@@ -17,6 +17,7 @@
     "commit": "czg",
     "dev": "turbo-run dev",
     "dev:admin": "pnpm -F daxpay-admin run dev",
+    "dev:merchant": "pnpm -F daxpay-merchant run dev",
     "dev:docs": "pnpm -F @vben/docs run dev",
     "format": "prettier --write .",
     "lint": "vsh lint",

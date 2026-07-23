@@ -1,0 +1,80 @@
+{
+  "field": {
+    "name": "名前",
+    "account": "アカウント",
+    "phone": "電話",
+    "email": "電子メール",
+    "clientCode": "クライアント",
+    "status": "状態",
+    "role": "役割",
+    "roleList": "役割リスト",
+    "candidateRole": "候補者の役割",
+    "selectedRole": "選択された役割",
+    "lastLoginTime": "最終ログイン時間",
+    "detail": "ユーザーの詳細",
+    "administrator": "管理者",
+    "registerTime": "登録時間",
+    "loginCount": "ログイン回数",
+    "lastLoginIp": "最終ログイン IP"
+  },
+  "status": {
+    "normal": "普通",
+    "lock": "ロックされています",
+    "ban": "禁止"
+  },
+  "action": {
+    "assignRole": "役割の割り当て",
+    "resetPassword": "パスワードのリセット",
+    "ban": "禁止",
+    "unlock": "ロックを解除する",
+    "batchBan": "バッチ禁止",
+    "batchUnlock": "一括ロック解除",
+    "batchResetPassword": "パスワードの一括リセット",
+    "confirmAssignRole": "役割の割り当てを保存してもよろしいですか?",
+    "confirmBan": "選択したユーザーを禁止してもよろしいですか?",
+    "confirmUnlock": "選択したユーザーのロックを解除してもよろしいですか?",
+    "confirmResetPassword": "選択したユーザーのパスワードをリセットしてもよろしいですか?",
+    "socialBind": "社会的な束縛"
+  },
+  "social": {
+    "title": "ソーシャルアカウントのバインド",
+    "bound": "バウンド",
+    "unbound": "束縛されていない",
+    "unbindAction": "バインドを解除する",
+    "unbindConfirm": "このユーザーの {name} アカウントのバインドを解除してもよろしいですか?",
+    "unbindSuccess": "アンバインド成功",
+    "noEnabled": "有効なソーシャル プラットフォームがありません"
+  },
+  "password": {
+    "password": "パスワード",
+    "newPassword": "新しいパスワード",
+    "confirmPassword": "パスワードを認証する"
+  },
+  "validation": {
+    "nameLength": "名前の長さは 3 ～ 15 文字にする必要があります",
+    "passwordLength": "パスワードの長さは 8 ～ 32 文字である必要があります",
+    "assignRoleSingleTip": "ユーザーには 1 つの役割のみを割り当てることができます。選択してください",
+    "pleaseSelectRole": "役割を選択してください",
+    "noAssignableRole": "割り当て可能な役割はありません",
+    "passwordRequired": "パスワードを入力してください",
+    "passwordLengthRange": "パスワードの長さは {min} ～ {max} 文字でなければなりません",
+    "accountLength": "アカウントは6〜20文字です",
+    "accountFormat": "アカウントには文字、数字、アンダースコア、ハイフンのみを含めることができます",
+    "passwordNoChinese": "パスワードに漢字を含めることはできません",
+    "cannotEditNonAdmin": "管理者以外のクライアント ユーザーは編集できません",
+    "cannotAssignRoleNonAdmin": "管理者以外のクライアント ユーザーにロールを割り当てることはできません",
+    "accountPattern": "アカウントは英字、数字、アンダースコアのみ使用できます"
+  },
+  "passwordPolicy": {
+    "requireUppercase": "パスワードには大文字が含まれている必要があります",
+    "requireLowercase": "パスワードには小文字が含まれている必要があります",
+    "requireDigit": "パスワードには数字が含まれている必要があります",
+    "requireSpecialChar": "パスワードには特殊文字 ({chars}) が含まれている必要があります",
+    "hintLength": "長さ: {min}-{max} 文字",
+    "hintUppercase": "少なくとも 1 つの大文字",
+    "hintLowercase": "少なくとも 1 つの小文字",
+    "hintDigit": "少なくとも 1 桁",
+    "hintSpecialChar": "少なくとも 1 つの特殊文字 ({chars})",
+    "notMeetRequirements": "パスワードが要件を満たしておりません"
+  }
+}

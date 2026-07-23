@@ -1,0 +1,19 @@
+{
+  "query": "Truy vấn",
+  "reset": "Cài lại",
+  "expand": "Mở rộng",
+  "collapse": "Sụp đổ",
+  "inputQueryValue": "Vui lòng nhập giá trị truy vấn",
+  "selectQueryValue": "Vui lòng chọn giá trị truy vấn",
+  "selectDate": "Vui lòng chọn ngày",
+  "selectTime": "Hãy chọn thời gian",
+  "selectDateTime": "Vui lòng chọn ngày giờ",
+  "startTime": "Thời gian bắt đầu",
+  "endTime": "Thời gian kết thúc",
+  "today": "Hôm nay",
+  "yesterday": "Hôm qua",
+  "last7Days": "7 ngày qua",
+  "last30Days": "30 ngày qua",
+  "thisMonth": "Tháng này",
+  "lastMonth": "Tháng trước"
+}

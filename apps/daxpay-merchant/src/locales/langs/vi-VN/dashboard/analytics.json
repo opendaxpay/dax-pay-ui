@@ -1,0 +1,62 @@
+{
+  "title": "Phân tích",
+  "subtitle": "{start} tới {end} · tổng cộng {days} ngày",
+  "customRange": "Phạm vi tùy chỉnh",
+  "timeRange": {
+    "today": "Hôm nay",
+    "yesterday": "Hôm qua",
+    "last7days": "7D",
+    "last30days": "30D",
+    "thisMonth": "Tháng này",
+    "custom": "Phong tục"
+  },
+  "overview": {
+    "totalAmount": "Tổng số tiền",
+    "totalOrders": "Tổng số đơn đặt hàng",
+    "avgAmount": "Số tiền trung bình",
+    "successRate": "Tỷ lệ thành công",
+    "refundAmount": "Số tiền hoàn lại",
+    "refundRate": "Tỷ lệ hoàn tiền",
+    "chainRatio": "Mẹ",
+    "chainRatioNew": "Mới"
+  },
+  "tradeTrend": {
+    "title": "Xu hướng thương mại",
+    "amount": "Số lượng",
+    "orders": "Đơn đặt hàng",
+    "avgAmount": "Số tiền trung bình"
+  },
+  "payMethod": {
+    "title": "Kênh thanh toán"
+  },
+  "channelSuccess": {
+    "title": "Tỷ lệ thành công của kênh"
+  },
+  "hourlyDist": {
+    "title": "Phân bố theo giờ (TB ngày)",
+    "tooltip": "{hour}:00 — TB {count} đơn/ngày"
+  },
+  "amountRange": {
+    "title": "Phạm vi số tiền"
+  },
+  "channelVolume": {
+    "title": "Âm lượng kênh"
+  },
+  "refundTrend": {
+    "title": "Xu hướng hoàn tiền"
+  },
+  "dimRank": {
+    "title": "Xếp hạng giao dịch theo chiều",
+    "rank": "Hạng",
+    "name": "Tên",
+    "amount": "Số tiền",
+    "orders": "Đơn",
+    "proportion": "Tỷ lệ",
+    "unspecifiedStore": "Cửa hàng chưa chỉ định",
+    "dim": {
+      "channelMch": "Merchant kênh",
+      "app": "Ứng dụng",
+      "store": "Cửa hàng"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "current": "Múi giờ hiện tại",
+  "searchPlaceholder": "Tìm kiếm thành phố / múi giờ / offset",
+  "region": {
+    "asia": "Châu Á",
+    "europe": "Châu Âu",
+    "america": "Mỹ",
+    "oceania": "Châu Đại Dương",
+    "africa": "Châu phi",
+    "universal": "Phổ quát"
+  }
+}

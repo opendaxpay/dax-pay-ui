@@ -1,0 +1,77 @@
+{
+  "greeting": {
+    "morning": "Chào buổi sáng",
+    "afternoon": "Chào buổi chiều",
+    "evening": "Buổi tối vui vẻ",
+    "subtitle": "Chào mừng trở lại DaxPay Merchant"
+  },
+  "stat": {
+    "appCount": "Ứng dụng",
+    "storeCount": "Cửa hàng",
+    "channelMerchantCount": "Merchant kênh"
+  },
+  "widget": {
+    "workbenchHeader": "Không gian làm việc",
+    "quickEntry": "Nhập nhanh",
+    "tradeOverview": "Tổng quan thương mại",
+    "payOrder": "Lệnh thanh toán",
+    "payTrade": "Giao dịch quỹ",
+    "tradeTrend": "Xu hướng thương mại",
+    "providerDist": "Phân bố phương thức thanh toán",
+    "noticeList": "Thông báo",
+    "configAlert": "Cấu hình chưa hoàn tất"
+  },
+  "tradeOverview": {
+    "today": "Hôm nay",
+    "yesterday": "Hôm qua",
+    "successAmount": "Số tiền thành công (CNY)",
+    "successCount": "Số lượng thành công",
+    "refundAmount": "Số tiền hoàn lại (CNY)",
+    "refundCount": "Số tiền hoàn lại"
+  },
+  "tradeTrend": {
+    "last7days": "7 ngày",
+    "last30days": "30 ngày"
+  },
+  "quickEntry": {
+    "merchant": "Thương gia",
+    "app": "Ứng dụng",
+    "channelMerchant": "Người bán kênh",
+    "notify": "Trung tâm thông báo",
+    "user": "Người dùng",
+    "dict": "Từ điển",
+    "loginLog": "Nhật ký đăng nhập",
+    "security": "Quản lý bảo mật",
+    "payOrder": "Lệnh thanh toán",
+    "refundOrder": "Lệnh hoàn tiền",
+    "payTrade": "Giao dịch quỹ",
+    "role": "Vai trò",
+    "menu": "Thực đơn",
+    "operateLog": "Nhật ký vận hành",
+    "notice": "Thông báo",
+    "productConfig": "Cấu hình sản phẩm kênh",
+    "platformConfig": "Cấu hình nền tảng",
+    "onlineUser": "Người dùng trực tuyến",
+    "analytics": "Phân tích",
+    "developTrade": "Phát triển thanh toán",
+    "socialLogin": "Đăng nhập nền tảng của bên thứ ba",
+    "empty": "Không có mục nhập nhanh có thể truy cập",
+    "edit": "Biên tập",
+    "editTitle": "Chỉnh sửa nhập nhanh",
+    "selected": "Đã chọn (kéo để sắp xếp)",
+    "available": "Có sẵn",
+    "allAdded": "Tất cả đã thêm",
+    "profile": "Hồ sơ"
+  },
+  "notice": {
+    "important": "Quan trọng",
+    "normal": "Bình thường",
+    "top": "Đứng đầu"
+  },
+  "configAlert": {
+    "bannerTitle": "Có {n} cấu hình chưa hoàn tất",
+    "viewDetail": "Xem chi tiết",
+    "allComplete": "Tất cả cấu hình đã hoàn tất"
+  },
+  "scaffoldTitle": "Không gian làm việc"
+}

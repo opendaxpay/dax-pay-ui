@@ -1,0 +1,10 @@
+{
+  "title": "確認刪除",
+  "primaryWarning": "警告：刪除操作無法撤消！請慎重操作！",
+  "description": "該操作將永久刪除 {name} 的資料，此操作不可恢復。",
+  "instruction": "為防止意外，確認繼續操作請輸入以下內容：",
+  "inputPlaceholder": "請輸入提示內容以確認繼續操作",
+  "confirmDelete": "確認刪除",
+  "finalTitle": "再次確認刪除",
+  "finalContent": "確定要刪除「{name}」嗎？此操作不可恢復。"
+}

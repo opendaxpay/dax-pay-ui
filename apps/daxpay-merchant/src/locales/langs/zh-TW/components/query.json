@@ -1,0 +1,19 @@
+{
+  "query": "查詢",
+  "reset": "重置",
+  "expand": "展開",
+  "collapse": "收起",
+  "inputQueryValue": "請輸入查詢值",
+  "selectQueryValue": "請選擇查詢值",
+  "selectDate": "請選擇日期",
+  "selectTime": "請選擇時間",
+  "selectDateTime": "請選擇日期時間",
+  "startTime": "開始時間",
+  "endTime": "結束時間",
+  "today": "今天",
+  "yesterday": "昨天",
+  "last7Days": "近7天",
+  "last30Days": "近30天",
+  "thisMonth": "本月",
+  "lastMonth": "上月"
+}

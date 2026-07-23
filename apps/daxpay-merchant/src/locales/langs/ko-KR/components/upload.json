@@ -1,0 +1,6 @@
+{
+  "uploadImage": "이미지 업로드",
+  "fileTooLarge": "파일 {name} 크기는 {size}이며 최대 제한인 {maxSize}을(를) 초과합니다. 업로드하기 전에 이미지를 압축하세요!",
+  "uploadSuccess": "{name}이(가) 성공적으로 업로드되었습니다!",
+  "uploadFailed": "{name} 업로드에 실패했습니다!"
+}

@@ -1,0 +1,18 @@
+{
+  "fundStatus": {
+    "init": "อักษรย่อ",
+    "processing": "กำลังประมวลผล",
+    "success": "ความสำเร็จ",
+    "fail": "ล้มเหลว",
+    "close": "ปิด",
+    "cancel": "Cancelled"
+  },
+  "fundStatusColor": {
+    "init": "ค่าเริ่มต้น",
+    "processing": "กำลังประมวลผล",
+    "success": "สีเขียว",
+    "fail": "สีแดง",
+    "close": "ค่าเริ่มต้น",
+    "cancel": "default"
+  }
+}

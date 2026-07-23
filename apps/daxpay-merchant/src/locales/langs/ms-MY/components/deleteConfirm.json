@@ -1,0 +1,10 @@
+{
+  "title": "Sahkan Pemadaman",
+  "primaryWarning": "Amaran: Tindakan ini tidak boleh dibuat asal. Sila teruskan dengan berhati-hati.",
+  "description": "Ini akan memadamkan data selama-lamanya untuk {name}. Tindakan ini tidak boleh dibuat asal.",
+  "instruction": "Untuk mengelakkan kemalangan, taip yang berikut untuk mengesahkan:",
+  "inputPlaceholder": "Masukkan teks di atas untuk mengesahkan",
+  "confirmDelete": "Sahkan Padam",
+  "finalTitle": "Sahkan Pemadaman Sekali lagi",
+  "finalContent": "Adakah anda pasti mahu memadamkan \"{name}\"? Tindakan ini tidak boleh dibuat asal."
+}

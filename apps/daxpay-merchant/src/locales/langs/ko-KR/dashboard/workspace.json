@@ -1,0 +1,77 @@
+{
+  "greeting": {
+    "morning": "좋은 아침이에요",
+    "afternoon": "좋은 오후에요",
+    "evening": "좋은 저녁이에요",
+    "subtitle": "DaxPay 머천트에 오신 것을 환영합니다"
+  },
+  "stat": {
+    "appCount": "앱",
+    "storeCount": "매장",
+    "channelMerchantCount": "채널 가맹점"
+  },
+  "widget": {
+    "workbenchHeader": "작업공간",
+    "quickEntry": "빠른 입장",
+    "tradeOverview": "무역개요",
+    "payOrder": "지불 주문",
+    "payTrade": "펀드거래",
+    "tradeTrend": "무역동향",
+    "providerDist": "결제 수단 분포",
+    "noticeList": "공지사항",
+    "configAlert": "설정 미완료"
+  },
+  "tradeOverview": {
+    "today": "오늘",
+    "yesterday": "어제",
+    "successAmount": "성공 금액(CNY)",
+    "successCount": "성공 횟수",
+    "refundAmount": "환불 금액(CNY)",
+    "refundCount": "환불 횟수"
+  },
+  "tradeTrend": {
+    "last7days": "7일",
+    "last30days": "30일"
+  },
+  "quickEntry": {
+    "merchant": "상인",
+    "app": "응용",
+    "channelMerchant": "채널 판매자",
+    "notify": "알림 센터",
+    "user": "사용자",
+    "dict": "사전",
+    "loginLog": "로그인 로그",
+    "security": "보안 관리",
+    "payOrder": "지불 주문",
+    "refundOrder": "주문 환불",
+    "payTrade": "펀드거래",
+    "role": "역할",
+    "menu": "메뉴",
+    "operateLog": "로그 운영",
+    "notice": "공지사항",
+    "productConfig": "채널 제품 구성",
+    "platformConfig": "플랫폼 구성",
+    "onlineUser": "온라인 사용자",
+    "analytics": "분석",
+    "developTrade": "결제 개발",
+    "socialLogin": "타사 플랫폼 로그인",
+    "empty": "접근 가능한 빠른 항목이 없습니다.",
+    "edit": "편집하다",
+    "editTitle": "빠른 입력 편집",
+    "selected": "선택됨(정렬하려면 드래그하세요)",
+    "available": "사용 가능",
+    "allAdded": "모두 추가됨",
+    "profile": "프로필"
+  },
+  "notice": {
+    "important": "중요한",
+    "normal": "정상",
+    "top": "맨 위"
+  },
+  "configAlert": {
+    "bannerTitle": "{n}개의 설정이 미완료입니다",
+    "viewDetail": "상세 보기",
+    "allComplete": "모든 설정이 완료되었습니다"
+  },
+  "scaffoldTitle": "워크스페이스"
+}

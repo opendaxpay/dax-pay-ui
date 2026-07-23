@@ -1,0 +1,6 @@
+{
+  "uploadImage": "画像をアップロードする",
+  "fileTooLarge": "ファイル {name} のサイズは {size} で、最大制限の {maxSize} を超えています。アップロードする前に画像を圧縮してください。",
+  "uploadSuccess": "{name} が正常にアップロードされました。",
+  "uploadFailed": "{name} アップロードに失敗しました。"
+}

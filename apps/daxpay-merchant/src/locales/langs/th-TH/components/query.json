@@ -1,0 +1,19 @@
+{
+  "query": "แบบสอบถาม",
+  "reset": "รีเซ็ต",
+  "expand": "ขยาย",
+  "collapse": "ทรุด",
+  "inputQueryValue": "กรุณากรอกค่าการค้นหา",
+  "selectQueryValue": "โปรดเลือกค่าการค้นหา",
+  "selectDate": "กรุณาเลือกวันที่",
+  "selectTime": "กรุณาเลือกเวลา",
+  "selectDateTime": "กรุณาเลือกวันเวลา",
+  "startTime": "เวลาเริ่มต้น",
+  "endTime": "เวลาสิ้นสุด",
+  "today": "วันนี้",
+  "yesterday": "เมื่อวาน",
+  "last7Days": "7 วันที่ผ่านมา",
+  "last30Days": "30 วันที่ผ่านมา",
+  "thisMonth": "เดือนนี้",
+  "lastMonth": "เดือนที่แล้ว"
+}

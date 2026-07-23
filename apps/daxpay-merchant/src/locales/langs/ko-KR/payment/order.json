@@ -1,0 +1,18 @@
+{
+  "fundStatus": {
+    "init": "초기의",
+    "processing": "처리",
+    "success": "성공",
+    "fail": "실패한",
+    "close": "닫은",
+    "cancel": "취소됨"
+  },
+  "fundStatusColor": {
+    "init": "기본",
+    "processing": "처리",
+    "success": "녹색",
+    "fail": "빨간색",
+    "close": "기본",
+    "cancel": "default"
+  }
+}
