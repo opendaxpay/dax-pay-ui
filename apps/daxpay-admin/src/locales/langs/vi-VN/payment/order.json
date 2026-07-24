@@ -89,7 +89,9 @@
     "orderAmount": "Số tiền đặt hàng",
     "orderNo": "Platform Order No.",
     "authCode": "Mã thanh toán",
-    "merchant": "Thương nhân"
+    "merchant": "Thương nhân",
+    "gatewayType": "Loại cổng",
+    "storeNo": "Mã cửa hàng"
   },
   "bizStatus": {
     "wait_pay": "Chờ",

@@ -19,7 +19,8 @@
   },
   "action": {
     "confirmEnableContent": "Adakah anda pasti mahu mendayakan pedagang ini?",
-    "confirmDisableContent": "Adakah anda pasti mahu melumpuhkan pedagang ini? Selepas melumpuhkan, akaun pedagang tidak akan dapat log masuk."
+    "confirmDisableContent": "Adakah anda pasti mahu melumpuhkan pedagang ini? Selepas melumpuhkan, akaun pedagang tidak akan dapat log masuk.",
+    "delete": "Padam Peniaga"
   },
   "validation": {
     "pleaseInputMchName": "Sila masukkan nama pedagang",

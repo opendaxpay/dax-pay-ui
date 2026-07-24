@@ -90,7 +90,8 @@
     "orderNo": "Platform Order No.",
     "authCode": "결제 코드",
     "merchant": "가맹점",
-    "storeNo": "매장 번호"
+    "storeNo": "매장 번호",
+    "gatewayType": "게이트웨이 유형"
   },
   "bizStatus": {
     "wait_pay": "대기 중",

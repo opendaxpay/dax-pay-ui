@@ -29,6 +29,9 @@
     "clearDefault": "Hapus Default",
     "confirmSetDefault": "Jadikan toko ini default? Tanda default lain di merchant akan dihapus.",
     "confirmClearDefault": "Hapus tanda default toko ini?",
-    "validationDefaultStore": "Silakan pilih apakah ini toko default"
+    "validationDefaultStore": "Silakan pilih apakah ini toko default",
+    "deleteDefaultBlocked": "Toko default tidak dapat dihapus. Tetapkan toko lain sebagai default terlebih dahulu",
+    "noDefaultStoreTip": "Anda belum menetapkan toko default. Silakan pilih satu toko sebagai default",
+    "confirmDisableDefault": "Ini adalah toko default. Menonaktifkannya akan membuat pesanan tanpa storeNo gagal sebagai cadangan. Lanjutkan?"
   }
 }

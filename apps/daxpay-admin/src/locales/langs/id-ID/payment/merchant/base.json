@@ -19,7 +19,8 @@
   },
   "action": {
     "confirmEnableContent": "Apakah Anda yakin ingin mengaktifkan pedagang ini?",
-    "confirmDisableContent": "Apakah Anda yakin ingin menonaktifkan pedagang ini? Setelah dinonaktifkan, akun pedagang tidak akan bisa login."
+    "confirmDisableContent": "Apakah Anda yakin ingin menonaktifkan pedagang ini? Setelah dinonaktifkan, akun pedagang tidak akan bisa login.",
+    "delete": "Hapus Pedagang"
   },
   "validation": {
     "pleaseInputMchName": "Silakan masukkan nama pedagang",

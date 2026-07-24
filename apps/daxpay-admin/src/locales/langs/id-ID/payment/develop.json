@@ -190,7 +190,8 @@
       "tip": "Pindai dengan Alipay untuk mengotorisasi",
       "tipWechat": "Pindai dengan WeChat untuk memberi otorisasi",
       "tipDouyin": "Pindai dengan Douyin untuk mengotorisasi",
-      "empty": "Belum ada kode QR"
+      "empty": "Belum ada kode QR",
+      "consumed": "Kode QR sudah digunakan. Silakan buat ulang tautan otorisasi."
     },
     "form": {
       "mchNo": "Pedagang",

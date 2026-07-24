@@ -190,7 +190,8 @@
       "tip": "Imbas dengan Alipay untuk memberi kebenaran",
       "tipWechat": "Imbas dengan WeChat untuk memberi kebenaran",
       "tipDouyin": "Imbas dengan Douyin untuk memberi kebenaran",
-      "empty": "Tiada kod QR lagi"
+      "empty": "Tiada kod QR lagi",
+      "consumed": "Kod QR telah digunakan. Sila jana semula pautan kebenaran."
     },
     "form": {
       "mchNo": "saudagar",

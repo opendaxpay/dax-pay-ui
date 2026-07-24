@@ -303,11 +303,35 @@ async function setupI18n(app: App, options: LocaleSetupOptions = {}) {
   app.use(i18n);
   await loadLocaleMessages(defaultLocale);
 
+  // vue-i18n 对 BCP47 会经短语言码回退（zh-CN → zh）；项目故意不注入短码 zh，
+  // 缺 key 时 missingHandler 常报 locale='zh'，易误判为「缺 zh 语言包」。
+  // 短码仅作中间态：完整码已有 key 则静默；真缺则归到完整码再报警。
+  const shortLocaleMap: Record<string, SupportedLanguagesType> = {
+    zh: 'zh-CN',
+    en: 'en-US',
+    ja: 'ja-JP',
+    ko: 'ko-KR',
+    id: 'id-ID',
+    vi: 'vi-VN',
+    th: 'th-TH',
+    ms: 'ms-MY',
+  };
+
   // 在控制台打印警告
   i18n.global.setMissingHandler((locale, key) => {
-    if (options.missingWarn && key.includes('.')) {
-      console.warn(`[intlify] Not found '${key}' key in '${locale}' locale messages.`);
+    if (!options.missingWarn || !key.includes('.')) {
+      return;
     }
+    const mapped = shortLocaleMap[locale];
+    if (mapped) {
+      // 完整码已有该 key：短码 miss 为回退链假阳性
+      if (i18n.global.te(key, mapped)) {
+        return;
+      }
+      console.warn(`[intlify] Not found '${key}' key in '${mapped}' locale messages.`);
+      return;
+    }
+    console.warn(`[intlify] Not found '${key}' key in '${locale}' locale messages.`);
   });
 }
 

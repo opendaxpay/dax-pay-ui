@@ -29,6 +29,9 @@
     "clearDefault": "Nyah lalai",
     "confirmSetDefault": "Tetapkan kedai ini sebagai lalai? Tanda lalai lain peniaga akan dikosongkan.",
     "confirmClearDefault": "Nyah tanda lalai kedai ini?",
-    "validationDefaultStore": "Sila pilih sama ada kedai lalai"
+    "validationDefaultStore": "Sila pilih sama ada kedai lalai",
+    "deleteDefaultBlocked": "Kedai lalai tidak boleh dipadam. Sila tetapkan kedai lain sebagai lalai dahulu",
+    "noDefaultStoreTip": "Anda belum menetapkan kedai lalai. Sila pilih satu kedai sebagai lalai",
+    "confirmDisableDefault": "Ini ialah kedai lalai. Menyahaktifkannya akan menyebabkan pesanan tanpa storeNo gagal sebagai sandaran. Teruskan?"
   }
 }

@@ -48,7 +48,8 @@
     "noActions": "Tiada tindakan tersedia",
     "openActionAria": "Buka konfigurasi apl",
     "codePayConfig": "QR Code Pay Config",
-    "codePayConfigDesc": "Configure QR code pay methods for H5 and mini program"
+    "codePayConfigDesc": "Configure QR code pay methods for H5 and mini program",
+    "confirmDisableDefault": "Ini ialah aplikasi lalai. Menyahaktifkannya akan menyebabkan pesanan tanpa appId gagal sebagai sandaran. Teruskan?"
   },
   "easypay": {
     "v1Hint": "V1 mempunyai keselamatan yang lemah; aktifkan hanya untuk klien lama",

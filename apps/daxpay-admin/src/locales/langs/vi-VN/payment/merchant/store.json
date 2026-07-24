@@ -29,6 +29,9 @@
     "clearDefault": "Bỏ mặc định",
     "confirmSetDefault": "Đặt cửa hàng này làm mặc định? Các mặc định khác của thương nhân sẽ bị xóa.",
     "confirmClearDefault": "Bỏ đánh dấu mặc định cửa hàng này?",
-    "validationDefaultStore": "Vui lòng chọn có phải cửa hàng mặc định"
+    "validationDefaultStore": "Vui lòng chọn có phải cửa hàng mặc định",
+    "deleteDefaultBlocked": "Không thể xóa cửa hàng mặc định. Hãy đặt cửa hàng khác làm mặc định trước",
+    "noDefaultStoreTip": "Bạn chưa đặt cửa hàng mặc định. Vui lòng chọn một cửa hàng làm mặc định",
+    "confirmDisableDefault": "Đây là cửa hàng mặc định. Tắt nó sẽ làm đơn không có storeNo mất phương án dự phòng. Tiếp tục?"
   }
 }

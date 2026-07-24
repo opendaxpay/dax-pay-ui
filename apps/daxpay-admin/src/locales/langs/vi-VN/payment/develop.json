@@ -190,7 +190,8 @@
       "tip": "Quét bằng Alipay để ủy quyền",
       "tipWechat": "Quét bằng WeChat để ủy quyền",
       "tipDouyin": "Quét bằng Douyin để ủy quyền",
-      "empty": "Chưa có mã QR"
+      "empty": "Chưa có mã QR",
+      "consumed": "Mã QR đã được sử dụng. Vui lòng tạo lại liên kết ủy quyền."
     },
     "form": {
       "mchNo": "Thương gia",

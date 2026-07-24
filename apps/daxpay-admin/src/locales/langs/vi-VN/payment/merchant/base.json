@@ -19,7 +19,8 @@
   },
   "action": {
     "confirmEnableContent": "Bạn có chắc chắn muốn kích hoạt người bán này không?",
-    "confirmDisableContent": "Bạn có chắc chắn muốn vô hiệu hóa người bán này không? Sau khi vô hiệu hóa, tài khoản người bán sẽ không thể đăng nhập."
+    "confirmDisableContent": "Bạn có chắc chắn muốn vô hiệu hóa người bán này không? Sau khi vô hiệu hóa, tài khoản người bán sẽ không thể đăng nhập.",
+    "delete": "Xóa thương gia"
   },
   "validation": {
     "pleaseInputMchName": "Vui lòng nhập tên người bán",

@@ -89,7 +89,9 @@
     "orderAmount": "Jumlah Pesanan",
     "orderNo": "Platform Order No.",
     "authCode": "Kod pembayaran",
-    "merchant": "Peniaga"
+    "merchant": "Peniaga",
+    "gatewayType": "Jenis Gateway",
+    "storeNo": "No. Kedai"
   },
   "bizStatus": {
     "wait_pay": "Menunggu",
