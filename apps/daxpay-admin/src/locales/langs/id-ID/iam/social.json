@@ -7,7 +7,7 @@
     "merchant": "Pedagang"
   },
   "platform": {
-    "weChat": "Platform Terbuka WeChat",
+    "weChat": "Akun Resmi WeChat",
     "weCom": "KamiCom",
     "qq": "QQ",
     "github": "GitHub",
@@ -16,7 +16,8 @@
     "feishu": "Feishu",
     "dingTalk": "DingTalk",
     "douyin": "Douyin",
-    "alipay": "Alipay"
+    "alipay": "Alipay",
+    "weChatOpen": "Platform Terbuka WeChat"
   },
   "status": {
     "enabled": "Diaktifkan",
@@ -72,6 +73,9 @@
     "deleteSuccess": "Berhasil dihapus",
     "copySuccess": "Disalin ke papan klip",
     "platformCredentialRequired": "Harap lengkapi kredensial tingkat platform sebelum mengaktifkan login",
-    "platformCredentialHint": "Kelola AppId/kunci di Konfigurasi Aplikasi Alipay; saklar ini hanya mengontrol apakah login Alipay tersedia"
+    "platformCredentialHint": {
+      "alipay": "Kelola AppId/kunci di Konfigurasi Aplikasi Alipay; saklar ini hanya mengontrol apakah login Alipay tersedia",
+      "weChat": "Kelola AppId/kunci di Konfigurasi Akun Resmi WeChat; saklar ini hanya mengontrol apakah login WeChat tersedia"
+    }
   }
 }

@@ -91,5 +91,29 @@
       "clientKey": "Vui lòng nhập Khóa khách hàng",
       "clientSecret": "Vui lòng nhập Bí mật khách hàng"
     }
+  },
+  "autoLogin": {
+    "tabTitle": "Đăng nhập tự động trong app",
+    "tabDescription": "OAuth tự động trong Feishu/WeChat/WeCom",
+    "title": "Đăng nhập tự động trong app",
+    "description": "Configure admin/merchant separately: when opened in Feishu/WeChat/WeCom, match one selected platform by UA and start OAuth.",
+    "usageTip": "Multi-select Feishu, WeChat Official Account, and WeCom. Enable the platform under Third-party Login Config first. WeChat Open Platform QR login is not used for in-app auto login. Users must bind first; unbound falls back silently to password login.",
+    "confirmSaveContent": "Lưu cấu hình đăng nhập tự động trong app?",
+    "section": {
+      "admin": "Admin",
+      "merchant": "Merchant"
+    },
+    "enabled": {
+      "label": "Bật đăng nhập tự động",
+      "desc": "Chỉ áp dụng trong trình duyệt in-app tương ứng"
+    },
+    "source": {
+      "label": "Auto-login platforms",
+      "desc": "Multi-select; match one by the current in-app browser. Must be enabled Feishu / WeChat Official Account / WeCom",
+      "placeholder": "Select platforms (multi)"
+    },
+    "validate": {
+      "source": "Select at least one auto-login platform when enabled"
+    }
   }
 }

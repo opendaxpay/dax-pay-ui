@@ -1,9 +1,11 @@
 /**
- * 社交平台编码枚举(与后端 SocialSource.name 保持一致)
+ * 社交平台编码枚举(与后端 SocialSource.code 保持一致)
  */
 export enum SocialSourceEnum {
-  /** 微信开放平台 */
+  /** 微信公众号 */
   WE_CHAT = 'weChat',
+  /** 微信开放平台(网站应用扫码) */
+  WE_CHAT_OPEN = 'weChatOpen',
   /** 企业微信 */
   WE_COM = 'weCom',
   /** 飞书 */
@@ -28,7 +30,8 @@ export enum SocialSourceEnum {
  * 社交平台默认名称映射
  */
 export const socialNameMap: Record<string, string> = {
-  [SocialSourceEnum.WE_CHAT]: '微信开放平台',
+  [SocialSourceEnum.WE_CHAT]: '微信公众号',
+  [SocialSourceEnum.WE_CHAT_OPEN]: '微信开放平台',
   [SocialSourceEnum.WE_COM]: '企业微信',
   [SocialSourceEnum.QQ]: 'QQ',
   [SocialSourceEnum.GITHUB]: 'GitHub',
@@ -45,6 +48,7 @@ export const socialNameMap: Record<string, string> = {
  */
 export const socialColorMap: Record<string, string> = {
   [SocialSourceEnum.WE_CHAT]: '#07c160',
+  [SocialSourceEnum.WE_CHAT_OPEN]: '#07c160',
   [SocialSourceEnum.WE_COM]: '#2f90ff',
   [SocialSourceEnum.QQ]: '#12b7f5',
   [SocialSourceEnum.GITHUB]: '#181717',
@@ -62,6 +66,7 @@ export const socialColorMap: Record<string, string> = {
  */
 export const socialLogoMap: Record<string, string> = {
   [SocialSourceEnum.WE_CHAT]: 'weChat',
+  [SocialSourceEnum.WE_CHAT_OPEN]: 'weChat',
   [SocialSourceEnum.WE_COM]: 'weCom',
   [SocialSourceEnum.QQ]: 'qq',
   [SocialSourceEnum.GITHUB]: 'github',

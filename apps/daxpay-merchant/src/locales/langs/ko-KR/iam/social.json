@@ -7,7 +7,7 @@
     "merchant": "상인"
   },
   "platform": {
-    "weChat": "위챗 오픈 플랫폼",
+    "weChat": "위챗 공식 계정",
     "weCom": "위컴",
     "qq": "QQ",
     "github": "GitHub",
@@ -16,7 +16,8 @@
     "feishu": "페이슈",
     "dingTalk": "딩톡",
     "douyin": "두음",
-    "alipay": "알리페이"
+    "alipay": "알리페이",
+    "weChatOpen": "위챗 오픈 플랫폼"
   },
   "status": {
     "enabled": "활성화됨",

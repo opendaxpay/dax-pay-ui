@@ -7,7 +7,7 @@
     "merchant": "saudagar"
   },
   "platform": {
-    "weChat": "Platform Terbuka WeChat",
+    "weChat": "Akaun Rasmi WeChat",
     "weCom": "WeCom",
     "qq": "QQ",
     "github": "GitHub",
@@ -16,7 +16,8 @@
     "feishu": "Feishu",
     "dingTalk": "DingTalk",
     "douyin": "Douyin",
-    "alipay": "Alipay"
+    "alipay": "Alipay",
+    "weChatOpen": "Platform Terbuka WeChat"
   },
   "status": {
     "enabled": "Didayakan",
@@ -72,6 +73,9 @@
     "deleteSuccess": "Berjaya dipadamkan",
     "copySuccess": "Disalin ke papan keratan",
     "platformCredentialRequired": "Sila lengkapkan kelayakan peringkat platform sebelum mendayakan log masuk",
-    "platformCredentialHint": "Urus AppId/kunci dalam Alipay App Config; suis ini hanya mengawal sama ada log masuk Alipay tersedia"
+    "platformCredentialHint": {
+      "alipay": "Urus AppId/kunci dalam Alipay App Config; suis ini hanya mengawal sama ada log masuk Alipay tersedia",
+      "weChat": "Urus AppId/kunci dalam WeChat Official Account Config; suis ini hanya mengawal sama ada log masuk WeChat tersedia"
+    }
   }
 }

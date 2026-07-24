@@ -5,6 +5,7 @@
 
   import AlipayAuthConfigForm from './alipay/AlipayAuthConfigForm.vue';
   import DouyinH5AuthConfigForm from './douyin-h5/DouyinH5AuthConfigForm.vue';
+  import SocialAutoLoginConfigForm from './SocialAutoLoginConfigForm.vue';
   import WechatMpAuthConfigForm from './wechat-mp/WechatMpAuthConfigForm.vue';
   import SocialLoginConfigList from '#/views/iam/social/social-login-config.vue';
 
@@ -21,6 +22,13 @@
       label: $t('system.thirdPlatform.loginConfig.title'),
       // 三方平台登录配置描述
       description: $t('system.thirdPlatform.loginConfig.description'),
+    },
+    {
+      key: 'autoLogin',
+      // 应用内自动登录标题
+      label: $t('system.thirdPlatform.autoLogin.tabTitle'),
+      // 应用内自动登录描述
+      description: $t('system.thirdPlatform.autoLogin.tabDescription'),
     },
     {
       key: 'alipay',
@@ -52,6 +60,9 @@
   function handleJump(source: string) {
     if (source === 'alipay') {
       activeKey.value = 'alipay';
+    } else if (source === 'weChat') {
+      // 微信公众号: 跳转到平台级凭据 Tab
+      activeKey.value = 'wechatMp';
     }
   }
 </script>
@@ -86,6 +97,7 @@
             v-show="activeKey === 'loginConfig'"
             @jump="handleJump"
           />
+          <SocialAutoLoginConfigForm v-if="activeKey === 'autoLogin'" />
           <AlipayAuthConfigForm v-if="activeKey === 'alipay'" />
           <WechatMpAuthConfigForm v-if="activeKey === 'wechatMp'" />
           <DouyinH5AuthConfigForm v-if="activeKey === 'douyinH5'" />

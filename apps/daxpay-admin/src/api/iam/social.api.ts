@@ -13,11 +13,18 @@ export const SocialApi = {
    * @param client 终端编码(admin/merchant), 默认运营端
    * @param mode 授权场景: BIND(已登录绑定) | LOGIN(未登录登录), 不传按登录态判断
    * @param redirect 成功后前端跳转路径
+   * @param silent 应用内静默/网页授权(企微 oauth / 微信 snsapi_base)
    */
-  render(source: string, client: string = CLIENT_CODE, mode?: string, redirect?: string): Promise<Result<string>> {
+  render(
+    source: string,
+    client: string = CLIENT_CODE,
+    mode?: string,
+    redirect?: string,
+    silent?: boolean,
+  ): Promise<Result<string>> {
     return defHttp.get({
       url: `/social/render/${source}`,
-      params: { client, mode, redirect },
+      params: { client, mode, redirect, silent: silent ? true : undefined },
     });
   },
 
@@ -109,7 +116,48 @@ export const SocialLoginConfigApi = {
   updateEnabled(source: string, enabled: boolean): Promise<Result<void>> {
     return defHttp.post({ url: '/social/login-config/update-enabled', params: { source, enabled } });
   },
+
+  /**
+   * 获取应用内社交自动登录配置(按 admin/merchant 分端)
+   */
+  getAutoLogin(): Promise<Result<SocialAutoLoginConfigResult>> {
+    return defHttp.get({ url: '/social/login-config/auto-login/get' });
+  },
+
+  /**
+   * 更新应用内社交自动登录配置
+   */
+  updateAutoLogin(data: SocialAutoLoginConfigParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/social/login-config/auto-login/update', data });
+  },
 };
+
+/**
+ * 单端自动登录策略
+ */
+export interface SocialAutoLoginClientItem {
+  /** 是否启用应用内自动登录 */
+  enabled?: boolean;
+  /** 可自动跳转的社交平台编码列表 */
+  sources?: string[];
+  /** 兼容旧版单平台编码 */
+  source?: string;
+}
+
+/**
+ * 应用内社交自动登录配置
+ */
+export interface SocialAutoLoginConfigResult {
+  /** 运营端 */
+  admin?: SocialAutoLoginClientItem;
+  /** 商户端 */
+  merchant?: SocialAutoLoginClientItem;
+}
+
+/**
+ * 应用内社交自动登录配置参数
+ */
+export type SocialAutoLoginConfigParam = SocialAutoLoginConfigResult;
 
 /**
  * 社交账号绑定结果

@@ -7,7 +7,7 @@
     "merchant": "พ่อค้า"
   },
   "platform": {
-    "weChat": "แพลตฟอร์มเปิด WeChat",
+    "weChat": "บัญชีทางการ WeChat",
     "weCom": "วีคอม",
     "qq": "คิวคิว",
     "github": "GitHub",
@@ -16,7 +16,8 @@
     "feishu": "เฟยซู",
     "dingTalk": "ติงทอล์ค",
     "douyin": "โต่วอิน",
-    "alipay": "อาลีเพย์"
+    "alipay": "อาลีเพย์",
+    "weChatOpen": "แพลตฟอร์มเปิด WeChat"
   },
   "status": {
     "enabled": "เปิดใช้งานแล้ว",

@@ -7,7 +7,7 @@
     "merchant": "Pedagang"
   },
   "platform": {
-    "weChat": "Platform Terbuka WeChat",
+    "weChat": "Akun Resmi WeChat",
     "weCom": "KamiCom",
     "qq": "QQ",
     "github": "GitHub",
@@ -16,7 +16,8 @@
     "feishu": "Feishu",
     "dingTalk": "DingTalk",
     "douyin": "Douyin",
-    "alipay": "Alipay"
+    "alipay": "Alipay",
+    "weChatOpen": "Platform Terbuka WeChat"
   },
   "status": {
     "enabled": "Diaktifkan",

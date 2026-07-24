@@ -7,7 +7,7 @@
     "merchant": "商人"
   },
   "platform": {
-    "weChat": "WeChatオープンプラットフォーム",
+    "weChat": "WeChat公式アカウント",
     "weCom": "ウィコム",
     "qq": "QQ",
     "github": "GitHub",
@@ -16,7 +16,8 @@
     "feishu": "フェイシュ",
     "dingTalk": "ディントーク",
     "douyin": "抖音",
-    "alipay": "アリペイ"
+    "alipay": "アリペイ",
+    "weChatOpen": "WeChatオープンプラットフォーム"
   },
   "status": {
     "enabled": "有効",
@@ -72,6 +73,9 @@
     "deleteSuccess": "正常に削除されました",
     "copySuccess": "クリップボードにコピーされました",
     "platformCredentialRequired": "ログインを有効にする前に、プラットフォーム レベルの認証情報を完了してください。",
-    "platformCredentialHint": "Alipay App Config で AppId/キーを管理します。このスイッチは、Alipay ログインが利用可能かどうかのみを制御します"
+    "platformCredentialHint": {
+      "alipay": "AppId/キーは「Alipay アプリ設定」で管理します。ここはログイン開放の切替のみです",
+      "weChat": "AppId/キーは「WeChat公式アカウント設定」で管理します。ここはログイン開放の切替のみです"
+    }
   }
 }

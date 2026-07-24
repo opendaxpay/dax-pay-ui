@@ -40,7 +40,7 @@
   const formRef = ref();
   // 当前操作的平台(新增/编辑时锁定, 决定是否显示 agentId 字段)
   const currentSource = ref<string>('');
-  // 是否平台级跳转型(支付宝等: 凭据在独立页, 本抽屉仅启停)
+  // 是否平台级跳转型(凭据在独立页, 本抽屉仅启停)
   const isPlatformRedirect = ref(false);
 
   const formData = reactive<SocialLoginConfigParam>({
@@ -75,6 +75,14 @@
   const showAgentId = computed(() => currentSource.value === 'weCom');
 
   /**
+   * 是否展示完整 OAuth 回调地址
+   * 微信公众号仅配网页授权域名, 不展示; 支付宝开放平台与标准 OAuth 需完整 URL
+   */
+  const showCallbackUrls = computed(
+    () => !(isPlatformRedirect.value && currentSource.value === 'weChat'),
+  );
+
+  /**
    * agentId 取值(从 formData.extra 读)
    */
   const agentIdValue = computed({
@@ -87,6 +95,13 @@
   // 回调路径常量(与后端 SocialLoginService 路径约定一致)
   const LOGIN_CALLBACK_PATH = '/auth/oauth-callback';
   const BIND_CALLBACK_PATH = '/auth/social-bind-callback';
+
+  /**
+   * 打开抽屉时是否需要拉端点地址拼回调(与 showCallbackUrls 对齐)
+   */
+  function shouldLoadUrlConfig(item: SocialLoginConfigResult): boolean {
+    return !item.platformRedirect || item.source === 'alipay';
+  }
 
   /**
    * 拼完整回调 URL
@@ -123,26 +138,40 @@
   }
 
   /**
+   * 用 findBySource 结果填充标题与表单公共字段
+   */
+  function applyRecordBase(record: SocialLoginConfigResult) {
+    currentSource.value = record.source || '';
+    const sourceName = $t(`iam.social.platform.${currentSource.value}`);
+    modalTitle.value = `${sourceName}${$t('iam.social.action.config')}`;
+  }
+
+  /**
    * 抽屉打开时根据 configItem 初始化表单
    */
   watch(
     () => props.visible,
     async (visible) => {
       if (!visible || !props.configItem) return;
-      // 获取运营/商户端访问地址(用于双端回调地址展示, 不阻塞表单初始化)
-      UrlConfigApi.get().then((res) => {
-        adminBaseUrl.value = res.data?.adminBaseUrl ?? '';
-        merchantBaseUrl.value = res.data?.merchantBaseUrl ?? '';
-      });
       const item = props.configItem;
       isPlatformRedirect.value = !!item.platformRedirect;
 
-      if (item.configured || item.id || item.platformRedirect) {
-        // 编辑模式 / 跳转型: 调 findBySource 拿最新占位
-        const record = (await SocialLoginConfigApi.findBySource(item.source!)).data;
-        currentSource.value = record.source || '';
-        const editSourceName = $t(`iam.social.platform.${currentSource.value}`);
-        modalTitle.value = `${editSourceName}${$t('iam.social.action.config')}`;
+      if (shouldLoadUrlConfig(item)) {
+        UrlConfigApi.get().then((res) => {
+          adminBaseUrl.value = res.data?.adminBaseUrl ?? '';
+          merchantBaseUrl.value = res.data?.merchantBaseUrl ?? '';
+        });
+      } else {
+        adminBaseUrl.value = '';
+        merchantBaseUrl.value = '';
+      }
+
+      const record = (await SocialLoginConfigApi.findBySource(item.source!)).data;
+      applyRecordBase(record);
+
+      // 已有库行 / 跳转型占位: 回填记录; 标准平台首次配置: 清空凭据并默认启用
+      const isExistingOrRedirect = !!(item.configured || item.id || item.platformRedirect);
+      if (isExistingOrRedirect) {
         isFirstConfig.value = !record.configured;
         originalForm.value = { ...record };
         Object.assign(formData, {
@@ -150,16 +179,13 @@
           clientId: record.clientId ?? '',
           clientSecret: record.clientSecret ?? '',
           extra: { ...record.extra },
-          // 跳转型未启用过时默认关; 标准型首次默认开
+          // 跳转型未启用过时默认关; 标准型沿用库值, 缺省开
           enabled: item.platformRedirect ? !!record.enabled : (record.enabled ?? true),
         });
       } else {
-        // 配置模式(未配置标准平台), 先调 findBySource 初始化占位记录
-        const record = (await SocialLoginConfigApi.findBySource(item.source!)).data;
-        currentSource.value = record.source || '';
-        const configSourceName = $t(`iam.social.platform.${currentSource.value}`);
-        modalTitle.value = `${configSourceName}${$t('iam.social.action.config')}`;
         isFirstConfig.value = true;
+        // 首次配置无原值, originalForm 置空以便 diffForm 正确识别用户输入的新值
+        originalForm.value = {};
         Object.assign(formData, {
           ...record,
           clientId: '',
@@ -167,8 +193,6 @@
           extra: {},
           enabled: true,
         });
-        // 首次配置无原值, originalForm 置空以便 diffForm 正确识别用户输入的新值
-        originalForm.value = {};
       }
     },
   );
@@ -222,7 +246,7 @@
             type="info"
             show-icon
             class="!mb-4"
-            :message="$t('iam.social.tip.platformCredentialHint')"
+            :message="$t(`iam.social.tip.platformCredentialHint.${currentSource}`)"
           />
           <a-button type="default" block class="!mb-4" @click="handleGotoCredential">
             <IconifyIcon icon="ant-design:arrow-right-outlined" class="mr-1" />
@@ -261,8 +285,8 @@
         </template>
       </a-form>
 
-      <!-- 回调地址展示: 运营 + 商户双端(复制到第三方开放平台白名单) -->
-      <div class="mt-2 rounded-lg bg-muted/40 p-4">
+      <!-- 回调地址: 标准 OAuth + 支付宝(开放平台需完整 URL); 微信公众号仅配授权域名故隐藏 -->
+      <div v-if="showCallbackUrls" class="mt-2 rounded-lg bg-muted/40 p-4">
         <div class="mb-3 flex items-center gap-1.5">
           <span class="text-sm font-semibold">{{ $t('iam.social.form.callbackUrl') }}</span>
           <a-tooltip :title="$t('iam.social.form.callbackUrlHelp')">

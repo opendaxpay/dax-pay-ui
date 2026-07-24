@@ -7,7 +7,7 @@
     "merchant": "Merchant"
   },
   "platform": {
-    "weChat": "WeChat Open Platform",
+    "weChat": "WeChat Official Account",
     "weCom": "WeCom",
     "qq": "QQ",
     "github": "GitHub",
@@ -16,7 +16,8 @@
     "feishu": "Feishu",
     "dingTalk": "DingTalk",
     "douyin": "Douyin",
-    "alipay": "Alipay"
+    "alipay": "Alipay",
+    "weChatOpen": "WeChat Open Platform"
   },
   "status": {
     "enabled": "Enabled",

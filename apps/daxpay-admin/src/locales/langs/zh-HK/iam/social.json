@@ -7,7 +7,7 @@
     "merchant": "商户端"
   },
   "platform": {
-    "weChat": "微信開放平台",
+    "weChat": "微信公眾號",
     "weCom": "企業微信",
     "qq": "QQ",
     "github": "GitHub",
@@ -16,7 +16,8 @@
     "feishu": "飛書",
     "dingTalk": "釘釘",
     "douyin": "抖音",
-    "alipay": "支付寶"
+    "alipay": "支付寶",
+    "weChatOpen": "微信開放平台"
   },
   "status": {
     "enabled": "已啓用",
@@ -72,6 +73,9 @@
     "deleteSuccess": "刪除成功",
     "copySuccess": "已複製到剪貼板",
     "platformCredentialRequired": "請先完成平台級憑據配置後再啓用登錄",
-    "platformCredentialHint": "AppId/密鑰等憑據請在「支付寶應用配置」中維護；此處僅控制是否開放三方登錄"
+    "platformCredentialHint": {
+      "alipay": "AppId/密鑰等憑據請在「支付寶應用配置」中維護；此處僅控制是否開放三方登錄",
+      "weChat": "AppId/密鑰等憑據請在「微信公眾號配置」中維護；此處僅控制是否開放三方登錄"
+    }
   }
 }

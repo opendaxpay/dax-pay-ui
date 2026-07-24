@@ -7,7 +7,7 @@
     "merchant": "상인"
   },
   "platform": {
-    "weChat": "위챗 오픈 플랫폼",
+    "weChat": "위챗 공식 계정",
     "weCom": "위컴",
     "qq": "QQ",
     "github": "GitHub",
@@ -16,7 +16,8 @@
     "feishu": "페이슈",
     "dingTalk": "딩톡",
     "douyin": "두음",
-    "alipay": "알리페이"
+    "alipay": "알리페이",
+    "weChatOpen": "위챗 오픈 플랫폼"
   },
   "status": {
     "enabled": "활성화됨",
@@ -72,6 +73,9 @@
     "deleteSuccess": "삭제되었습니다.",
     "copySuccess": "클립보드에 복사됨",
     "platformCredentialRequired": "로그인을 활성화하기 전에 플랫폼 수준 자격 증명을 완료하십시오",
-    "platformCredentialHint": "Alipay 앱 구성에서 AppId/키를 관리하세요. 이 스위치는 Alipay 로그인이 가능한지 여부만 제어합니다"
+    "platformCredentialHint": {
+      "alipay": "AppId/키는 「Alipay 앱 설정」에서 관리합니다. 여기서는 로그인 개방 여부만 제어합니다",
+      "weChat": "AppId/키는 「위챗 공식 계정 설정」에서 관리합니다. 여기서는 로그인 개방 여부만 제어합니다"
+    }
   }
 }

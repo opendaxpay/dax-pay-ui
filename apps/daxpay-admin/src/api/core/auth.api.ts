@@ -43,10 +43,10 @@ export const AuthApi = {
     return requestClient.post('/token/second-verify', data);
   },
   /**
-   * 获取登录页上下文（是否启用验证码、支持的登录方式等）
+   * 获取登录页上下文（是否启用验证码、支持的登录方式、应用内自动登录等）
    */
-  getLoginContent(): Promise<Result<LoginContentResult>> {
-    return requestClient.post('/token/login-content', {});
+  getLoginContent(clientId: string): Promise<Result<LoginContentResult>> {
+    return requestClient.post('/token/login-content', { clientId });
   },
   /**
    * 获取图形验证码
@@ -90,6 +90,18 @@ export interface LoginContentResult {
   enableCaptcha: boolean;
   /** 密码是否加密传输 */
   passwordEncrypted: boolean;
+  /** 本端应用内社交自动登录 */
+  autoSocialLogin?: AutoSocialLoginContent;
+}
+
+/**
+ * 应用内社交自动登录下发片段
+ */
+export interface AutoSocialLoginContent {
+  /** 是否启用 */
+  enabled: boolean;
+  /** 可自动跳转的社交平台编码列表(按 UA 匹配其一) */
+  sources?: string[];
 }
 
 /**

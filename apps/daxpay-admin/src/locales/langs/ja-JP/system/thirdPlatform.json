@@ -91,5 +91,29 @@
       "clientKey": "クライアントキーを入力してください",
       "clientSecret": "クライアント シークレットを入力してください"
     }
+  },
+  "autoLogin": {
+    "tabTitle": "アプリ内自動ログイン",
+    "tabDescription": "Feishu/WeChat/WeCom 内で自動 OAuth ログイン",
+    "title": "アプリ内自動ログイン",
+    "description": "管理/加盟店ごとに設定：Feishu/WeChat/WeCom 内ブラウザで開いたとき、UA で選択済みプラットフォームの1つに自動マッチして認可します。",
+    "usageTip": "Feishu・WeChat公式アカウント・企業WeChatを複数選択可。先に「外部ログイン設定」で有効化してください。WeChatオープンプラットフォームのQRはアプリ内自動ログイン対象外です。未連携はパスワードログインに静かに戻ります。",
+    "confirmSaveContent": "アプリ内自動ログイン設定を保存しますか？",
+    "section": {
+      "admin": "管理端",
+      "merchant": "加盟店端"
+    },
+    "enabled": {
+      "label": "自動ログインを有効化",
+      "desc": "対応アプリ内ブラウザでのみ有効。通常ブラウザでは自動遷移しません"
+    },
+    "source": {
+      "label": "自動ログインプラットフォーム",
+      "desc": "複数選択可。現在のアプリ内ブラウザで1つをマッチ。有効な Feishu / WeChat公式 / 企業WeChat のみ",
+      "placeholder": "プラットフォームを選択（複数可）"
+    },
+    "validate": {
+      "source": "有効時は自動ログインプラットフォームを1つ以上選択してください"
+    }
   }
 }

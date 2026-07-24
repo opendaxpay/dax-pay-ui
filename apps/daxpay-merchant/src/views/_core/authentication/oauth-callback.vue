@@ -12,6 +12,10 @@
   import { useMessage } from '#/hooks/useMessage';
   import { HOME_PATH } from '#/router/routes';
   import { useAuthStore } from '#/store';
+  import {
+    consumeAutoSocialAttempt,
+    markAutoSocialSkipped,
+  } from '#/utils/auto-social-login';
 
   import TwoFactorVerifyPanel from './components/TwoFactorVerifyPanel.vue';
 
@@ -25,6 +29,9 @@
 
   // 是否展示页内 2FA 面板(社交登录触发二次验证)
   const showTwoFactor = ref(false);
+
+  // 本次是否为应用内自动登录尝试(消费标记, 决定失败时是否静默回退)
+  const autoAttempt = ref(false);
 
   // 路径参数中的平台编码(如 gitee), 可能为空(旧地址兼容)
   const source = computed(() => (route.params.source as string) || '');
@@ -48,22 +55,37 @@
   });
 
   /**
+   * 失败回登录页: 自动登录流程静默(不弹错)并标记 skipped 防循环
+   */
+  function backToLogin(showError: boolean, errorMessage?: string) {
+    if (autoAttempt.value) {
+      markAutoSocialSkipped();
+      router.replace('/auth/login');
+      return;
+    }
+    if (showError && errorMessage) {
+      message.error(errorMessage);
+    }
+    router.push('/auth/login');
+  }
+
+  /**
    * 处理社交登录回调(仅登录场景)
    * 支付宝回传 auth_code, 标准 OAuth 回传 code; 归一后统一走 SocialApi.exchangeLogin
    * 若返回 40101 则进入双因素验证(与密码登录同协议)
    */
   onMounted(async () => {
+    autoAttempt.value = consumeAutoSocialAttempt();
     const { code, auth_code: authCode, state } = route.query;
     // 支付宝回传 auth_code, 标准 OAuth 回传 code
     const oauthCode = (authCode || code) as string | undefined;
     if (!oauthCode || !state) {
-      message.error($t('_core.authentication.oauthProcessFailed'));
-      router.push('/auth/login');
+      backToLogin(true, $t('_core.authentication.oauthProcessFailed'));
       return;
     }
     try {
       const res = await SocialApi.exchangeLogin(oauthCode, state as string, source.value, CLIENT_CODE);
-      // 需二次验证: 拦截器对 40101 直接返回响应体, 不抛失败
+      // 需二次验证: 拦截器对 40101 直接返回响应体, 不抛失败; 2FA 不静默吞掉
       if (res.code === TWO_FACTOR_REQUIRED_CODE) {
         const preAuthToken = (res.data as any)?.preAuthToken ?? '';
         authStore.enterTwoFactor(preAuthToken);
@@ -72,15 +94,14 @@
       }
       await handleResult(res.data?.token, res.data?.error);
     } catch {
-      message.error($t('_core.authentication.oauthProcessFailed'));
-      router.push('/auth/login');
+      backToLogin(true, $t('_core.authentication.oauthProcessFailed'));
     }
   });
 
   /**
    * 统一处理登录兑换结果
    * - token: 登录成功, 存储令牌并跳转首页
-   * - error=unbind: 未绑定三方账号, 引导回登录页
+   * - error=unbind: 未绑定三方账号, 引导回登录页(自动登录静默)
    * - error=state_invalid: 授权状态过期
    * - error=oauth_failed: 授权失败
    */
@@ -97,20 +118,18 @@
       );
       router.push(HOME_PATH);
     } else if (error === 'unbind') {
-      message.error($t('_core.authentication.oauthNotBind'));
-      router.push('/auth/login');
+      backToLogin(true, $t('_core.authentication.oauthNotBind'));
     } else if (error === 'state_invalid') {
-      message.error($t('_core.authentication.oauthStateInvalid'));
-      router.push('/auth/login');
+      backToLogin(true, $t('_core.authentication.oauthStateInvalid'));
     } else {
-      message.error(
+      backToLogin(
+        true,
         platformName.value
           ? $t('_core.authentication.oauthFailedWith', {
               platform: platformName.value,
             })
           : $t('_core.authentication.oauthFailed'),
       );
-      router.push('/auth/login');
     }
   }
 
@@ -120,6 +139,9 @@
   function handleTwoFactorCancel() {
     authStore.cancelTwoFactor();
     showTwoFactor.value = false;
+    if (autoAttempt.value) {
+      markAutoSocialSkipped();
+    }
     router.push('/auth/login');
   }
 </script>

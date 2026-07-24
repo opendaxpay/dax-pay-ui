@@ -1,13 +1,21 @@
 <script lang="ts" setup>
   import type { FormInstance, FormProps } from 'antdv-next';
 
-  import { nextTick, reactive, ref } from 'vue';
+  import { nextTick, onMounted, reactive, ref } from 'vue';
   import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
+  import { useAccessStore } from '@vben/stores';
 
   import { AuthApi } from '#/api/core/auth.api';
+  import { SocialApi } from '#/api/iam/social.api';
+  import { CLIENT_CODE } from '#/constants/client';
   import { useAuthStore } from '#/store';
+  import {
+    isAutoSocialSkipped,
+    isInAppForSource,
+    markAutoSocialAttempt,
+  } from '#/utils/auto-social-login';
 
   import { AuthPageCard, AuthThirdPartyPanel } from './components';
   import TwoFactorVerifyPanel from './components/TwoFactorVerifyPanel.vue';
@@ -16,6 +24,7 @@
 
   const router = useRouter();
   const authStore = useAuthStore();
+  const accessStore = useAccessStore();
 
   const formRef = ref<FormInstance>();
 
@@ -72,6 +81,36 @@
       },
     ],
   };
+
+  /**
+   * 应用内自动 OAuth 登录: 配置开启 + UA 匹配 + 本会话未跳过 + 无 token
+   */
+  async function tryAutoSocialLogin() {
+    if (accessStore.accessToken || authStore.twoFactorRequired || isAutoSocialSkipped()) {
+      return;
+    }
+    try {
+      const { data } = await AuthApi.getLoginContent(CLIENT_CODE);
+      const auto = data?.autoSocialLogin;
+      // 从已配置平台中按 UA 匹配一家
+      const matched = auto?.sources?.find((s) => isInAppForSource(s));
+      if (!auto?.enabled || !matched) {
+        return;
+      }
+      markAutoSocialAttempt();
+      // silent=true: 企微网页授权 / 微信 snsapi_base
+      const { data: url } = await SocialApi.render(matched, CLIENT_CODE, 'LOGIN', undefined, true);
+      if (url) {
+        window.location.href = url;
+      }
+    } catch {
+      // 自动登录失败静默忽略, 展示正常登录表单
+    }
+  }
+
+  onMounted(() => {
+    tryAutoSocialLogin();
+  });
 
   /**
    * 刷新图形验证码（点击图片或验证码错误时调用）

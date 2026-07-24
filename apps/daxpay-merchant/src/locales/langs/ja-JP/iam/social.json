@@ -7,7 +7,7 @@
     "merchant": "商人"
   },
   "platform": {
-    "weChat": "WeChatオープンプラットフォーム",
+    "weChat": "WeChat公式アカウント",
     "weCom": "ウィコム",
     "qq": "QQ",
     "github": "GitHub",
@@ -16,7 +16,8 @@
     "feishu": "フェイシュ",
     "dingTalk": "ディントーク",
     "douyin": "抖音",
-    "alipay": "アリペイ"
+    "alipay": "アリペイ",
+    "weChatOpen": "WeChatオープンプラットフォーム"
   },
   "status": {
     "enabled": "有効",

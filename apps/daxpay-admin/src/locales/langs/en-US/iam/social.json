@@ -7,7 +7,7 @@
     "merchant": "Merchant"
   },
   "platform": {
-    "weChat": "WeChat Open Platform",
+    "weChat": "WeChat Official Account",
     "weCom": "WeCom",
     "qq": "QQ",
     "github": "GitHub",
@@ -16,7 +16,8 @@
     "feishu": "Feishu",
     "dingTalk": "DingTalk",
     "douyin": "Douyin",
-    "alipay": "Alipay"
+    "alipay": "Alipay",
+    "weChatOpen": "WeChat Open Platform"
   },
   "status": {
     "enabled": "Enabled",
@@ -72,6 +73,9 @@
     "deleteSuccess": "Deleted successfully",
     "copySuccess": "Copied to clipboard",
     "platformCredentialRequired": "Please complete platform-level credentials before enabling login",
-    "platformCredentialHint": "Manage AppId/keys in Alipay App Config; this switch only controls whether Alipay login is available"
+    "platformCredentialHint": {
+      "alipay": "Manage AppId/keys in Alipay App Config; this switch only controls whether Alipay login is available",
+      "weChat": "Manage AppId/keys in WeChat Official Account Config; this switch only controls whether WeChat login is available"
+    }
   }
 }

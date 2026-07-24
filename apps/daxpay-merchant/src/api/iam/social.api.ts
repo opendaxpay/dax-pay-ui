@@ -10,14 +10,21 @@ export const SocialApi = {
   /**
    * 生成授权地址(前端拿到后跳转到第三方)
    * @param source 平台来源(wechat/qq/github 等)
-   * @param client 终端编码(admin/merchant), 默认运营端
+   * @param client 终端编码(admin/merchant), 默认商户端
    * @param mode 授权场景: BIND(已登录绑定) | LOGIN(未登录登录), 不传按登录态判断
    * @param redirect 成功后前端跳转路径
+   * @param silent 应用内静默/网页授权(企微 oauth / 微信 snsapi_base)
    */
-  render(source: string, client: string = CLIENT_CODE, mode?: string, redirect?: string): Promise<Result<string>> {
+  render(
+    source: string,
+    client: string = CLIENT_CODE,
+    mode?: string,
+    redirect?: string,
+    silent?: boolean,
+  ): Promise<Result<string>> {
     return defHttp.get({
       url: `/social/render/${source}`,
-      params: { client, mode, redirect },
+      params: { client, mode, redirect, silent: silent ? true : undefined },
     });
   },
 

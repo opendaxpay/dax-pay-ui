@@ -7,7 +7,7 @@
     "merchant": "Thương gia"
   },
   "platform": {
-    "weChat": "Nền tảng mở WeChat",
+    "weChat": "Tài khoản chính thức WeChat",
     "weCom": "WeCom",
     "qq": "QQ",
     "github": "GitHub",
@@ -16,7 +16,8 @@
     "feishu": "Feishu",
     "dingTalk": "DingTalk",
     "douyin": "Douyin",
-    "alipay": "Alipay"
+    "alipay": "Alipay",
+    "weChatOpen": "Nền tảng mở WeChat"
   },
   "status": {
     "enabled": "Đã bật",
@@ -72,6 +73,9 @@
     "deleteSuccess": "Đã xóa thành công",
     "copySuccess": "Đã sao chép vào bảng nhớ tạm",
     "platformCredentialRequired": "Vui lòng hoàn thành thông tin xác thực cấp nền tảng trước khi cho phép đăng nhập",
-    "platformCredentialHint": "Quản lý AppId/khóa trong Cấu hình ứng dụng Alipay; công tắc này chỉ kiểm soát xem có đăng nhập Alipay hay không"
+    "platformCredentialHint": {
+      "alipay": "Quản lý AppId/khóa trong Cấu hình ứng dụng Alipay; công tắc này chỉ kiểm soát xem có đăng nhập Alipay hay không",
+      "weChat": "Quản lý AppId/khóa trong Cấu hình tài khoản chính thức WeChat; công tắc này chỉ kiểm soát xem có đăng nhập WeChat hay không"
+    }
   }
 }

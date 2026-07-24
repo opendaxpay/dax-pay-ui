@@ -7,7 +7,7 @@
     "merchant": "พ่อค้า"
   },
   "platform": {
-    "weChat": "แพลตฟอร์มเปิด WeChat",
+    "weChat": "บัญชีทางการ WeChat",
     "weCom": "วีคอม",
     "qq": "คิวคิว",
     "github": "GitHub",
@@ -16,7 +16,8 @@
     "feishu": "เฟยซู",
     "dingTalk": "ติงทอล์ค",
     "douyin": "โต่วอิน",
-    "alipay": "อาลีเพย์"
+    "alipay": "อาลีเพย์",
+    "weChatOpen": "แพลตฟอร์มเปิด WeChat"
   },
   "status": {
     "enabled": "เปิดใช้งานแล้ว",
@@ -72,6 +73,9 @@
     "deleteSuccess": "ลบเรียบร้อยแล้ว",
     "copySuccess": "คัดลอกไปยังคลิปบอร์ดแล้ว",
     "platformCredentialRequired": "กรุณากรอกข้อมูลรับรองระดับแพลตฟอร์มก่อนเปิดใช้งานการเข้าสู่ระบบ",
-    "platformCredentialHint": "จัดการ AppId/keys ในการกำหนดค่าแอป Alipay สวิตช์นี้ควบคุมเฉพาะว่าสามารถเข้าสู่ระบบ Alipay ได้หรือไม่"
+    "platformCredentialHint": {
+      "alipay": "จัดการ AppId/keys ในการกำหนดค่าแอป Alipay สวิตช์นี้ควบคุมเฉพาะว่าสามารถเข้าสู่ระบบ Alipay ได้หรือไม่",
+      "weChat": "จัดการ AppId/keys ในการกำหนดค่าบัญชีทางการ WeChat สวิตช์นี้ควบคุมเฉพาะว่าสามารถเข้าสู่ระบบ WeChat ได้หรือไม่"
+    }
   }
 }
