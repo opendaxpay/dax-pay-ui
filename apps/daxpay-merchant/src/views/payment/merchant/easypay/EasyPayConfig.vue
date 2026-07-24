@@ -1,6 +1,8 @@
 <script lang="ts" setup>
-  import { computed, onMounted, reactive, ref, watch } from 'vue';
-    import { $t } from '@vben/locales';
+  import { computed, onMounted, reactive, ref } from 'vue';
+  import { useRouter } from 'vue-router';
+
+  import { $t } from '@vben/locales';
 
   import { IconifyIcon } from '@vben-core/icons';
 
@@ -11,13 +13,13 @@
     type EasyPayCredentialParam,
     type EasyPayCredentialResult,
   } from '#/api/payment/merchant/easypay-credential.api';
-  import { type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
-  import MchAppSelectorBar from '#/components/app/MchAppSelectorBar.vue';
+  import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
+  import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
-  import { useMchAppSelector } from '#/hooks/useMchAppSelector';
+  import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
 
   defineOptions({ name: 'EasyPayConfig' });
   const { copy } = useClipboard();
@@ -25,17 +27,16 @@
   const { hasPermission } = usePermission();
   const { diffForm } = useFormEdit();
 
-  // 顶部 appId 选择器（无 mchNo URL）
-  const {
-    loading: appsLoading,
-    appId,
-    appName,
-    selectedApp,
-    hasApps,
-    appOptions,
-    loadApps,
-    setAppId,
-  } = useMchAppSelector();
+  const router = useRouter();
+
+  // 商户端无 mchNo URL 维度，仅校验 appId
+  const routeContext = useRequiredRouteQuery({
+    keys: ['appId'],
+    messageKey: 'payment.common.route.missingAppContext',
+    fallbackPath: '/mch/app',
+  });
+
+  const appId = computed(() => routeContext.query.value.appId);
 
   const canManage = computed(() => hasPermission(PermCodes.Merchant.EasyPay.MANAGE));
 
@@ -44,6 +45,7 @@
   // 编辑模式
   const isEditing = ref(false);
   const appInfo = ref<MchAppInfoResult>({});
+  const appName = computed(() => appInfo.value.appName || '');
   const form = reactive<EasyPayCredentialResult>({
     enable: false,
     enableV1: false,
@@ -61,9 +63,9 @@
       return pem;
     }
     return pem
-      .replace(/-----BEGIN PUBLIC KEY-----/g, '')
-      .replace(/-----END PUBLIC KEY-----/g, '')
-      .replace(/\s+/g, '');
+      .replaceAll('-----BEGIN PUBLIC KEY-----', '')
+      .replaceAll('-----END PUBLIC KEY-----', '')
+      .replaceAll(/\s+/g, '');
   }
 
   /**
@@ -96,10 +98,17 @@
   /**
    * 加载应用信息（页头展示名）
    */
+  /** 加载当前应用信息 */
   async function loadAppInfo() {
-    appInfo.value = selectedApp.value || {};
+    if (!appId.value) return;
+    const { data } = await MchAppInfoApi.getByAppId(appId.value);
+    appInfo.value = data || {};
   }
 
+  /** 返回应用工作台 */
+  function handleBack() {
+    router.push({ path: '/mch/app/manage', query: { appId: appId.value } });
+  }
 
   /**
    * 加载易支付凭证
@@ -120,7 +129,7 @@
   /**
    * 返回应用工作台
    */
-    /**
+  /**
    * 进入编辑模式
    */
   function handleEdit() {
@@ -146,7 +155,7 @@
   /**
    * 复制文本
    */
-  function handleCopy(text?: string | number | null) {
+  function handleCopy(text?: null | number | string) {
     if (text === undefined || text === null || text === '') {
       return;
     }
@@ -197,39 +206,35 @@
     await loadCredential();
   }
 
-  watch(appId, () => {
-    bootstrap();
-  });
-
   onMounted(async () => {
-    await loadApps();
+    if (!routeContext.isValid.value) return;
     await bootstrap();
   });
 </script>
 
 <template>
-  <div class="m-4">
+  <RouteQueryMissingState
+    v-if="!routeContext.isValid"
+    :description="$t('payment.common.route.missingAppContext')"
+    :back-text="$t('payment.merchant.app.app.backToAppList')"
+    @back="routeContext.goFallback"
+  />
+  <div v-else class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <div class="flex items-center gap-2">
+          <a-button type="text" @click="handleBack">
+            <template #icon>
+              <IconifyIcon icon="ant-design:arrow-left-outlined" />
+            </template>
+          </a-button>
           <!-- 页头与菜单 i18n_key 一致 -->
           <span class="text-lg font-bold text-foreground">
             {{ $t('menu.payment.merchant.easypay') }}
           </span>
-          <span v-if="appName" class="text-sm text-muted-foreground">
-            ({{ appName }})
-          </span>
+          <span v-if="appName" class="text-sm text-muted-foreground"> ({{ appName }}) </span>
         </div>
       </template>
-
-      <MchAppSelectorBar
-        :value="appId"
-        :options="appOptions"
-        :loading="appsLoading"
-        @update:value="setAppId"
-      />
-
-      <a-empty v-if="!appsLoading && !hasApps" :description="$t('payment.merchant.app.app.emptyApps')" />
 
       <template #extra>
         <template v-if="canManage">
@@ -276,11 +281,7 @@
                       {{ $t('payment.merchant.app.easypay.enableDesc') }}
                     </div>
                   </div>
-                  <a-radio-group
-                    v-model:value="form.enable"
-                    button-style="solid"
-                    :disabled="!isEditing"
-                  >
+                  <a-radio-group v-model:value="form.enable" button-style="solid" :disabled="!isEditing">
                     <a-radio-button :value="true">{{ $t('common.enable') }}</a-radio-button>
                     <a-radio-button :value="false">{{ $t('common.disable') }}</a-radio-button>
                   </a-radio-group>
@@ -367,11 +368,7 @@
                       {{ $t('payment.merchant.app.easypay.enableV1Desc') }}
                     </div>
                   </div>
-                  <a-radio-group
-                    v-model:value="form.enableV1"
-                    button-style="solid"
-                    :disabled="!isEditing"
-                  >
+                  <a-radio-group v-model:value="form.enableV1" button-style="solid" :disabled="!isEditing">
                     <a-radio-button :value="true">{{ $t('common.enable') }}</a-radio-button>
                     <a-radio-button :value="false">{{ $t('common.disable') }}</a-radio-button>
                   </a-radio-group>
@@ -413,11 +410,7 @@
                       {{ $t('payment.merchant.app.easypay.enableV2Desc') }}
                     </div>
                   </div>
-                  <a-radio-group
-                    v-model:value="form.enableV2"
-                    button-style="solid"
-                    :disabled="!isEditing"
-                  >
+                  <a-radio-group v-model:value="form.enableV2" button-style="solid" :disabled="!isEditing">
                     <a-radio-button :value="true">{{ $t('common.enable') }}</a-radio-button>
                     <a-radio-button :value="false">{{ $t('common.disable') }}</a-radio-button>
                   </a-radio-group>
@@ -433,21 +426,14 @@
                       {{ $t('payment.merchant.app.easypay.useSystemKeyDesc') }}
                     </div>
                   </div>
-                  <a-radio-group
-                    v-model:value="form.useSystemKey"
-                    button-style="solid"
-                    :disabled="!isEditing"
-                  >
+                  <a-radio-group v-model:value="form.useSystemKey" button-style="solid" :disabled="!isEditing">
                     <a-radio-button :value="true">{{ $t('common.yes') }}</a-radio-button>
                     <a-radio-button :value="false">{{ $t('common.no') }}</a-radio-button>
                   </a-radio-group>
                 </div>
 
                 <!-- 平台公钥：整行，仅 V2 开启 -->
-                <div
-                  v-if="form.enableV2"
-                  class="config-item config-item--block config-item--full"
-                >
+                <div v-if="form.enableV2" class="config-item config-item--block config-item--full">
                   <div class="config-item__main">
                     <div class="config-item__label">
                       {{ $t('payment.merchant.app.easypay.platformPublicKey') }}
@@ -464,11 +450,7 @@
                       class="readonly-textarea font-mono text-sm"
                     />
                     <div class="textarea-actions">
-                      <a-button
-                        type="link"
-                        size="small"
-                        @click="handleCopy(form.platformPublicKey)"
-                      >
+                      <a-button type="link" size="small" @click="handleCopy(form.platformPublicKey)">
                         <template #icon>
                           <IconifyIcon icon="ant-design:copy-outlined" />
                         </template>

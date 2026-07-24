@@ -1,37 +1,53 @@
 <script lang="ts" setup>
-  import { PAY_ROUTE_MODE, type PayRouteMode } from './shared/payRoute.constants';
-
   import { computed, nextTick, onMounted, ref, watch } from 'vue';
+  import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
-  import MchAppSelectorBar from '#/components/app/MchAppSelectorBar.vue';
+  import { IconifyIcon } from '@vben-core/icons';
+
+  import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
+  import { PayRouteApi, type PayRouteStrategyResult } from '#/api/payment/route/pay-route.api';
+  import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
-  import { useMchAppSelector } from '#/hooks/useMchAppSelector';
   import { usePermission } from '#/hooks/usePermission';
-  import { PayRouteApi, type PayRouteStrategyResult } from '#/api/payment/route/pay-route.api';
+  import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
 
   import PayRouteBasicPanel from './basic/PayRouteBasicPanel.vue';
   import PayRouteModeToolbar from './components/PayRouteModeToolbar.vue';
   import PayRouteScenePanel from './scene/PayRouteScenePanel.vue';
+  import { PAY_ROUTE_MODE, type PayRouteMode } from './shared/payRoute.constants';
   import { modeDisplayName, normalizePayRouteMode } from './shared/payRoute.labels';
 
   defineOptions({ name: 'PayRouteConfig' });
 
+  const router = useRouter();
   const { confirm, message } = useMessage();
   const { hasPermission } = usePermission();
 
-  // 顶部 appId 选择器（无 mchNo URL）
-  const {
-    loading: appsLoading,
-    appId,
-    appName,
-    hasApps,
-    appOptions,
-    loadApps,
-    setAppId,
-  } = useMchAppSelector();
+  // 商户端无 mchNo URL 维度，仅校验 appId
+  const routeContext = useRequiredRouteQuery({
+    keys: ['appId'],
+    messageKey: 'payment.common.route.missingAppContext',
+    fallbackPath: '/mch/app',
+  });
+
+  const appId = computed(() => routeContext.query.value.appId);
+  const appInfo = ref<MchAppInfoResult>({});
+  const appName = computed(() => appInfo.value.appName || '');
+
+  /** 加载当前应用信息 */
+  async function loadAppInfo() {
+    if (!appId.value) return;
+    const { data } = await MchAppInfoApi.getByAppId(appId.value);
+    appInfo.value = data || {};
+  }
+
+  /** 返回应用工作台 */
+  function handleBack() {
+    router.push({ path: '/mch/app/manage', query: { appId: appId.value } });
+  }
 
   const strategy = ref<PayRouteStrategyResult>({});
   const loading = ref(false);
@@ -43,7 +59,9 @@
 
   // 编辑态由父组件统一持有
   const editing = ref(false);
-  const activePanel = computed(() => (editMode.value === PAY_ROUTE_MODE.BASIC ? basicPanelRef.value : scenePanelRef.value));
+  const activePanel = computed(() =>
+    editMode.value === PAY_ROUTE_MODE.BASIC ? basicPanelRef.value : scenePanelRef.value,
+  );
 
   function onStartEdit() {
     activePanel.value?.startEdit();
@@ -88,12 +106,6 @@
     }
   });
 
-  // 切换应用时重载策略
-  watch(appId, () => {
-    editing.value = false;
-    loadStrategy();
-  });
-
   /**
    * 设为生效模式
    */
@@ -118,72 +130,71 @@
   }
 
   onMounted(async () => {
-    await loadApps();
+    if (!routeContext.isValid.value) return;
+    await loadAppInfo();
     await loadStrategy();
   });
 </script>
 
 <template>
-  <div class="m-4">
+  <RouteQueryMissingState
+    v-if="!routeContext.isValid"
+    :description="$t('payment.common.route.missingAppContext')"
+    :back-text="$t('payment.merchant.app.app.backToAppList')"
+    @back="routeContext.goFallback"
+  />
+  <div v-else class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <div class="flex items-center gap-2">
+          <a-button type="text" @click="handleBack">
+            <template #icon>
+              <IconifyIcon icon="ant-design:arrow-left-outlined" />
+            </template>
+          </a-button>
           <!-- 国际化：通道路由（与菜单一致） -->
           <span class="text-lg font-bold">{{ $t('menu.payment.merchant.payRoute') }}</span>
           <span v-if="appName" class="text-sm text-muted-foreground">({{ appName }})</span>
         </div>
       </template>
 
-      <!-- 应用选择器 -->
-      <MchAppSelectorBar
-        :value="appId"
-        :options="appOptions"
-        :loading="appsLoading"
-        @update:value="setAppId"
-      />
+      <a-spin :spinning="loading">
+        <PayRouteModeToolbar
+          v-model:edit-mode="editMode"
+          :effective-mode="effectiveMode"
+          :is-edit-mode-active="isEditModeActive"
+          @apply-active-mode="applyActiveMode"
+        />
 
-      <a-empty v-if="!appsLoading && !hasApps" :description="$t('payment.merchant.app.app.emptyApps')" />
-
-      <a-spin v-else :spinning="loading || appsLoading">
-        <template v-if="appId">
-          <PayRouteModeToolbar
-            v-model:edit-mode="editMode"
-            :effective-mode="effectiveMode"
-            :is-edit-mode-active="isEditModeActive"
-            @apply-active-mode="applyActiveMode"
-          />
-
-          <a-tabs v-model:active-key="activeTab">
-            <template #rightExtra>
-              <div v-if="hasPermission(PermCodes.Merchant.AppRoute.MANAGE)" class="flex gap-2">
-                <a-button v-if="!editing" type="primary" @click="onStartEdit">
-                  {{ $t('common.edit') }}
+        <a-tabs v-model:active-key="activeTab">
+          <template #rightExtra>
+            <div v-if="hasPermission(PermCodes.Merchant.AppRoute.MANAGE)" class="flex gap-2">
+              <a-button v-if="!editing" type="primary" @click="onStartEdit">
+                {{ $t('common.edit') }}
+              </a-button>
+              <template v-else>
+                <a-button type="primary" @click="onSave">
+                  {{ $t('common.save') }}
                 </a-button>
-                <template v-else>
-                  <a-button type="primary" @click="onSave">
-                    {{ $t('common.save') }}
-                  </a-button>
-                  <a-button @click="onCancel">{{ $t('common.cancel') }}</a-button>
-                </template>
-              </div>
-            </template>
-            <a-tab-pane key="config" :tab="$t('payment.merchant.route.route.configTab')" force-render>
-              <PayRouteBasicPanel
-                v-show="editMode === PAY_ROUTE_MODE.BASIC"
-                ref="basicPanelRef"
-                v-model:editing="editing"
-                :app-id="appId"
-              />
-              <PayRouteScenePanel
-                v-show="editMode === PAY_ROUTE_MODE.SCENE"
-                ref="scenePanelRef"
-                v-model:editing="editing"
-                :app-id="appId"
-              />
-            </a-tab-pane>
-          </a-tabs>
-        </template>
-        <a-empty v-else :description="$t('payment.merchant.app.app.noAppSelected')" />
+                <a-button @click="onCancel">{{ $t('common.cancel') }}</a-button>
+              </template>
+            </div>
+          </template>
+          <a-tab-pane key="config" :tab="$t('payment.merchant.route.route.configTab')" force-render>
+            <PayRouteBasicPanel
+              v-show="editMode === PAY_ROUTE_MODE.BASIC"
+              ref="basicPanelRef"
+              v-model:editing="editing"
+              :app-id="appId"
+            />
+            <PayRouteScenePanel
+              v-show="editMode === PAY_ROUTE_MODE.SCENE"
+              ref="scenePanelRef"
+              v-model:editing="editing"
+              :app-id="appId"
+            />
+          </a-tab-pane>
+        </a-tabs>
       </a-spin>
     </a-card>
   </div>

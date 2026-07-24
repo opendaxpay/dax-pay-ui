@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-  import type { MenuProps } from 'antdv-next';
-
   import type { MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
 
   import { computed } from 'vue';
@@ -11,20 +9,41 @@
 
   const props = defineProps<{
     record: MchAppInfoResult;
-    /** 更多操作菜单（编辑/设默认/删除） */
-    actionMenu?: MenuProps;
-    /** 是否有管理权限（控制底部操作区） */
-    canManage?: boolean;
+  }>();
+
+  const emit = defineEmits<{
+    open: [];
   }>();
 
   const isEnabled = computed(() => props.record.status === 'enable');
-  const hasActions = computed(() => !!props.canManage && (props.actionMenu?.items?.length || 0) > 0);
+
+  /**
+   * 整卡点击进入应用工作台
+   */
+  function handleOpen() {
+    emit('open');
+  }
+
+  /**
+   * 键盘 Enter / Space 打开
+   */
+  function handleKeydown(e: KeyboardEvent) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      emit('open');
+    }
+  }
 </script>
 
 <template>
   <div
-    class="mch-app-info-card group relative flex h-full min-h-[156px] flex-col overflow-hidden rounded-2xl border-none bg-card shadow-md"
+    class="mch-app-info-card group relative flex h-full min-h-[156px] cursor-pointer flex-col overflow-hidden rounded-2xl border-none bg-card shadow-md"
     :class="{ 'mch-app-info-card--default': record.defaultApp }"
+    role="button"
+    tabindex="0"
+    :aria-label="$t('payment.merchant.app.app.openActionAria')"
+    @click="handleOpen"
+    @keydown="handleKeydown"
   >
     <div class="card-body flex flex-1 items-center gap-4 px-5 py-5">
       <div
@@ -34,7 +53,9 @@
       </div>
       <div class="min-w-0 flex-1">
         <div class="flex items-center gap-2">
-          <span class="truncate text-base font-bold leading-snug text-foreground">
+          <span
+            class="truncate text-base font-bold leading-snug text-foreground transition-colors duration-300 group-hover:text-primary"
+          >
             {{ record.appName }}
           </span>
           <a-tag v-if="record.defaultApp" color="processing" class="shrink-0 !m-0 !text-xs">
@@ -56,26 +77,21 @@
           :class="isEnabled ? 'bg-primary' : 'bg-muted-foreground/50'"
         />
         <span>
-          {{
-            isEnabled
-              ? $t('payment.merchant.app.app.statusEnable')
-              : $t('payment.merchant.app.app.statusDisabled')
-          }}
+          {{ isEnabled ? $t('payment.merchant.app.app.statusEnable') : $t('payment.merchant.app.app.statusDisabled') }}
         </span>
       </div>
-      <!-- 配置入口改侧栏；卡片仅保留管理操作 -->
-      <a-dropdown v-if="hasActions" :menu="actionMenu">
-        <a-button type="link" size="small" @click.stop>
-          <!-- 国际化：更多操作 -->
-          {{ $t('payment.merchant.app.app.actionMore') }}
-          <IconifyIcon icon="ant-design:down-outlined" class="inline" />
-        </a-button>
-      </a-dropdown>
+      <!-- 国际化：进入配置 › -->
+      <div
+        class="flex items-center gap-0.5 text-xs font-medium text-muted-foreground transition-colors duration-300 group-hover:text-primary"
+      >
+        <span>{{ $t('payment.merchant.app.app.enterConfig') }}</span>
+        <IconifyIcon icon="ant-design:right-outlined" class="text-xs" />
+      </div>
     </div>
 
-    <div
-      class="absolute bottom-0 left-0 h-1.5 w-0 bg-primary transition-all duration-300 group-hover:w-full"
-    />
+    <!-- hover 底边色条（对齐工作台） -->
+
+    <div class="absolute bottom-0 left-0 h-1.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
   </div>
 </template>
 
@@ -89,6 +105,11 @@
   .mch-app-info-card:hover {
     box-shadow: 0 12px 28px rgb(0 0 0 / 0.12);
     transform: translateY(-6px);
+  }
+
+  .mch-app-info-card:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
   }
 
   .mch-app-info-card--default {

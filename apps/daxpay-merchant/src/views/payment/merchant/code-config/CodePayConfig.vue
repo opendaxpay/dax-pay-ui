@@ -13,16 +13,16 @@
     CodeConfigApi,
     type CodeConfigResult,
   } from '#/api/payment/merchant/code-config.api';
-  import { type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
+  import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import { PayRouteApi } from '#/api/payment/route/pay-route.api';
   import ChannelMerchantSelect from '#/components/channel/ChannelMerchantSelect.vue';
-  import MchAppSelectorBar from '#/components/app/MchAppSelectorBar.vue';
+  import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { useMessage } from '#/hooks/useMessage';
-  import { useMchAppSelector } from '#/hooks/useMchAppSelector';
-  import { PAY_ROUTE_MODE } from '#/views/payment/route/shared/payRoute.constants';
-  import { modeDisplayName } from '#/views/payment/route/shared/payRoute.labels';
+  import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
   import RouteHitPreviewBlock from '#/views/payment/merchant/shared/RouteHitPreviewBlock.vue';
   import { useRouteHitPreview } from '#/views/payment/merchant/shared/useRouteHitPreview';
+  import { PAY_ROUTE_MODE } from '#/views/payment/route/shared/payRoute.constants';
+  import { modeDisplayName } from '#/views/payment/route/shared/payRoute.labels';
 
   import {
     CODE_CLIENT_ENVS,
@@ -40,23 +40,20 @@
   const router = useRouter();
   const { confirm, message } = useMessage();
 
-  // 顶部 appId 选择器（无 mchNo URL）
-  const {
-    loading: appsLoading,
-    appId,
-    mchNo,
-    appName,
-    selectedApp,
-    hasApps,
-    appOptions,
-    loadApps,
-    setAppId,
-  } = useMchAppSelector();
+  // 商户端无 mchNo URL 维度，仅校验 appId
+  const routeContext = useRequiredRouteQuery({
+    keys: ['appId'],
+    messageKey: 'payment.common.route.missingAppContext',
+    fallbackPath: '/mch/app',
+  });
 
+  const appId = computed(() => routeContext.query.value.appId);
 
   const loading = ref(false);
   const editing = ref(false);
   const appInfo = ref<MchAppInfoResult>({});
+  const appName = computed(() => appInfo.value.appName || '');
+  const mchNo = computed(() => appInfo.value.mchNo || '');
   const config = ref<CodeConfigResult>({});
 
   const editLevel = ref<CodeLevel>(CODE_LEVEL.AUTO);
@@ -309,10 +306,17 @@
     capabilityMap.value = { ...capabilityMap.value, [key]: data || [] };
   }
 
+  /** 加载当前应用信息 */
   async function loadAppInfo() {
-    appInfo.value = selectedApp.value || {};
+    if (!appId.value) return;
+    const { data } = await MchAppInfoApi.getByAppId(appId.value);
+    appInfo.value = data || {};
   }
 
+  /** 返回应用工作台 */
+  function handleBack() {
+    router.push({ path: '/mch/app/manage', query: { appId: appId.value } });
+  }
 
   async function loadConfig() {
     if (!appId.value) return;
@@ -445,38 +449,32 @@
   }
 
   onMounted(async () => {
-    await loadApps();
-    await loadAppInfo();
-    await loadConfig();
-  });
-
-  // 切换应用时重载
-  watch(appId, async () => {
-    editing.value = false;
+    if (!routeContext.isValid.value) return;
     await loadAppInfo();
     await loadConfig();
   });
 </script>
 
 <template>
-  <div class="m-4">
+  <RouteQueryMissingState
+    v-if="!routeContext.isValid"
+    :description="$t('payment.common.route.missingAppContext')"
+    :back-text="$t('payment.merchant.app.app.backToAppList')"
+    @back="routeContext.goFallback"
+  />
+  <div v-else class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <div class="flex items-center gap-2">
+          <a-button type="text" @click="handleBack">
+            <template #icon>
+              <IconifyIcon icon="ant-design:arrow-left-outlined" />
+            </template>
+          </a-button>
           <span class="text-lg font-bold">{{ $t('menu.payment.merchant.codePayConfig') }}</span>
           <span v-if="appName" class="text-sm text-muted-foreground"> ({{ appName }}) </span>
         </div>
       </template>
-
-      <MchAppSelectorBar
-        :value="appId"
-        :options="appOptions"
-        :loading="appsLoading"
-        @update:value="setAppId"
-      />
-
-      <a-empty v-if="!appsLoading && !hasApps" :description="$t('payment.merchant.app.app.emptyApps')" />
-
 
       <template #extra>
         <div class="flex gap-2">

@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-  import type { MenuProps } from 'antdv-next';
-
   import { computed, onMounted, ref } from 'vue';
+  import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
@@ -10,16 +9,15 @@
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import { PermCodes } from '#/constants/perm-codes';
-  import useTablePage from '#/hooks/useTablePage';
-  import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
+  import useTablePage from '#/hooks/useTablePage';
 
   import MchAppInfoCard from './MchAppInfoCard.vue';
   import MchAppInfoEdit from './MchAppInfoEdit.vue';
 
   defineOptions({ name: 'MchAppInfoList' });
 
-  const { confirm, message } = useMessage();
+  const router = useRouter();
   const { hasPermission } = usePermission();
 
   // 当前商户号（MerchantApi.get，不走 URL）
@@ -62,7 +60,7 @@
    * 应用列表排序：默认应用排最前，其余按创建时间升序
    */
   const sortedAppList = computed(() => {
-    return [...appList.value].sort((a, b) => {
+    return appList.value.toSorted((a, b) => {
       if (a.defaultApp && !b.defaultApp) return -1;
       if (!a.defaultApp && b.defaultApp) return 1;
       return getCreateTimestamp(a.createTime) - getCreateTimestamp(b.createTime);
@@ -90,103 +88,18 @@
     }
   }
 
+  /**
+   * 进入应用工作台
+   */
+  function openAppWorkbench(row: MchAppInfoResult) {
+    router.push({
+      path: '/mch/app/manage',
+      query: { appId: row.appId },
+    });
+  }
+
   function handleAdd() {
     appEditRef.value?.show(mchNo.value);
-  }
-
-  function handleEdit(row: MchAppInfoResult) {
-    appEditRef.value?.showEdit(mchNo.value, row);
-  }
-
-  /**
-   * 设为默认
-   */
-  function handleSetDefault(row: MchAppInfoResult) {
-    confirm({
-      // 国际化：确定将该应用设为默认应用吗？
-      content: $t('payment.merchant.app.app.confirmSetDefault'),
-      onOk() {
-        return MchAppInfoApi.setDefault(row.id!).then(() => {
-          message.success($t('common.operationSuccess'));
-          return query();
-        });
-      },
-    });
-  }
-
-  /**
-   * 取消默认
-   */
-  function handleClearDefault(row: MchAppInfoResult) {
-    confirm({
-      // 国际化：确定取消该应用的默认状态吗？
-      content: $t('payment.merchant.app.app.confirmCancelDefault'),
-      onOk() {
-        return MchAppInfoApi.clearDefault(row.id!).then(() => {
-          message.success($t('common.operationSuccess'));
-          return query();
-        });
-      },
-    });
-  }
-
-  /**
-   * 删除应用（默认应用禁止删除）
-   */
-  function handleDelete(row: MchAppInfoResult) {
-    if (row.defaultApp) {
-      message.warning($t('payment.merchant.app.app.deleteDefaultBlocked'));
-      return;
-    }
-    confirm({
-      // 国际化：确定删除该应用吗？
-      content: $t('payment.merchant.app.app.confirmDelete'),
-      onOk() {
-        return MchAppInfoApi.delete(row.id!).then(() => {
-          message.success($t('common.operationSuccess'));
-          return query();
-        });
-      },
-    });
-  }
-
-  /**
-   * 卡片更多操作菜单
-   */
-  function getActionMenu(row: MchAppInfoResult): MenuProps {
-    const items: MenuProps['items'] = [];
-    if (hasPermission(PermCodes.Merchant.App.MANAGE)) {
-      // 编辑
-      items.push({
-        key: 'edit',
-        label: $t('payment.merchant.app.app.edit'),
-        onClick: () => handleEdit(row),
-      });
-      if (row.defaultApp) {
-        // 取消默认
-        items.push({
-          key: 'clearDefault',
-          label: $t('payment.merchant.app.app.cancelDefault'),
-          onClick: () => handleClearDefault(row),
-        });
-      } else {
-        // 设为默认
-        items.push({
-          key: 'setDefault',
-          label: $t('payment.merchant.app.app.setDefault'),
-          onClick: () => handleSetDefault(row),
-        });
-      }
-      // 删除
-      items.push({ type: 'divider' });
-      items.push({
-        key: 'delete',
-        danger: true,
-        label: $t('payment.merchant.app.app.delete'),
-        onClick: () => handleDelete(row),
-      });
-    }
-    return { items };
   }
 
   onMounted(async () => {
@@ -217,8 +130,7 @@
             v-for="row in sortedAppList"
             :key="row.id || row.appId"
             :record="row"
-            :action-menu="getActionMenu(row)"
-            :can-manage="hasPermission(PermCodes.Merchant.App.MANAGE)"
+            @open="openAppWorkbench(row)"
           />
 
           <!-- 新增应用占位卡片 -->
