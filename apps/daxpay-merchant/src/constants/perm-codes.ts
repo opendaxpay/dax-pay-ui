@@ -81,6 +81,11 @@ export const PermCodes = {
       VIEW: 'merchant:easypay:view',
       MANAGE: 'merchant:easypay:manage',
     },
+    /** 支付宝服务商代运营授权 menuCode=merchant:alipay-isv-auth */
+    AlipayIsvAuth: {
+      VIEW: 'merchant:alipay-isv-auth:view',
+      MANAGE: 'merchant:alipay-isv-auth:manage',
+    },
     Store: {
       VIEW: 'merchant:store:view',
       MANAGE: 'merchant:store:manage',
