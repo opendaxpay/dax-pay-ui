@@ -3,7 +3,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { type MerchantInfo, MerchantApi } from '#/api/payment/merchant/merchant.api';
+  import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
@@ -48,7 +48,6 @@
 
   // 表单校验规则
   const rules = {
-    mchName: [{ required: true, message: $t('payment.merchant.base.validation.pleaseInputMchName') }],
     mchShortName: [{ required: true, message: $t('payment.merchant.base.validation.pleaseInputMchShortName') }],
     status: [{ required: true, message: $t('payment.merchant.base.validation.pleaseSelectStatus') }],
   };
@@ -129,11 +128,8 @@
   <div class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
-        <div class="flex items-center gap-2">
-          <!-- 商户资料（与菜单 menu.payment.merchant.profile 一致） -->
-          <span class="text-lg font-bold text-foreground">{{ $t('menu.payment.merchant.profile') }}</span>
-          <span v-if="form.mchName" class="text-sm text-muted-foreground">({{ form.mchName }})</span>
-        </div>
+        <!-- 商户资料（与菜单 menu.payment.merchant.profile 一致） -->
+        <span class="text-lg font-bold text-foreground">{{ $t('menu.payment.merchant.profile') }}</span>
       </template>
       <template #extra>
         <a-space>
@@ -168,14 +164,6 @@
             <!-- 商户类型 -->
             <a-form-item :label="$t('payment.merchant.base.field.subjectType')">
               <a-input :value="subjectTypeMap[form.subjectType || ''] || form.subjectType" disabled />
-            </a-form-item>
-            <!-- 商户名称 -->
-            <a-form-item :label="$t('payment.merchant.base.field.mchName')" name="mchName">
-              <a-input
-                v-model:value="form.mchName"
-                :disabled="!isEditing"
-                :placeholder="$t('payment.merchant.form.add.mchNamePlaceholder')"
-              />
             </a-form-item>
             <!-- 商户简称 -->
             <a-form-item :label="$t('payment.merchant.base.field.mchShortName')" name="mchShortName">

@@ -12,7 +12,6 @@
     ChannelMerchantApi,
     type ChannelMerchantResult,
   } from '#/api/payment/global/channel-merchant/channel-merchant.api';
-  import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import ChannelLogo from '#/components/channel/ChannelLogo.vue';
   import { PermCodes } from '#/constants/perm-codes';
   import { productChannelMap, productI18nMap, productNameMap } from '#/enums/payment';
@@ -28,15 +27,10 @@
   const { hasPermission } = usePermission();
 
   const loading = ref(false);
-  // 商户信息加载状态
-  const merchantLoading = ref(false);
   // 切换启用状态按行 loading
   const enableLoadingMap = ref<Record<string, boolean>>({});
   const xTable = ref<VxeTableInstance>();
   const xToolbar = ref<VxeToolbarInstance>();
-  // 当前商户号（MerchantApi.get，不走 URL）
-  const mchNo = ref('');
-  const merchantInfo = ref<MerchantInfo>({});
   const list = ref<ChannelMerchantResult[]>([]);
   const pageConfig = ref({
     currentPage: 1,
@@ -77,18 +71,6 @@
         product: record.product || '',
       },
     });
-  }
-
-  /** 加载当前商户信息 */
-  async function loadMerchantInfo() {
-    merchantLoading.value = true;
-    try {
-      const { data } = await MerchantApi.get();
-      merchantInfo.value = data || {};
-      mchNo.value = data?.mchNo || '';
-    } finally {
-      merchantLoading.value = false;
-    }
   }
 
   /** 加载通道商户列表（后端强制当前商户） */
@@ -166,9 +148,8 @@
     });
   }
 
-  onMounted(async () => {
+  onMounted(() => {
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
-    await loadMerchantInfo();
     loadList();
   });
 </script>
@@ -176,19 +157,6 @@
 <template>
   <div class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
-      <template #title>
-        <div class="flex items-center gap-2">
-          <!-- 国际化：通道商户（与菜单 title 一致） -->
-          <span class="text-lg font-bold text-foreground">{{ $t('payment.merchant.channelMerchant.title') }}</span>
-          <span v-if="merchantLoading" class="text-sm text-muted-foreground">
-            <a-skeleton-input :active="true" size="small" />
-          </span>
-          <span v-else-if="merchantInfo.mchName" class="text-sm text-muted-foreground"
-            >({{ merchantInfo.mchName }})</span
-          >
-        </div>
-      </template>
-
       <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: loadList }">
         <template #buttons>
           <a-button v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)" type="primary" @click="handleCreate">

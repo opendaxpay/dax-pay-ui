@@ -13,7 +13,7 @@
     type MerchantCredentialResult,
   } from '#/api/payment/merchant/credential.api';
   import { KeyGenApi } from '#/api/payment/merchant/key-gen.api';
-  import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
+  import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
@@ -32,7 +32,6 @@
   const isEditing = ref(false);
   // 当前商户号（MerchantApi.get）
   const mchNo = ref('');
-  const merchantInfo = ref<MerchantInfo>({});
   // 表单数据
   const formState = ref<MerchantCredentialResult>({});
   // 原始脱敏数据，用于 diffForm 比对
@@ -46,7 +45,6 @@
    */
   async function loadMerchantInfo() {
     const { data } = await MerchantApi.get();
-    merchantInfo.value = data || {};
     mchNo.value = data?.mchNo || '';
   }
 
@@ -199,11 +197,8 @@
   <div class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
-        <div class="flex items-center gap-2">
-          <!-- 对接配置（与菜单 menu.payment.merchant.credential 一致） -->
-          <span class="text-lg font-bold text-foreground">{{ $t('menu.payment.merchant.credential') }}</span>
-          <span v-if="merchantInfo.mchName" class="text-sm text-muted-foreground">({{ merchantInfo.mchName }})</span>
-        </div>
+        <!-- 对接配置（与菜单 menu.payment.merchant.credential 一致） -->
+        <span class="text-lg font-bold text-foreground">{{ $t('menu.payment.merchant.credential') }}</span>
       </template>
 
       <template #extra>
@@ -328,7 +323,9 @@
         <div>
           <div class="mb-2 flex items-center justify-between">
             <!-- 私钥 -->
-            <span class="font-medium text-foreground">{{ $t('payment.merchant.credential.credential.privateKey') }}</span>
+            <span class="font-medium text-foreground">{{
+              $t('payment.merchant.credential.credential.privateKey')
+            }}</span>
             <a-button size="small" type="primary" ghost @click="handleCopy(privateKeyContent)">
               <template #icon>
                 <IconifyIcon icon="ant-design:copy-outlined" />

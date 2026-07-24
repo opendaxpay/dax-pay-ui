@@ -42,7 +42,6 @@
 
   const loading = ref(false);
   const appInfo = ref<MchAppInfoResult>({});
-  const appName = computed(() => appInfo.value.appName || '');
   const mchNo = computed(() => appInfo.value.mchNo || '');
   const tableData = ref<CashierItemResult[]>([]);
   const methodLabelMap = ref<Record<string, string>>({});
@@ -228,7 +227,6 @@
             </template>
           </a-button>
           <span class="text-lg font-bold">{{ $t('menu.payment.merchant.cashierConfig') }}</span>
-          <span v-if="appName" class="text-sm text-muted-foreground"> ({{ appName }}) </span>
         </div>
       </template>
 

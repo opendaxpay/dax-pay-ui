@@ -247,26 +247,28 @@
   function getActionMenu(row: MchStoreInfoResult): MenuProps {
     const items: MenuProps['items'] = [];
     if (hasPermission(PermCodes.Merchant.Store.MANAGE)) {
-      if (!row.defaultStore) {
-        items.push({
-          key: 'setDefault',
-          // 设为默认
-          label: $t('payment.merchant.store.store.setDefault'),
-        });
-      } else {
+      if (row.defaultStore) {
         items.push({
           key: 'clearDefault',
           // 取消默认
           label: $t('payment.merchant.store.store.clearDefault'),
         });
+      } else {
+        items.push({
+          key: 'setDefault',
+          // 设为默认
+          label: $t('payment.merchant.store.store.setDefault'),
+        });
       }
-      items.push({ type: 'divider' });
-      items.push({
-        key: 'delete',
-        // 删除
-        label: $t('common.delete'),
-        danger: true,
-      });
+      items.push(
+        { type: 'divider' },
+        {
+          key: 'delete',
+          // 删除
+          label: $t('common.delete'),
+          danger: true,
+        },
+      );
     }
     return {
       items,
@@ -293,10 +295,6 @@
 <template>
   <div class="m-3 p-3 bg-background rounded-lg list-page-compact">
     <a-card>
-      <template #title>
-        <!-- 门店管理（与菜单 menu.payment.merchant.store 一致） -->
-        <span class="text-lg font-bold text-foreground">{{ $t('menu.payment.merchant.store') }}</span>
-      </template>
       <BQuery :fields="queryFields" :query-params="queryForm" @query="queryPage" @reset="resetQuery" />
     </a-card>
 

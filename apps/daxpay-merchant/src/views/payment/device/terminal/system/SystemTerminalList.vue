@@ -6,7 +6,7 @@
   import { $t } from '@vben/locales';
 
   import { TerminalDeviceApi, type TerminalDeviceResult } from '#/api/payment/device/terminal.api';
-  import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
+  import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
@@ -20,9 +20,8 @@
   const { confirm, message } = useMessage();
   const { hasPermission } = usePermission();
 
-  // 当前商户号（MerchantApi.get，不走 URL）
+  // 当前商户号（MerchantApi.get，不走 URL；新增终端时传入）
   const mchNo = ref('');
-  const merchantInfo = ref<MerchantInfo>({});
 
   const loading = ref(false);
   const xTable = ref<VxeTableInstance>();
@@ -131,10 +130,9 @@
     });
   }
 
-  /** 加载商户信息用于标题展示 */
+  /** 加载当前商户号（新增终端时传入） */
   async function loadMerchantInfo() {
     const { data } = await MerchantApi.get();
-    merchantInfo.value = data || {};
     mchNo.value = data?.mchNo || '';
   }
 
@@ -148,13 +146,6 @@
 <template>
   <div class="m-3 p-3 bg-background rounded-lg list-page-compact">
     <a-card>
-      <template #title>
-        <div class="flex items-center gap-2">
-          <!-- 国际化：系统终端（与菜单一致） -->
-          <span class="text-lg font-bold text-foreground">{{ $t('payment.device.terminal.systemTitle') }}</span>
-          <span v-if="merchantInfo.mchName" class="text-sm text-muted-foreground">({{ merchantInfo.mchName }})</span>
-        </div>
-      </template>
       <BQuery :fields="queryFields" :query-params="queryForm" @query="queryPage" @reset="resetQuery" />
     </a-card>
 

@@ -8,8 +8,8 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { MerchantUserApi, type MerchantUserResult } from '#/api/payment/merchant/merchant-user.api';
+  import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
@@ -341,11 +341,6 @@
 <template>
   <div class="m-3 p-3 bg-background rounded-lg list-page-compact">
     <a-card>
-      <template #title>
-        <!-- 商户用户（与菜单 menu.payment.merchant.user 一致） -->
-        <span>{{ $t('menu.payment.merchant.user') }}</span>
-      </template>
-
       <!-- 查询表单 -->
       <BQuery :fields="queryFields" :query-params="queryForm" @query="queryPage" @reset="resetQuery" />
     </a-card>
@@ -355,11 +350,7 @@
         <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
           <template #buttons>
             <a-space>
-              <a-button
-                v-if="hasPermission(PermCodes.Merchant.User.MANAGE)"
-                type="primary"
-                @click="handleAdd"
-              >
+              <a-button v-if="hasPermission(PermCodes.Merchant.User.MANAGE)" type="primary" @click="handleAdd">
                 {{ $t('common.add') }}
               </a-button>
               <a-dropdown v-if="hasPermission(PermCodes.Merchant.User.MANAGE)" :menu="getBatchActionMenu()">
@@ -427,10 +418,7 @@
                 >
                   {{ $t('common.edit') }}
                 </a-button>
-                <a-dropdown
-                  v-if="hasPermission(PermCodes.Merchant.User.MANAGE)"
-                  :menu="getActionMenu(row)"
-                >
+                <a-dropdown v-if="hasPermission(PermCodes.Merchant.User.MANAGE)" :menu="getActionMenu(row)">
                   <a-button type="link" size="small">
                     {{ $t('common.more') }}
                     <IconifyIcon icon="ant-design:down-outlined" class="inline" />

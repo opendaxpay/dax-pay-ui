@@ -46,7 +46,6 @@
   // 编辑模式
   const isEditing = ref(false);
   const appInfo = ref<MchAppInfoResult>({});
-  const appName = computed(() => appInfo.value.appName || '');
   const form = reactive<EasyPayCredentialResult>({
     enable: false,
     enableV1: false,
@@ -288,7 +287,6 @@
           <span class="text-lg font-bold text-foreground">
             {{ $t('menu.payment.merchant.easypay') }}
           </span>
-          <span v-if="appName" class="text-sm text-muted-foreground"> ({{ appName }}) </span>
         </div>
       </template>
 

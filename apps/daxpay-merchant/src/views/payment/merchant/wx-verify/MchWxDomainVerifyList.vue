@@ -7,7 +7,6 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import {
     MchWxDomainVerifyApi,
     type MchWxDomainVerifyQuery,
@@ -30,8 +29,6 @@
   const uploading = ref(false);
   const xTable = ref<VxeTableInstance>();
   const xToolbar = ref<VxeToolbarInstance>();
-
-  const merchantInfo = ref<MerchantInfo>({});
 
   // 查询条件（mchNo 由后端上下文决定）
   const queryForm = ref<MchWxDomainVerifyQuery>({});
@@ -59,12 +56,6 @@
       placeholder: $t('common.pleaseInput'),
     },
   ]);
-
-  /** 加载商户信息（展示商户名） */
-  async function loadMerchantInfo() {
-    const { data } = await MerchantApi.get();
-    merchantInfo.value = data || {};
-  }
 
   /** 分页查询当前商户的验证文件列表 */
   function queryPage() {
@@ -141,7 +132,6 @@
   }
 
   onMounted(() => {
-    loadMerchantInfo();
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
     queryPage();
   });
@@ -150,16 +140,6 @@
 <template>
   <div class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
-      <template #title>
-        <div class="flex items-center gap-2">
-          <!-- 国际化：微信域名验证（与菜单一致） -->
-          <span class="text-lg font-bold text-foreground">{{ $t('payment.wxVerify.title') }}</span>
-          <span v-if="merchantInfo.mchName" class="text-sm text-muted-foreground"
-            >({{ merchantInfo.mchName }})</span
-          >
-        </div>
-      </template>
-
       <BQuery :fields="queryFields" :query-params="queryForm" @query="queryPage" @reset="resetQuery" />
 
       <div class="mt-4">
@@ -201,12 +181,7 @@
             :min-width="200"
             show-overflow
           />
-          <vxe-column
-            field="remark"
-            :title="$t('payment.wxVerify.field.remark')"
-            :min-width="160"
-            show-overflow
-          />
+          <vxe-column field="remark" :title="$t('payment.wxVerify.field.remark')" :min-width="160" show-overflow />
           <vxe-column
             field="createTime"
             :title="$t('payment.wxVerify.field.createTime')"

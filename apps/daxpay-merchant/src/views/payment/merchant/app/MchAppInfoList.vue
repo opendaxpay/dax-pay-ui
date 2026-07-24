@@ -7,7 +7,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
-  import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
+  import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { usePermission } from '#/hooks/usePermission';
   import useTablePage from '#/hooks/useTablePage';
@@ -20,9 +20,8 @@
   const router = useRouter();
   const { hasPermission } = usePermission();
 
-  // 当前商户号（MerchantApi.get，不走 URL）
+  // 当前商户号（MerchantApi.get，不走 URL；新增应用时传入）
   const mchNo = ref('');
-  const merchantInfo = ref<MerchantInfo>({});
   const appEditRef = ref<InstanceType<typeof MchAppInfoEdit>>();
 
   /**
@@ -78,12 +77,11 @@
   const showNoDefaultTip = computed(() => hasAppWithoutDefault.value && !loading.value);
 
   /**
-   * 加载当前商户信息
+   * 加载当前商户号（新增应用时传入）
    */
   async function loadMerchantInfo() {
     const { data } = await MerchantApi.get();
     if (data) {
-      merchantInfo.value = data;
       mchNo.value = data.mchNo || '';
     }
   }
@@ -111,14 +109,6 @@
 <template>
   <div class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
-      <template #title>
-        <div class="flex items-center gap-2">
-          <!-- 国际化：应用管理（与菜单 i18n_key 一致） -->
-          <span class="text-lg font-bold text-foreground">{{ $t('menu.payment.merchant.app') }}</span>
-          <span v-if="merchantInfo.mchName" class="text-sm text-muted-foreground">({{ merchantInfo.mchName }})</span>
-        </div>
-      </template>
-
       <!-- 国际化：有应用但未设置默认应用时提示 -->
       <div v-if="showNoDefaultTip" class="mb-4">
         <a-alert :message="$t('payment.merchant.app.app.noDefaultAppTip')" type="warning" show-icon />
@@ -157,7 +147,7 @@
 <style scoped>
   .app-card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 16px;
   }
 </style>

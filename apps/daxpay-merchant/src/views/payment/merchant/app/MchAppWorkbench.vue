@@ -361,7 +361,6 @@
             <span class="text-lg font-bold text-foreground">
               {{ $t('payment.merchant.app.app.workbenchTitle') }}
             </span>
-            <span v-if="appInfo.appName" class="text-sm text-muted-foreground"> ({{ appInfo.appName }}) </span>
             <a-tag v-if="appInfo.defaultApp" color="processing" class="!m-0 !text-xs">
               {{ $t('payment.merchant.app.app.defaultTag') }}
             </a-tag>

@@ -35,7 +35,6 @@
 
   const appId = computed(() => routeContext.query.value.appId);
   const appInfo = ref<MchAppInfoResult>({});
-  const appName = computed(() => appInfo.value.appName || '');
 
   /** 加载当前应用信息 */
   async function loadAppInfo() {
@@ -154,7 +153,6 @@
           </a-button>
           <!-- 国际化：通道路由（与菜单一致） -->
           <span class="text-lg font-bold">{{ $t('menu.payment.merchant.payRoute') }}</span>
-          <span v-if="appName" class="text-sm text-muted-foreground">({{ appName }})</span>
         </div>
       </template>
 
