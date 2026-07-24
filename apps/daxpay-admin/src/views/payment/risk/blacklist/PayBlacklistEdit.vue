@@ -324,7 +324,11 @@
         </a-form-item>
 
         <!-- 状态 -->
-        <a-form-item :label="$t('payment.risk.blacklist.field.status')" name="status">
+        <a-form-item
+          :label="$t('payment.risk.blacklist.field.status')"
+          name="status"
+          :rules="[{ required: true, message: $t('common.pleaseSelect') }]"
+        >
           <a-radio-group v-model:value="formState.status" button-style="solid">
             <a-radio-button value="enable">{{ $t('payment.risk.blacklist.status.enable') }}</a-radio-button>
             <a-radio-button value="disable">{{ $t('payment.risk.blacklist.status.disable') }}</a-radio-button>
@@ -355,10 +359,12 @@
       </a-form>
     </a-spin>
     <template #footer>
-      <a-button @click="handleCancel">{{ $t('common.cancel') }}</a-button>
-      <a-button v-if="!showable" type="primary" :loading="confirmLoading" @click="handleOk">
-        {{ $t('common.save') }}
-      </a-button>
+      <a-space>
+        <a-button @click="handleCancel">{{ showable ? $t('common.close') : $t('common.cancel') }}</a-button>
+        <a-button v-if="!showable" type="primary" :loading="confirmLoading" @click="handleOk">
+          {{ $t('common.save') }}
+        </a-button>
+      </a-space>
     </template>
   </a-drawer>
 </template>
