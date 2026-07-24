@@ -14,11 +14,16 @@
       "reason": "Sebab",
       "expireTime": "Tamat tempoh",
       "remark": "Catatan",
-      "createTime": "Dicipta pada"
+      "createTime": "Dicipta pada",
+      "payApp": "Aplikasi pembayaran",
+      "scope": "Skop",
+      "wxAppId": "AppId WeChat"
     },
     "type": {
       "ip": "IP",
-      "open_id": "OpenId"
+      "open_id": "OpenId",
+      "alipay_user": "Pengguna Alipay",
+      "wechat_openid": "OpenId WeChat"
     },
     "status": {
       "enable": "Aktif",
@@ -26,8 +31,19 @@
     },
     "tip": {
       "typeValueImmutable": "Jenis dan nilai tidak boleh diubah selepas dicipta",
-      "expireEmpty": "Biarkan kosong untuk kekal",
-      "openIdBoundaryHint": "Barcode/APP/external browser scenarios fall back to post-pay hit recording only."
+      "expireEmpty": "Kosong bermaksud kekal",
+      "openIdBoundaryHint": "Kod bayaran / APP / pelayar luaran hanya direkod selepas bayaran.",
+      "alipayGlobalHint": "userId Alipay berkuat kuasa seluruh platform, tidak dipecah mengikut aplikasi/produk.",
+      "wechatAppHint": "Hanya menyekat openId daripada aplikasi pembayaran platform yang dipilih."
+    },
+    "scope": {
+      "global": "Global"
+    },
+    "placeholder": {
+      "ip": "Masukkan alamat IP",
+      "alipayUserId": "Masukkan userId Alipay",
+      "wechatOpenId": "Masukkan openId WeChat",
+      "payApp": "Pilih aplikasi pembayaran platform"
     }
   },
   "hit": {

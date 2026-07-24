@@ -12,6 +12,10 @@
     type PayBlacklistQuery,
     type PayBlacklistVo,
   } from '#/api/payment/risk/blacklist.api';
+  import {
+    type WxPlatformApp,
+    WxPlatformAppApi,
+  } from '#/api/payment/wx/platform-app.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
@@ -31,6 +35,8 @@
   const pageConfig = ref({ currentPage: 1, pageSize: 10, total: 0 });
   const tableData = ref<PayBlacklistVo[]>([]);
   const editRef = ref();
+  // 平台应用名缓存（列表作用范围展示）
+  const platformAppNameMap = ref<Record<string, string>>({});
 
   const queryFields = computed<QueryField[]>(() => [
     {
@@ -41,7 +47,8 @@
       placeholder: $t('common.pleaseSelect'),
       selectList: [
         { label: $t('payment.risk.blacklist.type.ip'), value: 'ip' },
-        { label: $t('payment.risk.blacklist.type.open_id'), value: 'open_id' },
+        { label: $t('payment.risk.blacklist.type.alipay_user'), value: 'alipay_user' },
+        { label: $t('payment.risk.blacklist.type.wechat_openid'), value: 'wechat_openid' },
       ],
     },
     {
@@ -62,14 +69,23 @@
         { label: $t('payment.risk.blacklist.status.disable'), value: 'disable' },
       ],
     },
-    {
-      type: 'string',
-      field: 'channel',
-      // 通道族
-      name: $t('payment.risk.blacklist.field.channel'),
-      placeholder: $t('common.pleaseInput'),
-    },
   ]);
+
+  /** 加载平台应用名称映射 */
+  async function loadPlatformAppNames() {
+    try {
+      const { data } = await WxPlatformAppApi.listAll();
+      const map: Record<string, string> = {};
+      (data || []).forEach((app: WxPlatformApp) => {
+        if (app.wxAppId) {
+          map[app.wxAppId] = app.appName || app.wxAppId;
+        }
+      });
+      platformAppNameMap.value = map;
+    } catch {
+      platformAppNameMap.value = {};
+    }
+  }
 
   /** 分页查询 */
   function queryPage() {
@@ -128,10 +144,30 @@
     });
   }
 
+  /** 类型列 */
   function typeLabel(type?: string) {
-    if (type === 'open_id') return $t('payment.risk.blacklist.type.open_id');
-    if (type === 'ip') return $t('payment.risk.blacklist.type.ip');
+    if (type === 'ip') {
+      return $t('payment.risk.blacklist.type.ip');
+    }
+    if (type === 'alipay_user') {
+      return $t('payment.risk.blacklist.type.alipay_user');
+    }
+    if (type === 'wechat_openid') {
+      return $t('payment.risk.blacklist.type.wechat_openid');
+    }
     return type || '';
+  }
+
+  /** 作用范围：全局 / 应用名或 AppId */
+  function scopeLabel(row: PayBlacklistVo) {
+    if (row.type === 'ip' || row.type === 'alipay_user') {
+      return $t('payment.risk.blacklist.scope.global');
+    }
+    if (row.type === 'wechat_openid' && row.wxAppId) {
+      const name = platformAppNameMap.value[row.wxAppId];
+      return name ? `${name}（${row.wxAppId}）` : row.wxAppId;
+    }
+    return '-';
   }
 
   function statusColor(status?: string) {
@@ -140,12 +176,13 @@
 
   onMounted(() => {
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
+    void loadPlatformAppNames();
     queryPage();
   });
 </script>
 
 <template>
-  <div class="m-3 p-3 bg-background rounded-lg list-page-compact">
+  <div class="m-3 rounded-lg bg-background p-3 list-page-compact">
     <a-card>
       <BQuery :fields="queryFields" :query-params="queryForm" @query="queryPage" @reset="resetQuery" />
     </a-card>
@@ -170,13 +207,15 @@
         <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
           <!-- 类型 -->
-          <vxe-column field="type" :title="$t('payment.risk.blacklist.field.type')" width="100">
+          <vxe-column field="type" :title="$t('payment.risk.blacklist.field.type')" width="120">
             <template #default="{ row }">{{ typeLabel(row.type) }}</template>
           </vxe-column>
           <!-- 名单值 -->
           <vxe-column field="value" :title="$t('payment.risk.blacklist.field.value')" :min-width="180" />
-          <!-- 通道 -->
-          <vxe-column field="channel" :title="$t('payment.risk.blacklist.field.channel')" width="100" />
+          <!-- 作用范围 -->
+          <vxe-column field="wxAppId" :title="$t('payment.risk.blacklist.field.scope')" :min-width="200">
+            <template #default="{ row }">{{ scopeLabel(row) }}</template>
+          </vxe-column>
           <!-- 状态 -->
           <vxe-column field="status" :title="$t('payment.risk.blacklist.field.status')" width="100">
             <template #default="{ row }">

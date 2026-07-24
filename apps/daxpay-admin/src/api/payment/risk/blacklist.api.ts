@@ -36,23 +36,23 @@ export const PayBlacklistApi = {
 
 /** 查询参数 */
 export interface PayBlacklistQuery {
-  /** 类型 ip / open_id */
+  /** 类型 ip / alipay_user / wechat_openid */
   type?: string;
   /** 名单值 */
   value?: string;
   /** 状态 enable / disable */
   status?: string;
-  /** 通道族 */
-  channel?: string;
+  /** 微信平台支付应用 AppId */
+  wxAppId?: string;
 }
 
 /** 表单参数 */
 export interface PayBlacklistParam {
   id?: string;
+  /** ip / alipay_user / wechat_openid */
   type?: string;
   value?: string;
-  channel?: string;
-  channelAppId?: string;
+  wxAppId?: string;
   status?: string;
   reason?: string;
   expireTime?: string;
@@ -63,8 +63,7 @@ export interface PayBlacklistParam {
 export interface PayBlacklistVo extends BaseEntity {
   type?: string;
   value?: string;
-  channel?: string;
-  channelAppId?: string;
+  wxAppId?: string;
   status?: string;
   reason?: string;
   expireTime?: string;

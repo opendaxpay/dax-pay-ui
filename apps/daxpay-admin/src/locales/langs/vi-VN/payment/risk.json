@@ -14,11 +14,16 @@
       "reason": "Lý do",
       "expireTime": "Hết hạn",
       "remark": "Ghi chú",
-      "createTime": "Thời gian tạo"
+      "createTime": "Thời gian tạo",
+      "payApp": "Ứng dụng thanh toán",
+      "scope": "Phạm vi",
+      "wxAppId": "AppId WeChat"
     },
     "type": {
       "ip": "IP",
-      "open_id": "OpenId"
+      "open_id": "OpenId",
+      "alipay_user": "Người dùng Alipay",
+      "wechat_openid": "OpenId WeChat"
     },
     "status": {
       "enable": "Bật",
@@ -26,8 +31,19 @@
     },
     "tip": {
       "typeValueImmutable": "Loại và giá trị không thể sửa sau khi tạo",
-      "expireEmpty": "Để trống nếu vĩnh viễn",
-      "openIdBoundaryHint": "Barcode/APP/external browser scenarios fall back to post-pay hit recording only."
+      "expireEmpty": "Để trống là vĩnh viễn",
+      "openIdBoundaryHint": "Mã thanh toán / APP / trình duyệt ngoài chỉ ghi nhận sau thanh toán.",
+      "alipayGlobalHint": "userId Alipay áp dụng toàn nền tảng, không tách theo ứng dụng/sản phẩm.",
+      "wechatAppHint": "Chỉ chặn openId lấy từ ứng dụng thanh toán nền tảng đã chọn."
+    },
+    "scope": {
+      "global": "Toàn cục"
+    },
+    "placeholder": {
+      "ip": "Nhập địa chỉ IP",
+      "alipayUserId": "Nhập userId Alipay",
+      "wechatOpenId": "Nhập openId WeChat",
+      "payApp": "Chọn ứng dụng thanh toán nền tảng"
     }
   },
   "hit": {

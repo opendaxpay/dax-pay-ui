@@ -48,7 +48,8 @@
       placeholder: $t('common.pleaseSelect'),
       selectList: [
         { label: $t('payment.risk.blacklist.type.ip'), value: 'ip' },
-        { label: $t('payment.risk.blacklist.type.open_id'), value: 'open_id' },
+        { label: $t('payment.risk.blacklist.type.alipay_user'), value: 'alipay_user' },
+        { label: $t('payment.risk.blacklist.type.wechat_openid'), value: 'wechat_openid' },
       ],
     },
     {
@@ -162,7 +163,19 @@
             <template #default="{ row }">{{ phaseLabel(row.phase) }}</template>
           </vxe-column>
           <!-- 命中类型 -->
-          <vxe-column field="hitType" :title="$t('payment.risk.hit.field.hitType')" width="100" />
+          <vxe-column field="hitType" :title="$t('payment.risk.hit.field.hitType')" width="120">
+            <template #default="{ row }">
+              {{
+                row.hitType === 'ip'
+                  ? $t('payment.risk.blacklist.type.ip')
+                  : row.hitType === 'alipay_user'
+                    ? $t('payment.risk.blacklist.type.alipay_user')
+                    : row.hitType === 'wechat_openid'
+                      ? $t('payment.risk.blacklist.type.wechat_openid')
+                      : row.hitType
+              }}
+            </template>
+          </vxe-column>
           <!-- 命中值 -->
           <vxe-column field="hitValue" :title="$t('payment.risk.hit.field.hitValue')" :min-width="160" />
           <!-- 商户: 名称上 + 号下小字两排 -->

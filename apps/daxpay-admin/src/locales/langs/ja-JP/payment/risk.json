@@ -8,26 +8,42 @@
     "field": {
       "type": "Type",
       "value": "Value",
-      "channel": "Channel",
-      "channelAppId": "Channel AppId",
+      "channel": "チャネル",
+      "channelAppId": "チャネルアプリ ID",
       "status": "Status",
       "reason": "Reason",
       "expireTime": "Expire time",
       "remark": "Remark",
-      "createTime": "Created at"
+      "createTime": "Created at",
+      "payApp": "決済アプリ",
+      "scope": "適用範囲",
+      "wxAppId": "WeChat アプリ ID"
     },
     "type": {
       "ip": "IP",
-      "open_id": "OpenId"
+      "open_id": "OpenId",
+      "alipay_user": "Alipay ユーザー",
+      "wechat_openid": "WeChat OpenId"
     },
     "status": {
       "enable": "Enabled",
       "disable": "Disabled"
     },
     "tip": {
-      "typeValueImmutable": "Type and value cannot be changed after creation",
-      "expireEmpty": "Leave empty for permanent",
-      "openIdBoundaryHint": "バーコード/APP/外部ブラウザのシーンは事後記録のみ。"
+      "typeValueImmutable": "種別と値は作成後に変更できません",
+      "expireEmpty": "空欄は無期限",
+      "openIdBoundaryHint": "付款码 / APP / 外部ブラウザは事後記録のみです。",
+      "alipayGlobalHint": "Alipay userId はプラットフォーム全体に有効で、アプリ / 商品では区別しません。",
+      "wechatAppHint": "選択したプラットフォーム決済アプリで取得した openId のみ遮断します。"
+    },
+    "scope": {
+      "global": "グローバル"
+    },
+    "placeholder": {
+      "ip": "IP アドレスを入力",
+      "alipayUserId": "Alipay userId を入力",
+      "wechatOpenId": "WeChat openId を入力",
+      "payApp": "プラットフォーム決済アプリを選択"
     }
   },
   "hit": {

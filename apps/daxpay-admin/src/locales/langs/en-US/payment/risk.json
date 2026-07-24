@@ -9,16 +9,21 @@
       "type": "Type",
       "value": "Value",
       "channel": "Channel",
-      "channelAppId": "Channel AppId",
+      "channelAppId": "Channel app ID",
       "status": "Status",
       "reason": "Reason",
       "expireTime": "Expire time",
       "remark": "Remark",
-      "createTime": "Created at"
+      "createTime": "Created at",
+      "payApp": "Payment app",
+      "scope": "Scope",
+      "wxAppId": "WeChat app ID"
     },
     "type": {
       "ip": "IP",
-      "open_id": "OpenId"
+      "open_id": "OpenId",
+      "alipay_user": "Alipay user",
+      "wechat_openid": "WeChat OpenId"
     },
     "status": {
       "enable": "Enabled",
@@ -27,7 +32,18 @@
     "tip": {
       "typeValueImmutable": "Type and value cannot be changed after creation",
       "expireEmpty": "Leave empty for permanent",
-      "openIdBoundaryHint": "Barcode/APP/external browser scenarios fall back to post-pay hit recording only."
+      "openIdBoundaryHint": "Payment code / APP / external browser scenarios are logged after payment only.",
+      "alipayGlobalHint": "Alipay userId applies platform-wide and is not split by app or product.",
+      "wechatAppHint": "Only blocks openIds obtained under the selected platform payment app; pick the mini program app for cashier."
+    },
+    "scope": {
+      "global": "Global"
+    },
+    "placeholder": {
+      "ip": "Enter IP address",
+      "alipayUserId": "Enter Alipay userId",
+      "wechatOpenId": "Enter WeChat openId",
+      "payApp": "Select a platform payment app"
     }
   },
   "hit": {

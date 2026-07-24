@@ -14,20 +14,36 @@
       "reason": "เหตุผล",
       "expireTime": "หมดอายุ",
       "remark": "หมายเหตุ",
-      "createTime": "สร้างเมื่อ"
+      "createTime": "สร้างเมื่อ",
+      "payApp": "แอปชำระเงิน",
+      "scope": "ขอบเขต",
+      "wxAppId": "AppId WeChat"
     },
     "type": {
       "ip": "IP",
-      "open_id": "OpenId"
+      "open_id": "OpenId",
+      "alipay_user": "ผู้ใช้ Alipay",
+      "wechat_openid": "OpenId WeChat"
     },
     "status": {
       "enable": "เปิดใช้",
       "disable": "ปิดใช้"
     },
     "tip": {
-      "typeValueImmutable": "ประเภทและค่าไม่สามารถแก้ไขหลังสร้าง",
-      "expireEmpty": "เว้นว่างหากถาวร",
-      "openIdBoundaryHint": "Barcode/APP/external browser scenarios fall back to post-pay hit recording only."
+      "typeValueImmutable": "ประเภทและค่าแก้ไขไม่ได้หลังสร้าง",
+      "expireEmpty": "ว่าง = ถาวร",
+      "openIdBoundaryHint": "รหัสชำระเงิน / APP / เบราว์เซอร์ภายนอกจะบันทึกหลังชำระเงินเท่านั้น",
+      "alipayGlobalHint": "userId Alipay มีผลทั้งแพลตฟอร์ม ไม่แยกตามแอป/ผลิตภัณฑ์",
+      "wechatAppHint": "บล็อกเฉพาะ openId จากแอปชำระเงินแพลตฟอร์มที่เลือก"
+    },
+    "scope": {
+      "global": "ทั่วทั้งระบบ"
+    },
+    "placeholder": {
+      "ip": "กรอกที่อยู่ IP",
+      "alipayUserId": "กรอก userId Alipay",
+      "wechatOpenId": "กรอก openId WeChat",
+      "payApp": "เลือกแอปชำระเงินของแพลตฟอร์ม"
     }
   },
   "hit": {

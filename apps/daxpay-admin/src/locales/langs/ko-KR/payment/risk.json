@@ -8,26 +8,42 @@
     "field": {
       "type": "Type",
       "value": "Value",
-      "channel": "Channel",
-      "channelAppId": "Channel AppId",
+      "channel": "채널",
+      "channelAppId": "채널 앱 ID",
       "status": "Status",
       "reason": "Reason",
       "expireTime": "Expire time",
       "remark": "Remark",
-      "createTime": "Created at"
+      "createTime": "Created at",
+      "payApp": "결제 앱",
+      "scope": "적용 범위",
+      "wxAppId": "위챗 앱 ID"
     },
     "type": {
       "ip": "IP",
-      "open_id": "OpenId"
+      "open_id": "OpenId",
+      "alipay_user": "알리페이 사용자",
+      "wechat_openid": "위챗 OpenId"
     },
     "status": {
       "enable": "Enabled",
       "disable": "Disabled"
     },
     "tip": {
-      "typeValueImmutable": "Type and value cannot be changed after creation",
-      "expireEmpty": "Leave empty for permanent",
-      "openIdBoundaryHint": "바코드/APP/외부 브라우저 시나리오는 사후 기록만 합니다."
+      "typeValueImmutable": "유형과 값은 생성 후 변경할 수 없습니다",
+      "expireEmpty": "비워 두면 영구",
+      "openIdBoundaryHint": "결제 코드 / APP / 외부 브라우저는 사후 기록만 합니다.",
+      "alipayGlobalHint": "알리페이 userId는 플랫폼 전역에 적용되며 앱/상품으로 구분하지 않습니다.",
+      "wechatAppHint": "선택한 플랫폼 결제 앱에서 얻은 openId만 차단합니다."
+    },
+    "scope": {
+      "global": "전역"
+    },
+    "placeholder": {
+      "ip": "IP 주소를 입력하세요",
+      "alipayUserId": "알리페이 userId를 입력하세요",
+      "wechatOpenId": "위챗 openId를 입력하세요",
+      "payApp": "플랫폼 결제 앱을 선택하세요"
     }
   },
   "hit": {

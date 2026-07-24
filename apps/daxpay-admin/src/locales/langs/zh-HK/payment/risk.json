@@ -8,26 +8,42 @@
     "field": {
       "type": "类型",
       "value": "名单值",
-      "channel": "通道族",
-      "channelAppId": "通道应用AppId",
+      "channel": "通道",
+      "channelAppId": "通道應用 AppId",
       "status": "状态",
       "reason": "拉黑原因",
       "expireTime": "过期时间",
       "remark": "备注",
-      "createTime": "创建时间"
+      "createTime": "创建时间",
+      "payApp": "支付應用",
+      "scope": "作用範圍",
+      "wxAppId": "微信應用 AppId"
     },
     "type": {
       "ip": "IP",
-      "open_id": "OpenId"
+      "open_id": "OpenId",
+      "alipay_user": "支付寶用戶",
+      "wechat_openid": "微信 OpenId"
     },
     "status": {
       "enable": "启用",
       "disable": "禁用"
     },
     "tip": {
-      "typeValueImmutable": "类型与名单值创建后不可修改",
+      "typeValueImmutable": "類型與名單值建立後不可修改",
       "expireEmpty": "留空表示永久有效",
-      "openIdBoundaryHint": "付款碼/APP/外部瀏覽器場景僅做事後補錄。"
+      "openIdBoundaryHint": "付款碼 / APP / 外部瀏覽器場景僅做事後補錄。",
+      "alipayGlobalHint": "支付寶 userId 平台全域生效，不區分應用 / 支付產品。",
+      "wechatAppHint": "僅攔截在所選平台支付應用下取得的 openId；收銀台小程序請選對應小程序應用。"
+    },
+    "scope": {
+      "global": "全域"
+    },
+    "placeholder": {
+      "ip": "請輸入 IP 地址",
+      "alipayUserId": "請輸入支付寶 userId",
+      "wechatOpenId": "請輸入微信 openId",
+      "payApp": "請選擇平台支付應用"
     }
   },
   "hit": {

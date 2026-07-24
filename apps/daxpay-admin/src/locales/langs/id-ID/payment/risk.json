@@ -8,17 +8,22 @@
     "field": {
       "type": "Jenis",
       "value": "Nilai",
-      "channel": "Saluran",
-      "channelAppId": "AppId saluran",
+      "channel": "Kanal",
+      "channelAppId": "AppId kanal",
       "status": "Status",
       "reason": "Alasan",
       "expireTime": "Waktu kedaluwarsa",
       "remark": "Catatan",
-      "createTime": "Dibuat pada"
+      "createTime": "Dibuat pada",
+      "payApp": "Aplikasi pembayaran",
+      "scope": "Cakupan",
+      "wxAppId": "AppId WeChat"
     },
     "type": {
       "ip": "IP",
-      "open_id": "OpenId"
+      "open_id": "OpenId",
+      "alipay_user": "Pengguna Alipay",
+      "wechat_openid": "OpenId WeChat"
     },
     "status": {
       "enable": "Aktif",
@@ -26,8 +31,19 @@
     },
     "tip": {
       "typeValueImmutable": "Jenis dan nilai tidak dapat diubah setelah dibuat",
-      "expireEmpty": "Kosongkan untuk permanen",
-      "openIdBoundaryHint": "Barcode/APP/external browser scenarios fall back to post-pay hit recording only."
+      "expireEmpty": "Kosong berarti permanen",
+      "openIdBoundaryHint": "Kode bayar / APP / browser eksternal hanya dicatat setelah pembayaran.",
+      "alipayGlobalHint": "userId Alipay berlaku global di platform, tanpa membedakan aplikasi/produk.",
+      "wechatAppHint": "Hanya memblokir openId dari aplikasi pembayaran platform yang dipilih."
+    },
+    "scope": {
+      "global": "Global"
+    },
+    "placeholder": {
+      "ip": "Masukkan alamat IP",
+      "alipayUserId": "Masukkan userId Alipay",
+      "wechatOpenId": "Masukkan openId WeChat",
+      "payApp": "Pilih aplikasi pembayaran platform"
     }
   },
   "hit": {
