@@ -82,6 +82,11 @@
     "md5KeyDesc": "MD5 key used for V1 request signing",
     "useSystemKeyDesc": "Use the platform key pair so merchant public key is not required",
     "publicKeyDesc": "Merchant RSA public key when using a custom key pair",
-    "platformPublicKeyDesc": "Platform public key for integrator signature verification"
+    "platformPublicKeyDesc": "Platform public key for integrator signature verification",
+    "genRsaKeyPair": "Generate Key Pair",
+    "confirmGenPublicKey": "The public key already exists. Regenerating will overwrite it. Continue?",
+    "genKeyPairTitle": "RSA Key Pair",
+    "privateKey": "Private Key",
+    "privateKeyWarning": "The private key is shown only once. Keep it safe — it cannot be recovered if lost."
   }
 }

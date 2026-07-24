@@ -82,6 +82,11 @@
     "md5KeyDesc": "V1 签名用 MD5 密钥",
     "useSystemKeyDesc": "使用平台密钥对时无需填写商户公钥",
     "publicKeyDesc": "商户侧 RSA 公钥（自签时填写）",
-    "platformPublicKeyDesc": "平台公钥，对接方验签使用"
+    "platformPublicKeyDesc": "平台公钥，对接方验签使用",
+    "genRsaKeyPair": "生成密钥对",
+    "confirmGenPublicKey": "公钥已存在，重新生成将覆盖原有公钥，确定要重新生成吗？",
+    "genKeyPairTitle": "RSA密钥对",
+    "privateKey": "私钥",
+    "privateKeyWarning": "私钥仅在此处展示一次，请务必妥善保管，丢失无法找回"
   }
 }

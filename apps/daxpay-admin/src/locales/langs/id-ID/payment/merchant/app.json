@@ -82,6 +82,11 @@
     "md5KeyDesc": "Kunci MD5 untuk penandatanganan permintaan V1",
     "useSystemKeyDesc": "Gunakan pasangan kunci platform sehingga kunci publik merchant tidak diperlukan",
     "publicKeyDesc": "Kunci publik RSA merchant saat menggunakan pasangan kunci kustom",
-    "platformPublicKeyDesc": "Kunci publik platform untuk verifikasi tanda tangan integrator"
+    "platformPublicKeyDesc": "Kunci publik platform untuk verifikasi tanda tangan integrator",
+    "genRsaKeyPair": "Buat Pasangan Kunci",
+    "confirmGenPublicKey": "Kunci publik sudah ada. Membuat ulang akan menimpa kunci yang ada. Lanjutkan?",
+    "genKeyPairTitle": "Pasangan Kunci RSA",
+    "privateKey": "Kunci Privat",
+    "privateKeyWarning": "Kunci privat hanya ditampilkan sekali di sini. Simpan dengan aman — tidak dapat dipulihkan jika hilang."
   }
 }

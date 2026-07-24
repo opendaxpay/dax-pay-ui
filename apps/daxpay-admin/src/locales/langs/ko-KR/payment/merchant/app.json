@@ -82,6 +82,11 @@
     "md5KeyDesc": "V1 서명용 MD5 키",
     "useSystemKeyDesc": "플랫폼 키 쌍을 사용하면 가맹점 공개키를 입력할 필요가 없습니다",
     "publicKeyDesc": "자체 키 쌍 사용 시 가맹점 RSA 공개키",
-    "platformPublicKeyDesc": "연동측 서명 검증용 플랫폼 공개키"
+    "platformPublicKeyDesc": "연동측 서명 검증용 플랫폼 공개키",
+    "genRsaKeyPair": "키 쌍 생성",
+    "confirmGenPublicKey": "공개 키가 이미 존재합니다. 다시 생성하면 기존 공개 키를 덮어씁니다. 다시 생성하시겠습니까?",
+    "genKeyPairTitle": "RSA 키 쌍",
+    "privateKey": "개인 키",
+    "privateKeyWarning": "개인 키는 여기에 한 번만 표시됩니다. 안전하게 보관하세요. 분실 시 복구할 수 없습니다."
   }
 }

@@ -82,6 +82,11 @@
     "md5KeyDesc": "V1 署名用の MD5 鍵",
     "useSystemKeyDesc": "プラットフォーム鍵ペアを使う場合、加盟店公開鍵の入力は不要です",
     "publicKeyDesc": "独自鍵ペア利用時の加盟店 RSA 公開鍵",
-    "platformPublicKeyDesc": "連携側の署名検証用プラットフォーム公開鍵"
+    "platformPublicKeyDesc": "連携側の署名検証用プラットフォーム公開鍵",
+    "genRsaKeyPair": "鍵ペアを生成",
+    "confirmGenPublicKey": "公開鍵が既に存在します。再生成すると元の公開鍵が上書きされます。再生成しますか？",
+    "genKeyPairTitle": "RSA鍵ペア",
+    "privateKey": "秘密鍵",
+    "privateKeyWarning": "秘密鍵はここに一度だけ表示されます。確実に保管してください。紛失すると復元できません。"
   }
 }

@@ -82,6 +82,11 @@
     "md5KeyDesc": "Khóa MD5 dùng để ký yêu cầu V1",
     "useSystemKeyDesc": "Dùng cặp khóa nền tảng nên không cần khóa công khai merchant",
     "publicKeyDesc": "Khóa công khai RSA merchant khi dùng cặp khóa tùy chỉnh",
-    "platformPublicKeyDesc": "Khóa công khai nền tảng để bên tích hợp xác minh chữ ký"
+    "platformPublicKeyDesc": "Khóa công khai nền tảng để bên tích hợp xác minh chữ ký",
+    "genRsaKeyPair": "Tạo cặp khóa",
+    "confirmGenPublicKey": "Khóa công khai đã tồn tại. Tạo lại sẽ ghi đè khóa hiện có. Tiếp tục?",
+    "genKeyPairTitle": "Cặp khóa RSA",
+    "privateKey": "Khóa riêng",
+    "privateKeyWarning": "Khóa riêng chỉ hiển thị một lần tại đây. Vui lòng lưu giữ an toàn — không thể khôi phục nếu mất."
   }
 }

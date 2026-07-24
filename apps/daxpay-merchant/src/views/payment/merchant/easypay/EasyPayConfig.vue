@@ -13,6 +13,7 @@
     type EasyPayCredentialParam,
     type EasyPayCredentialResult,
   } from '#/api/payment/merchant/easypay-credential.api';
+  import { KeyGenApi } from '#/api/payment/merchant/key-gen.api';
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
@@ -54,9 +55,12 @@
   });
   // 原始脱敏数据，用于 diffForm 比对
   const originalForm = ref<EasyPayCredentialResult>({});
+  // RSA 密钥对弹窗
+  const keyPairVisible = ref(false);
+  const privateKeyContent = ref('');
 
   /**
-   * 平台公钥规范化：去掉 PEM 头尾与空白，得到可直接复制的纯 Base64
+   * 公钥规范化：去掉 PEM 头尾与空白，得到可直接复制的纯 Base64
    */
   function normalizePublicKey(pem?: string) {
     if (!pem) {
@@ -65,6 +69,21 @@
     return pem
       .replaceAll('-----BEGIN PUBLIC KEY-----', '')
       .replaceAll('-----END PUBLIC KEY-----', '')
+      .replaceAll(/\s+/g, '');
+  }
+
+  /**
+   * 私钥规范化：去掉 PEM 头尾与空白，得到可直接复制的纯 Base64（易支付要求）
+   */
+  function normalizePrivateKey(pem?: string) {
+    if (!pem) {
+      return pem;
+    }
+    return pem
+      .replaceAll('-----BEGIN PRIVATE KEY-----', '')
+      .replaceAll('-----END PRIVATE KEY-----', '')
+      .replaceAll('-----BEGIN RSA PRIVATE KEY-----', '')
+      .replaceAll('-----END RSA PRIVATE KEY-----', '')
       .replaceAll(/\s+/g, '');
   }
 
@@ -164,6 +183,39 @@
   }
 
   /**
+   * 生成 RSA 密钥对（公钥已存在时二次确认）
+   */
+  async function handleGenRsaKeyPair() {
+    if (form.publicKey) {
+      confirm({
+        title: $t('common.confirm'),
+        content: $t('payment.merchant.app.easypay.confirmGenPublicKey'),
+        okText: $t('common.okText'),
+        cancelText: $t('common.cancelText'),
+        onOk: async () => {
+          await doGenRsaKeyPair();
+        },
+      });
+    } else {
+      await doGenRsaKeyPair();
+    }
+  }
+
+  /**
+   * 执行生成 RSA 密钥对：公钥去 PEM 头尾后填入表单，私钥弹窗展示
+   */
+  async function doGenRsaKeyPair() {
+    const { data } = await KeyGenApi.genRsaKeyPair();
+    if (data) {
+      // 公钥去注释与换行（纯 Base64 存储），前端处理
+      form.publicKey = normalizePublicKey(data.publicKey);
+      // 私钥同样去 PEM 头尾与换行（易支付要求纯 Base64），弹窗展示
+      privateKeyContent.value = normalizePrivateKey(data.privateKey) ?? '';
+      keyPairVisible.value = true;
+    }
+  }
+
+  /**
    * 保存配置
    */
   function handleSave() {
@@ -178,6 +230,10 @@
       onOk: async () => {
         saving.value = true;
         try {
+          // 商户公钥去 PEM 头尾与换行（纯 Base64 存储），保存时兜底处理
+          if (form.publicKey) {
+            form.publicKey = normalizePublicKey(form.publicKey);
+          }
           // 敏感字段未修改时不提交
           const sensitiveData = diffForm(originalForm.value, form, 'md5Key', 'publicKey');
           const submitData: EasyPayCredentialParam = {
@@ -481,6 +537,14 @@
                       allow-clear
                       class="font-mono text-sm"
                     />
+                    <div class="textarea-actions">
+                      <a-button type="link" size="small" :disabled="!isEditing" @click="handleGenRsaKeyPair">
+                        <template #icon>
+                          <IconifyIcon icon="ant-design:key-outlined" />
+                        </template>
+                        {{ $t('payment.merchant.app.easypay.genRsaKeyPair') }}
+                      </a-button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -489,6 +553,38 @@
         </div>
       </a-spin>
     </a-card>
+
+    <!-- RSA 密钥对弹窗 -->
+    <a-modal
+      v-model:open="keyPairVisible"
+      :title="$t('payment.merchant.app.easypay.genKeyPairTitle')"
+      :footer="null"
+      width="640px"
+      :mask-closable="false"
+    >
+      <div class="space-y-4">
+        <div class="info-banner warning">
+          <IconifyIcon icon="ant-design:warning-filled" />
+          <span>{{ $t('payment.merchant.app.easypay.privateKeyWarning') }}</span>
+        </div>
+        <div>
+          <div class="mb-2 flex items-center justify-between">
+            <span class="font-medium text-foreground">
+              {{ $t('payment.merchant.app.easypay.privateKey') }}
+            </span>
+            <a-button size="small" type="primary" ghost @click="handleCopy(privateKeyContent)">
+              <template #icon>
+                <IconifyIcon icon="ant-design:copy-outlined" />
+              </template>
+              {{ $t('common.copy') }}
+            </a-button>
+          </div>
+          <div class="textarea-wrapper">
+            <a-textarea :value="privateKeyContent" :rows="10" readonly class="readonly-textarea font-mono text-sm" />
+          </div>
+        </div>
+      </div>
+    </a-modal>
   </div>
 </template>
 

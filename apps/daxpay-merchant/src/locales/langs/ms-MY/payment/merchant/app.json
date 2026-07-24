@@ -86,6 +86,11 @@
     "md5KeyDesc": "Kunci MD5 untuk penandatanganan permintaan V1",
     "useSystemKeyDesc": "Gunakan pasangan kunci platform supaya kunci awam pedagang tidak diperlukan",
     "publicKeyDesc": "Kunci awam RSA pedagang apabila menggunakan pasangan kunci tersuai",
-    "platformPublicKeyDesc": "Kunci awam platform untuk pengesahan tandatangan pengintegrasi"
+    "platformPublicKeyDesc": "Kunci awam platform untuk pengesahan tandatangan pengintegrasi",
+    "genRsaKeyPair": "Jana Pasangan Kunci",
+    "confirmGenPublicKey": "Kunci awam telah wujud. Menjana semula akan menulis ganti kunci sedia ada. Teruskan?",
+    "genKeyPairTitle": "Pasangan Kunci RSA",
+    "privateKey": "Kunci Peribadi",
+    "privateKeyWarning": "Kunci peribadi hanya dipaparkan sekali di sini. Simpan dengan selamat — tidak boleh dipulihkan jika hilang."
   }
 }
