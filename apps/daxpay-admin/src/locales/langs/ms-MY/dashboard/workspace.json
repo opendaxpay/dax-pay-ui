@@ -51,7 +51,7 @@
     "menu": "Menu",
     "operateLog": "Mengendalikan Log",
     "notice": "Notis",
-    "productConfig": "Konfigurasi Produk Saluran",
+    "productConfig": "Konfigurasi Produk Pembayaran",
     "platformConfig": "Konfigurasi Platform",
     "onlineUser": "Pengguna Dalam Talian",
     "analytics": "Analitis",
@@ -62,7 +62,8 @@
     "editTitle": "Edit Entri Pantas",
     "selected": "Dipilih (seret untuk mengisih)",
     "available": "Tersedia",
-    "allAdded": "Semua ditambah"
+    "allAdded": "Semua ditambah",
+    "wxApp": "Apl Pembayaran (WeChat)"
   },
   "notice": {
     "important": "penting",

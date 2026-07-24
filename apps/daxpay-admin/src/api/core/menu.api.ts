@@ -102,13 +102,18 @@ function filterButtonMenus(menus: PermMenuResult[]): PermMenuResult[] {
 
 /**
  * 过滤仅作权限锚点、无路由信息的菜单节点
- * 中文：如 payment:isv / payment:isv 仅用于 @PermCode menuCode 挂载，无 path/component
+ * 中文：如 payment:wx:mch-app 仅用于 @PermCode menuCode 挂载，无 path/component
+ * menu / 误标成 subpage 的锚点都过滤，避免被提升成 name/path 为空的脏路由
  */
 function filterPermissionAnchorMenus(menus: PermMenuResult[]): PermMenuResult[] {
   return menus
     .filter((menu) => {
       const menuType = menu.menuType || 'menu';
-      if (menuType === 'menu' && !menu.path && !menu.component) {
+      if (
+        (menuType === 'menu' || menuType === 'subpage')
+        && !menu.path
+        && !menu.component
+      ) {
         return false;
       }
       return true;
@@ -258,6 +263,11 @@ function convertMenuToRoute(
       route.redirect = menu.redirect;
       break;
     }
+  }
+
+  // 微信应用 Hub：?tab= / ?mchNo= 仅状态同步，勿纳入 tab key，否则切 Tab 会整页重挂闪烁
+  if (menu.path === '/payment/wx/app') {
+    route.meta!.fullPathKey = false;
   }
 
   return route;

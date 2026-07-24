@@ -30,5 +30,6 @@
   "menu.payment.merchant.notifyConfig": "Cấu hình thông báo",
   "menu.payment.merchant.easypay": "EasyPay Config",
   "menu.payment.merchant.terminal": "Thiết bị hệ thống",
-  "menu.payment.merchant.wxVerify": "Xác minh tên miền WeChat"
+  "menu.payment.merchant.wxVerify": "Xác minh tên miền WeChat",
+  "menu.payment.wx.mchApp": "Ứng dụng thanh toán (WeChat)"
 }

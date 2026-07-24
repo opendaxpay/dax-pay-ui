@@ -25,7 +25,7 @@
     "unknown": "제품 구성"
   },
   "productConfig": {
-    "title": "채널 제품 구성",
+    "title": "결제상품 구성",
     "emptyDesc": "결제 제품 데이터가 없습니다.",
     "prodLabel": "찌르다",
     "sandboxLabel": "모래 상자",

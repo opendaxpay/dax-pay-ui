@@ -82,6 +82,17 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     defaultOrder: 5,
   },
   {
+    key: 'wxApp',
+    // 支付应用(微信) — 菜单 path /mch/wx-app
+    routeName: '/mch/wx-app',
+    icon: 'lucide:message-circle',
+    titleKey: 'dashboard.workspace.quickEntry.wxApp',
+    color: 'bg-green-500',
+    perms: [PermCodes.Payment.Wx.MchApp.VIEW],
+    defaultVisible: true,
+    defaultOrder: 6,
+  },
+  {
     key: 'credential',
     // 对接配置
     routeName: '/mch/credential',
@@ -90,7 +101,7 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     color: 'bg-violet-500',
     perms: [PermCodes.Merchant.Credential.VIEW],
     defaultVisible: true,
-    defaultOrder: 6,
+    defaultOrder: 7,
   },
   {
     key: 'payTrade',
@@ -101,7 +112,7 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     color: 'bg-teal-500',
     perms: [PermCodes.Trade.Fund.VIEW],
     defaultVisible: true,
-    defaultOrder: 7,
+    defaultOrder: 8,
   },
 ];
 

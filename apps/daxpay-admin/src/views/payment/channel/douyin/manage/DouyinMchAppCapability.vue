@@ -11,6 +11,11 @@
   import { DouyinMchAppApi, type DouyinMchApp } from '#/api/payment/channel/douyin/mch-app.api';
   import { useMessage } from '#/hooks/useMessage';
 
+  import {
+    isDouyinAppCompatible,
+    resolveDouyinAppTypeByCapability,
+  } from './douyin-app-type';
+
   defineOptions({ name: 'DouyinMchAppCapability' });
 
   const emit = defineEmits<{ ok: [] }>();
@@ -25,12 +30,12 @@
   // 通道商户下全部应用
   const apps = ref<DouyinMchApp[]>([]);
   // 当前绑定：capability → douyinDirectAppId
-  const bindingMap = ref<Record<string, string>>({});
+  const bindingMap = ref<Record<string, string | undefined>>({});
 
   const hasApps = computed(() => apps.value.length > 0);
 
   /** 应用类型 → 展示标签 */
-  const appTypeLabel = (appType?: string): string => {
+  function appTypeLabel(appType?: string): string {
     switch (appType) {
       case 'mini_program': {
         return $t('payment.channel.douyinManage.appTypeMiniProgram');
@@ -45,7 +50,7 @@
         return appType ?? '-';
       }
     }
-  };
+  }
 
   /** 应用类型 → 标签颜色 */
   function appTypeColor(appType?: string): string {
@@ -65,18 +70,68 @@
     }
   }
 
-  /** 下拉选项：应用列表 */
-  const appOptions = computed(() =>
-    apps.value.map((app) => ({
-      value: app.id!,
-      label: app.appName ? `${app.appName} (${app.douyinAppId ?? '-'})` : (app.douyinAppId ?? '-'),
-    })),
-  );
+  function requiredAppType(capability: string): string | undefined {
+    return resolveDouyinAppTypeByCapability(capability);
+  }
+
+  /** 下拉选项：仅兼容类型应用 */
+  function appSelectOptions(capability: string) {
+    return apps.value
+      .filter((app) => isDouyinAppCompatible(app.appType, capability))
+      .map((app) => ({
+        value: app.id!,
+        label: app.appName ? `${app.appName} (${app.douyinAppId ?? '-'})` : (app.douyinAppId ?? '-'),
+      }));
+  }
+
+  function hasCompatibleOptions(capability: string): boolean {
+    return appSelectOptions(capability).length > 0;
+  }
 
   /** 选中应用的类型(用于行内标签展示) */
   function selectedAppType(capability: string): string | undefined {
     const appId = bindingMap.value[capability];
     return apps.value.find((app) => app.id === appId)?.appType;
+  }
+
+  function rowTypeTag(capability: string): { color: string; text: string } {
+    const selected = selectedAppType(capability);
+    if (selected) {
+      return { color: appTypeColor(selected), text: appTypeLabel(selected) };
+    }
+    const required = requiredAppType(capability);
+    if (required) {
+      return {
+        color: 'default',
+        // 需{type}
+        text: $t('payment.channel.douyinManage.capabilityRequiredAppType', {
+          type: appTypeLabel(required),
+        }),
+      };
+    }
+    // 自动匹配
+    return { color: 'default', text: $t('payment.channel.douyinManage.capabilityAutoTip') };
+  }
+
+  function clearIncompatibleBindings() {
+    const next: Record<string, string | undefined> = { ...bindingMap.value };
+    let cleared = false;
+    capabilities.value.forEach((cap) => {
+      const appId = next[cap.code];
+      if (!appId) {
+        return;
+      }
+      const app = apps.value.find((item) => item.id === appId);
+      if (!isDouyinAppCompatible(app?.appType, cap.code)) {
+        next[cap.code] = undefined;
+        cleared = true;
+      }
+    });
+    bindingMap.value = next;
+    if (cleared) {
+      // 已清除与支付方式不匹配的应用选择
+      message.warning($t('payment.channel.douyinManage.appTypeCapabilityCleared'));
+    }
   }
 
   /** 打开弹窗并加载数据 */
@@ -98,13 +153,14 @@
       .then(([capRes, appRes, bindRes]) => {
         capabilities.value = capRes.data ?? [];
         apps.value = appRes.data ?? [];
-        const map: Record<string, string> = {};
+        const map: Record<string, string | undefined> = {};
         (bindRes.data ?? []).forEach((item) => {
           if (item.capability && item.douyinDirectAppId) {
             map[item.capability] = item.douyinDirectAppId;
           }
         });
         bindingMap.value = map;
+        clearIncompatibleBindings();
       })
       .finally(() => {
         loading.value = false;
@@ -155,13 +211,13 @@
         {{ $t('payment.channel.douyinManage.capabilityDesc') }}
       </div>
 
-      <a-alert
-        v-if="!loading && !hasApps"
-        type="warning"
-        show-icon
-        class="mb-3"
-        :message="$t('payment.channel.douyinManage.capabilityNoApp')"
-      />
+      <div v-if="!loading && !hasApps" class="mb-3">
+        <a-alert
+          type="warning"
+          show-icon
+          :message="$t('payment.channel.douyinManage.capabilityNoApp')"
+        />
+      </div>
 
       <div v-else class="capability-list">
         <div
@@ -174,23 +230,21 @@
             <span class="ml-1 text-xs text-muted-foreground">{{ cap.code }}</span>
           </div>
           <div class="capability-control">
-            <a-tag
-              v-if="selectedAppType(cap.code)"
-              :color="appTypeColor(selectedAppType(cap.code))"
-            >
-              {{ appTypeLabel(selectedAppType(cap.code)) }}
-            </a-tag>
-            <a-tag v-else color="default">
-              {{ $t('payment.channel.douyinManage.capabilityAutoTip') }}
+            <a-tag :color="rowTypeTag(cap.code).color">
+              {{ rowTypeTag(cap.code).text }}
             </a-tag>
             <a-select
+              v-if="hasCompatibleOptions(cap.code) || !requiredAppType(cap.code)"
               v-model:value="bindingMap[cap.code]"
               allow-clear
               :loading="loading"
               :placeholder="$t('payment.channel.douyinManage.capabilitySelectPlaceholder')"
-              :options="appOptions"
+              :options="appSelectOptions(cap.code)"
               class="w-52"
             />
+            <span v-else class="w-52 text-xs text-muted-foreground">
+              {{ $t('payment.channel.douyinManage.capabilityNoCompatibleApp') }}
+            </span>
           </div>
         </div>
       </div>

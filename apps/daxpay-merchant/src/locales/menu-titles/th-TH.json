@@ -30,5 +30,6 @@
   "menu.payment.merchant.notifyConfig": "การตั้งค่าการแจ้งเตือน",
   "menu.payment.merchant.easypay": "EasyPay Config",
   "menu.payment.merchant.terminal": "เทอร์มินัลระบบ",
-  "menu.payment.merchant.wxVerify": "ยืนยันโดเมน WeChat"
+  "menu.payment.merchant.wxVerify": "ยืนยันโดเมน WeChat",
+  "menu.payment.wx.mchApp": "แอปชำระเงิน (WeChat)"
 }

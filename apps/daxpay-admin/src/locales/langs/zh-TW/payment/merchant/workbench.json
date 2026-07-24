@@ -25,6 +25,8 @@
     "cardStore": "門店管理",
     "cardStoreDesc": "商戶物理門店檔案與位置資訊管理",
     "cardTerminal": "系統終端",
-    "cardTerminalDesc": "商戶邏輯終端編號與通道終端綁定管理"
+    "cardTerminalDesc": "商戶邏輯終端編號與通道終端綁定管理",
+    "cardWxApp": "支付應用(微信)",
+    "cardWxAppDesc": "管理該商戶的微信公眾號、小程式等開放應用"
   }
 }

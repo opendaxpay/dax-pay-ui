@@ -49,7 +49,7 @@
     "menu": "Thực đơn",
     "operateLog": "Nhật ký vận hành",
     "notice": "Thông báo",
-    "productConfig": "Cấu hình sản phẩm kênh",
+    "productConfig": "Cấu hình sản phẩm thanh toán",
     "platformConfig": "Cấu hình nền tảng",
     "onlineUser": "Người dùng trực tuyến",
     "analytics": "Phân tích",
@@ -62,7 +62,8 @@
     "available": "Có sẵn",
     "allAdded": "Tất cả đã thêm",
     "profile": "Hồ sơ",
-    "credential": "Cấu hình tích hợp"
+    "credential": "Cấu hình tích hợp",
+    "wxApp": "Ứng dụng thanh toán (WeChat)"
   },
   "notice": {
     "important": "Quan trọng",

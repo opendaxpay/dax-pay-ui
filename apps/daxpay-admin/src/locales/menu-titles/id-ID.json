@@ -56,7 +56,7 @@
   "menu.develop.sign": "Tandatangani Kembangkan",
   "menu.payment.merchant.channelMerchant": "Pedagang Saluran",
   "menu.payment.merchant.channelMerchant.douyinApp": "Aplikasi Douyin",
-  "menu.payment.config.productConfig": "Konfigurasi Produk Saluran",
+  "menu.payment.config.productConfig": "Konfigurasi Produk Pembayaran",
   "menu.device.assistant": "Manajemen Terminal",
   "menu.payment.config.wechatApp": "Aplikasi WeChat ISV",
   "menu.payment.platform.provider.manage": "Penyedia Pembayaran",
@@ -97,5 +97,7 @@
   "menu.device.terminal.channel": "Terminal Saluran",
   "menu.trade.mchNotice": "Notifikasi Merchant",
   "menu.trade.callbackRecord": "Catatan Callback",
-  "menu.trade.record": "Catatan Transaksi"
+  "menu.trade.record": "Catatan Transaksi",
+  "menu.payment.wx.app": "Aplikasi Pembayaran (WeChat)",
+  "menu.payment.wx.mchApp": "Aplikasi Pembayaran (WeChat)"
 }

@@ -25,7 +25,7 @@
     "unknown": "Cấu hình sản phẩm"
   },
   "productConfig": {
-    "title": "Cấu hình sản phẩm kênh",
+    "title": "Cấu hình sản phẩm thanh toán",
     "emptyDesc": "Không có dữ liệu sản phẩm thanh toán",
     "prodLabel": "sản phẩm",
     "sandboxLabel": "Hộp cát",

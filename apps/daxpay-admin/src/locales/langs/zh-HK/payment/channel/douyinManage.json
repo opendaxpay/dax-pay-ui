@@ -5,7 +5,7 @@
   "directKeyConfigTitle": "抖音直連密鑰配置",
   "keyConfigSection": "商户密鑰配置",
   "cardCapabilityBinding": "支付應用配置",
-  "cardCapabilityBindingDesc": "決定每種支付能力用哪個應用發起支付",
+  "cardCapabilityBindingDesc": "決定每種支付能力用哪個抖音應用發起支付",
   "capabilityTitle": "配置各能力使用的應用",
   "capabilityDesc": "為每種支付能力指定發起支付時使用的抖音應用；留空則按應用類型自動匹配。",
   "capabilityNoApp": "當前通道商户下暫無應用，請先創建應用",
@@ -14,5 +14,8 @@
   "capabilitySaveSuccess": "保存成功",
   "appTypeMiniProgram": "小程序",
   "appTypeMobileApp": "移動應用",
-  "appTypeWebApp": "網站應用"
+  "appTypeWebApp": "網站應用",
+  "capabilityRequiredAppType": "需{type}",
+  "appTypeCapabilityCleared": "已清除與支付方式不匹配的應用選擇",
+  "capabilityNoCompatibleApp": "暫無匹配類型的應用，請先建立對應類型應用"
 }

@@ -49,7 +49,7 @@
     "menu": "選單管理",
     "operateLog": "操作日誌",
     "notice": "通知公告",
-    "productConfig": "通道產品配置",
+    "productConfig": "支付產品配置",
     "platformConfig": "平臺配置",
     "onlineUser": "線上使用者",
     "analytics": "分析頁",
@@ -62,7 +62,8 @@
     "available": "可選入口",
     "allAdded": "已全部新增",
     "profile": "個人中心",
-    "credential": "對接配置"
+    "credential": "對接配置",
+    "wxApp": "支付應用(微信)"
   },
   "notice": {
     "important": "重要",

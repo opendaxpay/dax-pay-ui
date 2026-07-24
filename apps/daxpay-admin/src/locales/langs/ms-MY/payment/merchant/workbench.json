@@ -25,6 +25,8 @@
     "cardStore": "Pengurusan Stor",
     "cardStoreDesc": "Profil kedai fizikal dan pengurusan lokasi",
     "cardTerminal": "Terminal Sistem",
-    "cardTerminalDesc": "Urus kod terminal logik pedagang dan pengikatan terminal saluran"
+    "cardTerminalDesc": "Urus kod terminal logik pedagang dan pengikatan terminal saluran",
+    "cardWxApp": "Apl Pembayaran (WeChat)",
+    "cardWxAppDesc": "Urus Akaun Rasmi WeChat, Mini Program dan apl terbuka lain untuk peniaga ini"
   }
 }

@@ -8,14 +8,13 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { ProductEnum } from '#/enums/payment/productEnum';
   import { useMessage } from '#/hooks/useMessage';
   import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/global/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
+  import WxChannelAppCapability from '#/views/payment/wx/channel/WxChannelAppCapability.vue';
 
   import WechatChannelMerchantBasicInfo from './WechatChannelMerchantBasicInfo.vue';
   import WechatIsvAuthAppConfig from './WechatIsvAuthAppConfig.vue';
-  import WechatIsvMchAppCapability from './WechatIsvMchAppCapability.vue';
 
   defineOptions({ name: 'WechatChannelMerchantManage' });
 
@@ -30,7 +29,7 @@
   const channelMchNo = ref('');
   const channelMerchant = ref<ChannelMerchantResult>({});
   const basicInfoRef = ref<InstanceType<typeof WechatChannelMerchantBasicInfo>>();
-  const capabilityRef = ref<InstanceType<typeof WechatIsvMchAppCapability>>();
+  const capabilityRef = ref<InstanceType<typeof WxChannelAppCapability>>();
   const authAppConfigRef = ref<InstanceType<typeof WechatIsvAuthAppConfig>>();
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
 
@@ -114,18 +113,20 @@
     }
     if (card.key === 'app') {
       router.push({
-        path: '/payment/global/channel-merchant/wechat-isv-mch-app-manage',
+        path: '/payment/wx/app',
         query: {
+          tab: 'merchant',
           mchNo: mchNo.value,
-          channelMchNo: channelMchNo.value,
-          channelMerchantId: channelMerchant.value.id,
-          product: ProductEnum.WECHAT_ISV,
         },
       });
       return;
     }
     if (card.key === 'capability') {
-      capabilityRef.value?.show(mchNo.value, channelMchNo.value);
+      capabilityRef.value?.show(
+        mchNo.value,
+        channelMchNo.value,
+        channelMerchant.value.product || 'wechat_isv',
+      );
       return;
     }
     if (card.key === 'authApp') {
@@ -189,7 +190,7 @@
 
     <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 
-    <WechatIsvMchAppCapability ref="capabilityRef" />
+    <WxChannelAppCapability ref="capabilityRef" />
 
     <WechatIsvAuthAppConfig ref="authAppConfigRef" />
   </div>

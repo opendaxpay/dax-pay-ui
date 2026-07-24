@@ -30,5 +30,6 @@
   "menu.payment.merchant.notifyConfig": "通知設定",
   "menu.payment.merchant.easypay": "EasyPay設定",
   "menu.payment.merchant.terminal": "システム端末",
-  "menu.payment.merchant.wxVerify": "WeChatドメインの検証"
+  "menu.payment.merchant.wxVerify": "WeChatドメインの検証",
+  "menu.payment.wx.mchApp": "決済アプリ(WeChat)"
 }

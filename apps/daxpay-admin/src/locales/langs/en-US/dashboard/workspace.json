@@ -51,7 +51,7 @@
     "menu": "Menus",
     "operateLog": "Operate Logs",
     "notice": "Notices",
-    "productConfig": "Channel Product Config",
+    "productConfig": "Payment Product Config",
     "platformConfig": "Platform Config",
     "onlineUser": "Online Users",
     "analytics": "Analytics",
@@ -62,7 +62,8 @@
     "editTitle": "Edit Quick Entry",
     "selected": "Selected (drag to sort)",
     "available": "Available",
-    "allAdded": "All added"
+    "allAdded": "All added",
+    "wxApp": "Payment Apps (WeChat)"
   },
   "notice": {
     "important": "Important",

@@ -25,7 +25,7 @@
     "unknown": "Konfigurasi Produk"
   },
   "productConfig": {
-    "title": "Konfigurasi Produk Saluran",
+    "title": "Konfigurasi Produk Pembayaran",
     "emptyDesc": "Tiada data produk pembayaran tersedia",
     "prodLabel": "Prod",
     "sandboxLabel": "Kotak pasir",

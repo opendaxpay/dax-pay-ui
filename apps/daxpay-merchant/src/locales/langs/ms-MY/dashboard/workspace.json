@@ -49,7 +49,7 @@
     "menu": "Menu",
     "operateLog": "Mengendalikan Log",
     "notice": "Notis",
-    "productConfig": "Konfigurasi Produk Saluran",
+    "productConfig": "Konfigurasi Produk Pembayaran",
     "platformConfig": "Konfigurasi Platform",
     "onlineUser": "Pengguna Dalam Talian",
     "analytics": "Analitik",
@@ -62,7 +62,8 @@
     "available": "Tersedia",
     "allAdded": "Semua ditambah",
     "profile": "Profil",
-    "credential": "Konfigurasi Integrasi"
+    "credential": "Konfigurasi Integrasi",
+    "wxApp": "Apl Pembayaran (WeChat)"
   },
   "notice": {
     "important": "penting",

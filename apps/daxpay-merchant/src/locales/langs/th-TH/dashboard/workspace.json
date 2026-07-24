@@ -49,7 +49,7 @@
     "menu": "เมนู",
     "operateLog": "ดำเนินการบันทึก",
     "notice": "ประกาศ",
-    "productConfig": "การกำหนดค่าผลิตภัณฑ์ช่องทาง",
+    "productConfig": "การกำหนดค่าสินค้าชำระเงิน",
     "platformConfig": "การกำหนดค่าแพลตฟอร์ม",
     "onlineUser": "ผู้ใช้ออนไลน์",
     "analytics": "การวิเคราะห์",
@@ -62,7 +62,8 @@
     "available": "มีอยู่",
     "allAdded": "เพิ่มทั้งหมดแล้ว",
     "profile": "โปรไฟล์",
-    "credential": "การตั้งค่าเชื่อมต่อ"
+    "credential": "การตั้งค่าเชื่อมต่อ",
+    "wxApp": "แอปชำระเงิน (WeChat)"
   },
   "notice": {
     "important": "สำคัญ",

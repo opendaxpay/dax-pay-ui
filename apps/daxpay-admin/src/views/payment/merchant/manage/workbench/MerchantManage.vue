@@ -92,6 +92,16 @@
           description: $t('payment.merchant.workbench.workbench.cardAppDesc'),
           route: '/payment/merchant/app',
         },
+        {
+          key: 'wxApp',
+          // 支付应用(微信) — 跳转全局 Hub 商户 Tab
+          title: $t('payment.merchant.workbench.workbench.cardWxApp'),
+          icon: 'lucide:message-circle',
+          // 管理该商户的微信公众号 / 小程序等开放应用
+          description: $t('payment.merchant.workbench.workbench.cardWxAppDesc'),
+          route: '/payment/wx/app',
+          query: { tab: 'merchant' },
+        },
       ],
     },
     {
@@ -167,13 +177,17 @@
   }
 
   /**
-   * 卡片点击跳转
+   * 卡片点击跳转（固定带 mchNo；卡片可附带额外 query）
    */
-  function handleCardClick(card: { key: string; route?: string }) {
+  function handleCardClick(card: {
+    key: string;
+    route?: string;
+    query?: Record<string, string>;
+  }) {
     if (card.route) {
       router.push({
         path: card.route,
-        query: { mchNo: mchNo.value },
+        query: { mchNo: mchNo.value, ...card.query },
       });
     } else {
       msg.info($t('payment.merchant.workbench.workbench.developing'));

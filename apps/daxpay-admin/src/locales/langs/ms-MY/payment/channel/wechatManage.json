@@ -44,7 +44,7 @@
   "cardDirectKeyConfig": "Konfigurasi Kunci Langsung",
   "cardDirectKeyConfigDesc": "Konfigurasikan kunci API V3 pedagang langsung, kunci awam dan sijil",
   "cardCapabilityBinding": "Persediaan Apl Pembayaran",
-  "cardCapabilityBindingDesc": "Tentukan apl yang digunakan oleh setiap keupayaan pembayaran untuk memulakan pembayaran",
+  "cardCapabilityBindingDesc": "Tentukan apl WeChat untuk setiap keupayaan pembayaran",
   "capabilityTitle": "Konfigurasikan Apl setiap Keupayaan",
   "capabilityDesc": "Tentukan apl WeChat yang hendak digunakan semasa memulakan pembayaran untuk setiap keupayaan. Biarkan kosong untuk memadankan automatik mengikut jenis apl (keupayaan akaun rasmi → akaun rasmi, keupayaan program mini → program mini).",
   "capabilitySelectPlaceholder": "Padanan automatik mengikut jenis apl jika kosong",

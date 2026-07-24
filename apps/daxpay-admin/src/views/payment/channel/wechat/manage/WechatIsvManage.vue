@@ -7,14 +7,13 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import WechatIsvConfigEdit from '#/views/payment/channel/wechat/config/WechatIsvConfigEdit.vue';
-
-import WechatIsvAppCapability from './WechatIsvAppCapability.vue';
+  import PlatformAppCapability from '#/views/payment/wx/platform/PlatformAppCapability.vue';
 
   defineOptions({ name: 'WechatIsvManage' });
 
   const router = useRouter();
   const mchKeyEditRef = ref<InstanceType<typeof WechatIsvConfigEdit> | null>(null);
-const capabilityRef = ref<InstanceType<typeof WechatIsvAppCapability> | null>(null);
+  const capabilityRef = ref<InstanceType<typeof PlatformAppCapability> | null>(null);
 
   /** 功能卡片配置 */
   const functionCards = computed(() => [
@@ -39,13 +38,16 @@ const capabilityRef = ref<InstanceType<typeof WechatIsvAppCapability> | null>(nu
           title: $t('payment.channel.wechatManage.cardIsvApp'),
           icon: 'ant-design:appstore-outlined',
           description: $t('payment.channel.wechatManage.cardIsvAppDesc'),
-          route: '/payment/config/product/wechat-app-manage',
+          // 跳转微信应用 Hub（平台 Tab）
+          route: '/payment/wx/app?tab=platform',
         },
         {
           key: 'capabilityBinding',
-          title: $t('payment.channel.wechatManage.cardCapabilityBinding'),
+          // 本产品平台默认能力
+          title: $t('payment.wx.app.productCapabilityTitle'),
           icon: 'ant-design:api-outlined',
-          description: $t('payment.channel.wechatManage.cardCapabilityBindingDesc'),
+          // 为本支付产品配置平台级默认应用
+          description: $t('payment.wx.app.productCapabilityDesc'),
         },
       ],
     },
@@ -77,11 +79,12 @@ const capabilityRef = ref<InstanceType<typeof WechatIsvAppCapability> | null>(nu
       return;
     }
     if (card.key === 'capabilityBinding') {
-      capabilityRef.value?.show();
+      capabilityRef.value?.show('wechat_isv');
       return;
     }
     if (card.route) {
-      router.push({ path: card.route });
+      // 支持带 query 的完整 path
+      router.push(card.route);
     }
   }
 
@@ -127,7 +130,7 @@ const capabilityRef = ref<InstanceType<typeof WechatIsvAppCapability> | null>(nu
     </div>
     <WechatIsvConfigEdit ref="mchKeyEditRef" />
 
-    <WechatIsvAppCapability ref="capabilityRef" />
+    <PlatformAppCapability ref="capabilityRef" />
   </div>
 </template>
 

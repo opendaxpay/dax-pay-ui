@@ -30,5 +30,6 @@
   "menu.payment.merchant.notifyConfig": "알림 설정",
   "menu.payment.merchant.easypay": "EasyPay 설정",
   "menu.payment.merchant.terminal": "시스템 단말",
-  "menu.payment.merchant.wxVerify": "WeChat 도메인 확인"
+  "menu.payment.merchant.wxVerify": "WeChat 도메인 확인",
+  "menu.payment.wx.mchApp": "결제 앱(위챗)"
 }

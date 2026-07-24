@@ -44,7 +44,7 @@
   "cardDirectKeyConfig": "직접 키 구성",
   "cardDirectKeyConfigDesc": "직접 판매자 API V3 키, 공개 키 및 인증서 구성",
   "cardCapabilityBinding": "결제 앱 설정",
-  "cardCapabilityBindingDesc": "각 결제 기능이 결제를 시작하는 데 사용할 앱 결정",
+  "cardCapabilityBindingDesc": "각 결제 능력에 사용할 위챗 앱을 지정합니다",
   "capabilityTitle": "기능별 앱 구성",
   "capabilityDesc": "각 기능에 대한 결제를 시작할 때 사용할 WeChat 앱을 지정하세요. 앱 유형(공식 계정 기능 → 공식 계정, 미니 프로그램 기능 → 미니 프로그램)별로 자동 일치하려면 비워두세요.",
   "capabilitySelectPlaceholder": "비어 있는 경우 앱 유형별 자동 일치",

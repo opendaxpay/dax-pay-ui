@@ -30,5 +30,6 @@
   "menu.payment.merchant.notifyConfig": "通知配置",
   "menu.payment.merchant.easypay": "易支付配置",
   "menu.payment.merchant.terminal": "系统终端",
-  "menu.payment.merchant.wxVerify": "微信域名验证"
+  "menu.payment.merchant.wxVerify": "微信域名验证",
+  "menu.payment.wx.mchApp": "支付应用(微信)"
 }

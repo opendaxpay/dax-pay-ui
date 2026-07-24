@@ -25,7 +25,7 @@
     "unknown": "製品構成"
   },
   "productConfig": {
-    "title": "チャネル製品構成",
+    "title": "決済商品構成",
     "emptyDesc": "利用可能な支払い商品データがありません",
     "prodLabel": "製品",
     "sandboxLabel": "サンドボックス",

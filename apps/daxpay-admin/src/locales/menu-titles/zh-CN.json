@@ -57,7 +57,7 @@
   "menu.develop.sign": "签名调试",
   "menu.payment.merchant.channelMerchant": "通道商户",
   "menu.payment.merchant.channelMerchant.douyinApp": "抖音应用",
-  "menu.payment.config.productConfig": "通道产品配置",
+  "menu.payment.config.productConfig": "支付产品配置",
   "menu.device.assistant": "终端管理",
   "menu.payment.config.wechatApp": "微信服务商应用",
   "menu.payment.platform.provider.manage": "支付渠道",
@@ -97,5 +97,7 @@
   "menu.payment.merchant.terminal": "系统终端",
   "menu.device.terminal.channel": "通道终端",
   "menu.trade.callbackRecord": "回调记录",
-  "menu.trade.record": "交易记录"
+  "menu.trade.record": "交易记录",
+  "menu.payment.wx.app": "支付应用(微信)",
+  "menu.payment.wx.mchApp": "支付应用(微信)"
 }

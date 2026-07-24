@@ -49,7 +49,7 @@
     "menu": "メニュー",
     "operateLog": "操作ログ",
     "notice": "お知らせ",
-    "productConfig": "チャネル製品構成",
+    "productConfig": "決済商品構成",
     "platformConfig": "プラットフォーム構成",
     "onlineUser": "オンラインユーザー",
     "analytics": "分析",
@@ -62,7 +62,8 @@
     "available": "利用可能",
     "allAdded": "すべて追加されました",
     "profile": "プロフィール",
-    "credential": "連携設定"
+    "credential": "連携設定",
+    "wxApp": "決済アプリ(WeChat)"
   },
   "notice": {
     "important": "重要",

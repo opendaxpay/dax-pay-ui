@@ -56,7 +56,7 @@
   "menu.develop.sign": "개발에 서명하다",
   "menu.payment.merchant.channelMerchant": "채널 판매자",
   "menu.payment.merchant.channelMerchant.douyinApp": "두인 앱",
-  "menu.payment.config.productConfig": "채널 제품 구성",
+  "menu.payment.config.productConfig": "결제상품 구성",
   "menu.device.assistant": "단말 관리",
   "menu.payment.config.wechatApp": "위챗 ISV 애플리케이션",
   "menu.payment.platform.provider.manage": "결제 제공업체",
@@ -97,5 +97,7 @@
   "menu.device.terminal.channel": "채널 단말",
   "menu.trade.mchNotice": "가맹점 알림",
   "menu.trade.callbackRecord": "콜백 기록",
-  "menu.trade.record": "거래 기록"
+  "menu.trade.record": "거래 기록",
+  "menu.payment.wx.app": "결제 앱(위챗)",
+  "menu.payment.wx.mchApp": "결제 앱(위챗)"
 }

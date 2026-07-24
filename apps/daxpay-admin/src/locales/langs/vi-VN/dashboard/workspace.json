@@ -51,7 +51,7 @@
     "menu": "Thực đơn",
     "operateLog": "Nhật ký vận hành",
     "notice": "Thông báo",
-    "productConfig": "Cấu hình sản phẩm kênh",
+    "productConfig": "Cấu hình sản phẩm thanh toán",
     "platformConfig": "Cấu hình nền tảng",
     "onlineUser": "Người dùng trực tuyến",
     "analytics": "Phân tích",
@@ -62,7 +62,8 @@
     "editTitle": "Chỉnh sửa nhập nhanh",
     "selected": "Đã chọn (kéo để sắp xếp)",
     "available": "Có sẵn",
-    "allAdded": "Tất cả đã thêm"
+    "allAdded": "Tất cả đã thêm",
+    "wxApp": "Ứng dụng thanh toán (WeChat)"
   },
   "notice": {
     "important": "Quan trọng",

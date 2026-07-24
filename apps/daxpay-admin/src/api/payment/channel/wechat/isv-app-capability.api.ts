@@ -2,8 +2,6 @@ import type { Result } from '#/types/web';
 
 import { defHttp } from '#/api/request';
 
-import type { WechatCapabilityOption } from './mch-app-capability.api';
-
 /**
  * 微信服务商应用支付能力关联 API
  */
@@ -22,33 +20,28 @@ export const WechatIsvAppCapabilityApi = {
   },
 };
 
+/** 支付能力候选项 */
+export interface WechatCapabilityOption {
+  code: string;
+  name: string;
+}
+
 /** 微信服务商应用支付能力关联 */
 export interface WechatIsvAppCapability {
-  /** 支付能力编码 */
   capability?: string;
-  /** 关联微信服务商应用ID */
   wechatIsvAppId?: string;
-  /** 应用名称(冗余展示) */
   appName?: string;
-  /** 微信应用AppId(冗余展示) */
   wxAppId?: string;
-  /** 应用类型(冗余展示): official_account/mini_program/mobile_app */
   appType?: string;
 }
 
 /** 支付能力关联应用单项 */
 export interface WechatIsvAppCapabilityItem {
-  /** 支付能力编码 */
   capability: string;
-  /** 关联微信服务商应用ID */
   wechatIsvAppId: string;
 }
 
 /** 支付能力关联应用批量保存参数 */
 export interface WechatIsvAppCapabilityBatchParam {
-  /** 支付能力关联应用列表 */
   items: WechatIsvAppCapabilityItem[];
 }
-
-// 复用 WechatCapabilityOption 类型（自 mch-app-capability.api）
-export type { WechatCapabilityOption };

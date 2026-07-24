@@ -49,7 +49,7 @@
     "menu": "Menus",
     "operateLog": "Operate Logs",
     "notice": "Notices",
-    "productConfig": "Channel Product Config",
+    "productConfig": "Payment Product Config",
     "platformConfig": "Platform Config",
     "onlineUser": "Online Users",
     "analytics": "Analytics",
@@ -62,7 +62,8 @@
     "available": "Available",
     "allAdded": "All added",
     "profile": "Profile",
-    "credential": "Integration Config"
+    "credential": "Integration Config",
+    "wxApp": "Payment Apps (WeChat)"
   },
   "notice": {
     "important": "Important",

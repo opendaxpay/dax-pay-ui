@@ -44,7 +44,7 @@
   "cardDirectKeyConfig": "直連金鑰配置",
   "cardDirectKeyConfigDesc": "配置直連商戶API V3金鑰、平臺公鑰及證書",
   "cardCapabilityBinding": "支付應用配置",
-  "cardCapabilityBindingDesc": "決定每種支付能力用哪個應用發起支付",
+  "cardCapabilityBindingDesc": "決定每種支付能力用哪個微信應用發起支付",
   "capabilityTitle": "配置各能力使用的應用",
   "capabilityDesc": "為每種支付能力指定發起支付時使用的微信應用；留空則按應用型別自動匹配（公眾號能力→公眾號應用，小程式能力→小程式應用）。",
   "capabilitySelectPlaceholder": "留空則按應用型別自動匹配",

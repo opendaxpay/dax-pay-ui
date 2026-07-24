@@ -4,8 +4,8 @@
   "cardDirectKeyConfigDesc": "Douyin Pay の販売者レベルのキーと証明書を構成する",
   "directKeyConfigTitle": "Douyin ダイレクトキー設定",
   "keyConfigSection": "マーチャントキー構成",
-  "cardCapabilityBinding": "支払いアプリのセットアップ",
-  "cardCapabilityBindingDesc": "各支払い機能が支払いの開始に使用するアプリを決定する",
+  "cardCapabilityBinding": "支払いアプリ設定",
+  "cardCapabilityBindingDesc": "各決済能力で使用する Douyin アプリを指定します",
   "capabilityTitle": "機能ごとにアプリを構成する",
   "capabilityDesc": "各機能の支払いを開始するときにどの Douyin アプリを使用するかを指定します。アプリの種類によって自動照合するには、空のままにします。",
   "capabilityNoApp": "このチャネル販売者の下にはアプリケーションが存在しません。まず作成してください。",
@@ -14,5 +14,8 @@
   "capabilitySaveSuccess": "正常に保存されました",
   "appTypeMiniProgram": "ミニプログラム",
   "appTypeMobileApp": "モバイルアプリ",
-  "appTypeWebApp": "ウェブアプリ"
+  "appTypeWebApp": "ウェブアプリ",
+  "capabilityRequiredAppType": "{type}が必要",
+  "appTypeCapabilityCleared": "支払い方法と一致しないアプリ選択を解除しました",
+  "capabilityNoCompatibleApp": "一致する種別のアプリがありません。先に作成してください"
 }

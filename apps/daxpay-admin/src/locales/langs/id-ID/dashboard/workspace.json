@@ -51,7 +51,7 @@
     "menu": "Menu",
     "operateLog": "Operasikan Log",
     "notice": "Pemberitahuan",
-    "productConfig": "Konfigurasi Produk Saluran",
+    "productConfig": "Konfigurasi Produk Pembayaran",
     "platformConfig": "Konfigurasi Platform",
     "onlineUser": "Pengguna Daring",
     "analytics": "Analisis",
@@ -62,7 +62,8 @@
     "editTitle": "Edit Entri Cepat",
     "selected": "Dipilih (seret untuk mengurutkan)",
     "available": "Tersedia",
-    "allAdded": "Semua ditambahkan"
+    "allAdded": "Semua ditambahkan",
+    "wxApp": "Aplikasi Pembayaran (WeChat)"
   },
   "notice": {
     "important": "Penting",

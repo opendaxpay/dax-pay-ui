@@ -56,7 +56,7 @@
   "menu.develop.sign": "サイン開発",
   "menu.payment.merchant.channelMerchant": "チャネルマーチャント",
   "menu.payment.merchant.channelMerchant.douyinApp": "Douyinアプリ",
-  "menu.payment.config.productConfig": "チャネル製品構成",
+  "menu.payment.config.productConfig": "決済商品構成",
   "menu.device.assistant": "端末管理",
   "menu.payment.config.wechatApp": "WeChat ISV アプリケーション",
   "menu.payment.platform.provider.manage": "決済プロバイダー",
@@ -97,5 +97,7 @@
   "menu.device.terminal.channel": "チャネル端末",
   "menu.trade.mchNotice": "加盟店通知",
   "menu.trade.callbackRecord": "コールバック記録",
-  "menu.trade.record": "取引記録"
+  "menu.trade.record": "取引記録",
+  "menu.payment.wx.app": "決済アプリ(WeChat)",
+  "menu.payment.wx.mchApp": "決済アプリ(WeChat)"
 }

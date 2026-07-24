@@ -8,13 +8,13 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { ProductEnum } from '#/enums/payment/productEnum';
   import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/global/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
 
+  import WxChannelAppCapability from '#/views/payment/wx/channel/WxChannelAppCapability.vue';
+
   import WechatDirectChannelMerchantBasicInfo from './WechatDirectChannelMerchantBasicInfo.vue';
   import WechatDirectKeyConfigEdit from './WechatDirectKeyConfigEdit.vue';
-  import WechatMchAppCapability from './WechatMchAppCapability.vue';
 
   defineOptions({ name: 'WechatDirectMchManage' });
 
@@ -28,7 +28,7 @@
   const channelMerchant = ref<ChannelMerchantResult>({});
   const basicInfoRef = ref<InstanceType<typeof WechatDirectChannelMerchantBasicInfo>>();
   const keyConfigRef = ref<InstanceType<typeof WechatDirectKeyConfigEdit>>();
-  const capabilityRef = ref<InstanceType<typeof WechatMchAppCapability>>();
+  const capabilityRef = ref<InstanceType<typeof WxChannelAppCapability>>();
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
 
   /** 功能卡片配置（直连通道商户：基本信息 + 密钥配置 + 应用管理） */
@@ -111,19 +111,20 @@
       keyConfigRef.value?.init();
     }
     if (card.key === 'appManage') {
-      const id = channelMerchant.value.id;
       router.push({
-        path: '/payment/global/channel-merchant/wechat-app-manage',
+        path: '/payment/wx/app',
         query: {
+          tab: 'merchant',
           mchNo: mchNo.value,
-          channelMchNo: channelMchNo.value,
-          channelMerchantId: id,
-          product: ProductEnum.WECHAT_PAY,
         },
       });
     }
     if (card.key === 'capabilityBinding') {
-      capabilityRef.value?.show(mchNo.value, channelMchNo.value);
+      capabilityRef.value?.show(
+        mchNo.value,
+        channelMchNo.value,
+        channelMerchant.value.product || 'wechat_pay',
+      );
     }
   }
 
@@ -183,7 +184,7 @@
 
     <WechatDirectKeyConfigEdit ref="keyConfigRef" :channel-mch-no="channelMchNo" />
 
-    <WechatMchAppCapability ref="capabilityRef" />
+    <WxChannelAppCapability ref="capabilityRef" />
   </div>
 </template>
 

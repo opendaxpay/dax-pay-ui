@@ -4,7 +4,7 @@
   "cardMchApp": "支付宝通道商户应用",
   "cardMchAppDesc": "管理支付宝通道商户应用",
   "cardCapabilityBinding": "支付应用配置",
-  "cardCapabilityBindingDesc": "决定每种支付能力用哪个应用发起支付",
+  "cardCapabilityBindingDesc": "决定每种支付能力用哪个支付宝应用发起支付",
   "capabilityTitle": "配置各能力使用的应用",
   "capabilityDesc": "为每种支付能力指定发起支付时使用的支付宝应用；留空则按应用类型自动匹配。",
   "capabilityTableCapability": "支付能力",
@@ -13,5 +13,8 @@
   "capabilityAutoTip": "自动匹配",
   "capabilityNoApp": "本通道商户尚未创建任何应用，请先前往应用管理创建应用",
   "capabilitySaveSuccess": "保存成功",
-  "capabilityClearConfirm": "确定要清空全部应用配置吗？"
+  "capabilityClearConfirm": "确定要清空全部应用配置吗？",
+  "capabilityRequiredAppType": "需{type}",
+  "appTypeCapabilityCleared": "已清除与支付方式不匹配的应用选择",
+  "capabilityNoCompatibleApp": "暂无匹配类型的应用，请先创建对应类型应用"
 }

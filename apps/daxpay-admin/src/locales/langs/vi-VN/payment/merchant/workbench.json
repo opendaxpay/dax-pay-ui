@@ -25,6 +25,8 @@
     "cardStore": "Quản lý cửa hàng",
     "cardStoreDesc": "Hồ sơ cửa hàng vật lý và quản lý vị trí",
     "cardTerminal": "Thiết bị hệ thống",
-    "cardTerminalDesc": "Quản lý mã thiết bị logic của thương gia và liên kết thiết bị kênh"
+    "cardTerminalDesc": "Quản lý mã thiết bị logic của thương gia và liên kết thiết bị kênh",
+    "cardWxApp": "Ứng dụng thanh toán (WeChat)",
+    "cardWxAppDesc": "Quản lý tài khoản chính thức WeChat, Mini Program và ứng dụng mở khác của thương nhân này"
   }
 }

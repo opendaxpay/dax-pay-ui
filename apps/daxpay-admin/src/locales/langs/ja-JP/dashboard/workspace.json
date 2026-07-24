@@ -51,7 +51,7 @@
     "menu": "メニュー",
     "operateLog": "操作ログ",
     "notice": "お知らせ",
-    "productConfig": "チャネル製品構成",
+    "productConfig": "決済商品構成",
     "platformConfig": "プラットフォーム構成",
     "onlineUser": "オンラインユーザー",
     "analytics": "分析",
@@ -62,7 +62,8 @@
     "editTitle": "クイックエントリーの編集",
     "selected": "選択済み (ドラッグして並べ替え)",
     "available": "利用可能",
-    "allAdded": "すべて追加されました"
+    "allAdded": "すべて追加されました",
+    "wxApp": "決済アプリ(WeChat)"
   },
   "notice": {
     "important": "重要",

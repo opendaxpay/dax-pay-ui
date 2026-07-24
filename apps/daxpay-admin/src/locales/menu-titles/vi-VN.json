@@ -56,7 +56,7 @@
   "menu.develop.sign": "Đăng ký phát triển",
   "menu.payment.merchant.channelMerchant": "Người bán kênh",
   "menu.payment.merchant.channelMerchant.douyinApp": "Ứng dụng Douyin",
-  "menu.payment.config.productConfig": "Cấu hình sản phẩm kênh",
+  "menu.payment.config.productConfig": "Cấu hình sản phẩm thanh toán",
   "menu.device.assistant": "Quản lý thiết bị đầu cuối",
   "menu.payment.config.wechatApp": "Ứng dụng WeChat ISV",
   "menu.payment.platform.provider.manage": "Nhà cung cấp thanh toán",
@@ -97,5 +97,7 @@
   "menu.device.terminal.channel": "Thiết bị kênh",
   "menu.trade.mchNotice": "Thông báo merchant",
   "menu.trade.callbackRecord": "Bản ghi callback",
-  "menu.trade.record": "Nhật ký giao dịch"
+  "menu.trade.record": "Nhật ký giao dịch",
+  "menu.payment.wx.app": "Ứng dụng thanh toán (WeChat)",
+  "menu.payment.wx.mchApp": "Ứng dụng thanh toán (WeChat)"
 }

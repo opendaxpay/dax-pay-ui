@@ -80,7 +80,7 @@
     );
   }
 
-  /** 是否为已支持的通道产品 */
+  /** 是否为已支持的支付产品 */
   function isSupported(p: string) {
     return (
       p === ProductEnum.ALIPAY ||

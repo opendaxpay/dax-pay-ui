@@ -25,7 +25,7 @@
     "unknown": "Product Configuration"
   },
   "productConfig": {
-    "title": "Channel Product Config",
+    "title": "Payment Product Config",
     "emptyDesc": "No payment product data available",
     "prodLabel": "Prod",
     "sandboxLabel": "Sandbox",

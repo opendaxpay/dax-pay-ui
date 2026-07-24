@@ -25,6 +25,8 @@
     "cardStore": "Store Management",
     "cardStoreDesc": "Physical store profiles and location management",
     "cardTerminal": "System Terminals",
-    "cardTerminalDesc": "Merchant logical terminal codes and channel terminal binding management"
+    "cardTerminalDesc": "Merchant logical terminal codes and channel terminal binding management",
+    "cardWxApp": "Payment Apps (WeChat)",
+    "cardWxAppDesc": "Manage WeChat Official Accounts, Mini Programs, and other open apps for this merchant"
   }
 }

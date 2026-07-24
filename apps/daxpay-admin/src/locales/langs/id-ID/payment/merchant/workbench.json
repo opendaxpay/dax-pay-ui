@@ -25,6 +25,8 @@
     "cardStore": "Manajemen Toko",
     "cardStoreDesc": "Profil toko fisik dan manajemen lokasi",
     "cardTerminal": "Terminal Sistem",
-    "cardTerminalDesc": "Kelola kode terminal logis pedagang dan pengikatan terminal saluran"
+    "cardTerminalDesc": "Kelola kode terminal logis pedagang dan pengikatan terminal saluran",
+    "cardWxApp": "Aplikasi Pembayaran (WeChat)",
+    "cardWxAppDesc": "Kelola akun resmi WeChat, Mini Program, dan aplikasi terbuka lain untuk merchant ini"
   }
 }

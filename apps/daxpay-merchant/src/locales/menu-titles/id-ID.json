@@ -30,5 +30,6 @@
   "menu.payment.merchant.notifyConfig": "Konfigurasi Notifikasi",
   "menu.payment.merchant.easypay": "EasyPay Config",
   "menu.payment.merchant.terminal": "Terminal Sistem",
-  "menu.payment.merchant.wxVerify": "Verifikasi Domain WeChat"
+  "menu.payment.merchant.wxVerify": "Verifikasi Domain WeChat",
+  "menu.payment.wx.mchApp": "Aplikasi Pembayaran (WeChat)"
 }

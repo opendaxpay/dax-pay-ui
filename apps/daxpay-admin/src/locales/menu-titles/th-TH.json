@@ -56,7 +56,7 @@
   "menu.develop.sign": "ลงชื่อ พัฒนา",
   "menu.payment.merchant.channelMerchant": "พ่อค้าช่องทาง",
   "menu.payment.merchant.channelMerchant.douyinApp": "แอป Douyin",
-  "menu.payment.config.productConfig": "การกำหนดค่าผลิตภัณฑ์ช่องทาง",
+  "menu.payment.config.productConfig": "การกำหนดค่าสินค้าชำระเงิน",
   "menu.device.assistant": "การจัดการเทอร์มินัล",
   "menu.payment.config.wechatApp": "แอปพลิเคชัน WeChat ISV",
   "menu.payment.platform.provider.manage": "ผู้ให้บริการชำระเงิน",
@@ -97,5 +97,7 @@
   "menu.device.terminal.channel": "เทอร์มินัลช่องทาง",
   "menu.trade.mchNotice": "การแจ้งเตือนร้านค้า",
   "menu.trade.callbackRecord": "บันทึกการเรียกกลับ",
-  "menu.trade.record": "บันทึกธุรกรรม"
+  "menu.trade.record": "บันทึกธุรกรรม",
+  "menu.payment.wx.app": "แอปชำระเงิน (WeChat)",
+  "menu.payment.wx.mchApp": "แอปชำระเงิน (WeChat)"
 }

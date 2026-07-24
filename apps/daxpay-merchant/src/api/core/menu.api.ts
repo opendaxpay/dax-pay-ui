@@ -102,13 +102,18 @@ function filterButtonMenus(menus: PermMenuResult[]): PermMenuResult[] {
 
 /**
  * 过滤仅作权限锚点、无路由信息的菜单节点
- * 中文：如 payment:isv / payment:isv 仅用于 @PermCode menuCode 挂载，无 path/component
+ * 中文：如仅用于 @PermCode menuCode 挂载、无 path/component 的权限点
+ * menu / 误标成 subpage 的锚点都过滤，避免被提升成 name/path 为空的脏路由
  */
 function filterPermissionAnchorMenus(menus: PermMenuResult[]): PermMenuResult[] {
   return menus
     .filter((menu) => {
       const menuType = menu.menuType || 'menu';
-      if (menuType === 'menu' && !menu.path && !menu.component) {
+      if (
+        (menuType === 'menu' || menuType === 'subpage')
+        && !menu.path
+        && !menu.component
+      ) {
         return false;
       }
       return true;

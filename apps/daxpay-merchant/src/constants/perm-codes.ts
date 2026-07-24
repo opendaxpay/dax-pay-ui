@@ -148,6 +148,13 @@ export const PermCodes = {
       VIEW: 'payment:config:product-config:view',
       MANAGE: 'payment:config:product-config:manage',
     },
+    /** 微信开放应用主数据 menuCode=payment:wx:mch-app */
+    Wx: {
+      MchApp: {
+        VIEW: 'payment:wx:mch-app:view',
+        MANAGE: 'payment:wx:mch-app:manage',
+      },
+    },
     Config: {
       WxDomainVerify: {
         VIEW: 'payment:config:wx-verify:view',

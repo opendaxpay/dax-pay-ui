@@ -3,8 +3,8 @@
   "groupApp": "アプリ管理",
   "cardMchApp": "Alipay チャネル販売者アプリ",
   "cardMchAppDesc": "Alipay チャネルの販売者アプリケーションを管理する",
-  "cardCapabilityBinding": "支払いアプリのセットアップ",
-  "cardCapabilityBindingDesc": "各支払い機能が支払いの開始に使用するアプリを決定する",
+  "cardCapabilityBinding": "支払いアプリ設定",
+  "cardCapabilityBindingDesc": "各決済能力で使用する Alipay アプリを指定します",
   "capabilityTitle": "機能ごとにアプリを構成する",
   "capabilityDesc": "各機能の支払いを開始するときにどの Alipay アプリを使用するかを指定します。アプリの種類によって自動照合するには、空のままにします。",
   "capabilityTableCapability": "支払い能力",
@@ -13,5 +13,8 @@
   "capabilityAutoTip": "自動",
   "capabilityNoApp": "このチャネル販売者用にアプリがまだ作成されていません。最初にアプリを作成してください",
   "capabilitySaveSuccess": "正常に保存されました",
-  "capabilityClearConfirm": "すべてのアプリの割り当てをクリアしますか?"
+  "capabilityClearConfirm": "すべてのアプリの割り当てをクリアしますか?",
+  "capabilityRequiredAppType": "{type}が必要",
+  "appTypeCapabilityCleared": "支払い方法と一致しないアプリ選択を解除しました",
+  "capabilityNoCompatibleApp": "一致する種別のアプリがありません。先に作成してください"
 }

@@ -25,6 +25,8 @@
     "cardStore": "店舗管理",
     "cardStoreDesc": "実店舗のプロファイルとロケーション管理",
     "cardTerminal": "システム端末",
-    "cardTerminalDesc": "マーチャント論理端末とチャネル端末のバインド管理"
+    "cardTerminalDesc": "マーチャント論理端末とチャネル端末のバインド管理",
+    "cardWxApp": "決済アプリ(WeChat)",
+    "cardWxAppDesc": "当該加盟店のWeChat公式アカウント・ミニプログラム等の開放アプリを管理"
   }
 }

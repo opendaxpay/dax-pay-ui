@@ -44,7 +44,7 @@
   "cardDirectKeyConfig": "Direct Key Config",
   "cardDirectKeyConfigDesc": "Configure direct merchant API V3 key, public key and certificates",
   "cardCapabilityBinding": "Payment App Setup",
-  "cardCapabilityBindingDesc": "Decide which app each payment capability uses to initiate payment",
+  "cardCapabilityBindingDesc": "Decide which WeChat app each payment capability uses to initiate payment",
   "capabilityTitle": "Configure App per Capability",
   "capabilityDesc": "Specify which WeChat app to use when initiating payment for each capability. Leave empty to auto-match by app type (official-account capabilities → official account, mini-program capabilities → mini program).",
   "capabilitySelectPlaceholder": "Auto-match by app type if empty",

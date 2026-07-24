@@ -154,6 +154,19 @@ export const PermCodes = {
         MANAGE: 'payment:config:wx-verify:manage',
       },
     },
+    /** 微信开放应用主数据 menuCode=payment:wx:* */
+    Wx: {
+      /** 平台微信应用（侧栏「支付应用(微信)」） */
+      PlatformApp: {
+        VIEW: 'payment:wx:platform-app:view',
+        MANAGE: 'payment:wx:platform-app:manage',
+      },
+      /** 商户微信应用 / 通道能力绑定 */
+      MchApp: {
+        VIEW: 'payment:wx:mch-app:view',
+        MANAGE: 'payment:wx:mch-app:manage',
+      },
+    },
     /** 支付风控 */
     Risk: {
       Blacklist: {

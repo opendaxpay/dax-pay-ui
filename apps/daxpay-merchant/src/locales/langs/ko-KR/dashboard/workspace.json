@@ -49,7 +49,7 @@
     "menu": "메뉴",
     "operateLog": "로그 운영",
     "notice": "공지사항",
-    "productConfig": "채널 제품 구성",
+    "productConfig": "결제상품 구성",
     "platformConfig": "플랫폼 구성",
     "onlineUser": "온라인 사용자",
     "analytics": "분석",
@@ -62,7 +62,8 @@
     "available": "사용 가능",
     "allAdded": "모두 추가됨",
     "profile": "프로필",
-    "credential": "연동 설정"
+    "credential": "연동 설정",
+    "wxApp": "결제 앱(위챗)"
   },
   "notice": {
     "important": "중요한",
