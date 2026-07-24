@@ -97,5 +97,8 @@
   "menu.trade.callbackRecord": "Callback Records",
   "menu.trade.record": "Trade Records",
   "menu.payment.wx.app": "Payment Apps (WeChat)",
-  "menu.payment.wx.mchApp": "Payment Apps (WeChat)"
+  "menu.payment.wx.mchApp": "Payment Apps (WeChat)",
+  "menu.mch.center": "Merchant Center",
+  "menu.business.config": "Business Config",
+  "menu.payment.merchant.notifyConfig": "Notify Config"
 }

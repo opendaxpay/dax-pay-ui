@@ -97,5 +97,8 @@
   "menu.trade.callbackRecord": "Bản ghi callback",
   "menu.trade.record": "Nhật ký giao dịch",
   "menu.payment.wx.app": "Ứng dụng thanh toán (WeChat)",
-  "menu.payment.wx.mchApp": "Ứng dụng thanh toán (WeChat)"
+  "menu.payment.wx.mchApp": "Ứng dụng thanh toán (WeChat)",
+  "menu.mch.center": "Trung tâm merchant",
+  "menu.business.config": "Cấu hình nghiệp vụ",
+  "menu.payment.merchant.notifyConfig": "Cấu hình thông báo"
 }

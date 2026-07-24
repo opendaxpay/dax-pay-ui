@@ -97,5 +97,8 @@
   "menu.trade.callbackRecord": "콜백 기록",
   "menu.trade.record": "거래 기록",
   "menu.payment.wx.app": "결제 앱(위챗)",
-  "menu.payment.wx.mchApp": "결제 앱(위챗)"
+  "menu.payment.wx.mchApp": "결제 앱(위챗)",
+  "menu.mch.center": "가맹점 센터",
+  "menu.business.config": "업무 설정",
+  "menu.payment.merchant.notifyConfig": "알림 설정"
 }

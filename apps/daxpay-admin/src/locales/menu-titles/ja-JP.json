@@ -97,5 +97,8 @@
   "menu.trade.callbackRecord": "コールバック記録",
   "menu.trade.record": "取引記録",
   "menu.payment.wx.app": "決済アプリ(WeChat)",
-  "menu.payment.wx.mchApp": "決済アプリ(WeChat)"
+  "menu.payment.wx.mchApp": "決済アプリ(WeChat)",
+  "menu.mch.center": "加盟店センター",
+  "menu.business.config": "業務設定",
+  "menu.payment.merchant.notifyConfig": "通知設定"
 }

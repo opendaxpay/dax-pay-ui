@@ -97,5 +97,8 @@
   "menu.trade.callbackRecord": "回调记录",
   "menu.trade.record": "交易记录",
   "menu.payment.wx.app": "支付应用(微信)",
-  "menu.payment.wx.mchApp": "支付应用(微信)"
+  "menu.payment.wx.mchApp": "支付应用(微信)",
+  "menu.mch.center": "商户中心",
+  "menu.business.config": "业务配置",
+  "menu.payment.merchant.notifyConfig": "通知配置"
 }
