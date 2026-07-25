@@ -21,8 +21,8 @@ import { isEmpty } from '@vben/utils';
 
 import { Modal } from 'antdv-next';
 
-import { IconPicker } from '#/components/icon-picker';
-import { useMessage } from '#/hooks/useMessage';
+import { IconPicker } from '../../components/icon-picker';
+import { useMessage } from '../../hooks/useMessage';
 
 const AutoComplete = defineAsyncComponent(() => import('antdv-next/dist/auto-complete/index'));
 const Button = defineAsyncComponent(() => import('antdv-next/dist/button/index'));

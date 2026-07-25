@@ -14,16 +14,18 @@ import Antd from 'antdv-next';
 import VxeUI from 'vxe-pc-ui';
 import VxeUITable from 'vxe-table';
 
-import { setDark } from '#/adapter/component/vxe-table/vxe-table';
+import { setDark } from '@daxpay/ui-biz/adapter/component/vxe-table';
 import { $t, setupI18n } from '#/locales';
 
-import { initComponentAdapter } from './adapter/component';
-import { initSetupVbenForm } from './adapter/form';
+import { initComponentAdapter } from '@daxpay/ui-biz/adapter/component';
+import { initSetupVbenForm } from '@daxpay/ui-biz/adapter/form';
 import App from './app.vue';
 import { router } from './router';
 
-// vxe 样式入口
-import '#/adapter/component/vxe-table/index.less';
+// vxe 样式: 基础库样式 + 项目自定义样式
+import 'vxe-pc-ui/lib/style.css';
+import 'vxe-table/lib/style.css';
+import '@daxpay/ui-biz/adapter/component/vxe-table/style';
 // 项目公共样式入口
 import '#/styles/index.less';
 

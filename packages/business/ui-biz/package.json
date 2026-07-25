@@ -5,6 +5,7 @@
   "type": "module",
   "sideEffects": [
     "**/*.css",
+    "**/*.less",
     "**/*.vue",
     "**/*.svg"
   ],
@@ -28,6 +29,21 @@
     "./request": {
       "types": "./src/request/index.ts",
       "default": "./src/request/index.ts"
+    },
+    "./adapter/component": {
+      "types": "./src/adapter/component/index.ts",
+      "default": "./src/adapter/component/index.ts"
+    },
+    "./adapter/form": {
+      "types": "./src/adapter/form.ts",
+      "default": "./src/adapter/form.ts"
+    },
+    "./adapter/component/vxe-table": {
+      "types": "./src/adapter/component/vxe-table/vxe-table.ts",
+      "default": "./src/adapter/component/vxe-table/vxe-table.ts"
+    },
+    "./adapter/component/vxe-table/style": {
+      "default": "./src/adapter/component/vxe-table/index.less"
     },
     "./enums/clientCode": {
       "types": "./src/enums/clientCode.ts",
@@ -181,19 +197,23 @@
   "dependencies": {
     "@vben-core/icons": "workspace:*",
     "@vben/access": "workspace:*",
+    "@vben/common-ui": "workspace:*",
     "@vben/hooks": "workspace:*",
     "@vben/icons": "workspace:*",
     "@vben/locales": "workspace:*",
     "@vben/preferences": "workspace:*",
     "@vben/request": "workspace:*",
     "@vben/stores": "workspace:*",
+    "@vben/types": "workspace:*",
     "@vben/utils": "workspace:*",
     "@vueuse/core": "catalog:",
     "@types/qrcode": "catalog:",
     "antdv-next": "catalog:",
     "qrcode": "catalog:",
     "vue": "catalog:",
-    "vue-router": "catalog:"
+    "vue-router": "catalog:",
+    "vxe-pc-ui": "catalog:",
+    "vxe-table": "catalog:"
   },
   "devDependencies": {
     "axios": "catalog:"
