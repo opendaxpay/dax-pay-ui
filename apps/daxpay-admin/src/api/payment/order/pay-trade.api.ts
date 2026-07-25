@@ -108,6 +108,8 @@ export interface PayTradeResult extends MchEntity {
   source?: string;
   /** 通道商户号 */
   channelMchNo?: string;
+  /** 通道应用ID */
+  channelAppId?: string;
   /** 门店号 */
   storeNo?: string;
   /** 通道订单号 */

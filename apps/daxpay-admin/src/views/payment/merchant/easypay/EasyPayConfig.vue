@@ -253,9 +253,12 @@
             form.publicKey = normalizePublicKey(form.publicKey);
           }
           // 敏感字段未修改时不提交
-          const sensitiveData = diffForm(originalForm, form, 'md5Key', 'publicKey');
+          const sensitiveData = diffForm(originalForm.value, form, 'md5Key', 'publicKey') as Pick<
+            EasyPayCredentialResult,
+            'md5Key' | 'publicKey'
+          >;
           const submitData: EasyPayCredentialParam = {
-            id: form.id,
+            id: form.id ?? undefined,
             appId: form.appId!,
             enable: form.enable,
             enableV1: form.enableV1,

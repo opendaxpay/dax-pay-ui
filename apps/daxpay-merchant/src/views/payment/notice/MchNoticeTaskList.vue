@@ -96,7 +96,7 @@
     recordLoading.value = true;
     try {
       const { data } = await MchNoticeApi.pageRecord({
-        taskId: row.id,
+        taskId: row.id ?? undefined,
         current: 1,
         size: 50,
       });

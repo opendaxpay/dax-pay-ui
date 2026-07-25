@@ -9,7 +9,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { NormalOrderApi, type NormalOrderQuery, type NormalOrderResult } from '#/api/payment/order/normal-order.api';
-  import { type RefundParam, RefundOrderApi } from '#/api/payment/order/refund-order.api';
+  import { RefundOrderApi, type RefundParam } from '#/api/payment/order/refund-order.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { productI18nMap, productNameMap } from '#/enums/payment';
@@ -48,7 +48,7 @@
   const refundFetching = ref(false);
   const refundFormRef = ref();
   // refundForm.amount 以「元」存储, 提交时再×100转分
-  const refundForm = ref<{ amount?: number; tradeNo?: string; reason?: string }>({ amount: undefined, reason: '' });
+  const refundForm = ref<{ amount?: number; reason?: string; tradeNo?: string }>({ amount: undefined, reason: '' });
   const refundRow = ref<NormalOrderResult | null>(null);
   // 可退金额(元), 作为退款金额输入框上限
   const refundableYuan = computed(() => (refundRow.value?.refundableBalance ?? 0) / 100);
@@ -64,7 +64,7 @@
       {
         validator: async (_rule: unknown, value: number) => {
           if (value != null && value > refundableYuan.value) {
-            return Promise.reject(new Error($t('payment.order.action.refundAmountExceed')));
+            throw new Error($t('payment.order.action.refundAmountExceed'));
           }
         },
       },
@@ -326,6 +326,7 @@
       await refundFormRef.value?.validate();
     } catch {
       // 校验失败: 表单已显示错误提示; 拒绝以阻止 modal 关闭
+      // eslint-disable-next-line unicorn/no-useless-promise-resolve-reject -- 静默拒绝以阻止 modal 关闭
       return Promise.reject();
     }
     // 元转分提交
@@ -462,7 +463,7 @@
                   {{ $t('common.view') }}
                 </a-button>
                 <!-- 更多操作(退款/撤销/关闭/同步, 按状态与权限动态生成) -->
-                <a-dropdown v-if="getActionMenu(row).items.length > 0" :menu="getActionMenu(row)">
+                <a-dropdown v-if="getActionMenu(row).items?.length" :menu="getActionMenu(row)">
                   <a href="javascript:">
                     {{ $t('common.more') }}
                     <IconifyIcon icon="ant-design:down-outlined" class="inline" />
