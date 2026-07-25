@@ -1,8 +1,10 @@
 <script lang="ts" setup>
+  import { onMounted } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
 
   import { Fallback } from '@vben/common-ui';
 
+  import { AuthApi } from '#/api/core/auth.api';
   import { $t } from '#/locales';
   import { HOME_PATH } from '#/router/routes';
 
@@ -22,6 +24,18 @@
   function retry() {
     router.replace(getRedirectPath());
   }
+
+  // 进入页面即探测后端是否已恢复（修复 F5 整体刷新不生效：offline 路由属 coreRoute
+  // 白名单，守卫直接放行不再发请求，故需在此主动探测一次认证链路）
+  // 后端已恢复则回原页面让守卫重新走认证流程；仍不可用则静默停留
+  onMounted(async () => {
+    try {
+      await AuthApi.getPermCodes();
+      router.replace(getRedirectPath());
+    } catch {
+      // 后端仍不可用，留在本页等待用户手动重试
+    }
+  });
 </script>
 
 <template>
