@@ -5,7 +5,7 @@
   "cardMchAppDesc": "管理支付寶通道商户應用",
   "cardCapabilityBinding": "支付應用配置",
   "cardCapabilityBindingDesc": "決定每種支付能力用哪個支付寶應用發起支付",
-  "capabilityTitle": "配置各能力使用的應用",
+  "capabilityTitle": "支付應用配置",
   "capabilityDesc": "為每種支付能力指定發起支付時使用的支付寶應用；留空則按應用類型自動匹配。",
   "capabilityTableCapability": "支付能力",
   "capabilityTableApp": "使用的應用",

@@ -5,7 +5,7 @@
   "cardMchAppDesc": "Alipay チャネルの販売者アプリケーションを管理する",
   "cardCapabilityBinding": "支払いアプリ設定",
   "cardCapabilityBindingDesc": "各決済能力で使用する Alipay アプリを指定します",
-  "capabilityTitle": "機能ごとにアプリを構成する",
+  "capabilityTitle": "支払いアプリ設定",
   "capabilityDesc": "各機能の支払いを開始するときにどの Alipay アプリを使用するかを指定します。アプリの種類によって自動照合するには、空のままにします。",
   "capabilityTableCapability": "支払い能力",
   "capabilityTableApp": "使用するアプリ",

@@ -5,7 +5,7 @@
   "cardMchAppDesc": "Alipay 채널 판매자 애플리케이션 관리",
   "cardCapabilityBinding": "결제 앱 설정",
   "cardCapabilityBindingDesc": "각 결제 능력에 사용할 알리페이 앱을 지정합니다",
-  "capabilityTitle": "기능별 앱 구성",
+  "capabilityTitle": "결제 앱 설정",
   "capabilityDesc": "각 기능에 대해 결제를 시작할 때 사용할 Alipay 앱을 지정하세요. 앱 유형별로 자동 일치하려면 비워두세요.",
   "capabilityTableCapability": "결제 능력",
   "capabilityTableApp": "사용할 앱",

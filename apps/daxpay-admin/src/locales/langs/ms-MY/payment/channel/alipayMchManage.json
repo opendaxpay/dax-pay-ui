@@ -5,7 +5,7 @@
   "cardMchAppDesc": "Urus aplikasi pedagang saluran Alipay",
   "cardCapabilityBinding": "Persediaan Apl Pembayaran",
   "cardCapabilityBindingDesc": "Tentukan apl Alipay untuk setiap keupayaan pembayaran",
-  "capabilityTitle": "Konfigurasikan Apl setiap Keupayaan",
+  "capabilityTitle": "Persediaan Apl Pembayaran",
   "capabilityDesc": "Tentukan apl Alipay yang hendak digunakan semasa memulakan pembayaran untuk setiap keupayaan. Biarkan kosong untuk memadankan automatik mengikut jenis apl.",
   "capabilityTableCapability": "Keupayaan Pembayaran",
   "capabilityTableApp": "Apl untuk digunakan",

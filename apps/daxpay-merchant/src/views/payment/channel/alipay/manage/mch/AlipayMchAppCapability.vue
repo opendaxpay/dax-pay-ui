@@ -4,17 +4,14 @@
   import { $t } from '@vben/locales';
 
   import {
-    AlipayMchAppCapabilityApi,
+    AlipayDirectAppCapabilityApi,
+    type AlipayDirectAppCapabilityItem,
     type AlipayDirectCapabilityOption,
-    type AlipayMchAppCapabilityItem,
-  } from '#/api/payment/channel/alipay/mch-app-capability.api';
-  import { AlipayMchAppApi, type AlipayMchApp } from '#/api/payment/channel/alipay/mch-app.api';
+  } from '#/api/payment/alipay/alipay-direct-app-capability.api';
+  import { AlipayDirectAppApi, type AlipayDirectAppResult } from '#/api/payment/alipay/alipay-direct-app.api';
   import { useMessage } from '#/hooks/useMessage';
 
-  import {
-    isAlipayAppCompatible,
-    resolveAlipayAppTypeByCapability,
-  } from './alipay-app-type';
+  import { isAlipayAppCompatible, resolveAlipayAppTypeByCapability } from './alipay-app-type';
 
   defineOptions({ name: 'AlipayMchAppCapability' });
 
@@ -23,12 +20,11 @@
   const { message } = useMessage();
   const visible = ref(false);
   const loading = ref(false);
-  const mchNo = ref('');
   const channelMchNo = ref('');
   // 支付能力候选列表
   const capabilities = ref<AlipayDirectCapabilityOption[]>([]);
   // 通道商户下全部应用
-  const apps = ref<AlipayMchApp[]>([]);
+  const apps = ref<AlipayDirectAppResult[]>([]);
   // 当前绑定：capability → alipayDirectAppId
   const bindingMap = ref<Record<string, string | undefined>>({});
 
@@ -38,13 +34,13 @@
   function appTypeLabel(appType?: string): string {
     switch (appType) {
       case 'mini_program': {
-        return $t('payment.channel.alipayMchApp.appTypeMiniProgram');
+        return $t('payment.merchant.alipayDirectApp.appTypeMiniProgram');
       }
       case 'mobile_app': {
-        return $t('payment.channel.alipayMchApp.appTypeMobileApp');
+        return $t('payment.merchant.alipayDirectApp.appTypeMobileApp');
       }
       case 'web_app': {
-        return $t('payment.channel.alipayMchApp.appTypeWebApp');
+        return $t('payment.merchant.alipayDirectApp.appTypeWebApp');
       }
       default: {
         return appType ?? '-';
@@ -80,9 +76,7 @@
       .filter((app) => isAlipayAppCompatible(app.appType, capability))
       .map((app) => ({
         value: app.id!,
-        label: app.appName
-          ? `${app.appName} (${app.aliAppId ?? '-'})`
-          : (app.aliAppId ?? '-'),
+        label: app.appName ? `${app.appName} (${app.aliAppId ?? '-'})` : (app.aliAppId ?? '-'),
       }));
   }
 
@@ -106,13 +100,13 @@
       return {
         color: 'default',
         // 需{type}
-        text: $t('payment.channel.alipayMchManage.capabilityRequiredAppType', {
+        text: $t('payment.merchant.alipayDirectApp.capabilityRequiredAppType', {
           type: appTypeLabel(required),
         }),
       };
     }
     // 自动匹配
-    return { color: 'default', text: $t('payment.channel.alipayMchManage.capabilityAutoTip') };
+    return { color: 'default', text: $t('payment.merchant.alipayDirectApp.capabilityAutoTip') };
   }
 
   function clearIncompatibleBindings() {
@@ -132,13 +126,12 @@
     bindingMap.value = next;
     if (cleared) {
       // 已清除与支付方式不匹配的应用选择
-      message.warning($t('payment.channel.alipayMchManage.appTypeCapabilityCleared'));
+      message.warning($t('payment.merchant.alipayDirectApp.appTypeCapabilityCleared'));
     }
   }
 
   /** 打开弹窗并加载数据 */
-  function show(no: string, cMchNo: string) {
-    mchNo.value = no;
+  function show(cMchNo: string) {
     channelMchNo.value = cMchNo;
     visible.value = true;
     loadData();
@@ -148,9 +141,9 @@
   function loadData() {
     loading.value = true;
     Promise.all([
-      AlipayMchAppCapabilityApi.listSupportedCapabilities(),
-      AlipayMchAppApi.listByChannelMchNo(mchNo.value, channelMchNo.value),
-      AlipayMchAppCapabilityApi.listByChannelMchNo(mchNo.value, channelMchNo.value),
+      AlipayDirectAppCapabilityApi.listSupportedCapabilities(),
+      AlipayDirectAppApi.listByChannelMchNo(channelMchNo.value),
+      AlipayDirectAppCapabilityApi.listByChannelMchNo(channelMchNo.value),
     ])
       .then(([capRes, appRes, bindRes]) => {
         capabilities.value = capRes.data ?? [];
@@ -171,7 +164,7 @@
 
   /** 保存绑定(全量覆盖) */
   function handleSave() {
-    const items: AlipayMchAppCapabilityItem[] = [];
+    const items: AlipayDirectAppCapabilityItem[] = [];
     capabilities.value.forEach((cap) => {
       const appId = bindingMap.value[cap.code];
       if (appId) {
@@ -179,13 +172,12 @@
       }
     });
     loading.value = true;
-    AlipayMchAppCapabilityApi.saveBatch({
-      mchNo: mchNo.value,
+    AlipayDirectAppCapabilityApi.saveBatch({
       channelMchNo: channelMchNo.value,
       items,
     })
       .then(() => {
-        message.success($t('payment.channel.alipayMchManage.capabilitySaveSuccess'));
+        message.success($t('common.saveSuccess'));
         visible.value = false;
         emit('ok');
       })
@@ -200,7 +192,7 @@
 <template>
   <a-modal
     v-model:open="visible"
-    :title="$t('payment.channel.alipayMchManage.capabilityTitle')"
+    :title="$t('payment.merchant.alipayDirectApp.capabilityTitle')"
     width="720px"
     :confirm-loading="loading"
     :ok-button-props="{ disabled: !hasApps }"
@@ -210,23 +202,15 @@
   >
     <a-spin :spinning="loading">
       <div class="mb-3 text-xs leading-relaxed text-muted-foreground">
-        {{ $t('payment.channel.alipayMchManage.capabilityDesc') }}
+        {{ $t('payment.merchant.alipayDirectApp.capabilityDesc') }}
       </div>
 
       <div v-if="!loading && !hasApps" class="mb-3">
-        <a-alert
-          type="warning"
-          show-icon
-          :message="$t('payment.channel.alipayMchManage.capabilityNoApp')"
-        />
+        <a-alert type="warning" show-icon :message="$t('payment.merchant.alipayDirectApp.capabilityNoApp')" />
       </div>
 
       <div v-else class="capability-list">
-        <div
-          v-for="cap in capabilities"
-          :key="cap.code"
-          class="capability-row"
-        >
+        <div v-for="cap in capabilities" :key="cap.code" class="capability-row">
           <div class="capability-name">
             <span class="font-medium text-foreground">{{ cap.name }}</span>
             <span class="ml-1 text-xs text-muted-foreground">{{ cap.code }}</span>
@@ -240,12 +224,12 @@
               v-model:value="bindingMap[cap.code]"
               allow-clear
               :loading="loading"
-              :placeholder="$t('payment.channel.alipayMchManage.capabilitySelectPlaceholder')"
+              :placeholder="$t('payment.merchant.alipayDirectApp.capabilitySelectPlaceholder')"
               :options="appSelectOptions(cap.code)"
               class="w-52"
             />
             <span v-else class="w-52 text-xs text-muted-foreground">
-              {{ $t('payment.channel.alipayMchManage.capabilityNoCompatibleApp') }}
+              {{ $t('payment.merchant.alipayDirectApp.capabilityNoCompatibleApp') }}
             </span>
           </div>
         </div>
