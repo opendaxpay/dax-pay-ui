@@ -113,6 +113,10 @@
       "types": "./src/hooks/useRequiredRouteQuery.ts",
       "default": "./src/hooks/useRequiredRouteQuery.ts"
     },
+    "./hooks/useSensitiveDataCleanup": {
+      "types": "./src/hooks/useSensitiveDataCleanup.ts",
+      "default": "./src/hooks/useSensitiveDataCleanup.ts"
+    },
     "./utils/file": {
       "types": "./src/utils/file.ts",
       "default": "./src/utils/file.ts"

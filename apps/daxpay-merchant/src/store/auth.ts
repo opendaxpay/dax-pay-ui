@@ -12,6 +12,7 @@ import { AuthApi, TWO_FACTOR_REQUIRED_CODE } from '#/api/core/auth.api';
 import { UserCommonApi } from '#/api/core/user.api';
 import { CLIENT_CODE } from '#/constants/client';
 import { useMessage } from '#/hooks/useMessage';
+import { useSensitiveDataCleanup } from '#/hooks/useSensitiveDataCleanup';
 import { $t } from '#/locales';
 import { HOME_PATH } from '#/router/routes';
 import { encryptPassword } from '#/utils/rsa-encrypt';
@@ -20,6 +21,7 @@ export const useAuthStore = defineStore('auth', () => {
   const accessStore = useAccessStore();
   const userStore = useUserStore();
   const router = useRouter();
+  const { clearOnSessionEnd } = useSensitiveDataCleanup();
 
   const loginLoading = ref(false);
 
@@ -145,6 +147,8 @@ export const useAuthStore = defineStore('auth', () => {
     await AuthApi.logout();
     // 清除Token存储
     accessStore.clearTokenFromStorage();
+    // 登出时清除调试功能保存的敏感凭证(生产模式生效)
+    clearOnSessionEnd();
     resetAllStores();
     accessStore.setLoginExpired(false);
 
