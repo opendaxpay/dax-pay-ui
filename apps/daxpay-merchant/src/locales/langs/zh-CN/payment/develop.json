@@ -1,0 +1,322 @@
+{
+  "sign": {
+    "title": "签名调试",
+    "tabSign": "签名生成",
+    "tabVerify": "签名验证",
+    "field": {
+      "signParam": "待签名参数 (JSON 格式)",
+      "signPrivateKey": "RSA 私钥",
+      "signStr": "待签名字符串",
+      "signValue": "签名值 (sign)",
+      "verifyParam": "待验签参数 (不含 sign 字段的 JSON)",
+      "verifySign": "签名值",
+      "verifyPublicKey": "RSA 公钥"
+    },
+    "placeholder": {
+      "signParam": "例如: {'{'}\"mchNo\": \"M0001\", \"amount\": 1{'}'}",
+      "signPrivateKey": "请输入完整的 RSA 私钥 (PKCS8 格式)",
+      "verifyParam": "请输入待验签的 JSON 参数",
+      "verifySign": "Base64 签名串",
+      "verifyPublicKey": "请输入 RSA 公钥"
+    },
+    "rule": {
+      "signParam": "请输入待签名参数",
+      "signPrivateKey": "请输入私钥",
+      "verifyParam": "请输入待验签参数",
+      "verifySign": "请输入签名值",
+      "verifyPublicKey": "请输入公钥"
+    },
+    "btn": {
+      "genSign": "生成签名",
+      "reset": "重置",
+      "verify": "验证签名",
+      "copy": "复制"
+    },
+    "result": {
+      "divider": "签名结果",
+      "verifySuccess": "验证通过",
+      "verifySuccessSub": "签名有效，参数未被篡改",
+      "verifyFail": "验证失败",
+      "verifyFailSub": "签名无效，请检查参数或公钥",
+      "verifyEmpty": "请输入参数并点击验证"
+    },
+    "msg": {
+      "genSuccess": "签名生成成功",
+      "verifyDone": "验签完成",
+      "verifyPass": "验签通过",
+      "verifyNotPass": "验签不通过",
+      "copySuccess": "复制成功",
+      "copyFail": "复制失败"
+    }
+  },
+  "trade": {
+    "page": {
+      "title": "支付调试",
+      "tag": "模拟商户 API",
+      "warning": "本页仅组装参数并签名，提交后将模拟商户调用 /unipay/pay 发起真实交易（非管理端特权通道），请确认参数无误。"
+    },
+    "card": {
+      "basic": "基础信息",
+      "mchApp": "商户信息",
+      "param": "支付参数",
+      "order": "订单信息",
+      "advanced": "高级参数"
+    },
+    "mode": {
+      "label": "支付模式",
+      "route": "跟随通道路由",
+      "direct": "直接指定",
+      "routeDesc": "按应用通道路由解析通道商户与支付能力",
+      "directDesc": "由通道商户+支付能力直接决定支付实现，跳过通道路由"
+    },
+    "field": {
+      "privateKey": "商户私钥",
+      "mchNo": "商户",
+      "appId": "应用",
+      "channelMchNo": "通道商户",
+      "product": "支付产品",
+      "method": "支付方式",
+      "capability": "支付能力",
+      "openId": "OpenID",
+      "authCode": "付款码",
+      "notifyUrl": "异步通知地址",
+      "returnUrl": "同步跳转地址",
+      "attach": "商户附加参数",
+      "extraParam": "支付扩展参数",
+      "limitPay": "限制支付类型",
+      "expiredTime": "支付超时时间",
+      "bizOrderNo": "订单号",
+      "amount": "支付金额(分)",
+      "title": "支付标题",
+      "description": "支付描述"
+    },
+    "placeholder": {
+      "method": "请选择支付方式",
+      "capability": "请选择支付能力",
+      "openId": "微信 jsapi/mini 场景必填",
+      "authCode": "付款码支付必填",
+      "notifyUrl": "https://...",
+      "returnUrl": "https://...",
+      "attach": "回调时原样返回",
+      "extraParam": "JSON 格式, 通道特有长尾参数",
+      "limitPay": "选择或输入限制项, 如 no_credit",
+      "expiredTime": "留空默认 30 分钟",
+      "title": "测试订单",
+      "description": "请输入支付描述"
+    },
+    "default": {
+      "titlePrefix": "测试支付"
+    },
+    "btn": {
+      "setPrivateKey": "设置私钥",
+      "clearPrivateKey": "清除私钥",
+      "genOrderNo": "生成",
+      "reset": "重置表单",
+      "submit": "提交支付"
+    },
+    "privateKey": {
+      "modalTitle": "设置商户私钥",
+      "modalTip": "请输入商户 RSA 私钥，仅用于生成请求签名（仅保存在浏览器本地缓存中，不会用于管理端特权下单）。",
+      "placeholder": "请输入商户私钥",
+      "savedTip": "私钥保存成功",
+      "clearedTip": "私钥已清除",
+      "setTag": "已设置",
+      "setLabel": "已设置商户私钥",
+      "unsetTag": "未设置",
+      "clearConfirmTitle": "确认清除",
+      "clearConfirmContent": "确定要清除已设置的商户私钥吗？清除后需重新输入。"
+    },
+    "result": {
+      "modalTitle": "支付结果 (unipay)",
+      "failModalTitle": "支付失败 (unipay)",
+      "payLink": "支付链接",
+      "jsapiParam": "JSAPI 参数",
+      "formData": "表单数据",
+      "markCode": "标识码",
+      "copyData": "复制支付参数",
+      "copyFull": "复制完整响应",
+      "rawResponse": "完整 DaxResult 响应",
+      "empty": "暂无数据",
+      "field": {
+        "orderNo": "系统订单号"
+      }
+    },
+    "rule": {
+      "mchNo": "请选择商户",
+      "bizOrderNo": "请输入订单号",
+      "title": "请输入支付标题",
+      "amount": "请输入支付金额",
+      "method": "请选择支付方式",
+      "channelMchNo": "请选择通道商户",
+      "capability": "请选择支付能力",
+      "extraParam": "扩展参数需为合法 JSON 格式"
+    },
+    "msg": {
+      "signSuccess": "签名生成成功",
+      "paySuccess": "支付请求成功",
+      "payFail": "支付请求失败",
+      "inputPrivateKey": "请先设置商户私钥",
+      "copySuccess": "复制成功"
+    }
+  },
+  "auth": {
+    "title": "认证调试",
+    "type": {
+      "alipay": "支付宝H5",
+      "alipayMini": "支付宝小程序",
+      "wechatMp": "微信公众号",
+      "wechatMini": "微信小程序",
+      "wechatChannel": "微信支付",
+      "douyin": "抖音H5"
+    },
+    "tag": {
+      "alipay": "支付宝H5",
+      "alipayMini": "支付宝小程序",
+      "wechatMp": "微信公众号",
+      "wechatMini": "微信小程序",
+      "wechatChannel": "微信支付",
+      "douyin": "抖音H5"
+    },
+    "guide": {
+      "title": "使用说明",
+      "desc": "点击生成授权链接后，使用支付宝 App 扫码完成授权。结果将自动回显（依赖「三方平台管理」中的平台支付宝配置，以及「平台配置」中的支付网关前端地址）。",
+      "descAlipayMini": "支付宝小程序授权调试暂未实现，敬请期待。",
+      "descWechatMp": "点击生成授权链接后，使用微信扫码完成网页授权。结果将自动回显（依赖「三方平台管理」中的微信公众号配置，以及「平台配置」中的支付网关前端地址）。",
+      "descWechatMini": "选择商户端或运营端小程序后扫码获取用户标识（认证暂未实现，敬请期待）。",
+      "descWechatChannel": "选择商户/通道商户/支付能力后生成授权链接，使用微信扫码完成网页授权。用于验证微信支付（直连/服务商）配置是否正确，支付产品由通道商户自动识别。",
+      "descDouyin": "点击生成授权链接后，使用抖音 App 扫码完成静默授权。结果将自动回显（依赖「三方平台管理」中的抖音 H5 应用配置，以及「平台配置」中的支付网关前端地址）。"
+    },
+    "btn": {
+      "generate": "生成授权链接",
+      "copy": "复制"
+    },
+    "qr": {
+      "tip": "请使用支付宝扫码授权",
+      "tipWechat": "请使用微信扫码授权",
+      "tipDouyin": "请使用抖音扫码授权",
+      "empty": "暂未生成二维码",
+      "consumed": "二维码已使用，请重新生成授权链接"
+    },
+    "form": {
+      "mchNo": "商户",
+      "channelMchNo": "通道商户",
+      "capability": "支付能力",
+      "miniAppType": "小程序端类型",
+      "rule": {
+        "mchNo": "请选择商户",
+        "channelMchNo": "请选择通道商户",
+        "capability": "请选择支付能力",
+        "miniAppType": "请选择小程序端类型"
+      }
+    },
+    "miniAppType": {
+      "merchant": "商户端",
+      "admin": "运营端"
+    },
+    "result": {
+      "divider": "授权结果",
+      "openId": "用户标识 (OpenId)",
+      "userId": "用户ID (UserId)",
+      "accessToken": "Access Token"
+    },
+    "msg": {
+      "success": "获取授权结果成功",
+      "notExist": "获取授权结果失败（查询码不存在或已过期）",
+      "copySuccess": "复制成功",
+      "copyFail": "复制失败"
+    }
+  },
+  "gateway": {
+    "page": {
+      "title": "网关支付调试",
+      "tag": "模拟商户 API",
+      "warning": "本页仅组装参数并签名，提交后将模拟商户调用 /unipay/gateway/pre-pay 生成收银台/聚合扫码落地页（非管理端特权通道），请确认参数无误。"
+    },
+    "card": {
+      "mchApp": "商户信息",
+      "order": "订单信息",
+      "param": "扩展参数",
+      "advanced": "高级参数"
+    },
+    "gatewayType": {
+      "label": "网关支付类型",
+      "cashier": "统一收银台",
+      "aggregate": "聚合扫码",
+      "cashierDesc": "生成收银台落地页，用户在页面选择支付方式",
+      "aggregateDesc": "生成聚合扫码链接，一码多付自动识别"
+    },
+    "field": {
+      "privateKey": "商户私钥",
+      "mchNo": "商户",
+      "appId": "应用",
+      "bizOrderNo": "订单号",
+      "amount": "支付金额(分)",
+      "title": "支付标题",
+      "description": "支付描述",
+      "notifyUrl": "异步通知地址",
+      "returnUrl": "同步跳转地址",
+      "attach": "商户附加参数",
+      "extraParam": "支付扩展参数",
+      "expiredTime": "支付超时时间",
+      "storeNo": "门店号"
+    },
+    "placeholder": {
+      "notifyUrl": "https://...",
+      "returnUrl": "https://...",
+      "attach": "回调时原样返回",
+      "extraParam": "JSON 格式, 通道特有长尾参数",
+      "expiredTime": "留空默认 30 分钟",
+      "storeNo": "线下经营门店号",
+      "title": "测试订单",
+      "description": "请输入支付描述"
+    },
+    "default": {
+      "titlePrefix": "测试网关支付"
+    },
+    "btn": {
+      "setPrivateKey": "设置私钥",
+      "genOrderNo": "生成",
+      "reset": "重置表单",
+      "submit": "提交预下单"
+    },
+    "privateKey": {
+      "modalTitle": "设置商户私钥",
+      "modalTip": "请输入商户 RSA 私钥，仅用于生成请求签名（仅保存在浏览器本地缓存中，不会用于管理端特权下单）。",
+      "placeholder": "请输入商户私钥",
+      "savedTip": "私钥保存成功",
+      "clearedTip": "私钥已清除",
+      "setTag": "已设置",
+      "setLabel": "已设置商户私钥",
+      "unsetTag": "未设置",
+      "clearConfirmTitle": "确认清除",
+      "clearConfirmContent": "确定要清除已设置的商户私钥吗？清除后需重新输入。"
+    },
+    "result": {
+      "modalTitle": "预下单结果 (unipay)",
+      "failModalTitle": "预下单失败 (unipay)",
+      "url": "网关落地页 URL",
+      "copyUrl": "复制链接",
+      "openUrl": "打开",
+      "orderNo": "平台网关单号",
+      "status": "业务状态",
+      "rawResponse": "完整 DaxResult 响应",
+      "copyFull": "复制完整响应"
+    },
+    "rule": {
+      "mchNo": "请选择商户",
+      "bizOrderNo": "请输入订单号",
+      "title": "请输入支付标题",
+      "amount": "请输入支付金额",
+      "gatewayPayType": "请选择网关支付类型",
+      "extraParam": "扩展参数需为合法 JSON 格式"
+    },
+    "msg": {
+      "signSuccess": "签名生成成功",
+      "signFail": "签名生成失败,请重试",
+      "prePaySuccess": "预下单请求成功",
+      "prePayFail": "预下单请求失败",
+      "inputPrivateKey": "请先设置商户私钥",
+      "copySuccess": "复制成功"
+    }
+  }
+}

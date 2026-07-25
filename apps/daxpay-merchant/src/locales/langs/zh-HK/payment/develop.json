@@ -1,0 +1,322 @@
+{
+  "sign": {
+    "title": "簽名調試",
+    "tabSign": "簽名生成",
+    "tabVerify": "簽名驗證",
+    "field": {
+      "signParam": "待簽名參數 (JSON 格式)",
+      "signPrivateKey": "RSA 私鑰",
+      "signStr": "待簽名字符串",
+      "signValue": "簽名值 (sign)",
+      "verifyParam": "待驗籤參數 (不含 sign 字段的 JSON)",
+      "verifySign": "簽名值",
+      "verifyPublicKey": "RSA 公鑰"
+    },
+    "placeholder": {
+      "signParam": "例如: {'{'}\"mchNo\": \"M0001\", \"amount\": 1{'}'}",
+      "signPrivateKey": "請輸入完整的 RSA 私鑰 (PKCS8 格式)",
+      "verifyParam": "請輸入待驗籤的 JSON 參數",
+      "verifySign": "Base64 簽名串",
+      "verifyPublicKey": "請輸入 RSA 公鑰"
+    },
+    "rule": {
+      "signParam": "請輸入待簽名參數",
+      "signPrivateKey": "請輸入私鑰",
+      "verifyParam": "請輸入待驗籤參數",
+      "verifySign": "請輸入簽名值",
+      "verifyPublicKey": "請輸入公鑰"
+    },
+    "btn": {
+      "genSign": "生成簽名",
+      "reset": "重置",
+      "verify": "驗證簽名",
+      "copy": "複製"
+    },
+    "result": {
+      "divider": "簽名結果",
+      "verifySuccess": "驗證通過",
+      "verifySuccessSub": "簽名有效，參數未被篡改",
+      "verifyFail": "驗證失敗",
+      "verifyFailSub": "簽名無效，請檢查參數或公鑰",
+      "verifyEmpty": "請輸入參數並點擊驗證"
+    },
+    "msg": {
+      "genSuccess": "簽名生成成功",
+      "verifyDone": "驗簽完成",
+      "verifyPass": "驗籤通過",
+      "verifyNotPass": "驗籤不通過",
+      "copySuccess": "複製成功",
+      "copyFail": "複製失敗"
+    }
+  },
+  "trade": {
+    "page": {
+      "title": "支付調試",
+      "tag": "模擬商户 API",
+      "warning": "本頁僅組裝參數並簽名，提交後將模擬商户調用 /unipay/pay 發起真實交易（非管理端特權通道），請確認參數無誤。"
+    },
+    "card": {
+      "basic": "基礎信息",
+      "mchApp": "商户信息",
+      "param": "支付參數",
+      "order": "訂單信息",
+      "advanced": "進階參數"
+    },
+    "mode": {
+      "label": "支付模式",
+      "route": "跟隨通道路由",
+      "direct": "直接指定",
+      "routeDesc": "按應用通道路由解析通道商户與支付能力",
+      "directDesc": "由通道商户+支付能力直接決定支付實現，跳過通道路由"
+    },
+    "field": {
+      "privateKey": "商户私鑰",
+      "mchNo": "商户",
+      "appId": "應用",
+      "channelMchNo": "通道商户",
+      "product": "支付產品",
+      "method": "支付方式",
+      "capability": "支付能力",
+      "openId": "OpenID",
+      "authCode": "付款碼",
+      "notifyUrl": "異步通知地址",
+      "expiredTime": "支付超時時間",
+      "bizOrderNo": "訂單號",
+      "amount": "支付金額(分)",
+      "title": "支付標題",
+      "description": "支付描述",
+      "returnUrl": "同步跳轉地址",
+      "attach": "商戶附加參數",
+      "extraParam": "支付擴展參數",
+      "limitPay": "限制支付類型"
+    },
+    "placeholder": {
+      "method": "請選擇支付方式",
+      "capability": "請選擇支付能力",
+      "openId": "微信 jsapi/mini 場景必填",
+      "authCode": "付款碼支付必填",
+      "notifyUrl": "https://...",
+      "expiredTime": "留空默認 30 分鐘",
+      "title": "測試訂單",
+      "description": "請輸入支付描述",
+      "returnUrl": "https://...",
+      "attach": "回呼時原樣返回",
+      "extraParam": "JSON 格式, 通道特有長尾參數",
+      "limitPay": "選擇或輸入限制項, 如 no_credit"
+    },
+    "default": {
+      "titlePrefix": "測試支付"
+    },
+    "btn": {
+      "setPrivateKey": "設置私鑰",
+      "clearPrivateKey": "清除私鑰",
+      "genOrderNo": "生成",
+      "reset": "重置表單",
+      "submit": "提交支付"
+    },
+    "privateKey": {
+      "modalTitle": "設置商户私鑰",
+      "modalTip": "請輸入商户 RSA 私鑰，僅用於生成請求籤名（僅保存在瀏覽器本地緩存中，不會用於管理端特權下單）。",
+      "placeholder": "請輸入商户私鑰",
+      "savedTip": "私鑰保存成功",
+      "clearedTip": "私鑰已清除",
+      "setTag": "已設置",
+      "setLabel": "已設置商户私鑰",
+      "unsetTag": "未設置",
+      "clearConfirmTitle": "確認清除",
+      "clearConfirmContent": "確定要清除已設置的商户私鑰嗎？清除後需重新輸入。"
+    },
+    "result": {
+      "modalTitle": "支付結果 (unipay)",
+      "failModalTitle": "支付失敗 (unipay)",
+      "payLink": "支付鏈接",
+      "jsapiParam": "JSAPI 參數",
+      "formData": "表單數據",
+      "markCode": "標識碼",
+      "copyData": "複製支付參數",
+      "copyFull": "複製完整響應",
+      "rawResponse": "完整 DaxResult 響應",
+      "empty": "暫無數據",
+      "field": {
+        "orderNo": "系統訂單號"
+      }
+    },
+    "rule": {
+      "mchNo": "請選擇商户",
+      "bizOrderNo": "請輸入訂單號",
+      "title": "請輸入支付標題",
+      "amount": "請輸入支付金額",
+      "method": "請選擇支付方式",
+      "channelMchNo": "請選擇通道商户",
+      "capability": "請選擇支付能力",
+      "extraParam": "擴展參數需為合法 JSON 格式"
+    },
+    "msg": {
+      "signSuccess": "簽名生成成功",
+      "paySuccess": "支付請求成功",
+      "payFail": "支付請求失敗",
+      "inputPrivateKey": "請先設置商户私鑰",
+      "copySuccess": "複製成功"
+    }
+  },
+  "auth": {
+    "title": "認證調試",
+    "type": {
+      "alipay": "支付寶H5",
+      "alipayMini": "支付寶小程序",
+      "wechatMp": "微信公眾號",
+      "wechatMini": "微信小程序",
+      "wechatChannel": "微信支付",
+      "douyin": "抖音H5"
+    },
+    "tag": {
+      "alipay": "支付寶H5",
+      "alipayMini": "支付寶小程序",
+      "wechatMp": "微信公眾號",
+      "wechatMini": "微信小程序",
+      "wechatChannel": "微信支付",
+      "douyin": "抖音H5"
+    },
+    "guide": {
+      "title": "使用説明",
+      "desc": "點擊生成授權鏈接後，使用支付寶 App 掃碼完成授權。結果將自動回顯（依賴「三方平台管理」中的平台支付寶配置，以及「平台配置」中的支付網關前端地址）。",
+      "descAlipayMini": "支付寶小程序授權調試暫未實現，敬請期待。",
+      "descWechatMp": "點擊生成授權鏈接後，使用微信掃碼完成網頁授權。結果將自動回顯（依賴「三方平台管理」中的微信公眾號配置，以及「平台配置」中的支付網關前端地址）。",
+      "descWechatMini": "選擇商户端或運營端小程序後掃碼獲取用户標識（認證暫未實現，敬請期待）。",
+      "descWechatChannel": "選擇商户/通道商户/支付能力後生成授權鏈接，使用微信掃碼完成網頁授權。用於驗證微信支付（直連/服務商）配置是否正確，支付產品由通道商户自動識別。",
+      "descDouyin": "點擊生成授權鏈接後，使用抖音 App 掃碼完成靜默授權。結果將自動回顯（依賴「三方平台管理」中的抖音 H5 應用配置，以及「平台配置」中的支付網關前端地址）。"
+    },
+    "btn": {
+      "generate": "生成授權鏈接",
+      "copy": "複製"
+    },
+    "qr": {
+      "tip": "請使用支付寶掃碼授權",
+      "tipWechat": "請使用微信掃碼授權",
+      "tipDouyin": "請使用抖音掃碼授權",
+      "empty": "暫未生成二維碼",
+      "consumed": "QR Code 已使用，請重新產生授權鏈接"
+    },
+    "form": {
+      "mchNo": "商户",
+      "channelMchNo": "通道商户",
+      "capability": "支付能力",
+      "miniAppType": "小程序端類型",
+      "rule": {
+        "mchNo": "請選擇商户",
+        "channelMchNo": "請選擇通道商户",
+        "capability": "請選擇支付能力",
+        "miniAppType": "請選擇小程序端類型"
+      }
+    },
+    "miniAppType": {
+      "merchant": "商户端",
+      "admin": "運營端"
+    },
+    "result": {
+      "divider": "授權結果",
+      "openId": "用户標識 (OpenId)",
+      "userId": "用户ID (UserId)",
+      "accessToken": "Access Token"
+    },
+    "msg": {
+      "success": "獲取授權結果成功",
+      "notExist": "獲取授權結果失敗（查詢碼不存在或已過期）",
+      "copySuccess": "複製成功",
+      "copyFail": "複製失敗"
+    }
+  },
+  "gateway": {
+    "page": {
+      "title": "網關支付調試",
+      "tag": "模擬商戶 API",
+      "warning": "本頁僅組裝參數並簽名，提交後將模擬商戶調用 /unipay/gateway/pre-pay 生成收銀台/聚合掃碼落地頁（非管理端特權通道），請確認參數無誤。"
+    },
+    "card": {
+      "mchApp": "商戶資訊",
+      "order": "訂單資訊",
+      "param": "擴展參數",
+      "advanced": "進階參數"
+    },
+    "gatewayType": {
+      "label": "網關支付類型",
+      "cashier": "統一收銀台",
+      "aggregate": "聚合掃碼",
+      "cashierDesc": "生成收銀台落地頁，用戶喺頁面選擇支付方式",
+      "aggregateDesc": "生成聚合掃碼連結，一碼多付自動識別"
+    },
+    "field": {
+      "privateKey": "商戶私鑰",
+      "mchNo": "商戶",
+      "appId": "應用",
+      "bizOrderNo": "訂單號",
+      "amount": "支付金額(分)",
+      "title": "支付標題",
+      "description": "支付描述",
+      "notifyUrl": "異步通知地址",
+      "returnUrl": "同步跳轉地址",
+      "expiredTime": "支付超時時間",
+      "storeNo": "門店號",
+      "attach": "商戶附加參數",
+      "extraParam": "支付擴展參數"
+    },
+    "placeholder": {
+      "notifyUrl": "https://...",
+      "returnUrl": "https://...",
+      "expiredTime": "留空預設 30 分鐘",
+      "storeNo": "線下經營門店號",
+      "title": "測試訂單",
+      "description": "請輸入支付描述",
+      "attach": "回呼時原樣返回",
+      "extraParam": "JSON 格式, 通道特有長尾參數"
+    },
+    "default": {
+      "titlePrefix": "測試網關支付"
+    },
+    "btn": {
+      "setPrivateKey": "設定私鑰",
+      "genOrderNo": "生成",
+      "reset": "重置表單",
+      "submit": "提交預下單"
+    },
+    "privateKey": {
+      "modalTitle": "設定商戶私鑰",
+      "modalTip": "請輸入商戶 RSA 私鑰，僅用於生成請求簽名（僅保存在瀏覽器本地緩存中，唔會用於管理端特權下單）。",
+      "placeholder": "請輸入商戶私鑰",
+      "savedTip": "私鑰保存成功",
+      "clearedTip": "私鑰已清除",
+      "setTag": "已設定",
+      "setLabel": "已設定商戶私鑰",
+      "unsetTag": "未設定",
+      "clearConfirmTitle": "確認清除",
+      "clearConfirmContent": "確定要清除已設定嘅商戶私鑰嗎？清除後需重新輸入。"
+    },
+    "result": {
+      "modalTitle": "預下單結果 (unipay)",
+      "failModalTitle": "預下單失敗 (unipay)",
+      "url": "網關落地頁 URL",
+      "copyUrl": "複製連結",
+      "openUrl": "打開",
+      "orderNo": "平台網關單號",
+      "status": "業務狀態",
+      "rawResponse": "完整 DaxResult 響應",
+      "copyFull": "複製完整響應"
+    },
+    "rule": {
+      "mchNo": "請選擇商戶",
+      "bizOrderNo": "請輸入訂單號",
+      "title": "請輸入支付標題",
+      "amount": "請輸入支付金額",
+      "gatewayPayType": "請選擇網關支付類型",
+      "extraParam": "擴展參數需為合法 JSON 格式"
+    },
+    "msg": {
+      "signSuccess": "簽名生成成功",
+      "signFail": "簽名生成失敗,請重試",
+      "prePaySuccess": "預下單請求成功",
+      "prePayFail": "預下單請求失敗",
+      "inputPrivateKey": "請先設定商戶私鑰",
+      "copySuccess": "複製成功"
+    }
+  }
+}

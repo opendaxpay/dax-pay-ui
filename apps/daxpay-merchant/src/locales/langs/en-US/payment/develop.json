@@ -1,0 +1,322 @@
+{
+  "sign": {
+    "title": "Sign Develop",
+    "tabSign": "Generate Sign",
+    "tabVerify": "Verify Sign",
+    "field": {
+      "signParam": "Params to sign (JSON)",
+      "signPrivateKey": "RSA Private Key",
+      "signStr": "String to be signed",
+      "signValue": "Sign Value (sign)",
+      "verifyParam": "Params to verify (JSON without sign)",
+      "verifySign": "Sign Value",
+      "verifyPublicKey": "RSA Public Key"
+    },
+    "placeholder": {
+      "signParam": "e.g. {'{'}\"mchNo\": \"M0001\", \"amount\": 1{'}'}",
+      "signPrivateKey": "Enter the full RSA private key (PKCS8)",
+      "verifyParam": "Enter the JSON params to verify",
+      "verifySign": "Base64 sign string",
+      "verifyPublicKey": "Enter the RSA public key"
+    },
+    "rule": {
+      "signParam": "Please enter params to sign",
+      "signPrivateKey": "Please enter the private key",
+      "verifyParam": "Please enter params to verify",
+      "verifySign": "Please enter the sign value",
+      "verifyPublicKey": "Please enter the public key"
+    },
+    "btn": {
+      "genSign": "Generate Sign",
+      "reset": "Reset",
+      "verify": "Verify Sign",
+      "copy": "Copy"
+    },
+    "result": {
+      "divider": "Sign Result",
+      "verifySuccess": "Passed",
+      "verifySuccessSub": "Signature is valid, params are not tampered",
+      "verifyFail": "Failed",
+      "verifyFailSub": "Signature is invalid, check params or public key",
+      "verifyEmpty": "Enter params and click verify"
+    },
+    "msg": {
+      "genSuccess": "Sign generated successfully",
+      "verifyDone": "Verification completed",
+      "verifyPass": "Verification passed",
+      "verifyNotPass": "Verification not passed",
+      "copySuccess": "Copied",
+      "copyFail": "Copy failed"
+    }
+  },
+  "trade": {
+    "page": {
+      "title": "Payment Develop",
+      "tag": "Simulated Merchant API",
+      "warning": "This page only builds params and signs them. Submit simulates a merchant call to /unipay/pay (not an admin privilege path). Confirm params carefully."
+    },
+    "card": {
+      "basic": "Basic Info",
+      "mchApp": "Merchant Info",
+      "param": "Payment Params",
+      "order": "Order Info",
+      "advanced": "Advanced Params"
+    },
+    "mode": {
+      "label": "Pay Mode",
+      "route": "Follow Channel Routing",
+      "direct": "Specify Directly",
+      "routeDesc": "Resolve channel merchant and capability via the app's channel routing",
+      "directDesc": "Directly specify channel merchant + capability; skip channel routing"
+    },
+    "field": {
+      "privateKey": "Merchant Private Key",
+      "mchNo": "Merchant",
+      "appId": "Application",
+      "channelMchNo": "Channel Merchant",
+      "product": "Payment Product",
+      "method": "Payment Method",
+      "capability": "Capability",
+      "openId": "OpenID",
+      "authCode": "Payment code",
+      "notifyUrl": "Async Notify URL",
+      "returnUrl": "Sync Return URL",
+      "attach": "Attach",
+      "extraParam": "Extra Params",
+      "limitPay": "Limit Pay",
+      "expiredTime": "Expire Time",
+      "bizOrderNo": "Order No.",
+      "amount": "Amount (Fen)",
+      "title": "Title",
+      "description": "Description"
+    },
+    "placeholder": {
+      "method": "Select payment method",
+      "capability": "Select capability",
+      "openId": "Required for WeChat jsapi/mini",
+      "authCode": "Required for barcode pay",
+      "notifyUrl": "https://...",
+      "returnUrl": "https://...",
+      "attach": "Returned as-is in callback",
+      "extraParam": "JSON, channel-specific params",
+      "limitPay": "Select or input, e.g. no_credit",
+      "expiredTime": "Default 30 minutes if empty",
+      "title": "Test order",
+      "description": "Enter payment description"
+    },
+    "default": {
+      "titlePrefix": "Test Pay"
+    },
+    "btn": {
+      "setPrivateKey": "Set Key",
+      "clearPrivateKey": "Clear Key",
+      "genOrderNo": "Generate",
+      "reset": "Reset",
+      "submit": "Submit"
+    },
+    "privateKey": {
+      "modalTitle": "Set Merchant Private Key",
+      "modalTip": "Enter the merchant RSA private key for request signing only (stored in browser local cache; not used for admin privilege pay).",
+      "placeholder": "Enter the merchant private key",
+      "savedTip": "Private key saved",
+      "clearedTip": "Private key cleared",
+      "setTag": "Set",
+      "setLabel": "Merchant private key set",
+      "unsetTag": "Not Set",
+      "clearConfirmTitle": "Confirm Clear",
+      "clearConfirmContent": "Are you sure you want to clear the merchant private key? It will need to be re-entered."
+    },
+    "result": {
+      "modalTitle": "Payment Result (unipay)",
+      "failModalTitle": "Payment Failed (unipay)",
+      "payLink": "Payment Link",
+      "jsapiParam": "JSAPI Params",
+      "formData": "Form Data",
+      "markCode": "Mark Code",
+      "copyData": "Copy Pay Body",
+      "copyFull": "Copy Full Response",
+      "rawResponse": "Full DaxResult Response",
+      "empty": "No data",
+      "field": {
+        "orderNo": "System Order No."
+      }
+    },
+    "rule": {
+      "mchNo": "Please select a merchant",
+      "bizOrderNo": "Please enter the order no.",
+      "title": "Please enter the title",
+      "amount": "Please enter the amount",
+      "method": "Please select a payment method",
+      "channelMchNo": "Please select a channel merchant",
+      "capability": "Please select a capability",
+      "extraParam": "Extra params must be valid JSON"
+    },
+    "msg": {
+      "signSuccess": "Sign generated successfully",
+      "paySuccess": "Payment request succeeded",
+      "payFail": "Payment request failed",
+      "inputPrivateKey": "Please set the merchant private key first",
+      "copySuccess": "Copied"
+    }
+  },
+  "auth": {
+    "title": "Auth Develop",
+    "type": {
+      "alipay": "Alipay H5",
+      "alipayMini": "Alipay Mini Program",
+      "wechatMp": "WeChat Official Account",
+      "wechatMini": "WeChat Mini Program",
+      "wechatChannel": "WeChat Pay",
+      "douyin": "Douyin H5"
+    },
+    "tag": {
+      "alipay": "Alipay H5",
+      "alipayMini": "Alipay Mini Program",
+      "wechatMp": "WeChat Official Account",
+      "wechatMini": "WeChat Mini Program",
+      "wechatChannel": "WeChat Pay",
+      "douyin": "Douyin H5"
+    },
+    "guide": {
+      "title": "How to use",
+      "desc": "Generate an auth link and scan with Alipay app. Results appear automatically (requires Alipay config in Third-party Platform Management, and payment gateway base URL in Platform Config).",
+      "descAlipayMini": "Alipay Mini Program auth debugging is not implemented yet.",
+      "descWechatMp": "Generate an auth link and scan with WeChat to complete web authorization. Results appear automatically (requires WeChat Official Account config in Third-party Platform Management, and payment gateway base URL in Platform Config).",
+      "descWechatMini": "Select merchant or admin mini program, then scan to get the user ID (auth not implemented yet).",
+      "descWechatChannel": "Select merchant/channel merchant/capability, then generate an auth link and scan with WeChat. Used to verify WeChat Pay (direct/ISV) configuration; the payment product is auto-detected from the channel merchant.",
+      "descDouyin": "Generate an auth link and scan with the Douyin app to complete silent authorization. Results appear automatically (requires Douyin H5 app config in Third-party Platform Management, and payment gateway base URL in Platform Config)."
+    },
+    "btn": {
+      "generate": "Generate Auth Link",
+      "copy": "Copy"
+    },
+    "qr": {
+      "tip": "Scan with Alipay to authorize",
+      "tipWechat": "Scan with WeChat to authorize",
+      "tipDouyin": "Scan with Douyin to authorize",
+      "empty": "No QR code yet",
+      "consumed": "QR code has been used. Please regenerate the authorization link."
+    },
+    "form": {
+      "mchNo": "Merchant",
+      "channelMchNo": "Channel Merchant",
+      "capability": "Pay Capability",
+      "miniAppType": "Mini Program Side",
+      "rule": {
+        "mchNo": "Please select a merchant",
+        "channelMchNo": "Please select a channel merchant",
+        "capability": "Please select a pay capability",
+        "miniAppType": "Please select mini program side"
+      }
+    },
+    "miniAppType": {
+      "merchant": "Merchant",
+      "admin": "Admin"
+    },
+    "result": {
+      "divider": "Auth Result",
+      "openId": "OpenId",
+      "userId": "UserId",
+      "accessToken": "Access Token"
+    },
+    "msg": {
+      "success": "Auth result received",
+      "notExist": "Auth result not found or expired",
+      "copySuccess": "Copied",
+      "copyFail": "Copy failed"
+    }
+  },
+  "gateway": {
+    "page": {
+      "title": "Gateway Pay Debug",
+      "tag": "Simulate Merchant API",
+      "warning": "This page only assembles parameters and signs. On submit it simulates a merchant call to /unipay/gateway/pre-pay to generate a cashier/aggregate landing page (not an admin privileged channel). Please verify parameters."
+    },
+    "card": {
+      "mchApp": "Merchant",
+      "order": "Order",
+      "param": "Extra Parameters",
+      "advanced": "Advanced Params"
+    },
+    "gatewayType": {
+      "label": "Gateway Type",
+      "cashier": "Unified Cashier",
+      "aggregate": "Aggregate QR",
+      "cashierDesc": "Generate a cashier landing page where users choose a payment method",
+      "aggregateDesc": "Generate an aggregate QR link, one code for multiple payment methods"
+    },
+    "field": {
+      "privateKey": "Merchant Private Key",
+      "mchNo": "Merchant",
+      "appId": "App",
+      "bizOrderNo": "Order No.",
+      "amount": "Amount (cents)",
+      "title": "Payment Title",
+      "description": "Description",
+      "notifyUrl": "Async Notify URL",
+      "returnUrl": "Sync Return URL",
+      "attach": "Attach",
+      "extraParam": "Extra Params",
+      "expiredTime": "Expire Time",
+      "storeNo": "Store No."
+    },
+    "placeholder": {
+      "notifyUrl": "https://...",
+      "returnUrl": "https://...",
+      "attach": "Returned as-is in callback",
+      "extraParam": "JSON, channel-specific params",
+      "expiredTime": "Default 30 min",
+      "storeNo": "Offline store number",
+      "title": "Test order",
+      "description": "Enter payment description"
+    },
+    "default": {
+      "titlePrefix": "Test Gateway Pay"
+    },
+    "btn": {
+      "setPrivateKey": "Set Key",
+      "genOrderNo": "Generate",
+      "reset": "Reset",
+      "submit": "Submit Pre-pay"
+    },
+    "privateKey": {
+      "modalTitle": "Set Merchant Private Key",
+      "modalTip": "Enter the merchant RSA private key. It is only used for request signing (stored in browser local cache only, not used for admin privileged ordering).",
+      "placeholder": "Enter merchant private key",
+      "savedTip": "Private key saved",
+      "clearedTip": "Private key cleared",
+      "setTag": "Set",
+      "setLabel": "Merchant private key set",
+      "unsetTag": "Not set",
+      "clearConfirmTitle": "Confirm Clear",
+      "clearConfirmContent": "Are you sure to clear the merchant private key? You will need to re-enter it."
+    },
+    "result": {
+      "modalTitle": "Pre-pay Result (unipay)",
+      "failModalTitle": "Pre-pay Failed (unipay)",
+      "url": "Gateway Landing Page URL",
+      "copyUrl": "Copy URL",
+      "openUrl": "Open",
+      "orderNo": "Platform Order No.",
+      "status": "Status",
+      "rawResponse": "Full DaxResult Response",
+      "copyFull": "Copy Full Response"
+    },
+    "rule": {
+      "mchNo": "Please select a merchant",
+      "bizOrderNo": "Please enter order no.",
+      "title": "Please enter payment title",
+      "amount": "Please enter amount",
+      "gatewayPayType": "Please select gateway type",
+      "extraParam": "Extra params must be valid JSON"
+    },
+    "msg": {
+      "signSuccess": "Sign generated",
+      "signFail": "Sign generation failed, please retry",
+      "prePaySuccess": "Pre-pay request succeeded",
+      "prePayFail": "Pre-pay request failed",
+      "inputPrivateKey": "Please set merchant private key first",
+      "copySuccess": "Copied"
+    }
+  }
+}

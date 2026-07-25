@@ -1,0 +1,322 @@
+{
+  "sign": {
+    "title": "Đăng ký phát triển",
+    "tabSign": "Tạo dấu hiệu",
+    "tabVerify": "Xác minh ký hiệu",
+    "field": {
+      "signParam": "Thông số để ký (JSON)",
+      "signPrivateKey": "Khóa riêng RSA",
+      "signStr": "Chuỗi cần được ký",
+      "signValue": "Giá trị dấu hiệu (ký hiệu)",
+      "verifyParam": "Thông số cần xác minh (JSON không có dấu)",
+      "verifySign": "Giá trị ký hiệu",
+      "verifyPublicKey": "Khóa công khai RSA"
+    },
+    "placeholder": {
+      "signParam": "ví dụ. {'{'}\"mchNo\": \"M0001\", \"số tiền\": 1{'}'}",
+      "signPrivateKey": "Nhập khóa riêng RSA đầy đủ (PKCS8)",
+      "verifyParam": "Nhập thông số JSON để xác minh",
+      "verifySign": "Chuỗi ký hiệu Base64",
+      "verifyPublicKey": "Nhập khóa công khai RSA"
+    },
+    "rule": {
+      "signParam": "Vui lòng nhập thông số để ký",
+      "signPrivateKey": "Vui lòng nhập khóa riêng",
+      "verifyParam": "Vui lòng nhập thông số để xác minh",
+      "verifySign": "Hãy nhập giá trị dấu",
+      "verifyPublicKey": "Vui lòng nhập khóa công khai"
+    },
+    "btn": {
+      "genSign": "Tạo dấu hiệu",
+      "reset": "Cài lại",
+      "verify": "Xác minh ký hiệu",
+      "copy": "Sao chép"
+    },
+    "result": {
+      "divider": "Ký kết quả",
+      "verifySuccess": "Đi qua",
+      "verifySuccessSub": "Chữ ký hợp lệ, thông số không bị giả mạo",
+      "verifyFail": "Thất bại",
+      "verifyFailSub": "Chữ ký không hợp lệ, hãy kiểm tra thông số hoặc khóa chung",
+      "verifyEmpty": "Nhập thông số và nhấp vào xác minh"
+    },
+    "msg": {
+      "genSuccess": "Đăng ký được tạo thành công",
+      "verifyDone": "Đã hoàn tất xác minh",
+      "verifyPass": "Xác minh đã được thông qua",
+      "verifyNotPass": "Xác minh không được thông qua",
+      "copySuccess": "Đã sao chép",
+      "copyFail": "Sao chép không thành công"
+    }
+  },
+  "trade": {
+    "page": {
+      "title": "Phát triển thanh toán",
+      "tag": "API người bán mô phỏng",
+      "warning": "Trang này chỉ xây dựng các thông số và ký tên chúng. Gửi mô phỏng cuộc gọi của người bán tới /unipay/pay (không phải đường dẫn đặc quyền của quản trị viên). Xác nhận các thông số một cách cẩn thận."
+    },
+    "card": {
+      "basic": "Thông tin cơ bản",
+      "mchApp": "Thông tin người bán",
+      "param": "Thông số thanh toán",
+      "order": "Thông tin đặt hàng",
+      "advanced": "Tham số nâng cao"
+    },
+    "mode": {
+      "label": "Chế độ thanh toán",
+      "route": "Theo dõi định tuyến kênh",
+      "direct": "Chỉ định trực tiếp",
+      "routeDesc": "Giải quyết khả năng và người bán kênh thông qua định tuyến kênh của ứng dụng",
+      "directDesc": "Quyết định bởi người bán kênh + khả năng; bỏ qua định tuyến kênh"
+    },
+    "field": {
+      "privateKey": "Khóa riêng của người bán",
+      "mchNo": "Thương gia",
+      "appId": "Ứng dụng",
+      "channelMchNo": "Người bán kênh",
+      "product": "Sản phẩm thanh toán",
+      "method": "Phương thức thanh toán",
+      "capability": "Khả năng",
+      "openId": "ID mở",
+      "authCode": "Mã thanh toán",
+      "notifyUrl": "URL thông báo không đồng bộ",
+      "expiredTime": "Thời gian hết hạn",
+      "bizOrderNo": "Số thứ tự",
+      "amount": "Số tiền (Fen)",
+      "title": "Tiêu đề",
+      "description": "Sự miêu tả",
+      "returnUrl": "URL trả về đồng bộ",
+      "attach": "Tham số đính kèm",
+      "extraParam": "Tham số mở rộng",
+      "limitPay": "Giới hạn thanh toán"
+    },
+    "placeholder": {
+      "method": "Chọn phương thức thanh toán",
+      "capability": "Chọn khả năng",
+      "openId": "Cần thiết cho WeChat jsapi/mini",
+      "authCode": "Bắt buộc cho thanh toán mã vạch",
+      "notifyUrl": "https://...",
+      "expiredTime": "Mặc định 30 phút nếu trống",
+      "title": "Thứ tự kiểm tra",
+      "description": "Nhập mô tả thanh toán",
+      "returnUrl": "https://...",
+      "attach": "Trả nguyên dạng khi callback",
+      "extraParam": "JSON, tham số riêng của kênh",
+      "limitPay": "Chọn hoặc nhập, vd: no_credit"
+    },
+    "default": {
+      "titlePrefix": "Trả tiền thử nghiệm"
+    },
+    "btn": {
+      "setPrivateKey": "Đặt khóa",
+      "clearPrivateKey": "Xóa khóa",
+      "genOrderNo": "Phát ra",
+      "reset": "Cài lại",
+      "submit": "Nộp"
+    },
+    "privateKey": {
+      "modalTitle": "Đặt khóa riêng của người bán",
+      "modalTip": "Nhập khóa riêng RSA của người bán chỉ để ký yêu cầu (được lưu trong bộ đệm cục bộ của trình duyệt; không được sử dụng để thanh toán đặc quyền quản trị viên).",
+      "placeholder": "Nhập khóa riêng của người bán",
+      "savedTip": "Đã lưu khóa riêng",
+      "clearedTip": "Đã xóa khóa riêng",
+      "setTag": "Bộ",
+      "setLabel": "Bộ khóa riêng của người bán",
+      "unsetTag": "Chưa đặt",
+      "clearConfirmTitle": "Xác nhận Xóa",
+      "clearConfirmContent": "Bạn có chắc chắn muốn xóa khóa riêng của người bán không? Nó sẽ cần phải được nhập lại."
+    },
+    "result": {
+      "modalTitle": "Kết quả thanh toán (unipay)",
+      "failModalTitle": "Thanh toán thất bại (unipay)",
+      "payLink": "Liên kết thanh toán",
+      "jsapiParam": "Thông số JSAPI",
+      "formData": "Dữ liệu biểu mẫu",
+      "markCode": "Đánh dấu mã",
+      "copyData": "Sao chép nội dung thanh toán",
+      "copyFull": "Sao chép toàn bộ phản hồi",
+      "rawResponse": "Phản hồi DaxResult đầy đủ",
+      "empty": "Không có dữ liệu",
+      "field": {
+        "orderNo": "Số thứ tự hệ thống"
+      }
+    },
+    "rule": {
+      "mchNo": "Vui lòng chọn một người bán",
+      "bizOrderNo": "Vui lòng nhập số thứ tự.",
+      "title": "Vui lòng nhập tiêu đề",
+      "amount": "Vui lòng nhập số tiền",
+      "method": "Vui lòng chọn phương thức thanh toán",
+      "channelMchNo": "Vui lòng chọn một người bán kênh",
+      "capability": "Vui lòng chọn một khả năng",
+      "extraParam": "Tham số mở rộng phải là JSON hợp lệ"
+    },
+    "msg": {
+      "signSuccess": "Đăng ký được tạo thành công",
+      "paySuccess": "Yêu cầu thanh toán đã thành công",
+      "payFail": "Yêu cầu thanh toán không thành công",
+      "inputPrivateKey": "Vui lòng đặt khóa riêng của người bán trước",
+      "copySuccess": "Đã sao chép"
+    }
+  },
+  "auth": {
+    "title": "Xác thực phát triển",
+    "type": {
+      "alipay": "Alipay H5",
+      "alipayMini": "Chương trình nhỏ của Alipay",
+      "wechatMp": "Tài khoản chính thức của WeChat",
+      "wechatMini": "Chương trình nhỏ WeChat",
+      "wechatChannel": "WeChat trả tiền",
+      "douyin": "Douyin H5"
+    },
+    "tag": {
+      "alipay": "Alipay H5",
+      "alipayMini": "Chương trình nhỏ của Alipay",
+      "wechatMp": "Tài khoản chính thức của WeChat",
+      "wechatMini": "Chương trình nhỏ WeChat",
+      "wechatChannel": "WeChat trả tiền",
+      "douyin": "Douyin H5"
+    },
+    "guide": {
+      "title": "Cách sử dụng",
+      "desc": "Tạo liên kết xác thực và quét bằng ứng dụng Alipay. Kết quả tự động xuất hiện (yêu cầu cấu hình Alipay trong Quản lý nền tảng của bên thứ ba và URL cơ sở cổng thanh toán trong Cấu hình nền tảng).",
+      "descAlipayMini": "Việc gỡ lỗi xác thực Chương trình Alipay Mini chưa được triển khai.",
+      "descWechatMp": "Tạo liên kết xác thực và quét bằng WeChat để hoàn tất ủy quyền web. Kết quả tự động xuất hiện (yêu cầu cấu hình Tài khoản chính thức của WeChat trong Quản lý nền tảng bên thứ ba và URL cơ sở cổng thanh toán trong Cấu hình nền tảng).",
+      "descWechatMini": "Chọn chương trình nhỏ của người bán hoặc quản trị viên, sau đó quét để lấy ID người dùng (xác thực chưa được triển khai).",
+      "descWechatChannel": "Chọn người bán/người bán kênh/khả năng, sau đó tạo liên kết xác thực và quét bằng WeChat. Được sử dụng để xác minh cấu hình WeChat Pay (trực tiếp/ISV); sản phẩm thanh toán được tự động phát hiện từ người bán kênh.",
+      "descDouyin": "Tạo liên kết xác thực và quét bằng ứng dụng Douyin để hoàn tất ủy quyền im lặng. Kết quả tự động xuất hiện (yêu cầu cấu hình ứng dụng Douyin H5 trong Quản lý nền tảng bên thứ ba và URL cơ sở cổng thanh toán trong Cấu hình nền tảng)."
+    },
+    "btn": {
+      "generate": "Tạo liên kết xác thực",
+      "copy": "Sao chép"
+    },
+    "qr": {
+      "tip": "Quét bằng Alipay để ủy quyền",
+      "tipWechat": "Quét bằng WeChat để ủy quyền",
+      "tipDouyin": "Quét bằng Douyin để ủy quyền",
+      "empty": "Chưa có mã QR",
+      "consumed": "Mã QR đã được sử dụng. Vui lòng tạo lại liên kết ủy quyền."
+    },
+    "form": {
+      "mchNo": "Thương gia",
+      "channelMchNo": "Người bán kênh",
+      "capability": "Khả năng thanh toán",
+      "miniAppType": "Bên chương trình nhỏ",
+      "rule": {
+        "mchNo": "Vui lòng chọn một người bán",
+        "channelMchNo": "Vui lòng chọn một người bán kênh",
+        "capability": "Vui lòng chọn khả năng thanh toán",
+        "miniAppType": "Vui lòng chọn bên chương trình mini"
+      }
+    },
+    "miniAppType": {
+      "merchant": "Thương gia",
+      "admin": "Quản trị viên"
+    },
+    "result": {
+      "divider": "Kết quả xác thực",
+      "openId": "ID mở",
+      "userId": "ID người dùng",
+      "accessToken": "Mã thông báo truy cập"
+    },
+    "msg": {
+      "success": "Đã nhận được kết quả xác thực",
+      "notExist": "Không tìm thấy kết quả xác thực hoặc đã hết hạn",
+      "copySuccess": "Đã sao chép",
+      "copyFail": "Sao chép không thành công"
+    }
+  },
+  "gateway": {
+    "page": {
+      "title": "Gỡ lỗi thanh toán cổng",
+      "tag": "Mô phỏng API merchant",
+      "warning": "Trang này chỉ lắp ráp tham số và ký. Khi gửi, sẽ mô phỏng lệnh gọi merchant đến /unipay/gateway/pre-pay để tạo trang đích quầy thu ngân/QR tổng hợp (không phải kênh đặc quyền quản trị). Vui lòng xác minh tham số."
+    },
+    "card": {
+      "mchApp": "Thông tin merchant",
+      "order": "Thông tin đơn hàng",
+      "param": "Tham số mở rộng",
+      "advanced": "Tham số nâng cao"
+    },
+    "gatewayType": {
+      "label": "Loại cổng",
+      "cashier": "Quầy thu ngân thống nhất",
+      "aggregate": "QR tổng hợp",
+      "cashierDesc": "Tạo trang đích quầy thu ngân, người dùng chọn phương thức thanh toán",
+      "aggregateDesc": "Tạo liên kết QR tổng hợp, một mã cho nhiều phương thức thanh toán"
+    },
+    "field": {
+      "privateKey": "Khóa riêng merchant",
+      "mchNo": "Merchant",
+      "appId": "Ứng dụng",
+      "bizOrderNo": "Số đơn hàng",
+      "amount": "Số tiền (xu)",
+      "title": "Tiêu đề thanh toán",
+      "description": "Mô tả",
+      "notifyUrl": "URL thông báo bất đồng bộ",
+      "returnUrl": "URL trả về đồng bộ",
+      "expiredTime": "Thời gian hết hạn",
+      "storeNo": "Số cửa hàng",
+      "attach": "Tham số đính kèm",
+      "extraParam": "Tham số mở rộng"
+    },
+    "placeholder": {
+      "notifyUrl": "https://...",
+      "returnUrl": "https://...",
+      "expiredTime": "Mặc định 30 phút",
+      "storeNo": "Số cửa hàng ngoại tuyến",
+      "title": "Đơn hàng thử nghiệm",
+      "description": "Nhập mô tả thanh toán",
+      "attach": "Trả nguyên dạng khi callback",
+      "extraParam": "JSON, tham số riêng của kênh"
+    },
+    "default": {
+      "titlePrefix": "Test cổng thanh toán"
+    },
+    "btn": {
+      "setPrivateKey": "Thiết lập khóa",
+      "genOrderNo": "Tạo",
+      "reset": "Đặt lại",
+      "submit": "Gửi đặt trước"
+    },
+    "privateKey": {
+      "modalTitle": "Thiết lập khóa riêng merchant",
+      "modalTip": "Nhập khóa riêng RSA merchant. Chỉ được sử dụng để ký yêu cầu (chỉ lưu trong bộ nhớ đệm cục bộ trình duyệt, không dùng cho đặt hàng đặc quyền quản trị).",
+      "placeholder": "Nhập khóa riêng merchant",
+      "savedTip": "Đã lưu khóa riêng",
+      "clearedTip": "Đã xóa khóa riêng",
+      "setTag": "Đã thiết lập",
+      "setLabel": "Đã thiết lập khóa riêng merchant",
+      "unsetTag": "Chưa thiết lập",
+      "clearConfirmTitle": "Xác nhận xóa",
+      "clearConfirmContent": "Bạn có chắc muốn xóa khóa riêng merchant? Bạn sẽ cần nhập lại."
+    },
+    "result": {
+      "modalTitle": "Kết quả đặt trước (unipay)",
+      "failModalTitle": "Đặt trước thất bại (unipay)",
+      "url": "URL trang đích cổng",
+      "copyUrl": "Sao chép URL",
+      "openUrl": "Mở",
+      "orderNo": "Số đơn hàng nền tảng",
+      "status": "Trạng thái",
+      "rawResponse": "Phản hồi DaxResult đầy đủ",
+      "copyFull": "Sao chép phản hồi đầy đủ"
+    },
+    "rule": {
+      "mchNo": "Vui lòng chọn merchant",
+      "bizOrderNo": "Vui lòng nhập số đơn hàng",
+      "title": "Vui lòng nhập tiêu đề thanh toán",
+      "amount": "Vui lòng nhập số tiền",
+      "gatewayPayType": "Vui lòng chọn loại cổng",
+      "extraParam": "Tham số mở rộng phải là JSON hợp lệ"
+    },
+    "msg": {
+      "signSuccess": "Đã tạo chữ ký",
+      "signFail": "Tạo chữ ký thất bại, vui lòng thử lại",
+      "prePaySuccess": "Yêu cầu đặt trước thành công",
+      "prePayFail": "Yêu cầu đặt trước thất bại",
+      "inputPrivateKey": "Vui lòng thiết lập khóa riêng merchant trước",
+      "copySuccess": "Đã sao chép"
+    }
+  }
+}
