@@ -14,7 +14,7 @@
   import { MdPreview } from 'md-editor-v3';
 
   import { LoginExpiredModal } from '#/components/login-expired-modal';
-  import TimezonePicker from '#/components/timezone/TimezonePicker.vue';
+  import { TimezonePicker } from '#/components/timezone';
   import { useMessage } from '#/hooks/useMessage';
   import { HOME_PATH } from '#/router/routes';
   import { useAuthStore } from '#/store';
