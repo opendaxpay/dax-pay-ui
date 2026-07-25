@@ -64,6 +64,8 @@ function defineApplicationConfig(userConfigPromise?: DefineApplicationOptions) {
             minify: isBuild
               ? {
                   compress: {
+                    // 生产构建移除 console.* 调用, 避免泄露内部日志到线上
+                    dropConsole: true,
                     dropDebugger: true,
                   },
                 }
