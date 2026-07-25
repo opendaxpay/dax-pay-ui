@@ -1,1 +1,1 @@
-export { default as InputPassword } from './InputPassword.vue';
+export { InputPassword } from '@daxpay/ui-biz/components/input-password';

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import type { PasswordPolicyValidateConfig } from '#/api/system/security.api';
+  import type { PasswordPolicyValidateConfig } from '../../types/password-policy';
 
   import { useSlots } from 'vue';
 

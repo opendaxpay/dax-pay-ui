@@ -1,12 +1,12 @@
 <script setup lang="ts">
-  import type { PasswordPolicyValidateConfig } from '#/api/system/security.api';
-  import type { PasswordCondition } from '#/utils/password-validator';
+  import type { PasswordPolicyValidateConfig } from '../../types/password-policy';
+  import type { PasswordCondition } from '../../utils/password-validator';
 
   import { computed } from 'vue';
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { calculateIntrinsicStrength, getPasswordConditions } from '#/utils/password-validator';
+  import { calculateIntrinsicStrength, getPasswordConditions } from '../../utils/password-validator';
 
   interface Props {
     password?: string;

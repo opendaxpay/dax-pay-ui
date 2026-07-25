@@ -1,1 +1,1 @@
-export { default as SocialLogo } from './SocialLogo.vue';
+export { SocialLogo } from '@daxpay/ui-biz/components/social';

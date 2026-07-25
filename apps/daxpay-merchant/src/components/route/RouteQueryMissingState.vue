@@ -1,24 +1,13 @@
 <script lang="ts" setup>
-  defineOptions({ name: 'RouteQueryMissingState' });
-
-  defineProps<{
-    /** 空状态描述（已国际化） */
-    description: string;
-    /** 返回按钮文案（已国际化） */
-    backText: string;
-  }>();
-
-  const emits = defineEmits<{
-    back: [];
-  }>();
+  // 兼容旧路径 `#/components/route/RouteQueryMissingState.vue`
+  import { RouteQueryMissingState } from '@daxpay/ui-biz/components/route';
+  defineOptions({ inheritAttrs: false });
 </script>
 
 <template>
-  <div class="m-4 flex items-center justify-center" style="min-height: 400px">
-    <a-empty :description="description">
-      <a-button type="primary" @click="emits('back')">
-        {{ backText }}
-      </a-button>
-    </a-empty>
-  </div>
+  <RouteQueryMissingState v-bind="($attrs as any)">
+    <template v-for="(_, name) in $slots" #[name]="slotData">
+      <slot :name="name" v-bind="slotData" />
+    </template>
+  </RouteQueryMissingState>
 </template>

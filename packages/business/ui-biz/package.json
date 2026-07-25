@@ -109,9 +109,17 @@
       "types": "./src/utils/timezone-data.ts",
       "default": "./src/utils/timezone-data.ts"
     },
+    "./utils/password-validator": {
+      "types": "./src/utils/password-validator.ts",
+      "default": "./src/utils/password-validator.ts"
+    },
     "./types/web": {
       "types": "./src/types/web.ts",
       "default": "./src/types/web.ts"
+    },
+    "./types/password-policy": {
+      "types": "./src/types/password-policy.ts",
+      "default": "./src/types/password-policy.ts"
     },
     "./components/charts": {
       "types": "./src/components/charts/index.ts",
@@ -144,6 +152,18 @@
     "./components/login-expired-modal": {
       "types": "./src/components/login-expired-modal/index.ts",
       "default": "./src/components/login-expired-modal/index.ts"
+    },
+    "./components/route": {
+      "types": "./src/components/route/index.ts",
+      "default": "./src/components/route/index.ts"
+    },
+    "./components/input-password": {
+      "types": "./src/components/input-password/index.ts",
+      "default": "./src/components/input-password/index.ts"
+    },
+    "./components/social": {
+      "types": "./src/components/social/index.ts",
+      "default": "./src/components/social/index.ts"
     },
     "./components/AntdAppProvider": {
       "types": "./src/components/AntdAppProvider.vue",
