@@ -26,7 +26,7 @@
   "collapseAll": "すべて折りたたむ",
   "onlySelected": "選択のみ表示",
   "onlyMenus": "メニューのみ表示",
-  "selectedStats": "選択中: メニュー {menu} · 権限コード {code}",
+  "selectedStats": "選択中: メニュー {menu}/{menuTotal} · 権限コード {code}/{codeTotal}",
   "cascadeCodes": "メニュー選択時に権限コードも選択",
   "cascadeCodesTip": "有効にすると、メニュー選択時に配下の権限コードもすべて選択されます。メニューの解除時は常に配下のコードも解除されます。",
   "codeMultiMountTip": "選択すると、同じ権限を共有する他のメニューにも同期されます",

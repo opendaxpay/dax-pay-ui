@@ -26,7 +26,7 @@
   "collapseAll": "모두 접기",
   "onlySelected": "선택 항목만",
   "onlyMenus": "메뉴만 표시",
-  "selectedStats": "선택됨: 메뉴 {menu} · 권한 코드 {code}",
+  "selectedStats": "선택됨: 메뉴 {menu}/{menuTotal} · 권한 코드 {code}/{codeTotal}",
   "cascadeCodes": "메뉴 선택 시 권한 코드 포함",
   "cascadeCodesTip": "켜면 메뉴 선택 시 하위 권한 코드도 모두 선택됩니다. 메뉴 해제는 항상 하위 코드를 함께 지웁니다.",
   "codeMultiMountTip": "선택 시 동일한 권한을 공유하는 다른 메뉴에도 동기화됩니다",

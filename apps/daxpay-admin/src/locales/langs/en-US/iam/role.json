@@ -26,7 +26,7 @@
   "collapseAll": "Collapse All",
   "onlySelected": "Selected only",
   "onlyMenus": "Menus only",
-  "selectedStats": "Selected: {menu} menu(s) · {code} code(s)",
+  "selectedStats": "Selected: {menu}/{menuTotal} menu(s) · {code}/{codeTotal} code(s)",
   "cascadeCodes": "Include permission codes when selecting menu",
   "cascadeCodesTip": "When enabled, selecting a menu also selects all permission codes under it. Unchecking a menu always clears its codes.",
   "codeMultiMountTip": "Checking syncs this permission under other menus that share it",

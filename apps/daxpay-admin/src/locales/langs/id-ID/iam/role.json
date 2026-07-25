@@ -26,7 +26,7 @@
   "collapseAll": "Ciutkan Semua",
   "onlySelected": "Hanya dipilih",
   "onlyMenus": "Hanya menu",
-  "selectedStats": "Dipilih: {menu} menu · {code} kode",
+  "selectedStats": "Dipilih: {menu}/{menuTotal} menu · {code}/{codeTotal} kode",
   "cascadeCodes": "Sertakan kode izin saat memilih menu",
   "cascadeCodesTip": "Saat diaktifkan, memilih menu juga memilih semua kode izin di bawahnya. Menghapus centang pada menu selalu menghapus kodenya.",
   "codeMultiMountTip": "Mencentang akan menyinkronkan izin ini di menu lain yang membaginya",

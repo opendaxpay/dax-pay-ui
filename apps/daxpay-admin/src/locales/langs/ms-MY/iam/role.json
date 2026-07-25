@@ -26,7 +26,7 @@
   "collapseAll": "Runtuhkan Semua",
   "onlySelected": "Dipilih sahaja",
   "onlyMenus": "Menu sahaja",
-  "selectedStats": "Dipilih: {menu} menu · {code} kod",
+  "selectedStats": "Dipilih: {menu}/{menuTotal} menu · {code}/{codeTotal} kod",
   "cascadeCodes": "Sertakan kod kebenaran semasa memilih menu",
   "cascadeCodesTip": "Apabila didayakan, memilih menu turut memilih semua kod kebenaran di bawahnya. Menyahtanda menu sentiasa mengosongkan kodnya.",
   "codeMultiMountTip": "Menanda akan menyegerakkan kebenaran ini di menu lain yang berkongsi dengannya",

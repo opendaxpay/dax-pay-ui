@@ -26,7 +26,7 @@
   "collapseAll": "折叠全部",
   "onlySelected": "仅看已选",
   "onlyMenus": "只显示菜单",
-  "selectedStats": "已选 菜单 {menu} · 权限码 {code}",
+  "selectedStats": "已选 菜单 {menu}/{menuTotal} · 权限码 {code}/{codeTotal}",
   "cascadeCodes": "勾选菜单时带权限码",
   "cascadeCodesTip": "开启后，勾选菜单会同时勾选下属全部权限码；取消菜单始终会清除下属权限码",
   "codeMultiMountTip": "勾选后，其它同权限菜单下也会同步",

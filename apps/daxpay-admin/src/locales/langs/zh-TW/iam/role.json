@@ -26,7 +26,7 @@
   "collapseAll": "摺疊全部",
   "onlySelected": "僅看已選",
   "onlyMenus": "只顯示選單",
-  "selectedStats": "已選 選單 {menu} · 許可權碼 {code}",
+  "selectedStats": "已選 選單 {menu}/{menuTotal} · 許可權碼 {code}/{codeTotal}",
   "cascadeCodes": "勾選選單時帶許可權碼",
   "cascadeCodesTip": "開啟後，勾選選單會同時勾選下屬全部許可權碼；取消選單始終會清除下屬許可權碼",
   "codeMultiMountTip": "勾選後，其它同許可權選單下也會同步",

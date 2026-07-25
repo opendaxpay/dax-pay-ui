@@ -26,7 +26,7 @@
   "collapseAll": "Thu gọn tất cả",
   "onlySelected": "Chỉ được chọn",
   "onlyMenus": "Chỉ hiển thị menu",
-  "selectedStats": "Đã chọn: {menu} menu · {code} mã",
+  "selectedStats": "Đã chọn: {menu}/{menuTotal} menu · {code}/{codeTotal} mã",
   "cascadeCodes": "Bao gồm mã quyền khi chọn menu",
   "cascadeCodesTip": "Khi được bật, việc chọn menu cũng sẽ chọn tất cả các mã cấp phép bên dưới nó. Việc bỏ chọn một menu luôn xóa mã của nó.",
   "codeMultiMountTip": "Khi chọn, quyền này sẽ đồng bộ sang các menu khác dùng chung",

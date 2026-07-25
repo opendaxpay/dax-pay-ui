@@ -121,6 +121,10 @@
     return uniqueKeys([...manualCheckedMenuIds.value, ...autoCheckedMenuIds.value]).length;
   });
   const selectedCodeCount = computed(() => uniqueKeys(checkedCodeIds.value).length);
+  // 菜单总数（树中全部菜单节点数）
+  const menuTotalCount = computed(() => menuIdValueMap.value.size);
+  // 权限码总数（树中全部权限码节点数）
+  const codeTotalCount = computed(() => codeIdValueMap.value.size);
 
   // 是否有未保存变更
   const isDirty = computed(() => {
@@ -821,7 +825,9 @@
             {{
               $t('iam.role.selectedStats', {
                 menu: selectedMenuCount,
+                menuTotal: menuTotalCount,
                 code: selectedCodeCount,
+                codeTotal: codeTotalCount,
               })
             }}
           </div>
