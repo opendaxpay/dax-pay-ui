@@ -54,16 +54,22 @@
       </div>
       <div class="min-w-0 flex-1">
         <div class="flex items-center gap-2">
-          <span class="truncate text-base font-bold leading-snug text-foreground transition-colors duration-300 group-hover:text-primary">
-            {{ record.appName }}
-          </span>
+          <a-tooltip :title="record.appName" placement="top">
+            <span
+              class="truncate text-base font-bold leading-snug text-foreground transition-colors duration-300 group-hover:text-primary"
+            >
+              {{ record.appName }}
+            </span>
+          </a-tooltip>
           <a-tag v-if="record.defaultApp" color="processing" class="shrink-0 !m-0 !text-xs">
             {{ $t('payment.merchant.app.app.defaultTag') }}
           </a-tag>
         </div>
-        <div class="mt-2 truncate text-xs text-muted-foreground">
-          {{ $t('payment.merchant.app.app.appIdPrefix', { appId: record.appId }) }}
-        </div>
+        <a-tooltip :title="$t('payment.merchant.app.app.appIdPrefix', { appId: record.appId })" placement="top">
+          <div class="mt-2 truncate text-xs text-muted-foreground">
+            {{ $t('payment.merchant.app.app.appIdPrefix', { appId: record.appId }) }}
+          </div>
+        </a-tooltip>
       </div>
     </div>
 

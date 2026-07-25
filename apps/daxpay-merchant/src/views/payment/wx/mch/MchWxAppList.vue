@@ -67,44 +67,49 @@
 </script>
 
 <template>
-  <div>
-    <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
-      <!-- 页头与菜单一致：支付应用(微信) -->
-      <div class="text-lg font-semibold text-foreground">{{ $t('menu.payment.wx.mchApp') }}</div>
-      <a-input
-        v-model:value="filterText"
-        allow-clear
-        :placeholder="$t('payment.wx.app.filterPlaceholder')"
-        class="w-56"
-      />
-    </div>
-
-    <a-spin :spinning="loading">
-      <a-empty
-        v-if="!loading && filteredAppList.length === 0 && !canAdd"
-        class="py-12"
-        :description="$t('payment.wx.app.emptyAppList')"
-      />
-      <div v-else class="app-card-grid">
-        <MchAppCard
-          v-for="app in filteredAppList"
-          :key="app.id ?? app.wxAppId"
-          :record="app"
-          @edit="handleEdit(app)"
-          @manage="handleManage(app)"
+  <div class="m-4">
+    <!-- 外层白卡片包裹，对齐运营端支付产品配置 / WxAppHub -->
+    <a-card variant="borderless" class="rounded-xl shadow-sm">
+      <template #title>
+        <!-- 页头与菜单一致：支付应用(微信) -->
+        <span class="text-lg font-bold text-foreground">{{ $t('menu.payment.wx.mchApp') }}</span>
+      </template>
+      <template #extra>
+        <a-input
+          v-model:value="filterText"
+          allow-clear
+          :placeholder="$t('payment.wx.app.filterPlaceholder')"
+          class="w-56"
         />
+      </template>
 
-        <div
-          v-if="canAdd"
-          class="add-card flex h-full min-h-[128px] cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-muted/30 text-muted-foreground transition-all hover:border-primary hover:bg-primary/5 hover:text-primary"
-          @click="handleAdd"
-        >
-          <IconifyIcon icon="ant-design:plus-outlined" class="text-3xl" />
-          <!-- 新增应用 -->
-          <span class="text-sm font-medium">{{ $t('payment.wx.app.addApp') }}</span>
+      <a-spin :spinning="loading">
+        <a-empty
+          v-if="!loading && filteredAppList.length === 0 && !canAdd"
+          class="py-12"
+          :description="$t('payment.wx.app.emptyAppList')"
+        />
+        <div v-else class="app-card-grid">
+          <MchAppCard
+            v-for="app in filteredAppList"
+            :key="app.id ?? app.wxAppId"
+            :record="app"
+            @edit="handleEdit(app)"
+            @manage="handleManage(app)"
+          />
+
+          <div
+            v-if="canAdd"
+            class="add-card flex h-full min-h-[128px] cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-muted/30 text-muted-foreground transition-all hover:border-primary hover:bg-primary/5 hover:text-primary"
+            @click="handleAdd"
+          >
+            <IconifyIcon icon="ant-design:plus-outlined" class="text-3xl" />
+            <!-- 新增应用 -->
+            <span class="text-sm font-medium">{{ $t('payment.wx.app.addApp') }}</span>
+          </div>
         </div>
-      </div>
-    </a-spin>
+      </a-spin>
+    </a-card>
 
     <MchAppEdit ref="editRef" @ok="loadAppList" />
     <MchAppDetail ref="detailRef" @deleted="loadAppList" />
