@@ -47,7 +47,6 @@
   "scopeMerchant": "商戶應用",
   "channelCapabilityTitle": "支付應用配置",
   "channelCapabilityDesc": "为每种支付能力綁定本商戶應用或平台應用；留空则按规则回退。",
-  "consoleLink": "微信開放平台",
   "validation": {
     "appSecret": "請輸入應用密鑰"
   },

@@ -96,14 +96,6 @@
               $t('payment.channel.alipayManage.appManageTitle')
             }}</span>
           </div>
-          <a
-            href="https://open.alipay.com/develop/manage"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="shrink-0 text-sm font-normal text-primary"
-          >
-            {{ $t('payment.channel.alipayManage.consoleLink') }}
-          </a>
         </div>
       </template>
 

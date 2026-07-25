@@ -47,7 +47,6 @@
   "scopeMerchant": "加盟店アプリ",
   "channelCapabilityTitle": "支払いアプリ設定",
   "channelCapabilityDesc": "各能力に加盟店またはプラットフォームアプリをバインド。空欄はフォールバック。",
-  "consoleLink": "WeChat開放プラットフォーム",
   "validation": {
     "appSecret": "AppSecret を入力"
   },

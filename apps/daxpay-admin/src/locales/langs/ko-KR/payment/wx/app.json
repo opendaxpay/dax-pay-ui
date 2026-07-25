@@ -47,7 +47,6 @@
   "scopeMerchant": "가맹점 앱",
   "channelCapabilityTitle": "결제 앱 설정",
   "channelCapabilityDesc": "각 능력에 가맹점 또는 플랫폼 앱을 바인딩. 비우면 폴백.",
-  "consoleLink": "위챗 오픈 플랫폼",
   "validation": {
     "appSecret": "AppSecret 입력"
   },

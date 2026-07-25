@@ -47,7 +47,6 @@
   "scopeMerchant": "Merchant App",
   "channelCapabilityTitle": "Thiết lập ứng dụng thanh toán",
   "channelCapabilityDesc": "Bind a merchant or platform app for each capability. Leave empty to fall back.",
-  "consoleLink": "WeChat Open Platform",
   "validation": {
     "appSecret": "Enter AppSecret"
   },
