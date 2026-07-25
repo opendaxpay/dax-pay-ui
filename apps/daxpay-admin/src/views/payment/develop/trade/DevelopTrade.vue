@@ -48,6 +48,21 @@
       bizOrderNo: [{ required: true, message: $t('payment.develop.trade.rule.bizOrderNo') }],
       amount: [{ required: true, message: $t('payment.develop.trade.rule.amount') }],
       title: [{ required: true, message: $t('payment.develop.trade.rule.title') }],
+      // 扩展参数: 非空时校验 JSON 合法性
+      extraParam: [
+        {
+          validator: async (_rule: any, value: string) => {
+            if (value && value.trim()) {
+              try {
+                JSON.parse(value);
+              } catch {
+                throw new Error($t('payment.develop.trade.rule.extraParam'));
+              }
+            }
+          },
+          trigger: 'blur',
+        },
+      ],
       // 私钥存独立 ref, 用自定义校验挂到 form 上
       privateKey: [
         {
@@ -81,8 +96,14 @@
     method: '',
     capability: '',
     description: '',
+    // 高级参数(折叠面板中编辑, 默认空)
+    attach: '',
+    extraParam: '',
+    limitPay: [],
   });
-  const signPreviewLoading = ref(false);
+
+  // 限制支付类型候选(预置常用项, mode=tags 支持手输)
+  const limitPayOptions = [{ label: 'no_credit', value: 'no_credit' }];
 
   // ===== 下拉选项 =====
   const mchNoOptions = ref<LabelValue[]>([]);
@@ -112,12 +133,6 @@
     }
     const formatted = formatDateTime(raw.resTime);
     return { ...raw, resTime: formatted || raw.resTime };
-  });
-
-  // ===== 签名预览(请求预览卡内联展示) =====
-  const signPreview = reactive({
-    signStr: '',
-    sign: '',
   });
 
   /**
@@ -323,33 +338,6 @@
     return cleanPayload(payload);
   }
 
-  /** 当前请求 JSON 预览(剔除空值) */
-  const requestPreview = computed(() => {
-    return JSON.stringify(buildPayload(), null, 2);
-  });
-
-  /** 生成签名预览(内联展示, 不弹结果) */
-  async function handleSignPreview() {
-    try {
-      await formRef.value?.validateFields(['privateKey']);
-    } catch {
-      // 校验失败: 表单已显示错误提示
-      return;
-    }
-    signPreviewLoading.value = true;
-    try {
-      const { data } = await DevelopTradeApi.sign({
-        param: buildPayload(),
-        privateKey: privateKey.value,
-      });
-      signPreview.signStr = data?.signStr ?? '';
-      signPreview.sign = data?.sign ?? '';
-      message.success($t('payment.develop.trade.msg.signSuccess'));
-    } finally {
-      signPreviewLoading.value = false;
-    }
-  }
-
   /** 复制文本到剪贴板 */
   async function copyText(text: string, successKey = 'payment.develop.trade.msg.copySuccess') {
     if (!text) return;
@@ -384,8 +372,6 @@
         privateKey: privateKey.value,
       });
       payload.sign = signRes?.sign;
-      signPreview.signStr = signRes?.signStr ?? '';
-      signPreview.sign = signRes?.sign ?? '';
 
       // 直调统一支付(无 Accesstoken, 完整商户契约)
       // unipayPost 已将业务失败(code!=0)转为返回值, 仅网络层异常会 throw
@@ -424,14 +410,15 @@
       authCode: undefined,
       notifyUrl: undefined,
       returnUrl: undefined,
+      attach: undefined,
+      extraParam: undefined,
+      limitPay: undefined,
       expiredTime: undefined,
     });
     routeMode.value = 'route';
     mchAppOptions.value = [];
     channelMchNoOptions.value = [];
     capabilityOptions.value = [];
-    signPreview.signStr = '';
-    signPreview.sign = '';
     genBizOrderNo();
   }
 
@@ -705,58 +692,54 @@
                 </a-row>
               </a-card>
 
-              <!-- 卡4: 请求预览(实时 JSON + 签名预览) -->
-              <a-card class="rounded-xl shadow-sm">
-                <template #title>
-                  <div class="flex items-center gap-2">
-                    <IconifyIcon icon="ant-design:code-outlined" class="text-amber-500" />
-                    <span class="font-semibold">{{ $t('payment.develop.trade.card.preview') }}</span>
-                  </div>
-                </template>
-                <template #extra>
-                  <a-button size="small" type="primary" :loading="signPreviewLoading" @click="handleSignPreview">
-                    <template #icon><IconifyIcon icon="ant-design:safety-certificate-outlined" /></template>
-                    {{ $t('payment.develop.trade.preview.signBtn') }}
-                  </a-button>
-                </template>
-
-                <!-- 实时请求 JSON -->
-                <div class="mb-3 text-xs font-medium text-muted-foreground">
-                  {{ $t('payment.develop.trade.preview.title') }}
-                </div>
-                <pre class="code-box rounded-lg border border-border bg-muted/40 p-3 text-xs">{{ requestPreview }}</pre>
-
-                <!-- 签名预览结果 -->
-                <template v-if="signPreview.signStr || signPreview.sign">
-                  <a-divider class="!my-3" />
-                  <div class="preview-item mb-3">
-                    <div class="mb-1 flex items-center justify-between">
-                      <span class="text-xs font-medium text-foreground">
-                        {{ $t('payment.develop.sign.field.signStr') }}
-                      </span>
-                      <a-button size="small" type="link" @click="copyText(signPreview.signStr)">
-                        <IconifyIcon icon="ant-design:copy-outlined" />
-                      </a-button>
+              <!-- 卡4: 高级参数(折叠, 默认收起) -->
+              <a-collapse :default-active-key="[]" class="advanced-collapse">
+                <a-collapse-panel key="advanced">
+                  <template #header>
+                    <div class="flex items-center gap-2">
+                      <IconifyIcon icon="ant-design:setting-outlined" class="text-amber-500" />
+                      <span class="font-semibold">{{ $t('payment.develop.trade.card.advanced') }}</span>
                     </div>
-                    <div class="code-box break-all rounded-lg border border-border bg-muted/40 p-3 text-xs">
-                      {{ signPreview.signStr || $t('payment.develop.trade.preview.empty') }}
-                    </div>
-                  </div>
-                  <div class="preview-item">
-                    <div class="mb-1 flex items-center justify-between">
-                      <span class="text-xs font-medium text-foreground">
-                        {{ $t('payment.develop.sign.field.signValue') }}
-                      </span>
-                      <a-button size="small" type="link" @click="copyText(signPreview.sign)">
-                        <IconifyIcon icon="ant-design:copy-outlined" />
-                      </a-button>
-                    </div>
-                    <div class="code-box break-all rounded-lg border border-border bg-muted/40 p-3 text-xs">
-                      {{ signPreview.sign || $t('payment.develop.trade.preview.empty') }}
-                    </div>
-                  </div>
-                </template>
-              </a-card>
+                  </template>
+                  <a-row :gutter="16">
+                    <a-col :span="12">
+                      <a-form-item :label="$t('payment.develop.trade.field.returnUrl')" name="returnUrl">
+                        <a-input
+                          v-model:value="form.returnUrl"
+                          :placeholder="$t('payment.develop.trade.placeholder.returnUrl')"
+                        />
+                      </a-form-item>
+                    </a-col>
+                    <a-col :span="12">
+                      <a-form-item :label="$t('payment.develop.trade.field.attach')" name="attach">
+                        <a-input
+                          v-model:value="form.attach"
+                          :placeholder="$t('payment.develop.trade.placeholder.attach')"
+                        />
+                      </a-form-item>
+                    </a-col>
+                    <a-col :span="24">
+                      <a-form-item :label="$t('payment.develop.trade.field.limitPay')" name="limitPay">
+                        <a-select
+                          v-model:value="form.limitPay"
+                          mode="tags"
+                          :placeholder="$t('payment.develop.trade.placeholder.limitPay')"
+                          :options="limitPayOptions"
+                        />
+                      </a-form-item>
+                    </a-col>
+                    <a-col :span="24">
+                      <a-form-item :label="$t('payment.develop.trade.field.extraParam')" name="extraParam">
+                        <a-textarea
+                          v-model:value="form.extraParam"
+                          :rows="3"
+                          :placeholder="$t('payment.develop.trade.placeholder.extraParam')"
+                        />
+                      </a-form-item>
+                    </a-col>
+                  </a-row>
+                </a-collapse-panel>
+              </a-collapse>
             </div>
           </a-col>
         </a-row>
@@ -916,6 +899,14 @@
 
     .monospace {
       font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    }
+
+    // 高级参数折叠面板: 视觉与 a-card 保持一致
+    .advanced-collapse {
+      border: 1px solid hsl(var(--border));
+      border-radius: 12px;
+      background-color: hsl(var(--card));
+      box-shadow: 0 1px 3px hsl(var(--foreground) / 0.04);
     }
 
     // 底部悬浮居中胶囊栏: 固定在视口底部, 始终可点

@@ -60,7 +60,7 @@
       "mchApp": "商户信息",
       "param": "支付参数",
       "order": "订单信息",
-      "preview": "请求预览"
+      "advanced": "高级参数"
     },
     "mode": {
       "label": "支付模式",
@@ -68,11 +68,6 @@
       "direct": "直接指定",
       "routeDesc": "按应用通道路由解析通道商户与支付能力",
       "directDesc": "由通道商户+支付能力直接决定支付实现，跳过通道路由"
-    },
-    "preview": {
-      "title": "请求参数 JSON",
-      "signBtn": "生成签名预览",
-      "empty": "暂无数据"
     },
     "field": {
       "privateKey": "商户私钥",
@@ -85,6 +80,10 @@
       "openId": "OpenID",
       "authCode": "付款码",
       "notifyUrl": "异步通知地址",
+      "returnUrl": "同步跳转地址",
+      "attach": "商户附加参数",
+      "extraParam": "支付扩展参数",
+      "limitPay": "限制支付类型",
       "expiredTime": "支付超时时间",
       "bizOrderNo": "订单号",
       "amount": "支付金额(分)",
@@ -97,6 +96,10 @@
       "openId": "微信 jsapi/mini 场景必填",
       "authCode": "付款码支付必填",
       "notifyUrl": "https://...",
+      "returnUrl": "https://...",
+      "attach": "回调时原样返回",
+      "extraParam": "JSON 格式, 通道特有长尾参数",
+      "limitPay": "选择或输入限制项, 如 no_credit",
       "expiredTime": "留空默认 30 分钟",
       "title": "测试订单",
       "description": "请输入支付描述"
@@ -145,7 +148,8 @@
       "amount": "请输入支付金额",
       "method": "请选择支付方式",
       "channelMchNo": "请选择通道商户",
-      "capability": "请选择支付能力"
+      "capability": "请选择支付能力",
+      "extraParam": "扩展参数需为合法 JSON 格式"
     },
     "msg": {
       "signSuccess": "签名生成成功",
@@ -232,7 +236,7 @@
       "mchApp": "商户信息",
       "order": "订单信息",
       "param": "扩展参数",
-      "preview": "请求预览"
+      "advanced": "高级参数"
     },
     "gatewayType": {
       "label": "网关支付类型",
@@ -240,11 +244,6 @@
       "aggregate": "聚合扫码",
       "cashierDesc": "生成收银台落地页，用户在页面选择支付方式",
       "aggregateDesc": "生成聚合扫码链接，一码多付自动识别"
-    },
-    "preview": {
-      "title": "请求参数 JSON",
-      "signBtn": "生成签名预览",
-      "empty": "暂无数据"
     },
     "field": {
       "privateKey": "商户私钥",
@@ -256,12 +255,16 @@
       "description": "支付描述",
       "notifyUrl": "异步通知地址",
       "returnUrl": "同步跳转地址",
+      "attach": "商户附加参数",
+      "extraParam": "支付扩展参数",
       "expiredTime": "支付超时时间",
       "storeNo": "门店号"
     },
     "placeholder": {
       "notifyUrl": "https://...",
       "returnUrl": "https://...",
+      "attach": "回调时原样返回",
+      "extraParam": "JSON 格式, 通道特有长尾参数",
       "expiredTime": "留空默认 30 分钟",
       "storeNo": "线下经营门店号",
       "title": "测试订单",
@@ -304,7 +307,8 @@
       "bizOrderNo": "请输入订单号",
       "title": "请输入支付标题",
       "amount": "请输入支付金额",
-      "gatewayPayType": "请选择网关支付类型"
+      "gatewayPayType": "请选择网关支付类型",
+      "extraParam": "扩展参数需为合法 JSON 格式"
     },
     "msg": {
       "signSuccess": "签名生成成功",

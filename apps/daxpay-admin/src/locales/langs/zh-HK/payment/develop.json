@@ -60,7 +60,7 @@
       "mchApp": "商户信息",
       "param": "支付參數",
       "order": "訂單信息",
-      "preview": "請求預覽"
+      "advanced": "進階參數"
     },
     "mode": {
       "label": "支付模式",
@@ -68,11 +68,6 @@
       "direct": "直接指定",
       "routeDesc": "按應用通道路由解析通道商户與支付能力",
       "directDesc": "由通道商户+支付能力直接決定支付實現，跳過通道路由"
-    },
-    "preview": {
-      "title": "請求參數 JSON",
-      "signBtn": "生成簽名預覽",
-      "empty": "暫無數據"
     },
     "field": {
       "privateKey": "商户私鑰",
@@ -89,7 +84,11 @@
       "bizOrderNo": "訂單號",
       "amount": "支付金額(分)",
       "title": "支付標題",
-      "description": "支付描述"
+      "description": "支付描述",
+      "returnUrl": "同步跳轉地址",
+      "attach": "商戶附加參數",
+      "extraParam": "支付擴展參數",
+      "limitPay": "限制支付類型"
     },
     "placeholder": {
       "method": "請選擇支付方式",
@@ -99,7 +98,11 @@
       "notifyUrl": "https://...",
       "expiredTime": "留空默認 30 分鐘",
       "title": "測試訂單",
-      "description": "請輸入支付描述"
+      "description": "請輸入支付描述",
+      "returnUrl": "https://...",
+      "attach": "回呼時原樣返回",
+      "extraParam": "JSON 格式, 通道特有長尾參數",
+      "limitPay": "選擇或輸入限制項, 如 no_credit"
     },
     "default": {
       "titlePrefix": "測試支付"
@@ -145,7 +148,8 @@
       "amount": "請輸入支付金額",
       "method": "請選擇支付方式",
       "channelMchNo": "請選擇通道商户",
-      "capability": "請選擇支付能力"
+      "capability": "請選擇支付能力",
+      "extraParam": "擴展參數需為合法 JSON 格式"
     },
     "msg": {
       "signSuccess": "簽名生成成功",
@@ -232,7 +236,7 @@
       "mchApp": "商戶資訊",
       "order": "訂單資訊",
       "param": "擴展參數",
-      "preview": "請求預覽"
+      "advanced": "進階參數"
     },
     "gatewayType": {
       "label": "網關支付類型",
@@ -240,11 +244,6 @@
       "aggregate": "聚合掃碼",
       "cashierDesc": "生成收銀台落地頁，用戶喺頁面選擇支付方式",
       "aggregateDesc": "生成聚合掃碼連結，一碼多付自動識別"
-    },
-    "preview": {
-      "title": "請求參數 JSON",
-      "signBtn": "生成簽名預覽",
-      "empty": "暫無數據"
     },
     "field": {
       "privateKey": "商戶私鑰",
@@ -257,7 +256,9 @@
       "notifyUrl": "異步通知地址",
       "returnUrl": "同步跳轉地址",
       "expiredTime": "支付超時時間",
-      "storeNo": "門店號"
+      "storeNo": "門店號",
+      "attach": "商戶附加參數",
+      "extraParam": "支付擴展參數"
     },
     "placeholder": {
       "notifyUrl": "https://...",
@@ -265,7 +266,9 @@
       "expiredTime": "留空預設 30 分鐘",
       "storeNo": "線下經營門店號",
       "title": "測試訂單",
-      "description": "請輸入支付描述"
+      "description": "請輸入支付描述",
+      "attach": "回呼時原樣返回",
+      "extraParam": "JSON 格式, 通道特有長尾參數"
     },
     "default": {
       "titlePrefix": "測試網關支付"
@@ -304,7 +307,8 @@
       "bizOrderNo": "請輸入訂單號",
       "title": "請輸入支付標題",
       "amount": "請輸入支付金額",
-      "gatewayPayType": "請選擇網關支付類型"
+      "gatewayPayType": "請選擇網關支付類型",
+      "extraParam": "擴展參數需為合法 JSON 格式"
     },
     "msg": {
       "signSuccess": "簽名生成成功",

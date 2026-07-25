@@ -60,7 +60,7 @@
       "mchApp": "Maklumat Peniaga",
       "param": "Param Pembayaran",
       "order": "Maklumat Pesanan",
-      "preview": "Minta Pratonton"
+      "advanced": "Parameter Lanjutan"
     },
     "mode": {
       "label": "Mod Bayar",
@@ -68,11 +68,6 @@
       "direct": "Tentukan Langsung",
       "routeDesc": "Selesaikan pedagang saluran dan keupayaan melalui penghalaan saluran apl",
       "directDesc": "Diputuskan oleh pedagang saluran + keupayaan; langkau penghalaan saluran"
-    },
-    "preview": {
-      "title": "Minta JSON",
-      "signBtn": "Pratonton Tandatangan",
-      "empty": "Tiada data"
     },
     "field": {
       "privateKey": "Kunci Peribadi Pedagang",
@@ -89,7 +84,11 @@
       "bizOrderNo": "Pesanan No.",
       "amount": "Jumlah (Fen)",
       "title": "Tajuk",
-      "description": "Penerangan"
+      "description": "Penerangan",
+      "returnUrl": "URL Pulang Sync",
+      "attach": "Lampiran Pedagang",
+      "extraParam": "Parameter Ekstra",
+      "limitPay": "Had Pembayaran"
     },
     "placeholder": {
       "method": "Pilih kaedah pembayaran",
@@ -99,7 +98,11 @@
       "notifyUrl": "https://...",
       "expiredTime": "Lalai 30 minit jika kosong",
       "title": "Perintah ujian",
-      "description": "Masukkan perihalan pembayaran"
+      "description": "Masukkan perihalan pembayaran",
+      "returnUrl": "https://...",
+      "attach": "Dipulangkan seperti asal",
+      "extraParam": "JSON, parameter khusus saluran",
+      "limitPay": "Pilih atau input, cth: no_credit"
     },
     "default": {
       "titlePrefix": "Uji Bayar"
@@ -145,7 +148,8 @@
       "amount": "Sila masukkan jumlah",
       "method": "Sila pilih kaedah pembayaran",
       "channelMchNo": "Sila pilih pedagang saluran",
-      "capability": "Sila pilih keupayaan"
+      "capability": "Sila pilih keupayaan",
+      "extraParam": "Parameter ekstra mesti JSON sah"
     },
     "msg": {
       "signSuccess": "Tanda berjaya dijana",
@@ -232,7 +236,7 @@
       "mchApp": "Maklumat Merchant",
       "order": "Maklumat Pesanan",
       "param": "Parameter Tambahan",
-      "preview": "Pratonton Permintaan"
+      "advanced": "Parameter Lanjutan"
     },
     "gatewayType": {
       "label": "Jenis Gateway",
@@ -240,11 +244,6 @@
       "aggregate": "QR Agregat",
       "cashierDesc": "Jana halaman pendarat juruwang, pengguna memilih kaedah pembayaran",
       "aggregateDesc": "Jana pautan QR agregat, satu kod untuk pelbagai pembayaran"
-    },
-    "preview": {
-      "title": "JSON Permintaan",
-      "signBtn": "Jana Pratonton Tandatangan",
-      "empty": "Tiada data"
     },
     "field": {
       "privateKey": "Kunci Peribadi Merchant",
@@ -257,7 +256,9 @@
       "notifyUrl": "URL Pemberitahuan Async",
       "returnUrl": "URL Pulang Sync",
       "expiredTime": "Masa Tamat",
-      "storeNo": "No. Kedai"
+      "storeNo": "No. Kedai",
+      "attach": "Lampiran Pedagang",
+      "extraParam": "Parameter Ekstra"
     },
     "placeholder": {
       "notifyUrl": "https://...",
@@ -265,7 +266,9 @@
       "expiredTime": "Lalai 30 min",
       "storeNo": "Nombor kedai luar talian",
       "title": "Pesanan ujian",
-      "description": "Masukkan penerangan pembayaran"
+      "description": "Masukkan penerangan pembayaran",
+      "attach": "Dipulangkan seperti asal",
+      "extraParam": "JSON, parameter khusus saluran"
     },
     "default": {
       "titlePrefix": "Uji Gateway Pay"
@@ -304,7 +307,8 @@
       "bizOrderNo": "Sila masukkan no. pesanan",
       "title": "Sila masukkan tajuk pembayaran",
       "amount": "Sila masukkan jumlah",
-      "gatewayPayType": "Sila pilih jenis gateway"
+      "gatewayPayType": "Sila pilih jenis gateway",
+      "extraParam": "Parameter ekstra mesti JSON sah"
     },
     "msg": {
       "signSuccess": "Tandatangan dijana",

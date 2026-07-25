@@ -60,7 +60,7 @@
       "mchApp": "販売者情報",
       "param": "支払いパラメータ",
       "order": "注文情報",
-      "preview": "プレビューのリクエスト"
+      "advanced": "高度パラメータ"
     },
     "mode": {
       "label": "ペイモード",
@@ -68,11 +68,6 @@
       "direct": "直接指定",
       "routeDesc": "アプリのチャネルルーティングを介してチャネルマーチャントと機能を解決します",
       "directDesc": "チャネル販売業者と能力によって決定されます。チャンネルルーティングをスキップする"
-    },
-    "preview": {
-      "title": "JSONをリクエストする",
-      "signBtn": "署名プレビュー",
-      "empty": "データなし"
     },
     "field": {
       "privateKey": "販売者の秘密鍵",
@@ -89,7 +84,11 @@
       "bizOrderNo": "注文番号",
       "amount": "量（フェン）",
       "title": "タイトル",
-      "description": "説明"
+      "description": "説明",
+      "returnUrl": "同期リダイレクトURL",
+      "attach": "マーチャント添付パラメータ",
+      "extraParam": "拡張パラメータ",
+      "limitPay": "支払制限タイプ"
     },
     "placeholder": {
       "method": "支払い方法を選択してください",
@@ -99,7 +98,11 @@
       "notifyUrl": "https://...",
       "expiredTime": "空の場合はデフォルトで 30 分",
       "title": "テストの順序",
-      "description": "支払いの説明を入力してください"
+      "description": "支払いの説明を入力してください",
+      "returnUrl": "https://...",
+      "attach": "コールバック時にそのまま返却",
+      "extraParam": "JSON形式, チャネル固有パラメータ",
+      "limitPay": "選択または入力（例: no_credit）"
     },
     "default": {
       "titlePrefix": "テストペイ"
@@ -145,7 +148,8 @@
       "amount": "金額を入力してください",
       "method": "お支払い方法を選択してください",
       "channelMchNo": "チャネル販売者を選択してください",
-      "capability": "機能を選択してください"
+      "capability": "機能を選択してください",
+      "extraParam": "拡張パラメータは有効なJSON形式である必要があります"
     },
     "msg": {
       "signSuccess": "署名は正常に生成されました",
@@ -232,7 +236,7 @@
       "mchApp": "マーチャント情報",
       "order": "注文情報",
       "param": "拡張パラメータ",
-      "preview": "リクエストプレビュー"
+      "advanced": "高度パラメータ"
     },
     "gatewayType": {
       "label": "ゲートウェイ種別",
@@ -240,11 +244,6 @@
       "aggregate": "集合QR",
       "cashierDesc": "レジランディングページを生成し、ユーザーが支払い方法を選択",
       "aggregateDesc": "集合QRリンクを生成し、一つのコードで複数支払いを自動識別"
-    },
-    "preview": {
-      "title": "リクエストJSON",
-      "signBtn": "署名プレビュー生成",
-      "empty": "データなし"
     },
     "field": {
       "privateKey": "マーチャント秘密鍵",
@@ -257,7 +256,9 @@
       "notifyUrl": "非同期通知URL",
       "returnUrl": "同期リダイレクトURL",
       "expiredTime": "有効期限",
-      "storeNo": "店舗番号"
+      "storeNo": "店舗番号",
+      "attach": "マーチャント添付パラメータ",
+      "extraParam": "拡張パラメータ"
     },
     "placeholder": {
       "notifyUrl": "https://...",
@@ -265,7 +266,9 @@
       "expiredTime": "空欄で30分",
       "storeNo": "オフライン店舗番号",
       "title": "テスト注文",
-      "description": "支払説明を入力"
+      "description": "支払説明を入力",
+      "attach": "コールバック時にそのまま返却",
+      "extraParam": "JSON形式, チャネル固有パラメータ"
     },
     "default": {
       "titlePrefix": "テストゲートウェイ決済"
@@ -304,7 +307,8 @@
       "bizOrderNo": "注文番号を入力してください",
       "title": "支払タイトルを入力してください",
       "amount": "支払金額を入力してください",
-      "gatewayPayType": "ゲートウェイ種別を選択してください"
+      "gatewayPayType": "ゲートウェイ種別を選択してください",
+      "extraParam": "拡張パラメータは有効なJSON形式である必要があります"
     },
     "msg": {
       "signSuccess": "署名を生成しました",

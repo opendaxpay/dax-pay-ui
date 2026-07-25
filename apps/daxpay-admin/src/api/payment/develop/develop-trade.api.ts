@@ -82,6 +82,12 @@ export interface PayParam {
   notifyUrl?: string;
   /** 同步跳转地址 */
   returnUrl?: string;
+  /** 商户附加参数(回调原样返回) */
+  attach?: string;
+  /** 支付扩展参数(JSON, 通道长尾参数) */
+  extraParam?: string;
+  /** 限制支付类型(如 no_credit 禁信用卡) */
+  limitPay?: string[];
   /** 过期时间(北京时间 yyyy-MM-dd HH:mm:ss) */
   expiredTime?: string;
   /** 客户端 IP(可选, 未传时由 unipay 从 HTTP 请求提取) */

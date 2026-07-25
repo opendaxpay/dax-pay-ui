@@ -60,7 +60,7 @@
       "mchApp": "Merchant Info",
       "param": "Payment Params",
       "order": "Order Info",
-      "preview": "Request Preview"
+      "advanced": "Advanced Params"
     },
     "mode": {
       "label": "Pay Mode",
@@ -68,11 +68,6 @@
       "direct": "Specify Directly",
       "routeDesc": "Resolve channel merchant and capability via the app's channel routing",
       "directDesc": "Directly specify channel merchant + capability; skip channel routing"
-    },
-    "preview": {
-      "title": "Request JSON",
-      "signBtn": "Sign Preview",
-      "empty": "No data"
     },
     "field": {
       "privateKey": "Merchant Private Key",
@@ -85,6 +80,10 @@
       "openId": "OpenID",
       "authCode": "Payment code",
       "notifyUrl": "Async Notify URL",
+      "returnUrl": "Sync Return URL",
+      "attach": "Attach",
+      "extraParam": "Extra Params",
+      "limitPay": "Limit Pay",
       "expiredTime": "Expire Time",
       "bizOrderNo": "Order No.",
       "amount": "Amount (Fen)",
@@ -97,6 +96,10 @@
       "openId": "Required for WeChat jsapi/mini",
       "authCode": "Required for barcode pay",
       "notifyUrl": "https://...",
+      "returnUrl": "https://...",
+      "attach": "Returned as-is in callback",
+      "extraParam": "JSON, channel-specific params",
+      "limitPay": "Select or input, e.g. no_credit",
       "expiredTime": "Default 30 minutes if empty",
       "title": "Test order",
       "description": "Enter payment description"
@@ -145,7 +148,8 @@
       "amount": "Please enter the amount",
       "method": "Please select a payment method",
       "channelMchNo": "Please select a channel merchant",
-      "capability": "Please select a capability"
+      "capability": "Please select a capability",
+      "extraParam": "Extra params must be valid JSON"
     },
     "msg": {
       "signSuccess": "Sign generated successfully",
@@ -232,7 +236,7 @@
       "mchApp": "Merchant",
       "order": "Order",
       "param": "Extra Parameters",
-      "preview": "Request Preview"
+      "advanced": "Advanced Params"
     },
     "gatewayType": {
       "label": "Gateway Type",
@@ -240,11 +244,6 @@
       "aggregate": "Aggregate QR",
       "cashierDesc": "Generate a cashier landing page where users choose a payment method",
       "aggregateDesc": "Generate an aggregate QR link, one code for multiple payment methods"
-    },
-    "preview": {
-      "title": "Request JSON",
-      "signBtn": "Generate Sign Preview",
-      "empty": "No data"
     },
     "field": {
       "privateKey": "Merchant Private Key",
@@ -256,12 +255,16 @@
       "description": "Description",
       "notifyUrl": "Async Notify URL",
       "returnUrl": "Sync Return URL",
+      "attach": "Attach",
+      "extraParam": "Extra Params",
       "expiredTime": "Expire Time",
       "storeNo": "Store No."
     },
     "placeholder": {
       "notifyUrl": "https://...",
       "returnUrl": "https://...",
+      "attach": "Returned as-is in callback",
+      "extraParam": "JSON, channel-specific params",
       "expiredTime": "Default 30 min",
       "storeNo": "Offline store number",
       "title": "Test order",
@@ -304,7 +307,8 @@
       "bizOrderNo": "Please enter order no.",
       "title": "Please enter payment title",
       "amount": "Please enter amount",
-      "gatewayPayType": "Please select gateway type"
+      "gatewayPayType": "Please select gateway type",
+      "extraParam": "Extra params must be valid JSON"
     },
     "msg": {
       "signSuccess": "Sign generated",

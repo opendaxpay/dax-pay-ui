@@ -60,7 +60,7 @@
       "mchApp": "Info Pedagang",
       "param": "Parameter Pembayaran",
       "order": "Info Pemesanan",
-      "preview": "Minta Pratinjau"
+      "advanced": "Parameter Lanjutan"
     },
     "mode": {
       "label": "Modus Bayar",
@@ -68,11 +68,6 @@
       "direct": "Tentukan Langsung",
       "routeDesc": "Selesaikan pedagang saluran dan kemampuan melalui perutean saluran aplikasi",
       "directDesc": "Diputuskan oleh pedagang saluran + kemampuan; lewati perutean saluran"
-    },
-    "preview": {
-      "title": "Minta JSON",
-      "signBtn": "Pratinjau Tanda Tangan",
-      "empty": "Tidak ada data"
     },
     "field": {
       "privateKey": "Kunci Pribadi Pedagang",
@@ -89,7 +84,11 @@
       "bizOrderNo": "Nomor Pesanan.",
       "amount": "Jumlah (Fen)",
       "title": "Judul",
-      "description": "Keterangan"
+      "description": "Keterangan",
+      "returnUrl": "URL Return Sync",
+      "attach": "Lampiran Merchant",
+      "extraParam": "Parameter Ekstra",
+      "limitPay": "Batasan Pembayaran"
     },
     "placeholder": {
       "method": "Pilih metode pembayaran",
@@ -99,7 +98,11 @@
       "notifyUrl": "https://...",
       "expiredTime": "Default 30 menit jika kosong",
       "title": "Urutan tes",
-      "description": "Masukkan deskripsi pembayaran"
+      "description": "Masukkan deskripsi pembayaran",
+      "returnUrl": "https://...",
+      "attach": "Dikembalikan apa adanya di callback",
+      "extraParam": "JSON, parameter khusus channel",
+      "limitPay": "Pilih atau input, mis. no_credit"
     },
     "default": {
       "titlePrefix": "Tes Bayar"
@@ -145,7 +148,8 @@
       "amount": "Silakan masukkan jumlahnya",
       "method": "Silakan pilih metode pembayaran",
       "channelMchNo": "Silakan pilih pedagang saluran",
-      "capability": "Silakan pilih kemampuan"
+      "capability": "Silakan pilih kemampuan",
+      "extraParam": "Parameter ekstra harus JSON valid"
     },
     "msg": {
       "signSuccess": "Tanda tangan berhasil dibuat",
@@ -232,7 +236,7 @@
       "mchApp": "Info Merchant",
       "order": "Info Pesanan",
       "param": "Parameter Tambahan",
-      "preview": "Pratinjau Permintaan"
+      "advanced": "Parameter Lanjutan"
     },
     "gatewayType": {
       "label": "Tipe Gateway",
@@ -240,11 +244,6 @@
       "aggregate": "QR Agregat",
       "cashierDesc": "Buat halaman kasir, pengguna memilih metode pembayaran",
       "aggregateDesc": "Buat tautan QR agregat, satu kode untuk banyak pembayaran"
-    },
-    "preview": {
-      "title": "JSON Permintaan",
-      "signBtn": "Buat Pratinjau Tanda Tangan",
-      "empty": "Tidak ada data"
     },
     "field": {
       "privateKey": "Kunci Pribadi Merchant",
@@ -257,7 +256,9 @@
       "notifyUrl": "URL Notifikasi Async",
       "returnUrl": "URL Return Sync",
       "expiredTime": "Waktu Kedaluwarsa",
-      "storeNo": "No. Toko"
+      "storeNo": "No. Toko",
+      "attach": "Lampiran Merchant",
+      "extraParam": "Parameter Ekstra"
     },
     "placeholder": {
       "notifyUrl": "https://...",
@@ -265,7 +266,9 @@
       "expiredTime": "Default 30 mnt",
       "storeNo": "Nomor toko offline",
       "title": "Pesanan uji",
-      "description": "Masukkan deskripsi pembayaran"
+      "description": "Masukkan deskripsi pembayaran",
+      "attach": "Dikembalikan apa adanya di callback",
+      "extraParam": "JSON, parameter khusus channel"
     },
     "default": {
       "titlePrefix": "Tes Gateway Pay"
@@ -304,7 +307,8 @@
       "bizOrderNo": "Silakan masukkan no. pesanan",
       "title": "Silakan masukkan judul pembayaran",
       "amount": "Silakan masukkan jumlah",
-      "gatewayPayType": "Silakan pilih tipe gateway"
+      "gatewayPayType": "Silakan pilih tipe gateway",
+      "extraParam": "Parameter ekstra harus JSON valid"
     },
     "msg": {
       "signSuccess": "Tanda tangan dibuat",
