@@ -2,13 +2,13 @@
   "menu.dashboard": "แดชบอร์ด",
   "menu.dashboard.workspace": "พื้นที่ทำงาน",
   "menu.dashboard.analytics": "การวิเคราะห์",
-  "menu.trade": "การจัดการธุรกรรม",
+  "menu.trade": "คำสั่งธุรกรรม",
   "menu.trade.payTrade": "ธุรกรรมการชำระเงิน",
   "menu.trade.normalPay": "คำสั่งปกติ",
   "menu.trade.refundOrder": "คำสั่งคืนเงิน",
   "menu.trade.payOrder": "คำสั่งชำระเงิน",
   "menu.trade.gatewayOrder": "คำสั่งเกตเวย์",
-  "menu.trade.record": "บันทึกธุรกรรม",
+  "menu.trade.record": "การแจ้งเตือน Callback",
   "menu.trade.mchNotice": "ส่ง Callback ร้านค้า",
   "menu.trade.callbackRecord": "บันทึก Callback ช่องทาง",
   "menu.payment.merchant.profile": "โปรไฟล์ผู้ขาย",
@@ -32,5 +32,10 @@
   "menu.payment.merchant.channelMerchant.alipayApp": "แอพอาลีเพย์",
   "menu.payment.merchant.channelMerchant.wechatApp": "แอพวีแชต",
   "menu.payment.merchant.channelMerchant.douyinApp": "แอป Douyin",
-  "menu.payment.merchant.channelMerchant.wechatIsvApp": "แอพผู้ค้าย่อย WeChat ISV"
+  "menu.payment.merchant.channelMerchant.wechatIsvApp": "แอพผู้ค้าย่อย WeChat ISV",
+  "menu.develop": "พัฒนา",
+  "menu.develop.trade": "การพัฒนาการชำระเงิน (ปกติ)",
+  "menu.develop.sign": "ลงชื่อ พัฒนา",
+  "menu.develop.gateway": "การพัฒนาการชำระเงิน (เกตเวย์)",
+  "menu.develop.auth": "รับรองความถูกต้องพัฒนา"
 }

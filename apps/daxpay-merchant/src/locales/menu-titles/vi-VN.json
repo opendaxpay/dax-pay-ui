@@ -2,13 +2,13 @@
   "menu.dashboard": "Trang tổng quan",
   "menu.dashboard.workspace": "Không gian làm việc",
   "menu.dashboard.analytics": "Phân tích",
-  "menu.trade": "Quản lý giao dịch",
+  "menu.trade": "Đơn giao dịch",
   "menu.trade.payTrade": "Giao dịch thanh toán",
   "menu.trade.normalPay": "Đơn thường",
   "menu.trade.refundOrder": "Đơn hoàn tiền",
   "menu.trade.payOrder": "Đơn thanh toán",
   "menu.trade.gatewayOrder": "Đơn cổng",
-  "menu.trade.record": "Nhật ký giao dịch",
+  "menu.trade.record": "Thông báo Callback",
   "menu.trade.mchNotice": "Đẩy Callback Merchant",
   "menu.trade.callbackRecord": "Nhật ký Callback Channel",
   "menu.payment.merchant.profile": "Hồ sơ người bán",
@@ -32,5 +32,10 @@
   "menu.payment.merchant.channelMerchant.alipayApp": "Ứng dụng Alipay",
   "menu.payment.merchant.channelMerchant.wechatApp": "Ứng dụng WeChat",
   "menu.payment.merchant.channelMerchant.douyinApp": "Ứng dụng Douyin",
-  "menu.payment.merchant.channelMerchant.wechatIsvApp": "Ứng dụng người bán phụ WeChat ISV"
+  "menu.payment.merchant.channelMerchant.wechatIsvApp": "Ứng dụng người bán phụ WeChat ISV",
+  "menu.develop": "Phát triển",
+  "menu.develop.trade": "Phát triển thanh toán (Thường)",
+  "menu.develop.sign": "Đăng ký phát triển",
+  "menu.develop.gateway": "Phát triển thanh toán (Cổng)",
+  "menu.develop.auth": "Xác thực phát triển"
 }

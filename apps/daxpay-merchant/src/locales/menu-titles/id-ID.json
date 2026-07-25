@@ -2,13 +2,13 @@
   "menu.dashboard": "Dasbor",
   "menu.dashboard.workspace": "Ruang kerja",
   "menu.dashboard.analytics": "Analisis",
-  "menu.trade": "Manajemen Transaksi",
+  "menu.trade": "Pesanan Transaksi",
   "menu.trade.payTrade": "Transaksi Pembayaran",
   "menu.trade.normalPay": "Pesanan Normal",
   "menu.trade.refundOrder": "Pesanan Refund",
   "menu.trade.payOrder": "Pesanan Pembayaran",
   "menu.trade.gatewayOrder": "Pesanan Gateway",
-  "menu.trade.record": "Catatan Transaksi",
+  "menu.trade.record": "Notifikasi Callback",
   "menu.trade.mchNotice": "Push Callback Merchant",
   "menu.trade.callbackRecord": "Catatan Callback Channel",
   "menu.payment.merchant.profile": "Profil Pedagang",
@@ -32,5 +32,10 @@
   "menu.payment.merchant.channelMerchant.alipayApp": "Aplikasi Alipay",
   "menu.payment.merchant.channelMerchant.wechatApp": "Aplikasi WeChat",
   "menu.payment.merchant.channelMerchant.douyinApp": "Aplikasi Douyin",
-  "menu.payment.merchant.channelMerchant.wechatIsvApp": "Aplikasi Sub-pedagang WeChat ISV"
+  "menu.payment.merchant.channelMerchant.wechatIsvApp": "Aplikasi Sub-pedagang WeChat ISV",
+  "menu.develop": "Mengembangkan",
+  "menu.develop.trade": "Pembayaran Berkembang (Biasa)",
+  "menu.develop.sign": "Tandatangani Kembangkan",
+  "menu.develop.gateway": "Pembayaran Berkembang (Gateway)",
+  "menu.develop.auth": "Auth Kembangkan"
 }

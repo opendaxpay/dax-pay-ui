@@ -2,13 +2,13 @@
   "menu.dashboard": "ダッシュボード",
   "menu.dashboard.workspace": "ワークスペース",
   "menu.dashboard.analytics": "分析",
-  "menu.trade": "取引管理",
+  "menu.trade": "取引注文",
   "menu.trade.payTrade": "支払取引",
   "menu.trade.normalPay": "通常注文",
   "menu.trade.refundOrder": "返金注文",
   "menu.trade.payOrder": "支払注文",
   "menu.trade.gatewayOrder": "ゲートウェイ注文",
-  "menu.trade.record": "取引記録",
+  "menu.trade.record": "コールバック通知",
   "menu.trade.mchNotice": "加盟店コールバックプッシュ",
   "menu.trade.callbackRecord": "チャネルコールバック記録",
   "menu.payment.merchant.profile": "販売者のプロフィール",
@@ -32,5 +32,10 @@
   "menu.payment.merchant.channelMerchant.alipayApp": "アリペイアプリ",
   "menu.payment.merchant.channelMerchant.wechatApp": "WeChatアプリ",
   "menu.payment.merchant.channelMerchant.douyinApp": "Douyinアプリ",
-  "menu.payment.merchant.channelMerchant.wechatIsvApp": "WeChat ISV サブマーチャント アプリ"
+  "menu.payment.merchant.channelMerchant.wechatIsvApp": "WeChat ISV サブマーチャント アプリ",
+  "menu.develop": "開発する",
+  "menu.develop.trade": "決済開発(通常)",
+  "menu.develop.sign": "サイン開発",
+  "menu.develop.gateway": "決済開発(ゲートウェイ)",
+  "menu.develop.auth": "認証開発"
 }

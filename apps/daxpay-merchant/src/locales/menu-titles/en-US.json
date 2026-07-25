@@ -2,13 +2,13 @@
   "menu.dashboard": "Dashboard",
   "menu.dashboard.workspace": "Workspace",
   "menu.dashboard.analytics": "Analytics",
-  "menu.trade": "Transactions",
+  "menu.trade": "Trade Orders",
   "menu.trade.payTrade": "Payment Transactions",
   "menu.trade.normalPay": "Normal Orders",
   "menu.trade.refundOrder": "Refund Orders",
   "menu.trade.payOrder": "Payment Orders",
   "menu.trade.gatewayOrder": "Gateway Orders",
-  "menu.trade.record": "Trade Records",
+  "menu.trade.record": "Callback Notifications",
   "menu.trade.mchNotice": "Merchant Callback Push",
   "menu.trade.callbackRecord": "Channel Callback Records",
   "menu.payment.merchant.profile": "Merchant Profile",
@@ -32,5 +32,10 @@
   "menu.payment.merchant.channelMerchant.alipayApp": "Alipay App",
   "menu.payment.merchant.channelMerchant.wechatApp": "WeChat App",
   "menu.payment.merchant.channelMerchant.douyinApp": "Douyin App",
-  "menu.payment.merchant.channelMerchant.wechatIsvApp": "WeChat ISV Sub-merchant App"
+  "menu.payment.merchant.channelMerchant.wechatIsvApp": "WeChat ISV Sub-merchant App",
+  "menu.develop": "Develop",
+  "menu.develop.trade": "Payment Develop (Normal)",
+  "menu.develop.sign": "Sign Develop",
+  "menu.develop.gateway": "Payment Develop (Gateway)",
+  "menu.develop.auth": "Auth Develop"
 }

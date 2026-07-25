@@ -2,13 +2,13 @@
   "menu.dashboard": "儀表板",
   "menu.dashboard.workspace": "工作臺",
   "menu.dashboard.analytics": "分析頁",
-  "menu.trade": "交易管理",
+  "menu.trade": "交易訂單",
   "menu.trade.payTrade": "支付交易",
   "menu.trade.normalPay": "普通訂單",
   "menu.trade.refundOrder": "退款訂單",
   "menu.trade.payOrder": "支付訂單",
   "menu.trade.gatewayOrder": "閘道訂單",
-  "menu.trade.record": "交易記錄",
+  "menu.trade.record": "回呼通知",
   "menu.trade.mchNotice": "商戶回調推送",
   "menu.trade.callbackRecord": "通道回調記錄",
   "menu.payment.merchant.profile": "商戶資料",
@@ -32,5 +32,10 @@
   "menu.payment.merchant.channelMerchant.alipayApp": "支付寶應用",
   "menu.payment.merchant.channelMerchant.wechatApp": "微信應用",
   "menu.payment.merchant.channelMerchant.douyinApp": "抖音應用",
-  "menu.payment.merchant.channelMerchant.wechatIsvApp": "微信服務商子商戶應用"
+  "menu.payment.merchant.channelMerchant.wechatIsvApp": "微信服務商子商戶應用",
+  "menu.develop": "開發除錯",
+  "menu.develop.trade": "支付除錯(普通)",
+  "menu.develop.sign": "簽名除錯",
+  "menu.develop.gateway": "支付除錯(網關)",
+  "menu.develop.auth": "認證除錯"
 }
