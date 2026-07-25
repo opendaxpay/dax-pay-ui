@@ -1,10 +1,10 @@
 <script lang="ts" setup>
   import type { DashboardData } from '../types';
 
-  import { nextTick, onMounted, ref } from 'vue';
+  import { nextTick, onMounted, ref, watch } from 'vue';
 
-  import { $t } from '@vben/locales';
   import { IconifyIcon } from '@vben/icons';
+  import { $t } from '@vben/locales';
   import { EchartsUI, type EchartsUIType, useEcharts } from '@vben/plugins/echarts';
 
   import { DashboardTradeApi, type ProviderDistItemResult } from '#/api/payment/dashboard/trade-dashboard.api';
@@ -22,6 +22,10 @@
   withDefaults(defineProps<Props>(), {
     data: undefined,
   });
+
+  // 渠道分布时间跨度切换
+  type DistRange = '7days' | '30days';
+  const activeRange = ref<DistRange>('30days');
 
   const chartRef = ref<EchartsUIType>();
   const { renderEcharts } = useEcharts(chartRef);
@@ -41,14 +45,15 @@
     return provider;
   }
 
-  /** 拉取近 30 天支付渠道分布 */
+  /** 拉取指定时间跨度的支付渠道分布 */
   async function load() {
     loading.value = true;
     error.value = false;
     try {
-      const res = await DashboardTradeApi.providerDist({ days: 30 });
+      const days = activeRange.value === '7days' ? 7 : 30;
+      const res = await DashboardTradeApi.providerDist({ days });
       distData.value = res?.data || [];
-    } catch (e) {
+    } catch {
       error.value = true;
       distData.value = [];
     } finally {
@@ -82,6 +87,9 @@
     });
   }
 
+  // 切换时间跨度时重新拉取
+  watch(activeRange, load);
+
   onMounted(load);
 </script>
 
@@ -92,17 +100,23 @@
         <span>{{ $t('dashboard.workspace.widget.providerDist') }}</span>
       </div>
     </template>
+    <template #extra>
+      <a-radio-group v-model:value="activeRange" button-style="solid" size="small">
+        <a-radio-button value="7days">{{ $t('dashboard.workspace.tradeTrend.last7days') }}</a-radio-button>
+        <a-radio-button value="30days">{{ $t('dashboard.workspace.tradeTrend.last30days') }}</a-radio-button>
+      </a-radio-group>
+    </template>
 
     <a-skeleton v-if="loading && distData.length === 0" active :paragraph="{ rows: 5 }" />
-    <div
-      v-else-if="error"
-      class="flex flex-col items-center justify-center gap-2 py-8"
-    >
+    <div v-else-if="error" class="flex flex-col items-center justify-center gap-2 py-8">
       <IconifyIcon icon="ant-design:warning-outlined" class="text-foreground/40 size-8" />
       <p class="text-foreground/60 text-sm">{{ $t('common.loadFailed') }}</p>
       <a-button size="small" type="primary" @click="load">{{ $t('common.retry') }}</a-button>
     </div>
-    <a-empty v-else-if="distData.length === 0 || distData.every((i) => (toNumber(i.count) ?? 0) === 0)" class="!my-10" />
+    <a-empty
+      v-else-if="distData.length === 0 || distData.every((i) => (toNumber(i.count) ?? 0) === 0)"
+      class="!my-10"
+    />
     <EchartsUI v-else ref="chartRef" class="h-[280px]" />
   </a-card>
 </template>
