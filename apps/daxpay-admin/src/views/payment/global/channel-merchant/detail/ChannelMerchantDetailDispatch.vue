@@ -31,15 +31,12 @@
   const router = useRouter();
 
   const routeContext = useRequiredRouteQuery({
-    keys: ['mchNo', 'id', 'product'],
+    keys: ['mchNo', 'id'],
     messageKey: computed(() => {
       if (!normalizeRouteQueryValue(route.query.mchNo)) {
         return 'payment.common.route.missingMchNo';
       }
-      if (!normalizeRouteQueryValue(route.query.id)) {
-        return 'payment.merchant.channelMerchant.missingId';
-      }
-      return 'payment.common.route.missingProduct';
+      return 'payment.merchant.channelMerchant.missingId';
     }),
     fallbackPath: computed(() => {
       const no = normalizeRouteQueryValue(route.query.mchNo);
@@ -52,6 +49,9 @@
   const product = ref('');
   const channelMerchant = ref<ChannelMerchantResult>({});
   const loading = ref(false);
+
+  /** product 优先取路由(可选), 缺失时用详情反查回填 */
+  const resolvedProduct = computed(() => product.value || channelMerchant.value.product || '');
 
   const alipayMchManageRef = ref<InstanceType<typeof AlipayMchManage>>();
   const alipayChannelMerchantManageRef = ref<InstanceType<typeof AlipayChannelMerchantManage>>();
@@ -147,7 +147,7 @@
     return $t('payment.merchant.channelMerchant.manageTitleDefault');
   }
 
-  const pageTitle = computed(() => resolvePageTitle(product.value));
+  const pageTitle = computed(() => resolvePageTitle(resolvedProduct.value));
 
   /** 银联商务产品类型展示名称(多产品共页时区分具体产品) */
   const productTypeName = computed(() => {
@@ -170,6 +170,10 @@
       .then(({ data }) => {
         if (data) {
           channelMerchant.value = data;
+          // product 缺失时用详情回填
+          if (!product.value && data.product) {
+            product.value = data.product;
+          }
         }
       })
       .finally(() => {
@@ -242,7 +246,8 @@
     }
     mchNo.value = routeContext.query.value.mchNo;
     channelMerchantId.value = routeContext.query.value.id;
-    product.value = routeContext.query.value.product;
+    // product 可选(不在 keys), 缺失时由 loadChannelMerchant 回填
+    product.value = normalizeRouteQueryValue(route.query.product) || '';
   }
 
   watch(() => route.query, syncRouteState, { deep: true });
@@ -266,13 +271,11 @@
 <template>
   <RouteQueryMissingState
     v-if="!routeContext.isValid"
-    :description="
+          :description="
       $t(
         !routeContext.query.value.mchNo
           ? 'payment.common.route.missingMchNo'
-          : !routeContext.query.value.id
-            ? 'payment.merchant.channelMerchant.missingId'
-            : 'payment.common.route.missingProduct',
+          : 'payment.merchant.channelMerchant.missingId',
       )
     "
     :back-text="$t('payment.merchant.workbench.workbench.backToList')"
@@ -291,94 +294,84 @@
             <!-- 国际化：按通道动态展示页头标题 -->
             <span class="text-lg font-bold text-foreground">{{ pageTitle }}</span>
             <!-- 银联商务多产品共页, 用标签区分具体产品类型(如"银联商务(C扫B)") -->
-            <a-tag v-if="isUmsProduct(product) && productTypeName" color="blue" class="!ml-1">
+            <a-tag v-if="isUmsProduct(resolvedProduct) && productTypeName" color="blue" class="!ml-1">
               {{ productTypeName }}
             </a-tag>
             <span v-if="channelMerchant.channelMerchantName" class="text-sm text-muted-foreground">
               ({{ channelMerchant.channelMerchantName }})
             </span>
           </div>
-          <!-- 国际化：支付宝开放平台外链（直连产品） -->
-          <a
-            v-if="product === ProductEnum.ALIPAY"
-            href="https://open.alipay.com/develop/manage"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="shrink-0 text-sm font-normal text-primary"
-          >
-            {{ $t('payment.channel.alipayMchApp.consoleLink') }}
-          </a>
         </div>
       </template>
 
       <a-spin :spinning="loading">
         <AlipayMchManage
-          v-if="product === ProductEnum.ALIPAY"
+          v-if="resolvedProduct === ProductEnum.ALIPAY"
           ref="alipayMchManageRef"
           @success="loadChannelMerchant"
         />
         <AlipayChannelMerchantManage
-          v-else-if="product === ProductEnum.ALIPAY_ISV"
+          v-else-if="resolvedProduct === ProductEnum.ALIPAY_ISV"
           ref="alipayChannelMerchantManageRef"
           @success="loadChannelMerchant"
         />
         <WechatChannelMerchantManage
-          v-else-if="product === ProductEnum.WECHAT_ISV"
+          v-else-if="resolvedProduct === ProductEnum.WECHAT_ISV"
           ref="wechatManageRef"
           @success="loadChannelMerchant"
         />
         <WechatDirectMchManage
-          v-else-if="product === ProductEnum.WECHAT_PAY"
+          v-else-if="resolvedProduct === ProductEnum.WECHAT_PAY"
           ref="wechatDirectManageRef"
           @success="loadChannelMerchant"
         />
         <DouyinDirectMchManage
-          v-else-if="product === ProductEnum.DOUYIN_PAY"
+          v-else-if="resolvedProduct === ProductEnum.DOUYIN_PAY"
           ref="douyinDirectManageRef"
           @success="loadChannelMerchant"
         />
-        <UmsDirectMchManage v-else-if="isUmsProduct(product)" ref="umsDirectManageRef" @success="loadChannelMerchant" />
+        <UmsDirectMchManage v-else-if="isUmsProduct(resolvedProduct)" ref="umsDirectManageRef" @success="loadChannelMerchant" />
         <LakalaMchManage
-          v-else-if="product === ProductEnum.LAKALA_PAY"
+          v-else-if="resolvedProduct === ProductEnum.LAKALA_PAY"
           ref="lakalaManageRef"
           @success="loadChannelMerchant"
         />
         <AdapayDirectMchManage
-          v-else-if="product === ProductEnum.ADA_PAY"
+          v-else-if="resolvedProduct === ProductEnum.ADA_PAY"
           ref="adapayDirectManageRef"
           @success="loadChannelMerchant"
         />
         <HkrtMchManage
-          v-else-if="product === ProductEnum.HKRT_PAY"
+          v-else-if="resolvedProduct === ProductEnum.HKRT_PAY"
           ref="hkrtManageRef"
           @success="loadChannelMerchant"
         />
         <LeshuaMchManage
-          v-else-if="product === ProductEnum.LESHUA_PAY"
+          v-else-if="resolvedProduct === ProductEnum.LESHUA_PAY"
           ref="leshuaManageRef"
           @success="loadChannelMerchant"
         />
         <DougongMchManage
-          v-else-if="product === ProductEnum.DOUGONG_PAY"
+          v-else-if="resolvedProduct === ProductEnum.DOUGONG_PAY"
           ref="dougongManageRef"
           @success="loadChannelMerchant"
         />
         <VbillMchManage
-          v-else-if="product === ProductEnum.VBILL_PAY"
+          v-else-if="resolvedProduct === ProductEnum.VBILL_PAY"
           ref="vbillManageRef"
           @success="loadChannelMerchant"
         />
         <FuyouMchManage
-          v-else-if="product === ProductEnum.FUYOU_PAY"
+          v-else-if="resolvedProduct === ProductEnum.FUYOU_PAY"
           ref="fuyouManageRef"
           @success="loadChannelMerchant"
         />
         <HmpayMchManage
-          v-else-if="product === ProductEnum.HM_PAY"
+          v-else-if="resolvedProduct === ProductEnum.HM_PAY"
           ref="hmpayManageRef"
           @success="loadChannelMerchant"
         />
-        <div v-else-if="!isSupported(product)" class="flex items-center justify-center" style="min-height: 400px">
+        <div v-else-if="!isSupported(resolvedProduct)" class="flex items-center justify-center" style="min-height: 400px">
           <a-empty :description="$t('payment.merchant.channelMerchant.detailNotSupportYet')" />
         </div>
       </a-spin>

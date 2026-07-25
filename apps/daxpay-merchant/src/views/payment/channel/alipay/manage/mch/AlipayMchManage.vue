@@ -2,14 +2,16 @@
   import type { ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
 
   import { ref } from 'vue';
+  import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import AlipayDirectAppDrawer from '#/views/payment/channel-merchant/detail/alipay-direct/AlipayDirectAppDrawer.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
-  import CommonChannelMerchantBasicInfo from '#/views/payment/channel-merchant/detail/CommonChannelMerchantBasicInfo.vue';
+
+  import AlipayChannelMerchantBasicInfo from './AlipayChannelMerchantBasicInfo.vue';
+  import AlipayMchAppCapability from './AlipayMchAppCapability.vue';
 
   defineOptions({ name: 'AlipayMchManage' });
 
@@ -17,10 +19,11 @@
     (e: 'success'): void;
   }>();
 
+  const router = useRouter();
   const channelMchNo = ref('');
   const channelMerchant = ref<ChannelMerchantResult>({});
-  const basicInfoRef = ref<InstanceType<typeof CommonChannelMerchantBasicInfo>>();
-  const alipayAppRef = ref<InstanceType<typeof AlipayDirectAppDrawer>>();
+  const basicInfoRef = ref<InstanceType<typeof AlipayChannelMerchantBasicInfo>>();
+  const capabilityRef = ref<InstanceType<typeof AlipayMchAppCapability>>();
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
 
   /** 功能卡片配置（按组分组的卡片布局） */
@@ -52,6 +55,12 @@
           title: $t('payment.merchant.channelMerchant.cardApp'),
           icon: 'ant-design:appstore-outlined',
           description: $t('payment.merchant.channelMerchant.cardAppDesc'),
+        },
+        {
+          key: 'capabilityBinding',
+          title: $t('payment.merchant.alipayDirectApp.cardCapabilityBinding'),
+          icon: 'ant-design:api-outlined',
+          description: $t('payment.merchant.alipayDirectApp.cardCapabilityBindingDesc'),
         },
       ],
     },
@@ -86,12 +95,24 @@
   function handleCardClick(card: { key: string }) {
     if (card.key === 'basicInfo') {
       basicInfoRef.value?.open();
+      return;
     }
     if (card.key === 'editMerchantName') {
       editNameRef.value?.open();
+      return;
+    }
+    if (card.key === 'capabilityBinding') {
+      capabilityRef.value?.show(channelMchNo.value);
+      return;
     }
     if (card.key === 'mchApp') {
-      alipayAppRef.value?.show();
+      // 应用管理: 仅传 channelMchNo, 接收端反查名称/沙箱等元数据
+      router.push({
+        path: '/mch/channel-merchant/alipay-app-manage',
+        query: {
+          channelMchNo: channelMchNo.value,
+        },
+      });
     }
   }
 
@@ -144,17 +165,13 @@
       </div>
     </div>
 
-    <CommonChannelMerchantBasicInfo
+    <AlipayChannelMerchantBasicInfo
       ref="basicInfoRef"
       :channel-mch-no="channelMchNo"
       :channel-merchant="channelMerchant"
     />
     <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
-    <AlipayDirectAppDrawer
-      ref="alipayAppRef"
-      :channel-mch-no="channelMchNo"
-      :sandbox="channelMerchant.sandbox ?? false"
-    />
+    <AlipayMchAppCapability ref="capabilityRef" />
   </div>
 </template>
 

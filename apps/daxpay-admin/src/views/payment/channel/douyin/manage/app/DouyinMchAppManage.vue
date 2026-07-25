@@ -7,6 +7,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { DouyinMchAppApi, type DouyinMchApp } from '#/api/payment/channel/douyin/mch-app.api';
+  import { ChannelMerchantApi } from '#/api/payment/global/channel-merchant/channel-merchant.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { ProductEnum } from '#/enums/payment/productEnum';
   import { PermCodes } from '#/constants/perm-codes';
@@ -33,12 +34,6 @@
     }),
     fallbackPath: computed(() => {
       const mchNo = normalizeRouteQueryValue(route.query.mchNo);
-      const id = normalizeRouteQueryValue(route.query.channelMerchantId);
-      // product 由本页所属渠道决定（抖音直连），无需从路由读取
-      const product = ProductEnum.DOUYIN_PAY;
-      if (mchNo && id) {
-        return { path: '/payment/global/channel-merchant/detail', query: { mchNo, id, product } };
-      }
       return mchNo
         ? { path: '/payment/global/channel-merchant', query: { mchNo } }
         : '/payment/merchant';
@@ -49,6 +44,7 @@
   const mchNo = ref('');
   const channelMchNo = ref('');
   const channelMerchantName = ref('');
+  const channelMerchantId = ref('');
   const appList = ref<DouyinMchApp[]>([]);
   const editRef = ref<InstanceType<typeof DouyinMchAppEdit>>();
   const detailRef = ref<InstanceType<typeof DouyinMchAppDetail>>();
@@ -80,17 +76,30 @@
     }
     mchNo.value = routeContext.query.value.mchNo!;
     channelMchNo.value = routeContext.query.value.channelMchNo!;
-    channelMerchantName.value = normalizeRouteQueryValue(route.query.channelMerchantName);
+  }
+
+  /** 反查通道商户元数据(名称/主键), 替代 URL 透传, 保证数据实时 */
+  function loadMerchantMeta() {
+    if (!mchNo.value || !channelMchNo.value) {
+      return;
+    }
+    ChannelMerchantApi.findAllByMchNo(mchNo.value)
+      .then(({ data }) => {
+        const merchant = (data || []).find((m) => m.channelMchNo === channelMchNo.value);
+        if (merchant) {
+          channelMerchantName.value = merchant.channelMerchantName ?? '';
+          channelMerchantId.value = String(merchant.id ?? '');
+        }
+      });
   }
 
   function handleBack() {
-    const id = normalizeRouteQueryValue(route.query.channelMerchantId);
-    if (id) {
+    if (channelMerchantId.value) {
       // product 由本页所属渠道决定（抖音直连）
       const product = ProductEnum.DOUYIN_PAY;
       router.push({
         path: '/payment/global/channel-merchant/detail',
-        query: { mchNo: mchNo.value, id, product },
+        query: { mchNo: mchNo.value, id: channelMerchantId.value, product },
       });
     } else {
       router.push({
@@ -118,6 +127,8 @@
       return;
     }
     loadAppList();
+    // 反查通道商户元数据(标题/返回)
+    loadMerchantMeta();
   });
 </script>
 

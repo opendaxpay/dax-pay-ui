@@ -99,7 +99,6 @@
       query: {
         mchNo: record.mchNo!,
         id: record.id!,
-        product: record.product || '',
       },
     });
   }

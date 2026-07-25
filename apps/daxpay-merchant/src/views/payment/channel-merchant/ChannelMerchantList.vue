@@ -6,8 +6,6 @@
 
   import { $t } from '@vben/locales';
 
-  import { IconifyIcon } from '@vben-core/icons';
-
   import {
     ChannelMerchantApi,
     type ChannelMerchantResult,
@@ -62,13 +60,12 @@
     return source || '-';
   }
 
-  /** 进入详情（仅传 id/product，不带 mchNo） */
+  /** 进入详情（仅传 id, product 由 detail 页反查回填） */
   function handleManage(record: ChannelMerchantResult) {
     router.push({
       path: '/mch/channel-merchant/detail',
       query: {
         id: record.id!,
-        product: record.product || '',
       },
     });
   }
@@ -94,11 +91,6 @@
     pageConfig.value.currentPage = currentPage;
     pageConfig.value.pageSize = pageSize;
     loadList();
-  }
-
-  /** 创建通道商户 */
-  function handleCreate() {
-    router.push({ path: '/mch/channel-merchant/create' });
   }
 
   /** 切换启用状态 */
@@ -157,14 +149,7 @@
 <template>
   <div class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
-      <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: loadList }">
-        <template #buttons>
-          <a-button v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)" type="primary" @click="handleCreate">
-            <template #icon><IconifyIcon icon="ant-design:plus-outlined" /></template>
-            {{ $t('payment.merchant.channelMerchant.create') }}
-          </a-button>
-        </template>
-      </vxe-toolbar>
+      <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: loadList }" />
 
       <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="list" :loading="loading">
         <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />

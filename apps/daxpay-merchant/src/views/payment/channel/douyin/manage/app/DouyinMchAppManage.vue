@@ -1,17 +1,17 @@
 <script lang="ts" setup>
   import { computed, onMounted, ref } from 'vue';
-  import { useRoute, useRouter } from 'vue-router';
+  import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
   import { IconifyIcon } from '@vben-core/icons';
 
   import { type DouyinMchApp, DouyinMchAppApi } from '#/api/payment/channel/douyin/mch-app.api';
+  import { ChannelMerchantApi } from '#/api/payment/global/channel-merchant/channel-merchant.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
-  import { ProductEnum } from '#/enums/payment';
   import { usePermission } from '#/hooks/usePermission';
-  import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
+  import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
 
   import DouyinMchAppCard from './DouyinMchAppCard.vue';
   import DouyinMchAppDetail from './DouyinMchAppDetail.vue';
@@ -19,7 +19,6 @@
 
   defineOptions({ name: 'DouyinMchAppManage' });
 
-  const route = useRoute();
   const router = useRouter();
   const { hasPermission } = usePermission();
 
@@ -27,20 +26,13 @@
   const routeContext = useRequiredRouteQuery({
     keys: ['channelMchNo'],
     messageKey: 'payment.merchant.channelMerchant.missingChannelMchNo',
-    fallbackPath: computed(() => {
-      const id = normalizeRouteQueryValue(route.query.channelMerchantId);
-      // product 由本页所属渠道决定（抖音直连）
-      const product = ProductEnum.DOUYIN_PAY;
-      if (id) {
-        return { path: '/mch/channel-merchant/detail', query: { id, product } };
-      }
-      return '/mch/channel-merchant';
-    }),
+    fallbackPath: '/mch/channel-merchant',
   });
 
   const loading = ref(false);
   const channelMchNo = ref('');
   const channelMerchantName = ref('');
+  const channelMerchantId = ref('');
   const appList = ref<DouyinMchApp[]>([]);
   const editRef = ref<InstanceType<typeof DouyinMchAppEdit>>();
   const detailRef = ref<InstanceType<typeof DouyinMchAppDetail>>();
@@ -71,17 +63,28 @@
       return;
     }
     channelMchNo.value = routeContext.query.value.channelMchNo!;
-    channelMerchantName.value = normalizeRouteQueryValue(route.query.channelMerchantName);
+  }
+
+  /** 反查通道商户元数据(名称/主键), 替代 URL 透传, 保证数据实时 */
+  function loadMerchantMeta() {
+    if (!channelMchNo.value) {
+      return;
+    }
+    ChannelMerchantApi.findAll()
+      .then(({ data }) => {
+        const merchant = (data || []).find((m) => m.channelMchNo === channelMchNo.value);
+        if (merchant) {
+          channelMerchantName.value = merchant.channelMerchantName ?? '';
+          channelMerchantId.value = String(merchant.id ?? '');
+        }
+      });
   }
 
   function handleBack() {
-    const id = normalizeRouteQueryValue(route.query.channelMerchantId);
-    // product 由本页所属渠道决定（抖音直连）
-    const product = ProductEnum.DOUYIN_PAY;
-    if (id) {
+    if (channelMerchantId.value) {
       router.push({
         path: '/mch/channel-merchant/detail',
-        query: { id, product },
+        query: { id: channelMerchantId.value },
       });
     } else {
       router.push({ path: '/mch/channel-merchant' });
@@ -106,6 +109,8 @@
       return;
     }
     loadAppList();
+    // 反查通道商户元数据(标题/返回)
+    loadMerchantMeta();
   });
 </script>
 

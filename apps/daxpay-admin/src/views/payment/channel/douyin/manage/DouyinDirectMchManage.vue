@@ -115,13 +115,12 @@
       keyConfigRef.value?.init();
     }
     if (card.key === 'appManage') {
-      const id = channelMerchant.value.id;
+      // 应用管理: 仅传 mchNo + channelMchNo, 接收端反查名称等元数据
       router.push({
         path: '/payment/global/channel-merchant/douyin-app-manage',
         query: {
           mchNo: mchNo.value,
           channelMchNo: channelMchNo.value,
-          channelMerchantId: id,
         },
       });
     }

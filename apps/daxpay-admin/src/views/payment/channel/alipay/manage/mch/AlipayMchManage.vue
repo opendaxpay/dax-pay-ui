@@ -109,12 +109,12 @@
       return;
     }
     if (card.route) {
+      // 仅传 mchNo + channelMchNo, 接收端反查名称等元数据
       router.push({
         path: card.route,
         query: {
           mchNo: mchNo.value,
           channelMchNo: channelMchNo.value,
-          channelMerchantId: channelMerchant.value.id,
         },
       });
     }
