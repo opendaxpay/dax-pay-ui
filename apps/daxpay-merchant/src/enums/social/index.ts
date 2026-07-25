@@ -1,1 +1,1 @@
-export * from './socialEnum';
+export * from '@daxpay/ui-biz/enums/social';

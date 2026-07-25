@@ -1,1 +1,1 @@
-export { default as UserAvatar } from './UserAvatar.vue';
+export { UserAvatar } from '@daxpay/ui-biz/components/user-avatar';

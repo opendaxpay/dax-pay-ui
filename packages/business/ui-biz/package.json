@@ -21,6 +21,26 @@
       "types": "./src/components/channel/index.ts",
       "default": "./src/components/channel/index.ts"
     },
+    "./enums/clientCode": {
+      "types": "./src/enums/clientCode.ts",
+      "default": "./src/enums/clientCode.ts"
+    },
+    "./enums/formEditType": {
+      "types": "./src/enums/formEditType.ts",
+      "default": "./src/enums/formEditType.ts"
+    },
+    "./enums/menuType": {
+      "types": "./src/enums/menuType.ts",
+      "default": "./src/enums/menuType.ts"
+    },
+    "./enums/social": {
+      "types": "./src/enums/social/index.ts",
+      "default": "./src/enums/social/index.ts"
+    },
+    "./enums/social/socialEnum": {
+      "types": "./src/enums/social/socialEnum.ts",
+      "default": "./src/enums/social/socialEnum.ts"
+    },
     "./enums/payment": {
       "types": "./src/enums/payment/index.ts",
       "default": "./src/enums/payment/index.ts"
@@ -36,13 +56,113 @@
     "./enums/payment/providerEnum": {
       "types": "./src/enums/payment/providerEnum.ts",
       "default": "./src/enums/payment/providerEnum.ts"
+    },
+    "./hooks/useMessage": {
+      "types": "./src/hooks/useMessage.ts",
+      "default": "./src/hooks/useMessage.ts"
+    },
+    "./hooks/useDeleteConfirm": {
+      "types": "./src/hooks/useDeleteConfirm.ts",
+      "default": "./src/hooks/useDeleteConfirm.ts"
+    },
+    "./hooks/usePermission": {
+      "types": "./src/hooks/usePermission.ts",
+      "default": "./src/hooks/usePermission.ts"
+    },
+    "./hooks/useApiPrefix": {
+      "types": "./src/hooks/useApiPrefix.ts",
+      "default": "./src/hooks/useApiPrefix.ts"
+    },
+    "./hooks/useFormEdit": {
+      "types": "./src/hooks/useFormEdit.ts",
+      "default": "./src/hooks/useFormEdit.ts"
+    },
+    "./hooks/useValidate": {
+      "types": "./src/hooks/useValidate.ts",
+      "default": "./src/hooks/useValidate.ts"
+    },
+    "./hooks/useTablePage": {
+      "types": "./src/hooks/useTablePage.ts",
+      "default": "./src/hooks/useTablePage.ts"
+    },
+    "./hooks/useRequiredRouteQuery": {
+      "types": "./src/hooks/useRequiredRouteQuery.ts",
+      "default": "./src/hooks/useRequiredRouteQuery.ts"
+    },
+    "./utils/file": {
+      "types": "./src/utils/file.ts",
+      "default": "./src/utils/file.ts"
+    },
+    "./utils/pay-amount": {
+      "types": "./src/utils/pay-amount.ts",
+      "default": "./src/utils/pay-amount.ts"
+    },
+    "./utils/auto-social-login": {
+      "types": "./src/utils/auto-social-login.ts",
+      "default": "./src/utils/auto-social-login.ts"
+    },
+    "./utils/timezone": {
+      "types": "./src/utils/timezone.ts",
+      "default": "./src/utils/timezone.ts"
+    },
+    "./utils/timezone-data": {
+      "types": "./src/utils/timezone-data.ts",
+      "default": "./src/utils/timezone-data.ts"
+    },
+    "./types/web": {
+      "types": "./src/types/web.ts",
+      "default": "./src/types/web.ts"
+    },
+    "./components/charts": {
+      "types": "./src/components/charts/index.ts",
+      "default": "./src/components/charts/index.ts"
+    },
+    "./components/qrcode": {
+      "types": "./src/components/qrcode/index.ts",
+      "default": "./src/components/qrcode/index.ts"
+    },
+    "./components/icon-picker": {
+      "types": "./src/components/icon-picker/index.ts",
+      "default": "./src/components/icon-picker/index.ts"
+    },
+    "./components/split-pane": {
+      "types": "./src/components/split-pane/index.ts",
+      "default": "./src/components/split-pane/index.ts"
+    },
+    "./components/user-avatar": {
+      "types": "./src/components/user-avatar/index.ts",
+      "default": "./src/components/user-avatar/index.ts"
+    },
+    "./components/delete-confirm": {
+      "types": "./src/components/delete-confirm/index.ts",
+      "default": "./src/components/delete-confirm/index.ts"
+    },
+    "./components/timezone": {
+      "types": "./src/components/timezone/index.ts",
+      "default": "./src/components/timezone/index.ts"
+    },
+    "./components/login-expired-modal": {
+      "types": "./src/components/login-expired-modal/index.ts",
+      "default": "./src/components/login-expired-modal/index.ts"
+    },
+    "./components/AntdAppProvider": {
+      "types": "./src/components/AntdAppProvider.vue",
+      "default": "./src/components/AntdAppProvider.vue"
     }
   },
   "dependencies": {
     "@vben-core/icons": "workspace:*",
+    "@vben/access": "workspace:*",
+    "@vben/hooks": "workspace:*",
+    "@vben/icons": "workspace:*",
     "@vben/locales": "workspace:*",
+    "@vben/stores": "workspace:*",
     "@vben/utils": "workspace:*",
+    "@vueuse/core": "catalog:",
+    "@types/qrcode": "catalog:",
     "antdv-next": "catalog:",
-    "vue": "catalog:"
+    "qrcode": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:"
   }
 }

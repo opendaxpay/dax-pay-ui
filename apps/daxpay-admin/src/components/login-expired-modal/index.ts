@@ -1,1 +1,1 @@
-export { default as LoginExpiredModal } from './LoginExpiredModal.vue';
+export { LoginExpiredModal } from '@daxpay/ui-biz/components/login-expired-modal';

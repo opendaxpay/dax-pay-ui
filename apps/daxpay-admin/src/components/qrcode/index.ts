@@ -1,1 +1,1 @@
-export { default as QrCode } from './QrCode.vue';
+export { QrCode } from '@daxpay/ui-biz/components/qrcode';

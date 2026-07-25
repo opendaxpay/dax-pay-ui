@@ -1,1 +1,1 @@
-export { default as IconPicker } from './IconPicker.vue';
+export { IconPicker } from '@daxpay/ui-biz/components/icon-picker';

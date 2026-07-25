@@ -3,7 +3,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { UserAvatar } from '#/components/user-avatar';
+  import { UserAvatar } from '../user-avatar';
 
   interface Props {
     /** 用户名（取首字作为头像） */

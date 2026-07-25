@@ -3,8 +3,8 @@
 
   import { $t } from '@vben/locales';
 
-  import { closeDeleteConfirm, deleteConfirmState } from '#/hooks/useDeleteConfirm';
-  import { useMessage } from '#/hooks/useMessage';
+  import { closeDeleteConfirm, deleteConfirmState } from '../../hooks/useDeleteConfirm';
+  import { useMessage } from '../../hooks/useMessage';
 
   const { confirm } = useMessage();
 

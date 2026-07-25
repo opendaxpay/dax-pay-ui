@@ -1,1 +1,1 @@
-export { default as SplitPane } from './SplitPane.vue';
+export { SplitPane } from '@daxpay/ui-biz/components/split-pane';
