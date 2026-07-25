@@ -106,15 +106,6 @@
     return productNameMap[code] || code;
   }
 
-  function formatNotifyInfo(raw?: string) {
-    if (!raw) return '-';
-    try {
-      return JSON.stringify(JSON.parse(raw), null, 2);
-    } catch {
-      return raw;
-    }
-  }
-
   async function queryPage() {
     loading.value = true;
     try {
@@ -271,10 +262,14 @@
           {{ $t('payment.record.callbackRecord.errorMsg') }}: {{ detail.errorMsg }}
         </div>
       </div>
-      <div class="mb-2 text-sm font-medium">{{ $t('payment.record.callbackRecord.notifyInfo') }}</div>
-      <pre class="max-h-[60vh] overflow-auto rounded bg-muted p-3 text-xs whitespace-pre-wrap break-all">{{
-        formatNotifyInfo(detail.notifyInfo)
-      }}</pre>
+      <!-- 原始报文不下发, 引导商户联系平台客服 -->
+      <div class="mt-4">
+        <a-alert
+          type="info"
+          :message="$t('payment.record.callbackRecord.contactSupportForRawNotice')"
+          banner
+        />
+      </div>
     </a-drawer>
   </div>
 </template>

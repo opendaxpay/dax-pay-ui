@@ -13,5 +13,6 @@
   "typeRefund": "退款",
   "detail": "回調詳情",
   "channelMchNo": "通道商戶",
-  "placeholderChannelMchNo": "請輸入通道商戶號"
+  "placeholderChannelMchNo": "請輸入通道商戶號",
+  "contactSupportForRawNotice": "如需查看通道原始報文，請聯繫平台客服"
 }

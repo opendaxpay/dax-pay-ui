@@ -13,5 +13,6 @@
   "typeRefund": "返金",
   "detail": "コールバック詳細",
   "channelMchNo": "チャネル加盟店",
-  "placeholderChannelMchNo": "チャネル加盟店番号を入力"
+  "placeholderChannelMchNo": "チャネル加盟店番号を入力",
+  "contactSupportForRawNotice": "チャネルの元の通知内容を確認するには、プラットフォームサポートにお問い合わせください"
 }

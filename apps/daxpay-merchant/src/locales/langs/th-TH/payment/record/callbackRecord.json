@@ -13,5 +13,6 @@
   "typeRefund": "คืนเงิน",
   "detail": "รายละเอียดการเรียกกลับ",
   "channelMchNo": "พ่อค้าช่องทาง",
-  "placeholderChannelMchNo": "กรอกรหัสร้านค้าช่องทาง"
+  "placeholderChannelMchNo": "กรอกรหัสร้านค้าช่องทาง",
+  "contactSupportForRawNotice": "หากต้องการดูการแจ้งเตือนดั้งเดิมของช่องทาง โปรดติดต่อฝ่ายสนับสนุนแพลตฟอร์ม"
 }

@@ -13,5 +13,6 @@
   "typeRefund": "환불",
   "detail": "콜백 상세",
   "channelMchNo": "채널 가맹점",
-  "placeholderChannelMchNo": "채널 가맹점번호 입력"
+  "placeholderChannelMchNo": "채널 가맹점번호 입력",
+  "contactSupportForRawNotice": "채널 원본 알림을 확인하려면 플랫폼 지원에 문의하세요"
 }

@@ -13,5 +13,6 @@
   "typeRefund": "Refund",
   "detail": "Callback Detail",
   "channelMchNo": "Channel Merchant",
-  "placeholderChannelMchNo": "Enter channel merchant no."
+  "placeholderChannelMchNo": "Enter channel merchant no.",
+  "contactSupportForRawNotice": "To view the original channel notification, please contact platform support"
 }
