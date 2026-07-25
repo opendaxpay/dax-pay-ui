@@ -692,54 +692,52 @@
                 </a-row>
               </a-card>
 
-              <!-- 卡4: 高级参数(折叠, 默认收起) -->
-              <a-collapse :default-active-key="[]" class="advanced-collapse">
-                <a-collapse-panel key="advanced">
-                  <template #header>
-                    <div class="flex items-center gap-2">
-                      <IconifyIcon icon="ant-design:setting-outlined" class="text-amber-500" />
-                      <span class="font-semibold">{{ $t('payment.develop.trade.card.advanced') }}</span>
-                    </div>
-                  </template>
-                  <a-row :gutter="16">
-                    <a-col :span="12">
-                      <a-form-item :label="$t('payment.develop.trade.field.returnUrl')" name="returnUrl">
-                        <a-input
-                          v-model:value="form.returnUrl"
-                          :placeholder="$t('payment.develop.trade.placeholder.returnUrl')"
-                        />
-                      </a-form-item>
-                    </a-col>
-                    <a-col :span="12">
-                      <a-form-item :label="$t('payment.develop.trade.field.attach')" name="attach">
-                        <a-input
-                          v-model:value="form.attach"
-                          :placeholder="$t('payment.develop.trade.placeholder.attach')"
-                        />
-                      </a-form-item>
-                    </a-col>
-                    <a-col :span="24">
-                      <a-form-item :label="$t('payment.develop.trade.field.limitPay')" name="limitPay">
-                        <a-select
-                          v-model:value="form.limitPay"
-                          mode="tags"
-                          :placeholder="$t('payment.develop.trade.placeholder.limitPay')"
-                          :options="limitPayOptions"
-                        />
-                      </a-form-item>
-                    </a-col>
-                    <a-col :span="24">
-                      <a-form-item :label="$t('payment.develop.trade.field.extraParam')" name="extraParam">
-                        <a-textarea
-                          v-model:value="form.extraParam"
-                          :rows="3"
-                          :placeholder="$t('payment.develop.trade.placeholder.extraParam')"
-                        />
-                      </a-form-item>
-                    </a-col>
-                  </a-row>
-                </a-collapse-panel>
-              </a-collapse>
+              <!-- 卡4: 高级参数 -->
+              <a-card class="rounded-xl shadow-sm">
+                <template #title>
+                  <div class="flex items-center gap-2">
+                    <IconifyIcon icon="ant-design:setting-outlined" class="text-amber-500" />
+                    <span class="font-semibold">{{ $t('payment.develop.trade.card.advanced') }}</span>
+                  </div>
+                </template>
+                <a-row :gutter="16">
+                  <a-col :span="12">
+                    <a-form-item :label="$t('payment.develop.trade.field.returnUrl')" name="returnUrl">
+                      <a-input
+                        v-model:value="form.returnUrl"
+                        :placeholder="$t('payment.develop.trade.placeholder.returnUrl')"
+                      />
+                    </a-form-item>
+                  </a-col>
+                  <a-col :span="12">
+                    <a-form-item :label="$t('payment.develop.trade.field.attach')" name="attach">
+                      <a-input
+                        v-model:value="form.attach"
+                        :placeholder="$t('payment.develop.trade.placeholder.attach')"
+                      />
+                    </a-form-item>
+                  </a-col>
+                  <a-col :span="24">
+                    <a-form-item :label="$t('payment.develop.trade.field.limitPay')" name="limitPay">
+                      <a-select
+                        v-model:value="form.limitPay"
+                        mode="tags"
+                        :placeholder="$t('payment.develop.trade.placeholder.limitPay')"
+                        :options="limitPayOptions"
+                      />
+                    </a-form-item>
+                  </a-col>
+                  <a-col :span="24">
+                    <a-form-item :label="$t('payment.develop.trade.field.extraParam')" name="extraParam">
+                      <a-textarea
+                        v-model:value="form.extraParam"
+                        :rows="3"
+                        :placeholder="$t('payment.develop.trade.placeholder.extraParam')"
+                      />
+                    </a-form-item>
+                  </a-col>
+                </a-row>
+              </a-card>
             </div>
           </a-col>
         </a-row>
@@ -899,14 +897,6 @@
 
     .monospace {
       font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-    }
-
-    // 高级参数折叠面板: 视觉与 a-card 保持一致
-    .advanced-collapse {
-      border: 1px solid hsl(var(--border));
-      border-radius: 12px;
-      background-color: hsl(var(--card));
-      box-shadow: 0 1px 3px hsl(var(--foreground) / 0.04);
     }
 
     // 底部悬浮居中胶囊栏: 固定在视口底部, 始终可点
