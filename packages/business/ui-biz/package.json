@@ -21,6 +21,14 @@
       "types": "./src/components/channel/index.ts",
       "default": "./src/components/channel/index.ts"
     },
+    "./constants/client": {
+      "types": "./src/constants/client.ts",
+      "default": "./src/constants/client.ts"
+    },
+    "./request": {
+      "types": "./src/request/index.ts",
+      "default": "./src/request/index.ts"
+    },
     "./enums/clientCode": {
       "types": "./src/enums/clientCode.ts",
       "default": "./src/enums/clientCode.ts"
@@ -176,6 +184,8 @@
     "@vben/hooks": "workspace:*",
     "@vben/icons": "workspace:*",
     "@vben/locales": "workspace:*",
+    "@vben/preferences": "workspace:*",
+    "@vben/request": "workspace:*",
     "@vben/stores": "workspace:*",
     "@vben/utils": "workspace:*",
     "@vueuse/core": "catalog:",
@@ -184,5 +194,8 @@
     "qrcode": "catalog:",
     "vue": "catalog:",
     "vue-router": "catalog:"
+  },
+  "devDependencies": {
+    "axios": "catalog:"
   }
 }

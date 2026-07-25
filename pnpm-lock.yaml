@@ -1302,6 +1302,12 @@ importers:
       '@vben/locales':
         specifier: workspace:*
         version: link:../../locales
+      '@vben/preferences':
+        specifier: workspace:*
+        version: link:../../preferences
+      '@vben/request':
+        specifier: workspace:*
+        version: link:../../effects/request
       '@vben/stores':
         specifier: workspace:*
         version: link:../../stores
@@ -1323,6 +1329,10 @@ importers:
       vue-router:
         specifier: 'catalog:'
         version: 5.1.0(@vue/compiler-sfc@3.5.38)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.38(typescript@5.9.3)))(vite@8.1.3(@types/node@26.0.0)(esbuild@0.28.1)(jiti@2.7.0)(less@4.6.6)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.48.0)(yaml@2.9.0))(vue@3.5.38(typescript@5.9.3))
+    devDependencies:
+      axios:
+        specifier: 'catalog:'
+        version: 1.18.0
 
   packages/constants:
     dependencies:
