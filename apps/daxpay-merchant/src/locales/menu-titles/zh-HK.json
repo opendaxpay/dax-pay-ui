@@ -19,7 +19,6 @@
   "menu.payment.config": "支付配置",
   "menu.payment.merchant.app": "應用管理",
   "menu.payment.merchant.channelMerchant": "通道商户",
-  "menu.payment.merchant.channelMerchant.create": "創建通道商户",
   "menu.payment.merchant.channelMerchant.detail": "通道商户管理",
   "menu.payment.merchant.appWorkbench": "應用配置",
   "menu.payment.merchant.payRoute": "通道路由",

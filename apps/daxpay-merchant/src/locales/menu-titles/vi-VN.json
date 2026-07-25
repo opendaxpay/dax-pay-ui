@@ -19,7 +19,6 @@
   "menu.payment.config": "Cấu hình thanh toán",
   "menu.payment.merchant.app": "Quản lý ứng dụng",
   "menu.payment.merchant.channelMerchant": "Người bán kênh",
-  "menu.payment.merchant.channelMerchant.create": "Tạo kênh thương mại",
   "menu.payment.merchant.channelMerchant.detail": "Quản lý người bán kênh",
   "menu.payment.merchant.appWorkbench": "Cấu hình ứng dụng",
   "menu.payment.merchant.payRoute": "Ràng buộc kênh",

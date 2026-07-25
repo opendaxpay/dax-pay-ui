@@ -19,7 +19,6 @@
   "menu.payment.config": "支払い設定",
   "menu.payment.merchant.app": "アプリ管理",
   "menu.payment.merchant.channelMerchant": "チャネルマーチャント",
-  "menu.payment.merchant.channelMerchant.create": "チャネル販売者の作成",
   "menu.payment.merchant.channelMerchant.detail": "チャネル加盟店管理",
   "menu.payment.merchant.appWorkbench": "アプリの構成",
   "menu.payment.merchant.payRoute": "チャネルバインディング",

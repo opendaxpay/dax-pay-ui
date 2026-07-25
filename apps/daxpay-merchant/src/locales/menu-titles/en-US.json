@@ -19,7 +19,6 @@
   "menu.payment.config": "Payment Config",
   "menu.payment.merchant.app": "App Management",
   "menu.payment.merchant.channelMerchant": "Channel Merchant",
-  "menu.payment.merchant.channelMerchant.create": "Create Channel Merchant",
   "menu.payment.merchant.channelMerchant.detail": "Channel Merchant Management",
   "menu.payment.merchant.appWorkbench": "App Configuration",
   "menu.payment.merchant.payRoute": "Channel Binding",

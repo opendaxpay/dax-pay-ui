@@ -19,7 +19,6 @@
   "menu.payment.config": "การกำหนดค่าการชำระเงิน",
   "menu.payment.merchant.app": "การจัดการแอป",
   "menu.payment.merchant.channelMerchant": "พ่อค้าช่องทาง",
-  "menu.payment.merchant.channelMerchant.create": "สร้างช่องทางการค้า",
   "menu.payment.merchant.channelMerchant.detail": "การจัดการผู้ค้าช่องทาง",
   "menu.payment.merchant.appWorkbench": "การกำหนดค่าแอป",
   "menu.payment.merchant.payRoute": "การผูกช่อง",

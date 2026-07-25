@@ -19,7 +19,6 @@
   "menu.payment.config": "결제 구성",
   "menu.payment.merchant.app": "앱 관리",
   "menu.payment.merchant.channelMerchant": "채널 판매자",
-  "menu.payment.merchant.channelMerchant.create": "채널 판매자 만들기",
   "menu.payment.merchant.channelMerchant.detail": "채널 판매자 관리",
   "menu.payment.merchant.appWorkbench": "앱 구성",
   "menu.payment.merchant.payRoute": "채널 바인딩",

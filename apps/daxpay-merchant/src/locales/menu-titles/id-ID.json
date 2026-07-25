@@ -19,7 +19,6 @@
   "menu.payment.config": "Konfigurasi Pembayaran",
   "menu.payment.merchant.app": "Manajemen Aplikasi",
   "menu.payment.merchant.channelMerchant": "Pedagang Saluran",
-  "menu.payment.merchant.channelMerchant.create": "Buat Pedagang Saluran",
   "menu.payment.merchant.channelMerchant.detail": "Manajemen Pedagang Saluran",
   "menu.payment.merchant.appWorkbench": "Konfigurasi Aplikasi",
   "menu.payment.merchant.payRoute": "Pengikatan Saluran",
