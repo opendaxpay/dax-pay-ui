@@ -9,6 +9,7 @@
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
+  import { useDeleteConfirm } from '#/hooks/useDeleteConfirm';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
   import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
@@ -39,6 +40,7 @@
   const route = useRoute();
   const router = useRouter();
   const { confirm, message } = useMessage();
+  const { openDeleteConfirm } = useDeleteConfirm();
   const { hasPermission } = usePermission();
 
   const routeContext = useRequiredRouteQuery({
@@ -312,7 +314,7 @@
   }
 
   /**
-   * 删除应用
+   * 删除应用（强确认：须输入应用名称匹配）
    *
    * 默认应用禁止删除(与 MchAppInfoService.delete 后端校验对齐),
    * 需先把其他应用设为默认, 再删除当前应用。
@@ -322,15 +324,15 @@
       message.warning($t('payment.merchant.app.app.deleteDefaultBlocked'));
       return;
     }
-    confirm({
-      content: $t('payment.merchant.app.app.confirmDelete'),
-      onOk() {
-        return MchAppInfoApi.delete(appInfo.value.id!).then(() => {
-          message.success($t('common.operationSuccess'));
-          router.push({
-            path: '/payment/merchant/app',
-            query: { mchNo: mchNo.value },
-          });
+    openDeleteConfirm({
+      name: appInfo.value.appName || '',
+      verificationText: appInfo.value.appName || '',
+      onConfirm: async () => {
+        await MchAppInfoApi.delete(appInfo.value.id!);
+        message.success($t('common.operationSuccess'));
+        router.push({
+          path: '/payment/merchant/app',
+          query: { mchNo: mchNo.value },
         });
       },
     });
