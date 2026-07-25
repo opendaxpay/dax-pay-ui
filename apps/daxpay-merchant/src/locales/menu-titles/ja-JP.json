@@ -29,5 +29,9 @@
   "menu.payment.merchant.easypay": "EasyPay設定",
   "menu.payment.merchant.terminal": "システム端末",
   "menu.payment.merchant.wxVerify": "WeChatドメインの検証",
-  "menu.payment.wx.mchApp": "決済アプリ(WeChat)"
+  "menu.payment.wx.mchApp": "決済アプリ(WeChat)",
+  "menu.payment.merchant.channelMerchant.alipayApp": "アリペイアプリ",
+  "menu.payment.merchant.channelMerchant.wechatApp": "WeChatアプリ",
+  "menu.payment.merchant.channelMerchant.douyinApp": "Douyinアプリ",
+  "menu.payment.merchant.channelMerchant.wechatIsvApp": "WeChat ISV サブマーチャント アプリ"
 }

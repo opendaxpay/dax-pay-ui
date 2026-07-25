@@ -146,5 +146,6 @@
   "uploadCert": "Unggah Sertifikat",
   "uploadKey": "Unggah Private Key",
   "uploadPublicKey": "Unggah Public Key",
-  "uploadSuccess": "{name} diunggah"
+  "uploadSuccess": "{name} diunggah",
+  "cardCapabilityBinding": "Pengaturan Aplikasi Pembayaran"
 }

@@ -146,5 +146,6 @@
   "uploadCert": "อัปโหลดใบรับรอง",
   "uploadKey": "อัปโหลด Private Key",
   "uploadPublicKey": "อัปโหลด Public Key",
-  "uploadSuccess": "อัปโหลด {name} สำเร็จ"
+  "uploadSuccess": "อัปโหลด {name} สำเร็จ",
+  "cardCapabilityBinding": "ตั้งค่าแอปชำระเงิน"
 }

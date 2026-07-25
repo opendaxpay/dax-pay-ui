@@ -146,5 +146,6 @@
   "uploadCert": "証明書アップロード",
   "uploadKey": "秘密鍵アップロード",
   "uploadPublicKey": "公開鍵アップロード",
-  "uploadSuccess": "{name} アップロード完了"
+  "uploadSuccess": "{name} アップロード完了",
+  "cardCapabilityBinding": "支払いアプリ設定"
 }

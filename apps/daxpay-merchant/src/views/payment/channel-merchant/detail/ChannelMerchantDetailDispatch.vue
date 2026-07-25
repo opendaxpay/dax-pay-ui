@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { computed, onMounted, ref, watch } from 'vue';
+  import { computed, nextTick, onMounted, ref, watch } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
@@ -10,23 +10,19 @@
     ChannelMerchantApi,
     type ChannelMerchantResult,
   } from '#/api/payment/global/channel-merchant/channel-merchant.api';
-  import { PermCodes } from '#/constants/perm-codes';
-  import { ProductEnum, productI18nMap, productNameMap } from '#/enums/payment';
-  import { usePermission } from '#/hooks/usePermission';
+  import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
+  import { ProductEnum } from '#/enums/payment';
   import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
-  import WxChannelAppCapability from '#/views/payment/wx/channel/WxChannelAppCapability.vue';
-
-  import AlipayDirectAppDrawer from './alipay-direct/AlipayDirectAppDrawer.vue';
-  import AlipayIsvAuthDrawer from './AlipayIsvAuthDrawer.vue';
-  import ChannelMerchantNameEditModal from './ChannelMerchantNameEditModal.vue';
-  import CommonChannelMerchantBasicInfo from './CommonChannelMerchantBasicInfo.vue';
-  import WechatDirectKeyConfigDrawer from './WechatDirectKeyConfigDrawer.vue';
+  import AlipayChannelMerchantManage from '#/views/payment/channel/alipay/manage/mch/AlipayChannelMerchantManage.vue';
+  import AlipayMchManage from '#/views/payment/channel/alipay/manage/mch/AlipayMchManage.vue';
+  import DouyinDirectMchManage from '#/views/payment/channel/douyin/manage/DouyinDirectMchManage.vue';
+  import WechatChannelMerchantManage from '#/views/payment/channel/wechat/manage/mch/WechatChannelMerchantManage.vue';
+  import WechatDirectMchManage from '#/views/payment/channel/wechat/manage/mch/WechatDirectMchManage.vue';
 
   defineOptions({ name: 'ChannelMerchantDetailDispatch' });
 
   const route = useRoute();
   const router = useRouter();
-  const { hasPermission } = usePermission();
 
   // 商户端仅要求 id（product 可选，缺失时用详情回填）
   const routeContext = useRequiredRouteQuery({
@@ -39,38 +35,47 @@
   const product = ref('');
   const channelMerchant = ref<ChannelMerchantResult>({});
   const loading = ref(false);
-  const basicInfoRef = ref<InstanceType<typeof CommonChannelMerchantBasicInfo>>();
-  const nameEditRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
-  const capabilityRef = ref<InstanceType<typeof WxChannelAppCapability>>();
-  const keyConfigRef = ref<InstanceType<typeof WechatDirectKeyConfigDrawer>>();
-  const alipayAppRef = ref<InstanceType<typeof AlipayDirectAppDrawer>>();
-  const alipayIsvAuthRef = ref<InstanceType<typeof AlipayIsvAuthDrawer>>();
+
+  const alipayMchManageRef = ref<InstanceType<typeof AlipayMchManage>>();
+  const alipayChannelMerchantManageRef = ref<InstanceType<typeof AlipayChannelMerchantManage>>();
+  const wechatDirectManageRef = ref<InstanceType<typeof WechatDirectMchManage>>();
+  const wechatManageRef = ref<InstanceType<typeof WechatChannelMerchantManage>>();
+  const douyinDirectManageRef = ref<InstanceType<typeof DouyinDirectMchManage>>();
 
   const resolvedProduct = computed(() => product.value || channelMerchant.value.product || '');
 
-  /** 微信直连 / 特约：展示应用管理与支付应用配置 */
-  const isWechatProduct = computed(() => {
-    const p = resolvedProduct.value;
-    return p === ProductEnum.WECHAT_PAY || p === ProductEnum.WECHAT_ISV;
-  });
-
-  /** 支付宝直连：展示应用管理与能力绑定 */
-  const isAlipayDirectProduct = computed(() => resolvedProduct.value === ProductEnum.ALIPAY);
-
-  /** 支付宝服务商：展示代运营授权 */
-  const isAlipayIsvProduct = computed(() => resolvedProduct.value === ProductEnum.ALIPAY_ISV);
-
-  const pageTitle = computed(() => {
-    const p = resolvedProduct.value;
-    const i18nKey = productI18nMap[p];
-    if (i18nKey) {
-      return $t(i18nKey);
+  /** 按产品解析页头标题（对齐运营端，返回通道管理标题） */
+  function resolvePageTitle(productCode: string) {
+    if (productCode === ProductEnum.ALIPAY) {
+      return $t('payment.merchant.channelMerchant.manageTitleAlipayDirect');
     }
-    return productNameMap[p] || $t('payment.merchant.channelMerchant.manageTitleDefault');
-  });
+    if (productCode === ProductEnum.ALIPAY_ISV) {
+      return $t('payment.merchant.channelMerchant.manageTitleAlipay');
+    }
+    if (productCode === ProductEnum.WECHAT_ISV) {
+      return $t('payment.merchant.channelMerchant.manageTitleWechat');
+    }
+    if (productCode === ProductEnum.WECHAT_PAY) {
+      return $t('payment.merchant.channelMerchant.manageTitleWechatDirect');
+    }
+    if (productCode === ProductEnum.DOUYIN_PAY) {
+      return $t('payment.channel.douyinManage.manageTitle');
+    }
+    return $t('payment.merchant.channelMerchant.manageTitleDefault');
+  }
 
-  const canManageWxApp = computed(() => hasPermission(PermCodes.Payment.Wx.MchApp.MANAGE));
-  const canViewWxApp = computed(() => hasPermission(PermCodes.Payment.Wx.MchApp.VIEW));
+  const pageTitle = computed(() => resolvePageTitle(resolvedProduct.value));
+
+  /** 是否为已支持的支付产品 */
+  function isSupported(p: string) {
+    return (
+      p === ProductEnum.ALIPAY ||
+      p === ProductEnum.ALIPAY_ISV ||
+      p === ProductEnum.WECHAT_ISV ||
+      p === ProductEnum.WECHAT_PAY ||
+      p === ProductEnum.DOUYIN_PAY
+    );
+  }
 
   /** 加载通道商户公共信息 */
   function loadChannelMerchant() {
@@ -92,34 +97,35 @@
       });
   }
 
+  /** 返回通道商户列表 */
   function goBack() {
     router.push({ path: '/mch/channel-merchant' });
   }
 
-  /** 跳转商户端支付应用(微信)列表 */
-  function goWxAppList() {
-    router.push({ path: '/mch/wx-app' });
-  }
-
-  /** 打开支付应用配置 */
-  function openCapabilityBinding() {
-    const channelMchNo = channelMerchant.value.channelMchNo;
-    const productCode = resolvedProduct.value;
-    if (!channelMchNo || !productCode) {
-      return;
-    }
-    capabilityRef.value?.show(channelMchNo, productCode);
-  }
-
-  /** 打开支付宝服务商代运营授权抽屉 */
-  function openAlipayIsvAuth() {
+  /** 按当前产品初始化子页面 */
+  function initChannelPanel() {
     const channelMchNo = channelMerchant.value.channelMchNo;
     if (!channelMchNo) {
       return;
     }
-    alipayIsvAuthRef.value?.open(channelMchNo);
+    if (product.value === ProductEnum.ALIPAY) {
+      alipayMchManageRef.value?.init(channelMchNo, channelMerchant.value);
+    }
+    if (product.value === ProductEnum.ALIPAY_ISV) {
+      alipayChannelMerchantManageRef.value?.init(channelMchNo, channelMerchant.value);
+    }
+    if (product.value === ProductEnum.WECHAT_PAY) {
+      wechatDirectManageRef.value?.init(channelMchNo, channelMerchant.value);
+    }
+    if (product.value === ProductEnum.WECHAT_ISV) {
+      wechatManageRef.value?.init(channelMchNo, channelMerchant.value);
+    }
+    if (product.value === ProductEnum.DOUYIN_PAY) {
+      douyinDirectManageRef.value?.init(channelMchNo, channelMerchant.value);
+    }
   }
 
+  /** 从路由同步 query 至本地状态 */
   function syncRouteState() {
     if (!routeContext.isValid.value) {
       return;
@@ -129,6 +135,13 @@
   }
 
   watch(() => route.query, syncRouteState, { deep: true });
+
+  watch([() => product.value, () => channelMerchant.value.channelMchNo], () => {
+    if (!routeContext.isValid.value || !channelMerchant.value.channelMchNo) {
+      return;
+    }
+    nextTick(() => initChannelPanel());
+  });
 
   onMounted(() => {
     syncRouteState();
@@ -140,15 +153,12 @@
 </script>
 
 <template>
-  <div v-if="!routeContext.isValid" class="m-4">
-    <a-result status="warning" :title="$t('payment.merchant.channelMerchant.missingId')">
-      <template #extra>
-        <a-button type="primary" @click="routeContext.goFallback">
-          {{ $t('payment.merchant.channelMerchant.back') }}
-        </a-button>
-      </template>
-    </a-result>
-  </div>
+  <RouteQueryMissingState
+    v-if="!routeContext.isValid"
+    :description="$t('payment.merchant.channelMerchant.missingId')"
+    :back-text="$t('payment.merchant.channelMerchant.back')"
+    @back="routeContext.goFallback"
+  />
   <div v-else class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
@@ -159,7 +169,7 @@
                 <IconifyIcon icon="ant-design:arrow-left-outlined" class="text-lg" />
               </template>
             </a-button>
-            <!-- 国际化：通道商户管理 -->
+            <!-- 国际化：按通道动态展示页头标题 -->
             <span class="text-lg font-bold text-foreground">{{ pageTitle }}</span>
             <span v-if="channelMerchant.channelMerchantName" class="text-sm text-muted-foreground">
               ({{ channelMerchant.channelMerchantName }})
@@ -169,130 +179,39 @@
       </template>
 
       <a-spin :spinning="loading">
-        <!-- 微信/支付宝直连配置已完整；其他通道专属配置待移植 -->
-        <div v-if="!isWechatProduct && !isAlipayDirectProduct && !isAlipayIsvProduct" class="mb-6">
-          <a-alert type="info" show-icon :message="$t('payment.merchant.channelMerchant.detailConfigPending')" />
+        <AlipayMchManage
+          v-if="resolvedProduct === ProductEnum.ALIPAY"
+          ref="alipayMchManageRef"
+          @success="loadChannelMerchant"
+        />
+        <AlipayChannelMerchantManage
+          v-else-if="resolvedProduct === ProductEnum.ALIPAY_ISV"
+          ref="alipayChannelMerchantManageRef"
+          @success="loadChannelMerchant"
+        />
+        <WechatDirectMchManage
+          v-else-if="resolvedProduct === ProductEnum.WECHAT_PAY"
+          ref="wechatDirectManageRef"
+          @success="loadChannelMerchant"
+        />
+        <WechatChannelMerchantManage
+          v-else-if="resolvedProduct === ProductEnum.WECHAT_ISV"
+          ref="wechatManageRef"
+          @success="loadChannelMerchant"
+        />
+        <DouyinDirectMchManage
+          v-else-if="resolvedProduct === ProductEnum.DOUYIN_PAY"
+          ref="douyinDirectManageRef"
+          @success="loadChannelMerchant"
+        />
+        <div
+          v-else-if="!isSupported(resolvedProduct)"
+          class="flex items-center justify-center"
+          style="min-height: 400px"
+        >
+          <a-empty :description="$t('payment.merchant.channelMerchant.detailNotSupportYet')" />
         </div>
-
-        <a-row :gutter="[16, 16]">
-          <a-col :xs="24" :md="12" :lg="8">
-            <a-card hoverable class="h-full" @click="basicInfoRef?.open()">
-              <a-card-meta
-                :title="$t('payment.merchant.channelMerchant.cardBasicInfo')"
-                :description="$t('payment.merchant.channelMerchant.cardBasicInfoDesc')"
-              >
-                <template #avatar>
-                  <IconifyIcon icon="ant-design:profile-outlined" class="text-2xl text-primary" />
-                </template>
-              </a-card-meta>
-            </a-card>
-          </a-col>
-          <a-col v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)" :xs="24" :md="12" :lg="8">
-            <a-card hoverable class="h-full" @click="nameEditRef?.open()">
-              <a-card-meta
-                :title="$t('payment.merchant.channelMerchant.cardEditMerchantName')"
-                :description="$t('payment.merchant.channelMerchant.cardEditMerchantNameDesc')"
-              >
-                <template #avatar>
-                  <IconifyIcon icon="ant-design:edit-outlined" class="text-2xl text-primary" />
-                </template>
-              </a-card-meta>
-            </a-card>
-          </a-col>
-
-          <!-- 微信支付：密钥配置 -->
-          <a-col v-if="isWechatProduct" :xs="24" :md="12" :lg="8">
-            <a-card hoverable class="h-full" @click="keyConfigRef?.init()">
-              <a-card-meta
-                :title="$t('payment.merchant.channelMerchant.cardDirectKeyConfig')"
-                :description="$t('payment.merchant.channelMerchant.cardDirectKeyConfigDesc')"
-              >
-                <template #avatar>
-                  <IconifyIcon icon="ant-design:key-outlined" class="text-2xl text-primary" />
-                </template>
-              </a-card-meta>
-            </a-card>
-          </a-col>
-
-          <!-- 支付宝直连：应用管理 -->
-          <a-col v-if="isAlipayDirectProduct" :xs="24" :md="12" :lg="8">
-            <a-card hoverable class="h-full" @click="alipayAppRef?.show()">
-              <a-card-meta
-                :title="$t('payment.merchant.alipayDirectApp.manageTitle')"
-                :description="$t('payment.merchant.alipayDirectApp.cardAppDesc')"
-              >
-                <template #avatar>
-                  <IconifyIcon icon="ant-design:appstore-outlined" class="text-2xl text-primary" />
-                </template>
-              </a-card-meta>
-            </a-card>
-          </a-col>
-
-          <!-- 支付宝服务商：代运营授权 -->
-          <a-col
-            v-if="isAlipayIsvProduct && hasPermission(PermCodes.Merchant.AlipayIsvAuth.VIEW)"
-            :xs="24"
-            :md="12"
-            :lg="8"
-          >
-            <a-card hoverable class="h-full" @click="openAlipayIsvAuth">
-              <a-card-meta
-                :title="$t('payment.merchant.channelMerchant.cardAuthOperation')"
-                :description="$t('payment.merchant.channelMerchant.cardAuthOperationDesc')"
-              >
-                <template #avatar>
-                  <IconifyIcon icon="ant-design:safety-certificate-outlined" class="text-2xl text-primary" />
-                </template>
-              </a-card-meta>
-            </a-card>
-          </a-col>
-
-          <!-- 微信支付应用：应用管理 + 支付应用配置 -->
-          <a-col v-if="isWechatProduct && canViewWxApp" :xs="24" :md="12" :lg="8">
-            <a-card hoverable class="h-full" @click="goWxAppList">
-              <a-card-meta
-                :title="$t('payment.merchant.channelMerchant.cardApp')"
-                :description="$t('payment.merchant.channelMerchant.cardAppDesc')"
-              >
-                <template #avatar>
-                  <IconifyIcon icon="ant-design:appstore-outlined" class="text-2xl text-primary" />
-                </template>
-              </a-card-meta>
-            </a-card>
-          </a-col>
-          <a-col v-if="isWechatProduct && canManageWxApp" :xs="24" :md="12" :lg="8">
-            <a-card hoverable class="h-full" @click="openCapabilityBinding">
-              <a-card-meta
-                :title="$t('payment.wx.app.channelCapabilityTitle')"
-                :description="$t('payment.merchant.channelMerchant.cardCapabilityBindingDesc')"
-              >
-                <template #avatar>
-                  <IconifyIcon icon="ant-design:api-outlined" class="text-2xl text-primary" />
-                </template>
-              </a-card-meta>
-            </a-card>
-          </a-col>
-        </a-row>
       </a-spin>
     </a-card>
-
-    <CommonChannelMerchantBasicInfo
-      ref="basicInfoRef"
-      :channel-mch-no="channelMerchant.channelMchNo || ''"
-      :channel-merchant="channelMerchant"
-    />
-    <ChannelMerchantNameEditModal
-      ref="nameEditRef"
-      :channel-merchant="channelMerchant"
-      @success="loadChannelMerchant"
-    />
-    <WxChannelAppCapability ref="capabilityRef" />
-    <WechatDirectKeyConfigDrawer ref="keyConfigRef" :channel-mch-no="channelMerchant.channelMchNo || ''" />
-    <AlipayDirectAppDrawer
-      ref="alipayAppRef"
-      :channel-mch-no="channelMerchant.channelMchNo || ''"
-      :sandbox="channelMerchant.sandbox ?? false"
-    />
-    <AlipayIsvAuthDrawer ref="alipayIsvAuthRef" />
   </div>
 </template>

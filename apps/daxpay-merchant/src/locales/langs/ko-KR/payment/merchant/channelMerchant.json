@@ -146,5 +146,6 @@
   "uploadCert": "인증서 업로드",
   "uploadKey": "개인키 업로드",
   "uploadPublicKey": "공개키 업로드",
-  "uploadSuccess": "{name} 업로드 완료"
+  "uploadSuccess": "{name} 업로드 완료",
+  "cardCapabilityBinding": "결제 앱 설정"
 }

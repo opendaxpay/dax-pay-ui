@@ -146,5 +146,6 @@
   "uploadCert": "Upload Certificate",
   "uploadKey": "Upload Private Key",
   "uploadPublicKey": "Upload Public Key",
-  "uploadSuccess": "{name} uploaded"
+  "uploadSuccess": "{name} uploaded",
+  "cardCapabilityBinding": "Payment App Setup"
 }

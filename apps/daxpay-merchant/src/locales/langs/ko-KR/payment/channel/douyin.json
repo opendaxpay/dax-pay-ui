@@ -1,0 +1,22 @@
+{
+  "douyinMchId": "Douyin 판매자 ID",
+  "douyinMchIdPlaceholder": "Douyin Pay 판매자 ID를 입력하세요.",
+  "dyAppId": "두인 앱 ID",
+  "dyAppIdPlaceholder": "Douyin 앱 ID를 입력하세요",
+  "appSecret": "앱 비밀",
+  "appSecretPlaceholder": "Douyin 앱 비밀번호를 입력하세요",
+  "validation": {
+    "douyinMchIdRequired": "Douyin 판매자 ID가 필요합니다",
+    "dyAppIdRequired": "Douyin 앱 ID가 필요합니다",
+    "appSecretRequired": "앱 비밀번호가 필요합니다",
+    "merchantPrivateKeyRequired": "판매자 개인 키가 필요합니다",
+    "merchantSerialNumberRequired": "판매자 인증서 일련번호가 필요합니다.",
+    "encryptKeyRequired": "암호화 키는 필수 항목입니다."
+  },
+  "merchantPrivateKey": "판매자 개인 키",
+  "merchantPrivateKeyPlaceholder": "판매자 개인 키를 입력하세요",
+  "merchantSerialNumber": "판매자 인증서 일련번호",
+  "merchantSerialNumberPlaceholder": "판매자 인증서 일련번호를 입력하세요.",
+  "encryptKey": "암호화 키",
+  "encryptKeyPlaceholder": "암호화 키를 입력하세요"
+}

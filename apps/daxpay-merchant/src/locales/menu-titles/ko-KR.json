@@ -29,5 +29,9 @@
   "menu.payment.merchant.easypay": "EasyPay 설정",
   "menu.payment.merchant.terminal": "시스템 단말",
   "menu.payment.merchant.wxVerify": "WeChat 도메인 확인",
-  "menu.payment.wx.mchApp": "결제 앱(위챗)"
+  "menu.payment.wx.mchApp": "결제 앱(위챗)",
+  "menu.payment.merchant.channelMerchant.alipayApp": "알리페이 앱",
+  "menu.payment.merchant.channelMerchant.wechatApp": "위챗 앱",
+  "menu.payment.merchant.channelMerchant.douyinApp": "두인 앱",
+  "menu.payment.merchant.channelMerchant.wechatIsvApp": "WeChat ISV 하위 판매자 앱"
 }

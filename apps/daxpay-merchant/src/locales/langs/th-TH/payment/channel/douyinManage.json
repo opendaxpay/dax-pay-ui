@@ -1,0 +1,21 @@
+{
+  "manageTitle": "การจัดการผู้ค้าโดยตรง Douyin",
+  "cardDirectKeyConfig": "การกำหนดค่าคีย์",
+  "cardDirectKeyConfigDesc": "กำหนดค่าคีย์และใบรับรองระดับผู้ขาย Douyin Pay",
+  "directKeyConfigTitle": "การกำหนดค่าคีย์โดยตรง Douyin",
+  "keyConfigSection": "การกำหนดค่าคีย์ผู้ค้า",
+  "cardCapabilityBinding": "ตั้งค่าแอปชำระเงิน",
+  "cardCapabilityBindingDesc": "ระบุแอป Douyin สำหรับแต่ละความสามารถในการชำระเงิน",
+  "capabilityTitle": "กำหนดค่าแอปตามความสามารถ",
+  "capabilityDesc": "ระบุแอป Douyin ที่จะใช้เมื่อเริ่มการชำระเงินสำหรับแต่ละความสามารถ เว้นว่างไว้เพื่อจับคู่อัตโนมัติตามประเภทแอป",
+  "capabilityNoApp": "ไม่มีแอปพลิเคชันอยู่ภายใต้ผู้ค้าช่องทางนี้ โปรดสร้างหนึ่งรายการก่อน",
+  "capabilityAutoTip": "อัตโนมัติ",
+  "capabilitySelectPlaceholder": "จับคู่อัตโนมัติตามประเภทแอปหากว่างเปล่า",
+  "capabilitySaveSuccess": "บันทึกเรียบร้อยแล้ว",
+  "appTypeMiniProgram": "มินิโปรแกรม",
+  "appTypeMobileApp": "แอพมือถือ",
+  "appTypeWebApp": "เว็บแอป",
+  "capabilityRequiredAppType": "ต้องใช้ {type}",
+  "appTypeCapabilityCleared": "ล้างการเลือกแอปที่ไม่ตรงกับวิธีชำระเงินแล้ว",
+  "capabilityNoCompatibleApp": "ยังไม่มีแอปประเภทที่ตรงกัน กรุณาสร้างก่อน"
+}

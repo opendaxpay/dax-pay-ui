@@ -29,5 +29,9 @@
   "menu.payment.merchant.easypay": "EasyPay Config",
   "menu.payment.merchant.terminal": "Terminal Sistem",
   "menu.payment.merchant.wxVerify": "Verifikasi Domain WeChat",
-  "menu.payment.wx.mchApp": "Aplikasi Pembayaran (WeChat)"
+  "menu.payment.wx.mchApp": "Aplikasi Pembayaran (WeChat)",
+  "menu.payment.merchant.channelMerchant.alipayApp": "Aplikasi Alipay",
+  "menu.payment.merchant.channelMerchant.wechatApp": "Aplikasi WeChat",
+  "menu.payment.merchant.channelMerchant.douyinApp": "Aplikasi Douyin",
+  "menu.payment.merchant.channelMerchant.wechatIsvApp": "Aplikasi Sub-pedagang WeChat ISV"
 }

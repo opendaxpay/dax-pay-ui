@@ -146,5 +146,6 @@
   "uploadCert": "Tải lên chứng chỉ",
   "uploadKey": "Tải lên private key",
   "uploadPublicKey": "Tải lên public key",
-  "uploadSuccess": "{name} đã tải lên"
+  "uploadSuccess": "{name} đã tải lên",
+  "cardCapabilityBinding": "Thiết lập ứng dụng thanh toán"
 }

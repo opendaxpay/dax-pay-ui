@@ -29,5 +29,9 @@
   "menu.payment.merchant.easypay": "EasyPay Config",
   "menu.payment.merchant.terminal": "Thiết bị hệ thống",
   "menu.payment.merchant.wxVerify": "Xác minh tên miền WeChat",
-  "menu.payment.wx.mchApp": "Ứng dụng thanh toán (WeChat)"
+  "menu.payment.wx.mchApp": "Ứng dụng thanh toán (WeChat)",
+  "menu.payment.merchant.channelMerchant.alipayApp": "Ứng dụng Alipay",
+  "menu.payment.merchant.channelMerchant.wechatApp": "Ứng dụng WeChat",
+  "menu.payment.merchant.channelMerchant.douyinApp": "Ứng dụng Douyin",
+  "menu.payment.merchant.channelMerchant.wechatIsvApp": "Ứng dụng người bán phụ WeChat ISV"
 }

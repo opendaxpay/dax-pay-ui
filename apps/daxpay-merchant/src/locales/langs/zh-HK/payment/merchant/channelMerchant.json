@@ -146,5 +146,6 @@
   "uploadCert": "上傳憑證",
   "uploadKey": "上傳私鑰",
   "uploadPublicKey": "上傳公鑰",
-  "uploadSuccess": "{name} 上傳成功"
+  "uploadSuccess": "{name} 上傳成功",
+  "cardCapabilityBinding": "支付應用配置"
 }

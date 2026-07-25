@@ -1,0 +1,21 @@
+{
+  "manageTitle": "Manajemen Pedagang Langsung Douyin",
+  "cardDirectKeyConfig": "Konfigurasi Kunci",
+  "cardDirectKeyConfigDesc": "Konfigurasikan kunci dan sertifikat tingkat pedagang Douyin Pay",
+  "directKeyConfigTitle": "Konfigurasi Kunci Langsung Douyin",
+  "keyConfigSection": "Konfigurasi Kunci Pedagang",
+  "cardCapabilityBinding": "Pengaturan Aplikasi Pembayaran",
+  "cardCapabilityBindingDesc": "Tentukan aplikasi Douyin untuk setiap kemampuan pembayaran",
+  "capabilityTitle": "Konfigurasikan Aplikasi per Kemampuan",
+  "capabilityDesc": "Tentukan aplikasi Douyin mana yang akan digunakan saat memulai pembayaran untuk setiap kemampuan. Biarkan kosong untuk mencocokkan secara otomatis berdasarkan jenis aplikasi.",
+  "capabilityNoApp": "Tidak ada aplikasi di bawah pedagang saluran ini. Silakan buat terlebih dahulu.",
+  "capabilityAutoTip": "Mobil",
+  "capabilitySelectPlaceholder": "Cocokkan otomatis menurut jenis aplikasi jika kosong",
+  "capabilitySaveSuccess": "Berhasil disimpan",
+  "appTypeMiniProgram": "Program Kecil",
+  "appTypeMobileApp": "Aplikasi Seluler",
+  "appTypeWebApp": "Aplikasi Web",
+  "capabilityRequiredAppType": "Perlu {type}",
+  "appTypeCapabilityCleared": "Pilihan aplikasi yang tidak cocok dengan metode pembayaran telah dihapus",
+  "capabilityNoCompatibleApp": "Tidak ada aplikasi jenis yang cocok. Buat aplikasi jenis yang sesuai terlebih dahulu"
+}

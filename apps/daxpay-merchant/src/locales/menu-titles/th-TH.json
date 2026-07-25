@@ -29,5 +29,9 @@
   "menu.payment.merchant.easypay": "EasyPay Config",
   "menu.payment.merchant.terminal": "เทอร์มินัลระบบ",
   "menu.payment.merchant.wxVerify": "ยืนยันโดเมน WeChat",
-  "menu.payment.wx.mchApp": "แอปชำระเงิน (WeChat)"
+  "menu.payment.wx.mchApp": "แอปชำระเงิน (WeChat)",
+  "menu.payment.merchant.channelMerchant.alipayApp": "แอพอาลีเพย์",
+  "menu.payment.merchant.channelMerchant.wechatApp": "แอพวีแชต",
+  "menu.payment.merchant.channelMerchant.douyinApp": "แอป Douyin",
+  "menu.payment.merchant.channelMerchant.wechatIsvApp": "แอพผู้ค้าย่อย WeChat ISV"
 }
