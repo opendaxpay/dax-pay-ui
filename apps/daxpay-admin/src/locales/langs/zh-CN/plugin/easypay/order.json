@@ -1,0 +1,61 @@
+{
+  "title": "易支付订单",
+  "detail": "易支付订单详情",
+  "field": {
+    "orderId": "关联容器ID",
+    "pid": "易支付商户号",
+    "tradeNo": "平台业务单号",
+    "outTradeNo": "商户订单号",
+    "apiTradeNo": "通道订单号",
+    "type": "支付方式",
+    "status": "订单状态",
+    "addTime": "创建时间",
+    "endTime": "完成时间",
+    "name": "商品名称",
+    "money": "金额(元)",
+    "refundMoney": "已退款(元)",
+    "notifyUrl": "异步通知地址",
+    "returnUrl": "同步跳转地址",
+    "param": "业务扩展参数",
+    "buyer": "支付用户标识",
+    "clientIp": "客户端IP",
+    "apiVersion": "API版本",
+    "pcCallType": "PC调用方式",
+    "payUrl": "支付链接",
+    "payBody": "支付参数体",
+    "createTime": "创建时间"
+  },
+  "placeholder": {
+    "outTradeNo": "请输入商户订单号",
+    "tradeNo": "请输入平台业务单号",
+    "name": "请输入商品名称"
+  },
+  "status": {
+    "0": "待支付",
+    "1": "已支付"
+  },
+  "statusColor": {
+    "0": "orange",
+    "1": "green"
+  },
+  "type": {
+    "alipay": "支付宝",
+    "wxpay": "微信支付",
+    "aggregate": "聚合支付"
+  },
+  "action": {
+    "sync": "同步状态",
+    "close": "关闭订单",
+    "syncSuccess": "同步成功",
+    "closeSuccess": "关闭成功",
+    "syncConfirmTitle": "确认同步状态",
+    "syncConfirmContent": "将主动向支付通道查询该订单的最新状态, 是否继续?",
+    "closeConfirmTitle": "确认关闭订单",
+    "closeConfirmContent": "关闭后订单将不可继续支付, 是否继续?"
+  },
+  "section": {
+    "basic": "订单信息",
+    "time": "时间信息",
+    "extra": "支付与扩展"
+  }
+}

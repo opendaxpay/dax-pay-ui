@@ -37,5 +37,9 @@
   "menu.develop.trade": "Pembayaran Berkembang (Biasa)",
   "menu.develop.sign": "Tandatangani Kembangkan",
   "menu.develop.gateway": "Pembayaran Berkembang (Gateway)",
-  "menu.develop.auth": "Auth Kembangkan"
+  "menu.develop.auth": "Auth Kembangkan",
+  "menu.plugin": "Ekstensi",
+  "menu.plugin.easypay": "EasyPay",
+  "menu.plugin.easypay.order": "Pesanan EasyPay",
+  "menu.plugin.easypay.refund": "Pengembalian EasyPay"
 }

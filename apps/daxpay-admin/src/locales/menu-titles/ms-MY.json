@@ -100,5 +100,9 @@
   "menu.payment.wx.mchApp": "Apl Pembayaran (WeChat)",
   "menu.mch.center": "Pusat Pedagang",
   "menu.business.config": "Konfigurasi Perniagaan",
-  "menu.payment.merchant.notifyConfig": "Konfigurasi Pemberitahuan"
+  "menu.payment.merchant.notifyConfig": "Konfigurasi Pemberitahuan",
+  "menu.plugin": "Sambungan",
+  "menu.plugin.easypay": "EasyPay",
+  "menu.plugin.easypay.order": "Pesanan EasyPay",
+  "menu.plugin.easypay.refund": "Bayaran balik EasyPay"
 }

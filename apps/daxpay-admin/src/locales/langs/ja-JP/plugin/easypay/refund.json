@@ -1,0 +1,43 @@
+{
+  "title": "EasyPay返金注文",
+  "detail": "EasyPay返金注文詳細",
+  "field": {
+    "refundId": "関連返金ID",
+    "easyPayOrderId": "関連EasyPay注文ID",
+    "pid": "EasyPayマーチャントID",
+    "refundNo": "プラットフォーム返金番号",
+    "bizRefundNo": "マーチャント返金番号",
+    "tradeNo": "プラットフォーム取引番号",
+    "outTradeNo": "マーチャント注文番号",
+    "money": "返金金額(元)",
+    "status": "返金ステータス",
+    "apiVersion": "APIバージョン",
+    "addTime": "返金発起時間",
+    "endTime": "返金完了時間",
+    "createTime": "作成時間"
+  },
+  "placeholder": {
+    "refundNo": "プラットフォーム返金番号を入力",
+    "bizRefundNo": "マーチャント返金番号を入力",
+    "outTradeNo": "マーチャント注文番号を入力",
+    "tradeNo": "プラットフォーム取引番号を入力"
+  },
+  "status": {
+    "0": "処理中/失敗",
+    "1": "返金成功"
+  },
+  "statusColor": {
+    "0": "orange",
+    "1": "green"
+  },
+  "action": {
+    "sync": "ステータス同期",
+    "syncSuccess": "同期成功",
+    "syncConfirmTitle": "ステータス同期の確認",
+    "syncConfirmContent": "支払いチャネルに最新の返金ステータスを照会します。続行しますか?"
+  },
+  "section": {
+    "basic": "返金情報",
+    "time": "時間情報"
+  }
+}

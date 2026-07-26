@@ -1,0 +1,43 @@
+{
+  "title": "易支付退款订单",
+  "detail": "易支付退款订单详情",
+  "field": {
+    "refundId": "关联退款单ID",
+    "easyPayOrderId": "关联易支付订单ID",
+    "pid": "易支付商户号",
+    "refundNo": "平台退款单号",
+    "bizRefundNo": "商户退款单号",
+    "tradeNo": "平台业务单号",
+    "outTradeNo": "商户订单号",
+    "money": "退款金额(元)",
+    "status": "退款状态",
+    "apiVersion": "API版本",
+    "addTime": "退款发起时间",
+    "endTime": "退款完成时间",
+    "createTime": "创建时间"
+  },
+  "placeholder": {
+    "refundNo": "请输入平台退款单号",
+    "bizRefundNo": "请输入商户退款单号",
+    "outTradeNo": "请输入商户订单号",
+    "tradeNo": "请输入平台业务单号"
+  },
+  "status": {
+    "0": "处理中/失败",
+    "1": "退款成功"
+  },
+  "statusColor": {
+    "0": "orange",
+    "1": "green"
+  },
+  "action": {
+    "sync": "同步状态",
+    "syncSuccess": "同步成功",
+    "syncConfirmTitle": "确认同步状态",
+    "syncConfirmContent": "将主动向支付通道查询该退款订单的最新状态, 是否继续?"
+  },
+  "section": {
+    "basic": "退款信息",
+    "time": "时间信息"
+  }
+}

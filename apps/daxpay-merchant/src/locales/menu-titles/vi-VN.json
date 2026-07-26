@@ -37,5 +37,9 @@
   "menu.develop.trade": "Phát triển thanh toán (Thường)",
   "menu.develop.sign": "Đăng ký phát triển",
   "menu.develop.gateway": "Phát triển thanh toán (Cổng)",
-  "menu.develop.auth": "Xác thực phát triển"
+  "menu.develop.auth": "Xác thực phát triển",
+  "menu.plugin": "Tiện ích mở rộng",
+  "menu.plugin.easypay": "EasyPay",
+  "menu.plugin.easypay.order": "Đơn hàng EasyPay",
+  "menu.plugin.easypay.refund": "Hoàn tiền EasyPay"
 }

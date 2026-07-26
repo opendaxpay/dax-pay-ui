@@ -100,5 +100,9 @@
   "menu.payment.wx.mchApp": "Ứng dụng thanh toán (WeChat)",
   "menu.mch.center": "Trung tâm merchant",
   "menu.business.config": "Cấu hình nghiệp vụ",
-  "menu.payment.merchant.notifyConfig": "Cấu hình thông báo"
+  "menu.payment.merchant.notifyConfig": "Cấu hình thông báo",
+  "menu.plugin": "Tiện ích mở rộng",
+  "menu.plugin.easypay": "EasyPay",
+  "menu.plugin.easypay.order": "Đơn hàng EasyPay",
+  "menu.plugin.easypay.refund": "Hoàn tiền EasyPay"
 }

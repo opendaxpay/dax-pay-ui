@@ -1,0 +1,61 @@
+{
+  "title": "EasyPay Order",
+  "detail": "EasyPay Order Detail",
+  "field": {
+    "orderId": "Container ID",
+    "pid": "EasyPay Merchant ID",
+    "tradeNo": "Platform Trade No.",
+    "outTradeNo": "Merchant Order No.",
+    "apiTradeNo": "Channel Order No.",
+    "type": "Payment Method",
+    "status": "Status",
+    "addTime": "Created Time",
+    "endTime": "Completed Time",
+    "name": "Product Name",
+    "money": "Amount (CNY)",
+    "refundMoney": "Refunded (CNY)",
+    "notifyUrl": "Async Notify URL",
+    "returnUrl": "Sync Return URL",
+    "param": "Extension Param",
+    "buyer": "Buyer ID",
+    "clientIp": "Client IP",
+    "apiVersion": "API Version",
+    "pcCallType": "PC Call Type",
+    "payUrl": "Pay URL",
+    "payBody": "Pay Body",
+    "createTime": "Created Time"
+  },
+  "placeholder": {
+    "outTradeNo": "Enter merchant order no.",
+    "tradeNo": "Enter platform trade no.",
+    "name": "Enter product name"
+  },
+  "status": {
+    "0": "Unpaid",
+    "1": "Paid"
+  },
+  "statusColor": {
+    "0": "orange",
+    "1": "green"
+  },
+  "type": {
+    "alipay": "Alipay",
+    "wxpay": "WeChat Pay",
+    "aggregate": "Aggregate Pay"
+  },
+  "action": {
+    "sync": "Sync Status",
+    "close": "Close Order",
+    "syncSuccess": "Synced successfully",
+    "closeSuccess": "Closed successfully",
+    "syncConfirmTitle": "Confirm Sync Status",
+    "syncConfirmContent": "This will query the latest status from the payment channel. Continue?",
+    "closeConfirmTitle": "Confirm Close Order",
+    "closeConfirmContent": "The order cannot be paid after closing. Continue?"
+  },
+  "section": {
+    "basic": "Order Info",
+    "time": "Time Info",
+    "extra": "Payment & Extension"
+  }
+}

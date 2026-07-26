@@ -100,5 +100,9 @@
   "menu.payment.wx.mchApp": "แอปชำระเงิน (WeChat)",
   "menu.mch.center": "ศูนย์ร้านค้า",
   "menu.business.config": "การตั้งค่าธุรกิจ",
-  "menu.payment.merchant.notifyConfig": "การตั้งค่าการแจ้งเตือน"
+  "menu.payment.merchant.notifyConfig": "การตั้งค่าการแจ้งเตือน",
+  "menu.plugin": "ส่วนขยาย",
+  "menu.plugin.easypay": "EasyPay",
+  "menu.plugin.easypay.order": "คำสั่งซื้อ EasyPay",
+  "menu.plugin.easypay.refund": "การคืนเงิน EasyPay"
 }

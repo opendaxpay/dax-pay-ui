@@ -291,4 +291,18 @@ export const PermCodes = {
       VIEW: 'system:sensitive-word-hit:view',
     },
   },
+
+  /** 扩展插件 */
+  Plugin: {
+    /** 易支付订单(扩展插件) menuCode=plugin:easypay-order */
+    EasyPayOrder: {
+      VIEW: 'plugin:easypay-order:view',
+      MANAGE: 'plugin:easypay-order:manage',
+    },
+    /** 易支付退款订单(扩展插件) menuCode=plugin:easypay-refund */
+    EasyPayRefund: {
+      VIEW: 'plugin:easypay-refund:view',
+      MANAGE: 'plugin:easypay-refund:manage',
+    },
+  },
 } as const;

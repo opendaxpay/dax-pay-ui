@@ -1,0 +1,43 @@
+{
+  "title": "EasyPay Refund Order",
+  "detail": "EasyPay Refund Order Detail",
+  "field": {
+    "refundId": "Refund ID",
+    "easyPayOrderId": "EasyPay Order ID",
+    "pid": "EasyPay Merchant ID",
+    "refundNo": "Platform Refund No.",
+    "bizRefundNo": "Merchant Refund No.",
+    "tradeNo": "Platform Trade No.",
+    "outTradeNo": "Merchant Order No.",
+    "money": "Refund Amount (CNY)",
+    "status": "Refund Status",
+    "apiVersion": "API Version",
+    "addTime": "Refund Initiated Time",
+    "endTime": "Refund Completed Time",
+    "createTime": "Created Time"
+  },
+  "placeholder": {
+    "refundNo": "Enter platform refund no.",
+    "bizRefundNo": "Enter merchant refund no.",
+    "outTradeNo": "Enter merchant order no.",
+    "tradeNo": "Enter platform trade no."
+  },
+  "status": {
+    "0": "Processing/Failed",
+    "1": "Refund Success"
+  },
+  "statusColor": {
+    "0": "orange",
+    "1": "green"
+  },
+  "action": {
+    "sync": "Sync Status",
+    "syncSuccess": "Synced successfully",
+    "syncConfirmTitle": "Confirm Sync Status",
+    "syncConfirmContent": "This will query the latest refund status from the payment channel. Continue?"
+  },
+  "section": {
+    "basic": "Refund Info",
+    "time": "Time Info"
+  }
+}

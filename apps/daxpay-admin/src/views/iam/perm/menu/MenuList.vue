@@ -32,8 +32,8 @@
   const menuEdit = ref();
   const permCodeManager = ref();
 
-  // 终端列表(主数据, 含 gateway 供菜单树维护)
-  const { options: clientOptions } = useClientOptions(false);
+  // 终端列表(主数据, 菜单仅 admin/merchant 两端, gateway 无菜单不展示)
+  const { options: clientOptions } = useClientOptions(true);
   const clients = computed(() =>
     clientOptions.value.map((item) => ({
       code: item.value,

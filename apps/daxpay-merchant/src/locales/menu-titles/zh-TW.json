@@ -37,5 +37,9 @@
   "menu.develop.trade": "支付除錯(普通)",
   "menu.develop.sign": "簽名除錯",
   "menu.develop.gateway": "支付除錯(網關)",
-  "menu.develop.auth": "認證除錯"
+  "menu.develop.auth": "認證除錯",
+  "menu.plugin": "擴展插件",
+  "menu.plugin.easypay": "易支付",
+  "menu.plugin.easypay.order": "易支付訂單",
+  "menu.plugin.easypay.refund": "易支付退款"
 }

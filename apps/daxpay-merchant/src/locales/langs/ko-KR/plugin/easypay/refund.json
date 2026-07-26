@@ -1,0 +1,43 @@
+{
+  "title": "이지페이 환불 주문",
+  "detail": "이지페이 환불 주문 상세",
+  "field": {
+    "refundId": "연결 환불 ID",
+    "easyPayOrderId": "연결 이지페이 주문 ID",
+    "pid": "이지페이 가맹점 ID",
+    "refundNo": "플랫폼 환불 번호",
+    "bizRefundNo": "가맹점 환불 번호",
+    "tradeNo": "플랫폼 거래 번호",
+    "outTradeNo": "가맹점 주문 번호",
+    "money": "환불 금액(위안)",
+    "status": "환불 상태",
+    "apiVersion": "API 버전",
+    "addTime": "환불 시작 시간",
+    "endTime": "환불 완료 시간",
+    "createTime": "생성 시간"
+  },
+  "placeholder": {
+    "refundNo": "플랫폼 환불 번호 입력",
+    "bizRefundNo": "가맹점 환불 번호 입력",
+    "outTradeNo": "가맹점 주문 번호 입력",
+    "tradeNo": "플랫폼 거래 번호 입력"
+  },
+  "status": {
+    "0": "처리중/실패",
+    "1": "환불 성공"
+  },
+  "statusColor": {
+    "0": "orange",
+    "1": "green"
+  },
+  "action": {
+    "sync": "상태 동기화",
+    "syncSuccess": "동기화 성공",
+    "syncConfirmTitle": "상태 동기화 확인",
+    "syncConfirmContent": "결제 채널에서 최신 환불 상태를 조회합니다. 계속하시겠습니까?"
+  },
+  "section": {
+    "basic": "환불 정보",
+    "time": "시간 정보"
+  }
+}

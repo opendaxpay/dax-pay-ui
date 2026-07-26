@@ -37,5 +37,9 @@
   "menu.develop.trade": "การพัฒนาการชำระเงิน (ปกติ)",
   "menu.develop.sign": "ลงชื่อ พัฒนา",
   "menu.develop.gateway": "การพัฒนาการชำระเงิน (เกตเวย์)",
-  "menu.develop.auth": "รับรองความถูกต้องพัฒนา"
+  "menu.develop.auth": "รับรองความถูกต้องพัฒนา",
+  "menu.plugin": "ส่วนขยาย",
+  "menu.plugin.easypay": "EasyPay",
+  "menu.plugin.easypay.order": "คำสั่งซื้อ EasyPay",
+  "menu.plugin.easypay.refund": "การคืนเงิน EasyPay"
 }

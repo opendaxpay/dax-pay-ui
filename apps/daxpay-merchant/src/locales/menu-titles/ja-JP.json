@@ -37,5 +37,9 @@
   "menu.develop.trade": "決済開発(通常)",
   "menu.develop.sign": "サイン開発",
   "menu.develop.gateway": "決済開発(ゲートウェイ)",
-  "menu.develop.auth": "認証開発"
+  "menu.develop.auth": "認証開発",
+  "menu.plugin": "拡張プラグイン",
+  "menu.plugin.easypay": "EasyPay",
+  "menu.plugin.easypay.order": "EasyPay注文",
+  "menu.plugin.easypay.refund": "EasyPay返金"
 }

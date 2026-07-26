@@ -100,5 +100,9 @@
   "menu.payment.wx.mchApp": "Payment Apps (WeChat)",
   "menu.mch.center": "Merchant Center",
   "menu.business.config": "Business Config",
-  "menu.payment.merchant.notifyConfig": "Notify Config"
+  "menu.payment.merchant.notifyConfig": "Notify Config",
+  "menu.plugin": "Extensions",
+  "menu.plugin.easypay": "EasyPay",
+  "menu.plugin.easypay.order": "EasyPay Orders",
+  "menu.plugin.easypay.refund": "EasyPay Refunds"
 }

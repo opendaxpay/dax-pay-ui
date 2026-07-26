@@ -37,5 +37,9 @@
   "menu.develop.trade": "결제 개발(일반)",
   "menu.develop.sign": "개발에 서명하다",
   "menu.develop.gateway": "결제 개발(게이트웨이)",
-  "menu.develop.auth": "인증 개발"
+  "menu.develop.auth": "인증 개발",
+  "menu.plugin": "확장 플러그인",
+  "menu.plugin.easypay": "이지페이",
+  "menu.plugin.easypay.order": "이지페이 주문",
+  "menu.plugin.easypay.refund": "이지페이 환불"
 }

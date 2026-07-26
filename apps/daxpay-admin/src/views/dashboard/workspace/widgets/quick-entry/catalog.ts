@@ -224,7 +224,7 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
   {
     key: 'developTrade',
     routeName: '/develop/trade',
-    icon: 'lucide:credit-card',
+    icon: 'lucide:flask-conical',
     titleKey: 'dashboard.workspace.quickEntry.developTrade',
     color: 'bg-red-500',
     perms: [PermCodes.Develop.Trade.VIEW],

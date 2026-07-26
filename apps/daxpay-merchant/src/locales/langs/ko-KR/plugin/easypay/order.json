@@ -1,0 +1,61 @@
+{
+  "title": "이지페이 주문",
+  "detail": "이지페이 주문 상세",
+  "field": {
+    "orderId": "연결 컨테이너 ID",
+    "pid": "이지페이 가맹점 ID",
+    "tradeNo": "플랫폼 거래 번호",
+    "outTradeNo": "가맹점 주문 번호",
+    "apiTradeNo": "채널 주문 번호",
+    "type": "결제 방식",
+    "status": "주문 상태",
+    "addTime": "생성 시간",
+    "endTime": "완료 시간",
+    "name": "상품명",
+    "money": "금액(위안)",
+    "refundMoney": "환불됨(위안)",
+    "notifyUrl": "비동기 알림 URL",
+    "returnUrl": "동기 반환 URL",
+    "param": "확장 파라미터",
+    "buyer": "결제 사용자 ID",
+    "clientIp": "클라이언트 IP",
+    "apiVersion": "API 버전",
+    "pcCallType": "PC 호출 방식",
+    "payUrl": "결제 링크",
+    "payBody": "결제 파라미터",
+    "createTime": "생성 시간"
+  },
+  "placeholder": {
+    "outTradeNo": "가맹점 주문 번호 입력",
+    "tradeNo": "플랫폼 거래 번호 입력",
+    "name": "상품명 입력"
+  },
+  "status": {
+    "0": "미결제",
+    "1": "결제 완료"
+  },
+  "statusColor": {
+    "0": "orange",
+    "1": "green"
+  },
+  "type": {
+    "alipay": "Alipay",
+    "wxpay": "WeChat Pay",
+    "aggregate": "통합 결제"
+  },
+  "action": {
+    "sync": "상태 동기화",
+    "close": "주문 닫기",
+    "syncSuccess": "동기화 성공",
+    "closeSuccess": "닫기 성공",
+    "syncConfirmTitle": "상태 동기화 확인",
+    "syncConfirmContent": "결제 채널에서 최신 상태를 조회합니다. 계속하시겠습니까?",
+    "closeConfirmTitle": "주문 닫기 확인",
+    "closeConfirmContent": "닫은 후에는 주문을 결제할 수 없습니다. 계속하시겠습니까?"
+  },
+  "section": {
+    "basic": "주문 정보",
+    "time": "시간 정보",
+    "extra": "결제 및 확장"
+  }
+}

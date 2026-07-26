@@ -100,5 +100,9 @@
   "menu.payment.wx.mchApp": "支付应用(微信)",
   "menu.mch.center": "商户中心",
   "menu.business.config": "业务配置",
-  "menu.payment.merchant.notifyConfig": "通知配置"
+  "menu.payment.merchant.notifyConfig": "通知配置",
+  "menu.plugin": "扩展插件",
+  "menu.plugin.easypay": "易支付",
+  "menu.plugin.easypay.order": "易支付订单",
+  "menu.plugin.easypay.refund": "易支付退款"
 }

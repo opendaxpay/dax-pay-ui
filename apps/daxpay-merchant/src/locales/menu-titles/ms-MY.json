@@ -37,5 +37,9 @@
   "menu.develop.trade": "Membangunkan Pembayaran (Biasa)",
   "menu.develop.sign": "Tanda Bangun",
   "menu.develop.gateway": "Membangunkan Pembayaran (Gateway)",
-  "menu.develop.auth": "Membangunkan Pengesahan"
+  "menu.develop.auth": "Membangunkan Pengesahan",
+  "menu.plugin": "Sambungan",
+  "menu.plugin.easypay": "EasyPay",
+  "menu.plugin.easypay.order": "Pesanan EasyPay",
+  "menu.plugin.easypay.refund": "Bayaran balik EasyPay"
 }

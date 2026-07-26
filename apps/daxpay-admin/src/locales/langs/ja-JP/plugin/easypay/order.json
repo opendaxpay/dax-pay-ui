@@ -1,0 +1,61 @@
+{
+  "title": "EasyPay注文",
+  "detail": "EasyPay注文詳細",
+  "field": {
+    "orderId": "関連コンテナID",
+    "pid": "EasyPayマーチャントID",
+    "tradeNo": "プラットフォーム取引番号",
+    "outTradeNo": "マーチャント注文番号",
+    "apiTradeNo": "チャネル注文番号",
+    "type": "支払い方法",
+    "status": "注文ステータス",
+    "addTime": "作成時間",
+    "endTime": "完了時間",
+    "name": "商品名",
+    "money": "金額(元)",
+    "refundMoney": "返金済(元)",
+    "notifyUrl": "非同期通知URL",
+    "returnUrl": "同期リダイレクトURL",
+    "param": "業務拡張パラメータ",
+    "buyer": "支払いユーザーID",
+    "clientIp": "クライアントIP",
+    "apiVersion": "APIバージョン",
+    "pcCallType": "PC呼出方式",
+    "payUrl": "支払いリンク",
+    "payBody": "支払いパラメータ",
+    "createTime": "作成時間"
+  },
+  "placeholder": {
+    "outTradeNo": "マーチャント注文番号を入力",
+    "tradeNo": "プラットフォーム取引番号を入力",
+    "name": "商品名を入力"
+  },
+  "status": {
+    "0": "未支払い",
+    "1": "支払済"
+  },
+  "statusColor": {
+    "0": "orange",
+    "1": "green"
+  },
+  "type": {
+    "alipay": "Alipay",
+    "wxpay": "WeChat Pay",
+    "aggregate": "統合支払い"
+  },
+  "action": {
+    "sync": "ステータス同期",
+    "close": "注文を閉じる",
+    "syncSuccess": "同期成功",
+    "closeSuccess": "閉じる成功",
+    "syncConfirmTitle": "ステータス同期の確認",
+    "syncConfirmContent": "支払いチャネルに最新ステータスを照会します。続行しますか?",
+    "closeConfirmTitle": "注文クローズの確認",
+    "closeConfirmContent": "閉じた後は注文を支払えません。続行しますか?"
+  },
+  "section": {
+    "basic": "注文情報",
+    "time": "時間情報",
+    "extra": "支払いと拡張"
+  }
+}

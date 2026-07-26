@@ -100,5 +100,9 @@
   "menu.payment.wx.mchApp": "결제 앱(위챗)",
   "menu.mch.center": "가맹점 센터",
   "menu.business.config": "업무 설정",
-  "menu.payment.merchant.notifyConfig": "알림 설정"
+  "menu.payment.merchant.notifyConfig": "알림 설정",
+  "menu.plugin": "확장 플러그인",
+  "menu.plugin.easypay": "이지페이",
+  "menu.plugin.easypay.order": "이지페이 주문",
+  "menu.plugin.easypay.refund": "이지페이 환불"
 }

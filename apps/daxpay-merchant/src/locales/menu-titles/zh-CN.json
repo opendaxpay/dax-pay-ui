@@ -37,5 +37,9 @@
   "menu.develop.trade": "支付调试(普通)",
   "menu.develop.sign": "签名调试",
   "menu.develop.gateway": "支付调试(网关)",
-  "menu.develop.auth": "认证调试"
+  "menu.develop.auth": "认证调试",
+  "menu.plugin": "扩展插件",
+  "menu.plugin.easypay": "易支付",
+  "menu.plugin.easypay.order": "易支付订单",
+  "menu.plugin.easypay.refund": "易支付退款"
 }
