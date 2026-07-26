@@ -43,7 +43,6 @@
   },
   "channel": {
     "wechat_pay": "微信支付(直连)",
-    "ali_pay": "支付宝(直连)",
     "wechat_pay_isv": "微信支付(服务商)",
     "union_pay": "云闪付",
     "alipay_isv": "支付宝(服务商)",
