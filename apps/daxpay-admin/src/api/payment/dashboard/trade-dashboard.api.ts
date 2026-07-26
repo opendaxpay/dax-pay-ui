@@ -15,6 +15,13 @@ import { defHttp } from '#/api/request';
  */
 export const DashboardTradeApi = {
   /**
+   * 工作台头部计数(商户/通道商户/运营用户总量)
+   */
+  headerCounts(): Promise<Result<AdminHeaderCountResult>> {
+    return defHttp.get({ url: '/admin/dashboard/trade/header-counts' });
+  },
+
+  /**
    * 交易概览(今日/昨日快捷 或 自定义区间含上期对比)
    * @param date 'today' | 'yesterday' 快捷模式, 仅在未传 start/end 时生效
    * @param start yyyy-MM-dd(包含), 与 end 同时传时进入区间模式
@@ -165,4 +172,14 @@ export interface MerchantRankItemResult {
   orders?: number | string;
   /** 占比百分比(0-100) */
   proportion?: number;
+}
+
+/** 运营工作台头部计数结果 */
+export interface AdminHeaderCountResult {
+  /** 商户总数 */
+  merchantCount?: number | string;
+  /** 通道商户总数 */
+  channelMerchantCount?: number | string;
+  /** 运营端用户数(不含超管) */
+  userCount?: number | string;
 }

@@ -2,16 +2,12 @@ import type { DashboardData } from '../types';
 
 import { reactive } from 'vue';
 
-import { UserApi } from '#/api/iam/user.api';
-import { ChannelMerchantApi } from '#/api/payment/global/channel-merchant/channel-merchant.api';
-import { MerchantApi } from '#/api/payment/merchant/merchant.api';
+import { DashboardTradeApi } from '#/api/payment/dashboard/trade-dashboard.api';
 
 /**
  * 工作台聚合数据 Hook
  *
- * 当前通过各 list 接口的 size=1 取 total 字段作为计数过渡方案
- * 后端补齐 dashboard 聚合统计 API 后，可整体替换为本 hook 内部实现，调用方无需改动
- *
+ * 头部统计(商户/通道商户/运营用户)走后端聚合接口 headerCounts
  * 使用 reactive 包裹整体返回，便于作为 props 直接下发且类型为 DashboardData
  */
 export function useDashboardData(): DashboardData {
@@ -23,19 +19,15 @@ export function useDashboardData(): DashboardData {
       userCount: 0,
     },
     loading: false,
-    // 异步刷新：拉取各业务域计数
+    // 异步刷新：拉取头部计数聚合数据
     async refresh() {
       data.loading = true;
-      // 并行请求各项计数：size=1 仅取 total，最小化数据传输
-      const [merchant, channelMerchant, user] = await Promise.all([
-        MerchantApi.page({ current: 1, size: 1 }),
-        ChannelMerchantApi.page({ current: 1, size: 1 }),
-        UserApi.page({ current: 1, size: 1, clientCode: 'admin' }),
-      ]);
-      // 各 API 返回结构：{ code, data: { records, total }, message }
-      data.stats.merchantCount = Number((merchant as any)?.data?.total) || 0;
-      data.stats.channelMerchantCount = Number((channelMerchant as any)?.data?.total) || 0;
-      data.stats.userCount = Number((user as any)?.data?.total) || 0;
+      const res = await DashboardTradeApi.headerCounts();
+      const d = res.data;
+      // 后端 Long 字段可能序列化为字符串，统一 Number 转换
+      data.stats.merchantCount = Number(d?.merchantCount) || 0;
+      data.stats.channelMerchantCount = Number(d?.channelMerchantCount) || 0;
+      data.stats.userCount = Number(d?.userCount) || 0;
       data.loading = false;
     },
   });
