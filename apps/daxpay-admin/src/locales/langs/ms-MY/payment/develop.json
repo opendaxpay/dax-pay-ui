@@ -184,6 +184,7 @@
       "descWechatMp": "Hasilkan pautan pengesahan dan imbas dengan WeChat untuk melengkapkan kebenaran web. Keputusan dipaparkan secara automatik (memerlukan konfigurasi Akaun Rasmi WeChat dalam Pengurusan Platform Pihak Ketiga dan URL asas get laluan pembayaran dalam Konfigurasi Platform).",
       "descWechatMini": "Pilih program mini pedagang atau pentadbir, kemudian imbas untuk mendapatkan ID pengguna (pengesahan belum dilaksanakan lagi).",
       "descWechatChannel": "Pilih pedagang/pedagang saluran/keupayaan, kemudian jana pautan pengesahan dan imbas dengan WeChat. Digunakan untuk mengesahkan konfigurasi WeChat Pay (langsung/ISV); produk pembayaran dikesan secara automatik daripada pedagang saluran.",
+      "descWechatChannelDirect": "Select a WeChat app directly to generate the auth URL, for verifying that app's OAuth configuration.",
       "descDouyin": "Hasilkan pautan pengesahan dan imbas dengan apl Douyin untuk melengkapkan kebenaran senyap. Hasil carian dipaparkan secara automatik (memerlukan konfigurasi apl Douyin H5 dalam Pengurusan Platform Pihak Ketiga dan URL asas get laluan pembayaran dalam Konfigurasi Platform)."
     },
     "btn": {
@@ -206,8 +207,10 @@
         "mchNo": "Sila pilih peniaga",
         "channelMchNo": "Sila pilih pedagang saluran",
         "capability": "Sila pilih keupayaan membayar",
-        "miniAppType": "Sila pilih bahagian program mini"
-      }
+        "miniAppType": "Sila pilih bahagian program mini",
+        "wxApp": "Please select a WeChat app"
+      },
+      "wxApp": "WeChat App"
     },
     "miniAppType": {
       "merchant": "saudagar",
@@ -224,6 +227,10 @@
       "notExist": "Keputusan pengesahan tidak ditemui atau tamat tempoh",
       "copySuccess": "disalin",
       "copyFail": "Salinan gagal"
+    },
+    "mode": {
+      "infer": "Infer by Channel Merchant",
+      "direct": "Select App Directly"
     }
   },
   "gateway": {

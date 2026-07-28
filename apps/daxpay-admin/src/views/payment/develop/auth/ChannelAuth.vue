@@ -13,6 +13,8 @@
   import { DevelopAuthApi } from '#/api/payment/develop/develop-auth.api';
   import { DevelopTradeApi } from '#/api/payment/develop/develop-trade.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
+  import { WxMchAppApi } from '#/api/payment/wx/mch-app.api';
+  import { WxPlatformAppApi } from '#/api/payment/wx/platform-app.api';
   import ChannelMerchantSelect from '#/components/channel/ChannelMerchantSelect.vue';
   import { QrCode } from '#/components/qrcode';
   import { useMessage } from '#/hooks/useMessage';
@@ -54,6 +56,21 @@
     appType: 'merchant',
   });
 
+  /** 微信支付应用选择模式: infer=通道商户推断, direct=直接选择应用 */
+  const wxChannelMode = ref<'infer' | 'direct'>('infer');
+
+  /** 微信支付(直接选应用) 表单 */
+  const directForm = reactive({
+    mchNo: undefined as string | undefined,
+    wxAppId: undefined as string | undefined,
+  });
+  const directFormRules = {
+    wxAppId: [{ required: true, message: $t('payment.develop.auth.form.rule.wxApp') }],
+  };
+
+  /** 应用下拉选项(直接选应用模式) */
+  const wxAppOptions = ref<LabelValue[]>([]);
+
   /** 下拉选项 */
   const mchNoOptions = ref<LabelValue[]>([]);
   const channelMchNoOptions = ref<ChannelMchOption[]>([]);
@@ -72,7 +89,13 @@
   const guideDesc = computed(() => {
     if (authType.value === 'wechatMp') return $t('payment.develop.auth.guide.descWechatMp');
     if (authType.value === 'wechatMini') return $t('payment.develop.auth.guide.descWechatMini');
-    if (authType.value === 'wechatChannel') return $t('payment.develop.auth.guide.descWechatChannel');
+    if (authType.value === 'wechatChannel') {
+      // 直接选应用模式使用独立文案
+      if (wxChannelMode.value === 'direct') {
+        return $t('payment.develop.auth.guide.descWechatChannelDirect');
+      }
+      return $t('payment.develop.auth.guide.descWechatChannel');
+    }
     if (authType.value === 'alipayMini') return $t('payment.develop.auth.guide.descAlipayMini');
     if (authType.value === 'douyin') return $t('payment.develop.auth.guide.descDouyin');
     return $t('payment.develop.auth.guide.desc');
@@ -178,6 +201,31 @@
     });
   }
 
+  /** 加载微信应用候选(平台应用全量 + 指定商户的商户应用) */
+  function loadWxAppCandidates(mchNo?: string) {
+    Promise.all([
+      WxPlatformAppApi.listAll(),
+      mchNo ? WxMchAppApi.listByMchNo(mchNo) : Promise.resolve({ data: [] }),
+    ]).then(([platformRes, mchRes]) => {
+      const platformApps = (platformRes.data ?? []).map((a) => ({
+        label: `[${$t('payment.wx.app.scopePlatform')}] ${a.appName} (${a.wxAppId})`,
+        value: a.wxAppId!,
+      }));
+      const mchApps = (mchRes.data ?? []).map((a) => ({
+        label: `[${$t('payment.wx.app.scopeMerchant')}] ${a.appName} (${a.wxAppId})`,
+        value: a.wxAppId!,
+      }));
+      wxAppOptions.value = [...platformApps, ...mchApps];
+    });
+  }
+
+  /** 直接选应用模式: 商户变更时刷新应用候选 */
+  function directMerchantChange() {
+    directForm.wxAppId = undefined;
+    wxAppOptions.value = [];
+    loadWxAppCandidates(directForm.mchNo);
+  }
+
   /** 下拉搜索过滤 */
   function filterOption(input: string, option: any) {
     return option?.label?.toString().toLowerCase().includes(input.toLowerCase());
@@ -189,7 +237,7 @@
     if (authType.value === 'alipayMini' || authType.value === 'wechatMini') {
       return;
     }
-    // 微信支付: 表单校验
+    // 微信支付: 表单校验(两种模式共用同一 formRef, 通过 v-if 确保只有一个表单挂载)
     if (authType.value === 'wechatChannel') {
       try {
         await formRef.value?.validate();
@@ -210,12 +258,19 @@
             ? DevelopAuthApi.generateWechatMpAuthUrl()
             : authType.value === 'douyin'
               ? DevelopAuthApi.generateDouyinAuthUrl()
-              : DevelopAuthApi.generateChannelAuthUrl({
-                  authType: 'wechat',
-                  mchNo: form.mchNo,
-                  channelMchNo: form.channelMchNo,
-                  capability: form.capability,
-                } as ChannelAuthUrlParam);
+              : // 微信支付: 按模式分发
+                wxChannelMode.value === 'direct'
+                ? DevelopAuthApi.generateChannelAuthUrl({
+                    authType: 'wechat',
+                    mchNo: directForm.mchNo,
+                    channelAppId: directForm.wxAppId,
+                  } as ChannelAuthUrlParam)
+                : DevelopAuthApi.generateChannelAuthUrl({
+                    authType: 'wechat',
+                    mchNo: form.mchNo,
+                    channelMchNo: form.channelMchNo,
+                    capability: form.capability,
+                  } as ChannelAuthUrlParam);
       const { data } = await promise;
       authUrl.value = data ?? {};
       if (data?.queryCode) {
@@ -312,9 +367,33 @@
                 </a-form>
               </div>
 
-              <!-- 微信支付：商户参数表单 -->
+              <!-- 微信支付：模式切换 + 表单 -->
               <div v-if="authType === 'wechatChannel'" class="form-panel">
-                <a-form ref="formRef" layout="vertical" class="channel-auth-form" :model="form" :rules="formRules">
+                <!-- 模式切换 -->
+                <div class="mode-switch">
+                  <a-radio-group
+                    v-model:value="wxChannelMode"
+                    button-style="solid"
+                    size="small"
+                  >
+                    <a-radio-button value="infer">
+                      {{ $t('payment.develop.auth.mode.infer') }}
+                    </a-radio-button>
+                    <a-radio-button value="direct">
+                      {{ $t('payment.develop.auth.mode.direct') }}
+                    </a-radio-button>
+                  </a-radio-group>
+                </div>
+
+                <!-- 方式A: 通道商户推断 -->
+                <a-form
+                  v-if="wxChannelMode === 'infer'"
+                  ref="formRef"
+                  layout="vertical"
+                  class="channel-auth-form"
+                  :model="form"
+                  :rules="formRules"
+                >
                   <a-form-item :label="$t('payment.develop.auth.form.mchNo')" name="mchNo">
                     <a-select
                       v-model:value="form.mchNo"
@@ -326,7 +405,10 @@
                       @change="merchantChange"
                     />
                   </a-form-item>
-                  <a-form-item :label="$t('payment.develop.auth.form.channelMchNo')" name="channelMchNo">
+                  <a-form-item
+                    :label="$t('payment.develop.auth.form.channelMchNo')"
+                    name="channelMchNo"
+                  >
                     <ChannelMerchantSelect
                       v-model:value="form.channelMchNo"
                       :options="channelMchNoOptions"
@@ -343,6 +425,42 @@
                       v-model:value="form.capability"
                       :options="capabilityOptions"
                       :placeholder="$t('payment.develop.auth.form.rule.capability')"
+                      show-search
+                      :filter-option="filterOption"
+                      allow-clear
+                    />
+                  </a-form-item>
+                </a-form>
+
+                <!-- 方式B: 直接选择应用 -->
+                <a-form
+                  v-else
+                  ref="formRef"
+                  layout="vertical"
+                  class="channel-auth-form"
+                  :model="directForm"
+                  :rules="directFormRules"
+                >
+                  <a-form-item :label="$t('payment.develop.auth.form.mchNo')" name="mchNo">
+                    <a-select
+                      v-model:value="directForm.mchNo"
+                      :options="mchNoOptions"
+                      :placeholder="$t('payment.develop.auth.form.rule.mchNo')"
+                      show-search
+                      :filter-option="filterOption"
+                      allow-clear
+                      @change="directMerchantChange"
+                    />
+                  </a-form-item>
+                  <a-form-item
+                    :label="$t('payment.develop.auth.form.wxApp')"
+                    name="wxAppId"
+                    class="form-item-last"
+                  >
+                    <a-select
+                      v-model:value="directForm.wxAppId"
+                      :options="wxAppOptions"
+                      :placeholder="$t('payment.develop.auth.form.rule.wxApp')"
                       show-search
                       :filter-option="filterOption"
                       allow-clear
@@ -487,6 +605,11 @@
     background: #fff;
     border: 1px solid #e5e7eb;
     border-radius: 8px;
+  }
+
+  /* 微信支付模式切换 */
+  .mode-switch {
+    margin-bottom: 16px;
   }
 
   .form-item-last {

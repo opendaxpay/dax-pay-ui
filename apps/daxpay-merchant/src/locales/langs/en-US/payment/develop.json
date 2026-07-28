@@ -184,6 +184,7 @@
       "descWechatMp": "Generate an auth link and scan with WeChat to complete web authorization. Results appear automatically (requires WeChat Official Account config in Third-party Platform Management, and payment gateway base URL in Platform Config).",
       "descWechatMini": "Select merchant or admin mini program, then scan to get the user ID (auth not implemented yet).",
       "descWechatChannel": "Select merchant/channel merchant/capability, then generate an auth link and scan with WeChat. Used to verify WeChat Pay (direct/ISV) configuration; the payment product is auto-detected from the channel merchant.",
+      "descWechatChannelDirect": "Select a WeChat app directly to generate the auth URL, for verifying that app's OAuth configuration.",
       "descDouyin": "Generate an auth link and scan with the Douyin app to complete silent authorization. Results appear automatically (requires Douyin H5 app config in Third-party Platform Management, and payment gateway base URL in Platform Config)."
     },
     "btn": {
@@ -206,8 +207,10 @@
         "mchNo": "Please select a merchant",
         "channelMchNo": "Please select a channel merchant",
         "capability": "Please select a pay capability",
-        "miniAppType": "Please select mini program side"
-      }
+        "miniAppType": "Please select mini program side",
+        "wxApp": "Please select a WeChat app"
+      },
+      "wxApp": "WeChat App"
     },
     "miniAppType": {
       "merchant": "Merchant",
@@ -224,6 +227,10 @@
       "notExist": "Auth result not found or expired",
       "copySuccess": "Copied",
       "copyFail": "Copy failed"
+    },
+    "mode": {
+      "infer": "Infer by Channel Merchant",
+      "direct": "Select App Directly"
     }
   },
   "gateway": {

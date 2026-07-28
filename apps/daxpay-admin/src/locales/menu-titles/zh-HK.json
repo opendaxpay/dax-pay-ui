@@ -49,6 +49,7 @@
   "menu.develop": "開發調試",
   "menu.device": "設備管理",
   "menu.demos.artemis": "消息隊列演示",
+  "menu.demos.ipRegion": "IP歸屬地查詢",
   "menu.system.config.thirdPlatform": "三方平台管理",
   "menu.system.basic.protocol": "用户協議",
   "menu.payment.merchant.profile": "商户資料",

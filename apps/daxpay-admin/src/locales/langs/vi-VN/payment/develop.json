@@ -184,6 +184,7 @@
       "descWechatMp": "Tạo liên kết xác thực và quét bằng WeChat để hoàn tất ủy quyền web. Kết quả tự động xuất hiện (yêu cầu cấu hình Tài khoản chính thức của WeChat trong Quản lý nền tảng bên thứ ba và URL cơ sở cổng thanh toán trong Cấu hình nền tảng).",
       "descWechatMini": "Chọn chương trình nhỏ của người bán hoặc quản trị viên, sau đó quét để lấy ID người dùng (xác thực chưa được triển khai).",
       "descWechatChannel": "Chọn người bán/người bán kênh/khả năng, sau đó tạo liên kết xác thực và quét bằng WeChat. Được sử dụng để xác minh cấu hình WeChat Pay (trực tiếp/ISV); sản phẩm thanh toán được tự động phát hiện từ người bán kênh.",
+      "descWechatChannelDirect": "Select a WeChat app directly to generate the auth URL, for verifying that app's OAuth configuration.",
       "descDouyin": "Tạo liên kết xác thực và quét bằng ứng dụng Douyin để hoàn tất ủy quyền im lặng. Kết quả tự động xuất hiện (yêu cầu cấu hình ứng dụng Douyin H5 trong Quản lý nền tảng bên thứ ba và URL cơ sở cổng thanh toán trong Cấu hình nền tảng)."
     },
     "btn": {
@@ -206,8 +207,10 @@
         "mchNo": "Vui lòng chọn một người bán",
         "channelMchNo": "Vui lòng chọn một người bán kênh",
         "capability": "Vui lòng chọn khả năng thanh toán",
-        "miniAppType": "Vui lòng chọn bên chương trình mini"
-      }
+        "miniAppType": "Vui lòng chọn bên chương trình mini",
+        "wxApp": "Please select a WeChat app"
+      },
+      "wxApp": "WeChat App"
     },
     "miniAppType": {
       "merchant": "Thương gia",
@@ -224,6 +227,10 @@
       "notExist": "Không tìm thấy kết quả xác thực hoặc đã hết hạn",
       "copySuccess": "Đã sao chép",
       "copyFail": "Sao chép không thành công"
+    },
+    "mode": {
+      "infer": "Infer by Channel Merchant",
+      "direct": "Select App Directly"
     }
   },
   "gateway": {

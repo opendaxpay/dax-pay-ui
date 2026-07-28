@@ -49,6 +49,7 @@
   "menu.develop": "พัฒนา",
   "menu.device": "การจัดการอุปกรณ์",
   "menu.demos.artemis": "การสาธิตคิวข้อความ",
+  "menu.demos.ipRegion": "ค้นหาตำแหน่ง IP",
   "menu.system.config.thirdPlatform": "การจัดการแพลตฟอร์มของบุคคลที่สาม",
   "menu.system.basic.protocol": "โปรโตคอลผู้ใช้",
   "menu.payment.merchant.profile": "โปรไฟล์ผู้ขาย",

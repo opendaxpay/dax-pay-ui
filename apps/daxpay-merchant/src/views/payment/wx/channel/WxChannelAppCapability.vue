@@ -229,7 +229,10 @@
       }
     });
     loading.value = true;
-    WxChannelAppCapabilityApi.saveBatch(channelMchNo.value, { items })
+    WxChannelAppCapabilityApi.saveBatch({
+      channelMchNo: channelMchNo.value,
+      items,
+    })
       .then(() => {
         message.success($t('payment.wx.app.capabilitySaveSuccess'));
         visible.value = false;

@@ -4,13 +4,13 @@
   <img src="https://img.shields.io/badge/Vue-3.5-4FC08D" alt="Vue 3">
   <img src="https://img.shields.io/badge/Vite-8.x-646CFF" alt="Vite">
   <img src="https://img.shields.io/badge/TypeScript-5.9-3178C6" alt="TypeScript">
-  <img src="https://img.shields.io/badge/antdv--next-4.x-4FC08D" alt="antdv-next">
-  <img src="https://img.shields.io/badge/License-商业授权-red" alt="License">
+  <img src="https://img.shields.io/badge/antdv--next-1.x-4FC08D" alt="antdv-next">
+  <img src="https://img.shields.io/badge/License-LGPL--3.0--or--later-green" alt="License">
 </p>
 
 ## 项目简介
 
-DaxPay UI 是 DaxPay 支付系统的 Web 管理端 monorepo，基于 Vue Vben Admin 5 二次开发。当前包含运营端 `daxpay-admin` 与商户端 `daxpay-merchant`（阶段 1 脚手架：可登录 + 静态工作台，业务菜单后续接入）。文案与菜单标题支持多语（见 `locales/` 与 Agents.md）。
+DaxPay UI 是 DaxPay 支付系统的 Web 管理端 monorepo，基于 Vue Vben Admin 5 二次开发，包含运营端 `daxpay-admin` 与商户端 `daxpay-merchant`，文案与菜单标题支持多语。
 
 ## 技术栈
 
@@ -83,7 +83,7 @@ pnpm dev:merchant   # 商户端 http://localhost:7999
 pnpm build
 ```
 
-> 商户端登录需运营端已创建的商户用户；阶段 1 尚无 `client_code=merchant` 菜单种子，登录后侧栏可为空，静态 `/workspace` 可打开。
+> 商户端登录需运营端已创建的商户用户。
 
 ### 常用命令
 
@@ -118,7 +118,7 @@ pnpm build
 
 ## 国际化
 
-业务文案在各 app 的 `src/locales/langs/{locale}/`（多语对称）；菜单标题在 `locales/menu-titles/{locale}.json`。语种与回退规则见仓库根 `AGENTS.md`。
+业务文案在各 app 的 `src/locales/langs/{locale}/`（多语对称）；菜单标题在 `locales/menu-titles/{locale}.json`。
 
 ```
 apps/daxpay-admin/src/locales/      # 运营端
@@ -140,7 +140,7 @@ apps/daxpay-merchant/src/locales/  # 商户端
 
 ## 许可证
 
-本项目采用商业授权协议
+本项目基于 [GNU LGPL v3.0 或更高版本](./LICENSE) 协议开源。
 
 ---
 

@@ -49,6 +49,7 @@
   "menu.develop": "Phát triển",
   "menu.device": "Quản lý thiết bị",
   "menu.demos.artemis": "Bản trình diễn hàng đợi tin nhắn",
+  "menu.demos.ipRegion": "Tra cứu vị trí IP",
   "menu.system.config.thirdPlatform": "Quản lý nền tảng của bên thứ ba",
   "menu.system.basic.protocol": "Giao thức người dùng",
   "menu.payment.merchant.profile": "Hồ sơ người bán",

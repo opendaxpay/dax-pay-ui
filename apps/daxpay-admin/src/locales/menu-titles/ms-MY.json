@@ -49,6 +49,7 @@
   "menu.develop": "Membangunkan",
   "menu.device": "Pengurusan Peranti",
   "menu.demos.artemis": "Demo Baris Mesej",
+  "menu.demos.ipRegion": "Carian Lokasi IP",
   "menu.system.config.thirdPlatform": "Pengurusan Platform pihak ketiga",
   "menu.system.basic.protocol": "Protokol Pengguna",
   "menu.payment.merchant.profile": "Profil Pedagang",

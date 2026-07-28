@@ -184,6 +184,7 @@
       "descWechatMp": "Buat tautan autentikasi dan pindai dengan WeChat untuk menyelesaikan otorisasi web. Hasil muncul secara otomatis (memerlukan konfigurasi Akun Resmi WeChat di Manajemen Platform Pihak Ketiga, dan URL dasar gateway pembayaran di Konfigurasi Platform).",
       "descWechatMini": "Pilih mini program merchant atau admin, lalu scan untuk mendapatkan user ID (auth belum diterapkan).",
       "descWechatChannel": "Pilih pedagang/pedagang saluran/kemampuan, lalu buat tautan autentikasi dan pindai dengan WeChat. Digunakan untuk memverifikasi konfigurasi WeChat Pay (langsung/ISV); produk pembayaran terdeteksi otomatis dari channel merchant.",
+      "descWechatChannelDirect": "Select a WeChat app directly to generate the auth URL, for verifying that app's OAuth configuration.",
       "descDouyin": "Buat tautan autentikasi dan pindai dengan aplikasi Douyin untuk menyelesaikan otorisasi senyap. Hasil muncul secara otomatis (memerlukan konfigurasi aplikasi Douyin H5 di Manajemen Platform Pihak Ketiga, dan URL dasar gateway pembayaran di Konfigurasi Platform)."
     },
     "btn": {
@@ -206,8 +207,10 @@
         "mchNo": "Silakan pilih pedagang",
         "channelMchNo": "Silakan pilih pedagang saluran",
         "capability": "Silakan pilih kemampuan pembayaran",
-        "miniAppType": "Silakan pilih sisi program mini"
-      }
+        "miniAppType": "Silakan pilih sisi program mini",
+        "wxApp": "Please select a WeChat app"
+      },
+      "wxApp": "WeChat App"
     },
     "miniAppType": {
       "merchant": "Pedagang",
@@ -224,6 +227,10 @@
       "notExist": "Hasil autentikasi tidak ditemukan atau kedaluwarsa",
       "copySuccess": "Disalin",
       "copyFail": "Penyalinan gagal"
+    },
+    "mode": {
+      "infer": "Infer by Channel Merchant",
+      "direct": "Select App Directly"
     }
   },
   "gateway": {

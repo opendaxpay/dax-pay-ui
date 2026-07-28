@@ -20,14 +20,10 @@ export const WxChannelAppCapabilityApi = {
       params: { product },
     });
   },
-  /** 全量保存能力绑定（mchNo 由后端上下文覆盖） */
-  saveBatch(
-    channelMchNo: string,
-    data: WxChannelAppCapabilityBatchParam,
-  ): Promise<Result<void>> {
+  /** 全量保存能力绑定（mchNo 由后端上下文注入，channelMchNo + items 放 body） */
+  saveBatch(data: WxChannelAppCapabilityBatchParam): Promise<Result<void>> {
     return defHttp.post({
       url: '/mch/wx/channel-app-capability/save-batch',
-      params: { channelMchNo },
       data,
     });
   },
@@ -55,6 +51,7 @@ export interface WxChannelAppCapabilityItem {
 
 /** 批量保存 */
 export interface WxChannelAppCapabilityBatchParam {
+  channelMchNo: string;
   items: WxChannelAppCapabilityItem[];
 }
 
