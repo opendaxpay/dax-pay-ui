@@ -99,6 +99,8 @@
   "menu.trade.record": "Callback Notifications",
   "menu.payment.wx.app": "Payment Apps (WeChat)",
   "menu.payment.wx.mchApp": "Payment Apps (WeChat)",
+  "menu.payment.douyin.app": "Payment Apps (Douyin)",
+  "menu.payment.douyin.mchApp": "Payment Apps (Douyin)",
   "menu.mch.center": "Merchant Center",
   "menu.business.config": "Business Config",
   "menu.payment.merchant.notifyConfig": "Notify Config",

@@ -265,8 +265,8 @@ function convertMenuToRoute(
     }
   }
 
-  // 微信应用 Hub：?tab= / ?mchNo= 仅状态同步，勿纳入 tab key，否则切 Tab 会整页重挂闪烁
-  if (menu.path === '/payment/wx/app') {
+  // 应用 Hub 页（微信/抖音）：?tab= / ?mchNo= 仅状态同步，勿纳入 tab key，否则切 Tab 会整页重挂闪烁
+  if (['/payment/wx/app', '/payment/douyin/app'].includes(menu.path)) {
     route.meta!.fullPathKey = false;
   }
 

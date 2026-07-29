@@ -99,6 +99,8 @@
   "menu.trade.record": "Notifikasi Callback",
   "menu.payment.wx.app": "Aplikasi Pembayaran (WeChat)",
   "menu.payment.wx.mchApp": "Aplikasi Pembayaran (WeChat)",
+  "menu.payment.douyin.app": "Aplikasi Pembayaran (Douyin)",
+  "menu.payment.douyin.mchApp": "Aplikasi Pembayaran (Douyin)",
   "menu.mch.center": "Pusat Merchant",
   "menu.business.config": "Konfigurasi Bisnis",
   "menu.payment.merchant.notifyConfig": "Konfigurasi Notifikasi",

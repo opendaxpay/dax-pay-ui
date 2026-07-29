@@ -29,6 +29,7 @@
   "menu.payment.merchant.terminal": "System Terminals",
   "menu.payment.merchant.wxVerify": "WeChat Domain Verify",
   "menu.payment.wx.mchApp": "Payment Apps (WeChat)",
+  "menu.payment.douyin.mchApp": "Payment Apps (Douyin)",
   "menu.payment.merchant.channelMerchant.alipayApp": "Alipay App",
   "menu.payment.merchant.channelMerchant.wechatApp": "WeChat App",
   "menu.payment.merchant.channelMerchant.douyinApp": "Douyin App",

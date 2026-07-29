@@ -99,6 +99,8 @@
   "menu.trade.record": "回調通知",
   "menu.payment.wx.app": "支付應用(微信)",
   "menu.payment.wx.mchApp": "支付應用(微信)",
+  "menu.payment.douyin.app": "支付應用(抖音)",
+  "menu.payment.douyin.mchApp": "支付應用(抖音)",
   "menu.mch.center": "商戶中心",
   "menu.business.config": "業務配置",
   "menu.payment.merchant.notifyConfig": "通知配置",

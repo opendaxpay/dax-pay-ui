@@ -160,6 +160,13 @@ export const PermCodes = {
         MANAGE: 'payment:wx:mch-app:manage',
       },
     },
+    /** 抖音开放应用主数据 menuCode=payment:douyin:mch-app */
+    Douyin: {
+      MchApp: {
+        VIEW: 'payment:douyin:mch-app:view',
+        MANAGE: 'payment:douyin:mch-app:manage',
+      },
+    },
     Config: {
       WxDomainVerify: {
         VIEW: 'payment:config:wx-verify:view',

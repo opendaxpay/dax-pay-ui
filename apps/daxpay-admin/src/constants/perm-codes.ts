@@ -167,6 +167,19 @@ export const PermCodes = {
         MANAGE: 'payment:wx:mch-app:manage',
       },
     },
+    /** 抖音开放应用主数据 menuCode=payment:douyin:* */
+    Douyin: {
+      /** 平台抖音应用（侧栏「支付应用(抖音)」） */
+      PlatformApp: {
+        VIEW: 'payment:douyin:platform-app:view',
+        MANAGE: 'payment:douyin:platform-app:manage',
+      },
+      /** 商户抖音应用 / 通道能力绑定 */
+      MchApp: {
+        VIEW: 'payment:douyin:mch-app:view',
+        MANAGE: 'payment:douyin:mch-app:manage',
+      },
+    },
     /** 支付风控 */
     Risk: {
       Blacklist: {

@@ -29,6 +29,7 @@
   "menu.payment.merchant.terminal": "系统终端",
   "menu.payment.merchant.wxVerify": "微信域名验证",
   "menu.payment.wx.mchApp": "支付应用(微信)",
+  "menu.payment.douyin.mchApp": "支付应用(抖音)",
   "menu.payment.merchant.channelMerchant.alipayApp": "支付宝应用",
   "menu.payment.merchant.channelMerchant.wechatApp": "微信应用",
   "menu.payment.merchant.channelMerchant.douyinApp": "抖音应用",

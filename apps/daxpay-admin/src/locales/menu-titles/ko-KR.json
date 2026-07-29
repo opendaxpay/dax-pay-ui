@@ -99,6 +99,8 @@
   "menu.trade.record": "콜백 알림",
   "menu.payment.wx.app": "결제 앱(위챗)",
   "menu.payment.wx.mchApp": "결제 앱(위챗)",
+  "menu.payment.douyin.app": "결제 앱(두인)",
+  "menu.payment.douyin.mchApp": "결제 앱(두인)",
   "menu.mch.center": "가맹점 센터",
   "menu.business.config": "업무 설정",
   "menu.payment.merchant.notifyConfig": "알림 설정",
