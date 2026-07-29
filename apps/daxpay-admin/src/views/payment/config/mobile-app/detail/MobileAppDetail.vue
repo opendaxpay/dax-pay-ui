@@ -14,7 +14,7 @@
     type MobileAppParam,
     type WxMiniAppConfig,
     MobileAppApi,
-  } from '#/api/system/mobile-app.api';
+  } from '#/api/payment/mobile-app.api';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
   import { readFileAsText } from '#/utils/file';
@@ -86,9 +86,9 @@
 
   const appTitle = computed(() => {
     if (appType.value) {
-      return $t(`system.mobileApp.card.${appType.value}.name`);
+      return $t(`payment.mobileApp.card.${appType.value}.name`);
     }
-    return $t('system.mobileApp.detail.notSupportedAppType');
+    return $t('payment.mobileApp.detail.notSupportedAppType');
   });
 
   /**
@@ -220,14 +220,14 @@
             {
               required: true,
               whitespace: true,
-              message: $t('system.mobileApp.fields.appIdRequired'),
+              message: $t('payment.mobileApp.fields.appIdRequired'),
             },
           ],
           appSecret: [
             {
               required: true,
               whitespace: true,
-              message: $t('system.mobileApp.fields.appSecretRequired'),
+              message: $t('payment.mobileApp.fields.appSecretRequired'),
             },
           ],
         };
@@ -240,20 +240,20 @@
             {
               required: true,
               whitespace: true,
-              message: $t('system.mobileApp.fields.appIdRequired'),
+              message: $t('payment.mobileApp.fields.appIdRequired'),
             },
           ],
           authType: [
             {
               required: true,
-              message: $t('system.mobileApp.fields.authTypeRequired'),
+              message: $t('payment.mobileApp.fields.authTypeRequired'),
             },
           ],
           privateKey: [
             {
               required: true,
               whitespace: true,
-              message: $t('system.mobileApp.fields.privateKeyRequired'),
+              message: $t('payment.mobileApp.fields.privateKeyRequired'),
             },
           ],
           alipayPublicKey: certMode
@@ -263,7 +263,7 @@
                   required: true,
                   whitespace: true,
                   message: $t(
-                    'system.mobileApp.fields.alipayPublicKeyRequired',
+                    'payment.mobileApp.fields.alipayPublicKeyRequired',
                   ),
                 },
               ],
@@ -273,7 +273,7 @@
                 {
                   required: true,
                   whitespace: true,
-                  message: $t('system.mobileApp.fields.appCertRequired'),
+                  message: $t('payment.mobileApp.fields.appCertRequired'),
                 },
               ],
           alipayCert: !certMode
@@ -283,7 +283,7 @@
                   required: true,
                   whitespace: true,
                   message: $t(
-                    'system.mobileApp.fields.alipayCertRequired',
+                    'payment.mobileApp.fields.alipayCertRequired',
                   ),
                 },
               ],
@@ -294,7 +294,7 @@
                   required: true,
                   whitespace: true,
                   message: $t(
-                    'system.mobileApp.fields.alipayRootCertRequired',
+                    'payment.mobileApp.fields.alipayRootCertRequired',
                   ),
                 },
               ],
@@ -573,7 +573,7 @@
         saving.value = true;
         try {
           await MobileAppApi.save(submit);
-          message.success($t('system.mobileApp.detail.saveSuccess'));
+          message.success($t('payment.mobileApp.detail.saveSuccess'));
           isEditing.value = false;
           await loadData(true);
         } finally {
@@ -587,7 +587,7 @@
    * 返回卡片页
    */
   function handleBack() {
-    router.push({ path: '/system/config/mobile-app' });
+    router.push({ path: '/payment/config/mobile-app' });
   }
 
   // 切 Tab 时退出编辑并重载
@@ -632,8 +632,8 @@
           type="warning"
           show-icon
           class="mb-4"
-          :message="$t('system.mobileApp.detail.cashierLimitTitle')"
-          :description="$t('system.mobileApp.detail.cashierLimitDesc')"
+          :message="$t('payment.mobileApp.detail.cashierLimitTitle')"
+          :description="$t('payment.mobileApp.detail.cashierLimitDesc')"
         />
 
         <a-tabs v-model:active-key="activePlatform">
@@ -667,7 +667,7 @@
             <template #tab>
               <span :class="{ 'opacity-50': item.disabled }">
                 {{
-                  $t(`system.mobileApp.platformNames.${item.platform}`)
+                  $t(`payment.mobileApp.platformNames.${item.platform}`)
                 }}
                 <a-tag
                   v-if="item.disabled"
@@ -675,7 +675,7 @@
                   class="ml-1"
                   style="font-size: 11px; line-height: 18px"
                 >
-                  {{ $t('system.mobileApp.card.comingSoon') }}
+                  {{ $t('payment.mobileApp.card.comingSoon') }}
                 </a-tag>
               </span>
             </template>
@@ -683,7 +683,7 @@
             <a-empty
               v-if="item.disabled"
               :description="
-                $t('system.mobileApp.detail.platformComingSoon')
+                $t('payment.mobileApp.detail.platformComingSoon')
               "
             />
 
@@ -704,19 +704,19 @@
               <template v-if="item.platform === 'wx_mini' && formDataMap[item.platform]?.wxMini">
                 <a-form-item
                   name="appId"
-                  :label="$t('system.mobileApp.fields.wxAppId')"
+                  :label="$t('payment.mobileApp.fields.wxAppId')"
                 >
                   <a-input
                     v-model:value="formDataMap[item.platform]!.wxMini!.appId"
                     :disabled="!isEditing"
                     :placeholder="
-                      $t('system.mobileApp.fields.wxAppIdPlaceholder')
+                      $t('payment.mobileApp.fields.wxAppIdPlaceholder')
                     "
                   />
                 </a-form-item>
                 <a-form-item
                   name="appSecret"
-                  :label="$t('system.mobileApp.fields.wxAppSecret')"
+                  :label="$t('payment.mobileApp.fields.wxAppSecret')"
                 >
                   <a-input
                     v-model:value="
@@ -726,14 +726,14 @@
                     allow-clear
                     :placeholder="
                       $t(
-                        'system.mobileApp.fields.wxAppSecretPlaceholder',
+                        'payment.mobileApp.fields.wxAppSecretPlaceholder',
                       )
                     "
                   />
                 </a-form-item>
                 <a-form-item
                   name="originalId"
-                  :label="$t('system.mobileApp.fields.originalId')"
+                  :label="$t('payment.mobileApp.fields.originalId')"
                 >
                   <a-input
                     v-model:value="
@@ -742,7 +742,7 @@
                     :disabled="!isEditing"
                     :placeholder="
                       $t(
-                        'system.mobileApp.fields.originalIdPlaceholder',
+                        'payment.mobileApp.fields.originalIdPlaceholder',
                       )
                     "
                   />
@@ -758,7 +758,7 @@
               >
                 <a-form-item
                   name="appId"
-                  :label="$t('system.mobileApp.fields.alipayAppId')"
+                  :label="$t('payment.mobileApp.fields.alipayAppId')"
                 >
                   <a-input
                     v-model:value="
@@ -767,14 +767,14 @@
                     :disabled="!isEditing"
                     :placeholder="
                       $t(
-                        'system.mobileApp.fields.alipayAppIdPlaceholder',
+                        'payment.mobileApp.fields.alipayAppIdPlaceholder',
                       )
                     "
                   />
                 </a-form-item>
                 <a-form-item
                   name="authType"
-                  :label="$t('system.mobileApp.fields.authType')"
+                  :label="$t('payment.mobileApp.fields.authType')"
                 >
                   <a-radio-group
                     v-model:value="
@@ -785,16 +785,16 @@
                     @change="handleAuthTypeChange(item.platform)"
                   >
                     <a-radio-button :value="AUTH_TYPE_KEY">
-                      {{ $t('system.mobileApp.fields.authTypeKey') }}
+                      {{ $t('payment.mobileApp.fields.authTypeKey') }}
                     </a-radio-button>
                     <a-radio-button :value="AUTH_TYPE_CERT">
-                      {{ $t('system.mobileApp.fields.authTypeCert') }}
+                      {{ $t('payment.mobileApp.fields.authTypeCert') }}
                     </a-radio-button>
                   </a-radio-group>
                 </a-form-item>
                 <a-form-item
                   name="privateKey"
-                  :label="$t('system.mobileApp.fields.privateKey')"
+                  :label="$t('payment.mobileApp.fields.privateKey')"
                 >
                   <a-textarea
                     v-model:value="
@@ -805,7 +805,7 @@
                     allow-clear
                     :placeholder="
                       $t(
-                        'system.mobileApp.fields.privateKeyPlaceholder',
+                        'payment.mobileApp.fields.privateKeyPlaceholder',
                       )
                     "
                   />
@@ -813,7 +813,7 @@
                 <a-form-item
                   v-if="!isCertMode(item.platform)"
                   name="alipayPublicKey"
-                  :label="$t('system.mobileApp.fields.alipayPublicKey')"
+                  :label="$t('payment.mobileApp.fields.alipayPublicKey')"
                 >
                   <a-textarea
                     v-model:value="
@@ -824,7 +824,7 @@
                     allow-clear
                     :placeholder="
                       $t(
-                        'system.mobileApp.fields.alipayPublicKeyPlaceholder',
+                        'payment.mobileApp.fields.alipayPublicKeyPlaceholder',
                       )
                     "
                   />
@@ -832,7 +832,7 @@
                 <template v-else>
                   <a-form-item
                     name="appCert"
-                    :label="$t('system.mobileApp.fields.appCert')"
+                    :label="$t('payment.mobileApp.fields.appCert')"
                   >
                     <a-upload
                       v-if="!formDataMap[item.platform]!.alipayMini!.appCert"
@@ -853,7 +853,7 @@
                             class="text-lg"
                           />
                         </template>
-                        {{ $t('system.mobileApp.fields.uploadAppCert') }}
+                        {{ $t('payment.mobileApp.fields.uploadAppCert') }}
                       </a-button>
                     </a-upload>
                     <a-tooltip
@@ -888,7 +888,7 @@
                   </a-form-item>
                   <a-form-item
                     name="alipayCert"
-                    :label="$t('system.mobileApp.fields.alipayCert')"
+                    :label="$t('payment.mobileApp.fields.alipayCert')"
                   >
                     <a-upload
                       v-if="!formDataMap[item.platform]!.alipayMini!.alipayCert"
@@ -909,7 +909,7 @@
                             class="text-lg"
                           />
                         </template>
-                        {{ $t('system.mobileApp.fields.uploadAlipayCert') }}
+                        {{ $t('payment.mobileApp.fields.uploadAlipayCert') }}
                       </a-button>
                     </a-upload>
                     <a-tooltip
@@ -945,7 +945,7 @@
                   </a-form-item>
                   <a-form-item
                     name="alipayRootCert"
-                    :label="$t('system.mobileApp.fields.alipayRootCert')"
+                    :label="$t('payment.mobileApp.fields.alipayRootCert')"
                   >
                     <a-upload
                       v-if="
@@ -972,7 +972,7 @@
                             class="text-lg"
                           />
                         </template>
-                        {{ $t('system.mobileApp.fields.uploadRootCert') }}
+                        {{ $t('payment.mobileApp.fields.uploadRootCert') }}
                       </a-button>
                     </a-upload>
                     <a-tooltip
@@ -1018,19 +1018,19 @@
               >
                 <a-form-item
                   name="appId"
-                  :label="$t('system.mobileApp.fields.dyAppId')"
+                  :label="$t('payment.mobileApp.fields.dyAppId')"
                 >
                   <a-input
                     v-model:value="formDataMap[item.platform]!.dyMini!.appId"
                     :disabled="!isEditing"
                     :placeholder="
-                      $t('system.mobileApp.fields.dyAppIdPlaceholder')
+                      $t('payment.mobileApp.fields.dyAppIdPlaceholder')
                     "
                   />
                 </a-form-item>
                 <a-form-item
                   name="appSecret"
-                  :label="$t('system.mobileApp.fields.dyAppSecret')"
+                  :label="$t('payment.mobileApp.fields.dyAppSecret')"
                 >
                   <a-input
                     v-model:value="
@@ -1040,7 +1040,7 @@
                     allow-clear
                     :placeholder="
                       $t(
-                        'system.mobileApp.fields.dyAppSecretPlaceholder',
+                        'payment.mobileApp.fields.dyAppSecretPlaceholder',
                       )
                     "
                   />
