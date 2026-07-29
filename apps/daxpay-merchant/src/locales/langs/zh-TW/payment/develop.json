@@ -167,7 +167,8 @@
       "wechatMp": "微信公眾號",
       "wechatMini": "微信小程式",
       "wechatChannel": "微信支付",
-      "douyin": "抖音H5"
+      "douyin": "抖音H5",
+      "douyinChannel": "抖音支付"
     },
     "tag": {
       "alipay": "支付寶H5",
@@ -175,7 +176,8 @@
       "wechatMp": "微信公眾號",
       "wechatMini": "微信小程式",
       "wechatChannel": "微信支付",
-      "douyin": "抖音H5"
+      "douyin": "抖音H5",
+      "douyinChannel": "抖音支付"
     },
     "guide": {
       "title": "使用說明",
@@ -185,7 +187,8 @@
       "descWechatMini": "選擇商戶端或運營端小程式後掃碼獲取使用者標識（認證暫未實現，敬請期待）。",
       "descWechatChannel": "選擇商戶/通道商戶/支付能力後生成授權連結，使用微信掃碼完成網頁授權。用於驗證微信支付（直連/服務商）配置是否正確，支付產品由通道商戶自動識別。",
       "descWechatChannelDirect": "直接選擇微信應用產生授權連結，用於驗證該應用的 OAuth 設定是否正確。",
-      "descDouyin": "點選生成授權連結後，使用抖音 App 掃碼完成靜默授權。結果將自動回顯（依賴「三方平臺管理」中的抖音 H5 應用配置，以及「平臺配置」中的支付閘道器前端地址）。"
+      "descDouyin": "點選生成授權連結後，使用抖音 App 掃碼完成靜默授權。結果將自動回顯（依賴「三方平臺管理」中的抖音 H5 應用配置，以及「平臺配置」中的支付閘道器前端地址）。",
+      "descDouyinChannel": "選擇商户與抖音網站應用後產生授權連結，使用抖音 App 掃碼完成靜默授權。用於驗證抖音支付（直連/服務商）的網站應用 OAuth 設定是否正確。"
     },
     "btn": {
       "generate": "生成授權連結",
@@ -208,9 +211,11 @@
         "channelMchNo": "請選擇通道商戶",
         "capability": "請選擇支付能力",
         "miniAppType": "請選擇小程式端型別",
-        "wxApp": "請選擇微信應用"
+        "wxApp": "請選擇微信應用",
+        "dyApp": "請選擇抖音應用"
       },
-      "wxApp": "微信應用"
+      "wxApp": "微信應用",
+      "dyApp": "抖音應用"
     },
     "miniAppType": {
       "merchant": "商戶端",

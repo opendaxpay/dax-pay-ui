@@ -167,7 +167,8 @@
       "wechatMp": "บัญชีอย่างเป็นทางการของ WeChat",
       "wechatMini": "WeChat มินิโปรแกรม",
       "wechatChannel": "วีแชต เพย์",
-      "douyin": "โต่วอิน H5"
+      "douyin": "โต่วอิน H5",
+      "douyinChannel": "การชำระเงิน Douyin"
     },
     "tag": {
       "alipay": "อาลีเพย์ H5",
@@ -175,7 +176,8 @@
       "wechatMp": "บัญชีอย่างเป็นทางการของ WeChat",
       "wechatMini": "WeChat มินิโปรแกรม",
       "wechatChannel": "วีแชต เพย์",
-      "douyin": "โต่วอิน H5"
+      "douyin": "โต่วอิน H5",
+      "douyinChannel": "การชำระเงิน Douyin"
     },
     "guide": {
       "title": "วิธีใช้",
@@ -185,7 +187,8 @@
       "descWechatMini": "เลือกมินิโปรแกรมผู้ขายหรือผู้ดูแลระบบ จากนั้นสแกนเพื่อรับรหัสผู้ใช้ (ยังไม่ได้ใช้การรับรองความถูกต้อง)",
       "descWechatChannel": "เลือกผู้ค้า/ช่องทางผู้ค้า/ความสามารถ จากนั้นสร้างลิงก์ตรวจสอบสิทธิ์และสแกนด้วย WeChat ใช้เพื่อตรวจสอบการกำหนดค่า WeChat Pay (โดยตรง/ISV) ผลิตภัณฑ์การชำระเงินจะถูกตรวจพบอัตโนมัติจากผู้ขายช่องทาง",
       "descWechatChannelDirect": "Select a WeChat app directly to generate the auth URL, for verifying that app's OAuth configuration.",
-      "descDouyin": "สร้างลิงก์ตรวจสอบสิทธิ์และสแกนด้วยแอป Douyin เพื่อดำเนินการอนุญาตแบบเงียบๆ ผลลัพธ์จะปรากฏขึ้นโดยอัตโนมัติ (ต้องมีการกำหนดค่าแอป Douyin H5 ในการจัดการแพลตฟอร์มบุคคลที่สาม และ URL ฐานเกตเวย์การชำระเงินในการกำหนดค่าแพลตฟอร์ม)"
+      "descDouyin": "สร้างลิงก์ตรวจสอบสิทธิ์และสแกนด้วยแอป Douyin เพื่อดำเนินการอนุญาตแบบเงียบๆ ผลลัพธ์จะปรากฏขึ้นโดยอัตโนมัติ (ต้องมีการกำหนดค่าแอป Douyin H5 ในการจัดการแพลตฟอร์มบุคคลที่สาม และ URL ฐานเกตเวย์การชำระเงินในการกำหนดค่าแพลตฟอร์ม)",
+      "descDouyinChannel": "เลือก merchant และเว็บแอป Douyin เพื่อสร้างลิงก์ยืนยัน จากนั้นสแกนด้วยแอป Douyin เพื่อยืนยันแบบเงียบ ใช้สำหรับตรวจสอบการตั้งค่า OAuth ของเว็บแอป การชำระเงิน Douyin (ทางตรง/ISV)"
     },
     "btn": {
       "generate": "สร้างลิงก์การตรวจสอบสิทธิ์",
@@ -208,9 +211,11 @@
         "channelMchNo": "กรุณาเลือกช่องทางร้านค้า",
         "capability": "โปรดเลือกความสามารถในการชำระเงิน",
         "miniAppType": "กรุณาเลือกด้านมินิโปรแกรม",
-        "wxApp": "Please select a WeChat app"
+        "wxApp": "Please select a WeChat app",
+        "dyApp": "กรุณาเลือกแอป Douyin"
       },
-      "wxApp": "WeChat App"
+      "wxApp": "WeChat App",
+      "dyApp": "แอป Douyin"
     },
     "miniAppType": {
       "merchant": "พ่อค้า",

@@ -38,6 +38,16 @@ export const DevelopAuthApi = {
   },
 
   /**
+   * 生成抖音支付(直连/服务商)授权链接
+   */
+  generateDouyinChannelAuthUrl(data: DevelopChannelAuthParam): Promise<Result<AuthUrlResult>> {
+    return defHttp.post({
+      url: '/mch/develop/auth/generate-douyin-channel-auth-url',
+      data,
+    });
+  },
+
+  /**
    * 通过查询码获取认证结果
    */
   queryAuthResult(queryCode: string): Promise<Result<AuthResult>> {
@@ -68,7 +78,7 @@ export interface AuthResult {
   status?: string;
 }
 
-/** 认证调试 - 微信支付授权参数 */
+/** 认证调试 - 通道授权参数(微信支付 / 抖音支付) */
 export interface DevelopChannelAuthParam {
   /** 商户号 */
   mchNo: string;

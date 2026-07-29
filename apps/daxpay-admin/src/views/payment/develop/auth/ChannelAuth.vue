@@ -11,6 +11,8 @@
   import { useIntervalFn } from '@vueuse/core';
 
   import { DevelopAuthApi } from '#/api/payment/develop/develop-auth.api';
+  import { DyMchAppApi } from '#/api/payment/douyin/mch-app.api';
+  import { DyPlatformAppApi } from '#/api/payment/douyin/platform-app.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { WxMchAppApi } from '#/api/payment/wx/mch-app.api';
   import { WxPlatformAppApi } from '#/api/payment/wx/platform-app.api';
@@ -27,7 +29,7 @@
   } as const;
 
   /** 认证类型 */
-  type AuthType = 'alipay' | 'alipayMini' | 'douyin' | 'wechatChannel' | 'wechatMini' | 'wechatMp';
+  type AuthType = 'alipay' | 'alipayMini' | 'douyin' | 'douyinChannel' | 'wechatChannel' | 'wechatMini' | 'wechatMp';
   const authType = ref<AuthType>('alipay');
 
   const { message } = useMessage();
@@ -55,6 +57,19 @@
   const wxAppOptions = ref<LabelValue[]>([]);
   const mchNoOptions = ref<LabelValue[]>([]);
 
+  /** 抖音支付表单(直接选择网站应用) */
+  const dyFormRef = ref();
+  const dyForm = reactive({
+    mchNo: undefined as string | undefined,
+    dyAppId: undefined as string | undefined,
+  });
+  const dyFormRules = {
+    dyAppId: [{ required: true, message: $t('payment.develop.auth.form.rule.dyApp') }],
+  };
+
+  /** 抖音应用下拉选项(仅网站应用 web_app) */
+  const dyAppOptions = ref<LabelValue[]>([]);
+
   /** 微信小程序端类型选项 */
   const miniAppTypeOptions = computed<LabelValue[]>(() => [
     { label: $t('payment.develop.auth.miniAppType.merchant'), value: 'merchant' },
@@ -73,6 +88,7 @@
     }
     if (authType.value === 'alipayMini') return $t('payment.develop.auth.guide.descAlipayMini');
     if (authType.value === 'douyin') return $t('payment.develop.auth.guide.descDouyin');
+    if (authType.value === 'douyinChannel') return $t('payment.develop.auth.guide.descDouyinChannel');
     return $t('payment.develop.auth.guide.desc');
   });
 
@@ -80,7 +96,7 @@
   const qrTip = computed(() =>
     authType.value === 'alipay' || authType.value === 'alipayMini'
       ? $t('payment.develop.auth.qr.tip')
-      : authType.value === 'douyin'
+      : authType.value === 'douyin' || authType.value === 'douyinChannel'
         ? $t('payment.develop.auth.qr.tipDouyin')
         : $t('payment.develop.auth.qr.tipWechat'),
   );
@@ -95,6 +111,7 @@
     if (authType.value === 'wechatChannel') return $t('payment.develop.auth.tag.wechatChannel');
     if (authType.value === 'alipayMini') return $t('payment.develop.auth.tag.alipayMini');
     if (authType.value === 'douyin') return $t('payment.develop.auth.tag.douyin');
+    if (authType.value === 'douyinChannel') return $t('payment.develop.auth.tag.douyinChannel');
     return $t('payment.develop.auth.tag.alipay');
   });
 
@@ -169,8 +186,39 @@
     });
   }
 
+  /** 商户变更(抖音支付): 刷新抖音应用候选 */
+  function dyMerchantChange() {
+    dyForm.dyAppId = undefined;
+    dyAppOptions.value = [];
+    if (!dyForm.mchNo) return;
+    loadDyAppCandidates(dyForm.mchNo);
+  }
+
+  /** 加载抖音网站应用候选(平台应用全量 + 指定商户的商户应用, 仅 web_app) */
+  function loadDyAppCandidates(mchNo?: string) {
+    Promise.all([
+      DyPlatformAppApi.listAll(),
+      mchNo ? DyMchAppApi.listByMchNo(mchNo) : Promise.resolve({ data: [] }),
+    ]).then(([platformRes, mchRes]) => {
+      // 抖音 H5 静默授权固定使用网站应用(web_app), 仅列出该类型
+      const platformApps = (platformRes.data ?? [])
+        .filter((a) => a.appType === 'web_app')
+        .map((a) => ({
+          label: `[${$t('payment.wx.app.scopePlatform')}] ${a.appName} (${a.douyinAppId})`,
+          value: `platform:${a.id}`,
+        }));
+      const mchApps = (mchRes.data ?? [])
+        .filter((a) => a.appType === 'web_app')
+        .map((a) => ({
+          label: `[${$t('payment.wx.app.scopeMerchant')}] ${a.appName} (${a.douyinAppId})`,
+          value: `merchant:${a.id}`,
+        }));
+      dyAppOptions.value = [...platformApps, ...mchApps];
+    });
+  }
+
   /** 解析下拉复合值 "scope:appId" → { scope, appId } */
-  function parseWxAppKey(composite: string): { scope: string; appId: string } {
+  function parseAppKey(composite: string): { appId: string; scope: string } {
     const sep = composite.indexOf(':');
     const scope = sep > 0 ? composite.slice(0, sep) : '';
     const appId = sep > 0 ? composite.slice(sep + 1) : '';
@@ -188,10 +236,11 @@
     if (authType.value === 'alipayMini' || authType.value === 'wechatMini') {
       return;
     }
-    // 微信支付: 表单校验(两种模式共用同一 formRef, 通过 v-if 确保只有一个表单挂载)
-    if (authType.value === 'wechatChannel') {
+    // 微信支付 / 抖音支付: 表单校验(各自 formRef, 通过 v-if 确保只有一个表单挂载)
+    if (authType.value === 'wechatChannel' || authType.value === 'douyinChannel') {
       try {
-        await formRef.value?.validate();
+        const activeFormRef = authType.value === 'wechatChannel' ? formRef.value : dyFormRef.value;
+        await activeFormRef?.validate();
       } catch {
         // 校验失败: 表单已显示错误提示
         return;
@@ -209,11 +258,17 @@
             ? DevelopAuthApi.generateWechatMpAuthUrl()
             : authType.value === 'douyin'
               ? DevelopAuthApi.generateDouyinAuthUrl()
-              : // 微信支付: 直接选择应用
-                DevelopAuthApi.generateChannelAuthUrl({
-                  mchNo: form.mchNo!,
-                  ...parseWxAppKey(form.wxAppId!),
-                } as DevelopChannelAuthParam);
+              : authType.value === 'douyinChannel'
+                ? // 抖音支付: 直接选择网站应用
+                  DevelopAuthApi.generateDouyinChannelAuthUrl({
+                    mchNo: dyForm.mchNo!,
+                    ...parseAppKey(dyForm.dyAppId!),
+                  } as DevelopChannelAuthParam)
+                : // 微信支付: 直接选择应用
+                  DevelopAuthApi.generateChannelAuthUrl({
+                    mchNo: form.mchNo!,
+                    ...parseAppKey(form.wxAppId!),
+                  } as DevelopChannelAuthParam);
       const { data } = await promise;
       authUrl.value = data ?? {};
       if (data?.queryCode) {
@@ -253,7 +308,7 @@
             :color="
               authType === 'alipay' || authType === 'alipayMini'
                 ? 'processing'
-                : authType === 'douyin'
+                : authType === 'douyin' || authType === 'douyinChannel'
                   ? 'black'
                   : 'green'
             "
@@ -284,6 +339,9 @@
           <a-radio-button value="douyin">
             {{ $t('payment.develop.auth.type.douyin') }}
           </a-radio-button>
+          <a-radio-button value="douyinChannel">
+            {{ $t('payment.develop.auth.type.douyinChannel') }}
+          </a-radio-button>
         </a-radio-group>
 
         <a-row :gutter="24">
@@ -312,13 +370,7 @@
 
               <!-- 微信支付：直接选择应用 -->
               <div v-if="authType === 'wechatChannel'" class="form-panel">
-                <a-form
-                  ref="formRef"
-                  layout="vertical"
-                  class="channel-auth-form"
-                  :model="form"
-                  :rules="formRules"
-                >
+                <a-form ref="formRef" layout="vertical" class="channel-auth-form" :model="form" :rules="formRules">
                   <a-form-item :label="$t('payment.develop.auth.form.mchNo')" name="mchNo">
                     <a-select
                       v-model:value="form.mchNo"
@@ -331,15 +383,44 @@
                     />
                   </a-form-item>
 
-                  <a-form-item
-                    :label="$t('payment.develop.auth.form.wxApp')"
-                    name="wxAppId"
-                    class="form-item-last"
-                  >
+                  <a-form-item :label="$t('payment.develop.auth.form.wxApp')" name="wxAppId" class="form-item-last">
                     <a-select
                       v-model:value="form.wxAppId"
                       :options="wxAppOptions"
                       :placeholder="$t('payment.develop.auth.form.rule.wxApp')"
+                      show-search
+                      :filter-option="filterOption"
+                      allow-clear
+                    />
+                  </a-form-item>
+                </a-form>
+              </div>
+
+              <!-- 抖音支付：直接选择网站应用(仅 web_app) -->
+              <div v-if="authType === 'douyinChannel'" class="form-panel">
+                <a-form
+                  ref="dyFormRef"
+                  layout="vertical"
+                  class="channel-auth-form"
+                  :model="dyForm"
+                  :rules="dyFormRules"
+                >
+                  <a-form-item :label="$t('payment.develop.auth.form.mchNo')" name="mchNo">
+                    <a-select
+                      v-model:value="dyForm.mchNo"
+                      :options="mchNoOptions"
+                      :placeholder="$t('payment.develop.auth.form.rule.mchNo')"
+                      show-search
+                      :filter-option="filterOption"
+                      allow-clear
+                      @change="dyMerchantChange"
+                    />
+                  </a-form-item>
+                  <a-form-item :label="$t('payment.develop.auth.form.dyApp')" name="dyAppId" class="form-item-last">
+                    <a-select
+                      v-model:value="dyForm.dyAppId"
+                      :options="dyAppOptions"
+                      :placeholder="$t('payment.develop.auth.form.rule.dyApp')"
                       show-search
                       :filter-option="filterOption"
                       allow-clear

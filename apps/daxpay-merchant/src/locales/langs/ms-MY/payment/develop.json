@@ -167,7 +167,8 @@
       "wechatMp": "Akaun Rasmi WeChat",
       "wechatMini": "Program Mini WeChat",
       "wechatChannel": "WeChat Pay",
-      "douyin": "Douyin H5"
+      "douyin": "Douyin H5",
+      "douyinChannel": "Pembayaran Douyin"
     },
     "tag": {
       "alipay": "Alipay H5",
@@ -175,7 +176,8 @@
       "wechatMp": "Akaun Rasmi WeChat",
       "wechatMini": "Program Mini WeChat",
       "wechatChannel": "WeChat Pay",
-      "douyin": "Douyin H5"
+      "douyin": "Douyin H5",
+      "douyinChannel": "Pembayaran Douyin"
     },
     "guide": {
       "title": "Cara menggunakan",
@@ -185,7 +187,8 @@
       "descWechatMini": "Pilih program mini pedagang atau pentadbir, kemudian imbas untuk mendapatkan ID pengguna (pengesahan belum dilaksanakan lagi).",
       "descWechatChannel": "Pilih pedagang/pedagang saluran/keupayaan, kemudian jana pautan pengesahan dan imbas dengan WeChat. Digunakan untuk mengesahkan konfigurasi WeChat Pay (langsung/ISV); produk pembayaran dikesan secara automatik daripada pedagang saluran.",
       "descWechatChannelDirect": "Select a WeChat app directly to generate the auth URL, for verifying that app's OAuth configuration.",
-      "descDouyin": "Hasilkan pautan pengesahan dan imbas dengan apl Douyin untuk melengkapkan kebenaran senyap. Hasil carian dipaparkan secara automatik (memerlukan konfigurasi apl Douyin H5 dalam Pengurusan Platform Pihak Ketiga dan URL asas get laluan pembayaran dalam Konfigurasi Platform)."
+      "descDouyin": "Hasilkan pautan pengesahan dan imbas dengan apl Douyin untuk melengkapkan kebenaran senyap. Hasil carian dipaparkan secara automatik (memerlukan konfigurasi apl Douyin H5 dalam Pengurusan Platform Pihak Ketiga dan URL asas get laluan pembayaran dalam Konfigurasi Platform).",
+      "descDouyinChannel": "Pilih merchant dan aplikasi web Douyin untuk menjana pautan kebenaran, kemudian imbas dengan aplikasi Douyin untuk menyelesaikan kebenaran senyap. Digunakan untuk mengesahkan konfigurasi OAuth aplikasi web Pembayaran Douyin (langsung/ISV)."
     },
     "btn": {
       "generate": "Hasilkan Pautan Pengesahan",
@@ -208,9 +211,11 @@
         "channelMchNo": "Sila pilih pedagang saluran",
         "capability": "Sila pilih keupayaan membayar",
         "miniAppType": "Sila pilih bahagian program mini",
-        "wxApp": "Please select a WeChat app"
+        "wxApp": "Please select a WeChat app",
+        "dyApp": "Sila pilih aplikasi Douyin"
       },
-      "wxApp": "WeChat App"
+      "wxApp": "WeChat App",
+      "dyApp": "Aplikasi Douyin"
     },
     "miniAppType": {
       "merchant": "saudagar",

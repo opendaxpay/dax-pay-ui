@@ -167,7 +167,8 @@
       "wechatMp": "WeChat Official Account",
       "wechatMini": "WeChat Mini Program",
       "wechatChannel": "WeChat Pay",
-      "douyin": "Douyin H5"
+      "douyin": "Douyin H5",
+      "douyinChannel": "Douyin Pay"
     },
     "tag": {
       "alipay": "Alipay H5",
@@ -175,7 +176,8 @@
       "wechatMp": "WeChat Official Account",
       "wechatMini": "WeChat Mini Program",
       "wechatChannel": "WeChat Pay",
-      "douyin": "Douyin H5"
+      "douyin": "Douyin H5",
+      "douyinChannel": "Douyin Pay"
     },
     "guide": {
       "title": "How to use",
@@ -185,7 +187,8 @@
       "descWechatMini": "Select merchant or admin mini program, then scan to get the user ID (auth not implemented yet).",
       "descWechatChannel": "Select merchant/channel merchant/capability, then generate an auth link and scan with WeChat. Used to verify WeChat Pay (direct/ISV) configuration; the payment product is auto-detected from the channel merchant.",
       "descWechatChannelDirect": "Select a WeChat app directly to generate the auth URL, for verifying that app's OAuth configuration.",
-      "descDouyin": "Generate an auth link and scan with the Douyin app to complete silent authorization. Results appear automatically (requires Douyin H5 app config in Third-party Platform Management, and payment gateway base URL in Platform Config)."
+      "descDouyin": "Generate an auth link and scan with the Douyin app to complete silent authorization. Results appear automatically (requires Douyin H5 app config in Third-party Platform Management, and payment gateway base URL in Platform Config).",
+      "descDouyinChannel": "Select a merchant and a Douyin web app to generate the auth link, then scan with the Douyin app to complete silent authorization. Used to verify the OAuth configuration of the Douyin Pay (direct/ISV) web app."
     },
     "btn": {
       "generate": "Generate Auth Link",
@@ -208,9 +211,11 @@
         "channelMchNo": "Please select a channel merchant",
         "capability": "Please select a pay capability",
         "miniAppType": "Please select mini program side",
-        "wxApp": "Please select a WeChat app"
+        "wxApp": "Please select a WeChat app",
+        "dyApp": "Please select a Douyin app"
       },
-      "wxApp": "WeChat App"
+      "wxApp": "WeChat App",
+      "dyApp": "Douyin App"
     },
     "miniAppType": {
       "merchant": "Merchant",
