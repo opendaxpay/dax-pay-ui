@@ -96,7 +96,7 @@ export interface DyMiniAppConfig {
 export interface MobileAppResult extends BaseEntity {
   /** 端类型: merchant/admin/cashier */
   appType?: string;
-  /** 移动平台: wx_h5/wx_mini/alipay_mini/dy_mini/android/ios */
+  /** 移动平台: wx_mini/alipay_mini/dy_mini/android/ios */
   platform?: string;
   /** 微信小程序配置 */
   wxMini?: WxMiniAppConfig;

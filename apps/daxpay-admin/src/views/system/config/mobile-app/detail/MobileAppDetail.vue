@@ -54,15 +54,14 @@
       { platform: 'android', disabled: true },
       { platform: 'ios', disabled: true },
     ],
-    // 收银台仅三小程序; 抖音本期灰显; 无 H5/APP
+    // 收银台仅三小程序; 无 H5/APP
     cashier: [
       { platform: 'wx_mini' },
       { platform: 'alipay_mini' },
-      { platform: 'dy_mini', disabled: true },
+      { platform: 'dy_mini' },
     ],
-    // 商户端可配微信公众号; 管理端不配
+    // 商户端
     merchant: [
-      { platform: 'wx_h5' },
       { platform: 'wx_mini' },
       { platform: 'alipay_mini' },
       { platform: 'dy_mini' },
