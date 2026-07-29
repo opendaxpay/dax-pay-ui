@@ -16,13 +16,16 @@
 
   const formRef = ref();
 
-  const { visible, confirmLoading, title, initFormEditType, handleCancel, formEditType } = useFormEdit();
+  const { visible, confirmLoading, title, initFormEditType, handleCancel, formEditType, diffForm } = useFormEdit();
 
   const formState = ref<DyPlatformApp>({
     appName: '',
     appType: 'mini_program',
     douyinAppId: '',
+    appSecret: '',
   });
+  // 编辑时脱敏回显原始值，用于 diffForm 比对敏感字段
+  const originalForm = ref<DyPlatformApp>({});
 
   /** 应用类型选项 */
   const appTypeOptions = computed(() => [
@@ -52,14 +55,29 @@
       { required: true, message: $t('payment.douyin.app.douyinAppIdRequired') },
       { validator: validateDouyinAppIdDebounced },
     ],
+    // 应用密钥：新增必填；编辑时脱敏回显，未修改由 diffForm 比对跳过更新
+    appSecret: [{ required: true, message: $t('payment.douyin.app.validation.appSecret') }],
   };
+
+  /** AppSecret 提示文案（按应用类型） */
+  const appSecretTooltip = computed(() => {
+    const map: Record<string, string> = {
+      mini_program: 'payment.douyin.app.appSecretTooltipMiniProgram',
+      mobile_app: 'payment.douyin.app.appSecretTooltipMobileApp',
+      web_app: 'payment.douyin.app.appSecretTooltipWebApp',
+    };
+    const key = map[formState.value.appType || 'mini_program'];
+    return key ? $t(key) : $t('payment.douyin.app.appSecretTooltipMiniProgram');
+  });
 
   function resetForm() {
     formState.value = {
       appName: '',
       appType: 'mini_program',
       douyinAppId: '',
+      appSecret: '',
     };
+    originalForm.value = {};
     formRef.value?.resetFields();
     // 清空防抖校验缓存，避免上次（新增/编辑）判重结果污染本次会话
     validateDouyinAppIdDebounced.reset();
@@ -82,7 +100,9 @@
             appName: data.appName,
             appType: data.appType || 'mini_program',
             douyinAppId: data.douyinAppId,
+            appSecret: data.appSecret,
           };
+          originalForm.value = { ...formState.value };
         }
       })
       .finally(() => {
@@ -101,6 +121,7 @@
     confirmLoading.value = true;
     const payload: DyPlatformApp = {
       ...formState.value,
+      ...diffForm(originalForm.value, formState.value, 'appSecret'),
     };
     const request =
       formEditType.value === FormEditType.Edit
@@ -157,6 +178,12 @@
           <a-input
             v-model:value="formState.douyinAppId"
             :placeholder="$t('payment.douyin.app.douyinAppIdPlaceholder')"
+          />
+        </a-form-item>
+        <a-form-item :label="$t('payment.douyin.app.appSecret')" name="appSecret" :tooltip="appSecretTooltip">
+          <a-input
+            v-model:value="formState.appSecret"
+            :placeholder="$t('payment.douyin.app.appSecretPlaceholder')"
           />
         </a-form-item>
       </a-form>

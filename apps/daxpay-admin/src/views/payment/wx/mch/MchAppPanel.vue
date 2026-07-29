@@ -104,7 +104,7 @@
   }
 
   function handleManage(record: WxMchApp) {
-    detailRef.value?.show(selectedMchNo.value, record);
+    detailRef.value?.show(record);
   }
 
   function handleEdit(record: WxMchApp) {

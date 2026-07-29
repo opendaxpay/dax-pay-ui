@@ -5,7 +5,6 @@
 
   import { type DyMchApp, DyMchAppApi } from '#/api/payment/douyin/mch-app.api';
 
-  import DyMchAppAuthConfig from './tabs/DyMchAppAuthConfig.vue';
   import DyMchAppBasicInfo from './tabs/DyMchAppBasicInfo.vue';
 
   const emit = defineEmits<{
@@ -14,17 +13,13 @@
 
   const visible = ref(false);
   const loading = ref(false);
-  const activeKey = ref('basic');
-  const mchNo = ref('');
   const appDetail = ref<DyMchApp>({});
 
   const modalTitle = computed(() =>
     $t('payment.douyin.app.detailTitle', { name: appDetail.value.appName || '-' }),
   );
 
-  function show(no: string, record: DyMchApp) {
-    mchNo.value = no;
-    activeKey.value = 'basic';
+  function show(record: DyMchApp) {
     visible.value = true;
     loading.value = true;
     appDetail.value = { ...record };
@@ -63,18 +58,7 @@
     @cancel="handleClose"
   >
     <a-spin :spinning="loading">
-      <a-tabs v-model:active-key="activeKey" tab-placement="left" class="detail-tabs">
-        <a-tab-pane key="basic" :tab="$t('payment.douyin.app.tabBasicInfo')">
-          <DyMchAppBasicInfo :app="appDetail" @deleted="handleDeleted" />
-        </a-tab-pane>
-        <a-tab-pane key="auth" :tab="$t('payment.douyin.app.tabAuthConfig')">
-          <DyMchAppAuthConfig
-            :dy-mch-app-id="appDetail.id!"
-            :mch-no="mchNo"
-            :app-type="appDetail.appType"
-          />
-        </a-tab-pane>
-      </a-tabs>
+      <DyMchAppBasicInfo :app="appDetail" @deleted="handleDeleted" />
     </a-spin>
   </a-modal>
 </template>

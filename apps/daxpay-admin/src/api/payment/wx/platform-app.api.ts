@@ -40,17 +40,6 @@ export const WxPlatformAppApi = {
   delete(id: string): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/wx/platform-app/delete', params: { id } });
   },
-  /** 查询应用授权认证配置 */
-  findAuthConfigByAppId(wxPlatformAppId: string): Promise<Result<WxPlatformAppAuthConfig>> {
-    return defHttp.get({
-      url: '/admin/wx/platform-app/find-auth-config-by-app-id',
-      params: { wxPlatformAppId },
-    });
-  },
-  /** 保存应用授权认证配置 */
-  saveAuthConfig(data: WxPlatformAppAuthConfig): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/wx/platform-app/save-auth-config', data });
-  },
 };
 
 /** 平台微信应用 */
@@ -61,12 +50,6 @@ export interface WxPlatformApp extends BaseEntity {
   appType?: string;
   /** 微信应用 AppId */
   wxAppId?: string;
-}
-
-/** 平台微信应用授权认证配置 */
-export interface WxPlatformAppAuthConfig {
-  /** 平台应用ID */
-  wxPlatformAppId?: string;
-  /** 应用密钥（已脱敏） */
+  /** 应用密钥（编辑时脱敏回显，未改不传） */
   appSecret?: string;
 }

@@ -5,7 +5,6 @@
 
   import { type DyMchApp, DyMchAppApi } from '#/api/payment/douyin/mch-app.api';
 
-  import MchDyAppAuthConfig from './tabs/MchDyAppAuthConfig.vue';
   import MchDyAppBasicInfo from './tabs/MchDyAppBasicInfo.vue';
 
   const emit = defineEmits<{
@@ -14,7 +13,6 @@
 
   const visible = ref(false);
   const loading = ref(false);
-  const activeKey = ref('basic');
   const appDetail = ref<DyMchApp>({});
 
   const modalTitle = computed(() =>
@@ -22,7 +20,6 @@
   );
 
   function show(record: DyMchApp) {
-    activeKey.value = 'basic';
     visible.value = true;
     loading.value = true;
     appDetail.value = { ...record };
@@ -61,14 +58,7 @@
     @cancel="handleClose"
   >
     <a-spin :spinning="loading">
-      <a-tabs v-model:active-key="activeKey" tab-placement="left" class="detail-tabs">
-        <a-tab-pane key="basic" :tab="$t('payment.douyin.app.tabBasicInfo')">
-          <MchDyAppBasicInfo :app="appDetail" @deleted="handleDeleted" />
-        </a-tab-pane>
-        <a-tab-pane key="auth" :tab="$t('payment.douyin.app.tabAuthConfig')">
-          <MchDyAppAuthConfig :dy-mch-app-id="appDetail.id!" :app-type="appDetail.appType" />
-        </a-tab-pane>
-      </a-tabs>
+      <MchDyAppBasicInfo :app="appDetail" @deleted="handleDeleted" />
     </a-spin>
   </a-modal>
 </template>

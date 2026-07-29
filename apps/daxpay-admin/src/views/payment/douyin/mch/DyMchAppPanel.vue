@@ -105,7 +105,7 @@
   }
 
   function handleManage(record: DyMchApp) {
-    detailRef.value?.show(selectedMchNo.value, record);
+    detailRef.value?.show(record);
   }
 
   function handleEdit(record: DyMchApp) {

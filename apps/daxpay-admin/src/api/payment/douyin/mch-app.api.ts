@@ -1,4 +1,4 @@
-import type { BaseEntity, MchEntity, Result } from '#/types/web';
+import type { MchEntity, Result } from '#/types/web';
 
 import { defHttp } from '#/api/request';
 
@@ -40,17 +40,6 @@ export const DyMchAppApi = {
   delete(id: string): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/douyin/mch-app/delete', params: { id } });
   },
-  /** 查询应用授权认证配置 */
-  findAuthConfigByAppId(dyMchAppId: string): Promise<Result<DyMchAppAuthConfig>> {
-    return defHttp.get({
-      url: '/admin/douyin/mch-app/find-auth-config-by-app-id',
-      params: { dyMchAppId },
-    });
-  },
-  /** 保存应用授权认证配置 */
-  saveAuthConfig(data: DyMchAppAuthConfig): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/douyin/mch-app/save-auth-config', data });
-  },
 };
 
 /** 商户抖音应用 */
@@ -61,14 +50,6 @@ export interface DyMchApp extends MchEntity {
   appType?: string;
   /** 抖音应用 AppId */
   douyinAppId?: string;
-}
-
-/** 商户抖音应用授权认证配置 */
-export interface DyMchAppAuthConfig extends BaseEntity {
-  /** 商户号 */
-  mchNo?: string;
-  /** 商户应用ID */
-  dyMchAppId?: string;
-  /** 应用密钥（已脱敏） */
+  /** 应用密钥（编辑时脱敏回显，未改不传） */
   appSecret?: string;
 }

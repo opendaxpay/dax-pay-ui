@@ -1,4 +1,4 @@
-import type { BaseEntity, MchEntity, Result } from '#/types/web';
+import type { MchEntity, Result } from '#/types/web';
 
 import { defHttp } from '#/api/request';
 
@@ -40,17 +40,6 @@ export const WxMchAppApi = {
   delete(id: string): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/wx/mch-app/delete', params: { id } });
   },
-  /** 查询应用授权认证配置 */
-  findAuthConfigByAppId(wxMchAppId: string): Promise<Result<WxMchAppAuthConfig>> {
-    return defHttp.get({
-      url: '/admin/wx/mch-app/find-auth-config-by-app-id',
-      params: { wxMchAppId },
-    });
-  },
-  /** 保存应用授权认证配置 */
-  saveAuthConfig(data: WxMchAppAuthConfig): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/wx/mch-app/save-auth-config', data });
-  },
 };
 
 /** 商户微信应用 */
@@ -61,14 +50,6 @@ export interface WxMchApp extends MchEntity {
   appType?: string;
   /** 微信应用 AppId */
   wxAppId?: string;
-}
-
-/** 商户微信应用授权认证配置 */
-export interface WxMchAppAuthConfig extends BaseEntity {
-  /** 商户号 */
-  mchNo?: string;
-  /** 商户应用ID */
-  wxMchAppId?: string;
-  /** 应用密钥（已脱敏） */
+  /** 应用密钥（编辑时脱敏回显，未改不传） */
   appSecret?: string;
 }

@@ -40,17 +40,6 @@ export const DyPlatformAppApi = {
   delete(id: string): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/douyin/platform-app/delete', params: { id } });
   },
-  /** 查询应用授权认证配置 */
-  findAuthConfigByAppId(dyPlatformAppId: string): Promise<Result<DyPlatformAppAuthConfig>> {
-    return defHttp.get({
-      url: '/admin/douyin/platform-app/find-auth-config-by-app-id',
-      params: { dyPlatformAppId },
-    });
-  },
-  /** 保存应用授权认证配置 */
-  saveAuthConfig(data: DyPlatformAppAuthConfig): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/douyin/platform-app/save-auth-config', data });
-  },
 };
 
 /** 平台抖音应用 */
@@ -61,12 +50,6 @@ export interface DyPlatformApp extends BaseEntity {
   appType?: string;
   /** 抖音应用 AppId */
   douyinAppId?: string;
-}
-
-/** 平台抖音应用授权认证配置 */
-export interface DyPlatformAppAuthConfig {
-  /** 平台应用ID */
-  dyPlatformAppId?: string;
-  /** 应用密钥（已脱敏） */
+  /** 应用密钥（编辑时脱敏回显，未改不传） */
   appSecret?: string;
 }

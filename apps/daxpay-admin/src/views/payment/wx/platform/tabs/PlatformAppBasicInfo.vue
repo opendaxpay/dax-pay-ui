@@ -60,6 +60,9 @@
       <a-descriptions-item :label="$t('payment.wx.app.wxAppId')">
         {{ app.wxAppId || '-' }}
       </a-descriptions-item>
+      <a-descriptions-item :label="$t('payment.wx.app.appSecret')">
+        {{ app.appSecret || '-' }}
+      </a-descriptions-item>
     </a-descriptions>
 
     <div v-if="hasPermission(PermCodes.Payment.Wx.PlatformApp.MANAGE)" class="basic-info-panel__actions">

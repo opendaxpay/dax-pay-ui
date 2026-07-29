@@ -5,7 +5,6 @@
 
   import { type DyPlatformApp, DyPlatformAppApi } from '#/api/payment/douyin/platform-app.api';
 
-  import DyPlatformAppAuthConfig from './tabs/DyPlatformAppAuthConfig.vue';
   import DyPlatformAppBasicInfo from './tabs/DyPlatformAppBasicInfo.vue';
 
   const emit = defineEmits<{
@@ -14,7 +13,6 @@
 
   const visible = ref(false);
   const loading = ref(false);
-  const activeKey = ref('basic');
   const appDetail = ref<DyPlatformApp>({});
 
   const modalTitle = computed(() =>
@@ -22,7 +20,6 @@
   );
 
   function show(record: DyPlatformApp) {
-    activeKey.value = 'basic';
     visible.value = true;
     loading.value = true;
     appDetail.value = { ...record };
@@ -61,17 +58,7 @@
     @cancel="handleClose"
   >
     <a-spin :spinning="loading">
-      <a-tabs v-model:active-key="activeKey" tab-placement="left" class="detail-tabs">
-        <a-tab-pane key="basic" :tab="$t('payment.douyin.app.tabBasicInfo')">
-          <DyPlatformAppBasicInfo :app="appDetail" @deleted="handleDeleted" />
-        </a-tab-pane>
-        <a-tab-pane key="auth" :tab="$t('payment.douyin.app.tabAuthConfig')">
-          <DyPlatformAppAuthConfig
-            :dy-platform-app-id="appDetail.id!"
-            :app-type="appDetail.appType"
-          />
-        </a-tab-pane>
-      </a-tabs>
+      <DyPlatformAppBasicInfo :app="appDetail" @deleted="handleDeleted" />
     </a-spin>
   </a-modal>
 </template>

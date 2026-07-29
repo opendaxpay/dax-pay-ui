@@ -60,6 +60,9 @@
       <a-descriptions-item :label="$t('payment.douyin.app.douyinAppId')">
         {{ app.douyinAppId || '-' }}
       </a-descriptions-item>
+      <a-descriptions-item :label="$t('payment.douyin.app.appSecret')">
+        {{ app.appSecret || '-' }}
+      </a-descriptions-item>
     </a-descriptions>
 
     <div v-if="hasPermission(PermCodes.Payment.Douyin.PlatformApp.MANAGE)" class="basic-info-panel__actions">

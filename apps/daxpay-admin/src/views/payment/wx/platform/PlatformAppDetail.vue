@@ -5,7 +5,6 @@
 
   import { type WxPlatformApp, WxPlatformAppApi } from '#/api/payment/wx/platform-app.api';
 
-  import PlatformAppAuthConfig from './tabs/PlatformAppAuthConfig.vue';
   import PlatformAppBasicInfo from './tabs/PlatformAppBasicInfo.vue';
 
   const emit = defineEmits<{
@@ -14,7 +13,6 @@
 
   const visible = ref(false);
   const loading = ref(false);
-  const activeKey = ref('basic');
   const appDetail = ref<WxPlatformApp>({});
 
   const modalTitle = computed(() =>
@@ -22,7 +20,6 @@
   );
 
   function show(record: WxPlatformApp) {
-    activeKey.value = 'basic';
     visible.value = true;
     loading.value = true;
     appDetail.value = { ...record };
@@ -61,17 +58,7 @@
     @cancel="handleClose"
   >
     <a-spin :spinning="loading">
-      <a-tabs v-model:active-key="activeKey" tab-placement="left" class="detail-tabs">
-        <a-tab-pane key="basic" :tab="$t('payment.wx.app.tabBasicInfo')">
-          <PlatformAppBasicInfo :app="appDetail" @deleted="handleDeleted" />
-        </a-tab-pane>
-        <a-tab-pane key="auth" :tab="$t('payment.wx.app.tabAuthConfig')">
-          <PlatformAppAuthConfig
-            :wx-platform-app-id="appDetail.id!"
-            :app-type="appDetail.appType"
-          />
-        </a-tab-pane>
-      </a-tabs>
+      <PlatformAppBasicInfo :app="appDetail" @deleted="handleDeleted" />
     </a-spin>
   </a-modal>
 </template>
