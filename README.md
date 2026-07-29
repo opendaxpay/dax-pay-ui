@@ -140,7 +140,7 @@ apps/daxpay-merchant/src/locales/  # 商户端
 
 ## 许可证
 
-本项目基于 [GNU LGPL v3.0 或更高版本](./LICENSE) 协议开源。
+本项目基于 [GNU LGPL v3.0 或更高版本](./LICENSE) 协议开源，同时受[《用户授权使用协议》](./USER-AGREEMENT.txt)约束。在使用前请阅读上述协议，如果不同意请勿进行使用。
 
 ---
 
