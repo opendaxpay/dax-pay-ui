@@ -11,10 +11,11 @@
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { type WxMchApp, WxMchAppApi } from '#/api/payment/wx/mch-app.api';
   import { PermCodes } from '#/constants/perm-codes';
+  import { useDeleteConfirm } from '#/hooks/useDeleteConfirm';
+  import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
   import MchAppCard from './MchAppCard.vue';
-  import MchAppDetail from './MchAppDetail.vue';
   import MchAppEdit from './MchAppEdit.vue';
 
   defineOptions({ name: 'MchAppPanel' });
@@ -27,6 +28,8 @@
   const route = useRoute();
   const router = useRouter();
   const { hasPermission } = usePermission();
+  const { message } = useMessage();
+  const { openDeleteConfirm } = useDeleteConfirm();
 
   const loading = ref(false);
   const mchLoading = ref(false);
@@ -35,7 +38,6 @@
   const filterText = ref('');
   const appList = ref<WxMchApp[]>([]);
   const editRef = ref<InstanceType<typeof MchAppEdit>>();
-  const detailRef = ref<InstanceType<typeof MchAppDetail>>();
 
   const canAdd = computed(() => hasPermission(PermCodes.Payment.Wx.MchApp.MANAGE));
 
@@ -80,7 +82,8 @@
 
   /** 同步商户号到路由 query，便于旧页跳转带回 */
   function syncMchNoQuery(mchNo: string) {
-    const nextQuery = { ...route.query, tab: 'merchant' as const };
+    // 显式 Record 类型，允许动态写入 mchNo 字段
+    const nextQuery: Record<string, any> = { ...route.query, tab: 'merchant' as const };
     if (mchNo) {
       nextQuery.mchNo = mchNo;
     } else {
@@ -103,8 +106,17 @@
     editRef.value?.show(selectedMchNo.value);
   }
 
-  function handleManage(record: WxMchApp) {
-    detailRef.value?.show(record);
+  function handleDelete(record: WxMchApp) {
+    openDeleteConfirm({
+      name: record.appName || record.wxAppId || '',
+      verificationText: record.wxAppId || '',
+      title: $t('payment.wx.app.delete'),
+      onConfirm: () =>
+        WxMchAppApi.delete(record.id!).then(() => {
+          message.success($t('payment.wx.app.deleteSuccess'));
+          loadAppList();
+        }),
+    });
   }
 
   function handleEdit(record: WxMchApp) {
@@ -181,7 +193,7 @@
           :key="app.id ?? app.wxAppId"
           :record="app"
           @edit="handleEdit(app)"
-          @manage="handleManage(app)"
+          @delete="handleDelete(app)"
         />
 
         <div
@@ -197,7 +209,6 @@
     </a-spin>
 
     <MchAppEdit ref="editRef" @ok="loadAppList" />
-    <MchAppDetail ref="detailRef" @deleted="loadAppList" />
   </div>
 </template>
 

@@ -7,21 +7,23 @@
 
   import { type DyMchApp, DyMchAppApi } from '#/api/payment/douyin/mch-app.api';
   import { PermCodes } from '#/constants/perm-codes';
+  import { useDeleteConfirm } from '#/hooks/useDeleteConfirm';
+  import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
   import MchDyAppCard from './MchDyAppCard.vue';
-  import MchDyAppDetail from './MchDyAppDetail.vue';
   import MchDyAppEdit from './MchDyAppEdit.vue';
 
   defineOptions({ name: 'MchDyAppList' });
 
   const { hasPermission } = usePermission();
+  const { message } = useMessage();
+  const { openDeleteConfirm } = useDeleteConfirm();
 
   const loading = ref(false);
   const filterText = ref('');
   const appList = ref<DyMchApp[]>([]);
   const editRef = ref<InstanceType<typeof MchDyAppEdit>>();
-  const detailRef = ref<InstanceType<typeof MchDyAppDetail>>();
 
   const canAdd = computed(() => hasPermission(PermCodes.Payment.Douyin.MchApp.MANAGE));
 
@@ -53,8 +55,17 @@
     editRef.value?.show();
   }
 
-  function handleManage(record: DyMchApp) {
-    detailRef.value?.show(record);
+  function handleDelete(record: DyMchApp) {
+    openDeleteConfirm({
+      name: record.appName || record.douyinAppId || '',
+      verificationText: record.douyinAppId || '',
+      title: $t('payment.douyin.app.delete'),
+      onConfirm: () =>
+        DyMchAppApi.delete(record.id!).then(() => {
+          message.success($t('payment.douyin.app.deleteSuccess'));
+          loadAppList();
+        }),
+    });
   }
 
   function handleEdit(record: DyMchApp) {
@@ -95,7 +106,7 @@
             :key="app.id ?? app.douyinAppId"
             :record="app"
             @edit="handleEdit(app)"
-            @manage="handleManage(app)"
+            @delete="handleDelete(app)"
           />
 
           <div
@@ -112,7 +123,6 @@
     </a-card>
 
     <MchDyAppEdit ref="editRef" @ok="loadAppList" />
-    <MchDyAppDetail ref="detailRef" @deleted="loadAppList" />
   </div>
 </template>
 

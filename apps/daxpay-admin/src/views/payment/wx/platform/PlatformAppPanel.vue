@@ -7,20 +7,22 @@
 
   import { type WxPlatformApp, WxPlatformAppApi } from '#/api/payment/wx/platform-app.api';
   import { PermCodes } from '#/constants/perm-codes';
+  import { useDeleteConfirm } from '#/hooks/useDeleteConfirm';
+  import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
   import PlatformAppCard from './PlatformAppCard.vue';
-  import PlatformAppDetail from './PlatformAppDetail.vue';
   import PlatformAppEdit from './PlatformAppEdit.vue';
 
   defineOptions({ name: 'PlatformAppPanel' });
 
   const { hasPermission } = usePermission();
+  const { message } = useMessage();
+  const { openDeleteConfirm } = useDeleteConfirm();
 
   const loading = ref(false);
   const appList = ref<WxPlatformApp[]>([]);
   const editRef = ref<InstanceType<typeof PlatformAppEdit>>();
-  const detailRef = ref<InstanceType<typeof PlatformAppDetail>>();
 
   const canAdd = computed(() => hasPermission(PermCodes.Payment.Wx.PlatformApp.MANAGE));
 
@@ -39,8 +41,17 @@
     editRef.value?.show();
   }
 
-  function handleManage(record: WxPlatformApp) {
-    detailRef.value?.show(record);
+  function handleDelete(record: WxPlatformApp) {
+    openDeleteConfirm({
+      name: record.appName || record.wxAppId || '',
+      verificationText: record.wxAppId || '',
+      title: $t('payment.wx.app.delete'),
+      onConfirm: () =>
+        WxPlatformAppApi.delete(record.id!).then(() => {
+          message.success($t('payment.wx.app.deleteSuccess'));
+          loadAppList();
+        }),
+    });
   }
 
   function handleEdit(record: WxPlatformApp) {
@@ -71,7 +82,7 @@
           :key="app.id ?? app.wxAppId"
           :record="app"
           @edit="handleEdit(app)"
-          @manage="handleManage(app)"
+          @delete="handleDelete(app)"
         />
 
         <div
@@ -87,7 +98,6 @@
     </a-spin>
 
     <PlatformAppEdit ref="editRef" @ok="loadAppList" />
-    <PlatformAppDetail ref="detailRef" @deleted="loadAppList" />
   </div>
 </template>
 

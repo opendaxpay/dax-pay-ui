@@ -20,8 +20,8 @@
   }>();
 
   const emit = defineEmits<{
+    delete: [];
     edit: [];
-    manage: [];
   }>();
 
   const { hasPermission } = usePermission();
@@ -80,16 +80,17 @@
         </a-tooltip>
         <a-tooltip
           v-if="hasPermission(PermCodes.Payment.Douyin.PlatformApp.MANAGE)"
-          :title="$t('payment.douyin.app.actionMore')"
+          :title="$t('payment.douyin.app.delete')"
         >
           <a-button
             type="text"
+            danger
             size="small"
-            class="!h-6 !w-6 !min-w-6 !p-0 !text-muted-foreground hover:!text-primary"
-            @click="emit('manage')"
+            class="!h-6 !w-6 !min-w-6 !p-0"
+            @click="emit('delete')"
           >
             <template #icon>
-              <IconifyIcon icon="ant-design:menu-outlined" class="text-sm" />
+              <IconifyIcon icon="ant-design:delete-outlined" class="text-sm" />
             </template>
           </a-button>
         </a-tooltip>

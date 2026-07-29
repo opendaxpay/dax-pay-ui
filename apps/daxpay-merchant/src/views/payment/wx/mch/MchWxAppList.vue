@@ -7,21 +7,23 @@
 
   import { type WxMchApp, WxMchAppApi } from '#/api/payment/wx/mch-app.api';
   import { PermCodes } from '#/constants/perm-codes';
+  import { useDeleteConfirm } from '#/hooks/useDeleteConfirm';
+  import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
   import MchAppCard from './MchAppCard.vue';
-  import MchAppDetail from './MchAppDetail.vue';
   import MchAppEdit from './MchAppEdit.vue';
 
   defineOptions({ name: 'MchWxAppList' });
 
   const { hasPermission } = usePermission();
+  const { message } = useMessage();
+  const { openDeleteConfirm } = useDeleteConfirm();
 
   const loading = ref(false);
   const filterText = ref('');
   const appList = ref<WxMchApp[]>([]);
   const editRef = ref<InstanceType<typeof MchAppEdit>>();
-  const detailRef = ref<InstanceType<typeof MchAppDetail>>();
 
   const canAdd = computed(() => hasPermission(PermCodes.Payment.Wx.MchApp.MANAGE));
 
@@ -53,8 +55,17 @@
     editRef.value?.show();
   }
 
-  function handleManage(record: WxMchApp) {
-    detailRef.value?.show(record);
+  function handleDelete(record: WxMchApp) {
+    openDeleteConfirm({
+      name: record.appName || record.wxAppId || '',
+      verificationText: record.wxAppId || '',
+      title: $t('payment.wx.app.delete'),
+      onConfirm: () =>
+        WxMchAppApi.delete(record.id!).then(() => {
+          message.success($t('payment.wx.app.deleteSuccess'));
+          loadAppList();
+        }),
+    });
   }
 
   function handleEdit(record: WxMchApp) {
@@ -95,7 +106,7 @@
             :key="app.id ?? app.wxAppId"
             :record="app"
             @edit="handleEdit(app)"
-            @manage="handleManage(app)"
+            @delete="handleDelete(app)"
           />
 
           <div
@@ -112,7 +123,6 @@
     </a-card>
 
     <MchAppEdit ref="editRef" @ok="loadAppList" />
-    <MchAppDetail ref="detailRef" @deleted="loadAppList" />
   </div>
 </template>
 

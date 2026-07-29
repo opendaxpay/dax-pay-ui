@@ -7,20 +7,22 @@
 
   import { type DyPlatformApp, DyPlatformAppApi } from '#/api/payment/douyin/platform-app.api';
   import { PermCodes } from '#/constants/perm-codes';
+  import { useDeleteConfirm } from '#/hooks/useDeleteConfirm';
+  import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
   import DyPlatformAppCard from './DyPlatformAppCard.vue';
-  import DyPlatformAppDetail from './DyPlatformAppDetail.vue';
   import DyPlatformAppEdit from './DyPlatformAppEdit.vue';
 
   defineOptions({ name: 'DyPlatformAppPanel' });
 
   const { hasPermission } = usePermission();
+  const { message } = useMessage();
+  const { openDeleteConfirm } = useDeleteConfirm();
 
   const loading = ref(false);
   const appList = ref<DyPlatformApp[]>([]);
   const editRef = ref<InstanceType<typeof DyPlatformAppEdit>>();
-  const detailRef = ref<InstanceType<typeof DyPlatformAppDetail>>();
 
   const canAdd = computed(() => hasPermission(PermCodes.Payment.Douyin.PlatformApp.MANAGE));
 
@@ -39,8 +41,17 @@
     editRef.value?.show();
   }
 
-  function handleManage(record: DyPlatformApp) {
-    detailRef.value?.show(record);
+  function handleDelete(record: DyPlatformApp) {
+    openDeleteConfirm({
+      name: record.appName || record.douyinAppId || '',
+      verificationText: record.douyinAppId || '',
+      title: $t('payment.douyin.app.delete'),
+      onConfirm: () =>
+        DyPlatformAppApi.delete(record.id!).then(() => {
+          message.success($t('payment.douyin.app.deleteSuccess'));
+          loadAppList();
+        }),
+    });
   }
 
   function handleEdit(record: DyPlatformApp) {
@@ -71,7 +82,7 @@
           :key="app.id ?? app.douyinAppId"
           :record="app"
           @edit="handleEdit(app)"
-          @manage="handleManage(app)"
+          @delete="handleDelete(app)"
         />
 
         <div
@@ -87,7 +98,6 @@
     </a-spin>
 
     <DyPlatformAppEdit ref="editRef" @ok="loadAppList" />
-    <DyPlatformAppDetail ref="detailRef" @deleted="loadAppList" />
   </div>
 </template>
 

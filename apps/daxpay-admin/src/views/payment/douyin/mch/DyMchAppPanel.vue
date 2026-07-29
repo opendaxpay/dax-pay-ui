@@ -8,13 +8,14 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { type DyMchApp, DyMchAppApi } from '#/api/payment/douyin/mch-app.api';
+  import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { PermCodes } from '#/constants/perm-codes';
+  import { useDeleteConfirm } from '#/hooks/useDeleteConfirm';
+  import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
   import DyMchAppCard from './DyMchAppCard.vue';
-  import DyMchAppDetail from './DyMchAppDetail.vue';
   import DyMchAppEdit from './DyMchAppEdit.vue';
 
   defineOptions({ name: 'DyMchAppPanel' });
@@ -27,6 +28,8 @@
   const route = useRoute();
   const router = useRouter();
   const { hasPermission } = usePermission();
+  const { message } = useMessage();
+  const { openDeleteConfirm } = useDeleteConfirm();
 
   const loading = ref(false);
   const mchLoading = ref(false);
@@ -35,7 +38,6 @@
   const filterText = ref('');
   const appList = ref<DyMchApp[]>([]);
   const editRef = ref<InstanceType<typeof DyMchAppEdit>>();
-  const detailRef = ref<InstanceType<typeof DyMchAppDetail>>();
 
   const canAdd = computed(() => hasPermission(PermCodes.Payment.Douyin.MchApp.MANAGE));
 
@@ -104,8 +106,17 @@
     editRef.value?.show(selectedMchNo.value);
   }
 
-  function handleManage(record: DyMchApp) {
-    detailRef.value?.show(record);
+  function handleDelete(record: DyMchApp) {
+    openDeleteConfirm({
+      name: record.appName || record.douyinAppId || '',
+      verificationText: record.douyinAppId || '',
+      title: $t('payment.douyin.app.delete'),
+      onConfirm: () =>
+        DyMchAppApi.delete(record.id!).then(() => {
+          message.success($t('payment.douyin.app.deleteSuccess'));
+          loadAppList();
+        }),
+    });
   }
 
   function handleEdit(record: DyMchApp) {
@@ -182,7 +193,7 @@
           :key="app.id ?? app.douyinAppId"
           :record="app"
           @edit="handleEdit(app)"
-          @manage="handleManage(app)"
+          @delete="handleDelete(app)"
         />
 
         <div
@@ -198,7 +209,6 @@
     </a-spin>
 
     <DyMchAppEdit ref="editRef" @ok="loadAppList" />
-    <DyMchAppDetail ref="detailRef" @deleted="loadAppList" />
   </div>
 </template>
 
