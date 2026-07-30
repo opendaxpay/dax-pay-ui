@@ -163,18 +163,14 @@
     "title": "認証開発",
     "type": {
       "alipay": "アリペイ H5",
-      "alipayMini": "Alipay ミニ プログラム",
       "wechatMp": "WeChat公式アカウント",
-      "wechatMini": "WeChat ミニ プログラム",
       "wechatChannel": "ウィーチャットペイ",
       "douyin": "ドゥイン H5",
       "douyinChannel": "Douyin決済"
     },
     "tag": {
       "alipay": "アリペイ H5",
-      "alipayMini": "Alipay ミニ プログラム",
       "wechatMp": "WeChat公式アカウント",
-      "wechatMini": "WeChat ミニ プログラム",
       "wechatChannel": "ウィーチャットペイ",
       "douyin": "ドゥイン H5",
       "douyinChannel": "Douyin決済"
@@ -182,9 +178,7 @@
     "guide": {
       "title": "使用方法",
       "desc": "認証リンクを生成し、Alipay アプリでスキャンします。結果は自動的に表示されます (サードパーティ プラットフォーム管理の Alipay 構成と、プラットフォーム構成の支払いゲートウェイ ベース URL が必要です)。",
-      "descAlipayMini": "Alipay Mini プログラムの認証デバッグはまだ実装されていません。",
       "descWechatMp": "認証リンクを生成し、WeChat でスキャンして Web 認証を完了します。結果は自動的に表示されます (サードパーティ プラットフォーム管理の WeChat 公式アカウント設定と、プラットフォーム設定の支払いゲートウェイ ベース URL が必要です)。",
-      "descWechatMini": "販売者または管理者ミニ プログラムを選択し、スキャンしてユーザー ID を取得します (認証はまだ実装されていません)。",
       "descWechatChannel": "販売者/チャネル販売者/機能を選択し、認証リンクを生成して WeChat でスキャンします。 WeChat Pay (直接/ISV) 構成を検証するために使用されます。支払い商品はチャネル販売者から自動的に検出されます。",
       "descWechatChannelDirect": "WeChatアプリを直接選択して認証リンクを生成し、そのアプリのOAuth設定が正しいかを検証します。",
       "descDouyin": "認証リンクを生成し、Douyin アプリでスキャンしてサイレント認証を完了します。結果は自動的に表示されます (サードパーティ プラットフォーム管理の Douyin H5 アプリ構成と、プラットフォーム構成の支払いゲートウェイ ベース URL が必要です)。",
@@ -205,21 +199,15 @@
       "mchNo": "商人",
       "channelMchNo": "チャネルマーチャント",
       "capability": "支払い能力",
-      "miniAppType": "ミニプログラム側",
       "rule": {
         "mchNo": "販売者を選択してください",
         "channelMchNo": "チャネル販売者を選択してください",
         "capability": "支払い能力を選択してください",
-        "miniAppType": "ミニプログラム側を選択してください",
         "wxApp": "WeChatアプリを選択してください",
         "dyApp": "Douyinアプリを選択してください"
       },
       "wxApp": "WeChatアプリ",
       "dyApp": "Douyinアプリ"
-    },
-    "miniAppType": {
-      "merchant": "商人",
-      "admin": "管理者"
     },
     "result": {
       "divider": "認証結果",

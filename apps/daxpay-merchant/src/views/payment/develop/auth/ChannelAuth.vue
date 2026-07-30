@@ -26,8 +26,8 @@
     NOT_EXIST: 'not_exist',
   } as const;
 
-  /** 认证类型 */
-  type AuthType = 'alipay' | 'alipayMini' | 'douyin' | 'douyinChannel' | 'wechatChannel' | 'wechatMini' | 'wechatMp';
+  /** 认证类型(仅 H5 / 公众号 / 通道 OAuth; 小程序 OpenId 已迁至收银台小程序) */
+  type AuthType = 'alipay' | 'douyin' | 'douyinChannel' | 'wechatChannel' | 'wechatMp';
   const authType = ref<AuthType>('alipay');
 
   const { message } = useMessage();
@@ -49,11 +49,6 @@
   // 当前商户名(只读展示, 商户端登录态绑定不可选择)
   const mchNameDisplay = ref('');
 
-  /** 微信小程序表单(端类型: merchant 商户端 / admin 运营端) */
-  const wechatMiniForm = reactive({
-    appType: 'merchant',
-  });
-
   /** 应用下拉选项(仅当前商户的商户应用) */
   const wxAppOptions = ref<LabelValue[]>([]);
 
@@ -69,23 +64,12 @@
   /** 抖音应用下拉选项(仅当前商户的网站应用 web_app) */
   const dyAppOptions = ref<LabelValue[]>([]);
 
-  /** 微信小程序端类型选项 */
-  const miniAppTypeOptions = computed<LabelValue[]>(() => [
-    { label: $t('payment.develop.auth.miniAppType.merchant'), value: 'merchant' },
-    { label: $t('payment.develop.auth.miniAppType.admin'), value: 'admin' },
-  ]);
-
-  /** 认证暂未实现(支付宝小程序 / 微信小程序) */
-  const isAuthNotReady = computed(() => authType.value === 'alipayMini' || authType.value === 'wechatMini');
-
   /** 当前指引文案 */
   const guideDesc = computed(() => {
     if (authType.value === 'wechatMp') return $t('payment.develop.auth.guide.descWechatMp');
-    if (authType.value === 'wechatMini') return $t('payment.develop.auth.guide.descWechatMini');
     if (authType.value === 'wechatChannel') {
       return $t('payment.develop.auth.guide.descWechatChannelDirect');
     }
-    if (authType.value === 'alipayMini') return $t('payment.develop.auth.guide.descAlipayMini');
     if (authType.value === 'douyin') return $t('payment.develop.auth.guide.descDouyin');
     if (authType.value === 'douyinChannel') return $t('payment.develop.auth.guide.descDouyinChannel');
     return $t('payment.develop.auth.guide.desc');
@@ -93,7 +77,7 @@
 
   /** 当前扫码提示 */
   const qrTip = computed(() =>
-    authType.value === 'alipay' || authType.value === 'alipayMini'
+    authType.value === 'alipay'
       ? $t('payment.develop.auth.qr.tip')
       : authType.value === 'douyin' || authType.value === 'douyinChannel'
         ? $t('payment.develop.auth.qr.tipDouyin')
@@ -106,9 +90,7 @@
   /** 当前标签文案 */
   const tagLabel = computed(() => {
     if (authType.value === 'wechatMp') return $t('payment.develop.auth.tag.wechatMp');
-    if (authType.value === 'wechatMini') return $t('payment.develop.auth.tag.wechatMini');
     if (authType.value === 'wechatChannel') return $t('payment.develop.auth.tag.wechatChannel');
-    if (authType.value === 'alipayMini') return $t('payment.develop.auth.tag.alipayMini');
     if (authType.value === 'douyin') return $t('payment.develop.auth.tag.douyin');
     if (authType.value === 'douyinChannel') return $t('payment.develop.auth.tag.douyinChannel');
     return $t('payment.develop.auth.tag.alipay');
@@ -202,10 +184,6 @@
 
   /** 生成授权链接并开始轮询 */
   async function handleGenerate() {
-    // 支付宝小程序 / 微信小程序: 认证暂未实现
-    if (authType.value === 'alipayMini' || authType.value === 'wechatMini') {
-      return;
-    }
     // 微信支付 / 抖音支付: 表单校验(各自 formRef, 通过 v-if 确保只有一个表单挂载)
     if (authType.value === 'wechatChannel' || authType.value === 'douyinChannel') {
       try {
@@ -276,7 +254,7 @@
           <a-tag color="blue">OAuth2.0</a-tag>
           <a-tag
             :color="
-              authType === 'alipay' || authType === 'alipayMini'
+              authType === 'alipay'
                 ? 'processing'
                 : authType === 'douyin' || authType === 'douyinChannel'
                   ? 'black'
@@ -289,19 +267,13 @@
       </template>
 
       <div class="auth-body">
-        <!-- 认证类型切换 -->
+        <!-- 认证类型切换(小程序 OpenId 调试已迁至收银台小程序) -->
         <a-radio-group v-model:value="authType" button-style="solid" @change="typeChange">
           <a-radio-button value="alipay">
             {{ $t('payment.develop.auth.type.alipay') }}
           </a-radio-button>
-          <a-radio-button value="alipayMini">
-            {{ $t('payment.develop.auth.type.alipayMini') }}
-          </a-radio-button>
           <a-radio-button value="wechatMp">
             {{ $t('payment.develop.auth.type.wechatMp') }}
-          </a-radio-button>
-          <a-radio-button value="wechatMini">
-            {{ $t('payment.develop.auth.type.wechatMini') }}
           </a-radio-button>
           <a-radio-button value="wechatChannel">
             {{ $t('payment.develop.auth.type.wechatChannel') }}
@@ -324,19 +296,6 @@
                 type="info"
                 show-icon
               />
-
-              <!-- 微信小程序：端类型选择 -->
-              <div v-if="authType === 'wechatMini'" class="form-panel">
-                <a-form layout="vertical" class="channel-auth-form">
-                  <a-form-item :label="$t('payment.develop.auth.form.miniAppType')" class="form-item-last">
-                    <a-select
-                      v-model:value="wechatMiniForm.appType"
-                      :options="miniAppTypeOptions"
-                      :placeholder="$t('payment.develop.auth.form.rule.miniAppType')"
-                    />
-                  </a-form-item>
-                </a-form>
-              </div>
 
               <!-- 微信支付：直接选择应用(商户号只读) -->
               <div v-if="authType === 'wechatChannel'" class="form-panel">
@@ -382,14 +341,7 @@
                 </a-form>
               </div>
 
-              <a-button
-                type="primary"
-                block
-                size="large"
-                :loading="loading"
-                :disabled="isAuthNotReady"
-                @click="handleGenerate"
-              >
+              <a-button type="primary" block size="large" :loading="loading" @click="handleGenerate">
                 <template #icon>
                   <IconifyIcon icon="lucide:link" />
                 </template>

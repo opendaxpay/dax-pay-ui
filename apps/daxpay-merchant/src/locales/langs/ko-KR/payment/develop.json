@@ -163,18 +163,14 @@
     "title": "인증 개발",
     "type": {
       "alipay": "알리페이 H5",
-      "alipayMini": "알리페이 미니 프로그램",
       "wechatMp": "위챗 공식 계정",
-      "wechatMini": "위챗 미니 프로그램",
       "wechatChannel": "위챗페이",
       "douyin": "두인 H5",
       "douyinChannel": "Douyin 결제"
     },
     "tag": {
       "alipay": "알리페이 H5",
-      "alipayMini": "알리페이 미니 프로그램",
       "wechatMp": "위챗 공식 계정",
-      "wechatMini": "위챗 미니 프로그램",
       "wechatChannel": "위챗페이",
       "douyin": "두인 H5",
       "douyinChannel": "Douyin 결제"
@@ -182,9 +178,7 @@
     "guide": {
       "title": "사용방법",
       "desc": "인증 링크를 생성하고 Alipay 앱으로 스캔하세요. 결과는 자동으로 표시됩니다(타사 플랫폼 관리에 Alipay 구성이 필요하고 플랫폼 구성에 결제 게이트웨이 기본 URL이 필요함).",
-      "descAlipayMini": "Alipay 미니 프로그램 인증 디버깅은 아직 구현되지 않았습니다.",
       "descWechatMp": "인증 링크를 생성하고 WeChat으로 스캔하여 웹 인증을 완료하세요. 결과는 자동으로 표시됩니다(타사 플랫폼 관리에 WeChat 공식 계정 구성이 필요하고 플랫폼 구성에 결제 게이트웨이 기본 URL이 필요함).",
-      "descWechatMini": "판매자 또는 관리자 미니 프로그램을 선택한 다음 스캔하여 사용자 ID를 가져옵니다(아직 인증이 구현되지 않음).",
       "descWechatChannel": "판매자/채널 판매자/기능을 선택한 다음 인증 링크를 생성하고 WeChat으로 스캔하세요. WeChat Pay(직접/ISV) 구성을 확인하는 데 사용됩니다. 결제 상품은 채널 가맹점에서 자동 감지됩니다.",
       "descWechatChannelDirect": "위챗 앱을 직접 선택하여 인증 링크를 생성하고, 해당 앱의 OAuth 설정이 올바른지 검증합니다.",
       "descDouyin": "인증 링크를 생성하고 Douyin 앱으로 스캔하여 자동 인증을 완료하세요. 결과는 자동으로 표시됩니다(타사 플랫폼 관리에 Douyin H5 앱 구성이 필요하고 플랫폼 구성에 결제 게이트웨이 기본 URL이 필요함).",
@@ -205,21 +199,15 @@
       "mchNo": "상인",
       "channelMchNo": "채널 판매자",
       "capability": "지불 기능",
-      "miniAppType": "미니 프로그램 쪽",
       "rule": {
         "mchNo": "판매자를 선택해주세요.",
         "channelMchNo": "채널 판매자를 선택하세요.",
         "capability": "지불 기능을 선택하십시오",
-        "miniAppType": "미니 프로그램 쪽을 선택해 주세요",
         "wxApp": "위챗 앱을 선택해 주세요",
         "dyApp": "Douyin 앱을 선택해 주세요"
       },
       "wxApp": "위챗 앱",
       "dyApp": "Douyin 앱"
-    },
-    "miniAppType": {
-      "merchant": "상인",
-      "admin": "관리자"
     },
     "result": {
       "divider": "인증 결과",
