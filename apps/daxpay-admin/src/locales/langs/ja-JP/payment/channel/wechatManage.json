@@ -54,16 +54,7 @@
   "capabilityIspDefault": "ISPのデフォルト",
   "capabilityIspNotConfigured": "未設定",
   "capabilityNoMchAppTip": "サブマーチャントアプリは作成されていません。すべての機能は ISP のデフォルト アプリを使用します",
-  "cardAuthApp": "認証アプリ構成",
-  "cardAuthAppDesc": "OpenId 認証でサービス プロバイダー アプリを使用するか、サブマーチャント アプリを使用するかを選択します",
   "authAppConfigTitle": "認証アプリ構成",
-  "authAppType": "認証アプリケーションの種類",
-  "authAppTypeSpApp": "サービスプロバイダーアプリ",
-  "authAppTypeSubApp": "サブマーチャントアプリ",
-  "authAppTypeRequired": "認証アプリケーションのタイプを選択してください",
-  "authAppTypeSubTip": "サブマーチャント アプリを使用する場合は、アプリ管理でアプリを作成し、最初に認証設定を構成します",
-  "authAppTypeConfirm": "認証アプリケーションの種類の変更を確認しますか?",
-  "authAppTypeSaveSuccess": "認証アプリケーション タイプが正常に保存されました",
   "validation": {
     "appSecret": "アプリのシークレットは必須です"
   }

@@ -34,17 +34,6 @@ const sourceLabel = computed(() => {
   return props.channelMerchant.source || '-';
 });
 
-/** 认证应用类型展示文案 */
-const authAppTypeLabel = computed(() => {
-  if (config.value.authAppType === 'SUB_APP') {
-    return $t('payment.channel.wechatManage.authAppTypeSubApp');
-  }
-  if (config.value.authAppType === 'SP_APP' || !config.value.authAppType) {
-    return $t('payment.channel.wechatManage.authAppTypeSpApp');
-  }
-  return config.value.authAppType;
-});
-
 /** 加载微信服务商通道商户配置 */
 function loadConfig() {
   if (!props.channelMchNo) {
@@ -106,9 +95,6 @@ defineExpose({ open, close });
         </a-descriptions-item>
         <a-descriptions-item :label="$t('payment.merchant.channelMerchant.wechatSubMerchantNo')">
           {{ config.subMchId || '-' }}
-        </a-descriptions-item>
-        <a-descriptions-item :label="$t('payment.channel.wechatManage.authAppType')">
-          {{ authAppTypeLabel }}
         </a-descriptions-item>
       </a-descriptions>
     </a-spin>

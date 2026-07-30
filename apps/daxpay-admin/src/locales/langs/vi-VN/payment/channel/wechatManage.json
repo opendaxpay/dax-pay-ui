@@ -54,16 +54,7 @@
   "capabilityIspDefault": "ISP mặc định",
   "capabilityIspNotConfigured": "Chưa được định cấu hình",
   "capabilityNoMchAppTip": "Không có ứng dụng dành cho người bán phụ nào được tạo; tất cả các khả năng sẽ sử dụng ứng dụng mặc định của ISP",
-  "cardAuthApp": "Cấu hình ứng dụng xác thực",
-  "cardAuthAppDesc": "Chọn xem ủy quyền OpenId sử dụng ứng dụng của nhà cung cấp dịch vụ hay ứng dụng của người bán phụ",
   "authAppConfigTitle": "Cấu hình ứng dụng xác thực",
-  "authAppType": "Loại ứng dụng xác thực",
-  "authAppTypeSpApp": "Ứng dụng nhà cung cấp dịch vụ",
-  "authAppTypeSubApp": "Ứng dụng dành cho người bán phụ",
-  "authAppTypeRequired": "Vui lòng chọn loại ứng dụng xác thực",
-  "authAppTypeSubTip": "Khi sử dụng ứng dụng dành cho người bán phụ, trước tiên hãy tạo một ứng dụng trong Quản lý ứng dụng và định cấu hình cài đặt xác thực",
-  "authAppTypeConfirm": "Xác nhận thay đổi loại ứng dụng xác thực?",
-  "authAppTypeSaveSuccess": "Đã lưu thành công loại ứng dụng xác thực",
   "validation": {
     "appSecret": "Bí mật ứng dụng là bắt buộc"
   }

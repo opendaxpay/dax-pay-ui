@@ -14,7 +14,6 @@
   import WxChannelAppCapability from '#/views/payment/wx/channel/WxChannelAppCapability.vue';
 
   import WechatChannelMerchantBasicInfo from './WechatChannelMerchantBasicInfo.vue';
-  import WechatIsvAuthAppConfig from './WechatIsvAuthAppConfig.vue';
 
   defineOptions({ name: 'WechatChannelMerchantManage' });
 
@@ -30,7 +29,6 @@
   const channelMerchant = ref<ChannelMerchantResult>({});
   const basicInfoRef = ref<InstanceType<typeof WechatChannelMerchantBasicInfo>>();
   const capabilityRef = ref<InstanceType<typeof WxChannelAppCapability>>();
-  const authAppConfigRef = ref<InstanceType<typeof WechatIsvAuthAppConfig>>();
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
 
   /** 功能卡片配置 */
@@ -68,12 +66,6 @@
           title: $t('payment.channel.wechatManage.cardCapabilityBinding'),
           icon: 'ant-design:api-outlined',
           description: $t('payment.channel.wechatManage.cardCapabilityBindingDesc'),
-        },
-        {
-          key: 'authApp',
-          title: $t('payment.channel.wechatManage.cardAuthApp'),
-          icon: 'ant-design:safety-certificate-outlined',
-          description: $t('payment.channel.wechatManage.cardAuthAppDesc'),
         },
       ],
     },
@@ -127,10 +119,6 @@
         channelMchNo.value,
         channelMerchant.value.product || 'wechat_isv',
       );
-      return;
-    }
-    if (card.key === 'authApp') {
-      authAppConfigRef.value?.open(channelMchNo.value);
       return;
     }
     message.info($t('payment.merchant.channelMerchant.developing'));
@@ -191,8 +179,6 @@
     <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 
     <WxChannelAppCapability ref="capabilityRef" />
-
-    <WechatIsvAuthAppConfig ref="authAppConfigRef" />
   </div>
 </template>
 

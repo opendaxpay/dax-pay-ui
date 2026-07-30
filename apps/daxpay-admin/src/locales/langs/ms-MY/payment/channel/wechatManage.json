@@ -54,16 +54,7 @@
   "capabilityIspDefault": "Lalai ISP",
   "capabilityIspNotConfigured": "Tidak dikonfigurasikan",
   "capabilityNoMchAppTip": "Tiada apl sub-peniaga dibuat; semua keupayaan akan menggunakan aplikasi lalai ISP",
-  "cardAuthApp": "Konfigurasi Apl Auth",
-  "cardAuthAppDesc": "Pilih sama ada keizinan OpenId menggunakan apl pembekal perkhidmatan atau apl sub-pedagang",
   "authAppConfigTitle": "Konfigurasi Apl Auth",
-  "authAppType": "Jenis Permohonan Pengesahan",
-  "authAppTypeSpApp": "Apl Pembekal Perkhidmatan",
-  "authAppTypeSubApp": "Apl Sub-peniaga",
-  "authAppTypeRequired": "Sila pilih jenis aplikasi pengesahan",
-  "authAppTypeSubTip": "Apabila menggunakan apl sub-pedagang, buat satu dalam Pengurusan Apl dan konfigurasikan tetapan pengesahan dahulu",
-  "authAppTypeConfirm": "Sahkan menukar jenis aplikasi pengesahan?",
-  "authAppTypeSaveSuccess": "Jenis aplikasi pengesahan berjaya disimpan",
   "validation": {
     "appSecret": "Rahsia apl diperlukan"
   }

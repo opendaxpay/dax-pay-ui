@@ -54,16 +54,7 @@
   "capabilityIspDefault": "服務商預設",
   "capabilityIspNotConfigured": "未配置",
   "capabilityNoMchAppTip": "尚未建立子商戶應用，所有能力將使用服務商預設應用",
-  "cardAuthApp": "認證應用配置",
-  "cardAuthAppDesc": "選擇 OpenId 授權使用服務商應用還是子商戶應用",
   "authAppConfigTitle": "認證應用配置",
-  "authAppType": "認證應用型別",
-  "authAppTypeSpApp": "服務商應用",
-  "authAppTypeSubApp": "子商戶應用",
-  "authAppTypeRequired": "請選擇認證應用型別",
-  "authAppTypeSubTip": "選擇子商戶應用時，請先在應用管理中建立並配置授權認證引數",
-  "authAppTypeConfirm": "確認修改認證應用型別？",
-  "authAppTypeSaveSuccess": "認證應用型別儲存成功",
   "validation": {
     "appSecret": "請輸入應用金鑰"
   }

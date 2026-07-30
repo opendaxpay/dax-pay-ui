@@ -21,12 +21,6 @@ export const WechatIsvChannelMerchantApi = {
       params: { channelMchNo },
     });
   },
-  /**
-   * 更新认证应用类型
-   */
-  updateAuthAppType(data: WechatIsvAuthAppTypeUpdateParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/wechat/isv-channel-merchant/update-auth-app-type', data });
-  },
 };
 
 /**
@@ -75,8 +69,6 @@ export interface WechatIsvChannelMerchantConfig extends MchEntity {
   product?: string;
   /** 微信特约商户号/二级商户号 */
   subMchId?: string;
-  /** 认证应用类型: SP_APP=服务商应用, SUB_APP=子商户应用 */
-  authAppType?: string;
 }
 
 /**
@@ -103,18 +95,6 @@ export interface WechatIsvChannelMerchantCreateParam {
   product: string;
   /** 微信特约商户号/二级商户号 */
   subMchId: string;
-  /** 认证应用类型: SP_APP=服务商应用, SUB_APP=子商户应用, 默认 SP_APP */
-  authAppType?: string;
-}
-
-/**
- * 微信服务商认证应用类型更新参数
- */
-export interface WechatIsvAuthAppTypeUpdateParam {
-  /** 通道商户号 */
-  channelMchNo: string;
-  /** 认证应用类型: SP_APP=服务商应用, SUB_APP=子商户应用 */
-  authAppType: string;
 }
 
 /**

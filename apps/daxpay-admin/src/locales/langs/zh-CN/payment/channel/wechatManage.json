@@ -54,16 +54,7 @@
   "capabilityIspDefault": "服务商默认",
   "capabilityIspNotConfigured": "未配置",
   "capabilityNoMchAppTip": "尚未创建子商户应用，所有能力将使用服务商默认应用",
-  "cardAuthApp": "认证应用配置",
-  "cardAuthAppDesc": "选择 OpenId 授权使用服务商应用还是子商户应用",
   "authAppConfigTitle": "认证应用配置",
-  "authAppType": "认证应用类型",
-  "authAppTypeSpApp": "服务商应用",
-  "authAppTypeSubApp": "子商户应用",
-  "authAppTypeRequired": "请选择认证应用类型",
-  "authAppTypeSubTip": "选择子商户应用时，请先在应用管理中创建并配置授权认证参数",
-  "authAppTypeConfirm": "确认修改认证应用类型？",
-  "authAppTypeSaveSuccess": "认证应用类型保存成功",
   "validation": {
     "appSecret": "请输入应用密钥"
   }

@@ -54,16 +54,7 @@
   "capabilityIspDefault": "ISP Bawaan",
   "capabilityIspNotConfigured": "Tidak dikonfigurasi",
   "capabilityNoMchAppTip": "Tidak ada aplikasi sub-pedagang yang dibuat; semua kemampuan akan menggunakan aplikasi bawaan ISP",
-  "cardAuthApp": "Konfigurasi Aplikasi Otentikasi",
-  "cardAuthAppDesc": "Pilih apakah otorisasi OpenId menggunakan aplikasi penyedia layanan atau aplikasi sub-penjual",
   "authAppConfigTitle": "Konfigurasi Aplikasi Otentikasi",
-  "authAppType": "Jenis Aplikasi Otentikasi",
-  "authAppTypeSpApp": "Aplikasi Penyedia Layanan",
-  "authAppTypeSubApp": "Aplikasi Sub-pedagang",
-  "authAppTypeRequired": "Silakan pilih jenis aplikasi autentikasi",
-  "authAppTypeSubTip": "Saat menggunakan aplikasi sub-pedagang, buat aplikasi di Manajemen Aplikasi dan konfigurasikan pengaturan autentikasi terlebih dahulu",
-  "authAppTypeConfirm": "Konfirmasikan perubahan jenis aplikasi autentikasi?",
-  "authAppTypeSaveSuccess": "Jenis aplikasi autentikasi berhasil disimpan",
   "validation": {
     "appSecret": "Rahasia aplikasi diperlukan"
   }

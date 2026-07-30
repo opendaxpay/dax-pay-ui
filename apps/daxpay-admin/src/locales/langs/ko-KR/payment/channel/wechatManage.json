@@ -54,16 +54,7 @@
   "capabilityIspDefault": "ISP 기본값",
   "capabilityIspNotConfigured": "구성되지 않음",
   "capabilityNoMchAppTip": "하위 판매자 앱이 생성되지 않았습니다. 모든 기능은 ISP 기본 앱을 사용합니다.",
-  "cardAuthApp": "인증 앱 구성",
-  "cardAuthAppDesc": "OpenId 인증이 서비스 제공업체 앱을 사용할지 하위 가맹점 앱을 사용할지 선택하세요.",
   "authAppConfigTitle": "인증 앱 구성",
-  "authAppType": "인증 신청 유형",
-  "authAppTypeSpApp": "서비스 제공업체 앱",
-  "authAppTypeSubApp": "하위 가맹점 앱",
-  "authAppTypeRequired": "인증 신청 유형을 선택하세요.",
-  "authAppTypeSubTip": "하위 가맹점 앱 이용 시, 앱 관리에서 앱 생성 후 인증 설정을 먼저 해주세요.",
-  "authAppTypeConfirm": "인증 신청 유형 변경을 확인하시겠습니까?",
-  "authAppTypeSaveSuccess": "인증 애플리케이션 유형이 성공적으로 저장되었습니다.",
   "validation": {
     "appSecret": "앱 비밀번호가 필요합니다"
   }
