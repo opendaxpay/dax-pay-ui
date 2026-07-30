@@ -1,0 +1,26 @@
+{
+  "wechatIsv": {
+    "mchId": {
+      "title": "服务商商户号",
+      "description": "配置微信服务商商户号(sp_mchid)"
+    },
+    "apiKeyV3": {
+      "title": "API V3 密钥",
+      "description": "配置微信支付 API V3 密钥"
+    },
+    "cert": {
+      "title": "API 证书",
+      "description": "上传商户私钥(apiclient_key)并填写证书序列号"
+    },
+    "defaultApp": {
+      "title": "默认支付应用",
+      "description": "为产品指定默认微信应用,通道商户未单独配置时使用"
+    }
+  },
+  "summary": {
+    "title": "配置进度",
+    "completed": "{configured}/{total} 项已完成",
+    "allDone": "全部配置已完成",
+    "pending": "尚未完成全部配置"
+  }
+}

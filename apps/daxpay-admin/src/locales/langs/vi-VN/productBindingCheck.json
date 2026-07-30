@@ -1,0 +1,26 @@
+{
+  "wechatIsv": {
+    "mchId": {
+      "title": "Mã đối tác dịch vụ",
+      "description": "Cấu hình mã đối tác dịch vụ WeChat (sp_mchid)"
+    },
+    "apiKeyV3": {
+      "title": "Khóa API V3",
+      "description": "Cấu hình khóa API V3 WeChat Pay"
+    },
+    "cert": {
+      "title": "Chứng chỉ API",
+      "description": "Tải lên private key merchant (apiclient_key) và nhập số serial chứng chỉ"
+    },
+    "defaultApp": {
+      "title": "Ứng dụng thanh toán mặc định",
+      "description": "Chỉ định ứng dụng WeChat mặc định cho sản phẩm này, được sử dụng khi merchant kênh không có cấu hình riêng"
+    }
+  },
+  "summary": {
+    "title": "Tiến độ cấu hình",
+    "completed": "Đã hoàn thành {configured}/{total} mục",
+    "allDone": "Tất cả cấu hình đã hoàn thành",
+    "pending": "Cấu hình chưa hoàn tất"
+  }
+}

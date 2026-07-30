@@ -1,0 +1,26 @@
+{
+  "wechatIsv": {
+    "mchId": {
+      "title": "รหัสผู้ให้บริการ",
+      "description": "กำหนดรหัสผู้ให้บริการ WeChat (sp_mchid)"
+    },
+    "apiKeyV3": {
+      "title": "คีย์ API V3",
+      "description": "กำหนดคีย์ API V3 ของ WeChat Pay"
+    },
+    "cert": {
+      "title": "ใบรับรอง API",
+      "description": "อัปโหลด private key ของร้านค้า (apiclient_key) และกรอกหมายเลขซีเรียลของใบรับรอง"
+    },
+    "defaultApp": {
+      "title": "แอปชำระเงินเริ่มต้น",
+      "description": "ระบุแอป WeChat เริ่มต้นสำหรับผลิตภัณฑ์นี้ ใช้เมื่อร้านค้าช่องทางไม่มีการตั้งค่าแยกต่างหาก"
+    }
+  },
+  "summary": {
+    "title": "ความคืบหน้าการตั้งค่า",
+    "completed": "เสร็จสิ้น {configured}/{total} รายการ",
+    "allDone": "การตั้งค่าทั้งหมดเสร็จสมบูรณ์",
+    "pending": "การตั้งค่ายังไม่สมบูรณ์"
+  }
+}

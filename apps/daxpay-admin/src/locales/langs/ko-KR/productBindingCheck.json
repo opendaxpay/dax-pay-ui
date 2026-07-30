@@ -1,0 +1,26 @@
+{
+  "wechatIsv": {
+    "mchId": {
+      "title": "서비스 제공자 가맹점 ID",
+      "description": "WeChat 서비스 제공자 가맹점 ID(sp_mchid) 설정"
+    },
+    "apiKeyV3": {
+      "title": "API V3 키",
+      "description": "WeChat Pay API V3 키 설정"
+    },
+    "cert": {
+      "title": "API 인증서",
+      "description": "가맹점 개인키(apiclient_key)를 업로드하고 인증서 일련번호를 입력"
+    },
+    "defaultApp": {
+      "title": "기본 결제 앱",
+      "description": "본 제품의 기본 WeChat 앱을 지정 (채널 가맹점의 개별 설정이 없는 경우 사용)"
+    }
+  },
+  "summary": {
+    "title": "설정 진행률",
+    "completed": "{configured}/{total}개 완료",
+    "allDone": "모든 설정이 완료되었습니다",
+    "pending": "설정이 미완료입니다"
+  }
+}

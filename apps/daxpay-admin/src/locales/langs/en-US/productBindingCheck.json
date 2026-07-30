@@ -1,0 +1,26 @@
+{
+  "wechatIsv": {
+    "mchId": {
+      "title": "Service Provider Merchant ID",
+      "description": "Configure the WeChat service provider merchant ID (sp_mchid)"
+    },
+    "apiKeyV3": {
+      "title": "API V3 Key",
+      "description": "Configure the WeChat Pay API V3 key"
+    },
+    "cert": {
+      "title": "API Certificate",
+      "description": "Upload the merchant private key (apiclient_key) and enter the certificate serial number"
+    },
+    "defaultApp": {
+      "title": "Default Payment App",
+      "description": "Specify a default WeChat app for this product, used when channel merchants have no separate config"
+    }
+  },
+  "summary": {
+    "title": "Configuration Progress",
+    "completed": "{configured}/{total} items completed",
+    "allDone": "All configurations completed",
+    "pending": "Configuration incomplete"
+  }
+}

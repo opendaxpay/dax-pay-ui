@@ -1,0 +1,26 @@
+{
+  "wechatIsv": {
+    "mchId": {
+      "title": "ID Merchant Service Provider",
+      "description": "Konfigurasi ID merchant service provider WeChat (sp_mchid)"
+    },
+    "apiKeyV3": {
+      "title": "Kunci API V3",
+      "description": "Konfigurasi kunci API V3 WeChat Pay"
+    },
+    "cert": {
+      "title": "Sertifikat API",
+      "description": "Unggah private key merchant (apiclient_key) dan masukkan nomor seri sertifikat"
+    },
+    "defaultApp": {
+      "title": "Aplikasi Pembayaran Default",
+      "description": "Tentukan aplikasi WeChat default untuk produk ini, digunakan saat merchant channel tidak memiliki konfigurasi terpisah"
+    }
+  },
+  "summary": {
+    "title": "Progres Konfigurasi",
+    "completed": "{configured}/{total} item selesai",
+    "allDone": "Semua konfigurasi selesai",
+    "pending": "Konfigurasi belum lengkap"
+  }
+}
