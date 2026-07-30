@@ -63,7 +63,8 @@
     "allAdded": "Tất cả đã thêm",
     "profile": "Hồ sơ",
     "credential": "Cấu hình tích hợp",
-    "wxApp": "Ứng dụng thanh toán (WeChat)"
+    "wxApp": "Ứng dụng thanh toán (WeChat)",
+    "douyinApp": "Ứng dụng thanh toán (Douyin)"
   },
   "notice": {
     "important": "Quan trọng",

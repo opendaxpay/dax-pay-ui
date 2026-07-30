@@ -63,7 +63,8 @@
     "allAdded": "All added",
     "profile": "Profile",
     "credential": "Integration Config",
-    "wxApp": "Payment Apps (WeChat)"
+    "wxApp": "Payment Apps (WeChat)",
+    "douyinApp": "Payment Apps (Douyin)"
   },
   "notice": {
     "important": "Important",

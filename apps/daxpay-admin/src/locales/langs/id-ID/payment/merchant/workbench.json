@@ -27,6 +27,8 @@
     "cardTerminal": "Terminal Sistem",
     "cardTerminalDesc": "Kelola kode terminal logis pedagang dan pengikatan terminal saluran",
     "cardWxApp": "Aplikasi Pembayaran (WeChat)",
-    "cardWxAppDesc": "Kelola akun resmi WeChat, Mini Program, dan aplikasi terbuka lain untuk merchant ini"
+    "cardWxAppDesc": "Kelola akun resmi WeChat, Mini Program, dan aplikasi terbuka lain untuk merchant ini",
+    "cardDyApp": "Aplikasi Pembayaran (Douyin)",
+    "cardDyAppDesc": "Kelola mini program, aplikasi mobile, aplikasi web Douyin, dan aplikasi terbuka lain untuk merchant ini"
   }
 }

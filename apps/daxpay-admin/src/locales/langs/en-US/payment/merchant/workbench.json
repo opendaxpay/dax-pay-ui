@@ -27,6 +27,8 @@
     "cardTerminal": "System Terminals",
     "cardTerminalDesc": "Merchant logical terminal codes and channel terminal binding management",
     "cardWxApp": "Payment Apps (WeChat)",
-    "cardWxAppDesc": "Manage WeChat Official Accounts, Mini Programs, and other open apps for this merchant"
+    "cardWxAppDesc": "Manage WeChat Official Accounts, Mini Programs, and other open apps for this merchant",
+    "cardDyApp": "Payment Apps (Douyin)",
+    "cardDyAppDesc": "Manage Douyin mini programs, mobile apps, web apps, and other open apps for this merchant"
   }
 }

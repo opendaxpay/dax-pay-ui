@@ -27,6 +27,8 @@
     "cardTerminal": "시스템 단말",
     "cardTerminalDesc": "머천트 논리 단말 및 채널 단말 바인딩 관리",
     "cardWxApp": "결제 앱(위챗)",
-    "cardWxAppDesc": "해당 가맹점의 위챗 공식계정·미니프로그램 등 오픈 앱 관리"
+    "cardWxAppDesc": "해당 가맹점의 위챗 공식계정·미니프로그램 등 오픈 앱 관리",
+    "cardDyApp": "결제 앱(두인)",
+    "cardDyAppDesc": "해당 가맹점의 두인 미니프로그램·모바일 앱·웹 앱 등 오픈 앱 관리"
   }
 }

@@ -27,6 +27,8 @@
     "cardTerminal": "系統終端",
     "cardTerminalDesc": "商戶邏輯終端編號與通道終端綁定管理",
     "cardWxApp": "支付應用(微信)",
-    "cardWxAppDesc": "管理該商戶的微信公眾號、小程式等開放應用"
+    "cardWxAppDesc": "管理該商戶的微信公眾號、小程式等開放應用",
+    "cardDyApp": "支付應用(抖音)",
+    "cardDyAppDesc": "管理該商戶的抖音小程式、行動應用、網頁應用等開放應用"
   }
 }

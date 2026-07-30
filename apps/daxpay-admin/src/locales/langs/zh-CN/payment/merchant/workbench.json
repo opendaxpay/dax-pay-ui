@@ -27,6 +27,8 @@
     "cardTerminal": "系统终端",
     "cardTerminalDesc": "商户逻辑终端编号与通道终端绑定管理",
     "cardWxApp": "支付应用(微信)",
-    "cardWxAppDesc": "管理该商户的微信公众号、小程序等开放应用"
+    "cardWxAppDesc": "管理该商户的微信公众号、小程序等开放应用",
+    "cardDyApp": "支付应用(抖音)",
+    "cardDyAppDesc": "管理该商户的抖音小程序、移动应用、网页应用等开放应用"
   }
 }

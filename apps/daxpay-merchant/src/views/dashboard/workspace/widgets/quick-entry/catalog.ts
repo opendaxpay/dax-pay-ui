@@ -93,6 +93,17 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     defaultOrder: 6,
   },
   {
+    key: 'douyinApp',
+    // 支付应用(抖音) — 菜单 path /mch/douyin-app
+    routeName: '/mch/douyin-app',
+    icon: 'lucide:music-2',
+    titleKey: 'dashboard.workspace.quickEntry.douyinApp',
+    color: 'bg-rose-500',
+    perms: [PermCodes.Payment.Douyin.MchApp.VIEW],
+    defaultVisible: true,
+    defaultOrder: 7,
+  },
+  {
     key: 'credential',
     // 对接配置
     routeName: '/mch/credential',
@@ -101,7 +112,7 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     color: 'bg-violet-500',
     perms: [PermCodes.Merchant.Credential.VIEW],
     defaultVisible: true,
-    defaultOrder: 7,
+    defaultOrder: 8,
   },
   {
     key: 'payTrade',
@@ -112,7 +123,7 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     color: 'bg-teal-500',
     perms: [PermCodes.Trade.Fund.VIEW],
     defaultVisible: true,
-    defaultOrder: 8,
+    defaultOrder: 9,
   },
   {
     key: 'developTrade',
@@ -123,7 +134,7 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     color: 'bg-rose-500',
     perms: [PermCodes.Develop.Trade.VIEW],
     defaultVisible: true,
-    defaultOrder: 9,
+    defaultOrder: 10,
   },
 ];
 

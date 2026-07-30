@@ -102,6 +102,16 @@
           route: '/payment/wx/app',
           query: { tab: 'merchant' },
         },
+        {
+          key: 'dyApp',
+          // 支付应用(抖音) — 跳转全局 Hub 商户 Tab
+          title: $t('payment.merchant.workbench.workbench.cardDyApp'),
+          icon: 'lucide:music-2',
+          // 管理该商户的抖音小程序 / 移动应用 / 网页应用等开放应用
+          description: $t('payment.merchant.workbench.workbench.cardDyAppDesc'),
+          route: '/payment/douyin/app',
+          query: { tab: 'merchant' },
+        },
       ],
     },
     {

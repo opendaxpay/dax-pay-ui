@@ -63,7 +63,8 @@
     "allAdded": "已全部添加",
     "profile": "个人中心",
     "credential": "对接配置",
-    "wxApp": "支付应用(微信)"
+    "wxApp": "支付应用(微信)",
+    "douyinApp": "支付应用(抖音)"
   },
   "notice": {
     "important": "重要",
