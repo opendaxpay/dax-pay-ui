@@ -9,11 +9,11 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
+  import DyChannelAppCapability from '#/views/payment/douyin/channel/DyChannelAppCapability.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/global/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
 
   import DouyinDirectChannelMerchantBasicInfo from './DouyinDirectChannelMerchantBasicInfo.vue';
   import DouyinDirectKeyConfigEdit from './DouyinDirectKeyConfigEdit.vue';
-  import DouyinMchAppCapability from './DouyinMchAppCapability.vue';
 
   defineOptions({ name: 'DouyinDirectMchManage' });
 
@@ -29,7 +29,7 @@
   const channelMerchant = ref<ChannelMerchantResult>({});
   const basicInfoRef = ref<InstanceType<typeof DouyinDirectChannelMerchantBasicInfo>>();
   const keyConfigRef = ref<InstanceType<typeof DouyinDirectKeyConfigEdit>>();
-  const capabilityRef = ref<InstanceType<typeof DouyinMchAppCapability>>();
+  const capabilityRef = ref<InstanceType<typeof DyChannelAppCapability>>();
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
 
   /** 功能卡片配置（按组分组的卡片布局） */
@@ -115,17 +115,17 @@
       keyConfigRef.value?.init();
     }
     if (card.key === 'appManage') {
-      // 应用管理: 仅传 mchNo + channelMchNo, 接收端反查名称等元数据
+      // 应用管理: 跳转抖音应用Hub（跨通道主数据，对齐微信模式）
       router.push({
-        path: '/payment/global/channel-merchant/douyin-app-manage',
+        path: '/payment/douyin/app',
         query: {
+          tab: 'merchant',
           mchNo: mchNo.value,
-          channelMchNo: channelMchNo.value,
         },
       });
     }
     if (card.key === 'capabilityBinding') {
-      capabilityRef.value?.show(mchNo.value, channelMchNo.value);
+      capabilityRef.value?.show(mchNo.value, channelMchNo.value, channelMerchant.value.product || 'douyin_pay');
     }
   }
 
@@ -191,7 +191,7 @@
 
     <DouyinDirectKeyConfigEdit ref="keyConfigRef" :channel-mch-no="channelMchNo" />
 
-    <DouyinMchAppCapability ref="capabilityRef" />
+    <DyChannelAppCapability ref="capabilityRef" />
   </div>
 </template>
 
