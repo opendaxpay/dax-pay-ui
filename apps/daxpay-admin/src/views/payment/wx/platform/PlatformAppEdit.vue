@@ -130,6 +130,10 @@
     request
       .then(() => {
         message.success($t('payment.wx.app.saveSuccess'));
+        // 应用类型变更: 后端已自动清除不兼容的支付能力绑定, 提示用户重新配置
+        if (formEditType.value === FormEditType.Edit && formState.value.appType !== originalForm.value.appType) {
+          message.warning($t('payment.common.app.appTypeChangedCleanup'));
+        }
         handleCancel();
         emit('ok');
       })

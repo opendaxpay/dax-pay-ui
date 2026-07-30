@@ -66,7 +66,7 @@
     }
   }
 
-  function requiredAppType(capability: string): string | undefined {
+  function requiredAppType(capability: string): string[] {
     return resolveAlipayAppTypeByCapability(capability);
   }
 
@@ -96,12 +96,12 @@
       return { color: appTypeColor(selected), text: appTypeLabel(selected) };
     }
     const required = requiredAppType(capability);
-    if (required) {
+    if (required.length > 0) {
       return {
         color: 'default',
         // 需{type}
         text: $t('payment.merchant.alipayDirectApp.capabilityRequiredAppType', {
-          type: appTypeLabel(required),
+          type: required.map((t) => appTypeLabel(t)).join('/'),
         }),
       };
     }
@@ -220,7 +220,7 @@
               {{ rowTypeTag(cap.code).text }}
             </a-tag>
             <a-select
-              v-if="hasCompatibleOptions(cap.code) || !requiredAppType(cap.code)"
+              v-if="hasCompatibleOptions(cap.code) || requiredAppType(cap.code).length === 0"
               v-model:value="bindingMap[cap.code]"
               allow-clear
               :loading="loading"

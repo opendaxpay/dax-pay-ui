@@ -5,16 +5,13 @@
 
   import {
     type WxCapabilityOption,
-    type WxPlatformAppCapabilityItem,
     WxPlatformAppCapabilityApi,
+    type WxPlatformAppCapabilityItem,
   } from '#/api/payment/wx/platform-app-capability.api';
   import { type WxPlatformApp, WxPlatformAppApi } from '#/api/payment/wx/platform-app.api';
   import { useMessage } from '#/hooks/useMessage';
 
-  import {
-    isWxAppCompatible,
-    resolveWxAppTypeByCapability,
-  } from '../shared/wx-app-type';
+  import { isWxAppCompatible, resolveWxAppTypeByCapability } from '../shared/wx-app-type';
 
   defineOptions({ name: 'PlatformAppCapability' });
 
@@ -37,14 +34,14 @@
   /** 应用类型 → 展示标签 */
   function appTypeLabel(appType?: string): string {
     switch (appType) {
-      case 'official_account': {
-        return $t('payment.wx.app.appTypeOfficialAccount');
-      }
       case 'mini_program': {
         return $t('payment.wx.app.appTypeMiniProgram');
       }
       case 'mobile_app': {
         return $t('payment.wx.app.appTypeMobileApp');
+      }
+      case 'official_account': {
+        return $t('payment.wx.app.appTypeOfficialAccount');
       }
       default: {
         return appType ?? '-';
@@ -55,14 +52,14 @@
   /** 应用类型 → 标签颜色 */
   function appTypeColor(appType?: string): string {
     switch (appType) {
-      case 'official_account': {
-        return 'green';
-      }
       case 'mini_program': {
         return 'blue';
       }
       case 'mobile_app': {
         return 'purple';
+      }
+      case 'official_account': {
+        return 'green';
       }
       default: {
         return 'default';
@@ -71,7 +68,7 @@
   }
 
   /** 该能力所需应用类型 */
-  function requiredAppType(capability: string): string | undefined {
+  function requiredAppType(capability: string): string[] {
     return resolveWxAppTypeByCapability(capability);
   }
 
@@ -101,12 +98,12 @@
       return { color: appTypeColor(selected), text: appTypeLabel(selected) };
     }
     const required = requiredAppType(capability);
-    if (required) {
+    if (required.length > 0) {
       return {
         color: 'default',
         // 需{type}
         text: $t('payment.wx.app.capabilityRequiredAppType', {
-          type: appTypeLabel(required),
+          type: required.map((t) => appTypeLabel(t)).join('/'),
         }),
       };
     }
@@ -221,7 +218,7 @@
               {{ rowTypeTag(cap.code).text }}
             </a-tag>
             <a-select
-              v-if="appOptions(cap.code).length > 0 || !requiredAppType(cap.code)"
+              v-if="appOptions(cap.code).length > 0 || requiredAppType(cap.code).length === 0"
               v-model:value="bindingMap[cap.code]"
               allow-clear
               :loading="loading"

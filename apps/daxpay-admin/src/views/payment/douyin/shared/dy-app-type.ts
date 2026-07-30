@@ -7,27 +7,27 @@
 /** 抖音开放应用类型 */
 export type DyAppTypeCode = 'mini_program' | 'mobile_app' | 'web_app';
 
-/** 支付能力 → 应用类型（与 DyAppTypeEnum 同步） */
-const CAPABILITY_APP_TYPE_MAP: Record<string, DyAppTypeCode> = {
-  douyin_jsapi: 'mini_program',
-  douyin_app: 'mobile_app',
-  douyin_qr: 'web_app',
-  douyin_h5: 'web_app',
+/** 支付能力 → 兼容应用类型集合(有序, 首个为兜底优先级, 与 DyAppTypeEnum 同步) */
+const CAPABILITY_APP_TYPE_MAP: Record<string, DyAppTypeCode[]> = {
+  douyin_jsapi: ['mini_program'],
+  douyin_app: ['mobile_app'],
+  douyin_qr: ['web_app', 'mini_program', 'mobile_app'],
+  douyin_h5: ['web_app', 'mini_program', 'mobile_app'],
 };
 
-/** 根据支付能力推导所需应用类型；未知能力返回 undefined（不过滤） */
-export function resolveDyAppTypeByCapability(capability?: string): DyAppTypeCode | undefined {
+/** 根据支付能力推导全部兼容应用类型；未知能力返回空数组(不过滤) */
+export function resolveDyAppTypeByCapability(capability?: string): DyAppTypeCode[] {
   if (!capability) {
-    return undefined;
+    return [];
   }
-  return CAPABILITY_APP_TYPE_MAP[capability];
+  return CAPABILITY_APP_TYPE_MAP[capability] ?? [];
 }
 
 /** 应用类型与支付能力是否兼容；未知能力视为兼容 */
 export function isDyAppCompatible(appType: string | undefined, capability: string): boolean {
   const expected = resolveDyAppTypeByCapability(capability);
-  if (!expected) {
+  if (expected.length === 0) {
     return true;
   }
-  return appType === expected;
+  return expected.includes(appType as DyAppTypeCode);
 }

@@ -5,23 +5,20 @@
 
   import {
     type DyCapabilityOption,
-    type DyChannelAppCapabilityItem,
     DyChannelAppCapabilityApi,
+    type DyChannelAppCapabilityItem,
   } from '#/api/payment/douyin/channel-app-capability.api';
   import { type DyMchApp, DyMchAppApi } from '#/api/payment/douyin/mch-app.api';
   import { useMessage } from '#/hooks/useMessage';
 
-  import {
-    isDyAppCompatible,
-    resolveDyAppTypeByCapability,
-  } from '../shared/dy-app-type';
+  import { isDyAppCompatible, resolveDyAppTypeByCapability } from '../shared/dy-app-type';
 
   defineOptions({ name: 'DyChannelAppCapability' });
 
+  const emit = defineEmits<{ ok: [] }>();
+
   /** 特约「服务商默认」虚拟项（不落库） */
   const ISP_DEFAULT = '__ISP_DEFAULT__';
-
-  const emit = defineEmits<{ ok: [] }>();
 
   const { message } = useMessage();
   const visible = ref(false);
@@ -30,7 +27,7 @@
   // 支付产品编码
   const product = ref('');
   // isv = 特约；direct = 直连
-  const mode = ref<'isv' | 'direct'>('direct');
+  const mode = ref<'direct' | 'isv'>('direct');
   const capabilities = ref<DyCapabilityOption[]>([]);
   const mchApps = ref<DyMchApp[]>([]);
   // capability → merchant:{id} | __ISP_DEFAULT__ | undefined
@@ -45,7 +42,7 @@
   }
 
   /** 解码商户应用 option */
-  function decodeMerchantRef(encoded?: string): string | null {
+  function decodeMerchantRef(encoded?: string): null | string {
     if (!encoded || encoded === ISP_DEFAULT) {
       return null;
     }
@@ -92,7 +89,7 @@
     }
   }
 
-  function requiredAppType(capability: string): string | undefined {
+  function requiredAppType(capability: string): string[] {
     return resolveDyAppTypeByCapability(capability);
   }
 
@@ -140,11 +137,11 @@
       return { color: appTypeColor(selected), text: appTypeLabel(selected) };
     }
     const required = requiredAppType(capability);
-    if (required) {
+    if (required.length > 0) {
       return {
         color: 'default',
         text: $t('payment.douyin.app.capabilityRequiredAppType', {
-          type: appTypeLabel(required),
+          type: required.map((t) => appTypeLabel(t)).join('/'),
         }),
       };
     }
@@ -281,7 +278,7 @@
               {{ rowTypeTag(cap.code).text }}
             </a-tag>
             <a-select
-              v-if="hasCompatibleOptions(cap.code) || !requiredAppType(cap.code)"
+              v-if="hasCompatibleOptions(cap.code) || requiredAppType(cap.code).length === 0"
               v-model:value="bindingMap[cap.code]"
               :allow-clear="!isIsv"
               :loading="loading"

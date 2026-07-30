@@ -5,16 +5,13 @@
 
   import {
     type DyCapabilityOption,
-    type DyPlatformAppCapabilityItem,
     DyPlatformAppCapabilityApi,
+    type DyPlatformAppCapabilityItem,
   } from '#/api/payment/douyin/platform-app-capability.api';
   import { type DyPlatformApp, DyPlatformAppApi } from '#/api/payment/douyin/platform-app.api';
   import { useMessage } from '#/hooks/useMessage';
 
-  import {
-    isDyAppCompatible,
-    resolveDyAppTypeByCapability,
-  } from '../shared/dy-app-type';
+  import { isDyAppCompatible, resolveDyAppTypeByCapability } from '../shared/dy-app-type';
 
   defineOptions({ name: 'DyPlatformAppCapability' });
 
@@ -71,7 +68,7 @@
   }
 
   /** 该能力所需应用类型 */
-  function requiredAppType(capability: string): string | undefined {
+  function requiredAppType(capability: string): string[] {
     return resolveDyAppTypeByCapability(capability);
   }
 
@@ -101,12 +98,12 @@
       return { color: appTypeColor(selected), text: appTypeLabel(selected) };
     }
     const required = requiredAppType(capability);
-    if (required) {
+    if (required.length > 0) {
       return {
         color: 'default',
         // 需{type}
         text: $t('payment.douyin.app.capabilityRequiredAppType', {
-          type: appTypeLabel(required),
+          type: required.map((t) => appTypeLabel(t)).join('/'),
         }),
       };
     }
@@ -221,7 +218,7 @@
               {{ rowTypeTag(cap.code).text }}
             </a-tag>
             <a-select
-              v-if="appOptions(cap.code).length > 0 || !requiredAppType(cap.code)"
+              v-if="appOptions(cap.code).length > 0 || requiredAppType(cap.code).length === 0"
               v-model:value="bindingMap[cap.code]"
               allow-clear
               :loading="loading"

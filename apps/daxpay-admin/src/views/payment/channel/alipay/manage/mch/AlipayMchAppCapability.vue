@@ -4,17 +4,14 @@
   import { $t } from '@vben/locales';
 
   import {
-    AlipayMchAppCapabilityApi,
     type AlipayDirectCapabilityOption,
+    AlipayMchAppCapabilityApi,
     type AlipayMchAppCapabilityItem,
   } from '#/api/payment/channel/alipay/mch-app-capability.api';
-  import { AlipayMchAppApi, type AlipayMchApp } from '#/api/payment/channel/alipay/mch-app.api';
+  import { type AlipayMchApp, AlipayMchAppApi } from '#/api/payment/channel/alipay/mch-app.api';
   import { useMessage } from '#/hooks/useMessage';
 
-  import {
-    isAlipayAppCompatible,
-    resolveAlipayAppTypeByCapability,
-  } from './alipay-app-type';
+  import { isAlipayAppCompatible, resolveAlipayAppTypeByCapability } from './alipay-app-type';
 
   defineOptions({ name: 'AlipayMchAppCapability' });
 
@@ -70,7 +67,7 @@
     }
   }
 
-  function requiredAppType(capability: string): string | undefined {
+  function requiredAppType(capability: string): string[] {
     return resolveAlipayAppTypeByCapability(capability);
   }
 
@@ -80,9 +77,7 @@
       .filter((app) => isAlipayAppCompatible(app.appType, capability))
       .map((app) => ({
         value: app.id!,
-        label: app.appName
-          ? `${app.appName} (${app.aliAppId ?? '-'})`
-          : (app.aliAppId ?? '-'),
+        label: app.appName ? `${app.appName} (${app.aliAppId ?? '-'})` : (app.aliAppId ?? '-'),
       }));
   }
 
@@ -102,12 +97,12 @@
       return { color: appTypeColor(selected), text: appTypeLabel(selected) };
     }
     const required = requiredAppType(capability);
-    if (required) {
+    if (required.length > 0) {
       return {
         color: 'default',
         // 需{type}
         text: $t('payment.channel.alipayMchManage.capabilityRequiredAppType', {
-          type: appTypeLabel(required),
+          type: required.map((t) => appTypeLabel(t)).join('/'),
         }),
       };
     }
@@ -214,19 +209,11 @@
       </div>
 
       <div v-if="!loading && !hasApps" class="mb-3">
-        <a-alert
-          type="warning"
-          show-icon
-          :message="$t('payment.channel.alipayMchManage.capabilityNoApp')"
-        />
+        <a-alert type="warning" show-icon :message="$t('payment.channel.alipayMchManage.capabilityNoApp')" />
       </div>
 
       <div v-else class="capability-list">
-        <div
-          v-for="cap in capabilities"
-          :key="cap.code"
-          class="capability-row"
-        >
+        <div v-for="cap in capabilities" :key="cap.code" class="capability-row">
           <div class="capability-name">
             <span class="font-medium text-foreground">{{ cap.name }}</span>
             <span class="ml-1 text-xs text-muted-foreground">{{ cap.code }}</span>
@@ -236,7 +223,7 @@
               {{ rowTypeTag(cap.code).text }}
             </a-tag>
             <a-select
-              v-if="hasCompatibleOptions(cap.code) || !requiredAppType(cap.code)"
+              v-if="hasCompatibleOptions(cap.code) || requiredAppType(cap.code).length === 0"
               v-model:value="bindingMap[cap.code]"
               allow-clear
               :loading="loading"

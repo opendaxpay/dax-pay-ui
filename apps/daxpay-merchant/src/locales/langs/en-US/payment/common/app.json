@@ -1,0 +1,3 @@
+{
+  "appTypeChangedCleanup": "App type changed. Previous payment capability bindings have been cleared automatically. Please reconfigure them in \"Payment Capabilities\"."
+}
