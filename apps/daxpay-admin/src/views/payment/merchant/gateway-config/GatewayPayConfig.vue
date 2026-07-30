@@ -2,62 +2,74 @@
   import type { ChannelMchOption, LabelValue } from '#/types/web';
 
   import { computed, onMounted, ref, watch } from 'vue';
-  import { useRouter } from 'vue-router';
+  import { useRoute, useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
   import { IconifyIcon } from '@vben-core/icons';
 
   import {
-    type CodeClientEnvParam,
-    CodeConfigApi,
-    type CodeConfigResult,
-  } from '#/api/payment/merchant/code-config.api';
+    type GatewayPayClientEnvParam,
+    GatewayPayConfigApi,
+    type GatewayPayConfigResult,
+  } from '#/api/payment/merchant/gateway-config.api';
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import { PayRouteApi } from '#/api/payment/route/pay-route.api';
   import ChannelMerchantSelect from '#/components/channel/ChannelMerchantSelect.vue';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { useMessage } from '#/hooks/useMessage';
-  import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
-  import RouteHitPreviewBlock from '#/views/payment/merchant/shared/RouteHitPreviewBlock.vue';
-  import { useRouteHitPreview } from '#/views/payment/merchant/shared/useRouteHitPreview';
+  import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
   import { PAY_ROUTE_MODE } from '#/views/payment/route/shared/payRoute.constants';
   import { modeDisplayName } from '#/views/payment/route/shared/payRoute.labels';
+  import RouteHitPreviewBlock from '#/views/payment/merchant/shared/RouteHitPreviewBlock.vue';
+  import { useRouteHitPreview } from '#/views/payment/merchant/shared/useRouteHitPreview';
 
   import {
-    CODE_CLIENT_ENVS,
-    CODE_LEVEL,
-    CODE_PAY_FORM,
-    CODE_PAY_FORMS,
-    type CodeLevel,
-    type CodePayForm,
+    GW_CLIENT_ENVS,
+    GW_LEVEL,
+    GW_PAY_FORM,
+    GW_PAY_FORMS,
+    type GwLevel,
+    type GwPayForm,
     defaultMethodFor,
     rowKey,
   } from './shared/constants';
 
-  defineOptions({ name: 'CodePayConfig' });
+  defineOptions({ name: 'GatewayPayConfig' });
 
+  const route = useRoute();
   const router = useRouter();
   const { confirm, message } = useMessage();
 
-  // 商户端无 mchNo URL 维度，仅校验 appId
+  // 路由参数校验: mchNo + appId 必传
   const routeContext = useRequiredRouteQuery({
-    keys: ['appId'],
-    messageKey: 'payment.common.route.missingAppContext',
-    fallbackPath: '/mch/app',
+    keys: ['mchNo', 'appId'],
+    messageKey: computed(() =>
+      normalizeRouteQueryValue(route.query.mchNo)
+        ? 'payment.merchant.gatewayConfig.gatewayConfig.missingAppContext'
+        : 'payment.common.route.missingMchNo',
+    ),
+    fallbackPath: computed(() => {
+      const no = normalizeRouteQueryValue(route.query.mchNo);
+      const app = normalizeRouteQueryValue(route.query.appId);
+      if (no && app) {
+        return { path: '/payment/merchant/app/manage', query: { mchNo: no, appId: app } };
+      }
+      return no ? { path: '/payment/merchant/app', query: { mchNo: no } } : '/payment/merchant';
+    }),
   });
 
+  const mchNo = computed(() => routeContext.query.value.mchNo);
   const appId = computed(() => routeContext.query.value.appId);
 
   const loading = ref(false);
   const editing = ref(false);
   const appInfo = ref<MchAppInfoResult>({});
-  const mchNo = computed(() => appInfo.value.mchNo || '');
-  const config = ref<CodeConfigResult>({});
+  const config = ref<GatewayPayConfigResult>({});
 
-  const editLevel = ref<CodeLevel>(CODE_LEVEL.AUTO);
+  const editLevel = ref<GwLevel>(GW_LEVEL.AUTO);
   // key = clientEnv|payForm
-  const clientEnvForm = ref<Record<string, CodeClientEnvParam>>({});
+  const clientEnvForm = ref<Record<string, GatewayPayClientEnvParam>>({});
 
   const methodDirectory = ref<Record<string, LabelValue[]>>({});
   const channelMchMap = ref<Record<string, ChannelMchOption[]>>({});
@@ -72,19 +84,19 @@
     preview: previewRouteHit,
   } = useRouteHitPreview();
 
-  const effectiveLevel = computed(() => config.value.level || CODE_LEVEL.AUTO);
+  const effectiveLevel = computed(() => config.value.level || GW_LEVEL.AUTO);
   const isLevelActive = computed(() => editLevel.value === effectiveLevel.value);
 
-  const showRoutePreview = computed(() => editLevel.value === CODE_LEVEL.AUTO || editLevel.value === CODE_LEVEL.METHOD);
+  const showRoutePreview = computed(() => editLevel.value === GW_LEVEL.AUTO || editLevel.value === GW_LEVEL.METHOD);
 
   const modeHint = computed(() => {
-    if (editLevel.value === CODE_LEVEL.AUTO) {
-      return $t('payment.merchant.codeConfig.codeConfig.autoModeHint');
+    if (editLevel.value === GW_LEVEL.AUTO) {
+      return $t('payment.merchant.gatewayConfig.gatewayConfig.autoModeHint');
     }
-    if (editLevel.value === CODE_LEVEL.METHOD) {
-      return $t('payment.merchant.codeConfig.codeConfig.methodModeHint');
+    if (editLevel.value === GW_LEVEL.METHOD) {
+      return $t('payment.merchant.gatewayConfig.gatewayConfig.methodModeHint');
     }
-    return $t('payment.merchant.codeConfig.codeConfig.directModeHint');
+    return $t('payment.merchant.gatewayConfig.gatewayConfig.directModeHint');
   });
 
   const routeModeLabel = computed(() => {
@@ -97,19 +109,19 @@
 
   /** 环境名 */
   function clientEnvLabel(clientEnv: string) {
-    return $t(`payment.merchant.codeConfig.codeConfig.clientEnvs.${clientEnv}`);
+    return $t(`payment.merchant.gatewayConfig.gatewayConfig.clientEnvs.${clientEnv}`);
   }
 
   /** 形态名 */
   function payFormLabel(payForm: string) {
-    return $t(`payment.merchant.codeConfig.codeConfig.payForms.${payForm}`);
+    return $t(`payment.merchant.gatewayConfig.gatewayConfig.payForms.${payForm}`);
   }
 
   /** 初始化编辑表: 4 环境 × 2 形态 */
   function initSceneForm() {
-    const form: Record<string, CodeClientEnvParam> = {};
-    for (const sc of CODE_CLIENT_ENVS) {
-      for (const pf of CODE_PAY_FORMS) {
+    const form: Record<string, GatewayPayClientEnvParam> = {};
+    for (const sc of GW_CLIENT_ENVS) {
+      for (const pf of GW_PAY_FORMS) {
         const key = rowKey(sc.clientEnv, pf);
         const serverEnv = config.value.clientEnvs?.find((s) => s.clientEnv === sc.clientEnv && s.payForm === pf);
         form[key] = {
@@ -172,11 +184,11 @@
   }
 
   /** 当前行用于路由预览的 method */
-  function resolveMethodForRow(clientEnv: string, payForm: CodePayForm): string {
-    if (editLevel.value === CODE_LEVEL.AUTO) {
+  function resolveMethodForRow(clientEnv: string, payForm: GwPayForm): string {
+    if (editLevel.value === GW_LEVEL.AUTO) {
       return defaultMethodFor(clientEnv, payForm);
     }
-    if (editLevel.value === CODE_LEVEL.METHOD) {
+    if (editLevel.value === GW_LEVEL.METHOD) {
       return getRow(clientEnv, payForm).method || '';
     }
     return '';
@@ -189,27 +201,27 @@
   type DisplayFormRow = {
     key: string;
     merged: boolean;
-    payForms: CodePayForm[];
+    payForms: GwPayForm[];
     /** 预览/展示用主形态（合并时取 H5） */
-    primaryForm: CodePayForm;
+    primaryForm: GwPayForm;
   };
 
   function displayFormRows(clientEnv: string): DisplayFormRow[] {
-    if (editLevel.value === CODE_LEVEL.AUTO) {
-      const h5Method = defaultMethodFor(clientEnv, CODE_PAY_FORM.H5);
-      const miniMethod = defaultMethodFor(clientEnv, CODE_PAY_FORM.MINI);
+    if (editLevel.value === GW_LEVEL.AUTO) {
+      const h5Method = defaultMethodFor(clientEnv, GW_PAY_FORM.H5);
+      const miniMethod = defaultMethodFor(clientEnv, GW_PAY_FORM.MINI);
       if (h5Method && h5Method === miniMethod) {
         return [
           {
             key: `${clientEnv}|merged`,
-            payForms: [CODE_PAY_FORM.H5, CODE_PAY_FORM.MINI],
+            payForms: [GW_PAY_FORM.H5, GW_PAY_FORM.MINI],
             merged: true,
-            primaryForm: CODE_PAY_FORM.H5,
+            primaryForm: GW_PAY_FORM.H5,
           },
         ];
       }
     }
-    return CODE_PAY_FORMS.map((pf) => ({
+    return GW_PAY_FORMS.map((pf) => ({
       key: rowKey(clientEnv, pf),
       payForms: [pf],
       merged: false,
@@ -218,7 +230,7 @@
   }
 
   /** 未配置时：同环境另一形态已配置则强调告警，否则灰色降噪 */
-  function emptyToneFor(provider: string, clientEnv: string, payForm: CodePayForm): 'emphasize' | 'soft' {
+  function emptyToneFor(provider: string, clientEnv: string, payForm: GwPayForm): 'emphasize' | 'soft' {
     const method = resolveMethodForRow(clientEnv, payForm);
     if (!method) {
       return 'soft';
@@ -227,7 +239,7 @@
     if (hit.status !== 'notConfigured') {
       return 'soft';
     }
-    const sibling = payForm === CODE_PAY_FORM.H5 ? CODE_PAY_FORM.MINI : CODE_PAY_FORM.H5;
+    const sibling = payForm === GW_PAY_FORM.H5 ? GW_PAY_FORM.MINI : GW_PAY_FORM.H5;
     // 合并展示时两形态 method 相同，无 sibling 差异
     if (defaultMethodFor(clientEnv, payForm) === defaultMethodFor(clientEnv, sibling)) {
       return 'soft';
@@ -249,8 +261,8 @@
     let ok = 0;
     const gapLabels: string[] = [];
     const seenMethods = new Set<string>();
-    for (const sc of CODE_CLIENT_ENVS) {
-      for (const pf of CODE_PAY_FORMS) {
+    for (const sc of GW_CLIENT_ENVS) {
+      for (const pf of GW_PAY_FORMS) {
         const method = resolveMethodForRow(sc.clientEnv, pf);
         if (!method || seenMethods.has(`${sc.clientEnv}|${method}`)) {
           continue;
@@ -277,14 +289,14 @@
   async function loadChannelMchCandidates() {
     const map: Record<string, ChannelMchOption[]> = {};
     await Promise.all(
-      CODE_CLIENT_ENVS.map(async (sc) => {
-        // mchNo 由后端 PaymentContext 强制，前端不再传
-        const { data } = await CodeConfigApi.listDirectChannelMchCandidates({
+      GW_CLIENT_ENVS.map(async (sc) => {
+        const { data } = await GatewayPayConfigApi.listDirectChannelMchCandidates({
+          mchNo: mchNo.value,
           provider: sc.provider,
         });
         const list = data || [];
         // 同环境 H5/mini 共用同一批通道商户候选
-        for (const pf of CODE_PAY_FORMS) {
+        for (const pf of GW_PAY_FORMS) {
           map[rowKey(sc.clientEnv, pf)] = list;
         }
       }),
@@ -295,57 +307,58 @@
   /**
    * DIRECT: 按通道商户列全部已挂载能力（含 H5/主扫），供 needOpenId 与真实能力对齐
    */
-  async function loadCapabilityForRow(clientEnv: string, payForm: CodePayForm, channelMchNo: string) {
+  async function loadCapabilityForRow(clientEnv: string, payForm: GwPayForm, channelMchNo: string) {
     const key = rowKey(clientEnv, payForm);
     if (!channelMchNo) {
       capabilityMap.value = { ...capabilityMap.value, [key]: [] };
       return;
     }
-    const { data } = await CodeConfigApi.listDirectCapabilityCandidates(channelMchNo);
+    const { data } = await GatewayPayConfigApi.listDirectCapabilityCandidates(channelMchNo);
     capabilityMap.value = { ...capabilityMap.value, [key]: data || [] };
   }
 
-  /** 加载当前应用信息 */
   async function loadAppInfo() {
-    if (!appId.value) return;
-    const { data } = await MchAppInfoApi.getByAppId(appId.value);
-    appInfo.value = data || {};
-  }
-
-  /** 返回应用工作台 */
-  function handleBack() {
-    router.push({ path: '/mch/app/manage', query: { appId: appId.value } });
+    if (!mchNo.value || !appId.value) return;
+    const { data } = await MchAppInfoApi.page({ mchNo: mchNo.value, current: 1, size: 200 });
+    const app = data?.records?.find((a) => a.appId === appId.value);
+    appInfo.value = app || {};
   }
 
   async function loadConfig() {
     if (!appId.value) return;
     loading.value = true;
-    const { data } = await CodeConfigApi.getByAppId(appId.value);
+    const { data } = await GatewayPayConfigApi.getByAppId(appId.value);
     config.value = data || {};
-    editLevel.value = (effectiveLevel.value as CodeLevel) || CODE_LEVEL.AUTO;
+    editLevel.value = (effectiveLevel.value as GwLevel) || GW_LEVEL.AUTO;
     initSceneForm();
     await Promise.all([loadMethodDirectory(), loadRouteHit(appId.value)]);
     loading.value = false;
   }
 
+  function handleBack() {
+    router.push({
+      path: '/payment/merchant/app/manage',
+      query: { mchNo: mchNo.value, appId: appId.value },
+    });
+  }
+
   /** 跳转通道路由配置 */
   function goPayRoute() {
-    // 商户端仅带 appId，路由页自带应用选择器
     router.push({
       path: '/payment/route',
-      query: { appId: appId.value },
+      query: { mchNo: mchNo.value, appId: appId.value },
     });
   }
 
   async function startEdit() {
     editing.value = true;
     initSceneForm();
-    if (editLevel.value === CODE_LEVEL.METHOD) {
+    if (editLevel.value === GW_LEVEL.METHOD) {
       await loadMethodDirectory();
-    } else if (editLevel.value === CODE_LEVEL.DIRECT) {
+    } else if (editLevel.value === GW_LEVEL.DIRECT) {
       await loadChannelMchCandidates();
-      for (const sc of CODE_CLIENT_ENVS) {
-        for (const pf of CODE_PAY_FORMS) {
+      for (const sc of GW_CLIENT_ENVS) {
+        for (const pf of GW_PAY_FORMS) {
           const sd = getRow(sc.clientEnv, pf);
           if (sd.channelMchNo) {
             await loadCapabilityForRow(sc.clientEnv, pf, sd.channelMchNo);
@@ -359,15 +372,15 @@
    * 收集 METHOD/DIRECT 已填写行(配多少存多少)
    * DIRECT 只填商户或只填能力视为不完整
    */
-  function collectFilledClientEnvs(): CodeClientEnvParam[] | null {
-    if (editLevel.value === CODE_LEVEL.AUTO) {
+  function collectFilledClientEnvs(): GatewayPayClientEnvParam[] | null {
+    if (editLevel.value === GW_LEVEL.AUTO) {
       return [];
     }
-    const filled: CodeClientEnvParam[] = [];
-    for (const sc of CODE_CLIENT_ENVS) {
-      for (const pf of CODE_PAY_FORMS) {
+    const filled: GatewayPayClientEnvParam[] = [];
+    for (const sc of GW_CLIENT_ENVS) {
+      for (const pf of GW_PAY_FORMS) {
         const sd = getRow(sc.clientEnv, pf);
-        if (editLevel.value === CODE_LEVEL.METHOD) {
+        if (editLevel.value === GW_LEVEL.METHOD) {
           if (sd.method) {
             filled.push({ ...sd });
           }
@@ -380,7 +393,7 @@
         }
         if (!hasMch || !hasCap) {
           message.error(
-            $t('payment.merchant.codeConfig.codeConfig.partialRowIncomplete') +
+            $t('payment.merchant.gatewayConfig.gatewayConfig.partialRowIncomplete') +
               ': ' +
               clientEnvLabel(sc.clientEnv) +
               ' / ' +
@@ -392,7 +405,7 @@
       }
     }
     if (filled.length === 0) {
-      message.error($t('payment.merchant.codeConfig.codeConfig.atLeastOneRequired'));
+      message.error($t('payment.merchant.gatewayConfig.gatewayConfig.atLeastOneRequired'));
       return null;
     }
     return filled;
@@ -405,9 +418,9 @@
     }
 
     confirm({
-      content: $t('payment.merchant.codeConfig.codeConfig.saveConfirm'),
+      content: $t('payment.merchant.gatewayConfig.gatewayConfig.saveConfirm'),
       async onOk() {
-        await CodeConfigApi.saveOrUpdate({
+        await GatewayPayConfigApi.saveOrUpdate({
           mchNo: mchNo.value,
           appId: appId.value,
           level: editLevel.value,
@@ -423,19 +436,19 @@
   function cancel() {
     editing.value = false;
     initSceneForm();
-    editLevel.value = effectiveLevel.value as CodeLevel;
+    editLevel.value = effectiveLevel.value as GwLevel;
   }
 
   watch(editLevel, async (level, prev) => {
     if (!editing.value || level === prev) return;
-    if (level === CODE_LEVEL.METHOD) {
+    if (level === GW_LEVEL.METHOD) {
       await loadMethodDirectory();
-    } else if (level === CODE_LEVEL.DIRECT) {
+    } else if (level === GW_LEVEL.DIRECT) {
       await loadChannelMchCandidates();
     }
   });
 
-  async function onChannelMchChange(clientEnv: string, payForm: CodePayForm, channelMchNo: any) {
+  async function onChannelMchChange(clientEnv: string, payForm: GwPayForm, channelMchNo: any) {
     const sd = getRow(clientEnv, payForm);
     sd.channelMchNo = channelMchNo || '';
     sd.capability = '';
@@ -457,8 +470,8 @@
 <template>
   <RouteQueryMissingState
     v-if="!routeContext.isValid"
-    :description="$t('payment.common.route.missingAppContext')"
-    :back-text="$t('payment.merchant.app.app.backToAppList')"
+    :description="$t('payment.merchant.gatewayConfig.gatewayConfig.missingAppContext')"
+    :back-text="$t('payment.merchant.workbench.workbench.backToList')"
     @back="routeContext.goFallback"
   />
   <div v-else class="m-4">
@@ -470,7 +483,8 @@
               <IconifyIcon icon="ant-design:arrow-left-outlined" />
             </template>
           </a-button>
-          <span class="text-lg font-bold">{{ $t('menu.payment.merchant.codePayConfig') }}</span>
+          <span class="text-lg font-bold">{{ $t('payment.merchant.gatewayConfig.gatewayConfig.title') }}</span>
+          <span v-if="appInfo.appName" class="text-sm text-muted-foreground"> ({{ appInfo.appName }}) </span>
         </div>
       </template>
 
@@ -488,20 +502,20 @@
 
       <a-spin :spinning="loading || routeHitLoading">
         <div class="mb-5 flex flex-wrap items-center gap-3">
-          <span class="text-sm font-medium">{{ $t('payment.merchant.codeConfig.codeConfig.editModeLabel') }}</span>
+          <span class="text-sm font-medium">{{ $t('payment.merchant.gatewayConfig.gatewayConfig.editModeLabel') }}</span>
           <a-radio-group v-model:value="editLevel" button-style="solid" :disabled="!editing">
-            <a-radio-button :value="CODE_LEVEL.AUTO">
-              {{ $t('payment.merchant.codeConfig.codeConfig.modeAuto') }}
+            <a-radio-button :value="GW_LEVEL.AUTO">
+              {{ $t('payment.merchant.gatewayConfig.gatewayConfig.modeAuto') }}
             </a-radio-button>
-            <a-radio-button :value="CODE_LEVEL.METHOD">
-              {{ $t('payment.merchant.codeConfig.codeConfig.modeMethod') }}
+            <a-radio-button :value="GW_LEVEL.METHOD">
+              {{ $t('payment.merchant.gatewayConfig.gatewayConfig.modeMethod') }}
             </a-radio-button>
-            <a-radio-button :value="CODE_LEVEL.DIRECT">
-              {{ $t('payment.merchant.codeConfig.codeConfig.modeDirect') }}
+            <a-radio-button :value="GW_LEVEL.DIRECT">
+              {{ $t('payment.merchant.gatewayConfig.gatewayConfig.modeDirect') }}
             </a-radio-button>
           </a-radio-group>
           <a-tag v-if="isLevelActive && !editing" color="green">
-            {{ $t('payment.merchant.codeConfig.codeConfig.levelActive') }}
+            {{ $t('payment.merchant.gatewayConfig.gatewayConfig.levelActive') }}
           </a-tag>
         </div>
 
@@ -511,38 +525,38 @@
 
         <div v-if="showRoutePreview" class="mb-5 flex flex-wrap items-center gap-3 text-sm">
           <span class="text-muted-foreground"
-            >{{ $t('payment.merchant.codeConfig.codeConfig.currentRouteMode') }}:</span
+            >{{ $t('payment.merchant.gatewayConfig.gatewayConfig.currentRouteMode') }}:</span
           >
           <a-tag color="blue">{{ routeModeLabel }}</a-tag>
           <template v-if="routeCoverage">
             <span class="text-muted-foreground">
               {{
-                $t('payment.merchant.codeConfig.codeConfig.routeCoverage', {
+                $t('payment.merchant.gatewayConfig.gatewayConfig.routeCoverage', {
                   ok: routeCoverage.ok,
                   total: routeCoverage.total,
                 })
               }}
             </span>
             <span v-if="routeCoverage.gapLabels.length > 0" class="text-xs text-orange-500">
-              {{ $t('payment.merchant.codeConfig.codeConfig.routeGaps') }}:
+              {{ $t('payment.merchant.gatewayConfig.gatewayConfig.routeGaps') }}:
               {{ routeCoverage.gapLabels.join(' · ') }}
             </span>
           </template>
           <a-button type="link" size="small" class="!px-1" @click="goPayRoute">
-            {{ $t('payment.merchant.codeConfig.codeConfig.goPayRoute') }}
+            {{ $t('payment.merchant.gatewayConfig.gatewayConfig.goPayRoute') }}
             <IconifyIcon icon="ant-design:right-outlined" class="inline" />
           </a-button>
         </div>
 
         <!-- 按打开环境分块；块内 H5/小程序单行；AUTO 同 method 合并 -->
         <div class="env-blocks">
-          <div v-for="sc in CODE_CLIENT_ENVS" :key="sc.clientEnv" class="env-block">
+          <div v-for="sc in GW_CLIENT_ENVS" :key="sc.clientEnv" class="env-block">
             <div class="env-block-title">{{ clientEnvLabel(sc.clientEnv) }}</div>
 
             <div class="env-table" :class="showRoutePreview ? 'cols-route' : 'cols-direct'">
               <div class="env-grid-header">
-                <div>{{ $t('payment.merchant.codeConfig.codeConfig.payForm') }}</div>
-                <div v-if="showRoutePreview">{{ $t('payment.merchant.codeConfig.codeConfig.method') }}</div>
+                <div>{{ $t('payment.merchant.gatewayConfig.gatewayConfig.payForm') }}</div>
+                <div v-if="showRoutePreview">{{ $t('payment.merchant.gatewayConfig.gatewayConfig.method') }}</div>
                 <div>{{ $t('payment.merchant.route.route.channelMerchant') }}</div>
                 <div>{{ $t('payment.merchant.route.route.payCapability') }}</div>
               </div>
@@ -551,17 +565,17 @@
                 <!-- 形态：合并时展示 H5 + 小程序 -->
                 <div class="form-tags">
                   <template v-if="drow.merged">
-                    <a-tag color="blue" class="!m-0">{{ payFormLabel(CODE_PAY_FORM.H5) }}</a-tag>
+                    <a-tag color="blue" class="!m-0">{{ payFormLabel(GW_PAY_FORM.H5) }}</a-tag>
                     <span class="text-muted-foreground text-xs">/</span>
-                    <a-tag color="purple" class="!m-0">{{ payFormLabel(CODE_PAY_FORM.MINI) }}</a-tag>
+                    <a-tag color="purple" class="!m-0">{{ payFormLabel(GW_PAY_FORM.MINI) }}</a-tag>
                   </template>
-                  <a-tag v-else :color="drow.primaryForm === CODE_PAY_FORM.MINI ? 'purple' : 'blue'" class="!m-0">
+                  <a-tag v-else :color="drow.primaryForm === GW_PAY_FORM.MINI ? 'purple' : 'blue'" class="!m-0">
                     {{ payFormLabel(drow.primaryForm) }}
                   </a-tag>
                 </div>
 
                 <!-- AUTO -->
-                <template v-if="editLevel === CODE_LEVEL.AUTO">
+                <template v-if="editLevel === GW_LEVEL.AUTO">
                   <div
                     class="cell-text"
                     :title="findMethodLabel(sc.provider, defaultMethodFor(sc.clientEnv, drow.primaryForm))"
@@ -571,17 +585,17 @@
                   <RouteHitPreviewBlock
                     :hit="previewRouteHit(sc.provider, defaultMethodFor(sc.clientEnv, drow.primaryForm))"
                     :empty-tone="emptyToneFor(sc.provider, sc.clientEnv, drow.primaryForm)"
-                    i18n-prefix="payment.merchant.codeConfig.codeConfig"
+                    i18n-prefix="payment.merchant.gatewayConfig.gatewayConfig"
                   />
                 </template>
 
                 <!-- METHOD：始终按 primaryForm 单行（未合并） -->
-                <template v-else-if="editLevel === CODE_LEVEL.METHOD">
+                <template v-else-if="editLevel === GW_LEVEL.METHOD">
                   <div>
                     <a-select
                       :value="getRow(sc.clientEnv, drow.primaryForm).method"
                       :options="methodOptions(sc.provider)"
-                      :placeholder="$t('payment.merchant.codeConfig.codeConfig.methodPlaceholder')"
+                      :placeholder="$t('payment.merchant.gatewayConfig.gatewayConfig.methodPlaceholder')"
                       :disabled="!editing"
                       allow-clear
                       class="w-full min-w-[160px]"
@@ -591,7 +605,7 @@
                   <RouteHitPreviewBlock
                     :hit="previewRouteHit(sc.provider, resolveMethodForRow(sc.clientEnv, drow.primaryForm))"
                     :empty-tone="emptyToneFor(sc.provider, sc.clientEnv, drow.primaryForm)"
-                    i18n-prefix="payment.merchant.codeConfig.codeConfig"
+                    i18n-prefix="payment.merchant.gatewayConfig.gatewayConfig"
                   />
                 </template>
 
@@ -601,7 +615,7 @@
                     <ChannelMerchantSelect
                       :value="getRow(sc.clientEnv, drow.primaryForm).channelMchNo"
                       :options="channelMchOptions(sc.clientEnv, drow.primaryForm)"
-                      :placeholder="$t('payment.merchant.codeConfig.codeConfig.channelMerchantPlaceholder')"
+                      :placeholder="$t('payment.merchant.gatewayConfig.gatewayConfig.channelMerchantPlaceholder')"
                       :disabled="!editing"
                       root-class-name="w-full min-w-[160px]"
                       @change="(val: any) => onChannelMchChange(sc.clientEnv, drow.primaryForm, val)"
@@ -611,7 +625,7 @@
                     <a-select
                       :value="getRow(sc.clientEnv, drow.primaryForm).capability"
                       :options="capabilityOptions(sc.clientEnv, drow.primaryForm)"
-                      :placeholder="$t('payment.merchant.codeConfig.codeConfig.capabilityPlaceholder')"
+                      :placeholder="$t('payment.merchant.gatewayConfig.gatewayConfig.capabilityPlaceholder')"
                       :disabled="!editing || !getRow(sc.clientEnv, drow.primaryForm).channelMchNo"
                       allow-clear
                       class="w-full min-w-[160px]"

@@ -1,0 +1,45 @@
+{
+  "gatewayConfig": {
+    "title": "Gateway Pay Config",
+    "editModeLabel": "Config mode",
+    "methodPlaceholder": "Select pay method",
+    "channelMerchantPlaceholder": "Select channel merchant",
+    "capabilityPlaceholder": "Select capability",
+    "saveConfirm": "Save gateway pay config?",
+    "missingAppContext": "Open this page from app management",
+    "levelActive": "Active",
+    "clientEnvs": {
+      "alipay": "Alipay",
+      "union_pay": "UnionPay",
+      "douyin": "Douyin",
+      "wechat": "WeChat"
+    },
+    "payForms": {
+      "h5": "H5",
+      "mini": "Mini Program"
+    },
+    "modeAuto": "Follow channel routing",
+    "modeMethod": "Specify method",
+    "modeDirect": "Direct",
+    "routeNotConfigured": "Belum dikonfigurasi di perutean saluran",
+    "routeNoStrategy": "Konfigurasi perutean saluran terlebih dahulu",
+    "autoModeHint": "Metode bayar dipilih otomatis menurut lingkungan dan bentuk (H5/mini); pedagang saluran mengikuti perutean saluran — tanpa pengaturan manual",
+    "defaultMethod": "Metode default",
+    "autoDerived": "Metode default",
+    "routeMode": "Mode rute",
+    "goPayRoute": "Atur perutean saluran",
+    "method": "Metode bayar",
+    "routePreviewTitle": "Pratinjau hit rute saluran",
+    "currentRouteMode": "Rute saluran saat ini",
+    "capabilityRuntimeDerived": "Ditentukan runtime oleh strategi produk",
+    "openEnv": "Lingkungan",
+    "payForm": "Bentuk",
+    "routeNotConfiguredShort": "Belum diatur",
+    "routeGaps": "Perlu dilengkapi",
+    "routeCoverage": "Rute cocok {ok}/{total}",
+    "directModeHint": "Atur pedagang saluran dan kemampuan H5/Mini hanya yang dibutuhkan; lewati perutean",
+    "atLeastOneRequired": "Konfigurasi minimal satu lingkungan dan bentuk",
+    "partialRowIncomplete": "Pedagang saluran dan kemampuan harus diisi bersama",
+    "methodModeHint": "Atur metode H5/Mini hanya yang dibutuhkan; pedagang saluran mengikuti perutean"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "gatewayConfig": {
+    "title": "Gateway Pay Config",
+    "editModeLabel": "Config mode",
+    "methodPlaceholder": "Select pay method",
+    "channelMerchantPlaceholder": "Select channel merchant",
+    "capabilityPlaceholder": "Select capability",
+    "saveConfirm": "Save gateway pay config?",
+    "missingAppContext": "Open this page from app management",
+    "levelActive": "Active",
+    "clientEnvs": {
+      "alipay": "Alipay",
+      "union_pay": "UnionPay",
+      "douyin": "Douyin",
+      "wechat": "WeChat"
+    },
+    "payForms": {
+      "h5": "H5",
+      "mini": "Mini Program"
+    },
+    "modeAuto": "Follow channel routing",
+    "modeMethod": "Specify method",
+    "modeDirect": "Direct",
+    "routeNotConfigured": "채널 라우팅 미설정",
+    "routeNoStrategy": "먼저 채널 라우팅을 설정하세요",
+    "autoModeHint": "실행 환경과 형태(H5/미니)에 따라 결제 방식을 자동 선택하고, 채널 가맹점은 채널 라우팅을 따릅니다. 수동 설정 불필요",
+    "defaultMethod": "기본 결제 방식",
+    "autoDerived": "기본 결제 방식",
+    "routeMode": "라우트 모드",
+    "goPayRoute": "채널 라우팅 설정으로",
+    "method": "결제 방식",
+    "routePreviewTitle": "채널 라우트 매칭 미리보기",
+    "currentRouteMode": "현재 채널 라우트",
+    "capabilityRuntimeDerived": "런타임에 제품 전략으로 결정",
+    "openEnv": "실행 환경",
+    "payForm": "형태",
+    "routeNotConfiguredShort": "미설정",
+    "routeGaps": "보완 필요",
+    "routeCoverage": "라우트 적중 {ok}/{total}",
+    "directModeHint": "필요한 환경의 H5/미니만 채널 가맹점과 능력 지정(일부만 가능). 채널 라우팅을 건너뜁니다",
+    "atLeastOneRequired": "환경×형태를 하나 이상 설정하세요",
+    "partialRowIncomplete": "채널 가맹점과 결제 능력은 함께 입력해야 합니다",
+    "methodModeHint": "필요한 환경의 H5/미니만 결제 방식 지정(일부만 가능). 채널 가맹점은 채널 라우팅을 따릅니다"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "gatewayConfig": {
+    "title": "网关支付配置",
+    "editModeLabel": "配置模式",
+    "methodPlaceholder": "请选择支付方式",
+    "channelMerchantPlaceholder": "请选择通道商户",
+    "capabilityPlaceholder": "请选择支付能力",
+    "saveConfirm": "确定要保存网关支付配置吗?",
+    "missingAppContext": "请从应用管理进入网关支付配置",
+    "levelActive": "生效中",
+    "clientEnvs": {
+      "alipay": "支付宝环境",
+      "union_pay": "云闪付环境",
+      "douyin": "抖音环境",
+      "wechat": "微信环境"
+    },
+    "payForms": {
+      "h5": "H5",
+      "mini": "小程序"
+    },
+    "modeAuto": "跟随通道路由",
+    "modeMethod": "指定支付方式",
+    "modeDirect": "直接指定",
+    "routeNotConfigured": "通道路由未配置",
+    "routeNoStrategy": "请先配置通道路由",
+    "autoModeHint": "按打开环境与网关支付形态（H5/小程序）自动选择支付方式，通道商户跟随通道路由，无需手动配置",
+    "defaultMethod": "默认支付方式",
+    "autoDerived": "默认支付方式",
+    "routeMode": "路由维度",
+    "goPayRoute": "去配置通道路由",
+    "method": "支付方式",
+    "routePreviewTitle": "通道路由命中预览",
+    "currentRouteMode": "当前通道路由",
+    "capabilityRuntimeDerived": "运行时由产品策略确定",
+    "openEnv": "打开环境",
+    "payForm": "形态",
+    "routeNotConfiguredShort": "未配置",
+    "routeGaps": "待补全",
+    "routeCoverage": "路由命中 {ok}/{total}",
+    "directModeHint": "按需为各环境的 H5、小程序指定通道商户和支付能力（可只配部分项），跳过通道路由",
+    "atLeastOneRequired": "请至少配置一项环境与形态",
+    "partialRowIncomplete": "通道商户与支付能力须同时填写",
+    "methodModeHint": "按需为各环境的 H5、小程序指定支付方式（可只配部分项），通道商户跟随通道路由"
+  }
+}

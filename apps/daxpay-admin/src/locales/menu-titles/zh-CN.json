@@ -104,5 +104,6 @@
   "menu.plugin": "扩展插件",
   "menu.plugin.easypay": "易支付",
   "menu.plugin.easypay.order": "易支付订单",
-  "menu.plugin.easypay.refund": "易支付退款"
+  "menu.plugin.easypay.refund": "易支付退款",
+  "menu.payment.merchant.gatewayPayConfig": "网关支付配置"
 }

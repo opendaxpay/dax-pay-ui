@@ -25,7 +25,8 @@
     "validationAppName": "앱 이름을 입력하세요.",
     "validationStatus": "상태를 선택해주세요",
     "payRoute": "채널 바인딩",
-    "aggregateScan": "종합 급여 구성",
+    "gatewayPayConfig": "게이트웨이 결제 구성",
+    "gatewayPayConfigDesc": "각 환경에서 QR코드 및 집계 결제의 채널 라우팅 구성",
     "notifyConfig": "비동기 알림 구성",
     "cashierConfig": "계산원 구성",
     "cashierConfigDesc": "출납원 항목 및 결제 방법 항목 구성",
@@ -39,7 +40,6 @@
     "groupManage": "앱 관리",
     "groupDanger": "위험지대",
     "payRouteDesc": "각 지갑(WeChat/Alipay/…)이 이 앱에 사용하는 채널 판매자를 선택하세요.",
-    "aggregateScanDesc": "집계 QR 구성 및 스캔으로 결제 방법 및 채널을 확인하는 방법",
     "notifyConfigDesc": "이벤트 콜백 URL 및 구독 구성",
     "editDesc": "앱 이름, 상태, 기본 정보 편집",
     "setDefaultDesc": "거래에 지정된 앱이 없을 때 사용됩니다.",
@@ -47,8 +47,6 @@
     "deleteDesc": "이 작업은 취소할 수 없습니다. 주의해서 진행하세요",
     "noActions": "사용 가능한 작업이 없습니다.",
     "openActionAria": "앱 구성 열기",
-    "codePayConfig": "QR Code Pay Config",
-    "codePayConfigDesc": "Configure QR code pay methods for H5 and mini program",
     "confirmDisableDefault": "이 앱은 기본 앱입니다. 비활성화하면 appId 미지정 주문의 폴백이 실패합니다. 비활성화할까요?"
   },
   "easypay": {

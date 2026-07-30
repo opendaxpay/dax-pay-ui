@@ -104,5 +104,6 @@
   "menu.plugin": "Extensions",
   "menu.plugin.easypay": "EasyPay",
   "menu.plugin.easypay.order": "EasyPay Orders",
-  "menu.plugin.easypay.refund": "EasyPay Refunds"
+  "menu.plugin.easypay.refund": "EasyPay Refunds",
+  "menu.payment.merchant.gatewayPayConfig": "Gateway Pay Config"
 }

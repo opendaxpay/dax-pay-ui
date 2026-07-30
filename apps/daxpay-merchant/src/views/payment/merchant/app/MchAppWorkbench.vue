@@ -75,22 +75,13 @@
         route: '/mch/route',
       });
     }
-    if (hasPermission(PermCodes.Merchant.GatewayAggregate.VIEW)) {
+    if (hasPermission(PermCodes.Merchant.GatewayPayConfig.VIEW)) {
       paymentCards.push({
-        key: 'aggregateScan',
-        title: $t('payment.merchant.app.app.aggregateScan'),
+        key: 'gatewayPayConfig',
+        title: $t('payment.merchant.app.app.gatewayPayConfig'),
         icon: 'ant-design:qrcode-outlined',
-        description: $t('payment.merchant.app.app.aggregateScanDesc'),
-        route: '/mch/aggregate',
-      });
-    }
-    if (hasPermission(PermCodes.Merchant.GatewayCode.VIEW)) {
-      paymentCards.push({
-        key: 'codePayConfig',
-        title: $t('payment.merchant.app.app.codePayConfig'),
-        icon: 'ant-design:mobile-outlined',
-        description: $t('payment.merchant.app.app.codePayConfigDesc'),
-        route: '/mch/code-config',
+        description: $t('payment.merchant.app.app.gatewayPayConfigDesc'),
+        route: '/mch/gateway-config',
       });
     }
     if (hasPermission(PermCodes.Merchant.GatewayCashier.VIEW)) {

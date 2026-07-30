@@ -104,5 +104,6 @@
   "menu.plugin": "Tiện ích mở rộng",
   "menu.plugin.easypay": "EasyPay",
   "menu.plugin.easypay.order": "Đơn hàng EasyPay",
-  "menu.plugin.easypay.refund": "Hoàn tiền EasyPay"
+  "menu.plugin.easypay.refund": "Hoàn tiền EasyPay",
+  "menu.payment.merchant.gatewayPayConfig": "Cấu hình thanh toán Gateway"
 }

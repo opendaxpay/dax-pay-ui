@@ -72,6 +72,11 @@ export const PermCodes = {
       VIEW: 'merchant:gateway-code:view',
       MANAGE: 'merchant:gateway-code:manage',
     },
+    /** 网关支付配置(码牌/聚合共用) menuCode=merchant:gateway-pay-config */
+    GatewayPayConfig: {
+      VIEW: 'merchant:gateway-pay-config:view',
+      MANAGE: 'merchant:gateway-pay-config:manage',
+    },
     GatewayCashier: {
       VIEW: 'merchant:gateway-cashier:view',
       MANAGE: 'merchant:gateway-cashier:manage',

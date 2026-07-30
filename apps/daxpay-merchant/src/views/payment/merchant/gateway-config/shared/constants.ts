@@ -1,41 +1,41 @@
-// 码牌支付策略配置深度（与后端 AggregateConfigLevelEnum 对齐）
-export const CODE_LEVEL = {
+// 网关支付配置深度（与后端 AggregateConfigLevelEnum 对齐, 码牌/聚合共用）
+export const GW_LEVEL = {
   AUTO: 'auto',
   METHOD: 'method',
   DIRECT: 'direct',
 } as const;
 
-export type CodeLevel = (typeof CODE_LEVEL)[keyof typeof CODE_LEVEL];
+export type GwLevel = (typeof GW_LEVEL)[keyof typeof GW_LEVEL];
 
 /** 支付形态 h5 / mini */
-export const CODE_PAY_FORM = {
+export const GW_PAY_FORM = {
   H5: 'h5',
   MINI: 'mini',
 } as const;
 
-export type CodePayForm = (typeof CODE_PAY_FORM)[keyof typeof CODE_PAY_FORM];
+export type GwPayForm = (typeof GW_PAY_FORM)[keyof typeof GW_PAY_FORM];
 
 /**
- * 码牌策略客户端环境
+ * 网关支付客户端环境
  * defaultMethod: AUTO 展示用，按 payForm 区分
  */
-export interface CodeClientEnvMeta {
+export interface GwClientEnvMeta {
   clientEnv: string;
   provider: string;
 }
 
-export const CODE_CLIENT_ENVS: CodeClientEnvMeta[] = [
+export const GW_CLIENT_ENVS: GwClientEnvMeta[] = [
   { clientEnv: 'wechat', provider: 'wechat' },
   { clientEnv: 'alipay', provider: 'alipay' },
   { clientEnv: 'union_pay', provider: 'union_pay' },
   { clientEnv: 'douyin', provider: 'douyin' },
 ];
 
-export const CODE_PAY_FORMS: CodePayForm[] = [CODE_PAY_FORM.H5, CODE_PAY_FORM.MINI];
+export const GW_PAY_FORMS: GwPayForm[] = [GW_PAY_FORM.H5, GW_PAY_FORM.MINI];
 
 /** AUTO 默认 method（与后端 CodePayFormEnum#defaultMethodCode 对齐） */
-export function defaultMethodFor(clientEnv: string, payForm: CodePayForm): string {
-  if (payForm === CODE_PAY_FORM.MINI) {
+export function defaultMethodFor(clientEnv: string, payForm: GwPayForm): string {
+  if (payForm === GW_PAY_FORM.MINI) {
     if (clientEnv === 'wechat') return 'wechat_mini';
     // 支付宝官方 JSAPI 即小程序场景, 小程序仅走 jsapi
     if (clientEnv === 'alipay') return 'alipay_jsapi';

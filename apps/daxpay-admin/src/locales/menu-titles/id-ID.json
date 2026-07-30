@@ -104,5 +104,6 @@
   "menu.plugin": "Ekstensi",
   "menu.plugin.easypay": "EasyPay",
   "menu.plugin.easypay.order": "Pesanan EasyPay",
-  "menu.plugin.easypay.refund": "Pengembalian EasyPay"
+  "menu.plugin.easypay.refund": "Pengembalian EasyPay",
+  "menu.payment.merchant.gatewayPayConfig": "Konfigurasi Pembayaran Gateway"
 }

@@ -104,5 +104,6 @@
   "menu.plugin": "Sambungan",
   "menu.plugin.easypay": "EasyPay",
   "menu.plugin.easypay.order": "Pesanan EasyPay",
-  "menu.plugin.easypay.refund": "Bayaran balik EasyPay"
+  "menu.plugin.easypay.refund": "Bayaran balik EasyPay",
+  "menu.payment.merchant.gatewayPayConfig": "Konfigurasi Pembayaran Gateway"
 }

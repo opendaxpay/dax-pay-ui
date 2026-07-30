@@ -42,5 +42,6 @@
   "menu.plugin": "擴展插件",
   "menu.plugin.easypay": "易支付",
   "menu.plugin.easypay.order": "易支付訂單",
-  "menu.plugin.easypay.refund": "易支付退款"
+  "menu.plugin.easypay.refund": "易支付退款",
+  "menu.payment.merchant.gatewayPayConfig": "網關支付配置"
 }

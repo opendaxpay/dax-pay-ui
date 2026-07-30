@@ -104,5 +104,6 @@
   "menu.plugin": "ส่วนขยาย",
   "menu.plugin.easypay": "EasyPay",
   "menu.plugin.easypay.order": "คำสั่งซื้อ EasyPay",
-  "menu.plugin.easypay.refund": "การคืนเงิน EasyPay"
+  "menu.plugin.easypay.refund": "การคืนเงิน EasyPay",
+  "menu.payment.merchant.gatewayPayConfig": "กำหนดค่าการชำระเงินเกตเวย์"
 }

@@ -104,5 +104,6 @@
   "menu.plugin": "확장 플러그인",
   "menu.plugin.easypay": "이지페이",
   "menu.plugin.easypay.order": "이지페이 주문",
-  "menu.plugin.easypay.refund": "이지페이 환불"
+  "menu.plugin.easypay.refund": "이지페이 환불",
+  "menu.payment.merchant.gatewayPayConfig": "게이트웨이 결제 구성"
 }

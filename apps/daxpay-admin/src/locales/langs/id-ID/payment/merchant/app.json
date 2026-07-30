@@ -25,7 +25,8 @@
     "validationAppName": "Silakan masukkan nama aplikasi",
     "validationStatus": "Silakan pilih status",
     "payRoute": "Pengikatan Saluran",
-    "aggregateScan": "Konfigurasi Pembayaran Agregat",
+    "gatewayPayConfig": "Konfigurasi Pembayaran Gateway",
+    "gatewayPayConfigDesc": "Konfigurasi routing kanal untuk pembayaran QR dan agregat di berbagai lingkungan",
     "notifyConfig": "Konfigurasi Pemberitahuan Async",
     "cashierConfig": "Konfigurasi Kasir",
     "cashierConfigDesc": "Konfigurasikan item kasir dan entri metode pembayaran",
@@ -39,7 +40,6 @@
     "groupManage": "Manajemen Aplikasi",
     "groupDanger": "Zona Bahaya",
     "payRouteDesc": "Pilih pedagang saluran mana yang digunakan setiap dompet (WeChat/Alipay/…) untuk aplikasi ini",
-    "aggregateScanDesc": "Konfigurasikan QR agregat dan cara pemindaian menyelesaikan metode dan saluran pembayaran",
     "notifyConfigDesc": "Konfigurasikan URL panggilan balik peristiwa dan langganan",
     "editDesc": "Edit nama aplikasi, status dan info dasar",
     "setDefaultDesc": "Digunakan ketika tidak ada aplikasi yang ditentukan untuk suatu transaksi",
@@ -47,8 +47,6 @@
     "deleteDesc": "Hal ini tidak dapat dibatalkan. Lanjutkan dengan hati-hati",
     "noActions": "Tidak ada tindakan yang tersedia",
     "openActionAria": "Buka konfigurasi aplikasi",
-    "codePayConfig": "QR Code Pay Config",
-    "codePayConfigDesc": "Configure QR code pay methods for H5 and mini program",
     "confirmDisableDefault": "Ini adalah aplikasi default. Menonaktifkannya akan membuat pesanan tanpa appId gagal sebagai cadangan. Lanjutkan?"
   },
   "easypay": {

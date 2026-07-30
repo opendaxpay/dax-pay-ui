@@ -3,22 +3,22 @@ import type { BaseEntity, ChannelMchOption, LabelValue, Result } from '#/types/w
 import { defHttp } from '#/api/request';
 
 /**
- * 码牌支付策略配置 API
- * 对接后端 GatewayCodeConfigAdminController
+ * 网关支付配置 API(码牌/聚合共用)
+ * 对接后端 GatewayPayConfigAdminController
  */
-export const CodeConfigApi = {
-  /** 按应用查询码牌支付配置 */
-  getByAppId(appId: string): Promise<Result<CodeConfigResult>> {
+export const GatewayPayConfigApi = {
+  /** 按应用查询网关支付配置 */
+  getByAppId(appId: string): Promise<Result<GatewayPayConfigResult>> {
     return defHttp.get({
-      url: '/admin/gateway/code-config/get-by-app-id',
+      url: '/admin/gateway/pay-config/get-by-app-id',
       params: { appId },
     });
   },
 
-  /** 保存或更新码牌支付配置 */
-  saveOrUpdate(data: CodeConfigParam): Promise<Result<void>> {
+  /** 保存或更新网关支付配置 */
+  saveOrUpdate(data: GatewayPayConfigParam): Promise<Result<void>> {
     return defHttp.post({
-      url: '/admin/gateway/code-config/save-or-update',
+      url: '/admin/gateway/pay-config/save-or-update',
       data,
     });
   },
@@ -28,7 +28,7 @@ export const CodeConfigApi = {
    */
   listDirectChannelMchCandidates(params: { mchNo: string; provider: string }): Promise<Result<ChannelMchOption[]>> {
     return defHttp.get({
-      url: '/admin/gateway/code-config/direct-channel-mch-candidates',
+      url: '/admin/gateway/pay-config/direct-channel-mch-candidates',
       params,
     });
   },
@@ -38,23 +38,25 @@ export const CodeConfigApi = {
    */
   listDirectCapabilityCandidates(channelMchNo: string): Promise<Result<LabelValue[]>> {
     return defHttp.get({
-      url: '/admin/gateway/code-config/direct-capability-candidates',
+      url: '/admin/gateway/pay-config/direct-capability-candidates',
       params: { channelMchNo },
     });
   },
 };
 
-/** 码牌支付策略配置结果 */
-export interface CodeConfigResult extends BaseEntity {
+/** 网关支付配置结果 */
+export interface GatewayPayConfigResult extends BaseEntity {
   appId?: string;
   mchNo?: string;
   /** 配置深度: auto/method/direct */
   level?: string;
-  clientEnvs?: CodeClientEnvResult[];
+  /** 是否自动拉起支付(码牌仅对固定金额生效) */
+  autoLaunch?: boolean;
+  clientEnvs?: GatewayPayClientEnvResult[];
 }
 
 /** 环境×形态配置结果 */
-export interface CodeClientEnvResult {
+export interface GatewayPayClientEnvResult {
   clientEnv?: string;
   /** h5 / mini */
   payForm?: string;
@@ -63,16 +65,18 @@ export interface CodeClientEnvResult {
   capability?: string;
 }
 
-/** 码牌支付策略配置参数 */
-export interface CodeConfigParam {
+/** 网关支付配置参数 */
+export interface GatewayPayConfigParam {
   mchNo: string;
   appId: string;
   level: string;
-  clientEnvs?: CodeClientEnvParam[];
+  /** 是否自动拉起支付 */
+  autoLaunch?: boolean;
+  clientEnvs?: GatewayPayClientEnvParam[];
 }
 
 /** 环境×形态配置参数 */
-export interface CodeClientEnvParam {
+export interface GatewayPayClientEnvParam {
   clientEnv?: string;
   payForm?: string;
   method?: string;
