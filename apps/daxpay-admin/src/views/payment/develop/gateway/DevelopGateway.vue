@@ -150,10 +150,10 @@
     form.appId = '';
     mchAppOptions.value = [];
     if (!form.mchNo) return;
-    // 应用列表
-    MchAppInfoApi.page({ mchNo: form.mchNo, size: 100 }).then(({ data }) => {
+    // 应用列表(仅启用状态)
+    MchAppInfoApi.enableList(form.mchNo).then(({ data }) => {
       mchAppOptions.value =
-        data?.records?.map((item) => ({
+        data?.map((item) => ({
           label: item.appName ? `${item.appName} (${item.appId})` : (item.appId ?? ''),
           value: item.appId ?? '',
         })) ?? [];

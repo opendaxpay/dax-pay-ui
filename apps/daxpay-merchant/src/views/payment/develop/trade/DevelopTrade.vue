@@ -187,7 +187,7 @@
   function loadAppOptions() {
     form.appId = '';
     mchAppOptions.value = [];
-    MchAppInfoApi.list().then(({ data }) => {
+    MchAppInfoApi.enableList().then(({ data }) => {
       mchAppOptions.value =
         data?.map((item) => ({
           label: item.appName ? `${item.appName} (${item.appId})` : (item.appId ?? ''),

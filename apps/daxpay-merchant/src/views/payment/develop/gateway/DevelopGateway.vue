@@ -149,11 +149,11 @@
     }
   }
 
-  /** 加载当前商户应用列表(商户端无需传 mchNo, 后端按登录态过滤) */
+  /** 加载当前商户启用应用列表(商户端无需传 mchNo, 后端按登录态过滤) */
   function loadAppOptions() {
     form.appId = '';
     mchAppOptions.value = [];
-    MchAppInfoApi.list().then(({ data }) => {
+    MchAppInfoApi.enableList().then(({ data }) => {
       mchAppOptions.value =
         data?.map((item) => ({
           label: item.appName ? `${item.appName} (${item.appId})` : (item.appId ?? ''),

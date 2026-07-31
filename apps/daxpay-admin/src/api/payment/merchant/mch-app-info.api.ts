@@ -14,6 +14,13 @@ export const MchAppInfoApi = {
   },
 
   /**
+   * 启用应用列表(下拉选择器用, 仅返回启用状态)
+   */
+  enableList(mchNo: string): Promise<Result<MchAppInfoResult[]>> {
+    return defHttp.get({ url: '/admin/mch/app-info/enable-list', params: { mchNo } });
+  },
+
+  /**
    * 根据 id 查询商户应用
    */
   get(id: string): Promise<Result<MchAppInfoResult>> {

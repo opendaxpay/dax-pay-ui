@@ -31,7 +31,7 @@
   // 门店下拉(随商户级联, 可空)
   const storeOptions = ref<LabelValue[]>([]);
 
-  const formState = ref<{ mchNo?: string; appId?: string; storeNo?: string }>({
+  const formState = ref<{ appId?: string; mchNo?: string; storeNo?: string }>({
     mchNo: undefined,
     appId: undefined,
     storeNo: undefined,
@@ -58,12 +58,8 @@
     if (!mchNo) {
       return;
     }
-    const { data } = await MchAppInfoApi.page({
-      mchNo,
-      current: 1,
-      size: 200,
-    });
-    appOptions.value = (data?.records || []).map((item) => {
+    const { data } = await MchAppInfoApi.enableList(mchNo);
+    appOptions.value = (data || []).map((item) => {
       const base = item.appName
         ? `${item.appName} (${item.appId})`
         : (item.appId as string);
