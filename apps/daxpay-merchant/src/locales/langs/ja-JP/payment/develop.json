@@ -301,6 +301,22 @@
       "openUrl": "開く",
       "orderNo": "プラットフォーム注文番号",
       "status": "ステータス",
+      "statusText": {
+        "wait_pay": "待っている",
+        "paying": "支払中",
+        "paid": "有料",
+        "failed": "支払失敗",
+        "closed": "閉店",
+        "expired": "期限切れ"
+      },
+      "statusColor": {
+        "wait_pay": "orange",
+        "paying": "processing",
+        "paid": "green",
+        "failed": "red",
+        "closed": "default",
+        "expired": "red"
+      },
       "rawResponse": "完全なDaxResultレスポンス",
       "copyFull": "完全なレスポンスをコピー",
       "gatewayType": "注文タイプ"

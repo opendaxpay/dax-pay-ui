@@ -301,6 +301,22 @@
       "openUrl": "開啟",
       "orderNo": "平台網關單號",
       "status": "業務狀態",
+      "statusText": {
+        "wait_pay": "待支付",
+        "paying": "支付中",
+        "paid": "已支付",
+        "failed": "支付失敗",
+        "closed": "已關閉",
+        "expired": "已過期"
+      },
+      "statusColor": {
+        "wait_pay": "orange",
+        "paying": "processing",
+        "paid": "green",
+        "failed": "red",
+        "closed": "default",
+        "expired": "red"
+      },
       "rawResponse": "完整 DaxResult 回應",
       "copyFull": "複製完整回應",
       "gatewayType": "下單類型"

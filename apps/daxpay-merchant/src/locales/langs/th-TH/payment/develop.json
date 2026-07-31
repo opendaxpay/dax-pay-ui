@@ -301,6 +301,22 @@
       "openUrl": "เปิด",
       "orderNo": "เลขที่คำสั่งแพลตฟอร์ม",
       "status": "สถานะ",
+      "statusText": {
+        "wait_pay": "ซึ่งรอคอย",
+        "paying": "Paying",
+        "paid": "จ่าย",
+        "failed": "Failed",
+        "closed": "ปิด",
+        "expired": "หมดอายุแล้ว"
+      },
+      "statusColor": {
+        "wait_pay": "orange",
+        "paying": "processing",
+        "paid": "green",
+        "failed": "red",
+        "closed": "default",
+        "expired": "red"
+      },
       "rawResponse": "การตอบสนอง DaxResult แบบเต็ม",
       "copyFull": "คัดลอกการตอบสนองแบบเต็ม",
       "gatewayType": "ประเภทคำสั่งซื้อ"

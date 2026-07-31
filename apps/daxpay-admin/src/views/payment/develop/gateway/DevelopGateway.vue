@@ -353,6 +353,28 @@
   /** 结果中的小程序映射 URL */
   const miniUrl = computed(() => prePayResult.value?.miniUrl ?? '');
 
+  /** 业务状态中文文案(未知码兜底原文) */
+  const statusText = computed(() => {
+    const status = prePayResult.value?.status;
+    if (!status) {
+      return '-';
+    }
+    const key = `payment.develop.gateway.result.statusText.${status}`;
+    const text = $t(key);
+    return text && text !== key ? text : status;
+  });
+
+  /** 业务状态标签颜色(未知码兜底 default) */
+  const statusColor = computed(() => {
+    const status = prePayResult.value?.status;
+    if (!status) {
+      return 'default';
+    }
+    const key = `payment.develop.gateway.result.statusColor.${status}`;
+    const color = $t(key);
+    return color && color !== key ? color : 'default';
+  });
+
   /** 在新窗口打开指定链接 */
   function openGatewayUrl(url: string) {
     if (url) {
@@ -753,7 +775,7 @@
             {{ prePayResult.orderNo }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.develop.gateway.result.status')">
-            {{ prePayResult.status }}
+            <a-tag :color="statusColor">{{ statusText }}</a-tag>
           </a-descriptions-item>
         </a-descriptions>
       </div>

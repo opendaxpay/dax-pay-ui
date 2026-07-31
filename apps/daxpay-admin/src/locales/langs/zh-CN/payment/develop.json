@@ -301,6 +301,22 @@
       "openUrl": "打开",
       "orderNo": "平台网关单号",
       "status": "业务状态",
+      "statusText": {
+        "wait_pay": "待支付",
+        "paying": "支付中",
+        "paid": "已支付",
+        "failed": "支付失败",
+        "closed": "已关闭",
+        "expired": "已过期"
+      },
+      "statusColor": {
+        "wait_pay": "orange",
+        "paying": "processing",
+        "paid": "green",
+        "failed": "red",
+        "closed": "default",
+        "expired": "red"
+      },
       "rawResponse": "完整 DaxResult 响应",
       "copyFull": "复制完整响应",
       "gatewayType": "下单类型"

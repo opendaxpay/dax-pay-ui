@@ -301,6 +301,22 @@
       "openUrl": "Buka",
       "orderNo": "No. Pesanan Platform",
       "status": "Status",
+      "statusText": {
+        "wait_pay": "Menunggu",
+        "paying": "Paying",
+        "paid": "Dibayar",
+        "failed": "Failed",
+        "closed": "tertutup",
+        "expired": "Tamat tempoh"
+      },
+      "statusColor": {
+        "wait_pay": "orange",
+        "paying": "processing",
+        "paid": "green",
+        "failed": "red",
+        "closed": "default",
+        "expired": "red"
+      },
       "rawResponse": "Respons DaxResult Penuh",
       "copyFull": "Salin Respons Penuh",
       "gatewayType": "Jenis Pesanan"

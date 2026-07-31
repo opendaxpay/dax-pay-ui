@@ -301,6 +301,22 @@
       "openUrl": "Mở",
       "orderNo": "Số đơn hàng nền tảng",
       "status": "Trạng thái",
+      "statusText": {
+        "wait_pay": "Chờ",
+        "paying": "Paying",
+        "paid": "Trả",
+        "failed": "Failed",
+        "closed": "Đã đóng",
+        "expired": "Hết hạn"
+      },
+      "statusColor": {
+        "wait_pay": "orange",
+        "paying": "processing",
+        "paid": "green",
+        "failed": "red",
+        "closed": "default",
+        "expired": "red"
+      },
       "rawResponse": "Phản hồi DaxResult đầy đủ",
       "copyFull": "Sao chép phản hồi đầy đủ",
       "gatewayType": "Loại Đơn Hàng"

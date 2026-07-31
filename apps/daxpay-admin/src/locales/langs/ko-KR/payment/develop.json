@@ -301,6 +301,22 @@
       "openUrl": "열기",
       "orderNo": "플랫폼 주문번호",
       "status": "상태",
+      "statusText": {
+        "wait_pay": "대기 중",
+        "paying": "결제 중",
+        "paid": "유급의",
+        "failed": "결제 실패",
+        "closed": "닫은",
+        "expired": "만료됨"
+      },
+      "statusColor": {
+        "wait_pay": "orange",
+        "paying": "processing",
+        "paid": "green",
+        "failed": "red",
+        "closed": "default",
+        "expired": "red"
+      },
       "rawResponse": "전체 DaxResult 응답",
       "copyFull": "전체 응답 복사",
       "gatewayType": "주문 유형"

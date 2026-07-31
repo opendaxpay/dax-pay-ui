@@ -301,6 +301,22 @@
       "openUrl": "Open",
       "orderNo": "Platform Order No.",
       "status": "Status",
+      "statusText": {
+        "wait_pay": "Waiting",
+        "paying": "Paying",
+        "paid": "Paid",
+        "failed": "Failed",
+        "closed": "Closed",
+        "expired": "Expired"
+      },
+      "statusColor": {
+        "wait_pay": "orange",
+        "paying": "processing",
+        "paid": "green",
+        "failed": "red",
+        "closed": "default",
+        "expired": "red"
+      },
       "rawResponse": "Full DaxResult Response",
       "copyFull": "Copy Full Response",
       "gatewayType": "Order Type"
