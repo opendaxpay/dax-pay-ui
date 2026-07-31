@@ -159,6 +159,29 @@
             <a-switch v-model:checked="formState.riskEnabled" :disabled="!isEditing" />
           </div>
 
+          <!-- 海外 IP 拦截 -->
+          <div class="config-item">
+            <div class="config-item__main">
+              <!-- 海外 IP 拦截标签 -->
+              <div class="config-item__label">{{
+                $t('system.security.pay-security.risk.blockOverseasIp.label')
+              }}</div>
+              <!-- 海外 IP 拦截描述 -->
+              <div class="config-item__desc">{{ $t('system.security.pay-security.risk.blockOverseasIp.desc') }}</div>
+            </div>
+            <a-switch
+              v-model:checked="formState.blockOverseasIp"
+              :disabled="!isEditing || !formState.riskEnabled"
+            />
+          </div>
+        </div>
+
+        <!-- 拦截策略 -->
+        <div class="config-section">
+          <div class="config-section__title">
+            {{ $t('system.security.pay-security.risk.section.strategy') }}
+          </div>
+
           <div class="config-item">
             <div class="config-item__main">
               <!-- 命中阻断下单标签 -->
@@ -188,13 +211,6 @@
               :disabled="!isEditing || !formState.riskEnabled"
             />
           </div>
-        </div>
-
-        <!-- 拦截策略 -->
-        <div class="config-section">
-          <div class="config-section__title">
-            {{ $t('system.security.pay-security.risk.section.strategy') }}
-          </div>
 
           <!-- 用户标识拦截级别 -->
           <div class="config-item">
@@ -220,22 +236,6 @@
                 {{ $t('system.security.pay-security.risk.riskOpenIdLevel.enhanced') }}
               </a-radio-button>
             </a-radio-group>
-          </div>
-
-          <!-- 海外 IP 拦截（占位, 后续接入） -->
-          <div class="config-item">
-            <div class="config-item__main">
-              <!-- 海外 IP 拦截标签 -->
-              <div class="config-item__label">{{
-                $t('system.security.pay-security.risk.blockOverseasIp.label')
-              }}</div>
-              <!-- 海外 IP 拦截描述 -->
-              <div class="config-item__desc">{{ $t('system.security.pay-security.risk.blockOverseasIp.desc') }}</div>
-            </div>
-            <!-- 海外 IP 拦截: 后续版本接入, 当前禁用 -->
-            <a-tooltip :title="$t('system.security.pay-security.risk.blockOverseasIp.comingSoon')">
-              <a-switch v-model:checked="formState.blockOverseasIp" disabled />
-            </a-tooltip>
           </div>
         </div>
       </a-form>
