@@ -115,7 +115,7 @@
         </a-descriptions-item>
         <!-- 注册时间 -->
         <a-descriptions-item :label="$t('iam.user.field.registerTime')">
-          {{ formatDateTime(userInfo.createTime) || '-' }}
+          {{ formatDateTime(userInfo.createTime ?? undefined) || '-' }}
         </a-descriptions-item>
         <!-- 最后登录时间 -->
         <a-descriptions-item :label="$t('iam.user.field.lastLoginTime')">

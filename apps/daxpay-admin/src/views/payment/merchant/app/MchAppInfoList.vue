@@ -170,7 +170,7 @@
         <div class="app-card-grid">
           <MchAppInfoCard
             v-for="row in sortedAppList"
-            :key="row.id"
+            :key="row.id ?? ''"
             :mch-no="mchNo"
             :record="row"
             @open="openAppWorkbench(row)"

@@ -10,7 +10,6 @@
 
   const { confirm, message } = useMessage();
 
-  const formRef = ref();
   const loading = ref(false);
   const saving = ref(false);
   // 是否处于编辑状态
@@ -116,7 +115,7 @@
         <div class="module-overview__desc">{{ $t('system.sensitiveWord.config.description') }}</div>
       </div>
 
-      <a-form ref="formRef" :model="formState" layout="vertical" class="module-form">
+      <a-form :model="formState" layout="vertical" class="module-form">
         <div class="config-section">
           <!-- 过滤策略 -->
           <div class="config-section__title">{{ $t('system.sensitiveWord.config.section.policy') }}</div>

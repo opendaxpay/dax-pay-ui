@@ -1,6 +1,5 @@
 <script lang="ts" setup>
   import type { PasswordPolicyValidateConfig } from '#/api/system/security.api';
-  import type { LabelValue } from '#/types/web';
 
   import { computed, onMounted, ref } from 'vue';
 
@@ -10,14 +9,12 @@
   import { SecurityApi } from '#/api/system/security.api';
   import { InputPassword } from '#/components/input-password';
   import { useMessage } from '#/hooks/useMessage';
-  import { useValidate } from '#/hooks/useValidate';
   import { generateAccountRules, generatePasswordRules } from '#/utils/password-validator';
   import { encryptPassword } from '#/utils/rsa-encrypt';
 
   const emit = defineEmits(['ok']);
 
   const { message } = useMessage();
-  const { useDebounceValidator } = useValidate();
 
   const formRef = ref();
   const visible = ref(false);

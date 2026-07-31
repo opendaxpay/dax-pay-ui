@@ -138,7 +138,7 @@
    * Tab 切换处理
    */
   function handleTabChange(key: string) {
-    activeTab.value = key;
+    activeTab.value = key as ClientCode;
     const tabItem = tabItems.value.find((item) => item.key === key);
     queryForm.value.clientCode = tabItem?.clientCode || '';
     // 只有运营端才显示新增按钮

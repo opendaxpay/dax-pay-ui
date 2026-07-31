@@ -15,6 +15,10 @@ export interface MerchantUserQuery {
   account?: string;
   /** 状态 */
   status?: string;
+  /** 当前页 */
+  current?: number;
+  /** 每页条数 */
+  size?: number;
 }
 
 /**
@@ -79,6 +83,18 @@ export interface UserInfoResult extends BaseEntity {
 }
 
 /**
+ * 商户用户详情(含登录信息)
+ */
+export interface MerchantUserDetail extends MerchantUserResult {
+  /** 最后登录时间 */
+  lastLoginTime?: string;
+  /** 登录次数 */
+  loginCount?: number;
+  /** 最后登录IP */
+  lastLoginIp?: string;
+}
+
+/**
  * 商户用户管理 API
  */
 export const MerchantUserApi = {
@@ -92,7 +108,7 @@ export const MerchantUserApi = {
   /**
    * 根据ID查询用户详情
    */
-  findById(id: string): Promise<Result<UserInfoResult>> {
+  findById(id: string): Promise<Result<MerchantUserDetail>> {
     return defHttp.get({ url: '/merchant/user/get', params: { id } });
   },
 

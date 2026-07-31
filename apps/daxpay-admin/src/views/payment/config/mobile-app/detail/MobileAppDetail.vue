@@ -12,6 +12,7 @@
     type AlipayMiniAppConfig,
     type DyMiniAppConfig,
     type MobileAppParam,
+    type MobileAppResult,
     type WxMiniAppConfig,
     MobileAppApi,
   } from '#/api/payment/mobile-app.api';
@@ -436,7 +437,7 @@
   /**
    * 从接口结果填充表单嵌套
    */
-  function applyResultNested(platform: string, item: MobileAppParam) {
+  function applyResultNested(platform: string, item: MobileAppResult) {
     const form = formDataMap[platform];
     if (!form) return;
     if (platform === 'wx_mini') {
@@ -482,7 +483,7 @@
       for (const item of data || []) {
         if (item.platform && formDataMap[item.platform]) {
           const form = formDataMap[item.platform]!;
-          form.id = item.id;
+          form.id = item.id ?? undefined;
           form.notifyConfig = item.notifyConfig;
           form.bindingEnabled = item.bindingEnabled;
           form.enabled = item.enabled;

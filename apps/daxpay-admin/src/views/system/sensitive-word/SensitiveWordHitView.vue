@@ -75,7 +75,7 @@
         </a-descriptions-item>
         <!-- 命中时间 -->
         <a-descriptions-item :label="$t('system.sensitiveWord.hit.field.createTime')">
-          {{ formatDateTime(detail.createTime) || '-' }}
+          {{ formatDateTime(detail.createTime ?? undefined) || '-' }}
         </a-descriptions-item>
         <!-- 原文摘要 -->
         <a-descriptions-item :label="$t('system.sensitiveWord.hit.field.contentPreview')" :span="2">

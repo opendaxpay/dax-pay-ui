@@ -27,7 +27,7 @@ export const S3FileUploadApi = {
    * 删除文件
    */
   deleteFile(fileId: number): Promise<Result<void>> {
-    return defHttp.delete({ url: `/file/platform/${file-id}` });
+    return defHttp.delete({ url: `/file/platform/${fileId}` });
   },
 };
 

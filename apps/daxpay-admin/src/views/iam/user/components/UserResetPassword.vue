@@ -58,6 +58,7 @@
    */
   async function show(ids: string[]) {
     userIds.value = ids;
+    resetForm();
     // 获取密码策略配置
     const { data } = await SecurityApi.getPasswordPolicyValidateConfig();
     passwordConfig.value = data;
