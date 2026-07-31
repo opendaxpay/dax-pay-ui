@@ -295,12 +295,15 @@
       "modalTitle": "預下單結果 (unipay)",
       "failModalTitle": "預下單失敗 (unipay)",
       "url": "網關落地頁 URL",
+      "h5Url": "網關落地頁 URL",
+      "miniUrl": "小程序映射連結",
       "copyUrl": "複製連結",
       "openUrl": "打開",
       "orderNo": "平台網關單號",
       "status": "業務狀態",
       "rawResponse": "完整 DaxResult 響應",
-      "copyFull": "複製完整響應"
+      "copyFull": "複製完整響應",
+      "gatewayType": "下單類型"
     },
     "rule": {
       "mchNo": "請選擇商戶",

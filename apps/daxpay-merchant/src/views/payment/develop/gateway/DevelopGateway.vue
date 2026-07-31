@@ -93,6 +93,18 @@
   // ===== 调试结果(完整 unipay DaxResult) =====
   const resultVisible = ref(false);
   const resultData = ref<DaxResult<GatewayPrePayResult>>({ code: 0 });
+  // 下单类型快照(提交时记录, 失败弹窗无 data 时兜底展示)
+  const submitGatewayPayType = ref('cashier');
+  // 展示类型: 优先后端返回的实际生效类型, 失败场景回退本次请求类型
+  const displayGatewayPayType = computed(() => prePayResult.value?.gatewayType ?? submitGatewayPayType.value);
+  // 是否聚合扫码下单
+  const isAggregateOrder = computed(() => displayGatewayPayType.value === 'aggregate');
+  // 下单类型名称
+  const gatewayTypeLabel = computed(() =>
+    isAggregateOrder.value
+      ? $t('payment.develop.gateway.gatewayType.aggregate')
+      : $t('payment.develop.gateway.gatewayType.cashier'),
+  );
   // 业务失败(code≠0)时仍弹窗看完整响应, 用失败标题/Alert 区分成功态
   const resultSuccess = computed(() => resultData.value?.code === 0);
   // 结果弹窗标题: 成功「预下单结果」/ 失败「预下单失败」
@@ -280,6 +292,8 @@
     try {
       // 组参(含 reqTime/nonceStr)
       const payload = buildPayload();
+      // 快照下单类型, 结果弹窗据此展示(表单可能随后被改动)
+      submitGatewayPayType.value = payload.gatewayPayType || 'cashier';
       // 商户端签名(与 Java PaySignUtil 一致; 失败由 defHttp toast 并 throw)
       const { data: signRes } = await DevelopGatewayApi.sign({
         param: payload,
@@ -335,13 +349,15 @@
   // ===== 结果展示 =====
   /** unipay 业务 data */
   const prePayResult = computed(() => resultData.value.data);
-  /** 结果中的落地页 URL */
-  const gatewayUrl = computed(() => prePayResult.value?.url ?? '');
+  /** 结果中的 H5 落地页 URL */
+  const h5Url = computed(() => prePayResult.value?.h5Url ?? '');
+  /** 结果中的小程序映射 URL */
+  const miniUrl = computed(() => prePayResult.value?.miniUrl ?? '');
 
-  /** 在新窗口打开落地页 */
-  function openGatewayUrl() {
-    if (gatewayUrl.value) {
-      window.open(gatewayUrl.value, '_blank');
+  /** 在新窗口打开指定链接 */
+  function openGatewayUrl(url: string) {
+    if (url) {
+      window.open(url, '_blank');
     }
   }
 
@@ -628,50 +644,103 @@
     </a-modal>
 
     <!-- 调试结果弹窗(完整 unipay DaxResult; 失败也弹窗便于联调) -->
-    <a-modal v-model:open="resultVisible" :title="resultModalTitle" :footer="null" :width="640" destroy-on-hidden>
+    <a-modal v-model:open="resultVisible" :title="resultModalTitle" :footer="null" :width="900" destroy-on-hidden>
       <!-- 业务失败: 顶部错误提示(文案取 DaxResult.msg) -->
       <div v-if="!resultSuccess" class="mb-3">
         <a-alert type="error" show-icon :message="resultData.msg || $t('payment.develop.gateway.msg.prePayFail')" />
       </div>
-      <template v-if="gatewayUrl">
-        <div class="flex flex-col items-center">
-          <!-- 落地页 URL 二维码(扫码进入收银台/聚合页测试) -->
-          <div class="mb-3 rounded-lg border border-border bg-card p-1 shadow-sm">
-            <QrCode :value="gatewayUrl" :width="240" />
+      <!-- 下单类型(快照自提交参数, 区分统一收银台/聚合扫码) -->
+      <div class="mb-3 flex items-center gap-2">
+        <span class="text-sm text-muted-foreground">
+          {{ $t('payment.develop.gateway.result.gatewayType') }}
+        </span>
+        <a-tag :color="isAggregateOrder ? 'processing' : 'success'">
+          {{ gatewayTypeLabel }}
+        </a-tag>
+      </div>
+      <div v-if="h5Url || miniUrl" class="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
+        <!-- H5 落地页 URL 二维码(扫码进入收银台/聚合页测试) -->
+        <div v-if="h5Url" class="min-w-0">
+          <div class="mb-3 flex justify-center">
+            <div class="rounded-lg border border-border bg-card p-1 shadow-sm">
+              <QrCode :value="h5Url" :width="220" />
+            </div>
           </div>
-          <div class="w-full">
+          <div class="mb-3 w-full">
             <div class="mb-1 flex items-center justify-between">
-              <span class="text-xs font-medium text-muted-foreground">
-                {{ $t('payment.develop.gateway.result.url') }}
+              <span class="flex items-center gap-1.5">
+                <span class="text-xs font-medium text-muted-foreground">
+                  <!-- H5 链接 -->
+                  {{ $t('payment.develop.gateway.result.h5Url') }}
+                </span>
+                <a-tag size="small" :color="isAggregateOrder ? 'processing' : 'success'">
+                  {{ gatewayTypeLabel }}
+                </a-tag>
               </span>
               <div class="flex gap-1">
-                <a-button size="small" type="link" @click="copyText(gatewayUrl)">
+                <a-button size="small" type="link" @click="copyText(h5Url)">
                   <IconifyIcon icon="ant-design:copy-outlined" />
                   {{ $t('payment.develop.gateway.result.copyUrl') }}
                 </a-button>
-                <a-button size="small" type="link" @click="openGatewayUrl">
+                <a-button size="small" type="link" @click="openGatewayUrl(h5Url)">
                   <IconifyIcon icon="ant-design:export-outlined" />
                   {{ $t('payment.develop.gateway.result.openUrl') }}
                 </a-button>
               </div>
             </div>
-            <div class="code-box mb-3 break-all rounded-lg border border-border bg-muted/40 p-3 text-xs">
-              {{ gatewayUrl }}
+            <div class="code-box break-all rounded-lg border border-border bg-muted/40 p-3 text-xs">
+              {{ h5Url }}
             </div>
           </div>
-          <!-- 订单号与状态 -->
-          <div v-if="prePayResult" class="w-full">
-            <a-descriptions size="small" :column="2" bordered>
-              <a-descriptions-item :label="$t('payment.develop.gateway.result.orderNo')">
-                {{ prePayResult.orderNo }}
-              </a-descriptions-item>
-              <a-descriptions-item :label="$t('payment.develop.gateway.result.status')">
-                {{ prePayResult.status }}
-              </a-descriptions-item>
-            </a-descriptions>
+        </div>
+
+        <!-- 小程序映射 URL 二维码(扫码拉起对应小程序) -->
+        <div v-if="miniUrl" class="min-w-0">
+          <div class="mb-3 flex justify-center">
+            <div class="rounded-lg border border-border bg-card p-1 shadow-sm">
+              <QrCode :value="miniUrl" :width="220" />
+            </div>
+          </div>
+          <div class="mb-3 w-full">
+            <div class="mb-1 flex items-center justify-between">
+              <span class="flex items-center gap-1.5">
+                <span class="text-xs font-medium text-muted-foreground">
+                  <!-- 小程序映射链接 -->
+                  {{ $t('payment.develop.gateway.result.miniUrl') }}
+                </span>
+                <a-tag size="small" :color="isAggregateOrder ? 'processing' : 'success'">
+                  {{ gatewayTypeLabel }}
+                </a-tag>
+              </span>
+              <div class="flex gap-1">
+                <a-button size="small" type="link" @click="copyText(miniUrl)">
+                  <IconifyIcon icon="ant-design:copy-outlined" />
+                  {{ $t('payment.develop.gateway.result.copyUrl') }}
+                </a-button>
+                <a-button size="small" type="link" @click="openGatewayUrl(miniUrl)">
+                  <IconifyIcon icon="ant-design:export-outlined" />
+                  {{ $t('payment.develop.gateway.result.openUrl') }}
+                </a-button>
+              </div>
+            </div>
+            <div class="code-box break-all rounded-lg border border-border bg-muted/40 p-3 text-xs">
+              {{ miniUrl }}
+            </div>
           </div>
         </div>
-      </template>
+      </div>
+
+      <!-- 订单号与状态 -->
+      <div v-if="prePayResult" class="mt-3 w-full">
+        <a-descriptions size="small" :column="2" bordered>
+          <a-descriptions-item :label="$t('payment.develop.gateway.result.orderNo')">
+            {{ prePayResult.orderNo }}
+          </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.develop.gateway.result.status')">
+            {{ prePayResult.status }}
+          </a-descriptions-item>
+        </a-descriptions>
+      </div>
 
       <!-- 完整 DaxResult(联调对照文档) -->
       <div class="mb-1 mt-2 text-xs font-medium text-muted-foreground">

@@ -295,12 +295,15 @@
       "modalTitle": "Keputusan Pra-bayar (unipay)",
       "failModalTitle": "Pra-bayar Gagal (unipay)",
       "url": "URL Halaman Pendarat Gateway",
+      "h5Url": "URL Halaman Pendarat Gateway",
+      "miniUrl": "URL Pemetaan Mini-program",
       "copyUrl": "Salin URL",
       "openUrl": "Buka",
       "orderNo": "No. Pesanan Platform",
       "status": "Status",
       "rawResponse": "Respons DaxResult Penuh",
-      "copyFull": "Salin Respons Penuh"
+      "copyFull": "Salin Respons Penuh",
+      "gatewayType": "Jenis Pesanan"
     },
     "rule": {
       "mchNo": "Sila pilih merchant",

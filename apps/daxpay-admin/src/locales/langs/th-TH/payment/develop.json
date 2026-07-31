@@ -295,12 +295,15 @@
       "modalTitle": "ผลคำสั่งซื้อล่วงหน้า (unipay)",
       "failModalTitle": "คำสั่งซื้อล่วงหน้าล้มเหลว (unipay)",
       "url": "URL หน้าเกตเวย์",
+      "h5Url": "URL หน้าเกตเวย์",
+      "miniUrl": "URL แมปมินิโปรแกรม",
       "copyUrl": "คัดลอก URL",
       "openUrl": "เปิด",
       "orderNo": "เลขที่คำสั่งแพลตฟอร์ม",
       "status": "สถานะ",
       "rawResponse": "การตอบสนอง DaxResult แบบเต็ม",
-      "copyFull": "คัดลอกการตอบสนองแบบเต็ม"
+      "copyFull": "คัดลอกการตอบสนองแบบเต็ม",
+      "gatewayType": "ประเภทคำสั่งซื้อ"
     },
     "rule": {
       "mchNo": "กรุณาเลือกร้านค้า",

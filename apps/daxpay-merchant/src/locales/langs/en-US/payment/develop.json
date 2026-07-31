@@ -295,12 +295,15 @@
       "modalTitle": "Pre-pay Result (unipay)",
       "failModalTitle": "Pre-pay Failed (unipay)",
       "url": "Gateway Landing Page URL",
+      "h5Url": "Gateway Landing Page URL",
+      "miniUrl": "Mini-program Mapping URL",
       "copyUrl": "Copy URL",
       "openUrl": "Open",
       "orderNo": "Platform Order No.",
       "status": "Status",
       "rawResponse": "Full DaxResult Response",
-      "copyFull": "Copy Full Response"
+      "copyFull": "Copy Full Response",
+      "gatewayType": "Order Type"
     },
     "rule": {
       "mchNo": "Please select a merchant",

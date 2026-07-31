@@ -295,12 +295,15 @@
       "modalTitle": "Kết quả đặt trước (unipay)",
       "failModalTitle": "Đặt trước thất bại (unipay)",
       "url": "URL trang đích cổng",
+      "h5Url": "URL trang đích cổng",
+      "miniUrl": "URL liên kết mini-program",
       "copyUrl": "Sao chép URL",
       "openUrl": "Mở",
       "orderNo": "Số đơn hàng nền tảng",
       "status": "Trạng thái",
       "rawResponse": "Phản hồi DaxResult đầy đủ",
-      "copyFull": "Sao chép phản hồi đầy đủ"
+      "copyFull": "Sao chép phản hồi đầy đủ",
+      "gatewayType": "Loại Đơn Hàng"
     },
     "rule": {
       "mchNo": "Vui lòng chọn merchant",

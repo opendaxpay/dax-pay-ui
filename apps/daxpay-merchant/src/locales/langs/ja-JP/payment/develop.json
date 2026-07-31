@@ -295,12 +295,15 @@
       "modalTitle": "事前注文結果 (unipay)",
       "failModalTitle": "事前注文失敗 (unipay)",
       "url": "ゲートウェイランディングURL",
+      "h5Url": "ゲートウェイランディングURL",
+      "miniUrl": "ミニプログラム連携URL",
       "copyUrl": "URLコピー",
       "openUrl": "開く",
       "orderNo": "プラットフォーム注文番号",
       "status": "ステータス",
       "rawResponse": "完全なDaxResultレスポンス",
-      "copyFull": "完全なレスポンスをコピー"
+      "copyFull": "完全なレスポンスをコピー",
+      "gatewayType": "注文タイプ"
     },
     "rule": {
       "mchNo": "マーチャントを選択してください",

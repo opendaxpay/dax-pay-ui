@@ -295,12 +295,15 @@
       "modalTitle": "预下单结果 (unipay)",
       "failModalTitle": "预下单失败 (unipay)",
       "url": "网关落地页 URL",
+      "h5Url": "网关落地页 URL",
+      "miniUrl": "小程序映射链接",
       "copyUrl": "复制链接",
       "openUrl": "打开",
       "orderNo": "平台网关单号",
       "status": "业务状态",
       "rawResponse": "完整 DaxResult 响应",
-      "copyFull": "复制完整响应"
+      "copyFull": "复制完整响应",
+      "gatewayType": "下单类型"
     },
     "rule": {
       "mchNo": "请选择商户",

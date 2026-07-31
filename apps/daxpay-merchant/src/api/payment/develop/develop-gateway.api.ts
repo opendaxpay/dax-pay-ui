@@ -78,8 +78,12 @@ export interface GatewayPrePayResult {
   bizOrderNo?: string;
   /** 业务状态 */
   status?: string;
+  /** 网关支付类型(实际生效类型; 幂等命中时为已有订单的类型) */
+  gatewayType?: string;
   /** 网关落地页 URL */
-  url?: string;
+  h5Url?: string;
+  /** 小程序映射 URL */
+  miniUrl?: string;
   /** 过期时间 */
   expiredTime?: string;
 }

@@ -295,12 +295,15 @@
       "modalTitle": "사전 주문 결과 (unipay)",
       "failModalTitle": "사전 주문 실패 (unipay)",
       "url": "게이트웨이 랜딩 URL",
+      "h5Url": "게이트웨이 랜딩 URL",
+      "miniUrl": "미니프로그램 매핑 URL",
       "copyUrl": "URL 복사",
       "openUrl": "열기",
       "orderNo": "플랫폼 주문번호",
       "status": "상태",
       "rawResponse": "전체 DaxResult 응답",
-      "copyFull": "전체 응답 복사"
+      "copyFull": "전체 응답 복사",
+      "gatewayType": "주문 유형"
     },
     "rule": {
       "mchNo": "가맹점을 선택해 주세요",
