@@ -14,7 +14,9 @@
     "apiVersion": "APIバージョン",
     "addTime": "返金発起時間",
     "endTime": "返金完了時間",
-    "createTime": "作成時間"
+    "createTime": "作成時間",
+    "merchant": "マーチャント",
+    "appId": "アプリID"
   },
   "placeholder": {
     "refundNo": "プラットフォーム返金番号を入力",
@@ -24,7 +26,9 @@
   },
   "status": {
     "0": "処理中/失敗",
-    "1": "返金成功"
+    "1": "返金成功",
+    "success": "返金成功",
+    "progress": "処理中/失敗"
   },
   "statusColor": {
     "0": "orange",
@@ -38,6 +42,8 @@
   },
   "section": {
     "basic": "返金情報",
-    "time": "時間情報"
+    "time": "時間情報",
+    "refund": "返金情報",
+    "app": "アプリ・プロトコル"
   }
 }

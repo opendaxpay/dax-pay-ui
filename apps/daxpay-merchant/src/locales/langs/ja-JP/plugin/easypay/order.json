@@ -23,7 +23,9 @@
     "pcCallType": "PC呼出方式",
     "payUrl": "支払いリンク",
     "payBody": "支払いパラメータ",
-    "createTime": "作成時間"
+    "createTime": "作成時間",
+    "merchant": "マーチャント",
+    "appId": "アプリID"
   },
   "placeholder": {
     "outTradeNo": "マーチャント注文番号を入力",
@@ -32,7 +34,9 @@
   },
   "status": {
     "0": "未支払い",
-    "1": "支払済"
+    "1": "支払済",
+    "success": "支払済",
+    "pending": "未支払い"
   },
   "statusColor": {
     "0": "orange",
@@ -56,6 +60,9 @@
   "section": {
     "basic": "注文情報",
     "time": "時間情報",
-    "extra": "支払いと拡張"
+    "extra": "支払いと拡張",
+    "order": "注文情報",
+    "app": "アプリ・プロトコル",
+    "pay": "決済・コールバック"
   }
 }

@@ -23,7 +23,9 @@
     "pcCallType": "PC Call Type",
     "payUrl": "Pay URL",
     "payBody": "Pay Body",
-    "createTime": "Created Time"
+    "createTime": "Created Time",
+    "merchant": "Merchant",
+    "appId": "App ID"
   },
   "placeholder": {
     "outTradeNo": "Enter merchant order no.",
@@ -32,7 +34,9 @@
   },
   "status": {
     "0": "Unpaid",
-    "1": "Paid"
+    "1": "Paid",
+    "success": "Paid",
+    "pending": "Unpaid"
   },
   "statusColor": {
     "0": "orange",
@@ -56,6 +60,9 @@
   "section": {
     "basic": "Order Info",
     "time": "Time Info",
-    "extra": "Payment & Extension"
+    "extra": "Payment & Extension",
+    "order": "Order Info",
+    "app": "App & Protocol",
+    "pay": "Payment & Callback"
   }
 }

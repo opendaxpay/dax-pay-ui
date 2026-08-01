@@ -23,7 +23,9 @@
     "pcCallType": "PC呼叫方式",
     "payUrl": "支付連結",
     "payBody": "支付參數體",
-    "createTime": "建立時間"
+    "createTime": "建立時間",
+    "merchant": "商戶",
+    "appId": "應用ID"
   },
   "placeholder": {
     "outTradeNo": "請輸入商戶訂單號",
@@ -32,7 +34,9 @@
   },
   "status": {
     "0": "待支付",
-    "1": "已支付"
+    "1": "已支付",
+    "success": "已支付",
+    "pending": "待支付"
   },
   "statusColor": {
     "0": "orange",
@@ -56,6 +60,9 @@
   "section": {
     "basic": "訂單資訊",
     "time": "時間資訊",
-    "extra": "支付與擴充"
+    "extra": "支付與擴充",
+    "order": "訂單資訊",
+    "app": "應用與協議",
+    "pay": "支付與回呼"
   }
 }

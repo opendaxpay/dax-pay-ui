@@ -23,7 +23,9 @@
     "pcCallType": "PC 호출 방식",
     "payUrl": "결제 링크",
     "payBody": "결제 파라미터",
-    "createTime": "생성 시간"
+    "createTime": "생성 시간",
+    "merchant": "가맹점",
+    "appId": "앱 ID"
   },
   "placeholder": {
     "outTradeNo": "가맹점 주문 번호 입력",
@@ -32,7 +34,9 @@
   },
   "status": {
     "0": "미결제",
-    "1": "결제 완료"
+    "1": "결제 완료",
+    "success": "결제 완료",
+    "pending": "미결제"
   },
   "statusColor": {
     "0": "orange",
@@ -56,6 +60,9 @@
   "section": {
     "basic": "주문 정보",
     "time": "시간 정보",
-    "extra": "결제 및 확장"
+    "extra": "결제 및 확장",
+    "order": "주문 정보",
+    "app": "앱 및 프로토콜",
+    "pay": "결제 및 콜백"
   }
 }

@@ -23,7 +23,9 @@
     "pcCallType": "PC调用方式",
     "payUrl": "支付链接",
     "payBody": "支付参数体",
-    "createTime": "创建时间"
+    "createTime": "创建时间",
+    "merchant": "商户",
+    "appId": "应用ID"
   },
   "placeholder": {
     "outTradeNo": "请输入商户订单号",
@@ -32,7 +34,9 @@
   },
   "status": {
     "0": "待支付",
-    "1": "已支付"
+    "1": "已支付",
+    "success": "已支付",
+    "pending": "待支付"
   },
   "statusColor": {
     "0": "orange",
@@ -56,6 +60,9 @@
   "section": {
     "basic": "订单信息",
     "time": "时间信息",
-    "extra": "支付与扩展"
+    "extra": "支付与扩展",
+    "order": "订单信息",
+    "app": "应用与协议",
+    "pay": "支付与回调"
   }
 }

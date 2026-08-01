@@ -14,7 +14,9 @@
     "apiVersion": "API版本",
     "addTime": "退款发起时间",
     "endTime": "退款完成时间",
-    "createTime": "创建时间"
+    "createTime": "创建时间",
+    "merchant": "商户",
+    "appId": "应用ID"
   },
   "placeholder": {
     "refundNo": "请输入平台退款单号",
@@ -24,7 +26,9 @@
   },
   "status": {
     "0": "处理中/失败",
-    "1": "退款成功"
+    "1": "退款成功",
+    "success": "退款成功",
+    "progress": "处理中/失败"
   },
   "statusColor": {
     "0": "orange",
@@ -38,6 +42,8 @@
   },
   "section": {
     "basic": "退款信息",
-    "time": "时间信息"
+    "time": "时间信息",
+    "refund": "退款信息",
+    "app": "应用与协议"
   }
 }
