@@ -36,7 +36,7 @@ export const UserProtocolApi = {
   },
   /** 复制协议到其他端(连同各语言当前生效版本) */
   copyToClient(id: string, clientType: string): Promise<Result<string>> {
-    return defHttp.post({ url: '/user/protocol/copy-to-client', params: { id, clientType } });
+    return defHttp.post({ url: '/user/protocol/copy-to-client', data: { id, clientType } });
   },
   /** 协议类型列表 */
   typeOptions(): Promise<Result<LabelValue[]>> {

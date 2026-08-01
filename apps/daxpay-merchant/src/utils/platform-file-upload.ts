@@ -40,7 +40,7 @@ async function getUploadPresignUrl(param: UploadPresignParam): Promise<UploadPre
 async function confirmUpload(fileId: number, objectKey: string, etag?: string): Promise<void> {
   await defHttp.post({
     url: '/file/platform/upload/confirm',
-    params: { fileId, objectKey, etag },
+    data: { fileId, objectKey, etag },
   });
 }
 

@@ -14,7 +14,7 @@ export const OrderCloseApi = {
   close(containerId: string, tradeType: string): Promise<Result<void>> {
     return defHttp.post({
       url: '/admin/order/close',
-      params: { containerId, tradeType },
+      data: { containerId, tradeType },
     });
   },
 };

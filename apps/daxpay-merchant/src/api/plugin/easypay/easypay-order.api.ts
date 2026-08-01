@@ -30,13 +30,12 @@ export const EasyPayOrderApi = {
   },
 
   /**
-   * 关闭/撤销易支付订单
-   * @param useCancel 是否使用撤销
+   * 关闭易支付订单
    */
-  close(id: string, useCancel = false): Promise<Result<void>> {
+  close(id: string): Promise<Result<void>> {
     return defHttp.post({
       url: '/merchant/easypay/order/close',
-      params: { id, useCancel },
+      params: { id },
     });
   },
 };
