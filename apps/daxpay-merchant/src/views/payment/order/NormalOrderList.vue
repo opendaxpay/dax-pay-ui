@@ -200,7 +200,7 @@
   // 交易操作(同步/关闭)
   const { handleSync, handleClose } = useTradeActions({
     syncFn: (id) => NormalOrderApi.sync(id),
-    closeFn: (id) => OrderCloseApi.close(id, 'normal'),
+    closeFn: (row) => OrderCloseApi.close(row.id!, 'normal'),
     onSuccess: queryPage,
   });
 
@@ -234,7 +234,7 @@
       onClick: ({ key }: { key: string }) => {
         switch (key) {
           case 'close': {
-            handleClose(row.id!);
+            handleClose(row);
             break;
           }
           case 'refund': {

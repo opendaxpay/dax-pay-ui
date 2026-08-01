@@ -8,6 +8,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { OrderCloseApi } from '#/api/payment/order/close.api';
   import { PayTradeApi, type PayTradeQuery, type PayTradeResult } from '#/api/payment/order/pay-trade.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
@@ -167,7 +168,7 @@
   // 交易操作(同步/关闭)
   const { handleSync, handleClose } = useTradeActions({
     syncFn: (id) => PayTradeApi.sync(id),
-    closeFn: (id) => PayTradeApi.close(id),
+    closeFn: (row) => OrderCloseApi.close(row.containerId!, row.tradeType!),
     onSuccess: queryPage,
   });
 
@@ -191,7 +192,7 @@
       onClick: ({ key }: { key: string }) => {
         switch (key) {
           case 'close': {
-            handleClose(row.id!);
+            handleClose(row);
             break;
           }
           case 'sync': {

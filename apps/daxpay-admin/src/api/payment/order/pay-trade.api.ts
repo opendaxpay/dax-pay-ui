@@ -26,17 +26,6 @@ export const PayTradeApi = {
   sync(id: string): Promise<Result<NormalPaySyncResult>> {
     return defHttp.post({ url: '/admin/order/pay-trade/sync', params: { id } });
   },
-
-  /**
-   * 关闭/撤销订单
-   * @param useCancel 是否使用撤销
-   */
-  close(id: string, useCancel = false): Promise<Result<void>> {
-    return defHttp.post({
-      url: '/admin/order/pay-trade/close',
-      params: { id, useCancel },
-    });
-  },
 };
 
 /** 资金交易查询参数 */

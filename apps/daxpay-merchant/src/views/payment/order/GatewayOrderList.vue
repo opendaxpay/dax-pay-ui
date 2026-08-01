@@ -193,7 +193,7 @@
   // 交易操作(同步/关闭)
   const { handleSync, handleClose } = useTradeActions({
     syncFn: (id) => GatewayOrderApi.sync(id),
-    closeFn: (id) => OrderCloseApi.close(id, 'gateway'),
+    closeFn: (row) => OrderCloseApi.close(row.id!, 'gateway'),
     onSuccess: queryPage,
   });
 
@@ -220,7 +220,7 @@
             break;
           }
           case 'close': {
-            handleClose(row.id!);
+            handleClose(row);
             break;
           }
           case 'refund': {
