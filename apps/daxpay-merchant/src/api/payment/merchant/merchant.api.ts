@@ -5,20 +5,20 @@ import { defHttp } from '#/api/request';
 /**
  * 商户信息 API（商户端）
  *
- * 登录态已绑定当前商户，通过 GET /merchant/get 取资料；无需 URL 传 mchNo。
+ * 登录态已绑定当前商户，通过 GET /mch/merchant/get 取资料；无需 URL 传 mchNo。
  */
 export const MerchantApi = {
   /**
    * 获取当前登录商户信息
    */
   get(): Promise<Result<MerchantInfo>> {
-    return defHttp.get({ url: '/merchant/get' });
+    return defHttp.get({ url: '/mch/merchant/get' });
   },
   /**
    * 更新当前商户资料（mchNo 由后端 PaymentContext 决定）
    */
   update(data: MerchantParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/merchant/update', data });
+    return defHttp.post({ url: '/mch/merchant/update', data });
   },
 };
 

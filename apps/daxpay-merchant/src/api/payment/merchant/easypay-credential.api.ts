@@ -5,20 +5,20 @@ import { defHttp } from '#/api/request';
 /**
  * 易支付凭证 API（应用级，商户端）
  *
- * 后端 plugin 已双挂 `/admin/easypay/credential` 与 `/merchant/easypay/credential`。
+ * 后端 plugin 已双挂 `/admin/easypay/credential` 与 `/mch/easypay/credential`。
  */
 export const EasyPayCredentialApi = {
   /**
    * 按应用号查询（不存在则自动创建）
    */
   getByAppId(appId: string): Promise<Result<EasyPayCredentialResult>> {
-    return defHttp.get({ url: '/merchant/easypay/credential/get-by-app-id', params: { appId } });
+    return defHttp.get({ url: '/mch/easypay/credential/get-by-app-id', params: { appId } });
   },
   /**
    * 更新凭证
    */
   update(data: EasyPayCredentialParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/merchant/easypay/credential/update', data });
+    return defHttp.post({ url: '/mch/easypay/credential/update', data });
   },
 };
 

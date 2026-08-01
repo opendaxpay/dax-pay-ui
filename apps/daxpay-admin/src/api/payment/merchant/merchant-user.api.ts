@@ -102,76 +102,76 @@ export const MerchantUserApi = {
    * 分页查询商户用户列表
    */
   page(params: MerchantUserQuery): Promise<PageResult<MerchantUserResult>> {
-    return defHttp.get({ url: '/merchant/user/page', params });
+    return defHttp.get({ url: '/admin/merchant/user/page', params });
   },
 
   /**
    * 根据ID查询用户详情
    */
   findById(id: string): Promise<Result<MerchantUserDetail>> {
-    return defHttp.get({ url: '/merchant/user/get', params: { id } });
+    return defHttp.get({ url: '/admin/merchant/user/get', params: { id } });
   },
 
   /**
    * 新增商户用户
    */
   add(data: MerchantUserParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/merchant/user/add', data });
+    return defHttp.post({ url: '/admin/merchant/user/add', data });
   },
 
   /**
    * 编辑商户用户
    */
   update(data: MerchantUserParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/merchant/user/update', data });
+    return defHttp.post({ url: '/admin/merchant/user/update', data });
   },
 
   /**
    * 分配角色
    */
   assignRole(userId: string, roleId: string): Promise<Result<void>> {
-    return defHttp.post({ url: '/merchant/user/assign-role', params: { userId, roleId } });
+    return defHttp.post({ url: '/admin/merchant/user/assign-role', params: { userId, roleId } });
   },
 
   /**
    * 封禁商户用户
    */
   ban(userId: string): Promise<Result<void>> {
-    return defHttp.post({ url: '/merchant/user/ban', params: { userId } });
+    return defHttp.post({ url: '/admin/merchant/user/ban', params: { userId } });
   },
 
   /**
    * 批量封禁商户用户
    */
   banBatch(userIds: string[]): Promise<Result<void>> {
-    return defHttp.post({ url: '/merchant/user/ban-batch', data: userIds });
+    return defHttp.post({ url: '/admin/merchant/user/ban-batch', data: userIds });
   },
 
   /**
    * 解锁商户用户
    */
   unlock(userId: string): Promise<Result<void>> {
-    return defHttp.post({ url: '/merchant/user/unlock', params: { userId } });
+    return defHttp.post({ url: '/admin/merchant/user/unlock', params: { userId } });
   },
 
   /**
    * 批量解锁商户用户
    */
   unlockBatch(userIds: string[]): Promise<Result<void>> {
-    return defHttp.post({ url: '/merchant/user/unlock-batch', data: userIds });
+    return defHttp.post({ url: '/admin/merchant/user/unlock-batch', data: userIds });
   },
 
   /**
    * 重置密码
    */
   restartPassword(userId: string, newPassword: string): Promise<Result<void>> {
-    return defHttp.post({ url: '/merchant/user/restart-password', data: { userId, newPassword } });
+    return defHttp.post({ url: '/admin/merchant/user/restart-password', data: { userId, newPassword } });
   },
 
   /**
    * 批量重置密码
    */
   restartPasswordBatch(userIds: string[], newPassword: string): Promise<Result<void>> {
-    return defHttp.post({ url: '/merchant/user/restart-password-batch', data: { userIds, newPassword } });
+    return defHttp.post({ url: '/admin/merchant/user/restart-password-batch', data: { userIds, newPassword } });
   },
 };

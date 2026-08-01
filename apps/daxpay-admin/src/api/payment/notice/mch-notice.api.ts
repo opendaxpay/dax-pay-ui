@@ -8,22 +8,22 @@ import { defHttp } from '#/api/request';
 export const MchNoticeApi = {
   /** 通知任务分页 */
   pageTask(params: MchNoticeTaskQuery & { current?: number; size?: number }): Promise<Result<PageResult<MchNoticeTaskResult>>> {
-    return defHttp.get({ url: '/admin/mch-notice/task/page', params });
+    return defHttp.get({ url: '/admin/merchant-notice/task/page', params });
   },
 
   /** 通知任务详情 */
   getTaskById(id: string): Promise<Result<MchNoticeTaskResult>> {
-    return defHttp.get({ url: '/admin/mch-notice/task/get-by-id', params: { id } });
+    return defHttp.get({ url: '/admin/merchant-notice/task/get-by-id', params: { id } });
   },
 
   /** 手动重发 */
   resend(id: string): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/mch-notice/task/resend', params: { id } });
+    return defHttp.post({ url: '/admin/merchant-notice/task/resend', params: { id } });
   },
 
   /** 发送记录分页 */
   pageRecord(params: MchNoticeRecordQuery & { current?: number; size?: number }): Promise<Result<PageResult<MchNoticeRecordResult>>> {
-    return defHttp.get({ url: '/admin/mch-notice/record/page', params });
+    return defHttp.get({ url: '/admin/merchant-notice/record/page', params });
   },
 };
 

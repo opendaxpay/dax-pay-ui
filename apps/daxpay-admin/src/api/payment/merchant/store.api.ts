@@ -12,49 +12,49 @@ export const MchStoreInfoApi = {
   page(
     params: MchStoreInfoQuery & { current?: number; size?: number },
   ): Promise<Result<PageResult<MchStoreInfoResult>>> {
-    return defHttp.get({ url: '/admin/mch/store/page', params });
+    return defHttp.get({ url: '/admin/merchant/store/page', params });
   },
 
   /**
    * 根据 id 查询门店
    */
   get(id: string): Promise<Result<MchStoreInfoResult>> {
-    return defHttp.get({ url: '/admin/mch/store/get', params: { id } });
+    return defHttp.get({ url: '/admin/merchant/store/get', params: { id } });
   },
 
   /**
    * 新增门店
    */
   add(data: MchStoreInfoParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/mch/store/add', data });
+    return defHttp.post({ url: '/admin/merchant/store/add', data });
   },
 
   /**
    * 修改门店
    */
   update(data: MchStoreInfoParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/mch/store/update', data });
+    return defHttp.post({ url: '/admin/merchant/store/update', data });
   },
 
   /**
    * 删除门店
    */
   delete(id: string): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/mch/store/delete', params: { id } });
+    return defHttp.post({ url: '/admin/merchant/store/delete', params: { id } });
   },
 
   /**
    * 设为默认门店
    */
   setDefault(id: string): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/mch/store/set-default', params: { id } });
+    return defHttp.post({ url: '/admin/merchant/store/set-default', params: { id } });
   },
 
   /**
    * 取消默认门店
    */
   clearDefault(id: string): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/mch/store/clear-default', params: { id } });
+    return defHttp.post({ url: '/admin/merchant/store/clear-default', params: { id } });
   },
 };
 

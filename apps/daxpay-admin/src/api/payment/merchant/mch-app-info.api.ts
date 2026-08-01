@@ -10,56 +10,56 @@ export const MchAppInfoApi = {
    * 分页查询商户应用
    */
   page(params: MchAppInfoQuery & { current?: number; size?: number }): Promise<Result<PageResult<MchAppInfoResult>>> {
-    return defHttp.get({ url: '/admin/mch/app-info/page', params });
+    return defHttp.get({ url: '/admin/merchant/app-info/page', params });
   },
 
   /**
    * 启用应用列表(下拉选择器用, 仅返回启用状态)
    */
   enableList(mchNo: string): Promise<Result<MchAppInfoResult[]>> {
-    return defHttp.get({ url: '/admin/mch/app-info/enable-list', params: { mchNo } });
+    return defHttp.get({ url: '/admin/merchant/app-info/enable-list', params: { mchNo } });
   },
 
   /**
    * 根据 id 查询商户应用
    */
   get(id: string): Promise<Result<MchAppInfoResult>> {
-    return defHttp.get({ url: '/admin/mch/app-info/get', params: { id } });
+    return defHttp.get({ url: '/admin/merchant/app-info/get', params: { id } });
   },
 
   /**
    * 新增商户应用
    */
   add(data: MchAppInfoParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/mch/app-info/add', data });
+    return defHttp.post({ url: '/admin/merchant/app-info/add', data });
   },
 
   /**
    * 修改商户应用
    */
   update(data: MchAppInfoParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/mch/app-info/update', data });
+    return defHttp.post({ url: '/admin/merchant/app-info/update', data });
   },
 
   /**
    * 删除商户应用
    */
   delete(id: string): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/mch/app-info/delete', params: { id } });
+    return defHttp.post({ url: '/admin/merchant/app-info/delete', params: { id } });
   },
 
   /**
    * 设为默认应用
    */
   setDefault(id: string): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/mch/app-info/set-default', params: { id } });
+    return defHttp.post({ url: '/admin/merchant/app-info/set-default', params: { id } });
   },
 
   /**
    * 取消默认应用
    */
   clearDefault(id: string): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/mch/app-info/clear-default', params: { id } });
+    return defHttp.post({ url: '/admin/merchant/app-info/clear-default', params: { id } });
   },
 };
 

@@ -3,7 +3,7 @@ import type { MchEntity, PageResult, Result } from '#/types/web';
 import { defHttp } from '#/api/request';
 
 /**
- * 微信域名验证文件 API（商户级，路径前缀 /admin/mch/wx-verify）
+ * 微信域名验证文件 API（商户级，路径前缀 /admin/merchant/wx-verify）
  * 运营在商户工作台代指定商户管理，upload/page 均需传 mchNo
  */
 export const MchWxDomainVerifyApi = {
@@ -13,28 +13,28 @@ export const MchWxDomainVerifyApi = {
   page(
     params: MchWxDomainVerifyQuery & { current: number; size: number },
   ): Promise<Result<MchWxDomainVerifyPageResult>> {
-    return defHttp.get({ url: '/admin/mch/wx-verify/page', params });
+    return defHttp.get({ url: '/admin/merchant/wx-verify/page', params });
   },
 
   /**
    * 根据 id 查询详情
    */
   get(id: string): Promise<Result<MchWxDomainVerifyVo>> {
-    return defHttp.get({ url: '/admin/mch/wx-verify/get', params: { id } });
+    return defHttp.get({ url: '/admin/merchant/wx-verify/get', params: { id } });
   },
 
   /**
    * 修改备注等元数据（备注）
    */
   update(data: MchWxDomainVerifyParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/mch/wx-verify/update', data });
+    return defHttp.post({ url: '/admin/merchant/wx-verify/update', data });
   },
 
   /**
    * 删除
    */
   delete(id: string): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/mch/wx-verify/delete', params: { id } });
+    return defHttp.post({ url: '/admin/merchant/wx-verify/delete', params: { id } });
   },
 
   /**
@@ -43,7 +43,7 @@ export const MchWxDomainVerifyApi = {
    * @param mchNo 商户号（必填，走 URL query）
    */
   upload(data: MchWxDomainVerifyUploadData, mchNo: string): Promise<Result<MchWxDomainVerifyVo>> {
-    return defHttp.post({ url: '/admin/mch/wx-verify/upload', params: { mchNo }, data });
+    return defHttp.post({ url: '/admin/merchant/wx-verify/upload', params: { mchNo }, data });
   },
 };
 

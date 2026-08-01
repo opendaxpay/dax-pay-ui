@@ -11,7 +11,7 @@ export const MchAppNotifyConfigApi = {
    */
   getByAppId(appId: string): Promise<Result<MchAppNotifyConfigResult>> {
     return defHttp.get({
-      url: '/mch/merchant/app-notify-config/get-by-app-id',
+      url: '/mch/app-notify-config/get-by-app-id',
       params: { appId },
     });
   },
@@ -21,7 +21,7 @@ export const MchAppNotifyConfigApi = {
    */
   saveOrUpdate(data: MchAppNotifyConfigParam): Promise<Result<void>> {
     return defHttp.post({
-      url: '/mch/merchant/app-notify-config/save-or-update',
+      url: '/mch/app-notify-config/save-or-update',
       data,
     });
   },

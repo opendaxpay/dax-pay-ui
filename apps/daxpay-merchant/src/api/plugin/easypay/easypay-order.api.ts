@@ -12,21 +12,21 @@ export const EasyPayOrderApi = {
   page(
     params: EasyPayOrderQuery & { current?: number; size?: number },
   ): Promise<Result<PageResult<EasyPayOrderResult>>> {
-    return defHttp.get({ url: '/merchant/easypay/order/page', params });
+    return defHttp.get({ url: '/mch/easypay/order/page', params });
   },
 
   /**
    * 根据ID查询易支付订单详情
    */
   getById(id: string): Promise<Result<EasyPayOrderResult>> {
-    return defHttp.get({ url: '/merchant/easypay/order/get-by-id', params: { id } });
+    return defHttp.get({ url: '/mch/easypay/order/get-by-id', params: { id } });
   },
 
   /**
    * 同步易支付订单状态(主动向通道查询)
    */
   sync(id: string): Promise<Result<EasyPaySyncResult>> {
-    return defHttp.post({ url: '/merchant/easypay/order/sync', params: { id } });
+    return defHttp.post({ url: '/mch/easypay/order/sync', params: { id } });
   },
 
   /**
@@ -34,7 +34,7 @@ export const EasyPayOrderApi = {
    */
   close(id: string): Promise<Result<void>> {
     return defHttp.post({
-      url: '/merchant/easypay/order/close',
+      url: '/mch/easypay/order/close',
       params: { id },
     });
   },

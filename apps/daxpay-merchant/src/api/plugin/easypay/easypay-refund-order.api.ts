@@ -12,21 +12,21 @@ export const EasyPayRefundOrderApi = {
   page(
     params: EasyPayRefundOrderQuery & { current?: number; size?: number },
   ): Promise<Result<PageResult<EasyPayRefundOrderResult>>> {
-    return defHttp.get({ url: '/merchant/easypay/refund/page', params });
+    return defHttp.get({ url: '/mch/easypay/refund/page', params });
   },
 
   /**
    * 根据ID查询易支付退款订单详情
    */
   getById(id: string): Promise<Result<EasyPayRefundOrderResult>> {
-    return defHttp.get({ url: '/merchant/easypay/refund/get-by-id', params: { id } });
+    return defHttp.get({ url: '/mch/easypay/refund/get-by-id', params: { id } });
   },
 
   /**
    * 同步易支付退款状态(主动向通道查询)
    */
   sync(id: string): Promise<Result<EasyPayRefundOrderResult>> {
-    return defHttp.post({ url: '/merchant/easypay/refund/sync', params: { id } });
+    return defHttp.post({ url: '/mch/easypay/refund/sync', params: { id } });
   },
 };
 

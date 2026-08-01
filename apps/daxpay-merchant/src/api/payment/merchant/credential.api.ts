@@ -3,20 +3,20 @@ import type { BaseEntity, Result } from '#/types/web';
 import { defHttp } from '#/api/request';
 
 /**
- * 商户对接配置 API（商户端 /merchant/credential/*）
+ * 商户对接配置 API（商户端 /mch/credential/*）
  */
 export const MerchantCredentialApi = {
   /**
    * 根据商户号查询对接配置
    */
   findByMchNo(mchNo: string): Promise<Result<MerchantCredentialResult>> {
-    return defHttp.get({ url: '/merchant/credential/get-by-mch-no', params: { mchNo } });
+    return defHttp.get({ url: '/mch/credential/get-by-mch-no', params: { mchNo } });
   },
   /**
    * 更新商户对接配置
    */
   update(data: MerchantCredentialParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/merchant/credential/update', data });
+    return defHttp.post({ url: '/mch/credential/update', data });
   },
 };
 
