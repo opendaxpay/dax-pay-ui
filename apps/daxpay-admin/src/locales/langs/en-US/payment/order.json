@@ -147,18 +147,14 @@
   "action": {
     "sync": "Sync Status",
     "close": "Close Order",
-    "cancel": "Cancel Order",
     "refund": "Refund",
     "syncSuccess": "Sync succeeded",
     "closeSuccess": "Order closed",
-    "cancelSuccess": "Order cancelled",
     "refundSuccess": "Refund initiated",
     "syncConfirmTitle": "Confirm Sync",
     "syncConfirmContent": "Will query the latest status from the payment channel, continue?",
     "closeConfirmTitle": "Confirm Close",
     "closeConfirmContent": "The order cannot be paid after closing, continue?",
-    "cancelConfirmTitle": "Confirm Cancel",
-    "cancelConfirmContent": "This will cancel the paid transaction via the payment channel, continue?",
     "refundConfirmTitle": "Confirm Refund",
     "refundConfirmContent": "Will refund {amount} from the original order, continue?",
     "refundableBalanceLabel": "Refundable Amount",
@@ -167,7 +163,10 @@
     "refundReasonLabel": "Refund Reason",
     "refundAmountPlaceholder": "Enter refund amount",
     "refundReasonPlaceholder": "Enter refund reason (optional)",
-    "refundAmountExceed": "Refund amount cannot exceed refundable amount"
+    "refundAmountExceed": "Refund amount cannot exceed refundable amount",
+    "refundTip": "Once initiated, a refund cannot be reversed. Funds will be returned to the buyer via the original payment method.",
+    "refundAll": "Full Refund",
+    "refundOkText": "Confirm Refund"
   },
   "method": {
     "jsapi": "JSAPI",

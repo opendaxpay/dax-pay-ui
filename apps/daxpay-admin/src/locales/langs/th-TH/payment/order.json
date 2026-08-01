@@ -139,18 +139,14 @@
   "action": {
     "sync": "สถานะการซิงค์",
     "close": "ปิดออเดอร์",
-    "cancel": "ยกเลิกคำสั่งซื้อ",
     "refund": "คืนเงิน",
     "syncSuccess": "ซิงค์สำเร็จ",
     "closeSuccess": "ปิดรับออเดอร์แล้ว",
-    "cancelSuccess": "ยกเลิกคำสั่งซื้อแล้ว",
     "refundSuccess": "เริ่มการคืนเงินแล้ว",
     "syncConfirmTitle": "ยืนยันการซิงค์",
     "syncConfirmContent": "จะสอบถามสถานะล่าสุดจากช่องทางการชำระเงินต่อหรือไม่?",
     "closeConfirmTitle": "ยืนยันการปิด",
     "closeConfirmContent": "ไม่สามารถชำระเงินตามคำสั่งซื้อได้หลังจากปิดดำเนินการ ดำเนินการต่อหรือไม่",
-    "cancelConfirmTitle": "ยืนยัน ยกเลิก",
-    "cancelConfirmContent": "จะเป็นการยกเลิกรายการชำระเงินผ่านช่องทางการชำระเงิน ดำเนินการต่อหรือไม่?",
     "refundConfirmTitle": "ยืนยันการคืนเงิน",
     "refundConfirmContent": "จะคืนเงิน {amount} จากคำสั่งซื้อเดิม ดำเนินการต่อหรือไม่",
     "refundableBalanceLabel": "จำนวนเงินที่สามารถขอคืนได้",
@@ -159,7 +155,10 @@
     "refundReasonLabel": "เหตุผลในการคืนเงิน",
     "refundAmountPlaceholder": "กรอกจำนวนเงินคืน",
     "refundReasonPlaceholder": "ป้อนเหตุผลการคืนเงิน (ไม่บังคับ)",
-    "refundAmountExceed": "จำนวนเงินคืนต้องไม่เกินจำนวนเงินที่สามารถขอคืนได้"
+    "refundAmountExceed": "จำนวนเงินคืนต้องไม่เกินจำนวนเงินที่สามารถขอคืนได้",
+    "refundTip": "เมื่อเริ่มการคืนเงินแล้วจะยกเลิกไม่ได้ เงินจะถูกคืนให้ผู้ซื้อตามวิธีการชำระเงินเดิม",
+    "refundAll": "คืนเงินเต็มจำนวน",
+    "refundOkText": "ยืนยันคืนเงิน"
   },
   "method": {
     "jsapi": "JSAPI",

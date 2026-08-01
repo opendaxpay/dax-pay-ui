@@ -139,18 +139,14 @@
   "action": {
     "sync": "Trạng thái đồng bộ hóa",
     "close": "Đóng lệnh",
-    "cancel": "Hủy đơn hàng",
     "refund": "Đền bù",
     "syncSuccess": "Đồng bộ hóa thành công",
     "closeSuccess": "Lệnh đã đóng",
-    "cancelSuccess": "Đơn hàng bị hủy",
     "refundSuccess": "Đã bắt đầu hoàn tiền",
     "syncConfirmTitle": "Xác nhận đồng bộ hóa",
     "syncConfirmContent": "Sẽ truy vấn trạng thái mới nhất từ ​​kênh thanh toán, tiếp tục?",
     "closeConfirmTitle": "Xác nhận Đóng",
     "closeConfirmContent": "Đơn hàng không thể được thanh toán sau khi đóng, tiếp tục?",
-    "cancelConfirmTitle": "Xác nhận Hủy",
-    "cancelConfirmContent": "Điều này sẽ hủy giao dịch đã thanh toán qua kênh thanh toán, tiếp tục?",
     "refundConfirmTitle": "Xác nhận hoàn tiền",
     "refundConfirmContent": "Sẽ hoàn lại {amount} từ đơn đặt hàng ban đầu, tiếp tục chứ?",
     "refundableBalanceLabel": "Số tiền có thể hoàn lại",
@@ -159,7 +155,10 @@
     "refundReasonLabel": "Lý do hoàn tiền",
     "refundAmountPlaceholder": "Nhập số tiền hoàn lại",
     "refundReasonPlaceholder": "Nhập lý do hoàn tiền (tùy chọn)",
-    "refundAmountExceed": "Số tiền hoàn lại không được vượt quá số tiền được hoàn lại"
+    "refundAmountExceed": "Số tiền hoàn lại không được vượt quá số tiền được hoàn lại",
+    "refundTip": "Sau khi khởi tạo, hoàn tiền không thể thu hồi. Tiền sẽ được hoàn lại cho người mua qua phương thức thanh toán ban đầu.",
+    "refundAll": "Hoàn Toàn",
+    "refundOkText": "Xác nhận hoàn tiền"
   },
   "method": {
     "jsapi": "JSAPI",

@@ -139,18 +139,14 @@
   "action": {
     "sync": "Status Penyegerakan",
     "close": "Tutup Pesanan",
-    "cancel": "Batalkan Pesanan",
     "refund": "Bayaran balik",
     "syncSuccess": "Penyegerakan berjaya",
     "closeSuccess": "Pesanan ditutup",
-    "cancelSuccess": "Pesanan dibatalkan",
     "refundSuccess": "Bayaran balik dimulakan",
     "syncConfirmTitle": "Sahkan Penyegerakan",
     "syncConfirmContent": "Adakah pertanyaan status terkini daripada saluran pembayaran akan diteruskan?",
     "closeConfirmTitle": "Sahkan Tutup",
     "closeConfirmContent": "Pesanan tidak boleh dibayar selepas ditutup, teruskan?",
-    "cancelConfirmTitle": "Sahkan Batal",
-    "cancelConfirmContent": "Ini akan membatalkan transaksi berbayar melalui saluran pembayaran, teruskan?",
     "refundConfirmTitle": "Sahkan Bayaran Balik",
     "refundConfirmContent": "Adakah akan membayar balik {amount} daripada pesanan asal, diteruskan?",
     "refundableBalanceLabel": "Amaun Boleh Dipulangkan",
@@ -159,7 +155,10 @@
     "refundReasonLabel": "Sebab Bayaran Balik",
     "refundAmountPlaceholder": "Masukkan jumlah bayaran balik",
     "refundReasonPlaceholder": "Masukkan sebab bayaran balik (pilihan)",
-    "refundAmountExceed": "Jumlah bayaran balik tidak boleh melebihi jumlah yang boleh dikembalikan"
+    "refundAmountExceed": "Jumlah bayaran balik tidak boleh melebihi jumlah yang boleh dikembalikan",
+    "refundTip": "Selepas dimulakan, bayaran balik tidak boleh dibatalkan. Dana akan dikembalikan kepada pembeli melalui kaedah pembayaran asal.",
+    "refundAll": "Bayaran Balik Penuh",
+    "refundOkText": "Sahkan Bayaran Balik"
   },
   "method": {
     "jsapi": "JSAPI",

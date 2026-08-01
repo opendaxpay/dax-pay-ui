@@ -139,18 +139,14 @@
   "action": {
     "sync": "Status Sinkronisasi",
     "close": "Tutup Pesanan",
-    "cancel": "Batalkan Pesanan",
     "refund": "Pengembalian dana",
     "syncSuccess": "Sinkronisasi berhasil",
     "closeSuccess": "Pesanan ditutup",
-    "cancelSuccess": "Pesanan dibatalkan",
     "refundSuccess": "Pengembalian dana dimulai",
     "syncConfirmTitle": "Konfirmasikan Sinkronisasi",
     "syncConfirmContent": "Akan menanyakan status terkini dari saluran pembayaran, lanjutkan?",
     "closeConfirmTitle": "Konfirmasi Tutup",
     "closeConfirmContent": "Pesanan tidak bisa dibayar setelah ditutup, lanjutkan?",
-    "cancelConfirmTitle": "Konfirmasi Batal",
-    "cancelConfirmContent": "Ini akan membatalkan transaksi berbayar melalui saluran pembayaran, lanjutkan?",
     "refundConfirmTitle": "Konfirmasi Pengembalian Dana",
     "refundConfirmContent": "Akankah pengembalian dana {amount} dari pesanan awal, lanjutkan?",
     "refundableBalanceLabel": "Jumlah yang Dapat Dikembalikan",
@@ -159,7 +155,10 @@
     "refundReasonLabel": "Alasan Pengembalian Dana",
     "refundAmountPlaceholder": "Masukkan jumlah pengembalian dana",
     "refundReasonPlaceholder": "Masukkan alasan pengembalian dana (opsional)",
-    "refundAmountExceed": "Jumlah pengembalian dana tidak dapat melebihi jumlah yang dapat dikembalikan"
+    "refundAmountExceed": "Jumlah pengembalian dana tidak dapat melebihi jumlah yang dapat dikembalikan",
+    "refundTip": "Setelah diajukan, pengembalian dana tidak dapat dibatalkan. Dana akan dikembalikan ke pembeli melalui metode pembayaran asli.",
+    "refundAll": "Pengembalian Penuh",
+    "refundOkText": "Konfirmasi Pengembalian"
   },
   "method": {
     "jsapi": "JSAPI",

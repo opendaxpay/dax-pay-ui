@@ -139,18 +139,14 @@
   "action": {
     "sync": "동기화 상태",
     "close": "주문 마감",
-    "cancel": "주문 취소",
     "refund": "환불하다",
     "syncSuccess": "동기화 성공",
     "closeSuccess": "주문이 마감되었습니다.",
-    "cancelSuccess": "주문이 취소됨",
     "refundSuccess": "환불 시작됨",
     "syncConfirmTitle": "동기화 확인",
     "syncConfirmContent": "결제 채널에서 최신 상태를 쿼리하시겠습니까? 계속하시겠습니까?",
     "closeConfirmTitle": "닫기 확인",
     "closeConfirmContent": "종료 후 주문을 결제할 수 없습니다. 계속하시겠습니까?",
-    "cancelConfirmTitle": "확인 취소",
-    "cancelConfirmContent": "결제 채널을 통한 유료 거래가 취소됩니다. 계속하시겠습니까?",
     "refundConfirmTitle": "환불 확인",
     "refundConfirmContent": "원래 주문에서 {amount}을(를) 환불하시겠습니까? 계속하시겠습니까?",
     "refundableBalanceLabel": "환불 가능 금액",
@@ -159,7 +155,10 @@
     "refundReasonLabel": "환불 사유",
     "refundAmountPlaceholder": "환불 금액 입력",
     "refundReasonPlaceholder": "환불 사유 입력(선택사항)",
-    "refundAmountExceed": "환불 금액은 환불 금액을 초과할 수 없습니다."
+    "refundAmountExceed": "환불 금액은 환불 금액을 초과할 수 없습니다.",
+    "refundTip": "환불은 일단 시작되면 취소할 수 없으며, 자금은 원래 결제 수단을 통해 구매자에게 반환됩니다.",
+    "refundAll": "전액 환불",
+    "refundOkText": "환불 확인"
   },
   "method": {
     "jsapi": "JSAPI",

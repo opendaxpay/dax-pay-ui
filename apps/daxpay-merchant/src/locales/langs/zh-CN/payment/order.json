@@ -155,18 +155,14 @@
   "action": {
     "sync": "同步状态",
     "close": "关闭订单",
-    "cancel": "撤销订单",
     "refund": "退款",
     "syncSuccess": "同步成功",
     "closeSuccess": "关闭成功",
-    "cancelSuccess": "撤销成功",
     "refundSuccess": "退款发起成功",
     "syncConfirmTitle": "确认同步状态",
     "syncConfirmContent": "将主动向支付通道查询该订单的最新状态,是否继续?",
     "closeConfirmTitle": "确认关闭订单",
     "closeConfirmContent": "关闭后订单将不可继续支付,是否继续?",
-    "cancelConfirmTitle": "确认撤销订单",
-    "cancelConfirmContent": "撤销将通过支付通道撤销该笔已支付交易,是否继续?",
     "refundConfirmTitle": "确认发起退款",
     "refundConfirmContent": "退款将从原支付订单扣除 {amount} 元,是否继续?",
     "refundableBalanceLabel": "可退金额",
@@ -175,6 +171,9 @@
     "refundReasonLabel": "退款原因",
     "refundAmountPlaceholder": "请输入退款金额",
     "refundReasonPlaceholder": "请输入退款原因(可选)",
-    "refundAmountExceed": "退款金额不能大于可退金额"
+    "refundAmountExceed": "退款金额不能大于可退金额",
+    "refundTip": "退款发起后不可撤销,资金将原路退回买家账户",
+    "refundAll": "全额退款",
+    "refundOkText": "确认退款"
   }
 }

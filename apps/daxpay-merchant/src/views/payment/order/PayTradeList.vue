@@ -1,19 +1,21 @@
 <script lang="ts" setup>
+  import type { MenuProps } from 'antdv-next';
   import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
 
   import { computed, onMounted, ref } from 'vue';
 
   import { $t } from '@vben/locales';
 
+  import { IconifyIcon } from '@vben-core/icons';
+
   import { PayTradeApi, type PayTradeQuery, type PayTradeResult } from '#/api/payment/order/pay-trade.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
-  import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
+  import { useTradeActions } from './composables/useTradeActions';
 
   defineOptions({ name: 'PayTradeList' });
 
-  const { confirm, message } = useMessage();
   const { hasPermission } = usePermission();
 
   const loading = ref(false);
@@ -35,7 +37,6 @@
   const drawerVisible = ref(false);
   const drawerLoading = ref(false);
   const detail = ref<PayTradeResult>({});
-  const actionLoading = ref(false);
 
   // 资金状态下拉（含 cancel）
   const statusOptions = computed(() =>
@@ -163,46 +164,43 @@
     }
   }
 
-  /**
-   * 同步支付状态
-   */
-  function handleSync(row: PayTradeResult) {
-    confirm({
-      title: $t('payment.order.action.syncConfirmTitle'),
-      content: $t('payment.order.action.syncConfirmContent'),
-      onOk() {
-        actionLoading.value = true;
-        return PayTradeApi.sync(row.id!)
-          .then(() => {
-            message.success($t('payment.order.action.syncSuccess'));
-            queryPage();
-          })
-          .finally(() => {
-            actionLoading.value = false;
-          });
-      },
-    });
-  }
+  // 交易操作(同步/关闭)
+  const { handleSync, handleClose } = useTradeActions({
+    syncFn: (id) => PayTradeApi.sync(id),
+    closeFn: (id) => PayTradeApi.close(id),
+    onSuccess: queryPage,
+  });
 
   /**
-   * 关闭订单
+   * 更多操作菜单(同步/关闭, 按资金状态与权限动态生成)
    */
-  function handleClose(row: PayTradeResult) {
-    confirm({
-      title: $t('payment.order.action.closeConfirmTitle'),
-      content: $t('payment.order.action.closeConfirmContent'),
-      onOk() {
-        actionLoading.value = true;
-        return PayTradeApi.close(row.id!)
-          .then(() => {
-            message.success($t('payment.order.action.closeSuccess'));
-            queryPage();
-          })
-          .finally(() => {
-            actionLoading.value = false;
-          });
+  function getActionMenu(row: PayTradeResult): MenuProps {
+    const items: { danger?: boolean; key: string; label: string }[] = [];
+    const canManage = hasPermission(PermCodes.Trade.Fund.MANAGE);
+    const isTerminal = ['fail', 'close', 'cancel'].includes(row.status ?? '');
+    // 关闭(待支付: init/processing)
+    if (canManage && ['init', 'processing'].includes(row.status ?? '')) {
+      items.push({ key: 'close', label: $t('payment.order.action.close'), danger: true });
+    }
+    // 同步(非终态)
+    if (canManage && !isTerminal) {
+      items.push({ key: 'sync', label: $t('payment.order.action.sync') });
+    }
+    return {
+      items,
+      onClick: ({ key }: { key: string }) => {
+        switch (key) {
+          case 'close': {
+            handleClose(row.id!);
+            break;
+          }
+          case 'sync': {
+            handleSync(row.id!);
+            break;
+          }
+        }
       },
-    });
+    };
   }
 
   function handleDrawerClose() {
@@ -237,10 +235,20 @@
           <vxe-column field="amount" :title="$t('payment.order.field.amount')" :min-width="100" align="right">
             <template #default="{ row }">{{ formatAmount(row.amount) }}</template>
           </vxe-column>
-          <vxe-column field="postedAmount" :title="$t('payment.order.field.postedAmount')" :min-width="100" align="right">
+          <vxe-column
+            field="postedAmount"
+            :title="$t('payment.order.field.postedAmount')"
+            :min-width="100"
+            align="right"
+          >
             <template #default="{ row }">{{ formatAmount(row.postedAmount) }}</template>
           </vxe-column>
-          <vxe-column field="refundableBalance" :title="$t('payment.order.field.refundableBalance')" :min-width="100" align="right">
+          <vxe-column
+            field="refundableBalance"
+            :title="$t('payment.order.field.refundableBalance')"
+            :min-width="100"
+            align="right"
+          >
             <template #default="{ row }">{{ formatAmount(row.refundableBalance) }}</template>
           </vxe-column>
           <vxe-column field="status" :title="$t('payment.order.field.fundStatus')" :min-width="100" align="center">
@@ -250,7 +258,12 @@
               </a-tag>
             </template>
           </vxe-column>
-          <vxe-column field="channelMchNo" :title="$t('payment.order.field.channelMchNo')" :min-width="140" show-overflow />
+          <vxe-column
+            field="channelMchNo"
+            :title="$t('payment.order.field.channelMchNo')"
+            :min-width="140"
+            show-overflow
+          />
           <vxe-column
             field="payTime"
             :title="$t('payment.order.field.payTime')"
@@ -263,7 +276,7 @@
             :min-width="160"
             formatter="formatDateTime"
           />
-          <vxe-column :title="$t('common.operation')" width="220" fixed="right" :show-overflow="false">
+          <vxe-column :title="$t('common.operation')" width="140" fixed="right" :show-overflow="false">
             <template #default="{ row }">
               <a-space :size="2">
                 <template #separator>
@@ -272,25 +285,13 @@
                 <a-button type="link" size="small" @click="handleView(row)">
                   {{ $t('common.view') }}
                 </a-button>
-                <a-button
-                  v-if="hasPermission(PermCodes.Trade.Fund.MANAGE)"
-                  type="link"
-                  size="small"
-                  :loading="actionLoading"
-                  @click="handleSync(row)"
-                >
-                  {{ $t('payment.order.action.sync') }}
-                </a-button>
-                <a-button
-                  v-if="hasPermission(PermCodes.Trade.Fund.MANAGE)"
-                  type="link"
-                  size="small"
-                  danger
-                  :loading="actionLoading"
-                  @click="handleClose(row)"
-                >
-                  {{ $t('payment.order.action.close') }}
-                </a-button>
+                <!-- 更多操作(同步/关闭, 按资金状态与权限动态生成) -->
+                <a-dropdown v-if="getActionMenu(row).items?.length" :menu="getActionMenu(row)">
+                  <a-button type="link" size="small">
+                    {{ $t('common.more') }}
+                    <IconifyIcon icon="ant-design:down-outlined" class="inline" />
+                  </a-button>
+                </a-dropdown>
               </a-space>
             </template>
           </vxe-column>

@@ -139,18 +139,14 @@
   "action": {
     "sync": "同步狀態",
     "close": "關閉訂單",
-    "cancel": "撤銷訂單",
     "refund": "退款",
     "syncSuccess": "同步成功",
     "closeSuccess": "關閉成功",
-    "cancelSuccess": "撤銷成功",
     "refundSuccess": "退款發起成功",
     "syncConfirmTitle": "確認同步狀態",
     "syncConfirmContent": "將主動向支付通道查詢該訂單的最新狀態,是否繼續?",
     "closeConfirmTitle": "確認關閉訂單",
     "closeConfirmContent": "關閉後訂單將不可繼續支付,是否繼續?",
-    "cancelConfirmTitle": "確認撤銷訂單",
-    "cancelConfirmContent": "撤銷將通過支付通道撤銷該筆已支付交易,是否繼續?",
     "refundConfirmTitle": "確認發起退款",
     "refundConfirmContent": "退款將從原支付訂單扣除 {amount} 元,是否繼續?",
     "refundableBalanceLabel": "可退金額",
@@ -159,7 +155,10 @@
     "refundReasonLabel": "退款原因",
     "refundAmountPlaceholder": "請輸入退款金額",
     "refundReasonPlaceholder": "請輸入退款原因(可選)",
-    "refundAmountExceed": "退款金額不能大於可退金額"
+    "refundAmountExceed": "退款金額不能大於可退金額",
+    "refundTip": "退款發起後不可撤銷,資金將原路退回買家帳戶",
+    "refundAll": "全額退款",
+    "refundOkText": "確認退款"
   },
   "method": {
     "jsapi": "JSAPI",

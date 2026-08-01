@@ -139,18 +139,14 @@
   "action": {
     "sync": "同期ステータス",
     "close": "注文を閉じる",
-    "cancel": "注文をキャンセルする",
     "refund": "返金",
     "syncSuccess": "同期に成功しました",
     "closeSuccess": "注文は終了しました",
-    "cancelSuccess": "注文がキャンセルされました",
     "refundSuccess": "払い戻しが開始されました",
     "syncConfirmTitle": "同期の確認",
     "syncConfirmContent": "支払いチャネルから最新のステータスをクエリしますか?続行しますか?",
     "closeConfirmTitle": "閉じるの確認",
     "closeConfirmContent": "注文を閉じた後は支払いができません。続行しますか?",
-    "cancelConfirmTitle": "確認 キャンセル",
-    "cancelConfirmContent": "これにより、支払いチャネルを介した支払い済みトランザクションがキャンセルされます。続行しますか?",
     "refundConfirmTitle": "返金の確認",
     "refundConfirmContent": "元の注文から {amount} を返金しますか?続行しますか?",
     "refundableBalanceLabel": "返還可能金額",
@@ -159,7 +155,10 @@
     "refundReasonLabel": "返金理由",
     "refundAmountPlaceholder": "返金額を入力してください",
     "refundReasonPlaceholder": "返金理由を入力してください (オプション)",
-    "refundAmountExceed": "払い戻し額は払い戻し可能額を超えることはできません"
+    "refundAmountExceed": "払い戻し額は払い戻し可能額を超えることはできません",
+    "refundTip": "返金は一度発行すると取り消せません。資金は元の決済方法で購入者に返還されます。",
+    "refundAll": "全額返金",
+    "refundOkText": "返金を確認"
   },
   "method": {
     "jsapi": "JSAPI",
