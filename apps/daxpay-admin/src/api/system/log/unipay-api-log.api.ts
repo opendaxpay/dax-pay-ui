@@ -32,6 +32,8 @@ export const UnipayApiLogApi = {
 export interface UnipayApiLog extends BaseEntity {
   /** 商户号 */
   mchNo?: string;
+  /** 商户名称(由后端 SPI 翻译) */
+  mchName?: string;
   /** 请求ID */
   reqId?: string;
   /** 接口路径 */

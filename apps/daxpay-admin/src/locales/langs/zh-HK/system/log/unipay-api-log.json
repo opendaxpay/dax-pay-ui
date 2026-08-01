@@ -1,5 +1,6 @@
 {
   "mchNo": "商户号",
+  "mchName": "商戶",
   "reqId": "請求ID",
   "apiPath": "接口路径",
   "apiTitle": "接口名称",

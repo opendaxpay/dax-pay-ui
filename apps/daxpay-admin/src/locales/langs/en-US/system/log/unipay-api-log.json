@@ -1,5 +1,6 @@
 {
   "mchNo": "Merchant No.",
+  "mchName": "Merchant",
   "reqId": "Request ID",
   "apiPath": "API Path",
   "apiTitle": "API Name",

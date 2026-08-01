@@ -1,5 +1,6 @@
 {
   "mchNo": "商戶號",
+  "mchName": "商戶",
   "reqId": "請求ID",
   "apiPath": "介面路徑",
   "apiTitle": "介面名稱",

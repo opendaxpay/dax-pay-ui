@@ -1,5 +1,6 @@
 {
   "mchNo": "가맹점 번호",
+  "mchName": "가맹점",
   "reqId": "요청 ID",
   "apiPath": "API 경로",
   "apiTitle": "API 이름",

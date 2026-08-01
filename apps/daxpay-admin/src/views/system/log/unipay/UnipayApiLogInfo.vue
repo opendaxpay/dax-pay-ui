@@ -73,6 +73,10 @@
         bordered
         :label-style="{ width: '110px', whiteSpace: 'nowrap' }"
       >
+        <!-- 商户名称 -->
+        <a-descriptions-item :label="$t('system.log.unipay-api-log.mchName')">
+          {{ data.mchName || '-' }}
+        </a-descriptions-item>
         <!-- 商户号 -->
         <a-descriptions-item :label="$t('system.log.unipay-api-log.mchNo')">
           <span class="break-all">{{ data.mchNo }}</span>

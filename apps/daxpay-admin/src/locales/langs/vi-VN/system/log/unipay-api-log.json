@@ -1,5 +1,6 @@
 {
   "mchNo": "Mã thương nhân",
+  "mchName": "Thương nhân",
   "reqId": "Request ID",
   "apiPath": "Đường dẫn API",
   "apiTitle": "Tên API",
