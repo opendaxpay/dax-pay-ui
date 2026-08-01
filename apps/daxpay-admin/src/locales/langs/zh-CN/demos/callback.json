@@ -1,0 +1,40 @@
+{
+  "title": "回调接收演示",
+  "description": "模拟商户端接收平台出站通知，用于支付/退款回调链路的联调与验证",
+  "bizType": {
+    "pay": "支付",
+    "refund": "退款",
+    "unknown": "未知"
+  },
+  "guide": {
+    "title": "联调配置说明",
+    "usage": "将商户应用的通知地址(notifyUrl)指向下方端点，平台出站通知会打到此处并验签记录。",
+    "notifyUrlLabel": "接收端点：",
+    "note": "记录暂存于内存，重启服务后清空。"
+  },
+  "records": {
+    "title": "接收记录",
+    "description": "平台出站通知的接收记录，每 2 秒自动刷新。",
+    "refresh": "刷新",
+    "clear": "清空",
+    "empty": "暂无接收记录，触发一笔支付后将在此显示",
+    "columns": {
+      "bizType": "业务类型",
+      "event": "事件码",
+      "mchNo": "商户号",
+      "appId": "应用ID",
+      "bizNo": "业务号",
+      "amount": "金额(分)",
+      "verifyResult": "验签",
+      "receiveTime": "接收时间"
+    },
+    "verifyStatus": {
+      "success": "通过",
+      "failed": "失败"
+    }
+  },
+  "messages": {
+    "clearSuccess": "清空成功",
+    "clearConfirm": "确定要清空全部接收记录吗？"
+  }
+}

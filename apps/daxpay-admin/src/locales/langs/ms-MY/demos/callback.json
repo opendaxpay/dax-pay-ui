@@ -1,0 +1,40 @@
+{
+  "title": "Demo Penerimaan Callback",
+  "description": "Mensimulasikan endpoint peniaga yang menerima pemberitahuan keluar platform, untuk pengujian integrasi callback pembayaran/bayaran balik",
+  "bizType": {
+    "pay": "Bayar",
+    "refund": "Bayaran balik",
+    "unknown": "Tidak diketahui"
+  },
+  "guide": {
+    "title": "Panduan Integrasi",
+    "usage": "Arahkan URL pemberitahuan aplikasi peniaga (notifyUrl) ke endpoint di bawah. Pemberitahuan keluar platform akan diterima dan ditentusankan tandatangannya di sini.",
+    "notifyUrlLabel": "Endpoint penerima:",
+    "note": "Rekod disimpan dalam memori dan dikosongkan apabila perkhidmatan dimulakan semula."
+  },
+  "records": {
+    "title": "Rekod Diterima",
+    "description": "Pemberitahuan keluar platform yang diterima, dimuat semula secara automatik setiap 2 saat.",
+    "refresh": "Muat semula",
+    "clear": "Kosongkan",
+    "empty": "Tiada rekod lagi. Cetuskan pembayaran dan ia akan dipaparkan di sini.",
+    "columns": {
+      "bizType": "Jenis",
+      "event": "Kod Acara",
+      "mchNo": "No. Peniaga",
+      "appId": "App ID",
+      "bizNo": "No. Perniagaan",
+      "amount": "Jumlah(sen)",
+      "verifyResult": "Tandatangan",
+      "receiveTime": "Diterima Pada"
+    },
+    "verifyStatus": {
+      "success": "Sah",
+      "failed": "Tidak Sah"
+    }
+  },
+  "messages": {
+    "clearSuccess": "Berjaya dikosongkan",
+    "clearConfirm": "Adakah anda pasti untuk mengosongkan semua rekod yang diterima?"
+  }
+}

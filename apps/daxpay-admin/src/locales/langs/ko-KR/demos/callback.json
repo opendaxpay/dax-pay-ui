@@ -1,0 +1,40 @@
+{
+  "title": "콜백 수신 데모",
+  "description": "상점 엔드포인트가 플랫폼 아웃바운드 알림을 수신하는 것을 시뮬레이션하여 결제/환불 콜백 연동 테스트에 사용됩니다",
+  "bizType": {
+    "pay": "결제",
+    "refund": "환불",
+    "unknown": "알 수 없음"
+  },
+  "guide": {
+    "title": "연동 가이드",
+    "usage": "상점 앱의 알림 URL(notifyUrl)을 아래 엔드포인트로 지정하세요. 플랫폼 아웃바운드 알림이 여기서 수신되어 서명 검증 후 기록됩니다.",
+    "notifyUrlLabel": "수신 엔드포인트:",
+    "note": "기록은 메모리에 저장되며, 서비스 재시작 시 초기화됩니다."
+  },
+  "records": {
+    "title": "수신 기록",
+    "description": "플랫폼 아웃바운드 알림의 수신 기록, 2초마다 자동 새로고침됩니다.",
+    "refresh": "새로고침",
+    "clear": "초기화",
+    "empty": "아직 기록이 없습니다. 결제를 트리거하면 여기에 표시됩니다.",
+    "columns": {
+      "bizType": "유형",
+      "event": "이벤트 코드",
+      "mchNo": "가맹점 번호",
+      "appId": "앱 ID",
+      "bizNo": "업무 번호",
+      "amount": "금액(센트)",
+      "verifyResult": "서명",
+      "receiveTime": "수신 시간"
+    },
+    "verifyStatus": {
+      "success": "유효",
+      "failed": "무효"
+    }
+  },
+  "messages": {
+    "clearSuccess": "초기화되었습니다",
+    "clearConfirm": "모든 수신 기록을 초기화하시겠습니까?"
+  }
+}

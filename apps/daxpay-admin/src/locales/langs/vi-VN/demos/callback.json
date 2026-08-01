@@ -1,0 +1,40 @@
+{
+  "title": "Demo Nhận Callback",
+  "description": "Mô phỏng điểm cuối người bán nhận thông báo đi của nền tảng, dùng để kiểm thử tích hợp callback thanh toán/hoàn tiền",
+  "bizType": {
+    "pay": "Thanh toán",
+    "refund": "Hoàn tiền",
+    "unknown": "Không xác định"
+  },
+  "guide": {
+    "title": "Hướng dẫn tích hợp",
+    "usage": "Trỏ URL thông báo ứng dụng người bán (notifyUrl) đến điểm cuối bên dưới. Thông báo đi của nền tảng sẽ được nhận và xác minh chữ ký tại đây.",
+    "notifyUrlLabel": "Điểm cuối nhận:",
+    "note": "Hồ sơ được lưu trong bộ nhớ và bị xóa khi khởi động lại dịch vụ."
+  },
+  "records": {
+    "title": "Hồ sơ đã nhận",
+    "description": "Thông báo đi của nền tảng đã nhận, tự động làm mới mỗi 2 giây.",
+    "refresh": "Làm mới",
+    "clear": "Xóa",
+    "empty": "Chưa có hồ sơ nào. Kích hoạt thanh toán sẽ hiển thị tại đây.",
+    "columns": {
+      "bizType": "Loại",
+      "event": "Mã sự kiện",
+      "mchNo": "Số người bán",
+      "appId": "ID ứng dụng",
+      "bizNo": "Số nghiệp vụ",
+      "amount": "Số tiền(xu)",
+      "verifyResult": "Chữ ký",
+      "receiveTime": "Thời gian nhận"
+    },
+    "verifyStatus": {
+      "success": "Hợp lệ",
+      "failed": "Không hợp lệ"
+    }
+  },
+  "messages": {
+    "clearSuccess": "Đã xóa thành công",
+    "clearConfirm": "Bạn có chắc chắn muốn xóa tất cả hồ sơ đã nhận?"
+  }
+}

@@ -49,6 +49,7 @@
   "menu.device": "裝置管理",
   "menu.demos.artemis": "訊息佇列演示",
   "menu.demos.ipRegion": "IP歸屬地查詢",
+  "menu.demos.callback": "回調接收演示",
   "menu.system.config.thirdPlatform": "三方平臺管理",
   "menu.system.basic.protocol": "使用者協議",
   "menu.payment.merchant.profile": "商戶資料",

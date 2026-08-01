@@ -1,0 +1,40 @@
+{
+  "title": "Callback Receiver Demo",
+  "description": "Simulates a merchant endpoint receiving platform outbound notifications, for payment/refund callback integration testing",
+  "bizType": {
+    "pay": "Pay",
+    "refund": "Refund",
+    "unknown": "Unknown"
+  },
+  "guide": {
+    "title": "Integration Guide",
+    "usage": "Point the merchant app notification URL (notifyUrl) to the endpoint below. Platform outbound notifications will be received and signature-verified here.",
+    "notifyUrlLabel": "Receiver endpoint:",
+    "note": "Records are stored in memory and cleared on service restart."
+  },
+  "records": {
+    "title": "Received Records",
+    "description": "Received platform outbound notifications, auto-refreshed every 2 seconds.",
+    "refresh": "Refresh",
+    "clear": "Clear",
+    "empty": "No records yet. Trigger a payment and it will appear here.",
+    "columns": {
+      "bizType": "Type",
+      "event": "Event",
+      "mchNo": "Merchant No",
+      "appId": "App ID",
+      "bizNo": "Biz No",
+      "amount": "Amount(cents)",
+      "verifyResult": "Sign",
+      "receiveTime": "Received At"
+    },
+    "verifyStatus": {
+      "success": "Valid",
+      "failed": "Invalid"
+    }
+  },
+  "messages": {
+    "clearSuccess": "Cleared successfully",
+    "clearConfirm": "Are you sure to clear all received records?"
+  }
+}

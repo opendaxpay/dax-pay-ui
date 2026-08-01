@@ -49,6 +49,7 @@
   "menu.device": "장치 관리",
   "menu.demos.artemis": "메시지 대기열 데모",
   "menu.demos.ipRegion": "IP 귀속지 조회",
+  "menu.demos.callback": "콜백 수신 데모",
   "menu.system.config.thirdPlatform": "타사 플랫폼 관리",
   "menu.system.basic.protocol": "사용자 프로토콜",
   "menu.payment.merchant.profile": "판매자 프로필",

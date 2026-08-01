@@ -1,0 +1,40 @@
+{
+  "title": "Demo Penerimaan Callback",
+  "description": "Mensimulasikan endpoint pedagang yang menerima notifikasi keluar platform, untuk pengujian integrasi callback pembayaran/pengembalian dana",
+  "bizType": {
+    "pay": "Bayar",
+    "refund": "Pengembalian",
+    "unknown": "Tidak diketahui"
+  },
+  "guide": {
+    "title": "Panduan Integrasi",
+    "usage": "Arahkan URL notifikasi aplikasi pedagang (notifyUrl) ke endpoint di bawah. Notifikasi keluar platform akan diterima dan diverifikasi tanda tangannya di sini.",
+    "notifyUrlLabel": "Endpoint penerima:",
+    "note": "Catatan disimpan di memori dan dihapus saat layanan dimulai ulang."
+  },
+  "records": {
+    "title": "Catatan Diterima",
+    "description": "Notifikasi keluar platform yang diterima, disegarkan otomatis setiap 2 detik.",
+    "refresh": "Segarkan",
+    "clear": "Bersihkan",
+    "empty": "Belum ada catatan. Picu pembayaran dan akan muncul di sini.",
+    "columns": {
+      "bizType": "Jenis",
+      "event": "Kode Event",
+      "mchNo": "No. Pedagang",
+      "appId": "App ID",
+      "bizNo": "No. Bisnis",
+      "amount": "Jumlah(sen)",
+      "verifyResult": "Tanda Tangan",
+      "receiveTime": "Diterima Pada"
+    },
+    "verifyStatus": {
+      "success": "Valid",
+      "failed": "Tidak Valid"
+    }
+  },
+  "messages": {
+    "clearSuccess": "Berhasil dibersihkan",
+    "clearConfirm": "Apakah Anda yakin ingin menghapus semua catatan yang diterima?"
+  }
+}

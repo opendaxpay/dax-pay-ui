@@ -49,6 +49,7 @@
   "menu.device": "デバイス管理",
   "menu.demos.artemis": "メッセージキューのデモ",
   "menu.demos.ipRegion": "IP帰属地照会",
+  "menu.demos.callback": "コールバック受信デモ",
   "menu.system.config.thirdPlatform": "サードパーティのプラットフォーム管理",
   "menu.system.basic.protocol": "ユーザープロトコル",
   "menu.payment.merchant.profile": "販売者のプロフィール",

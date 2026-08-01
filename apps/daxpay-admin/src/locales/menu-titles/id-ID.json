@@ -49,6 +49,7 @@
   "menu.device": "Manajemen Perangkat",
   "menu.demos.artemis": "Demo Antrian Pesan",
   "menu.demos.ipRegion": "Pencarian Lokasi IP",
+  "menu.demos.callback": "Demo Penerimaan Callback",
   "menu.system.config.thirdPlatform": "Manajemen Platform Pihak Ketiga",
   "menu.system.basic.protocol": "Protokol Pengguna",
   "menu.payment.merchant.profile": "Profil Pedagang",

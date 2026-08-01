@@ -50,6 +50,7 @@
   "menu.device": "Device Management",
   "menu.demos.artemis": "Message Queue Demo",
   "menu.demos.ipRegion": "IP Region Lookup",
+  "menu.demos.callback": "Callback Receiver Demo",
   "menu.system.config.thirdPlatform": "Third-party Platform Management",
   "menu.system.basic.protocol": "User Protocol",
   "menu.payment.merchant.profile": "Merchant Profile",
