@@ -17,6 +17,20 @@
       "description": "Tentukan aplikasi WeChat default untuk produk ini, digunakan saat merchant channel tidak memiliki konfigurasi terpisah"
     }
   },
+  "alipayIsv": {
+    "app": {
+      "title": "Aplikasi Service Provider",
+      "description": "Konfigurasi minimal satu aplikasi service provider Alipay"
+    },
+    "appKey": {
+      "title": "Konfigurasi Kunci Aplikasi",
+      "description": "Minimal satu aplikasi memiliki konfigurasi kunci lengkap (mode public key atau sertifikat)"
+    },
+    "appAuth": {
+      "title": "Otorisasi Aplikasi",
+      "description": "Minimal satu aplikasi memiliki tipe ID pengguna (userIdType) yang dikonfigurasi"
+    }
+  },
   "summary": {
     "title": "Progres Konfigurasi",
     "completed": "{configured}/{total} item selesai",

@@ -17,6 +17,20 @@
       "description": "Tentukan aplikasi WeChat lalai untuk produk ini, digunakan apabila merchant saluran tidak mempunyai konfigurasi berasingan"
     }
   },
+  "alipayIsv": {
+    "app": {
+      "title": "Aplikasi Pembekal Perkhidmatan",
+      "description": "Konfigurasi sekurang-kurangnya satu aplikasi pembekal perkhidmatan Alipay"
+    },
+    "appKey": {
+      "title": "Konfigurasi Kunci Aplikasi",
+      "description": "Sekurang-kurangnya satu aplikasi mempunyai konfigurasi kunci lengkap (mod public key atau sijil)"
+    },
+    "appAuth": {
+      "title": "Kebenaran Aplikasi",
+      "description": "Sekurang-kurangnya satu aplikasi mempunyai jenis ID pengguna (userIdType) yang dikonfigurasi"
+    }
+  },
   "summary": {
     "title": "Kemajuan Konfigurasi",
     "completed": "{configured}/{total} item selesai",

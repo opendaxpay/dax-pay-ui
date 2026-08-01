@@ -17,6 +17,20 @@
       "description": "本商品のデフォルトWeChatアプリを指定（チャネル加盟店の個別設定がない場合に使用）"
     }
   },
+  "alipayIsv": {
+    "app": {
+      "title": "サービスプロバイダーアプリ",
+      "description": "Alipayサービスプロバイダーアプリを少なくとも1つ設定"
+    },
+    "appKey": {
+      "title": "アプリキー設定",
+      "description": "少なくとも1つのアプリでキー設定が完了していること(公開鍵モードまたは証明書モード)"
+    },
+    "appAuth": {
+      "title": "アプリ認証設定",
+      "description": "少なくとも1つのアプリでユーザーIDタイプ(userIdType)が設定されていること"
+    }
+  },
   "summary": {
     "title": "設定進捗",
     "completed": "{configured}/{total} 件完了",

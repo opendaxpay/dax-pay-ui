@@ -17,6 +17,20 @@
       "description": "為產品指定預設微信應用,通道商戶未單獨配置時使用"
     }
   },
+  "alipayIsv": {
+    "app": {
+      "title": "服務商應用",
+      "description": "至少配置一個支付寶服務商應用"
+    },
+    "appKey": {
+      "title": "應用密鑰配置",
+      "description": "至少一個應用完成密鑰配置(公鑰模式或證書模式)"
+    },
+    "appAuth": {
+      "title": "應用授權認證",
+      "description": "至少一個應用配置用戶標識類型(userIdType)"
+    }
+  },
   "summary": {
     "title": "配置進度",
     "completed": "{configured}/{total} 項已完成",

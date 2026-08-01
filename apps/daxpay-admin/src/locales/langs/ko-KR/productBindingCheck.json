@@ -17,6 +17,20 @@
       "description": "본 제품의 기본 WeChat 앱을 지정 (채널 가맹점의 개별 설정이 없는 경우 사용)"
     }
   },
+  "alipayIsv": {
+    "app": {
+      "title": "서비스 제공자 앱",
+      "description": "Alipay 서비스 제공자 앱을 최소 1개 이상 설정"
+    },
+    "appKey": {
+      "title": "앱 키 설정",
+      "description": "최소 1개 이상의 앱에 키 설정이 완료됨 (공개 키 또는 인증서 모드)"
+    },
+    "appAuth": {
+      "title": "앱 인증 설정",
+      "description": "최소 1개 이상의 앱에 사용자 ID 유형(userIdType)이 설정됨"
+    }
+  },
   "summary": {
     "title": "설정 진행률",
     "completed": "{configured}/{total}개 완료",

@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+  import type { ProductBindingCheckResult } from '#/api/payment/check/product-binding-check.api';
+
   import { computed, ref } from 'vue';
   import { useRouter } from 'vue-router';
 
@@ -6,12 +8,16 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { ProductBindingCheckApi } from '#/api/payment/check/product-binding-check.api';
+
   defineOptions({ name: 'AlipayIsvManage' });
 
   const router = useRouter();
   const loading = ref(false);
   // 是否沙箱环境
   const sandbox = ref(false);
+  // 绑定检查结果
+  const checkResult = ref<null | ProductBindingCheckResult>(null);
 
   /**
    * 功能卡片配置
@@ -26,6 +32,8 @@
           title: $t('payment.channel.alipayManage.cardIsvApp'),
           icon: 'ant-design:appstore-outlined',
           description: $t('payment.channel.alipayManage.cardIsvAppDesc'),
+          // 配置检查动作标识(跳转应用管理页)
+          checkAction: 'openAppManage',
           route: '/payment/config/product/app-manage',
         },
       ],
@@ -56,11 +64,33 @@
     return map[color] || 'bg-muted text-muted-foreground';
   }
 
-  /**
-   * 初始化（由分发页调用）
-   */
-  function init(isSandbox: boolean) {
+  /** 根据动作标识获取卡片配置状态: true=全部已配置, false=有未配置, null=无检查项 */
+  function getCardStatus(action?: string): boolean | null {
+    if (!action || !checkResult.value) {
+      return null;
+    }
+    const items = checkResult.value.items.filter((i) => i.action === action);
+    if (items.length === 0) {
+      return null;
+    }
+    return items.every((i) => i.configured);
+  }
+
+  /** 加载绑定检查结果 */
+  async function loadCheck() {
+    try {
+      const res = await ProductBindingCheckApi.check('alipay_isv');
+      checkResult.value = res.data;
+    } catch {
+      // 检查失败时不阻塞页面, 仅不展示检查状态
+      checkResult.value = null;
+    }
+  }
+
+  /** 初始化（由分发页调用） */
+  async function init(isSandbox: boolean) {
     sandbox.value = isSandbox;
+    await loadCheck();
   }
 
   /**
@@ -93,6 +123,25 @@
               :styles="{ body: { padding: '24px 20px' } }"
               @click="handleCardClick(card)"
             >
+              <!-- 卡片配置状态徽标 -->
+              <div v-if="getCardStatus(card.checkAction) !== null" class="absolute right-3 top-3 z-10">
+                <a-tooltip
+                  :title="
+                    getCardStatus(card.checkAction)
+                      ? $t('productBindingCheck.summary.allDone')
+                      : $t('productBindingCheck.summary.pending')
+                  "
+                >
+                  <IconifyIcon
+                    :icon="
+                      getCardStatus(card.checkAction)
+                        ? 'ant-design:check-circle-filled'
+                        : 'ant-design:exclamation-circle-filled'
+                    "
+                    :class="getCardStatus(card.checkAction) ? 'h-5 w-5 text-success' : 'h-5 w-5 text-warning'"
+                  />
+                </a-tooltip>
+              </div>
               <div class="flex flex-col items-center text-center">
                 <!-- 图标区域 -->
                 <div

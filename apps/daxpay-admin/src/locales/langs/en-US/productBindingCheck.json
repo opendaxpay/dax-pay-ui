@@ -17,6 +17,20 @@
       "description": "Specify a default WeChat app for this product, used when channel merchants have no separate config"
     }
   },
+  "alipayIsv": {
+    "app": {
+      "title": "Service Provider App",
+      "description": "Configure at least one Alipay service provider app"
+    },
+    "appKey": {
+      "title": "App Key Configuration",
+      "description": "At least one app has complete key configuration (public key or certificate mode)"
+    },
+    "appAuth": {
+      "title": "App Authorization",
+      "description": "At least one app has a configured user ID type (userIdType)"
+    }
+  },
   "summary": {
     "title": "Configuration Progress",
     "completed": "{configured}/{total} items completed",

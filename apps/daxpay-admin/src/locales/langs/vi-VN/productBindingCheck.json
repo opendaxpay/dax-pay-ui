@@ -17,6 +17,20 @@
       "description": "Chỉ định ứng dụng WeChat mặc định cho sản phẩm này, được sử dụng khi merchant kênh không có cấu hình riêng"
     }
   },
+  "alipayIsv": {
+    "app": {
+      "title": "Ứng dụng đối tác dịch vụ",
+      "description": "Cấu hình ít nhất một ứng dụng đối tác dịch vụ Alipay"
+    },
+    "appKey": {
+      "title": "Cấu hình khóa ứng dụng",
+      "description": "Ít nhất một ứng dụng có cấu hình khóa hoàn chỉnh (chế độ khóa công khai hoặc chứng chỉ)"
+    },
+    "appAuth": {
+      "title": "Ủy quyền ứng dụng",
+      "description": "Ít nhất một ứng dụng đã cấu hình loại ID người dùng (userIdType)"
+    }
+  },
   "summary": {
     "title": "Tiến độ cấu hình",
     "completed": "Đã hoàn thành {configured}/{total} mục",
