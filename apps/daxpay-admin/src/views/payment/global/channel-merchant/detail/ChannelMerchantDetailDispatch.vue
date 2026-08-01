@@ -21,6 +21,7 @@
   import VbillMchManage from '#/views/payment/channel/vbill/manage/mch/VbillMchManage.vue';
   import FuyouMchManage from '#/views/payment/channel/fuyou/manage/mch/FuyouMchManage.vue';
   import UmsDirectMchManage from '#/views/payment/channel/ums/manage/UmsDirectMchManage.vue';
+  import UnionDirectMchManage from '#/views/payment/channel/union/manage/UnionDirectMchManage.vue';
   import AdapayDirectMchManage from '#/views/payment/channel/adapay/manage/AdapayDirectMchManage.vue';
   import WechatChannelMerchantManage from '#/views/payment/channel/wechat/manage/mch/WechatChannelMerchantManage.vue';
   import WechatDirectMchManage from '#/views/payment/channel/wechat/manage/mch/WechatDirectMchManage.vue';
@@ -59,6 +60,7 @@
   const wechatDirectManageRef = ref<InstanceType<typeof WechatDirectMchManage>>();
   const douyinDirectManageRef = ref<InstanceType<typeof DouyinDirectMchManage>>();
   const umsDirectManageRef = ref<InstanceType<typeof UmsDirectMchManage>>();
+  const unionDirectManageRef = ref<InstanceType<typeof UnionDirectMchManage>>();
   const adapayDirectManageRef = ref<InstanceType<typeof AdapayDirectMchManage>>();
   const lakalaManageRef = ref<InstanceType<typeof LakalaMchManage>>();
   const hkrtManageRef = ref<InstanceType<typeof HkrtMchManage>>();
@@ -80,6 +82,15 @@
     );
   }
 
+  /** 是否为云闪付(直连银联)系列产品 */
+  function isUnionProduct(p: string) {
+    return (
+      p === ProductEnum.UNION_QRCODE ||
+      p === ProductEnum.UNION_H5 ||
+      p === ProductEnum.UNION_BARCODE
+    );
+  }
+
   /** 是否为已支持的支付产品 */
   function isSupported(p: string) {
     return (
@@ -96,7 +107,8 @@
       p === ProductEnum.VBILL_PAY ||
       p === ProductEnum.FUYOU_PAY ||
       p === ProductEnum.HM_PAY ||
-      isUmsProduct(p)
+      isUmsProduct(p) ||
+      isUnionProduct(p)
     );
   }
 
@@ -143,6 +155,9 @@
     }
     if (isUmsProduct(productCode)) {
       return $t('payment.channel.umsManage.manageTitle');
+    }
+    if (isUnionProduct(productCode)) {
+      return $t('payment.channel.unionManage.manageTitle');
     }
     return $t('payment.merchant.channelMerchant.manageTitleDefault');
   }
@@ -212,6 +227,9 @@
     }
     if (isUmsProduct(product.value)) {
       umsDirectManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
+    }
+    if (isUnionProduct(product.value)) {
+      unionDirectManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
     }
     if (product.value === ProductEnum.LAKALA_PAY) {
       lakalaManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
@@ -331,6 +349,7 @@
           @success="loadChannelMerchant"
         />
         <UmsDirectMchManage v-else-if="isUmsProduct(resolvedProduct)" ref="umsDirectManageRef" @success="loadChannelMerchant" />
+        <UnionDirectMchManage v-else-if="isUnionProduct(resolvedProduct)" ref="unionDirectManageRef" @success="loadChannelMerchant" />
         <LakalaMchManage
           v-else-if="resolvedProduct === ProductEnum.LAKALA_PAY"
           ref="lakalaManageRef"

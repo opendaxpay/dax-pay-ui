@@ -1,0 +1,10 @@
+{
+  "manageTitle": "การจัดการผู้ค้า UnionPay",
+  "cardDirectKeyConfig": "การกำหนดค่าใบรับรอง",
+  "cardDirectKeyConfigDesc": "กำหนดค่าใบรับรองการลงนาม RSA2 ระดับผู้ค้า UnionPay",
+  "directKeyConfigTitle": "การกำหนดค่าใบรับรอง UnionPay",
+  "keyConfigSection": "การกำหนดค่าใบรับรองผู้ค้า",
+  "environment": "สภาพแวดล้อม",
+  "prodEnv": "การผลิต",
+  "sandboxEnv": "แซนด์บ็อกซ์"
+}

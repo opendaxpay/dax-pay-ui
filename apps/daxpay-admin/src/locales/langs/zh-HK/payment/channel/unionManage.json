@@ -1,0 +1,10 @@
+{
+  "manageTitle": "雲閃付商戶管理",
+  "cardDirectKeyConfig": "證書配置",
+  "cardDirectKeyConfigDesc": "配置雲閃付商戶維度的RSA2簽名證書",
+  "directKeyConfigTitle": "雲閃付證書配置",
+  "keyConfigSection": "商戶證書配置",
+  "environment": "環境",
+  "prodEnv": "生產",
+  "sandboxEnv": "沙箱"
+}

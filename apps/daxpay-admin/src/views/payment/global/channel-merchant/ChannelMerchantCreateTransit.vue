@@ -9,6 +9,7 @@ import DouyinMchCreateConfig from '#/views/payment/channel/douyin/config/DouyinM
 import HkrtMchCreateConfig from '#/views/payment/channel/hkrt/config/HkrtMchCreateConfig.vue';
 import LakalaMchCreateConfig from '#/views/payment/channel/lakala/config/LakalaMchCreateConfig.vue';
 import UmsMchCreateConfig from '#/views/payment/channel/ums/config/UmsMchCreateConfig.vue';
+import UnionMchCreateConfig from '#/views/payment/channel/union/config/UnionMchCreateConfig.vue';
 import AdapayMchCreateConfig from '#/views/payment/channel/adapay/config/AdapayMchCreateConfig.vue';
 import LeshuaMchCreateConfig from '#/views/payment/channel/leshua/config/LeshuaMchCreateConfig.vue';
 import DougongMchCreateConfig from '#/views/payment/channel/dougong/config/DougongMchCreateConfig.vue';
@@ -32,6 +33,7 @@ const wechatDirectRef = ref();
 const lakalaRef = ref();
   const hkrtRef = ref();
   const umsRef = ref();
+  const unionRef = ref();
   const adapayRef = ref();
   const leshuaRef = ref();
   const douyinRef = ref();
@@ -49,6 +51,15 @@ function isUmsProduct(product: string) {
     product === ProductEnum.UMS_MINI ||
     product === ProductEnum.UMS_H5 ||
     product === ProductEnum.UMS_BARCODE
+  );
+}
+
+/** 是否为云闪付(直连银联)系列产品 */
+function isUnionProduct(product: string) {
+  return (
+    product === ProductEnum.UNION_QRCODE ||
+    product === ProductEnum.UNION_H5 ||
+    product === ProductEnum.UNION_BARCODE
   );
 }
 
@@ -115,6 +126,9 @@ function init(product: string, mchNo: string, channel: string) {
         if (isUmsProduct(product)) {
           umsRef.value?.init(mchNo, product, channel);
         }
+        if (isUnionProduct(product)) {
+          unionRef.value?.init(mchNo, product, channel);
+        }
       }
     }
   });
@@ -131,6 +145,7 @@ defineExpose({ init });
   <LakalaMchCreateConfig ref="lakalaRef" @prev="emit('prev')" @close="emit('close')" />
   <HkrtMchCreateConfig ref="hkrtRef" @prev="emit('prev')" @close="emit('close')" />
   <UmsMchCreateConfig ref="umsRef" @prev="emit('prev')" @close="emit('close')" />
+  <UnionMchCreateConfig ref="unionRef" @prev="emit('prev')" @close="emit('close')" />
   <AdapayMchCreateConfig ref="adapayRef" @prev="emit('prev')" @close="emit('close')" />
   <LeshuaMchCreateConfig ref="leshuaRef" @prev="emit('prev')" @close="emit('close')" />
   <DougongMchCreateConfig ref="dougongRef" @prev="emit('prev')" @close="emit('close')" />

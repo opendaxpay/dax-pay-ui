@@ -1,0 +1,23 @@
+{
+  "title": "Konfigurasi UnionPay",
+  "keyConfig": "Konfigurasi Sertifikat",
+  "merId": "ID Pedagang UnionPay",
+  "merIdPlaceholder": "Masukkan ID pedagang UnionPay",
+  "signType": "Jenis Tanda Tangan",
+  "certSign": "Tanda Tangan Sertifikat",
+  "keyPrivateCert": "Sertifikat Kunci Pribadi",
+  "keyPrivateCertPlaceholder": "Masukkan sertifikat kunci pribadi (Base64 PKCS12)",
+  "keyPrivateCertPwd": "Kata Sandi Sertifikat",
+  "keyPrivateCertPwdPlaceholder": "Masukkan kata sandi sertifikat kunci pribadi",
+  "acpMiddleCert": "Sertifikat Menengah",
+  "acpMiddleCertPlaceholder": "Masukkan sertifikat menengah (Base64)",
+  "acpRootCert": "Sertifikat Root",
+  "acpRootCertPlaceholder": "Masukkan sertifikat root (Base64)",
+  "validation": {
+    "merId": "Please enter ID Pedagang UnionPay",
+    "keyPrivateCert": "Please enter private key certificate",
+    "keyPrivateCertPwd": "Please enter certificate password",
+    "acpMiddleCert": "Please enter middle certificate",
+    "acpRootCert": "Please enter root certificate"
+  }
+}

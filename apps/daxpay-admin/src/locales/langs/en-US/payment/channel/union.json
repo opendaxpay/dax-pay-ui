@@ -1,0 +1,23 @@
+{
+  "title": "UnionPay Configuration",
+  "keyConfig": "Certificate Config",
+  "merId": "UnionPay Merchant ID",
+  "merIdPlaceholder": "Please enter UnionPay merchant ID",
+  "signType": "Sign Type",
+  "certSign": "Certificate Sign",
+  "keyPrivateCert": "Private Key Certificate",
+  "keyPrivateCertPlaceholder": "Please enter private key certificate (Base64 PKCS12)",
+  "keyPrivateCertPwd": "Certificate Password",
+  "keyPrivateCertPwdPlaceholder": "Please enter private key certificate password",
+  "acpMiddleCert": "Middle Certificate",
+  "acpMiddleCertPlaceholder": "Please enter middle certificate (Base64)",
+  "acpRootCert": "Root Certificate",
+  "acpRootCertPlaceholder": "Please enter root certificate (Base64)",
+  "validation": {
+    "merId": "Please enter UnionPay Merchant ID",
+    "keyPrivateCert": "Please enter private key certificate",
+    "keyPrivateCertPwd": "Please enter certificate password",
+    "acpMiddleCert": "Please enter middle certificate",
+    "acpRootCert": "Please enter root certificate"
+  }
+}

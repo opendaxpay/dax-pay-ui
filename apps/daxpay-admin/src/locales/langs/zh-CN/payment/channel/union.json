@@ -1,0 +1,23 @@
+{
+  "title": "云闪付配置",
+  "keyConfig": "证书配置",
+  "merId": "银联商户号",
+  "merIdPlaceholder": "请输入银联商户号",
+  "signType": "签名类型",
+  "certSign": "证书签名",
+  "keyPrivateCert": "私钥证书",
+  "keyPrivateCertPlaceholder": "请输入应用私钥证书(Base64 PKCS12)",
+  "keyPrivateCertPwd": "证书密码",
+  "keyPrivateCertPwdPlaceholder": "请输入私钥证书密码",
+  "acpMiddleCert": "中级证书",
+  "acpMiddleCertPlaceholder": "请输入中级证书(Base64)",
+  "acpRootCert": "根证书",
+  "acpRootCertPlaceholder": "请输入根证书(Base64)",
+  "validation": {
+    "merId": "请输入银联商户号",
+    "keyPrivateCert": "请输入私钥证书",
+    "keyPrivateCertPwd": "请输入证书密码",
+    "acpMiddleCert": "请输入中级证书",
+    "acpRootCert": "请输入根证书"
+  }
+}

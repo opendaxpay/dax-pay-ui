@@ -1,0 +1,10 @@
+{
+  "manageTitle": "云闪付商户管理",
+  "cardDirectKeyConfig": "证书配置",
+  "cardDirectKeyConfigDesc": "配置云闪付商户维度的RSA2签名证书",
+  "directKeyConfigTitle": "云闪付证书配置",
+  "keyConfigSection": "商户证书配置",
+  "environment": "环境",
+  "prodEnv": "生产",
+  "sandboxEnv": "沙箱"
+}

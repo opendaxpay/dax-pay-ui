@@ -1,0 +1,23 @@
+{
+  "title": "Cấu hình UnionPay",
+  "keyConfig": "Cấu hình chứng chỉ",
+  "merId": "ID người bán UnionPay",
+  "merIdPlaceholder": "Nhập ID người bán UnionPay",
+  "signType": "Loại chữ ký",
+  "certSign": "Chữ ký chứng chỉ",
+  "keyPrivateCert": "Chứng chỉ khóa riêng",
+  "keyPrivateCertPlaceholder": "Nhập chứng chỉ khóa riêng (Base64 PKCS12)",
+  "keyPrivateCertPwd": "Mật khẩu chứng chỉ",
+  "keyPrivateCertPwdPlaceholder": "Nhập mật khẩu chứng chỉ khóa riêng",
+  "acpMiddleCert": "Chứng chỉ trung gian",
+  "acpMiddleCertPlaceholder": "Nhập chứng chỉ trung gian (Base64)",
+  "acpRootCert": "Chứng chỉ gốc",
+  "acpRootCertPlaceholder": "Nhập chứng chỉ gốc (Base64)",
+  "validation": {
+    "merId": "Please enter ID người bán UnionPay",
+    "keyPrivateCert": "Please enter private key certificate",
+    "keyPrivateCertPwd": "Please enter certificate password",
+    "acpMiddleCert": "Please enter middle certificate",
+    "acpRootCert": "Please enter root certificate"
+  }
+}

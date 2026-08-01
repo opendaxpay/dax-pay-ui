@@ -1,0 +1,10 @@
+{
+  "manageTitle": "Quản lý người bán UnionPay",
+  "cardDirectKeyConfig": "Cấu hình chứng chỉ",
+  "cardDirectKeyConfigDesc": "Cấu hình chứng chỉ ký RSA2 cấp người bán UnionPay",
+  "directKeyConfigTitle": "Cấu hình chứng chỉ UnionPay",
+  "keyConfigSection": "Cấu hình chứng chỉ người bán",
+  "environment": "Môi trường",
+  "prodEnv": "Sản xuất",
+  "sandboxEnv": "Hộp cát"
+}

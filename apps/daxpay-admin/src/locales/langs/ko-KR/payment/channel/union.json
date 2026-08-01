@@ -1,0 +1,23 @@
+{
+  "title": "유니온페이 설정",
+  "keyConfig": "인증서 설정",
+  "merId": "유니온페이 판매자 ID",
+  "merIdPlaceholder": "유니온페이 판매자 ID 입력",
+  "signType": "서명 유형",
+  "certSign": "인증서 서명",
+  "keyPrivateCert": "개인 키 인증서",
+  "keyPrivateCertPlaceholder": "애플리케이션 개인 키 인증서(Base64 PKCS12) 입력",
+  "keyPrivateCertPwd": "인증서 비밀번호",
+  "keyPrivateCertPwdPlaceholder": "개인 키 인증서 비밀번호 입력",
+  "acpMiddleCert": "중간 인증서",
+  "acpMiddleCertPlaceholder": "중간 인증서(Base64) 입력",
+  "acpRootCert": "루트 인증서",
+  "acpRootCertPlaceholder": "루트 인증서(Base64) 입력",
+  "validation": {
+    "merId": "Please enter 유니온페이 판매자 ID",
+    "keyPrivateCert": "Please enter private key certificate",
+    "keyPrivateCertPwd": "Please enter certificate password",
+    "acpMiddleCert": "Please enter middle certificate",
+    "acpRootCert": "Please enter root certificate"
+  }
+}

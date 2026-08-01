@@ -1,0 +1,23 @@
+{
+  "title": "雲閃付配置",
+  "keyConfig": "證書配置",
+  "merId": "銀聯商戶號",
+  "merIdPlaceholder": "請輸入銀聯商戶號",
+  "signType": "簽名類型",
+  "certSign": "證書簽名",
+  "keyPrivateCert": "私鑰證書",
+  "keyPrivateCertPlaceholder": "請輸入應用私鑰證書(Base64 PKCS12)",
+  "keyPrivateCertPwd": "證書密碼",
+  "keyPrivateCertPwdPlaceholder": "請輸入私鑰證書密碼",
+  "acpMiddleCert": "中級證書",
+  "acpMiddleCertPlaceholder": "請輸入中級證書(Base64)",
+  "acpRootCert": "根證書",
+  "acpRootCertPlaceholder": "請輸入根證書(Base64)",
+  "validation": {
+    "merId": "请输入銀聯商戶號",
+    "keyPrivateCert": "请输入私钥证书",
+    "keyPrivateCertPwd": "请输入证书密码",
+    "acpMiddleCert": "请输入中级证书",
+    "acpRootCert": "请输入根证书"
+  }
+}

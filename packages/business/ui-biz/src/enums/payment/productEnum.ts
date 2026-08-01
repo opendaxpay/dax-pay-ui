@@ -36,6 +36,12 @@ export enum ProductEnum {
   UMS_MINI = 'ums_mini',
   /** 银联商务(C扫B) */
   UMS_QRCODE = 'ums_qrcode',
+  /** 云闪付(C扫B 主扫) */
+  UNION_QRCODE = 'union_qrcode',
+  /** 云闪付(H5) */
+  UNION_H5 = 'union_h5',
+  /** 云闪付(B扫C 被扫) */
+  UNION_BARCODE = 'union_barcode',
   /** 随行付 */
   VBILL_PAY = 'vbill_pay',
   /** 微信支付(服务商) */
@@ -59,6 +65,9 @@ export const productI18nMap: Record<string, string> = {
   [ProductEnum.UMS_MINI]: 'payment.product.enum.umsMini',
   [ProductEnum.UMS_H5]: 'payment.product.enum.umsH5',
   [ProductEnum.UMS_BARCODE]: 'payment.product.enum.umsBarcode',
+  [ProductEnum.UNION_QRCODE]: 'payment.product.enum.unionQrcode',
+  [ProductEnum.UNION_H5]: 'payment.product.enum.unionH5',
+  [ProductEnum.UNION_BARCODE]: 'payment.product.enum.unionBarcode',
   [ProductEnum.LAKALA_PAY]: 'payment.product.enum.lakalaPay',
   [ProductEnum.LESHUA_PAY]: 'payment.product.enum.leshuaPay',
   [ProductEnum.ADA_PAY]: 'payment.product.enum.adaPay',
@@ -84,6 +93,9 @@ export const productNameMap: Record<string, string> = {
   [ProductEnum.UMS_MINI]: '银联商务(小程序)',
   [ProductEnum.UMS_H5]: '银联商务(H5)',
   [ProductEnum.UMS_BARCODE]: '银联商务(B扫C)',
+  [ProductEnum.UNION_QRCODE]: '云闪付(C扫B)',
+  [ProductEnum.UNION_H5]: '云闪付(H5)',
+  [ProductEnum.UNION_BARCODE]: '云闪付(B扫C)',
   [ProductEnum.LAKALA_PAY]: '拉卡拉支付',
   [ProductEnum.LESHUA_PAY]: '乐刷支付',
   [ProductEnum.ADA_PAY]: 'Adapay',
@@ -111,6 +123,9 @@ export const productChannelMap: Record<string, string> = {
   [ProductEnum.UMS_MINI]: ChannelEnum.UMS_PAY,
   [ProductEnum.UMS_H5]: ChannelEnum.UMS_PAY,
   [ProductEnum.UMS_BARCODE]: ChannelEnum.UMS_PAY,
+  [ProductEnum.UNION_QRCODE]: ChannelEnum.UNION_PAY,
+  [ProductEnum.UNION_H5]: ChannelEnum.UNION_PAY,
+  [ProductEnum.UNION_BARCODE]: ChannelEnum.UNION_PAY,
   [ProductEnum.LAKALA_PAY]: ChannelEnum.LAKALA_PAY,
   [ProductEnum.LESHUA_PAY]: ChannelEnum.LESHUA_PAY,
   [ProductEnum.ADA_PAY]: ChannelEnum.HUIFU,
@@ -145,6 +160,10 @@ export const productLogoMap: Record<string, string> = {
   [ProductEnum.UMS_MINI]: 'ums_pay',
   [ProductEnum.UMS_H5]: 'ums_pay',
   [ProductEnum.UMS_BARCODE]: 'ums_pay',
+  // 云闪付(直连银联)
+  [ProductEnum.UNION_QRCODE]: 'union_pay',
+  [ProductEnum.UNION_H5]: 'union_pay',
+  [ProductEnum.UNION_BARCODE]: 'union_pay',
   // 拉卡拉
   [ProductEnum.LAKALA_PAY]: 'lakala',
   // 乐刷
