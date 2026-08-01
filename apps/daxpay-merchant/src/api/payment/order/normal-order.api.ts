@@ -26,17 +26,6 @@ export const NormalOrderApi = {
   sync(id: string): Promise<Result<NormalPaySyncResult>> {
     return defHttp.post({ url: '/mch/order/normal-pay/sync', params: { id } });
   },
-
-  /**
-   * 关闭/撤销订单
-   * @param useCancel 是否使用撤销(撤销可退已支付, 关闭仅关未支付)
-   */
-  close(id: string, useCancel = false): Promise<Result<void>> {
-    return defHttp.post({
-      url: '/mch/order/normal-pay/close',
-      params: { id, useCancel },
-    });
-  },
 };
 
 /** 业务订单查询参数 */

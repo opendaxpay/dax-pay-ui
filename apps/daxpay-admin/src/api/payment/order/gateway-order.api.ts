@@ -28,16 +28,6 @@ export const GatewayOrderApi = {
   sync(id: string): Promise<Result<GatewayPaySyncResult>> {
     return defHttp.post({ url: '/admin/order/gateway-pay/sync', params: { id } });
   },
-
-  /**
-   * 关闭/撤销订单
-   */
-  close(id: string, useCancel = false): Promise<Result<void>> {
-    return defHttp.post({
-      url: '/admin/order/gateway-pay/close',
-      params: { id, useCancel },
-    });
-  },
 };
 
 /** 网关订单查询参数 */

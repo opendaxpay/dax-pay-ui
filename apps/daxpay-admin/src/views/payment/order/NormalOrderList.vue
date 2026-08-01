@@ -9,16 +9,16 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { NormalOrderApi, type NormalOrderQuery, type NormalOrderResult } from '#/api/payment/order/normal-order.api';
-  import { RefundOrderApi, type RefundParam } from '#/api/payment/order/refund-order.api';
+  import { OrderCloseApi } from '#/api/payment/order/close.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { productI18nMap, productNameMap } from '#/enums/payment';
-  import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
+  import { useTradeActions } from './composables/useTradeActions';
+  import RefundModal from './components/RefundModal.vue';
 
   defineOptions({ name: 'NormalOrderList' });
 
-  const { confirm, message } = useMessage();
   const { hasPermission } = usePermission();
 
   const loading = ref(false);
@@ -40,36 +40,8 @@
   const drawerVisible = ref(false);
   const drawerLoading = ref(false);
   const detail = ref<NormalOrderResult>({});
-  const actionLoading = ref(false);
-
   // 退款弹窗
-  const refundVisible = ref(false);
-  const refundLoading = ref(false);
-  const refundFetching = ref(false);
-  const refundFormRef = ref();
-  // refundForm.amount 以「元」存储, 提交时再×100转分
-  const refundForm = ref<{ amount?: number; reason?: string; tradeNo?: string }>({ amount: undefined, reason: '' });
-  const refundRow = ref<NormalOrderResult | null>(null);
-  // 可退金额(元), 作为退款金额输入框上限
-  const refundableYuan = computed(() => (refundRow.value?.refundableBalance ?? 0) / 100);
-  // 退款表单校验(走 form rules, 不手写 message)
-  const refundRules = computed(() => ({
-    amount: [
-      { required: true, message: $t('payment.order.action.refundAmountPlaceholder') },
-      {
-        type: 'number',
-        min: 0.01,
-        message: $t('payment.order.action.refundAmountPlaceholder'),
-      },
-      {
-        validator: async (_rule: unknown, value: number) => {
-          if (value != null && value > refundableYuan.value) {
-            throw new Error($t('payment.order.action.refundAmountExceed'));
-          }
-        },
-      },
-    ],
-  }));
+  const refundModalRef = ref();
 
   // 业务状态下拉（含 failed）
   const statusOptions = computed(() =>
@@ -225,68 +197,12 @@
     }
   }
 
-  /**
-   * 同步支付状态
-   */
-  function handleSync(row: NormalOrderResult) {
-    confirm({
-      title: $t('payment.order.action.syncConfirmTitle'),
-      content: $t('payment.order.action.syncConfirmContent'),
-      onOk() {
-        actionLoading.value = true;
-        return NormalOrderApi.sync(row.id!)
-          .then(() => {
-            message.success($t('payment.order.action.syncSuccess'));
-            queryPage();
-          })
-          .finally(() => {
-            actionLoading.value = false;
-          });
-      },
-    });
-  }
-
-  /**
-   * 关闭订单(仅未支付订单, 资金态置 CLOSE)
-   */
-  function handleClose(row: NormalOrderResult) {
-    confirm({
-      title: $t('payment.order.action.closeConfirmTitle'),
-      content: $t('payment.order.action.closeConfirmContent'),
-      onOk() {
-        actionLoading.value = true;
-        return NormalOrderApi.close(row.id!)
-          .then(() => {
-            message.success($t('payment.order.action.closeSuccess'));
-            queryPage();
-          })
-          .finally(() => {
-            actionLoading.value = false;
-          });
-      },
-    });
-  }
-
-  /**
-   * 撤销订单(已支付订单, 通过通道撤销, 资金态置 CANCEL)
-   */
-  function handleCancel(row: NormalOrderResult) {
-    confirm({
-      title: $t('payment.order.action.cancelConfirmTitle'),
-      content: $t('payment.order.action.cancelConfirmContent'),
-      onOk() {
-        actionLoading.value = true;
-        return NormalOrderApi.close(row.id!, true)
-          .then(() => {
-            message.success($t('payment.order.action.cancelSuccess'));
-            queryPage();
-          })
-          .finally(() => {
-            actionLoading.value = false;
-          });
-      },
-    });
-  }
+  // 交易操作(同步/关闭)
+  const { handleSync, handleClose } = useTradeActions({
+    syncFn: (id) => NormalOrderApi.sync(id),
+    closeFn: (id) => OrderCloseApi.close(id, 'normal'),
+    onSuccess: queryPage,
+  });
 
   function handleDrawerClose() {
     drawerVisible.value = false;
@@ -294,74 +210,7 @@
   }
 
   /**
-   * 打开退款弹窗(先查详情, 列表行不含 tradeNo/refundableBalance 等资金凭证字段)
-   */
-  async function handleRefund(row: NormalOrderResult) {
-    refundRow.value = row;
-    refundVisible.value = true;
-    refundFetching.value = true;
-    try {
-      const { data } = await NormalOrderApi.getById(row.id!);
-      // 用详情回填(含 tradeNo/refundableBalance/bizOrderNo)
-      refundRow.value = data || row;
-      refundForm.value = {
-        tradeNo: data?.tradeNo,
-        // 分转元, 默认填满可退金额
-        amount: (data?.refundableBalance ?? 0) / 100,
-        reason: '',
-      };
-    } finally {
-      refundFetching.value = false;
-    }
-  }
-
-  /**
-   * 提交退款
-   */
-  async function submitRefund() {
-    if (!refundRow.value) {
-      return;
-    }
-    try {
-      await refundFormRef.value?.validate();
-    } catch {
-      // 校验失败: 表单已显示错误提示; 拒绝以阻止 modal 关闭
-      // eslint-disable-next-line unicorn/no-useless-promise-resolve-reject -- 静默拒绝以阻止 modal 关闭
-      return Promise.reject();
-    }
-    // 元转分提交
-    const amountYuan = refundForm.value.amount ?? 0;
-    const param: RefundParam = {
-      tradeNo: refundForm.value.tradeNo,
-      bizOrderNo: refundRow.value.bizOrderNo,
-      amount: Math.round(amountYuan * 100),
-      reason: refundForm.value.reason,
-    };
-    confirm({
-      title: $t('payment.order.action.refundConfirmTitle'),
-      content: $t('payment.order.action.refundConfirmContent', { amount: amountYuan.toFixed(2) }),
-      onOk() {
-        refundLoading.value = true;
-        return RefundOrderApi.refund(param)
-          .then(() => {
-            message.success($t('payment.order.action.refundSuccess'));
-            refundVisible.value = false;
-            queryPage();
-          })
-          .finally(() => {
-            refundLoading.value = false;
-          });
-      },
-    });
-  }
-
-  function handleRefundClose() {
-    refundVisible.value = false;
-    refundRow.value = null;
-  }
-
-  /**
-   * 更多操作菜单(退款/撤销/关闭/同步, 按状态与权限动态生成)
+   * 更多操作菜单(退款/关闭/同步, 按状态与权限动态生成)
    */
   function getActionMenu(row: NormalOrderResult): MenuProps {
     const items: { danger?: boolean; key: string; label: string }[] = [];
@@ -371,10 +220,6 @@
     // 退款(已支付 + 退款权限)
     if (canRefund && row.status === 'paid') {
       items.push({ key: 'refund', label: $t('payment.order.action.refund'), danger: true });
-    }
-    // 撤销(已支付 + 管理权限)
-    if (canManage && row.status === 'paid') {
-      items.push({ key: 'cancel', label: $t('payment.order.action.cancel'), danger: true });
     }
     // 关闭(待支付 + 管理权限)
     if (canManage && row.status === 'wait_pay') {
@@ -388,20 +233,16 @@
       items,
       onClick: ({ key }: { key: string }) => {
         switch (key) {
-          case 'cancel': {
-            handleCancel(row);
-            break;
-          }
           case 'close': {
-            handleClose(row);
+            handleClose(row.id!);
             break;
           }
           case 'refund': {
-            handleRefund(row);
+            refundModalRef.value?.open(row);
             break;
           }
           case 'sync': {
-            handleSync(row);
+            handleSync(row.id!);
             break;
           }
         }
@@ -471,7 +312,7 @@
                 <a-button type="link" size="small" @click="handleView(row)">
                   {{ $t('common.view') }}
                 </a-button>
-                <!-- 更多操作(退款/撤销/关闭/同步, 按状态与权限动态生成) -->
+                <!-- 更多操作(退款/关闭/同步, 按状态与权限动态生成) -->
                 <a-dropdown v-if="getActionMenu(row).items?.length" :menu="getActionMenu(row)">
                   <a href="javascript:">
                     {{ $t('common.more') }}
@@ -607,42 +448,10 @@
     </a-drawer>
 
     <!-- 退款弹窗 -->
-    <a-modal
-      v-model:open="refundVisible"
-      :title="$t('payment.order.action.refund')"
-      :confirm-loading="refundLoading"
-      @ok="submitRefund"
-      @cancel="handleRefundClose"
-    >
-      <a-spin :spinning="refundFetching">
-        <a-form ref="refundFormRef" :model="refundForm" :rules="refundRules" :label-col="{ span: 6 }">
-          <a-form-item :label="$t('payment.order.action.refundAmountLabel')" name="amount">
-            <a-input-number
-              v-model:value="refundForm.amount"
-              :min="0.01"
-              :max="refundableYuan"
-              :precision="2"
-              :step="0.01"
-              style="width: 100%"
-              :placeholder="$t('payment.order.action.refundAmountPlaceholder')"
-            />
-            <!-- 可退金额: 元+分双显 -->
-            <div v-if="refundRow" style="font-size: 12px; color: #999; margin-top: 4px">
-              {{ $t('payment.order.action.refundableBalanceLabel') }}: ¥{{
-                formatAmount(refundRow.refundableBalance)
-              }}
-              ({{ refundRow.refundableBalance ?? 0 }}{{ $t('payment.order.action.cents') }})
-            </div>
-          </a-form-item>
-          <a-form-item :label="$t('payment.order.action.refundReasonLabel')">
-            <a-textarea
-              v-model:value="refundForm.reason"
-              :rows="2"
-              :placeholder="$t('payment.order.action.refundReasonPlaceholder')"
-            />
-          </a-form-item>
-        </a-form>
-      </a-spin>
-    </a-modal>
+    <RefundModal
+      ref="refundModalRef"
+      :fetch-detail="(id) => NormalOrderApi.getById(id).then((res) => res.data)"
+      @success="queryPage"
+    />
   </div>
 </template>

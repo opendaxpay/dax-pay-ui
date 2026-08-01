@@ -13,16 +13,16 @@
     type GatewayOrderQuery,
     type GatewayOrderResult,
   } from '#/api/payment/order/gateway-order.api';
-  import { type RefundParam, RefundOrderApi } from '#/api/payment/order/refund-order.api';
+  import { OrderCloseApi } from '#/api/payment/order/close.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { productI18nMap, productNameMap } from '#/enums/payment';
-  import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
+  import { useTradeActions } from './composables/useTradeActions';
+  import RefundModal from './components/RefundModal.vue';
 
   defineOptions({ name: 'GatewayOrderList' });
 
-  const { confirm, message } = useMessage();
   const { hasPermission } = usePermission();
 
   const loading = ref(false);
@@ -42,33 +42,8 @@
   const drawerVisible = ref(false);
   const drawerLoading = ref(false);
   const detail = ref<GatewayOrderResult>({});
-  const actionLoading = ref(false);
-
   // 退款弹窗
-  const refundVisible = ref(false);
-  const refundLoading = ref(false);
-  const refundFetching = ref(false);
-  const refundFormRef = ref();
-  const refundForm = ref<{ amount?: number; tradeNo?: string; reason?: string }>({ amount: undefined, reason: '' });
-  const refundRow = ref<GatewayOrderResult | null>(null);
-  const refundableYuan = computed(() => (refundRow.value?.refundableBalance ?? 0) / 100);
-  const refundRules = computed(() => ({
-    amount: [
-      { required: true, message: $t('payment.order.action.refundAmountPlaceholder') },
-      {
-        type: 'number',
-        min: 0.01,
-        message: $t('payment.order.action.refundAmountPlaceholder'),
-      },
-      {
-        validator: async (_rule: unknown, value: number) => {
-          if (value != null && value > refundableYuan.value) {
-            return Promise.reject(new Error($t('payment.order.action.refundAmountExceed')));
-          }
-        },
-      },
-    ],
-  }));
+  const refundModalRef = ref();
 
   // 网关业务状态
   const statusOptions = computed(() =>
@@ -215,96 +190,16 @@
     }
   }
 
-  function handleSync(row: GatewayOrderResult) {
-    confirm({
-      title: $t('payment.order.action.syncConfirmTitle'),
-      content: $t('payment.order.action.syncConfirmContent'),
-      onOk() {
-        actionLoading.value = true;
-        return GatewayOrderApi.sync(row.id!)
-          .then(() => {
-            message.success($t('payment.order.action.syncSuccess'));
-            queryPage();
-          })
-          .finally(() => {
-            actionLoading.value = false;
-          });
-      },
-    });
-  }
-
-  function handleClose(row: GatewayOrderResult) {
-    confirm({
-      title: $t('payment.order.action.closeConfirmTitle'),
-      content: $t('payment.order.action.closeConfirmContent'),
-      onOk() {
-        actionLoading.value = true;
-        return GatewayOrderApi.close(row.id!)
-          .then(() => {
-            message.success($t('payment.order.action.closeSuccess'));
-            queryPage();
-          })
-          .finally(() => {
-            actionLoading.value = false;
-          });
-      },
-    });
-  }
-
-  async function openRefund(row: GatewayOrderResult) {
-    refundRow.value = row;
-    refundVisible.value = true;
-    refundFetching.value = true;
-    try {
-      const { data } = await GatewayOrderApi.getById(row.id!);
-      refundRow.value = data || row;
-      refundForm.value = {
-        tradeNo: data?.tradeNo,
-        reason: '',
-        amount: (data?.refundableBalance ?? 0) / 100,
-      };
-    } finally {
-      refundFetching.value = false;
-    }
-  }
-
-  async function submitRefund() {
-    if (!refundRow.value) {
-      return;
-    }
-    try {
-      await refundFormRef.value?.validate();
-    } catch {
-      return;
-    }
-    const amountYuan = refundForm.value.amount ?? 0;
-    const param: RefundParam = {
-      tradeNo: refundForm.value.tradeNo,
-      bizOrderNo: refundRow.value.bizOrderNo,
-      amount: Math.round(amountYuan * 100),
-      reason: refundForm.value.reason,
-    };
-    confirm({
-      title: $t('payment.order.action.refundConfirmTitle'),
-      content: $t('payment.order.action.refundConfirmContent', { amount: amountYuan.toFixed(2) }),
-      onOk() {
-        refundLoading.value = true;
-        return RefundOrderApi.refund(param)
-          .then(() => {
-            message.success($t('payment.order.action.refundSuccess'));
-            refundVisible.value = false;
-            queryPage();
-          })
-          .finally(() => {
-            refundLoading.value = false;
-          });
-      },
-    });
-  }
+  // 交易操作(同步/关闭)
+  const { handleSync, handleClose } = useTradeActions({
+    syncFn: (id) => GatewayOrderApi.sync(id),
+    closeFn: (id) => OrderCloseApi.close(id, 'gateway'),
+    onSuccess: queryPage,
+  });
 
   function getActionMenu(row: GatewayOrderResult): MenuProps {
     const items: MenuProps['items'] = [];
-    if (hasPermission(PermCodes.Trade.GatewayOrder.MANAGE)) {
+    if (hasPermission(PermCodes.Trade.Order.MANAGE)) {
       if (row.status === 'wait_pay' || row.status === 'paying') {
         items.push({ key: 'sync', label: $t('payment.order.action.sync') });
         items.push({ key: 'close', label: $t('payment.order.action.close'), danger: true });
@@ -321,15 +216,15 @@
       onClick: ({ key }) => {
         switch (key) {
           case 'sync': {
-            handleSync(row);
+            handleSync(row.id!);
             break;
           }
           case 'close': {
-            handleClose(row);
+            handleClose(row.id!);
             break;
           }
           case 'refund': {
-            openRefund(row);
+            refundModalRef.value?.open(row);
             break;
           }
         }
@@ -488,30 +383,10 @@
     </a-drawer>
 
     <!-- 退款弹窗 -->
-    <a-modal
-      v-model:open="refundVisible"
-      :title="$t('payment.order.action.refund')"
-      :confirm-loading="refundLoading"
-      :ok-button-props="{ disabled: refundFetching || !refundForm.tradeNo }"
-      @ok="submitRefund"
-      @cancel="refundVisible = false"
-    >
-      <a-spin :spinning="refundFetching">
-        <a-form ref="refundFormRef" layout="vertical" :model="refundForm" :rules="refundRules">
-          <a-form-item :label="$t('payment.order.field.tradeNo')">
-            <a-input :value="refundForm.tradeNo" disabled />
-          </a-form-item>
-          <a-form-item :label="$t('payment.order.action.refundableBalanceLabel')">
-            {{ refundableYuan.toFixed(2) }}
-          </a-form-item>
-          <a-form-item :label="$t('payment.order.action.refundAmountLabel')" name="amount">
-            <a-input-number v-model:value="refundForm.amount" class="w-full" :min="0.01" :precision="2" />
-          </a-form-item>
-          <a-form-item :label="$t('payment.order.action.refundReasonLabel')" name="reason">
-            <a-textarea v-model:value="refundForm.reason" :placeholder="$t('payment.order.action.refundReasonPlaceholder')" />
-          </a-form-item>
-        </a-form>
-      </a-spin>
-    </a-modal>
+    <RefundModal
+      ref="refundModalRef"
+      :fetch-detail="(id) => GatewayOrderApi.getById(id).then((res) => res.data)"
+      @success="queryPage"
+    />
   </div>
 </template>
