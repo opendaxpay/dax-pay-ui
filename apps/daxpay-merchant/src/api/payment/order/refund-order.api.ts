@@ -33,6 +33,13 @@ export const RefundOrderApi = {
   sync(id: string): Promise<Result<RefundOrderResult>> {
     return defHttp.post({ url: '/mch/order/refund/sync', params: { id } });
   },
+
+  /**
+   * 手动关闭异常退款单(仅PROGRESS且创建超7天)
+   */
+  manualClose(id: string): Promise<Result<RefundOrderResult>> {
+    return defHttp.post({ url: '/mch/order/refund/manual-close', params: { id } });
+  },
 };
 
 /** 退款订单查询参数 */

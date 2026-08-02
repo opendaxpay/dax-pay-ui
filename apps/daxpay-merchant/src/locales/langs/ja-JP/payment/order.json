@@ -158,7 +158,11 @@
     "refundAmountExceed": "払い戻し額は払い戻し可能額を超えることはできません",
     "refundTip": "返金は一度発行すると取り消せません。資金は元の決済方法で購入者に返還されます。",
     "refundAll": "全額返金",
-    "refundOkText": "返金を確認"
+    "refundOkText": "返金を確認",
+    "manualClose": "手動クローズ",
+    "manualCloseConfirmTitle": "手動クローズの確認",
+    "manualCloseConfirmContent": "この操作は返金注文をクローズし、予約残高をロールバックします。元に戻せません。7日以上未確認の異常返金注文のみ対象です。",
+    "manualCloseSuccess": "手動クローズ成功"
   },
   "method": {
     "jsapi": "JSAPI",

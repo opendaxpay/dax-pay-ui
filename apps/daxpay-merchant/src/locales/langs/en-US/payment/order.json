@@ -166,7 +166,11 @@
     "refundAmountExceed": "Refund amount cannot exceed refundable amount",
     "refundTip": "Once initiated, a refund cannot be reversed. Funds will be returned to the buyer via the original payment method.",
     "refundAll": "Full Refund",
-    "refundOkText": "Confirm Refund"
+    "refundOkText": "Confirm Refund",
+    "manualClose": "Manual Close",
+    "manualCloseConfirmTitle": "Confirm Manual Close",
+    "manualCloseConfirmContent": "This will close the refund order and release the reserved balance. This action cannot be undone. Only for abnormal refund orders unresolved after 7 days.",
+    "manualCloseSuccess": "Manual close succeeded"
   },
   "method": {
     "jsapi": "JSAPI",

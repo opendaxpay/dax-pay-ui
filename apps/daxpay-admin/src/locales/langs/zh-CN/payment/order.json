@@ -174,6 +174,10 @@
     "refundAmountExceed": "退款金额不能大于可退金额",
     "refundTip": "退款发起后不可撤销,资金将原路退回买家账户",
     "refundAll": "全额退款",
-    "refundOkText": "确认退款"
+    "refundOkText": "确认退款",
+    "manualClose": "手动关闭",
+    "manualCloseConfirmTitle": "确认手动关闭退款单",
+    "manualCloseConfirmContent": "此操作将关闭退款单并回滚预占余额，不可撤销。仅用于超过7天未确认的异常退款单。",
+    "manualCloseSuccess": "手动关闭成功"
   }
 }

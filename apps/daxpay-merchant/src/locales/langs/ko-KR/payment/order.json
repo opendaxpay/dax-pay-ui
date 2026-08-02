@@ -158,7 +158,11 @@
     "refundAmountExceed": "환불 금액은 환불 금액을 초과할 수 없습니다.",
     "refundTip": "환불은 일단 시작되면 취소할 수 없으며, 자금은 원래 결제 수단을 통해 구매자에게 반환됩니다.",
     "refundAll": "전액 환불",
-    "refundOkText": "환불 확인"
+    "refundOkText": "환불 확인",
+    "manualClose": "수동 종료",
+    "manualCloseConfirmTitle": "수동 종료 확인",
+    "manualCloseConfirmContent": "이 작업은 환불 주문을 종료하고 예약 잔액을 롤백합니다. 취소할 수 없습니다. 7일 이상 미확인된 비정상 환불 주문에만 사용됩니다.",
+    "manualCloseSuccess": "수동 종료 성공"
   },
   "method": {
     "jsapi": "JSAPI",

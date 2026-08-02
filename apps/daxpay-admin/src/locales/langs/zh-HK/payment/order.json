@@ -158,7 +158,11 @@
     "refundAmountExceed": "退款金額不能大於可退金額",
     "refundTip": "退款發起後不可撤銷,資金將原路退回買家帳戶",
     "refundAll": "全額退款",
-    "refundOkText": "確認退款"
+    "refundOkText": "確認退款",
+    "manualClose": "手動關閉",
+    "manualCloseConfirmTitle": "確認手動關閉退款單",
+    "manualCloseConfirmContent": "此操作將關閉退款單並回滾預佔餘額，不可撤銷。僅用於超過7天未確認的異常退款單。",
+    "manualCloseSuccess": "手動關閉成功"
   },
   "method": {
     "jsapi": "JSAPI",

@@ -195,6 +195,34 @@
     });
   }
 
+  // 判断是否为超7天未确认的PROGRESS退款单(可手动关闭)
+  function isStaleProgress(row: RefundOrderResult): boolean {
+    if (row.status !== 'progress') return false;
+    if (!row.createTime) return false;
+    const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+    return new Date(row.createTime).getTime() < sevenDaysAgo;
+  }
+
+  function handleManualClose(row: RefundOrderResult) {
+    confirm({
+      title: $t('payment.order.action.manualCloseConfirmTitle'),
+      content: $t('payment.order.action.manualCloseConfirmContent'),
+      okType: 'danger',
+      okText: $t('payment.order.action.manualClose'),
+      onOk() {
+        actionLoading.value = true;
+        return RefundOrderApi.manualClose(row.id!)
+          .then(() => {
+            message.success($t('payment.order.action.manualCloseSuccess'));
+            queryPage();
+          })
+          .finally(() => {
+            actionLoading.value = false;
+          });
+      },
+    });
+  }
+
   function handleDrawerClose() {
     drawerVisible.value = false;
     detail.value = {};
@@ -244,7 +272,7 @@
             :min-width="160"
             formatter="formatDateTime"
           />
-          <vxe-column :title="$t('common.operation')" width="160" fixed="right" :show-overflow="false">
+          <vxe-column :title="$t('common.operation')" :width="200" fixed="right" :show-overflow="false">
             <template #default="{ row }">
               <a-space :size="2">
                 <template #separator>
@@ -262,6 +290,18 @@
                 >
                   {{ $t('payment.order.action.sync') }}
                 </a-button>
+                <a-dropdown v-if="isStaleProgress(row) && hasPermission(PermCodes.Trade.Refund.MANAGE)">
+                  <a-button type="link" size="small" @click.prevent>
+                    {{ $t('common.more') }}
+                  </a-button>
+                  <template #overlay>
+                    <a-menu>
+                      <a-menu-item danger @click="handleManualClose(row)">
+                        {{ $t('payment.order.action.manualClose') }}
+                      </a-menu-item>
+                    </a-menu>
+                  </template>
+                </a-dropdown>
               </a-space>
             </template>
           </vxe-column>
