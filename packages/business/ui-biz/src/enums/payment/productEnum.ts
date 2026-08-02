@@ -87,7 +87,7 @@ export const productNameMap: Record<string, string> = {
   [ProductEnum.UMS_MINI]: '银联商务(小程序)',
   [ProductEnum.UMS_H5]: '银联商务(H5)',
   [ProductEnum.UMS_BARCODE]: '银联商务(B扫C)',
-  [ProductEnum.UNION_PAY]: '云闪付',
+  [ProductEnum.UNION_PAY]: '银联支付',
   [ProductEnum.LAKALA_PAY]: '拉卡拉支付',
   [ProductEnum.LESHUA_PAY]: '乐刷支付',
   [ProductEnum.ADA_PAY]: 'Adapay',
