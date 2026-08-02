@@ -12,7 +12,7 @@ export const PAY_PROVIDER_DISPLAY: PayProviderInfo[] = [
   { code: 'aggregate_pay', svgName: 'aggregate_pay', name: '聚合支付' },
   { code: 'wechat', svgName: 'wechat', name: '微信支付' },
   { code: 'alipay', svgName: 'alipay', name: '支付宝' },
-  { code: 'union_pay', svgName: 'union_pay', name: '银联' },
+  { code: 'union_pay', svgName: 'union_pay', name: '银联支付' },
   { code: 'visa', svgName: 'visa', name: 'Visa' },
   { code: 'mastercard', svgName: 'mastercard', name: 'Mastercard' },
   { code: 'douyin', svgName: 'douyin_pay', name: '抖音支付' },

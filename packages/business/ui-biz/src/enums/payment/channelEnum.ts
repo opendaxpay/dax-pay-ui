@@ -67,7 +67,7 @@ export const channelI18nMap: Record<string, string> = {
 export const channelNameMap: Record<string, string> = {
   [ChannelEnum.ALIPAY]: '支付宝',
   [ChannelEnum.WECHAT]: '微信支付',
-  [ChannelEnum.UNION_PAY]: '银联',
+  [ChannelEnum.UNION_PAY]: '银联支付',
   [ChannelEnum.LESHUA_PAY]: '乐刷',
   [ChannelEnum.VBILL_PAY]: '随行付',
   [ChannelEnum.HUIFU]: '汇付天下',

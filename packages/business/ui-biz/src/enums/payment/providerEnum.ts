@@ -44,7 +44,7 @@ export const providerNameMap: Record<string, string> = {
   [ProviderEnum.AGGREGATE_PAY]: '聚合支付',
   [ProviderEnum.WECHAT]: '微信支付',
   [ProviderEnum.ALIPAY]: '支付宝',
-  [ProviderEnum.UNION_PAY]: '银联',
+  [ProviderEnum.UNION_PAY]: '银联支付',
   [ProviderEnum.VISA]: 'Visa',
   [ProviderEnum.MASTERCARD]: '万事达',
   [ProviderEnum.DOUYIN]: '抖音支付',

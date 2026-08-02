@@ -44,7 +44,7 @@
   "channel": {
     "wechat_pay": "微信支付(直連)",
     "wechat_pay_isv": "微信支付(服務商)",
-    "union_pay": "雲閃付",
+    "union_pay": "銀聯支付",
     "alipay_isv": "支付寶(服務商)",
     "leshua_pay": "樂刷支付",
     "vbill_pay": "隨行付",
@@ -322,7 +322,7 @@
   "channel_auth_type": {
     "wechat": "微信",
     "alipay": "支付寶",
-    "union_pay": "銀聯"
+    "union_pay": "銀聯支付"
   },
   "ada_pay_method": {
     "alipay_lite": "支付寶小程式支付"
@@ -398,7 +398,7 @@
   "payment_vendor": {
     "wechat": "微信支付",
     "alipay": "支付寶",
-    "union_pay": "銀聯",
+    "union_pay": "銀聯支付",
     "douyin": "抖音支付"
   },
   "pay_call_type": {
