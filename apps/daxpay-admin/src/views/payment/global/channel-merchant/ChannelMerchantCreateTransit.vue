@@ -54,13 +54,9 @@ function isUmsProduct(product: string) {
   );
 }
 
-/** 是否为云闪付(直连银联)系列产品 */
+/** 是否为云闪付(直连银联)产品 */
 function isUnionProduct(product: string) {
-  return (
-    product === ProductEnum.UNION_QRCODE ||
-    product === ProductEnum.UNION_H5 ||
-    product === ProductEnum.UNION_BARCODE
-  );
+  return product === ProductEnum.UNION_PAY;
 }
 
 /**

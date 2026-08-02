@@ -82,13 +82,9 @@
     );
   }
 
-  /** 是否为云闪付(直连银联)系列产品 */
+  /** 是否为云闪付(直连银联)产品 */
   function isUnionProduct(p: string) {
-    return (
-      p === ProductEnum.UNION_QRCODE ||
-      p === ProductEnum.UNION_H5 ||
-      p === ProductEnum.UNION_BARCODE
-    );
+    return p === ProductEnum.UNION_PAY;
   }
 
   /** 是否为已支持的支付产品 */

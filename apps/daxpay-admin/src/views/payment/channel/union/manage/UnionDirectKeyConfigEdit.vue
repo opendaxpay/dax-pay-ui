@@ -49,8 +49,8 @@
     if (!props.channelMchNo) return;
     confirmLoading.value = true;
     try {
-      // 云闪付多产品, 优先用通道商户所属 product
-      const product = props.product || 'union_qrcode';
+      // 云闪付单一产品
+      const product = props.product || 'union_pay';
       sandbox.value = await resolveProductSandbox(product);
       const { data } = await UnionDirectChannelMerchantApi.findKeyConfig(
         props.channelMchNo,
