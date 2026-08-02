@@ -368,16 +368,6 @@
               <span v-else style="color: var(--text-color-placeholder)">-</span>
             </template>
           </vxe-column>
-          <!-- 商户: 已绑定名称上+号下小字; 未绑定 tag -->
-          <vxe-column field="mchName" :title="$t('payment.device.qrcode.field.merchant')" :min-width="160">
-            <template #default="{ row }">
-              <div v-if="row.mchNo" class="flex flex-col">
-                <span>{{ row.mchName || '-' }}</span>
-                <span class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
-              </div>
-              <a-tag v-else color="default">{{ $t('payment.device.qrcode.unbound') }}</a-tag>
-            </template>
-          </vxe-column>
           <!-- 应用: 名称上+号下小字; 空=默认应用 -->
           <vxe-column field="appId" :title="$t('payment.device.qrcode.field.appId')" :min-width="160">
             <template #default="{ row }">
@@ -426,6 +416,16 @@
               <a-tag v-else color="default">
                 {{ $t('payment.device.qrcode.status.disabled') }}
               </a-tag>
+            </template>
+          </vxe-column>
+          <!-- 商户: 已绑定名称上+号下小字; 未绑定 tag -->
+          <vxe-column field="mchName" :title="$t('payment.device.qrcode.field.merchant')" :min-width="160">
+            <template #default="{ row }">
+              <div v-if="row.mchNo" class="flex flex-col">
+                <span>{{ row.mchName || '-' }}</span>
+                <span class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
+              </div>
+              <a-tag v-else color="default">{{ $t('payment.device.qrcode.unbound') }}</a-tag>
             </template>
           </vxe-column>
           <vxe-column

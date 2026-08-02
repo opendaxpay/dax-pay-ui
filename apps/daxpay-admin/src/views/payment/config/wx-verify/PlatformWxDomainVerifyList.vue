@@ -225,6 +225,20 @@
               </a-tag>
             </template>
           </vxe-column>
+          <!-- 国际化：验证码 -->
+          <vxe-column
+            field="verifyCode"
+            :title="$t('payment.wxVerify.field.verifyCode')"
+            :min-width="200"
+            show-overflow
+          />
+          <!-- 国际化：备注 -->
+          <vxe-column
+            field="remark"
+            :title="$t('payment.wxVerify.field.remark')"
+            :min-width="160"
+            show-overflow
+          />
           <!-- 国际化：商户(名称上 + 号下小字; 平台级显示 -) -->
           <vxe-column
             field="mchName"
@@ -240,20 +254,6 @@
               </div>
             </template>
           </vxe-column>
-          <!-- 国际化：验证码 -->
-          <vxe-column
-            field="verifyCode"
-            :title="$t('payment.wxVerify.field.verifyCode')"
-            :min-width="200"
-            show-overflow
-          />
-          <!-- 国际化：备注 -->
-          <vxe-column
-            field="remark"
-            :title="$t('payment.wxVerify.field.remark')"
-            :min-width="160"
-            show-overflow
-          />
           <!-- 国际化：创建时间 -->
           <vxe-column
             field="createTime"

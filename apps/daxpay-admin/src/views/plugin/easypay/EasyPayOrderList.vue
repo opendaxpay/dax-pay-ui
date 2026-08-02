@@ -259,15 +259,6 @@
         <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }" />
         <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
-          <!-- 商户: 名称上 + 号下小字两排 -->
-          <vxe-column field="mchName" :title="$t('plugin.easypay.order.field.merchant')" :min-width="160">
-            <template #default="{ row }">
-              <div class="flex flex-col">
-                <span>{{ row.mchName || '-' }}</span>
-                <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
-              </div>
-            </template>
-          </vxe-column>
           <!-- 平台业务单号 -->
           <vxe-column field="tradeNo" :title="$t('plugin.easypay.order.field.tradeNo')" :min-width="200" show-overflow />
           <!-- 商户订单号 -->
@@ -288,6 +279,15 @@
           <vxe-column field="type" :title="$t('plugin.easypay.order.field.type')" :min-width="120" show-overflow />
           <!-- 协议版本 -->
           <vxe-column field="apiVersion" :title="$t('plugin.easypay.order.field.apiVersion')" :min-width="110" show-overflow />
+          <!-- 商户: 名称上 + 号下小字两排 -->
+          <vxe-column field="mchName" :title="$t('plugin.easypay.order.field.merchant')" :min-width="160">
+            <template #default="{ row }">
+              <div class="flex flex-col">
+                <span>{{ row.mchName || '-' }}</span>
+                <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
+              </div>
+            </template>
+          </vxe-column>
           <!-- 创建时间 -->
           <vxe-column
             field="createTime"

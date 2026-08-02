@@ -178,15 +178,6 @@
           </vxe-column>
           <!-- 命中值 -->
           <vxe-column field="hitValue" :title="$t('payment.risk.hit.field.hitValue')" :min-width="160" />
-          <!-- 商户: 名称上 + 号下小字两排 -->
-          <vxe-column field="mchName" :title="$t('payment.risk.hit.field.merchant')" :min-width="160">
-            <template #default="{ row }">
-              <div class="flex flex-col">
-                <span>{{ row.mchName || '-' }}</span>
-                <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
-              </div>
-            </template>
-          </vxe-column>
           <!-- 交易号 -->
           <vxe-column field="tradeNo" :title="$t('payment.risk.hit.field.tradeNo')" :min-width="140" />
           <!-- 处理状态 -->
@@ -195,6 +186,15 @@
               <a-tag :color="handleStatusColor(row.handleStatus)">
                 {{ handleStatusLabel(row.handleStatus) }}
               </a-tag>
+            </template>
+          </vxe-column>
+          <!-- 商户: 名称上 + 号下小字两排 -->
+          <vxe-column field="mchName" :title="$t('payment.risk.hit.field.merchant')" :min-width="160">
+            <template #default="{ row }">
+              <div class="flex flex-col">
+                <span>{{ row.mchName || '-' }}</span>
+                <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
+              </div>
             </template>
           </vxe-column>
           <!-- 创建时间 -->

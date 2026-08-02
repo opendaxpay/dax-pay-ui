@@ -203,15 +203,6 @@
         <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
           <!-- 序号 -->
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
-          <!-- 商户: 名称上 + 号下小字两排 -->
-          <vxe-column field="mchName" :title="$t('system.log.unipay-api-log.mchName')" :min-width="160">
-            <template #default="{ row }">
-              <div class="flex flex-col">
-                <span>{{ row.mchName || '-' }}</span>
-                <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
-              </div>
-            </template>
-          </vxe-column>
           <!-- 请求ID -->
           <vxe-column field="reqId" :title="$t('system.log.unipay-api-log.reqId')" :min-width="180" />
           <!-- 接口标题 -->
@@ -234,6 +225,15 @@
           <vxe-column field="requestIp" :title="$t('system.log.unipay-api-log.requestIp')" :min-width="130" />
           <!-- 错误提示 -->
           <vxe-column field="errorMsg" :title="$t('system.log.unipay-api-log.errorMsg')" :min-width="150" />
+          <!-- 商户: 名称上 + 号下小字两排 -->
+          <vxe-column field="mchName" :title="$t('system.log.unipay-api-log.mchName')" :min-width="160">
+            <template #default="{ row }">
+              <div class="flex flex-col">
+                <span>{{ row.mchName || '-' }}</span>
+                <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
+              </div>
+            </template>
+          </vxe-column>
           <!-- 时间 -->
           <vxe-column
             field="operateTime"

@@ -169,14 +169,6 @@
         <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }" />
         <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
-          <vxe-column field="mchName" :title="$t('payment.order.field.merchant')" :min-width="140">
-            <template #default="{ row }">
-              <div class="flex flex-col">
-                <span>{{ row.mchName || row.mchNo || '-' }}</span>
-                <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
-              </div>
-            </template>
-          </vxe-column>
           <vxe-column
             field="tradeNo"
             :title="$t('payment.record.callbackRecord.tradeNo')"
@@ -219,6 +211,14 @@
               <div class="flex flex-col">
                 <span>{{ row.channelMerchantName || row.channelMchNo || '-' }}</span>
                 <span v-if="row.channelMchNo" class="text-xs text-muted-foreground">{{ row.channelMchNo }}</span>
+              </div>
+            </template>
+          </vxe-column>
+          <vxe-column field="mchName" :title="$t('payment.order.field.merchant')" :min-width="140">
+            <template #default="{ row }">
+              <div class="flex flex-col">
+                <span>{{ row.mchName || row.mchNo || '-' }}</span>
+                <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
               </div>
             </template>
           </vxe-column>

@@ -185,15 +185,6 @@
         <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }" />
         <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="list" :loading="loading">
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
-          <!-- 所属商户 -->
-          <vxe-column field="mchName" :title="$t('payment.merchant.channelMerchant.belongMch')" :min-width="180">
-            <template #default="{ row }">
-              <div class="flex flex-col">
-                <span>{{ row.mchName || '-' }}</span>
-                <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
-              </div>
-            </template>
-          </vxe-column>
           <!-- 支付产品（图标+名称） -->
           <vxe-column field="product" :title="$t('payment.merchant.channelMerchant.product')" :min-width="200">
             <template #default="{ row }">
@@ -258,6 +249,15 @@
                 :loading="!!enableLoadingMap[row.id]"
                 @change="(checked: boolean) => handleToggleEnable(row, checked)"
               />
+            </template>
+          </vxe-column>
+          <!-- 所属商户 -->
+          <vxe-column field="mchName" :title="$t('payment.merchant.channelMerchant.belongMch')" :min-width="180">
+            <template #default="{ row }">
+              <div class="flex flex-col">
+                <span>{{ row.mchName || '-' }}</span>
+                <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
+              </div>
             </template>
           </vxe-column>
 
