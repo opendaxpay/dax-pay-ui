@@ -157,6 +157,9 @@
       "payFail": "결제 요청 실패",
       "inputPrivateKey": "판매자 개인키를 먼저 설정해주세요",
       "copySuccess": "복사됨"
+    },
+    "limitPayOption": {
+      "no_credit": "신용카드 결제"
     }
   },
   "auth": {

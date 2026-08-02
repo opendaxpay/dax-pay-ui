@@ -104,8 +104,10 @@
   // 当前商户名(只读展示, 商户端登录态绑定不可选择)
   const mchNameDisplay = ref('');
 
-  // 限制支付类型候选(预置常用项, mode=tags 支持手输)
-  const limitPayOptions = [{ label: 'no_credit', value: 'no_credit' }];
+  // 限制支付类型候选(预置常用项, 文案对齐后端 pay_limit_pay 枚举; mode=tags 支持手输)
+  const limitPayOptions = computed(() => [
+    { label: $t('payment.develop.trade.limitPayOption.no_credit'), value: 'no_credit' },
+  ]);
 
   // ===== 下拉选项 =====
   const mchAppOptions = ref<LabelValue[]>([]);

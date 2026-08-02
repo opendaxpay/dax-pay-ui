@@ -157,6 +157,9 @@
       "payFail": "Permintaan pembayaran gagal",
       "inputPrivateKey": "Sila tetapkan kunci peribadi pedagang dahulu",
       "copySuccess": "disalin"
+    },
+    "limitPayOption": {
+      "no_credit": "Pembayaran Kad Kredit"
     }
   },
   "auth": {

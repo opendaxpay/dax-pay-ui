@@ -157,6 +157,9 @@
       "payFail": "支付請求失敗",
       "inputPrivateKey": "請先設置商户私鑰",
       "copySuccess": "複製成功"
+    },
+    "limitPayOption": {
+      "no_credit": "信用卡支付"
     }
   },
   "auth": {

@@ -157,6 +157,9 @@
       "payFail": "Yêu cầu thanh toán không thành công",
       "inputPrivateKey": "Vui lòng đặt khóa riêng của người bán trước",
       "copySuccess": "Đã sao chép"
+    },
+    "limitPayOption": {
+      "no_credit": "Thanh toán bằng thẻ tín dụng"
     }
   },
   "auth": {

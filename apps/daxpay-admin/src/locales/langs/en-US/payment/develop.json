@@ -157,6 +157,9 @@
       "payFail": "Payment request failed",
       "inputPrivateKey": "Please set the merchant private key first",
       "copySuccess": "Copied"
+    },
+    "limitPayOption": {
+      "no_credit": "Credit Card Payment"
     }
   },
   "auth": {

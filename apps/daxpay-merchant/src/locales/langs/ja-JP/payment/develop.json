@@ -157,6 +157,9 @@
       "payFail": "支払いリクエストが失敗しました",
       "inputPrivateKey": "最初に販売者の秘密キーを設定してください",
       "copySuccess": "コピーされました"
+    },
+    "limitPayOption": {
+      "no_credit": "クレジットカード決済"
     }
   },
   "auth": {
