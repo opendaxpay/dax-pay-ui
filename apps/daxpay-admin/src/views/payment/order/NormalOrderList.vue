@@ -1,21 +1,18 @@
 <script lang="ts" setup>
-  import type { MenuProps } from 'antdv-next';
   import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
 
   import { computed, onMounted, ref } from 'vue';
 
   import { $t } from '@vben/locales';
 
-  import { IconifyIcon } from '@vben-core/icons';
-
-  import { NormalOrderApi, type NormalOrderQuery, type NormalOrderResult } from '#/api/payment/order/normal-order.api';
   import { OrderCloseApi } from '#/api/payment/order/close.api';
+  import { NormalOrderApi, type NormalOrderQuery, type NormalOrderResult } from '#/api/payment/order/normal-order.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { productI18nMap, productNameMap } from '#/enums/payment';
   import { usePermission } from '#/hooks/usePermission';
+
   import { useTradeActions } from './composables/useTradeActions';
-  import RefundModal from './components/RefundModal.vue';
 
   defineOptions({ name: 'NormalOrderList' });
 
@@ -40,8 +37,6 @@
   const drawerVisible = ref(false);
   const drawerLoading = ref(false);
   const detail = ref<NormalOrderResult>({});
-  // 退款弹窗
-  const refundModalRef = ref();
 
   // 业务状态下拉（含 failed）
   const statusOptions = computed(() =>
@@ -100,14 +95,13 @@
       endField: 'createTimeEnd',
     },
     {
-      type: 'number',
-      field: 'amountMin',
-      name: $t('payment.order.placeholder.amountMin'),
-    },
-    {
-      type: 'number',
-      field: 'amountMax',
-      name: $t('payment.order.placeholder.amountMax'),
+      type: 'number_range',
+      field: 'amount',
+      name: $t('payment.order.field.amountRange'),
+      startField: 'amountMin',
+      endField: 'amountMax',
+      precision: 0,
+      placeholder: [$t('payment.order.placeholder.amountMin'), $t('payment.order.placeholder.amountMax')],
     },
   ]);
 
@@ -197,9 +191,8 @@
     }
   }
 
-  // 交易操作(同步/关闭)
-  const { handleSync, handleClose } = useTradeActions({
-    syncFn: (id) => NormalOrderApi.sync(id),
+  // 交易操作(关闭)
+  const { handleClose } = useTradeActions({
     closeFn: (row) => OrderCloseApi.close(row.id!, 'normal'),
     onSuccess: queryPage,
   });
@@ -207,47 +200,6 @@
   function handleDrawerClose() {
     drawerVisible.value = false;
     detail.value = {};
-  }
-
-  /**
-   * 更多操作菜单(退款/关闭/同步, 按状态与权限动态生成)
-   */
-  function getActionMenu(row: NormalOrderResult): MenuProps {
-    const items: { danger?: boolean; key: string; label: string }[] = [];
-    const canManage = hasPermission(PermCodes.Trade.Order.MANAGE);
-    const canRefund = hasPermission(PermCodes.Trade.Refund.MANAGE);
-    const isTerminal = row.status === 'closed' || row.status === 'expired';
-    // 退款(已支付 + 退款权限)
-    if (canRefund && row.status === 'paid') {
-      items.push({ key: 'refund', label: $t('payment.order.action.refund'), danger: true });
-    }
-    // 关闭(待支付 + 管理权限)
-    if (canManage && row.status === 'wait_pay') {
-      items.push({ key: 'close', label: $t('payment.order.action.close'), danger: true });
-    }
-    // 同步(非终态 + 管理权限)
-    if (canManage && !isTerminal) {
-      items.push({ key: 'sync', label: $t('payment.order.action.sync') });
-    }
-    return {
-      items,
-      onClick: ({ key }: { key: string }) => {
-        switch (key) {
-          case 'close': {
-            handleClose(row);
-            break;
-          }
-          case 'refund': {
-            refundModalRef.value?.open(row);
-            break;
-          }
-          case 'sync': {
-            handleSync(row.id!);
-            break;
-          }
-        }
-      },
-    };
   }
 
   onMounted(() => {
@@ -312,13 +264,16 @@
                 <a-button type="link" size="small" @click="handleView(row)">
                   {{ $t('common.view') }}
                 </a-button>
-                <!-- 更多操作(退款/关闭/同步, 按状态与权限动态生成) -->
-                <a-dropdown v-if="getActionMenu(row).items?.length" :menu="getActionMenu(row)">
-                  <a href="javascript:">
-                    {{ $t('common.more') }}
-                    <IconifyIcon icon="ant-design:down-outlined" class="inline" />
-                  </a>
-                </a-dropdown>
+                <!-- 关闭(待支付 + 管理权限) -->
+                <a-button
+                  v-if="hasPermission(PermCodes.Trade.Order.MANAGE) && row.status === 'wait_pay'"
+                  type="link"
+                  size="small"
+                  danger
+                  @click="handleClose(row)"
+                >
+                  {{ $t('payment.order.action.close') }}
+                </a-button>
               </a-space>
             </template>
           </vxe-column>
@@ -446,12 +401,5 @@
         <a-button @click="handleDrawerClose">{{ $t('common.close') }}</a-button>
       </template>
     </a-drawer>
-
-    <!-- 退款弹窗 -->
-    <RefundModal
-      ref="refundModalRef"
-      :fetch-detail="(id) => NormalOrderApi.getById(id).then((res) => res.data)"
-      @success="queryPage"
-    />
   </div>
 </template>

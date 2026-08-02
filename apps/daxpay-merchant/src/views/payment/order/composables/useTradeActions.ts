@@ -6,8 +6,8 @@ import { useMessage } from '#/hooks/useMessage';
 
 /** 交易操作 composable 选项 */
 interface TradeActionsOptions<T = Record<string, any>> {
-  /** 同步状态 API 方法 */
-  syncFn: (id: string) => Promise<unknown>;
+  /** 同步状态 API 方法(可选, 仅资金交易列表使用) */
+  syncFn?: (id: string) => Promise<unknown>;
   /** 关闭 API 方法(接收行数据, 关闭所需的容器ID/类型等从 row 中取) */
   closeFn: (row: T) => Promise<unknown>;
   /** 操作成功后的回调(通常是刷新列表) */
@@ -26,13 +26,14 @@ export function useTradeActions<T = Record<string, any>>(options: TradeActionsOp
 
   /** 同步支付状态 */
   function handleSync(id: string) {
+    const syncFn = options.syncFn;
+    if (!syncFn) return;
     confirm({
       title: $t('payment.order.action.syncConfirmTitle'),
       content: $t('payment.order.action.syncConfirmContent'),
       onOk() {
         actionLoading.value = true;
-        return options
-          .syncFn(id)
+        return syncFn(id)
           .then(() => {
             message.success($t('payment.order.action.syncSuccess'));
             options.onSuccess();

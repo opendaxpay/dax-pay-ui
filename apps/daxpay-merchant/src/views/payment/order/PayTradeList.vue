@@ -13,6 +13,8 @@
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { usePermission } from '#/hooks/usePermission';
+
+  import RefundModal from './components/RefundModal.vue';
   import { useTradeActions } from './composables/useTradeActions';
 
   defineOptions({ name: 'PayTradeList' });
@@ -38,6 +40,8 @@
   const drawerVisible = ref(false);
   const drawerLoading = ref(false);
   const detail = ref<PayTradeResult>({});
+  // 退款弹窗
+  const refundModalRef = ref();
 
   // 资金状态下拉（含 cancel）
   const statusOptions = computed(() =>
@@ -93,14 +97,13 @@
       endField: 'createTimeEnd',
     },
     {
-      type: 'number',
-      field: 'amountMin',
-      name: $t('payment.order.placeholder.amountMin'),
-    },
-    {
-      type: 'number',
-      field: 'amountMax',
-      name: $t('payment.order.placeholder.amountMax'),
+      type: 'number_range',
+      field: 'amount',
+      name: $t('payment.order.field.amountRange'),
+      startField: 'amountMin',
+      endField: 'amountMax',
+      precision: 0,
+      placeholder: [$t('payment.order.placeholder.amountMin'), $t('payment.order.placeholder.amountMax')],
     },
   ]);
 
@@ -178,7 +181,12 @@
   function getActionMenu(row: PayTradeResult): MenuProps {
     const items: { danger?: boolean; key: string; label: string }[] = [];
     const canManage = hasPermission(PermCodes.Trade.Fund.MANAGE);
-    const isTerminal = ['fail', 'close', 'cancel'].includes(row.status ?? '');
+    const canRefund = hasPermission(PermCodes.Trade.Refund.MANAGE);
+    const isTerminal = ['cancel', 'close', 'fail'].includes(row.status ?? '');
+    // 退款(资金成功 + 有可退余额 + 退款权限)
+    if (canRefund && row.status === 'success' && (row.refundableBalance ?? 0) > 0) {
+      items.push({ key: 'refund', label: $t('payment.order.action.refund'), danger: true });
+    }
     // 关闭(待支付: init/processing)
     if (canManage && ['init', 'processing'].includes(row.status ?? '')) {
       items.push({ key: 'close', label: $t('payment.order.action.close'), danger: true });
@@ -193,6 +201,10 @@
         switch (key) {
           case 'close': {
             handleClose(row);
+            break;
+          }
+          case 'refund': {
+            refundModalRef.value?.open(row);
             break;
           }
           case 'sync': {
@@ -428,5 +440,12 @@
         <a-button @click="handleDrawerClose">{{ $t('common.close') }}</a-button>
       </template>
     </a-drawer>
+
+    <!-- 退款弹窗 -->
+    <RefundModal
+      ref="refundModalRef"
+      :fetch-detail="(id) => PayTradeApi.getById(id).then((res) => res.data)"
+      @success="queryPage"
+    />
   </div>
 </template>

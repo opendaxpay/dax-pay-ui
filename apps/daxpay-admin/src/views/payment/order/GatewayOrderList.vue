@@ -1,25 +1,22 @@
 <script lang="ts" setup>
-  import type { MenuProps } from 'antdv-next';
   import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
 
   import { computed, onMounted, ref } from 'vue';
 
   import { $t } from '@vben/locales';
 
-  import { IconifyIcon } from '@vben-core/icons';
-
+  import { OrderCloseApi } from '#/api/payment/order/close.api';
   import {
     GatewayOrderApi,
     type GatewayOrderQuery,
     type GatewayOrderResult,
   } from '#/api/payment/order/gateway-order.api';
-  import { OrderCloseApi } from '#/api/payment/order/close.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { productI18nMap, productNameMap } from '#/enums/payment';
   import { usePermission } from '#/hooks/usePermission';
+
   import { useTradeActions } from './composables/useTradeActions';
-  import RefundModal from './components/RefundModal.vue';
 
   defineOptions({ name: 'GatewayOrderList' });
 
@@ -42,8 +39,6 @@
   const drawerVisible = ref(false);
   const drawerLoading = ref(false);
   const detail = ref<GatewayOrderResult>({});
-  // 退款弹窗
-  const refundModalRef = ref();
 
   // 网关业务状态
   const statusOptions = computed(() =>
@@ -190,47 +185,11 @@
     }
   }
 
-  // 交易操作(同步/关闭)
-  const { handleSync, handleClose } = useTradeActions({
-    syncFn: (id) => GatewayOrderApi.sync(id),
+  // 交易操作(关闭)
+  const { handleClose } = useTradeActions({
     closeFn: (row) => OrderCloseApi.close(row.id!, 'gateway'),
     onSuccess: queryPage,
   });
-
-  function getActionMenu(row: GatewayOrderResult): MenuProps {
-    const items: MenuProps['items'] = [];
-    if (hasPermission(PermCodes.Trade.Order.MANAGE)) {
-      if (row.status === 'wait_pay' || row.status === 'paying') {
-        items.push({ key: 'sync', label: $t('payment.order.action.sync') });
-        items.push({ key: 'close', label: $t('payment.order.action.close'), danger: true });
-      }
-      if (row.status === 'paid') {
-        items.push({ key: 'sync', label: $t('payment.order.action.sync') });
-        if (hasPermission(PermCodes.Trade.Refund.MANAGE)) {
-          items.push({ key: 'refund', label: $t('payment.order.action.refund'), danger: true });
-        }
-      }
-    }
-    return {
-      items,
-      onClick: ({ key }) => {
-        switch (key) {
-          case 'sync': {
-            handleSync(row.id!);
-            break;
-          }
-          case 'close': {
-            handleClose(row);
-            break;
-          }
-          case 'refund': {
-            refundModalRef.value?.open(row);
-            break;
-          }
-        }
-      },
-    };
-  }
 
   function handleDrawerClose() {
     drawerVisible.value = false;
@@ -301,12 +260,19 @@
                 <a-button type="link" size="small" @click="handleView(row)">
                   {{ $t('common.view') }}
                 </a-button>
-                <a-dropdown v-if="getActionMenu(row).items?.length" :menu="getActionMenu(row)">
-                  <a-button type="link" size="small">
-                    {{ $t('common.more') }}
-                    <IconifyIcon icon="ant-design:down-outlined" class="inline" />
-                  </a-button>
-                </a-dropdown>
+                <!-- 关闭(待支付/支付中 + 管理权限) -->
+                <a-button
+                  v-if="
+                    hasPermission(PermCodes.Trade.Order.MANAGE) &&
+                    (row.status === 'wait_pay' || row.status === 'paying')
+                  "
+                  type="link"
+                  size="small"
+                  danger
+                  @click="handleClose(row)"
+                >
+                  {{ $t('payment.order.action.close') }}
+                </a-button>
               </a-space>
             </template>
           </vxe-column>
@@ -393,12 +359,5 @@
         <a-button @click="handleDrawerClose">{{ $t('common.close') }}</a-button>
       </template>
     </a-drawer>
-
-    <!-- 退款弹窗 -->
-    <RefundModal
-      ref="refundModalRef"
-      :fetch-detail="(id) => GatewayOrderApi.getById(id).then((res) => res.data)"
-      @success="queryPage"
-    />
   </div>
 </template>
