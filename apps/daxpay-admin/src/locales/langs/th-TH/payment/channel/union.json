@@ -14,10 +14,10 @@
   "acpRootCert": "ใบรับรองหลัก",
   "acpRootCertPlaceholder": "ป้อนใบรับรองหลัก (Base64)",
   "validation": {
-    "merId": "Please enter รหัสผู้ค้า UnionPay",
-    "keyPrivateCert": "Please enter private key certificate",
-    "keyPrivateCertPwd": "Please enter certificate password",
-    "acpMiddleCert": "Please enter middle certificate",
-    "acpRootCert": "Please enter root certificate"
+    "merId": "กรุณากรอกรหัสผู้ค้า UnionPay",
+    "keyPrivateCert": "กรุณากรอกใบรับรองคีย์ส่วนตัว",
+    "keyPrivateCertPwd": "กรุณากรอกรหัสผ่านใบรับรอง",
+    "acpMiddleCert": "กรุณากรอกใบรับรองระดับกลาง",
+    "acpRootCert": "กรุณากรอกใบรับรองหลัก"
   }
 }

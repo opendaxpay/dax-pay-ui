@@ -14,10 +14,10 @@
   "acpRootCert": "Chứng chỉ gốc",
   "acpRootCertPlaceholder": "Nhập chứng chỉ gốc (Base64)",
   "validation": {
-    "merId": "Please enter ID người bán UnionPay",
-    "keyPrivateCert": "Please enter private key certificate",
-    "keyPrivateCertPwd": "Please enter certificate password",
-    "acpMiddleCert": "Please enter middle certificate",
-    "acpRootCert": "Please enter root certificate"
+    "merId": "Vui lòng nhập ID merchant UnionPay",
+    "keyPrivateCert": "Vui lòng nhập chứng chỉ khóa riêng",
+    "keyPrivateCertPwd": "Vui lòng nhập mật khẩu chứng chỉ",
+    "acpMiddleCert": "Vui lòng nhập chứng chỉ trung gian",
+    "acpRootCert": "Vui lòng nhập chứng chỉ gốc"
   }
 }

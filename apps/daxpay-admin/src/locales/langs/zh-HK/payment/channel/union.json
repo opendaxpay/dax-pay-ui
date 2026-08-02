@@ -14,10 +14,10 @@
   "acpRootCert": "根證書",
   "acpRootCertPlaceholder": "請輸入根證書(Base64)",
   "validation": {
-    "merId": "请输入銀聯商戶號",
-    "keyPrivateCert": "请输入私钥证书",
-    "keyPrivateCertPwd": "请输入证书密码",
-    "acpMiddleCert": "请输入中级证书",
-    "acpRootCert": "请输入根证书"
+    "merId": "請輸入銀聯商戶號",
+    "keyPrivateCert": "請輸入私鑰憑證",
+    "keyPrivateCertPwd": "請輸入憑證密碼",
+    "acpMiddleCert": "請輸入中級憑證",
+    "acpRootCert": "請輸入根憑證"
   }
 }

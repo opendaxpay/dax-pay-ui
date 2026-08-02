@@ -14,10 +14,10 @@
   "acpRootCert": "ルート証明書",
   "acpRootCertPlaceholder": "ルート証明書(Base64)を入力",
   "validation": {
-    "merId": "Please enter 銀聯マーチャントID",
-    "keyPrivateCert": "Please enter private key certificate",
-    "keyPrivateCertPwd": "Please enter certificate password",
-    "acpMiddleCert": "Please enter middle certificate",
-    "acpRootCert": "Please enter root certificate"
+    "merId": "銀聯マーチャントIDを入力してください",
+    "keyPrivateCert": "秘密鍵証明書を入力してください",
+    "keyPrivateCertPwd": "証明書パスワードを入力してください",
+    "acpMiddleCert": "中間証明書を入力してください",
+    "acpRootCert": "ルート証明書を入力してください"
   }
 }

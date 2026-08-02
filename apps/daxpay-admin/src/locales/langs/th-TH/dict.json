@@ -187,9 +187,10 @@
     "alipay_app": "支付宝应用支付",
     "qrcode": "通用扫码支付",
     "wechat_cashier": "微信小程序收银台",
-    "union_qr": "银联扫码",
-    "union_jsapi": "银联จซาปิ",
-    "union_h5": "银联H5",
+    "union_qr": "ยูเนี่ยนเพย์ คิวอาร์",
+    "union_jsapi": "ยูเนี่ยนเพย์ JSAPI",
+    "union_h5": "ยูเนี่ยนเพย์ H5",
+    "union_barcode": "บาร์โค้ดยูเนี่ยนเพย์",
     "alipay_order_code": "支付宝订单码",
     "douyin_qr": "抖音扫码",
     "douyin_jsapi": "抖音JSAPI",
@@ -283,7 +284,7 @@
   "terminal_type": {
     "wechat": "微信渠道报送",
     "alipay": "支付宝渠道报送",
-    "union": "云闪付渠道报送",
+    "union": "รายงานช่องทาง UnionPay",
     "common": "标准上报"
   },
   "gateway_pay_type": {

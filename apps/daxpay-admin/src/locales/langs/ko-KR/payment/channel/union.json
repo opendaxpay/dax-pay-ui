@@ -14,10 +14,10 @@
   "acpRootCert": "루트 인증서",
   "acpRootCertPlaceholder": "루트 인증서(Base64) 입력",
   "validation": {
-    "merId": "Please enter 유니온페이 판매자 ID",
-    "keyPrivateCert": "Please enter private key certificate",
-    "keyPrivateCertPwd": "Please enter certificate password",
-    "acpMiddleCert": "Please enter middle certificate",
-    "acpRootCert": "Please enter root certificate"
+    "merId": "유니온페이 가맹점 ID를 입력하세요",
+    "keyPrivateCert": "개인키 인증서를 입력하세요",
+    "keyPrivateCertPwd": "인증서 비밀번호를 입력하세요",
+    "acpMiddleCert": "중간 인증서를 입력하세요",
+    "acpRootCert": "루트 인증서를 입력하세요"
   }
 }

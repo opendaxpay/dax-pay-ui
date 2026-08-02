@@ -14,10 +14,10 @@
   "acpRootCert": "Sertifikat Root",
   "acpRootCertPlaceholder": "Masukkan sertifikat root (Base64)",
   "validation": {
-    "merId": "Please enter ID Pedagang UnionPay",
-    "keyPrivateCert": "Please enter private key certificate",
-    "keyPrivateCertPwd": "Please enter certificate password",
-    "acpMiddleCert": "Please enter middle certificate",
-    "acpRootCert": "Please enter root certificate"
+    "merId": "Masukkan ID Merchant UnionPay",
+    "keyPrivateCert": "Masukkan sertifikat kunci privat",
+    "keyPrivateCertPwd": "Masukkan kata sandi sertifikat",
+    "acpMiddleCert": "Masukkan sertifikat intermediate",
+    "acpRootCert": "Masukkan sertifikat root"
   }
 }
