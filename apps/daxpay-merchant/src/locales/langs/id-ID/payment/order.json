@@ -41,6 +41,7 @@
     "title": "Judul",
     "description": "Keterangan",
     "amount": "Jumlah (Yuan)",
+    "amountRange": "Jumlah(sen)",
     "currency": "Mata uang",
     "bizStatus": "Status Bisnis",
     "fundStatus": "Status Dana",
@@ -130,8 +131,8 @@
     "title": "Masukkan judul",
     "tradeNo": "Masukkan no perdagangan.",
     "outOrderNo": "Masukkan nomor pesanan saluran.",
-    "amountMin": "Jumlah minimum (sen)",
-    "amountMax": "Jumlah maksimum (sen)",
+    "amountMin": "Jumlah minimum",
+    "amountMax": "Jumlah maksimum",
     "refundNo": "Masukkan no pengembalian dana.",
     "bizRefundNo": "Masukkan no pengembalian dana bisnis.",
     "orderNo": "Masukkan nomor pesanan asli."

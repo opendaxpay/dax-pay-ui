@@ -41,6 +41,7 @@
     "title": "タイトル",
     "description": "説明",
     "amount": "金額(元)",
+    "amountRange": "金額(セント)",
     "currency": "通貨",
     "bizStatus": "ビズステータス",
     "fundStatus": "ファンドのステータス",
@@ -130,8 +131,8 @@
     "title": "タイトルを入力してください",
     "tradeNo": "商号を入力してください。",
     "outOrderNo": "チャンネル注文番号を入力してください。",
-    "amountMin": "最小金額(セント)",
-    "amountMax": "最大金額(セント)",
+    "amountMin": "最小金額",
+    "amountMax": "最大金額",
     "refundNo": "返金番号を入力してください。",
     "bizRefundNo": "ビジネス返金番号を入力してください。",
     "orderNo": "元の注文番号を入力してください。"

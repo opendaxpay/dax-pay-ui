@@ -6,7 +6,7 @@
   import { $t } from '@vben/locales';
   import { formatDate } from '@vben/utils';
 
-  import { BOOLEAN, DATE, DATE_RANGE, DATE_TIME, DATE_TIME_RANGE, LIST, NUMBER, STRING, TIME } from './query';
+  import { BOOLEAN, DATE, DATE_RANGE, DATE_TIME, DATE_TIME_RANGE, LIST, NUMBER, NUMBER_RANGE, STRING, TIME } from './query';
 
   const props = withDefaults(
     defineProps<{
@@ -66,6 +66,18 @@
 
   function handleRangeChange(val: any) {
     rangeValue.value = val;
+  }
+
+  // 数字范围占位符(按下标取最小/最大)
+  function getNumberRangePlaceholder(index: number): string {
+    const placeholder = props.field.placeholder;
+    if (Array.isArray(placeholder)) {
+      return placeholder[index] ?? '';
+    }
+    if (typeof placeholder === 'string') {
+      return placeholder;
+    }
+    return $t('components.query.inputQueryValue');
   }
 
   const dateRangeShortcuts = [
@@ -152,6 +164,26 @@
         :precision="field.precision ?? 0"
         :placeholder="field.placeholder || $t('components.query.inputQueryValue')"
       />
+      <!-- 数字范围(最小~最大), 双值同步到 startField/endField, 支持单边填写 -->
+      <div v-else-if="field.type === NUMBER_RANGE" class="number-range">
+        <a-input-number
+          v-model:value="queryParams[field.startField!]!"
+          allow-clear
+          class="number-range-item"
+          :precision="field.precision ?? 0"
+          :placeholder="getNumberRangePlaceholder(0)"
+          @keyup.enter="query"
+        />
+        <span class="number-range-sep">~</span>
+        <a-input-number
+          v-model:value="queryParams[field.endField!]!"
+          allow-clear
+          class="number-range-item"
+          :precision="field.precision ?? 0"
+          :placeholder="getNumberRangePlaceholder(1)"
+          @keyup.enter="query"
+        />
+      </div>
       <a-radio-group v-else-if="field.type === BOOLEAN" v-model:value="queryParams[field.field!]!" button-style="solid">
         <a-radio :value="true">{{ $t('common.yes') }}</a-radio>
         <a-radio :value="false">{{ $t('common.no') }}</a-radio>
@@ -227,4 +259,21 @@
   </a-col>
 </template>
 
-<style scoped></style>
+<style scoped>
+  .number-range {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 4px;
+  }
+
+  .number-range-item {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .number-range-sep {
+    flex: none;
+    color: rgb(0 0 0 / 45%);
+  }
+</style>

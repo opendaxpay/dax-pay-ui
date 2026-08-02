@@ -41,6 +41,7 @@
     "title": "Tiêu đề",
     "description": "Sự miêu tả",
     "amount": "Số tiền(Nhân dân tệ)",
+    "amountRange": "Số tiền(xu)",
     "currency": "Tiền tệ",
     "bizStatus": "Trạng thái kinh doanh",
     "fundStatus": "Tình trạng quỹ",
@@ -130,8 +131,8 @@
     "title": "Nhập tiêu đề",
     "tradeNo": "Nhập số giao dịch",
     "outOrderNo": "Nhập số thứ tự kênh",
-    "amountMin": "Số tiền tối thiểu(xu)",
-    "amountMax": "Số tiền tối đa (xu)",
+    "amountMin": "Số tiền tối thiểu",
+    "amountMax": "Số tiền tối đa",
     "refundNo": "Nhập số hoàn tiền",
     "bizRefundNo": "Nhập số tiền hoàn lại biz.",
     "orderNo": "Nhập số thứ tự ban đầu"

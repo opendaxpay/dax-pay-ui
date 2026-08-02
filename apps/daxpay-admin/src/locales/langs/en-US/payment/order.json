@@ -41,6 +41,7 @@
     "title": "Title",
     "description": "Description",
     "amount": "Amount(Yuan)",
+    "amountRange": "Amount(cents)",
     "currency": "Currency",
     "bizStatus": "Biz Status",
     "fundStatus": "Fund Status",
@@ -138,8 +139,8 @@
     "title": "Enter title",
     "tradeNo": "Enter fund trade no.",
     "outOrderNo": "Enter channel order no.",
-    "amountMin": "Min amount(cents)",
-    "amountMax": "Max amount(cents)",
+    "amountMin": "Min amount",
+    "amountMax": "Max amount",
     "refundNo": "Enter refund no.",
     "bizRefundNo": "Enter biz refund no.",
     "orderNo": "Enter platform order no."

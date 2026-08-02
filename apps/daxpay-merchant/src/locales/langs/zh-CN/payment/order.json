@@ -41,6 +41,7 @@
     "title": "订单标题",
     "description": "订单描述",
     "amount": "金额(元)",
+    "amountRange": "金额(分)",
     "currency": "币种",
     "bizStatus": "业务状态",
     "fundStatus": "资金状态",
@@ -146,8 +147,8 @@
     "title": "请输入订单标题",
     "tradeNo": "请输入资金交易号",
     "outOrderNo": "请输入通道订单号",
-    "amountMin": "最小金额(分)",
-    "amountMax": "最大金额(分)",
+    "amountMin": "最小金额",
+    "amountMax": "最大金额",
     "refundNo": "请输入退款号",
     "bizRefundNo": "请输入商户退款号",
     "orderNo": "请输入平台业务单号"

@@ -41,6 +41,7 @@
     "title": "Tajuk",
     "description": "Penerangan",
     "amount": "Amaun(Yuan)",
+    "amountRange": "Jumlah(sen)",
     "currency": "mata wang",
     "bizStatus": "Status Biz",
     "fundStatus": "Status Dana",
@@ -130,8 +131,8 @@
     "title": "Masukkan tajuk",
     "tradeNo": "Masukkan no dagangan.",
     "outOrderNo": "Masukkan nombor pesanan saluran",
-    "amountMin": "Jumlah min(sen)",
-    "amountMax": "Jumlah maksimum (sen)",
+    "amountMin": "Jumlah min",
+    "amountMax": "Jumlah maksimum",
     "refundNo": "Masukkan no bayaran balik.",
     "bizRefundNo": "Masukkan no biz refund.",
     "orderNo": "Masukkan no pesanan asal."

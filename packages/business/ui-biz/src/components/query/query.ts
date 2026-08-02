@@ -7,6 +7,7 @@ export const DATE_TIME = 'date_time';
 export const LIST = 'list';
 export const DATE_RANGE = 'date_range';
 export const DATE_TIME_RANGE = 'date_time_range';
+export const NUMBER_RANGE = 'number_range';
 
 export type QueryFieldType =
   | 'boolean'
@@ -16,6 +17,7 @@ export type QueryFieldType =
   | 'date_time_range'
   | 'list'
   | 'number'
+  | 'number_range'
   | 'string'
   | 'time';
 
@@ -25,15 +27,15 @@ export interface SelectOption {
 }
 
 export interface QueryField {
-  type?: QueryFieldType;
-  name?: string;
+  endField?: string;
   field?: string;
+  format?: null | string;
   md?: number;
+  name?: string;
   placeholder?: [string, string] | string;
   precision?: number;
   selectList?: null | SelectOption[];
-  format?: null | string;
-  startField?: string;
-  endField?: string;
   shortcuts?: boolean;
+  startField?: string;
+  type?: QueryFieldType;
 }

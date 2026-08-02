@@ -41,6 +41,7 @@
     "title": "訂單標題",
     "description": "訂單描述",
     "amount": "金額(元)",
+    "amountRange": "金額(分)",
     "currency": "幣種",
     "bizStatus": "業務狀態",
     "fundStatus": "資金狀態",
@@ -130,8 +131,8 @@
     "title": "請輸入訂單標題",
     "tradeNo": "請輸入資金交易號",
     "outOrderNo": "請輸入通道訂單號",
-    "amountMin": "最小金額(分)",
-    "amountMax": "最大金額(分)",
+    "amountMin": "最小金額",
+    "amountMax": "最大金額",
     "refundNo": "請輸入退款號",
     "bizRefundNo": "請輸入商户退款號",
     "orderNo": "請輸入原支付訂單號"
