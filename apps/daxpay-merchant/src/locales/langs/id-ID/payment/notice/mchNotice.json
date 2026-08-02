@@ -26,5 +26,9 @@
   "sourceApp": "App",
   "sourceProtocol": "Protocol",
   "protocolSystem": "System",
-  "protocolEasyPay": "EasyPay"
+  "protocolEasyPay": "EasyPay",
+  "sendTypeAuto": "Otomatis",
+  "sendTypeManual": "Manual",
+  "taskDetail": "Detail Tugas",
+  "recordDetail": "Detail Catatan"
 }

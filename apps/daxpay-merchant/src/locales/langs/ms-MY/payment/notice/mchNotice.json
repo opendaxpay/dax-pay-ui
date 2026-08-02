@@ -26,5 +26,9 @@
   "sourceApp": "App",
   "sourceProtocol": "Protocol",
   "protocolSystem": "System",
-  "protocolEasyPay": "EasyPay"
+  "protocolEasyPay": "EasyPay",
+  "sendTypeAuto": "Automatik",
+  "sendTypeManual": "Manual",
+  "taskDetail": "Butiran Tugas",
+  "recordDetail": "Butiran Rekod"
 }

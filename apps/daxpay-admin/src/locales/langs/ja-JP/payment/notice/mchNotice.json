@@ -26,5 +26,9 @@
   "sourceApp": "アプリ",
   "sourceProtocol": "プロトコル",
   "protocolSystem": "システム",
-  "protocolEasyPay": "易支付"
+  "protocolEasyPay": "易支付",
+  "sendTypeAuto": "自動送信",
+  "sendTypeManual": "手動送信",
+  "taskDetail": "タスク詳細",
+  "recordDetail": "送信記録詳細"
 }

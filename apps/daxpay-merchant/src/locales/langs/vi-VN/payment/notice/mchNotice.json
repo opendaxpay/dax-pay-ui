@@ -26,5 +26,9 @@
   "sourceApp": "App",
   "sourceProtocol": "Protocol",
   "protocolSystem": "System",
-  "protocolEasyPay": "EasyPay"
+  "protocolEasyPay": "EasyPay",
+  "sendTypeAuto": "Tự động",
+  "sendTypeManual": "Thủ công",
+  "taskDetail": "Chi tiết tác vụ",
+  "recordDetail": "Chi tiết bản ghi"
 }

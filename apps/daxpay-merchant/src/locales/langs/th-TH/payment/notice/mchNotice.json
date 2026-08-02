@@ -26,5 +26,9 @@
   "sourceApp": "App",
   "sourceProtocol": "Protocol",
   "protocolSystem": "System",
-  "protocolEasyPay": "EasyPay"
+  "protocolEasyPay": "EasyPay",
+  "sendTypeAuto": "อัตโนมัติ",
+  "sendTypeManual": "ด้วยตนเอง",
+  "taskDetail": "รายละเอียดงาน",
+  "recordDetail": "รายละเอียดบันทึก"
 }

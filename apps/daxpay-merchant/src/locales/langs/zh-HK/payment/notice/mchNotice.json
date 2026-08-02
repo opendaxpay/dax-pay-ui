@@ -26,5 +26,9 @@
   "sourceApp": "應用級",
   "sourceProtocol": "协议",
   "protocolSystem": "系統",
-  "protocolEasyPay": "易支付"
+  "protocolEasyPay": "易支付",
+  "sendTypeAuto": "自動發送",
+  "sendTypeManual": "手動發送",
+  "taskDetail": "任務詳情",
+  "recordDetail": "發送記錄詳情"
 }
