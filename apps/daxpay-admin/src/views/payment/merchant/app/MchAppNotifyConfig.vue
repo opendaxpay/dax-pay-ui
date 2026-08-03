@@ -44,14 +44,37 @@
   });
 
   /**
-   * 订阅事件选项(前缀匹配: pay→pay.*, refund→refund.*)
+   * 订阅事件选项(按业务域分组, 存储具体事件码, 后端支持精确匹配)
    */
-  const eventOptions = computed(() => [
-    { label: $t('payment.merchant.notifyConfig.notifyConfig.eventPay'), value: 'pay' },
-    { label: $t('payment.merchant.notifyConfig.notifyConfig.eventRefund'), value: 'refund' },
-    { label: $t('payment.merchant.notifyConfig.notifyConfig.eventCashouts'), value: 'cashouts' },
-    { label: $t('payment.merchant.notifyConfig.notifyConfig.eventSettle'), value: 'settle' },
+  const eventGroups = computed(() => [
+    {
+      title: $t('payment.merchant.notifyConfig.notifyConfig.eventGroupPay'),
+      options: [
+        { label: $t('payment.merchant.notifyConfig.notifyConfig.eventPaySuccess'), value: 'pay.success' },
+        { label: $t('payment.merchant.notifyConfig.notifyConfig.eventPayFail'), value: 'pay.fail' },
+        { label: $t('payment.merchant.notifyConfig.notifyConfig.eventPayClose'), value: 'pay.close' },
+        { label: $t('payment.merchant.notifyConfig.notifyConfig.eventPayTimeout'), value: 'pay.timeout' },
+        { label: $t('payment.merchant.notifyConfig.notifyConfig.eventPayCancel'), value: 'pay.cancel' },
+      ],
+    },
+    {
+      title: $t('payment.merchant.notifyConfig.notifyConfig.eventGroupRefund'),
+      options: [
+        { label: $t('payment.merchant.notifyConfig.notifyConfig.eventRefundSuccess'), value: 'refund.success' },
+        { label: $t('payment.merchant.notifyConfig.notifyConfig.eventRefundFail'), value: 'refund.fail' },
+        { label: $t('payment.merchant.notifyConfig.notifyConfig.eventRefundClose'), value: 'refund.close' },
+      ],
+    },
+    {
+      title: $t('payment.merchant.notifyConfig.notifyConfig.eventGroupRisk'),
+      options: [{ label: $t('payment.merchant.notifyConfig.notifyConfig.eventRiskHit'), value: 'risk.hit' }],
+    },
   ]);
+
+  /** 是否 MQ 推送方式 */
+  const isMq = computed(() => formState.value.notifyWay === 'mq');
+  /** MQ Topic (按应用隔离, 平台发布到此 Topic) */
+  const mqTopic = computed(() => `daxpay.notice.${props.appId ?? ''}`);
 
   /**
    * 加载通知配置
@@ -99,6 +122,12 @@
    * 保存配置
    */
   function handleSave() {
+    // 国际化：回调地址格式校验（http/https 均可，MQ 方式不校验）
+    const notifyUrl = formState.value.notifyUrl?.trim();
+    if (!isMq.value && notifyUrl && !/^https?:\/\/.+/i.test(notifyUrl)) {
+      message.error($t('payment.merchant.notifyConfig.notifyConfig.notifyUrlInvalid'));
+      return;
+    }
     confirm({
       title: $t('common.confirm'),
       content: $t('payment.merchant.notifyConfig.notifyConfig.confirmSave'),
@@ -108,7 +137,7 @@
         saving.value = true;
         const submitData: MchAppNotifyConfigParam = {
           appId: props.appId!,
-          notifyUrl: formState.value.notifyUrl,
+          notifyUrl: isMq.value ? undefined : formState.value.notifyUrl,
           notifyWay: formState.value.notifyWay || 'http',
           subscribedEvents: (formState.value.subscribedEventList || []).join(','),
           status: formState.value.status,
@@ -141,7 +170,7 @@
   <a-drawer
     :open="visible"
     :title="drawerTitle"
-    size="large"
+    width="70%"
     :destroy-on-hidden="true"
     @update:open="(v: boolean) => emit('update:visible', v)"
   >
@@ -158,6 +187,7 @@
           <!-- 回调地址 -->
           <!-- 国际化：回调地址 -->
           <a-form-item
+            v-if="!isMq"
             :label="$t('payment.merchant.notifyConfig.notifyConfig.notifyUrl')"
             :tooltip="$t('payment.merchant.notifyConfig.notifyConfig.notifyUrlTooltip')"
           >
@@ -172,14 +202,29 @@
               </template>
             </a-input>
           </a-form-item>
+          <!-- MQ Topic (按应用隔离, 只读提示) -->
+          <a-form-item v-else :label="$t('payment.merchant.notifyConfig.notifyConfig.mqTopicLabel')">
+            <a-input :value="mqTopic" disabled>
+              <template #prefix>
+                <IconifyIcon icon="ant-design:cluster-outlined" />
+              </template>
+            </a-input>
+            <div class="mt-1 text-xs text-muted-foreground">
+              {{ $t('payment.merchant.notifyConfig.notifyConfig.mqTopicHint') }}
+            </div>
+          </a-form-item>
 
-          <!-- 通知方式(第一版固定HTTP异步回调, 只读) -->
+          <!-- 通知方式(HTTP回调 / MQ推送) -->
           <!-- 国际化：通知方式 -->
           <a-form-item :label="$t('payment.merchant.notifyConfig.notifyConfig.notifyWay')">
-            <a-tag color="processing">HTTP</a-tag>
-            <span class="ml-2 text-xs text-muted-foreground">
-              {{ $t('payment.merchant.notifyConfig.notifyConfig.notifyWayHint') }}
-            </span>
+            <a-radio-group v-model:value="formState.notifyWay" button-style="solid" :disabled="!isEditing">
+              <a-radio-button value="http">{{
+                $t('payment.merchant.notifyConfig.notifyConfig.notifyWayHttp')
+              }}</a-radio-button>
+              <a-radio-button value="mq">{{
+                $t('payment.merchant.notifyConfig.notifyConfig.notifyWayMq')
+              }}</a-radio-button>
+            </a-radio-group>
           </a-form-item>
 
           <!-- 订阅事件 -->
@@ -188,11 +233,16 @@
             :label="$t('payment.merchant.notifyConfig.notifyConfig.subscribedEvents')"
             :tooltip="$t('payment.merchant.notifyConfig.notifyConfig.subscribedEventsTooltip')"
           >
-            <a-checkbox-group
-              v-model:value="formState.subscribedEventList"
-              :disabled="!isEditing"
-              :options="eventOptions"
-            />
+            <div class="event-groups">
+              <div v-for="group in eventGroups" :key="group.title" class="event-group">
+                <div class="event-group-title">{{ group.title }}</div>
+                <a-checkbox-group
+                  v-model:value="formState.subscribedEventList"
+                  :disabled="!isEditing"
+                  :options="group.options"
+                />
+              </div>
+            </div>
           </a-form-item>
 
           <!-- 启用状态 -->
@@ -252,6 +302,20 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+  }
+
+  // 订阅事件分组
+  .event-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .event-group-title {
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: hsl(var(--foreground) / 60%);
   }
 
   .info-banner {
