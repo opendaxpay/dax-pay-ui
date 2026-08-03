@@ -48,7 +48,6 @@
   },
   "hit": {
     "title": "风险命中记录",
-    "handleTitle": "处理命中",
     "viewTitle": "查看命中",
     "field": {
       "phase": "阶段",
@@ -65,22 +64,12 @@
       "openid": "OpenId",
       "buyerId": "BuyerId",
       "scene": "来源场景",
-      "handleStatus": "处理状态",
-      "handleRemark": "处理说明",
-      "handleTime": "处理时间",
       "createTime": "创建时间",
       "merchant": "商户"
     },
     "phase": {
       "before_pay": "事前拦截",
       "after_pay": "事后命中"
-    },
-    "handleStatus": {
-      "pending": "待处理",
-      "ignored": "已忽略",
-      "added_blacklist": "已加入黑名单",
-      "merchant_disabled": "已标记停用商户",
-      "other": "其他"
     },
     "scene": {
       "api": "API",
@@ -89,8 +78,11 @@
       "manual": "手工",
       "unknown": "未知"
     },
-    "action": {
-      "handle": "处理"
+    "hitType": {
+      "ip": "IP",
+      "alipay_user": "支付宝用户",
+      "wechat_openid": "微信 OpenId",
+      "overseas_ip": "海外IP"
     }
   }
 }

@@ -5,20 +5,10 @@
 
   import { $t } from '@vben/locales';
 
-  import {
-    PayRiskHitApi,
-    type PayRiskHitQuery,
-    type PayRiskHitVo,
-  } from '#/api/payment/risk/risk-hit.api';
+  import { PayRiskHitApi, type PayRiskHitQuery, type PayRiskHitVo } from '#/api/payment/risk/risk-hit.api';
   import { BQuery, type QueryField } from '#/components/query';
-  import { PermCodes } from '#/constants/perm-codes';
-  import { usePermission } from '#/hooks/usePermission';
-
-  import PayRiskHitHandle from './PayRiskHitHandle.vue';
 
   defineOptions({ name: 'PayRiskHitList' });
-
-  const { hasPermission } = usePermission();
 
   const loading = ref(false);
   const xTable = ref<VxeTableInstance>();
@@ -26,7 +16,6 @@
   const queryForm = ref<PayRiskHitQuery>({});
   const pageConfig = ref({ currentPage: 1, pageSize: 10, total: 0 });
   const tableData = ref<PayRiskHitVo[]>([]);
-  const handleRef = ref();
 
   const queryFields = computed<QueryField[]>(() => [
     {
@@ -47,9 +36,10 @@
       name: $t('payment.risk.hit.field.hitType'),
       placeholder: $t('common.pleaseSelect'),
       selectList: [
-        { label: $t('payment.risk.blacklist.type.ip'), value: 'ip' },
-        { label: $t('payment.risk.blacklist.type.alipay_user'), value: 'alipay_user' },
-        { label: $t('payment.risk.blacklist.type.wechat_openid'), value: 'wechat_openid' },
+        { label: $t('payment.risk.hit.hitType.ip'), value: 'ip' },
+        { label: $t('payment.risk.hit.hitType.alipay_user'), value: 'alipay_user' },
+        { label: $t('payment.risk.hit.hitType.wechat_openid'), value: 'wechat_openid' },
+        { label: $t('payment.risk.hit.hitType.overseas_ip'), value: 'overseas_ip' },
       ],
     },
     {
@@ -65,20 +55,6 @@
       // 商户号
       name: $t('payment.risk.hit.field.mchNo'),
       placeholder: $t('common.pleaseInput'),
-    },
-    {
-      type: 'list',
-      field: 'handleStatus',
-      // 处理状态
-      name: $t('payment.risk.hit.field.handleStatus'),
-      placeholder: $t('common.pleaseSelect'),
-      selectList: [
-        { label: $t('payment.risk.hit.handleStatus.pending'), value: 'pending' },
-        { label: $t('payment.risk.hit.handleStatus.ignored'), value: 'ignored' },
-        { label: $t('payment.risk.hit.handleStatus.added_blacklist'), value: 'added_blacklist' },
-        { label: $t('payment.risk.hit.handleStatus.merchant_disabled'), value: 'merchant_disabled' },
-        { label: $t('payment.risk.hit.handleStatus.other'), value: 'other' },
-      ],
     },
   ]);
 
@@ -112,33 +88,19 @@
     queryPage();
   }
 
-  function openHandle(row: PayRiskHitVo) {
-    handleRef.value?.showHandle(row);
-  }
-
   function phaseLabel(phase?: string) {
     if (phase === 'before_pay') return $t('payment.risk.hit.phase.before_pay');
     if (phase === 'after_pay') return $t('payment.risk.hit.phase.after_pay');
     return phase || '';
   }
 
-  function handleStatusLabel(status?: string) {
-    const map: Record<string, string> = {
-      pending: $t('payment.risk.hit.handleStatus.pending'),
-      ignored: $t('payment.risk.hit.handleStatus.ignored'),
-      added_blacklist: $t('payment.risk.hit.handleStatus.added_blacklist'),
-      merchant_disabled: $t('payment.risk.hit.handleStatus.merchant_disabled'),
-      other: $t('payment.risk.hit.handleStatus.other'),
-    };
-    return status ? map[status] || status : '';
-  }
-
-  function handleStatusColor(status?: string) {
-    if (status === 'pending') return 'warning';
-    if (status === 'ignored') return 'default';
-    if (status === 'added_blacklist') return 'error';
-    if (status === 'merchant_disabled') return 'error';
-    return 'processing';
+  /** 命中类型展示 */
+  function hitTypeLabel(type?: string) {
+    if (type === 'ip') return $t('payment.risk.hit.hitType.ip');
+    if (type === 'alipay_user') return $t('payment.risk.hit.hitType.alipay_user');
+    if (type === 'wechat_openid') return $t('payment.risk.hit.hitType.wechat_openid');
+    if (type === 'overseas_ip') return $t('payment.risk.hit.hitType.overseas_ip');
+    return type || '';
   }
 
   onMounted(() => {
@@ -148,7 +110,7 @@
 </script>
 
 <template>
-  <div class="m-3 p-3 bg-background rounded-lg list-page-compact">
+  <div class="list-page-compact m-3 rounded-lg bg-background p-3">
     <a-card>
       <BQuery :fields="queryFields" :query-params="queryForm" @query="queryPage" @reset="resetQuery" />
     </a-card>
@@ -164,30 +126,12 @@
           </vxe-column>
           <!-- 命中类型 -->
           <vxe-column field="hitType" :title="$t('payment.risk.hit.field.hitType')" width="120">
-            <template #default="{ row }">
-              {{
-                row.hitType === 'ip'
-                  ? $t('payment.risk.blacklist.type.ip')
-                  : row.hitType === 'alipay_user'
-                    ? $t('payment.risk.blacklist.type.alipay_user')
-                    : row.hitType === 'wechat_openid'
-                      ? $t('payment.risk.blacklist.type.wechat_openid')
-                      : row.hitType
-              }}
-            </template>
+            <template #default="{ row }">{{ hitTypeLabel(row.hitType) }}</template>
           </vxe-column>
           <!-- 命中值 -->
           <vxe-column field="hitValue" :title="$t('payment.risk.hit.field.hitValue')" :min-width="160" />
           <!-- 交易号 -->
           <vxe-column field="tradeNo" :title="$t('payment.risk.hit.field.tradeNo')" :min-width="140" />
-          <!-- 处理状态 -->
-          <vxe-column field="handleStatus" :title="$t('payment.risk.hit.field.handleStatus')" width="130">
-            <template #default="{ row }">
-              <a-tag :color="handleStatusColor(row.handleStatus)">
-                {{ handleStatusLabel(row.handleStatus) }}
-              </a-tag>
-            </template>
-          </vxe-column>
           <!-- 商户: 名称上 + 号下小字两排 -->
           <vxe-column field="mchName" :title="$t('payment.risk.hit.field.merchant')" :min-width="160">
             <template #default="{ row }">
@@ -199,21 +143,6 @@
           </vxe-column>
           <!-- 创建时间 -->
           <vxe-column field="createTime" :title="$t('payment.risk.hit.field.createTime')" width="170" />
-          <vxe-column fixed="right" :width="120" :show-overflow="false" :title="$t('common.operation')">
-            <template #default="{ row }">
-              <a-button
-                v-if="
-                  hasPermission(PermCodes.Payment.Risk.Hit.MANAGE) && row.handleStatus === 'pending'
-                "
-                type="link"
-                size="small"
-                @click="openHandle(row)"
-              >
-                <!-- 处理 -->
-                {{ $t('payment.risk.hit.action.handle') }}
-              </a-button>
-            </template>
-          </vxe-column>
         </vxe-table>
         <div class="mt-3 flex justify-end">
           <vxe-pager
@@ -225,7 +154,5 @@
         </div>
       </a-card>
     </div>
-
-    <PayRiskHitHandle ref="handleRef" @ok="queryPage" />
   </div>
 </template>

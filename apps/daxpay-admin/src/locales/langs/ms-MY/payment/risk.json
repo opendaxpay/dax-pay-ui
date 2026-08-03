@@ -48,7 +48,6 @@
   },
   "hit": {
     "title": "Hit risiko",
-    "handleTitle": "Urus hit",
     "viewTitle": "Lihat hit",
     "field": {
       "phase": "Fasa",
@@ -65,22 +64,12 @@
       "openid": "OpenId",
       "buyerId": "BuyerId",
       "scene": "Senario",
-      "handleStatus": "Status urusan",
-      "handleRemark": "Catatan urusan",
-      "handleTime": "Masa urusan",
       "createTime": "Dicipta pada",
       "merchant": "Peniaga"
     },
     "phase": {
       "before_pay": "Sebelum bayar",
       "after_pay": "Selepas bayar"
-    },
-    "handleStatus": {
-      "pending": "Menunggu",
-      "ignored": "Diabaikan",
-      "added_blacklist": "Ditambah ke senarai hitam",
-      "merchant_disabled": "Peniaga dinyahaktif",
-      "other": "Lain-lain"
     },
     "scene": {
       "api": "API",
@@ -89,8 +78,11 @@
       "manual": "Manual",
       "unknown": "Tidak diketahui"
     },
-    "action": {
-      "handle": "Urus"
+    "hitType": {
+      "ip": "IP",
+      "alipay_user": "Pengguna Alipay",
+      "wechat_openid": "OpenId WeChat",
+      "overseas_ip": "IP Luar Negara"
     }
   }
 }

@@ -48,7 +48,6 @@
   },
   "hit": {
     "title": "Lượt chặn rủi ro",
-    "handleTitle": "Xử lý lượt chặn",
     "viewTitle": "Xem lượt chặn",
     "field": {
       "phase": "Giai đoạn",
@@ -65,22 +64,12 @@
       "openid": "OpenId",
       "buyerId": "BuyerId",
       "scene": "Kịch bản",
-      "handleStatus": "Trạng thái xử lý",
-      "handleRemark": "Ghi chú xử lý",
-      "handleTime": "Thời gian xử lý",
       "createTime": "Thời gian tạo",
       "merchant": "Thương nhân"
     },
     "phase": {
       "before_pay": "Trước thanh toán",
       "after_pay": "Sau thanh toán"
-    },
-    "handleStatus": {
-      "pending": "Chờ xử lý",
-      "ignored": "Bỏ qua",
-      "added_blacklist": "Đã thêm vào danh sách đen",
-      "merchant_disabled": "Merchant đã khóa",
-      "other": "Khác"
     },
     "scene": {
       "api": "API",
@@ -89,8 +78,11 @@
       "manual": "Thủ công",
       "unknown": "Không rõ"
     },
-    "action": {
-      "handle": "Xử lý"
+    "hitType": {
+      "ip": "IP",
+      "alipay_user": "Người dùng Alipay",
+      "wechat_openid": "OpenId WeChat",
+      "overseas_ip": "IP nước ngoài"
     }
   }
 }

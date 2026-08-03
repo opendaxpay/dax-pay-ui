@@ -48,7 +48,6 @@
   },
   "hit": {
     "title": "การตรวจจับความเสี่ยง",
-    "handleTitle": "จัดการรายการ",
     "viewTitle": "ดูรายการ",
     "field": {
       "phase": "ช่วง",
@@ -65,22 +64,12 @@
       "openid": "OpenId",
       "buyerId": "BuyerId",
       "scene": "ฉาก",
-      "handleStatus": "สถานะจัดการ",
-      "handleRemark": "หมายเหตุจัดการ",
-      "handleTime": "เวลาจัดการ",
       "createTime": "สร้างเมื่อ",
       "merchant": "ร้านค้า"
     },
     "phase": {
       "before_pay": "ก่อนชำระ",
       "after_pay": "หลังชำระ"
-    },
-    "handleStatus": {
-      "pending": "รอดำเนินการ",
-      "ignored": "เพิกเฉย",
-      "added_blacklist": "เพิ่มเข้าบัญชีดำแล้ว",
-      "merchant_disabled": "ปิดร้านค้าแล้ว",
-      "other": "อื่นๆ"
     },
     "scene": {
       "api": "API",
@@ -89,8 +78,11 @@
       "manual": "ด้วยตนเอง",
       "unknown": "ไม่ทราบ"
     },
-    "action": {
-      "handle": "จัดการ"
+    "hitType": {
+      "ip": "IP",
+      "alipay_user": "ผู้ใช้ Alipay",
+      "wechat_openid": "OpenId WeChat",
+      "overseas_ip": "IP ต่างประเทศ"
     }
   }
 }

@@ -7,20 +7,13 @@ import { defHttp } from '#/api/request';
  */
 export const PayRiskHitApi = {
   /** 分页查询 */
-  page(
-    params: PayRiskHitQuery & { current: number; size: number },
-  ): Promise<Result<PageResult<PayRiskHitVo>>> {
+  page(params: PayRiskHitQuery & { current: number; size: number }): Promise<Result<PageResult<PayRiskHitVo>>> {
     return defHttp.get({ url: '/admin/pay/risk-hit/page', params });
   },
 
   /** 详情 */
   get(id: string): Promise<Result<PayRiskHitVo>> {
     return defHttp.get({ url: '/admin/pay/risk-hit/get', params: { id } });
-  },
-
-  /** 处理命中 */
-  handle(data: PayRiskHitHandleParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/pay/risk-hit/handle', data });
   },
 };
 
@@ -30,15 +23,7 @@ export interface PayRiskHitQuery {
   hitType?: string;
   hitValue?: string;
   mchNo?: string;
-  handleStatus?: string;
   scene?: string;
-}
-
-/** 处理参数 */
-export interface PayRiskHitHandleParam {
-  id: string;
-  handleStatus: string;
-  handleRemark?: string;
 }
 
 /** 列表/详情 VO */
@@ -62,9 +47,5 @@ export interface PayRiskHitVo extends BaseEntity {
   openid?: string;
   buyerId?: string;
   scene?: string;
-  handleStatus?: string;
-  handleRemark?: string;
-  handleUserId?: string;
-  handleTime?: string;
   remark?: string;
 }
