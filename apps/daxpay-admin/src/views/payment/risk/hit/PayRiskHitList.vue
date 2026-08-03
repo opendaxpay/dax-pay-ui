@@ -142,7 +142,12 @@
             </template>
           </vxe-column>
           <!-- 创建时间 -->
-          <vxe-column field="createTime" :title="$t('payment.risk.hit.field.createTime')" width="170" />
+          <vxe-column
+            field="createTime"
+            :title="$t('payment.risk.hit.field.createTime')"
+            width="170"
+            formatter="formatDateTime"
+          />
         </vxe-table>
         <div class="mt-3 flex justify-end">
           <vxe-pager

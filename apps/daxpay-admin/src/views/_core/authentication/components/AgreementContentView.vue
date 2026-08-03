@@ -2,8 +2,8 @@
   import { computed, onMounted, ref, watch } from 'vue';
 
   import { $t, useI18n } from '@vben/locales';
+  import { formatDate } from '@vben/utils';
 
-  import dayjs from 'dayjs';
   import { MdPreview } from 'md-editor-v3';
 
   import { UserProtocolApi, type UserProtocolContent } from '#/api/system/basic/protocol/user-protocol.api';
@@ -43,8 +43,8 @@
     }
     if (content.value.effectiveTime) {
       // 生效时间
-      const formatted = dayjs(content.value.effectiveTime).format('YYYY-MM-DD');
-      if (formatted && formatted !== 'Invalid Date') {
+      const formatted = formatDate(content.value.effectiveTime);
+      if (formatted) {
         parts.push(`${$t('authentication.agreementEffectiveTime')}: ${formatted}`);
       }
     }

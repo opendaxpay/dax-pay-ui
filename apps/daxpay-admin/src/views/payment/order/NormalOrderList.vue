@@ -4,6 +4,7 @@
   import { computed, onMounted, ref } from 'vue';
 
   import { $t } from '@vben/locales';
+  import { formatDateTime } from '@vben/utils';
 
   import { OrderCloseApi } from '#/api/payment/order/close.api';
   import { NormalOrderApi, type NormalOrderQuery, type NormalOrderResult } from '#/api/payment/order/normal-order.api';
@@ -358,16 +359,16 @@
         <a-divider orientation="left" plain>{{ $t('payment.order.field.payTime') }}</a-divider>
         <a-descriptions :column="2" size="small" bordered>
           <a-descriptions-item :label="$t('payment.order.field.createTime')">
-            {{ detail.createTime || '-' }}
+            {{ formatDateTime(detail.createTime) || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.expiredTime')">
-            {{ detail.expiredTime || '-' }}
+            {{ formatDateTime(detail.expiredTime) || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.payTime')">
-            {{ detail.payTime || '-' }}
+            {{ formatDateTime(detail.payTime) || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.closeTime')">
-            {{ detail.closeTime || '-' }}
+            {{ formatDateTime(detail.closeTime) || '-' }}
           </a-descriptions-item>
         </a-descriptions>
 

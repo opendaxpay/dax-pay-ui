@@ -231,9 +231,19 @@
           <!-- 原因 -->
           <vxe-column field="reason" :title="$t('payment.risk.blacklist.field.reason')" :min-width="140" />
           <!-- 过期 -->
-          <vxe-column field="expireTime" :title="$t('payment.risk.blacklist.field.expireTime')" width="170" />
+          <vxe-column
+            field="expireTime"
+            :title="$t('payment.risk.blacklist.field.expireTime')"
+            width="170"
+            formatter="formatDateTime"
+          />
           <!-- 创建时间 -->
-          <vxe-column field="createTime" :title="$t('payment.risk.blacklist.field.createTime')" width="170" />
+          <vxe-column
+            field="createTime"
+            :title="$t('payment.risk.blacklist.field.createTime')"
+            width="170"
+            formatter="formatDateTime"
+          />
           <vxe-column fixed="right" :width="200" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">
               <a-space :size="2">

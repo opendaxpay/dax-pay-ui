@@ -27,7 +27,7 @@ type Format =
  * @param format 输出格式, 默认 "YYYY-MM-DD"
  * @returns 格式化后的日期字符串
  */
-export function formatDate(time?: FormatDate, format: Format = 'YYYY-MM-DD') {
+export function formatDate(time?: FormatDate | null, format: Format = 'YYYY-MM-DD') {
   // 空值 (null、undefined、空字符串) 直接返回空字符串, 不做格式化也不报错
   if (time === null || time === undefined || time === '') {
     return '';
@@ -56,7 +56,7 @@ export function formatDate(time?: FormatDate, format: Format = 'YYYY-MM-DD') {
   }
 }
 
-export function formatDateTime(time?: FormatDate) {
+export function formatDateTime(time?: FormatDate | null) {
   return formatDate(time, 'YYYY-MM-DD HH:mm:ss');
 }
 

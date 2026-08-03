@@ -4,6 +4,7 @@
   import { computed, onMounted, ref } from 'vue';
 
   import { $t } from '@vben/locales';
+  import { formatDateTime } from '@vben/utils';
 
   import { RefundOrderApi, type RefundOrderQuery, type RefundOrderResult } from '#/api/payment/order/refund-order.api';
   import { BQuery, type QueryField } from '#/components/query';
@@ -385,10 +386,10 @@
             {{ detail.reason || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.finishTime')">
-            {{ detail.finishTime || '-' }}
+            {{ formatDateTime(detail.finishTime) || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.createTime')">
-            {{ detail.createTime || '-' }}
+            {{ formatDateTime(detail.createTime) || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.errorMsg')" :span="2">
             {{ detail.errorMsg || '-' }}

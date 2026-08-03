@@ -4,6 +4,7 @@
   import { computed, onMounted, ref } from 'vue';
 
   import { $t } from '@vben/locales';
+  import { formatDateTime } from '@vben/utils';
 
   import {
     MchNoticeApi,
@@ -289,10 +290,10 @@
             {{ taskDetail.delayCount ?? 0 }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.notice.mchNotice.latestTime')" :span="2">
-            {{ taskDetail.latestTime || '-' }}
+            {{ formatDateTime(taskDetail.latestTime) || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.notice.mchNotice.nextTime')" :span="2">
-            {{ taskDetail.nextTime || '-' }}
+            {{ formatDateTime(taskDetail.nextTime) || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.notice.mchNotice.url')" :span="2">
             {{ taskDetail.url || '-' }}

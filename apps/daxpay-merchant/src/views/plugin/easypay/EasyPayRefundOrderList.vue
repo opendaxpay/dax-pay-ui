@@ -5,6 +5,7 @@
   import { computed, onMounted, ref } from 'vue';
 
   import { $t } from '@vben/locales';
+  import { formatDateTime } from '@vben/utils';
 
   import { IconifyIcon } from '@vben-core/icons';
 
@@ -351,13 +352,13 @@
         <a-divider orientation="left" plain>{{ $t('plugin.easypay.refund.section.time') }}</a-divider>
         <a-descriptions :column="2" size="small" bordered>
           <a-descriptions-item :label="$t('plugin.easypay.refund.field.addTime')">
-            {{ detail.addTime || '-' }}
+            {{ formatDateTime(detail.addTime) || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('plugin.easypay.refund.field.endTime')">
-            {{ detail.endTime || '-' }}
+            {{ formatDateTime(detail.endTime) || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('plugin.easypay.refund.field.createTime')">
-            {{ detail.createTime || '-' }}
+            {{ formatDateTime(detail.createTime) || '-' }}
           </a-descriptions-item>
         </a-descriptions>
       </a-spin>

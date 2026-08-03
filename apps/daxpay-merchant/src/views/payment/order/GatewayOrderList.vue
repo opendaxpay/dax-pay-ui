@@ -4,6 +4,7 @@
   import { computed, onMounted, ref } from 'vue';
 
   import { $t } from '@vben/locales';
+  import { formatDateTime } from '@vben/utils';
 
   import { OrderCloseApi } from '#/api/payment/order/close.api';
   import {
@@ -330,7 +331,7 @@
             {{ formatAmount(detail.refundableBalance) }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.payTime')">
-            {{ detail.payTime || '-' }}
+            {{ formatDateTime(detail.payTime) || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.clientIp')">
             {{ detail.clientIp || '-' }}

@@ -4,8 +4,8 @@
   import { onMounted, ref } from 'vue';
 
   import { $t } from '@vben/locales';
+  import { formatDateTime } from '@vben/utils';
 
-  import dayjs from 'dayjs';
   import { MdPreview } from 'md-editor-v3';
 
   import { NotifyUserApi } from '#/api/system/notify/user.api';
@@ -35,13 +35,6 @@
    */
   function typeText(v?: string) {
     return v === 'message' ? $t('system.notify.messageType') : $t('system.notify.noticeType');
-  }
-
-  /**
-   * 时间格式化(对齐 vxe formatDateTime, 弹窗内非表格场景使用)
-   */
-  function formatDateTime(v?: string) {
-    return v ? dayjs(v).format('YYYY-MM-DD HH:mm:ss') : '-';
   }
 
   /**
