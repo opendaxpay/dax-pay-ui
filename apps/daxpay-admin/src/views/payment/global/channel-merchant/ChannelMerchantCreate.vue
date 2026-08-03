@@ -233,23 +233,19 @@
                 <div class="text-xs text-muted-foreground">
                   {{ getChannelName(item.channel || '') }}
                 </div>
-                <!-- 环境状态标签(仅支持沙箱的产品显示) -->
-                <div v-if="item.sandbox" class="mt-2">
-                  <a-tag :color="item.activeEnv === 'sandbox' ? 'orange' : 'blue'" class="!m-0">
-                    {{
-                      item.activeEnv === 'sandbox'
-                        ? $t('payment.constant.product.productConfig.sandboxLabel')
-                        : $t('payment.constant.product.productConfig.prodLabel')
-                    }}
-                  </a-tag>
-                </div>
               </div>
-              <!-- 选中标记 -->
-              <div
-                v-if="selectedProduct?.code === item.code"
-                class="absolute top-2 right-2 w-6 h-6 rounded-full bg-primary flex items-center justify-center"
-              >
-                <IconifyIcon icon="ant-design:check-outlined" class="text-white text-sm" />
+              <!-- 右上角:环境状态标签(仅支持沙箱的产品显示,只读展示产品当前 activeEnv) -->
+              <div v-if="item.sandbox" class="absolute top-2 right-2 z-20">
+                <a-tag
+                  :color="item.activeEnv === 'sandbox' ? 'orange' : 'blue'"
+                  class="!m-0 env-tag-compact"
+                >
+                  {{
+                    item.activeEnv === 'sandbox'
+                      ? $t('payment.constant.product.productConfig.sandboxLabel')
+                      : $t('payment.constant.product.productConfig.prodLabel')
+                  }}
+                </a-tag>
               </div>
             </div>
           </div>
@@ -303,5 +299,14 @@
   .product-select-card {
     height: 160px;
     position: relative;
+  }
+
+  /* 右上角环境标签迷你样式:穿透 antd scoped 边界,缩小为小徽标 */
+  :deep(.env-tag-compact.ant-tag) {
+    margin-right: 0;
+    padding: 0 6px;
+    font-size: 11px;
+    line-height: 18px;
+    border: none;
   }
 </style>
