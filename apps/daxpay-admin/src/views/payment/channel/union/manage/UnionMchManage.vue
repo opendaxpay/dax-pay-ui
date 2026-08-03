@@ -10,10 +10,10 @@
   import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/global/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
 
-  import UnionDirectChannelMerchantBasicInfo from './UnionDirectChannelMerchantBasicInfo.vue';
-  import UnionDirectKeyConfigEdit from './UnionDirectKeyConfigEdit.vue';
+  import UnionChannelMerchantBasicInfo from './UnionChannelMerchantBasicInfo.vue';
+  import UnionKeyConfigEdit from './UnionKeyConfigEdit.vue';
 
-  defineOptions({ name: 'UnionDirectMchManage' });
+  defineOptions({ name: 'UnionMchManage' });
 
   const emit = defineEmits<{
     (e: 'success'): void;
@@ -23,8 +23,8 @@
   const mchNo = ref('');
   const channelMchNo = ref('');
   const channelMerchant = ref<ChannelMerchantResult>({});
-  const basicInfoRef = ref<InstanceType<typeof UnionDirectChannelMerchantBasicInfo>>();
-  const keyConfigRef = ref<InstanceType<typeof UnionDirectKeyConfigEdit>>();
+  const basicInfoRef = ref<InstanceType<typeof UnionChannelMerchantBasicInfo>>();
+  const keyConfigRef = ref<InstanceType<typeof UnionKeyConfigEdit>>();
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
 
   /** 功能卡片配置(云闪付首期仅基本信息与证书配置) */
@@ -41,9 +41,9 @@
         },
         {
           key: 'keyConfig',
-          title: $t('payment.channel.unionManage.cardDirectKeyConfig'),
+          title: $t('payment.channel.unionManage.cardKeyConfig'),
           icon: 'ant-design:key-outlined',
-          description: $t('payment.channel.unionManage.cardDirectKeyConfigDesc'),
+          description: $t('payment.channel.unionManage.cardKeyConfigDesc'),
         },
         {
           key: 'editMerchantName',
@@ -145,7 +145,7 @@
       </div>
     </a-spin>
 
-    <UnionDirectChannelMerchantBasicInfo
+    <UnionChannelMerchantBasicInfo
       ref="basicInfoRef"
       :channel-mch-no="channelMchNo"
       :channel-merchant="channelMerchant"
@@ -153,7 +153,7 @@
 
     <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 
-    <UnionDirectKeyConfigEdit
+    <UnionKeyConfigEdit
       ref="keyConfigRef"
       :channel-mch-no="channelMchNo"
       :product="channelMerchant.product"

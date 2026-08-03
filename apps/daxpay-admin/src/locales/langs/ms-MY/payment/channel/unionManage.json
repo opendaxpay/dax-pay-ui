@@ -1,8 +1,8 @@
 {
   "manageTitle": "Pengurusan Pedagang UnionPay",
-  "cardDirectKeyConfig": "Konfigurasi Sijil",
-  "cardDirectKeyConfigDesc": "Konfigurasikan sijil tandatangan RSA2 pedagang UnionPay",
-  "directKeyConfigTitle": "Konfigurasi Sijil UnionPay",
+  "cardKeyConfig": "Konfigurasi Sijil",
+  "cardKeyConfigDesc": "Konfigurasikan sijil tandatangan RSA2 pedagang UnionPay",
+  "keyConfigTitle": "Konfigurasi Sijil UnionPay",
   "keyConfigSection": "Konfigurasi Sijil Pedagang",
   "environment": "Persekitaran",
   "prodEnv": "Pengeluaran",

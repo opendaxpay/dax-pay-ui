@@ -1,8 +1,8 @@
 {
   "manageTitle": "UnionPay Merchant Management",
-  "cardDirectKeyConfig": "Cert Config",
-  "cardDirectKeyConfigDesc": "Configure UnionPay merchant RSA2 signing certificates",
-  "directKeyConfigTitle": "UnionPay Certificate Configuration",
+  "cardKeyConfig": "Cert Config",
+  "cardKeyConfigDesc": "Configure UnionPay merchant RSA2 signing certificates",
+  "keyConfigTitle": "UnionPay Certificate Configuration",
   "keyConfigSection": "Merchant Certificate Config",
   "environment": "Environment",
   "prodEnv": "Production",

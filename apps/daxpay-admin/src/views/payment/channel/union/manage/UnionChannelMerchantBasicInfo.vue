@@ -6,7 +6,7 @@
   import { type ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
   import { productI18nMap, productNameMap } from '#/enums/payment';
 
-  defineOptions({ name: 'UnionDirectChannelMerchantBasicInfo' });
+  defineOptions({ name: 'UnionChannelMerchantBasicInfo' });
 
   const props = defineProps<{
     channelMchNo: string;

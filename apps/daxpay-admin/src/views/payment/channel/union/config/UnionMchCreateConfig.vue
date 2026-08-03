@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import type { UnionDirectChannelMerchantCreateParam } from '#/api/payment/channel/union/channel-merchant.api';
+  import type { UnionChannelMerchantCreateParam } from '#/api/payment/channel/union/channel-merchant.api';
 
   import { computed, nextTick, ref } from 'vue';
 
@@ -7,7 +7,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { UnionDirectChannelMerchantApi } from '#/api/payment/channel/union/channel-merchant.api';
+  import { UnionChannelMerchantApi } from '#/api/payment/channel/union/channel-merchant.api';
   import ChannelLogo from '#/components/channel/ChannelLogo.vue';
   import { productI18nMap, productNameMap } from '#/enums/payment';
   import { useMessage } from '#/hooks/useMessage';
@@ -70,11 +70,11 @@
       ?.validate()
       .then(() => {
         submitLoading.value = true;
-        UnionDirectChannelMerchantApi.create({
+        UnionChannelMerchantApi.create({
           mchNo: mchNo.value,
           product: productCode.value,
           ...form.value,
-        } as UnionDirectChannelMerchantCreateParam)
+        } as UnionChannelMerchantCreateParam)
           .then(() => {
             createSuccess.value = true;
             message.success($t('payment.merchant.channelMerchant.createSuccess'));

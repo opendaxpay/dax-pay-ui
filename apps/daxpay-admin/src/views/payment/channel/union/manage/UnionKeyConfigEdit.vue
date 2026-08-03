@@ -3,14 +3,14 @@
 
   import { $t } from '@vben/locales';
 
-  import { UnionDirectChannelMerchantApi, type UnionDirectKeyConfig } from '#/api/payment/channel/union/channel-merchant.api';
+  import { UnionChannelMerchantApi, type UnionKeyConfig } from '#/api/payment/channel/union/channel-merchant.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
   import { resolveProductSandbox } from '#/utils/pay-product-env';
 
-  defineOptions({ name: 'UnionDirectKeyConfigEdit' });
+  defineOptions({ name: 'UnionKeyConfigEdit' });
 
   const props = defineProps<{
     channelMchNo: string;
@@ -28,7 +28,7 @@
   const { hasPermission } = usePermission();
 
   const formRef = ref();
-  const form = ref<UnionDirectKeyConfig>({} as UnionDirectKeyConfig);
+  const form = ref<UnionKeyConfig>({} as UnionKeyConfig);
   let rawForm: Record<string, any> = {};
 
   // 跟随支付产品生效环境(只读, 禁止在证书页切换)
@@ -36,7 +36,7 @@
 
   const canEdit = computed(() => hasPermission(PermCodes.Channel.Merchant.MANAGE));
 
-  const drawerTitle = $t('payment.channel.unionManage.directKeyConfigTitle');
+  const drawerTitle = $t('payment.channel.unionManage.keyConfigTitle');
 
   /** 打开抽屉并加载证书配置(自动跟随产品生效环境) */
   async function init() {
@@ -52,12 +52,12 @@
       // 云闪付单一产品
       const product = props.product || 'union_pay';
       sandbox.value = await resolveProductSandbox(product);
-      const { data } = await UnionDirectChannelMerchantApi.findKeyConfig(
+      const { data } = await UnionChannelMerchantApi.findKeyConfig(
         props.channelMchNo,
         sandbox.value,
       );
       rawForm = { ...data };
-      form.value = { ...data } as UnionDirectKeyConfig;
+      form.value = { ...data } as UnionKeyConfig;
     } finally {
       confirmLoading.value = false;
     }
@@ -69,7 +69,7 @@
       .then(() => {
         confirmLoading.value = true;
         // 证书字段为敏感信息, 仅提交有变化的(diffForm 判断脱敏值未变则不覆盖)
-        UnionDirectChannelMerchantApi.saveKeyConfig({
+        UnionChannelMerchantApi.saveKeyConfig({
           ...form.value,
           ...diffForm(rawForm, form.value, 'keyPrivateCert', 'keyPrivateCertPwd', 'acpMiddleCert', 'acpRootCert'),
           channelMchNo: props.channelMchNo,

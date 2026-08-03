@@ -3,36 +3,36 @@ import type { Result } from '#/types/web';
 import { defHttp } from '#/api/request';
 
 /**
- * 云闪付(直连银联 ACP)直连通道商户 API
+ * 云闪付(银联 ACP)通道商户 API
  */
-export const UnionDirectChannelMerchantApi = {
+export const UnionChannelMerchantApi = {
   /**
-   * 创建云闪付直连通道商户(写入银联商户号 merId, RSA2 三证书由密钥配置单独维护)
+   * 创建云闪付通道商户(写入银联商户号 merId, RSA2 三证书由密钥配置单独维护)
    */
-  create(data: UnionDirectChannelMerchantCreateParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/union/direct-channel-merchant/create', data });
+  create(data: UnionChannelMerchantCreateParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/union/channel-merchant/create', data });
   },
   /**
    * 根据通道商户号查询证书配置
    */
-  findKeyConfig(channelMchNo: string, sandbox: boolean = false): Promise<Result<UnionDirectKeyConfig>> {
+  findKeyConfig(channelMchNo: string, sandbox: boolean = false): Promise<Result<UnionKeyConfig>> {
     return defHttp.get({
-      url: '/admin/union/direct-channel-merchant/find-key-config',
+      url: '/admin/union/channel-merchant/find-key-config',
       params: { channelMchNo, sandbox },
     });
   },
   /**
    * 保存证书配置
    */
-  saveKeyConfig(data: UnionDirectKeyConfigParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/union/direct-channel-merchant/save-key-config', data });
+  saveKeyConfig(data: UnionKeyConfigParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/union/channel-merchant/save-key-config', data });
   },
 };
 
 /**
- * 云闪付直连密钥配置(含银联商户号 merId 与 RSA2 三证书)
+ * 云闪付密钥配置(含银联商户号 merId 与 RSA2 三证书)
  */
-export interface UnionDirectKeyConfig {
+export interface UnionKeyConfig {
   /** 通道商户号 */
   channelMchNo?: string;
   /** 商户号 */
@@ -60,9 +60,9 @@ export interface UnionDirectKeyConfig {
 }
 
 /**
- * 云闪付直连密钥配置保存参数
+ * 云闪付密钥配置保存参数
  */
-export interface UnionDirectKeyConfigParam {
+export interface UnionKeyConfigParam {
   /** 通道商户号(唯一标识) */
   channelMchNo: string;
   /** 是否沙箱环境 */
@@ -84,9 +84,9 @@ export interface UnionDirectKeyConfigParam {
 }
 
 /**
- * 云闪付直连通道商户创建参数
+ * 云闪付通道商户创建参数
  */
-export interface UnionDirectChannelMerchantCreateParam {
+export interface UnionChannelMerchantCreateParam {
   /** 商户号 */
   mchNo: string;
   /** 通道商户名称 */

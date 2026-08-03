@@ -21,7 +21,7 @@
   import VbillMchManage from '#/views/payment/channel/vbill/manage/mch/VbillMchManage.vue';
   import FuyouMchManage from '#/views/payment/channel/fuyou/manage/mch/FuyouMchManage.vue';
   import UmsDirectMchManage from '#/views/payment/channel/ums/manage/UmsDirectMchManage.vue';
-  import UnionDirectMchManage from '#/views/payment/channel/union/manage/UnionDirectMchManage.vue';
+  import UnionMchManage from '#/views/payment/channel/union/manage/UnionMchManage.vue';
   import AdapayDirectMchManage from '#/views/payment/channel/adapay/manage/AdapayDirectMchManage.vue';
   import WechatChannelMerchantManage from '#/views/payment/channel/wechat/manage/mch/WechatChannelMerchantManage.vue';
   import WechatDirectMchManage from '#/views/payment/channel/wechat/manage/mch/WechatDirectMchManage.vue';
@@ -60,7 +60,7 @@
   const wechatDirectManageRef = ref<InstanceType<typeof WechatDirectMchManage>>();
   const douyinDirectManageRef = ref<InstanceType<typeof DouyinDirectMchManage>>();
   const umsDirectManageRef = ref<InstanceType<typeof UmsDirectMchManage>>();
-  const unionDirectManageRef = ref<InstanceType<typeof UnionDirectMchManage>>();
+  const unionManageRef = ref<InstanceType<typeof UnionMchManage>>();
   const adapayDirectManageRef = ref<InstanceType<typeof AdapayDirectMchManage>>();
   const lakalaManageRef = ref<InstanceType<typeof LakalaMchManage>>();
   const hkrtManageRef = ref<InstanceType<typeof HkrtMchManage>>();
@@ -82,7 +82,7 @@
     );
   }
 
-  /** 是否为云闪付(直连银联)产品 */
+  /** 是否为云闪付产品 */
   function isUnionProduct(p: string) {
     return p === ProductEnum.UNION_PAY;
   }
@@ -225,7 +225,7 @@
       umsDirectManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
     }
     if (isUnionProduct(product.value)) {
-      unionDirectManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
+      unionManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
     }
     if (product.value === ProductEnum.LAKALA_PAY) {
       lakalaManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
@@ -345,7 +345,7 @@
           @success="loadChannelMerchant"
         />
         <UmsDirectMchManage v-else-if="isUmsProduct(resolvedProduct)" ref="umsDirectManageRef" @success="loadChannelMerchant" />
-        <UnionDirectMchManage v-else-if="isUnionProduct(resolvedProduct)" ref="unionDirectManageRef" @success="loadChannelMerchant" />
+        <UnionMchManage v-else-if="isUnionProduct(resolvedProduct)" ref="unionManageRef" @success="loadChannelMerchant" />
         <LakalaMchManage
           v-else-if="resolvedProduct === ProductEnum.LAKALA_PAY"
           ref="lakalaManageRef"

@@ -1,8 +1,8 @@
 {
   "manageTitle": "雲閃付マーチャント管理",
-  "cardDirectKeyConfig": "証明書設定",
-  "cardDirectKeyConfigDesc": "雲閃付マーチャントのRSA2署名証明書を設定",
-  "directKeyConfigTitle": "雲閃付証明書設定",
+  "cardKeyConfig": "証明書設定",
+  "cardKeyConfigDesc": "雲閃付マーチャントのRSA2署名証明書を設定",
+  "keyConfigTitle": "雲閃付証明書設定",
   "keyConfigSection": "マーチャント証明書設定",
   "environment": "環境",
   "prodEnv": "本番",

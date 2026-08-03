@@ -1,8 +1,8 @@
 {
   "manageTitle": "유니온페이 판매자 관리",
-  "cardDirectKeyConfig": "인증서 설정",
-  "cardDirectKeyConfigDesc": "유니온페이 판매자 RSA2 서명 인증서 구성",
-  "directKeyConfigTitle": "유니온페이 인증서 설정",
+  "cardKeyConfig": "인증서 설정",
+  "cardKeyConfigDesc": "유니온페이 판매자 RSA2 서명 인증서 구성",
+  "keyConfigTitle": "유니온페이 인증서 설정",
   "keyConfigSection": "판매자 인증서 설정",
   "environment": "환경",
   "prodEnv": "프로덕션",

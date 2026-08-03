@@ -1,8 +1,8 @@
 {
   "manageTitle": "Manajemen Pedagang UnionPay",
-  "cardDirectKeyConfig": "Konfigurasi Sertifikat",
-  "cardDirectKeyConfigDesc": "Konfigurasikan sertifikat penandatanganan RSA2 pedagang UnionPay",
-  "directKeyConfigTitle": "Konfigurasi Sertifikat UnionPay",
+  "cardKeyConfig": "Konfigurasi Sertifikat",
+  "cardKeyConfigDesc": "Konfigurasikan sertifikat penandatanganan RSA2 pedagang UnionPay",
+  "keyConfigTitle": "Konfigurasi Sertifikat UnionPay",
   "keyConfigSection": "Konfigurasi Sertifikat Pedagang",
   "environment": "Lingkungan",
   "prodEnv": "Produksi",
