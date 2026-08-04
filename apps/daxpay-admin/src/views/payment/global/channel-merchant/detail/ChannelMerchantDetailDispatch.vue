@@ -1,32 +1,119 @@
 <script lang="ts" setup>
-  import { computed, nextTick, onMounted, ref, watch } from 'vue';
+  import { type Component, computed, defineAsyncComponent, nextTick, onMounted, ref, shallowRef, watch } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { ChannelMerchantApi, type ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
+  import {
+    ChannelMerchantApi,
+    type ChannelMerchantResult,
+  } from '#/api/payment/global/channel-merchant/channel-merchant.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
-  import { productI18nMap, productNameMap, ProductEnum } from '#/enums/payment';
+  import { ProductEnum, productI18nMap, productNameMap } from '#/enums/payment';
   import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
-  import AlipayChannelMerchantManage from '#/views/payment/channel/alipay/manage/mch/AlipayChannelMerchantManage.vue';
-  import AlipayMchManage from '#/views/payment/channel/alipay/manage/mch/AlipayMchManage.vue';
-  import DouyinDirectMchManage from '#/views/payment/channel/douyin/manage/DouyinDirectMchManage.vue';
-  import LakalaMchManage from '#/views/payment/channel/lakala/manage/mch/LakalaMchManage.vue';
-  import HkrtMchManage from '#/views/payment/channel/hkrt/manage/mch/HkrtMchManage.vue';
-  import LeshuaMchManage from '#/views/payment/channel/leshua/manage/mch/LeshuaMchManage.vue';
-  import DougongMchManage from '#/views/payment/channel/dougong/manage/mch/DougongMchManage.vue';
-  import HmpayMchManage from '#/views/payment/channel/hmpay/manage/mch/HmpayMchManage.vue';
-  import VbillMchManage from '#/views/payment/channel/vbill/manage/mch/VbillMchManage.vue';
-  import FuyouMchManage from '#/views/payment/channel/fuyou/manage/mch/FuyouMchManage.vue';
-  import UmsDirectMchManage from '#/views/payment/channel/ums/manage/UmsDirectMchManage.vue';
-  import UnionMchManage from '#/views/payment/channel/union/manage/UnionMchManage.vue';
-  import AdapayDirectMchManage from '#/views/payment/channel/adapay/manage/AdapayDirectMchManage.vue';
-  import WechatChannelMerchantManage from '#/views/payment/channel/wechat/manage/mch/WechatChannelMerchantManage.vue';
-  import WechatDirectMchManage from '#/views/payment/channel/wechat/manage/mch/WechatDirectMchManage.vue';
 
   defineOptions({ name: 'ChannelMerchantDetailDispatch' });
+
+  /** 银联商务家族共用同一组件(多产品 → 同一组件实例, 切换产品不重挂载, 仅 re-init) */
+  const UmsDirectMchManage = defineAsyncComponent(
+    () => import('#/views/payment/channel/ums/manage/UmsDirectMchManage.vue'),
+  );
+
+  /**
+   * 支付产品 → 通道商户管理组件映射表(懒加载, 按需分包)
+   * 单一事实源: 新增/删除通道仅需在此增删一行
+   */
+  const channelMchManageMap: Record<string, Component> = {
+    [ProductEnum.ALIPAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/alipay/manage/mch/AlipayMchManage.vue'),
+    ),
+    [ProductEnum.ALIPAY_ISV]: defineAsyncComponent(
+      () => import('#/views/payment/channel/alipay/manage/mch/AlipayChannelMerchantManage.vue'),
+    ),
+    [ProductEnum.WECHAT_ISV]: defineAsyncComponent(
+      () => import('#/views/payment/channel/wechat/manage/mch/WechatChannelMerchantManage.vue'),
+    ),
+    [ProductEnum.WECHAT_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/wechat/manage/mch/WechatDirectMchManage.vue'),
+    ),
+    [ProductEnum.DOUYIN_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/douyin/manage/DouyinDirectMchManage.vue'),
+    ),
+    [ProductEnum.UNION_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/union/manage/UnionMchManage.vue'),
+    ),
+    [ProductEnum.STRIPE_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/stripe/manage/StripeMchManage.vue'),
+    ),
+    [ProductEnum.LAKALA_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/lakala/manage/mch/LakalaMchManage.vue'),
+    ),
+    [ProductEnum.ADA_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/adapay/manage/AdapayDirectMchManage.vue'),
+    ),
+    [ProductEnum.HKRT_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/hkrt/manage/mch/HkrtMchManage.vue'),
+    ),
+    [ProductEnum.LESHUA_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/leshua/manage/mch/LeshuaMchManage.vue'),
+    ),
+    [ProductEnum.DOUGONG_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/dougong/manage/mch/DougongMchManage.vue'),
+    ),
+    [ProductEnum.VBILL_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/vbill/manage/mch/VbillMchManage.vue'),
+    ),
+    [ProductEnum.FUYOU_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/fuyou/manage/mch/FuyouMchManage.vue'),
+    ),
+    [ProductEnum.HM_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/hmpay/manage/mch/HmpayMchManage.vue'),
+    ),
+    // 银联商务家族: 6 个产品共用同一组件
+    [ProductEnum.UMS_QRCODE]: UmsDirectMchManage,
+    [ProductEnum.UMS_JSAPI]: UmsDirectMchManage,
+    [ProductEnum.UMS_APP]: UmsDirectMchManage,
+    [ProductEnum.UMS_MINI]: UmsDirectMchManage,
+    [ProductEnum.UMS_H5]: UmsDirectMchManage,
+    [ProductEnum.UMS_BARCODE]: UmsDirectMchManage,
+  };
+
+  /** 银联商务系列产品的页头标题 key */
+  const UMS_MANAGE_TITLE_KEY = 'payment.channel.umsManage.manageTitle';
+
+  /**
+   * 支付产品 → 管理页头标题 i18n key 映射表(缺省回退 manageTitleDefault)
+   * 单一事实源: 改标题文案仅需在此调整
+   */
+  const pageTitleI18nKeyMap: Record<string, string> = {
+    [ProductEnum.ALIPAY]: 'payment.merchant.channelMerchant.manageTitleAlipayDirect',
+    [ProductEnum.ALIPAY_ISV]: 'payment.merchant.channelMerchant.manageTitleAlipay',
+    [ProductEnum.WECHAT_ISV]: 'payment.merchant.channelMerchant.manageTitleWechat',
+    [ProductEnum.WECHAT_PAY]: 'payment.merchant.channelMerchant.manageTitleWechatDirect',
+    [ProductEnum.DOUYIN_PAY]: 'payment.channel.douyinManage.manageTitle',
+    [ProductEnum.LAKALA_PAY]: 'payment.channel.lakalaIsv.manageTitle',
+    [ProductEnum.ADA_PAY]: 'payment.channel.adapayManage.manageTitle',
+    [ProductEnum.HKRT_PAY]: 'payment.channel.hkrtIsv.manageTitle',
+    [ProductEnum.LESHUA_PAY]: 'payment.channel.leshuaIsv.title',
+    [ProductEnum.DOUGONG_PAY]: 'payment.channel.dougongIsv.manageTitle',
+    [ProductEnum.VBILL_PAY]: 'payment.channel.vbillIsv.manageTitle',
+    [ProductEnum.FUYOU_PAY]: 'payment.channel.fuyouIsv.manageTitle',
+    [ProductEnum.HM_PAY]: 'payment.channel.hmpayIsv.manageTitle',
+    [ProductEnum.UNION_PAY]: 'payment.channel.unionManage.manageTitle',
+    [ProductEnum.STRIPE_PAY]: 'payment.channel.stripeManage.manageTitle',
+    // 银联商务家族共用同一标题
+    [ProductEnum.UMS_QRCODE]: UMS_MANAGE_TITLE_KEY,
+    [ProductEnum.UMS_JSAPI]: UMS_MANAGE_TITLE_KEY,
+    [ProductEnum.UMS_APP]: UMS_MANAGE_TITLE_KEY,
+    [ProductEnum.UMS_MINI]: UMS_MANAGE_TITLE_KEY,
+    [ProductEnum.UMS_H5]: UMS_MANAGE_TITLE_KEY,
+    [ProductEnum.UMS_BARCODE]: UMS_MANAGE_TITLE_KEY,
+  };
+
+  /** 标题回退 key */
+  const DEFAULT_TITLE_KEY = 'payment.merchant.channelMerchant.manageTitleDefault';
 
   const route = useRoute();
   const router = useRouter();
@@ -54,111 +141,20 @@
   /** product 优先取路由(可选), 缺失时用详情反查回填 */
   const resolvedProduct = computed(() => product.value || channelMerchant.value.product || '');
 
-  const alipayMchManageRef = ref<InstanceType<typeof AlipayMchManage>>();
-  const alipayChannelMerchantManageRef = ref<InstanceType<typeof AlipayChannelMerchantManage>>();
-  const wechatManageRef = ref<InstanceType<typeof WechatChannelMerchantManage>>();
-  const wechatDirectManageRef = ref<InstanceType<typeof WechatDirectMchManage>>();
-  const douyinDirectManageRef = ref<InstanceType<typeof DouyinDirectMchManage>>();
-  const umsDirectManageRef = ref<InstanceType<typeof UmsDirectMchManage>>();
-  const unionManageRef = ref<InstanceType<typeof UnionMchManage>>();
-  const adapayDirectManageRef = ref<InstanceType<typeof AdapayDirectMchManage>>();
-  const lakalaManageRef = ref<InstanceType<typeof LakalaMchManage>>();
-  const hkrtManageRef = ref<InstanceType<typeof HkrtMchManage>>();
-  const leshuaManageRef = ref<InstanceType<typeof LeshuaMchManage>>();
-  const dougongManageRef = ref<InstanceType<typeof DougongMchManage>>();
-  const vbillManageRef = ref<InstanceType<typeof VbillMchManage>>();
-  const fuyouManageRef = ref<InstanceType<typeof FuyouMchManage>>();
-  const hmpayManageRef = ref<InstanceType<typeof HmpayMchManage>>();
+  /** 当前激活的管理组件(由 resolvedProduct 查表得到; 未匹配时为 undefined → 渲染 a-empty 兜底) */
+  const activeComponent = shallowRef<Component>();
+  const activeRef = ref<{
+    init: (mchNo: string, channelMchNo: string, channelMerchant: ChannelMerchantResult) => void;
+  }>();
+  /** 待执行的 init 参数(异步组件加载完成后消费, 保证 init 不在组件挂载前空跑) */
+  const pendingInit = ref<null | {
+    channelMchNo: string;
+    channelMerchant: ChannelMerchantResult;
+    mchNo: string;
+  }>(null);
 
-  /** 是否为银联商务系列产品 */
-  function isUmsProduct(p: string) {
-    return (
-      p === ProductEnum.UMS_QRCODE ||
-      p === ProductEnum.UMS_JSAPI ||
-      p === ProductEnum.UMS_APP ||
-      p === ProductEnum.UMS_MINI ||
-      p === ProductEnum.UMS_H5 ||
-      p === ProductEnum.UMS_BARCODE
-    );
-  }
-
-  /** 是否为云闪付产品 */
-  function isUnionProduct(p: string) {
-    return p === ProductEnum.UNION_PAY;
-  }
-
-  /** 是否为已支持的支付产品 */
-  function isSupported(p: string) {
-    return (
-      p === ProductEnum.ALIPAY ||
-      p === ProductEnum.ALIPAY_ISV ||
-      p === ProductEnum.WECHAT_ISV ||
-      p === ProductEnum.WECHAT_PAY ||
-      p === ProductEnum.DOUYIN_PAY ||
-      p === ProductEnum.LAKALA_PAY ||
-      p === ProductEnum.ADA_PAY ||
-      p === ProductEnum.HKRT_PAY ||
-      p === ProductEnum.LESHUA_PAY ||
-      p === ProductEnum.DOUGONG_PAY ||
-      p === ProductEnum.VBILL_PAY ||
-      p === ProductEnum.FUYOU_PAY ||
-      p === ProductEnum.HM_PAY ||
-      isUmsProduct(p) ||
-      isUnionProduct(p)
-    );
-  }
-
-  /** 按产品解析页头标题 */
-  function resolvePageTitle(productCode: string) {
-    if (productCode === ProductEnum.ALIPAY) {
-      return $t('payment.merchant.channelMerchant.manageTitleAlipayDirect');
-    }
-    if (productCode === ProductEnum.ALIPAY_ISV) {
-      return $t('payment.merchant.channelMerchant.manageTitleAlipay');
-    }
-    if (productCode === ProductEnum.WECHAT_ISV) {
-      return $t('payment.merchant.channelMerchant.manageTitleWechat');
-    }
-    if (productCode === ProductEnum.WECHAT_PAY) {
-      return $t('payment.merchant.channelMerchant.manageTitleWechatDirect');
-    }
-    if (productCode === ProductEnum.DOUYIN_PAY) {
-      return $t('payment.channel.douyinManage.manageTitle');
-    }
-    if (productCode === ProductEnum.LAKALA_PAY) {
-      return $t('payment.channel.lakalaIsv.manageTitle');
-    }
-    if (productCode === ProductEnum.ADA_PAY) {
-      return $t('payment.channel.adapayManage.manageTitle');
-    }
-    if (productCode === ProductEnum.HKRT_PAY) {
-      return $t('payment.channel.hkrtIsv.manageTitle');
-    }
-    if (productCode === ProductEnum.LESHUA_PAY) {
-      return $t('payment.channel.leshuaIsv.title');
-    }
-    if (productCode === ProductEnum.DOUGONG_PAY) {
-      return $t('payment.channel.dougongIsv.manageTitle');
-    }
-    if (productCode === ProductEnum.VBILL_PAY) {
-      return $t('payment.channel.vbillIsv.manageTitle');
-    }
-    if (productCode === ProductEnum.FUYOU_PAY) {
-      return $t('payment.channel.fuyouIsv.manageTitle');
-    }
-    if (productCode === ProductEnum.HM_PAY) {
-      return $t('payment.channel.hmpayIsv.manageTitle');
-    }
-    if (isUmsProduct(productCode)) {
-      return $t('payment.channel.umsManage.manageTitle');
-    }
-    if (isUnionProduct(productCode)) {
-      return $t('payment.channel.unionManage.manageTitle');
-    }
-    return $t('payment.merchant.channelMerchant.manageTitleDefault');
-  }
-
-  const pageTitle = computed(() => resolvePageTitle(resolvedProduct.value));
+  /** 按当前产品解析页头标题 */
+  const pageTitle = computed(() => $t(pageTitleI18nKeyMap[resolvedProduct.value] ?? DEFAULT_TITLE_KEY));
 
   /** 银联商务产品类型展示名称(多产品共页时区分具体产品) */
   const productTypeName = computed(() => {
@@ -200,56 +196,52 @@
     });
   }
 
+  /** 触发当前激活组件的 init */
+  function runPendingInit() {
+    const inst = activeRef.value;
+    const params = pendingInit.value;
+    if (!inst || !params) {
+      return;
+    }
+    pendingInit.value = null;
+    inst.init(params.mchNo, params.channelMchNo, params.channelMerchant);
+  }
+
+  /** 是否为银联商务系列产品(用于页头产品类型标签展示) */
+  function isUmsProduct(p: string) {
+    return (
+      p === ProductEnum.UMS_QRCODE ||
+      p === ProductEnum.UMS_JSAPI ||
+      p === ProductEnum.UMS_APP ||
+      p === ProductEnum.UMS_MINI ||
+      p === ProductEnum.UMS_H5 ||
+      p === ProductEnum.UMS_BARCODE
+    );
+  }
+
   /** 按当前产品初始化子页面 */
   function initChannelPanel() {
     const channelMchNo = channelMerchant.value.channelMchNo;
     if (!channelMchNo) {
       return;
     }
-    if (product.value === ProductEnum.ALIPAY) {
-      alipayMchManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
+    const comp = channelMchManageMap[resolvedProduct.value];
+    if (!comp) {
+      // 不支持的产品 → 清空激活组件, 模板走 a-empty 兜底
+      activeComponent.value = undefined;
+      return;
     }
-    if (product.value === ProductEnum.ALIPAY_ISV) {
-      alipayChannelMerchantManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
-    }
-    if (product.value === ProductEnum.WECHAT_ISV) {
-      wechatManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
-    }
-    if (product.value === ProductEnum.WECHAT_PAY) {
-      wechatDirectManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
-    }
-    if (product.value === ProductEnum.DOUYIN_PAY) {
-      douyinDirectManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
-    }
-    if (isUmsProduct(product.value)) {
-      umsDirectManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
-    }
-    if (isUnionProduct(product.value)) {
-      unionManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
-    }
-    if (product.value === ProductEnum.LAKALA_PAY) {
-      lakalaManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
-    }
-    if (product.value === ProductEnum.ADA_PAY) {
-      adapayDirectManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
-    }
-    if (product.value === ProductEnum.HKRT_PAY) {
-      hkrtManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
-    }
-    if (product.value === ProductEnum.LESHUA_PAY) {
-      leshuaManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
-    }
-    if (product.value === ProductEnum.DOUGONG_PAY) {
-      dougongManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
-    }
-    if (product.value === ProductEnum.VBILL_PAY) {
-      vbillManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
-    }
-    if (product.value === ProductEnum.FUYOU_PAY) {
-      fuyouManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
-    }
-    if (product.value === ProductEnum.HM_PAY) {
-      hmpayManageRef.value?.init(mchNo.value, channelMchNo, channelMerchant.value);
+    pendingInit.value = {
+      channelMchNo,
+      channelMerchant: channelMerchant.value,
+      mchNo: mchNo.value,
+    };
+    if (activeComponent.value === comp) {
+      // 同组件已挂载(如保存成功后刷新) → 下一帧直接 init
+      nextTick(runPendingInit);
+    } else {
+      // 切换组件 → 触发渲染; 异步组件挂载后由 watch(activeRef) 调 init
+      activeComponent.value = comp;
     }
   }
 
@@ -273,6 +265,9 @@
     nextTick(() => initChannelPanel());
   });
 
+  // 异步组件加载完毕挂载后, 触发其 init(flush:post 确保模板 ref 已就绪)
+  watch(activeRef, runPendingInit, { flush: 'post' });
+
   onMounted(() => {
     syncRouteState();
     if (!routeContext.isValid.value) {
@@ -285,7 +280,7 @@
 <template>
   <RouteQueryMissingState
     v-if="!routeContext.isValid"
-          :description="
+    :description="
       $t(
         !routeContext.query.value.mchNo
           ? 'payment.common.route.missingMchNo'
@@ -319,74 +314,8 @@
       </template>
 
       <a-spin :spinning="loading">
-        <AlipayMchManage
-          v-if="resolvedProduct === ProductEnum.ALIPAY"
-          ref="alipayMchManageRef"
-          @success="loadChannelMerchant"
-        />
-        <AlipayChannelMerchantManage
-          v-else-if="resolvedProduct === ProductEnum.ALIPAY_ISV"
-          ref="alipayChannelMerchantManageRef"
-          @success="loadChannelMerchant"
-        />
-        <WechatChannelMerchantManage
-          v-else-if="resolvedProduct === ProductEnum.WECHAT_ISV"
-          ref="wechatManageRef"
-          @success="loadChannelMerchant"
-        />
-        <WechatDirectMchManage
-          v-else-if="resolvedProduct === ProductEnum.WECHAT_PAY"
-          ref="wechatDirectManageRef"
-          @success="loadChannelMerchant"
-        />
-        <DouyinDirectMchManage
-          v-else-if="resolvedProduct === ProductEnum.DOUYIN_PAY"
-          ref="douyinDirectManageRef"
-          @success="loadChannelMerchant"
-        />
-        <UmsDirectMchManage v-else-if="isUmsProduct(resolvedProduct)" ref="umsDirectManageRef" @success="loadChannelMerchant" />
-        <UnionMchManage v-else-if="isUnionProduct(resolvedProduct)" ref="unionManageRef" @success="loadChannelMerchant" />
-        <LakalaMchManage
-          v-else-if="resolvedProduct === ProductEnum.LAKALA_PAY"
-          ref="lakalaManageRef"
-          @success="loadChannelMerchant"
-        />
-        <AdapayDirectMchManage
-          v-else-if="resolvedProduct === ProductEnum.ADA_PAY"
-          ref="adapayDirectManageRef"
-          @success="loadChannelMerchant"
-        />
-        <HkrtMchManage
-          v-else-if="resolvedProduct === ProductEnum.HKRT_PAY"
-          ref="hkrtManageRef"
-          @success="loadChannelMerchant"
-        />
-        <LeshuaMchManage
-          v-else-if="resolvedProduct === ProductEnum.LESHUA_PAY"
-          ref="leshuaManageRef"
-          @success="loadChannelMerchant"
-        />
-        <DougongMchManage
-          v-else-if="resolvedProduct === ProductEnum.DOUGONG_PAY"
-          ref="dougongManageRef"
-          @success="loadChannelMerchant"
-        />
-        <VbillMchManage
-          v-else-if="resolvedProduct === ProductEnum.VBILL_PAY"
-          ref="vbillManageRef"
-          @success="loadChannelMerchant"
-        />
-        <FuyouMchManage
-          v-else-if="resolvedProduct === ProductEnum.FUYOU_PAY"
-          ref="fuyouManageRef"
-          @success="loadChannelMerchant"
-        />
-        <HmpayMchManage
-          v-else-if="resolvedProduct === ProductEnum.HM_PAY"
-          ref="hmpayManageRef"
-          @success="loadChannelMerchant"
-        />
-        <div v-else-if="!isSupported(resolvedProduct)" class="flex items-center justify-center" style="min-height: 400px">
+        <component v-if="activeComponent" :is="activeComponent" ref="activeRef" @success="loadChannelMerchant" />
+        <div v-else class="flex items-center justify-center" style="min-height: 400px">
           <a-empty :description="$t('payment.merchant.channelMerchant.detailNotSupportYet')" />
         </div>
       </a-spin>

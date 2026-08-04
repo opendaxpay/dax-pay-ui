@@ -1,152 +1,121 @@
 <script lang="ts" setup>
-import { nextTick, ref } from 'vue';
+  import { type Component, defineAsyncComponent, nextTick, ref, shallowRef, watch } from 'vue';
 
-import { ProductEnum } from '#/enums/payment/productEnum';
+  import { ProductEnum } from '#/enums/payment/productEnum';
 
-import AlipayDirectMchCreateConfig from '#/views/payment/channel/alipay/config/AlipayDirectMchCreateConfig.vue';
-import AlipayMchCreateConfig from '#/views/payment/channel/alipay/config/AlipayMchCreateConfig.vue';
-import DouyinMchCreateConfig from '#/views/payment/channel/douyin/config/DouyinMchCreateConfig.vue';
-import HkrtMchCreateConfig from '#/views/payment/channel/hkrt/config/HkrtMchCreateConfig.vue';
-import LakalaMchCreateConfig from '#/views/payment/channel/lakala/config/LakalaMchCreateConfig.vue';
-import UmsMchCreateConfig from '#/views/payment/channel/ums/config/UmsMchCreateConfig.vue';
-import UnionMchCreateConfig from '#/views/payment/channel/union/config/UnionMchCreateConfig.vue';
-import AdapayMchCreateConfig from '#/views/payment/channel/adapay/config/AdapayMchCreateConfig.vue';
-import LeshuaMchCreateConfig from '#/views/payment/channel/leshua/config/LeshuaMchCreateConfig.vue';
-import DougongMchCreateConfig from '#/views/payment/channel/dougong/config/DougongMchCreateConfig.vue';
-import VbillMchCreateConfig from '#/views/payment/channel/vbill/config/VbillMchCreateConfig.vue';
-import FuyouMchCreateConfig from '#/views/payment/channel/fuyou/config/FuyouMchCreateConfig.vue';
-import HmpayMchCreateConfig from '#/views/payment/channel/hmpay/config/HmpayMchCreateConfig.vue';
-import WechatMchCreateConfig from '#/views/payment/channel/wechat/config/WechatMchCreateConfig.vue';
-import WechatDirectMchCreateConfig from '#/views/payment/channel/wechat/config/WechatDirectMchCreateConfig.vue';
+  const emit = defineEmits<{
+    (e: 'prev'): void;
+    (e: 'close'): void;
+  }>();
 
-const emit = defineEmits<{
-  (e: 'prev'): void;
-  (e: 'close'): void;
-}>();
-
-const currentProduct = ref<{ channel: string; product: string }>({ product: '', channel: '' });
-
-const alipayRef = ref();
-const alipayDirectRef = ref();
-const wechatRef = ref();
-const wechatDirectRef = ref();
-const lakalaRef = ref();
-  const hkrtRef = ref();
-  const umsRef = ref();
-  const unionRef = ref();
-  const adapayRef = ref();
-  const leshuaRef = ref();
-  const douyinRef = ref();
-  const dougongRef = ref();
-  const vbillRef = ref();
-  const fuyouRef = ref();
-  const hmpayRef = ref();
-
-/** 是否为银联商务系列产品 */
-function isUmsProduct(product: string) {
-  return (
-    product === ProductEnum.UMS_QRCODE ||
-    product === ProductEnum.UMS_JSAPI ||
-    product === ProductEnum.UMS_APP ||
-    product === ProductEnum.UMS_MINI ||
-    product === ProductEnum.UMS_H5 ||
-    product === ProductEnum.UMS_BARCODE
+  /** 银联商务家族共用同一组件(多产品 → 同一组件实例, 切换产品不重挂载, 仅 re-init) */
+  const UmsMchCreateConfig = defineAsyncComponent(
+    () => import('#/views/payment/channel/ums/config/UmsMchCreateConfig.vue'),
   );
-}
 
-/** 是否为云闪付(直连银联)产品 */
-function isUnionProduct(product: string) {
-  return product === ProductEnum.UNION_PAY;
-}
+  /**
+   * 支付产品 → 商户开通配置组件映射表(懒加载, 按需分包)
+   * 单一事实源: 新增/删除通道仅需在此增删一行
+   */
+  const channelProductComponentMap: Record<string, Component> = {
+    [ProductEnum.ADA_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/adapay/config/AdapayMchCreateConfig.vue'),
+    ),
+    [ProductEnum.ALIPAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/alipay/config/AlipayDirectMchCreateConfig.vue'),
+    ),
+    [ProductEnum.ALIPAY_ISV]: defineAsyncComponent(
+      () => import('#/views/payment/channel/alipay/config/AlipayMchCreateConfig.vue'),
+    ),
+    [ProductEnum.DOUGONG_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/dougong/config/DougongMchCreateConfig.vue'),
+    ),
+    [ProductEnum.DOUYIN_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/douyin/config/DouyinMchCreateConfig.vue'),
+    ),
+    [ProductEnum.FUYOU_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/fuyou/config/FuyouMchCreateConfig.vue'),
+    ),
+    [ProductEnum.HKRT_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/hkrt/config/HkrtMchCreateConfig.vue'),
+    ),
+    [ProductEnum.HM_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/hmpay/config/HmpayMchCreateConfig.vue'),
+    ),
+    [ProductEnum.LAKALA_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/lakala/config/LakalaMchCreateConfig.vue'),
+    ),
+    [ProductEnum.LESHUA_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/leshua/config/LeshuaMchCreateConfig.vue'),
+    ),
+    [ProductEnum.VBILL_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/vbill/config/VbillMchCreateConfig.vue'),
+    ),
+    [ProductEnum.WECHAT_ISV]: defineAsyncComponent(
+      () => import('#/views/payment/channel/wechat/config/WechatMchCreateConfig.vue'),
+    ),
+    [ProductEnum.WECHAT_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/wechat/config/WechatDirectMchCreateConfig.vue'),
+    ),
+    [ProductEnum.UNION_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/union/config/UnionMchCreateConfig.vue'),
+    ),
+    [ProductEnum.STRIPE_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/stripe/manage/StripeMchCreateConfig.vue'),
+    ),
+    // 银联商务家族: 6 个产品共用同一组件
+    [ProductEnum.UMS_QRCODE]: UmsMchCreateConfig,
+    [ProductEnum.UMS_JSAPI]: UmsMchCreateConfig,
+    [ProductEnum.UMS_APP]: UmsMchCreateConfig,
+    [ProductEnum.UMS_MINI]: UmsMchCreateConfig,
+    [ProductEnum.UMS_H5]: UmsMchCreateConfig,
+    [ProductEnum.UMS_BARCODE]: UmsMchCreateConfig,
+  };
 
-/**
- * 初始化对应通道的配置组件
- */
-function init(product: string, mchNo: string, channel: string) {
-  currentProduct.value = { product, channel };
-  nextTick(() => {
-    switch (product) {
-      case ProductEnum.ALIPAY_ISV: {
-        alipayRef.value?.init(mchNo, product, channel);
-        break;
-      }
-      case ProductEnum.ALIPAY: {
-        alipayDirectRef.value?.init(mchNo, product, channel);
-        break;
-      }
-      case ProductEnum.WECHAT_ISV: {
-        wechatRef.value?.init(mchNo, product, channel);
-        break;
-      }
-      case ProductEnum.WECHAT_PAY: {
-        wechatDirectRef.value?.init(mchNo, product, channel);
-        break;
-      }
-      case ProductEnum.LAKALA_PAY: {
-        lakalaRef.value?.init(mchNo, product, channel);
-        break;
-      }
-      case ProductEnum.HKRT_PAY: {
-        hkrtRef.value?.init(mchNo, product, channel);
-        break;
-      }
-      case ProductEnum.ADA_PAY: {
-        adapayRef.value?.init(mchNo, product, channel);
-        break;
-      }
-      case ProductEnum.LESHUA_PAY: {
-        leshuaRef.value?.init(mchNo, product, channel);
-        break;
-      }
-      case ProductEnum.DOUYIN_PAY: {
-        douyinRef.value?.init(mchNo, product, channel);
-        break;
-      }
-      case ProductEnum.DOUGONG_PAY: {
-        dougongRef.value?.init(mchNo, product, channel);
-        break;
-      }
-      case ProductEnum.VBILL_PAY: {
-        vbillRef.value?.init(mchNo, product, channel);
-        break;
-      }
-      case ProductEnum.FUYOU_PAY: {
-        fuyouRef.value?.init(mchNo, product, channel);
-        break;
-      }
-      case ProductEnum.HM_PAY: {
-        hmpayRef.value?.init(mchNo, product, channel);
-        break;
-      }
-      default: {
-        if (isUmsProduct(product)) {
-          umsRef.value?.init(mchNo, product, channel);
-        }
-        if (isUnionProduct(product)) {
-          unionRef.value?.init(mchNo, product, channel);
-        }
-      }
+  const currentProduct = ref<{ channel: string; product: string }>({ product: '', channel: '' });
+
+  /** 当前激活的配置组件(由 product 查表得到) */
+  const activeComponent = shallowRef<Component>();
+  const activeRef = ref<{ init: (mchNo: string, product: string, channel: string) => void }>();
+  /** 待执行的 init 参数(异步组件加载完成后消费, 保证 init 不在组件挂载前空跑) */
+  const pendingInit = ref<null | { channel: string; mchNo: string; product: string }>(null);
+
+  /** 触发当前激活组件的 init */
+  function runPendingInit() {
+    const inst = activeRef.value;
+    const params = pendingInit.value;
+    if (!inst || !params) {
+      return;
     }
-  });
-}
+    pendingInit.value = null;
+    inst.init(params.mchNo, params.product, params.channel);
+  }
 
-defineExpose({ init });
+  /**
+   * 初始化对应通道的配置组件
+   */
+  function init(product: string, mchNo: string, channel: string) {
+    currentProduct.value = { product, channel };
+    const comp = channelProductComponentMap[product];
+    if (!comp) {
+      return;
+    }
+    pendingInit.value = { mchNo, product, channel };
+    if (activeComponent.value === comp) {
+      // 同组件已挂载(如重复进入同一通道) → 下一帧直接 init
+      nextTick(runPendingInit);
+    } else {
+      // 切换组件 → 触发渲染; 异步组件挂载后由 watch(activeRef) 调 init
+      activeComponent.value = comp;
+    }
+  }
+
+  // 异步组件加载完毕挂载后, 触发其 init(flush:post 确保模板 ref 已就绪)
+  watch(activeRef, runPendingInit, { flush: 'post' });
+
+  defineExpose({ init });
 </script>
 
 <template>
-  <AlipayMchCreateConfig ref="alipayRef" @prev="emit('prev')" @close="emit('close')" />
-  <AlipayDirectMchCreateConfig ref="alipayDirectRef" @prev="emit('prev')" @close="emit('close')" />
-  <WechatMchCreateConfig ref="wechatRef" @prev="emit('prev')" @close="emit('close')" />
-  <WechatDirectMchCreateConfig ref="wechatDirectRef" @prev="emit('prev')" @close="emit('close')" />
-  <LakalaMchCreateConfig ref="lakalaRef" @prev="emit('prev')" @close="emit('close')" />
-  <HkrtMchCreateConfig ref="hkrtRef" @prev="emit('prev')" @close="emit('close')" />
-  <UmsMchCreateConfig ref="umsRef" @prev="emit('prev')" @close="emit('close')" />
-  <UnionMchCreateConfig ref="unionRef" @prev="emit('prev')" @close="emit('close')" />
-  <AdapayMchCreateConfig ref="adapayRef" @prev="emit('prev')" @close="emit('close')" />
-  <LeshuaMchCreateConfig ref="leshuaRef" @prev="emit('prev')" @close="emit('close')" />
-  <DougongMchCreateConfig ref="dougongRef" @prev="emit('prev')" @close="emit('close')" />
-  <VbillMchCreateConfig ref="vbillRef" @prev="emit('prev')" @close="emit('close')" />
-  <FuyouMchCreateConfig ref="fuyouRef" @prev="emit('prev')" @close="emit('close')" />
-  <HmpayMchCreateConfig ref="hmpayRef" @prev="emit('prev')" @close="emit('close')" />
-  <DouyinMchCreateConfig ref="douyinRef" @prev="emit('prev')" @close="emit('close')" />
+  <component :is="activeComponent" ref="activeRef" @prev="emit('prev')" @close="emit('close')" />
 </template>
