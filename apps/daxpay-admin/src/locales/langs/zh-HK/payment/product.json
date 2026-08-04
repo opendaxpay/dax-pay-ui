@@ -37,12 +37,18 @@
     "unionPay": "銀聯支付",
     "lakalaPay": "拉卡拉支付",
     "leshuaPay": "樂刷支付",
-    "adaPay": "Adapay",
+    "adaPay": "匯付天下",
     "dougongPay": "斗拱",
     "hkrtPay": "海科融通支付",
     "vbillPay": "隨行付",
     "hmPay": "河馬付",
-    "fuyouPay": "富友支付"
+    "fuyouPay": "富友支付",
+    "stripePay": "Stripe",
+    "shengPay": "盛付通",
+    "ysepPay": "銀盛支付",
+    "quickPay": "快錢支付",
+    "yeePay": "易寶支付",
+    "jeePay": "Jeepay"
   },
   "placeholder": {
     "name": "請輸入產品名稱",

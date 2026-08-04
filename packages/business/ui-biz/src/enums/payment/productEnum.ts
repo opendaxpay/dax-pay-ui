@@ -20,10 +20,18 @@ export enum ProductEnum {
   HKRT_PAY = 'hkrt_pay',
   /** 河马付(杉德旗下产品) */
   HM_PAY = 'hm_pay',
+  /** jeepay */
+  JEE_PAY = 'jee_pay',
   /** 拉卡拉支付 */
   LAKALA_PAY = 'lakala_pay',
   /** 乐刷支付 */
   LESHUA_PAY = 'leshua_pay',
+  /** 快钱 */
+  QUICK_PAY = 'quick_pay',
+  /** 盛付通 */
+  SHENG_PAY = 'sheng_pay',
+  /** Stripe */
+  STRIPE_PAY = 'stripe_pay',
   /** 银联商务(APP) */
   UMS_APP = 'ums_app',
   /** 银联商务(B扫C) */
@@ -36,7 +44,7 @@ export enum ProductEnum {
   UMS_MINI = 'ums_mini',
   /** 银联商务(C扫B) */
   UMS_QRCODE = 'ums_qrcode',
-  /** 云闪付(含主扫/H5/被扫, 直连银联ACP) */
+  /** 云闪付(含主扫/H5/被扫, 银联ACP) */
   UNION_PAY = 'union_pay',
   /** 随行付 */
   VBILL_PAY = 'vbill_pay',
@@ -44,6 +52,10 @@ export enum ProductEnum {
   WECHAT_ISV = 'wechat_isv',
   /** 微信支付(直连) */
   WECHAT_PAY = 'wechat_pay',
+  /** 易宝 */
+  YEE_PAY = 'yee_pay',
+  /** 银盛 */
+  YSEP_PAY = 'ysep_pay',
 }
 
 /**
@@ -70,6 +82,12 @@ export const productI18nMap: Record<string, string> = {
   [ProductEnum.VBILL_PAY]: 'payment.product.enum.vbillPay',
   [ProductEnum.HM_PAY]: 'payment.product.enum.hmPay',
   [ProductEnum.FUYOU_PAY]: 'payment.product.enum.fuyouPay',
+  [ProductEnum.STRIPE_PAY]: 'payment.product.enum.stripePay',
+  [ProductEnum.SHENG_PAY]: 'payment.product.enum.shengPay',
+  [ProductEnum.YSEP_PAY]: 'payment.product.enum.ysepPay',
+  [ProductEnum.QUICK_PAY]: 'payment.product.enum.quickPay',
+  [ProductEnum.YEE_PAY]: 'payment.product.enum.yeePay',
+  [ProductEnum.JEE_PAY]: 'payment.product.enum.jeePay',
 };
 
 /**
@@ -90,7 +108,8 @@ export const productNameMap: Record<string, string> = {
   [ProductEnum.UNION_PAY]: '银联支付',
   [ProductEnum.LAKALA_PAY]: '拉卡拉支付',
   [ProductEnum.LESHUA_PAY]: '乐刷支付',
-  [ProductEnum.ADA_PAY]: 'Adapay',
+  // Adapay(直连): 中文环境显示汇付天下, 国际化环境经 i18n(enum.adaPay) 显示 Adapay
+  [ProductEnum.ADA_PAY]: '汇付天下',
   [ProductEnum.DOUGONG_PAY]: '斗拱',
   [ProductEnum.HKRT_PAY]: '海科融通支付',
   [ProductEnum.VBILL_PAY]: '随行付',
@@ -98,6 +117,18 @@ export const productNameMap: Record<string, string> = {
   [ProductEnum.HM_PAY]: '河马付',
   // 富友支付
   [ProductEnum.FUYOU_PAY]: '富友支付',
+  // Stripe
+  [ProductEnum.STRIPE_PAY]: 'Stripe',
+  // 盛付通
+  [ProductEnum.SHENG_PAY]: '盛付通',
+  // 银盛支付
+  [ProductEnum.YSEP_PAY]: '银盛支付',
+  // 快钱支付
+  [ProductEnum.QUICK_PAY]: '快钱支付',
+  // 易宝支付
+  [ProductEnum.YEE_PAY]: '易宝支付',
+  // Jeepay
+  [ProductEnum.JEE_PAY]: 'Jeepay',
 };
 
 /**
@@ -127,6 +158,18 @@ export const productChannelMap: Record<string, string> = {
   [ProductEnum.HM_PAY]: ChannelEnum.SAND_PAY,
   // 富友支付
   [ProductEnum.FUYOU_PAY]: ChannelEnum.FUYOU_PAY,
+  // Stripe
+  [ProductEnum.STRIPE_PAY]: ChannelEnum.STRIPE,
+  // 盛付通(一通道一产品)
+  [ProductEnum.SHENG_PAY]: ChannelEnum.SHENG_PAY,
+  // 银盛(一通道一产品)
+  [ProductEnum.YSEP_PAY]: ChannelEnum.YSEP_PAY,
+  // 快钱(一通道一产品)
+  [ProductEnum.QUICK_PAY]: ChannelEnum.QUICK_PAY,
+  // 易宝(一通道一产品)
+  [ProductEnum.YEE_PAY]: ChannelEnum.YEE_PAY,
+  // jeepay(一通道一产品)
+  [ProductEnum.JEE_PAY]: ChannelEnum.JEE_PAY,
 };
 
 /**
@@ -150,7 +193,7 @@ export const productLogoMap: Record<string, string> = {
   [ProductEnum.UMS_MINI]: 'ums_pay',
   [ProductEnum.UMS_H5]: 'ums_pay',
   [ProductEnum.UMS_BARCODE]: 'ums_pay',
-  // 云闪付(直连银联)
+  // 云闪付
   [ProductEnum.UNION_PAY]: 'union_pay',
   // 拉卡拉
   [ProductEnum.LAKALA_PAY]: 'lakala',

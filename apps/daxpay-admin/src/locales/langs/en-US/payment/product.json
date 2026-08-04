@@ -42,7 +42,13 @@
     "hkrtPay": "HKRT Pay",
     "vbillPay": "VBill",
     "hmPay": "Hmpay",
-    "fuyouPay": "Fuyou Pay"
+    "fuyouPay": "Fuyou Pay",
+    "stripePay": "Stripe",
+    "shengPay": "Sheng Pay",
+    "ysepPay": "YSEP Pay",
+    "quickPay": "Quick Pay",
+    "yeePay": "Yee Pay",
+    "jeePay": "Jeepay"
   },
   "placeholder": {
     "name": "Enter product name",

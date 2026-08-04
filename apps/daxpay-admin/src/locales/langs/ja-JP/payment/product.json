@@ -37,12 +37,18 @@
     "unionPay": "銀聯支付",
     "lakalaPay": "ラカラ・ペイ",
     "leshuaPay": "レスア・ペイ",
-    "adaPay": "アダペイ",
+    "adaPay": "Adapay",
     "dougongPay": "ドゥゴン",
     "hkrtPay": "香港RT支払い",
     "vbillPay": "Vビル",
     "hmPay": "ハムペイ",
-    "fuyouPay": "芙蓉ペイ"
+    "fuyouPay": "芙蓉ペイ",
+    "stripePay": "Stripe",
+    "shengPay": "シェンペイ",
+    "ysepPay": "YSEPペイ",
+    "quickPay": "クイックペイ",
+    "yeePay": "イーペイ",
+    "jeePay": "ジーペイ"
   },
   "placeholder": {
     "name": "製品名を入力してください",
