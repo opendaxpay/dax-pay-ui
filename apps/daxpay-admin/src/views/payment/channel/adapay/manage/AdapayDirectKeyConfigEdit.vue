@@ -117,8 +117,6 @@
         :wrapper-col="wrapperCol"
         :validate-trigger="['blur', 'change']"
       >
-        <a-divider orientation="left">{{ $t('payment.channel.adapayManage.keyConfigSection') }}</a-divider>
-
         <!-- 国际化: 跟随支付产品生效环境(只读) -->
         <a-form-item :label="$t('payment.channel.adapayManage.environment')">
           <a-tag :color="sandbox ? 'orange' : 'blue'">
@@ -131,11 +129,6 @@
           <span class="ml-2 text-xs text-muted-foreground">
             {{ $t('payment.common.envFollowProductHint') }}
           </span>
-        </a-form-item>
-
-        <!-- 国际化: Adapay 商户号(创建时录入, 不可修改) -->
-        <a-form-item :label="$t('payment.channel.adapay.merchantNo')">
-          <a-input :value="form.merchantNo" disabled />
         </a-form-item>
 
         <!-- 国际化: Adapay 应用ID -->

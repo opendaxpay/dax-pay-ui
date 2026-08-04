@@ -27,7 +27,6 @@
   const formRef = ref();
   const form = ref({
     channelMerchantName: '',
-    merchantNo: '',
   });
 
   const visible = ref(false);
@@ -49,7 +48,6 @@
     channelMerchantName: [
       { required: true, message: $t('payment.merchant.channelMerchant.channelMerchantNameRequired') },
     ],
-    merchantNo: [{ required: true, message: $t('payment.channel.adapay.validation.merchantNo') }],
   };
 
   function init(no: string, product: string, channel: string) {
@@ -89,7 +87,6 @@
   function resetForm() {
     form.value = {
       channelMerchantName: '',
-      merchantNo: '',
     };
     nextTick(() => {
       formRef.value?.resetFields();
@@ -126,13 +123,6 @@
             <a-input
               v-model:value="form.channelMerchantName"
               :placeholder="$t('payment.merchant.channelMerchant.pleaseInputName')"
-            />
-          </a-form-item>
-          <!-- 国际化: Adapay 商户号 -->
-          <a-form-item :label="$t('payment.channel.adapay.merchantNo')" name="merchantNo">
-            <a-input
-              v-model:value="form.merchantNo"
-              :placeholder="$t('payment.channel.adapay.merchantNoPlaceholder')"
             />
           </a-form-item>
 

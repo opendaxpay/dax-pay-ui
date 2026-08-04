@@ -3,7 +3,6 @@
   "cardDirectKeyConfig": "Konfigurasi Kekunci",
   "cardDirectKeyConfigDesc": "Konfigurasikan ID Apl peringkat pedagang Adapay dan kunci tandatangan",
   "directKeyConfigTitle": "Konfigurasi Kunci Adapay",
-  "keyConfigSection": "Konfigurasi Kunci Pedagang",
   "environment": "Persekitaran",
   "prodEnv": "Pengeluaran",
   "sandboxEnv": "Kotak pasir"

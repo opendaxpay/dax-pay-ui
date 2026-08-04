@@ -9,6 +9,7 @@
 
   import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/global/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
+  import WxChannelAppCapability from '#/views/payment/wx/channel/WxChannelAppCapability.vue';
 
   import AdapayDirectChannelMerchantBasicInfo from './AdapayDirectChannelMerchantBasicInfo.vue';
   import AdapayDirectKeyConfigEdit from './AdapayDirectKeyConfigEdit.vue';
@@ -26,6 +27,7 @@
   const basicInfoRef = ref<InstanceType<typeof AdapayDirectChannelMerchantBasicInfo>>();
   const keyConfigRef = ref<InstanceType<typeof AdapayDirectKeyConfigEdit>>();
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
+  const capabilityRef = ref<InstanceType<typeof WxChannelAppCapability>>();
 
   /** 功能卡片配置(Adapay 首期仅基本信息与密钥配置, 无应用管理) */
   const functionCards = computed(() => [
@@ -50,6 +52,18 @@
           title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
           icon: 'ant-design:edit-outlined',
           description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),
+        },
+      ],
+    },
+    {
+      group: $t('payment.merchant.channelMerchant.groupApp'),
+      color: 'green',
+      cards: [
+        {
+          key: 'capabilityBinding',
+          title: $t('payment.channel.adapayIsv.cardCapabilityBinding'),
+          icon: 'ant-design:api-outlined',
+          description: $t('payment.channel.adapayIsv.cardCapabilityBindingDesc'),
         },
       ],
     },
@@ -90,6 +104,10 @@
     }
     if (card.key === 'keyConfig') {
       keyConfigRef.value?.init();
+    }
+    if (card.key === 'capabilityBinding') {
+      // 微信应用能力绑定(JSAPI/小程序), 未绑时走产品级默认/平台应用推导
+      capabilityRef.value?.show(mchNo.value, channelMchNo.value, channelMerchant.value.product || 'ada_pay');
     }
   }
 
@@ -154,6 +172,8 @@
     <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 
     <AdapayDirectKeyConfigEdit ref="keyConfigRef" :channel-mch-no="channelMchNo" />
+
+    <WxChannelAppCapability ref="capabilityRef" @ok="emit('success')" />
   </div>
 </template>
 

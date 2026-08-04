@@ -3,7 +3,6 @@
   "cardDirectKeyConfig": "키 구성",
   "cardDirectKeyConfigDesc": "Adapay 판매자 수준 앱 ID 및 서명 키 구성",
   "directKeyConfigTitle": "Adapay 키 구성",
-  "keyConfigSection": "판매자 키 구성",
   "environment": "환경",
   "prodEnv": "생산",
   "sandboxEnv": "모래 상자"

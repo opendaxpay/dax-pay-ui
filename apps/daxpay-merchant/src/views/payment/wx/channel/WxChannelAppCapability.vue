@@ -36,6 +36,14 @@
   const isIsv = computed(() => mode.value === 'isv');
   const hasApps = computed(() => mchApps.value.length > 0 || isIsv.value);
 
+  /** 弹窗描述文案: 乐刷聚合产品仅 JSAPI/小程序需指定应用, 显示精简文案 */
+  const descKey = computed(() => {
+    if (product.value === 'leshua_pay') {
+      return 'payment.wx.app.channelCapabilityDescLeshua';
+    }
+    return isIsv.value ? 'payment.wx.app.channelCapabilityDescIsv' : 'payment.wx.app.channelCapabilityDescDirect';
+  });
+
   /** 编码商户应用 option */
   function encodeMerchantRef(id: string): string {
     return `merchant:${id}`;
@@ -145,7 +153,7 @@
         }),
       };
     }
-    return { color: 'default', text: $t('payment.wx.app.capabilityAutoTip') };
+    return { color: 'default', text: '-' };
   }
 
   function clearIncompatibleBindings() {
@@ -256,7 +264,7 @@
   >
     <a-spin :spinning="loading">
       <div class="mb-3 text-xs leading-relaxed text-muted-foreground">
-        {{ isIsv ? $t('payment.wx.app.channelCapabilityDescIsv') : $t('payment.wx.app.channelCapabilityDescDirect') }}
+        {{ $t(descKey) }}
       </div>
 
       <div v-if="!loading && !hasApps" class="mb-3">

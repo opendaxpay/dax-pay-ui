@@ -1,0 +1,29 @@
+{
+  "title": "Adapay サービス事業者設定",
+  "groupConfig": "設定管理",
+  "cardMchKey": "サービス事業者キー",
+  "cardMchKeyDesc": "Adapay サービス事業者番号・取引キー・RSAキーを設定",
+  "configTitle": "Adapay サービス事業者キー設定",
+  "isvIdentity": "サービス事業者情報",
+  "keyConfig": "キー設定",
+  "isvNo": "サービス事業者番号",
+  "isvNoPlaceholder": "汇付でのプラットフォームのサービス事業者番号を入力",
+  "apiKey": "取引キー",
+  "apiKeyPlaceholder": "Adapay 取引キー(API Key)を入力",
+  "apiKeyTooltip": "Adapay 取引キー。リクエストヘッダー Authorization 認証に使用",
+  "privateKey": "加盟店秘密キー",
+  "privateKeyTooltip": "加盟店 RSA 秘密キー(PKCS#8 Base64)。リクエスト署名に使用",
+  "uploadPrivateKey": "秘密キーをアップロード",
+  "privateKeyUploaded": "秘密キーはアップロード済み",
+  "publicKey": "プラットフォーム公開キー",
+  "publicKeyTooltip": "Adapay プラットフォーム公開キー(X509 Base64)。レスポンス検証に使用。空の場合はグローバル既定を使用",
+  "uploadPublicKey": "公開キーをアップロード",
+  "publicKeyUploaded": "公開キーはアップロード済み",
+  "validation": {
+    "isvNo": "サービス事業者番号を入力してください",
+    "apiKey": "取引キーを入力してください",
+    "privateKey": "加盟店秘密キーをアップロードしてください"
+  },
+  "cardCapabilityBinding": "微信アプリ連携",
+  "cardCapabilityBindingDesc": "チャネル加盟店に微信アプリを連携します(JSAPI/ミニプログラム決済)"
+}

@@ -30,9 +30,7 @@
   "appSecretTooltipMobileApp": "Mobile App AppSecret for OAuth",
   "capabilityBtn": "Capability Binding",
   "capabilityTitle": "Bind apps to capabilities",
-  "capabilityDesc": "Choose which WeChat app to use for each payment capability. Leave empty for type-based matching.",
-  "capabilitySelectPlaceholder": "เว้นว่างเพื่อจับคู่อัตโนมัติ",
-  "capabilityAutoTip": "Auto",
+  "capabilitySelectPlaceholder": "เลือกแอป",
   "capabilityNoApp": "No apps yet. Create an app first.",
   "capabilitySaveSuccess": "Saved",
   "selectMerchant": "Select a merchant first",
@@ -46,12 +44,14 @@
     "appSecret": "Enter AppSecret"
   },
   "productCapabilityTitle": "แอปชำระเงินเริ่มต้น",
-  "productCapabilityDesc": "กำหนดแอป WeChat เริ่มต้นตามวิธีชำระเงินสำหรับผลิตภัณฑ์นี้ ใช้เมื่อร้านค้าช่องทางยังไม่ผูกเอง เว้นว่างเพื่อจับคู่ตามประเภทอัตโนมัติ (เช่น มินิโปรแกรม→มินิโปรแกรม)",
+  "productCapabilityDesc": "กำหนดแอป WeChat เริ่มต้นตามวิธีชำระเงินสำหรับผลิตภัณฑ์นี้ ใช้เมื่อร้านค้าช่องทางยังไม่ผูกเอง",
+  "productCapabilityDescLeshua": "ระบุแอปเริ่มต้นเฉพาะการชำระเงิน WeChat JSAPI / มินิโปรแกรมเท่านั้น",
   "capabilityNoCompatibleApp": "ยังไม่มีแอปประเภทที่ตรงกัน สร้างในแอป WeChat ก่อน",
   "capabilityRequiredAppType": "ต้องเป็น {type}",
   "appTypeCapabilityCleared": "ล้างการเลือกแอปที่ไม่ตรงกับวิธีชำระเงินแล้ว",
-  "channelCapabilityDescDirect": "ระบุแอป WeChat ของร้านค้าสำหรับแต่ละความสามารถ เว้นว่างเพื่อจับคู่ตามประเภท",
+  "channelCapabilityDescDirect": "ระบุแอป WeChat ของร้านค้าสำหรับแต่ละความสามารถ",
   "channelCapabilityDescIsv": "เลือกแอปของร้านค้าหรือค่าเริ่มต้นของผู้ให้บริการ ค่าเริ่มต้นจะกลับไปใช้แอปชำระเงินเริ่มต้นระดับผลิตภัณฑ์",
+  "channelCapabilityDescLeshua": "ระบุแอปเฉพาะการชำระเงิน WeChat JSAPI / มินิโปรแกรมเท่านั้น",
   "capabilityIspDefault": "ค่าเริ่มต้นของผู้ให้บริการ",
   "capabilityIspNotConfigured": "ยังไม่ได้ตั้งค่า"
 }

@@ -6,8 +6,6 @@
   "adapayAppIdPlaceholder": "Vui lòng nhập ID ứng dụng Adapay",
   "apiKey": "Khóa API",
   "apiKeyPlaceholder": "Vui lòng nhập khóa API Adapay (Tiêu đề ủy quyền)",
-  "merchantNo": "Người bán số",
-  "merchantNoPlaceholder": "Vui lòng nhập số người bán Adapay",
   "privateKey": "Khóa riêng RSA của người bán",
   "privateKeyPlaceholder": "Vui lòng nhập khóa riêng PKCS#8 Base64 (để ký yêu cầu)",
   "publicKey": "Khóa công khai của nền tảng",
@@ -16,7 +14,6 @@
     "enable": "Vui lòng chọn trạng thái bật",
     "adapayAppId": "Vui lòng nhập ID ứng dụng Adapay",
     "apiKey": "Vui lòng nhập khóa API Adapay",
-    "merchantNo": "Vui lòng nhập số người bán Adapay",
     "privateKey": "Vui lòng nhập khóa riêng RSA của người bán",
     "publicKey": "Vui lòng nhập khóa công khai của nền tảng"
   }

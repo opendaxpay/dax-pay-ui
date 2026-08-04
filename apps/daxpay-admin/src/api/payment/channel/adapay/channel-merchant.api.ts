@@ -35,8 +35,6 @@ export const AdapayDirectChannelMerchantApi = {
 export interface AdapayDirectKeyConfig {
   /** 通道商户号 */
   channelMchNo?: string;
-  /** Adapay 商户号(创建时录入不可修改) */
-  merchantNo?: string;
   /** Adapay 支付应用 ID */
   adapayAppId?: string;
   /** Adapay API Key(请求头 Authorization, 脱敏回显) */
@@ -81,6 +79,4 @@ export interface AdapayDirectChannelMerchantCreateParam {
   channelMerchantName: string;
   /** 所属支付产品 */
   product: string;
-  /** Adapay 商户号 */
-  merchantNo: string;
 }

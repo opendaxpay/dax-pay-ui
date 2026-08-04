@@ -1,0 +1,29 @@
+{
+  "title": "Konfigurasi ISV Adapay",
+  "groupConfig": "Manajemen Konfigurasi",
+  "cardMchKey": "Kunci ISV",
+  "cardMchKeyDesc": "Konfigurasi nomor ISV Adapay, kunci transaksi, dan kunci RSA",
+  "configTitle": "Konfigurasi Kunci ISV Adapay",
+  "isvIdentity": "Identitas ISV",
+  "keyConfig": "Konfigurasi Kunci",
+  "isvNo": "Nomor ISV",
+  "isvNoPlaceholder": "Masukkan nomor ISV platform di Huifu",
+  "apiKey": "Kunci Transaksi",
+  "apiKeyPlaceholder": "Masukkan kunci transaksi Adapay (API Key)",
+  "apiKeyTooltip": "Kunci transaksi Adapay, digunakan untuk autentikasi header Authorization",
+  "privateKey": "Kunci Privat Merchant",
+  "privateKeyTooltip": "Kunci privat RSA merchant (PKCS#8 Base64), untuk penandatanganan permintaan",
+  "uploadPrivateKey": "Unggah Kunci Privat",
+  "privateKeyUploaded": "Kunci privat diunggah",
+  "publicKey": "Kunci Publik Platform",
+  "publicKeyTooltip": "Kunci publik platform Adapay (X509 Base64), untuk verifikasi respons; kosong menggunakan default global",
+  "uploadPublicKey": "Unggah Kunci Publik",
+  "publicKeyUploaded": "Kunci publik diunggah",
+  "validation": {
+    "isvNo": "Masukkan nomor ISV",
+    "apiKey": "Masukkan kunci transaksi",
+    "privateKey": "Unggah kunci privat merchant"
+  },
+  "cardCapabilityBinding": "Ikatan Aplikasi WeChat",
+  "cardCapabilityBindingDesc": "Ikat aplikasi WeChat ke channel merchant (pembayaran JSAPI/Mini Program)"
+}

@@ -30,9 +30,7 @@
   "appSecretTooltipMobileApp": "Mobile App AppSecret for OAuth",
   "capabilityBtn": "Capability Binding",
   "capabilityTitle": "Bind apps to capabilities",
-  "capabilityDesc": "Choose which WeChat app to use for each payment capability. Leave empty for type-based matching.",
-  "capabilitySelectPlaceholder": "Để trống để tự khớp",
-  "capabilityAutoTip": "Auto",
+  "capabilitySelectPlaceholder": "Chọn ứng dụng",
   "capabilityNoApp": "No apps yet. Create an app first.",
   "capabilitySaveSuccess": "Saved",
   "selectMerchant": "Select a merchant first",
@@ -46,12 +44,13 @@
     "appSecret": "Enter AppSecret"
   },
   "productCapabilityTitle": "Ứng dụng thanh toán mặc định",
-  "productCapabilityDesc": "Chỉ định ứng dụng WeChat mặc định theo từng phương thức cho sản phẩm này. Dùng khi thương nhân kênh chưa cấu hình riêng; để trống sẽ khớp theo loại ứng dụng (vd. thanh toán mini → mini program).",
+  "productCapabilityDesc": "Chỉ định ứng dụng WeChat mặc định theo từng phương thức cho sản phẩm này. Dùng khi thương nhân kênh chưa cấu hình riêng.",
   "capabilityNoCompatibleApp": "Chưa có ứng dụng đúng loại. Hãy tạo trong Ứng dụng WeChat.",
   "capabilityRequiredAppType": "Cần {type}",
   "appTypeCapabilityCleared": "Đã xóa lựa chọn ứng dụng không khớp với phương thức thanh toán",
-  "channelCapabilityDescDirect": "Chỉ định ứng dụng WeChat của thương nhân cho từng khả năng. Để trống để tự khớp theo loại.",
+  "channelCapabilityDescDirect": "Chỉ định ứng dụng WeChat của thương nhân cho từng khả năng.",
   "channelCapabilityDescIsv": "Chọn ứng dụng thương nhân hoặc mặc định nhà cung cấp dịch vụ. Mặc định quay về ứng dụng thanh toán mặc định cấp sản phẩm.",
+  "channelCapabilityDescLeshua": "Chỉ cần chỉ định ứng dụng cho thanh toán WeChat JSAPI / mini program.",
   "capabilityIspDefault": "Mặc định nhà cung cấp",
   "capabilityIspNotConfigured": "Chưa cấu hình"
 }

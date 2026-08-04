@@ -169,43 +169,32 @@
               </div>
             </div>
 
-            <!-- 底部分栏 -->
+            <!-- 底部分栏: 所有产品均可进入详情配置, 无配置组件的产品由详情页空状态提示 -->
             <div class="flex border-t border-border h-10 bg-muted/50">
-              <a-tooltip
-                :title="!row.isv ? $t('payment.constant.product.productConfig.nonIsvDisabledTip') : undefined"
-                placement="top"
+              <div
+                class="config-slot prod-slot"
+                :class="{ 'border-r border-border': row.sandboxSupport && sandboxEnabled }"
+                @click.stop="openDetailPage(row, false)"
               >
-                <div
-                  class="config-slot prod-slot"
-                  :class="[{ 'border-r border-border': row.sandboxSupport && sandboxEnabled }, { 'config-slot-disabled': !row.isv }]"
-                  @click.stop="row.isv && openDetailPage(row, false)"
-                >
-                  <div class="flex items-center gap-1.5">
-                    <IconifyIcon icon="ant-design:setting-filled" class="text-blue-500/80 text-sm" />
-                    <span class="text-[10px] font-bold text-muted-foreground uppercase">
-                      {{ $t('payment.constant.product.productConfig.prodConfigBtn') }}
-                    </span>
-                  </div>
+                <div class="flex items-center gap-1.5">
+                  <IconifyIcon icon="ant-design:setting-filled" class="text-blue-500/80 text-sm" />
+                  <span class="text-[10px] font-bold text-muted-foreground uppercase">
+                    {{ $t('payment.constant.product.productConfig.prodConfigBtn') }}
+                  </span>
                 </div>
-              </a-tooltip>
-              <a-tooltip
+              </div>
+              <div
                 v-if="row.sandboxSupport && sandboxEnabled"
-                :title="!row.isv ? $t('payment.constant.product.productConfig.nonIsvDisabledTip') : undefined"
-                placement="top"
+                class="config-slot sandbox-slot"
+                @click.stop="openDetailPage(row, true)"
               >
-                <div
-                  class="config-slot sandbox-slot"
-                  :class="{ 'config-slot-disabled': !row.isv }"
-                  @click.stop="row.isv && openDetailPage(row, true)"
-                >
-                  <div class="flex items-center gap-1.5">
-                    <IconifyIcon icon="ant-design:experiment-filled" class="text-amber-500/80 text-sm" />
-                    <span class="text-[10px] font-bold text-muted-foreground uppercase">
-                      {{ $t('payment.constant.product.productConfig.sandboxConfigBtn') }}
-                    </span>
-                  </div>
+                <div class="flex items-center gap-1.5">
+                  <IconifyIcon icon="ant-design:experiment-filled" class="text-amber-500/80 text-sm" />
+                  <span class="text-[10px] font-bold text-muted-foreground uppercase">
+                    {{ $t('payment.constant.product.productConfig.sandboxConfigBtn') }}
+                  </span>
                 </div>
-              </a-tooltip>
+              </div>
             </div>
           </a-card>
         </div>
@@ -250,16 +239,6 @@
 
   .sandbox-slot:hover {
     box-shadow: inset 0 -2px 0 0 hsl(var(--warning));
-  }
-
-  .config-slot-disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  .config-slot-disabled:hover {
-    background-color: transparent;
-    box-shadow: none;
   }
 </style>
 

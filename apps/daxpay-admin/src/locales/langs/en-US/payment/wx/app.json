@@ -30,9 +30,7 @@
   "appSecretTooltipMobileApp": "Mobile App AppSecret for OAuth",
   "capabilityBtn": "Capability Binding",
   "capabilityTitle": "Bind apps to capabilities",
-  "capabilityDesc": "Choose which WeChat app to use for each payment capability. Leave empty for type-based matching.",
-  "capabilitySelectPlaceholder": "Leave empty to auto-match",
-  "capabilityAutoTip": "Auto",
+  "capabilitySelectPlaceholder": "Select an app",
   "capabilityNoApp": "No apps yet. Create an app first.",
   "capabilitySaveSuccess": "Saved",
   "selectMerchant": "Select a merchant first",
@@ -46,12 +44,14 @@
     "appSecret": "Enter AppSecret"
   },
   "productCapabilityTitle": "Default payment apps",
-  "productCapabilityDesc": "Assign the default WeChat app for each payment method on this product. Used when a channel merchant has no binding of its own; leave empty to auto-match by app type (e.g. mini-program pay → mini program).",
+  "productCapabilityDesc": "Assign the default WeChat app for each payment method on this product. Used when a channel merchant has no binding of its own.",
+  "productCapabilityDescLeshua": "Only needed for WeChat JSAPI / mini-program payments.",
   "capabilityNoCompatibleApp": "No app of the required type. Create one under WeChat Apps first.",
   "capabilityRequiredAppType": "Requires {type}",
   "appTypeCapabilityCleared": "Cleared app selections incompatible with the payment method",
-  "channelCapabilityDescDirect": "Assign a merchant WeChat app for each payment capability. Leave empty to auto-match by app type.",
+  "channelCapabilityDescDirect": "Assign a merchant WeChat app for each payment capability.",
   "channelCapabilityDescIsv": "Choose a merchant app or the service-provider default for each capability. Default falls back to the product-level default payment apps.",
+  "channelCapabilityDescLeshua": "Only needed for WeChat JSAPI / mini-program payments.",
   "capabilityIspDefault": "Service provider default",
   "capabilityIspNotConfigured": "Not configured"
 }

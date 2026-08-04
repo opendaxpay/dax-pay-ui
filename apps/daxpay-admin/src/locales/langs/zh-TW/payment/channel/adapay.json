@@ -6,8 +6,6 @@
   "adapayAppIdPlaceholder": "請輸入 Adapay 應用ID",
   "apiKey": "API Key",
   "apiKeyPlaceholder": "請輸入 Adapay API Key(請求頭Authorization)",
-  "merchantNo": "商戶號",
-  "merchantNoPlaceholder": "請輸入 Adapay 商戶號",
   "privateKey": "商戶RSA私鑰",
   "privateKeyPlaceholder": "請輸入PKCS#8 Base64格式私鑰(用於請求籤名)",
   "publicKey": "平臺公鑰",
@@ -16,7 +14,6 @@
     "enable": "請選擇是否啟用",
     "adapayAppId": "請輸入 Adapay 應用ID",
     "apiKey": "請輸入 Adapay API Key",
-    "merchantNo": "請輸入 Adapay 商戶號",
     "privateKey": "請輸入商戶RSA私鑰",
     "publicKey": "請輸入平臺公鑰"
   }

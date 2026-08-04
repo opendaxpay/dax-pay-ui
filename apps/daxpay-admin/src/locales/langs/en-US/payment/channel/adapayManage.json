@@ -3,7 +3,6 @@
   "cardDirectKeyConfig": "Key Config",
   "cardDirectKeyConfigDesc": "Configure Adapay merchant-level App ID and signing keys",
   "directKeyConfigTitle": "Adapay Key Configuration",
-  "keyConfigSection": "Merchant Key Config",
   "environment": "Environment",
   "prodEnv": "Production",
   "sandboxEnv": "Sandbox"

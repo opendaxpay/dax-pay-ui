@@ -30,9 +30,7 @@
   "appSecretTooltipMobileApp": "移動應用 AppSecret，用於 OAuth 授权",
   "capabilityBtn": "能力綁定",
   "capabilityTitle": "設定各能力使用的應用",
-  "capabilityDesc": "为每种支付能力指定发起支付时使用的微信應用；留空则按應用類型自動匹配。",
-  "capabilitySelectPlaceholder": "不選則自動匹配",
-  "capabilityAutoTip": "自動匹配",
+  "capabilitySelectPlaceholder": "請選擇應用",
   "capabilityNoApp": "尚未建立任何應用，請先建立應用",
   "capabilitySaveSuccess": "儲存成功",
   "selectMerchant": "請先選擇商戶",
@@ -46,12 +44,14 @@
     "appSecret": "請輸入應用密鑰"
   },
   "productCapabilityTitle": "預設支付應用",
-  "productCapabilityDesc": "按支付方式指定本產品預設使用的微信應用。通道商戶未單獨配置時使用此處；不選則按應用類型自動匹配（如小程式支付→小程式）。",
+  "productCapabilityDesc": "按支付方式指定本產品預設使用的微信應用。通道商戶未單獨配置時使用此處。",
+  "productCapabilityDescLeshua": "僅需為微信 JSAPI/小程式支付指定產品預設應用。",
   "capabilityNoCompatibleApp": "暫無匹配類型的應用，請先在微信應用中建立",
   "capabilityRequiredAppType": "需{type}",
   "appTypeCapabilityCleared": "已清除與支付方式不匹配的應用選擇",
-  "channelCapabilityDescDirect": "為每種支付能力指定本商戶微信應用；不選則按應用類型自動匹配。",
+  "channelCapabilityDescDirect": "為每種支付能力指定本商戶微信應用。",
   "channelCapabilityDescIsv": "為每種支付能力選擇本商戶應用，或使用服務商預設；選服務商預設則回退到產品級預設支付應用。",
+  "channelCapabilityDescLeshua": "僅需為微信 JSAPI/小程式支付指定應用。",
   "capabilityIspDefault": "服務商預設",
   "capabilityIspNotConfigured": "未配置"
 }

@@ -6,13 +6,14 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import AdapayManage from '#/views/payment/channel/adapay/manage/AdapayManage.vue';
   import AlipayIsvManage from '#/views/payment/channel/alipay/manage/AlipayIsvManage.vue';
   import DougongManage from '#/views/payment/channel/dougong/manage/DougongManage.vue';
+  import FuyouManage from '#/views/payment/channel/fuyou/manage/FuyouManage.vue';
   import HkrtManage from '#/views/payment/channel/hkrt/manage/HkrtManage.vue';
   import HmpayManage from '#/views/payment/channel/hmpay/manage/HmpayManage.vue';
   import LakalaManage from '#/views/payment/channel/lakala/manage/LakalaManage.vue';
   import LeshuaManage from '#/views/payment/channel/leshua/manage/LeshuaManage.vue';
-  import FuyouManage from '#/views/payment/channel/fuyou/manage/FuyouManage.vue';
   import VbillManage from '#/views/payment/channel/vbill/manage/VbillManage.vue';
   import WechatIsvManage from '#/views/payment/channel/wechat/manage/WechatIsvManage.vue';
 
@@ -43,12 +44,28 @@
     sandbox.value = String(route.query.sandbox || 'false') === 'true';
 
     switch (product.value) {
+      case 'ada_pay': {
+        currentComponent.value = markRaw(AdapayManage);
+        break;
+      }
       case 'alipay_isv': {
         currentComponent.value = markRaw(AlipayIsvManage);
         break;
       }
-      case 'wechat_isv': {
-        currentComponent.value = markRaw(WechatIsvManage);
+      case 'dougong_pay': {
+        currentComponent.value = markRaw(DougongManage);
+        break;
+      }
+      case 'fuyou_pay': {
+        currentComponent.value = markRaw(FuyouManage);
+        break;
+      }
+      case 'hkrt_pay': {
+        currentComponent.value = markRaw(HkrtManage);
+        break;
+      }
+      case 'hm_pay': {
+        currentComponent.value = markRaw(HmpayManage);
         break;
       }
       case 'lakala_pay': {
@@ -59,24 +76,12 @@
         currentComponent.value = markRaw(LeshuaManage);
         break;
       }
-      case 'hkrt_pay': {
-        currentComponent.value = markRaw(HkrtManage);
-        break;
-      }
-      case 'dougong_pay': {
-        currentComponent.value = markRaw(DougongManage);
-        break;
-      }
       case 'vbill_pay': {
         currentComponent.value = markRaw(VbillManage);
         break;
       }
-      case 'fuyou_pay': {
-        currentComponent.value = markRaw(FuyouManage);
-        break;
-      }
-      case 'hm_pay': {
-        currentComponent.value = markRaw(HmpayManage);
+      case 'wechat_isv': {
+        currentComponent.value = markRaw(WechatIsvManage);
         break;
       }
       default: {
@@ -93,6 +98,9 @@
   const productName = computed(() => {
     if (product.value === 'alipay_isv') {
       return $t('payment.constant.product.productName.alipayIsv');
+    }
+    if (product.value === 'ada_pay') {
+      return $t('payment.product.enum.adaPay');
     }
     if (product.value === 'wechat_isv') {
       return $t('payment.constant.product.productName.wechatIsv');

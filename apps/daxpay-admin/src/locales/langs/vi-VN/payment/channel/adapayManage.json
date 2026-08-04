@@ -3,7 +3,6 @@
   "cardDirectKeyConfig": "Cấu hình khóa",
   "cardDirectKeyConfigDesc": "Định cấu hình ID ứng dụng cấp người bán Adapay và khóa ký",
   "directKeyConfigTitle": "Cấu hình khóa Adapay",
-  "keyConfigSection": "Cấu hình khóa người bán",
   "environment": "Môi trường",
   "prodEnv": "Sản xuất",
   "sandboxEnv": "Hộp cát"

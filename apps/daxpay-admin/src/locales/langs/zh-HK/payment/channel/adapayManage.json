@@ -3,7 +3,6 @@
   "cardDirectKeyConfig": "密鑰配置",
   "cardDirectKeyConfigDesc": "配置 Adapay 商户維度的應用ID和簽名密鑰",
   "directKeyConfigTitle": "Adapay 密鑰配置",
-  "keyConfigSection": "商户密鑰配置",
   "environment": "環境",
   "prodEnv": "生產",
   "sandboxEnv": "沙箱"
