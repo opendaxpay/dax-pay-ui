@@ -31,6 +31,13 @@
 
   const hasApps = computed(() => apps.value.length > 0);
 
+  /** 弹窗描述文案: 乐刷聚合产品仅 JSAPI/小程序需指定应用, 显示精简文案 */
+  const descKey = computed(() =>
+    product.value === 'leshua_pay'
+      ? 'payment.wx.app.productCapabilityDescLeshua'
+      : 'payment.wx.app.productCapabilityDesc',
+  );
+
   /** 应用类型 → 展示标签 */
   function appTypeLabel(appType?: string): string {
     switch (appType) {
@@ -91,7 +98,7 @@
     return apps.value.find((app) => app.id === appId)?.appType;
   }
 
-  /** 行内标签：已选类型，否则展示所需类型 / 自动匹配 */
+  /** 行内标签：已选类型，否则展示所需类型 */
   function rowTypeTag(capability: string): { color: string; text: string } {
     const selected = selectedAppType(capability);
     if (selected) {
@@ -107,7 +114,7 @@
         }),
       };
     }
-    return { color: 'default', text: $t('payment.wx.app.capabilityAutoTip') };
+    return { color: 'default', text: '-' };
   }
 
   /** 清除与能力不兼容的已选应用 */
@@ -200,7 +207,7 @@
   >
     <a-spin :spinning="loading">
       <div class="mb-3 text-xs leading-relaxed text-muted-foreground">
-        {{ $t('payment.wx.app.productCapabilityDesc') }}
+        {{ $t(descKey) }}
       </div>
 
       <div v-if="!loading && !hasApps" class="mb-3">

@@ -149,7 +149,7 @@
         }),
       };
     }
-    return { color: 'default', text: $t('payment.douyin.app.capabilityAutoTip') };
+    return { color: 'default', text: '-' };
   }
 
   function clearIncompatibleBindings() {

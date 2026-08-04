@@ -91,7 +91,7 @@
     return apps.value.find((app) => app.id === appId)?.appType;
   }
 
-  /** 行内标签：已选类型，否则展示所需类型 / 自动匹配 */
+  /** 行内标签：已选类型，否则展示所需类型 */
   function rowTypeTag(capability: string): { color: string; text: string } {
     const selected = selectedAppType(capability);
     if (selected) {
@@ -107,7 +107,7 @@
         }),
       };
     }
-    return { color: 'default', text: $t('payment.douyin.app.capabilityAutoTip') };
+    return { color: 'default', text: '-' };
   }
 
   /** 清除与能力不兼容的已选应用 */
