@@ -171,7 +171,7 @@
 
     <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 
-    <AdapayDirectKeyConfigEdit ref="keyConfigRef" :channel-mch-no="channelMchNo" />
+    <AdapayDirectKeyConfigEdit ref="keyConfigRef" :channel-mch-no="channelMchNo" :sandbox="channelMerchant.sandbox" />
 
     <WxChannelAppCapability ref="capabilityRef" @ok="emit('success')" />
   </div>

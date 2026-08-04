@@ -157,6 +157,7 @@
       ref="keyConfigRef"
       :channel-mch-no="channelMchNo"
       :product="channelMerchant.product"
+      :sandbox="channelMerchant.sandbox"
     />
   </div>
 </template>

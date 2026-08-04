@@ -7,19 +7,19 @@
 
   import { AlipayMchAppApi, type AlipayMchAppKeyConfig } from '#/api/payment/channel/alipay/mch-app.api';
   import { PermCodes } from '#/constants/perm-codes';
-  import { ProductEnum } from '#/enums/payment/productEnum';
   import { useDict } from '#/hooks/useDict';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
   import { readFileAsText } from '#/utils/file';
-  import { resolveProductSandbox } from '#/utils/pay-product-env';
 
   const props = defineProps<{
     aliAppId?: string;
     alipayDirectAppId?: string;
     channelMchNo?: string;
     mchNo?: string;
+    /** 通道商户固化的环境标识(创建时按当时产品 activeEnv 写入, 不随产品切换改变) */
+    sandbox?: boolean;
   }>();
 
   const { labelCol, wrapperCol, diffForm } = useFormEdit();
@@ -30,7 +30,7 @@
   const loading = ref(false);
   const saving = ref(false);
   const isEditing = ref(false);
-  // 跟随支付产品生效环境(只读, 禁止在密钥页切换)
+  // 跟随通道商户固化环境(只读, 禁止在密钥页切换)
   const sandbox = ref(false);
   const formRef = ref();
   const formState = ref<AlipayMchAppKeyConfig>({
@@ -69,15 +69,15 @@
     ],
   }));
 
-  /** 加载密钥配置(自动跟随支付宝直连产品生效环境) */
+  /** 加载密钥配置(环境跟随通道商户固化标识) */
   async function loadConfig() {
     if (!props.alipayDirectAppId) {
       return;
     }
     loading.value = true;
     try {
-      // 环境由支付产品配置决定, 商户密钥页不可切换
-      sandbox.value = await resolveProductSandbox(ProductEnum.ALIPAY);
+      // 环境读通道商户固化标识(创建时按当时产品 activeEnv 写入, 不随产品切换改变)
+      sandbox.value = props.sandbox ?? false;
       const { data } = await AlipayMchAppApi.findKeyConfigByAlipayDirectAppId(
         props.alipayDirectAppId,
         sandbox.value,
@@ -225,7 +225,7 @@
         >
           <a-divider orientation="left">{{ $t('payment.channel.alipayIsv.basicConfig') }}</a-divider>
 
-          <!-- 国际化: 跟随支付产品生效环境(只读, 不可在此切换) -->
+          <!-- 国际化: 跟随通道商户固化环境(只读, 不可在此切换) -->
           <a-form-item :label="$t('payment.channel.alipayIsv.environment')">
             <a-tag :color="sandbox ? 'orange' : 'blue'">
               {{

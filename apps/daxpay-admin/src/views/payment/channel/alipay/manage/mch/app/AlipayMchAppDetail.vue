@@ -9,6 +9,11 @@
   import AlipayMchAppBasicInfo from './tabs/AlipayMchAppBasicInfo.vue';
   import AlipayMchAppKeyConfig from './tabs/AlipayMchAppKeyConfig.vue';
 
+  const props = defineProps<{
+    /** 沙箱环境标识(跟随通道商户固化快照) */
+    sandbox?: boolean;
+  }>();
+
   const emit = defineEmits<{
     deleted: [];
   }>();
@@ -76,6 +81,7 @@
             :mch-no="mchNo"
             :channel-mch-no="channelMchNo"
             :ali-app-id="appDetail.aliAppId"
+            :sandbox="props.sandbox ?? false"
           />
         </a-tab-pane>
         <a-tab-pane key="auth" :tab="$t('payment.channel.alipayMchApp.tabAuthConfig')">

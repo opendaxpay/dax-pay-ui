@@ -8,14 +8,15 @@
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
-  import { resolveProductSandbox } from '#/utils/pay-product-env';
 
   defineOptions({ name: 'UnionKeyConfigEdit' });
 
   const props = defineProps<{
     channelMchNo: string;
-    /** 支付产品编码(云闪付多产品, 用于读取生效环境) */
+    /** 支付产品编码(云闪付多产品) */
     product?: string;
+    /** 通道商户固化的环境标识(创建时按当时产品 activeEnv 写入, 不随产品切换改变) */
+    sandbox?: boolean;
   }>();
 
   const emit = defineEmits<{
@@ -31,14 +32,14 @@
   const form = ref<UnionKeyConfig>({} as UnionKeyConfig);
   let rawForm: Record<string, any> = {};
 
-  // 跟随支付产品生效环境(只读, 禁止在证书页切换)
+  // 跟随通道商户固化环境(只读, 禁止在证书页切换)
   const sandbox = ref(false);
 
   const canEdit = computed(() => hasPermission(PermCodes.Channel.Merchant.MANAGE));
 
   const drawerTitle = $t('payment.channel.unionManage.keyConfigTitle');
 
-  /** 打开抽屉并加载证书配置(自动跟随产品生效环境) */
+  /** 打开抽屉并加载证书配置(环境跟随通道商户固化标识) */
   async function init() {
     visible.value = true;
     resetForm();
@@ -49,9 +50,8 @@
     if (!props.channelMchNo) return;
     confirmLoading.value = true;
     try {
-      // 云闪付单一产品
-      const product = props.product || 'union_pay';
-      sandbox.value = await resolveProductSandbox(product);
+      // 环境读通道商户固化标识(创建时按当时产品 activeEnv 写入, 不随产品切换改变)
+      sandbox.value = props.sandbox ?? false;
       const { data } = await UnionChannelMerchantApi.findKeyConfig(
         props.channelMchNo,
         sandbox.value,
@@ -116,7 +116,7 @@
       >
         <a-divider orientation="left">{{ $t('payment.channel.unionManage.keyConfigSection') }}</a-divider>
 
-        <!-- 国际化: 跟随支付产品生效环境(只读) -->
+        <!-- 国际化: 跟随通道商户固化环境(只读) -->
         <a-form-item :label="$t('payment.channel.unionManage.environment')">
           <a-tag :color="sandbox ? 'orange' : 'blue'">
             {{

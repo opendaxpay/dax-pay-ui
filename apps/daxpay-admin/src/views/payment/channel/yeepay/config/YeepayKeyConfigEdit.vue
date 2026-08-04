@@ -8,7 +8,6 @@ import {
   type YeepayDirectKeyConfigParam,
 } from '#/api/payment/channel/yeepay/channel-merchant.api';
 import { useMessage } from '#/hooks/useMessage';
-import { resolveProductSandbox } from '#/utils/pay-product-env';
 
 defineOptions({ name: 'YeepayKeyConfigEdit' });
 
@@ -20,9 +19,9 @@ const formRef = ref();
 
 // 当前编辑的通道商户号
 const channelMchNo = ref('');
-// 所属支付产品(用于读取生效环境)
+// 所属支付产品
 const product = ref('');
-// 跟随支付产品生效环境(只读, 禁止在密钥页切换)
+// 跟随通道商户固化环境(只读, 禁止在密钥页切换)
 const sandbox = ref(false);
 // 已配置标志(回显用)
 const configured = ref({
@@ -58,12 +57,12 @@ const rules = {
   ],
 };
 
-/** 由通用框架初始化(传入通道商户号与产品编码后加载密钥配置并打开弹窗) */
-async function init(mchNo: string, productCode?: string) {
+/** 由通用框架初始化(传入通道商户号、固化沙箱标识与产品编码后加载密钥配置并打开弹窗) */
+async function init(mchNo: string, sandboxFlag: boolean = false, productCode?: string) {
   channelMchNo.value = mchNo;
   product.value = productCode || 'yee_pay';
-  // 跟随支付产品生效环境
-  sandbox.value = await resolveProductSandbox(product.value);
+  // 环境读通道商户固化标识(创建时按当时产品 activeEnv 写入, 不随产品切换改变)
+  sandbox.value = sandboxFlag;
   visible.value = true;
   form.value = {
     channelMchNo: mchNo,
@@ -77,7 +76,7 @@ async function init(mchNo: string, productCode?: string) {
   await loadConfig();
 }
 
-/** 加载当前产品生效环境对应的密钥配置(脱敏返回) */
+/** 加载通道商户固化环境对应的密钥配置(脱敏返回) */
 async function loadConfig() {
   if (!channelMchNo.value) return;
   const { data } = await YeepayChannelMerchantApi.findKeyConfig(channelMchNo.value, sandbox.value);
@@ -117,7 +116,7 @@ defineExpose({ init });
     @ok="handleSubmit"
   >
     <a-form ref="formRef" :model="form" :rules="rules" layout="vertical">
-      <!-- 国际化: 跟随支付产品生效环境(只读) -->
+      <!-- 国际化: 跟随通道商户固化环境(只读) -->
       <a-form-item :label="$t('payment.channel.yeepay.environment')">
         <a-tag :color="sandbox ? 'orange' : 'blue'">
           {{ sandbox ? $t('payment.channel.yeepay.sandboxEnv') : $t('payment.channel.yeepay.prodEnv') }}

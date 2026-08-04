@@ -1,3 +1,3 @@
 {
-  "envFollowProductHint": "Follows the payment product setting. Switch the active environment in Product Configuration."
+  "envFollowProductHint": "Environment is fixed by the channel merchant at creation and cannot be switched here"
 }

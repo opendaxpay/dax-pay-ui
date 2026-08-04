@@ -8,14 +8,15 @@
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
-  import { resolveProductSandbox } from '#/utils/pay-product-env';
 
   defineOptions({ name: 'UmsDirectKeyConfigEdit' });
 
   const props = defineProps<{
     channelMchNo: string;
-    /** 支付产品编码(银联商务多产品, 用于读取生效环境) */
+    /** 支付产品编码(银联商务多产品) */
     product?: string;
+    /** 通道商户固化的环境标识(创建时按当时产品 activeEnv 写入, 不随产品切换改变) */
+    sandbox?: boolean;
   }>();
 
   const emit = defineEmits<{
@@ -31,7 +32,7 @@
   const form = ref<UmsDirectKeyConfig>({} as UmsDirectKeyConfig);
   let rawForm: Record<string, any> = {};
 
-  // 跟随支付产品生效环境(只读, 禁止在密钥页切换)
+  // 跟随通道商户固化环境(只读, 禁止在密钥页切换)
   const sandbox = ref(false);
 
   const canEdit = computed(() => hasPermission(PermCodes.Channel.Merchant.MANAGE));
@@ -45,7 +46,7 @@
     secretKey: [{ required: true, message: $t('payment.channel.ums.validation.secretKey') }],
   };
 
-  /** 打开抽屉并加载密钥配置(自动跟随产品生效环境) */
+  /** 打开抽屉并加载密钥配置(环境跟随通道商户固化标识) */
   async function init() {
     visible.value = true;
     resetForm();
@@ -56,9 +57,8 @@
     if (!props.channelMchNo) return;
     confirmLoading.value = true;
     try {
-      // 银联商务多产品, 优先用通道商户所属 product
-      const product = props.product || 'ums_qrcode';
-      sandbox.value = await resolveProductSandbox(product);
+      // 环境读通道商户固化标识(创建时按当时产品 activeEnv 写入, 不随产品切换改变)
+      sandbox.value = props.sandbox ?? false;
       const { data } = await UmsDirectChannelMerchantApi.findKeyConfig(
         props.channelMchNo,
         sandbox.value,
@@ -123,7 +123,7 @@
       >
         <a-divider orientation="left">{{ $t('payment.channel.umsManage.keyConfigSection') }}</a-divider>
 
-        <!-- 国际化: 跟随支付产品生效环境(只读) -->
+        <!-- 国际化: 跟随通道商户固化环境(只读) -->
         <a-form-item :label="$t('payment.channel.umsManage.environment')">
           <a-tag :color="sandbox ? 'orange' : 'blue'">
             {{

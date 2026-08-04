@@ -43,6 +43,8 @@
   const channelMchNo = ref('');
   const channelMerchantName = ref('');
   const channelMerchantId = ref('');
+  // 沙箱标识(跟随通道商户固化快照, 透传给密钥 Tab)
+  const sandbox = ref(false);
   const appList = ref<AlipayMchApp[]>([]);
   const editRef = ref<InstanceType<typeof AlipayMchAppEdit>>();
   const detailRef = ref<InstanceType<typeof AlipayMchAppDetail>>();
@@ -77,7 +79,7 @@
     channelMchNo.value = routeContext.query.value.channelMchNo;
   }
 
-  /** 反查通道商户元数据(名称/主键), 替代 URL 透传, 保证数据实时 */
+  /** 反查通道商户元数据(名称/主键/沙箱), 替代 URL 透传, 保证数据实时 */
   function loadMerchantMeta() {
     if (!mchNo.value || !channelMchNo.value) {
       return;
@@ -88,6 +90,8 @@
         if (merchant) {
           channelMerchantName.value = merchant.channelMerchantName ?? '';
           channelMerchantId.value = String(merchant.id ?? '');
+          // 沙箱标识读通道商户固化快照(创建时按当时产品 activeEnv 写入, 不随产品切换改变)
+          sandbox.value = merchant.sandbox ?? false;
         }
       });
   }
@@ -192,7 +196,7 @@
     </a-card>
 
     <AlipayMchAppEdit ref="editRef" @ok="loadAppList" />
-    <AlipayMchAppDetail ref="detailRef" @deleted="loadAppList" />
+    <AlipayMchAppDetail ref="detailRef" :sandbox="sandbox" @deleted="loadAppList" />
   </div>
 </template>
 

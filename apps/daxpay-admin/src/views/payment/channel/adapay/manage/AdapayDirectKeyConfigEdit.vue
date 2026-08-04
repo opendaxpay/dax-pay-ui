@@ -5,16 +5,16 @@
 
   import { AdapayDirectChannelMerchantApi, type AdapayDirectKeyConfig } from '#/api/payment/channel/adapay/channel-merchant.api';
   import { PermCodes } from '#/constants/perm-codes';
-  import { ProductEnum } from '#/enums/payment/productEnum';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
-  import { resolveProductSandbox } from '#/utils/pay-product-env';
 
   defineOptions({ name: 'AdapayDirectKeyConfigEdit' });
 
   const props = defineProps<{
     channelMchNo: string;
+    /** 通道商户固化的环境标识(创建时按当时产品 activeEnv 写入, 不随产品切换改变) */
+    sandbox?: boolean;
   }>();
 
   const emit = defineEmits<{
@@ -30,7 +30,7 @@
   const form = ref<AdapayDirectKeyConfig>({} as AdapayDirectKeyConfig);
   let rawForm: Record<string, any> = {};
 
-  // 跟随支付产品生效环境(只读, 禁止在密钥页切换)
+  // 跟随通道商户固化环境(只读, 禁止在密钥页切换)
   const sandbox = ref(false);
 
   const canEdit = computed(() => hasPermission(PermCodes.Channel.Merchant.MANAGE));
@@ -43,7 +43,7 @@
     privateKey: [{ required: true, message: $t('payment.channel.adapay.validation.privateKey') }],
   };
 
-  /** 打开抽屉并加载密钥配置(自动跟随产品生效环境) */
+  /** 打开抽屉并加载密钥配置(环境跟随通道商户固化标识) */
   async function init() {
     visible.value = true;
     resetForm();
@@ -54,7 +54,8 @@
     if (!props.channelMchNo) return;
     confirmLoading.value = true;
     try {
-      sandbox.value = await resolveProductSandbox(ProductEnum.ADA_PAY);
+      // 环境读通道商户固化标识(创建时按当时产品 activeEnv 写入, 不随产品切换改变)
+      sandbox.value = props.sandbox ?? false;
       const { data } = await AdapayDirectChannelMerchantApi.findKeyConfig(
         props.channelMchNo,
         sandbox.value,
@@ -117,7 +118,7 @@
         :wrapper-col="wrapperCol"
         :validate-trigger="['blur', 'change']"
       >
-        <!-- 国际化: 跟随支付产品生效环境(只读) -->
+        <!-- 国际化: 跟随通道商户固化环境(只读) -->
         <a-form-item :label="$t('payment.channel.adapayManage.environment')">
           <a-tag :color="sandbox ? 'orange' : 'blue'">
             {{
