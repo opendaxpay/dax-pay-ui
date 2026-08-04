@@ -6,6 +6,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import AdapayManage from '#/views/payment/channel/adapay/manage/AdapayManage.vue';
   import AlipayIsvManage from '#/views/payment/channel/alipay/manage/AlipayIsvManage.vue';
   import DougongManage from '#/views/payment/channel/dougong/manage/DougongManage.vue';
   import FuyouManage from '#/views/payment/channel/fuyou/manage/FuyouManage.vue';
@@ -43,6 +44,10 @@
     sandbox.value = String(route.query.sandbox || 'false') === 'true';
 
     switch (product.value) {
+      case 'ada_pay': {
+        currentComponent.value = markRaw(AdapayManage);
+        break;
+      }
       case 'alipay_isv': {
         currentComponent.value = markRaw(AlipayIsvManage);
         break;
