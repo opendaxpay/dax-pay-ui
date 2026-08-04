@@ -1,29 +1,4 @@
 {
-  "title": "Cấu hình ISV Adapay",
-  "groupConfig": "Quản lý cấu hình",
-  "cardMchKey": "Khóa ISV",
-  "cardMchKeyDesc": "Cấu hình mã ISV Adapay, khóa giao dịch và khóa RSA",
-  "configTitle": "Cấu hình khóa ISV Adapay",
-  "isvIdentity": "Danh tính ISV",
-  "keyConfig": "Cấu hình khóa",
-  "isvNo": "Mã ISV",
-  "isvNoPlaceholder": "Nhập mã ISV của nền tảng tại Huifu",
-  "apiKey": "Khóa giao dịch",
-  "apiKeyPlaceholder": "Nhập khóa giao dịch Adapay (API Key)",
-  "apiKeyTooltip": "Khóa giao dịch Adapay, dùng để xác thực header Authorization",
-  "privateKey": "Khóa riêng thương nhân",
-  "privateKeyTooltip": "Khóa riêng RSA của thương nhân (PKCS#8 Base64), dùng để ký yêu cầu",
-  "uploadPrivateKey": "Tải lên khóa riêng",
-  "privateKeyUploaded": "Đã tải lên khóa riêng",
-  "publicKey": "Khóa công khai nền tảng",
-  "publicKeyTooltip": "Khóa công khai nền tảng Adapay (X509 Base64), dùng để xác minh phản hồi; trống sẽ dùng khóa mặc định toàn cục",
-  "uploadPublicKey": "Tải lên khóa công khai",
-  "publicKeyUploaded": "Đã tải lên khóa công khai",
-  "validation": {
-    "isvNo": "Nhập mã ISV",
-    "apiKey": "Nhập khóa giao dịch",
-    "privateKey": "Tải lên khóa riêng thương nhân"
-  },
   "cardCapabilityBinding": "Liên kết ứng dụng WeChat",
   "cardCapabilityBindingDesc": "Liên kết ứng dụng WeChat cho thương nhân kênh (thanh toán JSAPI/Mini Program)"
 }

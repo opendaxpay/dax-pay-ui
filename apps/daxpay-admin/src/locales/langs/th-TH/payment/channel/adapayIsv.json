@@ -1,29 +1,4 @@
 {
-  "title": "การกำหนดค่า ISV Adapay",
-  "groupConfig": "การจัดการการกำหนดค่า",
-  "cardMchKey": "คีย์ ISV",
-  "cardMchKeyDesc": "กำหนดค่าหมายเลข ISV Adapay, คีย์ธุรกรรม และคีย์ RSA",
-  "configTitle": "การกำหนดค่าคีย์ ISV Adapay",
-  "isvIdentity": "ข้อมูลประจำตัว ISV",
-  "keyConfig": "การกำหนดค่าคีย์",
-  "isvNo": "หมายเลข ISV",
-  "isvNoPlaceholder": "กรอกหมายเลข ISV ของแพลตฟอร์มที่ Huifu",
-  "apiKey": "คีย์ธุรกรรม",
-  "apiKeyPlaceholder": "กรอกคีย์ธุรกรรม Adapay (API Key)",
-  "apiKeyTooltip": "คีย์ธุรกรรม Adapay ใช้สำหรับการยืนยันตัวตนใน header Authorization",
-  "privateKey": "คีย์ส่วนตัวของผู้ค้า",
-  "privateKeyTooltip": "คีย์ส่วนตัว RSA ของผู้ค้า (PKCS#8 Base64) ใช้สำหรับลงนามคำขอ",
-  "uploadPrivateKey": "อัปโหลดคีย์ส่วนตัว",
-  "privateKeyUploaded": "อัปโหลดคีย์ส่วนตัวแล้ว",
-  "publicKey": "คีย์สาธารณะของแพลตฟอร์ม",
-  "publicKeyTooltip": "คีย์สาธารณะแพลตฟอร์ม Adapay (X509 Base64) ใช้สำหรับตรวจสอบการตอบกลับ หากเว้นว่างจะใช้ค่าเริ่มต้นสากล",
-  "uploadPublicKey": "อัปโหลดคีย์สาธารณะ",
-  "publicKeyUploaded": "อัปโหลดคีย์สาธารณะแล้ว",
-  "validation": {
-    "isvNo": "กรอกหมายเลข ISV",
-    "apiKey": "กรอกคีย์ธุรกรรม",
-    "privateKey": "อัปโหลดคีย์ส่วนตัวของผู้ค้า"
-  },
   "cardCapabilityBinding": "ผูกแอป WeChat",
   "cardCapabilityBindingDesc": "ผูกแอป WeChat กับผู้ค้าช่องทาง (ชำระเงิน JSAPI/มินิโปรแกรม)"
 }

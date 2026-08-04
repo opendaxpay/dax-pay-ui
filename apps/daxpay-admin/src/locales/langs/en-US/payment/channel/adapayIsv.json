@@ -1,29 +1,4 @@
 {
-  "title": "Adapay ISV Configuration",
-  "groupConfig": "Configuration",
-  "cardMchKey": "ISV Key",
-  "cardMchKeyDesc": "Configure Adapay ISV No, transaction key and RSA keys",
-  "configTitle": "Adapay ISV Key Configuration",
-  "isvIdentity": "ISV Identity",
-  "keyConfig": "Key Configuration",
-  "isvNo": "ISV No",
-  "isvNoPlaceholder": "Please enter the platform ISV No at Huifu",
-  "apiKey": "Transaction Key",
-  "apiKeyPlaceholder": "Please enter Adapay transaction key (API Key)",
-  "apiKeyTooltip": "Adapay transaction key, used for Authorization header authentication",
-  "privateKey": "Merchant Private Key",
-  "privateKeyTooltip": "Merchant RSA private key (PKCS#8 Base64), for request signing",
-  "uploadPrivateKey": "Upload Private Key",
-  "privateKeyUploaded": "Private key uploaded",
-  "publicKey": "Platform Public Key",
-  "publicKeyTooltip": "Adapay platform public key (X509 Base64), for response signature verification; falls back to the global default if empty",
-  "uploadPublicKey": "Upload Public Key",
-  "publicKeyUploaded": "Public key uploaded",
-  "validation": {
-    "isvNo": "Please enter ISV No",
-    "apiKey": "Please enter transaction key",
-    "privateKey": "Please upload merchant private key"
-  },
   "cardCapabilityBinding": "WeChat App Binding",
   "cardCapabilityBindingDesc": "Bind WeChat app to the channel merchant (JSAPI/Mini Program payment)"
 }

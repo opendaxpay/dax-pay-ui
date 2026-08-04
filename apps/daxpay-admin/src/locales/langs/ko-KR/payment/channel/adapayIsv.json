@@ -1,29 +1,4 @@
 {
-  "title": "Adapay ISV 구성",
-  "groupConfig": "구성 관리",
-  "cardMchKey": "ISV 키",
-  "cardMchKeyDesc": "Adapay ISV 번호, 거래 키, RSA 키 구성",
-  "configTitle": "Adapay ISV 키 구성",
-  "isvIdentity": "ISV 신원",
-  "keyConfig": "키 구성",
-  "isvNo": "ISV 번호",
-  "isvNoPlaceholder": "휘푸(汇付)의 플랫폼 ISV 번호를 입력하세요",
-  "apiKey": "거래 키",
-  "apiKeyPlaceholder": "Adapay 거래 키(API Key)를 입력하세요",
-  "apiKeyTooltip": "Adapay 거래 키, 요청 헤더 Authorization 인증에 사용",
-  "privateKey": "가맹점 개인 키",
-  "privateKeyTooltip": "가맹점 RSA 개인 키(PKCS#8 Base64), 요청 서명에 사용",
-  "uploadPrivateKey": "개인 키 업로드",
-  "privateKeyUploaded": "개인 키 업로드됨",
-  "publicKey": "플랫폼 공개 키",
-  "publicKeyTooltip": "Adapay 플랫폼 공개 키(X509 Base64), 응답 서명 검증에 사용, 비어 있으면 전역 기본값 사용",
-  "uploadPublicKey": "공개 키 업로드",
-  "publicKeyUploaded": "공개 키 업로드됨",
-  "validation": {
-    "isvNo": "ISV 번호를 입력하세요",
-    "apiKey": "거래 키를 입력하세요",
-    "privateKey": "가맹점 개인 키를 업로드하세요"
-  },
   "cardCapabilityBinding": "위챗 앱 바인딩",
   "cardCapabilityBindingDesc": "채널 가맹점에 위챗 앱을 바인딩(JSAPI/미니 프로그램 결제)"
 }

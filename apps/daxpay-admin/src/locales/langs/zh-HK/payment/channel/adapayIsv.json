@@ -1,29 +1,4 @@
 {
-  "title": "Adapay 服務商配置",
-  "groupConfig": "配置管理",
-  "cardMchKey": "服務商金鑰",
-  "cardMchKeyDesc": "設定Adapay服務商號、交易金鑰與RSA金鑰",
-  "configTitle": "Adapay 服務商金鑰配置",
-  "isvIdentity": "服務商身份",
-  "keyConfig": "金鑰配置",
-  "isvNo": "服務商號",
-  "isvNoPlaceholder": "請輸入平台在匯付的服務商號",
-  "apiKey": "交易金鑰",
-  "apiKeyPlaceholder": "請輸入Adapay交易金鑰(API Key)",
-  "apiKeyTooltip": "Adapay交易金鑰, 用於請求頭Authorization認證",
-  "privateKey": "商戶私鑰",
-  "privateKeyTooltip": "商戶RSA私鑰(PKCS#8 Base64), 用於請求簽名",
-  "uploadPrivateKey": "上傳私鑰",
-  "privateKeyUploaded": "私鑰已上傳",
-  "publicKey": "平台公鑰",
-  "publicKeyTooltip": "Adapay平台公鑰(X509 Base64), 用於回應驗簽; 為空使用全域預設公鑰",
-  "uploadPublicKey": "上傳公鑰",
-  "publicKeyUploaded": "公鑰已上傳",
-  "validation": {
-    "isvNo": "請輸入服務商號",
-    "apiKey": "請輸入交易金鑰",
-    "privateKey": "請上傳商戶私鑰"
-  },
   "cardCapabilityBinding": "微信應用綁定",
   "cardCapabilityBindingDesc": "為通道商戶綁定微信應用(JSAPI/小程序支付)"
 }
