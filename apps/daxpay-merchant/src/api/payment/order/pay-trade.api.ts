@@ -42,7 +42,9 @@ export interface PayTradeQuery {
   status?: string;
   /** 交易形态 */
   tradeType?: string;
-  // pay_trade 无 channel/method/product 列，不可筛选
+  /** 支付通道 */
+  channel?: string;
+  // pay_trade 无 method/product 列，不可筛选
   /** 通道商户号 */
   channelMchNo?: string;
   /** 门店号 */

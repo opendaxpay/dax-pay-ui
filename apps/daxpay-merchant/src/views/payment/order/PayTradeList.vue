@@ -16,11 +16,15 @@
   import { usePermission } from '#/hooks/usePermission';
 
   import RefundModal from './components/RefundModal.vue';
+  import { useOrderLabels } from './composables/useOrderLabels';
   import { useTradeActions } from './composables/useTradeActions';
 
   defineOptions({ name: 'PayTradeList' });
 
   const { hasPermission } = usePermission();
+
+  // 订单详情编码字段展示名(支付通道/支付方式/支付渠道/支付产品)
+  const { channelLabel, methodLabel, providerLabel, productLabel } = useOrderLabels();
 
   const loading = ref(false);
   const xTable = ref<VxeTableInstance>();
@@ -272,6 +276,14 @@
               </a-tag>
             </template>
           </vxe-column>
+          <!-- 支付通道(接入通道, B端机构维度) -->
+          <vxe-column field="channel" :title="$t('payment.order.field.channel')" :min-width="110">
+            <template #default="{ row }">{{ channelLabel(row.channel) }}</template>
+          </vxe-column>
+          <!-- 支付渠道(付款钱包, C端维度) -->
+          <vxe-column field="provider" :title="$t('payment.order.field.provider')" :min-width="100">
+            <template #default="{ row }">{{ providerLabel(row.provider) }}</template>
+          </vxe-column>
           <vxe-column
             field="channelMchNo"
             :title="$t('payment.order.field.channelMchNo')"
@@ -367,19 +379,19 @@
             {{ formatAmount(detail.refundableBalance) }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.channel')">
-            {{ detail.channel || '-' }}
+            {{ channelLabel(detail.channel) }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.method')">
-            {{ detail.method || '-' }}
+            {{ methodLabel(detail.method) }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.channelAppId')">
             {{ detail.channelAppId || '-' }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.product')">
-            {{ detail.product || '-' }}
+            {{ productLabel(detail.product) }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.provider')">
-            {{ detail.provider || '-' }}
+            {{ providerLabel(detail.provider) }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.channelMchNo')">
             {{ detail.channelMchNo || '-' }}
