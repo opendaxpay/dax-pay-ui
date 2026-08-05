@@ -53,5 +53,6 @@
   "channelCapabilityDescIsv": "Pilih aplikasi merchant atau default penyedia layanan. Default kembali ke aplikasi pembayaran default tingkat produk.",
   "channelCapabilityDescLeshua": "Hanya perlu menentukan aplikasi untuk pembayaran WeChat JSAPI / mini program.",
   "capabilityIspDefault": "Default penyedia layanan",
-  "capabilityIspNotConfigured": "Belum dikonfigurasi"
+  "capabilityIspNotConfigured": "Belum dikonfigurasi",
+  "isvAppEntryDesc": "Kelola aplikasi WeChat penyedia layanan (official account, mini program)"
 }

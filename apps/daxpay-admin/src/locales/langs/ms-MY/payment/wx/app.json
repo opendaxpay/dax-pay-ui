@@ -53,5 +53,6 @@
   "channelCapabilityDescIsv": "Pilih apl pedagang atau lalai pembekal perkhidmatan. Lalai jatuh kembali ke apl pembayaran lalai peringkat produk.",
   "channelCapabilityDescLeshua": "Hanya perlu tentukan apl untuk pembayaran WeChat JSAPI / mini program.",
   "capabilityIspDefault": "Lalai pembekal perkhidmatan",
-  "capabilityIspNotConfigured": "Belum dikonfigurasi"
+  "capabilityIspNotConfigured": "Belum dikonfigurasi",
+  "isvAppEntryDesc": "Urus apl WeChat pembekal perkhidmatan (official account, mini program)"
 }

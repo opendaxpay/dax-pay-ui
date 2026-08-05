@@ -53,5 +53,6 @@
   "channelCapabilityDescIsv": "가맹점 앱 또는 서비스 제공자 기본을 선택합니다. 기본은 제품 기본 결제 앱으로 폴백.",
   "channelCapabilityDescLeshua": "위챗 JSAPI/미니프로그램 결제에만 앱 지정이 필요합니다.",
   "capabilityIspDefault": "서비스 제공자 기본",
-  "capabilityIspNotConfigured": "미설정"
+  "capabilityIspNotConfigured": "미설정",
+  "isvAppEntryDesc": "공식 계정, 미니 프로그램 등 위챗 서비스 제공자 앱 관리"
 }

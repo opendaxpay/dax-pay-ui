@@ -53,5 +53,6 @@
   "channelCapabilityDescIsv": "Chọn ứng dụng thương nhân hoặc mặc định nhà cung cấp dịch vụ. Mặc định quay về ứng dụng thanh toán mặc định cấp sản phẩm.",
   "channelCapabilityDescLeshua": "Chỉ cần chỉ định ứng dụng cho thanh toán WeChat JSAPI / mini program.",
   "capabilityIspDefault": "Mặc định nhà cung cấp",
-  "capabilityIspNotConfigured": "Chưa cấu hình"
+  "capabilityIspNotConfigured": "Chưa cấu hình",
+  "isvAppEntryDesc": "Quản lý ứng dụng WeChat của nhà cung cấp dịch vụ (official account, mini program)"
 }

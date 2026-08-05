@@ -53,5 +53,6 @@
   "channelCapabilityDescIsv": "為每種支付能力選擇本商戶應用，或使用服務商預設；選服務商預設則回退到產品級預設支付應用。",
   "channelCapabilityDescLeshua": "僅需為微信 JSAPI/小程式支付指定應用。",
   "capabilityIspDefault": "服務商預設",
-  "capabilityIspNotConfigured": "未配置"
+  "capabilityIspNotConfigured": "未配置",
+  "isvAppEntryDesc": "管理公眾號、小程式等微信服務商應用"
 }

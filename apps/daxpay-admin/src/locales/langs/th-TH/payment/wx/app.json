@@ -53,5 +53,6 @@
   "channelCapabilityDescIsv": "เลือกแอปของร้านค้าหรือค่าเริ่มต้นของผู้ให้บริการ ค่าเริ่มต้นจะกลับไปใช้แอปชำระเงินเริ่มต้นระดับผลิตภัณฑ์",
   "channelCapabilityDescLeshua": "ระบุแอปเฉพาะการชำระเงิน WeChat JSAPI / มินิโปรแกรมเท่านั้น",
   "capabilityIspDefault": "ค่าเริ่มต้นของผู้ให้บริการ",
-  "capabilityIspNotConfigured": "ยังไม่ได้ตั้งค่า"
+  "capabilityIspNotConfigured": "ยังไม่ได้ตั้งค่า",
+  "isvAppEntryDesc": "จัดการแอป WeChat ของผู้ให้บริการ (official account, mini program)"
 }

@@ -53,5 +53,6 @@
   "channelCapabilityDescIsv": "Choose a merchant app or the service-provider default for each capability. Default falls back to the product-level default payment apps.",
   "channelCapabilityDescLeshua": "Only needed for WeChat JSAPI / mini-program payments.",
   "capabilityIspDefault": "Service provider default",
-  "capabilityIspNotConfigured": "Not configured"
+  "capabilityIspNotConfigured": "Not configured",
+  "isvAppEntryDesc": "Manage WeChat service-provider apps (official account, mini program)"
 }

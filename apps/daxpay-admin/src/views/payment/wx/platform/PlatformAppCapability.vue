@@ -31,9 +31,9 @@
 
   const hasApps = computed(() => apps.value.length > 0);
 
-  /** 弹窗描述文案: 乐刷聚合产品仅 JSAPI/小程序需指定应用, 显示精简文案 */
+  /** 弹窗描述文案: 乐刷/Adapay 聚合产品仅 JSAPI/小程序需指定应用, 显示精简文案 */
   const descKey = computed(() =>
-    product.value === 'leshua_pay'
+    product.value === 'leshua_pay' || product.value === 'ada_pay'
       ? 'payment.wx.app.productCapabilityDescLeshua'
       : 'payment.wx.app.productCapabilityDesc',
   );
