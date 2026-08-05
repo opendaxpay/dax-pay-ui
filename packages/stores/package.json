@@ -1,6 +1,6 @@
 {
   "name": "@vben/stores",
-  "version": "4.0.0-beta1",
+  "version": "4.0.0-beta2",
   "license": "LGPL-3.0-or-later",
   "type": "module",
   "sideEffects": [
