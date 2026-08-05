@@ -1,0 +1,20 @@
+{
+  "title": "Stripe Configuration",
+  "keyConfig": "Key Config",
+  "enable": "Enable",
+  "accountId": "Stripe Account ID",
+  "accountIdPlaceholder": "Please enter Stripe account id (acct_xxx)",
+  "secretKey": "Secret Key",
+  "secretKeyPlaceholder": "Please enter Stripe secret key (sk_test_xxx sandbox / sk_live_xxx production)",
+  "publishableKey": "Publishable Key",
+  "publishableKeyPlaceholder": "Please enter Stripe publishable key (pk_test_xxx sandbox / pk_live_xxx production)",
+  "webhookSecret": "Webhook Secret",
+  "webhookSecretPlaceholder": "Please enter webhook signing secret (whsec_xxx)",
+  "configured": "Configured",
+  "validation": {
+    "accountId": "Please enter Stripe account id",
+    "secretKey": "Please enter Stripe secret key",
+    "publishableKey": "Please enter Stripe publishable key",
+    "webhookSecret": "Please enter webhook signing secret"
+  }
+}

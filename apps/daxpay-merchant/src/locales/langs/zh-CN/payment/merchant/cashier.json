@@ -47,7 +47,8 @@
       "union_pay": "银联",
       "visa": "Visa",
       "mastercard": "Mastercard",
-      "douyin": "抖音"
+      "douyin": "抖音",
+      "stripe": "Stripe"
     },
     "capabilities": {
       "aggregate_pay_qrcode": "聚合扫码",

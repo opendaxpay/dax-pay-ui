@@ -1,0 +1,20 @@
+{
+  "title": "Konfigurasi Stripe",
+  "keyConfig": "Konfigurasi Kunci",
+  "enable": "Aktifkan",
+  "accountId": "ID Akun Stripe",
+  "accountIdPlaceholder": "Masukkan ID akun Stripe (acct_xxx)",
+  "secretKey": "Secret Key",
+  "secretKeyPlaceholder": "Masukkan Stripe secret key (sk_test_xxx bak pasir / sk_live_xxx produksi)",
+  "publishableKey": "Publishable Key",
+  "publishableKeyPlaceholder": "Masukkan Stripe publishable key (pk_test_xxx bak pasir / pk_live_xxx produksi)",
+  "webhookSecret": "Kunci Rahasia Webhook",
+  "webhookSecretPlaceholder": "Masukkan kunci tanda tangan webhook (whsec_xxx)",
+  "configured": "Dikonfigurasi",
+  "validation": {
+    "accountId": "Masukkan ID akun Stripe",
+    "secretKey": "Masukkan Stripe secret key",
+    "publishableKey": "Masukkan Stripe publishable key",
+    "webhookSecret": "Masukkan kunci tanda tangan webhook"
+  }
+}

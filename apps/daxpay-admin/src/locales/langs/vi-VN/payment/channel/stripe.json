@@ -1,0 +1,20 @@
+{
+  "title": "Cấu hình Stripe",
+  "keyConfig": "Cấu hình khóa",
+  "enable": "Kích hoạt",
+  "accountId": "ID tài khoản Stripe",
+  "accountIdPlaceholder": "Nhập ID tài khoản Stripe (acct_xxx)",
+  "secretKey": "Secret Key",
+  "secretKeyPlaceholder": "Nhập Stripe secret key (sk_test_xxx hộp cát / sk_live_xxx sản xuất)",
+  "publishableKey": "Publishable Key",
+  "publishableKeyPlaceholder": "Nhập Stripe publishable key (pk_test_xxx hộp cát / pk_live_xxx sản xuất)",
+  "webhookSecret": "Khóa bí mật Webhook",
+  "webhookSecretPlaceholder": "Nhập khóa ký webhook (whsec_xxx)",
+  "configured": "Đã cấu hình",
+  "validation": {
+    "accountId": "Vui lòng nhập ID tài khoản Stripe",
+    "secretKey": "Nhập Stripe secret key",
+    "publishableKey": "Nhập Stripe publishable key",
+    "webhookSecret": "Nhập khóa ký webhook"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "manageTitle": "Stripe 加盟店管理",
+  "cardKeyConfig": "キーコンフィグ",
+  "cardKeyConfigDesc": "Stripe マーチャントレベルの API キーを構成する(テスト/本番環境ごとに保存)",
+  "keyConfigTitle": "Stripe キー構成"
+}

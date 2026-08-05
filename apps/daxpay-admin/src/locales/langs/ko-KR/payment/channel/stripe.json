@@ -1,0 +1,20 @@
+{
+  "title": "Stripe 구성",
+  "keyConfig": "키 구성",
+  "enable": "활성화 여부",
+  "accountId": "Stripe 계정 ID",
+  "accountIdPlaceholder": "Stripe 계정 ID(acct_xxx)를 입력하세요",
+  "secretKey": "Secret Key",
+  "secretKeyPlaceholder": "Stripe Secret Key(sk_test_xxx 샌드박스 / sk_live_xxx 운영)를 입력하세요",
+  "publishableKey": "Publishable Key",
+  "publishableKeyPlaceholder": "Stripe Publishable Key(pk_test_xxx 샌드박스 / pk_live_xxx 운영)를 입력하세요",
+  "webhookSecret": "Webhook 서명 키",
+  "webhookSecretPlaceholder": "Webhook 서명 키(whsec_xxx)를 입력하세요",
+  "configured": "구성됨",
+  "validation": {
+    "accountId": "Stripe 계정 ID를 입력하세요",
+    "secretKey": "Stripe Secret Key를 입력하세요",
+    "publishableKey": "Stripe Publishable Key를 입력하세요",
+    "webhookSecret": "Webhook 서명 키를 입력하세요"
+  }
+}

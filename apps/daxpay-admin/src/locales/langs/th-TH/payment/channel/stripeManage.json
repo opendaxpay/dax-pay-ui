@@ -1,0 +1,6 @@
+{
+  "manageTitle": "การจัดการผู้ค้า Stripe",
+  "cardKeyConfig": "การกำหนดค่าคีย์",
+  "cardKeyConfigDesc": "กำหนดค่าคีย์ API ระดับผู้ค้า Stripe (จัดเก็บแยกตามสภาพแวดล้อมการทดสอบ/การผลิต)",
+  "keyConfigTitle": "การกำหนดค่าคีย์ Stripe"
+}

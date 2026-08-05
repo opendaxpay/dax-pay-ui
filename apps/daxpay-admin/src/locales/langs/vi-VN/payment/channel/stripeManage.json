@@ -1,0 +1,6 @@
+{
+  "manageTitle": "Quản lý thương mại Stripe",
+  "cardKeyConfig": "Cấu hình khóa",
+  "cardKeyConfigDesc": "Định cấu hình khóa API cấp người bán Stripe (lưu riêng cho môi trường thử nghiệm/sản xuất)",
+  "keyConfigTitle": "Cấu hình khóa Stripe"
+}

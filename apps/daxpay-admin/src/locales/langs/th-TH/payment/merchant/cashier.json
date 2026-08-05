@@ -47,7 +47,8 @@
       "union_pay": "ยูเนี่ยนเพย์",
       "visa": "วีซ่า",
       "mastercard": "มาสเตอร์การ์ด",
-      "douyin": "โต่วอิน"
+      "douyin": "โต่วอิน",
+      "stripe": "Stripe"
     },
     "capabilities": {
       "aggregate_pay_qrcode": "รวมรหัส QR",

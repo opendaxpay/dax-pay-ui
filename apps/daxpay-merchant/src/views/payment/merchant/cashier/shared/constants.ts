@@ -69,5 +69,7 @@ export const CASHIER_ICON_OPTIONS = [
   { value: 'union_pay', labelKey: 'payment.merchant.cashier.cashier.icons.union_pay' },
   { value: 'visa', labelKey: 'payment.merchant.cashier.cashier.icons.visa' },
   { value: 'mastercard', labelKey: 'payment.merchant.cashier.cashier.icons.mastercard' },
+  // Stripe 国际信用卡通道
+  { value: 'stripe', labelKey: 'payment.merchant.cashier.cashier.icons.stripe' },
   { value: 'douyin', labelKey: 'payment.merchant.cashier.cashier.icons.douyin' },
 ] as const;

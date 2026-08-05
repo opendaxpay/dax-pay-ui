@@ -47,7 +47,8 @@
       "union_pay": "유니온페이",
       "visa": "비자",
       "mastercard": "마스터 카드",
-      "douyin": "두음"
+      "douyin": "두음",
+      "stripe": "Stripe"
     },
     "capabilities": {
       "aggregate_pay_qrcode": "QR 코드 집계",

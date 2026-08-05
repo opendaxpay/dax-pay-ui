@@ -1,0 +1,6 @@
+{
+  "manageTitle": "Stripe Merchant Management",
+  "cardKeyConfig": "Key Config",
+  "cardKeyConfigDesc": "Configure Stripe merchant-level API keys (stored separately for test/production environments)",
+  "keyConfigTitle": "Stripe Key Configuration"
+}

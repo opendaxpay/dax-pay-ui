@@ -1,0 +1,20 @@
+{
+  "title": "Stripe 配置",
+  "keyConfig": "密钥配置",
+  "enable": "是否启用",
+  "accountId": "Stripe 账户 ID",
+  "accountIdPlaceholder": "请输入 Stripe 账户 ID(acct_xxx)",
+  "secretKey": "Secret Key",
+  "secretKeyPlaceholder": "请输入 Stripe Secret Key(sk_test_xxx 沙箱 / sk_live_xxx 生产)",
+  "publishableKey": "Publishable Key",
+  "publishableKeyPlaceholder": "请输入 Stripe Publishable Key(pk_test_xxx 沙箱 / pk_live_xxx 生产)",
+  "webhookSecret": "Webhook 签名密钥",
+  "webhookSecretPlaceholder": "请输入 Webhook 签名密钥(whsec_xxx)",
+  "configured": "已配置",
+  "validation": {
+    "accountId": "请输入 Stripe 账户 ID",
+    "secretKey": "请输入 Stripe Secret Key",
+    "publishableKey": "请输入 Stripe Publishable Key",
+    "webhookSecret": "请输入 Webhook 签名密钥"
+  }
+}

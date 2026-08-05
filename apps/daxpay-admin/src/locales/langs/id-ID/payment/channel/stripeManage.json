@@ -1,0 +1,6 @@
+{
+  "manageTitle": "Manajemen Pedagang Stripe",
+  "cardKeyConfig": "Konfigurasi Kunci",
+  "cardKeyConfigDesc": "Konfigurasikan kunci API tingkat pedagang Stripe (disimpan terpisah untuk lingkungan uji/produksi)",
+  "keyConfigTitle": "Konfigurasi Kunci Stripe"
+}

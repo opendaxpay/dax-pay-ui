@@ -1,0 +1,6 @@
+{
+  "manageTitle": "Stripe 판매자 관리",
+  "cardKeyConfig": "키 구성",
+  "cardKeyConfigDesc": "Stripe 판매자 수준 API 키 구성(테스트/운영 환경별 저장)",
+  "keyConfigTitle": "Stripe 키 구성"
+}

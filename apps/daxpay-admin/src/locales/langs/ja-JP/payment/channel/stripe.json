@@ -1,0 +1,20 @@
+{
+  "title": "Stripe 構成",
+  "keyConfig": "キーコンフィグ",
+  "enable": "有効にするか",
+  "accountId": "Stripe アカウント ID",
+  "accountIdPlaceholder": "Stripe アカウント ID(acct_xxx)を入力してください",
+  "secretKey": "Secret Key",
+  "secretKeyPlaceholder": "Stripe Secret Key を入力してください(sk_test_xxx サンドボックス / sk_live_xxx 本番)",
+  "publishableKey": "Publishable Key",
+  "publishableKeyPlaceholder": "Stripe Publishable Key を入力してください(pk_test_xxx サンドボックス / pk_live_xxx 本番)",
+  "webhookSecret": "Webhook 署名キー",
+  "webhookSecretPlaceholder": "Webhook 署名キー(whsec_xxx)を入力してください",
+  "configured": "構成済み",
+  "validation": {
+    "accountId": "Stripe アカウント ID を入力してください",
+    "secretKey": "Stripe Secret Key を入力してください",
+    "publishableKey": "Stripe Publishable Key を入力してください",
+    "webhookSecret": "Webhook 署名キーを入力してください"
+  }
+}

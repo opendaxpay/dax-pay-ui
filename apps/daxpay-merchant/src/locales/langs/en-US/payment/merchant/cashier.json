@@ -47,7 +47,8 @@
       "union_pay": "UnionPay",
       "visa": "Visa",
       "mastercard": "Mastercard",
-      "douyin": "Douyin"
+      "douyin": "Douyin",
+      "stripe": "Stripe"
     },
     "capabilities": {
       "aggregate_pay_qrcode": "Aggregate QR Code",

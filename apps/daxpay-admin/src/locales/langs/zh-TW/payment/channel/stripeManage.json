@@ -1,0 +1,6 @@
+{
+  "manageTitle": "Stripe 商戶管理",
+  "cardKeyConfig": "金鑰配置",
+  "cardKeyConfigDesc": "配置 Stripe 商戶維度的 API 金鑰(按測試/生產環境分別儲存)",
+  "keyConfigTitle": "Stripe 金鑰配置"
+}

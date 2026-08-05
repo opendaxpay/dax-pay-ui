@@ -1,0 +1,20 @@
+{
+  "title": "การกำหนดค่า Stripe",
+  "keyConfig": "การกำหนดค่าคีย์",
+  "enable": "เปิดใช้งาน",
+  "accountId": "ID บัญชี Stripe",
+  "accountIdPlaceholder": "กรุณาป้อน ID บัญชี Stripe (acct_xxx)",
+  "secretKey": "Secret Key",
+  "secretKeyPlaceholder": "กรุณาป้อน Stripe secret key (sk_test_xxx แซนด์บ็อกซ์ / sk_live_xxx การผลิต)",
+  "publishableKey": "Publishable Key",
+  "publishableKeyPlaceholder": "กรุณาป้อน Stripe publishable key (pk_test_xxx แซนด์บ็อกซ์ / pk_live_xxx การผลิต)",
+  "webhookSecret": "คีย์ลับ Webhook",
+  "webhookSecretPlaceholder": "กรุณาป้อนคีย์เซ็นชื่อ webhook (whsec_xxx)",
+  "configured": "กำหนดค่าแล้ว",
+  "validation": {
+    "accountId": "กรุณาป้อน ID บัญชี Stripe",
+    "secretKey": "กรุณาป้อน Stripe secret key",
+    "publishableKey": "กรุณาป้อน Stripe publishable key",
+    "webhookSecret": "กรุณาป้อนคีย์เซ็นชื่อ webhook"
+  }
+}
