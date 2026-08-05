@@ -2,8 +2,5 @@
   "manageTitle": "Manajemen Pedagang Adapay",
   "cardDirectKeyConfig": "Konfigurasi Kunci",
   "cardDirectKeyConfigDesc": "Konfigurasikan ID Aplikasi dan kunci penandatanganan tingkat pedagang Adapay",
-  "directKeyConfigTitle": "Konfigurasi Kunci Adapay",
-  "environment": "Lingkungan",
-  "prodEnv": "Produksi",
-  "sandboxEnv": "Bak pasir"
+  "directKeyConfigTitle": "Konfigurasi Kunci Adapay"
 }

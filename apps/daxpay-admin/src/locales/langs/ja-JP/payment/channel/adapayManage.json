@@ -2,8 +2,5 @@
   "manageTitle": "Adapay 加盟店管理",
   "cardDirectKeyConfig": "キーコンフィグ",
   "cardDirectKeyConfigDesc": "Adapay マーチャントレベルのアプリ ID と署名キーを構成する",
-  "directKeyConfigTitle": "Adapay キー構成",
-  "environment": "環境",
-  "prodEnv": "生産",
-  "sandboxEnv": "サンドボックス"
+  "directKeyConfigTitle": "Adapay キー構成"
 }

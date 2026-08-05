@@ -13,8 +13,6 @@
 
   const props = defineProps<{
     channelMchNo: string;
-    /** 通道商户固化的环境标识(创建时按当时产品 activeEnv 写入, 不随产品切换改变) */
-    sandbox?: boolean;
   }>();
 
   const emit = defineEmits<{
@@ -30,9 +28,6 @@
   const form = ref<AdapayDirectKeyConfig>({} as AdapayDirectKeyConfig);
   let rawForm: Record<string, any> = {};
 
-  // 跟随通道商户固化环境(只读, 禁止在密钥页切换)
-  const sandbox = ref(false);
-
   const canEdit = computed(() => hasPermission(PermCodes.Channel.Merchant.MANAGE));
 
   const drawerTitle = $t('payment.channel.adapayManage.directKeyConfigTitle');
@@ -43,7 +38,7 @@
     privateKey: [{ required: true, message: $t('payment.channel.adapay.validation.privateKey') }],
   };
 
-  /** 打开抽屉并加载密钥配置(环境跟随通道商户固化标识) */
+  /** 打开抽屉并加载密钥配置 */
   async function init() {
     visible.value = true;
     resetForm();
@@ -54,11 +49,8 @@
     if (!props.channelMchNo) return;
     confirmLoading.value = true;
     try {
-      // 环境读通道商户固化标识(创建时按当时产品 activeEnv 写入, 不随产品切换改变)
-      sandbox.value = props.sandbox ?? false;
       const { data } = await AdapayDirectChannelMerchantApi.findKeyConfig(
         props.channelMchNo,
-        sandbox.value,
       );
       rawForm = { ...data };
       form.value = { ...data } as AdapayDirectKeyConfig;
@@ -76,7 +68,6 @@
           ...form.value,
           ...diffForm(rawForm, form.value, 'apiKey', 'privateKey', 'publicKey'),
           channelMchNo: props.channelMchNo,
-          sandbox: sandbox.value,
         })
           .then(() => {
             message.success($t('common.saveSuccess'));
@@ -118,20 +109,6 @@
         :wrapper-col="wrapperCol"
         :validate-trigger="['blur', 'change']"
       >
-        <!-- 国际化: 跟随通道商户固化环境(只读) -->
-        <a-form-item :label="$t('payment.channel.adapayManage.environment')">
-          <a-tag :color="sandbox ? 'orange' : 'blue'">
-            {{
-              sandbox
-                ? $t('payment.channel.adapayManage.sandboxEnv')
-                : $t('payment.channel.adapayManage.prodEnv')
-            }}
-          </a-tag>
-          <span class="ml-2 text-xs text-muted-foreground">
-            {{ $t('payment.common.envFollowProductHint') }}
-          </span>
-        </a-form-item>
-
         <!-- 国际化: Adapay 应用ID -->
         <a-form-item :label="$t('payment.channel.adapay.adapayAppId')" name="adapayAppId">
           <a-input

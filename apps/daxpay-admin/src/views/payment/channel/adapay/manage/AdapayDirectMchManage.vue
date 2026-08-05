@@ -2,6 +2,7 @@
   import type { ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
 
   import { computed, ref } from 'vue';
+  import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
@@ -20,6 +21,7 @@
     (e: 'success'): void;
   }>();
 
+  const router = useRouter();
   const loading = ref(false);
   const mchNo = ref('');
   const channelMchNo = ref('');
@@ -59,6 +61,12 @@
       group: $t('payment.merchant.channelMerchant.groupApp'),
       color: 'green',
       cards: [
+        {
+          key: 'appManage',
+          title: $t('payment.merchant.channelMerchant.cardApp'),
+          icon: 'ant-design:appstore-outlined',
+          description: $t('payment.merchant.channelMerchant.cardAppDesc'),
+        },
         {
           key: 'capabilityBinding',
           title: $t('payment.channel.adapayIsv.cardCapabilityBinding'),
@@ -104,6 +112,16 @@
     }
     if (card.key === 'keyConfig') {
       keyConfigRef.value?.init();
+    }
+    if (card.key === 'appManage') {
+      // 跳转微信应用管理 Hub(商户档), 创建/管理该商户微信应用
+      router.push({
+        path: '/payment/wx/app',
+        query: {
+          tab: 'merchant',
+          mchNo: mchNo.value,
+        },
+      });
     }
     if (card.key === 'capabilityBinding') {
       // 微信应用能力绑定(JSAPI/小程序), 未绑时走产品级默认/平台应用推导
@@ -171,7 +189,7 @@
 
     <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 
-    <AdapayDirectKeyConfigEdit ref="keyConfigRef" :channel-mch-no="channelMchNo" :sandbox="channelMerchant.sandbox" />
+    <AdapayDirectKeyConfigEdit ref="keyConfigRef" :channel-mch-no="channelMchNo" />
 
     <WxChannelAppCapability ref="capabilityRef" @ok="emit('success')" />
   </div>

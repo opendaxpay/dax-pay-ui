@@ -15,10 +15,10 @@ export const AdapayDirectChannelMerchantApi = {
   /**
    * 根据通道商户号查询密钥配置
    */
-  findKeyConfig(channelMchNo: string, sandbox: boolean = false): Promise<Result<AdapayDirectKeyConfig>> {
+  findKeyConfig(channelMchNo: string): Promise<Result<AdapayDirectKeyConfig>> {
     return defHttp.get({
       url: '/admin/adapay/direct-channel-merchant/find-key-config',
-      params: { channelMchNo, sandbox },
+      params: { channelMchNo },
     });
   },
   /**
@@ -47,8 +47,6 @@ export interface AdapayDirectKeyConfig {
   apiKeyConfigured?: boolean;
   /** 私钥是否已配置 */
   privateKeyConfigured?: boolean;
-  /** 是否沙箱环境 */
-  sandbox?: boolean;
 }
 
 /**
@@ -57,8 +55,6 @@ export interface AdapayDirectKeyConfig {
 export interface AdapayDirectKeyConfigParam {
   /** 通道商户号(唯一标识) */
   channelMchNo: string;
-  /** 是否沙箱环境 */
-  sandbox?: boolean;
   /** Adapay 支付应用 ID */
   adapayAppId?: string;
   /** Adapay API Key */
