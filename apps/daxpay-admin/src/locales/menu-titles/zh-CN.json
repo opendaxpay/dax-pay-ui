@@ -102,5 +102,11 @@
   "menu.plugin.easypay": "易支付",
   "menu.plugin.easypay.order": "易支付订单",
   "menu.plugin.easypay.refund": "易支付退款",
-  "menu.payment.merchant.gatewayPayConfig": "网关支付配置"
+  "menu.payment.merchant.gatewayPayConfig": "网关支付配置",
+  "menu.payment.merchant.notifyConfig": "异步通知配置",
+  "menu.trade.transfer": "转账",
+  "menu.trade.transfer.wechat": "微信转账",
+  "menu.trade.transfer.alipay": "支付宝转账",
+  "menu.trade.transfer.douyin": "抖音转账",
+  "menu.trade.transfer.trade": "转账记录"
 }

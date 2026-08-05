@@ -13,10 +13,15 @@
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
+  import { useOrderLabels } from './composables/useOrderLabels';
+
   defineOptions({ name: 'RefundOrderList' });
 
   const { confirm, message } = useMessage();
   const { hasPermission } = usePermission();
+
+  // 订单详情编码字段展示名(支付通道)
+  const { channelLabel } = useOrderLabels();
 
   const loading = ref(false);
   const xTable = ref<VxeTableInstance>();
@@ -415,7 +420,7 @@
             {{ productLabel(detail.product) }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.channel')">
-            {{ detail.channel || '-' }}
+            {{ channelLabel(detail.channel) }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.channelMchNo')">
             {{ detail.channelMchNo || '-' }}

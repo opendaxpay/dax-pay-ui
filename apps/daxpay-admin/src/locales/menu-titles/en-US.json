@@ -102,5 +102,11 @@
   "menu.plugin.easypay": "EasyPay",
   "menu.plugin.easypay.order": "EasyPay Orders",
   "menu.plugin.easypay.refund": "EasyPay Refunds",
-  "menu.payment.merchant.gatewayPayConfig": "Gateway Pay Config"
+  "menu.payment.merchant.gatewayPayConfig": "Gateway Pay Config",
+  "menu.payment.merchant.notifyConfig": "Async Notify Config",
+  "menu.trade.transfer": "Transfer",
+  "menu.trade.transfer.wechat": "WeChat Transfer",
+  "menu.trade.transfer.alipay": "Alipay Transfer",
+  "menu.trade.transfer.douyin": "Douyin Transfer",
+  "menu.trade.transfer.trade": "Transfer Records"
 }

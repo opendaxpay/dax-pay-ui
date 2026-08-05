@@ -1,0 +1,76 @@
+{
+  "transfer": {
+    "status": {
+      "processing": "轉賬中",
+      "success": "成功",
+      "fail": "失敗",
+      "close": "已關閉"
+    },
+    "statusColor": {
+      "processing": "processing",
+      "success": "green",
+      "fail": "red",
+      "close": "default"
+    },
+    "channel": {
+      "wechat": "微信",
+      "alipay": "支付寶",
+      "douyin": "抖音"
+    },
+    "field": {
+      "transferNo": "轉賬單號",
+      "bizTransferNo": "商戶轉賬號",
+      "payeeOpenid": "收款openid",
+      "payeeAccount": "收款人賬號",
+      "payeeType": "收款人類型",
+      "amount": "金額(元)",
+      "status": "狀態",
+      "merchant": "商戶",
+      "appId": "應用號",
+      "outTransferNo": "通道轉賬號",
+      "title": "標題",
+      "reason": "轉賬原因",
+      "finishTime": "完成時間",
+      "createTime": "創建時間",
+      "userName": "收款人姓名",
+      "transferScene": "轉賬場景",
+      "transferBody": "拉起確認參數",
+      "notifyUrl": "通知地址",
+      "attach": "附加參數",
+      "errorMsg": "錯誤信息",
+      "tradeNo": "轉賬交易號",
+      "containerChannel": "所屬通道",
+      "currency": "幣種",
+      "relationNo": "上送關聯號"
+    },
+    "section": {
+      "identity": "身份信息",
+      "amount": "金額與狀態",
+      "payee": "收款人信息",
+      "notify": "通知與錯誤"
+    },
+    "action": {
+      "create": "發起轉賬",
+      "sync": "同步",
+      "close": "關閉",
+      "retry": "重試"
+    },
+    "createTitle": "發起轉賬",
+    "createConfirmTitle": "確認發起轉賬",
+    "createConfirmContent": "轉賬為出款操作，請確認收款人與金額無誤",
+    "createSuccess": "轉賬已發起",
+    "syncConfirmTitle": "確認同步",
+    "syncConfirmContent": "將向通道查詢該轉賬的最新狀態",
+    "syncSuccess": "同步完成",
+    "closeConfirmTitle": "確認關閉",
+    "closeConfirmContent": "關閉後不可恢復，請確認通道側未實際出款",
+    "closeSuccess": "轉賬已關閉",
+    "detail": "轉賬詳情",
+    "placeholder": {
+      "bizTransferNo": "商戶側唯一，用於冪等",
+      "openid": "收款人微信 openid",
+      "payeeNameTip": "少於0.3元禁填，大於等於2000元必填",
+      "notifyUrl": "平台→商戶異步通知地址"
+    }
+  }
+}

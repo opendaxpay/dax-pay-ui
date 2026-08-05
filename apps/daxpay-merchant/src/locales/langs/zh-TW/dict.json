@@ -48,7 +48,7 @@
     "alipay_isv": "支付寶(服務商)",
     "leshua_pay": "樂刷支付",
     "vbill_pay": "隨行付",
-    "ada_pay": "匯付天下",
+    "ada_pay": "Adapay",
     "hkrt_pay": "海科融通",
     "allin_yst2": "通聯支付(雲商通二代)",
     "allin_syb": "通聯支付(收銀寶)",
@@ -166,7 +166,8 @@
   "transfer_payee_type": {
     "user_id": "使用者ID",
     "open_id": "OpenId",
-    "login_name": "使用者賬號"
+    "login_name": "使用者賬號",
+    "openid": "微信openid"
   },
   "merchant_type": {
     "common": "普通商戶",

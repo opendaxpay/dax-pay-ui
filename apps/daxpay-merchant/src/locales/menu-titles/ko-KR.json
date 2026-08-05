@@ -43,5 +43,10 @@
   "menu.plugin.easypay": "이지페이",
   "menu.plugin.easypay.order": "이지페이 주문",
   "menu.plugin.easypay.refund": "이지페이 환불",
-  "menu.payment.merchant.gatewayPayConfig": "게이트웨이 결제 구성"
+  "menu.payment.merchant.gatewayPayConfig": "게이트웨이 결제 구성",
+  "menu.trade.transfer": "송금",
+  "menu.trade.transfer.wechat": "위챗 송금",
+  "menu.trade.transfer.alipay": "알리페이 송금",
+  "menu.trade.transfer.douyin": "더우인 송금",
+  "menu.trade.transfer.trade": "송금 기록"
 }

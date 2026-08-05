@@ -17,11 +17,15 @@
   import { productI18nMap, productNameMap } from '#/enums/payment';
   import { usePermission } from '#/hooks/usePermission';
 
+  import { useOrderLabels } from './composables/useOrderLabels';
   import { useTradeActions } from './composables/useTradeActions';
 
   defineOptions({ name: 'GatewayOrderList' });
 
   const { hasPermission } = usePermission();
+
+  // 订单详情编码字段展示名(支付通道/支付方式)
+  const { channelLabel, methodLabel } = useOrderLabels();
 
   const loading = ref(false);
   const xTable = ref<VxeTableInstance>();
@@ -319,10 +323,10 @@
             {{ capabilityLabel(detail.capability) }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.channel')">
-            {{ detail.channel || '-' }}
+            {{ channelLabel(detail.channel) }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.method')">
-            {{ detail.method || '-' }}
+            {{ methodLabel(detail.method) }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.outOrderNo')">
             {{ detail.outOrderNo || '-' }}

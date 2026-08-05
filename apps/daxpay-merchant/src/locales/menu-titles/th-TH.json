@@ -43,5 +43,10 @@
   "menu.plugin.easypay": "EasyPay",
   "menu.plugin.easypay.order": "คำสั่งซื้อ EasyPay",
   "menu.plugin.easypay.refund": "การคืนเงิน EasyPay",
-  "menu.payment.merchant.gatewayPayConfig": "กำหนดค่าการชำระเงินเกตเวย์"
+  "menu.payment.merchant.gatewayPayConfig": "กำหนดค่าการชำระเงินเกตเวย์",
+  "menu.trade.transfer": "การโอนเงิน",
+  "menu.trade.transfer.wechat": "การโอนเงิน WeChat",
+  "menu.trade.transfer.alipay": "การโอนเงิน Alipay",
+  "menu.trade.transfer.douyin": "การโอนเงิน Douyin",
+  "menu.trade.transfer.trade": "ประวัติการโอนเงิน"
 }

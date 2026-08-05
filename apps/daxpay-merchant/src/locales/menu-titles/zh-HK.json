@@ -43,5 +43,10 @@
   "menu.plugin.easypay": "易支付",
   "menu.plugin.easypay.order": "易支付訂單",
   "menu.plugin.easypay.refund": "易支付退款",
-  "menu.payment.merchant.gatewayPayConfig": "網關支付配置"
+  "menu.payment.merchant.gatewayPayConfig": "網關支付配置",
+  "menu.trade.transfer": "轉賬",
+  "menu.trade.transfer.wechat": "微信轉賬",
+  "menu.trade.transfer.alipay": "支付寶轉賬",
+  "menu.trade.transfer.douyin": "抖音轉賬",
+  "menu.trade.transfer.trade": "轉賬記錄"
 }

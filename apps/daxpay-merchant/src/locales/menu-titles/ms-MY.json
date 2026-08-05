@@ -43,5 +43,10 @@
   "menu.plugin.easypay": "EasyPay",
   "menu.plugin.easypay.order": "Pesanan EasyPay",
   "menu.plugin.easypay.refund": "Bayaran balik EasyPay",
-  "menu.payment.merchant.gatewayPayConfig": "Konfigurasi Pembayaran Gateway"
+  "menu.payment.merchant.gatewayPayConfig": "Konfigurasi Pembayaran Gateway",
+  "menu.trade.transfer": "Pindahan",
+  "menu.trade.transfer.wechat": "Pindahan WeChat",
+  "menu.trade.transfer.alipay": "Pindahan Alipay",
+  "menu.trade.transfer.douyin": "Pindahan Douyin",
+  "menu.trade.transfer.trade": "Rekod Pindahan"
 }

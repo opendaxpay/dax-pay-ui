@@ -201,6 +201,10 @@ export const PermCodes = {
       VIEW: 'trade:refund:view',
       MANAGE: 'trade:refund:manage',
     },
+    Transfer: {
+      VIEW: 'trade:transfer:view',
+      MANAGE: 'trade:transfer:manage',
+    },
     Fund: {
       VIEW: 'trade:fund:view',
       MANAGE: 'trade:fund:manage',

@@ -1,0 +1,76 @@
+{
+  "transfer": {
+    "status": {
+      "processing": "กำลังโอน",
+      "success": "สำเร็จ",
+      "fail": "ล้มเหลว",
+      "close": "ปิดแล้ว"
+    },
+    "statusColor": {
+      "processing": "processing",
+      "success": "green",
+      "fail": "red",
+      "close": "default"
+    },
+    "channel": {
+      "wechat": "WeChat",
+      "alipay": "Alipay",
+      "douyin": "Douyin"
+    },
+    "field": {
+      "transferNo": "เลขการโอน",
+      "bizTransferNo": "เลขการโอนร้านค้า",
+      "payeeOpenid": "OpenID ผู้รับ",
+      "payeeAccount": "บัญชีผู้รับ",
+      "payeeType": "ประเภทผู้รับ",
+      "amount": "จำนวน (CNY)",
+      "status": "สถานะ",
+      "merchant": "ร้านค้า",
+      "appId": "ID แอป",
+      "outTransferNo": "เลขการโอนช่องทาง",
+      "title": "หัวข้อ",
+      "reason": "เหตุผล",
+      "finishTime": "เวลาสำเร็จ",
+      "createTime": "เวลาสร้าง",
+      "userName": "ชื่อผู้รับ",
+      "transferScene": "สถานการณ์โอน",
+      "transferBody": "พารามิเตอร์ยืนยัน",
+      "notifyUrl": "URL แจ้งเตือน",
+      "attach": "พารามิเตอร์เพิ่มเติม",
+      "errorMsg": "ข้อผิดพลาด",
+      "tradeNo": "เลขธุรกรรม",
+      "containerChannel": "ช่องทาง",
+      "currency": "สกุลเงิน",
+      "relationNo": "เลขที่เกี่ยวข้อง"
+    },
+    "section": {
+      "identity": "ข้อมูลประจำตัว",
+      "amount": "จำนวนและสถานะ",
+      "payee": "ข้อมูลผู้รับ",
+      "notify": "การแจ้งเตือนและข้อผิดพลาด"
+    },
+    "action": {
+      "create": "โอนเงิน",
+      "sync": "ซิงค์",
+      "close": "ปิด",
+      "retry": "ลองใหม่"
+    },
+    "createTitle": "สร้างการโอน",
+    "createConfirmTitle": "ยืนยันการโอน",
+    "createConfirmContent": "การโอนเป็นการชำระเงินออก โปรดยืนยันผู้รับและจำนวนเงิน",
+    "createSuccess": "ส่งการโอนแล้ว",
+    "syncConfirmTitle": "ยืนยันการซิงค์",
+    "syncConfirmContent": "สอบถามสถานะล่าสุดจากช่องทาง",
+    "syncSuccess": "ซิงค์แล้ว",
+    "closeConfirmTitle": "ยืนยันการปิด",
+    "closeConfirmContent": "ไม่สามารถกู้คืนหลังปิด โปรดยืนยันว่าช่องทางยังไม่ได้จ่ายจริง",
+    "closeSuccess": "ปิดการโอนแล้ว",
+    "detail": "รายละเอียดการโอน",
+    "placeholder": {
+      "bizTransferNo": "ไม่ซ้ำกันต่อร้านค้า สำหรับ idempotency",
+      "openid": "OpenID WeChat ผู้รับ",
+      "payeeNameTip": "ไม่อนุญาตต่ำกว่า 0.3 หยวน บังคับตั้งแต่ 2000 หยวน",
+      "notifyUrl": "URL แจ้งเตือนแบบ async แพลตฟอร์ม→ร้านค้า"
+    }
+  }
+}
