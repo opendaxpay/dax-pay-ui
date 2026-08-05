@@ -33,8 +33,7 @@
     "sandboxConfigBtn": "Sandbox",
     "switchEnv": "Switch Environment",
     "switchToSandboxConfirm": "Switch to sandbox environment? This only affects the default environment for newly created channel merchants and the payment routing target. Existing channel merchants retain their original environment.",
-    "switchToProdConfirm": "Switch to production environment? This only affects the default environment for newly created channel merchants and the payment routing target. Existing channel merchants retain their original environment.",
-    "nonIsvDisabledTip": "Non-ISV payment products cannot be edited"
+    "switchToProdConfirm": "Switch to production environment? This only affects the default environment for newly created channel merchants and the payment routing target. Existing channel merchants retain their original environment."
   },
   "placeholder": {
     "name": "Enter product name",

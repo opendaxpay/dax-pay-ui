@@ -27,5 +27,7 @@
   },
   "groupMchConfig": "판매자 구성",
   "cardMchConfig": "판매자 구성",
-  "cardMchConfigDesc": "채널 판매자 Leshua 판매자 ID 구성"
+  "cardMchConfigDesc": "채널 판매자 Leshua 판매자 ID 구성",
+  "cardCapabilityBinding": "결제 앱 설정",
+  "cardCapabilityBindingDesc": "각 결제 능력에 사용할 위챗 앱을 지정합니다"
 }

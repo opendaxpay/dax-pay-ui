@@ -33,8 +33,7 @@
     "sandboxConfigBtn": "Kotak pasir",
     "switchEnv": "Tukar Persekitaran",
     "switchToSandboxConfirm": "Tukar kepada persekitaran kotak pasir? Semua urus niaga akan menggunakan titik akhir API kotak pasir, sesuai untuk penyepaduan dan ujian fungsi.",
-    "switchToProdConfirm": "Beralih kepada persekitaran pengeluaran? Semua urus niaga akan menggunakan titik akhir API pengeluaran dan melibatkan aliran dana sebenar.",
-    "nonIsvDisabledTip": "Produk pembayaran bukan ISV tidak boleh diedit"
+    "switchToProdConfirm": "Beralih kepada persekitaran pengeluaran? Semua urus niaga akan menggunakan titik akhir API pengeluaran dan melibatkan aliran dana sebenar."
   },
   "placeholder": {
     "name": "Masukkan nama produk",

@@ -27,5 +27,7 @@
   },
   "groupMchConfig": "การกำหนดค่าผู้ขาย",
   "cardMchConfig": "การกำหนดค่าผู้ขาย",
-  "cardMchConfigDesc": "กำหนดค่า ID ผู้ค้า Leshua ของผู้ค้าช่องทาง"
+  "cardMchConfigDesc": "กำหนดค่า ID ผู้ค้า Leshua ของผู้ค้าช่องทาง",
+  "cardCapabilityBinding": "ตั้งค่าแอปชำระเงิน",
+  "cardCapabilityBindingDesc": "ระบุแอป WeChat สำหรับแต่ละความสามารถในการชำระเงิน"
 }

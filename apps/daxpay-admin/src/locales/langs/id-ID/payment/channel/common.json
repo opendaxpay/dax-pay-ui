@@ -19,5 +19,6 @@
   "yeePay": "Ya, Bayar",
   "umsPay": "UMS",
   "jeePay": "JeePay",
-  "huifu": "Adapay"
+  "huifu": "Adapay",
+  "stripe": "Stripe"
 }

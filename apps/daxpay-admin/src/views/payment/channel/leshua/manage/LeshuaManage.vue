@@ -1,21 +1,26 @@
 <script lang="ts" setup>
   import { computed, ref } from 'vue';
+  import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
   import { IconifyIcon } from '@vben-core/icons';
 
   import LeshuaIsvConfigEdit from '#/views/payment/channel/leshua/config/LeshuaIsvConfigEdit.vue';
+  import PlatformAppCapability from '#/views/payment/wx/platform/PlatformAppCapability.vue';
 
   defineOptions({ name: 'LeshuaManage' });
 
+  const router = useRouter();
   const mchKeyEditRef = ref<InstanceType<typeof LeshuaIsvConfigEdit> | null>(null);
+  const capabilityRef = ref<InstanceType<typeof PlatformAppCapability> | null>(null);
   // 当前环境(由分发页传入)
   const sandbox = ref(false);
 
   /**
    * 功能卡片配置
-   * 乐刷为聚合服务商模式, 密钥全局唯一, 不区分应用/能力绑定, 仅一个密钥配置入口
+   * 乐刷为聚合服务商模式, 密钥全局唯一; 微信 JSAPI/小程序支付需关联微信应用,
+   * 按能力配置产品级平台默认应用(通道商户未单独配置时兜底)
    */
   const functionCards = computed(() => [
     {
@@ -27,6 +32,28 @@
           title: $t('payment.channel.leshuaIsv.cardMchKey'),
           icon: 'ant-design:key-outlined',
           description: $t('payment.channel.leshuaIsv.cardMchKeyDesc'),
+        },
+      ],
+    },
+    {
+      // 微信应用关联(JSAPI/小程序)
+      group: $t('payment.merchant.channelMerchant.groupApp'),
+      color: 'green',
+      cards: [
+        {
+          key: 'isvApp',
+          // 跳转微信应用管理 Hub(平台档), 管理公众号/小程序等微信服务商应用
+          title: $t('payment.channel.wechatManage.cardIsvApp'),
+          icon: 'ant-design:appstore-outlined',
+          description: $t('payment.wx.app.isvAppEntryDesc'),
+          route: '/payment/wx/app?tab=platform',
+        },
+        {
+          key: 'capabilityBinding',
+          // 本产品平台默认能力(微信 JSAPI/小程序)
+          title: $t('payment.wx.app.productCapabilityTitle'),
+          icon: 'ant-design:api-outlined',
+          description: $t('payment.wx.app.productCapabilityDesc'),
         },
       ],
     },
@@ -53,9 +80,19 @@
     sandbox.value = isSandbox;
   }
 
-  function handleCardClick(card: { key: string }) {
+  function handleCardClick(card: { key: string; route?: string }) {
     if (card.key === 'mchKey') {
       mchKeyEditRef.value?.init(sandbox.value);
+      return;
+    }
+    if (card.key === 'capabilityBinding') {
+      // 产品级平台默认能力绑(微信应用), 通道商户未单独配置时兜底
+      capabilityRef.value?.show('leshua_pay');
+      return;
+    }
+    if (card.route) {
+      // 支持带 query 的完整 path
+      router.push(card.route);
     }
   }
 
@@ -87,7 +124,8 @@
             </div>
             <div
               class="mb-1.5 text-base font-bold text-foreground group-hover:text-primary transition-colors duration-300"
-            >{{ card.title }}</div>
+              >{{ card.title }}</div
+            >
             <a-tooltip :title="card.description" placement="bottom">
               <div class="line-clamp-1 text-xs leading-relaxed text-muted-foreground">{{ card.description }}</div>
             </a-tooltip>
@@ -100,6 +138,8 @@
       </div>
     </div>
     <LeshuaIsvConfigEdit ref="mchKeyEditRef" />
+
+    <PlatformAppCapability ref="capabilityRef" />
   </div>
 </template>
 

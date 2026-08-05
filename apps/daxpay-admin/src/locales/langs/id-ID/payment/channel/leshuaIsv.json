@@ -27,5 +27,7 @@
   },
   "groupMchConfig": "Konfigurasi Pedagang",
   "cardMchConfig": "Konfigurasi Pedagang",
-  "cardMchConfigDesc": "Konfigurasikan ID pedagang saluran Leshua"
+  "cardMchConfigDesc": "Konfigurasikan ID pedagang saluran Leshua",
+  "cardCapabilityBinding": "Pengaturan Aplikasi Pembayaran",
+  "cardCapabilityBindingDesc": "Tentukan aplikasi WeChat untuk setiap kemampuan pembayaran"
 }

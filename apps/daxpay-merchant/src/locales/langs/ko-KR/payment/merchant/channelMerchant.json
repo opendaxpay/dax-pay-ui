@@ -137,5 +137,6 @@
   "uploadKey": "개인키 업로드",
   "uploadPublicKey": "공개키 업로드",
   "uploadSuccess": "{name} 업로드 완료",
-  "cardCapabilityBinding": "결제 앱 설정"
+  "cardCapabilityBinding": "결제 앱 설정",
+  "manageTitleLeshua": "레슈아 상인 관리"
 }

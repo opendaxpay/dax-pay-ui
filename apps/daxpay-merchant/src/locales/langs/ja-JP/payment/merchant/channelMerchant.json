@@ -137,5 +137,6 @@
   "uploadKey": "秘密鍵アップロード",
   "uploadPublicKey": "公開鍵アップロード",
   "uploadSuccess": "{name} アップロード完了",
-  "cardCapabilityBinding": "支払いアプリ設定"
+  "cardCapabilityBinding": "支払いアプリ設定",
+  "manageTitleLeshua": "レシュア マーチャント マネジメント"
 }

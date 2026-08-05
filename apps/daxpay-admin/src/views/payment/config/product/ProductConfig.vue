@@ -9,6 +9,7 @@
   import { PayProductConfigApi, type PayProductConfigResult } from '#/api/payment/config/pay-product-config.api';
   import { PayEnvApi } from '#/api/payment/masterdata/pay-env.api';
   import ChannelLogo from '#/components/channel/ChannelLogo.vue';
+  import { productI18nMap, productNameMap } from '#/enums/payment';
   import { useMessage } from '#/hooks/useMessage';
 
   defineOptions({ name: 'ProductConfig' });
@@ -21,6 +22,18 @@
   const radioRefreshKey = ref(0);
   // 全局沙箱环境开关(后端控制), 关闭时不展示沙箱相关选项
   const sandboxEnabled = ref(false);
+
+  /**
+   * 获取产品展示名称
+   * 优先走 i18n 映射(各语种展示本地化名称), 未映射的产品回退数据库名称
+   */
+  function getProductName(row: PayProductConfigResult): string {
+    const key = productI18nMap[row.product || ''];
+    if (key) {
+      return $t(key);
+    }
+    return row.name || productNameMap[row.product || ''] || '-';
+  }
 
   /**
    * 获取当前激活的环境值
@@ -136,7 +149,7 @@
             class="product-config-card group relative overflow-hidden rounded-xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
             :class="
               row.activeEnv === 'sandbox'
-                ? 'border-amber-200/60 dark:border-amber-500/30 bg-card'
+                ? '!border-amber-400 dark:!border-amber-500 bg-card'
                 : 'border-blue-100/60 dark:border-blue-500/30 bg-card'
             "
             :styles="{ body: { padding: 0, display: 'flex', flexDirection: 'column', height: '100%' } }"
@@ -165,7 +178,7 @@
                 <ChannelLogo :product="row.product" :channel="row.channel!" :size="44" />
               </div>
               <div class="text-center font-bold text-foreground text-[14px] mb-3 px-4">
-                {{ row.name }}
+                {{ getProductName(row) }}
               </div>
             </div>
 

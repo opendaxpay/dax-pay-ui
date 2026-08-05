@@ -24,6 +24,8 @@ export enum ChannelEnum {
   SAND_PAY = 'sand_pay',
   /** 盛付通 */
   SHENG_PAY = 'sheng_pay',
+  /** Stripe */
+  STRIPE = 'stripe',
   /** 银联商务 */
   UMS_PAY = 'ums_pay',
   /** 银联 */
@@ -59,6 +61,7 @@ export const channelI18nMap: Record<string, string> = {
   [ChannelEnum.YEE_PAY]: 'payment.channel.common.yeePay',
   [ChannelEnum.UMS_PAY]: 'payment.channel.common.umsPay',
   [ChannelEnum.JEE_PAY]: 'payment.channel.common.jeePay',
+  [ChannelEnum.STRIPE]: 'payment.channel.common.stripe',
 };
 
 /**
@@ -82,6 +85,7 @@ export const channelNameMap: Record<string, string> = {
   [ChannelEnum.YEE_PAY]: '易宝',
   [ChannelEnum.UMS_PAY]: '银联商务',
   [ChannelEnum.JEE_PAY]: 'jeepay',
+  [ChannelEnum.STRIPE]: 'Stripe',
 };
 
 /**
@@ -107,4 +111,6 @@ export const channelLogoMap: Record<string, string> = {
   [ChannelEnum.YEE_PAY]: 'yee_pay',
   [ChannelEnum.UMS_PAY]: 'ums_pay',
   [ChannelEnum.JEE_PAY]: 'jee_pay',
+  // Stripe 通道
+  [ChannelEnum.STRIPE]: 'stripe',
 };

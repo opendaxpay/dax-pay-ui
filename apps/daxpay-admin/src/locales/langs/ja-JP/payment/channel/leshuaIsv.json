@@ -27,5 +27,7 @@
   },
   "groupMchConfig": "販売者の構成",
   "cardMchConfig": "販売者の構成",
-  "cardMchConfigDesc": "チャネルマーチャント Leshua マーチャント ID を構成する"
+  "cardMchConfigDesc": "チャネルマーチャント Leshua マーチャント ID を構成する",
+  "cardCapabilityBinding": "支払いアプリ設定",
+  "cardCapabilityBindingDesc": "各決済能力で使用する WeChat アプリを指定します"
 }

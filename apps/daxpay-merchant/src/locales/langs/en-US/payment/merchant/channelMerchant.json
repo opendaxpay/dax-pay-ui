@@ -137,5 +137,6 @@
   "uploadKey": "Upload Private Key",
   "uploadPublicKey": "Upload Public Key",
   "uploadSuccess": "{name} uploaded",
-  "cardCapabilityBinding": "Payment App Setup"
+  "cardCapabilityBinding": "Payment App Setup",
+  "manageTitleLeshua": "Leshua Merchant Management"
 }

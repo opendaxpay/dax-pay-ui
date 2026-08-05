@@ -137,5 +137,6 @@
   "uploadKey": "อัปโหลด Private Key",
   "uploadPublicKey": "อัปโหลด Public Key",
   "uploadSuccess": "อัปโหลด {name} สำเร็จ",
-  "cardCapabilityBinding": "ตั้งค่าแอปชำระเงิน"
+  "cardCapabilityBinding": "ตั้งค่าแอปชำระเงิน",
+  "manageTitleLeshua": "การจัดการพ่อค้า Leshua"
 }

@@ -137,5 +137,6 @@
   "uploadKey": "Muat Naik Private Key",
   "uploadPublicKey": "Muat Naik Public Key",
   "uploadSuccess": "{name} dimuat naik",
-  "cardCapabilityBinding": "Persediaan Apl Pembayaran"
+  "cardCapabilityBinding": "Persediaan Apl Pembayaran",
+  "manageTitleLeshua": "Pengurusan Pedagang Leshua"
 }

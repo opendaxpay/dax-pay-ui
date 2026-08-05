@@ -228,7 +228,7 @@
                   <ChannelLogo :product="item.code" :channel="item.channel!" :size="44" />
                 </div>
                 <div class="text-center font-bold text-foreground text-sm mb-1">
-                  {{ item.name || getProductName(item.code || '') }}
+                  {{ getProductName(item.code || '') }}
                 </div>
                 <div class="text-xs text-muted-foreground">
                   {{ getChannelName(item.channel || '') }}

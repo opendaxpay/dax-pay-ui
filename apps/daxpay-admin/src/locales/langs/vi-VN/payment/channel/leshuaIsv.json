@@ -27,5 +27,7 @@
   },
   "groupMchConfig": "Cấu hình người bán",
   "cardMchConfig": "Cấu hình người bán",
-  "cardMchConfigDesc": "Định cấu hình ID người bán Leshua của kênh"
+  "cardMchConfigDesc": "Định cấu hình ID người bán Leshua của kênh",
+  "cardCapabilityBinding": "Thiết lập ứng dụng thanh toán",
+  "cardCapabilityBindingDesc": "Chỉ định ứng dụng WeChat cho từng khả năng thanh toán"
 }

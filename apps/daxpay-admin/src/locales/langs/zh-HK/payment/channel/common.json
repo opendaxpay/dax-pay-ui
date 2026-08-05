@@ -19,5 +19,6 @@
   "yeePay": "易寶",
   "umsPay": "銀聯商務",
   "jeePay": "jeepay",
-  "huifu": "匯付天下"
+  "huifu": "匯付天下",
+  "stripe": "Stripe"
 }

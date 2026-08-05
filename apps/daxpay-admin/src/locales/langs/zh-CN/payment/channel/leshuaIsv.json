@@ -27,5 +27,7 @@
   },
   "groupMchConfig": "商户配置",
   "cardMchConfig": "商户配置",
-  "cardMchConfigDesc": "配置通道商户乐刷商户号"
+  "cardMchConfigDesc": "配置通道商户乐刷商户号",
+  "cardCapabilityBinding": "支付应用配置",
+  "cardCapabilityBindingDesc": "决定每种支付能力用哪个微信应用发起支付"
 }

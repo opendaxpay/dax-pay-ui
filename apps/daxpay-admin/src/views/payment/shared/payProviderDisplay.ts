@@ -15,6 +15,8 @@ export const PAY_PROVIDER_DISPLAY: PayProviderInfo[] = [
   { code: 'union_pay', svgName: 'union_pay', name: '银联支付' },
   { code: 'visa', svgName: 'visa', name: 'Visa' },
   { code: 'mastercard', svgName: 'mastercard', name: 'Mastercard' },
+  // Stripe 国际信用卡通道
+  { code: 'stripe', svgName: 'stripe', name: 'Stripe' },
   { code: 'douyin', svgName: 'douyin_pay', name: '抖音支付' },
 ];
 

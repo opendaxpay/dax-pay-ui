@@ -27,5 +27,7 @@
   },
   "groupMchConfig": "Merchant Configuration",
   "cardMchConfig": "Merchant Configuration",
-  "cardMchConfigDesc": "Configure channel merchant Leshua merchant ID"
+  "cardMchConfigDesc": "Configure channel merchant Leshua merchant ID",
+  "cardCapabilityBinding": "Payment App Setup",
+  "cardCapabilityBindingDesc": "Decide which WeChat app each payment capability uses to initiate payment"
 }

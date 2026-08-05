@@ -33,8 +33,7 @@
     "sandboxConfigBtn": "沙箱配置",
     "switchEnv": "切換環境",
     "switchToSandboxConfirm": "確定要切換到沙箱環境嗎？切換後僅影響「新建通道商戶的預設環境」與「支付路由目標」，已建立的通道商戶保持各自原環境不變。",
-    "switchToProdConfirm": "確定要切換到生產環境嗎？切換後僅影響「新建通道商戶的預設環境」與「支付路由目標」，已建立的通道商戶保持各自原環境不變。",
-    "nonIsvDisabledTip": "非服務商類型的支付產品無法編輯"
+    "switchToProdConfirm": "確定要切換到生產環境嗎？切換後僅影響「新建通道商戶的預設環境」與「支付路由目標」，已建立的通道商戶保持各自原環境不變。"
   },
   "placeholder": {
     "name": "請輸入產品名稱",

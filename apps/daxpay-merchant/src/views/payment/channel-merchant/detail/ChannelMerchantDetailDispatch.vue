@@ -16,6 +16,7 @@
   import AlipayChannelMerchantManage from '#/views/payment/channel/alipay/manage/mch/AlipayChannelMerchantManage.vue';
   import AlipayMchManage from '#/views/payment/channel/alipay/manage/mch/AlipayMchManage.vue';
   import DouyinDirectMchManage from '#/views/payment/channel/douyin/manage/DouyinDirectMchManage.vue';
+  import LeshuaChannelMerchantManage from '#/views/payment/channel/leshua/manage/mch/LeshuaChannelMerchantManage.vue';
   import WechatChannelMerchantManage from '#/views/payment/channel/wechat/manage/mch/WechatChannelMerchantManage.vue';
   import WechatDirectMchManage from '#/views/payment/channel/wechat/manage/mch/WechatDirectMchManage.vue';
 
@@ -41,6 +42,7 @@
   const wechatDirectManageRef = ref<InstanceType<typeof WechatDirectMchManage>>();
   const wechatManageRef = ref<InstanceType<typeof WechatChannelMerchantManage>>();
   const douyinDirectManageRef = ref<InstanceType<typeof DouyinDirectMchManage>>();
+  const leshuaManageRef = ref<InstanceType<typeof LeshuaChannelMerchantManage>>();
 
   const resolvedProduct = computed(() => product.value || channelMerchant.value.product || '');
 
@@ -61,6 +63,9 @@
     if (productCode === ProductEnum.DOUYIN_PAY) {
       return $t('payment.channel.douyinManage.manageTitle');
     }
+    if (productCode === ProductEnum.LESHUA_PAY) {
+      return $t('payment.merchant.channelMerchant.manageTitleLeshua');
+    }
     return $t('payment.merchant.channelMerchant.manageTitleDefault');
   }
 
@@ -73,7 +78,8 @@
       p === ProductEnum.ALIPAY_ISV ||
       p === ProductEnum.WECHAT_ISV ||
       p === ProductEnum.WECHAT_PAY ||
-      p === ProductEnum.DOUYIN_PAY
+      p === ProductEnum.DOUYIN_PAY ||
+      p === ProductEnum.LESHUA_PAY
     );
   }
 
@@ -122,6 +128,9 @@
     }
     if (product.value === ProductEnum.DOUYIN_PAY) {
       douyinDirectManageRef.value?.init(channelMchNo, channelMerchant.value);
+    }
+    if (product.value === ProductEnum.LESHUA_PAY) {
+      leshuaManageRef.value?.init(channelMchNo, channelMerchant.value);
     }
   }
 
@@ -202,6 +211,11 @@
         <DouyinDirectMchManage
           v-else-if="resolvedProduct === ProductEnum.DOUYIN_PAY"
           ref="douyinDirectManageRef"
+          @success="loadChannelMerchant"
+        />
+        <LeshuaChannelMerchantManage
+          v-else-if="resolvedProduct === ProductEnum.LESHUA_PAY"
+          ref="leshuaManageRef"
           @success="loadChannelMerchant"
         />
         <div

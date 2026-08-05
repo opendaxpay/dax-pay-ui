@@ -137,5 +137,6 @@
   "uploadKey": "Tải lên private key",
   "uploadPublicKey": "Tải lên public key",
   "uploadSuccess": "{name} đã tải lên",
-  "cardCapabilityBinding": "Thiết lập ứng dụng thanh toán"
+  "cardCapabilityBinding": "Thiết lập ứng dụng thanh toán",
+  "manageTitleLeshua": "Quản lý thương gia Leshua"
 }

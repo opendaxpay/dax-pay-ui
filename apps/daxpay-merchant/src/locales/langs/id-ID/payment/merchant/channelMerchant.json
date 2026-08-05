@@ -137,5 +137,6 @@
   "uploadKey": "Unggah Private Key",
   "uploadPublicKey": "Unggah Public Key",
   "uploadSuccess": "{name} diunggah",
-  "cardCapabilityBinding": "Pengaturan Aplikasi Pembayaran"
+  "cardCapabilityBinding": "Pengaturan Aplikasi Pembayaran",
+  "manageTitleLeshua": "Manajemen Pedagang Leshua"
 }

@@ -19,5 +19,6 @@
   "yeePay": "예페이",
   "umsPay": "UMS",
   "jeePay": "지페이",
-  "huifu": "아다페이"
+  "huifu": "아다페이",
+  "stripe": "Stripe"
 }

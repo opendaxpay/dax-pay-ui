@@ -33,8 +33,7 @@
     "sandboxConfigBtn": "Bak pasir",
     "switchEnv": "Ganti Lingkungan",
     "switchToSandboxConfirm": "Beralih ke lingkungan kotak pasir? Semua transaksi akan menggunakan titik akhir API sandbox, cocok untuk integrasi dan pengujian fungsional.",
-    "switchToProdConfirm": "Beralih ke lingkungan produksi? Semua transaksi akan menggunakan titik akhir API produksi dan melibatkan aliran dana nyata.",
-    "nonIsvDisabledTip": "Produk pembayaran non-ISV tidak dapat diedit"
+    "switchToProdConfirm": "Beralih ke lingkungan produksi? Semua transaksi akan menggunakan titik akhir API produksi dan melibatkan aliran dana nyata."
   },
   "placeholder": {
     "name": "Masukkan nama produk",
