@@ -29,6 +29,8 @@
     "cardWxApp": "Payment Apps (WeChat)",
     "cardWxAppDesc": "Manage WeChat Official Accounts, Mini Programs, and other open apps for this merchant",
     "cardDyApp": "Payment Apps (Douyin)",
-    "cardDyAppDesc": "Manage Douyin mini programs, mobile apps, web apps, and other open apps for this merchant"
+    "cardDyAppDesc": "Manage Douyin mini programs, mobile apps, web apps, and other open apps for this merchant",
+    "cardRiskConfig": "Risk Control",
+    "cardRiskConfigDesc": "Manage merchant risk toggles like geo-fence"
   }
 }

@@ -1,0 +1,9 @@
+{
+  "riskConfig": {
+    "title": "Kontrol Risiko",
+    "infoBanner": "Geo-fence menggunakan gating dua level: aktifkan saklar utama platform di \"Strategi Risiko\" terlebih dahulu, lalu aktifkan di sini untuk merchant agar berlaku.",
+    "geoFenceEnabled": "Geo-fence",
+    "geoFenceEnabledDesc": "Saat diaktifkan, kota IP klien dibandingkan dengan kota toko; pembayaran di luar rentang yang diizinkan diblokir sesuai strategi platform.",
+    "confirmSave": "Simpan konfigurasi risiko untuk merchant ini?"
+  }
+}

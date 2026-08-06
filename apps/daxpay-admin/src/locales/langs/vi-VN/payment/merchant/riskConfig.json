@@ -1,0 +1,9 @@
+{
+  "riskConfig": {
+    "title": "Kiểm soát rủi ro",
+    "infoBanner": "Geo-fence sử dụng cổng hai cấp: bật công tắc chính của nền tảng trong \"Chiến lược rủi ro\" trước, sau đó bật tại đây cho merchant để có hiệu lực.",
+    "geoFenceEnabled": "Geo-fence",
+    "geoFenceEnabledDesc": "Khi bật, thành phố IP khách hàng được so sánh với thành phố cửa hàng; thanh toán ngoài phạm vi cho phép bị chặn theo chiến lược nền tảng.",
+    "confirmSave": "Lưu cấu hình rủi ro cho merchant này?"
+  }
+}

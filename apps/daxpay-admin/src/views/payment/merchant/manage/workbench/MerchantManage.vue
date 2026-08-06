@@ -133,6 +133,14 @@
           description: $t('payment.merchant.workbench.workbench.cardWxDomainVerifyDesc'),
           route: '/payment/merchant/manage/wx-verify',
         },
+        {
+          key: 'riskConfig',
+          // 风控配置（地理围栏等商户级风控开关）
+          title: $t('payment.merchant.workbench.workbench.cardRiskConfig'),
+          icon: 'ant-design:security-scan-outlined',
+          description: $t('payment.merchant.workbench.workbench.cardRiskConfigDesc'),
+          route: '/payment/merchant/manage/risk-config',
+        },
       ],
     },
   ]);

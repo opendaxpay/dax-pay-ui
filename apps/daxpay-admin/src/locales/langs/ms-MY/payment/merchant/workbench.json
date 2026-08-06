@@ -29,6 +29,8 @@
     "cardWxApp": "Apl Pembayaran (WeChat)",
     "cardWxAppDesc": "Urus Akaun Rasmi WeChat, Mini Program dan apl terbuka lain untuk peniaga ini",
     "cardDyApp": "Apl Pembayaran (Douyin)",
-    "cardDyAppDesc": "Urus mini program, apl mudah alih, apl web Douyin dan apl terbuka lain untuk peniaga ini"
+    "cardDyAppDesc": "Urus mini program, apl mudah alih, apl web Douyin dan apl terbuka lain untuk peniaga ini",
+    "cardRiskConfig": "Kawalan Risiko",
+    "cardRiskConfigDesc": "Urus suis risiko pedagang seperti geo-fence"
   }
 }

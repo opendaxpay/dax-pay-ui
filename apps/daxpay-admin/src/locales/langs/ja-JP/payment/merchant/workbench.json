@@ -29,6 +29,8 @@
     "cardWxApp": "決済アプリ(WeChat)",
     "cardWxAppDesc": "当該加盟店のWeChat公式アカウント・ミニプログラム等の開放アプリを管理",
     "cardDyApp": "決済アプリ(Douyin)",
-    "cardDyAppDesc": "当該加盟店のDouyinミニプログラム・モバイルアプリ・ウェブアプリ等の開放アプリを管理"
+    "cardDyAppDesc": "当該加盟店のDouyinミニプログラム・モバイルアプリ・ウェブアプリ等の開放アプリを管理",
+    "cardRiskConfig": "リスク制御",
+    "cardRiskConfigDesc": "この加盟店のジオフェンス等のリスクスイッチを管理"
   }
 }

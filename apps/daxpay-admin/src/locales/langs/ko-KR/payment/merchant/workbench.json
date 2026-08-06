@@ -29,6 +29,8 @@
     "cardWxApp": "결제 앱(위챗)",
     "cardWxAppDesc": "해당 가맹점의 위챗 공식계정·미니프로그램 등 오픈 앱 관리",
     "cardDyApp": "결제 앱(두인)",
-    "cardDyAppDesc": "해당 가맹점의 두인 미니프로그램·모바일 앱·웹 앱 등 오픈 앱 관리"
+    "cardDyAppDesc": "해당 가맹점의 두인 미니프로그램·모바일 앱·웹 앱 등 오픈 앱 관리",
+    "cardRiskConfig": "리스크 제어",
+    "cardRiskConfigDesc": "해당 가맹점의 지오펜스 등 리스크 스위치 관리"
   }
 }

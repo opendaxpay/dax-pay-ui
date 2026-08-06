@@ -1,0 +1,9 @@
+{
+  "riskConfig": {
+    "title": "Kawalan Risiko",
+    "infoBanner": "Geo-fence menggunakan gating dua tahap: aktifkan suis utama platform dalam \"Strategi Risiko\" dahulu, kemudian aktifkan di sini untuk pedagang agar berkesan.",
+    "geoFenceEnabled": "Geo-fence",
+    "geoFenceEnabledDesc": "Apabila diaktifkan, bandar IP pelanggan dibandingkan dengan bandar kedai; pembayaran di luar julat yang dibenarkan disekat mengikut strategi platform.",
+    "confirmSave": "Simpan konfigurasi risiko untuk pedagang ini?"
+  }
+}

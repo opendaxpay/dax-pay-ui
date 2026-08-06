@@ -29,6 +29,8 @@
     "cardWxApp": "支付應用(微信)",
     "cardWxAppDesc": "管理該商戶的微信公眾號、小程式等開放應用",
     "cardDyApp": "支付應用(抖音)",
-    "cardDyAppDesc": "管理該商戶的抖音小程式、行動應用、網頁應用等開放應用"
+    "cardDyAppDesc": "管理該商戶的抖音小程式、行動應用、網頁應用等開放應用",
+    "cardRiskConfig": "風控配置",
+    "cardRiskConfigDesc": "管理該商戶的地理圍欄等風控開關"
   }
 }

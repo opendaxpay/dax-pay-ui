@@ -195,6 +195,10 @@ export const PermCodes = {
         VIEW: 'payment:risk:hit:view',
         MANAGE: 'payment:risk:hit:manage',
       },
+      MchConfig: {
+        VIEW: 'payment:risk:mch-config:view',
+        MANAGE: 'payment:risk:mch-config:manage',
+      },
     },
   },
 

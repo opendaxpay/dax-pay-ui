@@ -29,6 +29,8 @@
     "cardWxApp": "Ứng dụng thanh toán (WeChat)",
     "cardWxAppDesc": "Quản lý tài khoản chính thức WeChat, Mini Program và ứng dụng mở khác của thương nhân này",
     "cardDyApp": "Ứng dụng thanh toán (Douyin)",
-    "cardDyAppDesc": "Quản lý mini program, ứng dụng mobile, ứng dụng web Douyin và ứng dụng mở khác của thương nhân này"
+    "cardDyAppDesc": "Quản lý mini program, ứng dụng mobile, ứng dụng web Douyin và ứng dụng mở khác của thương nhân này",
+    "cardRiskConfig": "Kiểm soát rủi ro",
+    "cardRiskConfigDesc": "Quản lý công tắc rủi ro của merchant như geo-fence"
   }
 }
