@@ -24,20 +24,21 @@
       "open_id": "OpenId",
       "alipay_user": "Alipay ユーザー",
       "wechat_openid": "WeChat OpenId",
-      "province": "省"
+      "province": "省",
+      "city": "都市"
     },
     "status": {
       "enable": "Enabled",
       "disable": "Disabled"
     },
     "tip": {
-      "typeValueImmutable": "種別と値は作成後に変更できません",
       "expireEmpty": "空欄は無期限",
       "openIdBoundaryHint": "付款码 / APP / 外部ブラウザは事後記録のみです。",
       "alipayGlobalHint": "Alipay userId はプラットフォーム全体に有効で、アプリ / 商品では区別しません。",
       "wechatAppHint": "選択したプラットフォーム決済アプリで取得した openId のみ遮断します。",
       "ipHint": "クライアント IP の完全一致で照合（サブネット/CIDR 非対応）、プラットフォーム全体に適用され、アプリ/決済商品を問いません。",
-      "provinceHint": "支払い IP の帰属都道府県で照合（ip2region オフライン解析）。「リスク戦略」の「都道府県ブロック」スイッチの有効化が必要。IPv6・イントラネット・解析失敗時は許容されます。"
+      "provinceHint": "支払い IP の帰属都道府県で照合（ip2region オフライン解析）。「リスク戦略」の「都道府県ブロック」スイッチの有効化が必要。IPv6・イントラネット・解析失敗時は許容されます。",
+      "cityHint": "支払い IP の所属都市で照合します（ip2region オフライン解析）。「リスク戦略」で「市域遮断」スイッチを有効にすると有効になります。省レベルの遮断とは独立しており、省がヒットした場合は市のチェックは実行されません。直轄市の市レベルリストは省レベルと同等です。IPv6、内部ネットワークアドレス、解析失敗時は放行します。"
     },
     "scope": {
       "global": "グローバル"
@@ -47,7 +48,8 @@
       "alipayUserId": "Alipay userId を入力",
       "wechatOpenId": "WeChat openId を入力",
       "payApp": "プラットフォーム決済アプリを選択",
-      "province": "省を選択してください"
+      "province": "省を選択してください",
+      "city": "都市を選択"
     }
   },
   "hit": {
@@ -92,7 +94,8 @@
       "wechat_openid": "WeChat OpenId",
       "overseas_ip": "海外IP",
       "province": "省",
-      "geo_fence": "ジオフェンス"
+      "geo_fence": "ジオフェンス",
+      "city": "都市"
     },
     "strategy": {
       "strict": "厳格",

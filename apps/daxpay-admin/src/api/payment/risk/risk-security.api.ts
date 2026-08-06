@@ -64,6 +64,8 @@ export interface PaySecurityConfig {
   blockOverseasIp?: boolean;
   /** 省级地区拦截（默认关闭, 开启后根据 IP 归属省份匹配省级黑名单） */
   provinceBlacklistEnabled?: boolean;
+  /** 市级地区拦截（默认关闭, 开启后根据 IP 归属城市匹配市级黑名单; 与省级开关独立, 省命中后不执行） */
+  cityBlacklistEnabled?: boolean;
   /** 地理围栏全局开关（默认关闭, 开启后各商户围栏 opt-in 才生效） */
   geoFenceEnabled?: boolean;
   /** 地理围栏全局策略（strict 严格 / balanced 平衡 / loose 宽松） */

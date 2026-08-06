@@ -12,6 +12,7 @@
     "levelEnhanced": "레벨: 강화",
     "overseasOn": "해외 IP: 차단",
     "provinceOn": "지역: 차단",
+    "cityOn": "시 차단: 켜짐",
     "blacklistOn": "블랙리스트: 켜짐",
     "geoFenceOn": "지오펜스: 켜짐",
     "strategy": "전략: "
@@ -49,6 +50,10 @@
   "provinceBlacklistEnabled": {
     "label": "지역별 차단",
     "desc": "켜면 IP 의 소속 지역을 지역별 블랙리스트와 대조하고, 히트 시 차단 전략을 따릅니다. 지역별 목록은「결제 보안 → 블랙리스트」에서 관리하세요."
+  },
+  "cityBlacklistEnabled": {
+    "label": "시 지역 차단",
+    "desc": "활성화하면 IP가 속한 도시를 시 수준 블랙리스트와 대조하며, 적중 시 차단 전략에 따라 처리합니다. 성 수준 스위치와 독립적이며, 성이 적중하면 시 검사를 수행하지 않습니다. 시 수준 목록은 「결제 보안 → 블랙리스트」에서 관리하세요. 직할시의 시 수준 목록은 성 수준과 동일합니다."
   },
   "geoFenceEnabled": {
     "label": "지오펜스",

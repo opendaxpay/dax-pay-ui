@@ -12,6 +12,7 @@
     "levelEnhanced": "拦截级别：增强",
     "overseasOn": "海外 IP：拦截",
     "provinceOn": "省级拦截：开",
+    "cityOn": "市级拦截：开",
     "blacklistOn": "黑名单：开",
     "geoFenceOn": "围栏：开",
     "strategy": "策略："
@@ -49,6 +50,10 @@
   "provinceBlacklistEnabled": {
     "label": "省级地区拦截",
     "desc": "开启后，将根据 IP 归属省份匹配省级黑名单，命中后按拦截策略处理。需在「支付安全 → 黑名单」中维护省级名单数据。"
+  },
+  "cityBlacklistEnabled": {
+    "label": "市级地区拦截",
+    "desc": "开启后，将根据 IP 归属城市匹配市级黑名单，命中后按拦截策略处理。与省级拦截开关独立，省级命中后不执行市级检查。需在「支付安全 → 黑名单」中维护市级名单数据；直辖市的市级名单等同省级。"
   },
   "geoFenceEnabled": {
     "label": "地理围栏",

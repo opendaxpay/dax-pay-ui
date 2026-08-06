@@ -24,20 +24,21 @@
       "open_id": "OpenId",
       "alipay_user": "Alipay user",
       "wechat_openid": "WeChat OpenId",
-      "province": "Province"
+      "province": "Province",
+      "city": "City"
     },
     "status": {
       "enable": "Enabled",
       "disable": "Disabled"
     },
     "tip": {
-      "typeValueImmutable": "Type and value cannot be changed after creation",
       "expireEmpty": "Leave empty for permanent",
       "openIdBoundaryHint": "Payment code / APP / external browser scenarios are logged after payment only.",
       "alipayGlobalHint": "Alipay userId applies platform-wide and is not split by app or product.",
       "wechatAppHint": "Only blocks openIds obtained under the selected platform payment app; pick the mini program app for cashier.",
       "ipHint": "Matches the exact client IP (no CIDR/ranges); applies platform-wide, regardless of app or product.",
-      "provinceHint": "Matches the client IP's province (offline ip2region). Requires enabling \"Province block\" in Risk Strategy. IPv6, intranet, and unresolvable IPs are allowed."
+      "provinceHint": "Matches the client IP's province (offline ip2region). Requires enabling \"Province block\" in Risk Strategy. IPv6, intranet, and unresolvable IPs are allowed.",
+      "cityHint": "Matches by the IP attribution city (offline ip2region resolution); effective after enabling \"City-level Blocking\" in Risk Strategy. Independent from province-level blocking; the city check is skipped once a province hits. For municipalities the city list is equivalent to the province level. IPv6, intranet addresses, and resolution failures are allowed."
     },
     "scope": {
       "global": "Global"
@@ -47,7 +48,8 @@
       "alipayUserId": "Enter Alipay userId",
       "wechatOpenId": "Enter WeChat openId",
       "payApp": "Select a platform payment app",
-      "province": "Please select province"
+      "province": "Please select province",
+      "city": "Select city"
     }
   },
   "hit": {
@@ -92,7 +94,8 @@
       "wechat_openid": "WeChat OpenId",
       "overseas_ip": "Overseas IP",
       "province": "Province",
-      "geo_fence": "Geo-fence"
+      "geo_fence": "Geo-fence",
+      "city": "City"
     },
     "strategy": {
       "strict": "Strict",

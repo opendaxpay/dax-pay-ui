@@ -12,6 +12,7 @@
     "levelEnhanced": "攔截級別：增強",
     "overseasOn": "海外 IP：攔截",
     "provinceOn": "省級攔截：開",
+    "cityOn": "市級攔截：開",
     "blacklistOn": "黑名單：開",
     "geoFenceOn": "圍欄：開",
     "strategy": "策略："
@@ -49,6 +50,10 @@
   "provinceBlacklistEnabled": {
     "label": "省級地區攔截",
     "desc": "開啟後，將根據 IP 歸屬省份匹配省級黑名單，命中後按攔截策略處理。需在「支付安全 → 黑名單」中維護省級名單資料。"
+  },
+  "cityBlacklistEnabled": {
+    "label": "市級地區攔截",
+    "desc": "開啟後，將根據 IP 歸屬城市匹配市級黑名單，命中後按攔截策略處理。與省級攔截開關獨立，省級命中後不執行市級檢查。需在「支付安全 → 黑名單」中維護市級名單資料；直轄市的市級名單等同省級。"
   },
   "geoFenceEnabled": {
     "label": "地理圍欄",

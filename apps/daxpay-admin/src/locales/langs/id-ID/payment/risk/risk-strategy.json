@@ -12,6 +12,7 @@
     "levelEnhanced": "Level: Ditingkatkan",
     "overseasOn": "IP Luar Negeri: Blokir",
     "provinceOn": "Provinsi: Blokir",
+    "cityOn": "Kota: Blokir",
     "blacklistOn": "Daftar Hitam: Aktif",
     "geoFenceOn": "Geo-pagar: Aktif",
     "strategy": "Strategi: "
@@ -49,6 +50,10 @@
   "provinceBlacklistEnabled": {
     "label": "Pemblokiran Tingkat Provinsi",
     "desc": "Saat aktif, provinsi IP dicocokkan dengan daftar hitam provinsi; hit mengikuti strategi intersepsi. Kelola daftar provinsi di Keamanan Pembayaran → Daftar Hitam."
+  },
+  "cityBlacklistEnabled": {
+    "label": "Pemblokiran Tingkat Kota",
+    "desc": "Saat aktif, kota IP dicocokkan dengan daftar hitam tingkat kota; hit mengikuti strategi intersepsi. Independen dari saklar tingkat provinsi; saat provinsi terkena hit, pemeriksaan kota tidak dijalankan. Kelola daftar kota di Keamanan Pembayaran → Daftar Hitam; untuk kotamadya, daftar kota setara dengan tingkat provinsi."
   },
   "geoFenceEnabled": {
     "label": "Geo-pagar",

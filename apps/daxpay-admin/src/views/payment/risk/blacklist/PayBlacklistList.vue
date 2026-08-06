@@ -7,6 +7,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { ChinaRegionApi, type Region } from '#/api/core/region.api';
   import {
     PayBlacklistApi,
     type PayBlacklistQuery,
@@ -37,6 +38,8 @@
   const editRef = ref();
   // 平台应用名缓存（列表作用范围展示）
   const platformAppNameMap = ref<Record<string, string>>({});
+  // 行政区划编码→名称映射（province/city 名单值回显, 由省市联动数据拍平）
+  const regionNameMap = ref<Record<string, string>>({});
 
   const queryFields = computed<QueryField[]>(() => [
     {
@@ -50,6 +53,7 @@
         { label: $t('payment.risk.blacklist.type.alipay_user'), value: 'alipay_user' },
         { label: $t('payment.risk.blacklist.type.wechat_openid'), value: 'wechat_openid' },
         { label: $t('payment.risk.blacklist.type.province'), value: 'province' },
+        { label: $t('payment.risk.blacklist.type.city'), value: 'city' },
       ],
     },
     {
@@ -85,6 +89,26 @@
       platformAppNameMap.value = map;
     } catch {
       platformAppNameMap.value = {};
+    }
+  }
+
+  /** 加载行政区划编码→名称映射（省市联动数据拍平, 供名单值回显） */
+  async function loadRegionNames() {
+    try {
+      const { data } = await ChinaRegionApi.findAllProvinceAndCity();
+      const map: Record<string, string> = {};
+      const walk = (regions: Region[]) => {
+        (regions || []).forEach((r) => {
+          map[r.code] = r.name;
+          if (r.children?.length) {
+            walk(r.children);
+          }
+        });
+      };
+      walk(data || []);
+      regionNameMap.value = map;
+    } catch {
+      regionNameMap.value = {};
     }
   }
 
@@ -159,12 +183,28 @@
     if (type === 'province') {
       return $t('payment.risk.blacklist.type.province');
     }
+    if (type === 'city') {
+      return $t('payment.risk.blacklist.type.city');
+    }
     return type || '';
+  }
+
+  /** 名单值展示: 省市类型回显行政区划名称, 其余原样 */
+  function valueLabel(row: PayBlacklistVo) {
+    if (row.type === 'province' || row.type === 'city') {
+      return regionNameMap.value[row.value || ''] || row.value || '';
+    }
+    return row.value || '';
   }
 
   /** 作用范围：全局 / 应用名或 AppId */
   function scopeLabel(row: PayBlacklistVo) {
-    if (row.type === 'ip' || row.type === 'alipay_user' || row.type === 'province') {
+    if (
+      row.type === 'ip' ||
+      row.type === 'alipay_user' ||
+      row.type === 'province' ||
+      row.type === 'city'
+    ) {
       return $t('payment.risk.blacklist.scope.global');
     }
     if (row.type === 'wechat_openid' && row.wxAppId) {
@@ -181,6 +221,7 @@
   onMounted(() => {
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
     void loadPlatformAppNames();
+    void loadRegionNames();
     queryPage();
   });
 </script>
@@ -215,7 +256,9 @@
             <template #default="{ row }">{{ typeLabel(row.type) }}</template>
           </vxe-column>
           <!-- 名单值 -->
-          <vxe-column field="value" :title="$t('payment.risk.blacklist.field.value')" :min-width="180" />
+          <vxe-column field="value" :title="$t('payment.risk.blacklist.field.value')" :min-width="180">
+            <template #default="{ row }">{{ valueLabel(row) }}</template>
+          </vxe-column>
           <!-- 作用范围 -->
           <vxe-column field="wxAppId" :title="$t('payment.risk.blacklist.field.scope')" :min-width="200">
             <template #default="{ row }">{{ scopeLabel(row) }}</template>

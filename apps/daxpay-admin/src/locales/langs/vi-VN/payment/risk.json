@@ -24,20 +24,21 @@
       "open_id": "OpenId",
       "alipay_user": "Người dùng Alipay",
       "wechat_openid": "OpenId WeChat",
-      "province": "Tỉnh"
+      "province": "Tỉnh",
+      "city": "Thành phố"
     },
     "status": {
       "enable": "Bật",
       "disable": "Tắt"
     },
     "tip": {
-      "typeValueImmutable": "Loại và giá trị không thể sửa sau khi tạo",
       "expireEmpty": "Để trống là vĩnh viễn",
       "openIdBoundaryHint": "Mã thanh toán / APP / trình duyệt ngoài chỉ ghi nhận sau thanh toán.",
       "alipayGlobalHint": "userId Alipay áp dụng toàn nền tảng, không tách theo ứng dụng/sản phẩm.",
       "wechatAppHint": "Chỉ chặn openId lấy từ ứng dụng thanh toán nền tảng đã chọn.",
       "ipHint": "Khớp chính xác IP khách hàng (không hỗ trợ CIDR/dải); áp dụng toàn nền tảng, không phân biệt ứng dụng/sản phẩm.",
-      "provinceHint": "Khớp theo tỉnh/thành của IP khách hàng (ip2region offline). Cần bật \"Chặn cấp tỉnh\" trong Chiến lược rủi ro. IPv6, mạng nội bộ và IP không xác định được được phép."
+      "provinceHint": "Khớp theo tỉnh/thành của IP khách hàng (ip2region offline). Cần bật \"Chặn cấp tỉnh\" trong Chiến lược rủi ro. IPv6, mạng nội bộ và IP không xác định được được phép.",
+      "cityHint": "So khớp theo thành phố sở hữu IP (phân giải offline ip2region); có hiệu lực sau khi bật công tắc \"Chặn theo cấp thành phố\" trong Chiến lược rủi ro. Độc lập với chặn cấp tỉnh; khi tỉnh trúng, không thực hiện kiểm tra cấp thành phố. Với thành phố trực thuộc trung ương, danh sách cấp thành phố tương đương cấp tỉnh. IPv6, địa chỉ nội bộ và lỗi phân giải được bỏ qua."
     },
     "scope": {
       "global": "Toàn cục"
@@ -47,7 +48,8 @@
       "alipayUserId": "Nhập userId Alipay",
       "wechatOpenId": "Nhập openId WeChat",
       "payApp": "Chọn ứng dụng thanh toán nền tảng",
-      "province": "Vui lòng chọn tỉnh"
+      "province": "Vui lòng chọn tỉnh",
+      "city": "Chọn thành phố"
     }
   },
   "hit": {
@@ -92,7 +94,8 @@
       "wechat_openid": "OpenId WeChat",
       "overseas_ip": "IP nước ngoài",
       "province": "Tỉnh",
-      "geo_fence": "Geo-fence"
+      "geo_fence": "Geo-fence",
+      "city": "Thành phố"
     },
     "strategy": {
       "strict": "Nghiêm ngặt",

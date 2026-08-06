@@ -41,6 +41,7 @@
         { label: $t('payment.risk.hit.hitType.wechat_openid'), value: 'wechat_openid' },
         { label: $t('payment.risk.hit.hitType.overseas_ip'), value: 'overseas_ip' },
         { label: $t('payment.risk.hit.hitType.province'), value: 'province' },
+        { label: $t('payment.risk.hit.hitType.city'), value: 'city' },
         { label: $t('payment.risk.hit.hitType.geo_fence'), value: 'geo_fence' },
       ],
     },
@@ -103,6 +104,7 @@
     if (type === 'wechat_openid') return $t('payment.risk.hit.hitType.wechat_openid');
     if (type === 'overseas_ip') return $t('payment.risk.hit.hitType.overseas_ip');
     if (type === 'province') return $t('payment.risk.hit.hitType.province');
+    if (type === 'city') return $t('payment.risk.hit.hitType.city');
     if (type === 'geo_fence') return $t('payment.risk.hit.hitType.geo_fence');
     return type || '';
   }

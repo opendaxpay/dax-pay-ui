@@ -12,6 +12,7 @@
     "levelEnhanced": "Level: Enhanced",
     "overseasOn": "Overseas IP: Block",
     "provinceOn": "Province: Block",
+    "cityOn": "City: Block",
     "blacklistOn": "Blacklist: On",
     "geoFenceOn": "Geo-fence: On",
     "strategy": "Strategy: "
@@ -49,6 +50,10 @@
   "provinceBlacklistEnabled": {
     "label": "Province-level Blocking",
     "desc": "When enabled, the IP’s province is matched against the province blacklist; hits follow the interception strategy. Manage province lists under Payment Security → Blacklist."
+  },
+  "cityBlacklistEnabled": {
+    "label": "City-level Blocking",
+    "desc": "When enabled, the IP’s city is matched against the city blacklist; hits follow the interception strategy. Independent from the province-level switch; the city check is skipped once a province hits. Manage city lists under Payment Security → Blacklist; for municipalities the city list is equivalent to the province level."
   },
   "geoFenceEnabled": {
     "label": "Geo-fence",

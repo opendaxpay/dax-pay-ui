@@ -24,20 +24,21 @@
       "open_id": "OpenId",
       "alipay_user": "支付寶用戶",
       "wechat_openid": "微信 OpenId",
-      "province": "省份"
+      "province": "省份",
+      "city": "城市"
     },
     "status": {
       "enable": "启用",
       "disable": "禁用"
     },
     "tip": {
-      "typeValueImmutable": "類型與名單值建立後不可修改",
       "expireEmpty": "留空表示永久有效",
       "openIdBoundaryHint": "付款碼 / APP / 外部瀏覽器場景僅做事後補錄。",
       "alipayGlobalHint": "支付寶 userId 平台全域生效，不區分應用 / 支付產品。",
       "wechatAppHint": "僅攔截在所選平台支付應用下取得的 openId；收銀台小程序請選對應小程序應用。",
       "ipHint": "按客戶端 IP 精確比對（不支援網段/CIDR），平台全域生效，不區分應用 / 支付產品。",
-      "provinceHint": "按支付 IP 歸屬省份比對（ip2region 離線解析），需在「風控策略」開啟「省級地區攔截」開關後生效。IPv6、內網位址與解析失敗時放行。"
+      "provinceHint": "按支付 IP 歸屬省份比對（ip2region 離線解析），需在「風控策略」開啟「省級地區攔截」開關後生效。IPv6、內網位址與解析失敗時放行。",
+      "cityHint": "按支付 IP 歸屬城市匹配（ip2region 離線解析），需在「風控策略」開啟「市級地區攔截」開關後生效。與省級攔截獨立，省級命中後不執行市級檢查；直轄市的市級名單等同省級。IPv6、內網位址與解析失敗時放行。"
     },
     "scope": {
       "global": "全域"
@@ -47,7 +48,8 @@
       "alipayUserId": "請輸入支付寶 userId",
       "wechatOpenId": "請輸入微信 openId",
       "payApp": "請選擇平台支付應用",
-      "province": "請選擇省份"
+      "province": "請選擇省份",
+      "city": "請選擇城市"
     }
   },
   "hit": {
@@ -92,7 +94,8 @@
       "wechat_openid": "微信 OpenId",
       "overseas_ip": "海外IP",
       "province": "省份",
-      "geo_fence": "地理圍欄"
+      "geo_fence": "地理圍欄",
+      "city": "城市"
     },
     "strategy": {
       "strict": "嚴格",

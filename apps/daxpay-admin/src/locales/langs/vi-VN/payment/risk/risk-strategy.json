@@ -12,6 +12,7 @@
     "levelEnhanced": "Cấp độ: Tăng cường",
     "overseasOn": "IP nước ngoài: Chặn",
     "provinceOn": "Tỉnh: Chặn",
+    "cityOn": "TP: Chặn",
     "blacklistOn": "Danh sách đen: Bật",
     "geoFenceOn": "Hàng rào địa lý: Bật",
     "strategy": "Chiến lược: "
@@ -49,6 +50,10 @@
   "provinceBlacklistEnabled": {
     "label": "Chặn theo cấp tỉnh",
     "desc": "Khi bật, tỉnh của IP được so khớp với danh sách đen cấp tỉnh; trúng tuân theo chiến lược chặn. Quản lý danh sách tỉnh tại Bảo mật thanh toán → Danh sách đen."
+  },
+  "cityBlacklistEnabled": {
+    "label": "Chặn theo cấp thành phố",
+    "desc": "Khi bật, thành phố của IP được so khớp với danh sách đen cấp thành phố; trường hợp trúng tuân theo chiến lược chặn. Độc lập với công tắc cấp tỉnh; khi tỉnh trúng, kiểm tra cấp thành phố không được thực hiện. Quản lý danh sách thành phố tại Bảo mật thanh toán → Danh sách đen; với thành phố trực thuộc trung ương, danh sách cấp thành phố tương đương cấp tỉnh."
   },
   "geoFenceEnabled": {
     "label": "Hàng rào địa lý",

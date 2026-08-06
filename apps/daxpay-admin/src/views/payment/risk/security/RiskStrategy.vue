@@ -54,6 +54,10 @@
     if (formState.value.provinceBlacklistEnabled) {
       items.push($t('payment.risk.risk-strategy.summary.provinceOn'));
     }
+    // 市级地区拦截（默认关闭, 仅开启时展示）
+    if (formState.value.cityBlacklistEnabled) {
+      items.push($t('payment.risk.risk-strategy.summary.cityOn'));
+    }
     // 地理围栏（默认关闭, 仅开启时展示）
     if (formState.value.geoFenceEnabled) {
       items.push($t('payment.risk.risk-strategy.summary.geoFenceOn'));
@@ -255,6 +259,22 @@
                 </div>
                 <a-switch
                   v-model:checked="formState.provinceBlacklistEnabled"
+                  :disabled="!isEditing || !formState.riskEnabled"
+                />
+              </div>
+
+              <!-- 市级地区拦截 -->
+              <div class="config-item">
+                <div class="config-item__main">
+                  <div class="config-item__label">{{
+                    $t('payment.risk.risk-strategy.cityBlacklistEnabled.label')
+                  }}</div>
+                  <div class="config-item__desc">{{
+                    $t('payment.risk.risk-strategy.cityBlacklistEnabled.desc')
+                  }}</div>
+                </div>
+                <a-switch
+                  v-model:checked="formState.cityBlacklistEnabled"
                   :disabled="!isEditing || !formState.riskEnabled"
                 />
               </div>

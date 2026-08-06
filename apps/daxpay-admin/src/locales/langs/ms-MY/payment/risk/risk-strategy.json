@@ -12,6 +12,7 @@
     "levelEnhanced": "Tahap: Diperkuat",
     "overseasOn": "IP Luar Negara: Sekat",
     "provinceOn": "Wilayah: Sekat",
+    "cityOn": "Bandar: Sekat",
     "blacklistOn": "Senarai Hitam: Aktif",
     "geoFenceOn": "Pagar Geo: Aktif",
     "strategy": "Strategi: "
@@ -49,6 +50,10 @@
   "provinceBlacklistEnabled": {
     "label": "Sekatan Tahap Wilayah",
     "desc": "Apabila aktif, wilayah IP dipadankan dengan senarai hitam wilayah; hit mengikuti strategi sekatan. Urus senarai wilayah di Keselamatan Pembayaran → Senarai Hitam."
+  },
+  "cityBlacklistEnabled": {
+    "label": "Sekatan Tahap Bandar",
+    "desc": "Apabila aktif, bandar IP dipadankan dengan senarai hitam tahap bandar; hit mengikuti strategi sekatan. Bebas daripada suis tahap wilayah; apabila wilayah terkena hit, pemeriksaan bandar tidak dijalankan. Urus senarai bandar di Keselamatan Pembayaran → Senarai Hitam; untuk bandar raya, senarai bandar setara dengan tahap wilayah."
   },
   "geoFenceEnabled": {
     "label": "Pagar Geo",

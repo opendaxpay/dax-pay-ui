@@ -3,6 +3,7 @@
 
   import { $t } from '@vben/locales';
 
+  import { ChinaRegionApi, type Region } from '#/api/core/region.api';
   import {
     PayBlacklistApi,
     type PayBlacklistParam,
@@ -12,15 +13,17 @@
     type WxPlatformApp,
     WxPlatformAppApi,
   } from '#/api/payment/wx/platform-app.api';
-  import { ChinaRegionApi, type Region } from '#/api/core/region.api';
   import { FormEditType } from '#/enums/formEditType';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
 
   /** 名单类型（与后端 type 一致） */
-  type BlacklistType = 'ip' | 'alipay_user' | 'wechat_openid' | 'province';
+  type BlacklistType = 'alipay_user' | 'city' | 'ip' | 'province' | 'wechat_openid';
 
   const emit = defineEmits(['ok']);
+
+  /** 直辖市省份编码（市级名单等同省级, 名单值存省编码） */
+  const DIRECT_CITY_CODES = new Set(['11', '12', '31', '50']);
 
   const { message } = useMessage();
   const formRef = ref();
@@ -31,7 +34,7 @@
   const isAdd = computed(() => formEditType.value === FormEditType.Add);
 
   // 表单
-  const formState = ref<PayBlacklistParam>({
+  const formState = ref<PayBlacklistParam & { regionPath?: string[] }>({
     id: '',
     type: 'ip',
     value: '',
@@ -40,12 +43,13 @@
     reason: '',
     expireTime: undefined,
     remark: '',
+    regionPath: [],
   });
 
   const platformApps = ref<WxPlatformApp[]>([]);
   const platformAppsLoading = ref(false);
 
-  // 省份列表（province 类型用）
+  // 省份列表（province / city 类型用, 含市级 children 供联动）
   const provinceList = ref<Region[]>([]);
   const provinceLoading = ref(false);
 
@@ -75,6 +79,10 @@
       // 选择省份
       return $t('payment.risk.blacklist.placeholder.province');
     }
+    if (formState.value.type === 'city') {
+      // 选择城市
+      return $t('payment.risk.blacklist.placeholder.city');
+    }
     // 微信 openId
     return $t('payment.risk.blacklist.placeholder.wechatOpenId');
   });
@@ -86,9 +94,30 @@
     })),
   );
 
-  // 省份选项（value 存省名，与 ip2region 返回格式对齐）
+  // 省份选项（value 存行政区划编码, 与后端黑名单存储一致）
   const provinceOptions = computed(() =>
-    provinceList.value.map((p) => ({ value: p.name, label: p.name })),
+    provinceList.value.map((p) => ({ value: p.code, label: p.name })),
+  );
+
+  // 城市级联选项（省→市; 直辖市无独立市级, 折叠为叶子且名单值存省编码）
+  const cityOptions = computed(() =>
+    provinceList.value.map((p) => ({
+      value: p.code,
+      label: p.name,
+      children: DIRECT_CITY_CODES.has(p.code)
+        ? []
+        : (p.children || []).map((c) => ({ value: c.code, label: c.name })),
+    })),
+  );
+
+  // 级联选中路径 → 名单值: 取最后一级（普通市=市编码, 直辖市=省编码）
+  watch(
+    () => formState.value.regionPath,
+    (path) => {
+      if (formState.value.type === 'city') {
+        formState.value.value = path && path.length > 0 ? path[path.length - 1] : '';
+      }
+    },
   );
 
   // 黑名单类型选项
@@ -97,6 +126,7 @@
     { value: 'alipay_user', label: $t('payment.risk.blacklist.type.alipay_user') },
     { value: 'wechat_openid', label: $t('payment.risk.blacklist.type.wechat_openid') },
     { value: 'province', label: $t('payment.risk.blacklist.type.province') },
+    { value: 'city', label: $t('payment.risk.blacklist.type.city') },
   ]);
 
   /** 应用类型文案 */
@@ -138,14 +168,14 @@
     }
   }
 
-  /** 加载省份列表 */
+  /** 加载省份列表（含市级 children, 供 city 类型联动） */
   async function loadProvinces() {
     if (provinceList.value.length > 0) {
       return;
     }
     provinceLoading.value = true;
     try {
-      const { data } = await ChinaRegionApi.findAllProvince();
+      const { data } = await ChinaRegionApi.findAllProvinceAndCity();
       provinceList.value = data || [];
     } finally {
       provinceLoading.value = false;
@@ -158,7 +188,7 @@
       if (val === 'wechat_openid') {
         void loadPlatformApps();
       }
-      if (val === 'province') {
+      if (val === 'province' || val === 'city') {
         void loadProvinces();
       }
     },
@@ -175,6 +205,7 @@
       reason: '',
       expireTime: undefined,
       remark: '',
+      regionPath: [],
     };
     formRef.value?.resetFields();
   }
@@ -188,7 +219,7 @@
       if (row.type === 'wechat_openid') {
         await loadPlatformApps();
       }
-      if (row.type === 'province') {
+      if (row.type === 'province' || row.type === 'city') {
         await loadProvinces();
       }
       formState.value = {
@@ -200,7 +231,14 @@
         reason: row.reason,
         expireTime: row.expireTime,
         remark: row.remark,
+        regionPath: [],
       };
+      // city 类型回推级联路径: 直辖市名单存省编码, 普通市为 [省码, 市码]
+      if (row.type === 'city' && row.value) {
+        formState.value.regionPath = DIRECT_CITY_CODES.has(row.value)
+          ? [row.value]
+          : [row.value.slice(0, 2), row.value];
+      }
     } finally {
       confirmLoading.value = false;
     }
@@ -226,12 +264,11 @@
     await fillForm(record);
   }
 
-  /** 切换类型时清理微信 AppId */
-  function handleTypeChange(val: string | BlacklistType) {
-    formState.value.type = val as BlacklistType;
-    if (val !== 'wechat_openid') {
-      formState.value.wxAppId = '';
-    }
+  /** 切换类型时清理微信 AppId 与级联路径 */
+  function handleTypeChange(val: BlacklistType | string) {
+    formState.value.type = val;
+    formState.value.wxAppId = val === 'wechat_openid' ? formState.value.wxAppId : '';
+    formState.value.regionPath = val === 'city' ? formState.value.regionPath : [];
   }
 
   /** 保存 */
@@ -243,15 +280,16 @@
     }
     confirmLoading.value = true;
     try {
+      // 剔除级联用字段 regionPath（非后端字段）
+      const { regionPath: _regionPath, ...rest } = formState.value;
       const payload: PayBlacklistParam = {
-        ...formState.value,
+        ...rest,
         wxAppId: formState.value.type === 'wechat_openid' ? formState.value.wxAppId || '' : '',
       };
-      if (isAdd.value) {
-        await PayBlacklistApi.add(payload);
-      } else {
-        await PayBlacklistApi.update(payload);
-      }
+      // 新增走 add, 编辑走 update
+      await (isAdd.value
+        ? PayBlacklistApi.add(payload)
+        : PayBlacklistApi.update(payload));
       message.success($t('common.saveSuccess'));
       handleCancel();
       emit('ok');
@@ -327,6 +365,14 @@
             show-icon
           />
         </div>
+        <!-- 城市：IP 归属匹配说明 -->
+        <div v-if="formState.type === 'city'" class="mb-4">
+          <a-alert
+            :message="$t('payment.risk.blacklist.tip.cityHint')"
+            type="info"
+            show-icon
+          />
+        </div>
         <!-- openId 边界：付款码等事后补录 -->
         <div
           v-if="formState.type === 'alipay_user' || formState.type === 'wechat_openid'"
@@ -345,8 +391,20 @@
           name="value"
           :rules="[{ required: true, message: $t('common.pleaseInput') }]"
         >
+          <!-- 城市：省→市级联（名单值存市编码; 直辖市折叠为省, 存省编码） -->
+          <a-cascader
+            v-if="formState.type === 'city'"
+            v-model:value="formState.regionPath"
+            :options="cityOptions"
+            :placeholder="$t('payment.risk.blacklist.placeholder.city')"
+            :disabled="!isAdd"
+            :loading="provinceLoading"
+            class="w-full"
+            allow-clear
+            show-search
+          />
           <a-select
-            v-if="formState.type === 'province'"
+            v-else-if="formState.type === 'province'"
             v-model:value="formState.value"
             show-search
             option-filter-prop="label"
@@ -364,9 +422,6 @@
             :maxlength="128"
           />
         </a-form-item>
-        <div v-if="!isAdd" class="mb-4 text-center text-xs text-gray-400">
-          {{ $t('payment.risk.blacklist.tip.typeValueImmutable') }}
-        </div>
 
         <!-- 支付应用（仅微信） -->
         <a-form-item

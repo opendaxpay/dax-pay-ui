@@ -24,20 +24,21 @@
       "open_id": "OpenId",
       "alipay_user": "Pengguna Alipay",
       "wechat_openid": "OpenId WeChat",
-      "province": "Wilayah"
+      "province": "Wilayah",
+      "city": "Bandar"
     },
     "status": {
       "enable": "Aktif",
       "disable": "Nyahaktif"
     },
     "tip": {
-      "typeValueImmutable": "Jenis dan nilai tidak boleh diubah selepas dicipta",
       "expireEmpty": "Kosong bermaksud kekal",
       "openIdBoundaryHint": "Kod bayaran / APP / pelayar luaran hanya direkod selepas bayaran.",
       "alipayGlobalHint": "userId Alipay berkuat kuasa seluruh platform, tidak dipecah mengikut aplikasi/produk.",
       "wechatAppHint": "Hanya menyekat openId daripada aplikasi pembayaran platform yang dipilih.",
       "ipHint": "Padan IP klien secara tepat (tanpa CIDR/julat); berkuat kuasa di seluruh platform tanpa mengira aplikasi/produk.",
-      "provinceHint": "Padan mengikut wilayah IP klien (ip2region luar talian). Perlu aktifkan \"Sekat wilayah\" dalam Strategi Risiko. IPv6, intranet dan IP yang tidak dapat diselesaikan dibenarkan."
+      "provinceHint": "Padan mengikut wilayah IP klien (ip2region luar talian). Perlu aktifkan \"Sekat wilayah\" dalam Strategi Risiko. IPv6, intranet dan IP yang tidak dapat diselesaikan dibenarkan.",
+      "cityHint": "Dipadankan mengikut bandar asal IP (penyelesaian luar talian ip2region); berkuat kuasa selepas menghidupkan suis \"Sekatan Tahap Bandar\" dalam Strategi Risiko. Bebas daripada sekatan tahap wilayah; apabila wilayah terkena hit, pemeriksaan bandar tidak dijalankan. Untuk bandar raya, senarai bandar setara dengan tahap wilayah. IPv6, alamat rangkaian dalaman, dan kegagalan penyelesaian dilepaskan."
     },
     "scope": {
       "global": "Global"
@@ -47,7 +48,8 @@
       "alipayUserId": "Masukkan userId Alipay",
       "wechatOpenId": "Masukkan openId WeChat",
       "payApp": "Pilih aplikasi pembayaran platform",
-      "province": "Sila pilih wilayah"
+      "province": "Sila pilih wilayah",
+      "city": "Pilih bandar"
     }
   },
   "hit": {
@@ -92,7 +94,8 @@
       "wechat_openid": "OpenId WeChat",
       "overseas_ip": "IP Luar Negara",
       "province": "Wilayah",
-      "geo_fence": "Geo-pagar"
+      "geo_fence": "Geo-pagar",
+      "city": "Bandar"
     },
     "strategy": {
       "strict": "Ketat",
