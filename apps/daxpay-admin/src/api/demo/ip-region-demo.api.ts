@@ -29,14 +29,14 @@ export interface IpRegionDemoResult {
   ip: string;
   /** 国家 */
   country?: string;
-  /** 区域 */
-  region?: string;
   /** 省份 */
   province?: string;
   /** 城市 */
   city?: string;
   /** ISP 运营商 */
   isp?: string;
+  /** 国家码(iso-alpha2, 如 CN/HK/US) */
+  countryCode?: string;
   /** 格式化后的归属地文本（与审计日志 location 字段同源） */
   regionStr?: string;
   /** 是否内网地址 */

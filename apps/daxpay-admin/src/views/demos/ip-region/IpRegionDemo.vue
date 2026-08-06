@@ -24,10 +24,10 @@
   const columns = [
     { label: 'IP 地址', dataIndex: 'ip' },
     { label: '国家', dataIndex: 'country' },
-    { label: '区域', dataIndex: 'region' },
     { label: '省份', dataIndex: 'province' },
     { label: '城市', dataIndex: 'city' },
     { label: '运营商', dataIndex: 'isp' },
+    { label: '国家码', dataIndex: 'countryCode' },
   ];
 
   /**
