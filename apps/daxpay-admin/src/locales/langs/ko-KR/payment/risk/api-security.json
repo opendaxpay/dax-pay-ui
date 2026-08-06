@@ -1,5 +1,5 @@
 {
-  "title": "결제 API 보안",
+  "title": "API 보안 설정",
   "description": "가로챈 결제 요청의 재생을 방지합니다. 서명 검증은 항상 활성화됩니다.",
   "summary": {
     "nonceEnabled": "Nonce 재생 방지: 활성화됨",

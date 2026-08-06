@@ -1,5 +1,5 @@
 {
-  "title": "Keselamatan API Pembayaran",
+  "title": "Konfigurasi Keselamatan API",
   "description": "Mencegah main semula permintaan pembayaran yang disadap. Pengesahan tandatangan sentiasa diaktifkan.",
   "summary": {
     "nonceEnabled": "Anti-Main Semula Nonce: Diaktifkan",

@@ -1,5 +1,5 @@
 {
-  "title": "決済APIセキュリティ",
+  "title": "APIセキュリティ設定",
   "description": "決済リクエストの傍受・リプレイを防止します。署名検証は常に有効です。",
   "summary": {
     "nonceEnabled": "Nonceリプレイ防止：有効",

@@ -1,5 +1,5 @@
 {
-  "title": "Keamanan API Pembayaran",
+  "title": "Konfigurasi Keamanan API",
   "description": "Mencegah replay permintaan pembayaran yang disadap. Verifikasi tanda tangan selalu diaktifkan.",
   "summary": {
     "nonceEnabled": "Anti-Replay Nonce: Diaktifkan",

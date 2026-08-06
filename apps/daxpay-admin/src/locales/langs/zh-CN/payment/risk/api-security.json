@@ -1,5 +1,5 @@
 {
-  "title": "支付API安全",
+  "title": "API安全配置",
   "description": "防止支付请求被截获重放，签名校验始终启用。",
   "summary": {
     "nonceEnabled": "Nonce防重放：已启用",

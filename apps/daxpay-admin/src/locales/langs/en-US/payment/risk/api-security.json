@@ -1,5 +1,5 @@
 {
-  "title": "Payment API Security",
+  "title": "API Security",
   "description": "Prevents replay of intercepted payment requests. Signature verification is always enabled.",
   "summary": {
     "nonceEnabled": "Nonce Anti-Replay: Enabled",

@@ -1,5 +1,5 @@
 {
-  "title": "Bảo mật API Thanh toán",
+  "title": "Cấu hình bảo mật API",
   "description": "Ngăn phát lại yêu cầu thanh toán bị chặn. Xác thực chữ ký luôn được bật.",
   "summary": {
     "nonceEnabled": "Chống phát lại Nonce: Đã bật",

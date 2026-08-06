@@ -61,18 +61,6 @@ export const SecurityApi = {
     return defHttp.post({ url: '/platform/config/security/two-factor-auth/update', data });
   },
   /**
-   * 获取API安全配置
-   */
-  getApiSecurityConfig(): Promise<Result<ApiSecurityConfig>> {
-    return defHttp.get({ url: '/platform/config/security/api-security/get' });
-  },
-  /**
-   * 更新API安全配置
-   */
-  updateApiSecurityConfig(data: ApiSecurityConfig): Promise<Result<void>> {
-    return defHttp.post({ url: '/platform/config/security/api-security/update', data });
-  },
-  /**
    * 获取IAM域防重放配置
    */
   getIamReplayProtectConfig(): Promise<Result<IamReplayProtectConfig>> {
@@ -83,18 +71,6 @@ export const SecurityApi = {
    */
   updateIamReplayProtectConfig(data: IamReplayProtectConfig): Promise<Result<void>> {
     return defHttp.post({ url: '/platform/config/security/iam-replay-protect/update', data });
-  },
-  /**
-   * 获取支付安全配置（风控开关）
-   */
-  getPaySecurityConfig(): Promise<Result<PaySecurityConfig>> {
-    return defHttp.get({ url: '/platform/config/security/pay-security/get' });
-  },
-  /**
-   * 更新支付安全配置（风控开关）
-   */
-  updatePaySecurityConfig(data: PaySecurityConfig): Promise<Result<void>> {
-    return defHttp.post({ url: '/platform/config/security/pay-security/update', data });
   },
 };
 
@@ -151,20 +127,6 @@ export interface TwoFactorAuthConfig {
 }
 
 /**
- * API安全配置（开放支付接口防重放）
- */
-export interface ApiSecurityConfig {
-  /** 是否启用 Nonce 防重放校验 */
-  nonceVerifyEnabled?: boolean;
-  /** 是否启用请求时间窗口校验 */
-  reqTimeoutEnabled?: boolean;
-  /** 请求时间窗口容差（秒） */
-  reqTimeoutSeconds?: number;
-  /** Nonce 有效期（秒） */
-  nonceTtlSeconds?: number;
-}
-
-/**
  * IAM域防重放配置（登录/注册/改密等敏感操作）
  */
 export interface IamReplayProtectConfig {
@@ -176,18 +138,4 @@ export interface IamReplayProtectConfig {
   timestampToleranceSeconds?: number;
 }
 
-/**
- * 支付安全配置（支付风控开关）
- */
-export interface PaySecurityConfig {
-  /** 风控总开关（关闭后所有风控检查跳过） */
-  riskEnabled?: boolean;
-  /** 命中黑名单后是否阻断下单（false=仅记录不拦截） */
-  riskBlockBeforePay?: boolean;
-  /** 支付成功后是否补录命中（用于事后分析） */
-  riskCheckAfterPay?: boolean;
-  /** 用户标识拦截级别（normal=正常拦截 / enhanced=增强拦截） */
-  riskOpenIdLevel?: string;
-  /** 海外 IP 拦截（占位字段, 默认关闭, 后续接入） */
-  blockOverseasIp?: boolean;
-}
+
