@@ -1,0 +1,9 @@
+{
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "confirmSave": "Confirm save",
+  "confirmSaveContent": "Are you sure you want to save the current configuration?",
+  "unit": {
+    "second": "seconds"
+  }
+}

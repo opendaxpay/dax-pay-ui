@@ -72,7 +72,8 @@
       "merchant": "ร้านค้า",
       "clientCity": "เมือง IP",
       "storeCity": "เมืองร้านค้า",
-      "storeNo": "เลขร้านค้า"
+      "storeNo": "เลขร้านค้า",
+      "geoFenceStrategy": "กลยุทธ์รั้ว"
     },
     "phase": {
       "before_pay": "ก่อนชำระ",
@@ -92,6 +93,11 @@
       "overseas_ip": "IP ต่างประเทศ",
       "province": "จังหวัด",
       "geo_fence": "รั้วภูมิศาสตร์"
+    },
+    "strategy": {
+      "strict": "เข้มงวด",
+      "balanced": "สมดุล",
+      "loose": "ผ่อนปรน"
     }
   }
 }

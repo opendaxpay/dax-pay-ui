@@ -1,0 +1,9 @@
+{
+  "cancel": "취소",
+  "confirm": "확인",
+  "confirmSave": "저장 확인",
+  "confirmSaveContent": "현재 구성을 저장하시겠습니까?",
+  "unit": {
+    "second": "초"
+  }
+}

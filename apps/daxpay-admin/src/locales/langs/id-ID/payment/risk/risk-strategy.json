@@ -1,0 +1,66 @@
+{
+  "title": "Strategi Risiko",
+  "description": "Kontrol risiko pembayaran: pemblokiran daftar hitam, pembatasan wilayah, dan pencatatan hit.",
+  "summary": {
+    "enabled": "Kontrol Risiko: Aktif",
+    "disabled": "Kontrol Risiko: Nonaktif",
+    "blockOn": "Hit: Blokir Pesanan",
+    "blockOff": "Hit: Catat Saja",
+    "afterOn": "Catatan Pascabayar: Aktif",
+    "afterOff": "Catatan Pascabayar: Nonaktif",
+    "levelNormal": "Level: Normal",
+    "levelEnhanced": "Level: Ditingkatkan",
+    "overseasOn": "IP Luar Negeri: Blokir",
+    "provinceOn": "Provinsi: Blokir",
+    "blacklistOn": "Daftar Hitam: Aktif",
+    "geoFenceOn": "Geo-pagar: Aktif",
+    "strategy": "Strategi: "
+  },
+  "section": {
+    "switch": "Saklar Kontrol Risiko",
+    "strategy": "Strategi Intersepsi"
+  },
+  "riskEnabled": {
+    "label": "Saklar Utama Kontrol Risiko",
+    "desc": "Saat aktif, alur pembayaran melakukan pemeriksaan risiko; saat nonaktif, semua pemeriksaan risiko dilewati."
+  },
+  "blacklistEnabled": {
+    "label": "Pemblokiran Daftar Hitam",
+    "desc": "Saat aktif, pemeriksaan daftar hitam IP dan identifier pengguna (Alipay userId / WeChat openId) dilakukan."
+  },
+  "riskBlockBeforePay": {
+    "label": "Blokir Pesanan saat Hit",
+    "desc": "Saat aktif, hit aturan risiko apa pun sebelum pembayaran (daftar hitam, provinsi, IP luar negeri, dll.) akan menolak pesanan; saat nonaktif, hit hanya dicatat tanpa memblokir."
+  },
+  "riskCheckAfterPay": {
+    "label": "Pencatatan Hit Pasca Pembayaran",
+    "desc": "Saat aktif, hit dicatat setelah pembayaran berhasil untuk analisis pasca-peristiwa, tanpa memengaruhi dana."
+  },
+  "riskOpenIdLevel": {
+    "label": "Level Intersepsi Identifier Pengguna",
+    "desc": "Normal: hanya blokir metode native JSAPI/Mini. Ditingkatkan: juga memaksa OAuth untuk mendapatkan identifier pengguna pada H5/QR dalam lingkungan yang dikenali.",
+    "normal": "Normal",
+    "enhanced": "Ditingkatkan"
+  },
+  "blockOverseasIp": {
+    "label": "Pemblokiran IP Luar Negeri",
+    "desc": "Blokir permintaan pembayaran dari IP luar negeri (di luar Tiongkok daratan), strategi pengendalian risiko umum di wilayah Tiongkok."
+  },
+  "provinceBlacklistEnabled": {
+    "label": "Pemblokiran Tingkat Provinsi",
+    "desc": "Saat aktif, provinsi IP dicocokkan dengan daftar hitam provinsi; hit mengikuti strategi intersepsi. Kelola daftar provinsi di Keamanan Pembayaran → Daftar Hitam."
+  },
+  "geoFenceEnabled": {
+    "label": "Geo-pagar",
+    "desc": "Sakelar geo-pagar tingkat kota toko. Saat diaktifkan, kota IP klien dibandingkan dengan kota toko; ketidaksesuaian ditangani sesuai strategi blokir. Toko harus mencatat alamat wilayah; toko tanpa alamat diizinkan (fail-open). Setelah sakelar platform diaktifkan, fence juga harus diaktifkan per merchant. Strategi fence dikonfigurasi secara global di bawah."
+  },
+  "geoFenceStrategy": {
+    "label": "Strategi fence",
+    "strict": "Ketat",
+    "strictDesc": "Hanya kota toko",
+    "balanced": "Seimbang",
+    "balancedDesc": "Kota toko + kota yang berdekatan (disarankan)",
+    "loose": "Longgar",
+    "looseDesc": "Kota toko + berdekatan + provinsi sama"
+  }
+}

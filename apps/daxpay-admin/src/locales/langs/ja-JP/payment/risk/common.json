@@ -1,0 +1,9 @@
+{
+  "cancel": "キャンセル",
+  "confirm": "確認",
+  "confirmSave": "保存の確認",
+  "confirmSaveContent": "現在の設定を保存しますか？",
+  "unit": {
+    "second": "秒"
+  }
+}

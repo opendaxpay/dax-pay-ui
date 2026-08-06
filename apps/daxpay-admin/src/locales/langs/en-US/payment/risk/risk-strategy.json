@@ -1,0 +1,66 @@
+{
+  "title": "Risk Strategy",
+  "description": "Payment risk control: blacklist blocking, geo-restriction, and hit logging.",
+  "summary": {
+    "enabled": "Risk Control: On",
+    "disabled": "Risk Control: Off",
+    "blockOn": "Hit: Block Order",
+    "blockOff": "Hit: Log Only",
+    "afterOn": "Post-Pay Log: On",
+    "afterOff": "Post-Pay Log: Off",
+    "levelNormal": "Level: Normal",
+    "levelEnhanced": "Level: Enhanced",
+    "overseasOn": "Overseas IP: Block",
+    "provinceOn": "Province: Block",
+    "blacklistOn": "Blacklist: On",
+    "geoFenceOn": "Geo-fence: On",
+    "strategy": "Strategy: "
+  },
+  "section": {
+    "switch": "Risk Control",
+    "strategy": "Interception Strategy"
+  },
+  "riskEnabled": {
+    "label": "Risk Control Master Switch",
+    "desc": "When enabled, the payment flow performs risk checks; when disabled, all risk checks are skipped."
+  },
+  "blacklistEnabled": {
+    "label": "Blacklist Blocking",
+    "desc": "When enabled, IP and user identifier (Alipay userId / WeChat openId) blacklist checks are performed."
+  },
+  "riskBlockBeforePay": {
+    "label": "Block Order on Hit",
+    "desc": "When enabled, any risk-rule hit before payment (blacklist, province, overseas IP, etc.) will reject the order; when disabled, hits are only logged without blocking."
+  },
+  "riskCheckAfterPay": {
+    "label": "Post-Pay Hit Logging",
+    "desc": "When enabled, hits are recorded after successful payment for post-event analysis, without affecting funds."
+  },
+  "riskOpenIdLevel": {
+    "label": "User Identifier Interception Level",
+    "desc": "Normal: only block JSAPI/Mini native methods. Enhanced: also force OAuth to acquire user identifier for H5/QR-code in recognizable environments.",
+    "normal": "Normal",
+    "enhanced": "Enhanced"
+  },
+  "blockOverseasIp": {
+    "label": "Overseas IP Blocking",
+    "desc": "Block payment requests from overseas IPs (outside mainland China), a common risk control strategy for the China region."
+  },
+  "provinceBlacklistEnabled": {
+    "label": "Province-level Blocking",
+    "desc": "When enabled, the IP’s province is matched against the province blacklist; hits follow the interception strategy. Manage province lists under Payment Security → Blacklist."
+  },
+  "geoFenceEnabled": {
+    "label": "Geo-fence",
+    "desc": "Store city-level geo-fence switch. When enabled, the client IP city is compared with the store's city; mismatches are handled per the block strategy. Stores must have a region address recorded; stores without an address are allowed (fail-open). After enabling the platform switch, the fence must also be enabled per merchant. The fence strategy is configured globally below."
+  },
+  "geoFenceStrategy": {
+    "label": "Geo-fence strategy",
+    "strict": "Strict",
+    "strictDesc": "Only the store city",
+    "balanced": "Balanced",
+    "balancedDesc": "Store city + adjacent cities (recommended)",
+    "loose": "Relaxed",
+    "looseDesc": "Store city + adjacent + same province"
+  }
+}

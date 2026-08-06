@@ -1,0 +1,66 @@
+{
+  "title": "Strategi Risiko",
+  "description": "Kawalan risiko pembayaran: sekatan senarai hitam, had wilayah, dan rekod hit.",
+  "summary": {
+    "enabled": "Kawalan Risiko: Aktif",
+    "disabled": "Kawalan Risiko: Mati",
+    "blockOn": "Hit: Sekat Pesanan",
+    "blockOff": "Hit: Rekod Sahaja",
+    "afterOn": "Rekod Pasca-Bayar: Aktif",
+    "afterOff": "Rekod Pasca-Bayar: Mati",
+    "levelNormal": "Tahap: Biasa",
+    "levelEnhanced": "Tahap: Diperkuat",
+    "overseasOn": "IP Luar Negara: Sekat",
+    "provinceOn": "Wilayah: Sekat",
+    "blacklistOn": "Senarai Hitam: Aktif",
+    "geoFenceOn": "Pagar Geo: Aktif",
+    "strategy": "Strategi: "
+  },
+  "section": {
+    "switch": "Suis Kawalan Risiko",
+    "strategy": "Strategi Sekatan"
+  },
+  "riskEnabled": {
+    "label": "Suis Utama Kawalan Risiko",
+    "desc": "Apabila aktif, aliran pembayaran melakukan semakan risiko; apabila dimatikan, semua semakan risiko dilangkau."
+  },
+  "blacklistEnabled": {
+    "label": "Sekatan Senarai Hitam",
+    "desc": "Apabila aktif, semakan senarai hitam IP dan pengecam pengguna (Alipay userId / WeChat openId) dilakukan."
+  },
+  "riskBlockBeforePay": {
+    "label": "Sekat Pesanan semasa Hit",
+    "desc": "Apabila aktif, hit peraturan risiko apa pun sebelum pembayaran (senarai hitam, wilayah, IP luar negara, dll.) akan menolak pesanan; apabila dimatikan, hit hanya direkod tanpa menyekat."
+  },
+  "riskCheckAfterPay": {
+    "label": "Rekod Hit Selepas Pembayaran",
+    "desc": "Apabila aktif, hit direkod selepas pembayaran berjaya untuk analisis pasca-peristiwa, tanpa menjejaskan dana."
+  },
+  "riskOpenIdLevel": {
+    "label": "Tahap Sekatan Pengecam Pengguna",
+    "desc": "Biasa: hanya sekat kaedah native JSAPI/Mini. Diperkuat: juga memaksa OAuth untuk mendapatkan pengecam pengguna pada H5/QR dalam persekitaran yang dikenali.",
+    "normal": "Biasa",
+    "enhanced": "Diperkuat"
+  },
+  "blockOverseasIp": {
+    "label": "Sekatan IP Luar Negara",
+    "desc": "Sekat permintaan pembayaran dari IP luar negara (luar tanah besar China), strategi kawalan risiko biasa di wilayah China."
+  },
+  "provinceBlacklistEnabled": {
+    "label": "Sekatan Tahap Wilayah",
+    "desc": "Apabila aktif, wilayah IP dipadankan dengan senarai hitam wilayah; hit mengikuti strategi sekatan. Urus senarai wilayah di Keselamatan Pembayaran → Senarai Hitam."
+  },
+  "geoFenceEnabled": {
+    "label": "Pagar Geo",
+    "desc": "Suis geo-pagar peringkat bandar kedai. Apabila diaktifkan, bandar IP pelanggan dibandingkan dengan bandar kedai; ketidakpadanan dikendalikan mengikut strategi sekat. Kedai mesti merekodkan alamat wilayah; kedai tanpa alamat dibenarkan (fail-open). Selepas suis platform diaktifkan, fence juga perlu diaktifkan per merchant. Strategi fence dikonfigurasi secara global di bawah."
+  },
+  "geoFenceStrategy": {
+    "label": "Strategi fence",
+    "strict": "Ketat",
+    "strictDesc": "Hanya bandar kedai",
+    "balanced": "Seimbang",
+    "balancedDesc": "Bandar kedai + bandar berdekatan (disyorkan)",
+    "loose": "Longgar",
+    "looseDesc": "Bandar kedai + berdekatan + wilayah sama"
+  }
+}

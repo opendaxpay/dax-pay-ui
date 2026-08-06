@@ -72,7 +72,8 @@
       "merchant": "가맹점",
       "clientCity": "IP 도시",
       "storeCity": "매장 도시",
-      "storeNo": "매장 번호"
+      "storeNo": "매장 번호",
+      "geoFenceStrategy": "펜스 전략"
     },
     "phase": {
       "before_pay": "Before pay",
@@ -92,6 +93,11 @@
       "overseas_ip": "해외 IP",
       "province": "성(省)",
       "geo_fence": "지오펜스"
+    },
+    "strategy": {
+      "strict": "엄격",
+      "balanced": "균형",
+      "loose": "완화"
     }
   }
 }

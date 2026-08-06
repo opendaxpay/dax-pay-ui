@@ -1,0 +1,66 @@
+{
+  "title": "Chiến lược rủi ro",
+  "description": "Bảo mật thanh toán: chặn danh sách đen, giới hạn địa lý, và ghi nhận trúng.",
+  "summary": {
+    "enabled": "Kiểm soát rủi ro: Bật",
+    "disabled": "Kiểm soát rủi ro: Tắt",
+    "blockOn": "Trúng: Chặn đơn",
+    "blockOff": "Trúng: Chỉ ghi nhận",
+    "afterOn": "Ghi nhận sau: Bật",
+    "afterOff": "Ghi nhận sau: Tắt",
+    "levelNormal": "Cấp độ: Bình thường",
+    "levelEnhanced": "Cấp độ: Tăng cường",
+    "overseasOn": "IP nước ngoài: Chặn",
+    "provinceOn": "Tỉnh: Chặn",
+    "blacklistOn": "Danh sách đen: Bật",
+    "geoFenceOn": "Hàng rào địa lý: Bật",
+    "strategy": "Chiến lược: "
+  },
+  "section": {
+    "switch": "Công tắc kiểm soát rủi ro",
+    "strategy": "Chiến lược chặn"
+  },
+  "riskEnabled": {
+    "label": "Công tắc chính kiểm soát rủi ro",
+    "desc": "Khi bật, luồng thanh toán thực hiện kiểm tra rủi ro; khi tắt, mọi kiểm tra rủi ro bị bỏ qua."
+  },
+  "blacklistEnabled": {
+    "label": "Chặn danh sách đen",
+    "desc": "Khi bật, kiểm tra danh sách đen IP và mã định danh người dùng (Alipay userId / WeChat openId) được thực hiện."
+  },
+  "riskBlockBeforePay": {
+    "label": "Chặn đơn khi trúng",
+    "desc": "Khi bật, trúng quy tắc rủi ro bất kỳ trước thanh toán (danh sách đen, tỉnh, IP nước ngoài, v.v.) sẽ từ chối đơn; khi tắt, chỉ ghi nhận trúng mà không chặn giao dịch."
+  },
+  "riskCheckAfterPay": {
+    "label": "Ghi nhận trúng sau thanh toán",
+    "desc": "Khi bật, trúng được ghi nhận sau thanh toán thành công để phân tích sự cố, không ảnh hưởng trạng thái tiền."
+  },
+  "riskOpenIdLevel": {
+    "label": "Cấp độ chặn mã định danh người dùng",
+    "desc": "Bình thường: chỉ chặn phương thức native JSAPI/Mini. Tăng cường: ép OAuth lấy mã định danh người dùng cho H5/QR trong môi trường nhận diện được.",
+    "normal": "Bình thường",
+    "enhanced": "Tăng cường"
+  },
+  "blockOverseasIp": {
+    "label": "Chặn IP nước ngoài",
+    "desc": "Chặn yêu cầu thanh toán từ IP nước ngoài (ngoài Trung Quốc đại lục), chiến lược kiểm soát rủi ro phổ biến tại khu vực Trung Quốc."
+  },
+  "provinceBlacklistEnabled": {
+    "label": "Chặn theo cấp tỉnh",
+    "desc": "Khi bật, tỉnh của IP được so khớp với danh sách đen cấp tỉnh; trúng tuân theo chiến lược chặn. Quản lý danh sách tỉnh tại Bảo mật thanh toán → Danh sách đen."
+  },
+  "geoFenceEnabled": {
+    "label": "Hàng rào địa lý",
+    "desc": "Công tắc geo-fence cấp thành phố cửa hàng. Khi bật, thành phố IP khách hàng được so sánh với thành phố cửa hàng; không khớp được xử lý theo chiến lược chặn. Cửa hàng cần ghi địa chỉ khu vực; cửa hàng không có địa chỉ được phép (fail-open). Sau khi bật công tắc nền tảng, fence cũng cần được bật theo merchant. Chiến lược fence được cấu hình toàn cục ở dưới."
+  },
+  "geoFenceStrategy": {
+    "label": "Chiến lược fence",
+    "strict": "Nghiêm ngặt",
+    "strictDesc": "Chỉ thành phố cửa hàng",
+    "balanced": "Cân bằng",
+    "balancedDesc": "Thành phố cửa hàng + thành phố liền kề (khuyên dùng)",
+    "loose": "Lỏng lẻo",
+    "looseDesc": "Thành phố cửa hàng + liền kề + cùng tỉnh"
+  }
+}

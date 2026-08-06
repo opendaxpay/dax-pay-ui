@@ -1,0 +1,9 @@
+{
+  "cancel": "取消",
+  "confirm": "確認",
+  "confirmSave": "確認保存",
+  "confirmSaveContent": "確定要保存當前配置嗎？",
+  "unit": {
+    "second": "秒"
+  }
+}

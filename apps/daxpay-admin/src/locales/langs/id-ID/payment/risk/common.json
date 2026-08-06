@@ -1,0 +1,9 @@
+{
+  "cancel": "Membatalkan",
+  "confirm": "Mengonfirmasi",
+  "confirmSave": "Konfirmasikan penyimpanan",
+  "confirmSaveContent": "Apakah Anda yakin ingin menyimpan konfigurasi saat ini?",
+  "unit": {
+    "second": "detik"
+  }
+}

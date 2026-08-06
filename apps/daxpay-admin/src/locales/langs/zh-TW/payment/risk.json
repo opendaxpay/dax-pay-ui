@@ -72,7 +72,8 @@
       "merchant": "商戶",
       "clientCity": "IP城市",
       "storeCity": "門店城市",
-      "storeNo": "門店號"
+      "storeNo": "門店號",
+      "geoFenceStrategy": "圍欄策略"
     },
     "phase": {
       "before_pay": "事前拦截",
@@ -92,6 +93,11 @@
       "overseas_ip": "海外IP",
       "province": "省份",
       "geo_fence": "地理圍欄"
+    },
+    "strategy": {
+      "strict": "嚴格",
+      "balanced": "平衡",
+      "loose": "寬鬆"
     }
   }
 }

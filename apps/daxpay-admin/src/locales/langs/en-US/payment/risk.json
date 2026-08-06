@@ -72,7 +72,8 @@
       "merchant": "Merchant",
       "clientCity": "IP City",
       "storeCity": "Store City",
-      "storeNo": "Store No"
+      "storeNo": "Store No",
+      "geoFenceStrategy": "Fence strategy"
     },
     "phase": {
       "before_pay": "Before pay",
@@ -92,6 +93,11 @@
       "overseas_ip": "Overseas IP",
       "province": "Province",
       "geo_fence": "Geo-fence"
+    },
+    "strategy": {
+      "strict": "Strict",
+      "balanced": "Balanced",
+      "loose": "Relaxed"
     }
   }
 }

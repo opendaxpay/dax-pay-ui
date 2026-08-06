@@ -72,7 +72,8 @@
       "merchant": "Merchant",
       "clientCity": "Kota IP",
       "storeCity": "Kota Toko",
-      "storeNo": "No. Toko"
+      "storeNo": "No. Toko",
+      "geoFenceStrategy": "Strategi fence"
     },
     "phase": {
       "before_pay": "Sebelum bayar",
@@ -92,6 +93,11 @@
       "overseas_ip": "IP Luar Negeri",
       "province": "Provinsi",
       "geo_fence": "Geo-pagar"
+    },
+    "strategy": {
+      "strict": "Ketat",
+      "balanced": "Seimbang",
+      "loose": "Longgar"
     }
   }
 }

@@ -37,6 +37,17 @@ export const ChinaRegionApi = {
       params: { code },
     });
   },
+
+  /**
+   * 地理围栏策略预览: 查询指定城市的交界邻市与同省全部城市
+   * @param cityCode 城市编码(4位)
+   */
+  previewGeoFence(cityCode: string): Promise<Result<GeoFencePreview>> {
+    return defHttp.get({
+      url: '/china/region/geo-fence-preview',
+      params: { cityCode },
+    });
+  },
 };
 
 /**
@@ -53,4 +64,28 @@ export interface Region {
   parentCode?: string;
   /** 下级行政区域 */
   children?: Region[];
+}
+
+/**
+ * 地理围栏策略预览结果
+ */
+export interface GeoFencePreview {
+  /** 选中的城市 */
+  city: GeoFenceCityInfo;
+  /** 交界城市列表(balanced 策略邻市) */
+  adjacentCities: GeoFenceCityInfo[];
+  /** 同省全部城市(loose 策略范围, 含自身) */
+  provinceCities: GeoFenceCityInfo[];
+}
+
+/** 城市信息 */
+export interface GeoFenceCityInfo {
+  /** 城市编码(4位) */
+  code: string;
+  /** 城市名称 */
+  name: string;
+  /** 所属省份编码(2位) */
+  provinceCode: string;
+  /** 所属省份名称 */
+  provinceName: string;
 }

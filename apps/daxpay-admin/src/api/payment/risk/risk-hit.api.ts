@@ -54,4 +54,6 @@ export interface PayRiskHitVo extends BaseEntity {
   storeCity?: string;
   /** 门店号 */
   storeNo?: string;
+  /** 地理围栏命中时生效的策略(strict/balanced/loose) */
+  geoFenceStrategy?: string;
 }

@@ -72,7 +72,8 @@
       "merchant": "加盟店",
       "clientCity": "IP都市",
       "storeCity": "店舗都市",
-      "storeNo": "店舗番号"
+      "storeNo": "店舗番号",
+      "geoFenceStrategy": "フェンス戦略"
     },
     "phase": {
       "before_pay": "Before pay",
@@ -92,6 +93,11 @@
       "overseas_ip": "海外IP",
       "province": "省",
       "geo_fence": "ジオフェンス"
+    },
+    "strategy": {
+      "strict": "厳格",
+      "balanced": "バランス",
+      "loose": "緩和"
     }
   }
 }

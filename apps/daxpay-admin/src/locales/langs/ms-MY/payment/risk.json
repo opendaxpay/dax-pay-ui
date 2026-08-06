@@ -72,7 +72,8 @@
       "merchant": "Peniaga",
       "clientCity": "Bandar IP",
       "storeCity": "Bandar Kedai",
-      "storeNo": "No. Kedai"
+      "storeNo": "No. Kedai",
+      "geoFenceStrategy": "Strategi fence"
     },
     "phase": {
       "before_pay": "Sebelum bayar",
@@ -92,6 +93,11 @@
       "overseas_ip": "IP Luar Negara",
       "province": "Wilayah",
       "geo_fence": "Geo-pagar"
+    },
+    "strategy": {
+      "strict": "Ketat",
+      "balanced": "Seimbang",
+      "loose": "Longgar"
     }
   }
 }

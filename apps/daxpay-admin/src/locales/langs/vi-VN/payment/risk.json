@@ -72,7 +72,8 @@
       "merchant": "Thương nhân",
       "clientCity": "Thành phố IP",
       "storeCity": "Thành phố cửa hàng",
-      "storeNo": "Mã cửa hàng"
+      "storeNo": "Mã cửa hàng",
+      "geoFenceStrategy": "Chiến lược fence"
     },
     "phase": {
       "before_pay": "Trước thanh toán",
@@ -92,6 +93,11 @@
       "overseas_ip": "IP nước ngoài",
       "province": "Tỉnh",
       "geo_fence": "Geo-fence"
+    },
+    "strategy": {
+      "strict": "Nghiêm ngặt",
+      "balanced": "Cân bằng",
+      "loose": "Lỏng lẻo"
     }
   }
 }
