@@ -49,6 +49,7 @@
         { label: $t('payment.risk.blacklist.type.ip'), value: 'ip' },
         { label: $t('payment.risk.blacklist.type.alipay_user'), value: 'alipay_user' },
         { label: $t('payment.risk.blacklist.type.wechat_openid'), value: 'wechat_openid' },
+        { label: $t('payment.risk.blacklist.type.province'), value: 'province' },
       ],
     },
     {
@@ -155,12 +156,15 @@
     if (type === 'wechat_openid') {
       return $t('payment.risk.blacklist.type.wechat_openid');
     }
+    if (type === 'province') {
+      return $t('payment.risk.blacklist.type.province');
+    }
     return type || '';
   }
 
   /** 作用范围：全局 / 应用名或 AppId */
   function scopeLabel(row: PayBlacklistVo) {
-    if (row.type === 'ip' || row.type === 'alipay_user') {
+    if (row.type === 'ip' || row.type === 'alipay_user' || row.type === 'province') {
       return $t('payment.risk.blacklist.scope.global');
     }
     if (row.type === 'wechat_openid' && row.wxAppId) {

@@ -23,7 +23,8 @@
       "ip": "IP",
       "open_id": "OpenId",
       "alipay_user": "Pengguna Alipay",
-      "wechat_openid": "OpenId WeChat"
+      "wechat_openid": "OpenId WeChat",
+      "province": "Provinsi"
     },
     "status": {
       "enable": "Aktif",
@@ -34,7 +35,9 @@
       "expireEmpty": "Kosong berarti permanen",
       "openIdBoundaryHint": "Kode bayar / APP / browser eksternal hanya dicatat setelah pembayaran.",
       "alipayGlobalHint": "userId Alipay berlaku global di platform, tanpa membedakan aplikasi/produk.",
-      "wechatAppHint": "Hanya memblokir openId dari aplikasi pembayaran platform yang dipilih."
+      "wechatAppHint": "Hanya memblokir openId dari aplikasi pembayaran platform yang dipilih.",
+      "ipHint": "Cocok dengan IP klien secara tepat (tanpa CIDR/range); berlaku di seluruh platform, terlepas dari aplikasi/produk.",
+      "provinceHint": "Cocok berdasarkan provinsi IP klien (ip2region offline). Perlu mengaktifkan \"Blokir provinsi\" di Strategi Risiko. IPv6, intranet, dan IP yang tidak ter-resolve diizinkan."
     },
     "scope": {
       "global": "Global"
@@ -43,7 +46,8 @@
       "ip": "Masukkan alamat IP",
       "alipayUserId": "Masukkan userId Alipay",
       "wechatOpenId": "Masukkan openId WeChat",
-      "payApp": "Pilih aplikasi pembayaran platform"
+      "payApp": "Pilih aplikasi pembayaran platform",
+      "province": "Pilih provinsi"
     }
   },
   "hit": {
@@ -65,7 +69,10 @@
       "buyerId": "BuyerId",
       "scene": "Skenario",
       "createTime": "Dibuat pada",
-      "merchant": "Merchant"
+      "merchant": "Merchant",
+      "clientCity": "Kota IP",
+      "storeCity": "Kota Toko",
+      "storeNo": "No. Toko"
     },
     "phase": {
       "before_pay": "Sebelum bayar",
@@ -82,7 +89,9 @@
       "ip": "IP",
       "alipay_user": "Pengguna Alipay",
       "wechat_openid": "OpenId WeChat",
-      "overseas_ip": "IP Luar Negeri"
+      "overseas_ip": "IP Luar Negeri",
+      "province": "Provinsi",
+      "geo_fence": "Geo-pagar"
     }
   }
 }

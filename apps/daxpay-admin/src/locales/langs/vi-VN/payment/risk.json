@@ -23,7 +23,8 @@
       "ip": "IP",
       "open_id": "OpenId",
       "alipay_user": "Người dùng Alipay",
-      "wechat_openid": "OpenId WeChat"
+      "wechat_openid": "OpenId WeChat",
+      "province": "Tỉnh"
     },
     "status": {
       "enable": "Bật",
@@ -34,7 +35,9 @@
       "expireEmpty": "Để trống là vĩnh viễn",
       "openIdBoundaryHint": "Mã thanh toán / APP / trình duyệt ngoài chỉ ghi nhận sau thanh toán.",
       "alipayGlobalHint": "userId Alipay áp dụng toàn nền tảng, không tách theo ứng dụng/sản phẩm.",
-      "wechatAppHint": "Chỉ chặn openId lấy từ ứng dụng thanh toán nền tảng đã chọn."
+      "wechatAppHint": "Chỉ chặn openId lấy từ ứng dụng thanh toán nền tảng đã chọn.",
+      "ipHint": "Khớp chính xác IP khách hàng (không hỗ trợ CIDR/dải); áp dụng toàn nền tảng, không phân biệt ứng dụng/sản phẩm.",
+      "provinceHint": "Khớp theo tỉnh/thành của IP khách hàng (ip2region offline). Cần bật \"Chặn cấp tỉnh\" trong Chiến lược rủi ro. IPv6, mạng nội bộ và IP không xác định được được phép."
     },
     "scope": {
       "global": "Toàn cục"
@@ -43,7 +46,8 @@
       "ip": "Nhập địa chỉ IP",
       "alipayUserId": "Nhập userId Alipay",
       "wechatOpenId": "Nhập openId WeChat",
-      "payApp": "Chọn ứng dụng thanh toán nền tảng"
+      "payApp": "Chọn ứng dụng thanh toán nền tảng",
+      "province": "Vui lòng chọn tỉnh"
     }
   },
   "hit": {
@@ -65,7 +69,10 @@
       "buyerId": "BuyerId",
       "scene": "Kịch bản",
       "createTime": "Thời gian tạo",
-      "merchant": "Thương nhân"
+      "merchant": "Thương nhân",
+      "clientCity": "Thành phố IP",
+      "storeCity": "Thành phố cửa hàng",
+      "storeNo": "Mã cửa hàng"
     },
     "phase": {
       "before_pay": "Trước thanh toán",
@@ -82,7 +89,9 @@
       "ip": "IP",
       "alipay_user": "Người dùng Alipay",
       "wechat_openid": "OpenId WeChat",
-      "overseas_ip": "IP nước ngoài"
+      "overseas_ip": "IP nước ngoài",
+      "province": "Tỉnh",
+      "geo_fence": "Geo-fence"
     }
   }
 }

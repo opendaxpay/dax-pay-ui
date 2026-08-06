@@ -12,12 +12,13 @@
     type WxPlatformApp,
     WxPlatformAppApi,
   } from '#/api/payment/wx/platform-app.api';
+  import { ChinaRegionApi, type Region } from '#/api/core/region.api';
   import { FormEditType } from '#/enums/formEditType';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
 
   /** 名单类型（与后端 type 一致） */
-  type BlacklistType = 'ip' | 'alipay_user' | 'wechat_openid';
+  type BlacklistType = 'ip' | 'alipay_user' | 'wechat_openid' | 'province';
 
   const emit = defineEmits(['ok']);
 
@@ -44,6 +45,10 @@
   const platformApps = ref<WxPlatformApp[]>([]);
   const platformAppsLoading = ref(false);
 
+  // 省份列表（province 类型用）
+  const provinceList = ref<Region[]>([]);
+  const provinceLoading = ref(false);
+
   const drawerTitle = computed(() => {
     if (isAdd.value) {
       // 新增黑名单
@@ -66,6 +71,10 @@
       // 支付宝 userId
       return $t('payment.risk.blacklist.placeholder.alipayUserId');
     }
+    if (formState.value.type === 'province') {
+      // 选择省份
+      return $t('payment.risk.blacklist.placeholder.province');
+    }
     // 微信 openId
     return $t('payment.risk.blacklist.placeholder.wechatOpenId');
   });
@@ -76,6 +85,19 @@
       label: formatWxAppLabel(app),
     })),
   );
+
+  // 省份选项（value 存省名，与 ip2region 返回格式对齐）
+  const provinceOptions = computed(() =>
+    provinceList.value.map((p) => ({ value: p.name, label: p.name })),
+  );
+
+  // 黑名单类型选项
+  const typeOptions = computed(() => [
+    { value: 'ip', label: $t('payment.risk.blacklist.type.ip') },
+    { value: 'alipay_user', label: $t('payment.risk.blacklist.type.alipay_user') },
+    { value: 'wechat_openid', label: $t('payment.risk.blacklist.type.wechat_openid') },
+    { value: 'province', label: $t('payment.risk.blacklist.type.province') },
+  ]);
 
   /** 应用类型文案 */
   function appTypeLabel(appType?: string) {
@@ -116,11 +138,28 @@
     }
   }
 
+  /** 加载省份列表 */
+  async function loadProvinces() {
+    if (provinceList.value.length > 0) {
+      return;
+    }
+    provinceLoading.value = true;
+    try {
+      const { data } = await ChinaRegionApi.findAllProvince();
+      provinceList.value = data || [];
+    } finally {
+      provinceLoading.value = false;
+    }
+  }
+
   watch(
     () => formState.value.type,
     (val) => {
       if (val === 'wechat_openid') {
         void loadPlatformApps();
+      }
+      if (val === 'province') {
+        void loadProvinces();
       }
     },
   );
@@ -148,6 +187,9 @@
       const row = data || record;
       if (row.type === 'wechat_openid') {
         await loadPlatformApps();
+      }
+      if (row.type === 'province') {
+        await loadProvinces();
       }
       formState.value = {
         id: row.id!,
@@ -244,22 +286,23 @@
           name="type"
           :rules="[{ required: true, message: $t('common.pleaseSelect') }]"
         >
-          <a-radio-group
+          <a-select
             :value="formState.type"
-            button-style="solid"
+            :options="typeOptions"
+            :placeholder="$t('common.pleaseSelect')"
             :disabled="!isAdd"
             @update:value="handleTypeChange"
-          >
-            <a-radio-button value="ip">{{ $t('payment.risk.blacklist.type.ip') }}</a-radio-button>
-            <a-radio-button value="alipay_user">
-              {{ $t('payment.risk.blacklist.type.alipay_user') }}
-            </a-radio-button>
-            <a-radio-button value="wechat_openid">
-              {{ $t('payment.risk.blacklist.type.wechat_openid') }}
-            </a-radio-button>
-          </a-radio-group>
+          />
         </a-form-item>
 
+        <!-- IP：精确匹配说明 -->
+        <div v-if="formState.type === 'ip'" class="mb-4">
+          <a-alert
+            :message="$t('payment.risk.blacklist.tip.ipHint')"
+            type="info"
+            show-icon
+          />
+        </div>
         <!-- 支付宝：全局说明 -->
         <div v-if="formState.type === 'alipay_user'" class="mb-4">
           <a-alert
@@ -272,6 +315,14 @@
         <div v-if="formState.type === 'wechat_openid'" class="mb-4">
           <a-alert
             :message="$t('payment.risk.blacklist.tip.wechatAppHint')"
+            type="info"
+            show-icon
+          />
+        </div>
+        <!-- 省份：IP 归属匹配说明 -->
+        <div v-if="formState.type === 'province'" class="mb-4">
+          <a-alert
+            :message="$t('payment.risk.blacklist.tip.provinceHint')"
             type="info"
             show-icon
           />
@@ -294,7 +345,19 @@
           name="value"
           :rules="[{ required: true, message: $t('common.pleaseInput') }]"
         >
+          <a-select
+            v-if="formState.type === 'province'"
+            v-model:value="formState.value"
+            show-search
+            option-filter-prop="label"
+            :loading="provinceLoading"
+            :options="provinceOptions"
+            :placeholder="$t('payment.risk.blacklist.placeholder.province')"
+            :disabled="!isAdd"
+            allow-clear
+          />
           <a-input
+            v-else
             v-model:value="formState.value"
             :placeholder="valuePlaceholder"
             :disabled="!isAdd"

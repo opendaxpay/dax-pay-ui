@@ -23,7 +23,8 @@
       "ip": "IP",
       "open_id": "OpenId",
       "alipay_user": "Pengguna Alipay",
-      "wechat_openid": "OpenId WeChat"
+      "wechat_openid": "OpenId WeChat",
+      "province": "Wilayah"
     },
     "status": {
       "enable": "Aktif",
@@ -34,7 +35,9 @@
       "expireEmpty": "Kosong bermaksud kekal",
       "openIdBoundaryHint": "Kod bayaran / APP / pelayar luaran hanya direkod selepas bayaran.",
       "alipayGlobalHint": "userId Alipay berkuat kuasa seluruh platform, tidak dipecah mengikut aplikasi/produk.",
-      "wechatAppHint": "Hanya menyekat openId daripada aplikasi pembayaran platform yang dipilih."
+      "wechatAppHint": "Hanya menyekat openId daripada aplikasi pembayaran platform yang dipilih.",
+      "ipHint": "Padan IP klien secara tepat (tanpa CIDR/julat); berkuat kuasa di seluruh platform tanpa mengira aplikasi/produk.",
+      "provinceHint": "Padan mengikut wilayah IP klien (ip2region luar talian). Perlu aktifkan \"Sekat wilayah\" dalam Strategi Risiko. IPv6, intranet dan IP yang tidak dapat diselesaikan dibenarkan."
     },
     "scope": {
       "global": "Global"
@@ -43,7 +46,8 @@
       "ip": "Masukkan alamat IP",
       "alipayUserId": "Masukkan userId Alipay",
       "wechatOpenId": "Masukkan openId WeChat",
-      "payApp": "Pilih aplikasi pembayaran platform"
+      "payApp": "Pilih aplikasi pembayaran platform",
+      "province": "Sila pilih wilayah"
     }
   },
   "hit": {
@@ -65,7 +69,10 @@
       "buyerId": "BuyerId",
       "scene": "Senario",
       "createTime": "Dicipta pada",
-      "merchant": "Peniaga"
+      "merchant": "Peniaga",
+      "clientCity": "Bandar IP",
+      "storeCity": "Bandar Kedai",
+      "storeNo": "No. Kedai"
     },
     "phase": {
       "before_pay": "Sebelum bayar",
@@ -82,7 +89,9 @@
       "ip": "IP",
       "alipay_user": "Pengguna Alipay",
       "wechat_openid": "OpenId WeChat",
-      "overseas_ip": "IP Luar Negara"
+      "overseas_ip": "IP Luar Negara",
+      "province": "Wilayah",
+      "geo_fence": "Geo-pagar"
     }
   }
 }

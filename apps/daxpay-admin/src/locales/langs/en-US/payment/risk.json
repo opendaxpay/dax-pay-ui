@@ -23,7 +23,8 @@
       "ip": "IP",
       "open_id": "OpenId",
       "alipay_user": "Alipay user",
-      "wechat_openid": "WeChat OpenId"
+      "wechat_openid": "WeChat OpenId",
+      "province": "Province"
     },
     "status": {
       "enable": "Enabled",
@@ -34,7 +35,9 @@
       "expireEmpty": "Leave empty for permanent",
       "openIdBoundaryHint": "Payment code / APP / external browser scenarios are logged after payment only.",
       "alipayGlobalHint": "Alipay userId applies platform-wide and is not split by app or product.",
-      "wechatAppHint": "Only blocks openIds obtained under the selected platform payment app; pick the mini program app for cashier."
+      "wechatAppHint": "Only blocks openIds obtained under the selected platform payment app; pick the mini program app for cashier.",
+      "ipHint": "Matches the exact client IP (no CIDR/ranges); applies platform-wide, regardless of app or product.",
+      "provinceHint": "Matches the client IP's province (offline ip2region). Requires enabling \"Province block\" in Risk Strategy. IPv6, intranet, and unresolvable IPs are allowed."
     },
     "scope": {
       "global": "Global"
@@ -43,7 +46,8 @@
       "ip": "Enter IP address",
       "alipayUserId": "Enter Alipay userId",
       "wechatOpenId": "Enter WeChat openId",
-      "payApp": "Select a platform payment app"
+      "payApp": "Select a platform payment app",
+      "province": "Please select province"
     }
   },
   "hit": {
@@ -65,7 +69,10 @@
       "buyerId": "BuyerId",
       "scene": "Scene",
       "createTime": "Created at",
-      "merchant": "Merchant"
+      "merchant": "Merchant",
+      "clientCity": "IP City",
+      "storeCity": "Store City",
+      "storeNo": "Store No"
     },
     "phase": {
       "before_pay": "Before pay",
@@ -82,7 +89,9 @@
       "ip": "IP",
       "alipay_user": "Alipay user",
       "wechat_openid": "WeChat OpenId",
-      "overseas_ip": "Overseas IP"
+      "overseas_ip": "Overseas IP",
+      "province": "Province",
+      "geo_fence": "Geo-fence"
     }
   }
 }

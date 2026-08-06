@@ -40,6 +40,8 @@
         { label: $t('payment.risk.hit.hitType.alipay_user'), value: 'alipay_user' },
         { label: $t('payment.risk.hit.hitType.wechat_openid'), value: 'wechat_openid' },
         { label: $t('payment.risk.hit.hitType.overseas_ip'), value: 'overseas_ip' },
+        { label: $t('payment.risk.hit.hitType.province'), value: 'province' },
+        { label: $t('payment.risk.hit.hitType.geo_fence'), value: 'geo_fence' },
       ],
     },
     {
@@ -100,6 +102,8 @@
     if (type === 'alipay_user') return $t('payment.risk.hit.hitType.alipay_user');
     if (type === 'wechat_openid') return $t('payment.risk.hit.hitType.wechat_openid');
     if (type === 'overseas_ip') return $t('payment.risk.hit.hitType.overseas_ip');
+    if (type === 'province') return $t('payment.risk.hit.hitType.province');
+    if (type === 'geo_fence') return $t('payment.risk.hit.hitType.geo_fence');
     return type || '';
   }
 
@@ -130,6 +134,10 @@
           </vxe-column>
           <!-- 命中值 -->
           <vxe-column field="hitValue" :title="$t('payment.risk.hit.field.hitValue')" :min-width="160" />
+          <!-- IP归属城市 -->
+          <vxe-column field="clientCity" :title="$t('payment.risk.hit.field.clientCity')" :min-width="110" />
+          <!-- 门店城市 -->
+          <vxe-column field="storeCity" :title="$t('payment.risk.hit.field.storeCity')" :min-width="110" />
           <!-- 交易号 -->
           <vxe-column field="tradeNo" :title="$t('payment.risk.hit.field.tradeNo')" :min-width="140" />
           <!-- 商户: 名称上 + 号下小字两排 -->

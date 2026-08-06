@@ -23,7 +23,8 @@
       "ip": "IP",
       "open_id": "OpenId",
       "alipay_user": "ผู้ใช้ Alipay",
-      "wechat_openid": "OpenId WeChat"
+      "wechat_openid": "OpenId WeChat",
+      "province": "จังหวัด"
     },
     "status": {
       "enable": "เปิดใช้",
@@ -34,7 +35,9 @@
       "expireEmpty": "ว่าง = ถาวร",
       "openIdBoundaryHint": "รหัสชำระเงิน / APP / เบราว์เซอร์ภายนอกจะบันทึกหลังชำระเงินเท่านั้น",
       "alipayGlobalHint": "userId Alipay มีผลทั้งแพลตฟอร์ม ไม่แยกตามแอป/ผลิตภัณฑ์",
-      "wechatAppHint": "บล็อกเฉพาะ openId จากแอปชำระเงินแพลตฟอร์มที่เลือก"
+      "wechatAppHint": "บล็อกเฉพาะ openId จากแอปชำระเงินแพลตฟอร์มที่เลือก",
+      "ipHint": "จับคู่ IP ของลูกค้าแบบตรงทั้งหมด (ไม่รองรับ CIDR/ช่วง) มีผลทั่วทั้งแพลตฟอร์ม ไม่จำกัดเฉพาะแอป/สินค้า",
+      "provinceHint": "จับคู่ตามจังหวัดของ IP ลูกค้า (ip2region ออฟไลน์) ต้องเปิด \"บล็อกระดับจังหวัด\" ในกลยุทธ์ความเสี่ยง IPv6 อินทราเน็ต และ IP ที่ระบุไม่ได้รับอนุญาต"
     },
     "scope": {
       "global": "ทั่วทั้งระบบ"
@@ -43,7 +46,8 @@
       "ip": "กรอกที่อยู่ IP",
       "alipayUserId": "กรอก userId Alipay",
       "wechatOpenId": "กรอก openId WeChat",
-      "payApp": "เลือกแอปชำระเงินของแพลตฟอร์ม"
+      "payApp": "เลือกแอปชำระเงินของแพลตฟอร์ม",
+      "province": "กรุณาเลือกจังหวัด"
     }
   },
   "hit": {
@@ -65,7 +69,10 @@
       "buyerId": "BuyerId",
       "scene": "ฉาก",
       "createTime": "สร้างเมื่อ",
-      "merchant": "ร้านค้า"
+      "merchant": "ร้านค้า",
+      "clientCity": "เมือง IP",
+      "storeCity": "เมืองร้านค้า",
+      "storeNo": "เลขร้านค้า"
     },
     "phase": {
       "before_pay": "ก่อนชำระ",
@@ -82,7 +89,9 @@
       "ip": "IP",
       "alipay_user": "ผู้ใช้ Alipay",
       "wechat_openid": "OpenId WeChat",
-      "overseas_ip": "IP ต่างประเทศ"
+      "overseas_ip": "IP ต่างประเทศ",
+      "province": "จังหวัด",
+      "geo_fence": "รั้วภูมิศาสตร์"
     }
   }
 }
