@@ -48,5 +48,7 @@
   "menu.trade.transfer.wechat": "微信转账",
   "menu.trade.transfer.alipay": "支付宝转账",
   "menu.trade.transfer.douyin": "抖音转账",
-  "menu.trade.transfer.trade": "转账记录"
+  "menu.trade.transfer.trade": "转账记录",
+  "menu.trade.transfer.create": "发起转账",
+  "menu.trade.transfer.channel": "通道转账"
 }

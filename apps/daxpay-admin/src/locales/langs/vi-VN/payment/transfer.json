@@ -1,76 +1,101 @@
 {
-  "transfer": {
-    "status": {
-      "processing": "Đang chuyển",
-      "success": "Thành công",
-      "fail": "Thất bại",
-      "close": "Đã đóng"
-    },
-    "statusColor": {
-      "processing": "processing",
-      "success": "green",
-      "fail": "red",
-      "close": "default"
-    },
-    "channel": {
-      "wechat": "WeChat",
-      "alipay": "Alipay",
-      "douyin": "Douyin"
-    },
-    "field": {
-      "transferNo": "Mã chuyển",
-      "bizTransferNo": "Mã chuyển thương gia",
-      "payeeOpenid": "OpenID người nhận",
-      "payeeAccount": "Tài khoản người nhận",
-      "payeeType": "Loại người nhận",
-      "amount": "Số tiền (CNY)",
-      "status": "Trạng thái",
-      "merchant": "Thương gia",
-      "appId": "ID ứng dụng",
-      "outTransferNo": "Mã chuyển kênh",
-      "title": "Tiêu đề",
-      "reason": "Lý do",
-      "finishTime": "Thời gian hoàn tất",
-      "createTime": "Thời gian tạo",
-      "userName": "Tên người nhận",
-      "transferScene": "Kịch bản chuyển",
-      "transferBody": "Tham số xác nhận",
-      "notifyUrl": "URL thông báo",
-      "attach": "Tham số phụ",
-      "errorMsg": "Lỗi",
-      "tradeNo": "Mã giao dịch",
-      "containerChannel": "Kênh",
-      "currency": "Tiền tệ",
-      "relationNo": "Mã liên quan"
-    },
-    "section": {
-      "identity": "Danh tính",
-      "amount": "Số tiền & Trạng thái",
-      "payee": "Người nhận",
-      "notify": "Thông báo & Lỗi"
-    },
-    "action": {
-      "create": "Chuyển khoản",
-      "sync": "Đồng bộ",
-      "close": "Đóng",
-      "retry": "Thử lại"
-    },
-    "createTitle": "Tạo chuyển khoản",
-    "createConfirmTitle": "Xác nhận chuyển khoản",
-    "createConfirmContent": "Chuyển khoản là thao tác thanh toán ra, vui lòng xác nhận người nhận và số tiền",
-    "createSuccess": "Đã gửi chuyển khoản",
-    "syncConfirmTitle": "Xác nhận đồng bộ",
-    "syncConfirmContent": "Truy vấn trạng thái mới nhất từ kênh",
-    "syncSuccess": "Đã đồng bộ",
-    "closeConfirmTitle": "Xác nhận đóng",
-    "closeConfirmContent": "Không thể khôi phục sau khi đóng, hãy xác nhận kênh chưa thực sự thanh toán",
-    "closeSuccess": "Đã đóng chuyển khoản",
-    "detail": "Chi tiết chuyển khoản",
-    "placeholder": {
-      "bizTransferNo": "Duy nhất mỗi thương gia, dùng cho idempotency",
-      "openid": "OpenID WeChat người nhận",
-      "payeeNameTip": "Không được dưới 0.3 CNY, bắt buộc từ 2000 CNY",
-      "notifyUrl": "URL thông báo bất đồng bộ nền tảng→thương gia"
-    }
+  "status": {
+    "processing": "Đang chuyển",
+    "success": "Thành công",
+    "fail": "Thất bại",
+    "close": "Đã đóng"
+  },
+  "statusColor": {
+    "processing": "processing",
+    "success": "green",
+    "fail": "red",
+    "close": "default"
+  },
+  "channel": {
+    "wechat": "WeChat",
+    "alipay": "Alipay",
+    "douyin": "Douyin"
+  },
+  "field": {
+    "transferNo": "Mã chuyển",
+    "bizTransferNo": "Mã chuyển thương gia",
+    "payeeOpenid": "OpenID người nhận",
+    "payeeAccount": "Tài khoản người nhận",
+    "payeeType": "Loại người nhận",
+    "amount": "Số tiền (CNY)",
+    "status": "Trạng thái",
+    "merchant": "Thương gia",
+    "appId": "ID ứng dụng",
+    "outTransferNo": "Mã chuyển kênh",
+    "title": "Tiêu đề",
+    "reason": "Lý do",
+    "finishTime": "Thời gian hoàn tất",
+    "createTime": "Thời gian tạo",
+    "userName": "Tên người nhận",
+    "payeeName": "Tên người nhận",
+    "transferScene": "Kịch bản chuyển",
+    "transferBody": "Tham số xác nhận",
+    "notifyUrl": "URL thông báo",
+    "attach": "Tham số phụ",
+    "errorMsg": "Lỗi",
+    "tradeNo": "Mã giao dịch",
+    "containerChannel": "Kênh",
+    "currency": "Tiền tệ",
+    "relationNo": "Mã liên quan"
+  },
+  "section": {
+    "identity": "Danh tính",
+    "amount": "Số tiền & Trạng thái",
+    "payee": "Người nhận",
+    "notify": "Thông báo & Lỗi",
+    "advanced": "Tùy chọn Nâng cao"
+  },
+  "action": {
+    "create": "Chuyển khoản",
+    "sync": "Đồng bộ",
+    "close": "Đóng",
+    "retry": "Thử lại",
+    "reset": "Đặt Lại"
+  },
+  "createTitle": "Tạo chuyển khoản",
+  "createConfirmTitle": "Xác nhận chuyển khoản",
+  "createConfirmContent": "Chuyển khoản là thao tác thanh toán ra, vui lòng xác nhận người nhận và số tiền",
+  "createSuccess": "Đã gửi chuyển khoản",
+  "syncConfirmTitle": "Xác nhận đồng bộ",
+  "syncConfirmContent": "Truy vấn trạng thái mới nhất từ kênh",
+  "syncSuccess": "Đã đồng bộ",
+  "closeConfirmTitle": "Xác nhận đóng",
+  "closeConfirmContent": "Không thể khôi phục sau khi đóng, hãy xác nhận kênh chưa thực sự thanh toán",
+  "closeSuccess": "Đã đóng chuyển khoản",
+  "detail": "Chi tiết chuyển khoản",
+  "placeholder": {
+    "bizTransferNo": "Duy nhất mỗi thương gia, dùng cho idempotency",
+    "openid": "OpenID WeChat người nhận",
+    "payeeNameTip": "Không được dưới 0.3 CNY, bắt buộc từ 2000 CNY",
+    "notifyUrl": "URL thông báo bất đồng bộ nền tảng→thương gia",
+    "targetMch": "Vui lòng chọn đối tác nhận",
+    "channelMch": "Vui lòng chọn đối tác kênh",
+    "douyinOpenid": "openid Douyin người nhận",
+    "payeeNameTipDouyin": "Bắt buộc từ 2000 CNY trở lên",
+    "payeeUserId": "ID người dùng Alipay người nhận (bắt đầu 2088)",
+    "payeeOpenId": "OpenID Alipay người nhận",
+    "payeeLoginName": "Tên đăng nhập Alipay người nhận (email/SĐT)",
+    "bizTransferNoAuto": "Để trống để tự tạo"
+  },
+  "targetMch": "Đối tác nhận",
+  "targetMchHelp": "Chọn đối tác nhận để chuyển thay mặt",
+  "channelMch": "Đối tác kênh",
+  "amountUnit": "CNY",
+  "payeeTypeUserId": "ID Người dùng",
+  "payeeTypeOpenId": "OpenID",
+  "payeeTypeLoginName": "Tên đăng nhập Alipay",
+  "validate": {
+    "channelMchRequired": "Vui lòng chọn đối tác kênh",
+    "bizTransferNoRequired": "Vui lòng nhập mã chuyển khoản",
+    "amountRequired": "Vui lòng nhập số tiền chuyển khoản",
+    "payeeAccountRequired": "Vui lòng nhập tài khoản người nhận",
+    "payeeNameRequired": "Tên người nhận bắt buộc khi số tiền từ 2000 CNY trở lên",
+    "payeeNameForbidden": "Không được nhập tên người nhận khi số tiền dưới 0.3 CNY",
+    "targetMchRequired": "Vui lòng chọn đối tác nhận"
   }
 }

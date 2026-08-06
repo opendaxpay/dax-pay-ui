@@ -1,14 +1,14 @@
 <script lang="ts" setup>
   import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
 
-  import { computed, onMounted, reactive, ref } from 'vue';
+  import { computed, onMounted, ref } from 'vue';
 
   import { $t } from '@vben/locales';
   import { formatDateTime } from '@vben/utils';
+  import { IconifyIcon } from '@vben-core/icons';
 
   import {
     TransferApi,
-    type TransferParam,
     type WechatTransferOrderQuery,
     type WechatTransferOrderResult,
   } from '#/api/payment/transfer/transfer.api';
@@ -17,8 +17,11 @@
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
+  import { useRouter } from 'vue-router';
+
   defineOptions({ name: 'WechatTransferList' });
 
+  const router = useRouter();
   const { confirm, message } = useMessage();
   const { hasPermission } = usePermission();
 
@@ -34,17 +37,6 @@
   const drawerVisible = ref(false);
   const drawerLoading = ref(false);
   const detail = ref<WechatTransferOrderResult>({});
-
-  // 发起转账弹窗
-  const createVisible = ref(false);
-  const createLoading = ref(false);
-  const createForm = reactive<TransferParam>({
-    channelMchNo: '',
-    bizTransferNo: '',
-    amount: 0,
-    payeeType: 'openid',
-    payeeAccount: '',
-  });
 
   // 转账状态
   const statusOptions = computed(() =>
@@ -134,40 +126,9 @@
     }
   }
 
+  /** 发起转账: 跳转聚合发起页 */
   function openCreate() {
-    Object.assign(createForm, {
-      channelMchNo: '',
-      bizTransferNo: '',
-      amount: 0,
-      payeeType: 'openid',
-      payeeAccount: '',
-      payeeName: '',
-      title: '',
-      reason: '',
-      notifyUrl: '',
-      attach: '',
-    });
-    createVisible.value = true;
-  }
-
-  function handleCreate() {
-    confirm({
-      title: $t('payment.transfer.createConfirmTitle'),
-      content: $t('payment.transfer.createConfirmContent'),
-      okType: 'danger',
-      onOk() {
-        createLoading.value = true;
-        return TransferApi.wechatCreate({ ...createForm })
-          .then(() => {
-            message.success($t('payment.transfer.createSuccess'));
-            createVisible.value = false;
-            queryPage();
-          })
-          .finally(() => {
-            createLoading.value = false;
-          });
-      },
-    });
+    router.push({ path: '/trade/transfer/create', query: { channel: 'wechat' } });
   }
 
   function handleSync(row: WechatTransferOrderResult) {
@@ -198,24 +159,24 @@
     });
   }
 
-  // 重试：仅 FAIL 单，复用原单参数重新发起
-  async function handleRetry(row: WechatTransferOrderResult) {
+  // 重试: 仅 FAIL 单, 跳转发起页预填原单参数重新发起
+  function handleRetry(row: WechatTransferOrderResult) {
     drawerVisible.value = false;
-    Object.assign(createForm, {
-      mchNo: row.mchNo,
-      appId: row.appId,
-      channelMchNo: row.channelMchNo ?? '',
-      bizTransferNo: row.bizTransferNo,
-      amount: formatAmount(row.amount),
-      payeeType: 'openid',
-      payeeAccount: row.payeeOpenid,
-      payeeName: row.userName,
-      title: row.title,
-      reason: row.reason,
-      notifyUrl: row.notifyUrl,
-      attach: row.attach,
+    router.push({
+      path: '/trade/transfer/create',
+      query: {
+        channel: 'wechat',
+        channelMchNo: row.channelMchNo ?? '',
+        bizTransferNo: row.bizTransferNo,
+        amount: formatAmount(row.amount),
+        payeeAccount: row.payeeOpenid,
+        payeeName: row.userName,
+        title: row.title,
+        reason: row.reason,
+        notifyUrl: row.notifyUrl,
+        attach: row.attach,
+      },
     });
-    createVisible.value = true;
   }
 
   function handleDrawerClose() {
@@ -428,47 +389,5 @@
         <a-button @click="handleDrawerClose">{{ $t('common.close') }}</a-button>
       </template>
     </a-drawer>
-
-    <!-- 发起转账弹窗 -->
-    <a-modal
-      v-model:open="createVisible"
-      :title="$t('payment.transfer.createTitle')"
-      :confirm-loading="createLoading"
-      :width="560"
-      @ok="handleCreate"
-    >
-      <a-form :model="createForm" :label-col="{ span: 6 }" class="pt-2">
-        <a-form-item :label="$t('payment.transfer.field.bizTransferNo')" required>
-          <a-input
-            v-model:value="createForm.bizTransferNo"
-            :placeholder="$t('payment.transfer.placeholder.bizTransferNo')"
-          />
-        </a-form-item>
-        <a-form-item :label="$t('payment.transfer.field.amount')" required>
-          <a-input-number v-model:value="createForm.amount" :min="0.01" :precision="2" class="w-full" />
-        </a-form-item>
-        <a-form-item :label="$t('payment.transfer.field.payeeAccount')" required>
-          <a-input v-model:value="createForm.payeeAccount" :placeholder="$t('payment.transfer.placeholder.openid')" />
-        </a-form-item>
-        <a-form-item :label="$t('payment.transfer.field.payeeName')">
-          <a-input
-            v-model:value="createForm.payeeName"
-            :placeholder="$t('payment.transfer.placeholder.payeeNameTip')"
-          />
-        </a-form-item>
-        <a-form-item :label="$t('payment.transfer.field.title')">
-          <a-input v-model:value="createForm.title" />
-        </a-form-item>
-        <a-form-item :label="$t('payment.transfer.field.reason')">
-          <a-input v-model:value="createForm.reason" />
-        </a-form-item>
-        <a-form-item :label="$t('payment.transfer.field.notifyUrl')">
-          <a-input v-model:value="createForm.notifyUrl" :placeholder="$t('payment.transfer.placeholder.notifyUrl')" />
-        </a-form-item>
-        <a-form-item :label="$t('payment.transfer.field.attach')">
-          <a-input v-model:value="createForm.attach" />
-        </a-form-item>
-      </a-form>
-    </a-modal>
   </div>
 </template>

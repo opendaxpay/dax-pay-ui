@@ -48,5 +48,7 @@
   "menu.trade.transfer.wechat": "Chuyển khoản WeChat",
   "menu.trade.transfer.alipay": "Chuyển khoản Alipay",
   "menu.trade.transfer.douyin": "Chuyển khoản Douyin",
-  "menu.trade.transfer.trade": "Lịch sử chuyển khoản"
+  "menu.trade.transfer.trade": "Lịch sử chuyển khoản",
+  "menu.trade.transfer.create": "Bắt đầu chuyển khoản",
+  "menu.trade.transfer.channel": "Chuyển khoản kênh"
 }

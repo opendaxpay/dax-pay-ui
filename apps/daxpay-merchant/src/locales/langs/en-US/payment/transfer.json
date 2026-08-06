@@ -1,76 +1,99 @@
 {
-  "transfer": {
-    "status": {
-      "processing": "Processing",
-      "success": "Success",
-      "fail": "Failed",
-      "close": "Closed"
-    },
-    "statusColor": {
-      "processing": "processing",
-      "success": "green",
-      "fail": "red",
-      "close": "default"
-    },
-    "channel": {
-      "wechat": "WeChat",
-      "alipay": "Alipay",
-      "douyin": "Douyin"
-    },
-    "field": {
-      "transferNo": "Transfer No",
-      "bizTransferNo": "Biz Transfer No",
-      "payeeOpenid": "Payee OpenID",
-      "payeeAccount": "Payee Account",
-      "payeeType": "Payee Type",
-      "amount": "Amount (CNY)",
-      "status": "Status",
-      "merchant": "Merchant",
-      "appId": "App ID",
-      "outTransferNo": "Out Transfer No",
-      "title": "Title",
-      "reason": "Reason",
-      "finishTime": "Finish Time",
-      "createTime": "Create Time",
-      "userName": "Payee Name",
-      "transferScene": "Transfer Scene",
-      "transferBody": "Confirm Params",
-      "notifyUrl": "Notify URL",
-      "attach": "Attach",
-      "errorMsg": "Error",
-      "tradeNo": "Trade No",
-      "containerChannel": "Channel",
-      "currency": "Currency",
-      "relationNo": "Relation No"
-    },
-    "section": {
-      "identity": "Identity",
-      "amount": "Amount & Status",
-      "payee": "Payee",
-      "notify": "Notify & Error"
-    },
-    "action": {
-      "create": "Transfer",
-      "sync": "Sync",
-      "close": "Close",
-      "retry": "Retry"
-    },
-    "createTitle": "Create Transfer",
-    "createConfirmTitle": "Confirm Transfer",
-    "createConfirmContent": "Transfer is a payout operation, please confirm the payee and amount",
-    "createSuccess": "Transfer submitted",
-    "syncConfirmTitle": "Confirm Sync",
-    "syncConfirmContent": "Query the latest status from the channel",
-    "syncSuccess": "Synced",
-    "closeConfirmTitle": "Confirm Close",
-    "closeConfirmContent": "Cannot be recovered after close, please confirm no actual payout on channel side",
-    "closeSuccess": "Transfer closed",
-    "detail": "Transfer Detail",
-    "placeholder": {
-      "bizTransferNo": "Unique per merchant, for idempotency",
-      "openid": "Payee WeChat openid",
-      "payeeNameTip": "Not allowed below 0.3 CNY, required at or above 2000 CNY",
-      "notifyUrl": "Platform to merchant async notify URL"
-    }
+  "status": {
+    "processing": "Processing",
+    "success": "Success",
+    "fail": "Failed",
+    "close": "Closed"
+  },
+  "statusColor": {
+    "processing": "processing",
+    "success": "green",
+    "fail": "red",
+    "close": "default"
+  },
+  "channel": {
+    "wechat": "WeChat",
+    "alipay": "Alipay",
+    "douyin": "Douyin"
+  },
+  "field": {
+    "transferNo": "Transfer No",
+    "bizTransferNo": "Biz Transfer No",
+    "payeeOpenid": "Payee OpenID",
+    "payeeAccount": "Payee Account",
+    "payeeType": "Payee Type",
+    "amount": "Amount (CNY)",
+    "status": "Status",
+    "merchant": "Merchant",
+    "appId": "App ID",
+    "outTransferNo": "Out Transfer No",
+    "title": "Title",
+    "reason": "Reason",
+    "finishTime": "Finish Time",
+    "createTime": "Create Time",
+    "userName": "Payee Name",
+    "payeeName": "Payee Name",
+    "transferScene": "Transfer Scene",
+    "transferBody": "Confirm Params",
+    "notifyUrl": "Notify URL",
+    "attach": "Attach",
+    "errorMsg": "Error",
+    "tradeNo": "Trade No",
+    "containerChannel": "Channel",
+    "currency": "Currency",
+    "relationNo": "Relation No"
+  },
+  "section": {
+    "identity": "Identity",
+    "amount": "Amount & Status",
+    "payee": "Payee",
+    "notify": "Notify & Error",
+    "advanced": "Advanced Options"
+  },
+  "action": {
+    "create": "Transfer",
+    "sync": "Sync",
+    "close": "Close",
+    "retry": "Retry",
+    "reset": "Reset"
+  },
+  "createTitle": "Create Transfer",
+  "createConfirmTitle": "Confirm Transfer",
+  "createConfirmContent": "Transfer is a payout operation, please confirm the payee and amount",
+  "createSuccess": "Transfer submitted",
+  "syncConfirmTitle": "Confirm Sync",
+  "syncConfirmContent": "Query the latest status from the channel",
+  "syncSuccess": "Synced",
+  "closeConfirmTitle": "Confirm Close",
+  "closeConfirmContent": "Cannot be recovered after close, please confirm no actual payout on channel side",
+  "closeSuccess": "Transfer closed",
+  "detail": "Transfer Detail",
+  "placeholder": {
+    "bizTransferNo": "Unique per merchant, for idempotency",
+    "openid": "Payee WeChat openid",
+    "payeeNameTip": "Not allowed below 0.3 CNY, required at or above 2000 CNY",
+    "notifyUrl": "Platform to merchant async notify URL",
+    "targetMch": "Please select a target merchant",
+    "channelMch": "Please select a channel merchant",
+    "douyinOpenid": "Payee Douyin openid",
+    "payeeNameTipDouyin": "Required at or above 2000 CNY",
+    "payeeUserId": "Payee Alipay user ID (starts with 2088)",
+    "payeeOpenId": "Payee Alipay OpenID",
+    "payeeLoginName": "Payee Alipay login name (email/phone)",
+    "bizTransferNoAuto": "Auto-generated if empty"
+  },
+  "targetMch": "Target Merchant",
+  "channelMch": "Channel Merchant",
+  "amountUnit": "CNY",
+  "payeeTypeUserId": "User ID",
+  "payeeTypeOpenId": "OpenID",
+  "payeeTypeLoginName": "Alipay Login Name",
+  "validate": {
+    "channelMchRequired": "Please select a channel merchant",
+    "bizTransferNoRequired": "Please enter the biz transfer no",
+    "amountRequired": "Please enter the transfer amount",
+    "payeeAccountRequired": "Please enter the payee account",
+    "payeeNameRequired": "Payee name is required when amount is 2000 CNY or above",
+    "payeeNameForbidden": "Payee name is not allowed when amount is below 0.3 CNY"
   }
 }

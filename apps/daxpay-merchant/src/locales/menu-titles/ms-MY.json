@@ -48,5 +48,7 @@
   "menu.trade.transfer.wechat": "Pindahan WeChat",
   "menu.trade.transfer.alipay": "Pindahan Alipay",
   "menu.trade.transfer.douyin": "Pindahan Douyin",
-  "menu.trade.transfer.trade": "Rekod Pindahan"
+  "menu.trade.transfer.trade": "Rekod Pindahan",
+  "menu.trade.transfer.create": "Mulakan Pindahan",
+  "menu.trade.transfer.channel": "Pindahan Saluran"
 }

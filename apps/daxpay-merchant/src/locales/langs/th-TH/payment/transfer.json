@@ -1,76 +1,99 @@
 {
-  "transfer": {
-    "status": {
-      "processing": "กำลังโอน",
-      "success": "สำเร็จ",
-      "fail": "ล้มเหลว",
-      "close": "ปิดแล้ว"
-    },
-    "statusColor": {
-      "processing": "processing",
-      "success": "green",
-      "fail": "red",
-      "close": "default"
-    },
-    "channel": {
-      "wechat": "WeChat",
-      "alipay": "Alipay",
-      "douyin": "Douyin"
-    },
-    "field": {
-      "transferNo": "เลขการโอน",
-      "bizTransferNo": "เลขการโอนร้านค้า",
-      "payeeOpenid": "OpenID ผู้รับ",
-      "payeeAccount": "บัญชีผู้รับ",
-      "payeeType": "ประเภทผู้รับ",
-      "amount": "จำนวน (CNY)",
-      "status": "สถานะ",
-      "merchant": "ร้านค้า",
-      "appId": "ID แอป",
-      "outTransferNo": "เลขการโอนช่องทาง",
-      "title": "หัวข้อ",
-      "reason": "เหตุผล",
-      "finishTime": "เวลาสำเร็จ",
-      "createTime": "เวลาสร้าง",
-      "userName": "ชื่อผู้รับ",
-      "transferScene": "สถานการณ์โอน",
-      "transferBody": "พารามิเตอร์ยืนยัน",
-      "notifyUrl": "URL แจ้งเตือน",
-      "attach": "พารามิเตอร์เพิ่มเติม",
-      "errorMsg": "ข้อผิดพลาด",
-      "tradeNo": "เลขธุรกรรม",
-      "containerChannel": "ช่องทาง",
-      "currency": "สกุลเงิน",
-      "relationNo": "เลขที่เกี่ยวข้อง"
-    },
-    "section": {
-      "identity": "ข้อมูลประจำตัว",
-      "amount": "จำนวนและสถานะ",
-      "payee": "ข้อมูลผู้รับ",
-      "notify": "การแจ้งเตือนและข้อผิดพลาด"
-    },
-    "action": {
-      "create": "โอนเงิน",
-      "sync": "ซิงค์",
-      "close": "ปิด",
-      "retry": "ลองใหม่"
-    },
-    "createTitle": "สร้างการโอน",
-    "createConfirmTitle": "ยืนยันการโอน",
-    "createConfirmContent": "การโอนเป็นการชำระเงินออก โปรดยืนยันผู้รับและจำนวนเงิน",
-    "createSuccess": "ส่งการโอนแล้ว",
-    "syncConfirmTitle": "ยืนยันการซิงค์",
-    "syncConfirmContent": "สอบถามสถานะล่าสุดจากช่องทาง",
-    "syncSuccess": "ซิงค์แล้ว",
-    "closeConfirmTitle": "ยืนยันการปิด",
-    "closeConfirmContent": "ไม่สามารถกู้คืนหลังปิด โปรดยืนยันว่าช่องทางยังไม่ได้จ่ายจริง",
-    "closeSuccess": "ปิดการโอนแล้ว",
-    "detail": "รายละเอียดการโอน",
-    "placeholder": {
-      "bizTransferNo": "ไม่ซ้ำกันต่อร้านค้า สำหรับ idempotency",
-      "openid": "OpenID WeChat ผู้รับ",
-      "payeeNameTip": "ไม่อนุญาตต่ำกว่า 0.3 หยวน บังคับตั้งแต่ 2000 หยวน",
-      "notifyUrl": "URL แจ้งเตือนแบบ async แพลตฟอร์ม→ร้านค้า"
-    }
+  "status": {
+    "processing": "กำลังโอน",
+    "success": "สำเร็จ",
+    "fail": "ล้มเหลว",
+    "close": "ปิดแล้ว"
+  },
+  "statusColor": {
+    "processing": "processing",
+    "success": "green",
+    "fail": "red",
+    "close": "default"
+  },
+  "channel": {
+    "wechat": "WeChat",
+    "alipay": "Alipay",
+    "douyin": "Douyin"
+  },
+  "field": {
+    "transferNo": "เลขการโอน",
+    "bizTransferNo": "เลขการโอนร้านค้า",
+    "payeeOpenid": "OpenID ผู้รับ",
+    "payeeAccount": "บัญชีผู้รับ",
+    "payeeType": "ประเภทผู้รับ",
+    "amount": "จำนวน (CNY)",
+    "status": "สถานะ",
+    "merchant": "ร้านค้า",
+    "appId": "ID แอป",
+    "outTransferNo": "เลขการโอนช่องทาง",
+    "title": "หัวข้อ",
+    "reason": "เหตุผล",
+    "finishTime": "เวลาสำเร็จ",
+    "createTime": "เวลาสร้าง",
+    "userName": "ชื่อผู้รับ",
+    "payeeName": "ชื่อผู้รับ",
+    "transferScene": "สถานการณ์โอน",
+    "transferBody": "พารามิเตอร์ยืนยัน",
+    "notifyUrl": "URL แจ้งเตือน",
+    "attach": "พารามิเตอร์เพิ่มเติม",
+    "errorMsg": "ข้อผิดพลาด",
+    "tradeNo": "เลขธุรกรรม",
+    "containerChannel": "ช่องทาง",
+    "currency": "สกุลเงิน",
+    "relationNo": "เลขที่เกี่ยวข้อง"
+  },
+  "section": {
+    "identity": "ข้อมูลประจำตัว",
+    "amount": "จำนวนและสถานะ",
+    "payee": "ข้อมูลผู้รับ",
+    "notify": "การแจ้งเตือนและข้อผิดพลาด",
+    "advanced": "ตัวเลือกขั้นสูง"
+  },
+  "action": {
+    "create": "โอนเงิน",
+    "sync": "ซิงค์",
+    "close": "ปิด",
+    "retry": "ลองใหม่",
+    "reset": "รีเซ็ต"
+  },
+  "createTitle": "สร้างการโอน",
+  "createConfirmTitle": "ยืนยันการโอน",
+  "createConfirmContent": "การโอนเป็นการชำระเงินออก โปรดยืนยันผู้รับและจำนวนเงิน",
+  "createSuccess": "ส่งการโอนแล้ว",
+  "syncConfirmTitle": "ยืนยันการซิงค์",
+  "syncConfirmContent": "สอบถามสถานะล่าสุดจากช่องทาง",
+  "syncSuccess": "ซิงค์แล้ว",
+  "closeConfirmTitle": "ยืนยันการปิด",
+  "closeConfirmContent": "ไม่สามารถกู้คืนหลังปิด โปรดยืนยันว่าช่องทางยังไม่ได้จ่ายจริง",
+  "closeSuccess": "ปิดการโอนแล้ว",
+  "detail": "รายละเอียดการโอน",
+  "placeholder": {
+    "bizTransferNo": "ไม่ซ้ำกันต่อร้านค้า สำหรับ idempotency",
+    "openid": "OpenID WeChat ผู้รับ",
+    "payeeNameTip": "ไม่อนุญาตต่ำกว่า 0.3 หยวน บังคับตั้งแต่ 2000 หยวน",
+    "notifyUrl": "URL แจ้งเตือนแบบ async แพลตฟอร์ม→ร้านค้า",
+    "targetMch": "กรุณาเลือกร้านค้าปลายทาง",
+    "channelMch": "กรุณาเลือกร้านค้าช่องทาง",
+    "douyinOpenid": "openid Douyin ของผู้รับเงิน",
+    "payeeNameTipDouyin": "ต้องระบุเมื่อตั้งแต่ 2000 หยู่ขึ้นไป",
+    "payeeUserId": "รหัสผู้ใช้ Alipay ผู้รับเงิน (ขึ้นต้นด้วย 2088)",
+    "payeeOpenId": "OpenID Alipay ของผู้รับเงิน",
+    "payeeLoginName": "บัญชีล็อกอิน Alipay ผู้รับเงิน (อีเมล/เบอร์โทร)",
+    "bizTransferNoAuto": "เว้นว่างเพื่อสร้างอัตโนมัติ"
+  },
+  "targetMch": "ร้านค้าปลายทาง",
+  "channelMch": "ร้านค้าช่องทาง",
+  "amountUnit": "CNY",
+  "payeeTypeUserId": "รหัสผู้ใช้",
+  "payeeTypeOpenId": "OpenID",
+  "payeeTypeLoginName": "บัญชีล็อกอิน Alipay",
+  "validate": {
+    "channelMchRequired": "กรุณาเลือกร้านค้าช่องทาง",
+    "bizTransferNoRequired": "กรุณากรอกเลขที่ธุรกรรม",
+    "amountRequired": "กรุณากรอกจำนวนเงินโอน",
+    "payeeAccountRequired": "กรุณากรอกบัญชีผู้รับเงิน",
+    "payeeNameRequired": "ต้องระบุชื่อผู้รับเงินเมื่อจำนวนเงินตั้งแต่ 2000 หยู่ขึ้นไป",
+    "payeeNameForbidden": "ไม่สามารถกรอกชื่อผู้รับเงินเมื่อจำนวนเงินต่ำกว่า 0.3 หยู่"
   }
 }

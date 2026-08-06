@@ -1,76 +1,101 @@
 {
-  "transfer": {
-    "status": {
-      "processing": "송금 중",
-      "success": "성공",
-      "fail": "실패",
-      "close": "닫힘"
-    },
-    "statusColor": {
-      "processing": "processing",
-      "success": "green",
-      "fail": "red",
-      "close": "default"
-    },
-    "channel": {
-      "wechat": "위챗",
-      "alipay": "알리페이",
-      "douyin": "더우인"
-    },
-    "field": {
-      "transferNo": "송금 번호",
-      "bizTransferNo": "상점 송금 번호",
-      "payeeOpenid": "수취인 openid",
-      "payeeAccount": "수취인 계정",
-      "payeeType": "수취인 유형",
-      "amount": "금액(원)",
-      "status": "상태",
-      "merchant": "상점",
-      "appId": "앱 ID",
-      "outTransferNo": "채널 송금 번호",
-      "title": "제목",
-      "reason": "송금 사유",
-      "finishTime": "완료 시간",
-      "createTime": "생성 시간",
-      "userName": "수취인 이름",
-      "transferScene": "송금 시나리오",
-      "transferBody": "확인 파라미터",
-      "notifyUrl": "알림 URL",
-      "attach": "추가 파라미터",
-      "errorMsg": "오류 정보",
-      "tradeNo": "송금 거래 번호",
-      "containerChannel": "소속 채널",
-      "currency": "통화",
-      "relationNo": "상송 관련 번호"
-    },
-    "section": {
-      "identity": "신원 정보",
-      "amount": "금액 및 상태",
-      "payee": "수취인 정보",
-      "notify": "알림 및 오류"
-    },
-    "action": {
-      "create": "송금",
-      "sync": "동기화",
-      "close": "닫기",
-      "retry": "재시도"
-    },
-    "createTitle": "송금 발신",
-    "createConfirmTitle": "송금 확인",
-    "createConfirmContent": "송금은 출금 작업입니다. 수취인과 금액을 확인하세요",
-    "createSuccess": "송금이 발신되었습니다",
-    "syncConfirmTitle": "동기화 확인",
-    "syncConfirmContent": "채널에서 최신 상태를 조회합니다",
-    "syncSuccess": "동기화 완료",
-    "closeConfirmTitle": "닫기 확인",
-    "closeConfirmContent": "닫은 후 복구할 수 없습니다. 채널 측에서 실제 출금이 없는지 확인하세요",
-    "closeSuccess": "송금이 닫혔습니다",
-    "detail": "송금 상세",
-    "placeholder": {
-      "bizTransferNo": "상점 측에서 고유, 멱등용",
-      "openid": "수취인 위챗 openid",
-      "payeeNameTip": "0.3원 미만 입력 불가, 2000원 이상 필수",
-      "notifyUrl": "플랫폼→상점 비동기 알림 URL"
-    }
+  "status": {
+    "processing": "송금 중",
+    "success": "성공",
+    "fail": "실패",
+    "close": "닫힘"
+  },
+  "statusColor": {
+    "processing": "processing",
+    "success": "green",
+    "fail": "red",
+    "close": "default"
+  },
+  "channel": {
+    "wechat": "위챗",
+    "alipay": "알리페이",
+    "douyin": "더우인"
+  },
+  "field": {
+    "transferNo": "송금 번호",
+    "bizTransferNo": "상점 송금 번호",
+    "payeeOpenid": "수취인 openid",
+    "payeeAccount": "수취인 계정",
+    "payeeType": "수취인 유형",
+    "amount": "금액(원)",
+    "status": "상태",
+    "merchant": "상점",
+    "appId": "앱 ID",
+    "outTransferNo": "채널 송금 번호",
+    "title": "제목",
+    "reason": "송금 사유",
+    "finishTime": "완료 시간",
+    "createTime": "생성 시간",
+    "userName": "수취인 이름",
+    "payeeName": "수취인 이름",
+    "transferScene": "송금 시나리오",
+    "transferBody": "확인 파라미터",
+    "notifyUrl": "알림 URL",
+    "attach": "추가 파라미터",
+    "errorMsg": "오류 정보",
+    "tradeNo": "송금 거래 번호",
+    "containerChannel": "소속 채널",
+    "currency": "통화",
+    "relationNo": "상송 관련 번호"
+  },
+  "section": {
+    "identity": "신원 정보",
+    "amount": "금액 및 상태",
+    "payee": "수취인 정보",
+    "notify": "알림 및 오류",
+    "advanced": "고급 옵션"
+  },
+  "action": {
+    "create": "송금",
+    "sync": "동기화",
+    "close": "닫기",
+    "retry": "재시도",
+    "reset": "재설정"
+  },
+  "createTitle": "송금 발신",
+  "createConfirmTitle": "송금 확인",
+  "createConfirmContent": "송금은 출금 작업입니다. 수취인과 금액을 확인하세요",
+  "createSuccess": "송금이 발신되었습니다",
+  "syncConfirmTitle": "동기화 확인",
+  "syncConfirmContent": "채널에서 최신 상태를 조회합니다",
+  "syncSuccess": "동기화 완료",
+  "closeConfirmTitle": "닫기 확인",
+  "closeConfirmContent": "닫은 후 복구할 수 없습니다. 채널 측에서 실제 출금이 없는지 확인하세요",
+  "closeSuccess": "송금이 닫혔습니다",
+  "detail": "송금 상세",
+  "placeholder": {
+    "bizTransferNo": "상점 측에서 고유, 멱등용",
+    "openid": "수취인 위챗 openid",
+    "payeeNameTip": "0.3원 미만 입력 불가, 2000원 이상 필수",
+    "notifyUrl": "플랫폼→상점 비동기 알림 URL",
+    "targetMch": "대상 가맹점을 선택해 주세요",
+    "channelMch": "채널 가맹점을 선택해 주세요",
+    "douyinOpenid": "수취인 더우인 openid",
+    "payeeNameTipDouyin": "2000위안 이상 필수",
+    "payeeUserId": "수취인 Alipay 사용자 ID(2088로 시작)",
+    "payeeOpenId": "수취인 Alipay OpenID",
+    "payeeLoginName": "수취인 Alipay 로그인 계정(이메일/전화번호)",
+    "bizTransferNoAuto": "비우면 자동 생성"
+  },
+  "targetMch": "대상 가맹점",
+  "targetMchHelp": "대행 송금할 가맹점 선택",
+  "channelMch": "채널 가맹점",
+  "amountUnit": "위안",
+  "payeeTypeUserId": "사용자 ID",
+  "payeeTypeOpenId": "OpenID",
+  "payeeTypeLoginName": "Alipay 로그인 계정",
+  "validate": {
+    "channelMchRequired": "채널 가맹점을 선택해 주세요",
+    "bizTransferNoRequired": "가맹점 송금 번호를 입력해 주세요",
+    "amountRequired": "송금 금액을 입력해 주세요",
+    "payeeAccountRequired": "수취인 계정을 입력해 주세요",
+    "payeeNameRequired": "금액이 2000위안 이상일 때 수취인 이름은 필수입니다",
+    "payeeNameForbidden": "금액이 0.3위안 미만일 때 수취인 이름을 입력할 수 없습니다",
+    "targetMchRequired": "대상 가맹점을 선택해 주세요"
   }
 }

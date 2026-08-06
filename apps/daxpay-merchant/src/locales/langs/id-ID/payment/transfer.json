@@ -1,76 +1,99 @@
 {
-  "transfer": {
-    "status": {
-      "processing": "Diproses",
-      "success": "Berhasil",
-      "fail": "Gagal",
-      "close": "Ditutup"
-    },
-    "statusColor": {
-      "processing": "processing",
-      "success": "green",
-      "fail": "red",
-      "close": "default"
-    },
-    "channel": {
-      "wechat": "WeChat",
-      "alipay": "Alipay",
-      "douyin": "Douyin"
-    },
-    "field": {
-      "transferNo": "No Transfer",
-      "bizTransferNo": "No Transfer Merchant",
-      "payeeOpenid": "OpenID Penerima",
-      "payeeAccount": "Akun Penerima",
-      "payeeType": "Tipe Penerima",
-      "amount": "Jumlah (CNY)",
-      "status": "Status",
-      "merchant": "Merchant",
-      "appId": "ID Aplikasi",
-      "outTransferNo": "No Transfer Kanal",
-      "title": "Judul",
-      "reason": "Alasan",
-      "finishTime": "Waktu Selesai",
-      "createTime": "Waktu Dibuat",
-      "userName": "Nama Penerima",
-      "transferScene": "Skenario Transfer",
-      "transferBody": "Parameter Konfirmasi",
-      "notifyUrl": "URL Notifikasi",
-      "attach": "Parameter Tambahan",
-      "errorMsg": "Kesalahan",
-      "tradeNo": "No Transaksi",
-      "containerChannel": "Kanal",
-      "currency": "Mata Uang",
-      "relationNo": "No Terkait"
-    },
-    "section": {
-      "identity": "Identitas",
-      "amount": "Jumlah & Status",
-      "payee": "Penerima",
-      "notify": "Notifikasi & Kesalahan"
-    },
-    "action": {
-      "create": "Transfer",
-      "sync": "Sinkron",
-      "close": "Tutup",
-      "retry": "Ulangi"
-    },
-    "createTitle": "Buat Transfer",
-    "createConfirmTitle": "Konfirmasi Transfer",
-    "createConfirmContent": "Transfer adalah operasi pembayaran keluar, pastikan penerima dan jumlah benar",
-    "createSuccess": "Transfer dikirim",
-    "syncConfirmTitle": "Konfirmasi Sinkron",
-    "syncConfirmContent": "Kueri status terbaru dari kanal",
-    "syncSuccess": "Tersinkron",
-    "closeConfirmTitle": "Konfirmasi Tutup",
-    "closeConfirmContent": "Tidak dapat dipulihkan setelah ditutup, pastikan tidak ada pembayaran keluar di sisi kanal",
-    "closeSuccess": "Transfer ditutup",
-    "detail": "Detail Transfer",
-    "placeholder": {
-      "bizTransferNo": "Unik per merchant, untuk idempotensi",
-      "openid": "OpenID WeChat penerima",
-      "payeeNameTip": "Tidak boleh di bawah 0.3 CNY, wajib di atas 2000 CNY",
-      "notifyUrl": "URL notifikasi async platform→merchant"
-    }
+  "status": {
+    "processing": "Diproses",
+    "success": "Berhasil",
+    "fail": "Gagal",
+    "close": "Ditutup"
+  },
+  "statusColor": {
+    "processing": "processing",
+    "success": "green",
+    "fail": "red",
+    "close": "default"
+  },
+  "channel": {
+    "wechat": "WeChat",
+    "alipay": "Alipay",
+    "douyin": "Douyin"
+  },
+  "field": {
+    "transferNo": "No Transfer",
+    "bizTransferNo": "No Transfer Merchant",
+    "payeeOpenid": "OpenID Penerima",
+    "payeeAccount": "Akun Penerima",
+    "payeeType": "Tipe Penerima",
+    "amount": "Jumlah (CNY)",
+    "status": "Status",
+    "merchant": "Merchant",
+    "appId": "ID Aplikasi",
+    "outTransferNo": "No Transfer Kanal",
+    "title": "Judul",
+    "reason": "Alasan",
+    "finishTime": "Waktu Selesai",
+    "createTime": "Waktu Dibuat",
+    "userName": "Nama Penerima",
+    "payeeName": "Nama Penerima",
+    "transferScene": "Skenario Transfer",
+    "transferBody": "Parameter Konfirmasi",
+    "notifyUrl": "URL Notifikasi",
+    "attach": "Parameter Tambahan",
+    "errorMsg": "Kesalahan",
+    "tradeNo": "No Transaksi",
+    "containerChannel": "Kanal",
+    "currency": "Mata Uang",
+    "relationNo": "No Terkait"
+  },
+  "section": {
+    "identity": "Identitas",
+    "amount": "Jumlah & Status",
+    "payee": "Penerima",
+    "notify": "Notifikasi & Kesalahan",
+    "advanced": "Opsi Lanjutan"
+  },
+  "action": {
+    "create": "Transfer",
+    "sync": "Sinkron",
+    "close": "Tutup",
+    "retry": "Ulangi",
+    "reset": "Atur Ulang"
+  },
+  "createTitle": "Buat Transfer",
+  "createConfirmTitle": "Konfirmasi Transfer",
+  "createConfirmContent": "Transfer adalah operasi pembayaran keluar, pastikan penerima dan jumlah benar",
+  "createSuccess": "Transfer dikirim",
+  "syncConfirmTitle": "Konfirmasi Sinkron",
+  "syncConfirmContent": "Kueri status terbaru dari kanal",
+  "syncSuccess": "Tersinkron",
+  "closeConfirmTitle": "Konfirmasi Tutup",
+  "closeConfirmContent": "Tidak dapat dipulihkan setelah ditutup, pastikan tidak ada pembayaran keluar di sisi kanal",
+  "closeSuccess": "Transfer ditutup",
+  "detail": "Detail Transfer",
+  "placeholder": {
+    "bizTransferNo": "Unik per merchant, untuk idempotensi",
+    "openid": "OpenID WeChat penerima",
+    "payeeNameTip": "Tidak boleh di bawah 0.3 CNY, wajib di atas 2000 CNY",
+    "notifyUrl": "URL notifikasi async platform→merchant",
+    "targetMch": "Silakan pilih merchant target",
+    "channelMch": "Silakan pilih merchant saluran",
+    "douyinOpenid": "openid Douyin penerima",
+    "payeeNameTipDouyin": "Wajib jika 2000 CNY ke atas",
+    "payeeUserId": "ID pengguna Alipay penerima (diawali 2088)",
+    "payeeOpenId": "OpenID Alipay penerima",
+    "payeeLoginName": "Nama login Alipay penerima (email/nomor telepon)",
+    "bizTransferNoAuto": "Kosongkan untuk dibuat otomatis"
+  },
+  "targetMch": "Merchant Target",
+  "channelMch": "Merchant Saluran",
+  "amountUnit": "CNY",
+  "payeeTypeUserId": "ID Pengguna",
+  "payeeTypeOpenId": "OpenID",
+  "payeeTypeLoginName": "Nama Login Alipay",
+  "validate": {
+    "channelMchRequired": "Silakan pilih merchant saluran",
+    "bizTransferNoRequired": "Silakan masukkan no transfer bisnis",
+    "amountRequired": "Silakan masukkan nominal transfer",
+    "payeeAccountRequired": "Silakan masukkan akun penerima",
+    "payeeNameRequired": "Nama penerima wajib diisi jika nominal 2000 CNY ke atas",
+    "payeeNameForbidden": "Nama penerima tidak boleh diisi jika nominal di bawah 0.3 CNY"
   }
 }

@@ -48,5 +48,7 @@
   "menu.trade.transfer.wechat": "微信轉賬",
   "menu.trade.transfer.alipay": "支付寶轉賬",
   "menu.trade.transfer.douyin": "抖音轉賬",
-  "menu.trade.transfer.trade": "轉賬記錄"
+  "menu.trade.transfer.trade": "轉賬記錄",
+  "menu.trade.transfer.create": "發起轉賬",
+  "menu.trade.transfer.channel": "通道轉賬"
 }

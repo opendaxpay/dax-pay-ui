@@ -1,76 +1,101 @@
 {
-  "transfer": {
-    "status": {
-      "processing": "送金中",
-      "success": "成功",
-      "fail": "失敗",
-      "close": "クローズ"
-    },
-    "statusColor": {
-      "processing": "processing",
-      "success": "green",
-      "fail": "red",
-      "close": "default"
-    },
-    "channel": {
-      "wechat": "WeChat",
-      "alipay": "Alipay",
-      "douyin": "抖音"
-    },
-    "field": {
-      "transferNo": "送金番号",
-      "bizTransferNo": "マーチャント送金番号",
-      "payeeOpenid": "受取人openid",
-      "payeeAccount": "受取人アカウント",
-      "payeeType": "受取人タイプ",
-      "amount": "金額(元)",
-      "status": "状態",
-      "merchant": "マーチャント",
-      "appId": "アプリID",
-      "outTransferNo": "チャネル送金番号",
-      "title": "タイトル",
-      "reason": "送金理由",
-      "finishTime": "完了時間",
-      "createTime": "作成時間",
-      "userName": "受取人氏名",
-      "transferScene": "送金シーン",
-      "transferBody": "確認パラメータ",
-      "notifyUrl": "通知URL",
-      "attach": "追加パラメータ",
-      "errorMsg": "エラー情報",
-      "tradeNo": "送金取引番号",
-      "containerChannel": "所属チャネル",
-      "currency": "通貨",
-      "relationNo": "上送関連番号"
-    },
-    "section": {
-      "identity": "身份情報",
-      "amount": "金額と状態",
-      "payee": "受取人情報",
-      "notify": "通知とエラー"
-    },
-    "action": {
-      "create": "送金",
-      "sync": "同期",
-      "close": "クローズ",
-      "retry": "再試行"
-    },
-    "createTitle": "送金発起",
-    "createConfirmTitle": "送金確認",
-    "createConfirmContent": "送金は出金操作です。受取人と金額をご確認ください",
-    "createSuccess": "送金を発起しました",
-    "syncConfirmTitle": "同期確認",
-    "syncConfirmContent": "チャネルから最新状態を照会します",
-    "syncSuccess": "同期完了",
-    "closeConfirmTitle": "クローズ確認",
-    "closeConfirmContent": "クローズ後は復元できません。チャネル側で実際に出金がないことを確認してください",
-    "closeSuccess": "送金をクローズしました",
-    "detail": "送金詳細",
-    "placeholder": {
-      "bizTransferNo": "マーチャント側で一意, 冪等用",
-      "openid": "受取人 WeChat openid",
-      "payeeNameTip": "0.3元未満は入力不可, 2000元以上は必須",
-      "notifyUrl": "プラットフォーム→マーチャント非同期通知URL"
-    }
+  "status": {
+    "processing": "送金中",
+    "success": "成功",
+    "fail": "失敗",
+    "close": "クローズ"
+  },
+  "statusColor": {
+    "processing": "processing",
+    "success": "green",
+    "fail": "red",
+    "close": "default"
+  },
+  "channel": {
+    "wechat": "WeChat",
+    "alipay": "Alipay",
+    "douyin": "抖音"
+  },
+  "field": {
+    "transferNo": "送金番号",
+    "bizTransferNo": "マーチャント送金番号",
+    "payeeOpenid": "受取人openid",
+    "payeeAccount": "受取人アカウント",
+    "payeeType": "受取人タイプ",
+    "amount": "金額(元)",
+    "status": "状態",
+    "merchant": "マーチャント",
+    "appId": "アプリID",
+    "outTransferNo": "チャネル送金番号",
+    "title": "タイトル",
+    "reason": "送金理由",
+    "finishTime": "完了時間",
+    "createTime": "作成時間",
+    "userName": "受取人氏名",
+    "payeeName": "受取人氏名",
+    "transferScene": "送金シーン",
+    "transferBody": "確認パラメータ",
+    "notifyUrl": "通知URL",
+    "attach": "追加パラメータ",
+    "errorMsg": "エラー情報",
+    "tradeNo": "送金取引番号",
+    "containerChannel": "所属チャネル",
+    "currency": "通貨",
+    "relationNo": "上送関連番号"
+  },
+  "section": {
+    "identity": "身份情報",
+    "amount": "金額と状態",
+    "payee": "受取人情報",
+    "notify": "通知とエラー",
+    "advanced": "詳細オプション"
+  },
+  "action": {
+    "create": "送金",
+    "sync": "同期",
+    "close": "クローズ",
+    "retry": "再試行",
+    "reset": "リセット"
+  },
+  "createTitle": "送金発起",
+  "createConfirmTitle": "送金確認",
+  "createConfirmContent": "送金は出金操作です。受取人と金額をご確認ください",
+  "createSuccess": "送金を発起しました",
+  "syncConfirmTitle": "同期確認",
+  "syncConfirmContent": "チャネルから最新状態を照会します",
+  "syncSuccess": "同期完了",
+  "closeConfirmTitle": "クローズ確認",
+  "closeConfirmContent": "クローズ後は復元できません。チャネル側で実際に出金がないことを確認してください",
+  "closeSuccess": "送金をクローズしました",
+  "detail": "送金詳細",
+  "placeholder": {
+    "bizTransferNo": "マーチャント側で一意, 冪等用",
+    "openid": "受取人 WeChat openid",
+    "payeeNameTip": "0.3元未満は入力不可, 2000元以上は必須",
+    "notifyUrl": "プラットフォーム→マーチャント非同期通知URL",
+    "targetMch": "対象加盟店を選択してください",
+    "channelMch": "チャネル加盟店を選択してください",
+    "douyinOpenid": "受取人のDouyin openid",
+    "payeeNameTipDouyin": "2000元以上で必須",
+    "payeeUserId": "受取人のAlipayユーザーID(2088始まり)",
+    "payeeOpenId": "受取人のAlipay OpenID",
+    "payeeLoginName": "受取人のAlipayログインアカウント(メール/電話番号)",
+    "bizTransferNoAuto": "空欄で自動生成"
+  },
+  "targetMch": "対象加盟店",
+  "targetMchHelp": "代行送金する加盟店を選択",
+  "channelMch": "チャネル加盟店",
+  "amountUnit": "元",
+  "payeeTypeUserId": "ユーザーID",
+  "payeeTypeOpenId": "OpenID",
+  "payeeTypeLoginName": "Alipayログインアカウント",
+  "validate": {
+    "channelMchRequired": "チャネル加盟店を選択してください",
+    "bizTransferNoRequired": "商戶側送金番号を入力してください",
+    "amountRequired": "送金金額を入力してください",
+    "payeeAccountRequired": "受取人アカウントを入力してください",
+    "payeeNameRequired": "金額が2000元以上の場合、受取人名は必須です",
+    "payeeNameForbidden": "金額が0.3元未満の場合、受取人名は入力できません",
+    "targetMchRequired": "対象加盟店を選択してください"
   }
 }

@@ -48,5 +48,7 @@
   "menu.trade.transfer.wechat": "Transfer WeChat",
   "menu.trade.transfer.alipay": "Transfer Alipay",
   "menu.trade.transfer.douyin": "Transfer Douyin",
-  "menu.trade.transfer.trade": "Riwayat Transfer"
+  "menu.trade.transfer.trade": "Riwayat Transfer",
+  "menu.trade.transfer.create": "Mulai Transfer",
+  "menu.trade.transfer.channel": "Transfer Channel"
 }

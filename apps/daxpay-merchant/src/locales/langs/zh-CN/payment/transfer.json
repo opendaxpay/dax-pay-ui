@@ -1,76 +1,99 @@
 {
-  "transfer": {
-    "status": {
-      "processing": "转账中",
-      "success": "成功",
-      "fail": "失败",
-      "close": "已关闭"
-    },
-    "statusColor": {
-      "processing": "processing",
-      "success": "green",
-      "fail": "red",
-      "close": "default"
-    },
-    "channel": {
-      "wechat": "微信",
-      "alipay": "支付宝",
-      "douyin": "抖音"
-    },
-    "field": {
-      "transferNo": "转账单号",
-      "bizTransferNo": "商户转账号",
-      "payeeOpenid": "收款openid",
-      "payeeAccount": "收款人账号",
-      "payeeType": "收款人类型",
-      "amount": "金额(元)",
-      "status": "状态",
-      "merchant": "商户",
-      "appId": "应用号",
-      "outTransferNo": "通道转账号",
-      "title": "标题",
-      "reason": "转账原因",
-      "finishTime": "完成时间",
-      "createTime": "创建时间",
-      "userName": "收款人姓名",
-      "transferScene": "转账场景",
-      "transferBody": "拉起确认参数",
-      "notifyUrl": "通知地址",
-      "attach": "附加参数",
-      "errorMsg": "错误信息",
-      "tradeNo": "转账交易号",
-      "containerChannel": "所属通道",
-      "currency": "币种",
-      "relationNo": "上送关联号"
-    },
-    "section": {
-      "identity": "身份信息",
-      "amount": "金额与状态",
-      "payee": "收款人信息",
-      "notify": "通知与错误"
-    },
-    "action": {
-      "create": "发起转账",
-      "sync": "同步",
-      "close": "关闭",
-      "retry": "重试"
-    },
-    "createTitle": "发起转账",
-    "createConfirmTitle": "确认发起转账",
-    "createConfirmContent": "转账为出款操作，请确认收款人与金额无误",
-    "createSuccess": "转账已发起",
-    "syncConfirmTitle": "确认同步",
-    "syncConfirmContent": "将向通道查询该转账的最新状态",
-    "syncSuccess": "同步完成",
-    "closeConfirmTitle": "确认关闭",
-    "closeConfirmContent": "关闭后不可恢复，请确认通道侧未实际出款",
-    "closeSuccess": "转账已关闭",
-    "detail": "转账详情",
-    "placeholder": {
-      "bizTransferNo": "商户侧唯一，用于幂等",
-      "openid": "收款人微信 openid",
-      "payeeNameTip": "小于0.3元禁填，大于等于2000元必填",
-      "notifyUrl": "平台→商户异步通知地址"
-    }
+  "status": {
+    "processing": "转账中",
+    "success": "成功",
+    "fail": "失败",
+    "close": "已关闭"
+  },
+  "statusColor": {
+    "processing": "processing",
+    "success": "green",
+    "fail": "red",
+    "close": "default"
+  },
+  "channel": {
+    "wechat": "微信",
+    "alipay": "支付宝",
+    "douyin": "抖音"
+  },
+  "field": {
+    "transferNo": "转账单号",
+    "bizTransferNo": "商户转账号",
+    "payeeOpenid": "收款openid",
+    "payeeAccount": "收款人账号",
+    "payeeType": "收款人类型",
+    "amount": "金额(元)",
+    "status": "状态",
+    "merchant": "商户",
+    "appId": "应用号",
+    "outTransferNo": "通道转账号",
+    "title": "标题",
+    "reason": "转账原因",
+    "finishTime": "完成时间",
+    "createTime": "创建时间",
+    "userName": "收款人姓名",
+    "payeeName": "收款人姓名",
+    "transferScene": "转账场景",
+    "transferBody": "拉起确认参数",
+    "notifyUrl": "通知地址",
+    "attach": "附加参数",
+    "errorMsg": "错误信息",
+    "tradeNo": "转账交易号",
+    "containerChannel": "所属通道",
+    "currency": "币种",
+    "relationNo": "上送关联号"
+  },
+  "section": {
+    "identity": "身份信息",
+    "amount": "金额与状态",
+    "payee": "收款人信息",
+    "notify": "通知与错误",
+    "advanced": "高级选项"
+  },
+  "action": {
+    "create": "发起转账",
+    "sync": "同步",
+    "close": "关闭",
+    "retry": "重试",
+    "reset": "重置"
+  },
+  "createTitle": "发起转账",
+  "createConfirmTitle": "确认发起转账",
+  "createConfirmContent": "转账为出款操作，请确认收款人与金额无误",
+  "createSuccess": "转账已发起",
+  "syncConfirmTitle": "确认同步",
+  "syncConfirmContent": "将向通道查询该转账的最新状态",
+  "syncSuccess": "同步完成",
+  "closeConfirmTitle": "确认关闭",
+  "closeConfirmContent": "关闭后不可恢复，请确认通道侧未实际出款",
+  "closeSuccess": "转账已关闭",
+  "detail": "转账详情",
+  "placeholder": {
+    "bizTransferNo": "商户侧唯一，用于幂等",
+    "openid": "收款人微信 openid",
+    "payeeNameTip": "小于0.3元禁填，大于等于2000元必填",
+    "notifyUrl": "平台→商户异步通知地址",
+    "targetMch": "请选择目标商户",
+    "channelMch": "请选择通道商户",
+    "douyinOpenid": "收款人抖音 openid",
+    "payeeNameTipDouyin": "大于等于2000元必填",
+    "payeeUserId": "收款人支付宝用户ID(2088开头)",
+    "payeeOpenId": "收款人支付宝 OpenID",
+    "payeeLoginName": "收款人支付宝登录账号(邮箱/手机号)",
+    "bizTransferNoAuto": "留空将自动生成"
+  },
+  "targetMch": "目标商户",
+  "channelMch": "通道商户",
+  "amountUnit": "元",
+  "payeeTypeUserId": "用户ID",
+  "payeeTypeOpenId": "OpenID",
+  "payeeTypeLoginName": "支付宝登录账号",
+  "validate": {
+    "channelMchRequired": "请选择通道商户",
+    "bizTransferNoRequired": "请输入商户转账号",
+    "amountRequired": "请输入转账金额",
+    "payeeAccountRequired": "请输入收款人账号",
+    "payeeNameRequired": "金额大于等于2000元时,收款人姓名必填",
+    "payeeNameForbidden": "金额小于0.3元时,不可填写收款人姓名"
   }
 }

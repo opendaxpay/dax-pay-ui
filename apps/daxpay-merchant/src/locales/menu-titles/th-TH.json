@@ -48,5 +48,7 @@
   "menu.trade.transfer.wechat": "การโอนเงิน WeChat",
   "menu.trade.transfer.alipay": "การโอนเงิน Alipay",
   "menu.trade.transfer.douyin": "การโอนเงิน Douyin",
-  "menu.trade.transfer.trade": "ประวัติการโอนเงิน"
+  "menu.trade.transfer.trade": "ประวัติการโอนเงิน",
+  "menu.trade.transfer.create": "เริ่มการโอนเงิน",
+  "menu.trade.transfer.channel": "การโอนเงินตามช่องทาง"
 }
