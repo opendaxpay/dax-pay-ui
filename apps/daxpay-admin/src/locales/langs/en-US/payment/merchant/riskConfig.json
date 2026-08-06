@@ -2,8 +2,16 @@
   "riskConfig": {
     "title": "Risk Control",
     "infoBanner": "Geo-fence uses two-level gating: enable the platform master switch in \"Risk Strategy\" first, then enable it here for the merchant to take effect.",
+    "description": "Merchant-level risk config with two-level gating on the platform \"Risk Strategy\"; takes effect only after the platform master switch is enabled.",
     "geoFenceEnabled": "Geo-fence",
     "geoFenceEnabledDesc": "When enabled, the client IP city is compared with the store city; payments outside the allowed range are blocked per the platform strategy.",
+    "section": {
+      "switch": "Risk Switch"
+    },
+    "summary": {
+      "on": "Fence: On",
+      "off": "Fence: Off"
+    },
     "confirmSave": "Save the risk config for this merchant?"
   }
 }

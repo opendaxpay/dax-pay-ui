@@ -2,8 +2,16 @@
   "riskConfig": {
     "title": "风控配置",
     "infoBanner": "地理围栏为两级门控：需先在「风控策略」开启平台围栏总闸，再在此处为商户开启围栏，开关才会生效。",
+    "description": "商户级风控配置，与平台「风控策略」两级门控，需平台总闸开启后生效。",
     "geoFenceEnabled": "地理围栏",
     "geoFenceEnabledDesc": "开启后比对支付 IP 归属城市与门店所在城市，不在放行范围按平台策略拦截。",
+    "section": {
+      "switch": "风控开关"
+    },
+    "summary": {
+      "on": "围栏：已开启",
+      "off": "围栏：已关闭"
+    },
     "confirmSave": "确定要保存该商户的风控配置吗？"
   }
 }
