@@ -116,5 +116,11 @@
   "cardTerminal": "Lejar Terminal",
   "cardTerminalDesc": "Daftar nombor terminal saluran dan ikat ke terminal sistem",
   "cardTerminalBadge": "Dalam Pembangunan",
-  "cardTerminalTooltip": "Reka bentuk field terminal per saluran sedang berjalan, belum tersedia"
+  "cardTerminalTooltip": "Reka bentuk field terminal per saluran sedang berjalan, belum tersedia",
+  "transferScenePresetTip": "8 babak pemindahan telah ditetapkan. Maksimum 3 boleh diaktifkan. Babak lalai mesti diaktifkan. Hanya babak aktif boleh dipilih.",
+  "transferSceneEnableConfirm": "Aktifkan babak pemindahan ini? Babak aktif boleh dipilih semasa pemindahan",
+  "transferSceneDisableConfirm": "Nyahaktifkan babak pemindahan ini? Babak tidak aktif tidak boleh dipilih semasa pemindahan",
+  "transferSceneCannotDisableDefault": "Babak lalai tidak boleh dinyahaktifkan. Tetapkan babak lain sebagai lalai dahulu",
+  "transferSceneReportFields": "Medan Laporan",
+  "cardTransferConfig": "Konfigurasi Pemindahan"
 }

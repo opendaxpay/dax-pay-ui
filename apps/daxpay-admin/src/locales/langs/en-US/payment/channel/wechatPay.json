@@ -18,5 +18,11 @@
   "transferSceneNotConfiguredTip": "Click the edit button to select a transfer scene",
   "transferSceneReportCount": "Report Items",
   "transferSceneUserPerceptionTip": "Text shown to the payee in WeChat. Uses default value if not specified in transfer",
-  "transferSceneSelectPrompt": "Select a transfer scene above to view details"
+  "transferSceneSelectPrompt": "Select a transfer scene above to view details",
+  "cardTransferConfigDesc": "Manage WeChat transfer config (scene + initiator app)",
+  "transferConfigTipDesc": "Configure transfer scene and initiator app (Official Account). OpenId is resolved from this app.",
+  "transferApp": "Transfer Initiator App",
+  "transferAppPlaceholder": "Select an Official Account app",
+  "transferAppOfficialOnly": "Only Official Account type apps are supported. OpenId must be obtained under this app.",
+  "transferConfigNotConfigured": "Transfer config not configured"
 }

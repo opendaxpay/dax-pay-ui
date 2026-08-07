@@ -36,6 +36,12 @@ export const DouyinDirectChannelMerchantApi = {
   saveKeyConfig(data: DouyinDirectKeyConfig): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/douyin/direct-channel-merchant/save-key-config', data });
   },
+  /**
+   * 查询抖音转账场景选项列表(主数据枚举, 供发起转账页选择)
+   */
+  findSceneOptions(): Promise<Result<DouyinTransferSceneOption[]>> {
+    return defHttp.get({ url: '/admin/douyin/direct-channel-merchant/scene-options' });
+  },
 };
 
 /**
@@ -82,4 +88,20 @@ export interface DouyinDirectChannelMerchantCreateParam {
   product: string;
   /** 抖音商户号(MCHID) */
   dyMchId: string;
+}
+
+/**
+ * 抖音转账场景选项(主数据枚举, 供发起转账页选择与报备字段动态渲染)
+ */
+export interface DouyinTransferSceneOption {
+  /** 转账场景ID */
+  code?: string;
+  /** 场景名称 */
+  name?: string;
+  /** 报备字段定义(抖音协议固定中文 infoType) */
+  reportInfoTypes?: string[];
+  /** 报备字段说明(与 reportInfoTypes 平行) */
+  reportInfoDescriptions?: string[];
+  /** 用户收款感知可选值(收款人在抖音中看到的文案) */
+  userRecvPerceptionOptions?: string[];
 }

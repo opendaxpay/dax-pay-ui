@@ -18,5 +18,11 @@
   "transferSceneNotConfiguredTip": "คลิกปุ่มแก้ไขเพื่อเลือกฉากโอน",
   "transferSceneReportCount": "รายการรายงาน",
   "transferSceneUserPerceptionTip": "ข้อความที่ผู้รับเห็นใน WeChat ใช้ค่าเริ่มต้นหากไม่ระบุ",
-  "transferSceneSelectPrompt": "เลือกฉากโอนด้านบนเพื่อดูรายละเอียด"
+  "transferSceneSelectPrompt": "เลือกฉากโอนด้านบนเพื่อดูรายละเอียด",
+  "cardTransferConfigDesc": "จัดการการตั้งค่าการโอน WeChat (สถานการณ์ + แอปเริ่มการโอน)",
+  "transferConfigTipDesc": "กำหนดค่าสถานการณ์การโอนและแอปเริ่มการโอน (Official Account) OpenId จะถูกวิเคราะห์จากแอปนี้",
+  "transferApp": "แอปเริ่มการโอน",
+  "transferAppPlaceholder": "เลือกแอป Official Account",
+  "transferAppOfficialOnly": "รองรับเฉพาะแอปประเภท Official Account OpenId ต้องได้รับจากแอปนี้",
+  "transferConfigNotConfigured": "ยังไม่ได้กำหนดค่าการโอนเงิน"
 }

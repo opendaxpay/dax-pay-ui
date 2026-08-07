@@ -41,14 +41,19 @@
     "tradeNo": "송금 거래 번호",
     "containerChannel": "소속 채널",
     "currency": "통화",
-    "relationNo": "상송 관련 번호"
+    "relationNo": "상송 관련 번호",
+    "userRecvPerception": "수취 인식"
   },
   "section": {
     "identity": "신원 정보",
     "amount": "금액 및 상태",
     "payee": "수취인 정보",
     "notify": "알림 및 오류",
-    "advanced": "고급 옵션"
+    "advanced": "고급 옵션",
+    "merchantChannel": "상점과 채널",
+    "transferAmount": "송금 금액",
+    "transferDetails": "송금 정보",
+    "sceneReport": "송금 시나리오 및 보고"
   },
   "action": {
     "create": "송금",
@@ -81,9 +86,10 @@
     "payeeOpenId": "수취인 Alipay OpenID",
     "payeeLoginName": "수취인 Alipay 로그인 계정(이메일/전화번호)",
     "bizTransferNoAuto": "비우면 자동 생성",
-    "reportInfoContent": "비워두면 기본값 - 사용"
+    "reportInfoContent": "비워두면 기본값 - 사용",
+    "reason": "이체 사유를 입력하세요"
   },
-  "targetMch": "대상 가맹점",
+  "targetMch": "상점",
   "targetMchHelp": "대행 송금할 가맹점 선택",
   "channelMch": "채널 가맹점",
   "amountUnit": "위안",
@@ -102,5 +108,8 @@
   "confirmUrlCopied": "링크 복사됨",
   "confirmUrlCopyFailed": "복사 실패",
   "confirmUrlExpireTip": "링크는 24시간 유효합니다. 빨리 보내주세요",
-  "confirmUrlTip": "확인 링크를 수취인에게 보내주세요. WeChat에서 열어야 합니다"
+  "confirmUrlTip": "확인 링크를 수취인에게 보내주세요. WeChat에서 열어야 합니다",
+  "submitWithAmount": "송금 ¥{amount}",
+  "amountLimitTip": "건당 최소 0.01위안",
+  "btnGenerate": "생성"
 }

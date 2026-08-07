@@ -18,5 +18,11 @@
   "transferSceneNotConfiguredTip": "Nhấn nút chỉnh sửa để chọn cảnh chuyển khoản",
   "transferSceneReportCount": "Chi tiết báo cáo",
   "transferSceneUserPerceptionTip": "Văn bản người nhận thấy trong WeChat. Dùng giá trị mặc định nếu không chỉ định",
-  "transferSceneSelectPrompt": "Chọn cảnh chuyển khoản ở trên để xem chi tiết"
+  "transferSceneSelectPrompt": "Chọn cảnh chuyển khoản ở trên để xem chi tiết",
+  "cardTransferConfigDesc": "Quản lý cấu hình chuyển khoản WeChat (kịch bản + ứng dụng khởi tạo)",
+  "transferConfigTipDesc": "Cấu hình kịch bản chuyển khoản và ứng dụng khởi tạo (Official Account). OpenId được phân tích từ ứng dụng này.",
+  "transferApp": "Ứng dụng khởi tạo chuyển khoản",
+  "transferAppPlaceholder": "Chọn ứng dụng Official Account",
+  "transferAppOfficialOnly": "Chỉ hỗ trợ ứng dụng loại Official Account. OpenId phải được lấy từ ứng dụng này.",
+  "transferConfigNotConfigured": "Cấu hình chuyển khoản chưa được thiết lập"
 }

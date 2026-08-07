@@ -1,5 +1,6 @@
 <script lang="ts" setup>
   import type { WechatTransferSceneOption } from '#/api/payment/channel/wechat/channel-merchant.api';
+  import type { WechatTransferConfig } from '#/api/payment/channel/wechat/transfer-config.api';
 
   import { computed, ref } from 'vue';
 
@@ -8,6 +9,8 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { WechatDirectChannelMerchantApi } from '#/api/payment/channel/wechat/channel-merchant.api';
+  import { WechatTransferConfigApi } from '#/api/payment/channel/wechat/transfer-config.api';
+  import { WxMchAppApi, type WxMchApp } from '#/api/payment/wx/mch-app.api';
   import { useMessage } from '#/hooks/useMessage';
 
   defineOptions({ name: 'WechatTransferSceneConfig' });
@@ -19,16 +22,22 @@
   const saving = ref(false);
   const editing = ref(false);
 
+  const mchNo = ref('');
   const channelMchNo = ref('');
-  // 当前转账场景
-  const currentScene = ref('');
+  // 当前已保存的配置
+  const currentConfig = ref<WechatTransferConfig | null>(null);
   // 编辑中的转账场景
   const editingScene = ref('');
+  // 编辑中的发起应用引用
+  const editingAppRefId = ref<string>('');
   // 场景选项
   const sceneOptions = ref<WechatTransferSceneOption[]>([]);
+  // 商户公众号应用列表
+  const mchApps = ref<WxMchApp[]>([]);
 
   /** 当前场景选项(匹配 code) */
-  const currentOption = computed(() => sceneOptions.value.find((s) => s.code === currentScene.value));
+  const currentSceneCode = computed(() => currentConfig.value?.transferScene || '');
+  const currentOption = computed(() => sceneOptions.value.find((s) => s.code === currentSceneCode.value));
 
   /** 编辑中场景选项(匹配 code) */
   const editingOption = computed(() => sceneOptions.value.find((s) => s.code === editingScene.value));
@@ -36,12 +45,22 @@
   /** 展示用的场景详情(编辑时用编辑中的, 否则用当前的) */
   const displayOption = computed(() => (editing.value ? editingOption.value : currentOption.value));
 
-  /** 场景下拉选项(antdv-next 用 :options prop 渲染更可靠) */
-  const selectOptions = computed(() =>
+  /** 场景下拉选项 */
+  const sceneSelectOptions = computed(() =>
     sceneOptions.value.map((s) => ({
       label: `${s.name}（${s.code}）`,
       value: s.code,
     })),
+  );
+
+  /** 公众号类型应用下拉选项(仅公众号可作为转账发起应用) */
+  const appSelectOptions = computed(() =>
+    mchApps.value
+      .filter((app) => app.appType === 'official_account')
+      .map((app) => ({
+        label: `${app.appName}（${app.wxAppId}）`,
+        value: String(app.id),
+      })),
   );
 
   /** 报备字段说明表列配置 */
@@ -58,48 +77,60 @@
   ]);
 
   /** 打开抽屉(由管理页卡片点击调用) */
-  function open(mchChannelNo: string) {
+  function open(no: string, mchChannelNo: string) {
+    mchNo.value = no;
     channelMchNo.value = mchChannelNo;
     visible.value = true;
     editing.value = false;
     loadData();
   }
 
-  /** 加载场景选项 + 商户配置(两个请求独立, 互不影响) */
+  /** 加载场景选项 + 转账配置 + 公众号应用列表 */
   function loadData() {
     loading.value = true;
-    // 场景选项独立加载, 不依赖商户配置查询结果
-    WechatDirectChannelMerchantApi.findSceneOptions()
-      .then((res) => {
-        sceneOptions.value = res.data || [];
+    // 场景选项
+    WechatDirectChannelMerchantApi.findSceneOptions().then((res) => {
+      sceneOptions.value = res.data || [];
+    });
+    // 公众号应用列表
+    WxMchAppApi.listByMchNo(mchNo.value).then((res) => {
+      mchApps.value = res.data || [];
+    });
+    // 转账配置
+    WechatTransferConfigApi.findByChannelMchNo(mchNo.value, channelMchNo.value)
+      .then(({ data }) => {
+        currentConfig.value = data;
+      })
+      .catch(() => {
+        currentConfig.value = null;
       })
       .finally(() => {
         loading.value = false;
       });
-    // 商户配置单独加载, 失败(如记录不存在)不影响场景选项
-    if (!channelMchNo.value) return;
-    WechatDirectChannelMerchantApi.findByChannelMchNo(channelMchNo.value)
-      .then(({ data }) => {
-        currentScene.value = data?.transferScene || '';
-      })
-      .catch(() => {});
   }
 
   /** 开始编辑 */
   function startEdit() {
-    editingScene.value = currentScene.value;
+    editingScene.value = currentConfig.value?.transferScene || '';
+    editingAppRefId.value = currentConfig.value?.transferAppRefId
+      ? String(currentConfig.value.transferAppRefId)
+      : '';
     editing.value = true;
   }
 
-  /** 保存转账场景 */
-  async function saveScene() {
+  /** 保存转账配置 */
+  async function saveConfig() {
     saving.value = true;
     try {
-      await WechatDirectChannelMerchantApi.update({
+      await WechatTransferConfigApi.save({
+        mchNo: mchNo.value,
         channelMchNo: channelMchNo.value,
-        transferScene: editingScene.value,
+        transferScene: editingScene.value || undefined,
+        transferAppRefId: editingAppRefId.value || undefined,
       });
-      currentScene.value = editingScene.value;
+      // 重新加载配置回显
+      const { data } = await WechatTransferConfigApi.findByChannelMchNo(mchNo.value, channelMchNo.value);
+      currentConfig.value = data;
       editing.value = false;
       // 国际化：保存成功
       message.success($t('common.saveSuccess'));
@@ -114,8 +145,8 @@
 <template>
   <a-drawer
     v-model:open="visible"
-    :title="$t('payment.merchant.channelMerchant.cardTransferScene')"
-    :size="880"
+    :title="$t('payment.merchant.channelMerchant.cardTransferConfig')"
+    :width="880"
     :styles="{ footer: { textAlign: 'right' } }"
     destroy-on-hidden
   >
@@ -125,22 +156,38 @@
         <a-alert
           type="info"
           banner
-          :message="$t('payment.channel.wechatPay.transferSceneTipDesc')"
+          :message="$t('payment.channel.wechatPay.transferConfigTipDesc')"
         />
       </div>
 
-      <!-- 场景选择区(查看时禁用, 编辑时可选) -->
+      <!-- 配置区(查看时禁用, 编辑时可选) -->
       <div class="mb-8">
         <a-form layout="vertical">
+          <!-- 转账场景 -->
           <a-form-item :label="$t('payment.channel.wechatPay.transferScene')">
             <a-select
-              :value="editing ? editingScene : currentScene"
+              :value="editing ? editingScene : currentSceneCode"
               :disabled="!editing"
-              :options="selectOptions"
+              :options="sceneSelectOptions"
               :placeholder="$t('payment.channel.wechatPay.transferScenePlaceholder')"
               :allow-clear="editing"
               size="large"
               @update:value="editingScene = $event"
+            />
+          </a-form-item>
+          <!-- 转账发起应用(仅公众号) -->
+          <a-form-item
+            :label="$t('payment.channel.wechatPay.transferApp')"
+            :extra="$t('payment.channel.wechatPay.transferAppOfficialOnly')"
+          >
+            <a-select
+              :value="editing ? editingAppRefId : (currentConfig?.transferAppRefId ? String(currentConfig.transferAppRefId) : '')"
+              :disabled="!editing"
+              :options="appSelectOptions"
+              :placeholder="$t('payment.channel.wechatPay.transferAppPlaceholder')"
+              :allow-clear="editing"
+              size="large"
+              @update:value="editingAppRefId = $event"
             />
           </a-form-item>
         </a-form>
@@ -208,21 +255,13 @@
       </template>
 
       <!-- 未配置且非编辑模式 -->
-      <div v-if="!currentScene && !editing" class="flex flex-col items-center justify-center py-16">
+      <div
+        v-if="!currentConfig?.transferScene && !currentConfig?.transferAppRefId && !editing"
+        class="flex flex-col items-center justify-center py-16"
+      >
         <IconifyIcon icon="ant-design:exclamation-circle-outlined" class="mb-4 text-5xl text-warning" />
         <div class="text-base text-muted-foreground">
-          {{ $t('payment.channel.wechatPay.transferSceneNotConfigured') }}
-        </div>
-        <div class="mt-1 text-xs text-muted-foreground">
-          {{ $t('payment.channel.wechatPay.transferSceneNotConfiguredTip') }}
-        </div>
-      </div>
-
-      <!-- 编辑模式: 未选择场景时的空状态 -->
-      <div v-if="editing && !editingScene" class="flex flex-col items-center justify-center py-16">
-        <IconifyIcon icon="ant-design:search-outlined" class="mb-4 text-5xl text-muted-foreground" />
-        <div class="text-sm text-muted-foreground">
-          {{ $t('payment.channel.wechatPay.transferSceneSelectPrompt') }}
+          {{ $t('payment.channel.wechatPay.transferConfigNotConfigured') }}
         </div>
       </div>
     </a-spin>
@@ -233,7 +272,7 @@
           <a-button @click="editing = false">
             {{ $t('common.cancel') }}
           </a-button>
-          <a-button type="primary" :loading="saving" @click="saveScene">
+          <a-button type="primary" :loading="saving" @click="saveConfig">
             {{ $t('common.save') }}
           </a-button>
         </template>

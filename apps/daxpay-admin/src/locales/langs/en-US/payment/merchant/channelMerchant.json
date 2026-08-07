@@ -124,5 +124,11 @@
   "transferSceneName": "Transfer Scene Name",
   "transferSceneReportInfoContent": "Report Info Content",
   "transferSceneSetDefaultConfirm": "Set this scene as default? The default scene will be used when no scene is specified",
-  "transferSceneDefaultTip": "Only one default scene per channel merchant"
+  "transferSceneDefaultTip": "Only one default scene per channel merchant",
+  "transferScenePresetTip": "8 transfer scenes are preset. Up to 3 can be enabled. Default scene must be enabled. Only enabled scenes are selectable.",
+  "transferSceneEnableConfirm": "Enable this transfer scene? Enabled scenes are selectable when initiating transfers",
+  "transferSceneDisableConfirm": "Disable this transfer scene? Disabled scenes cannot be selected when initiating transfers",
+  "transferSceneCannotDisableDefault": "Default scene cannot be disabled. Set another scene as default first",
+  "transferSceneReportFields": "Report Fields",
+  "cardTransferConfig": "Transfer Config"
 }

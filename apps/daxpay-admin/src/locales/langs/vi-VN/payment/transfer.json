@@ -41,14 +41,19 @@
     "tradeNo": "Mã giao dịch",
     "containerChannel": "Kênh",
     "currency": "Tiền tệ",
-    "relationNo": "Mã liên quan"
+    "relationNo": "Mã liên quan",
+    "userRecvPerception": "Cảm nhận người nhận"
   },
   "section": {
     "identity": "Danh tính",
     "amount": "Số tiền & Trạng thái",
     "payee": "Người nhận",
     "notify": "Thông báo & Lỗi",
-    "advanced": "Tùy chọn Nâng cao"
+    "advanced": "Tùy chọn Nâng cao",
+    "merchantChannel": "Thương gia & Kênh",
+    "transferAmount": "Số tiền chuyển",
+    "transferDetails": "Thông tin chuyển",
+    "sceneReport": "Kịch bản & Báo cáo"
   },
   "action": {
     "create": "Chuyển khoản",
@@ -81,9 +86,10 @@
     "payeeOpenId": "OpenID Alipay người nhận",
     "payeeLoginName": "Tên đăng nhập Alipay người nhận (email/SĐT)",
     "bizTransferNoAuto": "Để trống để tự tạo",
-    "reportInfoContent": "Để trống dùng mặc định -"
+    "reportInfoContent": "Để trống dùng mặc định -",
+    "reason": "Nhập lý do chuyển khoản"
   },
-  "targetMch": "Đối tác nhận",
+  "targetMch": "Thương gia",
   "targetMchHelp": "Chọn đối tác nhận để chuyển thay mặt",
   "channelMch": "Đối tác kênh",
   "amountUnit": "CNY",
@@ -102,5 +108,8 @@
   "confirmUrlCopied": "Đã sao chép liên kết",
   "confirmUrlCopyFailed": "Sao chép thất bại",
   "confirmUrlExpireTip": "Liên kết có hiệu lực 24 giờ, hãy gửi nhanh",
-  "confirmUrlTip": "Gửi liên kết xác nhận cho người nhận, cần mở trong WeChat"
+  "confirmUrlTip": "Gửi liên kết xác nhận cho người nhận, cần mở trong WeChat",
+  "submitWithAmount": "Chuyển ¥{amount}",
+  "amountLimitTip": "Tối thiểu ¥0.01 mỗi lần",
+  "btnGenerate": "Tạo"
 }

@@ -1,14 +1,13 @@
 <script lang="ts" setup>
-  import type {
-    AlipayTransferSceneConfig,
-    AlipayTransferSceneConfigParam,
-  } from '#/api/payment/channel/alipay/transfer-scene.api';
+  import type { AlipayTransferSceneConfig } from '#/api/payment/channel/alipay/transfer-scene.api';
 
-  import { nextTick, reactive, ref } from 'vue';
+  import { ref } from 'vue';
 
   import { $t } from '@vben/locales';
 
-  import { ALIPAY_TRANSFER_SCENES, AlipayTransferSceneApi } from '#/api/payment/channel/alipay/transfer-scene.api';
+  import { IconifyIcon } from '@vben-core/icons';
+
+  import { AlipayTransferSceneApi } from '#/api/payment/channel/alipay/transfer-scene.api';
   import { useMessage } from '#/hooks/useMessage';
 
   defineOptions({ name: 'AlipayTransferSceneConfig' });
@@ -17,41 +16,23 @@
 
   // 列表抽屉显隐
   const listVisible = ref(false);
-  // 表单 Modal 显隐
-  const formVisible = ref(false);
 
   const mchNo = ref('');
   const channelMchNo = ref('');
   const loading = ref(false);
   const dataList = ref<AlipayTransferSceneConfig[]>([]);
-  // 表单
-  const formRef = ref();
-  const saving = ref(false);
-  const isEdit = ref(false);
-  const form = reactive<AlipayTransferSceneConfigParam>(createEmptyForm());
 
-  // 表单校验规则
-  const rules = {
-    sceneName: [
-      {
-        required: true,
-        message: $t('common.pleaseSelect'),
-        trigger: 'change',
-      },
-    ],
-  };
-
-  /** 空表单 */
-  function createEmptyForm(): AlipayTransferSceneConfigParam {
-    return {
-      id: undefined,
-      mchNo: '',
-      channelMchNo: '',
-      sceneName: '',
-      isDefault: false,
-      remark: '',
-    };
-  }
+  // 场景图标(与枚举固定顺序对齐: 现金营销/企业退款/佣金报酬/业务结算/二手回收/公益补助/行政补贴和退款/保险理赔)
+  const SCENE_ICONS = [
+    'ant-design:money-collect-outlined',
+    'ant-design:rollback-outlined',
+    'ant-design:account-book-outlined',
+    'ant-design:pay-circle-outlined',
+    'ant-design:recycle-outlined',
+    'ant-design:heart-outlined',
+    'ant-design:bank-outlined',
+    'ant-design:safety-outlined',
+  ];
 
   /** 打开列表(由商户管理页卡片点击调用) */
   function open(no: string, cMchNo: string) {
@@ -65,77 +46,57 @@
   async function loadData() {
     loading.value = true;
     try {
-      const { data } = await AlipayTransferSceneApi.list(mchNo.value, channelMchNo.value);
+      const { data } = await AlipayTransferSceneApi.list(
+        mchNo.value,
+        channelMchNo.value,
+      );
       dataList.value = data ?? [];
     } finally {
       loading.value = false;
     }
   }
 
-  /** 打开新增表单 */
-  function handleAdd() {
-    isEdit.value = false;
-    Object.assign(form, createEmptyForm());
-    form.mchNo = mchNo.value;
-    form.channelMchNo = channelMchNo.value;
-    formVisible.value = true;
-    nextTick(() => formRef.value?.clearValidate());
-  }
-
-  /** 打开编辑表单 */
-  function handleEdit(row: AlipayTransferSceneConfig) {
-    isEdit.value = true;
-    Object.assign(form, createEmptyForm());
-    form.id = row.id ?? undefined;
-    form.mchNo = mchNo.value;
-    form.channelMchNo = channelMchNo.value;
-    form.sceneName = row.sceneName ?? '';
-    form.isDefault = row.isDefault ?? false;
-    form.remark = row.remark ?? '';
-    formVisible.value = true;
-    nextTick(() => formRef.value?.clearValidate());
-  }
-
-  /** 提交新增/编辑 */
-  function handleSubmit() {
-    formRef.value?.validate().then(async () => {
-      saving.value = true;
-      try {
-        await (isEdit.value ? AlipayTransferSceneApi.update(form) : AlipayTransferSceneApi.save(form));
-        message.success($t('common.saveSuccess'));
-        formVisible.value = false;
-        await loadData();
-      } finally {
-        saving.value = false;
-      }
-    });
-  }
-
-  /** 设为默认 */
-  function handleSetDefault(row: AlipayTransferSceneConfig) {
+  /** 切换启用状态(弹窗二次确认, 默认场景禁止禁用) */
+  function handleToggleEnabled(
+    row: AlipayTransferSceneConfig,
+    enabled: boolean,
+  ) {
     const id = row.id;
     if (!id) return;
-    // 设默认确认
+    // 默认场景不允许禁用, 直接提示不弹确认
+    if (!enabled && row.isDefault) {
+      message.warning(
+        $t('payment.merchant.channelMerchant.transferSceneCannotDisableDefault'),
+      );
+      return;
+    }
+    // 启用/禁用二次确认
     confirm({
-      content: $t('payment.merchant.channelMerchant.transferSceneSetDefaultConfirm'),
+      content: $t(
+        enabled
+          ? 'payment.merchant.channelMerchant.transferSceneEnableConfirm'
+          : 'payment.merchant.channelMerchant.transferSceneDisableConfirm',
+      ),
       onOk: async () => {
-        await AlipayTransferSceneApi.setDefault(mchNo.value, id);
+        await AlipayTransferSceneApi.setEnabled(mchNo.value, id, enabled);
         message.success($t('common.saveSuccess'));
         await loadData();
       },
     });
   }
 
-  /** 删除 */
-  function handleDelete(row: AlipayTransferSceneConfig) {
+  /** 设为默认(二次确认, 后端自动启用) */
+  function handleSetDefault(row: AlipayTransferSceneConfig) {
     const id = row.id;
     if (!id) return;
-    // 删除确认
+    // 设默认确认
     confirm({
-      content: $t('common.confirmDelete'),
+      content: $t(
+        'payment.merchant.channelMerchant.transferSceneSetDefaultConfirm',
+      ),
       onOk: async () => {
-        await AlipayTransferSceneApi.delete(id);
-        message.success($t('common.deleteSuccess'));
+        await AlipayTransferSceneApi.setDefault(mchNo.value, id);
+        message.success($t('common.saveSuccess'));
         await loadData();
       },
     });
@@ -145,80 +106,198 @@
 </script>
 
 <template>
-  <!-- 列表抽屉 -->
+  <!-- 场景卡片抽屉 -->
   <a-drawer
     v-model:open="listVisible"
     :title="$t('payment.merchant.channelMerchant.transferSceneManage')"
-    :size="960"
+    :width="980"
     destroy-on-hidden
   >
     <div class="mb-3">
-      <a-alert type="info" :show-icon="true" :message="$t('payment.merchant.channelMerchant.transferSceneTip')" />
+      <a-alert
+        type="info"
+        :show-icon="true"
+        :message="
+          $t('payment.merchant.channelMerchant.transferScenePresetTip')
+        "
+      />
     </div>
-    <div class="mb-3">
-      <a-button type="primary" @click="handleAdd">
-        {{ $t('common.add') }}
-      </a-button>
-    </div>
-    <vxe-table :data="dataList" :loading="loading" border>
-      <vxe-column field="sceneName" :title="$t('payment.merchant.channelMerchant.transferSceneName')" min-width="120" />
-      <vxe-column field="isDefault" :title="$t('common.isDefault')" width="90" align="center">
-        <template #default="{ row }">
-          <a-tag v-if="row.isDefault" color="green">
-            {{ $t('common.yes') }}
-          </a-tag>
-        </template>
-      </vxe-column>
-      <vxe-column field="remark" :title="$t('common.remark')" min-width="120" show-overflow />
-      <vxe-column fixed="right" :width="220" :title="$t('common.operation')" :show-overflow="false">
-        <template #default="{ row }">
-          <a-space :size="2">
-            <template #separator>
-              <a-divider type="vertical" />
-            </template>
-            <a-button v-if="!row.isDefault" type="link" size="small" @click="handleSetDefault(row)">
+    <a-spin :spinning="loading">
+      <!-- 卡片网格(每行2张, 按枚举固定顺序) -->
+      <div v-if="dataList.length" class="scene-grid">
+        <div
+          v-for="(scene, idx) in dataList"
+          :key="scene.id ?? idx"
+          class="scene-card"
+          :class="{ 'scene-card-muted': !scene.enabled }"
+        >
+          <!-- 卡片头部: 图标 + 场景名 + 默认标记 + 启用开关 -->
+          <div class="scene-card-header">
+            <div class="scene-card-title">
+              <span
+                class="scene-card-icon"
+                :class="{ 'scene-card-icon-muted': !scene.enabled }"
+              >
+                <IconifyIcon
+                  :icon="SCENE_ICONS[idx % SCENE_ICONS.length] ?? 'ant-design:transaction-outlined'"
+                  class="h-5 w-5"
+                />
+              </span>
+              <span class="scene-card-name">{{ scene.sceneName }}</span>
+              <a-tag v-if="scene.isDefault" color="green">
+                {{ $t('common.isDefault') }}
+              </a-tag>
+            </div>
+            <a-switch
+              :checked="scene.enabled"
+              @change="(val: boolean) => handleToggleEnabled(scene, val)"
+            />
+          </div>
+          <!-- 报备字段明细 -->
+          <div class="scene-card-body">
+            <div class="scene-card-section-title">
+              <IconifyIcon icon="ant-design:profile-outlined" class="h-3.5 w-3.5" />
+              <span>
+                {{ $t('payment.merchant.channelMerchant.transferSceneReportFields') }}
+              </span>
+            </div>
+            <div
+              v-for="(type, fi) in scene.reportInfoTypes"
+              :key="type"
+              class="scene-field-item"
+            >
+              <div class="scene-field-name">{{ type }}</div>
+              <div class="scene-field-desc">
+                {{ scene.reportInfoDescriptions?.[fi] || '-' }}
+              </div>
+            </div>
+          </div>
+          <!-- 卡片底部: 启用且非默认时显示设为默认 -->
+          <div
+            v-if="scene.enabled && !scene.isDefault"
+            class="scene-card-footer"
+          >
+            <a-button
+              type="link"
+              size="small"
+              @click="handleSetDefault(scene)"
+            >
               {{ $t('common.setDefault') }}
             </a-button>
-            <a-button type="link" size="small" @click="handleEdit(row)">
-              {{ $t('common.edit') }}
-            </a-button>
-            <a-button type="link" size="small" danger @click="handleDelete(row)">
-              {{ $t('common.delete') }}
-            </a-button>
-          </a-space>
-        </template>
-      </vxe-column>
-    </vxe-table>
+          </div>
+        </div>
+      </div>
+      <a-empty v-else :description="$t('common.noData')" />
+    </a-spin>
   </a-drawer>
-
-  <!-- 表单 Modal -->
-  <a-modal
-    v-model:open="formVisible"
-    :title="isEdit ? $t('common.edit') : $t('common.add')"
-    :confirm-loading="saving"
-    :ok-text="$t('common.save')"
-    :cancel-text="$t('common.cancelText')"
-    :width="640"
-    destroy-on-hidden
-    @ok="handleSubmit"
-  >
-    <a-form ref="formRef" :model="form" :rules="rules" :label-col="{ span: 6 }" :wrapper-col="{ span: 17 }">
-      <!-- 转账场景名称 -->
-      <a-form-item :label="$t('payment.merchant.channelMerchant.transferSceneName')" name="sceneName">
-        <a-select
-          v-model:value="form.sceneName"
-          :options="ALIPAY_TRANSFER_SCENES"
-          :placeholder="$t('common.pleaseSelect')"
-        />
-      </a-form-item>
-      <!-- 备注 -->
-      <a-form-item :label="$t('common.remark')" name="remark">
-        <a-input v-model:value="form.remark" :maxlength="200" allow-clear />
-      </a-form-item>
-      <!-- 是否默认 -->
-      <a-form-item :label="$t('common.isDefault')" name="isDefault">
-        <a-switch v-model:checked="form.isDefault" />
-      </a-form-item>
-    </a-form>
-  </a-modal>
 </template>
+
+<style scoped>
+  /* 卡片网格: 每行2张 */
+  .scene-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .scene-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #fff;
+    padding: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .scene-card:hover {
+    border-color: #1677ff;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 8%);
+  }
+
+  .scene-card-muted {
+    background: #fafafa;
+  }
+
+  .scene-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .scene-card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .scene-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #e6f4ff;
+    color: #1677ff;
+    flex-shrink: 0;
+  }
+
+  .scene-card-icon-muted {
+    background: #f0f0f0;
+    color: #999;
+  }
+
+  .scene-card-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #303133;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .scene-card-body {
+    flex: 1;
+  }
+
+  .scene-card-section-title {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #909399;
+    margin-bottom: 8px;
+  }
+
+  .scene-field-item {
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: #f5f7fa;
+    margin-bottom: 6px;
+  }
+
+  .scene-field-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #303133;
+  }
+
+  .scene-field-desc {
+    font-size: 12px;
+    color: #909399;
+    margin-top: 2px;
+    line-height: 1.5;
+  }
+
+  .scene-card-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 8px;
+    border-top: 1px dashed #e5e7eb;
+    margin-top: 8px;
+  }
+</style>

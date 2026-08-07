@@ -173,7 +173,11 @@ export interface TransferParam {
   notifyUrl?: string;
   /** 转账场景配置ID(支付宝专用,不传用通道商户默认场景) */
   transferSceneConfigId?: string;
-  /** 转账场景报备信息(微信/支付宝转账按场景填写) */
+  /** 转账场景ID(抖音专用,主数据枚举1001-1007,发起转账时选择) */
+  transferScene?: string;
+  /** 用户收款感知(抖音专用,收款人在抖音中看到的文案) */
+  userRecvPerception?: string;
+  /** 转账场景报备信息(微信/支付宝/抖音转账按场景填写) */
   reportInfos?: TransferReportInfo[];
 }
 

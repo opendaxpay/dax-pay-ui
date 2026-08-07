@@ -41,14 +41,19 @@
     "tradeNo": "เลขธุรกรรม",
     "containerChannel": "ช่องทาง",
     "currency": "สกุลเงิน",
-    "relationNo": "เลขที่เกี่ยวข้อง"
+    "relationNo": "เลขที่เกี่ยวข้อง",
+    "userRecvPerception": "การรับรู้ผู้รับ"
   },
   "section": {
     "identity": "ข้อมูลประจำตัว",
     "amount": "จำนวนและสถานะ",
     "payee": "ข้อมูลผู้รับ",
     "notify": "การแจ้งเตือนและข้อผิดพลาด",
-    "advanced": "ตัวเลือกขั้นสูง"
+    "advanced": "ตัวเลือกขั้นสูง",
+    "merchantChannel": "ร้านค้าและช่องทาง",
+    "transferAmount": "จำนวนเงินโอน",
+    "transferDetails": "รายละเอียดการโอน",
+    "sceneReport": "สถานการณ์และรายงาน"
   },
   "action": {
     "create": "โอนเงิน",
@@ -81,9 +86,10 @@
     "payeeOpenId": "OpenID Alipay ของผู้รับเงิน",
     "payeeLoginName": "บัญชีล็อกอิน Alipay ผู้รับเงิน (อีเมล/เบอร์โทร)",
     "bizTransferNoAuto": "เว้นว่างเพื่อสร้างอัตโนมัติ",
-    "reportInfoContent": "เว้นว่างเพื่อใช้ค่าเริ่มต้น -"
+    "reportInfoContent": "เว้นว่างเพื่อใช้ค่าเริ่มต้น -",
+    "reason": "กรุณาระบุเหตุผลในการโอนเงิน"
   },
-  "targetMch": "ร้านค้าปลายทาง",
+  "targetMch": "ร้านค้า",
   "targetMchHelp": "เลือกร้านค้าเพื่อโอนแทน",
   "channelMch": "ร้านค้าช่องทาง",
   "amountUnit": "CNY",
@@ -102,5 +108,8 @@
   "confirmUrlCopied": "คัดลอกลิงก์แล้ว",
   "confirmUrlCopyFailed": "คัดลอกล้มเหลว",
   "confirmUrlExpireTip": "ลิงก์มีอายุ 24 ชั่วโมง กรุณาส่งโดยเร็ว",
-  "confirmUrlTip": "ส่งลิงก์ยืนยันให้ผู้รับ ต้องเปิดใน WeChat"
+  "confirmUrlTip": "ส่งลิงก์ยืนยันให้ผู้รับ ต้องเปิดใน WeChat",
+  "submitWithAmount": "โอน ¥{amount}",
+  "amountLimitTip": "ขั้นต่ำ ¥0.01 ต่อครั้ง",
+  "btnGenerate": "สร้าง"
 }

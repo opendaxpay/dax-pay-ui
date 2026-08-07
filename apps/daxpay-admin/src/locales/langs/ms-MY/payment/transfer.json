@@ -41,14 +41,19 @@
     "tradeNo": "No Transaksi",
     "containerChannel": "Saluran",
     "currency": "Mata Wang",
-    "relationNo": "No Berkaitan"
+    "relationNo": "No Berkaitan",
+    "userRecvPerception": "Persepsi Penerimaan"
   },
   "section": {
     "identity": "Identiti",
     "amount": "Jumlah & Status",
     "payee": "Penerima",
     "notify": "Notifikasi & Ralat",
-    "advanced": "Pilihan Lanjutan"
+    "advanced": "Pilihan Lanjutan",
+    "merchantChannel": "Merchant & Saluran",
+    "transferAmount": "Jumlah Pindahan",
+    "transferDetails": "Butiran Pindahan",
+    "sceneReport": "Senario & Laporan"
   },
   "action": {
     "create": "Pindahan",
@@ -81,9 +86,10 @@
     "payeeOpenId": "OpenID Alipay penerima",
     "payeeLoginName": "Nama log masuk Alipay penerima (email/nombor telefon)",
     "bizTransferNoAuto": "Kosongkan untuk dijana automatik",
-    "reportInfoContent": "Kosongkan untuk lalai -"
+    "reportInfoContent": "Kosongkan untuk lalai -",
+    "reason": "Masukkan sebab pemindahan"
   },
-  "targetMch": "Merchant Sasaran",
+  "targetMch": "Peniaga",
   "targetMchHelp": "Pilih merchant untuk pindah atas nama",
   "channelMch": "Merchant Saluran",
   "amountUnit": "CNY",
@@ -102,5 +108,8 @@
   "confirmUrlCopied": "Pautan disalin",
   "confirmUrlCopyFailed": "Salin gagal",
   "confirmUrlExpireTip": "Pautan sah 24 jam, sila hantar dengan segera",
-  "confirmUrlTip": "Hantar pautan pengesahan kepada penerima, mesti dibuka dalam WeChat"
+  "confirmUrlTip": "Hantar pautan pengesahan kepada penerima, mesti dibuka dalam WeChat",
+  "submitWithAmount": "Pindah ¥{amount}",
+  "amountLimitTip": "Min ¥0.01 setiap pindahan",
+  "btnGenerate": "Jana"
 }

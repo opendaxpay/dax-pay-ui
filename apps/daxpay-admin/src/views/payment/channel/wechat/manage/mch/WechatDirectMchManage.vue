@@ -61,9 +61,9 @@
         },
         {
           key: 'transferScene',
-          title: $t('payment.merchant.channelMerchant.cardTransferScene'),
+          title: $t('payment.merchant.channelMerchant.cardTransferConfig'),
           icon: 'ant-design:transaction-outlined',
-          description: $t('payment.channel.wechatPay.cardTransferSceneDesc'),
+          description: $t('payment.channel.wechatPay.cardTransferConfigDesc'),
         },
       ],
     },
@@ -118,7 +118,7 @@
       editNameRef.value?.open();
     }
     if (card.key === 'transferScene') {
-      transferSceneRef.value?.open(channelMchNo.value);
+      transferSceneRef.value?.open(mchNo.value, channelMchNo.value);
     }
     if (card.key === 'keyConfig') {
       keyConfigRef.value?.init();

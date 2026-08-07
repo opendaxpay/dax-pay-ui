@@ -116,5 +116,11 @@
   "cardTerminal": "Buku Terminal",
   "cardTerminalDesc": "Daftarkan nomor terminal saluran dan tautkan ke terminal sistem",
   "cardTerminalBadge": "Dalam Pengembangan",
-  "cardTerminalTooltip": "Desain field terminal per saluran sedang berjalan, belum tersedia"
+  "cardTerminalTooltip": "Desain field terminal per saluran sedang berjalan, belum tersedia",
+  "transferScenePresetTip": "8 adegan transfer telah disiapkan. Maksimal 3 dapat diaktifkan. Adegan default harus diaktifkan. Hanya adegan aktif yang dapat dipilih.",
+  "transferSceneEnableConfirm": "Aktifkan adegan transfer ini? Adegan aktif dapat dipilih saat melakukan transfer",
+  "transferSceneDisableConfirm": "Nonaktifkan adegan transfer ini? Adegan nonaktif tidak dapat dipilih saat transfer",
+  "transferSceneCannotDisableDefault": "Adegan default tidak dapat dinonaktifkan. Tetapkan adegan lain sebagai default terlebih dahulu",
+  "transferSceneReportFields": "Bidang Laporan",
+  "cardTransferConfig": "Konfigurasi Transfer"
 }

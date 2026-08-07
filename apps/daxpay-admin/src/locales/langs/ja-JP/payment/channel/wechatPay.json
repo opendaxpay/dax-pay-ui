@@ -18,5 +18,11 @@
   "transferSceneNotConfiguredTip": "編集ボタンをクリックして送金シーンを選択してください",
   "transferSceneReportCount": "報告明細",
   "transferSceneUserPerceptionTip": "受領者がWeChatで確認できる文案。送金時に指定しない場合はデフォルト値を使用",
-  "transferSceneSelectPrompt": "上記で送金シーンを選択して詳細を表示してください"
+  "transferSceneSelectPrompt": "上記で送金シーンを選択して詳細を表示してください",
+  "cardTransferConfigDesc": "WeChat振込設定を管理(振込シーン+発信アプリ)",
+  "transferConfigTipDesc": "振込シーンと発信アプリ(公式アカウント)を設定。発信時にこの設定を使用してOpenIdを解析します。",
+  "transferApp": "振込発信アプリ",
+  "transferAppPlaceholder": "公式アカウントアプリを選択",
+  "transferAppOfficialOnly": "公式アカウントタイプのみ対応。OpenIdはこのアプリで取得する必要があります。",
+  "transferConfigNotConfigured": "振込設定が未設定です"
 }

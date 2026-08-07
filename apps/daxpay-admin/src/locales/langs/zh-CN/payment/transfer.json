@@ -41,14 +41,19 @@
     "tradeNo": "转账交易号",
     "containerChannel": "所属通道",
     "currency": "币种",
-    "relationNo": "上送关联号"
+    "relationNo": "上送关联号",
+    "userRecvPerception": "用户收款感知"
   },
   "section": {
     "identity": "身份信息",
     "amount": "金额与状态",
     "payee": "收款人信息",
     "notify": "通知与错误",
-    "advanced": "高级选项"
+    "advanced": "高级选项",
+    "merchantChannel": "商户与通道",
+    "transferAmount": "转账金额",
+    "transferDetails": "转账说明",
+    "sceneReport": "转账场景与报备"
   },
   "action": {
     "create": "发起转账",
@@ -57,7 +62,7 @@
     "retry": "重试",
     "reset": "重置"
   },
-  "targetMch": "目标商户",
+  "targetMch": "商户",
   "targetMchHelp": "选择本次代发的商户",
   "channelMch": "通道商户",
   "amountUnit": "元",
@@ -97,10 +102,14 @@
     "payeeOpenId": "收款人支付宝 OpenID",
     "payeeLoginName": "收款人支付宝登录账号(邮箱/手机号)",
     "bizTransferNoAuto": "留空将自动生成",
-    "reportInfoContent": "留空使用默认值 -"
+    "reportInfoContent": "留空使用默认值 -",
+    "reason": "请输入转账原因"
   },
   "confirmUrlCopied": "链接已复制",
   "confirmUrlCopyFailed": "复制失败",
   "confirmUrlExpireTip": "链接24小时内有效，请尽快发送给收款人",
-  "confirmUrlTip": "请将确认收款链接发送给收款人，收款人需在微信内打开"
+  "confirmUrlTip": "请将确认收款链接发送给收款人，收款人需在微信内打开",
+  "submitWithAmount": "发起转账 ¥{amount}",
+  "amountLimitTip": "单笔最低 0.01 元",
+  "btnGenerate": "生成"
 }

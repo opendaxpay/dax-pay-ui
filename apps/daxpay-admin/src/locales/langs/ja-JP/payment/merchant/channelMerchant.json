@@ -124,5 +124,11 @@
   "transferSceneName": "振込シーン名",
   "transferSceneReportInfoContent": "報告情報内容",
   "transferSceneSetDefaultConfirm": "このシーンをデフォルトに設定しますか? 振込時にシーン未指定の場合はデフォルトが使用されます",
-  "transferSceneDefaultTip": "チャネル加盟店ごとにデフォルトは1つのみです"
+  "transferSceneDefaultTip": "チャネル加盟店ごとにデフォルトは1つのみです",
+  "transferScenePresetTip": "8つの送金シーンがプリセットされています。最大3つまで有効化できます。デフォルトシーンは有効化必須です。送金時に選択できるのは有効なシーンのみです。",
+  "transferSceneEnableConfirm": "この振込シーンを有効にしますか? 有効化すると振込時に選択できます",
+  "transferSceneDisableConfirm": "この振込シーンを無効にしますか? 無効化すると振込時に選択できません",
+  "transferSceneCannotDisableDefault": "デフォルトシーンは無効化できません。先に他のシーンをデフォルトに設定してください",
+  "transferSceneReportFields": "申告フィールド",
+  "cardTransferConfig": "振込設定"
 }

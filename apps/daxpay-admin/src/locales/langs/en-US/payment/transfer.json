@@ -41,14 +41,19 @@
     "tradeNo": "Trade No",
     "containerChannel": "Channel",
     "currency": "Currency",
-    "relationNo": "Relation No"
+    "relationNo": "Relation No",
+    "userRecvPerception": "User Receipt Perception"
   },
   "section": {
     "identity": "Identity",
     "amount": "Amount & Status",
     "payee": "Payee",
     "notify": "Notify & Error",
-    "advanced": "Advanced Options"
+    "advanced": "Advanced Options",
+    "merchantChannel": "Merchant & Channel",
+    "transferAmount": "Transfer Amount",
+    "transferDetails": "Transfer Details",
+    "sceneReport": "Scene & Report Info"
   },
   "action": {
     "create": "Transfer",
@@ -81,9 +86,10 @@
     "payeeOpenId": "Payee Alipay OpenID",
     "payeeLoginName": "Payee Alipay login name (email/phone)",
     "bizTransferNoAuto": "Auto-generated if empty",
-    "reportInfoContent": "Leave blank for default -"
+    "reportInfoContent": "Leave blank for default -",
+    "reason": "Enter the transfer reason"
   },
-  "targetMch": "Target Merchant",
+  "targetMch": "Merchant",
   "targetMchHelp": "Merchant to transfer on behalf of",
   "channelMch": "Channel Merchant",
   "amountUnit": "CNY",
@@ -102,5 +108,8 @@
   "confirmUrlCopied": "Link copied",
   "confirmUrlCopyFailed": "Copy failed",
   "confirmUrlExpireTip": "Link valid for 24 hours, please send to payee promptly",
-  "confirmUrlTip": "Send the confirmation link to the payee, who must open it in WeChat"
+  "confirmUrlTip": "Send the confirmation link to the payee, who must open it in WeChat",
+  "submitWithAmount": "Transfer ¥{amount}",
+  "amountLimitTip": "Min ¥0.01 per transfer",
+  "btnGenerate": "Generate"
 }

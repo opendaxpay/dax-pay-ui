@@ -116,5 +116,11 @@
   "cardTerminal": "Sổ thiết bị",
   "cardTerminalDesc": "Đăng ký số thiết bị kênh và liên kết với thiết bị hệ thống",
   "cardTerminalBadge": "Đang phát triển",
-  "cardTerminalTooltip": "Đang thiết kế trường terminal theo kênh, chưa mở"
+  "cardTerminalTooltip": "Đang thiết kế trường terminal theo kênh, chưa mở",
+  "transferScenePresetTip": "8 cảnh chuyển khoản đã được thiết lập sẵn. Tối đa 3 cảnh có thể kích hoạt. Cảnh mặc định phải được kích hoạt. Chỉ cảnh đã kích hoạt mới có thể chọn.",
+  "transferSceneEnableConfirm": "Kích hoạt cảnh chuyển khoản này? Cảnh đã kích hoạt có thể chọn khi chuyển khoản",
+  "transferSceneDisableConfirm": "Vô hiệu hóa cảnh chuyển khoản này? Cảnh đã vô hiệu không thể chọn khi chuyển khoản",
+  "transferSceneCannotDisableDefault": "Không thể vô hiệu hóa cảnh mặc định. Hãy đặt cảnh khác làm mặc định trước",
+  "transferSceneReportFields": "Trường Báo Cáo",
+  "cardTransferConfig": "Cấu hình chuyển khoản"
 }

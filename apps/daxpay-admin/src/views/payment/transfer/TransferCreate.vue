@@ -17,6 +17,11 @@
     WechatDirectChannelMerchantApi,
     type WechatTransferSceneOption,
   } from '#/api/payment/channel/wechat/channel-merchant.api';
+  import { WechatTransferConfigApi } from '#/api/payment/channel/wechat/transfer-config.api';
+  import {
+    DouyinDirectChannelMerchantApi,
+    type DouyinTransferSceneOption,
+  } from '#/api/payment/channel/douyin/channel-merchant.api';
   import { DevelopTradeApi } from '#/api/payment/develop/develop-trade.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { TransferApi } from '#/api/payment/transfer/transfer.api';
@@ -41,9 +46,6 @@
   // 通道商户候选(按 目标商户 + 当前通道 provider 联动加载)
   const channelMchOptions = ref<ChannelMchOption[]>([]);
 
-  // 高级选项折叠面板展开状态(默认收起)
-  const advancedActiveKey = ref<string[]>([]);
-
   // ===== 微信转账场景与报备信息 =====
   // 转账场景选项
   const wechatSceneOptions = ref<WechatTransferSceneOption[]>([]);
@@ -58,25 +60,8 @@
   const linkCopied = ref(false);
 
   // ===== 支付宝转账场景与报备信息 =====
-  // 场景→info_type 列表映射(支付宝文档固定,组件内中文常量)
-  const ALIPAY_SCENE_REPORT_MAP: Record<string, Array<{ contentPlaceholder: string; infoType: string }>> = {
-    现金营销: [
-      { contentPlaceholder: '请描述收款方参与活动的名称', infoType: '活动名称' },
-      { contentPlaceholder: '请描述收款方因什么奖励获取这笔资金', infoType: '奖励说明' },
-    ],
-    企业退款: [{ contentPlaceholder: '请描述退款原因,如商品质量问题退款', infoType: '退款原因' }],
-    佣金报酬: [{ contentPlaceholder: '请描述接收款项原因,如8月家政服务报酬', infoType: '佣金报酬说明' }],
-    业务结算: [{ contentPlaceholder: '请描述款项名称,如材料货款', infoType: '结算款项名称' }],
-    二手回收: [{ contentPlaceholder: '请描述回收商品名称,如衣服', infoType: '回收商品名称' }],
-    公益补助: [{ contentPlaceholder: '请描述公益活动在民政部的备案名称', infoType: '公益活动名称' }],
-    行政补贴和退款: [{ contentPlaceholder: '请描述补贴/退款类型,如某地人才补贴', infoType: '补贴/退款类型' }],
-    保险理赔: [
-      { contentPlaceholder: '请描述业务类型,如理赔、退保、其他', infoType: '业务类型' },
-      { contentPlaceholder: '请描述保险险种及产品名称,如医疗险-某百万医疗保险', infoType: '保险险种' },
-      { contentPlaceholder: '请描述这笔转账的业务内部交易订单号', infoType: '业务交易订单号' },
-    ],
-  };
-  // 已配置的转账场景列表(由通道商户加载)
+  // 报备字段元数据(reportInfoTypes/reportInfoDescriptions)由后端枚举推导, 随场景列表返回
+  // 已配置的转账场景列表(由通道商户加载, 仅含已启用)
   const alipaySceneOptions = ref<AlipayTransferSceneConfig[]>([]);
   // 当前选中的场景配置ID
   const alipayTransferSceneConfigId = ref<string>('');
@@ -133,13 +118,37 @@
     attach: '',
   });
 
-  // 当前通道对应的 provider 编码(用于按通道过滤通道商户候选)
+  // ===== 抖音转账场景与报备信息 =====
+  // 转账场景选项列表(主数据枚举, 从后端加载)
+  const douyinSceneOptions = ref<DouyinTransferSceneOption[]>([]);
+  // 当前选中的转账场景ID
+  const douyinTransferScene = ref<string>('');
+  // 用户收款感知
+  const douyinUserRecvPerception = ref<string>('');
+  // 报备字段内容(按 infoType key)
+  const douyinReportContents = ref<Record<string, string>>({});
   const activeProvider = computed(() => activeKey.value);
 
   // 微信: 金额 < 0.3 元禁填收款人姓名
   const wechatPayeeNameDisabled = computed(() => {
     const amt = wechatForm.amount ?? 0;
     return amt > 0 && amt < 0.3;
+  });
+
+  // 当前通道表单的金额(用于提交按钮实时显示)
+  const currentAmount = computed(() => {
+    if (activeKey.value === 'wechat') return wechatForm.amount ?? 0;
+    if (activeKey.value === 'alipay') return alipayForm.amount ?? 0;
+    return douyinForm.amount ?? 0;
+  });
+
+  // 提交按钮文案(含实时金额预览)
+  const submitLabel = computed(() => {
+    const amt = currentAmount.value;
+    if (amt > 0) {
+      return $t('payment.transfer.submitWithAmount', { amount: amt.toFixed(2) });
+    }
+    return $t('payment.transfer.action.create');
   });
 
   // 当前场景的报备字段定义(根据选中场景动态)
@@ -155,16 +164,16 @@
     });
   }
 
-  /** 微信通道商户变更: 加载其配置的转账场景并联动报备字段 */
+  /** 微信通道商户变更: 加载转账配置获取场景 */
   function loadWechatSceneByChannelMch(channelMchNo: string) {
-    if (!channelMchNo) {
+    if (!channelMchNo || !wechatForm.mchNo) {
       wechatTransferScene.value = '';
       wechatReportContents.value = {};
       return;
     }
-    // 加载通道商户配置获取 transferScene
-    WechatDirectChannelMerchantApi.findByChannelMchNo(channelMchNo).then(({ data }) => {
-      wechatTransferScene.value = data.transferScene || '';
+    // 从微信转账配置读取场景(转账配置独立管理, 非通道商户表)
+    WechatTransferConfigApi.findByChannelMchNo(wechatForm.mchNo, channelMchNo).then(({ data }) => {
+      wechatTransferScene.value = data?.transferScene || '';
       wechatReportContents.value = {};
     });
   }
@@ -225,22 +234,69 @@
     { label: $t('payment.transfer.payeeTypeLoginName'), value: 'login_name' },
   ]);
 
-  // 支付宝当前选中的场景名称
-  const alipaySelectedSceneName = computed(() => {
-    const scene = alipaySceneOptions.value.find((s) => String(s.id) === alipayTransferSceneConfigId.value);
-    return scene?.sceneName ?? '';
+  // 支付宝当前选中的场景配置(含报备字段元数据)
+  const alipaySelectedScene = computed(() => {
+    return alipaySceneOptions.value.find(
+      (s) => String(s.id) === alipayTransferSceneConfigId.value,
+    );
   });
 
-  // 支付宝当前场景的报备字段类型列表
+  // 支付宝当前场景的报备字段类型列表(后端枚举推导)
   const alipayReportInfoTypes = computed(() => {
-    return (ALIPAY_SCENE_REPORT_MAP[alipaySelectedSceneName.value] ?? []).map((i) => i.infoType);
+    return alipaySelectedScene.value?.reportInfoTypes ?? [];
   });
 
-  /** 获取 info_type 对应的 placeholder */
+  /** 获取 info_type 对应的 placeholder(后端枚举推导) */
   function getAlipayContentPlaceholder(infoType: string): string {
-    const items = ALIPAY_SCENE_REPORT_MAP[alipaySelectedSceneName.value] ?? [];
-    return items.find((i) => i.infoType === infoType)?.contentPlaceholder ?? '';
+    const scene = alipaySelectedScene.value;
+    if (!scene?.reportInfoTypes || !scene?.reportInfoDescriptions) return '';
+    const idx = scene.reportInfoTypes.indexOf(infoType);
+    return idx >= 0 ? (scene.reportInfoDescriptions[idx] ?? '') : '';
   }
+
+  // ===== 抖音转账场景与报备信息 =====
+  // 抖音当前选中的场景配置(含报备字段元数据)
+  const douyinSelectedScene = computed(() => {
+    return douyinSceneOptions.value.find(
+      (s) => s.code === douyinTransferScene.value,
+    );
+  });
+
+  // 抖音当前场景的报备字段类型列表
+  const douyinReportInfoTypes = computed(() => {
+    return douyinSelectedScene.value?.reportInfoTypes ?? [];
+  });
+
+  /** 获取抖音 info_type 对应的 placeholder */
+  function getDouyinContentPlaceholder(infoType: string): string {
+    const scene = douyinSelectedScene.value;
+    if (!scene?.reportInfoTypes || !scene?.reportInfoDescriptions) return '';
+    const idx = scene.reportInfoTypes.indexOf(infoType);
+    return idx >= 0 ? (scene.reportInfoDescriptions[idx] ?? '') : '';
+  }
+
+  /** 加载抖音转账场景选项(主数据枚举) */
+  function loadDouyinSceneOptions() {
+    DouyinDirectChannelMerchantApi.findSceneOptions().then((res) => {
+      douyinSceneOptions.value = res.data || [];
+    });
+  }
+
+  /** 组装抖音报备信息 */
+  function buildDouyinReportInfos(): TransferReportInfo[] | undefined {
+    if (douyinReportInfoTypes.value.length === 0) return undefined;
+    return douyinReportInfoTypes.value.map((infoType) => ({
+      infoType,
+      infoContent: douyinReportContents.value[infoType] ?? '',
+    }));
+  }
+
+  // 抖音场景切换: 清空感知与报备内容, 默认选中第一个感知选项
+  watch(douyinTransferScene, () => {
+    douyinReportContents.value = {};
+    const opts = douyinSelectedScene.value?.userRecvPerceptionOptions ?? [];
+    douyinUserRecvPerception.value = opts.length > 0 ? opts[0]! : '';
+  });
 
   /** 支付宝通道商户变更: 加载已配置的转账场景列表 */
   function loadAlipaySceneOptions(channelMchNo: string) {
@@ -251,7 +307,8 @@
       return;
     }
     AlipayTransferSceneApi.list(alipayForm.mchNo, channelMchNo).then(({ data }) => {
-      alipaySceneOptions.value = data ?? [];
+      // 仅显示已启用的场景
+      alipaySceneOptions.value = (data ?? []).filter((s) => s.enabled);
       // 默认选中 isDefault 场景
       const def = alipaySceneOptions.value.find((s) => s.isDefault);
       if (def?.id) {
@@ -353,6 +410,13 @@
   }
 
   /**
+   * 重新生成商户转账号
+   */
+  function regenBizTransferNo() {
+    syncBizTransferNo(genBizTransferNo());
+  }
+
+  /**
    * 加载目标商户下拉(运营端代发)
    */
   function loadMchOptions() {
@@ -426,7 +490,12 @@
       createFn = TransferApi.alipayCreate;
     } else {
       formRef = douyinFormRef.value;
-      param = { ...douyinForm };
+      param = {
+        ...douyinForm,
+        transferScene: douyinTransferScene.value || undefined,
+        userRecvPerception: douyinUserRecvPerception.value || undefined,
+        reportInfos: buildDouyinReportInfos(),
+      };
       createFn = TransferApi.douyinCreate;
     }
     try {
@@ -475,13 +544,6 @@
       wechat: wechatFormRef,
     };
     refMap[activeKey.value].value?.clearValidate();
-  }
-
-  /**
-   * 取消: 返回上一页
-   */
-  function handleCancel() {
-    router.back();
   }
 
   /**
@@ -537,6 +599,8 @@
   onMounted(() => {
     loadMchOptions();
     loadWechatSceneOptions();
+    // 加载抖音转账场景选项(主数据枚举)
+    loadDouyinSceneOptions();
     applyQueryPreset();
     // 未预填商户转账号时自动生成(幂等键), 用户无需关心
     if (!wechatForm.bizTransferNo) {
@@ -551,11 +615,6 @@
 
 <template>
   <div class="transfer-create m-3 bg-background p-3 rounded-lg">
-    <!-- 页头 -->
-    <div class="mb-3 flex items-center justify-between">
-      <h2 class="m-0 text-lg font-medium">{{ $t('payment.transfer.createTitle') }}</h2>
-    </div>
-
     <a-card>
       <a-tabs v-model:active-key="activeKey">
         <!-- ===== 微信转账 ===== -->
@@ -589,6 +648,22 @@
                   />
                 </a-form-item>
               </a-col>
+              <!-- 商户转账号(幂等键, 默认自动生成) -->
+              <a-col :span="12">
+                <a-form-item :label="$t('payment.transfer.field.bizTransferNo')" name="bizTransferNo">
+                  <a-input
+                    v-model:value="wechatForm.bizTransferNo"
+                    :placeholder="$t('payment.transfer.placeholder.bizTransferNoAuto')"
+                  >
+                    <template #suffix>
+                      <a-button size="small" type="link" @click="regenBizTransferNo">
+                        <template #icon><IconifyIcon icon="ant-design:reload-outlined" /></template>
+                        {{ $t('payment.transfer.btnGenerate') }}
+                      </a-button>
+                    </template>
+                  </a-input>
+                </a-form-item>
+              </a-col>
               <!-- 转账金额(整行突出) -->
               <a-col :span="24">
                 <a-form-item :label="$t('payment.transfer.field.amount')" name="amount">
@@ -596,9 +671,9 @@
                     v-model:value="wechatForm.amount"
                     :min="0.01"
                     :precision="2"
+                    :step="0.01"
                     size="large"
                     class="w-full"
-                    :addon-after="$t('payment.transfer.amountUnit')"
                   />
                 </a-form-item>
               </a-col>
@@ -630,7 +705,10 @@
               <!-- 转账原因 -->
               <a-col :span="12">
                 <a-form-item :label="$t('payment.transfer.field.reason')" name="reason">
-                  <a-input v-model:value="wechatForm.reason" />
+                  <a-input
+                    v-model:value="wechatForm.reason"
+                    :placeholder="$t('payment.transfer.placeholder.reason')"
+                  />
                 </a-form-item>
               </a-col>
             </a-row>
@@ -639,9 +717,10 @@
             <div v-if="wechatTransferScene" class="mt-2">
               <a-form-item :label="$t('payment.channel.wechatPay.transferScene')">
                 <a-select
-                  v-model:value="wechatTransferScene"
+                  :value="wechatTransferScene"
                   :options="wechatSceneOptions.map((s) => ({ label: s.name, value: s.code }))"
                   :placeholder="$t('payment.channel.wechatPay.transferScenePlaceholder')"
+                  disabled
                 />
               </a-form-item>
               <!-- 报备信息字段(动态, 按场景 reportInfoTypes) -->
@@ -656,35 +735,6 @@
                 </a-col>
               </a-row>
             </div>
-
-            <!-- 高级选项(默认收起): 商户转账号 / 通知地址 / 附加参数 -->
-            <a-collapse v-model:active-key="advancedActiveKey" :bordered="false" ghost>
-              <a-collapse-panel :header="$t('payment.transfer.section.advanced')">
-                <a-row :gutter="16">
-                  <a-col :span="12">
-                    <a-form-item :label="$t('payment.transfer.field.bizTransferNo')" name="bizTransferNo">
-                      <a-input
-                        v-model:value="wechatForm.bizTransferNo"
-                        :placeholder="$t('payment.transfer.placeholder.bizTransferNoAuto')"
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="12">
-                    <a-form-item :label="$t('payment.transfer.field.notifyUrl')" name="notifyUrl">
-                      <a-input
-                        v-model:value="wechatForm.notifyUrl"
-                        :placeholder="$t('payment.transfer.placeholder.notifyUrl')"
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="24">
-                    <a-form-item :label="$t('payment.transfer.field.attach')" name="attach">
-                      <a-input v-model:value="wechatForm.attach" />
-                    </a-form-item>
-                  </a-col>
-                </a-row>
-              </a-collapse-panel>
-            </a-collapse>
           </a-form>
         </a-tab-pane>
 
@@ -719,6 +769,22 @@
                   />
                 </a-form-item>
               </a-col>
+              <!-- 商户转账号(幂等键, 默认自动生成) -->
+              <a-col :span="12">
+                <a-form-item :label="$t('payment.transfer.field.bizTransferNo')" name="bizTransferNo">
+                  <a-input
+                    v-model:value="alipayForm.bizTransferNo"
+                    :placeholder="$t('payment.transfer.placeholder.bizTransferNoAuto')"
+                  >
+                    <template #suffix>
+                      <a-button size="small" type="link" @click="regenBizTransferNo">
+                        <template #icon><IconifyIcon icon="ant-design:reload-outlined" /></template>
+                        {{ $t('payment.transfer.btnGenerate') }}
+                      </a-button>
+                    </template>
+                  </a-input>
+                </a-form-item>
+              </a-col>
               <!-- 转账金额(整行突出) -->
               <a-col :span="24">
                 <a-form-item :label="$t('payment.transfer.field.amount')" name="amount">
@@ -726,9 +792,9 @@
                     v-model:value="alipayForm.amount"
                     :min="0.01"
                     :precision="2"
+                    :step="0.01"
                     size="large"
                     class="w-full"
-                    :addon-after="$t('payment.transfer.amountUnit')"
                   />
                 </a-form-item>
               </a-col>
@@ -763,7 +829,10 @@
               <!-- 转账原因 -->
               <a-col :span="12">
                 <a-form-item :label="$t('payment.transfer.field.reason')" name="reason">
-                  <a-input v-model:value="alipayForm.reason" />
+                  <a-input
+                    v-model:value="alipayForm.reason"
+                    :placeholder="$t('payment.transfer.placeholder.reason')"
+                  />
                 </a-form-item>
               </a-col>
             </a-row>
@@ -789,35 +858,6 @@
                 </a-col>
               </a-row>
             </div>
-
-            <!-- 高级选项(默认收起) -->
-            <a-collapse v-model:active-key="advancedActiveKey" :bordered="false" ghost>
-              <a-collapse-panel :header="$t('payment.transfer.section.advanced')">
-                <a-row :gutter="16">
-                  <a-col :span="12">
-                    <a-form-item :label="$t('payment.transfer.field.bizTransferNo')" name="bizTransferNo">
-                      <a-input
-                        v-model:value="alipayForm.bizTransferNo"
-                        :placeholder="$t('payment.transfer.placeholder.bizTransferNoAuto')"
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="12">
-                    <a-form-item :label="$t('payment.transfer.field.notifyUrl')" name="notifyUrl">
-                      <a-input
-                        v-model:value="alipayForm.notifyUrl"
-                        :placeholder="$t('payment.transfer.placeholder.notifyUrl')"
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="24">
-                    <a-form-item :label="$t('payment.transfer.field.attach')" name="attach">
-                      <a-input v-model:value="alipayForm.attach" />
-                    </a-form-item>
-                  </a-col>
-                </a-row>
-              </a-collapse-panel>
-            </a-collapse>
           </a-form>
         </a-tab-pane>
 
@@ -852,6 +892,22 @@
                   />
                 </a-form-item>
               </a-col>
+              <!-- 商户转账号(幂等键, 默认自动生成) -->
+              <a-col :span="12">
+                <a-form-item :label="$t('payment.transfer.field.bizTransferNo')" name="bizTransferNo">
+                  <a-input
+                    v-model:value="douyinForm.bizTransferNo"
+                    :placeholder="$t('payment.transfer.placeholder.bizTransferNoAuto')"
+                  >
+                    <template #suffix>
+                      <a-button size="small" type="link" @click="regenBizTransferNo">
+                        <template #icon><IconifyIcon icon="ant-design:reload-outlined" /></template>
+                        {{ $t('payment.transfer.btnGenerate') }}
+                      </a-button>
+                    </template>
+                  </a-input>
+                </a-form-item>
+              </a-col>
               <!-- 转账金额(整行突出) -->
               <a-col :span="24">
                 <a-form-item :label="$t('payment.transfer.field.amount')" name="amount">
@@ -859,9 +915,9 @@
                     v-model:value="douyinForm.amount"
                     :min="0.01"
                     :precision="2"
+                    :step="0.01"
                     size="large"
                     class="w-full"
-                    :addon-after="$t('payment.transfer.amountUnit')"
                   />
                 </a-form-item>
               </a-col>
@@ -892,39 +948,46 @@
               <!-- 转账原因 -->
               <a-col :span="12">
                 <a-form-item :label="$t('payment.transfer.field.reason')" name="reason">
-                  <a-input v-model:value="douyinForm.reason" />
+                  <a-input
+                    v-model:value="douyinForm.reason"
+                    :placeholder="$t('payment.transfer.placeholder.reason')"
+                  />
+                </a-form-item>
+              </a-col>
+              <!-- 转账场景(抖音主数据枚举, 必填) -->
+              <a-col :span="12">
+                <a-form-item :label="$t('payment.transfer.field.transferScene')" name="transferScene">
+                  <a-select
+                    v-model:value="douyinTransferScene"
+                    :options="douyinSceneOptions.map((s) => ({ label: s.name, value: s.code }))"
+                    :placeholder="$t('common.pleaseSelect')"
+                  />
+                </a-form-item>
+              </a-col>
+              <!-- 用户收款感知(按场景枚举选项) -->
+              <a-col v-if="douyinSelectedScene?.userRecvPerceptionOptions?.length" :span="12">
+                <a-form-item :label="$t('payment.transfer.field.userRecvPerception')">
+                  <a-radio-group v-model:value="douyinUserRecvPerception" button-style="solid">
+                    <a-radio-button
+                      v-for="opt in douyinSelectedScene.userRecvPerceptionOptions"
+                      :key="opt"
+                      :value="opt"
+                    >
+                      {{ opt }}
+                    </a-radio-button>
+                  </a-radio-group>
+                </a-form-item>
+              </a-col>
+              <!-- 转账场景报备信息(按选中场景动态渲染) -->
+              <a-col v-for="infoType in douyinReportInfoTypes" :key="infoType" :span="24">
+                <a-form-item :label="infoType">
+                  <a-input
+                    v-model:value="douyinReportContents[infoType]"
+                    :placeholder="getDouyinContentPlaceholder(infoType)"
+                  />
                 </a-form-item>
               </a-col>
             </a-row>
-
-            <!-- 高级选项(默认收起) -->
-            <a-collapse v-model:active-key="advancedActiveKey" :bordered="false" ghost>
-              <a-collapse-panel :header="$t('payment.transfer.section.advanced')">
-                <a-row :gutter="16">
-                  <a-col :span="12">
-                    <a-form-item :label="$t('payment.transfer.field.bizTransferNo')" name="bizTransferNo">
-                      <a-input
-                        v-model:value="douyinForm.bizTransferNo"
-                        :placeholder="$t('payment.transfer.placeholder.bizTransferNoAuto')"
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="12">
-                    <a-form-item :label="$t('payment.transfer.field.notifyUrl')" name="notifyUrl">
-                      <a-input
-                        v-model:value="douyinForm.notifyUrl"
-                        :placeholder="$t('payment.transfer.placeholder.notifyUrl')"
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="24">
-                    <a-form-item :label="$t('payment.transfer.field.attach')" name="attach">
-                      <a-input v-model:value="douyinForm.attach" />
-                    </a-form-item>
-                  </a-col>
-                </a-row>
-              </a-collapse-panel>
-            </a-collapse>
           </a-form>
         </a-tab-pane>
       </a-tabs>
@@ -932,24 +995,25 @@
       <!-- 底部操作 -->
       <div class="mt-2 flex justify-end gap-2 border-t border-border pt-4">
         <a-button @click="handleReset">{{ $t('payment.transfer.action.reset') }}</a-button>
-        <a-button @click="handleCancel">{{ $t('common.cancel') }}</a-button>
         <a-button
           v-if="hasPermission(PermCodes.Trade.Transfer.MANAGE)"
           type="primary"
           :loading="submitting"
           @click="handleSubmit"
         >
-          {{ $t('common.submit') }}
+          {{ submitLabel }}
         </a-button>
       </div>
     </a-card>
+
     <!-- 发起成功(微信: 展示确认收款链接) -->
     <a-modal
-      v-model:open="!!createResult"
+      :open="!!createResult"
       :title="$t('payment.transfer.createSuccess')"
       :footer="null"
       :mask-closable="false"
       centered
+      @cancel="createResult = null"
     >
       <div v-if="createResult" class="flex flex-col items-center py-4">
         <div class="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-4">

@@ -14,7 +14,6 @@
 
   import DouyinDirectChannelMerchantBasicInfo from './DouyinDirectChannelMerchantBasicInfo.vue';
   import DouyinDirectKeyConfigEdit from './DouyinDirectKeyConfigEdit.vue';
-  import DouyinTransferSceneConfig from './DouyinTransferSceneConfig.vue';
 
   defineOptions({ name: 'DouyinDirectMchManage' });
 
@@ -30,7 +29,6 @@
   const channelMerchant = ref<ChannelMerchantResult>({});
   const basicInfoRef = ref<InstanceType<typeof DouyinDirectChannelMerchantBasicInfo>>();
   const keyConfigRef = ref<InstanceType<typeof DouyinDirectKeyConfigEdit>>();
-  const transferSceneRef = ref<InstanceType<typeof DouyinTransferSceneConfig>>();
   const capabilityRef = ref<InstanceType<typeof DyChannelAppCapability>>();
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
 
@@ -51,12 +49,6 @@
           title: $t('payment.channel.douyinManage.cardDirectKeyConfig'),
           icon: 'ant-design:key-outlined',
           description: $t('payment.channel.douyinManage.cardDirectKeyConfigDesc'),
-        },
-        {
-          key: 'transferScene',
-          title: $t('payment.channel.douyinManage.cardTransferScene'),
-          icon: 'ant-design:transaction-outlined',
-          description: $t('payment.channel.douyinManage.cardTransferSceneDesc'),
         },
         {
           key: 'editMerchantName',
@@ -121,10 +113,6 @@
     }
     if (card.key === 'keyConfig') {
       keyConfigRef.value?.init();
-    }
-    if (card.key === 'transferScene') {
-      // 转账场景管理
-      transferSceneRef.value?.show(mchNo.value, channelMchNo.value);
     }
     if (card.key === 'appManage') {
       // 应用管理: 跳转抖音应用Hub（跨通道主数据，对齐微信模式）
@@ -202,8 +190,6 @@
     <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 
     <DouyinDirectKeyConfigEdit ref="keyConfigRef" :channel-mch-no="channelMchNo" />
-
-    <DouyinTransferSceneConfig ref="transferSceneRef" :mch-no="mchNo" :channel-mch-no="channelMchNo" />
 
     <DyChannelAppCapability ref="capabilityRef" />
   </div>

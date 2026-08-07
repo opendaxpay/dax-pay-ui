@@ -18,5 +18,11 @@
   "transferSceneNotConfiguredTip": "请点击编辑按钮选择转账场景",
   "transferSceneReportCount": "报备明细",
   "transferSceneUserPerceptionTip": "收款人在微信中看到的文案说明, 转账时不传则使用默认值",
-  "transferSceneSelectPrompt": "请在上方选择转账场景以查看详情"
+  "transferSceneSelectPrompt": "请在上方选择转账场景以查看详情",
+  "cardTransferConfigDesc": "管理微信转账配置(转账场景+发起应用)",
+  "transferConfigTipDesc": "配置转账场景与发起应用(公众号), 发起转账时使用此处配置的场景与应用解析 OpenId",
+  "transferApp": "转账发起应用",
+  "transferAppPlaceholder": "请选择公众号应用",
+  "transferAppOfficialOnly": "仅支持公众号类型应用, OpenId 须在此应用下获取",
+  "transferConfigNotConfigured": "未配置转账配置"
 }

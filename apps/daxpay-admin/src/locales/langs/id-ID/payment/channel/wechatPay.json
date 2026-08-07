@@ -18,5 +18,11 @@
   "transferSceneNotConfiguredTip": "Klik tombol edit untuk memilih adegan transfer",
   "transferSceneReportCount": "Item Laporan",
   "transferSceneUserPerceptionTip": "Teks yang dilihat penerima di WeChat. Menggunakan nilai default jika tidak ditentukan",
-  "transferSceneSelectPrompt": "Pilih adegan transfer di atas untuk melihat detail"
+  "transferSceneSelectPrompt": "Pilih adegan transfer di atas untuk melihat detail",
+  "cardTransferConfigDesc": "Kelola konfigurasi transfer WeChat (skenario + aplikasi inisiator)",
+  "transferConfigTipDesc": "Konfigurasi skenario transfer dan aplikasi inisiator (Official Account). OpenId diurai dari aplikasi ini.",
+  "transferApp": "Aplikasi Inisiator Transfer",
+  "transferAppPlaceholder": "Pilih aplikasi Official Account",
+  "transferAppOfficialOnly": "Hanya aplikasi jenis Official Account yang didukung. OpenId harus diperoleh dari aplikasi ini.",
+  "transferConfigNotConfigured": "Konfigurasi transfer belum dikonfigurasi"
 }

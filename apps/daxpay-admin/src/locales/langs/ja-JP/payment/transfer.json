@@ -41,14 +41,19 @@
     "tradeNo": "送金取引番号",
     "containerChannel": "所属チャネル",
     "currency": "通貨",
-    "relationNo": "上送関連番号"
+    "relationNo": "上送関連番号",
+    "userRecvPerception": "受取人認識"
   },
   "section": {
     "identity": "身份情報",
     "amount": "金額と状態",
     "payee": "受取人情報",
     "notify": "通知とエラー",
-    "advanced": "詳細オプション"
+    "advanced": "詳細オプション",
+    "merchantChannel": "マーチャントとチャネル",
+    "transferAmount": "送金金額",
+    "transferDetails": "送金メモ",
+    "sceneReport": "送金シーン・報備"
   },
   "action": {
     "create": "送金",
@@ -81,9 +86,10 @@
     "payeeOpenId": "受取人のAlipay OpenID",
     "payeeLoginName": "受取人のAlipayログインアカウント(メール/電話番号)",
     "bizTransferNoAuto": "空欄で自動生成",
-    "reportInfoContent": "空欄でデフォルト値 - を使用"
+    "reportInfoContent": "空欄でデフォルト値 - を使用",
+    "reason": "振込理由を入力してください"
   },
-  "targetMch": "対象加盟店",
+  "targetMch": "マーチャント",
   "targetMchHelp": "代行送金する加盟店を選択",
   "channelMch": "チャネル加盟店",
   "amountUnit": "元",
@@ -102,5 +108,8 @@
   "confirmUrlCopied": "リンクをコピーしました",
   "confirmUrlCopyFailed": "コピー失敗",
   "confirmUrlExpireTip": "リンクは24時間有効です。早めに送信してください",
-  "confirmUrlTip": "確認リンクを受領者に送信してください。WeChatで開く必要があります"
+  "confirmUrlTip": "確認リンクを受領者に送信してください。WeChatで開く必要があります",
+  "submitWithAmount": "送金 ¥{amount}",
+  "amountLimitTip": "1件あたり最低 0.01元",
+  "btnGenerate": "生成"
 }

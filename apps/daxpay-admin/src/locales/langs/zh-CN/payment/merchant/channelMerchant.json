@@ -124,5 +124,11 @@
   "cardTerminal": "终端台账",
   "cardTerminalDesc": "登记本通道商户下的通道侧终端号, 并可绑定系统终端",
   "cardTerminalBadge": "开发中",
-  "cardTerminalTooltip": "终端差异化字段设计中,暂未开放"
+  "cardTerminalTooltip": "终端差异化字段设计中,暂未开放",
+  "transferScenePresetTip": "共8个转账场景预置, 最多启用3个, 默认场景必须启用。发起转账时仅可选择已启用的场景。",
+  "transferSceneEnableConfirm": "确认启用此转账场景? 启用后发起转账时可选该场景",
+  "transferSceneDisableConfirm": "确认禁用此转账场景? 禁用后发起转账时不可选择该场景",
+  "transferSceneCannotDisableDefault": "默认场景不能禁用, 请先将其他场景设为默认",
+  "transferSceneReportFields": "报备字段",
+  "cardTransferConfig": "转账配置"
 }

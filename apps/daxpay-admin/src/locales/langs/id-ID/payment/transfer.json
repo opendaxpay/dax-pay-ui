@@ -41,14 +41,19 @@
     "tradeNo": "No Transaksi",
     "containerChannel": "Kanal",
     "currency": "Mata Uang",
-    "relationNo": "No Terkait"
+    "relationNo": "No Terkait",
+    "userRecvPerception": "Persepsi Penerimaan"
   },
   "section": {
     "identity": "Identitas",
     "amount": "Jumlah & Status",
     "payee": "Penerima",
     "notify": "Notifikasi & Kesalahan",
-    "advanced": "Opsi Lanjutan"
+    "advanced": "Opsi Lanjutan",
+    "merchantChannel": "Merchant & Saluran",
+    "transferAmount": "Jumlah Transfer",
+    "transferDetails": "Keterangan Transfer",
+    "sceneReport": "Skenario & Laporan"
   },
   "action": {
     "create": "Transfer",
@@ -81,9 +86,10 @@
     "payeeOpenId": "OpenID Alipay penerima",
     "payeeLoginName": "Nama login Alipay penerima (email/nomor telepon)",
     "bizTransferNoAuto": "Kosongkan untuk dibuat otomatis",
-    "reportInfoContent": "Kosongkan untuk default -"
+    "reportInfoContent": "Kosongkan untuk default -",
+    "reason": "Masukkan alasan transfer"
   },
-  "targetMch": "Merchant Target",
+  "targetMch": "Merchant",
   "targetMchHelp": "Pilih merchant untuk transfer atas nama",
   "channelMch": "Merchant Saluran",
   "amountUnit": "CNY",
@@ -102,5 +108,8 @@
   "confirmUrlCopied": "Tautan disalin",
   "confirmUrlCopyFailed": "Salin gagal",
   "confirmUrlExpireTip": "Tautan berlaku 24 jam, segera kirim ke penerima",
-  "confirmUrlTip": "Kirim tautan konfirmasi ke penerima, harus dibuka di WeChat"
+  "confirmUrlTip": "Kirim tautan konfirmasi ke penerima, harus dibuka di WeChat",
+  "submitWithAmount": "Transfer ¥{amount}",
+  "amountLimitTip": "Min ¥0.01 per transfer",
+  "btnGenerate": "Buat"
 }

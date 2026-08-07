@@ -41,14 +41,19 @@
     "tradeNo": "轉帳交易號",
     "containerChannel": "所屬通道",
     "currency": "幣種",
-    "relationNo": "上送關聯號"
+    "relationNo": "上送關聯號",
+    "userRecvPerception": "收款感知"
   },
   "section": {
     "identity": "身份信息",
     "amount": "金額與狀態",
     "payee": "收款人信息",
     "notify": "通知與錯誤",
-    "advanced": "進階選項"
+    "advanced": "進階選項",
+    "merchantChannel": "商户與通道",
+    "transferAmount": "轉帳金額",
+    "transferDetails": "轉帳說明",
+    "sceneReport": "轉帳場景與報備"
   },
   "action": {
     "create": "發起轉帳",
@@ -81,9 +86,10 @@
     "payeeOpenId": "收款人支付寶 OpenID",
     "payeeLoginName": "收款人支付寶登入帳號(郵箱/手機號)",
     "bizTransferNoAuto": "留空將自動生成",
-    "reportInfoContent": "留空使用預設值 -"
+    "reportInfoContent": "留空使用預設值 -",
+    "reason": "請輸入轉帳原因"
   },
-  "targetMch": "目標商戶",
+  "targetMch": "商戶",
   "targetMchHelp": "選擇本次代發的商戶",
   "channelMch": "通道商戶",
   "amountUnit": "元",
@@ -102,5 +108,8 @@
   "confirmUrlCopied": "連結已複製",
   "confirmUrlCopyFailed": "複製失敗",
   "confirmUrlExpireTip": "連結24小時內有效，請盡快發送給收款人",
-  "confirmUrlTip": "請將確認收款連結發送給收款人，收款人需在微信內開啟"
+  "confirmUrlTip": "請將確認收款連結發送給收款人，收款人需在微信內開啟",
+  "submitWithAmount": "發起轉帳 ¥{amount}",
+  "amountLimitTip": "單筆最低 0.01 元",
+  "btnGenerate": "生成"
 }
