@@ -41,8 +41,7 @@
     "tradeNo": "Trade No",
     "containerChannel": "Channel",
     "currency": "Currency",
-    "relationNo": "Relation No",
-    "userRecvPerception": "User Receipt Perception"
+    "relationNo": "Relation No"
   },
   "section": {
     "identity": "Identity",
@@ -88,7 +87,10 @@
     "bizTransferNoAuto": "Auto-generated if empty",
     "reportInfoContent": "Leave blank for default -",
     "reason": "Enter the transfer reason",
-    "title": "Transfer title, visible to the payee"
+    "title": "Transfer title, visible to the payee",
+    "payeePhone": "Payee Douyin phone (must match Douyin Pay real-name)",
+    "payeeNameTipAlipayUserId": "Optional; if filled, name will be verified against the payee account",
+    "payeeNameTipAlipayLoginName": "Required for login ID payees; name will be verified against the account"
   },
   "targetMch": "Merchant",
   "targetMchHelp": "Merchant to transfer on behalf of",
@@ -96,7 +98,7 @@
   "amountUnit": "CNY",
   "payeeTypeUserId": "User ID",
   "payeeTypeOpenId": "OpenID",
-  "payeeTypeLoginName": "Alipay Login Name",
+  "payeeTypeLoginName": "Login Name",
   "validate": {
     "channelMchRequired": "Please select a channel merchant",
     "bizTransferNoRequired": "Please enter the biz transfer no",
@@ -106,7 +108,11 @@
     "payeeNameForbidden": "Payee name is not allowed when amount is below 0.3 CNY",
     "targetMchRequired": "Please select a target merchant",
     "titleRequired": "Please enter the transfer title (visible to the payee)",
-    "reportInfoRequired": "Please fill in all transfer scene report fields"
+    "reportInfoRequired": "Please fill in all transfer scene report fields",
+    "loginNameNameRequired": "Payee name is required when using login ID",
+    "largeAmountReasonRequired": "Payment reason is required when amount reaches 50,000 yuan",
+    "sceneRequired": "Please select a transfer scene",
+    "phoneInvalid": "Phone number must be 11 digits"
   },
   "confirmUrlCopied": "Link copied",
   "confirmUrlCopyFailed": "Copy failed",
@@ -123,5 +129,14 @@
   "scanMchRequired": "Please select a target merchant first",
   "scanChannelMchRequired": "Please select a channel merchant first",
   "scanAppNotConfigured": "Transfer app not configured for this channel merchant, please configure it first",
-  "sceneNotConfigured": "Transfer scene and app not configured for this channel merchant, please configure transfer config under the channel merchant menu"
+  "sceneNotConfigured": "Transfer scene and app not configured for this channel merchant, please configure transfer config under the channel merchant menu",
+  "payeeTypePhone": "Phone number",
+  "amountMinTipAlipay": "Alipay minimum per transfer: 0.1 yuan",
+  "scanDouyinTitle": "Scan to get payee OpenId",
+  "scanDouyinTip": "Ask the payee to scan with their own Douyin (open the auth page inside the Douyin app); OpenId will be filled in after authorization",
+  "scanDouyinSuccess": "Payee OpenId obtained",
+  "scanGetPayee": "Scan to get",
+  "scanAlipayTitle": "Scan to get payee account",
+  "scanAlipayTip": "Ask the payee to scan with their own Alipay; the user ID will be filled in after authorization",
+  "scanAlipaySuccess": "Payee user ID obtained"
 }

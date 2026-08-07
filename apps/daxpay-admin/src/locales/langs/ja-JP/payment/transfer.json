@@ -41,8 +41,7 @@
     "tradeNo": "送金取引番号",
     "containerChannel": "所属チャネル",
     "currency": "通貨",
-    "relationNo": "上送関連番号",
-    "userRecvPerception": "受取人認識"
+    "relationNo": "上送関連番号"
   },
   "section": {
     "identity": "身份情報",
@@ -88,7 +87,10 @@
     "bizTransferNoAuto": "空欄で自動生成",
     "reportInfoContent": "空欄でデフォルト値 - を使用",
     "reason": "振込理由を入力してください",
-    "title": "振込タイトル、受取人に表示されます"
+    "title": "振込タイトル、受取人に表示されます",
+    "payeePhone": "受取人の抖音電話番号(抖音支払い実名と一致する必要があります)",
+    "payeeNameTipAlipayUserId": "任意。入力すると受取人アカウントとの氏名一致を検証します",
+    "payeeNameTipAlipayLoginName": "ログインID受取時は必須。氏名とアカウントの一致を検証します"
   },
   "targetMch": "マーチャント",
   "targetMchHelp": "代行送金する加盟店を選択",
@@ -96,7 +98,7 @@
   "amountUnit": "元",
   "payeeTypeUserId": "ユーザーID",
   "payeeTypeOpenId": "OpenID",
-  "payeeTypeLoginName": "Alipayログインアカウント",
+  "payeeTypeLoginName": "ログインアカウント",
   "validate": {
     "channelMchRequired": "チャネル加盟店を選択してください",
     "bizTransferNoRequired": "商戶側送金番号を入力してください",
@@ -106,7 +108,11 @@
     "payeeNameForbidden": "金額が0.3元未満の場合、受取人名は入力できません",
     "targetMchRequired": "対象加盟店を選択してください",
     "titleRequired": "振込タイトルを入力してください(受取人に表示されます)",
-    "reportInfoRequired": "振込シーンの報備項目をすべて入力してください"
+    "reportInfoRequired": "振込シーンの報備項目をすべて入力してください",
+    "loginNameNameRequired": "ログインIDで受取る場合、受取人の氏名が必須です",
+    "largeAmountReasonRequired": "振込金額が50,000元に達した場合、支払い理由の記入が必須です",
+    "sceneRequired": "振込シーンを選択してください",
+    "phoneInvalid": "電話番号は11桁の数字である必要があります"
   },
   "confirmUrlCopied": "リンクをコピーしました",
   "confirmUrlCopyFailed": "コピー失敗",
@@ -123,5 +129,14 @@
   "scanMchRequired": "先にターゲット加盟店を選択してください",
   "scanChannelMchRequired": "先にチャネル加盟店を選択してください",
   "scanAppNotConfigured": "このチャネル加盟店に振込起動アプリが設定されていません。先に設定してください",
-  "sceneNotConfigured": "このチャネル加盟店に振込シーンと起動アプリが設定されていません。チャネル加盟店メニューで設定してください"
+  "sceneNotConfigured": "このチャネル加盟店に振込シーンと起動アプリが設定されていません。チャネル加盟店メニューで設定してください",
+  "payeeTypePhone": "電話番号",
+  "amountMinTipAlipay": "支付宝の1回あたり最低振込額は0.1元です",
+  "scanDouyinTitle": "スキャンで受取人 OpenId を取得",
+  "scanDouyinTip": "受取人本人の抖音でスキャンしてください(抖音アプリ内で認証ページを開く必要があります)。認証完了後、OpenId が自動入力されます",
+  "scanDouyinSuccess": "受取人の OpenId を取得しました",
+  "scanGetPayee": "スキャンで取得",
+  "scanAlipayTitle": "スキャンで受取人アカウントを取得",
+  "scanAlipayTip": "受取人本人の支付宝でスキャンしてください。認証完了後、ユーザーIDが自動入力されます",
+  "scanAlipaySuccess": "受取人のユーザーIDを取得しました"
 }

@@ -41,8 +41,7 @@
     "tradeNo": "No Transaksi",
     "containerChannel": "Kanal",
     "currency": "Mata Uang",
-    "relationNo": "No Terkait",
-    "userRecvPerception": "Persepsi Penerimaan"
+    "relationNo": "No Terkait"
   },
   "section": {
     "identity": "Identitas",
@@ -88,7 +87,10 @@
     "bizTransferNoAuto": "Kosongkan untuk dibuat otomatis",
     "reportInfoContent": "Kosongkan untuk default -",
     "reason": "Masukkan alasan transfer",
-    "title": "Judul transfer, terlihat oleh penerima"
+    "title": "Judul transfer, terlihat oleh penerima",
+    "payeePhone": "Nomor telepon Douyin penerima (harus sesuai real-name Douyin Pay)",
+    "payeeNameTipAlipayUserId": "Opsional; jika diisi, nama akan diverifikasi dengan akun penerima",
+    "payeeNameTipAlipayLoginName": "Wajib untuk penerima login ID; nama akan diverifikasi dengan akun"
   },
   "targetMch": "Merchant",
   "targetMchHelp": "Pilih merchant untuk transfer atas nama",
@@ -96,7 +98,7 @@
   "amountUnit": "CNY",
   "payeeTypeUserId": "ID Pengguna",
   "payeeTypeOpenId": "OpenID",
-  "payeeTypeLoginName": "Nama Login Alipay",
+  "payeeTypeLoginName": "Nama Login",
   "validate": {
     "channelMchRequired": "Silakan pilih merchant saluran",
     "bizTransferNoRequired": "Silakan masukkan no transfer bisnis",
@@ -106,7 +108,11 @@
     "payeeNameForbidden": "Nama penerima tidak boleh diisi jika nominal di bawah 0.3 CNY",
     "targetMchRequired": "Silakan pilih merchant target",
     "titleRequired": "Silakan masukkan judul transfer (terlihat oleh penerima)",
-    "reportInfoRequired": "Silakan isi semua bidang pelaporan skema transfer"
+    "reportInfoRequired": "Silakan isi semua bidang pelaporan skema transfer",
+    "loginNameNameRequired": "Nama penerima wajib diisi saat menggunakan login ID",
+    "largeAmountReasonRequired": "Alasan pembayaran wajib diisi saat jumlah transfer mencapai 50.000 yuan",
+    "sceneRequired": "Silakan pilih skenario transfer",
+    "phoneInvalid": "Nomor telepon harus 11 digit"
   },
   "confirmUrlCopied": "Tautan disalin",
   "confirmUrlCopyFailed": "Salin gagal",
@@ -123,5 +129,14 @@
   "scanMchRequired": "Pilih merchant tujuan terlebih dahulu",
   "scanChannelMchRequired": "Pilih merchant saluran terlebih dahulu",
   "scanAppNotConfigured": "Aplikasi transfer belum dikonfigurasi untuk merchant saluran ini, silakan konfigurasi terlebih dahulu",
-  "sceneNotConfigured": "Skema dan aplikasi transfer belum dikonfigurasi untuk merchant saluran ini, silakan konfigurasi melalui menu merchant saluran"
+  "sceneNotConfigured": "Skema dan aplikasi transfer belum dikonfigurasi untuk merchant saluran ini, silakan konfigurasi melalui menu merchant saluran",
+  "payeeTypePhone": "Nomor telepon",
+  "amountMinTipAlipay": "Transfer Alipay minimum 0,1 yuan per transaksi",
+  "scanDouyinTitle": "Pindai untuk mendapatkan OpenId penerima",
+  "scanDouyinTip": "Minta penerima memindai dengan Douyin miliknya (buka halaman otorisasi di dalam aplikasi Douyin); OpenId akan diisi otomatis setelah otorisasi",
+  "scanDouyinSuccess": "OpenId penerima berhasil didapatkan",
+  "scanGetPayee": "Pindai untuk dapatkan",
+  "scanAlipayTitle": "Pindai untuk mendapatkan akun penerima",
+  "scanAlipayTip": "Minta penerima memindai dengan Alipay miliknya; ID pengguna akan diisi otomatis setelah otorisasi",
+  "scanAlipaySuccess": "ID pengguna penerima berhasil didapatkan"
 }

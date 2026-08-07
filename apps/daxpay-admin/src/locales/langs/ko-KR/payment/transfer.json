@@ -41,8 +41,7 @@
     "tradeNo": "송금 거래 번호",
     "containerChannel": "소속 채널",
     "currency": "통화",
-    "relationNo": "상송 관련 번호",
-    "userRecvPerception": "수취 인식"
+    "relationNo": "상송 관련 번호"
   },
   "section": {
     "identity": "신원 정보",
@@ -88,7 +87,10 @@
     "bizTransferNoAuto": "비우면 자동 생성",
     "reportInfoContent": "비워두면 기본값 - 사용",
     "reason": "이체 사유를 입력하세요",
-    "title": "이체 제목, 수취인에게 표시됩니다"
+    "title": "이체 제목, 수취인에게 표시됩니다",
+    "payeePhone": "수취인 더우인 전화번호(더우인페이 실명과 일치해야 함)",
+    "payeeNameTipAlipayUserId": "선택 사항입니다. 입력하면 수취인 계정과 이름 일치를 검증합니다",
+    "payeeNameTipAlipayLoginName": "로그인 ID 수취 시 필수. 이름과 계정 일치를 검증합니다"
   },
   "targetMch": "상점",
   "targetMchHelp": "대행 송금할 가맹점 선택",
@@ -96,7 +98,7 @@
   "amountUnit": "위안",
   "payeeTypeUserId": "사용자 ID",
   "payeeTypeOpenId": "OpenID",
-  "payeeTypeLoginName": "Alipay 로그인 계정",
+  "payeeTypeLoginName": "로그인 계정",
   "validate": {
     "channelMchRequired": "채널 가맹점을 선택해 주세요",
     "bizTransferNoRequired": "가맹점 송금 번호를 입력해 주세요",
@@ -106,7 +108,11 @@
     "payeeNameForbidden": "금액이 0.3위안 미만일 때 수취인 이름을 입력할 수 없습니다",
     "targetMchRequired": "대상 가맹점을 선택해 주세요",
     "titleRequired": "이체 제목을 입력해 주세요(수취인에게 표시됩니다)",
-    "reportInfoRequired": "이체 시나리오 보고 항목을 모두 입력해 주세요"
+    "reportInfoRequired": "이체 시나리오 보고 항목을 모두 입력해 주세요",
+    "loginNameNameRequired": "로그인 ID로 수취할 때 수취인 이름이 필수입니다",
+    "largeAmountReasonRequired": "이체 금액이 50,000위안에 도달하면 결제 사유를 반드시 입력해야 합니다",
+    "sceneRequired": "이체 시나리오를 선택하세요",
+    "phoneInvalid": "전화번호는 11자리 숫자여야 합니다"
   },
   "confirmUrlCopied": "링크 복사됨",
   "confirmUrlCopyFailed": "복사 실패",
@@ -123,5 +129,14 @@
   "scanMchRequired": "먼저 대상 가맹점을 선택하세요",
   "scanChannelMchRequired": "먼저 채널 가맹점을 선택하세요",
   "scanAppNotConfigured": "이 채널 가맹점에 이체 시작 앱이 설정되지 않았습니다. 먼저 설정하세요",
-  "sceneNotConfigured": "이 채널 가맹점에 이체 시나리오와 시작 앱이 설정되지 않았습니다. 채널 가맹점 메뉴에서 설정하세요"
+  "sceneNotConfigured": "이 채널 가맹점에 이체 시나리오와 시작 앱이 설정되지 않았습니다. 채널 가맹점 메뉴에서 설정하세요",
+  "payeeTypePhone": "전화번호",
+  "amountMinTipAlipay": "알리페이 1회 최소 이체 금액은 0.1위안입니다",
+  "scanDouyinTitle": "스캔하여 수취인 OpenId 가져오기",
+  "scanDouyinTip": "수취인 본인의 더우인으로 스캔하세요(더우인 앱 안에서 인증 페이지를 열어야 함). 인증 완료 후 OpenId가 자동 입력됩니다",
+  "scanDouyinSuccess": "수취인 OpenId를 가져왔습니다",
+  "scanGetPayee": "스캔하여 가져오기",
+  "scanAlipayTitle": "스캔하여 수취인 계정 가져오기",
+  "scanAlipayTip": "수취인 본인의 알리페이로 스캔하세요. 인증 완료 후 사용자 ID가 자동으로 입력됩니다",
+  "scanAlipaySuccess": "수취인 사용자 ID를 가져왔습니다"
 }

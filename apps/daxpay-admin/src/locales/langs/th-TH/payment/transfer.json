@@ -41,8 +41,7 @@
     "tradeNo": "เลขธุรกรรม",
     "containerChannel": "ช่องทาง",
     "currency": "สกุลเงิน",
-    "relationNo": "เลขที่เกี่ยวข้อง",
-    "userRecvPerception": "การรับรู้ผู้รับ"
+    "relationNo": "เลขที่เกี่ยวข้อง"
   },
   "section": {
     "identity": "ข้อมูลประจำตัว",
@@ -88,7 +87,10 @@
     "bizTransferNoAuto": "เว้นว่างเพื่อสร้างอัตโนมัติ",
     "reportInfoContent": "เว้นว่างเพื่อใช้ค่าเริ่มต้น -",
     "reason": "กรุณาระบุเหตุผลในการโอนเงิน",
-    "title": "หัวข้อการโอนเงิน ผู้รับเงินมองเห็นได้"
+    "title": "หัวข้อการโอนเงิน ผู้รับเงินมองเห็นได้",
+    "payeePhone": "หมายเลขโทรศัพท์ Douyin ผู้รับ (ต้องตรงกับบัญชีจริง Douyin Pay)",
+    "payeeNameTipAlipayUserId": "ไม่บังคับ; หากกรอก ระบบจะตรวจสอบชื่อกับบัญชีผู้รับ",
+    "payeeNameTipAlipayLoginName": "จำเป็นสำหรับผู้รับแบบ login ID; ระบบจะตรวจสอบชื่อกับบัญชี"
   },
   "targetMch": "ร้านค้า",
   "targetMchHelp": "เลือกร้านค้าเพื่อโอนแทน",
@@ -96,7 +98,7 @@
   "amountUnit": "CNY",
   "payeeTypeUserId": "รหัสผู้ใช้",
   "payeeTypeOpenId": "OpenID",
-  "payeeTypeLoginName": "บัญชีล็อกอิน Alipay",
+  "payeeTypeLoginName": "บัญชีเข้าสู่ระบบ",
   "validate": {
     "channelMchRequired": "กรุณาเลือกร้านค้าช่องทาง",
     "bizTransferNoRequired": "กรุณากรอกเลขที่ธุรกรรม",
@@ -106,7 +108,11 @@
     "payeeNameForbidden": "ไม่สามารถกรอกชื่อผู้รับเงินเมื่อจำนวนเงินต่ำกว่า 0.3 หยู่",
     "targetMchRequired": "กรุณาเลือกร้านค้าปลายทาง",
     "titleRequired": "กรุณากรอกหัวข้อการโอนเงิน (ผู้รับเงินมองเห็นได้)",
-    "reportInfoRequired": "กรุณากรอกข้อมูลรายงานสถานการณ์การโอนเงินทั้งหมด"
+    "reportInfoRequired": "กรุณากรอกข้อมูลรายงานสถานการณ์การโอนเงินทั้งหมด",
+    "loginNameNameRequired": "ต้องระบุชื่อผู้รับเมื่อใช้ login ID",
+    "largeAmountReasonRequired": "ต้องระบุเหตุผลการชำระเงินเมื่อจำนวนเงินโอนถึง 50,000 หยวน",
+    "sceneRequired": "กรุณาเลือกสถานการณ์การโอน",
+    "phoneInvalid": "หมายเลขโทรศัพท์ต้องเป็นตัวเลข 11 หลัก"
   },
   "confirmUrlCopied": "คัดลอกลิงก์แล้ว",
   "confirmUrlCopyFailed": "คัดลอกล้มเหลว",
@@ -123,5 +129,14 @@
   "scanMchRequired": "กรุณาเลือกร้านค้าปลายทางก่อน",
   "scanChannelMchRequired": "กรุณาเลือกร้านค้าช่องทางก่อน",
   "scanAppNotConfigured": "ยังไม่ได้ตั้งค่าแอปโอนเงินสำหรับร้านค้าช่องทางนี้ กรุณาตั้งค่าก่อน",
-  "sceneNotConfigured": "ยังไม่ได้ตั้งค่าสถานการณ์และแอปโอนเงินสำหรับร้านค้าช่องทางนี้ กรุณาตั้งค่าผ่านเมนูร้านค้าช่องทาง"
+  "sceneNotConfigured": "ยังไม่ได้ตั้งค่าสถานการณ์และแอปโอนเงินสำหรับร้านค้าช่องทางนี้ กรุณาตั้งค่าผ่านเมนูร้านค้าช่องทาง",
+  "payeeTypePhone": "หมายเลขโทรศัพท์",
+  "amountMinTipAlipay": "การโอน Alipay ขั้นต่ำ 0.1 หยวนต่อครั้ง",
+  "scanDouyinTitle": "สแกนเพื่อรับ OpenId ผู้รับ",
+  "scanDouyinTip": "ให้ผู้รับสแกนด้วย Douyin ของตนเอง (เปิดหน้าอนุญาตในแอป Douyin) ระบบจะเติม OpenId โดยอัตโนมัติหลังการอนุญาต",
+  "scanDouyinSuccess": "ได้รับ OpenId ของผู้รับแล้ว",
+  "scanGetPayee": "สแกนเพื่อรับ",
+  "scanAlipayTitle": "สแกนเพื่อรับบัญชีผู้รับ",
+  "scanAlipayTip": "ให้ผู้รับสแกนด้วย Alipay ของตนเอง ระบบจะเติม ID ผู้ใช้โดยอัตโนมัติหลังการอนุญาต",
+  "scanAlipaySuccess": "ได้รับ ID ผู้ใช้ของผู้รับแล้ว"
 }

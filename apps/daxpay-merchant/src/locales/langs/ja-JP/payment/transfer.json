@@ -41,8 +41,7 @@
     "tradeNo": "送金取引番号",
     "containerChannel": "所属チャネル",
     "currency": "通貨",
-    "relationNo": "上送関連番号",
-    "userRecvPerception": "受取人認識"
+    "relationNo": "上送関連番号"
   },
   "section": {
     "identity": "身份情報",
@@ -82,24 +81,40 @@
     "payeeOpenId": "受取人のAlipay OpenID",
     "payeeLoginName": "受取人のAlipayログインアカウント(メール/電話番号)",
     "bizTransferNoAuto": "空欄で自動生成",
-    "reportInfoContent": "空欄でデフォルト値 - を使用"
+    "reportInfoContent": "空欄でデフォルト値 - を使用",
+    "payeePhone": "受取人の抖音電話番号(抖音支払い実名と一致する必要があります)",
+    "payeeNameTipAlipayUserId": "任意。入力すると受取人アカウントとの氏名一致を検証します",
+    "payeeNameTipAlipayLoginName": "ログインID受取時は必須。氏名とアカウントの一致を検証します"
   },
   "targetMch": "対象加盟店",
   "channelMch": "チャネル加盟店",
   "amountUnit": "元",
   "payeeTypeUserId": "ユーザーID",
   "payeeTypeOpenId": "OpenID",
-  "payeeTypeLoginName": "Alipayログインアカウント",
+  "payeeTypeLoginName": "ログインアカウント",
   "validate": {
     "channelMchRequired": "チャネル加盟店を選択してください",
     "bizTransferNoRequired": "商戶側送金番号を入力してください",
     "amountRequired": "送金金額を入力してください",
     "payeeAccountRequired": "受取人アカウントを入力してください",
     "payeeNameRequired": "金額が2000元以上の場合、受取人名は必須です",
-    "payeeNameForbidden": "金額が0.3元未満の場合、受取人名は入力できません"
+    "payeeNameForbidden": "金額が0.3元未満の場合、受取人名は入力できません",
+    "loginNameNameRequired": "ログインIDで受取る場合、受取人の氏名が必須です",
+    "largeAmountReasonRequired": "振込金額が50,000元に達した場合、支払い理由の記入が必須です",
+    "sceneRequired": "振込シーンを選択してください",
+    "phoneInvalid": "電話番号は11桁の数字である必要があります"
   },
   "confirmUrlCopied": "リンクをコピーしました",
   "confirmUrlCopyFailed": "コピー失敗",
   "confirmUrlExpireTip": "リンクは24時間有効です。早めに送信してください",
-  "confirmUrlTip": "確認リンクを受領者に送信してください。WeChatで開く必要があります"
+  "confirmUrlTip": "確認リンクを受領者に送信してください。WeChatで開く必要があります",
+  "payeeTypePhone": "電話番号",
+  "amountMinTipAlipay": "支付宝の1回あたり最低振込額は0.1元です",
+  "scanDouyinTitle": "スキャンで受取人 OpenId を取得",
+  "scanDouyinTip": "受取人本人の抖音でスキャンしてください(抖音アプリ内で認証ページを開く必要があります)。認証完了後、OpenId が自動入力されます",
+  "scanDouyinSuccess": "受取人の OpenId を取得しました",
+  "scanGetPayee": "スキャンで取得",
+  "scanAlipayTitle": "スキャンで受取人アカウントを取得",
+  "scanAlipayTip": "受取人本人の支付宝でスキャンしてください。認証完了後、ユーザーIDが自動入力されます",
+  "scanAlipaySuccess": "受取人のユーザーIDを取得しました"
 }

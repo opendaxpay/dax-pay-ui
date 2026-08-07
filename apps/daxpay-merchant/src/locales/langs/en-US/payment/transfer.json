@@ -41,8 +41,7 @@
     "tradeNo": "Trade No",
     "containerChannel": "Channel",
     "currency": "Currency",
-    "relationNo": "Relation No",
-    "userRecvPerception": "User Receipt Perception"
+    "relationNo": "Relation No"
   },
   "section": {
     "identity": "Identity",
@@ -82,24 +81,40 @@
     "payeeOpenId": "Payee Alipay OpenID",
     "payeeLoginName": "Payee Alipay login name (email/phone)",
     "bizTransferNoAuto": "Auto-generated if empty",
-    "reportInfoContent": "Leave blank for default -"
+    "reportInfoContent": "Leave blank for default -",
+    "payeePhone": "Payee Douyin phone (must match Douyin Pay real-name)",
+    "payeeNameTipAlipayUserId": "Optional; if filled, name will be verified against the payee account",
+    "payeeNameTipAlipayLoginName": "Required for login ID payees; name will be verified against the account"
   },
   "targetMch": "Target Merchant",
   "channelMch": "Channel Merchant",
   "amountUnit": "CNY",
   "payeeTypeUserId": "User ID",
   "payeeTypeOpenId": "OpenID",
-  "payeeTypeLoginName": "Alipay Login Name",
+  "payeeTypeLoginName": "Login Name",
   "validate": {
     "channelMchRequired": "Please select a channel merchant",
     "bizTransferNoRequired": "Please enter the biz transfer no",
     "amountRequired": "Please enter the transfer amount",
     "payeeAccountRequired": "Please enter the payee account",
     "payeeNameRequired": "Payee name is required when amount is 2000 CNY or above",
-    "payeeNameForbidden": "Payee name is not allowed when amount is below 0.3 CNY"
+    "payeeNameForbidden": "Payee name is not allowed when amount is below 0.3 CNY",
+    "loginNameNameRequired": "Payee name is required when using login ID",
+    "largeAmountReasonRequired": "Payment reason is required when amount reaches 50,000 yuan",
+    "sceneRequired": "Please select a transfer scene",
+    "phoneInvalid": "Phone number must be 11 digits"
   },
   "confirmUrlCopied": "Link copied",
   "confirmUrlCopyFailed": "Copy failed",
   "confirmUrlExpireTip": "Link valid for 24 hours, please send to payee promptly",
-  "confirmUrlTip": "Send the confirmation link to the payee, who must open it in WeChat"
+  "confirmUrlTip": "Send the confirmation link to the payee, who must open it in WeChat",
+  "payeeTypePhone": "Phone number",
+  "amountMinTipAlipay": "Alipay minimum per transfer: 0.1 yuan",
+  "scanDouyinTitle": "Scan to get payee OpenId",
+  "scanDouyinTip": "Ask the payee to scan with their own Douyin (open the auth page inside the Douyin app); OpenId will be filled in after authorization",
+  "scanDouyinSuccess": "Payee OpenId obtained",
+  "scanGetPayee": "Scan to get",
+  "scanAlipayTitle": "Scan to get payee account",
+  "scanAlipayTip": "Ask the payee to scan with their own Alipay; the user ID will be filled in after authorization",
+  "scanAlipaySuccess": "Payee user ID obtained"
 }

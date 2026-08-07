@@ -41,8 +41,7 @@
     "tradeNo": "轉賬交易號",
     "containerChannel": "所屬通道",
     "currency": "幣種",
-    "relationNo": "上送關聯號",
-    "userRecvPerception": "收款感知"
+    "relationNo": "上送關聯號"
   },
   "section": {
     "identity": "身份信息",
@@ -82,24 +81,40 @@
     "payeeOpenId": "收款人支付寶 OpenID",
     "payeeLoginName": "收款人支付寶登入帳號(電郵/手機號)",
     "bizTransferNoAuto": "留空將自動生成",
-    "reportInfoContent": "留空使用預設值 -"
+    "reportInfoContent": "留空使用預設值 -",
+    "payeePhone": "收款人抖音手機號(需與抖音支付實名一致)",
+    "payeeNameTipAlipayUserId": "選填，填寫後將校驗收款帳號姓名一致性",
+    "payeeNameTipAlipayLoginName": "登入帳號收款必填，將校驗姓名與帳號一致性"
   },
   "targetMch": "目標商戶",
   "channelMch": "通道商戶",
   "amountUnit": "元",
   "payeeTypeUserId": "用戶ID",
   "payeeTypeOpenId": "OpenID",
-  "payeeTypeLoginName": "支付寶登入帳號",
+  "payeeTypeLoginName": "登入帳號",
   "validate": {
     "channelMchRequired": "請選擇通道商戶",
     "bizTransferNoRequired": "請輸入商戶轉賬號",
     "amountRequired": "請輸入轉賬金額",
     "payeeAccountRequired": "請輸入收款人帳號",
     "payeeNameRequired": "金額大於或等於2000元時,收款人姓名必填",
-    "payeeNameForbidden": "金額少於0.3元時,不可填寫收款人姓名"
+    "payeeNameForbidden": "金額少於0.3元時,不可填寫收款人姓名",
+    "loginNameNameRequired": "使用登入號收款時必須填寫收款人姓名",
+    "largeAmountReasonRequired": "轉帳金額達到50000元時,必須填寫付款理由",
+    "sceneRequired": "請選擇轉帳場景",
+    "phoneInvalid": "手機號需為11位數字"
   },
   "confirmUrlCopied": "連結已複製",
   "confirmUrlCopyFailed": "複製失敗",
   "confirmUrlExpireTip": "連結24小時內有效，請盡快發送給收款人",
-  "confirmUrlTip": "請將確認收款連結發送給收款人，收款人需在微信內開啟"
+  "confirmUrlTip": "請將確認收款連結發送給收款人，收款人需在微信內開啟",
+  "payeeTypePhone": "手機號",
+  "amountMinTipAlipay": "支付寶單筆最低 0.1 元",
+  "scanDouyinTitle": "掃碼獲取收款人 OpenId",
+  "scanDouyinTip": "請使用收款人本人抖音掃碼(需在抖音App內打開授權頁)，完成授權後自動回填 OpenId",
+  "scanDouyinSuccess": "已獲取收款人 OpenId",
+  "scanGetPayee": "掃碼獲取",
+  "scanAlipayTitle": "掃碼獲取收款人帳號",
+  "scanAlipayTip": "請使用收款人本人支付寶掃碼，完成授權後自動回填用戶ID",
+  "scanAlipaySuccess": "已獲取收款人用戶ID"
 }

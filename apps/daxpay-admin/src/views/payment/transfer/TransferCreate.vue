@@ -28,6 +28,7 @@
   import { WechatTransferConfigApi } from '#/api/payment/channel/wechat/transfer-config.api';
   import { DevelopAuthApi } from '#/api/payment/develop/develop-auth.api';
   import { DevelopTradeApi } from '#/api/payment/develop/develop-trade.api';
+  import { DouyinTransferConfigApi } from '#/api/payment/douyin/transfer-config.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { TransferApi } from '#/api/payment/transfer/transfer.api';
   import ChannelMerchantSelect from '#/components/channel/ChannelMerchantSelect.vue';
@@ -40,6 +41,10 @@
 
   // 微信直连支付产品编码(与后端 ProductEnum.WECHAT_PAY 对齐)
   const WECHAT_DIRECT_PRODUCT = 'wechat_pay';
+  // 支付宝直连支付产品编码(与后端 ProductEnum.ALIPAY 对齐)
+  const ALIPAY_DIRECT_PRODUCT = 'alipay';
+  // 抖音直连支付产品编码(与后端 ProductEnum.DOUYIN_PAY 对齐)
+  const DOUYIN_DIRECT_PRODUCT = 'douyin_pay';
 
   const route = useRoute();
   const router = useRouter();
@@ -65,11 +70,13 @@
   // 报备字段内容(按 reportInfoTypes 顺序, key=infoType value=infoContent)
   const wechatReportContents = ref<Record<string, string>>({});
 
-  // ===== 扫码获取收款人 OpenId =====
+  // ===== 扫码获取收款人账号(微信/支付宝/抖音共用弹窗与轮询) =====
   // 扫码弹窗是否可见
-  const wechatScanVisible = ref(false);
+  const scanVisible = ref(false);
+  // 当前扫码通道(按通道回填对应表单)
+  const scanChannel = ref<'alipay' | 'douyin' | 'wechat'>('wechat');
   // 授权链接与查询码
-  const wechatScanAuthUrl = ref<AuthUrlResult>({});
+  const scanAuthUrl = ref<AuthUrlResult>({});
   // 认证状态(与授权调试页一致)
   const AuthStatus = {
     WAITING: 'waiting',
@@ -111,7 +118,7 @@
     attach: '',
   });
 
-  // 支付宝转账表单(payeeType 可选 user_id/open_id/login_name)
+  // 支付宝转账表单(payeeType 可选 user_id/login_name)
   const alipayForm = reactive<TransferParam>({
     mchNo: '',
     channelMchNo: '',
@@ -126,7 +133,7 @@
     attach: '',
   });
 
-  // 抖音转账表单(payeeType 固定 openid)
+  // 抖音转账表单(payeeType 可选 openid/phone, 复用收款人账号字段)
   const douyinForm = reactive<TransferParam>({
     mchNo: '',
     channelMchNo: '',
@@ -146,8 +153,6 @@
   const douyinSceneOptions = ref<DouyinTransferSceneOption[]>([]);
   // 当前选中的转账场景ID
   const douyinTransferScene = ref<string>('');
-  // 用户收款感知
-  const douyinUserRecvPerception = ref<string>('');
   // 报备字段内容(按 infoType key)
   const douyinReportContents = ref<Record<string, string>>({});
   const activeProvider = computed(() => activeKey.value);
@@ -233,10 +238,10 @@
     return cfg.transferAppName ? `${cfg.transferAppName} (${cfg.wxAppId})` : cfg.wxAppId;
   });
 
-  /** 轮询扫码授权结果, 成功回填收款人 OpenId */
+  /** 轮询扫码授权结果, 按通道回填收款人账号 */
   const { pause: pauseScanPolling, resume: resumeScanPolling } = useIntervalFn(
     async () => {
-      const queryCode = wechatScanAuthUrl.value.queryCode;
+      const queryCode = scanAuthUrl.value.queryCode;
       if (!queryCode) {
         pauseScanPolling();
         return;
@@ -244,12 +249,27 @@
       try {
         const { data } = await DevelopAuthApi.queryAuthResult(queryCode);
         if (data?.status === AuthStatus.SUCCESS) {
-          if (data.openId) {
+          if (scanChannel.value === 'alipay') {
+            // 支付宝: 平台级授权回填用户ID(user_id 模式)
+            if (data.userId) {
+              alipayForm.payeeType = 'user_id';
+              alipayForm.payeeAccount = data.userId;
+              message.success($t('payment.transfer.scanAlipaySuccess'));
+            }
+          } else if (scanChannel.value === 'douyin') {
+            // 抖音: 回填 openid 模式收款人
+            if (data.openId) {
+              douyinForm.payeeType = 'openid';
+              douyinForm.payeeAccount = data.openId;
+              message.success($t('payment.transfer.scanDouyinSuccess'));
+            }
+          } else if (data.openId) {
+            // 微信: 回填收款人 openid
             wechatForm.payeeAccount = data.openId;
             message.success($t('payment.transfer.scanOpenIdSuccess'));
           }
           pauseScanPolling();
-          wechatScanVisible.value = false;
+          scanVisible.value = false;
         } else if (data?.status === AuthStatus.NOT_EXIST) {
           pauseScanPolling();
           message.error($t('payment.transfer.scanOpenIdFailed'));
@@ -262,45 +282,71 @@
     { immediate: false },
   );
 
-  /** 打开扫码弹窗: 校验选择 → 用转账发起应用生成授权链接 → 开始轮询 */
-  async function handleScanOpenId() {
-    if (!wechatForm.mchNo) {
+  /** 打开扫码弹窗: 按通道生成授权链接 → 开始轮询 */
+  async function handleScanPayee(channel: 'alipay' | 'douyin' | 'wechat') {
+    // 微信/抖音需目标商户与通道商户(支付宝走平台级授权无需校验)
+    const mchNo = channel === 'wechat' ? (wechatForm.mchNo ?? '') : (douyinForm.mchNo ?? '');
+    const channelMchNo = channel === 'wechat' ? (wechatForm.channelMchNo ?? '') : (douyinForm.channelMchNo ?? '');
+    if (channel !== 'alipay' && !mchNo) {
       message.warning($t('payment.transfer.scanMchRequired'));
       return;
     }
-    if (!wechatForm.channelMchNo) {
+    if (channel !== 'alipay' && !channelMchNo) {
       message.warning($t('payment.transfer.scanChannelMchRequired'));
       return;
     }
-    const appRefId = wechatTransferConfig.value?.transferAppRefId;
-    if (!appRefId) {
-      message.warning($t('payment.transfer.scanAppNotConfigured'));
-      return;
-    }
     pauseScanPolling();
-    wechatScanAuthUrl.value = {};
-    wechatScanVisible.value = true;
+    scanChannel.value = channel;
+    scanAuthUrl.value = {};
+    scanVisible.value = true;
     try {
-      // 扫码授权固定使用转账配置的发起应用(公众号), 保证 openId 与转账应用一致
-      const { data } = await DevelopAuthApi.generateChannelAuthUrl({
-        mchNo: wechatForm.mchNo,
-        scope: 'merchant',
-        appId: String(appRefId),
-      });
-      wechatScanAuthUrl.value = data ?? {};
-      if (data?.queryCode) {
+      if (channel === 'wechat') {
+        // 微信: 用转账配置的发起应用(公众号)生成网页授权链接
+        const appRefId = wechatTransferConfig.value?.transferAppRefId;
+        if (!appRefId) {
+          scanVisible.value = false;
+          message.warning($t('payment.transfer.scanAppNotConfigured'));
+          return;
+        }
+        const { data } = await DevelopAuthApi.generateChannelAuthUrl({
+          mchNo,
+          scope: 'merchant',
+          appId: String(appRefId),
+        });
+        scanAuthUrl.value = data ?? {};
+      } else if (channel === 'douyin') {
+        // 抖音: 用转账配置的发起应用(网站应用)生成 H5 静默授权链接
+        const { data: cfg } = await DouyinTransferConfigApi.findByChannelMchNo(mchNo, channelMchNo);
+        const appRefId = cfg?.transferAppRefId;
+        if (!appRefId) {
+          scanVisible.value = false;
+          message.warning($t('payment.transfer.scanAppNotConfigured'));
+          return;
+        }
+        const { data } = await DevelopAuthApi.generateDouyinChannelAuthUrl({
+          mchNo,
+          scope: 'merchant',
+          appId: String(appRefId),
+        });
+        scanAuthUrl.value = data ?? {};
+      } else {
+        // 支付宝: 平台级授权链接(全局支付宝应用), 回填 user_id
+        const { data } = await DevelopAuthApi.generateAlipayAuthUrl();
+        scanAuthUrl.value = data ?? {};
+      }
+      if (scanAuthUrl.value.queryCode) {
         resumeScanPolling();
       }
     } catch {
-      wechatScanVisible.value = false;
+      scanVisible.value = false;
     }
   }
 
   /** 关闭扫码弹窗: 停止轮询并清空状态 */
   function closeScanModal() {
     pauseScanPolling();
-    wechatScanVisible.value = false;
-    wechatScanAuthUrl.value = {};
+    scanVisible.value = false;
+    scanAuthUrl.value = {};
   }
 
   onBeforeUnmount(() => {
@@ -342,19 +388,25 @@
 
   // 支付宝收款人账号 placeholder 随类型变化
   const alipayPayeeAccountPlaceholder = computed(() => {
-    if (alipayForm.payeeType === 'open_id') {
-      return $t('payment.transfer.placeholder.payeeOpenId');
-    }
     if (alipayForm.payeeType === 'login_name') {
       return $t('payment.transfer.placeholder.payeeLoginName');
     }
     return $t('payment.transfer.placeholder.payeeUserId');
   });
 
-  // 收款人账号类型选项(支付宝)
+  // 支付宝收款人姓名 placeholder 随类型变化(按接口文档 name 字段规则提示)
+  const alipayPayeeNamePlaceholder = computed(() => {
+    if (alipayForm.payeeType === 'login_name') {
+      // 登录账号收款时姓名必填(文档: identity_type=ALIPAY_LOGON_ID 时 name 必填)
+      return $t('payment.transfer.placeholder.payeeNameTipAlipayLoginName');
+    }
+    // 用户ID收款时姓名选填, 填写后校验姓名一致性
+    return $t('payment.transfer.placeholder.payeeNameTipAlipayUserId');
+  });
+
+  // 收款人账号类型选项(支付宝: 仅支持会员ID/登录号, 不支持开放ID)
   const alipayPayeeTypeOptions = computed(() => [
     { label: $t('payment.transfer.payeeTypeUserId'), value: 'user_id' },
-    { label: $t('payment.transfer.payeeTypeOpenId'), value: 'open_id' },
     { label: $t('payment.transfer.payeeTypeLoginName'), value: 'login_name' },
   ]);
 
@@ -411,11 +463,9 @@
     }));
   }
 
-  // 抖音场景切换: 清空感知与报备内容, 默认选中第一个感知选项
+  // 抖音场景切换: 清空报备内容
   watch(douyinTransferScene, () => {
     douyinReportContents.value = {};
-    const opts = douyinSelectedScene.value?.userRecvPerceptionOptions ?? [];
-    douyinUserRecvPerception.value = opts.length > 0 ? opts[0]! : '';
   });
 
   /** 支付宝通道商户变更: 加载已配置的转账场景列表 */
@@ -460,6 +510,26 @@
     }));
   }
 
+  /** 校验支付宝报备字段(2026新商户必填, info_content 不可为空) */
+  function validateAlipayReportInfos(): boolean {
+    const missing = alipayReportInfoTypes.value.filter((infoType) => !alipayReportContents.value[infoType]?.trim());
+    if (missing.length > 0) {
+      message.warning($t('payment.transfer.validate.reportInfoRequired'));
+      return false;
+    }
+    return true;
+  }
+
+  /** 校验抖音报备字段(按场景要求必填, info_content 不可为空) */
+  function validateDouyinReportInfos(): boolean {
+    const missing = douyinReportInfoTypes.value.filter((infoType) => !douyinReportContents.value[infoType]?.trim());
+    if (missing.length > 0) {
+      message.warning($t('payment.transfer.validate.reportInfoRequired'));
+      return false;
+    }
+    return true;
+  }
+
   // ===== 校验规则 =====
   const commonRules = {
     mchNo: [{ required: true, message: $t('payment.transfer.validate.targetMchRequired') }],
@@ -492,18 +562,66 @@
     ],
   }));
 
-  // 支付宝收款人姓名: 可选
-  const alipayRules = computed(() => ({ ...commonRules }));
+  // 支付宝收款人姓名: 登录号收款必填(支付宝文档 name 条件必填)
+  // 标题必填(order_title 必选); 金额>=50000元时付款理由必填(监管要求)
+  const alipayRules = computed(() => ({
+    ...commonRules,
+    title: [{ required: true, message: $t('payment.transfer.validate.titleRequired') }],
+    payeeName: [
+      {
+        validator: async (_rule: any, value: string) => {
+          // 登录号收款时必须填写收款人姓名
+          if (alipayForm.payeeType === 'login_name' && !value) {
+            throw new Error($t('payment.transfer.validate.loginNameNameRequired'));
+          }
+        },
+        trigger: 'change',
+      },
+    ],
+    reason: [
+      {
+        validator: async (_rule: any, value: string) => {
+          // 金额达到50000元时必须填写付款理由
+          const amt = alipayForm.amount ?? 0;
+          if (amt >= 50_000 && !value) {
+            throw new Error($t('payment.transfer.validate.largeAmountReasonRequired'));
+          }
+        },
+        trigger: 'change',
+      },
+    ],
+  }));
 
-  // 抖音收款人姓名: >=2000 必填
+  // 收款人类型切换: 立即校验收款人姓名(登录账号模式必填, 切回用户ID自动消除提示)
+  watch(
+    () => alipayForm.payeeType,
+    () => {
+      alipayFormRef.value?.validateFields(['payeeName']);
+    },
+  );
+
+  // 抖音: 场景必填; 收款人姓名>=2000必填; 手机号模式校验11位数字
   const douyinRules = computed(() => ({
     ...commonRules,
+    transferScene: [{ required: true, message: $t('payment.transfer.validate.sceneRequired') }],
     payeeName: [
       {
         validator: async (_rule: any, value: string) => {
           const amt = douyinForm.amount ?? 0;
           if (amt >= 2000 && !value) {
             throw new Error($t('payment.transfer.validate.payeeNameRequired'));
+          }
+        },
+        trigger: 'change',
+      },
+    ],
+    payeeAccount: [
+      { required: true, message: $t('payment.transfer.validate.payeeAccountRequired') },
+      {
+        validator: async (_rule: any, value: string) => {
+          // 手机号模式: 11位数字(抖音错误码 PHONE_NUMBER_MISMATCH)
+          if (douyinForm.payeeType === 'phone' && value && !/^\d{11}$/.test(value)) {
+            throw new Error($t('payment.transfer.validate.phoneInvalid'));
           }
         },
         trigger: 'change',
@@ -567,9 +685,20 @@
     if (!mchNo) return;
     DevelopTradeApi.channelMchCandidates(mchNo, activeProvider.value).then(({ data }) => {
       let options = data ?? [];
-      // 微信转账仅支持微信直连产品(wechat_pay), 过滤聚合等非直连渠道
-      if (activeKey.value === 'wechat') {
-        options = options.filter((o) => o.product === WECHAT_DIRECT_PRODUCT);
+      // 转账仅支持直连产品, 过滤服务商/聚合等非直连渠道
+      switch (activeKey.value) {
+        case 'alipay': {
+          options = options.filter((o) => o.product === ALIPAY_DIRECT_PRODUCT);
+          break;
+        }
+        case 'douyin': {
+          options = options.filter((o) => o.product === DOUYIN_DIRECT_PRODUCT);
+          break;
+        }
+        case 'wechat': {
+          options = options.filter((o) => o.product === WECHAT_DIRECT_PRODUCT);
+          break;
+        }
       }
       channelMchOptions.value = options;
     });
@@ -611,7 +740,7 @@
       formRef = alipayFormRef.value;
       param = {
         ...alipayForm,
-        transferSceneConfigId: alipayTransferSceneConfigId.value || undefined,
+        transferScene: alipayTransferSceneConfigId.value || undefined,
         reportInfos: buildAlipayReportInfos(),
       };
       createFn = TransferApi.alipayCreate;
@@ -620,7 +749,6 @@
       param = {
         ...douyinForm,
         transferScene: douyinTransferScene.value || undefined,
-        userRecvPerception: douyinUserRecvPerception.value || undefined,
         reportInfos: buildDouyinReportInfos(),
       };
       createFn = TransferApi.douyinCreate;
@@ -631,8 +759,14 @@
       // 校验未通过, 字段错误已由表单自动展示
       return;
     }
-    // 微信报备字段必填校验(微信文档 transfer_scene_report_infos 必填)
+    // 报备字段必填校验(支付宝/抖音/微信均按场景要求)
     if (activeKey.value === 'wechat' && !validateWechatReportInfos()) {
+      return;
+    }
+    if (activeKey.value === 'alipay' && !validateAlipayReportInfos()) {
+      return;
+    }
+    if (activeKey.value === 'douyin' && !validateDouyinReportInfos()) {
       return;
     }
     submitting.value = true;
@@ -714,9 +848,13 @@
       form.notifyUrl = notifyUrl;
       form.attach = attach;
     }
-    // 支付宝收款人类型预填
-    if (payeeType && ['login_name', 'open_id', 'user_id'].includes(payeeType)) {
+    // 支付宝收款人类型预填(仅支持会员ID/登录号)
+    if (payeeType && ['login_name', 'user_id'].includes(payeeType)) {
       alipayForm.payeeType = payeeType;
+    }
+    // 抖音收款人类型预填(openid/手机号)
+    if (payeeType === 'phone') {
+      douyinForm.payeeType = 'phone';
     }
   }
 
@@ -815,7 +953,7 @@
                     :placeholder="$t('payment.transfer.placeholder.openid')"
                   >
                     <template #suffix>
-                      <a-button size="small" type="link" @click="handleScanOpenId">
+                      <a-button size="small" type="link" @click="handleScanPayee('wechat')">
                         <template #icon><IconifyIcon icon="ant-design:scan-outlined" /></template>
                         {{ $t('payment.transfer.scanGetOpenId') }}
                       </a-button>
@@ -931,38 +1069,49 @@
                   </a-input>
                 </a-form-item>
               </a-col>
-              <!-- 转账金额(与商户转账号同行) -->
+              <!-- 转账金额(与商户转账号同行, 支付宝最低0.1元) -->
               <a-col :span="12">
-                <a-form-item :label="$t('payment.transfer.field.amount')" name="amount">
+                <a-form-item
+                  :label="$t('payment.transfer.field.amount')"
+                  name="amount"
+                  :extra="$t('payment.transfer.amountMinTipAlipay')"
+                >
                   <a-input-number
                     v-model:value="alipayForm.amount"
-                    :min="0.01"
+                    :min="0.1"
                     :precision="2"
                     :step="0.01"
                     style="width: 100%"
                   />
                 </a-form-item>
               </a-col>
-              <!-- 收款人账号类型(整行) -->
+              <!-- 收款人账号类型(整行, 按钮高度与普通表单项一致) -->
               <a-col :span="24">
                 <a-form-item :label="$t('payment.transfer.field.payeeType')" name="payeeType">
-                  <a-radio-group v-model:value="alipayForm.payeeType" button-style="solid">
+                  <a-radio-group v-model:value="alipayForm.payeeType" button-style="solid" class="payee-type-radio">
                     <a-radio-button v-for="opt in alipayPayeeTypeOptions" :key="opt.value" :value="opt.value">
                       {{ opt.label }}
                     </a-radio-button>
                   </a-radio-group>
                 </a-form-item>
               </a-col>
-              <!-- 收款人账号 -->
+              <!-- 收款人账号(用户ID模式支持扫码获取, 平台级授权回填) -->
               <a-col :span="12">
                 <a-form-item :label="$t('payment.transfer.field.payeeAccount')" name="payeeAccount">
-                  <a-input v-model:value="alipayForm.payeeAccount" :placeholder="alipayPayeeAccountPlaceholder" />
+                  <a-input v-model:value="alipayForm.payeeAccount" :placeholder="alipayPayeeAccountPlaceholder">
+                    <template v-if="alipayForm.payeeType === 'user_id'" #suffix>
+                      <a-button size="small" type="link" @click="handleScanPayee('alipay')">
+                        <template #icon><IconifyIcon icon="ant-design:scan-outlined" /></template>
+                        {{ $t('payment.transfer.scanGetPayee') }}
+                      </a-button>
+                    </template>
+                  </a-input>
                 </a-form-item>
               </a-col>
-              <!-- 收款人姓名 -->
+              <!-- 收款人姓名(按收款人类型提示: 登录账号必填/用户ID选填校验) -->
               <a-col :span="12">
                 <a-form-item :label="$t('payment.transfer.field.payeeName')" name="payeeName">
-                  <a-input v-model:value="alipayForm.payeeName" />
+                  <a-input v-model:value="alipayForm.payeeName" :placeholder="alipayPayeeNamePlaceholder" />
                 </a-form-item>
               </a-col>
               <!-- 标题 -->
@@ -1062,13 +1211,34 @@
                   />
                 </a-form-item>
               </a-col>
-              <!-- 收款人账号 -->
+              <!-- 收款人类型(openid/手机号二选一, 抖音文档强制) -->
+              <a-col :span="24">
+                <a-form-item :label="$t('payment.transfer.field.payeeType')" name="payeeType">
+                  <a-radio-group v-model:value="douyinForm.payeeType" button-style="solid">
+                    <a-radio-button value="openid">{{ $t('payment.transfer.payeeTypeOpenId') }}</a-radio-button>
+                    <a-radio-button value="phone">{{ $t('payment.transfer.payeeTypePhone') }}</a-radio-button>
+                  </a-radio-group>
+                </a-form-item>
+              </a-col>
+              <!-- 收款人账号(openid 或 手机号, 复用收款人账号字段) -->
               <a-col :span="12">
                 <a-form-item :label="$t('payment.transfer.field.payeeAccount')" name="payeeAccount">
                   <a-input
                     v-model:value="douyinForm.payeeAccount"
-                    :placeholder="$t('payment.transfer.placeholder.douyinOpenid')"
-                  />
+                    :maxlength="douyinForm.payeeType === 'phone' ? 11 : undefined"
+                    :placeholder="
+                      douyinForm.payeeType === 'phone'
+                        ? $t('payment.transfer.placeholder.payeePhone')
+                        : $t('payment.transfer.placeholder.douyinOpenid')
+                    "
+                  >
+                    <template v-if="douyinForm.payeeType === 'openid'" #suffix>
+                      <a-button size="small" type="link" @click="handleScanPayee('douyin')">
+                        <template #icon><IconifyIcon icon="ant-design:scan-outlined" /></template>
+                        {{ $t('payment.transfer.scanGetOpenId') }}
+                      </a-button>
+                    </template>
+                  </a-input>
                 </a-form-item>
               </a-col>
               <!-- 收款人姓名 -->
@@ -1102,20 +1272,6 @@
                   />
                 </a-form-item>
               </a-col>
-              <!-- 用户收款感知(按场景枚举选项) -->
-              <a-col v-if="douyinSelectedScene?.userRecvPerceptionOptions?.length" :span="12">
-                <a-form-item :label="$t('payment.transfer.field.userRecvPerception')">
-                  <a-radio-group v-model:value="douyinUserRecvPerception" button-style="solid">
-                    <a-radio-button
-                      v-for="opt in douyinSelectedScene.userRecvPerceptionOptions"
-                      :key="opt"
-                      :value="opt"
-                    >
-                      {{ opt }}
-                    </a-radio-button>
-                  </a-radio-group>
-                </a-form-item>
-              </a-col>
               <!-- 转账场景报备信息(按选中场景动态渲染) -->
               <a-col v-for="infoType in douyinReportInfoTypes" :key="infoType" :span="24">
                 <a-form-item :label="infoType">
@@ -1144,10 +1300,16 @@
       </div>
     </a-card>
 
-    <!-- 扫码获取收款人 OpenId(微信转账, 用转账发起应用生成网页授权二维码) -->
+    <!-- 扫码获取收款人账号(微信/支付宝/抖音共用弹窗) -->
     <a-modal
-      :open="wechatScanVisible"
-      :title="$t('payment.transfer.scanOpenIdTitle')"
+      :open="scanVisible"
+      :title="
+        scanChannel === 'alipay'
+          ? $t('payment.transfer.scanAlipayTitle')
+          : scanChannel === 'douyin'
+            ? $t('payment.transfer.scanDouyinTitle')
+            : $t('payment.transfer.scanOpenIdTitle')
+      "
       :footer="null"
       :mask-closable="false"
       centered
@@ -1155,12 +1317,18 @@
       @cancel="closeScanModal"
     >
       <div class="flex flex-col items-center py-4">
-        <div v-if="wechatScanAuthUrl.authUrl" class="rounded-lg border border-border p-4">
-          <QrCode :value="wechatScanAuthUrl.authUrl" :width="220" :margin="0" />
+        <div v-if="scanAuthUrl.authUrl" class="rounded-lg border border-border p-4">
+          <QrCode :value="scanAuthUrl.authUrl" :width="220" :margin="0" />
         </div>
         <a-spin v-else />
         <div class="mt-4 text-center text-sm text-muted-foreground">
-          {{ $t('payment.transfer.scanOpenIdTip') }}
+          {{
+            scanChannel === 'alipay'
+              ? $t('payment.transfer.scanAlipayTip')
+              : scanChannel === 'douyin'
+                ? $t('payment.transfer.scanDouyinTip')
+                : $t('payment.transfer.scanOpenIdTip')
+          }}
         </div>
       </div>
     </a-modal>
@@ -1207,5 +1375,11 @@
 <style scoped lang="less">
   .transfer-create {
     min-height: calc(100vh - 80px);
+  }
+
+  // 收款人类型 radio 按钮高度对齐普通表单项(默认 40px 偏高)
+  .payee-type-radio :deep(.ant-radio-button-wrapper) {
+    height: 32px;
+    line-height: 30px;
   }
 </style>

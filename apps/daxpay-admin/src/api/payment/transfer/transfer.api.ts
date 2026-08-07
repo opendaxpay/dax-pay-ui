@@ -109,7 +109,7 @@ export interface AlipayTransferOrderQuery {
   appId?: string;
   transferNo?: string;
   bizTransferNo?: string;
-  /** 收款人账号类型 user_id/open_id/login_name */
+  /** 收款人账号类型 user_id/login_name */
   payeeType?: string;
   payeeAccount?: string;
   /** 转账状态 */
@@ -161,7 +161,7 @@ export interface TransferParam {
   title?: string;
   /** 转账原因/备注 */
   reason?: string;
-  /** 收款人账号类型 openid/user_id/open_id/login_name */
+  /** 收款人账号类型 openid/user_id/login_name(抖音另支持 phone 手机号, 复用收款人账号字段) */
   payeeType: string;
   /** 收款人账号 */
   payeeAccount: string;
@@ -171,12 +171,8 @@ export interface TransferParam {
   attach?: string;
   /** 回调通知地址 */
   notifyUrl?: string;
-  /** 转账场景配置ID(支付宝专用,不传用通道商户默认场景) */
-  transferSceneConfigId?: string;
-  /** 转账场景ID(抖音专用,主数据枚举1001-1007,发起转账时选择) */
+  /** 转账场景标识(支付宝=场景配置ID/抖音=场景枚举码, 微信不传用配置) */
   transferScene?: string;
-  /** 用户收款感知(抖音专用,收款人在抖音中看到的文案) */
-  userRecvPerception?: string;
   /** 转账场景报备信息(微信/支付宝/抖音转账按场景填写) */
   reportInfos?: TransferReportInfo[];
 }

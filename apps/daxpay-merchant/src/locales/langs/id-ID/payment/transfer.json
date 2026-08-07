@@ -41,8 +41,7 @@
     "tradeNo": "No Transaksi",
     "containerChannel": "Kanal",
     "currency": "Mata Uang",
-    "relationNo": "No Terkait",
-    "userRecvPerception": "Persepsi Penerimaan"
+    "relationNo": "No Terkait"
   },
   "section": {
     "identity": "Identitas",
@@ -82,24 +81,40 @@
     "payeeOpenId": "OpenID Alipay penerima",
     "payeeLoginName": "Nama login Alipay penerima (email/nomor telepon)",
     "bizTransferNoAuto": "Kosongkan untuk dibuat otomatis",
-    "reportInfoContent": "Kosongkan untuk default -"
+    "reportInfoContent": "Kosongkan untuk default -",
+    "payeePhone": "Nomor telepon Douyin penerima (harus sesuai real-name Douyin Pay)",
+    "payeeNameTipAlipayUserId": "Opsional; jika diisi, nama akan diverifikasi dengan akun penerima",
+    "payeeNameTipAlipayLoginName": "Wajib untuk penerima login ID; nama akan diverifikasi dengan akun"
   },
   "targetMch": "Merchant Target",
   "channelMch": "Merchant Saluran",
   "amountUnit": "CNY",
   "payeeTypeUserId": "ID Pengguna",
   "payeeTypeOpenId": "OpenID",
-  "payeeTypeLoginName": "Nama Login Alipay",
+  "payeeTypeLoginName": "Nama Login",
   "validate": {
     "channelMchRequired": "Silakan pilih merchant saluran",
     "bizTransferNoRequired": "Silakan masukkan no transfer bisnis",
     "amountRequired": "Silakan masukkan nominal transfer",
     "payeeAccountRequired": "Silakan masukkan akun penerima",
     "payeeNameRequired": "Nama penerima wajib diisi jika nominal 2000 CNY ke atas",
-    "payeeNameForbidden": "Nama penerima tidak boleh diisi jika nominal di bawah 0.3 CNY"
+    "payeeNameForbidden": "Nama penerima tidak boleh diisi jika nominal di bawah 0.3 CNY",
+    "loginNameNameRequired": "Nama penerima wajib diisi saat menggunakan login ID",
+    "largeAmountReasonRequired": "Alasan pembayaran wajib diisi saat jumlah transfer mencapai 50.000 yuan",
+    "sceneRequired": "Silakan pilih skenario transfer",
+    "phoneInvalid": "Nomor telepon harus 11 digit"
   },
   "confirmUrlCopied": "Tautan disalin",
   "confirmUrlCopyFailed": "Salin gagal",
   "confirmUrlExpireTip": "Tautan berlaku 24 jam, segera kirim ke penerima",
-  "confirmUrlTip": "Kirim tautan konfirmasi ke penerima, harus dibuka di WeChat"
+  "confirmUrlTip": "Kirim tautan konfirmasi ke penerima, harus dibuka di WeChat",
+  "payeeTypePhone": "Nomor telepon",
+  "amountMinTipAlipay": "Transfer Alipay minimum 0,1 yuan per transaksi",
+  "scanDouyinTitle": "Pindai untuk mendapatkan OpenId penerima",
+  "scanDouyinTip": "Minta penerima memindai dengan Douyin miliknya (buka halaman otorisasi di dalam aplikasi Douyin); OpenId akan diisi otomatis setelah otorisasi",
+  "scanDouyinSuccess": "OpenId penerima berhasil didapatkan",
+  "scanGetPayee": "Pindai untuk dapatkan",
+  "scanAlipayTitle": "Pindai untuk mendapatkan akun penerima",
+  "scanAlipayTip": "Minta penerima memindai dengan Alipay miliknya; ID pengguna akan diisi otomatis setelah otorisasi",
+  "scanAlipaySuccess": "ID pengguna penerima berhasil didapatkan"
 }

@@ -41,8 +41,7 @@
     "tradeNo": "No Transaksi",
     "containerChannel": "Saluran",
     "currency": "Mata Wang",
-    "relationNo": "No Berkaitan",
-    "userRecvPerception": "Persepsi Penerimaan"
+    "relationNo": "No Berkaitan"
   },
   "section": {
     "identity": "Identiti",
@@ -88,7 +87,10 @@
     "bizTransferNoAuto": "Kosongkan untuk dijana automatik",
     "reportInfoContent": "Kosongkan untuk lalai -",
     "reason": "Masukkan sebab pemindahan",
-    "title": "Tajuk pindah wang, dapat dilihat oleh penerima"
+    "title": "Tajuk pindah wang, dapat dilihat oleh penerima",
+    "payeePhone": "Nombor telefon Douyin penerima (mesti sepadan dengan nama sebenar Douyin Pay)",
+    "payeeNameTipAlipayUserId": "Pilihan; jika diisi, nama akan disahkan dengan akaun penerima",
+    "payeeNameTipAlipayLoginName": "Wajib untuk penerima ID log masuk; nama akan disahkan dengan akaun"
   },
   "targetMch": "Peniaga",
   "targetMchHelp": "Pilih merchant untuk pindah atas nama",
@@ -96,7 +98,7 @@
   "amountUnit": "CNY",
   "payeeTypeUserId": "ID Pengguna",
   "payeeTypeOpenId": "OpenID",
-  "payeeTypeLoginName": "Nama Log Masuk Alipay",
+  "payeeTypeLoginName": "Nama Log Masuk",
   "validate": {
     "channelMchRequired": "Sila pilih merchant saluran",
     "bizTransferNoRequired": "Sila masukkan no perpindahan perniagaan",
@@ -106,7 +108,11 @@
     "payeeNameForbidden": "Nama penerima tidak boleh diisi jika jumlah di bawah 0.3 CNY",
     "targetMchRequired": "Sila pilih merchant sasaran",
     "titleRequired": "Sila masukkan tajuk pindah wang (dapat dilihat oleh penerima)",
-    "reportInfoRequired": "Sila isi semua medan laporan senario pindah wang"
+    "reportInfoRequired": "Sila isi semua medan laporan senario pindah wang",
+    "loginNameNameRequired": "Nama penerima wajib diisi apabila menggunakan ID log masuk",
+    "largeAmountReasonRequired": "Sebab pembayaran wajib diisi apabila jumlah pindahan mencecah 50,000 yuan",
+    "sceneRequired": "Sila pilih senario pindahan",
+    "phoneInvalid": "Nombor telefon mesti 11 digit"
   },
   "confirmUrlCopied": "Pautan disalin",
   "confirmUrlCopyFailed": "Salin gagal",
@@ -123,5 +129,14 @@
   "scanMchRequired": "Sila pilih merchant sasaran dahulu",
   "scanChannelMchRequired": "Sila pilih merchant saluran dahulu",
   "scanAppNotConfigured": "Aplikasi pindah wang belum dikonfigurasi untuk merchant saluran ini, sila konfigurasi dahulu",
-  "sceneNotConfigured": "Senario dan aplikasi pindah wang belum dikonfigurasi untuk merchant saluran ini, sila konfigurasi melalui menu merchant saluran"
+  "sceneNotConfigured": "Senario dan aplikasi pindah wang belum dikonfigurasi untuk merchant saluran ini, sila konfigurasi melalui menu merchant saluran",
+  "payeeTypePhone": "Nombor telefon",
+  "amountMinTipAlipay": "Pindahan Alipay minimum 0.1 yuan setiap transaksi",
+  "scanDouyinTitle": "Imbas untuk dapatkan OpenId penerima",
+  "scanDouyinTip": "Minta penerima mengimbas dengan Douyin sendiri (buka halaman kebenaran dalam aplikasi Douyin); OpenId akan diisi automatik selepas kebenaran",
+  "scanDouyinSuccess": "OpenId penerima berjaya diperoleh",
+  "scanGetPayee": "Imbas untuk dapat",
+  "scanAlipayTitle": "Imbas untuk dapatkan akaun penerima",
+  "scanAlipayTip": "Minta penerima mengimbas dengan Alipay sendiri; ID pengguna akan diisi automatik selepas kebenaran",
+  "scanAlipaySuccess": "ID pengguna penerima berjaya diperoleh"
 }

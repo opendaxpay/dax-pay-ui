@@ -41,8 +41,7 @@
     "tradeNo": "Mã giao dịch",
     "containerChannel": "Kênh",
     "currency": "Tiền tệ",
-    "relationNo": "Mã liên quan",
-    "userRecvPerception": "Cảm nhận người nhận"
+    "relationNo": "Mã liên quan"
   },
   "section": {
     "identity": "Danh tính",
@@ -88,7 +87,10 @@
     "bizTransferNoAuto": "Để trống để tự tạo",
     "reportInfoContent": "Để trống dùng mặc định -",
     "reason": "Nhập lý do chuyển khoản",
-    "title": "Tiêu đề chuyển khoản, người nhận có thể thấy"
+    "title": "Tiêu đề chuyển khoản, người nhận có thể thấy",
+    "payeePhone": "Số điện thoại Douyin người nhận (phải khớp định danh Douyin Pay)",
+    "payeeNameTipAlipayUserId": "Không bắt buộc; nếu nhập, tên sẽ được xác minh với tài khoản người nhận",
+    "payeeNameTipAlipayLoginName": "Bắt buộc khi người nhận dùng login ID; tên sẽ được xác minh với tài khoản"
   },
   "targetMch": "Thương gia",
   "targetMchHelp": "Chọn đối tác nhận để chuyển thay mặt",
@@ -96,7 +98,7 @@
   "amountUnit": "CNY",
   "payeeTypeUserId": "ID Người dùng",
   "payeeTypeOpenId": "OpenID",
-  "payeeTypeLoginName": "Tên đăng nhập Alipay",
+  "payeeTypeLoginName": "Tên đăng nhập",
   "validate": {
     "channelMchRequired": "Vui lòng chọn đối tác kênh",
     "bizTransferNoRequired": "Vui lòng nhập mã chuyển khoản",
@@ -106,7 +108,11 @@
     "payeeNameForbidden": "Không được nhập tên người nhận khi số tiền dưới 0.3 CNY",
     "targetMchRequired": "Vui lòng chọn đối tác nhận",
     "titleRequired": "Vui lòng nhập tiêu đề chuyển khoản (người nhận có thể thấy)",
-    "reportInfoRequired": "Vui lòng điền đầy đủ các trường báo cáo kịch bản chuyển khoản"
+    "reportInfoRequired": "Vui lòng điền đầy đủ các trường báo cáo kịch bản chuyển khoản",
+    "loginNameNameRequired": "Bắt buộc nhập tên người nhận khi sử dụng login ID",
+    "largeAmountReasonRequired": "Bắt buộc nhập lý do thanh toán khi số tiền chuyển đạt 50.000 tệ",
+    "sceneRequired": "Vui lòng chọn kịch bản chuyển khoản",
+    "phoneInvalid": "Số điện thoại phải là 11 chữ số"
   },
   "confirmUrlCopied": "Đã sao chép liên kết",
   "confirmUrlCopyFailed": "Sao chép thất bại",
@@ -123,5 +129,14 @@
   "scanMchRequired": "Vui lòng chọn đối tác nhận trước",
   "scanChannelMchRequired": "Vui lòng chọn đối tác kênh trước",
   "scanAppNotConfigured": "Chưa cấu hình ứng dụng chuyển khoản cho đối tác kênh này, vui lòng cấu hình trước",
-  "sceneNotConfigured": "Chưa cấu hình kịch bản và ứng dụng chuyển khoản cho đối tác kênh này, vui lòng cấu hình qua menu đối tác kênh"
+  "sceneNotConfigured": "Chưa cấu hình kịch bản và ứng dụng chuyển khoản cho đối tác kênh này, vui lòng cấu hình qua menu đối tác kênh",
+  "payeeTypePhone": "Số điện thoại",
+  "amountMinTipAlipay": "Chuyển khoản Alipay tối thiểu 0,1 tệ mỗi lần",
+  "scanDouyinTitle": "Quét để lấy OpenId người nhận",
+  "scanDouyinTip": "Yêu cầu người nhận quét bằng Douyin của họ (mở trang ủy quyền trong ứng dụng Douyin); OpenId sẽ tự động điền sau khi ủy quyền",
+  "scanDouyinSuccess": "Đã lấy được OpenId người nhận",
+  "scanGetPayee": "Quét để lấy",
+  "scanAlipayTitle": "Quét để lấy tài khoản người nhận",
+  "scanAlipayTip": "Yêu cầu người nhận quét bằng Alipay của họ; ID người dùng sẽ được tự động điền sau khi ủy quyền",
+  "scanAlipaySuccess": "Đã lấy được ID người dùng người nhận"
 }

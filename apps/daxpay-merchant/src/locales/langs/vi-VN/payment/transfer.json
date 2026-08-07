@@ -41,8 +41,7 @@
     "tradeNo": "Mã giao dịch",
     "containerChannel": "Kênh",
     "currency": "Tiền tệ",
-    "relationNo": "Mã liên quan",
-    "userRecvPerception": "Cảm nhận người nhận"
+    "relationNo": "Mã liên quan"
   },
   "section": {
     "identity": "Danh tính",
@@ -82,24 +81,40 @@
     "payeeOpenId": "OpenID Alipay người nhận",
     "payeeLoginName": "Tên đăng nhập Alipay người nhận (email/SĐT)",
     "bizTransferNoAuto": "Để trống để tự tạo",
-    "reportInfoContent": "Để trống dùng mặc định -"
+    "reportInfoContent": "Để trống dùng mặc định -",
+    "payeePhone": "Số điện thoại Douyin người nhận (phải khớp định danh Douyin Pay)",
+    "payeeNameTipAlipayUserId": "Không bắt buộc; nếu nhập, tên sẽ được xác minh với tài khoản người nhận",
+    "payeeNameTipAlipayLoginName": "Bắt buộc khi người nhận dùng login ID; tên sẽ được xác minh với tài khoản"
   },
   "targetMch": "Đối tác nhận",
   "channelMch": "Đối tác kênh",
   "amountUnit": "CNY",
   "payeeTypeUserId": "ID Người dùng",
   "payeeTypeOpenId": "OpenID",
-  "payeeTypeLoginName": "Tên đăng nhập Alipay",
+  "payeeTypeLoginName": "Tên đăng nhập",
   "validate": {
     "channelMchRequired": "Vui lòng chọn đối tác kênh",
     "bizTransferNoRequired": "Vui lòng nhập mã chuyển khoản",
     "amountRequired": "Vui lòng nhập số tiền chuyển khoản",
     "payeeAccountRequired": "Vui lòng nhập tài khoản người nhận",
     "payeeNameRequired": "Tên người nhận bắt buộc khi số tiền từ 2000 CNY trở lên",
-    "payeeNameForbidden": "Không được nhập tên người nhận khi số tiền dưới 0.3 CNY"
+    "payeeNameForbidden": "Không được nhập tên người nhận khi số tiền dưới 0.3 CNY",
+    "loginNameNameRequired": "Bắt buộc nhập tên người nhận khi sử dụng login ID",
+    "largeAmountReasonRequired": "Bắt buộc nhập lý do thanh toán khi số tiền chuyển đạt 50.000 tệ",
+    "sceneRequired": "Vui lòng chọn kịch bản chuyển khoản",
+    "phoneInvalid": "Số điện thoại phải là 11 chữ số"
   },
   "confirmUrlCopied": "Đã sao chép liên kết",
   "confirmUrlCopyFailed": "Sao chép thất bại",
   "confirmUrlExpireTip": "Liên kết có hiệu lực 24 giờ, hãy gửi nhanh",
-  "confirmUrlTip": "Gửi liên kết xác nhận cho người nhận, cần mở trong WeChat"
+  "confirmUrlTip": "Gửi liên kết xác nhận cho người nhận, cần mở trong WeChat",
+  "payeeTypePhone": "Số điện thoại",
+  "amountMinTipAlipay": "Chuyển khoản Alipay tối thiểu 0,1 tệ mỗi lần",
+  "scanDouyinTitle": "Quét để lấy OpenId người nhận",
+  "scanDouyinTip": "Yêu cầu người nhận quét bằng Douyin của họ (mở trang ủy quyền trong ứng dụng Douyin); OpenId sẽ tự động điền sau khi ủy quyền",
+  "scanDouyinSuccess": "Đã lấy được OpenId người nhận",
+  "scanGetPayee": "Quét để lấy",
+  "scanAlipayTitle": "Quét để lấy tài khoản người nhận",
+  "scanAlipayTip": "Yêu cầu người nhận quét bằng Alipay của họ; ID người dùng sẽ được tự động điền sau khi ủy quyền",
+  "scanAlipaySuccess": "Đã lấy được ID người dùng người nhận"
 }
