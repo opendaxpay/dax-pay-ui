@@ -33,6 +33,9 @@
 
   defineOptions({ name: 'TransferCreate' });
 
+  // 转账表单模型(在提交参数基础上扩展 reportContents, 供报备字段表单校验, 提交时排除)
+  type TransferFormModel = TransferParam & { reportContents: Record<string, string> };
+
   // 各通道直连支付产品编码(与后端 ProductEnum 对齐, 转账仅支持直连产品)
   const WECHAT_DIRECT_PRODUCT = 'wechat_pay';
   const ALIPAY_DIRECT_PRODUCT = 'alipay';
@@ -60,10 +63,6 @@
   // 报备字段元数据(reportInfoTypes/reportInfoDescriptions)由后端枚举推导, 随场景列表返回
   // 已配置的转账场景列表(由通道商户加载, 仅含已启用)
   const alipaySceneOptions = ref<AlipayTransferSceneConfig[]>([]);
-  // 当前选中的场景配置ID
-  const alipayTransferSceneConfigId = ref<string>('');
-  // 报备字段内容(按 infoType key)
-  const alipayReportContents = ref<Record<string, string>>({});
 
   // ===== 三套独立表单(各 tab 保留各自输入) =====
   const wechatFormRef = ref<FormInstance>();
@@ -71,7 +70,7 @@
   const douyinFormRef = ref<FormInstance>();
 
   // 微信转账表单(payeeType 固定 openid)
-  const wechatForm = reactive<TransferParam>({
+  const wechatForm = reactive<TransferFormModel>({
     channelMchNo: '',
     bizTransferNo: '',
     amount: 0,
@@ -82,10 +81,12 @@
     reason: '',
     notifyUrl: '',
     attach: '',
+    // 报备字段内容(按 infoType key, 微信端商户端暂未启用)
+    reportContents: {},
   });
 
   // 支付宝转账表单(payeeType 可选 user_id/login_name)
-  const alipayForm = reactive<TransferParam>({
+  const alipayForm = reactive<TransferFormModel>({
     channelMchNo: '',
     bizTransferNo: '',
     amount: 0,
@@ -96,10 +97,14 @@
     reason: '',
     notifyUrl: '',
     attach: '',
+    // 转账场景(支付宝=场景配置ID)
+    transferScene: '',
+    // 报备字段内容(按 infoType key)
+    reportContents: {},
   });
 
   // 抖音转账表单(payeeType 可选 openid/phone, 复用收款人账号字段)
-  const douyinForm = reactive<TransferParam>({
+  const douyinForm = reactive<TransferFormModel>({
     channelMchNo: '',
     bizTransferNo: '',
     amount: 0,
@@ -110,15 +115,15 @@
     reason: '',
     notifyUrl: '',
     attach: '',
+    // 转账场景(抖音=场景枚举码)
+    transferScene: '',
+    // 报备字段内容(按 infoType key)
+    reportContents: {},
   });
 
   // ===== 抖音转账场景与报备信息 =====
   // 转账场景选项列表(主数据枚举, 从后端加载)
   const douyinSceneOptions = ref<DouyinTransferSceneOption[]>([]);
-  // 当前选中的转账场景ID
-  const douyinTransferScene = ref<string>('');
-  // 报备字段内容(按 infoType key)
-  const douyinReportContents = ref<Record<string, string>>({});
 
   // 当前通道对应的 provider 编码(用于按通道过滤通道商户候选)
   const activeProvider = computed(() => activeKey.value);
@@ -258,7 +263,7 @@
 
   // 支付宝当前选中的场景配置(含报备字段元数据)
   const alipaySelectedScene = computed(() => {
-    return alipaySceneOptions.value.find((s) => String(s.id) === alipayTransferSceneConfigId.value);
+    return alipaySceneOptions.value.find((s) => String(s.id) === alipayForm.transferScene);
   });
 
   // 支付宝当前场景的报备字段类型列表(后端枚举推导)
@@ -278,7 +283,7 @@
   // ===== 抖音转账场景与报备信息 =====
   // 抖音当前选中的场景配置(含报备字段元数据)
   const douyinSelectedScene = computed(() => {
-    return douyinSceneOptions.value.find((s) => s.code === douyinTransferScene.value);
+    return douyinSceneOptions.value.find((s) => s.code === douyinForm.transferScene);
   });
 
   // 抖音当前场景的报备字段类型列表
@@ -307,19 +312,22 @@
     if (douyinReportInfoTypes.value.length === 0) return undefined;
     return douyinReportInfoTypes.value.map((infoType) => ({
       infoType,
-      infoContent: douyinReportContents.value[infoType] ?? '',
+      infoContent: douyinForm.reportContents[infoType] ?? '',
     }));
   }
 
   // 抖音场景切换: 清空报备内容
-  watch(douyinTransferScene, () => {
-    douyinReportContents.value = {};
-  });
+  watch(
+    () => douyinForm.transferScene,
+    () => {
+      douyinForm.reportContents = {};
+    },
+  );
 
   /** 支付宝通道商户变更: 加载已配置的转账场景列表 */
   function loadAlipaySceneOptions(channelMchNo: string) {
-    alipayTransferSceneConfigId.value = '';
-    alipayReportContents.value = {};
+    alipayForm.transferScene = '';
+    alipayForm.reportContents = {};
     if (!channelMchNo) {
       alipaySceneOptions.value = [];
       return;
@@ -330,7 +338,7 @@
       // 默认选中 isDefault 场景
       const def = alipaySceneOptions.value.find((s) => s.isDefault);
       if (def?.id) {
-        alipayTransferSceneConfigId.value = String(def.id);
+        alipayForm.transferScene = String(def.id);
       }
     });
   }
@@ -346,36 +354,19 @@
   );
 
   // 场景切换: 清空报备内容
-  watch(alipayTransferSceneConfigId, () => {
-    alipayReportContents.value = {};
-  });
+  watch(
+    () => alipayForm.transferScene,
+    () => {
+      alipayForm.reportContents = {};
+    },
+  );
 
   /** 构建支付宝转账报备信息列表 */
   function buildAlipayReportInfos(): TransferReportInfo[] {
     return alipayReportInfoTypes.value.map((infoType) => ({
       infoType,
-      infoContent: alipayReportContents.value[infoType] || '',
+      infoContent: alipayForm.reportContents[infoType] || '',
     }));
-  }
-
-  /** 校验支付宝报备字段(2026新商户必填, info_content 不可为空) */
-  function validateAlipayReportInfos(): boolean {
-    const missing = alipayReportInfoTypes.value.filter((infoType) => !alipayReportContents.value[infoType]?.trim());
-    if (missing.length > 0) {
-      message.warning($t('payment.transfer.validate.reportInfoRequired'));
-      return false;
-    }
-    return true;
-  }
-
-  /** 校验抖音报备字段(按场景要求必填, info_content 不可为空) */
-  function validateDouyinReportInfos(): boolean {
-    const missing = douyinReportInfoTypes.value.filter((infoType) => !douyinReportContents.value[infoType]?.trim());
-    if (missing.length > 0) {
-      message.warning($t('payment.transfer.validate.reportInfoRequired'));
-      return false;
-    }
-    return true;
   }
 
   // ===== 校验规则 =====
@@ -410,6 +401,8 @@
   const alipayRules = computed(() => ({
     ...commonRules,
     title: [{ required: true, message: $t('payment.transfer.validate.titleRequired') }],
+    // 转账场景必填(支付宝=场景配置ID)
+    transferScene: [{ required: true, message: $t('payment.transfer.validate.sceneRequired') }],
     payeeName: [
       {
         validator: async (_rule: any, value: string) => {
@@ -543,36 +536,27 @@
     let createFn: (data: TransferParam) => Promise<any>;
     if (activeKey.value === 'wechat') {
       formRef = wechatFormRef.value;
-      param = { ...wechatForm };
+      // 排除前端校验用的 reportContents
+      const { reportContents: _omit, ...wechatRest } = wechatForm;
+      param = { ...wechatRest };
       createFn = TransferApi.wechatCreate;
     } else if (activeKey.value === 'alipay') {
       formRef = alipayFormRef.value;
-      param = {
-        ...alipayForm,
-        transferScene: alipayTransferSceneConfigId.value || undefined,
-        reportInfos: buildAlipayReportInfos(),
-      };
+      // transferScene 已在表单 model 上(场景配置ID)
+      const { reportContents: _omit, ...alipayRest } = alipayForm;
+      param = { ...alipayRest, reportInfos: buildAlipayReportInfos() };
       createFn = TransferApi.alipayCreate;
     } else {
       formRef = douyinFormRef.value;
-      param = {
-        ...douyinForm,
-        transferScene: douyinTransferScene.value || undefined,
-        reportInfos: buildDouyinReportInfos(),
-      };
+      // transferScene 已在表单 model 上(场景枚举码)
+      const { reportContents: _omit, ...douyinRest } = douyinForm;
+      param = { ...douyinRest, reportInfos: buildDouyinReportInfos() };
       createFn = TransferApi.douyinCreate;
     }
     try {
       await formRef?.validate();
     } catch {
       // 校验未通过, 字段错误已由表单自动展示
-      return;
-    }
-    // 报备字段必填校验(支付宝/抖音按场景要求)
-    if (activeKey.value === 'alipay' && !validateAlipayReportInfos()) {
-      return;
-    }
-    if (activeKey.value === 'douyin' && !validateDouyinReportInfos()) {
       return;
     }
     submitting.value = true;
@@ -600,10 +584,10 @@
       form.reason = '';
       form.notifyUrl = '';
       form.attach = '';
+      // 清空场景与报备内容(场景已迁移到表单 model)
+      form.transferScene = '';
+      form.reportContents = {};
     }
-    // 清空支付宝场景选择
-    alipayTransferSceneConfigId.value = '';
-    alipayReportContents.value = {};
     const refMap = {
       alipay: alipayFormRef,
       douyin: douyinFormRef,
@@ -860,18 +844,22 @@
 
             <!-- 转账场景与报备信息(支付宝特有, 2026新商户必配) -->
             <div v-if="alipaySceneOptions.length > 0" class="mt-2">
-              <a-form-item :label="$t('payment.merchant.channelMerchant.transferSceneName')">
+              <a-form-item :label="$t('payment.merchant.channelMerchant.transferSceneName')" name="transferScene">
                 <a-select
-                  v-model:value="alipayTransferSceneConfigId"
+                  v-model:value="alipayForm.transferScene"
                   :options="alipaySceneOptions.map((s) => ({ label: s.sceneName, value: String(s.id) }))"
                   :placeholder="$t('common.pleaseSelect')"
                 />
               </a-form-item>
               <a-row v-if="alipayReportInfoTypes.length > 0" :gutter="16">
                 <a-col v-for="infoType in alipayReportInfoTypes" :key="infoType" :span="12">
-                  <a-form-item :label="infoType">
+                  <a-form-item
+                    :label="infoType"
+                    :name="['reportContents', infoType]"
+                    :rules="[{ required: true, message: $t('payment.transfer.validate.reportInfoRequired') }]"
+                  >
                     <a-input
-                      v-model:value="alipayReportContents[infoType]"
+                      v-model:value="alipayForm.reportContents[infoType]"
                       :placeholder="getAlipayContentPlaceholder(infoType)"
                       :maxlength="256"
                     />
@@ -993,7 +981,7 @@
               <a-col :span="12">
                 <a-form-item :label="$t('payment.transfer.field.transferScene')" name="transferScene">
                   <a-select
-                    v-model:value="douyinTransferScene"
+                    v-model:value="douyinForm.transferScene"
                     :options="douyinSceneOptions.map((s) => ({ label: s.name, value: s.code }))"
                     :placeholder="$t('common.pleaseSelect')"
                   />
@@ -1001,9 +989,13 @@
               </a-col>
               <!-- 转账场景报备信息(按选中场景动态渲染) -->
               <a-col v-for="infoType in douyinReportInfoTypes" :key="infoType" :span="24">
-                <a-form-item :label="infoType">
+                <a-form-item
+                  :label="infoType"
+                  :name="['reportContents', infoType]"
+                  :rules="[{ required: true, message: $t('payment.transfer.validate.reportInfoRequired') }]"
+                >
                   <a-input
-                    v-model:value="douyinReportContents[infoType]"
+                    v-model:value="douyinForm.reportContents[infoType]"
                     :placeholder="getDouyinContentPlaceholder(infoType)"
                   />
                 </a-form-item>
