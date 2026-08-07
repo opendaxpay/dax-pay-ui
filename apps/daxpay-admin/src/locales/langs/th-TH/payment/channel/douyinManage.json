@@ -16,7 +16,14 @@
   "appTypeCapabilityCleared": "ล้างการเลือกแอปที่ไม่ตรงกับวิธีชำระเงินแล้ว",
   "capabilityNoCompatibleApp": "ยังไม่มีแอปประเภทที่ตรงกัน กรุณาสร้างก่อน",
   "cardTransferScene": "สถานการณ์การโอน",
-  "cardTransferSceneDesc": "จัดการการกำหนดค่าสถานการณ์การโอน Douyin",
+  "cardTransferSceneDesc": "ดูสถานการณ์การโอน Douyin และคำอธิบายฟิลด์รายงาน",
+  "transferSceneReadonlyTip": "สถานการณ์การโอน Douyin เป็นค่า enum คงที่ของแพลตฟอร์ม (1001-1007) ไม่ต้องกำหนดค่าล่วงหน้า เลือกสถานการณ์และกรอกข้อมูลรายงานเมื่อสร้างการโอน",
+  "transferSceneUserPerception": "ข้อความที่ผู้รับเห็น",
+  "transferSceneUserPerceptionTip": "ข้อความที่ผู้รับเห็นใน Douyin หากไม่ส่งจะใช้ตัวแรกเป็นค่าเริ่มต้น",
+  "transferSceneReportFields": "คำอธิบายฟิลด์รายงาน",
+  "transferSceneReportFieldsTip": "ฟิลด์รายงานเป็นประเภทภาษาจีนคงที่ตามโปรโตคอล Douyin เนื้อหากรอกเมื่อสร้างการโอน",
+  "transferSceneFieldTypeName": "ชื่อฟิลด์",
+  "transferSceneFieldDescription": "คำอธิบายฟิลด์",
   "transferSceneTitle": "การจัดการสถานการณ์การโอน",
   "transferSceneAdd": "เพิ่มสถานการณ์",
   "transferSceneEdit": "แก้ไขสถานการณ์",
@@ -28,5 +35,11 @@
   "transferSceneSetDefault": "ตั้งเป็นค่าเริ่มต้น",
   "transferSceneDeleteConfirm": "ยืนยันลบสถานการณ์การโอนนี้?",
   "transferSceneNameRequired": "กรุณาเลือกสถานการณ์การโอน",
-  "transferSceneNamePlaceholder": "กรุณาเลือกสถานการณ์การโอน"
+  "transferSceneNamePlaceholder": "กรุณาเลือกสถานการณ์การโอน",
+  "cardTransferAppConfig": "การกำหนดค่าแอปโอนเงิน",
+  "cardTransferAppConfigDesc": "ผูกแอป Douyin ที่เริ่มต้นการโอน (เฉพาะเว็บแอป)",
+  "transferApp": "แอปเริ่มต้นการโอน",
+  "transferAppPlaceholder": "เลือกแอปเริ่มต้นการโอน",
+  "transferAppTip": "การโอนดำเนินการผ่านแอปนี้ OpenId ผู้รับได้จากการอนุญาต H5 ของเว็บแอป เฉพาะเว็บแอปเท่านั้นที่ผูกได้",
+  "transferAppNotConfigured": "ยังไม่ได้ผูกแอปเริ่มต้นการโอน กรุณากำหนดค่าก่อนสร้างการโอน Douyin"
 }

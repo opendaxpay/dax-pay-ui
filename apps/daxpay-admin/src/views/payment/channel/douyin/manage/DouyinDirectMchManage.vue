@@ -14,6 +14,10 @@
 
   import DouyinDirectChannelMerchantBasicInfo from './DouyinDirectChannelMerchantBasicInfo.vue';
   import DouyinDirectKeyConfigEdit from './DouyinDirectKeyConfigEdit.vue';
+  // 转账发起应用配置抽屉
+  import DouyinTransferAppConfig from './DouyinTransferAppConfig.vue';
+  // 转账场景只读展示抽屉
+  import DouyinTransferSceneConfig from './DouyinTransferSceneConfig.vue';
 
   defineOptions({ name: 'DouyinDirectMchManage' });
 
@@ -31,6 +35,10 @@
   const keyConfigRef = ref<InstanceType<typeof DouyinDirectKeyConfigEdit>>();
   const capabilityRef = ref<InstanceType<typeof DyChannelAppCapability>>();
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
+  // 转账场景只读展示抽屉
+  const transferSceneRef = ref<InstanceType<typeof DouyinTransferSceneConfig>>();
+  // 转账发起应用配置抽屉
+  const transferAppRef = ref<InstanceType<typeof DouyinTransferAppConfig>>();
 
   /** 功能卡片配置（按组分组的卡片布局） */
   const functionCards = computed(() => [
@@ -56,6 +64,12 @@
           icon: 'ant-design:edit-outlined',
           description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),
         },
+        {
+          key: 'transferScene',
+          title: $t('payment.channel.douyinManage.cardTransferScene'),
+          icon: 'ant-design:transaction-outlined',
+          description: $t('payment.channel.douyinManage.cardTransferSceneDesc'),
+        },
       ],
     },
     {
@@ -73,6 +87,12 @@
           title: $t('payment.channel.douyinManage.cardCapabilityBinding'),
           icon: 'ant-design:link-outlined',
           description: $t('payment.channel.douyinManage.cardCapabilityBindingDesc'),
+        },
+        {
+          key: 'transferAppConfig',
+          title: $t('payment.channel.douyinManage.cardTransferAppConfig'),
+          icon: 'ant-design:swap-outlined',
+          description: $t('payment.channel.douyinManage.cardTransferAppConfigDesc'),
         },
       ],
     },
@@ -126,6 +146,14 @@
     }
     if (card.key === 'capabilityBinding') {
       capabilityRef.value?.show(mchNo.value, channelMchNo.value, channelMerchant.value.product || 'douyin_pay');
+    }
+    if (card.key === 'transferScene') {
+      // 转账场景: 只读展示主数据枚举(无需配置, 发起转账时选择)
+      transferSceneRef.value?.open();
+    }
+    if (card.key === 'transferAppConfig') {
+      // 转账发起应用: 绑定转出应用(仅网站应用支持手机H5获取OpenId)
+      transferAppRef.value?.open(mchNo.value, channelMchNo.value);
     }
   }
 
@@ -190,6 +218,10 @@
     <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 
     <DouyinDirectKeyConfigEdit ref="keyConfigRef" :channel-mch-no="channelMchNo" />
+
+    <DouyinTransferSceneConfig ref="transferSceneRef" />
+
+    <DouyinTransferAppConfig ref="transferAppRef" />
 
     <DyChannelAppCapability ref="capabilityRef" />
   </div>

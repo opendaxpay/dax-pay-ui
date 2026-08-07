@@ -16,7 +16,14 @@
   "appTypeCapabilityCleared": "Pilihan aplikasi yang tidak sepadan dengan kaedah bayaran telah dikosongkan",
   "capabilityNoCompatibleApp": "Tiada aplikasi jenis yang sepadan. Cipta aplikasi jenis yang diperlukan dahulu",
   "cardTransferScene": "Senario Pindahan",
-  "cardTransferSceneDesc": "Urus konfigurasi senario pindahan Douyin",
+  "cardTransferSceneDesc": "Lihat senario pindahan Douyin dan penerangan medan laporan",
+  "transferSceneReadonlyTip": "Senario pindahan Douyin ialah enum tetap platform (1001-1007) dan tidak memerlukan konfigurasi awal; pilih senario dan isi maklumat laporan semasa mencipta pindahan",
+  "transferSceneUserPerception": "Persepsi Penerima",
+  "transferSceneUserPerceptionTip": "Teks yang dilihat penerima dalam Douyin; lalai kepada pilihan pertama jika tidak dihantar",
+  "transferSceneReportFields": "Penerangan Medan Laporan",
+  "transferSceneReportFieldsTip": "Medan laporan menggunakan jenis Cina tetap protokol Douyin; kandungan diisi semasa mencipta pindahan",
+  "transferSceneFieldTypeName": "Nama Medan",
+  "transferSceneFieldDescription": "Penerangan Medan",
   "transferSceneTitle": "Pengurusan Senario Pindahan",
   "transferSceneAdd": "Tambah Senario",
   "transferSceneEdit": "Edit Senario",
@@ -28,5 +35,11 @@
   "transferSceneSetDefault": "Tetapkan sebagai Lalai",
   "transferSceneDeleteConfirm": "Sahkan hapus senario pindahan ini?",
   "transferSceneNameRequired": "Sila pilih senario pindahan",
-  "transferSceneNamePlaceholder": "Sila pilih senario pindahan"
+  "transferSceneNamePlaceholder": "Sila pilih senario pindahan",
+  "cardTransferAppConfig": "Konfigurasi Apl Pindahan",
+  "cardTransferAppConfigDesc": "Ikat apl Douyin yang memulakan pindahan (Web App sahaja)",
+  "transferApp": "Apl Pemula Pindahan",
+  "transferAppPlaceholder": "Pilih apl pemula pindahan",
+  "transferAppTip": "Pindahan dibuat melalui apl ini; OpenId penerima diperoleh melalui kebenaran H5 Web App. Hanya Web App yang boleh diikat.",
+  "transferAppNotConfigured": "Belum mengikat apl pemula pindahan. Konfigurasikan sebelum mencipta pindahan Douyin."
 }

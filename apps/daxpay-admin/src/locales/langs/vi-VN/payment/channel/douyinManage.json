@@ -16,7 +16,14 @@
   "appTypeCapabilityCleared": "Đã xóa lựa chọn ứng dụng không khớp với phương thức thanh toán",
   "capabilityNoCompatibleApp": "Chưa có ứng dụng loại phù hợp, hãy tạo trước",
   "cardTransferScene": "Kịch bản chuyển khoản",
-  "cardTransferSceneDesc": "Quản lý cấu hình kịch bản chuyển khoản Douyin",
+  "cardTransferSceneDesc": "Xem kịch bản chuyển khoản Douyin và mô tả trường báo cáo",
+  "transferSceneReadonlyTip": "Kịch bản chuyển khoản Douyin là enum cố định của nền tảng (1001-1007), không cần cấu hình trước; chọn kịch bản và điền thông tin báo cáo khi tạo chuyển khoản",
+  "transferSceneUserPerception": "Nhận thức người nhận",
+  "transferSceneUserPerceptionTip": "Văn bản người nhận thấy trong Douyin; mặc định là tùy chọn đầu tiên nếu không truyền",
+  "transferSceneReportFields": "Mô tả trường báo cáo",
+  "transferSceneReportFieldsTip": "Trường báo cáo là loại tiếng Trung cố định theo giao thức Douyin; nội dung được điền khi tạo chuyển khoản",
+  "transferSceneFieldTypeName": "Tên trường",
+  "transferSceneFieldDescription": "Mô tả trường",
   "transferSceneTitle": "Quản lý kịch bản chuyển khoản",
   "transferSceneAdd": "Thêm kịch bản",
   "transferSceneEdit": "Chỉnh sửa kịch bản",
@@ -28,5 +35,11 @@
   "transferSceneSetDefault": "Đặt làm mặc định",
   "transferSceneDeleteConfirm": "Xác nhận xóa kịch bản chuyển khoản này?",
   "transferSceneNameRequired": "Vui lòng chọn kịch bản chuyển khoản",
-  "transferSceneNamePlaceholder": "Vui lòng chọn kịch bản chuyển khoản"
+  "transferSceneNamePlaceholder": "Vui lòng chọn kịch bản chuyển khoản",
+  "cardTransferAppConfig": "Cấu hình ứng dụng chuyển khoản",
+  "cardTransferAppConfigDesc": "Gắn ứng dụng Douyin khởi tạo chuyển khoản (chỉ Web App)",
+  "transferApp": "Ứng dụng khởi tạo chuyển khoản",
+  "transferAppPlaceholder": "Chọn ứng dụng khởi tạo chuyển khoản",
+  "transferAppTip": "Chuyển khoản thực hiện qua ứng dụng này; OpenId người nhận lấy qua ủy quyền H5 của Web App. Chỉ Web App được gắn.",
+  "transferAppNotConfigured": "Chưa gắn ứng dụng khởi tạo chuyển khoản. Cấu hình trước khi tạo chuyển khoản Douyin."
 }

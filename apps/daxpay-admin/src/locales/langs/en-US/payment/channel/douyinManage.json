@@ -16,7 +16,14 @@
   "appTypeCapabilityCleared": "Cleared app selections incompatible with payment methods",
   "capabilityNoCompatibleApp": "No matching app type. Create an app of the required type first",
   "cardTransferScene": "Transfer Scene",
-  "cardTransferSceneDesc": "Manage Douyin transfer scene configs",
+  "cardTransferSceneDesc": "View Douyin transfer scenes and report field descriptions",
+  "transferSceneReadonlyTip": "Douyin transfer scenes are fixed platform enums (1001-1007) and need no pre-configuration; choose a scene and fill in report info when initiating a transfer",
+  "transferSceneUserPerception": "User Receipt Perception",
+  "transferSceneUserPerceptionTip": "The message payee sees in Douyin; defaults to the first option when not provided",
+  "transferSceneReportFields": "Report Field Descriptions",
+  "transferSceneReportFieldsTip": "Report fields use fixed Douyin protocol Chinese types; contents are filled in when initiating a transfer",
+  "transferSceneFieldTypeName": "Field Name",
+  "transferSceneFieldDescription": "Description",
   "transferSceneTitle": "Transfer Scene Management",
   "transferSceneAdd": "Add Scene",
   "transferSceneEdit": "Edit Scene",
@@ -28,5 +35,11 @@
   "transferSceneSetDefault": "Set Default",
   "transferSceneDeleteConfirm": "Confirm deleting this transfer scene?",
   "transferSceneNameRequired": "Please select a transfer scene",
-  "transferSceneNamePlaceholder": "Please select a transfer scene"
+  "transferSceneNamePlaceholder": "Please select a transfer scene",
+  "cardTransferAppConfig": "Transfer App Config",
+  "cardTransferAppConfigDesc": "Bind the Douyin app that initiates transfers (Web App only)",
+  "transferApp": "Transfer Initiator App",
+  "transferAppPlaceholder": "Select the transfer initiator app",
+  "transferAppTip": "Transfers are made through this app; the payee OpenId is obtained via Web App H5 authorization. Only Web Apps can be bound.",
+  "transferAppNotConfigured": "No transfer initiator app bound yet. Configure one before initiating a Douyin transfer."
 }

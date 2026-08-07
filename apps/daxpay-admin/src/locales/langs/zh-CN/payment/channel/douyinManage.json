@@ -16,7 +16,14 @@
   "appTypeCapabilityCleared": "已清除与支付方式不匹配的应用选择",
   "capabilityNoCompatibleApp": "暂无匹配类型的应用，请先创建对应类型应用",
   "cardTransferScene": "转账场景",
-  "cardTransferSceneDesc": "管理抖音转账场景配置",
+  "cardTransferSceneDesc": "查看抖音转账场景及报备字段说明",
+  "transferSceneReadonlyTip": "抖音转账场景为平台固定枚举（1001-1007），无需预配置；发起转账时选择场景并填写报备信息",
+  "transferSceneUserPerception": "用户收款感知",
+  "transferSceneUserPerceptionTip": "收款人在抖音中看到的文案，不传时默认取第一个",
+  "transferSceneReportFields": "报备字段说明",
+  "transferSceneReportFieldsTip": "报备字段为抖音协议固定中文类型，内容由发起转账时填写",
+  "transferSceneFieldTypeName": "字段名称",
+  "transferSceneFieldDescription": "字段说明",
   "transferSceneTitle": "转账场景管理",
   "transferSceneAdd": "新增场景",
   "transferSceneEdit": "编辑场景",
@@ -28,5 +35,11 @@
   "transferSceneSetDefault": "设为默认",
   "transferSceneDeleteConfirm": "确认删除该转账场景吗?",
   "transferSceneNameRequired": "请选择转账场景",
-  "transferSceneNamePlaceholder": "请选择转账场景"
+  "transferSceneNamePlaceholder": "请选择转账场景",
+  "cardTransferAppConfig": "转账应用配置",
+  "cardTransferAppConfigDesc": "绑定发起转账的抖音应用（仅网站应用）",
+  "transferApp": "转账发起应用",
+  "transferAppPlaceholder": "请选择转账发起应用",
+  "transferAppTip": "转账经该应用转出，收款人 OpenId 由网站应用 H5 授权获取，仅网站应用可绑定",
+  "transferAppNotConfigured": "尚未绑定转账发起应用，发起抖音转账前需完成配置"
 }

@@ -16,7 +16,14 @@
   "appTypeCapabilityCleared": "支払い方法と一致しないアプリ選択を解除しました",
   "capabilityNoCompatibleApp": "一致する種別のアプリがありません。先に作成してください",
   "cardTransferScene": "送金シーン",
-  "cardTransferSceneDesc": "抖音送金シーン設定を管理",
+  "cardTransferSceneDesc": "抖音送金シーンと報告フィールドの説明を表示",
+  "transferSceneReadonlyTip": "抖音送金シーンはプラットフォーム固定の列挙値（1001-1007）で、事前設定は不要です。送金時にシーンを選択して報告情報を入力します",
+  "transferSceneUserPerception": "受取人への表示",
+  "transferSceneUserPerceptionTip": "受取人が抖音で見る文言。未指定の場合は先頭がデフォルトです",
+  "transferSceneReportFields": "報告フィールド説明",
+  "transferSceneReportFieldsTip": "報告フィールドは抖音プロトコル固定の中文タイプで、内容は送金時に入力します",
+  "transferSceneFieldTypeName": "フィールド名",
+  "transferSceneFieldDescription": "フィールド説明",
   "transferSceneTitle": "送金シーン管理",
   "transferSceneAdd": "シーン追加",
   "transferSceneEdit": "シーン編集",
@@ -28,5 +35,11 @@
   "transferSceneSetDefault": "デフォルトに設定",
   "transferSceneDeleteConfirm": "この送金シーンを削除しますか?",
   "transferSceneNameRequired": "送金シーンを選択してください",
-  "transferSceneNamePlaceholder": "送金シーンを選択してください"
+  "transferSceneNamePlaceholder": "送金シーンを選択してください",
+  "cardTransferAppConfig": "送金アプリ設定",
+  "cardTransferAppConfigDesc": "送金を開始するDouyinアプリをバインドします（サイトアプリのみ）",
+  "transferApp": "送金発起アプリ",
+  "transferAppPlaceholder": "送金発起アプリを選択してください",
+  "transferAppTip": "送金はこのアプリから実行され、受取人のOpenIdはサイトアプリのH5認証で取得します。サイトアプリのみバインドできます",
+  "transferAppNotConfigured": "送金発起アプリが未設定です。Douyin送金の前に設定してください"
 }
