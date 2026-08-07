@@ -76,7 +76,9 @@
     "payeeAccountRequired": "请输入收款人账号",
     "payeeNameRequired": "金额大于等于2000元时,收款人姓名必填",
     "payeeNameForbidden": "金额小于0.3元时,不可填写收款人姓名",
-    "targetMchRequired": "请选择目标商户"
+    "targetMchRequired": "请选择目标商户",
+    "titleRequired": "请输入转账标题(收款人可见)",
+    "reportInfoRequired": "请填写全部转账场景报备字段"
   },
   "createTitle": "发起转账",
   "createConfirmTitle": "确认发起转账",
@@ -103,7 +105,8 @@
     "payeeLoginName": "收款人支付宝登录账号(邮箱/手机号)",
     "bizTransferNoAuto": "留空将自动生成",
     "reportInfoContent": "留空使用默认值 -",
-    "reason": "请输入转账原因"
+    "reason": "请输入转账原因",
+    "title": "转账标题，收款人微信内可见"
   },
   "confirmUrlCopied": "链接已复制",
   "confirmUrlCopyFailed": "复制失败",
@@ -111,5 +114,14 @@
   "confirmUrlTip": "请将确认收款链接发送给收款人，收款人需在微信内打开",
   "submitWithAmount": "发起转账 ¥{amount}",
   "amountLimitTip": "单笔最低 0.01 元",
-  "btnGenerate": "生成"
+  "btnGenerate": "生成",
+  "scanGetOpenId": "扫码获取",
+  "scanOpenIdTitle": "扫码获取收款人 OpenId",
+  "scanOpenIdTip": "请使用收款人本人微信扫码，完成网页授权后自动回填 OpenId",
+  "scanOpenIdSuccess": "已获取收款人 OpenId",
+  "scanOpenIdFailed": "授权已失效，请重新生成二维码",
+  "scanMchRequired": "请先选择目标商户",
+  "scanChannelMchRequired": "请先选择通道商户",
+  "scanAppNotConfigured": "该通道商户未配置转账发起应用，请先到通道商户菜单配置",
+  "sceneNotConfigured": "该通道商户未配置转账场景与发起应用，请先到通道商户菜单配置转账配置"
 }

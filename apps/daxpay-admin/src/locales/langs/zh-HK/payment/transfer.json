@@ -87,7 +87,8 @@
     "payeeLoginName": "收款人支付寶登入帳號(電郵/手機號)",
     "bizTransferNoAuto": "留空將自動生成",
     "reportInfoContent": "留空使用預設值 -",
-    "reason": "請輸入轉帳原因"
+    "reason": "請輸入轉帳原因",
+    "title": "轉賬標題，收款人微信內可見"
   },
   "targetMch": "商戶",
   "targetMchHelp": "選擇本次代發的商戶",
@@ -103,7 +104,9 @@
     "payeeAccountRequired": "請輸入收款人帳號",
     "payeeNameRequired": "金額大於或等於2000元時,收款人姓名必填",
     "payeeNameForbidden": "金額少於0.3元時,不可填寫收款人姓名",
-    "targetMchRequired": "請選擇目標商戶"
+    "targetMchRequired": "請選擇目標商戶",
+    "titleRequired": "請輸入轉賬標題(收款人可見)",
+    "reportInfoRequired": "請填寫全部轉賬場景報備欄位"
   },
   "confirmUrlCopied": "連結已複製",
   "confirmUrlCopyFailed": "複製失敗",
@@ -111,5 +114,14 @@
   "confirmUrlTip": "請將確認收款連結發送給收款人，收款人需在微信內開啟",
   "submitWithAmount": "發起轉賬 ¥{amount}",
   "amountLimitTip": "單筆最低 0.01 元",
-  "btnGenerate": "生成"
+  "btnGenerate": "生成",
+  "scanGetOpenId": "掃碼獲取",
+  "scanOpenIdTitle": "掃碼獲取收款人 OpenId",
+  "scanOpenIdTip": "請使用收款人本人微信掃碼，完成網頁授權後自動回填 OpenId",
+  "scanOpenIdSuccess": "已獲取收款人 OpenId",
+  "scanOpenIdFailed": "授權已失效，請重新生成 QR Code",
+  "scanMchRequired": "請先選擇目標商戶",
+  "scanChannelMchRequired": "請先選擇通道商戶",
+  "scanAppNotConfigured": "該通道商戶未配置轉賬發起應用，請先到通道商戶選單配置",
+  "sceneNotConfigured": "該通道商戶未配置轉賬場景與發起應用，請先到通道商戶選單配置轉賬配置"
 }

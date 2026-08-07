@@ -41,7 +41,8 @@
     "tradeNo": "Mã giao dịch",
     "containerChannel": "Kênh",
     "currency": "Tiền tệ",
-    "relationNo": "Mã liên quan"
+    "relationNo": "Mã liên quan",
+    "userRecvPerception": "Cảm nhận người nhận"
   },
   "section": {
     "identity": "Danh tính",

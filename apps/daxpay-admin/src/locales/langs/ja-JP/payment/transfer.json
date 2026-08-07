@@ -87,7 +87,8 @@
     "payeeLoginName": "受取人のAlipayログインアカウント(メール/電話番号)",
     "bizTransferNoAuto": "空欄で自動生成",
     "reportInfoContent": "空欄でデフォルト値 - を使用",
-    "reason": "振込理由を入力してください"
+    "reason": "振込理由を入力してください",
+    "title": "振込タイトル、受取人に表示されます"
   },
   "targetMch": "マーチャント",
   "targetMchHelp": "代行送金する加盟店を選択",
@@ -103,7 +104,9 @@
     "payeeAccountRequired": "受取人アカウントを入力してください",
     "payeeNameRequired": "金額が2000元以上の場合、受取人名は必須です",
     "payeeNameForbidden": "金額が0.3元未満の場合、受取人名は入力できません",
-    "targetMchRequired": "対象加盟店を選択してください"
+    "targetMchRequired": "対象加盟店を選択してください",
+    "titleRequired": "振込タイトルを入力してください(受取人に表示されます)",
+    "reportInfoRequired": "振込シーンの報備項目をすべて入力してください"
   },
   "confirmUrlCopied": "リンクをコピーしました",
   "confirmUrlCopyFailed": "コピー失敗",
@@ -111,5 +114,14 @@
   "confirmUrlTip": "確認リンクを受領者に送信してください。WeChatで開く必要があります",
   "submitWithAmount": "送金 ¥{amount}",
   "amountLimitTip": "1件あたり最低 0.01元",
-  "btnGenerate": "生成"
+  "btnGenerate": "生成",
+  "scanGetOpenId": "スキャンで取得",
+  "scanOpenIdTitle": "受取人 OpenId のスキャン取得",
+  "scanOpenIdTip": "受取人本人の微信でスキャンしてください。ウェブ認証完了後に OpenId が自動入力されます",
+  "scanOpenIdSuccess": "受取人 OpenId を取得しました",
+  "scanOpenIdFailed": "認証の有効期限が切れました。QRコードを再生成してください",
+  "scanMchRequired": "先にターゲット加盟店を選択してください",
+  "scanChannelMchRequired": "先にチャネル加盟店を選択してください",
+  "scanAppNotConfigured": "このチャネル加盟店に振込起動アプリが設定されていません。先に設定してください",
+  "sceneNotConfigured": "このチャネル加盟店に振込シーンと起動アプリが設定されていません。チャネル加盟店メニューで設定してください"
 }

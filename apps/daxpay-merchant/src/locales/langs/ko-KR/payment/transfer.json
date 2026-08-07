@@ -41,7 +41,8 @@
     "tradeNo": "송금 거래 번호",
     "containerChannel": "소속 채널",
     "currency": "통화",
-    "relationNo": "상송 관련 번호"
+    "relationNo": "상송 관련 번호",
+    "userRecvPerception": "수취 인식"
   },
   "section": {
     "identity": "신원 정보",

@@ -87,7 +87,8 @@
     "payeeLoginName": "Tên đăng nhập Alipay người nhận (email/SĐT)",
     "bizTransferNoAuto": "Để trống để tự tạo",
     "reportInfoContent": "Để trống dùng mặc định -",
-    "reason": "Nhập lý do chuyển khoản"
+    "reason": "Nhập lý do chuyển khoản",
+    "title": "Tiêu đề chuyển khoản, người nhận có thể thấy"
   },
   "targetMch": "Thương gia",
   "targetMchHelp": "Chọn đối tác nhận để chuyển thay mặt",
@@ -103,7 +104,9 @@
     "payeeAccountRequired": "Vui lòng nhập tài khoản người nhận",
     "payeeNameRequired": "Tên người nhận bắt buộc khi số tiền từ 2000 CNY trở lên",
     "payeeNameForbidden": "Không được nhập tên người nhận khi số tiền dưới 0.3 CNY",
-    "targetMchRequired": "Vui lòng chọn đối tác nhận"
+    "targetMchRequired": "Vui lòng chọn đối tác nhận",
+    "titleRequired": "Vui lòng nhập tiêu đề chuyển khoản (người nhận có thể thấy)",
+    "reportInfoRequired": "Vui lòng điền đầy đủ các trường báo cáo kịch bản chuyển khoản"
   },
   "confirmUrlCopied": "Đã sao chép liên kết",
   "confirmUrlCopyFailed": "Sao chép thất bại",
@@ -111,5 +114,14 @@
   "confirmUrlTip": "Gửi liên kết xác nhận cho người nhận, cần mở trong WeChat",
   "submitWithAmount": "Chuyển ¥{amount}",
   "amountLimitTip": "Tối thiểu ¥0.01 mỗi lần",
-  "btnGenerate": "Tạo"
+  "btnGenerate": "Tạo",
+  "scanGetOpenId": "Quét để lấy",
+  "scanOpenIdTitle": "Quét để lấy OpenId người nhận",
+  "scanOpenIdTip": "Yêu cầu người nhận quét bằng WeChat; OpenId sẽ được tự động điền sau khi ủy quyền web",
+  "scanOpenIdSuccess": "Đã lấy OpenId người nhận",
+  "scanOpenIdFailed": "Ủy quyền đã hết hạn, vui lòng tạo lại mã QR",
+  "scanMchRequired": "Vui lòng chọn đối tác nhận trước",
+  "scanChannelMchRequired": "Vui lòng chọn đối tác kênh trước",
+  "scanAppNotConfigured": "Chưa cấu hình ứng dụng chuyển khoản cho đối tác kênh này, vui lòng cấu hình trước",
+  "sceneNotConfigured": "Chưa cấu hình kịch bản và ứng dụng chuyển khoản cho đối tác kênh này, vui lòng cấu hình qua menu đối tác kênh"
 }

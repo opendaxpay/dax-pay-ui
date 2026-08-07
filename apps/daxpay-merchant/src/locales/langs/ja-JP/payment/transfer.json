@@ -41,7 +41,8 @@
     "tradeNo": "送金取引番号",
     "containerChannel": "所属チャネル",
     "currency": "通貨",
-    "relationNo": "上送関連番号"
+    "relationNo": "上送関連番号",
+    "userRecvPerception": "受取人認識"
   },
   "section": {
     "identity": "身份情報",

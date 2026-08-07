@@ -87,7 +87,8 @@
     "payeeLoginName": "Nama login Alipay penerima (email/nomor telepon)",
     "bizTransferNoAuto": "Kosongkan untuk dibuat otomatis",
     "reportInfoContent": "Kosongkan untuk default -",
-    "reason": "Masukkan alasan transfer"
+    "reason": "Masukkan alasan transfer",
+    "title": "Judul transfer, terlihat oleh penerima"
   },
   "targetMch": "Merchant",
   "targetMchHelp": "Pilih merchant untuk transfer atas nama",
@@ -103,7 +104,9 @@
     "payeeAccountRequired": "Silakan masukkan akun penerima",
     "payeeNameRequired": "Nama penerima wajib diisi jika nominal 2000 CNY ke atas",
     "payeeNameForbidden": "Nama penerima tidak boleh diisi jika nominal di bawah 0.3 CNY",
-    "targetMchRequired": "Silakan pilih merchant target"
+    "targetMchRequired": "Silakan pilih merchant target",
+    "titleRequired": "Silakan masukkan judul transfer (terlihat oleh penerima)",
+    "reportInfoRequired": "Silakan isi semua bidang pelaporan skema transfer"
   },
   "confirmUrlCopied": "Tautan disalin",
   "confirmUrlCopyFailed": "Salin gagal",
@@ -111,5 +114,14 @@
   "confirmUrlTip": "Kirim tautan konfirmasi ke penerima, harus dibuka di WeChat",
   "submitWithAmount": "Transfer ¥{amount}",
   "amountLimitTip": "Min ¥0.01 per transfer",
-  "btnGenerate": "Buat"
+  "btnGenerate": "Buat",
+  "scanGetOpenId": "Pindai untuk Ambil",
+  "scanOpenIdTitle": "Pindai untuk Mengambil OpenId Penerima",
+  "scanOpenIdTip": "Minta penerima memindai dengan WeChat; OpenId akan diisi otomatis setelah otorisasi web",
+  "scanOpenIdSuccess": "OpenId penerima berhasil diambil",
+  "scanOpenIdFailed": "Otorisasi kedaluwarsa, silakan buat ulang kode QR",
+  "scanMchRequired": "Pilih merchant tujuan terlebih dahulu",
+  "scanChannelMchRequired": "Pilih merchant saluran terlebih dahulu",
+  "scanAppNotConfigured": "Aplikasi transfer belum dikonfigurasi untuk merchant saluran ini, silakan konfigurasi terlebih dahulu",
+  "sceneNotConfigured": "Skema dan aplikasi transfer belum dikonfigurasi untuk merchant saluran ini, silakan konfigurasi melalui menu merchant saluran"
 }

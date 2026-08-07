@@ -41,7 +41,8 @@
     "tradeNo": "Trade No",
     "containerChannel": "Channel",
     "currency": "Currency",
-    "relationNo": "Relation No"
+    "relationNo": "Relation No",
+    "userRecvPerception": "User Receipt Perception"
   },
   "section": {
     "identity": "Identity",

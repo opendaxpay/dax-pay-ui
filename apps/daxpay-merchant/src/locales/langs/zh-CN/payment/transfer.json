@@ -41,7 +41,8 @@
     "tradeNo": "转账交易号",
     "containerChannel": "所属通道",
     "currency": "币种",
-    "relationNo": "上送关联号"
+    "relationNo": "上送关联号",
+    "userRecvPerception": "用户收款感知"
   },
   "section": {
     "identity": "身份信息",

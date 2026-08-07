@@ -11,6 +11,10 @@
   import { $t } from '@vben/locales';
 
   import { AlipayTransferSceneApi } from '#/api/payment/alipay/alipay-transfer-scene.api';
+  import {
+    DouyinDirectChannelMerchantApi,
+    type DouyinTransferSceneOption,
+  } from '#/api/payment/channel/douyin/channel-merchant.api';
   import { DevelopTradeApi } from '#/api/payment/develop/develop-trade.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { TransferApi } from '#/api/payment/transfer/transfer.api';
@@ -40,25 +44,8 @@
   const advancedActiveKey = ref<string[]>([]);
 
   // ===== 支付宝转账场景与报备信息 =====
-  // 场景→info_type 列表映射(支付宝文档固定,组件内中文常量)
-  const ALIPAY_SCENE_REPORT_MAP: Record<string, Array<{ contentPlaceholder: string; infoType: string }>> = {
-    现金营销: [
-      { contentPlaceholder: '请描述收款方参与活动的名称', infoType: '活动名称' },
-      { contentPlaceholder: '请描述收款方因什么奖励获取这笔资金', infoType: '奖励说明' },
-    ],
-    企业退款: [{ contentPlaceholder: '请描述退款原因,如商品质量问题退款', infoType: '退款原因' }],
-    佣金报酬: [{ contentPlaceholder: '请描述接收款项原因,如8月家政服务报酬', infoType: '佣金报酬说明' }],
-    业务结算: [{ contentPlaceholder: '请描述款项名称,如材料货款', infoType: '结算款项名称' }],
-    二手回收: [{ contentPlaceholder: '请描述回收商品名称,如衣服', infoType: '回收商品名称' }],
-    公益补助: [{ contentPlaceholder: '请描述公益活动在民政部的备案名称', infoType: '公益活动名称' }],
-    行政补贴和退款: [{ contentPlaceholder: '请描述补贴/退款类型,如某地人才补贴', infoType: '补贴/退款类型' }],
-    保险理赔: [
-      { contentPlaceholder: '请描述业务类型,如理赔、退保、其他', infoType: '业务类型' },
-      { contentPlaceholder: '请描述保险险种及产品名称,如医疗险-某百万医疗保险', infoType: '保险险种' },
-      { contentPlaceholder: '请描述这笔转账的业务内部交易订单号', infoType: '业务交易订单号' },
-    ],
-  };
-  // 已配置的转账场景列表(由通道商户加载)
+  // 报备字段元数据(reportInfoTypes/reportInfoDescriptions)由后端枚举推导, 随场景列表返回
+  // 已配置的转账场景列表(由通道商户加载, 仅含已启用)
   const alipaySceneOptions = ref<AlipayTransferSceneConfig[]>([]);
   // 当前选中的场景配置ID
   const alipayTransferSceneConfigId = ref<string>('');
@@ -112,6 +99,16 @@
     attach: '',
   });
 
+  // ===== 抖音转账场景与报备信息 =====
+  // 转账场景选项列表(主数据枚举, 从后端加载)
+  const douyinSceneOptions = ref<DouyinTransferSceneOption[]>([]);
+  // 当前选中的转账场景ID
+  const douyinTransferScene = ref<string>('');
+  // 用户收款感知
+  const douyinUserRecvPerception = ref<string>('');
+  // 报备字段内容(按 infoType key)
+  const douyinReportContents = ref<Record<string, string>>({});
+
   // 当前通道对应的 provider 编码(用于按通道过滤通道商户候选)
   const activeProvider = computed(() => activeKey.value);
 
@@ -139,22 +136,69 @@
     { label: $t('payment.transfer.payeeTypeLoginName'), value: 'login_name' },
   ]);
 
-  // 支付宝当前选中的场景名称
-  const alipaySelectedSceneName = computed(() => {
-    const scene = alipaySceneOptions.value.find((s) => String(s.id) === alipayTransferSceneConfigId.value);
-    return scene?.sceneName ?? '';
+  // 支付宝当前选中的场景配置(含报备字段元数据)
+  const alipaySelectedScene = computed(() => {
+    return alipaySceneOptions.value.find(
+      (s) => String(s.id) === alipayTransferSceneConfigId.value,
+    );
   });
 
-  // 支付宝当前场景的报备字段类型列表
+  // 支付宝当前场景的报备字段类型列表(后端枚举推导)
   const alipayReportInfoTypes = computed(() => {
-    return (ALIPAY_SCENE_REPORT_MAP[alipaySelectedSceneName.value] ?? []).map((i) => i.infoType);
+    return alipaySelectedScene.value?.reportInfoTypes ?? [];
   });
 
-  /** 获取 info_type 对应的 placeholder */
+  /** 获取 info_type 对应的 placeholder(后端枚举推导) */
   function getAlipayContentPlaceholder(infoType: string): string {
-    const items = ALIPAY_SCENE_REPORT_MAP[alipaySelectedSceneName.value] ?? [];
-    return items.find((i) => i.infoType === infoType)?.contentPlaceholder ?? '';
+    const scene = alipaySelectedScene.value;
+    if (!scene?.reportInfoTypes || !scene?.reportInfoDescriptions) return '';
+    const idx = scene.reportInfoTypes.indexOf(infoType);
+    return idx >= 0 ? (scene.reportInfoDescriptions[idx] ?? '') : '';
   }
+
+  // ===== 抖音转账场景与报备信息 =====
+  // 抖音当前选中的场景配置(含报备字段元数据)
+  const douyinSelectedScene = computed(() => {
+    return douyinSceneOptions.value.find(
+      (s) => s.code === douyinTransferScene.value,
+    );
+  });
+
+  // 抖音当前场景的报备字段类型列表
+  const douyinReportInfoTypes = computed(() => {
+    return douyinSelectedScene.value?.reportInfoTypes ?? [];
+  });
+
+  /** 获取抖音 info_type 对应的 placeholder */
+  function getDouyinContentPlaceholder(infoType: string): string {
+    const scene = douyinSelectedScene.value;
+    if (!scene?.reportInfoTypes || !scene?.reportInfoDescriptions) return '';
+    const idx = scene.reportInfoTypes.indexOf(infoType);
+    return idx >= 0 ? (scene.reportInfoDescriptions[idx] ?? '') : '';
+  }
+
+  /** 加载抖音转账场景选项(主数据枚举) */
+  function loadDouyinSceneOptions() {
+    DouyinDirectChannelMerchantApi.findSceneOptions().then((res) => {
+      douyinSceneOptions.value = res.data || [];
+    });
+  }
+
+  /** 组装抖音报备信息 */
+  function buildDouyinReportInfos(): TransferReportInfo[] | undefined {
+    if (douyinReportInfoTypes.value.length === 0) return undefined;
+    return douyinReportInfoTypes.value.map((infoType) => ({
+      infoType,
+      infoContent: douyinReportContents.value[infoType] ?? '',
+    }));
+  }
+
+  // 抖音场景切换: 清空感知与报备内容, 默认选中第一个感知选项
+  watch(douyinTransferScene, () => {
+    douyinReportContents.value = {};
+    const opts = douyinSelectedScene.value?.userRecvPerceptionOptions ?? [];
+    douyinUserRecvPerception.value = opts.length > 0 ? opts[0]! : '';
+  });
 
   /** 支付宝通道商户变更: 加载已配置的转账场景列表 */
   function loadAlipaySceneOptions(channelMchNo: string) {
@@ -165,7 +209,8 @@
       return;
     }
     AlipayTransferSceneApi.list(channelMchNo).then(({ data }) => {
-      alipaySceneOptions.value = data ?? [];
+      // 仅显示已启用的场景
+      alipaySceneOptions.value = (data ?? []).filter((s) => s.enabled);
       // 默认选中 isDefault 场景
       const def = alipaySceneOptions.value.find((s) => s.isDefault);
       if (def?.id) {
@@ -310,7 +355,12 @@
       createFn = TransferApi.alipayCreate;
     } else {
       formRef = douyinFormRef.value;
-      param = { ...douyinForm };
+      param = {
+        ...douyinForm,
+        transferScene: douyinTransferScene.value || undefined,
+        userRecvPerception: douyinUserRecvPerception.value || undefined,
+        reportInfos: buildDouyinReportInfos(),
+      };
       createFn = TransferApi.douyinCreate;
     }
     try {
@@ -409,6 +459,8 @@
   });
 
   onMounted(() => {
+    // 加载抖音转账场景选项(主数据枚举)
+    loadDouyinSceneOptions();
     // 商户端: 当前登录商户固定, 自动填充 mchNo
     MerchantApi.get().then(({ data }) => {
       mchNo.value = data?.mchNo ?? '';
@@ -693,6 +745,39 @@
               <a-col :span="12">
                 <a-form-item :label="$t('payment.transfer.field.reason')" name="reason">
                   <a-input v-model:value="douyinForm.reason" />
+                </a-form-item>
+              </a-col>
+              <!-- 转账场景(抖音主数据枚举, 必填) -->
+              <a-col :span="12">
+                <a-form-item :label="$t('payment.transfer.field.transferScene')" name="transferScene">
+                  <a-select
+                    v-model:value="douyinTransferScene"
+                    :options="douyinSceneOptions.map((s) => ({ label: s.name, value: s.code }))"
+                    :placeholder="$t('common.pleaseSelect')"
+                  />
+                </a-form-item>
+              </a-col>
+              <!-- 用户收款感知(按场景枚举选项) -->
+              <a-col v-if="douyinSelectedScene?.userRecvPerceptionOptions?.length" :span="24">
+                <a-form-item :label="$t('payment.transfer.field.userRecvPerception')">
+                  <a-radio-group v-model:value="douyinUserRecvPerception" button-style="solid">
+                    <a-radio-button
+                      v-for="opt in douyinSelectedScene.userRecvPerceptionOptions"
+                      :key="opt"
+                      :value="opt"
+                    >
+                      {{ opt }}
+                    </a-radio-button>
+                  </a-radio-group>
+                </a-form-item>
+              </a-col>
+              <!-- 转账场景报备信息(按选中场景动态渲染) -->
+              <a-col v-for="infoType in douyinReportInfoTypes" :key="infoType" :span="24">
+                <a-form-item :label="infoType">
+                  <a-input
+                    v-model:value="douyinReportContents[infoType]"
+                    :placeholder="getDouyinContentPlaceholder(infoType)"
+                  />
                 </a-form-item>
               </a-col>
             </a-row>

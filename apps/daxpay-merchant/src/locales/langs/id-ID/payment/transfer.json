@@ -41,7 +41,8 @@
     "tradeNo": "No Transaksi",
     "containerChannel": "Kanal",
     "currency": "Mata Uang",
-    "relationNo": "No Terkait"
+    "relationNo": "No Terkait",
+    "userRecvPerception": "Persepsi Penerimaan"
   },
   "section": {
     "identity": "Identitas",

@@ -87,7 +87,8 @@
     "payeeLoginName": "Payee Alipay login name (email/phone)",
     "bizTransferNoAuto": "Auto-generated if empty",
     "reportInfoContent": "Leave blank for default -",
-    "reason": "Enter the transfer reason"
+    "reason": "Enter the transfer reason",
+    "title": "Transfer title, visible to the payee"
   },
   "targetMch": "Merchant",
   "targetMchHelp": "Merchant to transfer on behalf of",
@@ -103,7 +104,9 @@
     "payeeAccountRequired": "Please enter the payee account",
     "payeeNameRequired": "Payee name is required when amount is 2000 CNY or above",
     "payeeNameForbidden": "Payee name is not allowed when amount is below 0.3 CNY",
-    "targetMchRequired": "Please select a target merchant"
+    "targetMchRequired": "Please select a target merchant",
+    "titleRequired": "Please enter the transfer title (visible to the payee)",
+    "reportInfoRequired": "Please fill in all transfer scene report fields"
   },
   "confirmUrlCopied": "Link copied",
   "confirmUrlCopyFailed": "Copy failed",
@@ -111,5 +114,14 @@
   "confirmUrlTip": "Send the confirmation link to the payee, who must open it in WeChat",
   "submitWithAmount": "Transfer ¥{amount}",
   "amountLimitTip": "Min ¥0.01 per transfer",
-  "btnGenerate": "Generate"
+  "btnGenerate": "Generate",
+  "scanGetOpenId": "Scan to Get",
+  "scanOpenIdTitle": "Scan to Get Payee OpenId",
+  "scanOpenIdTip": "Ask the payee to scan with WeChat; OpenId will be filled in automatically after web authorization",
+  "scanOpenIdSuccess": "Payee OpenId obtained",
+  "scanOpenIdFailed": "Authorization expired, please regenerate the QR code",
+  "scanMchRequired": "Please select a target merchant first",
+  "scanChannelMchRequired": "Please select a channel merchant first",
+  "scanAppNotConfigured": "Transfer app not configured for this channel merchant, please configure it first",
+  "sceneNotConfigured": "Transfer scene and app not configured for this channel merchant, please configure transfer config under the channel merchant menu"
 }

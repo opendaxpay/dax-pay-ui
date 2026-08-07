@@ -41,7 +41,8 @@
     "tradeNo": "เลขธุรกรรม",
     "containerChannel": "ช่องทาง",
     "currency": "สกุลเงิน",
-    "relationNo": "เลขที่เกี่ยวข้อง"
+    "relationNo": "เลขที่เกี่ยวข้อง",
+    "userRecvPerception": "การรับรู้ผู้รับ"
   },
   "section": {
     "identity": "ข้อมูลประจำตัว",

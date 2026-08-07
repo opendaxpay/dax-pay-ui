@@ -41,7 +41,8 @@
     "tradeNo": "No Transaksi",
     "containerChannel": "Saluran",
     "currency": "Mata Wang",
-    "relationNo": "No Berkaitan"
+    "relationNo": "No Berkaitan",
+    "userRecvPerception": "Persepsi Penerimaan"
   },
   "section": {
     "identity": "Identiti",

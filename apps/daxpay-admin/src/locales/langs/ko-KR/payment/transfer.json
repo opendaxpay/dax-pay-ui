@@ -87,7 +87,8 @@
     "payeeLoginName": "수취인 Alipay 로그인 계정(이메일/전화번호)",
     "bizTransferNoAuto": "비우면 자동 생성",
     "reportInfoContent": "비워두면 기본값 - 사용",
-    "reason": "이체 사유를 입력하세요"
+    "reason": "이체 사유를 입력하세요",
+    "title": "이체 제목, 수취인에게 표시됩니다"
   },
   "targetMch": "상점",
   "targetMchHelp": "대행 송금할 가맹점 선택",
@@ -103,7 +104,9 @@
     "payeeAccountRequired": "수취인 계정을 입력해 주세요",
     "payeeNameRequired": "금액이 2000위안 이상일 때 수취인 이름은 필수입니다",
     "payeeNameForbidden": "금액이 0.3위안 미만일 때 수취인 이름을 입력할 수 없습니다",
-    "targetMchRequired": "대상 가맹점을 선택해 주세요"
+    "targetMchRequired": "대상 가맹점을 선택해 주세요",
+    "titleRequired": "이체 제목을 입력해 주세요(수취인에게 표시됩니다)",
+    "reportInfoRequired": "이체 시나리오 보고 항목을 모두 입력해 주세요"
   },
   "confirmUrlCopied": "링크 복사됨",
   "confirmUrlCopyFailed": "복사 실패",
@@ -111,5 +114,14 @@
   "confirmUrlTip": "확인 링크를 수취인에게 보내주세요. WeChat에서 열어야 합니다",
   "submitWithAmount": "송금 ¥{amount}",
   "amountLimitTip": "건당 최소 0.01위안",
-  "btnGenerate": "생성"
+  "btnGenerate": "생성",
+  "scanGetOpenId": "스캔하여 가져오기",
+  "scanOpenIdTitle": "수취인 OpenId 스캔하여 가져오기",
+  "scanOpenIdTip": "수취인 본인의 위챗으로 스캔하세요. 웹 인증 완료 후 OpenId가 자동 입력됩니다",
+  "scanOpenIdSuccess": "수취인 OpenId를 가져왔습니다",
+  "scanOpenIdFailed": "인증이 만료되었습니다. QR 코드를 다시 생성해 주세요",
+  "scanMchRequired": "먼저 대상 가맹점을 선택하세요",
+  "scanChannelMchRequired": "먼저 채널 가맹점을 선택하세요",
+  "scanAppNotConfigured": "이 채널 가맹점에 이체 시작 앱이 설정되지 않았습니다. 먼저 설정하세요",
+  "sceneNotConfigured": "이 채널 가맹점에 이체 시나리오와 시작 앱이 설정되지 않았습니다. 채널 가맹점 메뉴에서 설정하세요"
 }
