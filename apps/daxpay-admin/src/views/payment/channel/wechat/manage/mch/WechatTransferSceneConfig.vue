@@ -10,7 +10,7 @@
 
   import { WechatDirectChannelMerchantApi } from '#/api/payment/channel/wechat/channel-merchant.api';
   import { WechatTransferConfigApi } from '#/api/payment/channel/wechat/transfer-config.api';
-  import { WxMchAppApi, type WxMchApp } from '#/api/payment/wx/mch-app.api';
+  import { type WxMchApp, WxMchAppApi } from '#/api/payment/wx/mch-app.api';
   import { useMessage } from '#/hooks/useMessage';
 
   defineOptions({ name: 'WechatTransferSceneConfig' });
@@ -25,7 +25,7 @@
   const mchNo = ref('');
   const channelMchNo = ref('');
   // 当前已保存的配置
-  const currentConfig = ref<WechatTransferConfig | null>(null);
+  const currentConfig = ref<null | WechatTransferConfig>(null);
   // 编辑中的转账场景
   const editingScene = ref('');
   // 编辑中的发起应用引用
@@ -112,9 +112,7 @@
   /** 开始编辑 */
   function startEdit() {
     editingScene.value = currentConfig.value?.transferScene || '';
-    editingAppRefId.value = currentConfig.value?.transferAppRefId
-      ? String(currentConfig.value.transferAppRefId)
-      : '';
+    editingAppRefId.value = currentConfig.value?.transferAppRefId ? String(currentConfig.value.transferAppRefId) : '';
     editing.value = true;
   }
 
@@ -150,14 +148,10 @@
     :styles="{ footer: { textAlign: 'right' } }"
     destroy-on-hidden
   >
-    <a-spin :spinning="loading">
+    <a-spin :spinning="loading || saving">
       <!-- 提示条 -->
       <div class="mb-6">
-        <a-alert
-          type="info"
-          banner
-          :message="$t('payment.channel.wechatPay.transferConfigTipDesc')"
-        />
+        <a-alert type="info" banner :message="$t('payment.channel.wechatPay.transferConfigTipDesc')" />
       </div>
 
       <!-- 配置区(查看时禁用, 编辑时可选) -->
@@ -181,7 +175,13 @@
             :extra="$t('payment.channel.wechatPay.transferAppOfficialOnly')"
           >
             <a-select
-              :value="editing ? editingAppRefId : (currentConfig?.transferAppRefId ? String(currentConfig.transferAppRefId) : '')"
+              :value="
+                editing
+                  ? editingAppRefId
+                  : currentConfig?.transferAppRefId
+                    ? String(currentConfig.transferAppRefId)
+                    : ''
+              "
               :disabled="!editing"
               :options="appSelectOptions"
               :placeholder="$t('payment.channel.wechatPay.transferAppPlaceholder')"
