@@ -125,10 +125,16 @@
   "transferSceneReportInfoContent": "上報資訊內容",
   "transferSceneSetDefaultConfirm": "確認將此場景設為預設? 發起轉賬未指定場景時將使用預設場景",
   "transferSceneDefaultTip": "一個通道商戶只能有一個預設場景",
-  "transferScenePresetTip": "共8個轉賬場景預置, 最多啟用3個, 預設場景必須啟用。發起轉賬時僅可選擇已啟用的場景。",
+  "transferScenePresetTip": "最多啟用 3 個轉賬場景, 預設場景必須啟用。發起轉賬時僅可選擇已啟用的場景。",
   "transferSceneEnableConfirm": "確認啟用此轉賬場景? 啟用後發起轉賬時可選該場景",
   "transferSceneDisableConfirm": "確認停用此轉賬場景? 停用後發起轉賬時不可選擇該場景",
   "transferSceneCannotDisableDefault": "預設場景不能停用, 請先將其他場景設為預設",
   "transferSceneReportFields": "報備欄位",
-  "cardTransferConfig": "轉帳設定"
+  "cardTransferConfig": "轉帳設定",
+  "cardTransferApp": "轉賬應用",
+  "cardTransferAppDesc": "綁定該通道商戶發起轉賬時使用的支付寶應用(轉出應用)",
+  "transferApp": "轉出應用",
+  "transferAppPlaceholder": "請選擇轉賬轉出應用",
+  "transferConfigTipDesc": "綁定轉賬轉出應用: 發起轉賬時將使用該應用的支付寶AppId與密鑰, 需先在「應用管理」中設定應用及密鑰",
+  "transferAppNotConfigured": "尚未綁定轉賬應用, 點擊「編輯」選擇轉出應用"
 }

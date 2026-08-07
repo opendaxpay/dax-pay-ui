@@ -13,6 +13,8 @@
 
   import AlipayChannelMerchantBasicInfo from './AlipayChannelMerchantBasicInfo.vue';
   import AlipayMchAppCapability from './AlipayMchAppCapability.vue';
+  // 转账应用配置(一对一绑定转账转出应用, 仅直连商户)
+  import AlipayTransferConfig from './AlipayTransferConfig.vue';
   // 转账场景配置(2026 新商户转账必配,仅直连商户)
   import AlipayTransferSceneConfig from './AlipayTransferSceneConfig.vue';
 
@@ -32,6 +34,8 @@
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
   // 转账场景配置抽屉
   const transferSceneRef = ref<InstanceType<typeof AlipayTransferSceneConfig>>();
+  // 转账应用配置抽屉
+  const transferAppRef = ref<InstanceType<typeof AlipayTransferConfig>>();
 
   /** 功能卡片配置 */
   const functionCards = computed(() => [
@@ -76,6 +80,12 @@
           icon: 'ant-design:api-outlined',
           description: $t('payment.channel.alipayMchManage.cardCapabilityBindingDesc'),
         },
+        {
+          key: 'transferApp',
+          title: $t('payment.merchant.channelMerchant.cardTransferApp'),
+          icon: 'ant-design:swap-outlined',
+          description: $t('payment.merchant.channelMerchant.cardTransferAppDesc'),
+        },
       ],
     },
   ]);
@@ -118,6 +128,11 @@
     // 转账场景配置
     if (card.key === 'transferScene') {
       transferSceneRef.value?.open(mchNo.value, channelMchNo.value);
+      return;
+    }
+    // 转账应用配置
+    if (card.key === 'transferApp') {
+      transferAppRef.value?.open(mchNo.value, channelMchNo.value);
       return;
     }
     if (card.key === 'capabilityBinding') {
@@ -199,6 +214,8 @@
     <AlipayMchAppCapability ref="capabilityRef" />
 
     <AlipayTransferSceneConfig ref="transferSceneRef" />
+
+    <AlipayTransferConfig ref="transferAppRef" />
   </div>
 </template>
 

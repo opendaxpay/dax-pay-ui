@@ -138,5 +138,16 @@
   "uploadPublicKey": "Unggah Public Key",
   "uploadSuccess": "{name} diunggah",
   "cardCapabilityBinding": "Pengaturan Aplikasi Pembayaran",
-  "manageTitleLeshua": "Manajemen Pedagang Leshua"
+  "manageTitleLeshua": "Manajemen Pedagang Leshua",
+  "transferScenePresetTip": "Maksimal 3 adegan transfer dapat diaktifkan. Adegan default harus diaktifkan. Hanya adegan aktif yang dapat dipilih saat transfer.",
+  "transferSceneEnableConfirm": "Aktifkan adegan transfer ini? Adegan aktif dapat dipilih saat melakukan transfer",
+  "transferSceneDisableConfirm": "Nonaktifkan adegan transfer ini? Adegan nonaktif tidak dapat dipilih saat transfer",
+  "transferSceneCannotDisableDefault": "Adegan default tidak dapat dinonaktifkan. Tetapkan adegan lain sebagai default terlebih dahulu",
+  "transferSceneReportFields": "Bidang Laporan",
+  "cardTransferApp": "Aplikasi Transfer",
+  "cardTransferAppDesc": "Ikat aplikasi Alipay yang digunakan untuk transfer keluar saat melakukan transfer",
+  "transferApp": "Aplikasi Pengirim",
+  "transferAppPlaceholder": "Pilih aplikasi pengirim transfer",
+  "transferConfigTipDesc": "Ikat aplikasi pengirim transfer: AppId dan kunci Alipay aplikasi ini akan digunakan saat transfer. Konfigurasikan aplikasi dan kunci di 'Manajemen Aplikasi' terlebih dahulu",
+  "transferAppNotConfigured": "Belum ada aplikasi transfer yang diikat, klik 'Edit' untuk memilih"
 }

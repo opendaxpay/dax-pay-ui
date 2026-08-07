@@ -146,5 +146,16 @@
   "transferSceneName": "转账场景名称",
   "transferSceneReportInfoContent": "上报信息内容",
   "transferSceneSetDefaultConfirm": "确认将此场景设为默认? 发起转账未指定场景时将使用默认场景",
-  "transferSceneDefaultTip": "一个通道商户只能有一个默认场景"
+  "transferSceneDefaultTip": "一个通道商户只能有一个默认场景",
+  "transferScenePresetTip": "最多启用 3 个转账场景, 默认场景必须启用。发起转账时仅可选择已启用的场景。",
+  "transferSceneEnableConfirm": "确认启用此转账场景? 启用后发起转账时可选该场景",
+  "transferSceneDisableConfirm": "确认禁用此转账场景? 禁用后发起转账时不可选择该场景",
+  "transferSceneCannotDisableDefault": "默认场景不能禁用, 请先将其他场景设为默认",
+  "transferSceneReportFields": "报备字段",
+  "cardTransferApp": "转账应用",
+  "cardTransferAppDesc": "绑定该通道商户发起转账时使用的支付宝应用(转出应用)",
+  "transferApp": "转出应用",
+  "transferAppPlaceholder": "请选择转账转出应用",
+  "transferConfigTipDesc": "绑定转账转出应用: 发起转账时将使用该应用的支付宝AppId与密钥, 需先在「应用管理」中配置应用及密钥",
+  "transferAppNotConfigured": "尚未绑定转账应用, 点击「编辑」选择转出应用"
 }

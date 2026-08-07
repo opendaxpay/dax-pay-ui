@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-  import type { AlipayTransferSceneConfig } from '#/api/payment/channel/alipay/transfer-scene.api';
+  import type {
+    AlipayTransferSceneConfig,
+    AlipayTransferSceneOption,
+  } from '#/api/payment/channel/alipay/transfer-scene.api';
 
-  import { ref } from 'vue';
+  import { computed, ref } from 'vue';
 
   import { $t } from '@vben/locales';
-
-  import { IconifyIcon } from '@vben-core/icons';
 
   import { AlipayTransferSceneApi } from '#/api/payment/channel/alipay/transfer-scene.api';
   import { useMessage } from '#/hooks/useMessage';
@@ -20,19 +21,10 @@
   const mchNo = ref('');
   const channelMchNo = ref('');
   const loading = ref(false);
+  // 场景选项(主数据枚举投影, 8个场景含报备字段元数据)
+  const sceneOptions = ref<AlipayTransferSceneOption[]>([]);
+  // 已操作过的场景配置行(状态映射: sceneName -> config)
   const dataList = ref<AlipayTransferSceneConfig[]>([]);
-
-  // 场景图标(与枚举固定顺序对齐: 现金营销/企业退款/佣金报酬/业务结算/二手回收/公益补助/行政补贴和退款/保险理赔)
-  const SCENE_ICONS = [
-    'ant-design:money-collect-outlined',
-    'ant-design:rollback-outlined',
-    'ant-design:account-book-outlined',
-    'ant-design:pay-circle-outlined',
-    'ant-design:recycle-outlined',
-    'ant-design:heart-outlined',
-    'ant-design:bank-outlined',
-    'ant-design:safety-outlined',
-  ];
 
   /** 打开列表(由商户管理页卡片点击调用) */
   function open(no: string, cMchNo: string) {
@@ -42,32 +34,42 @@
     loadData();
   }
 
-  /** 加载场景列表 */
+  /** 加载场景选项 + 已配置行(并行) */
   async function loadData() {
     loading.value = true;
     try {
-      const { data } = await AlipayTransferSceneApi.list(
-        mchNo.value,
-        channelMchNo.value,
-      );
-      dataList.value = data ?? [];
+      const [options, configs] = await Promise.all([
+        AlipayTransferSceneApi.findSceneOptions(),
+        AlipayTransferSceneApi.list(mchNo.value, channelMchNo.value),
+      ]);
+      sceneOptions.value = options.data ?? [];
+      dataList.value = configs.data ?? [];
     } finally {
       loading.value = false;
     }
   }
 
-  /** 切换启用状态(弹窗二次确认, 默认场景禁止禁用) */
-  function handleToggleEnabled(
-    row: AlipayTransferSceneConfig,
-    enabled: boolean,
-  ) {
-    const id = row.id;
-    if (!id) return;
+  // 最大启用场景数(与后端 AlipayTransferSceneConfigService.MAX_ENABLED 保持一致)
+  const MAX_ENABLED_SCENES = 3;
+
+  /** 根据场景名查状态行(无行即未操作过) */
+  function getConfig(sceneName: string): AlipayTransferSceneConfig | undefined {
+    return dataList.value.find((item) => item.sceneName === sceneName);
+  }
+
+  /** 已启用的场景数量 */
+  const enabledCount = computed(() => dataList.value.filter((item) => item.enabled).length);
+  /** 是否已达启用上限(达到后未启用的场景开关禁用) */
+  const isEnabledLimit = computed(() => enabledCount.value >= MAX_ENABLED_SCENES);
+
+  /** 切换启用状态(弹窗二次确认, 默认场景禁止禁用; 主数据模式无行按需创建) */
+  function handleToggleEnabled(option: AlipayTransferSceneOption, enabled: boolean) {
+    const sceneName = option.sceneName;
+    if (!sceneName) return;
+    const config = getConfig(sceneName);
     // 默认场景不允许禁用, 直接提示不弹确认
-    if (!enabled && row.isDefault) {
-      message.warning(
-        $t('payment.merchant.channelMerchant.transferSceneCannotDisableDefault'),
-      );
+    if (!enabled && config?.isDefault) {
+      message.warning($t('payment.merchant.channelMerchant.transferSceneCannotDisableDefault'));
       return;
     }
     // 启用/禁用二次确认
@@ -78,24 +80,22 @@
           : 'payment.merchant.channelMerchant.transferSceneDisableConfirm',
       ),
       onOk: async () => {
-        await AlipayTransferSceneApi.setEnabled(mchNo.value, id, enabled);
+        await AlipayTransferSceneApi.setEnabled(mchNo.value, channelMchNo.value, sceneName, enabled);
         message.success($t('common.saveSuccess'));
         await loadData();
       },
     });
   }
 
-  /** 设为默认(二次确认, 后端自动启用) */
-  function handleSetDefault(row: AlipayTransferSceneConfig) {
-    const id = row.id;
-    if (!id) return;
+  /** 设为默认(二次确认, 后端自动启用并按需创建行) */
+  function handleSetDefault(option: AlipayTransferSceneOption) {
+    const sceneName = option.sceneName;
+    if (!sceneName) return;
     // 设默认确认
     confirm({
-      content: $t(
-        'payment.merchant.channelMerchant.transferSceneSetDefaultConfirm',
-      ),
+      content: $t('payment.merchant.channelMerchant.transferSceneSetDefaultConfirm'),
       onOk: async () => {
-        await AlipayTransferSceneApi.setDefault(mchNo.value, id);
+        await AlipayTransferSceneApi.setDefault(mchNo.value, channelMchNo.value, sceneName);
         message.success($t('common.saveSuccess'));
         await loadData();
       },
@@ -110,78 +110,60 @@
   <a-drawer
     v-model:open="listVisible"
     :title="$t('payment.merchant.channelMerchant.transferSceneManage')"
-    :width="980"
+    :width="1200"
     destroy-on-hidden
   >
     <div class="mb-3">
-      <a-alert
-        type="info"
-        :show-icon="true"
-        :message="
-          $t('payment.merchant.channelMerchant.transferScenePresetTip')
-        "
-      />
+      <a-alert type="info" :show-icon="true" :message="$t('payment.merchant.channelMerchant.transferScenePresetTip')" />
     </div>
     <a-spin :spinning="loading">
-      <!-- 卡片网格(每行2张, 按枚举固定顺序) -->
-      <div v-if="dataList.length" class="scene-grid">
+      <!-- 卡片网格(每行2张, 以场景选项枚举为基准渲染) -->
+      <div v-if="sceneOptions.length > 0" class="scene-grid">
         <div
-          v-for="(scene, idx) in dataList"
-          :key="scene.id ?? idx"
+          v-for="option in sceneOptions"
+          :key="option.sceneName"
           class="scene-card"
-          :class="{ 'scene-card-muted': !scene.enabled }"
+          :class="{ 'scene-card-muted': !getConfig(option.sceneName!)?.enabled }"
         >
-          <!-- 卡片头部: 图标 + 场景名 + 默认标记 + 启用开关 -->
+          <!-- 卡片头部: 场景名 + 默认标记 + 启用开关 -->
           <div class="scene-card-header">
             <div class="scene-card-title">
-              <span
-                class="scene-card-icon"
-                :class="{ 'scene-card-icon-muted': !scene.enabled }"
-              >
-                <IconifyIcon
-                  :icon="SCENE_ICONS[idx % SCENE_ICONS.length] ?? 'ant-design:transaction-outlined'"
-                  class="h-5 w-5"
-                />
-              </span>
-              <span class="scene-card-name">{{ scene.sceneName }}</span>
-              <a-tag v-if="scene.isDefault" color="green">
+              <span class="scene-card-name">{{ option.sceneName }}</span>
+              <a-tag v-if="getConfig(option.sceneName!)?.isDefault" color="green">
                 {{ $t('common.isDefault') }}
               </a-tag>
             </div>
+            <!-- 已达启用上限: 未启用的开关禁用并提示原因 -->
+            <a-tooltip
+              v-if="!getConfig(option.sceneName!)?.enabled && isEnabledLimit"
+              :title="$t('payment.merchant.channelMerchant.transferScenePresetTip')"
+            >
+              <a-switch :checked="false" disabled />
+            </a-tooltip>
             <a-switch
-              :checked="scene.enabled"
-              @change="(val: boolean) => handleToggleEnabled(scene, val)"
+              v-else
+              :checked="getConfig(option.sceneName!)?.enabled ?? false"
+              @change="(val: boolean) => handleToggleEnabled(option, val)"
             />
           </div>
           <!-- 报备字段明细 -->
           <div class="scene-card-body">
             <div class="scene-card-section-title">
-              <IconifyIcon icon="ant-design:profile-outlined" class="h-3.5 w-3.5" />
-              <span>
-                {{ $t('payment.merchant.channelMerchant.transferSceneReportFields') }}
-              </span>
+              {{ $t('payment.merchant.channelMerchant.transferSceneReportFields') }}
             </div>
-            <div
-              v-for="(type, fi) in scene.reportInfoTypes"
-              :key="type"
-              class="scene-field-item"
-            >
+            <div v-for="(type, fi) in option.reportInfoTypes" :key="type" class="scene-field-item">
               <div class="scene-field-name">{{ type }}</div>
-              <div class="scene-field-desc">
-                {{ scene.reportInfoDescriptions?.[fi] || '-' }}
+              <div class="scene-field-desc" :title="option.reportInfoDescriptions?.[fi] || '-'">
+                {{ option.reportInfoDescriptions?.[fi] || '-' }}
               </div>
             </div>
           </div>
           <!-- 卡片底部: 启用且非默认时显示设为默认 -->
           <div
-            v-if="scene.enabled && !scene.isDefault"
+            v-if="getConfig(option.sceneName!)?.enabled && !getConfig(option.sceneName!)?.isDefault"
             class="scene-card-footer"
           >
-            <a-button
-              type="link"
-              size="small"
-              @click="handleSetDefault(scene)"
-            >
+            <a-button type="link" size="small" @click="handleSetDefault(option)">
               {{ $t('common.setDefault') }}
             </a-button>
           </div>
@@ -233,23 +215,6 @@
     min-width: 0;
   }
 
-  .scene-card-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    background: #e6f4ff;
-    color: #1677ff;
-    flex-shrink: 0;
-  }
-
-  .scene-card-icon-muted {
-    background: #f0f0f0;
-    color: #999;
-  }
-
   .scene-card-name {
     font-size: 15px;
     font-weight: 600;
@@ -264,40 +229,39 @@
   }
 
   .scene-card-section-title {
-    display: flex;
-    align-items: center;
-    gap: 4px;
     font-size: 12px;
     font-weight: 600;
     color: #909399;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
   }
 
   .scene-field-item {
-    padding: 8px 10px;
-    border-radius: 8px;
-    background: #f5f7fa;
-    margin-bottom: 6px;
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    padding: 4px 0;
   }
 
   .scene-field-name {
+    flex-shrink: 0;
     font-size: 13px;
     font-weight: 500;
     color: #303133;
   }
 
   .scene-field-desc {
+    flex: 1;
     font-size: 12px;
     color: #909399;
-    margin-top: 2px;
     line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .scene-card-footer {
     display: flex;
     justify-content: flex-end;
-    padding-top: 8px;
-    border-top: 1px dashed #e5e7eb;
     margin-top: 8px;
   }
 </style>

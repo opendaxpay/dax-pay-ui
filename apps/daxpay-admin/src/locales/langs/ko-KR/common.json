@@ -83,6 +83,6 @@
   "nonceMissing": "재생 방지 확인 매개변수가 누락되었습니다.",
   "retry": "재시도",
   "remark": "비고",
-  "isDefault": "기본 여부",
+  "isDefault": "기본",
   "setDefault": "기본으로 설정"
 }

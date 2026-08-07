@@ -83,6 +83,6 @@
   "nonceMissing": "請求缺少防重放驗證引數",
   "retry": "重試",
   "remark": "備註",
-  "isDefault": "是否預設",
+  "isDefault": "預設",
   "setDefault": "設為預設"
 }

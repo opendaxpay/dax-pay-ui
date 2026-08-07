@@ -125,10 +125,16 @@
   "transferSceneReportInfoContent": "報告情報内容",
   "transferSceneSetDefaultConfirm": "このシーンをデフォルトに設定しますか? 振込時にシーン未指定の場合はデフォルトが使用されます",
   "transferSceneDefaultTip": "チャネル加盟店ごとにデフォルトは1つのみです",
-  "transferScenePresetTip": "8つの送金シーンがプリセットされています。最大3つまで有効化できます。デフォルトシーンは有効化必須です。送金時に選択できるのは有効なシーンのみです。",
+  "transferScenePresetTip": "最大3つまで振込シーンを有効化できます。デフォルトシーンは有効化必須です。振込時に選択できるのは有効なシーンのみです。",
   "transferSceneEnableConfirm": "この振込シーンを有効にしますか? 有効化すると振込時に選択できます",
   "transferSceneDisableConfirm": "この振込シーンを無効にしますか? 無効化すると振込時に選択できません",
   "transferSceneCannotDisableDefault": "デフォルトシーンは無効化できません。先に他のシーンをデフォルトに設定してください",
   "transferSceneReportFields": "申告フィールド",
-  "cardTransferConfig": "振込設定"
+  "cardTransferConfig": "振込設定",
+  "cardTransferApp": "振込アプリ",
+  "cardTransferAppDesc": "振込時に使用する転出元のAlipayアプリをバインドします",
+  "transferApp": "振込元アプリ",
+  "transferAppPlaceholder": "振込元アプリを選択してください",
+  "transferConfigTipDesc": "振込元アプリをバインド: 振込時にはこのアプリのAlipay AppIdと鍵を使用します。先に「アプリ管理」でアプリと鍵を設定してください",
+  "transferAppNotConfigured": "振込アプリが未バインドです。「編集」から選択してください"
 }

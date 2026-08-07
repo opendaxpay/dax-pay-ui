@@ -125,10 +125,16 @@
   "transferSceneReportInfoContent": "Report Info Content",
   "transferSceneSetDefaultConfirm": "Set this scene as default? The default scene will be used when no scene is specified",
   "transferSceneDefaultTip": "Only one default scene per channel merchant",
-  "transferScenePresetTip": "8 transfer scenes are preset. Up to 3 can be enabled. Default scene must be enabled. Only enabled scenes are selectable.",
+  "transferScenePresetTip": "Up to 3 transfer scenes can be enabled. The default scene must be enabled. Only enabled scenes are selectable when initiating transfers.",
   "transferSceneEnableConfirm": "Enable this transfer scene? Enabled scenes are selectable when initiating transfers",
   "transferSceneDisableConfirm": "Disable this transfer scene? Disabled scenes cannot be selected when initiating transfers",
   "transferSceneCannotDisableDefault": "Default scene cannot be disabled. Set another scene as default first",
   "transferSceneReportFields": "Report Fields",
-  "cardTransferConfig": "Transfer Config"
+  "cardTransferConfig": "Transfer Config",
+  "cardTransferApp": "Transfer App",
+  "cardTransferAppDesc": "Bind the Alipay app used to transfer out when initiating transfers",
+  "transferApp": "Transfer-out App",
+  "transferAppPlaceholder": "Please select the transfer-out app",
+  "transferConfigTipDesc": "Bind the transfer-out app: its Alipay AppId and keys will be used when initiating transfers. Configure the app and keys in 'App Management' first",
+  "transferAppNotConfigured": "No transfer app bound yet, click 'Edit' to select one"
 }

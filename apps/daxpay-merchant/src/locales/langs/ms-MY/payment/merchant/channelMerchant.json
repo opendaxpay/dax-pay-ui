@@ -138,5 +138,16 @@
   "uploadPublicKey": "Muat Naik Public Key",
   "uploadSuccess": "{name} dimuat naik",
   "cardCapabilityBinding": "Persediaan Apl Pembayaran",
-  "manageTitleLeshua": "Pengurusan Pedagang Leshua"
+  "manageTitleLeshua": "Pengurusan Pedagang Leshua",
+  "transferScenePresetTip": "Maksimum 3 babak pemindahan boleh diaktifkan. Babak lalai mesti diaktifkan. Hanya babak aktif boleh dipilih semasa pemindahan.",
+  "transferSceneEnableConfirm": "Aktifkan babak pemindahan ini? Babak aktif boleh dipilih semasa pemindahan",
+  "transferSceneDisableConfirm": "Nyahaktifkan babak pemindahan ini? Babak tidak aktif tidak boleh dipilih semasa pemindahan",
+  "transferSceneCannotDisableDefault": "Babak lalai tidak boleh dinyahaktifkan. Tetapkan babak lain sebagai lalai dahulu",
+  "transferSceneReportFields": "Medan Laporan",
+  "cardTransferApp": "Apl Pemindahan",
+  "cardTransferAppDesc": "Ikat apl Alipay yang digunakan untuk pemindahan keluar semasa memulakan pindahan",
+  "transferApp": "Apl Pemindahan Keluar",
+  "transferAppPlaceholder": "Sila pilih apl pemindahan keluar",
+  "transferConfigTipDesc": "Ikat apl pemindahan keluar: AppId dan kunci Alipay apl ini akan digunakan semasa pindahan. Konfigurasikan apl dan kunci dalam 'Pengurusan Apl' terlebih dahulu",
+  "transferAppNotConfigured": "Belum mengikat apl pindahan, klik 'Edit' untuk memilih"
 }

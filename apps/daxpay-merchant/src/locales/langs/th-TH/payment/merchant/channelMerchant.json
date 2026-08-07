@@ -138,5 +138,16 @@
   "uploadPublicKey": "อัปโหลด Public Key",
   "uploadSuccess": "อัปโหลด {name} สำเร็จ",
   "cardCapabilityBinding": "ตั้งค่าแอปชำระเงิน",
-  "manageTitleLeshua": "การจัดการพ่อค้า Leshua"
+  "manageTitleLeshua": "การจัดการพ่อค้า Leshua",
+  "transferScenePresetTip": "เปิดใช้งานได้สูงสุด 3 สถานการณ์การโอน สถานการณ์เริ่มต้นต้องเปิดใช้งาน เลือกได้เฉพาะสถานการณ์ที่เปิดใช้งานเท่านั้นเมื่อโอนเงิน",
+  "transferSceneEnableConfirm": "เปิดใช้งานสถานการณ์การโอนนี้หรือไม่? สถานการณ์ที่เปิดใช้งานสามารถเลือกได้เมื่อโอนเงิน",
+  "transferSceneDisableConfirm": "ปิดใช้งานสถานการณ์การโอนนี้หรือไม่? สถานการณ์ที่ปิดใช้งานจะไม่สามารถเลือกได้เมื่อโอนเงิน",
+  "transferSceneCannotDisableDefault": "ไม่สามารถปิดใช้งานสถานการณ์เริ่มต้นได้ โปรดตั้งค่าสถานการณ์อื่นเป็นค่าเริ่มต้นก่อน",
+  "transferSceneReportFields": "ฟิลด์รายงาน",
+  "cardTransferApp": "แอปโอนเงิน",
+  "cardTransferAppDesc": "ผูกแอป Alipay ที่ใช้โอนเงินออกเมื่อทำการโอน",
+  "transferApp": "แอปที่ใช้โอนออก",
+  "transferAppPlaceholder": "เลือกแอปที่ใช้โอนออก",
+  "transferConfigTipDesc": "ผูกแอปที่ใช้โอนออก: AppId และคีย์ Alipay ของแอปนี้จะถูกใช้เมื่อโอนเงิน ตั้งค่าแอปและคีย์ใน 'การจัดการแอป' ก่อน",
+  "transferAppNotConfigured": "ยังไม่ได้ผูกแอปโอนเงิน คลิก 'แก้ไข' เพื่อเลือก"
 }

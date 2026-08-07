@@ -84,6 +84,6 @@
   "retry": "재시도",
   "merchantSuffix": "가맹점",
   "remark": "비고",
-  "isDefault": "기본 여부",
+  "isDefault": "기본",
   "setDefault": "기본으로 설정"
 }

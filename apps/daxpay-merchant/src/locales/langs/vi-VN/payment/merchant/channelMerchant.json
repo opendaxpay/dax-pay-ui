@@ -138,5 +138,16 @@
   "uploadPublicKey": "Tải lên public key",
   "uploadSuccess": "{name} đã tải lên",
   "cardCapabilityBinding": "Thiết lập ứng dụng thanh toán",
-  "manageTitleLeshua": "Quản lý thương gia Leshua"
+  "manageTitleLeshua": "Quản lý thương gia Leshua",
+  "transferScenePresetTip": "Tối đa 3 cảnh chuyển khoản có thể kích hoạt. Cảnh mặc định phải được kích hoạt. Chỉ cảnh đã kích hoạt mới có thể chọn khi chuyển khoản.",
+  "transferSceneEnableConfirm": "Kích hoạt cảnh chuyển khoản này? Cảnh đã kích hoạt có thể chọn khi chuyển khoản",
+  "transferSceneDisableConfirm": "Vô hiệu hóa cảnh chuyển khoản này? Cảnh đã vô hiệu không thể chọn khi chuyển khoản",
+  "transferSceneCannotDisableDefault": "Không thể vô hiệu hóa cảnh mặc định. Hãy đặt cảnh khác làm mặc định trước",
+  "transferSceneReportFields": "Trường Báo Cáo",
+  "cardTransferApp": "Ứng dụng chuyển khoản",
+  "cardTransferAppDesc": "Liên kết ứng dụng Alipay dùng để chuyển tiền ra khi thực hiện chuyển khoản",
+  "transferApp": "Ứng dụng chuyển ra",
+  "transferAppPlaceholder": "Chọn ứng dụng chuyển khoản",
+  "transferConfigTipDesc": "Liên kết ứng dụng chuyển ra: AppId và khóa Alipay của ứng dụng này sẽ được dùng khi chuyển khoản. Cấu hình ứng dụng và khóa trong 'Quản lý ứng dụng' trước",
+  "transferAppNotConfigured": "Chưa liên kết ứng dụng chuyển khoản, bấm 'Chỉnh sửa' để chọn"
 }
