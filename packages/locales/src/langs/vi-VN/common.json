@@ -21,5 +21,6 @@
   "yes": "Đúng",
   "no": "KHÔNG",
   "showSearchPanel": "Hiển thị bảng tìm kiếm",
-  "hideSearchPanel": "Ẩn bảng tìm kiếm"
+  "hideSearchPanel": "Ẩn bảng tìm kiếm",
+  "default": "Mặc định"
 }

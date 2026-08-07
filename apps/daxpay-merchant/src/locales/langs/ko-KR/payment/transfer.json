@@ -80,7 +80,8 @@
     "payeeUserId": "수취인 Alipay 사용자 ID(2088로 시작)",
     "payeeOpenId": "수취인 Alipay OpenID",
     "payeeLoginName": "수취인 Alipay 로그인 계정(이메일/전화번호)",
-    "bizTransferNoAuto": "비우면 자동 생성"
+    "bizTransferNoAuto": "비우면 자동 생성",
+    "reportInfoContent": "비워두면 기본값 - 사용"
   },
   "targetMch": "대상 가맹점",
   "channelMch": "채널 가맹점",
@@ -95,5 +96,9 @@
     "payeeAccountRequired": "수취인 계정을 입력해 주세요",
     "payeeNameRequired": "금액이 2000위안 이상일 때 수취인 이름은 필수입니다",
     "payeeNameForbidden": "금액이 0.3위안 미만일 때 수취인 이름을 입력할 수 없습니다"
-  }
+  },
+  "confirmUrlCopied": "링크 복사됨",
+  "confirmUrlCopyFailed": "복사 실패",
+  "confirmUrlExpireTip": "링크는 24시간 유효합니다. 빨리 보내주세요",
+  "confirmUrlTip": "확인 링크를 수취인에게 보내주세요. WeChat에서 열어야 합니다"
 }

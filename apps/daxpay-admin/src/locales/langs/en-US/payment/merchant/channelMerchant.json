@@ -116,5 +116,13 @@
   "cardTerminal": "Terminal Ledger",
   "cardTerminalDesc": "Register channel-side terminal numbers and bind system terminals",
   "cardTerminalBadge": "In Dev",
-  "cardTerminalTooltip": "Channel-specific terminal fields design in progress, not yet available"
+  "cardTerminalTooltip": "Channel-specific terminal fields design in progress, not yet available",
+  "cardTransferScene": "Transfer Scene Management",
+  "cardTransferSceneDesc": "Manage Alipay transfer scenes (required for new merchants from 2026)",
+  "transferSceneManage": "Transfer Scene Management",
+  "transferSceneTip": "From 2026, new merchants must configure a transfer scene before initiating transfers. Configure at least one and set it as default",
+  "transferSceneName": "Transfer Scene Name",
+  "transferSceneReportInfoContent": "Report Info Content",
+  "transferSceneSetDefaultConfirm": "Set this scene as default? The default scene will be used when no scene is specified",
+  "transferSceneDefaultTip": "Only one default scene per channel merchant"
 }

@@ -34,6 +34,12 @@ export const WechatDirectChannelMerchantApi = {
     return defHttp.post({ url: '/admin/wechat/direct-channel-merchant/create', data });
   },
   /**
+   * 更新微信直连通道商户(转账场景/微信商户号)
+   */
+  update(data: WechatDirectChannelMerchantUpdateParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/wechat/direct-channel-merchant/update', data });
+  },
+  /**
    * 根据通道商户号查询微信直连通道商户配置
    */
   findByChannelMchNo(channelMchNo: string): Promise<Result<WechatDirectChannelMerchantConfig>> {
@@ -56,6 +62,14 @@ export const WechatDirectChannelMerchantApi = {
    */
   saveKeyConfig(data: WechatDirectKeyConfig): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/wechat/direct-channel-merchant/save-key-config', data });
+  },
+  /**
+   * 查询微信转账场景选项列表
+   */
+  findSceneOptions(): Promise<Result<WechatTransferSceneOption[]>> {
+    return defHttp.get({
+      url: '/admin/wechat/direct-channel-merchant/scene-options',
+    });
   },
 };
 
@@ -81,6 +95,8 @@ export interface WechatDirectChannelMerchantConfig extends MchEntity {
   product?: string;
   /** 微信直连商户号 */
   wxMchId?: string;
+  /** 转账场景ID */
+  transferScene?: string;
 }
 
 /**
@@ -131,4 +147,34 @@ export interface WechatDirectChannelMerchantCreateParam {
   product: string;
   /** 微信直连商户号 */
   wxMchId: string;
+  /** 转账场景ID */
+  transferScene?: string;
+}
+
+/**
+ * 微信直连通道商户更新参数
+ */
+export interface WechatDirectChannelMerchantUpdateParam {
+  /** 通道商户号 */
+  channelMchNo: string;
+  /** 微信直连商户号 */
+  wxMchId?: string;
+  /** 转账场景ID */
+  transferScene?: string;
+}
+
+/**
+ * 微信转账场景选项
+ */
+export interface WechatTransferSceneOption {
+  /** 转账场景ID */
+  code: string;
+  /** 场景名称 */
+  name: string;
+  /** 报备字段定义(微信协议固定中文 infoType) */
+  reportInfoTypes: string[];
+  /** 报备字段说明(与 reportInfoTypes 平行, 含微信文档示例) */
+  reportInfoDescriptions?: string[];
+  /** 用户收款感知可选值(收款人在微信中看到的文案) */
+  userRecvPerceptionOptions?: string[];
 }

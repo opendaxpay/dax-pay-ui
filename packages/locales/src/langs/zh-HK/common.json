@@ -21,5 +21,6 @@
   "yes": "是",
   "no": "否",
   "showSearchPanel": "顯示搜索面板",
-  "hideSearchPanel": "隱藏搜索面板"
+  "hideSearchPanel": "隱藏搜索面板",
+  "default": "預設"
 }

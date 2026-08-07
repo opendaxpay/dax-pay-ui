@@ -3,5 +3,20 @@
   "mchIdPlaceholder": "Nhập ID người bán WeChat Pay",
   "validation": {
     "mchId": "Cần có ID người bán WeChat Pay"
-  }
+  },
+  "transferScene": "Kịch bản chuyển khoản",
+  "transferScenePlaceholder": "Chọn kịch bản chuyển khoản",
+  "transferSceneReportFields": "Trường thông tin báo cáo",
+  "transferSceneTipTitle": "Cấu hình cảnh chuyển khoản",
+  "cardTransferSceneDesc": "Quản lý cảnh chuyển khoản WeChat và trường báo cáo (bắt buộc cho chuyển khoản merchant)",
+  "transferSceneReportFieldsTip": "Cần điền nội dung các trường sau khi khởi tạo chuyển khoản",
+  "transferSceneTipDesc": "Chọn cảnh chuyển khoản merchant. Các cảnh khác nhau yêu cầu các trường báo cáo khác nhau, điền động khi chuyển",
+  "transferSceneNotConfigured": "Chưa cấu hình",
+  "transferSceneFieldTypeName": "Tên trường",
+  "transferSceneUserPerception": "Hiển thị người nhận",
+  "transferSceneFieldDescription": "Mô tả/Ví dụ",
+  "transferSceneNotConfiguredTip": "Nhấn nút chỉnh sửa để chọn cảnh chuyển khoản",
+  "transferSceneReportCount": "Chi tiết báo cáo",
+  "transferSceneUserPerceptionTip": "Văn bản người nhận thấy trong WeChat. Dùng giá trị mặc định nếu không chỉ định",
+  "transferSceneSelectPrompt": "Chọn cảnh chuyển khoản ở trên để xem chi tiết"
 }

@@ -82,5 +82,8 @@
   "timestampExpired": "リクエストのタイムスタンプが期限切れです。再試行してください",
   "nonceMissing": "アンチリプレイ検証パラメーターがありません",
   "retry": "再試行",
-  "merchantSuffix": "加盟店"
+  "merchantSuffix": "加盟店",
+  "remark": "備考",
+  "isDefault": "デフォルト",
+  "setDefault": "デフォルトに設定"
 }

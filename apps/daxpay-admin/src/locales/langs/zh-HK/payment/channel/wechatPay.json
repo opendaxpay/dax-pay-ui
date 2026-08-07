@@ -3,5 +3,20 @@
   "mchIdPlaceholder": "請輸入微信支付商户號",
   "validation": {
     "mchId": "請輸入微信支付商户號"
-  }
+  },
+  "transferScene": "轉賬場景",
+  "transferScenePlaceholder": "請選擇轉賬場景",
+  "transferSceneReportFields": "報備資訊欄位",
+  "transferSceneTipTitle": "轉賬場景配置",
+  "cardTransferSceneDesc": "管理微信轉賬場景及報備欄位(商戶轉賬必配)",
+  "transferSceneReportFieldsTip": "發起轉賬時需填寫以下欄位對應的內容",
+  "transferSceneTipDesc": "選擇商戶的轉賬場景, 不同場景要求填寫不同的報備資訊欄位, 發起轉賬時將根據場景動態填寫",
+  "transferSceneNotConfigured": "未配置",
+  "transferSceneFieldTypeName": "欄位名稱",
+  "transferSceneUserPerception": "用戶收款感知",
+  "transferSceneFieldDescription": "說明/範例",
+  "transferSceneNotConfiguredTip": "請點擊編輯按鈕選擇轉賬場景",
+  "transferSceneReportCount": "報備明細",
+  "transferSceneUserPerceptionTip": "收款人在微信中看到的文案說明, 轉賬時不傳則使用預設值",
+  "transferSceneSelectPrompt": "請在上方選擇轉賬場景以查看詳情"
 }

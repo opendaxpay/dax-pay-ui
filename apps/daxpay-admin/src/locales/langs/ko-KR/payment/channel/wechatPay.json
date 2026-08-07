@@ -3,5 +3,20 @@
   "mchIdPlaceholder": "WeChat Pay 판매자 ID를 입력하세요.",
   "validation": {
     "mchId": "WeChat Pay 판매자 ID가 필요합니다."
-  }
+  },
+  "transferScene": "송금 장면",
+  "transferScenePlaceholder": "송금 장면을 선택하세요",
+  "transferSceneReportFields": "보고 정보 필드",
+  "transferSceneTipTitle": "송금 장면 설정",
+  "cardTransferSceneDesc": "WeChat 송금 장면 및 보고 필드 관리(상점 송금 필수)",
+  "transferSceneReportFieldsTip": "송금 시 다음 필드의 내용을 입력해야 합니다",
+  "transferSceneTipDesc": "상점의 송금 장면을 선택하세요. 장면마다 보고 필드가 다르며, 송금 시 동적으로 입력됩니다",
+  "transferSceneNotConfigured": "미설정",
+  "transferSceneFieldTypeName": "필드명",
+  "transferSceneUserPerception": "수취인 인식",
+  "transferSceneFieldDescription": "설명/예시",
+  "transferSceneNotConfiguredTip": "편집 버튼을 클릭하여 송금 장면을 선택하세요",
+  "transferSceneReportCount": "보고 내역",
+  "transferSceneUserPerceptionTip": "수취인이 WeChat에서 보는 문구. 송금 시 미지정 시 기본값 사용",
+  "transferSceneSelectPrompt": "위에서 송금 장면을 선택하여 상세를 확인하세요"
 }

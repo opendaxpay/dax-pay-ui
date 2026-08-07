@@ -21,5 +21,6 @@
   "yes": "ใช่",
   "no": "เลขที่",
   "showSearchPanel": "แสดงแผงการค้นหา",
-  "hideSearchPanel": "ซ่อนแผงการค้นหา"
+  "hideSearchPanel": "ซ่อนแผงการค้นหา",
+  "default": "ค่าเริ่มต้น"
 }

@@ -3,5 +3,20 @@
   "mchIdPlaceholder": "请输入微信支付商户号",
   "validation": {
     "mchId": "请输入微信支付商户号"
-  }
+  },
+  "transferScene": "转账场景",
+  "transferScenePlaceholder": "请选择转账场景",
+  "transferSceneReportFields": "报备信息字段",
+  "transferSceneTipTitle": "转账场景配置",
+  "cardTransferSceneDesc": "管理微信转账场景及报备字段(商户转账必配)",
+  "transferSceneReportFieldsTip": "发起转账时需填写以下字段对应的内容",
+  "transferSceneTipDesc": "选择商户的转账场景, 不同场景要求填写不同的报备信息字段, 发起转账时将根据场景动态填写",
+  "transferSceneNotConfigured": "未配置",
+  "transferSceneFieldTypeName": "字段名称",
+  "transferSceneUserPerception": "用户收款感知",
+  "transferSceneFieldDescription": "说明/示例",
+  "transferSceneNotConfiguredTip": "请点击编辑按钮选择转账场景",
+  "transferSceneReportCount": "报备明细",
+  "transferSceneUserPerceptionTip": "收款人在微信中看到的文案说明, 转账时不传则使用默认值",
+  "transferSceneSelectPrompt": "请在上方选择转账场景以查看详情"
 }

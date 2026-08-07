@@ -14,5 +14,19 @@
   "appTypeWebApp": "เว็บแอป",
   "capabilityRequiredAppType": "ต้องใช้ {type}",
   "appTypeCapabilityCleared": "ล้างการเลือกแอปที่ไม่ตรงกับวิธีชำระเงินแล้ว",
-  "capabilityNoCompatibleApp": "ยังไม่มีแอปประเภทที่ตรงกัน กรุณาสร้างก่อน"
+  "capabilityNoCompatibleApp": "ยังไม่มีแอปประเภทที่ตรงกัน กรุณาสร้างก่อน",
+  "cardTransferScene": "สถานการณ์การโอน",
+  "cardTransferSceneDesc": "จัดการการกำหนดค่าสถานการณ์การโอน Douyin",
+  "transferSceneTitle": "การจัดการสถานการณ์การโอน",
+  "transferSceneAdd": "เพิ่มสถานการณ์",
+  "transferSceneEdit": "แก้ไขสถานการณ์",
+  "transferSceneName": "ชื่อสถานการณ์",
+  "transferSceneId": "รหัสสถานการณ์",
+  "transferSceneRemark": "หมายเหตุ",
+  "transferSceneDefault": "ค่าเริ่มต้น",
+  "transferSceneDefaultTag": "ค่าเริ่มต้น",
+  "transferSceneSetDefault": "ตั้งเป็นค่าเริ่มต้น",
+  "transferSceneDeleteConfirm": "ยืนยันลบสถานการณ์การโอนนี้?",
+  "transferSceneNameRequired": "กรุณาเลือกสถานการณ์การโอน",
+  "transferSceneNamePlaceholder": "กรุณาเลือกสถานการณ์การโอน"
 }

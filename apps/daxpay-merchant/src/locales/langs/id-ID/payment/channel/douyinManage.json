@@ -14,5 +14,19 @@
   "appTypeWebApp": "Aplikasi Web",
   "capabilityRequiredAppType": "Perlu {type}",
   "appTypeCapabilityCleared": "Pilihan aplikasi yang tidak cocok dengan metode pembayaran telah dihapus",
-  "capabilityNoCompatibleApp": "Tidak ada aplikasi jenis yang cocok. Buat aplikasi jenis yang sesuai terlebih dahulu"
+  "capabilityNoCompatibleApp": "Tidak ada aplikasi jenis yang cocok. Buat aplikasi jenis yang sesuai terlebih dahulu",
+  "cardTransferScene": "Skenario Transfer",
+  "cardTransferSceneDesc": "Kelola konfigurasi skenario transfer Douyin",
+  "transferSceneTitle": "Manajemen Skenario Transfer",
+  "transferSceneAdd": "Tambah Skenario",
+  "transferSceneEdit": "Edit Skenario",
+  "transferSceneName": "Nama Skenario",
+  "transferSceneId": "ID Skenario",
+  "transferSceneRemark": "Keterangan",
+  "transferSceneDefault": "Default",
+  "transferSceneDefaultTag": "Default",
+  "transferSceneSetDefault": "Jadikan Default",
+  "transferSceneDeleteConfirm": "Konfirmasi hapus skenario transfer ini?",
+  "transferSceneNameRequired": "Silakan pilih skenario transfer",
+  "transferSceneNamePlaceholder": "Silakan pilih skenario transfer"
 }

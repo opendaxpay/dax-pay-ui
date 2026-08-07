@@ -1,7 +1,8 @@
 <script lang="ts" setup>
   import type { FormInstance } from 'antdv-next';
 
-  import type { TransferParam } from '#/api/payment/transfer/transfer.api';
+  import type { AlipayTransferSceneConfig } from '#/api/payment/alipay/alipay-transfer-scene.api';
+  import type { TransferParam, TransferReportInfo } from '#/api/payment/transfer/transfer.api';
   import type { ChannelMchOption } from '#/types/web';
 
   import { computed, onMounted, reactive, ref, watch } from 'vue';
@@ -9,6 +10,7 @@
 
   import { $t } from '@vben/locales';
 
+  import { AlipayTransferSceneApi } from '#/api/payment/alipay/alipay-transfer-scene.api';
   import { DevelopTradeApi } from '#/api/payment/develop/develop-trade.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { TransferApi } from '#/api/payment/transfer/transfer.api';
@@ -36,6 +38,32 @@
 
   // 高级选项折叠面板展开状态(默认收起)
   const advancedActiveKey = ref<string[]>([]);
+
+  // ===== 支付宝转账场景与报备信息 =====
+  // 场景→info_type 列表映射(支付宝文档固定,组件内中文常量)
+  const ALIPAY_SCENE_REPORT_MAP: Record<string, Array<{ contentPlaceholder: string; infoType: string }>> = {
+    现金营销: [
+      { contentPlaceholder: '请描述收款方参与活动的名称', infoType: '活动名称' },
+      { contentPlaceholder: '请描述收款方因什么奖励获取这笔资金', infoType: '奖励说明' },
+    ],
+    企业退款: [{ contentPlaceholder: '请描述退款原因,如商品质量问题退款', infoType: '退款原因' }],
+    佣金报酬: [{ contentPlaceholder: '请描述接收款项原因,如8月家政服务报酬', infoType: '佣金报酬说明' }],
+    业务结算: [{ contentPlaceholder: '请描述款项名称,如材料货款', infoType: '结算款项名称' }],
+    二手回收: [{ contentPlaceholder: '请描述回收商品名称,如衣服', infoType: '回收商品名称' }],
+    公益补助: [{ contentPlaceholder: '请描述公益活动在民政部的备案名称', infoType: '公益活动名称' }],
+    行政补贴和退款: [{ contentPlaceholder: '请描述补贴/退款类型,如某地人才补贴', infoType: '补贴/退款类型' }],
+    保险理赔: [
+      { contentPlaceholder: '请描述业务类型,如理赔、退保、其他', infoType: '业务类型' },
+      { contentPlaceholder: '请描述保险险种及产品名称,如医疗险-某百万医疗保险', infoType: '保险险种' },
+      { contentPlaceholder: '请描述这笔转账的业务内部交易订单号', infoType: '业务交易订单号' },
+    ],
+  };
+  // 已配置的转账场景列表(由通道商户加载)
+  const alipaySceneOptions = ref<AlipayTransferSceneConfig[]>([]);
+  // 当前选中的场景配置ID
+  const alipayTransferSceneConfigId = ref<string>('');
+  // 报备字段内容(按 infoType key)
+  const alipayReportContents = ref<Record<string, string>>({});
 
   // ===== 三套独立表单(各 tab 保留各自输入) =====
   const wechatFormRef = ref<FormInstance>();
@@ -110,6 +138,64 @@
     { label: $t('payment.transfer.payeeTypeOpenId'), value: 'open_id' },
     { label: $t('payment.transfer.payeeTypeLoginName'), value: 'login_name' },
   ]);
+
+  // 支付宝当前选中的场景名称
+  const alipaySelectedSceneName = computed(() => {
+    const scene = alipaySceneOptions.value.find((s) => String(s.id) === alipayTransferSceneConfigId.value);
+    return scene?.sceneName ?? '';
+  });
+
+  // 支付宝当前场景的报备字段类型列表
+  const alipayReportInfoTypes = computed(() => {
+    return (ALIPAY_SCENE_REPORT_MAP[alipaySelectedSceneName.value] ?? []).map((i) => i.infoType);
+  });
+
+  /** 获取 info_type 对应的 placeholder */
+  function getAlipayContentPlaceholder(infoType: string): string {
+    const items = ALIPAY_SCENE_REPORT_MAP[alipaySelectedSceneName.value] ?? [];
+    return items.find((i) => i.infoType === infoType)?.contentPlaceholder ?? '';
+  }
+
+  /** 支付宝通道商户变更: 加载已配置的转账场景列表 */
+  function loadAlipaySceneOptions(channelMchNo: string) {
+    alipayTransferSceneConfigId.value = '';
+    alipayReportContents.value = {};
+    if (!channelMchNo) {
+      alipaySceneOptions.value = [];
+      return;
+    }
+    AlipayTransferSceneApi.list(channelMchNo).then(({ data }) => {
+      alipaySceneOptions.value = data ?? [];
+      // 默认选中 isDefault 场景
+      const def = alipaySceneOptions.value.find((s) => s.isDefault);
+      if (def?.id) {
+        alipayTransferSceneConfigId.value = String(def.id);
+      }
+    });
+  }
+
+  // 监听支付宝通道商户变更, 加载转账场景
+  watch(
+    () => alipayForm.channelMchNo,
+    (val) => {
+      if (activeKey.value === 'alipay') {
+        loadAlipaySceneOptions(val);
+      }
+    },
+  );
+
+  // 场景切换: 清空报备内容
+  watch(alipayTransferSceneConfigId, () => {
+    alipayReportContents.value = {};
+  });
+
+  /** 构建支付宝转账报备信息列表 */
+  function buildAlipayReportInfos(): TransferReportInfo[] {
+    return alipayReportInfoTypes.value.map((infoType) => ({
+      infoType,
+      infoContent: alipayReportContents.value[infoType] || '',
+    }));
+  }
 
   // ===== 校验规则 =====
   const commonRules = {
@@ -216,7 +302,11 @@
       createFn = TransferApi.wechatCreate;
     } else if (activeKey.value === 'alipay') {
       formRef = alipayFormRef.value;
-      param = { ...alipayForm };
+      param = {
+        ...alipayForm,
+        transferSceneConfigId: alipayTransferSceneConfigId.value || undefined,
+        reportInfos: buildAlipayReportInfos(),
+      };
       createFn = TransferApi.alipayCreate;
     } else {
       formRef = douyinFormRef.value;
@@ -255,6 +345,9 @@
       form.notifyUrl = '';
       form.attach = '';
     }
+    // 清空支付宝场景选择
+    alipayTransferSceneConfigId.value = '';
+    alipayReportContents.value = {};
     const refMap = {
       alipay: alipayFormRef,
       douyin: douyinFormRef,
@@ -491,6 +584,28 @@
                 </a-form-item>
               </a-col>
             </a-row>
+
+            <!-- 转账场景与报备信息(支付宝特有, 2026新商户必配) -->
+            <div v-if="alipaySceneOptions.length > 0" class="mt-2">
+              <a-form-item :label="$t('payment.merchant.channelMerchant.transferSceneName')">
+                <a-select
+                  v-model:value="alipayTransferSceneConfigId"
+                  :options="alipaySceneOptions.map((s) => ({ label: s.sceneName, value: String(s.id) }))"
+                  :placeholder="$t('common.pleaseSelect')"
+                />
+              </a-form-item>
+              <a-row v-if="alipayReportInfoTypes.length > 0" :gutter="16">
+                <a-col v-for="infoType in alipayReportInfoTypes" :key="infoType" :span="12">
+                  <a-form-item :label="infoType">
+                    <a-input
+                      v-model:value="alipayReportContents[infoType]"
+                      :placeholder="getAlipayContentPlaceholder(infoType)"
+                      :maxlength="256"
+                    />
+                  </a-form-item>
+                </a-col>
+              </a-row>
+            </div>
 
             <!-- 高级选项(默认收起) -->
             <a-collapse v-model:active-key="advancedActiveKey" :bordered="false" ghost>

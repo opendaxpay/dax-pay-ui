@@ -3,5 +3,20 @@
   "mchIdPlaceholder": "WeChat Pay 販売者 ID を入力してください",
   "validation": {
     "mchId": "WeChat Pay 販売者 ID が必要です"
-  }
+  },
+  "transferScene": "送金シーン",
+  "transferScenePlaceholder": "送金シーンを選択してください",
+  "transferSceneReportFields": "報告情報フィールド",
+  "transferSceneTipTitle": "送金シーン設定",
+  "cardTransferSceneDesc": "WeChat送金シーンと報告フィールドを管理(マーチャント送金必須)",
+  "transferSceneReportFieldsTip": "送金時に以下のフィールドの内容を入力する必要があります",
+  "transferSceneTipDesc": "マーチャントの送金シーンを選択してください。シーンにより報告フィールドが異なり、送金時に動的に入力します",
+  "transferSceneNotConfigured": "未設定",
+  "transferSceneFieldTypeName": "フィールド名",
+  "transferSceneUserPerception": "受領者表示",
+  "transferSceneFieldDescription": "説明/例",
+  "transferSceneNotConfiguredTip": "編集ボタンをクリックして送金シーンを選択してください",
+  "transferSceneReportCount": "報告明細",
+  "transferSceneUserPerceptionTip": "受領者がWeChatで確認できる文案。送金時に指定しない場合はデフォルト値を使用",
+  "transferSceneSelectPrompt": "上記で送金シーンを選択して詳細を表示してください"
 }

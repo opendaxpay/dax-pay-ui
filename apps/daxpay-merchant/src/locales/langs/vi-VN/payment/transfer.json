@@ -80,7 +80,8 @@
     "payeeUserId": "ID người dùng Alipay người nhận (bắt đầu 2088)",
     "payeeOpenId": "OpenID Alipay người nhận",
     "payeeLoginName": "Tên đăng nhập Alipay người nhận (email/SĐT)",
-    "bizTransferNoAuto": "Để trống để tự tạo"
+    "bizTransferNoAuto": "Để trống để tự tạo",
+    "reportInfoContent": "Để trống dùng mặc định -"
   },
   "targetMch": "Đối tác nhận",
   "channelMch": "Đối tác kênh",
@@ -95,5 +96,9 @@
     "payeeAccountRequired": "Vui lòng nhập tài khoản người nhận",
     "payeeNameRequired": "Tên người nhận bắt buộc khi số tiền từ 2000 CNY trở lên",
     "payeeNameForbidden": "Không được nhập tên người nhận khi số tiền dưới 0.3 CNY"
-  }
+  },
+  "confirmUrlCopied": "Đã sao chép liên kết",
+  "confirmUrlCopyFailed": "Sao chép thất bại",
+  "confirmUrlExpireTip": "Liên kết có hiệu lực 24 giờ, hãy gửi nhanh",
+  "confirmUrlTip": "Gửi liên kết xác nhận cho người nhận, cần mở trong WeChat"
 }

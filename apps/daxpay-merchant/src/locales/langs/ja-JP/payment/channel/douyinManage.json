@@ -14,5 +14,19 @@
   "appTypeWebApp": "ウェブアプリ",
   "capabilityRequiredAppType": "{type}が必要",
   "appTypeCapabilityCleared": "支払い方法と一致しないアプリ選択を解除しました",
-  "capabilityNoCompatibleApp": "一致する種別のアプリがありません。先に作成してください"
+  "capabilityNoCompatibleApp": "一致する種別のアプリがありません。先に作成してください",
+  "cardTransferScene": "送金シーン",
+  "cardTransferSceneDesc": "抖音送金シーン設定を管理",
+  "transferSceneTitle": "送金シーン管理",
+  "transferSceneAdd": "シーン追加",
+  "transferSceneEdit": "シーン編集",
+  "transferSceneName": "シーン名",
+  "transferSceneId": "シーンID",
+  "transferSceneRemark": "備考",
+  "transferSceneDefault": "デフォルト",
+  "transferSceneDefaultTag": "デフォルト",
+  "transferSceneSetDefault": "デフォルトに設定",
+  "transferSceneDeleteConfirm": "この送金シーンを削除しますか?",
+  "transferSceneNameRequired": "送金シーンを選択してください",
+  "transferSceneNamePlaceholder": "送金シーンを選択してください"
 }

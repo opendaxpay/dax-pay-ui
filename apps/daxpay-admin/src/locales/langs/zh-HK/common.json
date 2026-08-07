@@ -81,5 +81,8 @@
   "nonceInvalid": "請求驗證已失效，請重試",
   "timestampExpired": "請求時間戳已過期，請重試",
   "nonceMissing": "請求缺少防重放驗證參數",
-  "retry": "重試"
+  "retry": "重試",
+  "remark": "備註",
+  "isDefault": "是否預設",
+  "setDefault": "設為預設"
 }

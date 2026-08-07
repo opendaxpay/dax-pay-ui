@@ -80,7 +80,8 @@
     "payeeUserId": "รหัสผู้ใช้ Alipay ผู้รับเงิน (ขึ้นต้นด้วย 2088)",
     "payeeOpenId": "OpenID Alipay ของผู้รับเงิน",
     "payeeLoginName": "บัญชีล็อกอิน Alipay ผู้รับเงิน (อีเมล/เบอร์โทร)",
-    "bizTransferNoAuto": "เว้นว่างเพื่อสร้างอัตโนมัติ"
+    "bizTransferNoAuto": "เว้นว่างเพื่อสร้างอัตโนมัติ",
+    "reportInfoContent": "เว้นว่างเพื่อใช้ค่าเริ่มต้น -"
   },
   "targetMch": "ร้านค้าปลายทาง",
   "targetMchHelp": "เลือกร้านค้าเพื่อโอนแทน",
@@ -97,5 +98,9 @@
     "payeeNameRequired": "ต้องระบุชื่อผู้รับเงินเมื่อจำนวนเงินตั้งแต่ 2000 หยู่ขึ้นไป",
     "payeeNameForbidden": "ไม่สามารถกรอกชื่อผู้รับเงินเมื่อจำนวนเงินต่ำกว่า 0.3 หยู่",
     "targetMchRequired": "กรุณาเลือกร้านค้าปลายทาง"
-  }
+  },
+  "confirmUrlCopied": "คัดลอกลิงก์แล้ว",
+  "confirmUrlCopyFailed": "คัดลอกล้มเหลว",
+  "confirmUrlExpireTip": "ลิงก์มีอายุ 24 ชั่วโมง กรุณาส่งโดยเร็ว",
+  "confirmUrlTip": "ส่งลิงก์ยืนยันให้ผู้รับ ต้องเปิดใน WeChat"
 }

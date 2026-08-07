@@ -14,5 +14,19 @@
   "appTypeWebApp": "Ứng dụng web",
   "capabilityRequiredAppType": "Cần {type}",
   "appTypeCapabilityCleared": "Đã xóa lựa chọn ứng dụng không khớp với phương thức thanh toán",
-  "capabilityNoCompatibleApp": "Chưa có ứng dụng loại phù hợp, hãy tạo trước"
+  "capabilityNoCompatibleApp": "Chưa có ứng dụng loại phù hợp, hãy tạo trước",
+  "cardTransferScene": "Kịch bản chuyển khoản",
+  "cardTransferSceneDesc": "Quản lý cấu hình kịch bản chuyển khoản Douyin",
+  "transferSceneTitle": "Quản lý kịch bản chuyển khoản",
+  "transferSceneAdd": "Thêm kịch bản",
+  "transferSceneEdit": "Chỉnh sửa kịch bản",
+  "transferSceneName": "Tên kịch bản",
+  "transferSceneId": "ID kịch bản",
+  "transferSceneRemark": "Ghi chú",
+  "transferSceneDefault": "Mặc định",
+  "transferSceneDefaultTag": "Mặc định",
+  "transferSceneSetDefault": "Đặt làm mặc định",
+  "transferSceneDeleteConfirm": "Xác nhận xóa kịch bản chuyển khoản này?",
+  "transferSceneNameRequired": "Vui lòng chọn kịch bản chuyển khoản",
+  "transferSceneNamePlaceholder": "Vui lòng chọn kịch bản chuyển khoản"
 }

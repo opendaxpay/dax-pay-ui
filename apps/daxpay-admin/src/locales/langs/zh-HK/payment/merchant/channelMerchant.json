@@ -116,5 +116,13 @@
   "cardTerminal": "終端台帳",
   "cardTerminalDesc": "登記本通道商戶下的通道側終端號, 並可綁定系統終端",
   "cardTerminalBadge": "開發中",
-  "cardTerminalTooltip": "終端差異化欄位設計中,暫未開放"
+  "cardTerminalTooltip": "終端差異化欄位設計中,暫未開放",
+  "cardTransferScene": "轉賬場景管理",
+  "cardTransferSceneDesc": "管理支付寶轉賬場景(2026年起新接入商戶轉賬必配)",
+  "transferSceneManage": "轉賬場景管理",
+  "transferSceneTip": "2026年起新接入商戶發起轉賬必須設定轉賬場景, 請至少設定一個並設為預設",
+  "transferSceneName": "轉賬場景名稱",
+  "transferSceneReportInfoContent": "上報資訊內容",
+  "transferSceneSetDefaultConfirm": "確認將此場景設為預設? 發起轉賬未指定場景時將使用預設場景",
+  "transferSceneDefaultTip": "一個通道商戶只能有一個預設場景"
 }

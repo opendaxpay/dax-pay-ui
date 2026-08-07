@@ -3,5 +3,20 @@
   "mchIdPlaceholder": "ป้อนรหัสผู้ขาย WeChat Pay",
   "validation": {
     "mchId": "ต้องระบุรหัสผู้ขาย WeChat Pay"
-  }
+  },
+  "transferScene": "สถานการณ์การโอนเงิน",
+  "transferScenePlaceholder": "เลือกสถานการณ์การโอนเงิน",
+  "transferSceneReportFields": "ฟิลด์ข้อมูลรายงาน",
+  "transferSceneTipTitle": "การตั้งค่าฉากโอน",
+  "cardTransferSceneDesc": "จัดการฉากโอน WeChat และฟิลด์รายงาน (จำเป็นสำหรับการโอนของ merchant)",
+  "transferSceneReportFieldsTip": "ต้องกรอกฟิลด์ต่อไปนี้เมื่อเริ่มการโอน",
+  "transferSceneTipDesc": "เลือกฉากโอนของ merchant ฉากต่างกันต้องการฟิลด์รายงานต่างกัน กรอกแบบไดนามิกเมื่อโอน",
+  "transferSceneNotConfigured": "ยังไม่ได้ตั้งค่า",
+  "transferSceneFieldTypeName": "ชื่อฟิลด์",
+  "transferSceneUserPerception": "การรับรู้ผู้รับ",
+  "transferSceneFieldDescription": "คำอธิบาย/ตัวอย่าง",
+  "transferSceneNotConfiguredTip": "คลิกปุ่มแก้ไขเพื่อเลือกฉากโอน",
+  "transferSceneReportCount": "รายการรายงาน",
+  "transferSceneUserPerceptionTip": "ข้อความที่ผู้รับเห็นใน WeChat ใช้ค่าเริ่มต้นหากไม่ระบุ",
+  "transferSceneSelectPrompt": "เลือกฉากโอนด้านบนเพื่อดูรายละเอียด"
 }

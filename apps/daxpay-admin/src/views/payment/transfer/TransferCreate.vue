@@ -1,7 +1,8 @@
 <script lang="ts" setup>
   import type { FormInstance } from 'antdv-next';
 
-  import type { TransferParam } from '#/api/payment/transfer/transfer.api';
+  import type { AlipayTransferSceneConfig } from '#/api/payment/channel/alipay/transfer-scene.api';
+  import type { TransferCreateResult, TransferParam, TransferReportInfo } from '#/api/payment/transfer/transfer.api';
   import type { ChannelMchOption, LabelValue } from '#/types/web';
 
   import { computed, onMounted, reactive, ref, watch } from 'vue';
@@ -9,6 +10,13 @@
 
   import { $t } from '@vben/locales';
 
+  import { IconifyIcon } from '@vben-core/icons';
+
+  import { AlipayTransferSceneApi } from '#/api/payment/channel/alipay/transfer-scene.api';
+  import {
+    WechatDirectChannelMerchantApi,
+    type WechatTransferSceneOption,
+  } from '#/api/payment/channel/wechat/channel-merchant.api';
   import { DevelopTradeApi } from '#/api/payment/develop/develop-trade.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { TransferApi } from '#/api/payment/transfer/transfer.api';
@@ -35,6 +43,45 @@
 
   // 高级选项折叠面板展开状态(默认收起)
   const advancedActiveKey = ref<string[]>([]);
+
+  // ===== 微信转账场景与报备信息 =====
+  // 转账场景选项
+  const wechatSceneOptions = ref<WechatTransferSceneOption[]>([]);
+  // 当前选中的转账场景
+  const wechatTransferScene = ref('');
+  // 报备字段内容(按 reportInfoTypes 顺序, key=infoType value=infoContent)
+  const wechatReportContents = ref<Record<string, string>>({});
+
+  // 发起成功结果(微信: 含确认收款链接)
+  const createResult = ref<null | TransferCreateResult>(null);
+  // 复制确认链接反馈
+  const linkCopied = ref(false);
+
+  // ===== 支付宝转账场景与报备信息 =====
+  // 场景→info_type 列表映射(支付宝文档固定,组件内中文常量)
+  const ALIPAY_SCENE_REPORT_MAP: Record<string, Array<{ contentPlaceholder: string; infoType: string }>> = {
+    现金营销: [
+      { contentPlaceholder: '请描述收款方参与活动的名称', infoType: '活动名称' },
+      { contentPlaceholder: '请描述收款方因什么奖励获取这笔资金', infoType: '奖励说明' },
+    ],
+    企业退款: [{ contentPlaceholder: '请描述退款原因,如商品质量问题退款', infoType: '退款原因' }],
+    佣金报酬: [{ contentPlaceholder: '请描述接收款项原因,如8月家政服务报酬', infoType: '佣金报酬说明' }],
+    业务结算: [{ contentPlaceholder: '请描述款项名称,如材料货款', infoType: '结算款项名称' }],
+    二手回收: [{ contentPlaceholder: '请描述回收商品名称,如衣服', infoType: '回收商品名称' }],
+    公益补助: [{ contentPlaceholder: '请描述公益活动在民政部的备案名称', infoType: '公益活动名称' }],
+    行政补贴和退款: [{ contentPlaceholder: '请描述补贴/退款类型,如某地人才补贴', infoType: '补贴/退款类型' }],
+    保险理赔: [
+      { contentPlaceholder: '请描述业务类型,如理赔、退保、其他', infoType: '业务类型' },
+      { contentPlaceholder: '请描述保险险种及产品名称,如医疗险-某百万医疗保险', infoType: '保险险种' },
+      { contentPlaceholder: '请描述这笔转账的业务内部交易订单号', infoType: '业务交易订单号' },
+    ],
+  };
+  // 已配置的转账场景列表(由通道商户加载)
+  const alipaySceneOptions = ref<AlipayTransferSceneConfig[]>([]);
+  // 当前选中的场景配置ID
+  const alipayTransferSceneConfigId = ref<string>('');
+  // 报备字段内容(按 infoType key)
+  const alipayReportContents = ref<Record<string, string>>({});
 
   // ===== 三套独立表单(各 tab 保留各自输入) =====
   const wechatFormRef = ref<FormInstance>();
@@ -95,6 +142,71 @@
     return amt > 0 && amt < 0.3;
   });
 
+  // 当前场景的报备字段定义(根据选中场景动态)
+  const wechatReportInfoTypes = computed(() => {
+    const scene = wechatSceneOptions.value.find((s) => s.code === wechatTransferScene.value);
+    return scene?.reportInfoTypes ?? [];
+  });
+
+  /** 加载微信转账场景选项 */
+  function loadWechatSceneOptions() {
+    WechatDirectChannelMerchantApi.findSceneOptions().then((res) => {
+      wechatSceneOptions.value = res.data || [];
+    });
+  }
+
+  /** 微信通道商户变更: 加载其配置的转账场景并联动报备字段 */
+  function loadWechatSceneByChannelMch(channelMchNo: string) {
+    if (!channelMchNo) {
+      wechatTransferScene.value = '';
+      wechatReportContents.value = {};
+      return;
+    }
+    // 加载通道商户配置获取 transferScene
+    WechatDirectChannelMerchantApi.findByChannelMchNo(channelMchNo).then(({ data }) => {
+      wechatTransferScene.value = data.transferScene || '';
+      wechatReportContents.value = {};
+    });
+  }
+
+  // 监听微信通道商户变更, 自动加载转账场景
+  watch(
+    () => wechatForm.channelMchNo,
+    (val) => {
+      if (activeKey.value === 'wechat') {
+        loadWechatSceneByChannelMch(val);
+      }
+    },
+  );
+
+  /** 场景切换: 清空报备内容 */
+  watch(wechatTransferScene, () => {
+    wechatReportContents.value = {};
+  });
+
+  /** 构建微信转账报备信息列表 */
+  function buildWechatReportInfos(): TransferReportInfo[] {
+    return wechatReportInfoTypes.value.map((infoType) => ({
+      infoType,
+      infoContent: wechatReportContents.value[infoType] || '',
+    }));
+  }
+
+  /** 复制确认收款链接到剪贴板 */
+  async function copyConfirmUrl() {
+    if (!createResult.value?.confirmUrl) return;
+    try {
+      await navigator.clipboard.writeText(createResult.value.confirmUrl);
+      linkCopied.value = true;
+      message.success($t('payment.transfer.confirmUrlCopied'));
+      setTimeout(() => {
+        linkCopied.value = false;
+      }, 2000);
+    } catch {
+      message.error($t('payment.transfer.confirmUrlCopyFailed'));
+    }
+  }
+
   // 支付宝收款人账号 placeholder 随类型变化
   const alipayPayeeAccountPlaceholder = computed(() => {
     if (alipayForm.payeeType === 'open_id') {
@@ -112,6 +224,64 @@
     { label: $t('payment.transfer.payeeTypeOpenId'), value: 'open_id' },
     { label: $t('payment.transfer.payeeTypeLoginName'), value: 'login_name' },
   ]);
+
+  // 支付宝当前选中的场景名称
+  const alipaySelectedSceneName = computed(() => {
+    const scene = alipaySceneOptions.value.find((s) => String(s.id) === alipayTransferSceneConfigId.value);
+    return scene?.sceneName ?? '';
+  });
+
+  // 支付宝当前场景的报备字段类型列表
+  const alipayReportInfoTypes = computed(() => {
+    return (ALIPAY_SCENE_REPORT_MAP[alipaySelectedSceneName.value] ?? []).map((i) => i.infoType);
+  });
+
+  /** 获取 info_type 对应的 placeholder */
+  function getAlipayContentPlaceholder(infoType: string): string {
+    const items = ALIPAY_SCENE_REPORT_MAP[alipaySelectedSceneName.value] ?? [];
+    return items.find((i) => i.infoType === infoType)?.contentPlaceholder ?? '';
+  }
+
+  /** 支付宝通道商户变更: 加载已配置的转账场景列表 */
+  function loadAlipaySceneOptions(channelMchNo: string) {
+    alipayTransferSceneConfigId.value = '';
+    alipayReportContents.value = {};
+    if (!channelMchNo || !alipayForm.mchNo) {
+      alipaySceneOptions.value = [];
+      return;
+    }
+    AlipayTransferSceneApi.list(alipayForm.mchNo, channelMchNo).then(({ data }) => {
+      alipaySceneOptions.value = data ?? [];
+      // 默认选中 isDefault 场景
+      const def = alipaySceneOptions.value.find((s) => s.isDefault);
+      if (def?.id) {
+        alipayTransferSceneConfigId.value = String(def.id);
+      }
+    });
+  }
+
+  // 监听支付宝通道商户变更, 加载转账场景
+  watch(
+    () => alipayForm.channelMchNo,
+    (val) => {
+      if (activeKey.value === 'alipay') {
+        loadAlipaySceneOptions(val);
+      }
+    },
+  );
+
+  // 场景切换: 清空报备内容
+  watch(alipayTransferSceneConfigId, () => {
+    alipayReportContents.value = {};
+  });
+
+  /** 构建支付宝转账报备信息列表 */
+  function buildAlipayReportInfos(): TransferReportInfo[] {
+    return alipayReportInfoTypes.value.map((infoType) => ({
+      infoType,
+      infoContent: alipayReportContents.value[infoType] || '',
+    }));
+  }
 
   // ===== 校验规则 =====
   const commonRules = {
@@ -244,11 +414,15 @@
     let createFn: (data: TransferParam) => Promise<any>;
     if (activeKey.value === 'wechat') {
       formRef = wechatFormRef.value;
-      param = { ...wechatForm };
+      param = { ...wechatForm, reportInfos: buildWechatReportInfos() };
       createFn = TransferApi.wechatCreate;
     } else if (activeKey.value === 'alipay') {
       formRef = alipayFormRef.value;
-      param = { ...alipayForm };
+      param = {
+        ...alipayForm,
+        transferSceneConfigId: alipayTransferSceneConfigId.value || undefined,
+        reportInfos: buildAlipayReportInfos(),
+      };
       createFn = TransferApi.alipayCreate;
     } else {
       formRef = douyinFormRef.value;
@@ -263,9 +437,14 @@
     }
     submitting.value = true;
     try {
-      await createFn(param);
-      message.success($t('payment.transfer.createSuccess'));
-      router.back();
+      const { data } = await createFn(param);
+      // 微信转账返回确认收款链接
+      if (activeKey.value === 'wechat' && data?.confirmUrl) {
+        createResult.value = data;
+      } else {
+        message.success($t('payment.transfer.createSuccess'));
+        router.back();
+      }
     } finally {
       submitting.value = false;
     }
@@ -287,6 +466,9 @@
       form.notifyUrl = '';
       form.attach = '';
     }
+    // 清空支付宝场景选择
+    alipayTransferSceneConfigId.value = '';
+    alipayReportContents.value = {};
     const refMap = {
       alipay: alipayFormRef,
       douyin: douyinFormRef,
@@ -354,6 +536,7 @@
 
   onMounted(() => {
     loadMchOptions();
+    loadWechatSceneOptions();
     applyQueryPreset();
     // 未预填商户转账号时自动生成(幂等键), 用户无需关心
     if (!wechatForm.bizTransferNo) {
@@ -451,6 +634,28 @@
                 </a-form-item>
               </a-col>
             </a-row>
+
+            <!-- 转账场景与报备信息(微信特有) -->
+            <div v-if="wechatTransferScene" class="mt-2">
+              <a-form-item :label="$t('payment.channel.wechatPay.transferScene')">
+                <a-select
+                  v-model:value="wechatTransferScene"
+                  :options="wechatSceneOptions.map((s) => ({ label: s.name, value: s.code }))"
+                  :placeholder="$t('payment.channel.wechatPay.transferScenePlaceholder')"
+                />
+              </a-form-item>
+              <!-- 报备信息字段(动态, 按场景 reportInfoTypes) -->
+              <a-row v-if="wechatReportInfoTypes.length > 0" :gutter="16">
+                <a-col v-for="infoType in wechatReportInfoTypes" :key="infoType" :span="12">
+                  <a-form-item :label="infoType">
+                    <a-input
+                      v-model:value="wechatReportContents[infoType]"
+                      :placeholder="$t('payment.transfer.placeholder.reportInfoContent')"
+                    />
+                  </a-form-item>
+                </a-col>
+              </a-row>
+            </div>
 
             <!-- 高级选项(默认收起): 商户转账号 / 通知地址 / 附加参数 -->
             <a-collapse v-model:active-key="advancedActiveKey" :bordered="false" ghost>
@@ -562,6 +767,28 @@
                 </a-form-item>
               </a-col>
             </a-row>
+
+            <!-- 转账场景与报备信息(支付宝特有, 2026新商户必配) -->
+            <div v-if="alipaySceneOptions.length > 0" class="mt-2">
+              <a-form-item :label="$t('payment.merchant.channelMerchant.transferSceneName')">
+                <a-select
+                  v-model:value="alipayTransferSceneConfigId"
+                  :options="alipaySceneOptions.map((s) => ({ label: s.sceneName, value: String(s.id) }))"
+                  :placeholder="$t('common.pleaseSelect')"
+                />
+              </a-form-item>
+              <a-row v-if="alipayReportInfoTypes.length > 0" :gutter="16">
+                <a-col v-for="infoType in alipayReportInfoTypes" :key="infoType" :span="12">
+                  <a-form-item :label="infoType">
+                    <a-input
+                      v-model:value="alipayReportContents[infoType]"
+                      :placeholder="getAlipayContentPlaceholder(infoType)"
+                      :maxlength="256"
+                    />
+                  </a-form-item>
+                </a-col>
+              </a-row>
+            </div>
 
             <!-- 高级选项(默认收起) -->
             <a-collapse v-model:active-key="advancedActiveKey" :bordered="false" ghost>
@@ -716,6 +943,41 @@
         </a-button>
       </div>
     </a-card>
+    <!-- 发起成功(微信: 展示确认收款链接) -->
+    <a-modal
+      v-model:open="!!createResult"
+      :title="$t('payment.transfer.createSuccess')"
+      :footer="null"
+      :mask-closable="false"
+      centered
+    >
+      <div v-if="createResult" class="flex flex-col items-center py-4">
+        <div class="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-4">
+          <IconifyIcon icon="ant-design:check-circle-filled" class="text-3xl text-green-500" />
+        </div>
+        <div class="text-base font-medium text-foreground mb-2">
+          {{ $t('payment.transfer.confirmUrlTip') }}
+        </div>
+        <!-- 确认链接 -->
+        <a-typography-paragraph
+          :copyable="{ text: createResult.confirmUrl, onCopy: copyConfirmUrl }"
+          class="w-full text-center text-sm text-muted-foreground break-all"
+        >
+          {{ createResult.confirmUrl }}
+        </a-typography-paragraph>
+        <div class="text-xs text-muted-foreground mt-2 mb-4">
+          {{ $t('payment.transfer.confirmUrlExpireTip') }}
+        </div>
+        <a-space>
+          <a-button @click="router.back()">
+            {{ $t('common.back') }}
+          </a-button>
+          <a-button type="primary" @click="router.back()">
+            {{ $t('common.confirm') }}
+          </a-button>
+        </a-space>
+      </div>
+    </a-modal>
   </div>
 </template>
 

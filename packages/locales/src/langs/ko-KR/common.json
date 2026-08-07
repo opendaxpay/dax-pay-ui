@@ -21,5 +21,6 @@
   "yes": "예",
   "no": "아니요",
   "showSearchPanel": "검색 패널 표시",
-  "hideSearchPanel": "검색 패널 숨기기"
+  "hideSearchPanel": "검색 패널 숨기기",
+  "default": "기본"
 }

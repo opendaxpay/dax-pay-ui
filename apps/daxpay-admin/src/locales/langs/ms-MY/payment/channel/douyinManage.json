@@ -14,5 +14,19 @@
   "appTypeWebApp": "Apl Web",
   "capabilityRequiredAppType": "Perlu {type}",
   "appTypeCapabilityCleared": "Pilihan aplikasi yang tidak sepadan dengan kaedah bayaran telah dikosongkan",
-  "capabilityNoCompatibleApp": "Tiada aplikasi jenis yang sepadan. Cipta aplikasi jenis yang diperlukan dahulu"
+  "capabilityNoCompatibleApp": "Tiada aplikasi jenis yang sepadan. Cipta aplikasi jenis yang diperlukan dahulu",
+  "cardTransferScene": "Senario Pindahan",
+  "cardTransferSceneDesc": "Urus konfigurasi senario pindahan Douyin",
+  "transferSceneTitle": "Pengurusan Senario Pindahan",
+  "transferSceneAdd": "Tambah Senario",
+  "transferSceneEdit": "Edit Senario",
+  "transferSceneName": "Nama Senario",
+  "transferSceneId": "ID Senario",
+  "transferSceneRemark": "Catatan",
+  "transferSceneDefault": "Lalai",
+  "transferSceneDefaultTag": "Lalai",
+  "transferSceneSetDefault": "Tetapkan sebagai Lalai",
+  "transferSceneDeleteConfirm": "Sahkan hapus senario pindahan ini?",
+  "transferSceneNameRequired": "Sila pilih senario pindahan",
+  "transferSceneNamePlaceholder": "Sila pilih senario pindahan"
 }

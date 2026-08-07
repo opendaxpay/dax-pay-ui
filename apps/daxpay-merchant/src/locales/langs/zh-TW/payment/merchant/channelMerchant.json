@@ -138,5 +138,13 @@
   "uploadPublicKey": "上傳公鑰",
   "uploadSuccess": "{name} 上傳成功",
   "cardCapabilityBinding": "支付應用配置",
-  "manageTitleLeshua": "樂刷商戶管理"
+  "manageTitleLeshua": "樂刷商戶管理",
+  "cardTransferScene": "轉帳場景管理",
+  "cardTransferSceneDesc": "管理支付寶轉帳場景(2026年起新接入商戶轉帳必配)",
+  "transferSceneManage": "轉帳場景管理",
+  "transferSceneTip": "2026年起新接入商戶發起轉帳必須設定轉帳場景, 請至少設定一個並設為預設",
+  "transferSceneName": "轉帳場景名稱",
+  "transferSceneReportInfoContent": "上報資訊內容",
+  "transferSceneSetDefaultConfirm": "確認將此場景設為預設? 發起轉帳未指定場景時將使用預設場景",
+  "transferSceneDefaultTip": "一個通道商戶只能有一個預設場景"
 }

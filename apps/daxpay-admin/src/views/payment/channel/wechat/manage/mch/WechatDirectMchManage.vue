@@ -15,6 +15,8 @@
 
   import WechatDirectChannelMerchantBasicInfo from './WechatDirectChannelMerchantBasicInfo.vue';
   import WechatDirectKeyConfigEdit from './WechatDirectKeyConfigEdit.vue';
+  // 转账场景配置抽屉
+  import WechatTransferSceneConfig from './WechatTransferSceneConfig.vue';
 
   defineOptions({ name: 'WechatDirectMchManage' });
 
@@ -30,6 +32,8 @@
   const keyConfigRef = ref<InstanceType<typeof WechatDirectKeyConfigEdit>>();
   const capabilityRef = ref<InstanceType<typeof WxChannelAppCapability>>();
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
+  // 转账场景配置抽屉
+  const transferSceneRef = ref<InstanceType<typeof WechatTransferSceneConfig>>();
 
   /** 功能卡片配置（直连通道商户：基本信息 + 密钥配置 + 应用管理） */
   const functionCards = computed(() => [
@@ -54,6 +58,12 @@
           title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
           icon: 'ant-design:edit-outlined',
           description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),
+        },
+        {
+          key: 'transferScene',
+          title: $t('payment.merchant.channelMerchant.cardTransferScene'),
+          icon: 'ant-design:transaction-outlined',
+          description: $t('payment.channel.wechatPay.cardTransferSceneDesc'),
         },
       ],
     },
@@ -106,6 +116,9 @@
     }
     if (card.key === 'editMerchantName') {
       editNameRef.value?.open();
+    }
+    if (card.key === 'transferScene') {
+      transferSceneRef.value?.open(channelMchNo.value);
     }
     if (card.key === 'keyConfig') {
       keyConfigRef.value?.init();
@@ -183,6 +196,8 @@
     <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 
     <WechatDirectKeyConfigEdit ref="keyConfigRef" :channel-mch-no="channelMchNo" />
+
+    <WechatTransferSceneConfig ref="transferSceneRef" />
 
     <WxChannelAppCapability ref="capabilityRef" />
   </div>

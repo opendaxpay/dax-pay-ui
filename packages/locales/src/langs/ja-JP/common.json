@@ -21,5 +21,6 @@
   "yes": "はい",
   "no": "いいえ",
   "showSearchPanel": "検索パネルを表示する",
-  "hideSearchPanel": "検索パネルを非表示にする"
+  "hideSearchPanel": "検索パネルを非表示にする",
+  "default": "デフォルト"
 }

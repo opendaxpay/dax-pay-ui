@@ -6,6 +6,7 @@ import { $t } from '@vben/locales';
 import { IconifyIcon } from '@vben-core/icons';
 
 import { WechatDirectChannelMerchantApi } from '#/api/payment/channel/wechat/channel-merchant.api';
+import type { WechatTransferSceneOption } from '#/api/payment/channel/wechat/channel-merchant.api';
 import ChannelLogo from '#/components/channel/ChannelLogo.vue';
 import { productI18nMap, productNameMap } from '#/enums/payment';
 import { useMessage } from '#/hooks/useMessage';
@@ -23,9 +24,12 @@ const mchNo = ref('');
 const productCode = ref('');
 const channelCode = ref('');
 const formRef = ref();
+// 转账场景选项
+const sceneOptions = ref<WechatTransferSceneOption[]>([]);
 const form = ref({
   channelMerchantName: '',
   wxMchId: '',
+  transferScene: '' as string,
 });
 
 const visible = ref(false);
@@ -55,6 +59,10 @@ function init(no: string, product: string, channel: string) {
   visible.value = true;
   createSuccess.value = false;
   resetForm();
+  // 加载转账场景选项
+  WechatDirectChannelMerchantApi.findSceneOptions().then((res) => {
+    sceneOptions.value = res.data || [];
+  });
 }
 
 function handlePrev() {
@@ -83,6 +91,7 @@ function resetForm() {
   form.value = {
     channelMerchantName: '',
     wxMchId: '',
+    transferScene: '',
   };
   nextTick(() => {
     formRef.value?.resetFields();
@@ -123,6 +132,15 @@ defineExpose({ init });
           <a-input
             v-model:value="form.wxMchId"
             :placeholder="$t('payment.channel.wechatPay.mchIdPlaceholder')"
+          />
+        </a-form-item>
+        <!-- 国际化：转账场景 -->
+        <a-form-item :label="$t('payment.channel.wechatPay.transferScene')" name="transferScene">
+          <a-select
+            v-model:value="form.transferScene"
+            :options="sceneOptions.map((s) => ({ label: s.name, value: s.code }))"
+            :placeholder="$t('payment.channel.wechatPay.transferScenePlaceholder')"
+            allow-clear
           />
         </a-form-item>
 

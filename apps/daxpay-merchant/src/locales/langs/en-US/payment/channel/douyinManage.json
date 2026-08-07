@@ -14,5 +14,19 @@
   "appTypeWebApp": "Web App",
   "capabilityRequiredAppType": "Needs {type}",
   "appTypeCapabilityCleared": "Cleared app selections incompatible with payment methods",
-  "capabilityNoCompatibleApp": "No matching app type. Create an app of the required type first"
+  "capabilityNoCompatibleApp": "No matching app type. Create an app of the required type first",
+  "cardTransferScene": "Transfer Scene",
+  "cardTransferSceneDesc": "Manage Douyin transfer scene configs",
+  "transferSceneTitle": "Transfer Scene Management",
+  "transferSceneAdd": "Add Scene",
+  "transferSceneEdit": "Edit Scene",
+  "transferSceneName": "Scene Name",
+  "transferSceneId": "Scene ID",
+  "transferSceneRemark": "Remark",
+  "transferSceneDefault": "Default",
+  "transferSceneDefaultTag": "Default",
+  "transferSceneSetDefault": "Set Default",
+  "transferSceneDeleteConfirm": "Confirm deleting this transfer scene?",
+  "transferSceneNameRequired": "Please select a transfer scene",
+  "transferSceneNamePlaceholder": "Please select a transfer scene"
 }

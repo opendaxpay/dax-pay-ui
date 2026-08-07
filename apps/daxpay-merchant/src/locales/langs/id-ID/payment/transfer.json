@@ -80,7 +80,8 @@
     "payeeUserId": "ID pengguna Alipay penerima (diawali 2088)",
     "payeeOpenId": "OpenID Alipay penerima",
     "payeeLoginName": "Nama login Alipay penerima (email/nomor telepon)",
-    "bizTransferNoAuto": "Kosongkan untuk dibuat otomatis"
+    "bizTransferNoAuto": "Kosongkan untuk dibuat otomatis",
+    "reportInfoContent": "Kosongkan untuk default -"
   },
   "targetMch": "Merchant Target",
   "channelMch": "Merchant Saluran",
@@ -95,5 +96,9 @@
     "payeeAccountRequired": "Silakan masukkan akun penerima",
     "payeeNameRequired": "Nama penerima wajib diisi jika nominal 2000 CNY ke atas",
     "payeeNameForbidden": "Nama penerima tidak boleh diisi jika nominal di bawah 0.3 CNY"
-  }
+  },
+  "confirmUrlCopied": "Tautan disalin",
+  "confirmUrlCopyFailed": "Salin gagal",
+  "confirmUrlExpireTip": "Tautan berlaku 24 jam, segera kirim ke penerima",
+  "confirmUrlTip": "Kirim tautan konfirmasi ke penerima, harus dibuka di WeChat"
 }

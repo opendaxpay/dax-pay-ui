@@ -138,5 +138,13 @@
   "uploadPublicKey": "公開鍵アップロード",
   "uploadSuccess": "{name} アップロード完了",
   "cardCapabilityBinding": "支払いアプリ設定",
-  "manageTitleLeshua": "レシュア マーチャント マネジメント"
+  "manageTitleLeshua": "レシュア マーチャント マネジメント",
+  "cardTransferScene": "振込シーン管理",
+  "cardTransferSceneDesc": "Alipay振込シーンを管理(2026年以降の新規加盟店の振込必須設定)",
+  "transferSceneManage": "振込シーン管理",
+  "transferSceneTip": "2026年以降、新規加盟店が振込を行うには振込シーンの設定が必須です。少なくとも1つ設定しデフォルトにしてください",
+  "transferSceneName": "振込シーン名",
+  "transferSceneReportInfoContent": "報告情報内容",
+  "transferSceneSetDefaultConfirm": "このシーンをデフォルトに設定しますか? 振込時にシーン未指定の場合はデフォルトが使用されます",
+  "transferSceneDefaultTip": "チャネル加盟店ごとにデフォルトは1つのみです"
 }

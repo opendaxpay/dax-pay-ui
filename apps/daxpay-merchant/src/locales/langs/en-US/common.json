@@ -82,5 +82,8 @@
   "timestampExpired": "Request timestamp expired, please retry",
   "nonceMissing": "Anti-replay verification parameter missing",
   "retry": "Retry",
-  "merchantSuffix": "Merchant"
+  "merchantSuffix": "Merchant",
+  "remark": "Remark",
+  "isDefault": "Default",
+  "setDefault": "Set Default"
 }

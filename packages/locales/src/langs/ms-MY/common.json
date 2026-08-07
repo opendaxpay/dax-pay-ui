@@ -21,5 +21,6 @@
   "yes": "ya",
   "no": "Tidak",
   "showSearchPanel": "Tunjukkan panel carian",
-  "hideSearchPanel": "Sembunyikan panel carian"
+  "hideSearchPanel": "Sembunyikan panel carian",
+  "default": "Lalai"
 }

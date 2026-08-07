@@ -138,5 +138,13 @@
   "uploadPublicKey": "上传公钥",
   "uploadSuccess": "{name} 上传成功",
   "cardCapabilityBinding": "支付应用配置",
-  "manageTitleLeshua": "乐刷商户管理"
+  "manageTitleLeshua": "乐刷商户管理",
+  "cardTransferScene": "转账场景管理",
+  "cardTransferSceneDesc": "管理支付宝转账场景(2026年起新接入商户转账必配)",
+  "transferSceneManage": "转账场景管理",
+  "transferSceneTip": "2026年起新接入商户发起转账必须配置转账场景, 请至少配置一个并设为默认",
+  "transferSceneName": "转账场景名称",
+  "transferSceneReportInfoContent": "上报信息内容",
+  "transferSceneSetDefaultConfirm": "确认将此场景设为默认? 发起转账未指定场景时将使用默认场景",
+  "transferSceneDefaultTip": "一个通道商户只能有一个默认场景"
 }

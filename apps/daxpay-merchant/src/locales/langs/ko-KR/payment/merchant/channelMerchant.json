@@ -138,5 +138,13 @@
   "uploadPublicKey": "공개키 업로드",
   "uploadSuccess": "{name} 업로드 완료",
   "cardCapabilityBinding": "결제 앱 설정",
-  "manageTitleLeshua": "레슈아 상인 관리"
+  "manageTitleLeshua": "레슈아 상인 관리",
+  "cardTransferScene": "이체 시나리오 관리",
+  "cardTransferSceneDesc": "Alipay 이체 시나리오 관리(2026년 이후 신규 가맹점 이체 필수 설정)",
+  "transferSceneManage": "이체 시나리오 관리",
+  "transferSceneTip": "2026년 이후 신규 가맹점은 이체 시나리오를 설정해야 이체할 수 있습니다. 최소 1개를 설정하고 기본으로 지정하세요",
+  "transferSceneName": "이체 시나리오 이름",
+  "transferSceneReportInfoContent": "보고 정보 내용",
+  "transferSceneSetDefaultConfirm": "이 시나리오를 기본으로 설정하시겠습니까? 이체 시 시나리오 미지정 시 기본이 사용됩니다",
+  "transferSceneDefaultTip": "채널 가맹점당 기본 시나리오는 1개만 가능합니다"
 }

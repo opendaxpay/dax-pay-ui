@@ -80,7 +80,8 @@
     "payeeUserId": "Payee Alipay user ID (starts with 2088)",
     "payeeOpenId": "Payee Alipay OpenID",
     "payeeLoginName": "Payee Alipay login name (email/phone)",
-    "bizTransferNoAuto": "Auto-generated if empty"
+    "bizTransferNoAuto": "Auto-generated if empty",
+    "reportInfoContent": "Leave blank for default -"
   },
   "targetMch": "Target Merchant",
   "channelMch": "Channel Merchant",
@@ -95,5 +96,9 @@
     "payeeAccountRequired": "Please enter the payee account",
     "payeeNameRequired": "Payee name is required when amount is 2000 CNY or above",
     "payeeNameForbidden": "Payee name is not allowed when amount is below 0.3 CNY"
-  }
+  },
+  "confirmUrlCopied": "Link copied",
+  "confirmUrlCopyFailed": "Copy failed",
+  "confirmUrlExpireTip": "Link valid for 24 hours, please send to payee promptly",
+  "confirmUrlTip": "Send the confirmation link to the payee, who must open it in WeChat"
 }

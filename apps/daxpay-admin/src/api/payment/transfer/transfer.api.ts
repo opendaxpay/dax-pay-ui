@@ -21,7 +21,7 @@ export const TransferApi = {
   },
 
   /** 发起微信转账（FAIL 单复用原单号即重试） */
-  wechatCreate(data: TransferParam): Promise<Result<void>> {
+  wechatCreate(data: TransferParam): Promise<Result<TransferCreateResult>> {
     return defHttp.post({ url: '/admin/transfer/wechat/create', data });
   },
 
@@ -171,6 +171,26 @@ export interface TransferParam {
   attach?: string;
   /** 回调通知地址 */
   notifyUrl?: string;
+  /** 转账场景配置ID(支付宝专用,不传用通道商户默认场景) */
+  transferSceneConfigId?: string;
+  /** 转账场景报备信息(微信/支付宝转账按场景填写) */
+  reportInfos?: TransferReportInfo[];
+}
+
+/** 转账场景报备信息项 */
+export interface TransferReportInfo {
+  /** 信息类型(微信协议固定中文) */
+  infoType: string;
+  /** 信息内容(商户自定义填写) */
+  infoContent?: string;
+}
+
+/** 转账发起结果 */
+export interface TransferCreateResult {
+  /** 平台转账单号 */
+  transferNo?: string;
+  /** 确认收款链接(微信转账) */
+  confirmUrl?: string;
 }
 
 /** 微信转账单结果 */

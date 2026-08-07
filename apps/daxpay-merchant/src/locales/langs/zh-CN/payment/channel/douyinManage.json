@@ -14,5 +14,19 @@
   "appTypeWebApp": "网站应用",
   "capabilityRequiredAppType": "需{type}",
   "appTypeCapabilityCleared": "已清除与支付方式不匹配的应用选择",
-  "capabilityNoCompatibleApp": "暂无匹配类型的应用，请先创建对应类型应用"
+  "capabilityNoCompatibleApp": "暂无匹配类型的应用，请先创建对应类型应用",
+  "cardTransferScene": "转账场景",
+  "cardTransferSceneDesc": "管理抖音转账场景配置",
+  "transferSceneTitle": "转账场景管理",
+  "transferSceneAdd": "新增场景",
+  "transferSceneEdit": "编辑场景",
+  "transferSceneName": "场景名称",
+  "transferSceneId": "场景ID",
+  "transferSceneRemark": "备注",
+  "transferSceneDefault": "是否默认",
+  "transferSceneDefaultTag": "默认",
+  "transferSceneSetDefault": "设为默认",
+  "transferSceneDeleteConfirm": "确认删除该转账场景吗?",
+  "transferSceneNameRequired": "请选择转账场景",
+  "transferSceneNamePlaceholder": "请选择转账场景"
 }

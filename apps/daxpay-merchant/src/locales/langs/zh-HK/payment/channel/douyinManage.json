@@ -14,5 +14,19 @@
   "appTypeWebApp": "網站應用",
   "capabilityRequiredAppType": "需{type}",
   "appTypeCapabilityCleared": "已清除與支付方式不匹配的應用選擇",
-  "capabilityNoCompatibleApp": "暫無匹配類型的應用，請先建立對應類型應用"
+  "capabilityNoCompatibleApp": "暫無匹配類型的應用，請先建立對應類型應用",
+  "cardTransferScene": "轉賬場景",
+  "cardTransferSceneDesc": "管理抖音轉賬場景設定",
+  "transferSceneTitle": "轉賬場景管理",
+  "transferSceneAdd": "新增場景",
+  "transferSceneEdit": "編輯場景",
+  "transferSceneName": "場景名稱",
+  "transferSceneId": "場景ID",
+  "transferSceneRemark": "備註",
+  "transferSceneDefault": "是否預設",
+  "transferSceneDefaultTag": "預設",
+  "transferSceneSetDefault": "設為預設",
+  "transferSceneDeleteConfirm": "確認刪除該轉賬場景嗎?",
+  "transferSceneNameRequired": "請選擇轉賬場景",
+  "transferSceneNamePlaceholder": "請選擇轉賬場景"
 }

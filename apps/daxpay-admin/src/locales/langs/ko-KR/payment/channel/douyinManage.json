@@ -14,5 +14,19 @@
   "appTypeWebApp": "웹 앱",
   "capabilityRequiredAppType": "{type} 필요",
   "appTypeCapabilityCleared": "결제 방식과 맞지 않는 앱 선택을 해제했습니다",
-  "capabilityNoCompatibleApp": "일치하는 유형의 앱이 없습니다. 먼저 생성하세요"
+  "capabilityNoCompatibleApp": "일치하는 유형의 앱이 없습니다. 먼저 생성하세요",
+  "cardTransferScene": "송금 시나리오",
+  "cardTransferSceneDesc": "더우인 송금 시나리오 설정 관리",
+  "transferSceneTitle": "송금 시나리오 관리",
+  "transferSceneAdd": "시나리오 추가",
+  "transferSceneEdit": "시나리오 편집",
+  "transferSceneName": "시나리오 이름",
+  "transferSceneId": "시나리오 ID",
+  "transferSceneRemark": "비고",
+  "transferSceneDefault": "기본값",
+  "transferSceneDefaultTag": "기본",
+  "transferSceneSetDefault": "기본값으로 설정",
+  "transferSceneDeleteConfirm": "이 송금 시나리오를 삭제하시겠습니까?",
+  "transferSceneNameRequired": "송금 시나리오를 선택해 주세요",
+  "transferSceneNamePlaceholder": "송금 시나리오를 선택해 주세요"
 }

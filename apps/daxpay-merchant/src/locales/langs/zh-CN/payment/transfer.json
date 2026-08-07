@@ -80,7 +80,8 @@
     "payeeUserId": "收款人支付宝用户ID(2088开头)",
     "payeeOpenId": "收款人支付宝 OpenID",
     "payeeLoginName": "收款人支付宝登录账号(邮箱/手机号)",
-    "bizTransferNoAuto": "留空将自动生成"
+    "bizTransferNoAuto": "留空将自动生成",
+    "reportInfoContent": "留空使用默认值 -"
   },
   "targetMch": "目标商户",
   "channelMch": "通道商户",
@@ -95,5 +96,9 @@
     "payeeAccountRequired": "请输入收款人账号",
     "payeeNameRequired": "金额大于等于2000元时,收款人姓名必填",
     "payeeNameForbidden": "金额小于0.3元时,不可填写收款人姓名"
-  }
+  },
+  "confirmUrlCopied": "链接已复制",
+  "confirmUrlCopyFailed": "复制失败",
+  "confirmUrlExpireTip": "链接24小时内有效，请尽快发送给收款人",
+  "confirmUrlTip": "请将确认收款链接发送给收款人，收款人需在微信内打开"
 }

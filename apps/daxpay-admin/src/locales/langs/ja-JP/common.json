@@ -81,5 +81,8 @@
   "nonceInvalid": "リクエストの検証の有効期限が切れました。再試行してください",
   "timestampExpired": "リクエストのタイムスタンプが期限切れです。再試行してください",
   "nonceMissing": "アンチリプレイ検証パラメーターがありません",
-  "retry": "再試行"
+  "retry": "再試行",
+  "remark": "備考",
+  "isDefault": "デフォルト",
+  "setDefault": "デフォルトに設定"
 }

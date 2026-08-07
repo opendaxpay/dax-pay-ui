@@ -3,5 +3,20 @@
   "mchIdPlaceholder": "Enter WeChat Pay merchant ID",
   "validation": {
     "mchId": "WeChat Pay merchant ID is required"
-  }
+  },
+  "transferScene": "Transfer Scene",
+  "transferScenePlaceholder": "Select transfer scene",
+  "transferSceneReportFields": "Report Info Fields",
+  "transferSceneTipTitle": "Transfer Scene Configuration",
+  "cardTransferSceneDesc": "Manage WeChat transfer scenes and report fields (required for merchant transfer)",
+  "transferSceneReportFieldsTip": "The following fields need to be filled when initiating a transfer",
+  "transferSceneTipDesc": "Select the merchant transfer scene. Different scenes require different report info fields, which will be dynamically filled when initiating a transfer",
+  "transferSceneNotConfigured": "Not configured",
+  "transferSceneFieldTypeName": "Field Name",
+  "transferSceneUserPerception": "Payee Perception",
+  "transferSceneFieldDescription": "Description/Example",
+  "transferSceneNotConfiguredTip": "Click the edit button to select a transfer scene",
+  "transferSceneReportCount": "Report Items",
+  "transferSceneUserPerceptionTip": "Text shown to the payee in WeChat. Uses default value if not specified in transfer",
+  "transferSceneSelectPrompt": "Select a transfer scene above to view details"
 }

@@ -3,5 +3,20 @@
   "mchIdPlaceholder": "Masukkan ID pedagang WeChat Pay",
   "validation": {
     "mchId": "ID pedagang WeChat Pay diperlukan"
-  }
+  },
+  "transferScene": "Skenario Transfer",
+  "transferScenePlaceholder": "Pilih skenario transfer",
+  "transferSceneReportFields": "Bidang Informasi Laporan",
+  "transferSceneTipTitle": "Konfigurasi Adegan Transfer",
+  "cardTransferSceneDesc": "Kelola adegan transfer WeChat dan bidang laporan (wajib untuk transfer merchant)",
+  "transferSceneReportFieldsTip": "Bidang berikut perlu diisi saat melakukan transfer",
+  "transferSceneTipDesc": "Pilih adegan transfer merchant. Adegan berbeda memerlukan bidang laporan berbeda, diisi dinamis saat transfer",
+  "transferSceneNotConfigured": "Belum dikonfigurasi",
+  "transferSceneFieldTypeName": "Nama Field",
+  "transferSceneUserPerception": "Persepsi Penerima",
+  "transferSceneFieldDescription": "Deskripsi/Contoh",
+  "transferSceneNotConfiguredTip": "Klik tombol edit untuk memilih adegan transfer",
+  "transferSceneReportCount": "Item Laporan",
+  "transferSceneUserPerceptionTip": "Teks yang dilihat penerima di WeChat. Menggunakan nilai default jika tidak ditentukan",
+  "transferSceneSelectPrompt": "Pilih adegan transfer di atas untuk melihat detail"
 }
