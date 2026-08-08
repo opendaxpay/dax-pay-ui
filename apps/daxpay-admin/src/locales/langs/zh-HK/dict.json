@@ -113,6 +113,7 @@
   "callback_status": {
     "success": "成功",
     "fail": "失敗",
+    "close": "關閉",
     "ignore": "忽略",
     "exception": "異常",
     "not_found": "未找到"

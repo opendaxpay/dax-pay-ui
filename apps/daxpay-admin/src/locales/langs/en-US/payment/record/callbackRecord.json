@@ -11,6 +11,7 @@
   "placeholderOutTradeNo": "Enter channel trade no.",
   "typePay": "Pay",
   "typeRefund": "Refund",
+  "typeTransfer": "Transfer",
   "detail": "Callback Detail",
   "channelMchNo": "Channel Merchant",
   "placeholderChannelMchNo": "Enter channel merchant no."

@@ -11,6 +11,7 @@
   "placeholderOutTradeNo": "채널 거래번호 입력",
   "typePay": "결제",
   "typeRefund": "환불",
+  "typeTransfer": "이체",
   "detail": "콜백 상세",
   "channelMchNo": "채널 가맹점",
   "placeholderChannelMchNo": "채널 가맹점번호 입력",

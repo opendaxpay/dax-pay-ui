@@ -113,9 +113,10 @@
   "callback_status": {
     "success": "Success",
     "fail": "Failed",
-    "ignore": "忽略",
-    "exception": "异常",
-    "not_found": "未找到"
+    "close": "Closed",
+    "ignore": "Ignored",
+    "exception": "Exception",
+    "not_found": "Not Found"
   },
   "close_type": {
     "close": "Closed",

@@ -112,10 +112,11 @@
   },
   "callback_status": {
     "success": "성공",
-    "fail": "실패한",
-    "ignore": "忽略",
-    "exception": "异常",
-    "not_found": "未找到"
+    "fail": "실패",
+    "close": "마감",
+    "ignore": "무시",
+    "exception": "예외",
+    "not_found": "찾을 수 없음"
   },
   "close_type": {
     "close": "닫은",

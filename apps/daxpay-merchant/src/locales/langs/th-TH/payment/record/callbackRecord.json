@@ -11,6 +11,7 @@
   "placeholderOutTradeNo": "กรอกหมายเลขธุรกรรมช่องทาง",
   "typePay": "ชำระเงิน",
   "typeRefund": "คืนเงิน",
+  "typeTransfer": "โอนเงิน",
   "detail": "รายละเอียดการเรียกกลับ",
   "channelMchNo": "พ่อค้าช่องทาง",
   "placeholderChannelMchNo": "กรอกรหัสร้านค้าช่องทาง",

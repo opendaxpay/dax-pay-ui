@@ -12,11 +12,18 @@
   } from '#/api/payment/record/callback-record.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { productI18nMap, productNameMap } from '#/enums/payment';
-  import { useDict } from '#/hooks/useDict';
 
   defineOptions({ name: 'PayCallbackRecordList' });
 
-  const { dictConvert, dictItems: statusOptions } = useDict('callback_status');
+  // 回调处理状态选项(前端枚举, 不依赖后端字典)
+  const statusOptions = computed(() => [
+    { label: $t('dict.callback_status.success'), value: 'success' },
+    { label: $t('dict.callback_status.fail'), value: 'fail' },
+    { label: $t('dict.callback_status.close'), value: 'close' },
+    { label: $t('dict.callback_status.ignore'), value: 'ignore' },
+    { label: $t('dict.callback_status.exception'), value: 'exception' },
+    { label: $t('dict.callback_status.not_found'), value: 'not_found' },
+  ]);
 
   const loading = ref(false);
   const xTable = ref<VxeTableInstance>();
@@ -33,6 +40,8 @@
     { label: $t('payment.record.callbackRecord.typePay'), value: 'pay' },
     // 退款
     { label: $t('payment.record.callbackRecord.typeRefund'), value: 'refund' },
+    // 转账
+    { label: $t('payment.record.callbackRecord.typeTransfer'), value: 'transfer' },
   ]);
 
   // 支付产品
@@ -91,7 +100,15 @@
   function callbackTypeLabel(type?: string) {
     if (type === 'pay') return $t('payment.record.callbackRecord.typePay');
     if (type === 'refund') return $t('payment.record.callbackRecord.typeRefund');
+    if (type === 'transfer') return $t('payment.record.callbackRecord.typeTransfer');
     return type || '-';
+  }
+
+  // 回调处理状态翻译(前端 i18n, 不依赖后端字典)
+  function statusLabel(code?: string): string {
+    if (!code) return '-';
+    const text = $t(`dict.callback_status.${code}`);
+    return text || code;
   }
 
   function productLabel(code?: string): string {
@@ -176,7 +193,7 @@
           </vxe-column>
           <vxe-column field="status" :title="$t('payment.record.callbackRecord.status')" :min-width="110">
             <template #default="{ row }">
-              {{ dictConvert('callback_status', row.status) || row.status || '-' }}
+              {{ statusLabel(row.status) }}
             </template>
           </vxe-column>
           <vxe-column
@@ -256,7 +273,7 @@
         </div>
         <div>
           {{ $t('payment.record.callbackRecord.status') }}:
-          {{ dictConvert('callback_status', detail.status) || detail.status || '-' }}
+          {{ statusLabel(detail.status) }}
         </div>
         <div v-if="detail.errorMsg">
           {{ $t('payment.record.callbackRecord.errorMsg') }}: {{ detail.errorMsg }}

@@ -11,6 +11,7 @@
   "placeholderOutTradeNo": "Masukkan no. dagangan saluran",
   "typePay": "Bayar",
   "typeRefund": "Bayaran Balik",
+  "typeTransfer": "Pemindahan",
   "detail": "Butiran Callback",
   "channelMchNo": "Peniaga Saluran",
   "placeholderChannelMchNo": "Masukkan no. pedagang saluran"

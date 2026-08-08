@@ -113,9 +113,10 @@
   "callback_status": {
     "success": "Thành công",
     "fail": "Thất bại",
-    "ignore": "忽略",
-    "exception": "异常",
-    "not_found": "未找到"
+    "close": "Đã đóng",
+    "ignore": "Bỏ qua",
+    "exception": "Ngoại lệ",
+    "not_found": "Không tìm thấy"
   },
   "close_type": {
     "close": "Đã đóng",

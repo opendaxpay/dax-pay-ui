@@ -112,10 +112,11 @@
   },
   "callback_status": {
     "success": "成功",
-    "fail": "失敗した",
-    "ignore": "忽略",
-    "exception": "异常",
-    "not_found": "未到達"
+    "fail": "失敗",
+    "close": "クローズ",
+    "ignore": "無視",
+    "exception": "例外",
+    "not_found": "未検出"
   },
   "close_type": {
     "close": "閉店",

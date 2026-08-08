@@ -11,6 +11,7 @@
   "placeholderOutTradeNo": "チャネル取引番号を入力",
   "typePay": "支払",
   "typeRefund": "返金",
+  "typeTransfer": "振込",
   "detail": "コールバック詳細",
   "channelMchNo": "チャネル加盟店",
   "placeholderChannelMchNo": "チャネル加盟店番号を入力"

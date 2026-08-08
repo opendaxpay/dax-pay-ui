@@ -11,6 +11,7 @@
   "placeholderOutTradeNo": "Nhập mã giao dịch kênh",
   "typePay": "Thanh toán",
   "typeRefund": "Hoàn tiền",
+  "typeTransfer": "Chuyển khoản",
   "detail": "Chi tiết callback",
   "channelMchNo": "Người bán kênh",
   "placeholderChannelMchNo": "Nhập mã merchant kênh",

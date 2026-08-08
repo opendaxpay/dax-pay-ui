@@ -111,11 +111,12 @@
     "fail": "gagal"
   },
   "callback_status": {
-    "success": "Kejayaan",
-    "fail": "gagal",
-    "ignore": "忽略",
-    "exception": "异常",
-    "not_found": "未找到"
+    "success": "Berjaya",
+    "fail": "Gagal",
+    "close": "Ditutup",
+    "ignore": "Diabaikan",
+    "exception": "Pengecualian",
+    "not_found": "Tidak dijumpai"
   },
   "close_type": {
     "close": "tertutup",

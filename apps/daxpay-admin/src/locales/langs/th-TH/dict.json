@@ -111,11 +111,12 @@
     "fail": "ล้มเหลว"
   },
   "callback_status": {
-    "success": "ความสำเร็จ",
+    "success": "สำเร็จ",
     "fail": "ล้มเหลว",
-    "ignore": "忽略",
-    "exception": "异常",
-    "not_found": "未找到"
+    "close": "ปิด",
+    "ignore": "ละเว้น",
+    "exception": "ข้อยกเว้น",
+    "not_found": "ไม่พบ"
   },
   "close_type": {
     "close": "ปิด",
