@@ -170,8 +170,7 @@
         bizTransferNo: row.bizTransferNo,
         amount: formatAmount(row.amount),
         payeeType: row.payeeType,
-        payeeAccount: row.payeeAccount,
-        payeeName: row.payeeName,
+        // 收款人账号/姓名为敏感信息, 重试时强制重新输入, 不回填
         title: row.title,
         reason: row.reason,
         notifyUrl: row.notifyUrl,

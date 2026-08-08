@@ -169,8 +169,7 @@
         channelMchNo: row.channelMchNo ?? '',
         bizTransferNo: row.bizTransferNo,
         amount: formatAmount(row.amount),
-        payeeAccount: row.payeeOpenid,
-        payeeName: row.userName,
+        // 收款人账号/姓名为敏感信息, 重试时强制重新输入, 不回填
         title: row.title,
         reason: row.reason,
         notifyUrl: row.notifyUrl,
