@@ -109,7 +109,7 @@
     "bizTransferNoAuto": "留空将自动生成",
     "reportInfoContent": "留空使用默认值 -",
     "reason": "请输入转账原因",
-    "title": "转账标题，收款人微信内可见",
+    "title": "转账业务的标题，用于在收款人账单里显示",
     "payeePhone": "收款人抖音手机号(需与抖音支付实名一致)",
     "payeeNameTipAlipayUserId": "选填，填写后将校验收款账号姓名一致性",
     "payeeNameTipAlipayLoginName": "登录账号收款必填，将校验姓名与账号一致性"
