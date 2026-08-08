@@ -46,6 +46,7 @@
     "identity": "Identity",
     "amount": "Amount & Status",
     "payee": "Payee",
+    "confirmUrl": "Receive URL",
     "notify": "Notify & Error",
     "advanced": "Advanced Options",
     "merchantChannel": "Merchant & Channel",

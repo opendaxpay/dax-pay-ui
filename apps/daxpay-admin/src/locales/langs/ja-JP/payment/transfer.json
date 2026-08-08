@@ -46,6 +46,7 @@
     "identity": "身份情報",
     "amount": "金額と状態",
     "payee": "受取人情報",
+    "confirmUrl": "受取URL",
     "notify": "通知とエラー",
     "advanced": "詳細オプション",
     "merchantChannel": "マーチャントとチャネル",

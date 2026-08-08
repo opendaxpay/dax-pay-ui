@@ -206,6 +206,8 @@ export interface WechatTransferOrderResult extends MchEntity {
   transferScene?: string;
   /** 拉起转账确认参数 */
   transferBody?: string;
+  /** 确认收款链接(待领取状态返回) */
+  confirmUrl?: string;
   /** 收款人姓名 */
   userName?: string;
   notifyUrl?: string;

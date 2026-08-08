@@ -46,6 +46,7 @@
     "identity": "Danh tính",
     "amount": "Số tiền & Trạng thái",
     "payee": "Người nhận",
+    "confirmUrl": "Liên kết nhận",
     "notify": "Thông báo & Lỗi",
     "advanced": "Tùy chọn Nâng cao"
   },

@@ -46,6 +46,7 @@
     "identity": "Identiti",
     "amount": "Jumlah & Status",
     "payee": "Penerima",
+    "confirmUrl": "URL Penerima",
     "notify": "Notifikasi & Ralat",
     "advanced": "Pilihan Lanjutan",
     "merchantChannel": "Merchant & Saluran",

@@ -46,6 +46,7 @@
     "identity": "身份信息",
     "amount": "金額與狀態",
     "payee": "收款人信息",
+    "confirmUrl": "接收地址",
     "notify": "通知與錯誤",
     "advanced": "進階選項",
     "merchantChannel": "商户與通道",

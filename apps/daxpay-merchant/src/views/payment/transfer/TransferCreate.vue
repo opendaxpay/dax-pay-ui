@@ -3,7 +3,7 @@
 
   import type { AlipayTransferSceneConfig } from '#/api/payment/alipay/alipay-transfer-scene.api';
   import type { AuthUrlResult } from '#/api/payment/develop/develop-auth.api';
-  import type { TransferParam, TransferReportInfo } from '#/api/payment/transfer/transfer.api';
+  import type { TransferCreateResult, TransferParam, TransferReportInfo } from '#/api/payment/transfer/transfer.api';
   import type { ChannelMchOption } from '#/types/web';
 
   import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue';
@@ -49,6 +49,9 @@
   // 当前通道 tab: 微信 / 支付宝 / 抖音
   const activeKey = ref<'alipay' | 'douyin' | 'wechat'>('wechat');
   const submitting = ref(false);
+
+  // 微信转账发起结果(展示确认收款链接弹窗)
+  const createResult = ref<TransferCreateResult | null>(null);
 
   // 当前登录商户号(商户端由登录态绑定)
   const mchNo = ref('');
@@ -561,11 +564,21 @@
     }
     submitting.value = true;
     try {
-      await createFn(param);
-      message.success($t('payment.transfer.createSuccess'));
+      const { data } = await createFn(param);
+      // 微信转账返回确认收款链接, 弹窗展示供商户复制
+      if (activeKey.value === 'wechat' && data?.confirmUrl) {
+        createResult.value = data;
+      } else {
+        message.success($t('payment.transfer.createSuccess'));
+      }
     } finally {
       submitting.value = false;
     }
+  }
+
+  /** 复制确认收款链接回调 */
+  function onCopyConfirmUrl() {
+    message.success($t('payment.transfer.confirmUrlCopied'));
   }
 
   /**
@@ -1068,6 +1081,43 @@
         <div class="mt-4 text-center text-sm text-muted-foreground">
           {{ scanChannel === 'alipay' ? $t('payment.transfer.scanAlipayTip') : $t('payment.transfer.scanDouyinTip') }}
         </div>
+      </div>
+    </a-modal>
+
+    <!-- 发起成功(微信: 展示确认收款链接) -->
+    <a-modal
+      :open="!!createResult"
+      :title="$t('payment.transfer.createSuccess')"
+      :footer="null"
+      :mask-closable="false"
+      centered
+      @cancel="createResult = null"
+    >
+      <div v-if="createResult" class="flex flex-col items-center py-4">
+        <div class="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-4">
+          <IconifyIcon icon="ant-design:check-circle-filled" class="text-3xl text-green-500" />
+        </div>
+        <div class="text-base font-medium text-foreground mb-2">
+          {{ $t('payment.transfer.confirmUrlTip') }}
+        </div>
+        <!-- 确认链接 -->
+        <a-typography-paragraph
+          :copyable="{ text: createResult.confirmUrl, onCopy: onCopyConfirmUrl }"
+          class="w-full text-center text-sm text-muted-foreground break-all"
+        >
+          {{ createResult.confirmUrl }}
+        </a-typography-paragraph>
+        <div class="text-xs text-muted-foreground mt-2 mb-4">
+          {{ $t('payment.transfer.confirmUrlExpireTip') }}
+        </div>
+        <a-space>
+          <a-button @click="createResult = null">
+            {{ $t('common.back') }}
+          </a-button>
+          <a-button type="primary" @click="createResult = null">
+            {{ $t('common.confirm') }}
+          </a-button>
+        </a-space>
       </div>
     </a-modal>
   </div>

@@ -46,6 +46,7 @@
     "identity": "Identitas",
     "amount": "Jumlah & Status",
     "payee": "Penerima",
+    "confirmUrl": "URL Penerima",
     "notify": "Notifikasi & Kesalahan",
     "advanced": "Opsi Lanjutan"
   },

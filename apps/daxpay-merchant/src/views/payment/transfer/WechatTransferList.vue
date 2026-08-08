@@ -11,6 +11,7 @@
     type WechatTransferOrderQuery,
     type WechatTransferOrderResult,
   } from '#/api/payment/transfer/transfer.api';
+  import { QrCode } from '#/components/qrcode';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
@@ -153,6 +154,11 @@
   function handleDrawerClose() {
     drawerVisible.value = false;
     detail.value = {};
+  }
+
+  /** 复制确认收款链接 */
+  function onCopyConfirmUrl() {
+    message.success($t('payment.transfer.confirmUrlCopied'));
   }
 
   onMounted(() => {
@@ -323,6 +329,27 @@
             {{ detail.transferBody || '-' }}
           </a-descriptions-item>
         </a-descriptions>
+
+        <!-- 接收地址(仅待领取状态返回) -->
+        <template v-if="detail.confirmUrl">
+          <div class="mb-4 text-sm font-medium">{{ $t('payment.transfer.section.confirmUrl') }}</div>
+          <div class="mb-4 flex gap-4 items-start rounded-lg border border-border p-4">
+            <div class="shrink-0">
+              <QrCode :value="detail.confirmUrl" :width="160" :margin="0" />
+            </div>
+            <div class="flex flex-1 flex-col justify-center min-w-0">
+              <a-typography-paragraph
+                :copyable="{ text: detail.confirmUrl, onCopy: onCopyConfirmUrl }"
+                class="text-sm text-muted-foreground break-all"
+              >
+                {{ detail.confirmUrl }}
+              </a-typography-paragraph>
+              <div class="mt-2 text-xs text-muted-foreground">
+                {{ $t('payment.transfer.confirmUrlTip') }}
+              </div>
+            </div>
+          </div>
+        </template>
 
         <div class="mb-4 text-sm font-medium">{{ $t('payment.transfer.section.notify') }}</div>
         <a-descriptions :column="2" size="small" bordered class="transfer-desc">

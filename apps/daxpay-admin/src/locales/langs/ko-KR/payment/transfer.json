@@ -46,6 +46,7 @@
     "identity": "신원 정보",
     "amount": "금액 및 상태",
     "payee": "수취인 정보",
+    "confirmUrl": "수취 주소",
     "notify": "알림 및 오류",
     "advanced": "고급 옵션",
     "merchantChannel": "상점과 채널",
