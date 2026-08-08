@@ -93,7 +93,6 @@ export const TransferApi = {
 /** 微信转账单查询参数 */
 export interface WechatTransferOrderQuery {
   mchNo?: string;
-  appId?: string;
   transferNo?: string;
   bizTransferNo?: string;
   payeeOpenid?: string;
@@ -106,7 +105,6 @@ export interface WechatTransferOrderQuery {
 /** 支付宝转账单查询参数 */
 export interface AlipayTransferOrderQuery {
   mchNo?: string;
-  appId?: string;
   transferNo?: string;
   bizTransferNo?: string;
   /** 收款人账号类型 user_id/login_name */
@@ -121,7 +119,6 @@ export interface AlipayTransferOrderQuery {
 /** 抖音转账单查询参数 */
 export interface DouyinTransferOrderQuery {
   mchNo?: string;
-  appId?: string;
   transferNo?: string;
   bizTransferNo?: string;
   payeeType?: string;
@@ -135,7 +132,6 @@ export interface DouyinTransferOrderQuery {
 /** 转账记录查询参数（跨通道） */
 export interface TransferTradeQuery {
   mchNo?: string;
-  appId?: string;
   tradeNo?: string;
   /** 所属通道 wechat/alipay/douyin */
   containerChannel?: string;
@@ -149,8 +145,6 @@ export interface TransferTradeQuery {
 export interface TransferParam {
   /** 商户号（运营端代发必填；商户端忽略） */
   mchNo?: string;
-  /** 应用号（可空，默认商户默认应用） */
-  appId?: string;
   /** 通道商户号 */
   channelMchNo: string;
   /** 商户转账号（幂等键） */
@@ -269,7 +263,6 @@ export interface DouyinTransferOrderResult extends MchEntity {
 export interface TransferTradeResult extends BaseEntity {
   mchNo?: string;
   mchName?: string;
-  appId?: string;
   tradeNo?: string;
   containerId?: string;
   /** 所属通道 wechat/alipay/douyin */

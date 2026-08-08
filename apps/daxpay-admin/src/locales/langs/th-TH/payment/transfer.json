@@ -25,7 +25,6 @@
     "amount": "จำนวน (CNY)",
     "status": "สถานะ",
     "merchant": "ร้านค้า",
-    "appId": "ID แอป",
     "outTransferNo": "เลขการโอนช่องทาง",
     "title": "หัวข้อ",
     "reason": "เหตุผล",

@@ -315,9 +315,6 @@
           <a-descriptions-item :label="$t('payment.transfer.field.merchant')">
             {{ detail.mchName || detail.mchNo || '-' }}
           </a-descriptions-item>
-          <a-descriptions-item :label="$t('payment.transfer.field.appId')">
-            {{ detail.appId || '-' }}
-          </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.transfer.field.transferNo')">
             {{ detail.transferNo || '-' }}
           </a-descriptions-item>

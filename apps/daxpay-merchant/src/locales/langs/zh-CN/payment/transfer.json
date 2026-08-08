@@ -25,7 +25,6 @@
     "amount": "金额(元)",
     "status": "状态",
     "merchant": "商户",
-    "appId": "应用号",
     "outTransferNo": "通道转账号",
     "title": "标题",
     "reason": "转账原因",

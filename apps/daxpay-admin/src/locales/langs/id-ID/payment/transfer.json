@@ -25,7 +25,6 @@
     "amount": "Jumlah (CNY)",
     "status": "Status",
     "merchant": "Merchant",
-    "appId": "ID Aplikasi",
     "outTransferNo": "No Transfer Kanal",
     "title": "Judul",
     "reason": "Alasan",

@@ -25,7 +25,6 @@
     "amount": "금액(원)",
     "status": "상태",
     "merchant": "상점",
-    "appId": "앱 ID",
     "outTransferNo": "채널 송금 번호",
     "title": "제목",
     "reason": "송금 사유",

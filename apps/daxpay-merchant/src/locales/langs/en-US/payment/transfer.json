@@ -25,7 +25,6 @@
     "amount": "Amount (CNY)",
     "status": "Status",
     "merchant": "Merchant",
-    "appId": "App ID",
     "outTransferNo": "Out Transfer No",
     "title": "Title",
     "reason": "Reason",

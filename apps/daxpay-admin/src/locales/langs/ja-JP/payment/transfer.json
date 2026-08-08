@@ -25,7 +25,6 @@
     "amount": "金額(元)",
     "status": "状態",
     "merchant": "マーチャント",
-    "appId": "アプリID",
     "outTransferNo": "チャネル送金番号",
     "title": "タイトル",
     "reason": "送金理由",

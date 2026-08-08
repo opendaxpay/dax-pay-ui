@@ -25,7 +25,6 @@
     "amount": "Jumlah (CNY)",
     "status": "Status",
     "merchant": "Peniaga",
-    "appId": "ID Aplikasi",
     "outTransferNo": "No Pindahan Saluran",
     "title": "Tajuk",
     "reason": "Sebab",

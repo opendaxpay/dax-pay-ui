@@ -25,7 +25,6 @@
     "amount": "Số tiền (CNY)",
     "status": "Trạng thái",
     "merchant": "Thương gia",
-    "appId": "ID ứng dụng",
     "outTransferNo": "Mã chuyển kênh",
     "title": "Tiêu đề",
     "reason": "Lý do",
