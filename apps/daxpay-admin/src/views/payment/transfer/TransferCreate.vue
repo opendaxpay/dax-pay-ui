@@ -8,7 +8,7 @@
   import type { ChannelMchOption, LabelValue } from '#/types/web';
 
   import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue';
-  import { useRoute, useRouter } from 'vue-router';
+  import { useRoute } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
@@ -50,7 +50,6 @@
   const DOUYIN_DIRECT_PRODUCT = 'douyin_pay';
 
   const route = useRoute();
-  const router = useRouter();
   const { confirm, message } = useMessage();
   const { hasPermission } = usePermission();
 
@@ -746,7 +745,6 @@
         createResult.value = data;
       } else {
         message.success($t('payment.transfer.createSuccess'));
-        router.back();
       }
     } finally {
       submitting.value = false;
@@ -1341,10 +1339,10 @@
           {{ $t('payment.transfer.confirmUrlExpireTip') }}
         </div>
         <a-space>
-          <a-button @click="router.back()">
+          <a-button @click="createResult = null">
             {{ $t('common.back') }}
           </a-button>
-          <a-button type="primary" @click="router.back()">
+          <a-button type="primary" @click="createResult = null">
             {{ $t('common.confirm') }}
           </a-button>
         </a-space>

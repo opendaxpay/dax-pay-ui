@@ -563,7 +563,6 @@
     try {
       await createFn(param);
       message.success($t('payment.transfer.createSuccess'));
-      router.back();
     } finally {
       submitting.value = false;
     }
