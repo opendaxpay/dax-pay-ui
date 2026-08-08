@@ -128,7 +128,6 @@
 <template>
   <div class="m-3 p-3 bg-background rounded-lg list-page-compact">
     <a-card>
-      <div class="mb-3 text-lg font-medium">{{ $t('menu.trade.transfer.trade') }}</div>
       <BQuery :fields="queryFields" :query-params="queryForm" @query="queryPage" @reset="resetQuery" />
     </a-card>
 
@@ -191,11 +190,11 @@
     <a-drawer
       v-model:open="drawerVisible"
       :title="$t('payment.transfer.detail')"
-      :size="640"
+      :width="760"
       @close="handleDrawerClose"
     >
       <a-spin :spinning="drawerLoading">
-        <a-descriptions :column="2" size="small" bordered>
+        <a-descriptions :column="2" size="small" bordered class="transfer-desc">
           <a-descriptions-item :label="$t('payment.transfer.field.merchant')">
             {{ detail.mchName || detail.mchNo || '-' }}
           </a-descriptions-item>
@@ -240,3 +239,11 @@
     </a-drawer>
   </div>
 </template>
+
+<style scoped>
+/* 标题列按内容撑开，避免多语言下 label 文案过长被压窄折行 */
+.transfer-desc :deep(.ant-descriptions-item-label) {
+  width: 1%;
+  white-space: nowrap;
+}
+</style>
