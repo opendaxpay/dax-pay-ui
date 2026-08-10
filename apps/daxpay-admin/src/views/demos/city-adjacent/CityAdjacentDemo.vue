@@ -15,6 +15,8 @@
 
   // IPv4 格式校验
   const IPV4_REG = /^(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d{2}|[1-9]?\d)){3}$/;
+  // IPv6 格式校验正则（覆盖完整/缩写/双栈映射等常见形态）
+  const IPV6_REG = /^(([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:))$/;
 
   // IP 输入与查询结果
   const ipInput = ref('');
@@ -122,8 +124,8 @@
       message.warning('请输入 IP 地址');
       return;
     }
-    if (!IPV4_REG.test(ip)) {
-      message.warning('IP 地址格式不正确');
+    if (!IPV4_REG.test(ip) && !IPV6_REG.test(ip)) {
+      message.warning('IP 地址格式不正确（支持 IPv4 / IPv6）');
       return;
     }
     await doIpQuery(() => IpRegionDemoApi.query(ip));
@@ -180,13 +182,13 @@
     <div class="mb-4">
       <a-card title="IP 归属地定位">
         <p class="mb-3 text-gray-500 text-sm">
-          输入任意公网 IPv4 地址，自动定位所在地级市并展示交界邻市与围栏策略；或点击「查询当前 IP」获取本机出口 IP。
+          输入任意公网 IP 地址（支持 IPv4 / IPv6），自动定位所在地级市并展示交界邻市与围栏策略；或点击「查询当前 IP」获取本机出口 IP。
         </p>
         <a-space-compact style="width: 100%">
           <a-input
             v-model:value="ipInput"
             allow-clear
-            placeholder="请输入 IPv4 地址，如 1.2.3.4"
+            placeholder="请输入 IP 地址，如 1.2.3.4 或 240e:3b7::1"
             style="flex: 1"
             @press-enter="queryByIp"
           />
@@ -196,7 +198,16 @@
 
         <template v-if="ipResult">
           <div class="mt-4">
-            <a-alert :message="`归属地：${ipResult.regionStr || '-'}`" type="success" show-icon />
+            <a-alert type="success" show-icon>
+              <template #message>
+                <span>
+                  归属地：{{ ipResult.regionStr || '-' }}
+                  <a-tag :color="ipResult.ip?.includes(':') ? 'purple' : 'blue'" class="!ml-2">
+                    {{ ipResult.ip?.includes(':') ? 'IPv6' : 'IPv4' }}
+                  </a-tag>
+                </span>
+              </template>
+            </a-alert>
           </div>
           <div class="mt-3">
             <a-descriptions :column="3" bordered size="small">
