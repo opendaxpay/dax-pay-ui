@@ -105,7 +105,7 @@
   "menu.payment.merchant.gatewayPayConfig": "網關支付配置",
   "menu.payment.merchant.notifyConfig": "非同步通知配置",
   "menu.payment.merchant.riskConfig": "風控配置",
-  "menu.trade.transfer": "轉賬",
+  "menu.trade.transfer": "轉賬訂單",
   "menu.trade.transfer.wechat": "微信轉賬",
   "menu.trade.transfer.alipay": "支付寶轉賬",
   "menu.trade.transfer.douyin": "抖音轉賬",

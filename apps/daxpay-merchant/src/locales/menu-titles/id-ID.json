@@ -44,7 +44,7 @@
   "menu.plugin.easypay.order": "Pesanan EasyPay",
   "menu.plugin.easypay.refund": "Pengembalian EasyPay",
   "menu.payment.merchant.gatewayPayConfig": "Konfigurasi Pembayaran Gateway",
-  "menu.trade.transfer": "Transfer",
+  "menu.trade.transfer": "Pesanan Transfer",
   "menu.trade.transfer.wechat": "Transfer WeChat",
   "menu.trade.transfer.alipay": "Transfer Alipay",
   "menu.trade.transfer.douyin": "Transfer Douyin",

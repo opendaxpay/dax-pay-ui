@@ -105,7 +105,7 @@
   "menu.payment.merchant.gatewayPayConfig": "กำหนดค่าการชำระเงินเกตเวย์",
   "menu.payment.merchant.notifyConfig": "การตั้งค่าการแจ้งเตือนอะซิงค์",
   "menu.payment.merchant.riskConfig": "การควบคุมความเสี่ยง",
-  "menu.trade.transfer": "การโอนเงิน",
+  "menu.trade.transfer": "คำสั่งโอนเงิน",
   "menu.trade.transfer.wechat": "การโอนเงิน WeChat",
   "menu.trade.transfer.alipay": "การโอนเงิน Alipay",
   "menu.trade.transfer.douyin": "การโอนเงิน Douyin",

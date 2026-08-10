@@ -105,7 +105,7 @@
   "menu.payment.merchant.gatewayPayConfig": "Gateway Pay Config",
   "menu.payment.merchant.notifyConfig": "Async Notify Config",
   "menu.payment.merchant.riskConfig": "Risk Control",
-  "menu.trade.transfer": "Transfer",
+  "menu.trade.transfer": "Transfer Orders",
   "menu.trade.transfer.wechat": "WeChat Transfer",
   "menu.trade.transfer.alipay": "Alipay Transfer",
   "menu.trade.transfer.douyin": "Douyin Transfer",

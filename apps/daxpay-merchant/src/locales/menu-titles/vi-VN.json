@@ -44,7 +44,7 @@
   "menu.plugin.easypay.order": "Đơn hàng EasyPay",
   "menu.plugin.easypay.refund": "Hoàn tiền EasyPay",
   "menu.payment.merchant.gatewayPayConfig": "Cấu hình thanh toán Gateway",
-  "menu.trade.transfer": "Chuyển khoản",
+  "menu.trade.transfer": "Đơn chuyển khoản",
   "menu.trade.transfer.wechat": "Chuyển khoản WeChat",
   "menu.trade.transfer.alipay": "Chuyển khoản Alipay",
   "menu.trade.transfer.douyin": "Chuyển khoản Douyin",
