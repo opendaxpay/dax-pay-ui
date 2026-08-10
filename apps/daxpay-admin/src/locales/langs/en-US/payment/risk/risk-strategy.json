@@ -11,14 +11,16 @@
     "levelNormal": "Level: Normal",
     "levelEnhanced": "Level: Enhanced",
     "overseasOn": "Overseas IP: Block",
-    "provinceOn": "Province: Block",
-    "cityOn": "City: Block",
+    "regionOn": "Region: Block",
     "blacklistOn": "Blacklist: On",
     "geoFenceOn": "Geo-fence: On",
     "strategy": "Strategy: "
   },
   "section": {
-    "switch": "Risk Control",
+    "common": "Common Settings",
+    "blacklist": "Blacklist Blocking",
+    "region": "Region Restriction",
+    "fence": "Store Geo-fence",
     "strategy": "Interception Strategy"
   },
   "riskEnabled": {
@@ -47,13 +49,14 @@
     "label": "Overseas IP Blocking",
     "desc": "Block payment requests from overseas IPs (outside mainland China), a common risk control strategy for the China region."
   },
-  "provinceBlacklistEnabled": {
-    "label": "Province-level Blocking",
-    "desc": "When enabled, the IP’s province is matched against the province blacklist; hits follow the interception strategy. Manage province lists under Payment Security → Blacklist."
+  "regionBlacklistEnabled": {
+    "label": "Region Blocking",
+    "desc": "When enabled, the IP’s province and city are matched against the region blacklists; hits follow the interception strategy. A province hit skips the city check. Manage province and city lists under Payment Security → Blacklist; for municipalities, the city list equals the province list."
   },
-  "cityBlacklistEnabled": {
-    "label": "City-level Blocking",
-    "desc": "When enabled, the IP’s city is matched against the city blacklist; hits follow the interception strategy. Independent from the province-level switch; the city check is skipped once a province hits. Manage city lists under Payment Security → Blacklist; for municipalities the city list is equivalent to the province level."
+  "ipv6MatchEnabled": {
+    "label": "IPv6 Region Matching",
+    "desc": "Off by default. When enabled, all four regional checks (province, city, overseas, geo-fence) will match against IPv6 addresses. Due to limited accuracy of open-source IPv6 offline data, it is disabled by default; for higher reliability, consider a commercial IP database.",
+    "precisionHint": "IPv6 offline data has limited accuracy; some address ranges may be located with significant deviation. For higher reliability, consider purchasing a commercial IP database (e.g. ip2region Pro, CZ88, etc.) to replace the default data source."
   },
   "geoFenceEnabled": {
     "label": "Geo-fence",

@@ -50,13 +50,9 @@
     if (formState.value.blockOverseasIp) {
       items.push($t('payment.risk.risk-strategy.summary.overseasOn'));
     }
-    // 省级地区拦截（默认关闭, 仅开启时展示）
-    if (formState.value.provinceBlacklistEnabled) {
-      items.push($t('payment.risk.risk-strategy.summary.provinceOn'));
-    }
-    // 市级地区拦截（默认关闭, 仅开启时展示）
-    if (formState.value.cityBlacklistEnabled) {
-      items.push($t('payment.risk.risk-strategy.summary.cityOn'));
+    // 地区拦截（默认关闭, 仅开启时展示）
+    if (formState.value.regionBlacklistEnabled) {
+      items.push($t('payment.risk.risk-strategy.summary.regionOn'));
     }
     // 地理围栏（默认关闭, 仅开启时展示）
     if (formState.value.geoFenceEnabled) {
@@ -178,19 +174,51 @@
         </div>
 
         <a-form ref="formRef" :model="formState" layout="vertical" class="module-form">
-          <!-- 风控开关 -->
+          <!-- 风控总开关（全宽置顶, 独立于分组, 关闭后所有风控检查跳过） -->
+          <div class="config-item config-item--full">
+            <div class="config-item__main">
+              <div class="config-item__label">{{ $t('payment.risk.risk-strategy.riskEnabled.label') }}</div>
+              <div class="config-item__desc">{{ $t('payment.risk.risk-strategy.riskEnabled.desc') }}</div>
+            </div>
+            <a-switch v-model:checked="formState.riskEnabled" :disabled="!isEditing" />
+          </div>
+
+          <!-- 公共设置: 影响海外/地区/围栏等 IP 归属地检查的公共开关 -->
           <div class="config-section">
-            <div class="config-section__title">{{ $t('payment.risk.risk-strategy.section.switch') }}</div>
+            <div class="config-section__title">{{ $t('payment.risk.risk-strategy.section.common') }}</div>
             <div class="config-grid">
-              <!-- 风控总开关（占满两列） -->
-              <div class="config-item config-item--full">
+              <!-- IPv6 地区匹配 -->
+              <div class="config-item">
                 <div class="config-item__main">
-                  <div class="config-item__label">{{ $t('payment.risk.risk-strategy.riskEnabled.label') }}</div>
-                  <div class="config-item__desc">{{ $t('payment.risk.risk-strategy.riskEnabled.desc') }}</div>
+                  <div class="config-item__label">{{
+                    $t('payment.risk.risk-strategy.ipv6MatchEnabled.label')
+                  }}</div>
+                  <div class="config-item__desc">{{
+                    $t('payment.risk.risk-strategy.ipv6MatchEnabled.desc')
+                  }}</div>
                 </div>
-                <a-switch v-model:checked="formState.riskEnabled" :disabled="!isEditing" />
+                <a-switch
+                  v-model:checked="formState.ipv6MatchEnabled"
+                  :disabled="!isEditing || !formState.riskEnabled"
+                />
               </div>
 
+              <!-- IPv6 精度提示（开关打开时显示） -->
+              <div v-if="formState.ipv6MatchEnabled" class="config-item">
+                <a-alert
+                  type="warning"
+                  show-icon
+                  :message="$t('payment.risk.risk-strategy.ipv6MatchEnabled.precisionHint')"
+                  class="w-full"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- 名单拦截: 按 IP 与用户标识匹配黑名单名单 -->
+          <div class="config-section">
+            <div class="config-section__title">{{ $t('payment.risk.risk-strategy.section.blacklist') }}</div>
+            <div class="config-grid">
               <!-- 黑名单拦截 -->
               <div class="config-item">
                 <div class="config-item__main">
@@ -207,7 +235,7 @@
                 />
               </div>
 
-              <!-- 用户标识拦截级别 -->
+              <!-- 用户标识拦截级别（黑名单关闭时禁用） -->
               <div class="config-item">
                 <div class="config-item__main">
                   <div class="config-item__label">{{
@@ -230,7 +258,13 @@
                   </a-radio-button>
                 </a-radio-group>
               </div>
+            </div>
+          </div>
 
+          <!-- 地域限制: 按支付 IP 归属地（海外 / 省份 / 城市）限制 -->
+          <div class="config-section">
+            <div class="config-section__title">{{ $t('payment.risk.risk-strategy.section.region') }}</div>
+            <div class="config-grid">
               <!-- 海外 IP 拦截 -->
               <div class="config-item">
                 <div class="config-item__main">
@@ -247,38 +281,28 @@
                 />
               </div>
 
-              <!-- 省级地区拦截 -->
+              <!-- 地区拦截（含省级 + 市级名单） -->
               <div class="config-item">
                 <div class="config-item__main">
                   <div class="config-item__label">{{
-                    $t('payment.risk.risk-strategy.provinceBlacklistEnabled.label')
+                    $t('payment.risk.risk-strategy.regionBlacklistEnabled.label')
                   }}</div>
                   <div class="config-item__desc">{{
-                    $t('payment.risk.risk-strategy.provinceBlacklistEnabled.desc')
+                    $t('payment.risk.risk-strategy.regionBlacklistEnabled.desc')
                   }}</div>
                 </div>
                 <a-switch
-                  v-model:checked="formState.provinceBlacklistEnabled"
+                  v-model:checked="formState.regionBlacklistEnabled"
                   :disabled="!isEditing || !formState.riskEnabled"
                 />
               </div>
+            </div>
+          </div>
 
-              <!-- 市级地区拦截 -->
-              <div class="config-item">
-                <div class="config-item__main">
-                  <div class="config-item__label">{{
-                    $t('payment.risk.risk-strategy.cityBlacklistEnabled.label')
-                  }}</div>
-                  <div class="config-item__desc">{{
-                    $t('payment.risk.risk-strategy.cityBlacklistEnabled.desc')
-                  }}</div>
-                </div>
-                <a-switch
-                  v-model:checked="formState.cityBlacklistEnabled"
-                  :disabled="!isEditing || !formState.riskEnabled"
-                />
-              </div>
-
+          <!-- 门店围栏: 以门店所在城市为基准比对支付 IP 归属城市 -->
+          <div class="config-section">
+            <div class="config-section__title">{{ $t('payment.risk.risk-strategy.section.fence') }}</div>
+            <div class="config-grid">
               <!-- 地理围栏 -->
               <div class="config-item">
                 <div class="config-item__main">

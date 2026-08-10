@@ -37,8 +37,7 @@
       "alipayGlobalHint": "userId Alipay berkuat kuasa seluruh platform, tidak dipecah mengikut aplikasi/produk.",
       "wechatAppHint": "Hanya menyekat openId daripada aplikasi pembayaran platform yang dipilih.",
       "ipHint": "Padan IP klien secara tepat (tanpa CIDR/julat); berkuat kuasa di seluruh platform tanpa mengira aplikasi/produk.",
-      "provinceHint": "Padan mengikut wilayah IP klien (ip2region luar talian). Perlu aktifkan \"Sekat wilayah\" dalam Strategi Risiko. IPv6, intranet dan IP yang tidak dapat diselesaikan dibenarkan.",
-      "cityHint": "Dipadankan mengikut bandar asal IP (penyelesaian luar talian ip2region); berkuat kuasa selepas menghidupkan suis \"Sekatan Tahap Bandar\" dalam Strategi Risiko. Bebas daripada sekatan tahap wilayah; apabila wilayah terkena hit, pemeriksaan bandar tidak dijalankan. Untuk bandar raya, senarai bandar setara dengan tahap wilayah. IPv6, alamat rangkaian dalaman, dan kegagalan penyelesaian dilepaskan."
+      "regionHint": "Dipadankan mengikut wilayah dan bandar IP (penyelesaian luar talian ip2region); berkuat kuasa selepas menghidupkan suis \"Sekatan Wilayah\" dalam Strategi Risiko. Apabila wilayah terkena hit, pemeriksaan bandar tidak dijalankan; untuk bandar raya, senarai bandar setara dengan tahap wilayah. IPv6, alamat rangkaian dalaman, dan kegagalan penyelesaian dilepaskan."
     },
     "scope": {
       "global": "Global"

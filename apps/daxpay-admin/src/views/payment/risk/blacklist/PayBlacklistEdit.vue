@@ -357,18 +357,13 @@
             show-icon
           />
         </div>
-        <!-- 省份：IP 归属匹配说明 -->
-        <div v-if="formState.type === 'province'" class="mb-4">
+        <!-- 省/市：IP 归属匹配说明（地区拦截开关统一生效） -->
+        <div
+          v-if="formState.type === 'province' || formState.type === 'city'"
+          class="mb-4"
+        >
           <a-alert
-            :message="$t('payment.risk.blacklist.tip.provinceHint')"
-            type="info"
-            show-icon
-          />
-        </div>
-        <!-- 城市：IP 归属匹配说明 -->
-        <div v-if="formState.type === 'city'" class="mb-4">
-          <a-alert
-            :message="$t('payment.risk.blacklist.tip.cityHint')"
+            :message="$t('payment.risk.blacklist.tip.regionHint')"
             type="info"
             show-icon
           />

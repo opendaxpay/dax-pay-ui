@@ -11,14 +11,16 @@
     "levelNormal": "Tahap: Biasa",
     "levelEnhanced": "Tahap: Diperkuat",
     "overseasOn": "IP Luar Negara: Sekat",
-    "provinceOn": "Wilayah: Sekat",
-    "cityOn": "Bandar: Sekat",
+    "regionOn": "Wilayah: Sekat",
     "blacklistOn": "Senarai Hitam: Aktif",
     "geoFenceOn": "Pagar Geo: Aktif",
     "strategy": "Strategi: "
   },
   "section": {
-    "switch": "Suis Kawalan Risiko",
+    "common": "Tetapan Umum",
+    "blacklist": "Sekatan Senarai Hitam",
+    "region": "Sekatan Wilayah",
+    "fence": "Geo-fence Kedai",
     "strategy": "Strategi Sekatan"
   },
   "riskEnabled": {
@@ -47,13 +49,14 @@
     "label": "Sekatan IP Luar Negara",
     "desc": "Sekat permintaan pembayaran dari IP luar negara (luar tanah besar China), strategi kawalan risiko biasa di wilayah China."
   },
-  "provinceBlacklistEnabled": {
-    "label": "Sekatan Tahap Wilayah",
-    "desc": "Apabila aktif, wilayah IP dipadankan dengan senarai hitam wilayah; hit mengikuti strategi sekatan. Urus senarai wilayah di Keselamatan Pembayaran → Senarai Hitam."
+  "regionBlacklistEnabled": {
+    "label": "Sekatan Wilayah",
+    "desc": "Apabila aktif, wilayah dan bandar IP dipadankan dengan senarai hitam wilayah; hit mengikuti strategi sekatan. Jika wilayah terkena hit, pemeriksaan bandar tidak dijalankan. Urus senarai wilayah dan bandar di Keselamatan Pembayaran → Senarai Hitam; untuk bandar raya, senarai bandar setara dengan tahap wilayah."
   },
-  "cityBlacklistEnabled": {
-    "label": "Sekatan Tahap Bandar",
-    "desc": "Apabila aktif, bandar IP dipadankan dengan senarai hitam tahap bandar; hit mengikuti strategi sekatan. Bebas daripada suis tahap wilayah; apabila wilayah terkena hit, pemeriksaan bandar tidak dijalankan. Urus senarai bandar di Keselamatan Pembayaran → Senarai Hitam; untuk bandar raya, senarai bandar setara dengan tahap wilayah."
+  "ipv6MatchEnabled": {
+    "label": "Pemadanan Rantau IPv6",
+    "desc": "Lalai dimatikan. Apabila diaktifkan, keempat-empat semakan rantau (wilayah, bandar, luar negara, geo-pagar) akan dipadankan terhadap alamat IPv6. Disebabkan ketepatan data luar talian IPv6 sumber terbuka terhad, ia dilumpuhkan secara lalai; untuk kebolehpercayaan yang lebih tinggi, pertimbangkan pangkalan data IP komersial.",
+    "precisionHint": "Data luar talian IPv6 mempunyai ketepatan terhad; beberapa julat alamat mungkin mempunyai sisihan penyetempatan yang ketara. Untuk kebolehpercayaan tinggi, disyorkan membeli pangkalan data IP komersial (cth. ip2region Pro, CZ88, dll.) untuk menggantikan sumber data lalai."
   },
   "geoFenceEnabled": {
     "label": "Pagar Geo",

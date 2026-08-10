@@ -11,14 +11,16 @@
     "levelNormal": "攔截級別：正常",
     "levelEnhanced": "攔截級別：增強",
     "overseasOn": "海外 IP：攔截",
-    "provinceOn": "省級攔截：開",
-    "cityOn": "市級攔截：開",
+    "regionOn": "地區攔截：開",
     "blacklistOn": "黑名單：開",
     "geoFenceOn": "圍欄：開",
     "strategy": "策略："
   },
   "section": {
-    "switch": "風控開關",
+    "common": "公共設定",
+    "blacklist": "名單攔截",
+    "region": "地域限制",
+    "fence": "門店圍欄",
     "strategy": "攔截策略"
   },
   "riskEnabled": {
@@ -47,13 +49,14 @@
     "label": "海外 IP 攔截",
     "desc": "攔截境外 IP（中國大陸以外）發起的支付請求，中國區常用風控策略。"
   },
-  "provinceBlacklistEnabled": {
-    "label": "省級地區攔截",
-    "desc": "開啟後，將根據 IP 歸屬省份匹配省級黑名單，命中後按攔截策略處理。需在「支付安全 → 黑名單」中維護省級名單資料。"
+  "regionBlacklistEnabled": {
+    "label": "地區攔截",
+    "desc": "開啟後，將根據 IP 歸屬地匹配省級與市級黑名單，命中後按攔截策略處理。省級名單命中後不再執行市級檢查。需在「支付安全 → 黑名單」中維護省級、市級名單資料；直轄市的市級名單等同省級。"
   },
-  "cityBlacklistEnabled": {
-    "label": "市級地區攔截",
-    "desc": "開啟後，將根據 IP 歸屬城市匹配市級黑名單，命中後按攔截策略處理。與省級攔截開關獨立，省級命中後不執行市級檢查。需在「支付安全 → 黑名單」中維護市級名單資料；直轄市的市級名單等同省級。"
+  "ipv6MatchEnabled": {
+    "label": "IPv6 地區匹配",
+    "desc": "預設關閉。開啟後，省級、市級、海外、地理圍欄四項地域檢查會對 IPv6 位址執行匹配。由於開源 IPv6 離線資料精度有限，預設不啟用；如需更高可靠性可接入商用 IP 資料庫。",
+    "precisionHint": "IPv6 離線資料精度有限，部分位址段可能定位偏差較大。如對可靠性要求較高，建議購買商用 IP 資料庫（如 ip2region 商用版、純真 IP 等）替換預設資料源。"
   },
   "geoFenceEnabled": {
     "label": "地理圍欄",

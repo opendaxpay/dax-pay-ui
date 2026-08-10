@@ -11,14 +11,16 @@
     "levelNormal": "Cấp độ: Bình thường",
     "levelEnhanced": "Cấp độ: Tăng cường",
     "overseasOn": "IP nước ngoài: Chặn",
-    "provinceOn": "Tỉnh: Chặn",
-    "cityOn": "TP: Chặn",
+    "regionOn": "Khu vực: Chặn",
     "blacklistOn": "Danh sách đen: Bật",
     "geoFenceOn": "Hàng rào địa lý: Bật",
     "strategy": "Chiến lược: "
   },
   "section": {
-    "switch": "Công tắc kiểm soát rủi ro",
+    "common": "Cài đặt chung",
+    "blacklist": "Chặn danh sách đen",
+    "region": "Hạn chế khu vực",
+    "fence": "Geo-fence cửa hàng",
     "strategy": "Chiến lược chặn"
   },
   "riskEnabled": {
@@ -47,13 +49,14 @@
     "label": "Chặn IP nước ngoài",
     "desc": "Chặn yêu cầu thanh toán từ IP nước ngoài (ngoài Trung Quốc đại lục), chiến lược kiểm soát rủi ro phổ biến tại khu vực Trung Quốc."
   },
-  "provinceBlacklistEnabled": {
-    "label": "Chặn theo cấp tỉnh",
-    "desc": "Khi bật, tỉnh của IP được so khớp với danh sách đen cấp tỉnh; trúng tuân theo chiến lược chặn. Quản lý danh sách tỉnh tại Bảo mật thanh toán → Danh sách đen."
+  "regionBlacklistEnabled": {
+    "label": "Chặn theo khu vực",
+    "desc": "Khi bật, tỉnh và thành phố của IP được so khớp với danh sách đen khu vực; trúng tuân theo chiến lược chặn. Nếu tỉnh trúng, kiểm tra cấp thành phố không được thực hiện. Quản lý danh sách tỉnh/thành phố tại Bảo mật thanh toán → Danh sách đen; với thành phố trực thuộc trung ương, danh sách cấp thành phố tương đương cấp tỉnh."
   },
-  "cityBlacklistEnabled": {
-    "label": "Chặn theo cấp thành phố",
-    "desc": "Khi bật, thành phố của IP được so khớp với danh sách đen cấp thành phố; trường hợp trúng tuân theo chiến lược chặn. Độc lập với công tắc cấp tỉnh; khi tỉnh trúng, kiểm tra cấp thành phố không được thực hiện. Quản lý danh sách thành phố tại Bảo mật thanh toán → Danh sách đen; với thành phố trực thuộc trung ương, danh sách cấp thành phố tương đương cấp tỉnh."
+  "ipv6MatchEnabled": {
+    "label": "Khớp vùng IPv6",
+    "desc": "Mặc định tắt. Khi bật, bốn kiểm tra khu vực (tỉnh, thành, nước ngoài, geo-fence) sẽ khớp với địa chỉ IPv6. Do độ chính xác hạn chế của dữ liệu ngoại tuyến IPv6 mã nguồn mở, tính năng này mặc định tắt; để độ tin cậy cao hơn, hãy cân nhắc cơ sở dữ liệu IP thương mại.",
+    "precisionHint": "Dữ liệu ngoại tuyến IPv6 có độ chính xác hạn chế; một số dải địa chỉ có thể sai lệch định vị đáng kể. Nếu cần độ tin cậy cao, nên mua cơ sở dữ liệu IP thương mại (ví dụ: ip2region Pro, CZ88, v.v.) để thay thế nguồn dữ liệu mặc định."
   },
   "geoFenceEnabled": {
     "label": "Hàng rào địa lý",

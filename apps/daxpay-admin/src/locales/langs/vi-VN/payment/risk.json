@@ -37,8 +37,7 @@
       "alipayGlobalHint": "userId Alipay áp dụng toàn nền tảng, không tách theo ứng dụng/sản phẩm.",
       "wechatAppHint": "Chỉ chặn openId lấy từ ứng dụng thanh toán nền tảng đã chọn.",
       "ipHint": "Khớp chính xác IP khách hàng (không hỗ trợ CIDR/dải); áp dụng toàn nền tảng, không phân biệt ứng dụng/sản phẩm.",
-      "provinceHint": "Khớp theo tỉnh/thành của IP khách hàng (ip2region offline). Cần bật \"Chặn cấp tỉnh\" trong Chiến lược rủi ro. IPv6, mạng nội bộ và IP không xác định được được phép.",
-      "cityHint": "So khớp theo thành phố sở hữu IP (phân giải offline ip2region); có hiệu lực sau khi bật công tắc \"Chặn theo cấp thành phố\" trong Chiến lược rủi ro. Độc lập với chặn cấp tỉnh; khi tỉnh trúng, không thực hiện kiểm tra cấp thành phố. Với thành phố trực thuộc trung ương, danh sách cấp thành phố tương đương cấp tỉnh. IPv6, địa chỉ nội bộ và lỗi phân giải được bỏ qua."
+      "regionHint": "So khớp theo tỉnh và thành phố của IP (phân giải offline ip2region); có hiệu lực sau khi bật công tắc \"Chặn theo khu vực\" trong Chiến lược rủi ro. Khi tỉnh trúng, không thực hiện kiểm tra cấp thành phố; với thành phố trực thuộc trung ương, danh sách cấp thành phố tương đương cấp tỉnh. IPv6, địa chỉ nội bộ và lỗi phân giải được bỏ qua."
     },
     "scope": {
       "global": "Toàn cục"

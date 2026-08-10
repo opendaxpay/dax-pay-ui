@@ -11,14 +11,16 @@
     "levelNormal": "拦截级别：正常",
     "levelEnhanced": "拦截级别：增强",
     "overseasOn": "海外 IP：拦截",
-    "provinceOn": "省级拦截：开",
-    "cityOn": "市级拦截：开",
+    "regionOn": "地区拦截：开",
     "blacklistOn": "黑名单：开",
     "geoFenceOn": "围栏：开",
     "strategy": "策略："
   },
   "section": {
-    "switch": "风控开关",
+    "common": "公共设置",
+    "blacklist": "名单拦截",
+    "region": "地域限制",
+    "fence": "门店围栏",
     "strategy": "拦截策略"
   },
   "riskEnabled": {
@@ -47,13 +49,14 @@
     "label": "海外 IP 拦截",
     "desc": "拦截境外 IP（中国大陆以外）发起的支付请求，中国区常用风控策略。"
   },
-  "provinceBlacklistEnabled": {
-    "label": "省级地区拦截",
-    "desc": "开启后，将根据 IP 归属省份匹配省级黑名单，命中后按拦截策略处理。需在「支付安全 → 黑名单」中维护省级名单数据。"
+  "regionBlacklistEnabled": {
+    "label": "地区拦截",
+    "desc": "开启后，将根据 IP 归属地匹配省级与市级黑名单，命中后按拦截策略处理。省级名单命中后不再执行市级检查。需在「支付安全 → 黑名单」中维护省级、市级名单数据；直辖市的市级名单等同省级。"
   },
-  "cityBlacklistEnabled": {
-    "label": "市级地区拦截",
-    "desc": "开启后，将根据 IP 归属城市匹配市级黑名单，命中后按拦截策略处理。与省级拦截开关独立，省级命中后不执行市级检查。需在「支付安全 → 黑名单」中维护市级名单数据；直辖市的市级名单等同省级。"
+  "ipv6MatchEnabled": {
+    "label": "IPv6 地区匹配",
+    "desc": "默认关闭。开启后，省级、市级、海外、地理围栏四项地域检查会对 IPv6 地址执行匹配。由于开源 IPv6 离线数据精度有限，默认不启用；如需更高可靠性可接入商用 IP 数据库。",
+    "precisionHint": "IPv6 离线数据精度有限，部分地址段可能定位偏差较大。如对可靠性要求较高，建议购买商用 IP 数据库（如 ip2region 商用版、纯真 IP 等）替换默认数据源。"
   },
   "geoFenceEnabled": {
     "label": "地理围栏",

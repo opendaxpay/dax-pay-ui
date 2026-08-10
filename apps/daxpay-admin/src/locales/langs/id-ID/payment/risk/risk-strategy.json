@@ -11,14 +11,16 @@
     "levelNormal": "Level: Normal",
     "levelEnhanced": "Level: Ditingkatkan",
     "overseasOn": "IP Luar Negeri: Blokir",
-    "provinceOn": "Provinsi: Blokir",
-    "cityOn": "Kota: Blokir",
+    "regionOn": "Wilayah: Blokir",
     "blacklistOn": "Daftar Hitam: Aktif",
     "geoFenceOn": "Geo-pagar: Aktif",
     "strategy": "Strategi: "
   },
   "section": {
-    "switch": "Saklar Kontrol Risiko",
+    "common": "Pengaturan Umum",
+    "blacklist": "Pemblokiran Daftar Hitam",
+    "region": "Pembatasan Wilayah",
+    "fence": "Geo-fence Toko",
     "strategy": "Strategi Intersepsi"
   },
   "riskEnabled": {
@@ -47,13 +49,14 @@
     "label": "Pemblokiran IP Luar Negeri",
     "desc": "Blokir permintaan pembayaran dari IP luar negeri (di luar Tiongkok daratan), strategi pengendalian risiko umum di wilayah Tiongkok."
   },
-  "provinceBlacklistEnabled": {
-    "label": "Pemblokiran Tingkat Provinsi",
-    "desc": "Saat aktif, provinsi IP dicocokkan dengan daftar hitam provinsi; hit mengikuti strategi intersepsi. Kelola daftar provinsi di Keamanan Pembayaran → Daftar Hitam."
+  "regionBlacklistEnabled": {
+    "label": "Pemblokiran Wilayah",
+    "desc": "Saat aktif, provinsi dan kota IP dicocokkan dengan daftar hitam wilayah; hit mengikuti strategi intersepsi. Jika provinsi terkena hit, pemeriksaan kota tidak dijalankan. Kelola daftar provinsi dan kota di Keamanan Pembayaran → Daftar Hitam; untuk kotamadya, daftar kota setara dengan tingkat provinsi."
   },
-  "cityBlacklistEnabled": {
-    "label": "Pemblokiran Tingkat Kota",
-    "desc": "Saat aktif, kota IP dicocokkan dengan daftar hitam tingkat kota; hit mengikuti strategi intersepsi. Independen dari saklar tingkat provinsi; saat provinsi terkena hit, pemeriksaan kota tidak dijalankan. Kelola daftar kota di Keamanan Pembayaran → Daftar Hitam; untuk kotamadya, daftar kota setara dengan tingkat provinsi."
+  "ipv6MatchEnabled": {
+    "label": "Pencocokan Wilayah IPv6",
+    "desc": "Nonaktif secara default. Saat diaktifkan, keempat pemeriksaan wilayah (provinsi, kota, luar negeri, geo-pagar) akan mencocokkan alamat IPv6. Karena akurasi data offline IPv6 sumber terbuka terbatas, fitur ini nonaktif secara default; untuk keandalan yang lebih tinggi, pertimbangkan basis data IP komersial.",
+    "precisionHint": "Data offline IPv6 memiliki akurasi terbatas; beberapa rentang alamat mungkin memiliki deviasi lokasi yang signifikan. Untuk keandalan tinggi, disarankan membeli basis data IP komersial (mis. ip2region Pro, CZ88, dll.) untuk menggantikan sumber data default."
   },
   "geoFenceEnabled": {
     "label": "Geo-pagar",
