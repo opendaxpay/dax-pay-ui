@@ -114,5 +114,7 @@
   "trade:order:manage": "管理",
   "trade:order:view": "查看",
   "trade:refund:manage": "管理",
-  "trade:refund:view": "查看"
+  "trade:refund:view": "查看",
+  "trade:alloc:view": "查看",
+  "trade:alloc:manage": "管理"
 }

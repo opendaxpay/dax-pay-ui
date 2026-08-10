@@ -110,5 +110,7 @@
   "trade:order:manage": "Quản lý",
   "trade:order:view": "Xem",
   "trade:refund:manage": "Quản lý",
-  "trade:refund:view": "Xem"
+  "trade:refund:view": "Xem",
+  "trade:alloc:view": "Xem",
+  "trade:alloc:manage": "Quản lý"
 }

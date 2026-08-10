@@ -92,7 +92,12 @@
     "authCode": "Kode pembayaran",
     "merchant": "Merchant",
     "gatewayType": "Jenis Gateway",
-    "storeNo": "No. Toko"
+    "storeNo": "No. Toko",
+    "allocNo": "No. Alokasi",
+    "bizAllocNo": "No. Alokasi Merchant",
+    "outAllocNo": "No. Alokasi Saluran",
+    "receiverType": "Tipe Penerima",
+    "receiverAccount": "Akun Penerima"
   },
   "bizStatus": {
     "wait_pay": "Menunggu",
@@ -135,7 +140,9 @@
     "amountMax": "Jumlah maksimum",
     "refundNo": "Masukkan no pengembalian dana.",
     "bizRefundNo": "Masukkan no pengembalian dana bisnis.",
-    "orderNo": "Masukkan nomor pesanan asli."
+    "orderNo": "Masukkan nomor pesanan asli.",
+    "allocNo": "Masukkan no. alokasi",
+    "bizAllocNo": "Masukkan no. alokasi merchant"
   },
   "action": {
     "sync": "Status Sinkronisasi",
@@ -176,5 +183,35 @@
   "gatewayType": {
     "cashier": "Cashier",
     "aggregate": "Aggregate"
+  },
+  "alloc": {
+    "title": "Pesanan Alokasi",
+    "detail": "Detail Pesanan Alokasi",
+    "statusLabel": "Status Alokasi",
+    "detailResultLabel": "Hasil Detail",
+    "section": {
+      "identity": "Identitas",
+      "fund": "Dana Terkait",
+      "amount": "Jumlah & Status",
+      "channel": "Snapshot Saluran",
+      "detail": "Detail Alokasi"
+    },
+    "status": {
+      "processing": "Memproses",
+      "success": "Berhasil",
+      "partial": "Sebagian",
+      "fail": "Gagal"
+    },
+    "statusColor": {
+      "processing": "processing",
+      "success": "green",
+      "partial": "orange",
+      "fail": "red"
+    },
+    "detailResult": {
+      "pending": "Menunggu",
+      "success": "Berhasil",
+      "fail": "Gagal"
+    }
   }
 }

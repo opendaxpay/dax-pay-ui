@@ -111,5 +111,6 @@
   "menu.trade.transfer.douyin": "더우인 송금",
   "menu.trade.transfer.trade": "송금 기록",
   "menu.trade.transfer.create": "송금 시작",
-  "menu.trade.transfer.channel": "채널 송금"
+  "menu.trade.transfer.channel": "채널 송금",
+  "menu.trade.allocOrder": "정산 주문"
 }

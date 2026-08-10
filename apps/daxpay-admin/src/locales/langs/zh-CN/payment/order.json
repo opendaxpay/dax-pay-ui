@@ -35,6 +35,36 @@
       "close": "default"
     }
   },
+  "alloc": {
+    "title": "分账订单",
+    "detail": "分账订单详情",
+    "statusLabel": "分账状态",
+    "detailResultLabel": "明细结果",
+    "section": {
+      "identity": "身份信息",
+      "fund": "关联资金",
+      "amount": "金额与状态",
+      "channel": "通道快照",
+      "detail": "分账明细"
+    },
+    "status": {
+      "processing": "分账中",
+      "success": "分账成功",
+      "partial": "部分成功",
+      "fail": "分账失败"
+    },
+    "statusColor": {
+      "processing": "processing",
+      "success": "green",
+      "partial": "orange",
+      "fail": "red"
+    },
+    "detailResult": {
+      "pending": "待分账",
+      "success": "成功",
+      "fail": "失败"
+    }
+  },
   "field": {
     "bizOrderNo": "商户订单号",
     "tradeNo": "资金交易号",
@@ -92,7 +122,12 @@
     "orderNo": "平台业务单号",
     "authCode": "付款码",
     "merchant": "商户",
-    "storeNo": "门店号"
+    "storeNo": "门店号",
+    "allocNo": "分账单号",
+    "bizAllocNo": "商户分账单号",
+    "outAllocNo": "通道分账单号",
+    "receiverType": "接收方类型",
+    "receiverAccount": "接收方账号"
   },
   "bizStatus": {
     "wait_pay": "待支付",
@@ -151,7 +186,9 @@
     "amountMax": "最大金额",
     "refundNo": "请输入退款号",
     "bizRefundNo": "请输入商户退款号",
-    "orderNo": "请输入平台业务单号"
+    "orderNo": "请输入平台业务单号",
+    "allocNo": "请输入分账单号",
+    "bizAllocNo": "请输入商户分账单号"
   },
   "action": {
     "sync": "同步状态",

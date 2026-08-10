@@ -110,5 +110,7 @@
   "trade:order:manage": "管理",
   "trade:order:view": "ビュー",
   "trade:refund:manage": "管理",
-  "trade:refund:view": "ビュー"
+  "trade:refund:view": "ビュー",
+  "trade:alloc:view": "閲覧",
+  "trade:alloc:manage": "管理"
 }

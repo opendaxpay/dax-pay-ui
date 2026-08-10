@@ -92,7 +92,12 @@
     "authCode": "Kod pembayaran",
     "merchant": "Peniaga",
     "gatewayType": "Jenis Gateway",
-    "storeNo": "No. Kedai"
+    "storeNo": "No. Kedai",
+    "allocNo": "No. Peruntukan",
+    "bizAllocNo": "No. Peruntukan Merchant",
+    "outAllocNo": "No. Peruntukan Saluran",
+    "receiverType": "Jenis Penerima",
+    "receiverAccount": "Akaun Penerima"
   },
   "bizStatus": {
     "wait_pay": "Menunggu",
@@ -135,7 +140,9 @@
     "amountMax": "Jumlah maksimum",
     "refundNo": "Masukkan no bayaran balik.",
     "bizRefundNo": "Masukkan no biz refund.",
-    "orderNo": "Masukkan no pesanan asal."
+    "orderNo": "Masukkan no pesanan asal.",
+    "allocNo": "Masukkan no. peruntukan",
+    "bizAllocNo": "Masukkan no. peruntukan merchant"
   },
   "action": {
     "sync": "Status Penyegerakan",
@@ -176,5 +183,35 @@
   "gatewayType": {
     "cashier": "Cashier",
     "aggregate": "Aggregate"
+  },
+  "alloc": {
+    "title": "Pesanan Peruntukan",
+    "detail": "Butiran Pesanan Peruntukan",
+    "statusLabel": "Status Peruntukan",
+    "detailResultLabel": "Hasil Butiran",
+    "section": {
+      "identity": "Identiti",
+      "fund": "Dana Berkaitan",
+      "amount": "Jumlah & Status",
+      "channel": "Tangkapan Saluran",
+      "detail": "Butiran Peruntukan"
+    },
+    "status": {
+      "processing": "Memproses",
+      "success": "Berjaya",
+      "partial": "Separa",
+      "fail": "Gagal"
+    },
+    "statusColor": {
+      "processing": "processing",
+      "success": "green",
+      "partial": "orange",
+      "fail": "red"
+    },
+    "detailResult": {
+      "pending": "Menunggu",
+      "success": "Berjaya",
+      "fail": "Gagal"
+    }
   }
 }

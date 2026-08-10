@@ -114,5 +114,7 @@
   "trade:order:manage": "관리하다",
   "trade:order:view": "보다",
   "trade:refund:manage": "관리하다",
-  "trade:refund:view": "보다"
+  "trade:refund:view": "보다",
+  "trade:alloc:view": "보기",
+  "trade:alloc:manage": "관리"
 }

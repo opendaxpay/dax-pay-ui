@@ -110,5 +110,7 @@
   "trade:order:manage": "จัดการ",
   "trade:order:view": "ดู",
   "trade:refund:manage": "จัดการ",
-  "trade:refund:view": "ดู"
+  "trade:refund:view": "ดู",
+  "trade:alloc:view": "ดู",
+  "trade:alloc:manage": "จัดการ"
 }

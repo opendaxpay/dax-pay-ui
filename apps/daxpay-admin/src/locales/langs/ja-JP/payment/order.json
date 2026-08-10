@@ -92,7 +92,12 @@
     "authCode": "支払いコード",
     "merchant": "加盟店",
     "storeNo": "ストア番号",
-    "gatewayType": "ゲートウェイ種別"
+    "gatewayType": "ゲートウェイ種別",
+    "allocNo": "精算番号",
+    "bizAllocNo": "マーチャント精算番号",
+    "outAllocNo": "チャネル精算番号",
+    "receiverType": "受取人タイプ",
+    "receiverAccount": "受取人アカウント"
   },
   "bizStatus": {
     "wait_pay": "待っている",
@@ -135,7 +140,9 @@
     "amountMax": "最大金額",
     "refundNo": "返金番号を入力してください。",
     "bizRefundNo": "ビジネス返金番号を入力してください。",
-    "orderNo": "元の注文番号を入力してください。"
+    "orderNo": "元の注文番号を入力してください。",
+    "allocNo": "精算番号を入力",
+    "bizAllocNo": "マーチャント精算番号を入力"
   },
   "action": {
     "sync": "同期ステータス",
@@ -180,5 +187,35 @@
   "gatewayType": {
     "cashier": "Cashier",
     "aggregate": "Aggregate"
+  },
+  "alloc": {
+    "title": "精算注文",
+    "detail": "精算注文詳細",
+    "statusLabel": "精算状態",
+    "detailResultLabel": "明細結果",
+    "section": {
+      "identity": "身元情報",
+      "fund": "関連資金",
+      "amount": "金額と状態",
+      "channel": "チャネルスナップショット",
+      "detail": "精算明細"
+    },
+    "status": {
+      "processing": "精算処理中",
+      "success": "精算成功",
+      "partial": "一部成功",
+      "fail": "精算失敗"
+    },
+    "statusColor": {
+      "processing": "processing",
+      "success": "green",
+      "partial": "orange",
+      "fail": "red"
+    },
+    "detailResult": {
+      "pending": "待機中",
+      "success": "成功",
+      "fail": "失敗"
+    }
   }
 }

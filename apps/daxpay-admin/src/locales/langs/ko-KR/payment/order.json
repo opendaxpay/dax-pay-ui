@@ -92,7 +92,12 @@
     "authCode": "결제 코드",
     "merchant": "가맹점",
     "storeNo": "매장 번호",
-    "gatewayType": "게이트웨이 유형"
+    "gatewayType": "게이트웨이 유형",
+    "allocNo": "분할 번호",
+    "bizAllocNo": "머천트 분할 번호",
+    "outAllocNo": "채널 분할 번호",
+    "receiverType": "수신자 유형",
+    "receiverAccount": "수신자 계정"
   },
   "bizStatus": {
     "wait_pay": "대기 중",
@@ -135,7 +140,9 @@
     "amountMax": "최대금액",
     "refundNo": "환불번호를 입력하세요.",
     "bizRefundNo": "비즈니스 환불 번호를 입력하세요.",
-    "orderNo": "원래 주문번호를 입력하세요."
+    "orderNo": "원래 주문번호를 입력하세요.",
+    "allocNo": "분할 번호 입력",
+    "bizAllocNo": "머천트 분할 번호 입력"
   },
   "action": {
     "sync": "동기화 상태",
@@ -180,5 +187,35 @@
   "gatewayType": {
     "cashier": "Cashier",
     "aggregate": "Aggregate"
+  },
+  "alloc": {
+    "title": "분할 주문",
+    "detail": "분할 주문 상세",
+    "statusLabel": "분할 상태",
+    "detailResultLabel": "상세 결과",
+    "section": {
+      "identity": "신원 정보",
+      "fund": "관련 자금",
+      "amount": "금액 및 상태",
+      "channel": "채널 스냅샷",
+      "detail": "분할 상세"
+    },
+    "status": {
+      "processing": "분할 처리중",
+      "success": "분할 성공",
+      "partial": "부분 성공",
+      "fail": "분할 실패"
+    },
+    "statusColor": {
+      "processing": "processing",
+      "success": "green",
+      "partial": "orange",
+      "fail": "red"
+    },
+    "detailResult": {
+      "pending": "대기중",
+      "success": "성공",
+      "fail": "실패"
+    }
   }
 }

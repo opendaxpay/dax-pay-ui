@@ -110,5 +110,7 @@
   "trade:order:manage": "Mengelola",
   "trade:order:view": "Melihat",
   "trade:refund:manage": "Mengelola",
-  "trade:refund:view": "Melihat"
+  "trade:refund:view": "Melihat",
+  "trade:alloc:view": "Lihat",
+  "trade:alloc:manage": "Kelola"
 }

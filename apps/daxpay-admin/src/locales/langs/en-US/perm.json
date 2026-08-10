@@ -110,5 +110,7 @@
   "trade:order:manage": "Manage",
   "trade:order:view": "View",
   "trade:refund:manage": "Manage",
-  "trade:refund:view": "View"
+  "trade:refund:view": "View",
+  "trade:alloc:view": "View",
+  "trade:alloc:manage": "Manage"
 }

@@ -92,7 +92,12 @@
     "authCode": "Mã thanh toán",
     "merchant": "Thương nhân",
     "gatewayType": "Loại cổng",
-    "storeNo": "Mã cửa hàng"
+    "storeNo": "Mã cửa hàng",
+    "allocNo": "Mã phân bổ",
+    "bizAllocNo": "Mã phân bổ merchant",
+    "outAllocNo": "Mã phân bổ kênh",
+    "receiverType": "Loại người nhận",
+    "receiverAccount": "Tài khoản người nhận"
   },
   "bizStatus": {
     "wait_pay": "Chờ",
@@ -135,7 +140,9 @@
     "amountMax": "Số tiền tối đa",
     "refundNo": "Nhập số hoàn tiền",
     "bizRefundNo": "Nhập số tiền hoàn lại biz.",
-    "orderNo": "Nhập số thứ tự ban đầu"
+    "orderNo": "Nhập số thứ tự ban đầu",
+    "allocNo": "Nhập mã phân bổ",
+    "bizAllocNo": "Nhập mã phân bổ merchant"
   },
   "action": {
     "sync": "Trạng thái đồng bộ hóa",
@@ -176,5 +183,35 @@
   "gatewayType": {
     "cashier": "Cashier",
     "aggregate": "Aggregate"
+  },
+  "alloc": {
+    "title": "Đơn Phân Bổ",
+    "detail": "Chi Tiết Đơn Phân Bổ",
+    "statusLabel": "Trạng Thái Phân Bổ",
+    "detailResultLabel": "Kết Quả Chi Tiết",
+    "section": {
+      "identity": "Danh tính",
+      "fund": "Ngân quỹ liên quan",
+      "amount": "Số tiền & Trạng thái",
+      "channel": "Ảnh chụp kênh",
+      "detail": "Chi tiết phân bổ"
+    },
+    "status": {
+      "processing": "Đang xử lý",
+      "success": "Thành công",
+      "partial": "Một phần",
+      "fail": "Thất bại"
+    },
+    "statusColor": {
+      "processing": "processing",
+      "success": "green",
+      "partial": "orange",
+      "fail": "red"
+    },
+    "detailResult": {
+      "pending": "Đang chờ",
+      "success": "Thành công",
+      "fail": "Thất bại"
+    }
   }
 }

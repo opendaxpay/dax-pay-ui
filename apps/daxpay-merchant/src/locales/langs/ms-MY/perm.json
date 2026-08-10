@@ -110,5 +110,7 @@
   "trade:order:manage": "Uruskan",
   "trade:order:view": "Lihat",
   "trade:refund:manage": "Uruskan",
-  "trade:refund:view": "Lihat"
+  "trade:refund:view": "Lihat",
+  "trade:alloc:view": "Lihat",
+  "trade:alloc:manage": "Urus"
 }

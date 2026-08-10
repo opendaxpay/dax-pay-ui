@@ -92,7 +92,12 @@
     "authCode": "รหัสชำระเงิน",
     "merchant": "ร้านค้า",
     "gatewayType": "ประเภทเกตเวย์",
-    "storeNo": "รหัสร้าน"
+    "storeNo": "รหัสร้าน",
+    "allocNo": "เลขที่การแบ่ง",
+    "bizAllocNo": "เลขที่การแบ่งผู้ค้า",
+    "outAllocNo": "เลขที่การแบ่งช่องทาง",
+    "receiverType": "ประเภทผู้รับ",
+    "receiverAccount": "บัญชีผู้รับ"
   },
   "bizStatus": {
     "wait_pay": "ซึ่งรอคอย",
@@ -135,7 +140,9 @@
     "amountMax": "จำนวนเงินสูงสุด",
     "refundNo": "ใส่หมายเลขการคืนเงิน",
     "bizRefundNo": "กรอกหมายเลขการคืนเงินของ Biz",
-    "orderNo": "ป้อนหมายเลขคำสั่งซื้อเดิม"
+    "orderNo": "ป้อนหมายเลขคำสั่งซื้อเดิม",
+    "allocNo": "ป้อนเลขที่การแบ่ง",
+    "bizAllocNo": "ป้อนเลขที่การแบ่งผู้ค้า"
   },
   "action": {
     "sync": "สถานะการซิงค์",
@@ -176,5 +183,35 @@
   "gatewayType": {
     "cashier": "Cashier",
     "aggregate": "Aggregate"
+  },
+  "alloc": {
+    "title": "คำสั่งแบ่ง",
+    "detail": "รายละเอียดคำสั่งแบ่ง",
+    "statusLabel": "สถานะการแบ่ง",
+    "detailResultLabel": "ผลลัพธ์รายละเอียด",
+    "section": {
+      "identity": "ข้อมูลตัวตน",
+      "fund": "เงินที่เกี่ยวข้อง",
+      "amount": "จำนวนเงินและสถานะ",
+      "channel": "ภาพรวมช่องทาง",
+      "detail": "รายละเอียดการแบ่ง"
+    },
+    "status": {
+      "processing": "กำลังดำเนินการ",
+      "success": "สำเร็จ",
+      "partial": "สำเร็จบางส่วน",
+      "fail": "ล้มเหลว"
+    },
+    "statusColor": {
+      "processing": "processing",
+      "success": "green",
+      "partial": "orange",
+      "fail": "red"
+    },
+    "detailResult": {
+      "pending": "รอดำเนินการ",
+      "success": "สำเร็จ",
+      "fail": "ล้มเหลว"
+    }
   }
 }

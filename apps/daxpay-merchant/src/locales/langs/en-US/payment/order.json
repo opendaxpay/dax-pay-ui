@@ -92,7 +92,12 @@
     "authCode": "Payment code",
     "merchant": "Merchant",
     "storeNo": "Store No.",
-    "gatewayType": "Gateway Type"
+    "gatewayType": "Gateway Type",
+    "allocNo": "Allocation No",
+    "bizAllocNo": "Merchant Allocation No",
+    "outAllocNo": "Channel Allocation No",
+    "receiverType": "Receiver Type",
+    "receiverAccount": "Receiver Account"
   },
   "bizStatus": {
     "wait_pay": "Waiting",
@@ -143,7 +148,9 @@
     "amountMax": "Max amount",
     "refundNo": "Enter refund no.",
     "bizRefundNo": "Enter biz refund no.",
-    "orderNo": "Enter platform order no."
+    "orderNo": "Enter platform order no.",
+    "allocNo": "Enter allocation no",
+    "bizAllocNo": "Enter merchant allocation no"
   },
   "action": {
     "sync": "Sync Status",
@@ -180,5 +187,35 @@
     "app": "APP",
     "barcode": "Barcode",
     "wap": "WAP"
+  },
+  "alloc": {
+    "title": "Allocation Order",
+    "detail": "Allocation Order Detail",
+    "statusLabel": "Allocation Status",
+    "detailResultLabel": "Detail Result",
+    "section": {
+      "identity": "Identity",
+      "fund": "Related Fund",
+      "amount": "Amount & Status",
+      "channel": "Channel Snapshot",
+      "detail": "Allocation Details"
+    },
+    "status": {
+      "processing": "Processing",
+      "success": "Success",
+      "partial": "Partial",
+      "fail": "Failed"
+    },
+    "statusColor": {
+      "processing": "processing",
+      "success": "green",
+      "partial": "orange",
+      "fail": "red"
+    },
+    "detailResult": {
+      "pending": "Pending",
+      "success": "Success",
+      "fail": "Failed"
+    }
   }
 }
