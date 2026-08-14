@@ -37,6 +37,9 @@ type EchartsThemeType = 'dark' | 'light' | null;
 function useEcharts(chartRef: Ref<EchartsUIType>) {
   let chartInstance: echarts.ECharts | null = null;
   let cacheOptions: EChartsOption = {};
+  // 渲染代际: 每次 renderEcharts 调用自增, 使旧调用(含其 30ms 重试链)失效,
+  // 防止"空数据时的遗留重试"在后续真实渲染完成后再次 setOption 覆盖画面(表现为空白 canvas)
+  let renderGeneration = 0;
   // echarts是否处于激活状态
   const isActiveRef = ref(false);
 
@@ -96,22 +99,41 @@ function useEcharts(chartRef: Ref<EchartsUIType>) {
       ...options,
       ...getOptions.value,
     };
+    // 本次调用取代之前所有进行中的渲染/重试链
+    const generation = ++renderGeneration;
     return new Promise((resolve) => {
       if (chartRef.value?.offsetHeight === 0) {
         useTimeoutFn(async () => {
+          if (generation !== renderGeneration) {
+            resolve(null);
+            return;
+          }
           resolve(await renderEcharts(currentOptions));
         }, 30);
         return;
       }
       nextTick(() => {
+        if (generation !== renderGeneration) {
+          resolve(null);
+          return;
+        }
         const el = getChartEl();
         if (isElHidden(el)) {
           useTimeoutFn(async () => {
+            if (generation !== renderGeneration) {
+              resolve(null);
+              return;
+            }
             resolve(await renderEcharts(currentOptions));
           }, 30);
           return;
         }
         useTimeoutFn(() => {
+          // setOption 前最后一道防线: 等待期间若已被新调用取代则放弃, 避免旧 options 清空画面
+          if (generation !== renderGeneration) {
+            resolve(null);
+            return;
+          }
           if (!chartInstance || chartInstance?.getDom() !== el) {
             chartInstance?.dispose();
             const instance = initCharts();
