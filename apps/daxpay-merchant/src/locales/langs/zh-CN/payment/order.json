@@ -97,7 +97,8 @@
     "bizAllocNo": "商户分账单号",
     "outAllocNo": "通道分账单号",
     "receiverType": "接收方类型",
-    "receiverAccount": "接收方账号"
+    "receiverAccount": "接收方账号",
+    "allocStatus": "分账状态"
   },
   "bizStatus": {
     "wait_pay": "待支付",
@@ -186,7 +187,30 @@
     "manualClose": "手动关闭",
     "manualCloseConfirmTitle": "确认手动关闭退款单",
     "manualCloseConfirmContent": "此操作将关闭退款单并回滚预占余额，不可撤销。仅用于超过7天未确认的异常退款单。",
-    "manualCloseSuccess": "手动关闭成功"
+    "manualCloseSuccess": "手动关闭成功",
+    "alloc": "发起分账",
+    "allocDrawerTitle": "发起分账",
+    "allocTip": "分账将从该订单冻结资金中拆分给指定接收方,未分账部分自动解冻回商户",
+    "allocOrderAmountLabel": "订单金额",
+    "allocBizAllocNoLabel": "商户分账单号",
+    "allocBizAllocNoPlaceholder": "请输入商户分账单号(幂等键,同一商户不可重复)",
+    "allocTitleLabel": "分账标题",
+    "allocDescLabel": "分账描述",
+    "allocReceiverSection": "分账接收方",
+    "allocAddReceiver": "添加接收方",
+    "allocReceiverTypeLabel": "接收方类型",
+    "allocReceiverAccountLabel": "接收方账号",
+    "allocReceiverNameLabel": "接收方姓名",
+    "allocAmountLabel": "分账金额(元)",
+    "allocTotalLabel": "合计",
+    "allocTotalExceed": "分账总额不能超过订单金额",
+    "allocReceiverRequired": "至少添加一个分账接收方",
+    "allocValidateType": "请选择接收方类型",
+    "allocValidateAccount": "请输入接收方账号",
+    "allocValidateAmount": "分账金额需不小于 0.01 元",
+    "allocConfirmTitle": "确认发起分账",
+    "allocConfirmContent": "将向通道发起分账,合计 {amount} 元,是否继续?",
+    "allocSuccess": "分账发起成功"
   },
   "alloc": {
     "title": "分账订单",
@@ -217,5 +241,23 @@
       "success": "成功",
       "fail": "失败"
     }
+  },
+  "receiverType": {
+    "MERCHANT_ID": "商户号",
+    "PERSONAL_OPENID": "个人OpenID",
+    "USER_ID": "支付宝用户ID",
+    "LOGIN_NAME": "支付宝登录账号"
+  },
+  "allocStatus": {
+    "none": "待分账",
+    "unsupported": "不支持分账",
+    "processing": "分账中",
+    "done": "已分账"
+  },
+  "allocStatusColor": {
+    "none": "blue",
+    "unsupported": "warning",
+    "processing": "processing",
+    "done": "green"
   }
 }

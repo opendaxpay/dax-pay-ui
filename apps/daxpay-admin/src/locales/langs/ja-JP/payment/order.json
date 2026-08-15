@@ -97,7 +97,8 @@
     "bizAllocNo": "マーチャント精算番号",
     "outAllocNo": "チャネル精算番号",
     "receiverType": "受取人タイプ",
-    "receiverAccount": "受取人アカウント"
+    "receiverAccount": "受取人アカウント",
+    "allocStatus": "精算状態"
   },
   "bizStatus": {
     "wait_pay": "待っている",
@@ -170,7 +171,30 @@
     "manualClose": "手動クローズ",
     "manualCloseConfirmTitle": "手動クローズの確認",
     "manualCloseConfirmContent": "この操作は返金注文をクローズし、予約残高をロールバックします。元に戻せません。7日以上未確認の異常返金注文のみ対象です。",
-    "manualCloseSuccess": "手動クローズ成功"
+    "manualCloseSuccess": "手動クローズ成功",
+    "alloc": "分配開始",
+    "allocDrawerTitle": "分配開始",
+    "allocTip": "分配によりこの注文の凍結資金を指定の受取人に分割します。未分配分は自動的にマーチャントへ解凍されます。",
+    "allocOrderAmountLabel": "注文金額",
+    "allocBizAllocNoLabel": "マーチャント分配番号",
+    "allocBizAllocNoPlaceholder": "マーチャント分配番号を入力(冪等キー、同一マーチャントで重複不可)",
+    "allocTitleLabel": "分配タイトル",
+    "allocDescLabel": "分配説明",
+    "allocReceiverSection": "分配受取人",
+    "allocAddReceiver": "受取人を追加",
+    "allocReceiverTypeLabel": "受取人タイプ",
+    "allocReceiverAccountLabel": "受取人アカウント",
+    "allocReceiverNameLabel": "受取人名",
+    "allocAmountLabel": "分配金額(元)",
+    "allocTotalLabel": "合計",
+    "allocTotalExceed": "分配総額は注文金額を超えられません",
+    "allocReceiverRequired": "少なくとも1人の分配受取人を追加してください",
+    "allocValidateType": "受取人タイプを選択してください",
+    "allocValidateAccount": "受取人アカウントを入力してください",
+    "allocValidateAmount": "分配金額は0.01元以上である必要があります",
+    "allocConfirmTitle": "分配開始の確認",
+    "allocConfirmContent": "チャネルへ分配を開始します。合計 {amount} 元、続行しますか?",
+    "allocSuccess": "分配を開始しました"
   },
   "method": {
     "jsapi": "JSAPI",
@@ -217,5 +241,23 @@
       "success": "成功",
       "fail": "失敗"
     }
+  },
+  "receiverType": {
+    "MERCHANT_ID": "マーチャント番号",
+    "PERSONAL_OPENID": "個人OpenID",
+    "USER_ID": "AlipayユーザーID",
+    "LOGIN_NAME": "Alipayログインアカウント"
+  },
+  "allocStatus": {
+    "none": "精算待ち",
+    "unsupported": "精算非対応",
+    "processing": "精算中",
+    "done": "精算済み"
+  },
+  "allocStatusColor": {
+    "none": "blue",
+    "unsupported": "warning",
+    "processing": "processing",
+    "done": "green"
   }
 }

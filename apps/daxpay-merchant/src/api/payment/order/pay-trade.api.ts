@@ -42,6 +42,8 @@ export interface PayTradeQuery {
   status?: string;
   /** 交易形态 */
   tradeType?: string;
+  /** 分账状态(仅分账订单有值) */
+  allocStatus?: string;
   /** 支付通道 */
   channel?: string;
   // pay_trade 无 method/product 列，不可筛选
@@ -138,6 +140,8 @@ export interface PayTradeResult extends MchEntity {
   title?: string;
   /** 容器业务状态 */
   containerStatus?: string;
+  /** 分账状态(null-非分账订单/none-待分账/unsupported-请求分账但产品不支持已降级/processing-分账中/done-已分账) */
+  allocStatus?: string;
 }
 
 /** 支付同步结果 */

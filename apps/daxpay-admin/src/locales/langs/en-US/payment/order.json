@@ -97,7 +97,8 @@
     "bizAllocNo": "Merchant Allocation No",
     "outAllocNo": "Channel Allocation No",
     "receiverType": "Receiver Type",
-    "receiverAccount": "Receiver Account"
+    "receiverAccount": "Receiver Account",
+    "allocStatus": "Allocation Status"
   },
   "bizStatus": {
     "wait_pay": "Waiting",
@@ -178,7 +179,30 @@
     "manualClose": "Manual Close",
     "manualCloseConfirmTitle": "Confirm Manual Close",
     "manualCloseConfirmContent": "This will close the refund order and release the reserved balance. This action cannot be undone. Only for abnormal refund orders unresolved after 7 days.",
-    "manualCloseSuccess": "Manual close succeeded"
+    "manualCloseSuccess": "Manual close succeeded",
+    "alloc": "Initiate Allocation",
+    "allocDrawerTitle": "Initiate Allocation",
+    "allocTip": "Allocation splits the frozen funds of this order to specified receivers. The unallocated portion will be automatically unfrozen back to the merchant.",
+    "allocOrderAmountLabel": "Order Amount",
+    "allocBizAllocNoLabel": "Merchant Allocation No.",
+    "allocBizAllocNoPlaceholder": "Enter merchant allocation no. (idempotency key, unique per merchant)",
+    "allocTitleLabel": "Allocation Title",
+    "allocDescLabel": "Allocation Description",
+    "allocReceiverSection": "Allocation Receivers",
+    "allocAddReceiver": "Add Receiver",
+    "allocReceiverTypeLabel": "Receiver Type",
+    "allocReceiverAccountLabel": "Receiver Account",
+    "allocReceiverNameLabel": "Receiver Name",
+    "allocAmountLabel": "Allocation Amount",
+    "allocTotalLabel": "Total",
+    "allocTotalExceed": "Total allocation amount cannot exceed the order amount",
+    "allocReceiverRequired": "Add at least one allocation receiver",
+    "allocValidateType": "Please select a receiver type",
+    "allocValidateAccount": "Please enter a receiver account",
+    "allocValidateAmount": "Allocation amount must be at least 0.01",
+    "allocConfirmTitle": "Confirm Allocation",
+    "allocConfirmContent": "This will initiate allocation with a total of {amount}, continue?",
+    "allocSuccess": "Allocation initiated successfully"
   },
   "method": {
     "jsapi": "JSAPI",
@@ -217,5 +241,23 @@
       "success": "Success",
       "fail": "Failed"
     }
+  },
+  "receiverType": {
+    "MERCHANT_ID": "Merchant ID",
+    "PERSONAL_OPENID": "Personal OpenID",
+    "USER_ID": "Alipay User ID",
+    "LOGIN_NAME": "Alipay Login Name"
+  },
+  "allocStatus": {
+    "none": "Pending Allocation",
+    "unsupported": "Unsupported",
+    "processing": "Allocating",
+    "done": "Allocated"
+  },
+  "allocStatusColor": {
+    "none": "blue",
+    "unsupported": "warning",
+    "processing": "processing",
+    "done": "green"
   }
 }

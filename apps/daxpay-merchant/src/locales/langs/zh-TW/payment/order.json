@@ -97,7 +97,8 @@
     "bizAllocNo": "商戶分帳單號",
     "outAllocNo": "通道分帳單號",
     "receiverType": "接收方類型",
-    "receiverAccount": "接收方帳號"
+    "receiverAccount": "接收方帳號",
+    "allocStatus": "分帳狀態"
   },
   "bizStatus": {
     "wait_pay": "待支付",
@@ -170,7 +171,30 @@
     "manualClose": "手動關閉",
     "manualCloseConfirmTitle": "確認手動關閉退款單",
     "manualCloseConfirmContent": "此操作將關閉退款單並回滾預佔餘額，不可撤銷。僅用於超過7天未確認的異常退款單。",
-    "manualCloseSuccess": "手動關閉成功"
+    "manualCloseSuccess": "手動關閉成功",
+    "alloc": "發起分帳",
+    "allocDrawerTitle": "發起分帳",
+    "allocTip": "分帳將從該訂單凍結資金中拆分給指定接收方,未分帳部分自動解凍回商戶",
+    "allocOrderAmountLabel": "訂單金額",
+    "allocBizAllocNoLabel": "商戶分帳單號",
+    "allocBizAllocNoPlaceholder": "請輸入商戶分帳單號(冪等鍵,同一商戶不可重複)",
+    "allocTitleLabel": "分帳標題",
+    "allocDescLabel": "分帳描述",
+    "allocReceiverSection": "分帳接收方",
+    "allocAddReceiver": "添加接收方",
+    "allocReceiverTypeLabel": "接收方類型",
+    "allocReceiverAccountLabel": "接收方帳號",
+    "allocReceiverNameLabel": "接收方姓名",
+    "allocAmountLabel": "分帳金額(元)",
+    "allocTotalLabel": "合計",
+    "allocTotalExceed": "分帳總額不能超過訂單金額",
+    "allocReceiverRequired": "至少添加一個分帳接收方",
+    "allocValidateType": "請選擇接收方類型",
+    "allocValidateAccount": "請輸入接收方帳號",
+    "allocValidateAmount": "分帳金額需不小於 0.01 元",
+    "allocConfirmTitle": "確認發起分帳",
+    "allocConfirmContent": "將向通道發起分帳,合計 {amount} 元,是否繼續?",
+    "allocSuccess": "分帳發起成功"
   },
   "method": {
     "jsapi": "JSAPI",
@@ -217,5 +241,23 @@
       "success": "成功",
       "fail": "失敗"
     }
+  },
+  "receiverType": {
+    "MERCHANT_ID": "商戶號",
+    "PERSONAL_OPENID": "個人OpenID",
+    "USER_ID": "支付寶用戶ID",
+    "LOGIN_NAME": "支付寶登入帳號"
+  },
+  "allocStatus": {
+    "none": "待分帳",
+    "unsupported": "不支援分帳",
+    "processing": "分帳中",
+    "done": "已分帳"
+  },
+  "allocStatusColor": {
+    "none": "blue",
+    "unsupported": "warning",
+    "processing": "processing",
+    "done": "green"
   }
 }

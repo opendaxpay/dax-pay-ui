@@ -97,7 +97,8 @@
     "bizAllocNo": "No. Peruntukan Merchant",
     "outAllocNo": "No. Peruntukan Saluran",
     "receiverType": "Jenis Penerima",
-    "receiverAccount": "Akaun Penerima"
+    "receiverAccount": "Akaun Penerima",
+    "allocStatus": "Status Peruntukan"
   },
   "bizStatus": {
     "wait_pay": "Menunggu",
@@ -213,5 +214,17 @@
       "success": "Berjaya",
       "fail": "Gagal"
     }
+  },
+  "allocStatus": {
+    "none": "Menunggu Peruntukan",
+    "unsupported": "Tidak Disokong",
+    "processing": "Memperuntukkan",
+    "done": "Diperuntukkan"
+  },
+  "allocStatusColor": {
+    "none": "blue",
+    "unsupported": "warning",
+    "processing": "processing",
+    "done": "green"
   }
 }

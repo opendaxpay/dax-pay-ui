@@ -97,7 +97,8 @@
     "bizAllocNo": "머천트 분할 번호",
     "outAllocNo": "채널 분할 번호",
     "receiverType": "수신자 유형",
-    "receiverAccount": "수신자 계정"
+    "receiverAccount": "수신자 계정",
+    "allocStatus": "분할 상태"
   },
   "bizStatus": {
     "wait_pay": "대기 중",
@@ -170,7 +171,30 @@
     "manualClose": "수동 종료",
     "manualCloseConfirmTitle": "수동 종료 확인",
     "manualCloseConfirmContent": "이 작업은 환불 주문을 종료하고 예약 잔액을 롤백합니다. 취소할 수 없습니다. 7일 이상 미확인된 비정상 환불 주문에만 사용됩니다.",
-    "manualCloseSuccess": "수동 종료 성공"
+    "manualCloseSuccess": "수동 종료 성공",
+    "alloc": "분담 시작",
+    "allocDrawerTitle": "분담 시작",
+    "allocTip": "분담은 이 주문의 동결 자금을 지정된 수취인에게 분할합니다. 미분담 부분은 자동으로 가맹점에게 해동됩니다.",
+    "allocOrderAmountLabel": "주문 금액",
+    "allocBizAllocNoLabel": "가맹점 분담 번호",
+    "allocBizAllocNoPlaceholder": "가맹점 분담 번호 입력(멱등 키, 동일 가맹점 내 중복 불가)",
+    "allocTitleLabel": "분담 제목",
+    "allocDescLabel": "분담 설명",
+    "allocReceiverSection": "분담 수취인",
+    "allocAddReceiver": "수취인 추가",
+    "allocReceiverTypeLabel": "수취인 유형",
+    "allocReceiverAccountLabel": "수취인 계정",
+    "allocReceiverNameLabel": "수취인 이름",
+    "allocAmountLabel": "분담 금액(위안)",
+    "allocTotalLabel": "합계",
+    "allocTotalExceed": "분담 총액은 주문 금액을 초과할 수 없습니다",
+    "allocReceiverRequired": "최소 한 명의 분담 수취인을 추가하세요",
+    "allocValidateType": "수취인 유형을 선택하세요",
+    "allocValidateAccount": "수취인 계정을 입력하세요",
+    "allocValidateAmount": "분담 금액은 0.01 이상이어야 합니다",
+    "allocConfirmTitle": "분담 시작 확인",
+    "allocConfirmContent": "채널에 분담을 시작합니다. 합계 {amount} 위안, 계속하시겠습니까?",
+    "allocSuccess": "분담이 시작되었습니다"
   },
   "method": {
     "jsapi": "JSAPI",
@@ -217,5 +241,23 @@
       "success": "성공",
       "fail": "실패"
     }
+  },
+  "receiverType": {
+    "MERCHANT_ID": "가맹점 번호",
+    "PERSONAL_OPENID": "개인 OpenID",
+    "USER_ID": "Alipay 사용자 ID",
+    "LOGIN_NAME": "Alipay 로그인 계정"
+  },
+  "allocStatus": {
+    "none": "분할 대기",
+    "unsupported": "분할 미지원",
+    "processing": "분할 중",
+    "done": "분할 완료"
+  },
+  "allocStatusColor": {
+    "none": "blue",
+    "unsupported": "warning",
+    "processing": "processing",
+    "done": "green"
   }
 }

@@ -97,7 +97,8 @@
     "bizAllocNo": "Mã phân bổ merchant",
     "outAllocNo": "Mã phân bổ kênh",
     "receiverType": "Loại người nhận",
-    "receiverAccount": "Tài khoản người nhận"
+    "receiverAccount": "Tài khoản người nhận",
+    "allocStatus": "Trạng thái phân bổ"
   },
   "bizStatus": {
     "wait_pay": "Chờ",
@@ -213,5 +214,17 @@
       "success": "Thành công",
       "fail": "Thất bại"
     }
+  },
+  "allocStatus": {
+    "none": "Chờ phân bổ",
+    "unsupported": "Không hỗ trợ",
+    "processing": "Đang phân bổ",
+    "done": "Đã phân bổ"
+  },
+  "allocStatusColor": {
+    "none": "blue",
+    "unsupported": "warning",
+    "processing": "processing",
+    "done": "green"
   }
 }

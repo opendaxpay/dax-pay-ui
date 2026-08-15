@@ -15,6 +15,7 @@
   import { PermCodes } from '#/constants/perm-codes';
   import { usePermission } from '#/hooks/usePermission';
 
+  import AllocDrawer from './components/AllocDrawer.vue';
   import RefundModal from './components/RefundModal.vue';
   import { useOrderLabels } from './composables/useOrderLabels';
   import { useTradeActions } from './composables/useTradeActions';
@@ -47,6 +48,8 @@
   const detail = ref<PayTradeResult>({});
   // 退款弹窗
   const refundModalRef = ref();
+  // 发起分账抽屉
+  const allocDrawerRef = ref();
 
   // 资金状态下拉（含 cancel）
   const statusOptions = computed(() =>
@@ -60,6 +63,14 @@
   const tradeTypeOptions = computed(() =>
     ['normal', 'gateway'].map((v) => ({
       label: $t(`payment.order.tradeType.${v}`),
+      value: v,
+    })),
+  );
+
+  // 分账状态下拉(仅分账订单有值, null 非分账单不参与筛选)
+  const allocStatusOptions = computed(() =>
+    ['none', 'unsupported', 'processing', 'done'].map((v) => ({
+      label: $t(`payment.order.allocStatus.${v}`),
       value: v,
     })),
   );
@@ -88,6 +99,12 @@
       field: 'tradeType',
       name: $t('payment.order.field.tradeType'),
       selectList: tradeTypeOptions.value,
+    },
+    {
+      type: 'list',
+      field: 'allocStatus',
+      name: $t('payment.order.field.allocStatus'),
+      selectList: allocStatusOptions.value,
     },
     {
       type: 'string',
@@ -160,6 +177,13 @@
   }
 
   /**
+   * 分账状态颜色
+   */
+  function allocStatusColor(status?: string): string {
+    return status ? $t(`payment.order.allocStatusColor.${status}`) : 'default';
+  }
+
+  /**
    * 查看详情
    */
   async function handleView(row: PayTradeResult) {
@@ -187,10 +211,15 @@
     const items: { danger?: boolean; key: string; label: string }[] = [];
     const canManage = hasPermission(PermCodes.Trade.Fund.MANAGE);
     const canRefund = hasPermission(PermCodes.Trade.Refund.MANAGE);
+    const canAlloc = hasPermission(PermCodes.Trade.Alloc.MANAGE);
     const isTerminal = ['cancel', 'close', 'fail'].includes(row.status ?? '');
     // 退款(资金成功 + 有可退余额 + 退款权限)
     if (canRefund && row.status === 'success' && (row.refundableBalance ?? 0) > 0) {
       items.push({ key: 'refund', label: $t('payment.order.action.refund'), danger: true });
+    }
+    // 发起分账(资金成功 + 未分账, 普通支付与网关支付均可)
+    if (canAlloc && row.status === 'success' && row.allocStatus === 'none') {
+      items.push({ key: 'alloc', label: $t('payment.order.action.alloc') });
     }
     // 关闭(待支付: init/processing)
     if (canManage && ['init', 'processing'].includes(row.status ?? '')) {
@@ -210,6 +239,10 @@
           }
           case 'refund': {
             refundModalRef.value?.open(row);
+            break;
+          }
+          case 'alloc': {
+            allocDrawerRef.value?.open(row);
             break;
           }
           case 'sync': {
@@ -274,6 +307,20 @@
               <a-tag :color="statusColor(row.status)">
                 {{ $t(`payment.order.fundStatus.${row.status}`) }}
               </a-tag>
+            </template>
+          </vxe-column>
+          <!-- 分账状态(仅分账订单有值; unsupported=请求分账但产品不支持已降级) -->
+          <vxe-column
+            field="allocStatus"
+            :title="$t('payment.order.field.allocStatus')"
+            :min-width="100"
+            align="center"
+          >
+            <template #default="{ row }">
+              <a-tag v-if="row.allocStatus" :color="allocStatusColor(row.allocStatus)">
+                {{ $t(`payment.order.allocStatus.${row.allocStatus}`) }}
+              </a-tag>
+              <span v-else>-</span>
             </template>
           </vxe-column>
           <!-- 支付通道(接入通道, B端机构维度) -->
@@ -366,6 +413,12 @@
               {{ detail.status ? $t(`payment.order.fundStatus.${detail.status}`) : '-' }}
             </a-tag>
           </a-descriptions-item>
+          <a-descriptions-item :label="$t('payment.order.field.allocStatus')">
+            <a-tag v-if="detail.allocStatus" :color="allocStatusColor(detail.allocStatus)">
+              {{ $t(`payment.order.allocStatus.${detail.allocStatus}`) }}
+            </a-tag>
+            <span v-else>-</span>
+          </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.containerStatus')">
             {{ detail.containerStatus ? $t(`payment.order.bizStatus.${detail.containerStatus}`) : '-' }}
           </a-descriptions-item>
@@ -457,6 +510,12 @@
     <!-- 退款弹窗 -->
     <RefundModal
       ref="refundModalRef"
+      :fetch-detail="(id) => PayTradeApi.getById(id).then((res) => res.data)"
+      @success="queryPage"
+    />
+    <!-- 发起分账抽屉 -->
+    <AllocDrawer
+      ref="allocDrawerRef"
       :fetch-detail="(id) => PayTradeApi.getById(id).then((res) => res.data)"
       @success="queryPage"
     />

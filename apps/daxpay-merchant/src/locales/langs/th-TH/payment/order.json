@@ -97,7 +97,8 @@
     "bizAllocNo": "เลขที่การแบ่งผู้ค้า",
     "outAllocNo": "เลขที่การแบ่งช่องทาง",
     "receiverType": "ประเภทผู้รับ",
-    "receiverAccount": "บัญชีผู้รับ"
+    "receiverAccount": "บัญชีผู้รับ",
+    "allocStatus": "สถานะการแบ่ง"
   },
   "bizStatus": {
     "wait_pay": "ซึ่งรอคอย",
@@ -213,5 +214,17 @@
       "success": "สำเร็จ",
       "fail": "ล้มเหลว"
     }
+  },
+  "allocStatus": {
+    "none": "รอการแบ่ง",
+    "unsupported": "ไม่รองรับ",
+    "processing": "กำลังแบ่ง",
+    "done": "แบ่งแล้ว"
+  },
+  "allocStatusColor": {
+    "none": "blue",
+    "unsupported": "warning",
+    "processing": "processing",
+    "done": "green"
   }
 }
