@@ -88,7 +88,8 @@
       "returnUrl": "URL Pulang Sync",
       "attach": "Lampiran Pedagang",
       "extraParam": "Parameter Ekstra",
-      "limitPay": "Had Pembayaran"
+      "limitPay": "Had Pembayaran",
+      "allocation": "Pesanan Pembahagian"
     },
     "placeholder": {
       "method": "Pilih kaedah pembayaran",
@@ -160,7 +161,8 @@
     },
     "limitPayOption": {
       "no_credit": "Pembayaran Kad Kredit"
-    }
+    },
+    "allocationTip": "Apabila diaktifkan, dana pesanan akan dibekukan dan hanya boleh dipecahkan melalui pembahagian."
   },
   "auth": {
     "title": "Membangunkan Pengesahan",
@@ -261,7 +263,8 @@
       "expiredTime": "Masa Tamat",
       "storeNo": "No. Kedai",
       "attach": "Lampiran Pedagang",
-      "extraParam": "Parameter Ekstra"
+      "extraParam": "Parameter Ekstra",
+      "allocation": "Pesanan Pembahagian"
     },
     "placeholder": {
       "notifyUrl": "https://...",
@@ -339,6 +342,7 @@
       "prePayFail": "Permintaan pra-bayar gagal",
       "inputPrivateKey": "Sila tetapkan kunci peribadi merchant terlebih dahulu",
       "copySuccess": "Disalin"
-    }
+    },
+    "allocationTip": "Apabila diaktifkan, dana pesanan akan dibekukan dan hanya boleh dipecahkan melalui pembahagian."
   }
 }

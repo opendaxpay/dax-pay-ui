@@ -96,6 +96,8 @@
     method: '',
     capability: '',
     description: '',
+    // 是否分账订单(订单信息卡开关, 默认关闭)
+    allocation: false,
     // 高级参数(折叠面板中编辑, 默认空)
     attach: '',
     extraParam: '',
@@ -337,6 +339,10 @@
       // 直接指定: method 由后端从(通道商户, 能力)反推, 不透传
       payload.method = undefined;
     }
+    // 分账开关: 仅开启时透传 true, 关闭时不传(贴近真实商户 SDK)
+    if (!payload.allocation) {
+      payload.allocation = undefined;
+    }
     return cleanPayload(payload);
   }
 
@@ -408,6 +414,7 @@
       method: '',
       capability: '',
       description: '',
+      allocation: false,
       openId: undefined,
       authCode: undefined,
       notifyUrl: undefined,
@@ -689,6 +696,15 @@
                         :rows="3"
                         :placeholder="$t('payment.develop.trade.placeholder.description')"
                       />
+                    </a-form-item>
+                  </a-col>
+                  <!-- 是否分账订单(资金冻结, 需发起分账拆分) -->
+                  <a-col :span="24">
+                    <a-form-item :label="$t('payment.develop.trade.field.allocation')" name="allocation">
+                      <div class="flex items-center gap-2">
+                        <a-switch v-model:checked="form.allocation" />
+                        <span class="text-xs text-muted-foreground">{{ $t('payment.develop.trade.allocationTip') }}</span>
+                      </div>
                     </a-form-item>
                   </a-col>
                 </a-row>

@@ -88,7 +88,8 @@
       "returnUrl": "URL Return Sync",
       "attach": "Lampiran Merchant",
       "extraParam": "Parameter Ekstra",
-      "limitPay": "Batasan Pembayaran"
+      "limitPay": "Batasan Pembayaran",
+      "allocation": "Pesanan Alokasi"
     },
     "placeholder": {
       "method": "Pilih metode pembayaran",
@@ -160,7 +161,8 @@
     },
     "limitPayOption": {
       "no_credit": "Pembayaran Kartu Kredit"
-    }
+    },
+    "allocationTip": "Saat diaktifkan, dana pesanan akan dibekukan dan hanya dapat dipisah melalui alokasi."
   },
   "auth": {
     "title": "Auth Kembangkan",
@@ -261,7 +263,8 @@
       "expiredTime": "Waktu Kedaluwarsa",
       "storeNo": "No. Toko",
       "attach": "Lampiran Merchant",
-      "extraParam": "Parameter Ekstra"
+      "extraParam": "Parameter Ekstra",
+      "allocation": "Pesanan Alokasi"
     },
     "placeholder": {
       "notifyUrl": "https://...",
@@ -339,6 +342,7 @@
       "prePayFail": "Permintaan pre-pay gagal",
       "inputPrivateKey": "Silakan atur kunci pribadi merchant terlebih dahulu",
       "copySuccess": "Disalin"
-    }
+    },
+    "allocationTip": "Saat diaktifkan, dana pesanan akan dibekukan dan hanya dapat dipisah melalui alokasi."
   }
 }

@@ -88,7 +88,8 @@
       "bizOrderNo": "Order No.",
       "amount": "Amount (Fen)",
       "title": "Title",
-      "description": "Description"
+      "description": "Description",
+      "allocation": "Allocation Order"
     },
     "placeholder": {
       "method": "Select payment method",
@@ -160,7 +161,8 @@
     },
     "limitPayOption": {
       "no_credit": "Credit Card Payment"
-    }
+    },
+    "allocationTip": "When enabled, the order funds will be frozen and can only be split by initiating an allocation."
   },
   "auth": {
     "title": "Auth Develop",
@@ -261,7 +263,8 @@
       "attach": "Attach",
       "extraParam": "Extra Params",
       "expiredTime": "Expire Time",
-      "storeNo": "Store No."
+      "storeNo": "Store No.",
+      "allocation": "Allocation Order"
     },
     "placeholder": {
       "notifyUrl": "https://...",
@@ -339,6 +342,7 @@
       "prePayFail": "Pre-pay request failed",
       "inputPrivateKey": "Please set merchant private key first",
       "copySuccess": "Copied"
-    }
+    },
+    "allocationTip": "When enabled, the order funds will be frozen and can only be split by initiating an allocation."
   }
 }

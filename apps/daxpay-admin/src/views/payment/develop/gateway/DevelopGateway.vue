@@ -80,6 +80,8 @@
     amount: 1,
     gatewayPayType: 'cashier',
     description: '',
+    // 是否分账订单(订单信息卡开关, 默认关闭)
+    allocation: false,
     // 高级参数(折叠面板中编辑, 默认空)
     attach: '',
     extraParam: '',
@@ -254,6 +256,10 @@
       // 签名由后续步骤写入, 预览阶段不带旧 sign
       sign: undefined,
     };
+    // 分账开关: 仅开启时透传 true, 关闭时不传(贴近真实商户 SDK)
+    if (!payload.allocation) {
+      payload.allocation = undefined;
+    }
     return cleanPayload(payload);
   }
 
@@ -334,6 +340,7 @@
       amount: 1,
       gatewayPayType: 'cashier',
       description: '',
+      allocation: false,
       notifyUrl: undefined,
       returnUrl: undefined,
       attach: undefined,
@@ -582,6 +589,15 @@
                         :rows="3"
                         :placeholder="$t('payment.develop.gateway.placeholder.description')"
                       />
+                    </a-form-item>
+                  </a-col>
+                  <!-- 是否分账订单(资金冻结, 需发起分账拆分) -->
+                  <a-col :span="24">
+                    <a-form-item :label="$t('payment.develop.gateway.field.allocation')" name="allocation">
+                      <div class="flex items-center gap-2">
+                        <a-switch v-model:checked="form.allocation" />
+                        <span class="text-xs text-muted-foreground">{{ $t('payment.develop.gateway.allocationTip') }}</span>
+                      </div>
                     </a-form-item>
                   </a-col>
                 </a-row>

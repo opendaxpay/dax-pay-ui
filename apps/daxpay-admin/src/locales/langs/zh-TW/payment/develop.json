@@ -88,7 +88,8 @@
       "returnUrl": "同步跳轉地址",
       "attach": "商戶附加參數",
       "extraParam": "支付擴充參數",
-      "limitPay": "限制支付類型"
+      "limitPay": "限制支付類型",
+      "allocation": "分帳訂單"
     },
     "placeholder": {
       "method": "請選擇支付方式",
@@ -160,7 +161,8 @@
     },
     "limitPayOption": {
       "no_credit": "信用卡支付"
-    }
+    },
+    "allocationTip": "開啟後訂單資金將被凍結,僅可透過發起分帳進行拆分"
   },
   "auth": {
     "title": "認證除錯",
@@ -261,7 +263,8 @@
       "expiredTime": "支付逾時時間",
       "storeNo": "門店號",
       "attach": "商戶附加參數",
-      "extraParam": "支付擴充參數"
+      "extraParam": "支付擴充參數",
+      "allocation": "分帳訂單"
     },
     "placeholder": {
       "notifyUrl": "https://...",
@@ -339,6 +342,7 @@
       "prePayFail": "預下單請求失敗",
       "inputPrivateKey": "請先設定商戶私鑰",
       "copySuccess": "複製成功"
-    }
+    },
+    "allocationTip": "開啟後訂單資金將被凍結,僅可透過發起分帳進行拆分"
   }
 }

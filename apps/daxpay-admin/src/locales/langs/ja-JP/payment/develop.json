@@ -88,7 +88,8 @@
       "returnUrl": "同期リダイレクトURL",
       "attach": "マーチャント添付パラメータ",
       "extraParam": "拡張パラメータ",
-      "limitPay": "支払制限タイプ"
+      "limitPay": "支払制限タイプ",
+      "allocation": "分割決済注文"
     },
     "placeholder": {
       "method": "支払い方法を選択してください",
@@ -160,7 +161,8 @@
     },
     "limitPayOption": {
       "no_credit": "クレジットカード決済"
-    }
+    },
+    "allocationTip": "有効にすると注文資金が凍結され、分割決済の発起によってのみ分割できます"
   },
   "auth": {
     "title": "認証開発",
@@ -261,7 +263,8 @@
       "expiredTime": "有効期限",
       "storeNo": "店舗番号",
       "attach": "マーチャント添付パラメータ",
-      "extraParam": "拡張パラメータ"
+      "extraParam": "拡張パラメータ",
+      "allocation": "分割決済注文"
     },
     "placeholder": {
       "notifyUrl": "https://...",
@@ -339,6 +342,7 @@
       "prePayFail": "事前注文リクエスト失敗",
       "inputPrivateKey": "先にマーチャント秘密鍵を設定してください",
       "copySuccess": "コピーしました"
-    }
+    },
+    "allocationTip": "有効にすると注文資金が凍結され、分割決済の発起によってのみ分割できます"
   }
 }

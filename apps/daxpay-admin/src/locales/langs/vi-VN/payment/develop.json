@@ -88,7 +88,8 @@
       "returnUrl": "URL trả về đồng bộ",
       "attach": "Tham số đính kèm",
       "extraParam": "Tham số mở rộng",
-      "limitPay": "Giới hạn thanh toán"
+      "limitPay": "Giới hạn thanh toán",
+      "allocation": "Đơn Phân Toán"
     },
     "placeholder": {
       "method": "Chọn phương thức thanh toán",
@@ -160,7 +161,8 @@
     },
     "limitPayOption": {
       "no_credit": "Thanh toán bằng thẻ tín dụng"
-    }
+    },
+    "allocationTip": "Khi bật, tiền đơn hàng sẽ bị đóng băng và chỉ có thể chia nhỏ qua phân toán."
   },
   "auth": {
     "title": "Xác thực phát triển",
@@ -261,7 +263,8 @@
       "expiredTime": "Thời gian hết hạn",
       "storeNo": "Số cửa hàng",
       "attach": "Tham số đính kèm",
-      "extraParam": "Tham số mở rộng"
+      "extraParam": "Tham số mở rộng",
+      "allocation": "Đơn Phân Toán"
     },
     "placeholder": {
       "notifyUrl": "https://...",
@@ -339,6 +342,7 @@
       "prePayFail": "Yêu cầu đặt trước thất bại",
       "inputPrivateKey": "Vui lòng thiết lập khóa riêng merchant trước",
       "copySuccess": "Đã sao chép"
-    }
+    },
+    "allocationTip": "Khi bật, tiền đơn hàng sẽ bị đóng băng và chỉ có thể chia nhỏ qua phân toán."
   }
 }

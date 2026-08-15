@@ -88,7 +88,8 @@
       "returnUrl": "동기 리다이렉트 URL",
       "attach": "가맹점 추가 매개변수",
       "extraParam": "확장 매개변수",
-      "limitPay": "결제 제한 유형"
+      "limitPay": "결제 제한 유형",
+      "allocation": "분할 주문"
     },
     "placeholder": {
       "method": "결제 수단 선택",
@@ -160,7 +161,8 @@
     },
     "limitPayOption": {
       "no_credit": "신용카드 결제"
-    }
+    },
+    "allocationTip": "활성화하면 주문 자금이 동결되며, 분할 발행을 통해서만 분할할 수 있습니다"
   },
   "auth": {
     "title": "인증 개발",
@@ -261,7 +263,8 @@
       "expiredTime": "만료 시간",
       "storeNo": "매장 번호",
       "attach": "가맹점 추가 매개변수",
-      "extraParam": "확장 매개변수"
+      "extraParam": "확장 매개변수",
+      "allocation": "분할 주문"
     },
     "placeholder": {
       "notifyUrl": "https://...",
@@ -339,6 +342,7 @@
       "prePayFail": "사전 주문 요청 실패",
       "inputPrivateKey": "먼저 가맹점 개인키를 설정해 주세요",
       "copySuccess": "복사되었습니다"
-    }
+    },
+    "allocationTip": "활성화하면 주문 자금이 동결되며, 분할 발행을 통해서만 분할할 수 있습니다"
   }
 }

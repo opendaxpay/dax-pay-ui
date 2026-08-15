@@ -84,6 +84,8 @@ export interface PayParam {
   returnUrl?: string;
   /** 商户附加参数(回调原样返回) */
   attach?: string;
+  /** 是否分账订单(开启后资金冻结,需发起分账拆分) */
+  allocation?: boolean;
   /** 支付扩展参数(JSON, 通道长尾参数) */
   extraParam?: string;
   /** 限制支付类型(如 no_credit 禁信用卡) */

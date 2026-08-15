@@ -88,7 +88,8 @@
       "bizOrderNo": "订单号",
       "amount": "支付金额(分)",
       "title": "支付标题",
-      "description": "支付描述"
+      "description": "支付描述",
+      "allocation": "分账订单"
     },
     "placeholder": {
       "method": "请选择支付方式",
@@ -160,7 +161,8 @@
     },
     "limitPayOption": {
       "no_credit": "信用卡支付"
-    }
+    },
+    "allocationTip": "开启后订单资金将被冻结,仅可通过发起分账进行拆分"
   },
   "auth": {
     "title": "认证调试",
@@ -261,7 +263,8 @@
       "attach": "商户附加参数",
       "extraParam": "支付扩展参数",
       "expiredTime": "支付超时时间",
-      "storeNo": "门店号"
+      "storeNo": "门店号",
+      "allocation": "分账订单"
     },
     "placeholder": {
       "notifyUrl": "https://...",
@@ -339,6 +342,7 @@
       "prePayFail": "预下单请求失败",
       "inputPrivateKey": "请先设置商户私钥",
       "copySuccess": "复制成功"
-    }
+    },
+    "allocationTip": "开启后订单资金将被冻结,仅可通过发起分账进行拆分"
   }
 }
