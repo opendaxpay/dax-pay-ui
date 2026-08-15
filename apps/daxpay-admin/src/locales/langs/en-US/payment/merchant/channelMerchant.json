@@ -16,6 +16,7 @@
   "manageTitleDefault": "Channel Merchant Management",
   "groupBasic": "Basic Management",
   "groupConfig": "Configuration",
+  "groupTrade": "Transaction Config",
   "groupApp": "App Management",
   "cardBasicInfo": "Basic Info",
   "cardBasicInfoDesc": "View channel merchant basic configuration",

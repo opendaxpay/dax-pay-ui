@@ -9,8 +9,8 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
+  import AllocReceiverDrawer from '#/views/payment/global/channel-merchant/detail/AllocReceiverDrawer.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/global/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
-
   import WxChannelAppCapability from '#/views/payment/wx/channel/WxChannelAppCapability.vue';
 
   import WechatDirectChannelMerchantBasicInfo from './WechatDirectChannelMerchantBasicInfo.vue';
@@ -19,6 +19,15 @@
   import WechatTransferSceneConfig from './WechatTransferSceneConfig.vue';
 
   defineOptions({ name: 'WechatDirectMchManage' });
+
+  /** 功能卡片分组配置 */
+  interface FunctionGroup {
+    group: string;
+    color: string;
+    /** 是否在本组末尾追加终端台账占位卡 */
+    terminal?: boolean;
+    cards: { key: string; title: string; icon: string; description: string }[];
+  }
 
   const emit = defineEmits<{
     (e: 'success'): void;
@@ -34,9 +43,11 @@
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
   // 转账场景配置抽屉
   const transferSceneRef = ref<InstanceType<typeof WechatTransferSceneConfig>>();
+  // 分账接收方抽屉
+  const allocReceiverRef = ref<InstanceType<typeof AllocReceiverDrawer>>();
 
-  /** 功能卡片配置（直连通道商户：基本信息 + 密钥配置 + 应用管理） */
-  const functionCards = computed(() => [
+  /** 功能卡片配置（直连通道商户：基础管理 + 交易配置 + 应用管理） */
+  const functionCards = computed<FunctionGroup[]>(() => [
     {
       group: $t('payment.merchant.channelMerchant.groupBasic'),
       color: 'blue',
@@ -58,6 +69,19 @@
           title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
           icon: 'ant-design:edit-outlined',
           description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),
+        },
+      ],
+    },
+    {
+      // 交易配置: 通道侧业务能力配置(分账/转账)
+      group: $t('payment.merchant.channelMerchant.groupTrade'),
+      color: 'purple',
+      cards: [
+        {
+          key: 'allocReceiver',
+          title: $t('payment.channel.allocReceiver.cardTitle'),
+          icon: 'ant-design:group-outlined',
+          description: $t('payment.channel.allocReceiver.cardDesc'),
         },
         {
           key: 'transferScene',
@@ -85,12 +109,21 @@
         },
       ],
     },
+    {
+      // 终端台账占位分组(开发中, 待通道差异化字段定稿后接入正式卡片)
+      group: $t('payment.merchant.channelMerchant.groupTerminal'),
+      color: 'gray',
+      terminal: true,
+      cards: [],
+    },
   ]);
 
   function getGroupColorClass(color: string) {
     const map: Record<string, string> = {
       blue: 'bg-blue-500',
       green: 'bg-emerald-500',
+      purple: 'bg-purple-500',
+      gray: 'bg-gray-500',
     };
     return map[color] || 'bg-gray-500';
   }
@@ -99,6 +132,7 @@
     const map: Record<string, string> = {
       blue: 'bg-primary/10 text-primary',
       green: 'bg-success/10 text-success',
+      purple: 'bg-purple-500/10 text-purple-500',
     };
     return map[color] || 'bg-muted text-muted-foreground';
   }
@@ -120,6 +154,9 @@
     if (card.key === 'transferScene') {
       transferSceneRef.value?.open(mchNo.value, channelMchNo.value);
     }
+    if (card.key === 'allocReceiver') {
+      allocReceiverRef.value?.open(mchNo.value, channelMchNo.value, channelMerchant.value.product || 'wechat_pay');
+    }
     if (card.key === 'keyConfig') {
       keyConfigRef.value?.init();
     }
@@ -133,11 +170,7 @@
       });
     }
     if (card.key === 'capabilityBinding') {
-      capabilityRef.value?.show(
-        mchNo.value,
-        channelMchNo.value,
-        channelMerchant.value.product || 'wechat_pay',
-      );
+      capabilityRef.value?.show(mchNo.value, channelMchNo.value, channelMerchant.value.product || 'wechat_pay');
     }
   }
 
@@ -183,7 +216,7 @@
             :class="getGroupColorClass(group.color)"
           ></div>
         </a-card>
-        <TerminalCardPlaceholder v-if="group.group === $t('payment.merchant.channelMerchant.groupBasic')" />
+        <TerminalCardPlaceholder v-if="group.terminal" />
       </div>
     </div>
 
@@ -198,6 +231,8 @@
     <WechatDirectKeyConfigEdit ref="keyConfigRef" :channel-mch-no="channelMchNo" />
 
     <WechatTransferSceneConfig ref="transferSceneRef" />
+
+    <AllocReceiverDrawer ref="allocReceiverRef" />
 
     <WxChannelAppCapability ref="capabilityRef" />
   </div>

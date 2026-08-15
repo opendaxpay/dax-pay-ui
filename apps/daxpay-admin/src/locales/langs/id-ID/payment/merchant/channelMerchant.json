@@ -16,6 +16,7 @@
   "manageTitleDefault": "Manajemen Pedagang Saluran",
   "groupBasic": "Manajemen Dasar",
   "groupConfig": "Konfigurasi",
+  "groupTrade": "Konfigurasi Transaksi",
   "groupApp": "Manajemen Aplikasi",
   "cardBasicInfo": "Info Dasar",
   "cardBasicInfoDesc": "Lihat konfigurasi dasar pedagang saluran",

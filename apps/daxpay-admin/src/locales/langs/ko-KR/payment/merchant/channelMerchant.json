@@ -16,6 +16,7 @@
   "manageTitleDefault": "채널 판매자 관리",
   "groupBasic": "기본관리",
   "groupConfig": "구성",
+  "groupTrade": "거래 설정",
   "groupApp": "앱 관리",
   "cardBasicInfo": "기본 정보",
   "cardBasicInfoDesc": "채널 판매자 기본 구성 보기",

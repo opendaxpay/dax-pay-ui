@@ -17,6 +17,15 @@
 
   defineOptions({ name: 'StripeMchManage' });
 
+  /** 功能卡片分组配置 */
+  interface FunctionGroup {
+    group: string;
+    color: string;
+    /** 是否在本组末尾追加终端台账占位卡 */
+    terminal?: boolean;
+    cards: { key: string; title: string; icon: string; description: string }[];
+  }
+
   const emit = defineEmits<{
     (e: 'success'): void;
   }>();
@@ -36,7 +45,7 @@
   ]);
 
   /** 功能卡片配置(Stripe 首期仅基本信息与密钥配置) */
-  const functionCards = computed(() => [
+  const functionCards = computed<FunctionGroup[]>(() => [
     {
       group: $t('payment.merchant.channelMerchant.groupBasic'),
       color: 'blue',
@@ -61,6 +70,13 @@
         },
       ],
     },
+    {
+      // 终端台账占位分组(开发中, 待通道差异化字段定稿后接入正式卡片)
+      group: $t('payment.merchant.channelMerchant.groupTerminal'),
+      color: 'gray',
+      terminal: true,
+      cards: [],
+    },
   ]);
 
   /** 获取组主题颜色(底条) */
@@ -69,6 +85,7 @@
       blue: 'bg-blue-500',
       green: 'bg-emerald-500',
       purple: 'bg-purple-500',
+      gray: 'bg-gray-500',
     };
     return map[color] || 'bg-gray-500';
   }
@@ -153,7 +170,7 @@
                 :class="getGroupColorClass(group.color)"
               ></div>
             </a-card>
-            <TerminalCardPlaceholder v-if="group.group === $t('payment.merchant.channelMerchant.groupBasic')" />
+            <TerminalCardPlaceholder v-if="group.terminal" />
           </div>
         </div>
       </div>

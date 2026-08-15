@@ -16,6 +16,7 @@
   "manageTitleDefault": "การจัดการผู้ค้าช่องทาง",
   "groupBasic": "การจัดการขั้นพื้นฐาน",
   "groupConfig": "การกำหนดค่า",
+  "groupTrade": "การตั้งค่าธุรกรรม",
   "groupApp": "การจัดการแอป",
   "cardBasicInfo": "ข้อมูลพื้นฐาน",
   "cardBasicInfoDesc": "ดูการกำหนดค่าพื้นฐานของผู้ค้าช่องทาง",

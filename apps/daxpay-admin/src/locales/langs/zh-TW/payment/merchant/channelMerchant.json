@@ -16,6 +16,7 @@
   "manageTitleDefault": "通道商戶管理",
   "groupBasic": "基礎管理",
   "groupConfig": "配置管理",
+  "groupTrade": "交易設定",
   "groupApp": "應用管理",
   "cardBasicInfo": "基本資訊",
   "cardBasicInfoDesc": "檢視通道商戶基礎配置資訊",

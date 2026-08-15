@@ -16,6 +16,7 @@
   "manageTitleDefault": "チャネル加盟店管理",
   "groupBasic": "基本的な管理",
   "groupConfig": "構成",
+  "groupTrade": "取引設定",
   "groupApp": "アプリ管理",
   "cardBasicInfo": "基本情報",
   "cardBasicInfoDesc": "チャネルマーチャントの基本構成を表示する",

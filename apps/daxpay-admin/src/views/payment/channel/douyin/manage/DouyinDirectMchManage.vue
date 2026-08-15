@@ -10,6 +10,7 @@
 
   import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
   import DyChannelAppCapability from '#/views/payment/douyin/channel/DyChannelAppCapability.vue';
+  import AllocReceiverDrawer from '#/views/payment/global/channel-merchant/detail/AllocReceiverDrawer.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/global/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
 
   import DouyinDirectChannelMerchantBasicInfo from './DouyinDirectChannelMerchantBasicInfo.vue';
@@ -20,6 +21,15 @@
   import DouyinTransferSceneConfig from './DouyinTransferSceneConfig.vue';
 
   defineOptions({ name: 'DouyinDirectMchManage' });
+
+  /** 功能卡片分组配置 */
+  interface FunctionGroup {
+    group: string;
+    color: string;
+    /** 是否在本组末尾追加终端台账占位卡 */
+    terminal?: boolean;
+    cards: { key: string; title: string; icon: string; description: string }[];
+  }
 
   const emit = defineEmits<{
     (e: 'success'): void;
@@ -35,13 +45,15 @@
   const keyConfigRef = ref<InstanceType<typeof DouyinDirectKeyConfigEdit>>();
   const capabilityRef = ref<InstanceType<typeof DyChannelAppCapability>>();
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
+  // 分账接收方抽屉
+  const allocReceiverRef = ref<InstanceType<typeof AllocReceiverDrawer>>();
   // 转账场景只读展示抽屉
   const transferSceneRef = ref<InstanceType<typeof DouyinTransferSceneConfig>>();
   // 转账发起应用配置抽屉
   const transferAppRef = ref<InstanceType<typeof DouyinTransferAppConfig>>();
 
   /** 功能卡片配置（按组分组的卡片布局） */
-  const functionCards = computed(() => [
+  const functionCards = computed<FunctionGroup[]>(() => [
     {
       group: $t('payment.merchant.channelMerchant.groupBasic'),
       color: 'blue',
@@ -63,6 +75,19 @@
           title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
           icon: 'ant-design:edit-outlined',
           description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),
+        },
+      ],
+    },
+    {
+      // 交易配置: 通道侧业务能力配置(分账/转账场景)
+      group: $t('payment.merchant.channelMerchant.groupTrade'),
+      color: 'purple',
+      cards: [
+        {
+          key: 'allocReceiver',
+          title: $t('payment.channel.allocReceiver.cardTitle'),
+          icon: 'ant-design:group-outlined',
+          description: $t('payment.channel.allocReceiver.cardDesc'),
         },
         {
           key: 'transferScene',
@@ -96,6 +121,13 @@
         },
       ],
     },
+    {
+      // 终端台账占位分组(开发中, 待通道差异化字段定稿后接入正式卡片)
+      group: $t('payment.merchant.channelMerchant.groupTerminal'),
+      color: 'gray',
+      terminal: true,
+      cards: [],
+    },
   ]);
 
   /** 获取组主题颜色（底条） */
@@ -104,6 +136,7 @@
       blue: 'bg-blue-500',
       green: 'bg-emerald-500',
       purple: 'bg-purple-500',
+      gray: 'bg-gray-500',
     };
     return map[color] || 'bg-gray-500';
   }
@@ -130,6 +163,9 @@
     }
     if (card.key === 'editMerchantName') {
       editNameRef.value?.open();
+    }
+    if (card.key === 'allocReceiver') {
+      allocReceiverRef.value?.open(mchNo.value, channelMchNo.value, channelMerchant.value.product || 'douyin_pay');
     }
     if (card.key === 'keyConfig') {
       keyConfigRef.value?.init();
@@ -203,7 +239,7 @@
                 :class="getGroupColorClass(group.color)"
               ></div>
             </a-card>
-            <TerminalCardPlaceholder v-if="group.group === $t('payment.merchant.channelMerchant.groupBasic')" />
+            <TerminalCardPlaceholder v-if="group.terminal" />
           </div>
         </div>
       </div>
@@ -216,6 +252,8 @@
     />
 
     <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
+
+    <AllocReceiverDrawer ref="allocReceiverRef" />
 
     <DouyinDirectKeyConfigEdit ref="keyConfigRef" :channel-mch-no="channelMchNo" />
 
