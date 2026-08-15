@@ -52,6 +52,7 @@
   "menu.demos.ipRegion": "IP归属地查询",
   "menu.demos.callback": "回调接收演示",
   "menu.demos.cityAdjacent": "地市交界演示",
+  "menu.demos.cache": "缓存读写演示",
   "menu.system.config.thirdPlatform": "三方平台管理",
   "menu.system.basic.protocol": "用户协议",
   "menu.payment.merchant.profile": "商户资料",
