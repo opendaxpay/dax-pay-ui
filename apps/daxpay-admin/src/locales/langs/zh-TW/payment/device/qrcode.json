@@ -17,7 +17,8 @@
     "programType": "碼牌類型",
     "storeNo": "門店號",
     "store": "門店",
-    "storeName": "門店名稱"
+    "storeName": "門店名稱",
+    "allocation": "是否分帳"
   },
   "status": {
     "enabled": "啟用",
@@ -76,5 +77,19 @@
   "unbindApp": "解綁應用",
   "confirmUnbindApp": "確定要解綁所選碼牌的應用嗎？解綁後支付將使用商戶預設應用。",
   "validateAppId": "請選擇應用",
-  "defaultStoreHint": "預設門店(若已配置)"
+  "defaultStoreHint": "預設門店(若已配置)",
+  "allocationTip": "開啟後掃碼支付將請求通道凍結資金用於分帳",
+  "allocationOn": "分帳",
+  "allocWarningTitle": "分帳能力預警",
+  "allocWarningDesc": "以下掃碼場景目前路由的支付產品不支援分帳，開啟後對應支付將降級為普通收款（交易分帳狀態標記為「不支援分帳」）",
+  "clientEnv": {
+    "wechat": "微信",
+    "alipay": "支付寶",
+    "union_pay": "雲閃付",
+    "douyin": "抖音"
+  },
+  "payForm": {
+    "h5": "H5",
+    "mini": "小程式"
+  }
 }

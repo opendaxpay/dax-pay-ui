@@ -17,7 +17,8 @@
     "programType": "Tipe kode",
     "storeNo": "No. Toko",
     "store": "Toko",
-    "storeName": "Nama Toko"
+    "storeName": "Nama Toko",
+    "allocation": "Alokasi"
   },
   "status": {
     "enabled": "Diaktifkan",
@@ -76,5 +77,19 @@
   "unbindApp": "Lepas Aplikasi",
   "confirmUnbindApp": "Lepas aplikasi dari papan terpilih? Pembayaran akan memakai aplikasi default merchant.",
   "validateAppId": "Pilih aplikasi",
-  "defaultStoreHint": "Toko default (jika dikonfigurasi)"
+  "defaultStoreHint": "Toko default (jika dikonfigurasi)",
+  "allocationTip": "Saat diaktifkan, pembayaran kode akan meminta channel membekukan dana untuk alokasi",
+  "allocationOn": "Alokasi",
+  "allocWarningTitle": "Peringatan Kemampuan Alokasi",
+  "allocWarningDesc": "Produk pembayaran yang dirutekan untuk skenario pindai berikut tidak mendukung alokasi; pembayaran tersebut akan diturunkan menjadi pembayaran biasa (status alokasi transaksi ditandai \"tidak didukung\")",
+  "clientEnv": {
+    "wechat": "WeChat",
+    "alipay": "Alipay",
+    "union_pay": "UnionPay",
+    "douyin": "Douyin"
+  },
+  "payForm": {
+    "h5": "H5",
+    "mini": "Mini Program"
+  }
 }

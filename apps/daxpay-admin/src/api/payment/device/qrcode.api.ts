@@ -105,6 +105,13 @@ export const DeviceQrCodeApi = {
   getCodeLink(code: string): Promise<Result<string>> {
     return defHttp.get({ url: '/admin/device/qrcode/get-code-link', params: { code } });
   },
+
+  /**
+   * 分账能力预警(码牌开启分账前预检, 不阻断; 返回不支持分账的扫码场景清单)
+   */
+  allocCapabilityWarning(mchNo: string, appId?: string): Promise<Result<DeviceQrCodeAllocWarningResult[]>> {
+    return defHttp.get({ url: '/admin/device/qrcode/alloc-capability-warning', params: { mchNo, appId } });
+  },
 };
 
 /** 支付码牌查询参数 */
@@ -141,6 +148,8 @@ export interface DeviceQrCodeParam {
   fixedAmount?: number;
   /** 状态 */
   status?: string;
+  /** 是否分账码牌(产品不支持分账时扫码支付自动降级普通收款) */
+  allocation?: boolean;
   /** 备注 */
   remark?: string;
 }
@@ -221,6 +230,20 @@ export interface DeviceQrCodeResult extends BaseEntity {
   fixedAmount?: number;
   /** 状态 enabled/disabled */
   status?: string;
+  /** 是否分账码牌(产品不支持分账时扫码支付自动降级普通收款) */
+  allocation?: boolean;
   /** 备注 */
   remark?: string;
+}
+
+/** 码牌分账能力预警项(不支持分账的扫码场景) */
+export interface DeviceQrCodeAllocWarningResult {
+  /** 客户端环境(wechat/alipay/union_pay/douyin) */
+  clientEnv?: string;
+  /** 支付形态(h5/mini) */
+  payForm?: string;
+  /** 路由解析出的支付产品编码 */
+  product?: string;
+  /** 产品所属通道 */
+  channel?: string;
 }

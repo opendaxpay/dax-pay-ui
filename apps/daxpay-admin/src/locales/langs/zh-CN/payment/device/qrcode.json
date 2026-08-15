@@ -17,7 +17,8 @@
     "programType": "码牌类型",
     "storeNo": "门店号",
     "store": "门店",
-    "storeName": "门店名称"
+    "storeName": "门店名称",
+    "allocation": "是否分账"
   },
   "status": {
     "enabled": "启用",
@@ -76,5 +77,19 @@
   "unbindApp": "解绑应用",
   "confirmUnbindApp": "确定要解绑所选码牌的应用吗？解绑后支付将使用商户默认应用。",
   "validateAppId": "请选择应用",
-  "defaultStoreHint": "默认门店(若已配置)"
+  "defaultStoreHint": "默认门店(若已配置)",
+  "allocationTip": "开启后扫码支付将请求通道冻结资金用于分账",
+  "allocationOn": "分账",
+  "allocWarningTitle": "分账能力预警",
+  "allocWarningDesc": "以下扫码场景当前路由的支付产品不支持分账，开启后对应支付将降级为普通收款（交易分账状态标记为「不支持分账」）",
+  "clientEnv": {
+    "wechat": "微信",
+    "alipay": "支付宝",
+    "union_pay": "云闪付",
+    "douyin": "抖音"
+  },
+  "payForm": {
+    "h5": "H5",
+    "mini": "小程序"
+  }
 }

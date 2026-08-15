@@ -3,7 +3,12 @@
 
   import { $t } from '@vben/locales';
 
-  import { DeviceQrCodeApi, type DeviceQrCodeParam, type DeviceQrCodeResult } from '#/api/payment/device/qrcode.api';
+  import {
+    DeviceQrCodeApi,
+    type DeviceQrCodeAllocWarningResult,
+    type DeviceQrCodeParam,
+    type DeviceQrCodeResult,
+  } from '#/api/payment/device/qrcode.api';
   import { FormEditType } from '#/enums/formEditType';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
@@ -20,6 +25,10 @@
   const editMchName = ref('');
   // 落地程序类型只读(创建后不可改)
   const editProgramType = ref('h5');
+  // 编辑态应用号(分账预警预检用, 不参与提交)
+  const editAppId = ref<string>();
+  // 分账能力预警清单(开启分账时提示将降级的扫码场景, 不阻断保存)
+  const allocWarnings = ref<DeviceQrCodeAllocWarningResult[]>([]);
 
   const formState = ref<DeviceQrCodeParam>({
     name: '',
@@ -56,9 +65,12 @@
       name: '',
       amountType: 'random',
       fixedAmount: undefined,
+      allocation: false,
     };
     editMchName.value = '';
     editProgramType.value = 'h5';
+    editAppId.value = undefined;
+    allocWarnings.value = [];
     formRef.value?.resetFields();
   }
 
@@ -79,13 +91,47 @@
         amountType: row.amountType,
         // 分转元展示
         fixedAmount: row.fixedAmount ? row.fixedAmount / 100 : undefined,
+        allocation: row.allocation ?? false,
         remark: row.remark,
       };
       editMchName.value = row.mchName || '';
       // 类型只读展示, 不参与提交
       editProgramType.value = row.programType || 'h5';
+      editAppId.value = row.appId || undefined;
+      // 已开启分账时预检能力(预警不阻断)
+      if (formState.value.allocation && row.mchNo) {
+        await loadAllocWarning();
+      }
     } finally {
       confirmLoading.value = false;
+    }
+  }
+
+  /**
+   * 加载分账能力预警(开启分账时提示将降级的扫码场景, 失败不阻断编辑)
+   */
+  async function loadAllocWarning() {
+    const mchNo = formState.value.mchNo;
+    if (!mchNo) {
+      allocWarnings.value = [];
+      return;
+    }
+    try {
+      const { data } = await DeviceQrCodeApi.allocCapabilityWarning(mchNo, editAppId.value);
+      allocWarnings.value = data || [];
+    } catch {
+      allocWarnings.value = [];
+    }
+  }
+
+  /**
+   * 分账开关切换: 开启时预检能力, 关闭清空预警
+   */
+  function handleAllocChange(checked: any) {
+    if (checked) {
+      loadAllocWarning();
+    } else {
+      allocWarnings.value = [];
     }
   }
 
@@ -110,6 +156,7 @@
           isFixedAmount.value && formState.value.fixedAmount
             ? Math.round(formState.value.fixedAmount * 100)
             : undefined,
+        allocation: formState.value.allocation ?? false,
         remark: formState.value.remark,
       };
       await DeviceQrCodeApi.update(payload);
@@ -163,6 +210,26 @@
             {{ $t('payment.device.qrcode.programType.h5') }}
           </a-tag>
         </a-form-item>
+        <!-- 分账开关: 开启后扫码支付向下单链路透传分账标识; 产品不支持时下单自动降级普通收款 -->
+        <a-form-item :label="$t('payment.device.qrcode.field.allocation')">
+          <a-switch v-model:checked="formState.allocation" @change="handleAllocChange" />
+          <span class="ml-2 text-xs text-muted-foreground">{{ $t('payment.device.qrcode.allocationTip') }}</span>
+        </a-form-item>
+        <!-- 分账能力预警(不阻断, 仅提示将降级的场景) -->
+        <div v-if="formState.allocation && allocWarnings.length > 0" class="mb-4">
+          <a-alert type="warning" show-icon>
+            <template #message>{{ $t('payment.device.qrcode.allocWarningTitle') }}</template>
+            <template #description>
+              <div>{{ $t('payment.device.qrcode.allocWarningDesc') }}</div>
+              <div v-for="(w, i) in allocWarnings" :key="i" class="mt-1">
+                ·
+                {{ $t(`payment.device.qrcode.clientEnv.${w.clientEnv}`) }}
+                {{ $t(`payment.device.qrcode.payForm.${w.payForm}`) }}
+                ({{ w.product }})
+              </div>
+            </template>
+          </a-alert>
+        </div>
         <!-- 码牌名称 -->
         <a-form-item :label="$t('payment.device.qrcode.field.name')" name="name">
           <a-input v-model:value="formState.name" :placeholder="$t('common.pleaseInput')" />

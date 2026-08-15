@@ -17,7 +17,8 @@
     "programType": "코드 유형",
     "storeNo": "매장 번호",
     "store": "매장",
-    "storeName": "매장명"
+    "storeName": "매장명",
+    "allocation": "분할"
   },
   "status": {
     "enabled": "활성화됨",
@@ -76,5 +77,19 @@
   "unbindApp": "앱 연결 해제",
   "confirmUnbindApp": "선택한 코드판의 앱 연결을 해제하시겠습니까? 해제 후 가맹점 기본 앱을 사용합니다.",
   "validateAppId": "앱을 선택하세요",
-  "defaultStoreHint": "기본 매장(설정된 경우)"
+  "defaultStoreHint": "기본 매장(설정된 경우)",
+  "allocationTip": "활성화하면 코드 결제 시 채널에 분할용 자금 동결을 요청합니다",
+  "allocationOn": "분할",
+  "allocWarningTitle": "분할 기능 경고",
+  "allocWarningDesc": "다음 스캔 시나리오에서 현재 라우팅되는 결제 상품은 분할을 지원하지 않습니다. 활성화하면 해당 결제는 일반 결제로 전환됩니다(거래 분할 상태가 \"분할 미지원\"으로 표시됨)",
+  "clientEnv": {
+    "wechat": "위챗",
+    "alipay": "Alipay",
+    "union_pay": "UnionPay",
+    "douyin": "Douyin"
+  },
+  "payForm": {
+    "h5": "H5",
+    "mini": "미니프로그램"
+  }
 }

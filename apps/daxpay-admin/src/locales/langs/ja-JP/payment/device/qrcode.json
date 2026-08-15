@@ -17,7 +17,8 @@
     "programType": "コード種別",
     "storeNo": "店舗番号",
     "store": "店舗",
-    "storeName": "店舗名"
+    "storeName": "店舗名",
+    "allocation": "精算"
   },
   "status": {
     "enabled": "有効",
@@ -76,5 +77,19 @@
   "unbindApp": "アプリの紐付け解除",
   "confirmUnbindApp": "選択したコード札のアプリ紐付けを解除しますか？解除後は加盟店のデフォルトアプリを使用します。",
   "validateAppId": "アプリを選択してください",
-  "defaultStoreHint": "デフォルト店舗(設定時)"
+  "defaultStoreHint": "デフォルト店舗(設定時)",
+  "allocationTip": "有効にすると、コード決済時にチャネルへ精算用の資金凍結を要求します",
+  "allocationOn": "精算",
+  "allocWarningTitle": "精算能力の警告",
+  "allocWarningDesc": "以下のスキャン場面で現在ルーティングされる決済商品は精算に対応していません。有効にすると該当する決済は通常決済に切り替わります（取引の精算状態は「精算非対応」と表示されます）",
+  "clientEnv": {
+    "wechat": "WeChat",
+    "alipay": "Alipay",
+    "union_pay": "UnionPay",
+    "douyin": "Douyin"
+  },
+  "payForm": {
+    "h5": "H5",
+    "mini": "ミニプログラム"
+  }
 }

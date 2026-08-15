@@ -17,7 +17,8 @@
     "programType": "Loại mã",
     "storeNo": "Mã cửa hàng",
     "store": "Cửa hàng",
-    "storeName": "Tên cửa hàng"
+    "storeName": "Tên cửa hàng",
+    "allocation": "Phân bổ"
   },
   "status": {
     "enabled": "Đã bật",
@@ -76,5 +77,19 @@
   "unbindApp": "Bỏ gán ứng dụng",
   "confirmUnbindApp": "Bỏ gán ứng dụng cho mã đã chọn? Thanh toán sẽ dùng ứng dụng mặc định của thương nhân.",
   "validateAppId": "Vui lòng chọn ứng dụng",
-  "defaultStoreHint": "Cửa hàng mặc định (nếu có)"
+  "defaultStoreHint": "Cửa hàng mặc định (nếu có)",
+  "allocationTip": "Khi bật, thanh toán qua mã sẽ yêu cầu kênh đóng băng tiền để phân bổ",
+  "allocationOn": "Phân bổ",
+  "allocWarningTitle": "Cảnh báo khả năng phân bổ",
+  "allocWarningDesc": "Sản phẩm thanh toán được định tuyến cho các tình huống quét sau không hỗ trợ phân bổ; các thanh toán đó sẽ bị hạ cấp thành thanh toán thường (trạng thái phân bổ ghi \"không hỗ trợ\")",
+  "clientEnv": {
+    "wechat": "WeChat",
+    "alipay": "Alipay",
+    "union_pay": "UnionPay",
+    "douyin": "Douyin"
+  },
+  "payForm": {
+    "h5": "H5",
+    "mini": "Mini Program"
+  }
 }

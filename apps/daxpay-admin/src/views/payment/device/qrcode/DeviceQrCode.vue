@@ -418,6 +418,18 @@
               </a-tag>
             </template>
           </vxe-column>
+          <!-- 分账码牌: 开启后扫码支付透传分账标识; 产品不支持时自动降级普通收款 -->
+          <vxe-column
+            field="allocation"
+            :title="$t('payment.device.qrcode.field.allocation')"
+            :min-width="90"
+            align="center"
+          >
+            <template #default="{ row }">
+              <a-tag v-if="row.allocation" color="green">{{ $t('payment.device.qrcode.allocationOn') }}</a-tag>
+              <span v-else style="color: var(--text-color-placeholder)">-</span>
+            </template>
+          </vxe-column>
           <!-- 商户: 已绑定名称上+号下小字; 未绑定 tag -->
           <vxe-column field="mchName" :title="$t('payment.device.qrcode.field.merchant')" :min-width="160">
             <template #default="{ row }">

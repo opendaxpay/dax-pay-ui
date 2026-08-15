@@ -17,7 +17,8 @@
     "programType": "Code type",
     "storeNo": "Store No.",
     "store": "Store",
-    "storeName": "Store Name"
+    "storeName": "Store Name",
+    "allocation": "Allocation"
   },
   "status": {
     "enabled": "Enabled",
@@ -76,5 +77,19 @@
   "unbindApp": "Unbind App",
   "confirmUnbindApp": "Unbind app from selected boards? Payment will use the merchant default app.",
   "validateAppId": "Please select an app",
-  "defaultStoreHint": "Default store (if configured)"
+  "defaultStoreHint": "Default store (if configured)",
+  "allocationTip": "When enabled, code payments request the channel to freeze funds for allocation",
+  "allocationOn": "Alloc",
+  "allocWarningTitle": "Allocation Capability Warning",
+  "allocWarningDesc": "The payment products routed for the following scan scenarios do not support allocation; those payments will be downgraded to normal payments (trade allocation status marked as \"unsupported\")",
+  "clientEnv": {
+    "wechat": "WeChat",
+    "alipay": "Alipay",
+    "union_pay": "UnionPay",
+    "douyin": "Douyin"
+  },
+  "payForm": {
+    "h5": "H5",
+    "mini": "Mini Program"
+  }
 }

@@ -17,7 +17,8 @@
     "programType": "Jenis kod",
     "storeNo": "No. Kedai",
     "store": "Kedai",
-    "storeName": "Nama Kedai"
+    "storeName": "Nama Kedai",
+    "allocation": "Peruntukan"
   },
   "status": {
     "enabled": "Didayakan",
@@ -76,5 +77,19 @@
   "unbindApp": "Nyahikat Aplikasi",
   "confirmUnbindApp": "Nyahikat aplikasi dari papan terpilih? Bayaran akan guna aplikasi lalai peniaga.",
   "validateAppId": "Sila pilih aplikasi",
-  "defaultStoreHint": "Kedai lalai (jika dikonfigurasi)"
+  "defaultStoreHint": "Kedai lalai (jika dikonfigurasi)",
+  "allocationTip": "Apabila diaktifkan, pembayaran kod akan meminta saluran membekukan dana untuk peruntukan",
+  "allocationOn": "Peruntukan",
+  "allocWarningTitle": "Amaran Keupayaan Peruntukan",
+  "allocWarningDesc": "Produk pembayaran yang dirutekan untuk senario imbas berikut tidak menyokong peruntukan; pembayaran tersebut akan diturunkan kepada pembayaran biasa (status peruntukan transaksi ditandakan \"tidak disokong\")",
+  "clientEnv": {
+    "wechat": "WeChat",
+    "alipay": "Alipay",
+    "union_pay": "UnionPay",
+    "douyin": "Douyin"
+  },
+  "payForm": {
+    "h5": "H5",
+    "mini": "Program Mini"
+  }
 }
