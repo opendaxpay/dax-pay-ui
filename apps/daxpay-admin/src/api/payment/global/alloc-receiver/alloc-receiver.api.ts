@@ -51,6 +51,20 @@ export const AlipayIsvAllocReceiverApi = receiverApi('/admin/alipay/isv-alloc-re
 export const DouyinDirectAllocReceiverApi = receiverApi('/admin/douyin/direct-alloc-receiver');
 
 /**
+ * 分账接收方扫码授权 API(跨通道统一接口, 复用认证域 OAuth + queryCode 轮询机制)
+ */
+export const AllocReceiverScanAuthApi = {
+  /** 生成接收方扫码授权链接(前端渲染二维码) */
+  generateUrl(data: AllocReceiverScanAuthParam): Promise<Result<AllocReceiverScanAuthUrlResult>> {
+    return defHttp.post({ url: '/admin/channel/merchant/alloc-scan-auth/generate-url', data });
+  },
+  /** 通过查询码轮询授权结果 */
+  queryResult(queryCode: string): Promise<Result<AllocReceiverScanAuthResult>> {
+    return defHttp.get({ url: '/admin/channel/merchant/alloc-scan-auth/query-result', params: { queryCode } });
+  },
+};
+
+/**
  * 分账接收方结果(五种模式字段并集, 通道差异字段按模式为空)
  */
 export interface AllocReceiverResult extends MchEntity {
@@ -148,4 +162,42 @@ export interface AllocReceiverBindParam {
 export interface AllocReceiverAppOption {
   label: string;
   value: string;
+}
+
+/**
+ * 分账接收方扫码授权参数(应用传原始 appId, 后端解析)
+ */
+export interface AllocReceiverScanAuthParam {
+  /** 商户号 */
+  mchNo: string;
+  /** 通道商户号 */
+  channelMchNo?: string;
+  /** 支付产品编码(wechat_pay/wechat_isv/alipay/alipay_isv/douyin_pay) */
+  product: string;
+  /** 接收方类型(PERSONAL_OPENID/PERSONAL_SUB_OPENID/USER_ID) */
+  receiverType: string;
+  /** 绑定应用 appId(微信直连/抖音, openid 为该应用维度) */
+  channelAppId?: string;
+  /** 服务商应用 appId(微信服务商, PERSONAL_OPENID 维度) */
+  spAppId?: string;
+  /** 子商户应用 appId(微信服务商, PERSONAL_SUB_OPENID 维度) */
+  subAppId?: string;
+}
+
+/** 扫码授权链接结果 */
+export interface AllocReceiverScanAuthUrlResult {
+  /** 授权访问链接 */
+  authUrl?: string;
+  /** 查询标识码 */
+  queryCode?: string;
+}
+
+/** 扫码授权结果 */
+export interface AllocReceiverScanAuthResult {
+  /** OpenId(微信/抖音) */
+  openId?: string;
+  /** 用户ID(支付宝 2088) */
+  userId?: string;
+  /** 状态 waiting/success/fail/not_exist */
+  status?: string;
 }

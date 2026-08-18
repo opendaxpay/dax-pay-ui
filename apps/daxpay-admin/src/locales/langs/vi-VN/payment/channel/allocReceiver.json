@@ -29,7 +29,10 @@
   "appPlaceholder": "Chọn ứng dụng",
   "bind": "Liên kết lại",
   "unbind": "Hủy liên kết",
+  "unbindConfirmTitle": "Gỡ liên kết người nhận phân chia",
+  "unbindConfirmContent": "Gỡ liên kết người nhận {account}? Sau khi gỡ, không thể phân chia tiền cho người nhận này. Có thể liên kết lại để khôi phục.",
   "deleteConfirmTitle": "Xóa người nhận phân chia",
+  "deleteConfirmContent": "Xóa người nhận {account}? Thao tác này chỉ xóa bản ghi người nhận cục bộ, không ảnh hưởng đến liên kết phía kênh.",
   "createSuccess": "Liên kết thành công",
   "bindSuccess": "Liên kết lại thành công",
   "unbindSuccess": "Hủy liên kết thành công",
@@ -60,5 +63,14 @@
     "PERSONAL_SUB_OPENID": "OpenID ứng dụng merchant con",
     "USER_ID": "ID người dùng Alipay",
     "LOGIN_NAME": "Tên đăng nhập Alipay"
+  },
+  "scanAccount": "Quét",
+  "scanTitle": "Quét để lấy tài khoản người nhận",
+  "scanSuccess": "Đã lấy tài khoản qua quét",
+  "scanFailed": "Quét thất bại hoặc đã hết hạn, vui lòng thử lại",
+  "scanTip": {
+    "wechat": "Đề nghị người nhận quét bằng WeChat; OpenId sẽ được tự động điền sau khi hoàn tất ủy quyền web",
+    "alipay": "Đề nghị người nhận quét bằng Alipay; ID người dùng sẽ được tự động điền sau khi hoàn tất ủy quyền",
+    "douyin": "Đề nghị người nhận quét bằng Douyin (trang ủy quyền phải được mở trong ứng dụng Douyin); OpenId sẽ được tự động điền sau khi hoàn tất ủy quyền"
   }
 }

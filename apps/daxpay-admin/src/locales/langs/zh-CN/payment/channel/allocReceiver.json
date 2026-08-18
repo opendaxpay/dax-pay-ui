@@ -29,7 +29,10 @@
   "appPlaceholder": "请选择应用",
   "bind": "重新绑定",
   "unbind": "解绑",
+  "unbindConfirmTitle": "解绑分账接收方",
+  "unbindConfirmContent": "确定解绑接收方 {account} 吗？解绑后将无法向该接收方分账，可重新绑定恢复",
   "deleteConfirmTitle": "删除分账接收方",
+  "deleteConfirmContent": "确定删除接收方 {account} 吗？仅删除本地接收方档案，不影响通道侧绑定关系",
   "createSuccess": "绑定成功",
   "bindSuccess": "重新绑定成功",
   "unbindSuccess": "解绑成功",
@@ -60,5 +63,14 @@
     "PERSONAL_SUB_OPENID": "子商户应用openid",
     "USER_ID": "支付宝用户ID",
     "LOGIN_NAME": "支付宝登录账号"
+  },
+  "scanAccount": "扫码获取",
+  "scanTitle": "扫码获取接收方账号",
+  "scanSuccess": "扫码获取成功",
+  "scanFailed": "扫码获取失败或已过期，请重试",
+  "scanTip": {
+    "wechat": "请使用接收方本人微信扫码，完成网页授权后自动回填 OpenId",
+    "alipay": "请使用接收方本人支付宝扫码，完成授权后自动回填用户ID",
+    "douyin": "请使用接收方本人抖音扫码(需在抖音App内打开授权页)，完成授权后自动回填 OpenId"
   }
 }

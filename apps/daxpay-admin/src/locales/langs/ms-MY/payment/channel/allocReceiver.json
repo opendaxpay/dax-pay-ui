@@ -29,7 +29,10 @@
   "appPlaceholder": "Pilih aplikasi",
   "bind": "Ikat Semula",
   "unbind": "Lepas",
+  "unbindConfirmTitle": "Nyahikat Penerima Alokasi",
+  "unbindConfirmContent": "Nyahikat penerima {account}? Selepas nyahikat, dana tidak boleh dialokasikan kepadanya. Anda boleh mengikat semula untuk memulihkan.",
   "deleteConfirmTitle": "Padam Penerima Agihan",
+  "deleteConfirmContent": "Padam penerima {account}? Ini hanya memadam rekod penerima setempat dan tidak menjejaskan ikatan di pihak saluran.",
   "createSuccess": "Berjaya terikat",
   "bindSuccess": "Berjaya diikat semula",
   "unbindSuccess": "Berjaya dilepaskan",
@@ -60,5 +63,14 @@
     "PERSONAL_SUB_OPENID": "OpenId aplikasi sub-merchant",
     "USER_ID": "ID Pengguna Alipay",
     "LOGIN_NAME": "Nama Log Masuk Alipay"
+  },
+  "scanAccount": "Imbas",
+  "scanTitle": "Imbas untuk mendapatkan akaun penerima",
+  "scanSuccess": "Akaun diperoleh melalui imbasan",
+  "scanFailed": "Imbasan gagal atau telah tamat tempoh, sila cuba lagi",
+  "scanTip": {
+    "wechat": "Minta penerima mengimbas dengan WeChat; OpenId akan diisi secara automatik selepas kebenaran web selesai",
+    "alipay": "Minta penerima mengimbas dengan Alipay; ID pengguna akan diisi secara automatik selepas kebenaran selesai",
+    "douyin": "Minta penerima mengimbas dengan Douyin (halaman kebenaran mesti dibuka dalam aplikasi Douyin); OpenId akan diisi secara automatik selepas kebenaran selesai"
   }
 }

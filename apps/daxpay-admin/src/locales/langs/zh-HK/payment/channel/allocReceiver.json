@@ -29,7 +29,10 @@
   "appPlaceholder": "請選擇應用",
   "bind": "重新綁定",
   "unbind": "解綁",
+  "unbindConfirmTitle": "解綁分賬接收方",
+  "unbindConfirmContent": "確定解綁接收方 {account} 嗎？解綁後將無法向該接收方分賬，可重新綁定恢復",
   "deleteConfirmTitle": "刪除分賬接收方",
+  "deleteConfirmContent": "確定刪除接收方 {account} 嗎？僅刪除本地接收方檔案，不影響通道側綁定關係",
   "createSuccess": "綁定成功",
   "bindSuccess": "重新綁定成功",
   "unbindSuccess": "解綁成功",
@@ -60,5 +63,14 @@
     "PERSONAL_SUB_OPENID": "子商戶應用openid",
     "USER_ID": "支付寶用戶ID",
     "LOGIN_NAME": "支付寶登入帳號"
+  },
+  "scanAccount": "掃碼獲取",
+  "scanTitle": "掃碼獲取接收方帳號",
+  "scanSuccess": "掃碼獲取成功",
+  "scanFailed": "掃碼獲取失敗或已過期，請重試",
+  "scanTip": {
+    "wechat": "請使用接收方本人微信掃碼，完成網頁授權後自動回填 OpenId",
+    "alipay": "請使用接收方本人支付寶掃碼，完成授權後自動回填用戶ID",
+    "douyin": "請使用接收方本人抖音掃碼(需在抖音App內開啟授權頁)，完成授權後自動回填 OpenId"
   }
 }

@@ -29,7 +29,10 @@
   "appPlaceholder": "Select an app",
   "bind": "Rebind",
   "unbind": "Unbind",
+  "unbindConfirmTitle": "Unbind Alloc Receiver",
+  "unbindConfirmContent": "Unbind receiver {account}? After unbinding, funds can no longer be allocated to it. You can rebind to restore.",
   "deleteConfirmTitle": "Delete Alloc Receiver",
+  "deleteConfirmContent": "Delete receiver {account}? This only removes the local receiver record and does not affect the binding on the channel side.",
   "createSuccess": "Bound successfully",
   "bindSuccess": "Rebound successfully",
   "unbindSuccess": "Unbound successfully",
@@ -60,5 +63,14 @@
     "PERSONAL_SUB_OPENID": "Sub-merchant app OpenID",
     "USER_ID": "Alipay User ID",
     "LOGIN_NAME": "Alipay Login Name"
+  },
+  "scanAccount": "Scan",
+  "scanTitle": "Scan to get receiver account",
+  "scanSuccess": "Account obtained via scan",
+  "scanFailed": "Scan failed or expired, please try again",
+  "scanTip": {
+    "wechat": "Ask the receiver to scan with WeChat; the OpenId will be filled in automatically after web authorization",
+    "alipay": "Ask the receiver to scan with Alipay; the user ID will be filled in automatically after authorization",
+    "douyin": "Ask the receiver to scan with Douyin (the authorization page must be opened in the Douyin app); the OpenId will be filled in automatically after authorization"
   }
 }

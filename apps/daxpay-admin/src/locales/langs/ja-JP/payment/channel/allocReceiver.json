@@ -29,7 +29,10 @@
   "appPlaceholder": "アプリを選択",
   "bind": "再バインド",
   "unbind": "解除",
+  "unbindConfirmTitle": "分配受取方の解除",
+  "unbindConfirmContent": "受取方 {account} を解除しますか？解除後はこの受取方へ分配できません。再バインドで復元できます。",
   "deleteConfirmTitle": "分配受取方を削除",
+  "deleteConfirmContent": "受取方 {account} を削除しますか？ローカルの受取方情報のみ削除し、チャネル側のバインド関係には影響しません。",
   "createSuccess": "バインド成功",
   "bindSuccess": "再バインド成功",
   "unbindSuccess": "解除成功",
@@ -60,5 +63,14 @@
     "PERSONAL_SUB_OPENID": "サブマーチャントアプリopenid",
     "USER_ID": "AlipayユーザーID",
     "LOGIN_NAME": "AlipayログインID"
+  },
+  "scanAccount": "スキャン取得",
+  "scanTitle": "QRスキャンで受取人アカウントを取得",
+  "scanSuccess": "スキャン取得が完了しました",
+  "scanFailed": "スキャン取得に失敗したか期限切れです。もう一度お試しください",
+  "scanTip": {
+    "wechat": "受取人本人のWeChatでスキャンしてください。ウェブ認証完了後、OpenIdが自動入力されます",
+    "alipay": "受取人本人のAlipayでスキャンしてください。認証完了後、ユーザーIDが自動入力されます",
+    "douyin": "受取人本人のDouyinでスキャンしてください(認証ページはDouyinアプリ内で開く必要があります)。認証完了後、OpenIdが自動入力されます"
   }
 }

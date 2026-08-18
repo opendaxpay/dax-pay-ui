@@ -2,12 +2,18 @@
   import type {
     AllocReceiverAppOption,
     AllocReceiverResult,
+    AllocReceiverScanAuthParam,
+    AllocReceiverScanAuthUrlResult,
   } from '#/api/payment/global/alloc-receiver/alloc-receiver.api';
 
-  import { computed, reactive, ref } from 'vue';
+  import { computed, onBeforeUnmount, reactive, ref } from 'vue';
 
   import { $t } from '@vben/locales';
   import { formatDateTime } from '@vben/utils';
+
+  import { IconifyIcon } from '@vben-core/icons';
+
+  import { useIntervalFn } from '@vueuse/core';
 
   import { AlipayMchAppApi } from '#/api/payment/channel/alipay/mch-app.api';
   import { DyMchAppApi } from '#/api/payment/douyin/mch-app.api';
@@ -17,13 +23,14 @@
     type AllocReceiverBindParam,
     type AllocReceiverCreateParam,
     type AllocReceiverQueryParam,
+    AllocReceiverScanAuthApi,
     DouyinDirectAllocReceiverApi,
     WechatDirectAllocReceiverApi,
     WechatIsvAllocReceiverApi,
   } from '#/api/payment/global/alloc-receiver/alloc-receiver.api';
   import { WxMchAppApi } from '#/api/payment/wx/mch-app.api';
   import { WxPlatformAppApi } from '#/api/payment/wx/platform-app.api';
-  import { useDeleteConfirm } from '#/hooks/useDeleteConfirm';
+  import { QrCode } from '#/components/qrcode';
   import { useMessage } from '#/hooks/useMessage';
 
   defineOptions({ name: 'AllocReceiverDrawer' });
@@ -106,8 +113,7 @@
     unbound: 'default',
   };
 
-  const { message } = useMessage();
-  const { openDeleteConfirm } = useDeleteConfirm();
+  const { confirm, message } = useMessage();
 
   const visible = ref(false);
   const loading = ref(false);
@@ -151,6 +157,17 @@
     appRefId: '',
   });
 
+  /** 扫码获取接收方账号(弹窗 + 授权链接 + queryCode 轮询, 复用认证域 OAuth 机制) */
+  const scanVisible = ref(false);
+  const scanAuthUrl = ref<AllocReceiverScanAuthUrlResult>({});
+
+  /** 认证状态(与转账扫码/授权调试页一致) */
+  const AuthStatus = {
+    WAITING: 'waiting',
+    SUCCESS: 'success',
+    NOT_EXIST: 'not_exist',
+  } as const;
+
   /** 当前产品配置(未匹配时为 undefined, 不渲染内容) */
   const config = computed(() => PRODUCT_CONFIG[product.value]);
 
@@ -186,6 +203,22 @@
 
   /** 重绑行是否子商户应用维度 openid(微信服务商 PERSONAL_SUB_OPENID) */
   const bindRowIsSubOpenid = computed(() => bindRow.value?.receiverType === 'PERSONAL_SUB_OPENID');
+
+  /** 新增表单当前类型是否支持扫码获取(openid/userId 类型; 商户号/登录账号不支持) */
+  const canScanAccount = computed(() =>
+    ['PERSONAL_OPENID', 'PERSONAL_SUB_OPENID', 'USER_ID'].includes(formData.receiverType),
+  );
+
+  /** 扫码授权通道(按产品推导, 决定弹窗提示文案与账号回填来源) */
+  const scanChannel = computed<'alipay' | 'douyin' | 'wechat'>(() => {
+    if (product.value.startsWith('alipay')) {
+      return 'alipay';
+    }
+    if (product.value.startsWith('douyin')) {
+      return 'douyin';
+    }
+    return 'wechat';
+  });
 
   /** 应用标签(列表回显绑定所用应用) */
   function appLabel(row: AllocReceiverResult): string {
@@ -524,31 +557,146 @@
     }
   }
 
-  /** 解绑 */
-  async function handleUnbind(row: AllocReceiverResult) {
-    actionLoading.value = true;
+  /** 解绑(通道侧解绑接收方, 影响后续分账, 二次确认) */
+  function handleUnbind(row: AllocReceiverResult) {
+    confirm({
+      title: $t('payment.channel.allocReceiver.unbindConfirmTitle'),
+      content: $t('payment.channel.allocReceiver.unbindConfirmContent', {
+        account: row.receiverName || row.receiverAccount,
+      }),
+      // 解绑影响通道侧分账资金流向, 确认框确定按钮用危险红色
+      okType: 'danger',
+      okText: $t('payment.channel.allocReceiver.unbind'),
+      onOk() {
+        actionLoading.value = true;
+        return config.value
+          ?.api.unbind(row.id!)
+          .then(() => {
+            message.success($t('payment.channel.allocReceiver.unbindSuccess'));
+            loadRecords();
+          })
+          .finally(() => {
+            actionLoading.value = false;
+          });
+      },
+    });
+  }
+
+  /** 删除(危险操作, 普通二次确认) */
+  function handleDelete(row: AllocReceiverResult) {
+    confirm({
+      title: $t('payment.channel.allocReceiver.deleteConfirmTitle'),
+      content: $t('payment.channel.allocReceiver.deleteConfirmContent', {
+        account: row.receiverName || row.receiverAccount,
+      }),
+      // 删除仅清本地接收方档案(不影响通道侧绑定关系), 普通二次确认即可
+      okType: 'danger',
+      okText: $t('common.delete'),
+      onOk() {
+        return config.value?.api.delete(row.id!).then(() => {
+          message.success($t('payment.channel.allocReceiver.deleteSuccess'));
+          loadRecords();
+        });
+      },
+    });
+  }
+
+  /** 轮询扫码授权结果, 成功回填接收方账号(微信/抖音回填 openId, 支付宝回填 userId) */
+  const { pause: pauseScanPolling, resume: resumeScanPolling } = useIntervalFn(
+    async () => {
+      const queryCode = scanAuthUrl.value.queryCode;
+      if (!queryCode) {
+        pauseScanPolling();
+        return;
+      }
+      try {
+        const { data } = await AllocReceiverScanAuthApi.queryResult(queryCode);
+        if (data?.status === AuthStatus.SUCCESS) {
+          const account = scanChannel.value === 'alipay' ? data.userId : data.openId;
+          if (account) {
+            formData.receiverAccount = account;
+            message.success($t('payment.channel.allocReceiver.scanSuccess'));
+          }
+          pauseScanPolling();
+          scanVisible.value = false;
+        } else if (data?.status === AuthStatus.NOT_EXIST) {
+          pauseScanPolling();
+          message.error($t('payment.channel.allocReceiver.scanFailed'));
+        }
+      } catch {
+        pauseScanPolling();
+      }
+    },
+    3000,
+    { immediate: false },
+  );
+
+  /** 打开扫码获取账号弹窗: 按产品生成授权链接 → 开始轮询 */
+  async function handleScanAccount() {
+    // 微信/抖音 openid 与所选应用维度绑定, 须先选定对应应用(支付宝 userId 全局无应用维度)
+    const mode = config.value?.appMode;
+    if (mode === 'wechat-merchant' && !formData.channelAppId) {
+      message.warning($t('payment.channel.allocReceiver.validateApp'));
+      return;
+    }
+    if (mode === 'wechat-isv' && formData.receiverType === 'PERSONAL_OPENID' && !formData.spAppId) {
+      message.warning($t('payment.channel.allocReceiver.validateSpApp'));
+      return;
+    }
+    if (mode === 'wechat-isv' && isSubOpenidType.value && !formData.subAppId) {
+      message.warning($t('payment.channel.allocReceiver.validateSubApp'));
+      return;
+    }
+    if (mode === 'douyin' && !formData.channelAppId) {
+      message.warning($t('payment.channel.allocReceiver.validateApp'));
+      return;
+    }
+    pauseScanPolling();
+    scanAuthUrl.value = {};
+    scanVisible.value = true;
     try {
-      await config.value?.api.unbind(row.id!);
-      message.success($t('payment.channel.allocReceiver.unbindSuccess'));
-      loadRecords();
-    } finally {
-      actionLoading.value = false;
+      const param: AllocReceiverScanAuthParam = {
+        channelMchNo: channelMchNo.value,
+        mchNo: mchNo.value,
+        product: product.value,
+        receiverType: formData.receiverType,
+      };
+      // 应用字段按模式收集(与新增提交一致, 防切换类型残留)
+      switch (mode) {
+        case 'douyin':
+        case 'wechat-merchant': {
+          param.channelAppId = formData.channelAppId;
+
+          break;
+        }
+        case 'wechat-isv': {
+          param.spAppId = formData.spAppId;
+          param.subAppId = isSubOpenidType.value ? formData.subAppId : undefined;
+
+          break;
+        }
+        // No default
+      }
+      const { data } = await AllocReceiverScanAuthApi.generateUrl(param);
+      scanAuthUrl.value = data ?? {};
+      if (scanAuthUrl.value.queryCode) {
+        resumeScanPolling();
+      }
+    } catch {
+      scanVisible.value = false;
     }
   }
 
-  /** 删除(危险操作确认) */
-  function handleDelete(row: AllocReceiverResult) {
-    openDeleteConfirm({
-      name: row.receiverAccount ?? '',
-      verificationText: row.receiverAccount ?? '',
-      onConfirm: () =>
-        config.value?.api.delete(row.id!).then(() => {
-          message.success($t('payment.channel.allocReceiver.deleteSuccess'));
-          loadRecords();
-        }),
-      title: $t('payment.channel.allocReceiver.deleteConfirmTitle'),
-    });
+  /** 关闭扫码弹窗: 停止轮询并清空状态 */
+  function closeScanModal() {
+    pauseScanPolling();
+    scanVisible.value = false;
+    scanAuthUrl.value = {};
   }
+
+  onBeforeUnmount(() => {
+    pauseScanPolling();
+  });
 
   defineExpose({ open });
 </script>
@@ -612,11 +760,12 @@
               <template #separator>
                 <a-divider type="vertical" />
               </template>
-              <!-- 已绑定: 解绑 -->
+              <!-- 已绑定: 解绑(危险操作, 二次确认) -->
               <a-button
                 v-if="record.status === 'bound'"
                 type="link"
                 size="small"
+                danger
                 :loading="actionLoading"
                 @click="handleUnbind(record)"
               >
@@ -657,7 +806,17 @@
           <a-input
             v-model:value="formData.receiverAccount"
             :placeholder="$t('payment.channel.allocReceiver.accountPlaceholder')"
-          />
+          >
+            <!-- 扫码获取账号(openid/userId 类型可用) -->
+            <template v-if="canScanAccount" #suffix>
+              <a-button size="small" type="link" @click="handleScanAccount">
+                <template #icon>
+                  <IconifyIcon icon="ant-design:scan-outlined" class="inline" />
+                </template>
+                {{ $t('payment.channel.allocReceiver.scanAccount') }}
+              </a-button>
+            </template>
+          </a-input>
         </a-form-item>
         <a-form-item
           :label="$t('payment.channel.allocReceiver.name')"
@@ -861,6 +1020,28 @@
           />
         </a-form-item>
       </a-form>
+    </a-modal>
+
+    <!-- 扫码获取接收方账号弹窗(微信/支付宝/抖音共用, 二维码 + 轮询回填) -->
+    <a-modal
+      :open="scanVisible"
+      :title="$t('payment.channel.allocReceiver.scanTitle')"
+      :footer="null"
+      :mask-closable="false"
+      centered
+      width="440"
+      @cancel="closeScanModal"
+    >
+      <div class="flex flex-col items-center py-4">
+        <div v-if="scanAuthUrl.authUrl" class="rounded-lg border border-border p-4">
+          <QrCode :value="scanAuthUrl.authUrl" :width="220" :margin="0" />
+        </div>
+        <a-spin v-else />
+        <!-- 扫码提示(按授权通道区分) -->
+        <div class="mt-4 text-center text-sm text-muted-foreground">
+          {{ $t(`payment.channel.allocReceiver.scanTip.${scanChannel}`) }}
+        </div>
+      </div>
     </a-modal>
   </a-drawer>
 </template>
