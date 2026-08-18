@@ -160,6 +160,8 @@
   /** 扫码获取接收方账号(弹窗 + 授权链接 + queryCode 轮询, 复用认证域 OAuth 机制) */
   const scanVisible = ref(false);
   const scanAuthUrl = ref<AllocReceiverScanAuthUrlResult>({});
+  /** 授权链接生成中(按钮 loading, 生成成功后才开弹窗) */
+  const scanGenerating = ref(false);
 
   /** 认证状态(与转账扫码/授权调试页一致) */
   const AuthStatus = {
@@ -569,8 +571,8 @@
       okText: $t('payment.channel.allocReceiver.unbind'),
       onOk() {
         actionLoading.value = true;
-        return config.value
-          ?.api.unbind(row.id!)
+        return config.value?.api
+          .unbind(row.id!)
           .then(() => {
             message.success($t('payment.channel.allocReceiver.unbindSuccess'));
             loadRecords();
@@ -631,7 +633,7 @@
     { immediate: false },
   );
 
-  /** 打开扫码获取账号弹窗: 按产品生成授权链接 → 开始轮询 */
+  /** 打开扫码获取账号弹窗: 先生成授权链接, 成功后再开弹窗轮询(失败不闪弹窗) */
   async function handleScanAccount() {
     // 微信/抖音 openid 与所选应用维度绑定, 须先选定对应应用(支付宝 userId 全局无应用维度)
     const mode = config.value?.appMode;
@@ -653,7 +655,7 @@
     }
     pauseScanPolling();
     scanAuthUrl.value = {};
-    scanVisible.value = true;
+    scanGenerating.value = true;
     try {
       const param: AllocReceiverScanAuthParam = {
         channelMchNo: channelMchNo.value,
@@ -679,11 +681,15 @@
       }
       const { data } = await AllocReceiverScanAuthApi.generateUrl(param);
       scanAuthUrl.value = data ?? {};
+      // 生成成功才开弹窗, 失败时弹窗不出现(错误提示由全局拦截器展示, 避免闪屏)
       if (scanAuthUrl.value.queryCode) {
+        scanVisible.value = true;
         resumeScanPolling();
       }
     } catch {
-      scanVisible.value = false;
+      // 失败无需处理, 弹窗未打开, 错误提示由全局拦截器展示
+    } finally {
+      scanGenerating.value = false;
     }
   }
 
@@ -809,7 +815,7 @@
           >
             <!-- 扫码获取账号(openid/userId 类型可用) -->
             <template v-if="canScanAccount" #suffix>
-              <a-button size="small" type="link" @click="handleScanAccount">
+              <a-button size="small" type="link" :loading="scanGenerating" @click="handleScanAccount">
                 <template #icon>
                   <IconifyIcon icon="ant-design:scan-outlined" class="inline" />
                 </template>
