@@ -15,8 +15,9 @@
   /**
    * 发起分账抽屉
    *
-   * 由 PayTradeList 通过 ref.open(row) 调用, 经 fetchDetail 获取 tradeNo/amount/channel,
-   * 内部封装分账接收方动态表单 + 校验 + 元转分 + 二次确认 + AllocOrderApi.create 调用。
+   * 由 PayTradeList 通过 ref.open(row) 调用, 经 fetchDetail 获取 tradeNo/amount/channel/mchNo,
+   * 内部封装分账接收方动态表单 + 校验 + 二次确认 + AllocOrderApi.create 调用。
+   * 金额单位为元(后端统一元转分); 运营端代发必传原支付所属商户号 mchNo。
    */
   const props = defineProps<{
     /** 获取含 tradeNo/amount/channel 的订单详情 */
@@ -44,6 +45,8 @@
 
   // 订单信息(只读, open 时回填)
   interface AllocOrderInfo {
+    /** 商户号(运营端代发必传) */
+    mchNo?: string;
     tradeNo?: string;
     amount?: number;
     channel?: string;
@@ -72,6 +75,29 @@
     const types = CHANNEL_RECEIVER_TYPES[orderInfo.value.channel ?? ''] ?? [];
     return types.map((v) => ({ value: v, label: $t(`payment.order.receiverType.${v}`) }));
   });
+
+  // 接收方账号输入提示 key(按类型动态, 类型本身已含通道语义: MERCHANT_ID/PERSONAL_OPENID=微信抖音, USER_ID/LOGIN_NAME=支付宝)
+  const ACCOUNT_PLACEHOLDER_KEYS: Record<string, string> = {
+    MERCHANT_ID: 'payment.order.action.allocAccountPlaceholderMerchantId',
+    PERSONAL_OPENID: 'payment.order.action.allocAccountPlaceholderPersonalOpenid',
+    USER_ID: 'payment.order.action.allocAccountPlaceholderUserId',
+    LOGIN_NAME: 'payment.order.action.allocAccountPlaceholderLoginName',
+  };
+
+  /**
+   * 接收方账号输入提示(按类型给出账号格式引导)
+   */
+  function accountPlaceholder(type: string): string {
+    // 类型未选时用通用提示
+    return $t(ACCOUNT_PLACEHOLDER_KEYS[type] ?? 'payment.order.action.allocReceiverAccountLabel');
+  }
+
+  /**
+   * 个人 openid 类型必须填写明文姓名(微信/抖音通道硬性要求, 商户号/支付宝类型通道不使用姓名)
+   */
+  function needName(type: string): boolean {
+    return type === 'PERSONAL_OPENID';
+  }
 
   // 订单金额(元)
   const orderAmountYuan = computed(() => (orderInfo.value.amount ?? 0) / 100);
@@ -154,6 +180,10 @@
       if (!r.receiverAccount.trim()) {
         return $t('payment.order.action.allocValidateAccount');
       }
+      // 个人 openid 接收方姓名必填(微信/抖音通道要求, 与后端策略校验对齐)
+      if (needName(r.receiverType) && !r.receiverName.trim()) {
+        return $t('payment.order.action.allocValidateName');
+      }
       if (r.amount == null || r.amount < 0.01) {
         return $t('payment.order.action.allocValidateAmount');
       }
@@ -165,7 +195,8 @@
   }
 
   /**
-   * 提交发起分账(校验 → 二次确认 → 元转分 → 调用 API)
+   * 提交发起分账(校验 → 二次确认 → 调用 API)
+   * 金额单位为元, 由后端统一元转分(majorToMinor), 前端禁止预转换
    */
   function submit() {
     const error = validateForm();
@@ -174,6 +205,8 @@
       return;
     }
     const param: AllocParam = {
+      // 运营端代发必须指定商户, 取原支付订单所属商户
+      mchNo: orderInfo.value.mchNo!,
       bizAllocNo: formData.value.bizAllocNo.trim(),
       tradeNo: orderInfo.value.tradeNo,
       title: formData.value.title.trim() || undefined,
@@ -182,8 +215,7 @@
         receiverType: r.receiverType,
         receiverAccount: r.receiverAccount.trim(),
         receiverName: r.receiverName.trim() || undefined,
-        // 元转分
-        amount: Math.round((r.amount ?? 0) * 100),
+        amount: r.amount ?? 0,
       })),
     };
     confirm({
@@ -219,7 +251,7 @@
   <a-drawer
     v-model:open="visible"
     :title="$t('payment.order.action.allocDrawerTitle')"
-    :width="560"
+    :width="720"
     @close="handleClose"
   >
     <a-spin :spinning="fetching">
@@ -249,10 +281,18 @@
           />
         </a-form-item>
         <a-form-item :label="$t('payment.order.action.allocTitleLabel')">
-          <a-input v-model:value="formData.title" allow-clear />
+          <a-input
+            v-model:value="formData.title"
+            :placeholder="$t('payment.order.action.allocTitlePlaceholder')"
+            allow-clear
+          />
         </a-form-item>
         <a-form-item :label="$t('payment.order.action.allocDescLabel')">
-          <a-textarea v-model:value="formData.description" :rows="2" />
+          <a-textarea
+            v-model:value="formData.description"
+            :rows="2"
+            :placeholder="$t('payment.order.action.allocDescPlaceholder')"
+          />
         </a-form-item>
 
         <!-- 分账接收方动态表单 -->
@@ -279,14 +319,28 @@
             <a-select
               v-model:value="receiver.receiverType"
               :options="receiverTypeOptions"
-              :placeholder="$t('payment.order.action.allocReceiverTypeLabel')"
+              :placeholder="$t('payment.order.action.allocReceiverTypePlaceholder')"
             />
           </a-form-item>
           <a-form-item :label="$t('payment.order.action.allocReceiverAccountLabel')" class="!mb-2">
-            <a-input v-model:value="receiver.receiverAccount" allow-clear />
+            <a-input
+              v-model:value="receiver.receiverAccount"
+              :placeholder="accountPlaceholder(receiver.receiverType)"
+              allow-clear
+            />
           </a-form-item>
-          <a-form-item :label="$t('payment.order.action.allocReceiverNameLabel')" class="!mb-2">
-            <a-input v-model:value="receiver.receiverName" allow-clear />
+          <!-- 姓名仅个人 openid 类型需要(微信/抖音要求明文实名; 商户号/支付宝类型通道不使用, 不展示) -->
+          <a-form-item
+            v-if="needName(receiver.receiverType)"
+            :label="$t('payment.order.action.allocReceiverNameLabel')"
+            class="!mb-2"
+            required
+          >
+            <a-input
+              v-model:value="receiver.receiverName"
+              :placeholder="$t('payment.order.action.allocReceiverNamePlaceholder')"
+              allow-clear
+            />
           </a-form-item>
           <a-form-item :label="$t('payment.order.action.allocAmountLabel')" class="!mb-0">
             <a-input-number
@@ -295,6 +349,7 @@
               :min="0.01"
               :precision="2"
               :step="0.01"
+              :placeholder="$t('payment.order.action.allocAmountPlaceholder')"
             />
           </a-form-item>
         </div>

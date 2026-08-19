@@ -194,7 +194,17 @@
     "allocValidateAmount": "分配金額は0.01元以上である必要があります",
     "allocConfirmTitle": "分配開始の確認",
     "allocConfirmContent": "チャネルへ分配を開始します。合計 {amount} 元、続行しますか?",
-    "allocSuccess": "分配を開始しました"
+    "allocSuccess": "分配を開始しました",
+    "allocTitlePlaceholder": "分配タイトルを入力(任意)",
+    "allocDescPlaceholder": "分配説明を入力(任意)",
+    "allocReceiverTypePlaceholder": "受取人タイプを選択",
+    "allocAccountPlaceholderMerchantId": "受取人のマーチャントIDを入力(WeChat/Douyinマーチャント番号)",
+    "allocAccountPlaceholderPersonalOpenid": "受取ユーザーのopenidを入力(分配を開始したアプリに対応するopenid)",
+    "allocAccountPlaceholderUserId": "Alipay会員IDを入力(2088で始まる)",
+    "allocAccountPlaceholderLoginName": "Alipayログインアカウントを入力(電話番号/メール)",
+    "allocReceiverNamePlaceholder": "受取ユーザーの実名を入力(平文、openidの実名と一致)",
+    "allocAmountPlaceholder": "分配金額を入力",
+    "allocValidateName": "個人openid受取人は氏名の入力が必須です"
   },
   "method": {
     "jsapi": "JSAPI",

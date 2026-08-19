@@ -45,6 +45,8 @@ export interface AllocOrderQuery {
 
 /** 分账发起参数 */
 export interface AllocParam {
+  /** 商户号(运营端代发必填) */
+  mchNo: string;
   /** 商户分账单号 */
   bizAllocNo: string;
   /** 原支付资金交易号 */

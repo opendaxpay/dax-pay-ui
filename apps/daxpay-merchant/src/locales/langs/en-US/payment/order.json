@@ -202,7 +202,17 @@
     "allocValidateAmount": "Allocation amount must be at least 0.01",
     "allocConfirmTitle": "Confirm Allocation",
     "allocConfirmContent": "This will initiate allocation with a total of {amount}, continue?",
-    "allocSuccess": "Allocation initiated successfully"
+    "allocSuccess": "Allocation initiated successfully",
+    "allocTitlePlaceholder": "Enter allocation title (optional)",
+    "allocDescPlaceholder": "Enter allocation description (optional)",
+    "allocReceiverTypePlaceholder": "Select receiver type",
+    "allocAccountPlaceholderMerchantId": "Enter receiver merchant ID (WeChat/Douyin merchant no.)",
+    "allocAccountPlaceholderPersonalOpenid": "Enter the receiver's openid (must belong to the app that initiates the allocation)",
+    "allocAccountPlaceholderUserId": "Enter Alipay user ID (starts with 2088)",
+    "allocAccountPlaceholderLoginName": "Enter Alipay login account (phone/email)",
+    "allocReceiverNamePlaceholder": "Enter receiver's real name (plaintext, must match the openid identity)",
+    "allocAmountPlaceholder": "Enter allocation amount",
+    "allocValidateName": "Receiver name is required for personal openid type"
   },
   "method": {
     "jsapi": "JSAPI",

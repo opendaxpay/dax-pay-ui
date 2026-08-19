@@ -210,7 +210,17 @@
     "allocValidateAmount": "分账金额需不小于 0.01 元",
     "allocConfirmTitle": "确认发起分账",
     "allocConfirmContent": "将向通道发起分账,合计 {amount} 元,是否继续?",
-    "allocSuccess": "分账发起成功"
+    "allocSuccess": "分账发起成功",
+    "allocTitlePlaceholder": "请输入分账标题(可选)",
+    "allocDescPlaceholder": "请输入分账描述(可选)",
+    "allocReceiverTypePlaceholder": "请选择接收方类型",
+    "allocAccountPlaceholderMerchantId": "请输入接收方商户号(微信/抖音商户号)",
+    "allocAccountPlaceholderPersonalOpenid": "请输入收款用户 openid(须为分账发起应用对应的 openid)",
+    "allocAccountPlaceholderUserId": "请输入支付宝会员ID(2088开头)",
+    "allocAccountPlaceholderLoginName": "请输入支付宝登录账号(手机号/邮箱)",
+    "allocReceiverNamePlaceholder": "请输入收款用户姓名(明文, 与openid实名一致)",
+    "allocAmountPlaceholder": "请输入分账金额",
+    "allocValidateName": "个人 openid 接收方必须填写姓名"
   },
   "alloc": {
     "title": "分账订单",
