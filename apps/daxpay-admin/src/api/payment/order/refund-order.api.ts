@@ -63,6 +63,8 @@ export interface RefundOrderQuery {
 
 /** 退款发起参数 */
 export interface RefundParam {
+  /** 商户号(运营端代发必传, 订单定位与幂等查重按商户维度) */
+  mchNo: string;
   /** 原支付资金交易号 */
   tradeNo?: string;
   bizOrderNo?: string;

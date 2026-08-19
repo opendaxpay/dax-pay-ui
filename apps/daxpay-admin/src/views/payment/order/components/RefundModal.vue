@@ -15,9 +15,10 @@
    * 内部封装表单校验 + 元转分 + 确认 + RefundOrderApi.refund 调用。
    */
   const props = defineProps<{
-    /** 获取含 tradeNo/refundableBalance/bizOrderNo 的订单详情 */
+    /** 获取含 tradeNo/refundableBalance/bizOrderNo/mchNo 的订单详情 */
     fetchDetail: (id: string) => Promise<{
       bizOrderNo?: string;
+      mchNo?: string;
       refundableBalance?: number;
       tradeNo?: string;
     }>;
@@ -39,6 +40,7 @@
   const rowData = ref<null | {
     bizOrderNo?: string;
     id?: string;
+    mchNo?: string;
     refundableBalance?: number;
     tradeNo?: string;
   }>(null);
@@ -111,6 +113,8 @@
     // 元转分提交
     const amountYuan = formData.value.amount ?? 0;
     const param: RefundParam = {
+      // 运营端代发必传商户号(后端按商户维度定位订单与幂等查重)
+      mchNo: rowData.value.mchNo!,
       tradeNo: formData.value.tradeNo,
       bizOrderNo: rowData.value.bizOrderNo,
       amount: Math.round(amountYuan * 100),
