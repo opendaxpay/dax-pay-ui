@@ -195,7 +195,7 @@
     "allocConfirmTitle": "確認發起分帳",
     "allocConfirmContent": "將向通道發起分帳,合計 {amount} 元,是否繼續?",
     "allocSuccess": "分帳發起成功",
-    "allocTitlePlaceholder": "請輸入分帳標題(可選)",
+    "allocTitlePlaceholder": "請輸入分帳標題",
     "allocDescPlaceholder": "請輸入分帳描述(可選)",
     "allocReceiverTypePlaceholder": "請選擇接收方類型",
     "allocAccountPlaceholderMerchantId": "請輸入接收方商戶號(微信/抖音商戶號)",
@@ -204,7 +204,8 @@
     "allocAccountPlaceholderLoginName": "請輸入支付寶登入帳號(手機/郵箱)",
     "allocReceiverNamePlaceholder": "請輸入收款用戶姓名(明文, 與openid實名一致)",
     "allocAmountPlaceholder": "請輸入分帳金額",
-    "allocValidateName": "個人 openid 接收方必須填寫姓名"
+    "allocValidateName": "個人 openid 接收方必須填寫姓名",
+    "allocValidateTitle": "請輸入分帳標題"
   },
   "method": {
     "jsapi": "JSAPI",

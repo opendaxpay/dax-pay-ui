@@ -168,6 +168,10 @@
     if (!formData.value.bizAllocNo.trim()) {
       return $t('payment.order.action.allocBizAllocNoPlaceholder');
     }
+    // 分账标题必输
+    if (!formData.value.title.trim()) {
+      return $t('payment.order.action.allocValidateTitle');
+    }
     if (formData.value.receivers.length === 0) {
       return $t('payment.order.action.allocReceiverRequired');
     }
@@ -205,7 +209,7 @@
     const param: AllocParam = {
       bizAllocNo: formData.value.bizAllocNo.trim(),
       tradeNo: orderInfo.value.tradeNo,
-      title: formData.value.title.trim() || undefined,
+      title: formData.value.title.trim(),
       description: formData.value.description.trim() || undefined,
       receivers: formData.value.receivers.map<AllocReceiverParam>((r) => ({
         receiverType: r.receiverType,
@@ -276,7 +280,8 @@
             allow-clear
           />
         </a-form-item>
-        <a-form-item :label="$t('payment.order.action.allocTitleLabel')">
+        <!-- 分账标题必输(后端 @NotBlank 同步约束) -->
+        <a-form-item :label="$t('payment.order.action.allocTitleLabel')" required>
           <a-input
             v-model:value="formData.title"
             :placeholder="$t('payment.order.action.allocTitlePlaceholder')"
@@ -341,7 +346,7 @@
           <a-form-item :label="$t('payment.order.action.allocAmountLabel')" class="!mb-0">
             <a-input-number
               v-model:value="receiver.amount"
-              class="w-full"
+              class="!w-full"
               :min="0.01"
               :precision="2"
               :step="0.01"
@@ -370,12 +375,7 @@
     <template #footer>
       <div class="flex justify-end gap-2">
         <a-button @click="handleClose">{{ $t('common.cancel') }}</a-button>
-        <a-button
-          type="primary"
-          :loading="loading"
-          :disabled="totalExceed || fetching"
-          @click="submit"
-        >
+        <a-button type="primary" :loading="loading" @click="submit">
           {{ $t('payment.order.action.alloc') }}
         </a-button>
       </div>

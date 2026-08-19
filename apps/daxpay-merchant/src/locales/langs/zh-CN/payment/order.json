@@ -211,7 +211,7 @@
     "allocConfirmTitle": "确认发起分账",
     "allocConfirmContent": "将向通道发起分账,合计 {amount} 元,是否继续?",
     "allocSuccess": "分账发起成功",
-    "allocTitlePlaceholder": "请输入分账标题(可选)",
+    "allocTitlePlaceholder": "请输入分账标题",
     "allocDescPlaceholder": "请输入分账描述(可选)",
     "allocReceiverTypePlaceholder": "请选择接收方类型",
     "allocAccountPlaceholderMerchantId": "请输入接收方商户号(微信/抖音商户号)",
@@ -220,7 +220,8 @@
     "allocAccountPlaceholderLoginName": "请输入支付宝登录账号(手机号/邮箱)",
     "allocReceiverNamePlaceholder": "请输入收款用户姓名(明文, 与openid实名一致)",
     "allocAmountPlaceholder": "请输入分账金额",
-    "allocValidateName": "个人 openid 接收方必须填写姓名"
+    "allocValidateName": "个人 openid 接收方必须填写姓名",
+    "allocValidateTitle": "请输入分账标题"
   },
   "alloc": {
     "title": "分账订单",

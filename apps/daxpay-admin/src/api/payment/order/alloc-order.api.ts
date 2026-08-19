@@ -53,8 +53,8 @@ export interface AllocParam {
   tradeNo?: string;
   /** 原支付商户业务订单号 */
   bizOrderNo?: string;
-  /** 分账标题 */
-  title?: string;
+  /** 分账标题(必填) */
+  title: string;
   /** 分账描述 */
   description?: string;
   /** 接收方列表 */

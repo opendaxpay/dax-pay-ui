@@ -195,7 +195,7 @@
     "allocConfirmTitle": "분담 시작 확인",
     "allocConfirmContent": "채널에 분담을 시작합니다. 합계 {amount} 위안, 계속하시겠습니까?",
     "allocSuccess": "분담이 시작되었습니다",
-    "allocTitlePlaceholder": "분담 제목 입력(선택)",
+    "allocTitlePlaceholder": "분담 제목 입력",
     "allocDescPlaceholder": "분담 설명 입력(선택)",
     "allocReceiverTypePlaceholder": "수취인 유형 선택",
     "allocAccountPlaceholderMerchantId": "수취인 가맹점 ID 입력(위챗/더우인 가맹점 번호)",
@@ -204,7 +204,8 @@
     "allocAccountPlaceholderLoginName": "Alipay 로그인 계정 입력(전화번호/이메일)",
     "allocReceiverNamePlaceholder": "수취 사용자 실명 입력(평문, openid 실명과 일치)",
     "allocAmountPlaceholder": "분담 금액 입력",
-    "allocValidateName": "개인 openid 수취인은 이름 입력이 필수입니다"
+    "allocValidateName": "개인 openid 수취인은 이름 입력이 필수입니다",
+    "allocValidateTitle": "분담 제목을 입력하세요"
   },
   "method": {
     "jsapi": "JSAPI",
