@@ -9,6 +9,7 @@
 
   import { JsonViewer } from '@vben/common-ui';
   import { $t } from '@vben/locales';
+  import { secureStorage } from '@vben/stores';
 
   import { IconifyIcon } from '@vben-core/icons';
 
@@ -26,7 +27,7 @@
   // 表单引用(用于提交前校验)
   const formRef = ref<FormInstance>();
 
-  // 私钥在 localStorage 中的键名(与交易调试独立, 避免互相覆盖)
+  // 私钥在加密存储中的键名(与交易调试独立, 避免互相覆盖; 密文落 localStorage, 防明文泄露)
   const PRIVATE_KEY_STORAGE_KEY = 'daxpay_dev_gateway_private_key';
 
   // 私钥独立存储(标签+弹窗交互, 校验通过 form 自定义规则挂接)
@@ -174,13 +175,13 @@
     privateKeyVisible.value = true;
   }
 
-  /** 保存私钥(同步到 localStorage) */
+  /** 保存私钥(同步到加密存储) */
   function savePrivateKey() {
     privateKey.value = privateKeyInput.value;
     if (privateKey.value) {
-      localStorage.setItem(PRIVATE_KEY_STORAGE_KEY, privateKey.value);
+      secureStorage.setItem(PRIVATE_KEY_STORAGE_KEY, privateKey.value);
     } else {
-      localStorage.removeItem(PRIVATE_KEY_STORAGE_KEY);
+      secureStorage.removeItem(PRIVATE_KEY_STORAGE_KEY);
     }
     privateKeyVisible.value = false;
     // 清除私钥字段校验态
@@ -195,7 +196,7 @@
       content: $t('payment.develop.gateway.privateKey.clearConfirmContent'),
       onOk() {
         privateKey.value = '';
-        localStorage.removeItem(PRIVATE_KEY_STORAGE_KEY);
+        secureStorage.removeItem(PRIVATE_KEY_STORAGE_KEY);
         formRef.value?.clearValidate?.(['privateKey']);
         message.success($t('payment.develop.gateway.privateKey.clearedTip'));
       },
@@ -389,7 +390,7 @@
   }
 
   onMounted(() => {
-    const saved = localStorage.getItem(PRIVATE_KEY_STORAGE_KEY);
+    const saved = secureStorage.getItem(PRIVATE_KEY_STORAGE_KEY);
     if (saved) {
       privateKey.value = saved;
     }
