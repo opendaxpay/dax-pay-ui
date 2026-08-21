@@ -28,5 +28,11 @@
     "backupPlaceholder": "백업 코드를 입력하세요",
     "submit": "확인 및 로그인",
     "cancel": "뒤쪽에"
+  },
+  "forceChangePassword": {
+    "title": "비밀번호 변경",
+    "initialDesc": "현재 비밀번호는 초기 비밀번호입니다. 계속하려면 새 비밀번호를 설정해 주세요",
+    "expiredDesc": "비밀번호가 만료되었습니다. 계속하려면 새 비밀번호를 설정해 주세요",
+    "logout": "로그아웃"
   }
 }

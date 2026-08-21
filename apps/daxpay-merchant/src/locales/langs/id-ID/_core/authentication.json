@@ -28,5 +28,11 @@
     "backupPlaceholder": "Masukkan kode cadangan",
     "submit": "Verifikasi dan Masuk",
     "cancel": "Kembali"
+  },
+  "forceChangePassword": {
+    "title": "Ubah Kata Sandi",
+    "initialDesc": "Kata sandi Anda adalah kata sandi awal. Harap atur kata sandi baru untuk melanjutkan",
+    "expiredDesc": "Kata sandi Anda sudah kedaluwarsa. Harap atur kata sandi baru untuk melanjutkan",
+    "logout": "Keluar"
   }
 }

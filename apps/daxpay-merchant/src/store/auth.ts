@@ -1,6 +1,8 @@
 import type { Recordable, UserInfo } from '@vben/types';
 
-import { ref } from 'vue';
+import type { PasswordStatus } from '#/api/core/user.api';
+
+import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 import { LOGIN_PATH } from '@vben/constants';
@@ -14,7 +16,7 @@ import { CLIENT_CODE } from '#/constants/client';
 import { useMessage } from '#/hooks/useMessage';
 import { useSensitiveDataCleanup } from '#/hooks/useSensitiveDataCleanup';
 import { $t } from '#/locales';
-import { HOME_PATH } from '#/router/routes';
+import { FORCE_CHANGE_PASSWORD_PATH, HOME_PATH } from '#/router/routes';
 import { encryptPassword } from '#/utils/rsa-encrypt';
 
 export const useAuthStore = defineStore('auth', () => {
@@ -28,6 +30,14 @@ export const useAuthStore = defineStore('auth', () => {
   // 是否处于二次验证
   const twoFactorRequired = ref(false);
   const twoFactorPreAuthToken = ref('');
+
+  // 密码状态(初始密码/过期标记), 登录后拉取用户信息时更新
+  const passwordStatus = ref<null | PasswordStatus>(null);
+
+  // 是否需要强制修改密码(初始密码或已过期)
+  const needChangePassword = computed(
+    () => passwordStatus.value?.initialPassword === true || passwordStatus.value?.expired === true,
+  );
 
   /**
    * 异步处理登录操作
@@ -66,13 +76,16 @@ export const useAuthStore = defineStore('auth', () => {
         userInfo = userInfoResult;
         userStore.setUserInfo(userInfo!);
 
-        if (accessStore.loginExpired) {
+        if (needChangePassword.value) {
+          // 初始密码/密码过期: 登录后强制跳改密页, 不进入系统
+          await router.push(FORCE_CHANGE_PASSWORD_PATH);
+        } else if (accessStore.loginExpired) {
           accessStore.setLoginExpired(false);
         } else {
           await (onSuccess ? onSuccess?.() : router.push(HOME_PATH));
         }
 
-        if (userInfo?.name) {
+        if (userInfo?.name && !needChangePassword.value) {
           const { notification } = useMessage();
           notification.success({
             // 登录成功描述
@@ -111,8 +124,9 @@ export const useAuthStore = defineStore('auth', () => {
         // 清除二次验证状态
         twoFactorRequired.value = false;
         twoFactorPreAuthToken.value = '';
-        await router.push(HOME_PATH);
-        if (userInfo?.name) {
+        // 初始密码/密码过期: 二次验证通过后同样强制跳改密页
+        await router.push(needChangePassword.value ? FORCE_CHANGE_PASSWORD_PATH : HOME_PATH);
+        if (userInfo?.name && !needChangePassword.value) {
           const { notification } = useMessage();
           notification.success({
             description: `${$t('authentication.loginSuccessDesc')}: ${userInfo.name}`,
@@ -149,6 +163,8 @@ export const useAuthStore = defineStore('auth', () => {
     accessStore.clearTokenFromStorage();
     // 登出时清除调试功能保存的敏感凭证(生产模式生效)
     clearOnSessionEnd();
+    // 清除密码状态
+    passwordStatus.value = null;
     resetAllStores();
     accessStore.setLoginExpired(false);
 
@@ -163,13 +179,22 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   async function fetchUserInfo() {
-    const { data: userInfo } = await UserCommonApi.getUserInfo();
-    userStore.setUserInfo(userInfo!);
+    const { data } = await UserCommonApi.getUserInfo();
+    // 保存密码状态(初始密码/过期标记), 供登录跳转与路由守卫强制改密判断
+    passwordStatus.value = data?.passwordStatus ?? null;
+    const userInfo = {
+      account: data?.account ?? '',
+      avatar: data?.avatar ?? '',
+      id: data?.id ?? '',
+      name: data?.name ?? '',
+    } as UserInfo;
+    userStore.setUserInfo(userInfo);
     return userInfo;
   }
 
   function $reset() {
     loginLoading.value = false;
+    passwordStatus.value = null;
   }
 
   return {
@@ -180,6 +205,8 @@ export const useAuthStore = defineStore('auth', () => {
     fetchUserInfo,
     loginLoading,
     logout,
+    needChangePassword,
+    passwordStatus,
     twoFactorPreAuthToken,
     twoFactorRequired,
     twoFactorVerify,

@@ -17,18 +17,31 @@ import { createNonceRequestInterceptor } from './nonce';
 // 密码已通过但仍需输动态码, 不是真正错误; 把响应体(含 preAuthToken)交给业务层
 const TWO_FACTOR_REQUIRED_CODE = 40_101;
 
+// 密码已过期(与后端 PasswordExpiredAccessException.CODE 对齐)
+const PASSWORD_EXPIRED_CODE = 40_301;
+
+// 初始密码需修改(与后端 InitialPasswordAccessException.CODE 对齐)
+const INITIAL_PASSWORD_CODE = 40_302;
+
 /** DaxPay 请求客户端创建选项 */
 export interface DaxRequestClientOptions {
   /** 接口基地址 */
   baseURL: string;
+  /** 透传给主 RequestClient 的额外选项 */
+  clientOptions?: RequestClientOptions;
   /**
    * access token 失效时的重新认证逻辑
    *
    * 由各 app 注入（通常调用 useAuthStore().logout），以解耦端特定的 auth store.
    */
   doReAuthenticate: () => Promise<void>;
-  /** 透传给主 RequestClient 的额外选项 */
-  clientOptions?: RequestClientOptions;
+  /**
+   * 密码为初始密码/已过期被后端拦截(40301/40302)时的处理逻辑
+   *
+   * 由各 app 注入（通常跳转强制改密页）; 不传则退化为普通错误提示。
+   * 典型触发场景: 用户在线期间密码轮换到期, 下一个业务请求被拦截。
+   */
+  onPasswordExpired?: () => void;
 }
 
 /**
@@ -76,7 +89,7 @@ export function createDaxRequestClient(options: DaxRequestClientOptions): {
   defHttp: DefHttp;
   requestClient: RequestClient;
 } {
-  const { baseURL, doReAuthenticate, clientOptions } = options;
+  const { baseURL, doReAuthenticate, onPasswordExpired, clientOptions } = options;
 
   // baseRequestClient: 无业务拦截器, 供 nonce 拦截器调 /nonce/generate 避免循环
   const baseRequestClient = new RequestClient({ baseURL, timeout: 30_000 });
@@ -129,6 +142,24 @@ export function createDaxRequestClient(options: DaxRequestClientOptions): {
       const body = error?.response?.data;
       if (body?.code === TWO_FACTOR_REQUIRED_CODE) {
         return body;
+      }
+      return Promise.reject(error);
+    },
+  });
+
+  // 40301/40302: 初始密码/密码过期被拦截; 标记静默跳过全局错误 toast, 交由 onPasswordExpired 跳转强制改密页
+  requestClient.addResponseInterceptor({
+    rejected: (error: any) => {
+      const body = error?.response?.data;
+      if (
+        onPasswordExpired &&
+        (body?.code === PASSWORD_EXPIRED_CODE ||
+          body?.code === INITIAL_PASSWORD_CODE)
+      ) {
+        if (error?.config) {
+          error.config.silentError = true;
+        }
+        onPasswordExpired();
       }
       return Promise.reject(error);
     },

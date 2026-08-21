@@ -20,3 +20,5 @@ export { coreRouteNames, routes };
 
 // 首页路径常量透传（统一引用入口，避免业务模块直接深入 core.ts）
 export { HOME_PATH } from './core';
+// 强制改密页路径常量透传
+export { FORCE_CHANGE_PASSWORD_PATH } from './core';

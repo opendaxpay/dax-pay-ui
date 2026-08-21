@@ -28,5 +28,11 @@
     "backupPlaceholder": "請輸入備用驗證碼",
     "submit": "驗證並登錄",
     "cancel": "返回"
+  },
+  "forceChangePassword": {
+    "title": "修改密碼",
+    "initialDesc": "當前密碼為初始密碼，請設定新密碼後繼續使用系統",
+    "expiredDesc": "密碼已過期，請設定新密碼後繼續使用系統",
+    "logout": "登出"
   }
 }

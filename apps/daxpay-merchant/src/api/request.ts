@@ -8,6 +8,7 @@ import { useAccessStore } from '@vben/stores';
 import { createDaxRequestClient } from '@daxpay/ui-biz/request';
 
 import { useSensitiveDataCleanup } from '#/hooks/useSensitiveDataCleanup';
+import { FORCE_CHANGE_PASSWORD_PATH } from '#/router/routes';
 import { useAuthStore } from '#/store';
 
 const { apiURL } = useAppConfig(import.meta.env, import.meta.env.PROD);
@@ -30,9 +31,22 @@ async function doReAuthenticate() {
   }
 }
 
+/**
+ * 初始密码/密码过期被拦截(40301/40302)时跳转强制改密页
+ *
+ * 用 location 硬跳而非 router: request.ts 处于模块依赖底层, 引 router 会造成循环依赖;
+ * 硬刷新后路由守卫会重新拉取用户信息与密码状态, 行为等价于 F5 进入。
+ */
+function onPasswordExpired() {
+  if (!window.location.pathname.startsWith(FORCE_CHANGE_PASSWORD_PATH)) {
+    window.location.href = FORCE_CHANGE_PASSWORD_PATH;
+  }
+}
+
 const { requestClient, defHttp } = createDaxRequestClient({
   baseURL: apiURL,
   doReAuthenticate,
+  onPasswordExpired,
 });
 
 export { defHttp, requestClient };

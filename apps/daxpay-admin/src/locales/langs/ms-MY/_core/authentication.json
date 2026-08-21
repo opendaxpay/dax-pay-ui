@@ -28,5 +28,11 @@
     "backupPlaceholder": "Masukkan kod sandaran",
     "submit": "Sahkan dan Log Masuk",
     "cancel": "belakang"
+  },
+  "forceChangePassword": {
+    "title": "Tukar Kata Laluan",
+    "initialDesc": "Kata laluan semasa ialah kata laluan awal. Sila tetapkan kata laluan baharu untuk meneruskan",
+    "expiredDesc": "Kata laluan anda telah tamat tempoh. Sila tetapkan kata laluan baharu untuk meneruskan",
+    "logout": "Log Keluar"
   }
 }

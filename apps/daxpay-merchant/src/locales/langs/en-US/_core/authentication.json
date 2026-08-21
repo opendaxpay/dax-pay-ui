@@ -28,5 +28,11 @@
     "backupPlaceholder": "Enter the backup code",
     "submit": "Verify and Login",
     "cancel": "Back"
+  },
+  "forceChangePassword": {
+    "title": "Change Password",
+    "initialDesc": "Your current password is an initial password. Please set a new password to continue",
+    "expiredDesc": "Your password has expired. Please set a new password to continue",
+    "logout": "Log Out"
   }
 }

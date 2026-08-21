@@ -1,5 +1,3 @@
-import type { UserInfo } from '@vben/types';
-
 import type { Result } from '#/types/web';
 
 import { requestClient } from '#/api/request';
@@ -24,19 +22,49 @@ export interface UserBaseInfo {
   phone?: string;
 }
 
-  /**
-   * 用户基础信息修改参数
-   */
-  export interface UserBaseInfoParam {
-    /** 名称 */
-    name?: string;
-    /** 性别 */
-    sex?: string;
-    /** 邮箱 */
-    email?: string;
-    /** 手机号 */
-    phone?: string;
-  }
+/**
+ * 用户基础信息修改参数
+ */
+export interface UserBaseInfoParam {
+  /** 名称 */
+  name?: string;
+  /** 性别 */
+  sex?: string;
+  /** 邮箱 */
+  email?: string;
+  /** 手机号 */
+  phone?: string;
+}
+
+/**
+ * 密码状态（初始密码/过期标记, 用于登录后强制改密引导）
+ */
+export interface PasswordStatus {
+  /** 是否已过期 */
+  expired: boolean;
+  /** 是否即将过期(7天内) */
+  expiringSoon: boolean;
+  /** 过期时间 (UTC ISO) */
+  expireTime: null | string;
+  /** 是否初始密码(管理员代设, 需首次登录修改) */
+  initialPassword: boolean;
+}
+
+/**
+ * 登录后用户信息
+ */
+export interface LoginAfterUserInfoResult {
+  /** 主键ID */
+  id?: string;
+  /** 登录账号 */
+  account?: string;
+  /** 名称 */
+  name?: string;
+  /** 头像 */
+  avatar?: string;
+  /** 密码状态 */
+  passwordStatus?: PasswordStatus;
+}
 
 /**
  * 用户 API
@@ -45,7 +73,7 @@ export const UserCommonApi = {
   /**
    * 获取用户信息
    */
-  getUserInfo(): Promise<Result<UserInfo>> {
+  getUserInfo(): Promise<Result<LoginAfterUserInfoResult>> {
     return requestClient.get('/user/auth/get-login-after-user-info');
   },
   /**

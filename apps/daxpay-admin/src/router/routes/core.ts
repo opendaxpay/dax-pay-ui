@@ -9,6 +9,9 @@ import { LOGIN_PATH } from '@vben/constants';
  */
 export const HOME_PATH = '/workspace';
 
+/** 强制改密页路径（初始密码/密码过期时登录后跳转, coreRoute 直接放行不依赖动态菜单） */
+export const FORCE_CHANGE_PASSWORD_PATH = '/account/force-change-password';
+
 const BasicLayout = () => import('#/layouts/basic.vue');
 const AuthPageLayout = () => import('#/layouts/auth.vue');
 /** 全局404页面 */
@@ -83,6 +86,20 @@ const serviceUnavailableRoute: RouteRecordRaw = {
   meta: {
     // 服务不可用
     title: 'ui.fallback.offlineError',
+    hideInMenu: true,
+    hideInBreadcrumb: true,
+    hideInTab: true,
+  },
+};
+
+/** 强制改密页（初始密码/密码过期, 独立全屏不依赖动态菜单与 BasicLayout） */
+const forceChangePasswordRoute: RouteRecordRaw = {
+  name: 'ForceChangePassword',
+  path: FORCE_CHANGE_PASSWORD_PATH,
+  component: () => import('#/views/_core/authentication/force-change-password.vue'),
+  meta: {
+    // 强制修改密码
+    title: 'authentication.forceChangePassword.title',
     hideInMenu: true,
     hideInBreadcrumb: true,
     hideInTab: true,
@@ -164,6 +181,8 @@ const coreRoutes: RouteRecordRaw[] = [
   agreementPrivacyRoute,
   // 服务不可用提示页（后端不可用兜底，独立全屏，不走权限拦截）
   serviceUnavailableRoute,
+  // 强制改密页（初始密码/密码过期, 独立全屏）
+  forceChangePasswordRoute,
 ];
 
 /** 通知中心路由（需要登录，从铃铛"查看全部"进入，无菜单） */

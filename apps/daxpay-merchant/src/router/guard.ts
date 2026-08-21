@@ -6,7 +6,7 @@ import { useAccessStore, useUserStore } from '@vben/stores';
 import { startProgress, stopProgress } from '@vben/utils';
 
 import { AuthApi } from '#/api/core/auth.api';
-import { coreRouteNames, HOME_PATH } from '#/router/routes';
+import { coreRouteNames, FORCE_CHANGE_PASSWORD_PATH, HOME_PATH } from '#/router/routes';
 import { useAuthStore } from '#/store';
 
 import { generateAccess } from './access';
@@ -88,6 +88,16 @@ function setupAccessGuard(router: Router) {
       // 获取用户信息
       if (!userStore.userInfo) {
         await authStore.fetchUserInfo();
+      }
+
+      // 初始密码/密码过期: 强制跳改密页。
+      // 此时权限码/菜单接口会被后端 PasswordStatusCheck 拦截(40301/40302), 不再请求。
+      // 改密页是 coreRoute, 守卫上方已提前放行, 此处跳转不会形成循环。
+      if (authStore.needChangePassword) {
+        return {
+          path: FORCE_CHANGE_PASSWORD_PATH,
+          replace: true,
+        };
       }
 
       // 每次刷新重新拉取权限码，保证权限变更即时生效
