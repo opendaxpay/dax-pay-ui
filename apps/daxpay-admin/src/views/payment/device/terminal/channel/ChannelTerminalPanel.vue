@@ -8,6 +8,7 @@
   import {
     ChannelTerminalApi,
     type ChannelTerminalResult,
+    type TerminalDeviceResult,
   } from '#/api/payment/device/terminal.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
@@ -19,10 +20,10 @@
   defineOptions({ name: 'ChannelTerminalPanel' });
 
   const props = defineProps<{
-    /** 系统商户号 */
-    mchNo: string;
     /** 通道商户号 */
     channelMchNo: string;
+    /** 系统商户号 */
+    mchNo: string;
   }>();
 
   const { confirm, message } = useMessage();
@@ -135,6 +136,16 @@
     return $t(`dict.terminal_type.${type}`);
   }
 
+  /**
+   * 已绑定系统终端文案
+   */
+  function systemTerminalLabel(terminals?: TerminalDeviceResult[]) {
+    if (!terminals || terminals.length === 0) {
+      return '-';
+    }
+    return terminals.map((i) => `${i.name || '-'} (${i.terminalNo})`).join('；');
+  }
+
   watch(visible, (open) => {
     if (open) {
       // 抽屉打开后连接 toolbar
@@ -157,27 +168,25 @@
   >
     <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
       <template #buttons>
-        <a-button
-          v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)"
-          type="primary"
-          @click="handleAdd"
-        >
+        <a-button v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)" type="primary" @click="handleAdd">
           {{ $t('payment.device.terminal.add') }}
         </a-button>
       </template>
     </vxe-toolbar>
     <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
       <vxe-column field="name" :title="$t('payment.device.terminal.field.name')" :min-width="120" />
+      <!-- 已绑定的系统终端(创建即绑定) -->
+      <vxe-column :title="$t('payment.device.terminal.field.systemTerminal')" :min-width="160">
+        <template #default="{ row }">
+          {{ systemTerminalLabel(row.systemTerminals) }}
+        </template>
+      </vxe-column>
       <vxe-column field="type" :title="$t('payment.device.terminal.field.type')" :min-width="120">
         <template #default="{ row }">
           {{ typeLabel(row.type) }}
         </template>
       </vxe-column>
-      <vxe-column
-        field="outTerminalNo"
-        :title="$t('payment.device.terminal.field.outTerminalNo')"
-        :min-width="140"
-      />
+      <vxe-column field="outTerminalNo" :title="$t('payment.device.terminal.field.outTerminalNo')" :min-width="140" />
       <vxe-column field="status" :title="$t('payment.device.terminal.field.status')" :min-width="100" align="center">
         <template #default="{ row }">
           <a-tag>{{ statusLabel(row.status) }}</a-tag>

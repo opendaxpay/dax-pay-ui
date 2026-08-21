@@ -7,6 +7,8 @@
     ChannelTerminalApi,
     type ChannelTerminalParam,
     type ChannelTerminalResult,
+    TerminalDeviceApi,
+    type TerminalDeviceResult,
   } from '#/api/payment/device/terminal.api';
   import { FormEditType } from '#/enums/formEditType';
   import { useFormEdit } from '#/hooks/useFormEdit';
@@ -19,8 +21,13 @@
   const { visible, confirmLoading, title, initFormEditType, handleCancel, addable } = useFormEdit();
 
   // 通道商户上下文(新增时锁定)
-  const context = ref<{ mchNo: string; channelMchNo: string }>({ mchNo: '', channelMchNo: '' });
+  const context = ref<{ channelMchNo: string; mchNo: string }>({ mchNo: '', channelMchNo: '' });
   const editReadonly = ref<{ channelMchNo?: string; type?: string }>({});
+
+  // 系统终端下拉候选(新增必选/编辑可选补绑)
+  const terminalOptions = ref<TerminalDeviceResult[]>([]);
+  // 编辑时已绑定的系统终端(只读展示)
+  const boundSystemTerminals = ref<TerminalDeviceResult[]>([]);
 
   const formState = ref<ChannelTerminalParam>({
     name: '',
@@ -45,9 +52,21 @@
     { label: $t('dict.channel_terminal_status.error'), value: 'error' },
   ]);
 
+  // 系统终端下拉选项(排除编辑时已绑定的终端)
+  const systemTerminalSelectOptions = computed(() => {
+    const boundNos = new Set(boundSystemTerminals.value.map((i) => i.terminalNo));
+    return terminalOptions.value
+      .filter((i) => !boundNos.has(i.terminalNo))
+      .map((i) => ({ label: `${i.name || '-'} (${i.terminalNo})`, value: i.terminalNo }));
+  });
+
   const formRules = computed(() => ({
     type: [{ required: true, message: $t('payment.device.terminal.validateType') }],
     name: [{ required: true, message: $t('payment.device.terminal.validateName') }],
+    // 新增时必须绑定系统终端(创建即绑定), 编辑时可选补绑
+    systemTerminalNo: addable.value
+      ? [{ required: true, message: $t('payment.device.terminal.validateSystemTerminal') }]
+      : [],
   }));
 
   function resetForm() {
@@ -59,17 +78,30 @@
       channelMchNo: context.value.channelMchNo,
     };
     editReadonly.value = {};
+    boundSystemTerminals.value = [];
     formRef.value?.resetFields();
+  }
+
+  /**
+   * 加载商户下系统终端下拉候选
+   */
+  async function loadTerminalOptions(mchNo: string) {
+    if (!mchNo) {
+      return;
+    }
+    const { data } = await TerminalDeviceApi.listByMchNo(mchNo);
+    terminalOptions.value = data || [];
   }
 
   /**
    * 打开新增(通道商户上下文已锁定)
    */
-  function showAdd(ctx: { mchNo: string; channelMchNo: string }) {
+  function showAdd(ctx: { channelMchNo: string; mchNo: string }) {
     context.value = ctx;
     initFormEditType(FormEditType.Add);
     resetForm();
     visible.value = true;
+    loadTerminalOptions(ctx.mchNo);
   }
 
   /**
@@ -85,8 +117,11 @@
     confirmLoading.value = true;
     visible.value = true;
     try {
-      const { data } = await ChannelTerminalApi.get(record.id!);
-      const row = data || record;
+      const [detailRes] = await Promise.all([
+        ChannelTerminalApi.get(record.id!),
+        loadTerminalOptions(context.value.mchNo),
+      ]);
+      const row = detailRes.data || record;
       formState.value = {
         id: row.id!,
         mchNo: row.mchNo,
@@ -98,6 +133,7 @@
         errorMsg: row.errorMsg,
         remark: row.remark,
       };
+      boundSystemTerminals.value = row.systemTerminals || [];
       editReadonly.value = { channelMchNo: row.channelMchNo, type: row.type };
     } finally {
       confirmLoading.value = false;
@@ -115,15 +151,13 @@
     }
     confirmLoading.value = true;
     try {
-      if (addable.value) {
-        await ChannelTerminalApi.add({
-          ...formState.value,
-          mchNo: context.value.mchNo,
-          channelMchNo: context.value.channelMchNo,
-        });
-      } else {
-        await ChannelTerminalApi.update(formState.value);
-      }
+      await (addable.value
+        ? ChannelTerminalApi.add({
+            ...formState.value,
+            mchNo: context.value.mchNo,
+            channelMchNo: context.value.channelMchNo,
+          })
+        : ChannelTerminalApi.update(formState.value));
       message.success($t('common.operationSuccess'));
       handleCancel();
       emit('ok');
@@ -149,6 +183,27 @@
       <!-- 通道商户号只读展示 -->
       <a-form-item :label="$t('payment.device.terminal.field.channelMchNo')">
         <a-input :value="addable ? context.channelMchNo : editReadonly.channelMchNo" disabled />
+      </a-form-item>
+      <a-form-item :label="$t('payment.device.terminal.field.systemTerminal')" name="systemTerminalNo">
+        <!-- 编辑时已绑定的系统终端只读展示 -->
+        <div v-if="!addable && boundSystemTerminals.length > 0" class="mb-2">
+          <a-tag v-for="term in boundSystemTerminals" :key="term.terminalNo">
+            {{ term.name || '-' }} ({{ term.terminalNo }})
+          </a-tag>
+        </div>
+        <!-- 新增必选(创建即绑定); 编辑可选补绑(不选不变更) -->
+        <a-select
+          v-model:value="formState.systemTerminalNo"
+          :options="systemTerminalSelectOptions"
+          :placeholder="
+            addable
+              ? $t('payment.device.terminal.pleaseSelectTerminal')
+              : $t('payment.device.terminal.pleaseSelectTerminalOptional')
+          "
+          show-search
+          option-filter-prop="label"
+          allow-clear
+        />
       </a-form-item>
       <a-form-item :label="$t('payment.device.terminal.field.type')" name="type">
         <a-select

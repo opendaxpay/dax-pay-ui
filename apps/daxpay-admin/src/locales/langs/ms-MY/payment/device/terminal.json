@@ -17,7 +17,8 @@
     "type": "Report Type",
     "outTerminalNo": "Channel Terminal No.",
     "status": "Status",
-    "errorMsg": "Error Message"
+    "errorMsg": "Error Message",
+    "systemTerminal": "Terminal Sistem"
   },
   "enableYes": "Enabled",
   "enableNo": "Disabled",
@@ -41,5 +42,7 @@
   "boundChannel": "Bound channel terminals",
   "boundSystem": "Bound system terminals",
   "noBound": "No bindings",
-  "addBind": "Add binding"
+  "addBind": "Add binding",
+  "validateSystemTerminal": "Sila pilih terminal sistem",
+  "pleaseSelectTerminalOptional": "Pilih terminal sistem (pilihan, dikaitkan semasa simpan)"
 }

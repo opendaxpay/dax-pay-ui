@@ -17,7 +17,8 @@
     "type": "Report Type",
     "outTerminalNo": "Channel Terminal No.",
     "status": "Status",
-    "errorMsg": "Error Message"
+    "errorMsg": "Error Message",
+    "systemTerminal": "システム端末"
   },
   "enableYes": "Enabled",
   "enableNo": "Disabled",
@@ -41,5 +42,7 @@
   "boundChannel": "Bound channel terminals",
   "boundSystem": "Bound system terminals",
   "noBound": "No bindings",
-  "addBind": "Add binding"
+  "addBind": "Add binding",
+  "validateSystemTerminal": "システム端末を選択してください",
+  "pleaseSelectTerminalOptional": "システム端末を選択（任意・選択で追加バインド）"
 }

@@ -17,7 +17,8 @@
     "type": "Report Type",
     "outTerminalNo": "Channel Terminal No.",
     "status": "Status",
-    "errorMsg": "Error Message"
+    "errorMsg": "Error Message",
+    "systemTerminal": "시스템 단말"
   },
   "enableYes": "Enabled",
   "enableNo": "Disabled",
@@ -41,5 +42,7 @@
   "boundChannel": "Bound channel terminals",
   "boundSystem": "Bound system terminals",
   "noBound": "No bindings",
-  "addBind": "Add binding"
+  "addBind": "Add binding",
+  "validateSystemTerminal": "시스템 단말을 선택해 주세요",
+  "pleaseSelectTerminalOptional": "시스템 단말 선택(선택 사항, 저장 시 추가 연동)"
 }

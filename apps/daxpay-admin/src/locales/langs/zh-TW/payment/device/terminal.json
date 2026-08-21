@@ -17,7 +17,8 @@
     "type": "报送类型",
     "outTerminalNo": "通道终端号",
     "status": "登记状态",
-    "errorMsg": "错误信息"
+    "errorMsg": "错误信息",
+    "systemTerminal": "系統終端"
   },
   "enableYes": "启用",
   "enableNo": "停用",
@@ -41,5 +42,7 @@
   "boundChannel": "已绑定通道终端",
   "boundSystem": "已绑定系统终端",
   "noBound": "暂无绑定",
-  "addBind": "添加绑定"
+  "addBind": "添加绑定",
+  "validateSystemTerminal": "請選擇系統終端",
+  "pleaseSelectTerminalOptional": "選擇系統終端(可選, 選擇後補充綁定)"
 }

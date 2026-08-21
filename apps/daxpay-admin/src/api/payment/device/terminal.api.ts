@@ -145,6 +145,8 @@ export interface ChannelTerminalParam {
   mchNo?: string;
   channelMchNo?: string;
   type?: string;
+  // 绑定的系统终端编码(新增必填, 编辑传入则补绑)
+  systemTerminalNo?: string;
   name?: string;
   outTerminalNo?: string;
   status?: string;
@@ -163,6 +165,8 @@ export interface ChannelTerminalResult extends BaseEntity {
   status?: string;
   errorMsg?: string;
   remark?: string;
+  // 已绑定的系统终端列表
+  systemTerminals?: TerminalDeviceResult[];
   mchNo?: string;
   mchName?: string;
 }
