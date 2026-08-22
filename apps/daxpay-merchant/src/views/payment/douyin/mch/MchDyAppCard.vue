@@ -11,8 +11,8 @@
   import { usePermission } from '#/hooks/usePermission';
   import { getProviderSvgUrl } from '#/views/payment/shared/payProviderDisplay';
 
-  // 抖音支付渠道色值
-  const douyinColor = '#fe2c55';
+  // 抖音支付渠道色值(图标本体为近黑色, 背景配浅黑更贴品牌)
+  const douyinColor = '#130A17';
   const douyinSvgUrl = getProviderSvgUrl('douyin');
 
   const props = defineProps<{
