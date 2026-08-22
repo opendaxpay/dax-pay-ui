@@ -136,6 +136,16 @@
       <a-form-item v-if="!addable" :label="$t('payment.device.terminal.field.terminalNo')">
         <a-input :value="editTerminalNo" disabled />
       </a-form-item>
+      <a-form-item :label="$t('payment.device.terminal.field.name')" name="name">
+        <a-input v-model:value="formState.name" :placeholder="$t('common.pleaseInput')" />
+      </a-form-item>
+      <a-form-item :label="$t('payment.device.terminal.field.enable')" name="enable">
+        <a-radio-group v-model:value="formState.enable" button-style="solid">
+          <a-radio-button :value="true">{{ $t('payment.device.terminal.enableYes') }}</a-radio-button>
+          <a-radio-button :value="false">{{ $t('payment.device.terminal.enableNo') }}</a-radio-button>
+        </a-radio-group>
+      </a-form-item>
+      <!-- 门店(可选), 位于启用之后 -->
       <a-form-item :label="$t('payment.device.terminal.field.store')" name="storeNo">
         <a-select
           v-model:value="formState.storeNo"
@@ -145,15 +155,6 @@
           show-search
           option-filter-prop="label"
         />
-      </a-form-item>
-      <a-form-item :label="$t('payment.device.terminal.field.name')" name="name">
-        <a-input v-model:value="formState.name" :placeholder="$t('common.pleaseInput')" />
-      </a-form-item>
-      <a-form-item :label="$t('payment.device.terminal.field.enable')" name="enable">
-        <a-radio-group v-model:value="formState.enable" button-style="solid">
-          <a-radio-button :value="true">{{ $t('payment.device.terminal.enableYes') }}</a-radio-button>
-          <a-radio-button :value="false">{{ $t('payment.device.terminal.enableNo') }}</a-radio-button>
-        </a-radio-group>
       </a-form-item>
       <a-form-item :label="$t('payment.device.terminal.field.remark')" name="remark">
         <a-textarea v-model:value="formState.remark" :rows="3" :placeholder="$t('common.pleaseInput')" />
