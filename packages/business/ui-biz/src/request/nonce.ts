@@ -7,8 +7,9 @@ import type { RequestClient } from '@vben/request';
  *
  * 工作流程：
  * 1. 请求拦截器检测到 config.requireNonce === true
- * 2. 用 baseRequestClient 调 GET /nonce/generate 获取 nonce + timestamp
+ * 2. 用 baseRequestClient 调 POST /nonce/generate 获取 nonce + timestamp
  *    （baseRequestClient 无业务拦截器，避免触发主请求拦截器的 nonce 逻辑导致循环调用）
+ *    （POST 是为避免 CDN 缓存 GET 响应，一次性 nonce 被缓存会导致所有用户共用同一份）
  * 3. 将 X-Nonce / X-Timestamp 注入请求 Header
  * 4. 请求正常发出（无需重试）
  *
@@ -23,7 +24,7 @@ export function createNonceRequestInterceptor(
       // 检测是否需要 nonce
       if (config.requireNonce) {
         // 调用 nonce 接口获取 nonce 和服务器时间戳（响应体 Result<NonceResult>，data 字段为 NonceResult）
-        const response = await baseRequestClient.instance.get('/nonce/generate');
+        const response = await baseRequestClient.instance.post('/nonce/generate');
         const nonceData = response.data?.data;
 
         if (nonceData?.nonce && nonceData?.timestamp) {
