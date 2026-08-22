@@ -49,10 +49,10 @@ export const AuthApi = {
     return requestClient.post('/token/login-content', { clientId });
   },
   /**
-   * 获取图形验证码
+   * 获取图形验证码（POST 避免被 CDN 缓存 GET 响应, 一次性验证码被缓存会导致所有用户共用同一张）
    */
   getCaptchaImage(): Promise<Result<CaptchaDataResult>> {
-    return requestClient.get('/captcha/image');
+    return requestClient.post('/captcha/image');
   },
   /**
    * 获取用户权限码
