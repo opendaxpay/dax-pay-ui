@@ -3,11 +3,7 @@
 
   import { $t } from '@vben/locales';
 
-  import {
-    AllocOrderApi,
-    type AllocParam,
-    type AllocReceiverParam,
-  } from '#/api/payment/order/alloc-order.api';
+  import { AllocOrderApi, type AllocParam, type AllocReceiverParam } from '#/api/payment/order/alloc-order.api';
   import { useMessage } from '#/hooks/useMessage';
 
   defineOptions({ name: 'AllocDrawer' });
@@ -70,6 +66,21 @@
     receivers: [],
   });
 
+  // 表单实例(校验走 form rules, 不手写 message)
+  const formRef = ref();
+
+  // 顶层字段校验规则(接收方为动态数组, 各行字段 rules 内联在 form-item 上)
+  const rules = computed(() => ({
+    bizAllocNo: [{ required: true, message: $t('payment.order.action.allocBizAllocNoPlaceholder') }],
+    title: [{ required: true, message: $t('payment.order.action.allocValidateTitle') }],
+  }));
+
+  // 分账金额校验(必填 + 不小于 0.01 元, 与后端 @DecimalMin 对齐)
+  const amountRules = computed(() => [
+    { required: true, message: $t('payment.order.action.allocValidateAmount') },
+    { type: 'number' as const, min: 0.01, message: $t('payment.order.action.allocValidateAmount') },
+  ]);
+
   // 当前订单可用的接收方类型(按 channel 过滤)
   const receiverTypeOptions = computed(() => {
     const types = CHANNEL_RECEIVER_TYPES[orderInfo.value.channel ?? ''] ?? [];
@@ -103,9 +114,7 @@
   const orderAmountYuan = computed(() => (orderInfo.value.amount ?? 0) / 100);
 
   // 接收方合计金额(元)
-  const totalYuan = computed(() =>
-    formData.value.receivers.reduce((sum, r) => sum + (r.amount ?? 0), 0),
-  );
+  const totalYuan = computed(() => formData.value.receivers.reduce((sum, r) => sum + (r.amount ?? 0), 0));
 
   // 合计是否超出订单金额
   const totalExceed = computed(() => totalYuan.value > orderAmountYuan.value);
@@ -133,9 +142,7 @@
         title: '',
         description: '',
         // 默认预置一行空接收方
-        receivers: [
-          { receiverType: '', receiverAccount: '', receiverName: '', amount: undefined },
-        ],
+        receivers: [{ receiverType: '', receiverAccount: '', receiverName: '', amount: undefined }],
       };
     } finally {
       fetching.value = false;
@@ -164,48 +171,20 @@
   }
 
   /**
-   * 表单校验, 返回首个错误提示(无错误返回 null)
-   */
-  function validateForm(): null | string {
-    if (!formData.value.bizAllocNo.trim()) {
-      return $t('payment.order.action.allocBizAllocNoPlaceholder');
-    }
-    // 分账标题必输
-    if (!formData.value.title.trim()) {
-      return $t('payment.order.action.allocValidateTitle');
-    }
-    if (formData.value.receivers.length === 0) {
-      return $t('payment.order.action.allocReceiverRequired');
-    }
-    for (const r of formData.value.receivers) {
-      if (!r.receiverType) {
-        return $t('payment.order.action.allocValidateType');
-      }
-      if (!r.receiverAccount.trim()) {
-        return $t('payment.order.action.allocValidateAccount');
-      }
-      // 个人 openid 接收方姓名必填(微信/抖音通道要求, 与后端策略校验对齐)
-      if (needName(r.receiverType) && !r.receiverName.trim()) {
-        return $t('payment.order.action.allocValidateName');
-      }
-      if (r.amount == null || r.amount < 0.01) {
-        return $t('payment.order.action.allocValidateAmount');
-      }
-    }
-    if (totalExceed.value) {
-      return $t('payment.order.action.allocTotalExceed');
-    }
-    return null;
-  }
-
-  /**
    * 提交发起分账(校验 → 二次确认 → 调用 API)
+   * 字段校验走 form rules, 合计超限为跨行校验单独拦截
    * 金额单位为元, 由后端统一元转分(majorToMinor), 前端禁止预转换
    */
-  function submit() {
-    const error = validateForm();
-    if (error) {
-      message.warning(error);
+  async function submit() {
+    try {
+      await formRef.value?.validate();
+    } catch {
+      // 校验失败: 表单已标红定位到字段, 中止提交
+      return;
+    }
+    // 合计超出订单金额(合计区已红色提示, 提交时兜底拦截)
+    if (totalExceed.value) {
+      message.warning($t('payment.order.action.allocTotalExceed'));
       return;
     }
     const param: AllocParam = {
@@ -276,8 +255,8 @@
         </a-descriptions>
       </div>
 
-      <a-form layout="vertical">
-        <a-form-item :label="$t('payment.order.action.allocBizAllocNoLabel')" required>
+      <a-form ref="formRef" layout="vertical" :model="formData" :rules="rules">
+        <a-form-item :label="$t('payment.order.action.allocBizAllocNoLabel')" name="bizAllocNo">
           <a-input
             v-model:value="formData.bizAllocNo"
             :placeholder="$t('payment.order.action.allocBizAllocNoPlaceholder')"
@@ -285,7 +264,7 @@
           />
         </a-form-item>
         <!-- 分账标题必输(后端 @NotBlank 同步约束) -->
-        <a-form-item :label="$t('payment.order.action.allocTitleLabel')" required>
+        <a-form-item :label="$t('payment.order.action.allocTitleLabel')" name="title">
           <a-input
             v-model:value="formData.title"
             :placeholder="$t('payment.order.action.allocTitlePlaceholder')"
@@ -303,11 +282,7 @@
         <!-- 分账接收方动态表单 -->
         <a-divider orientation="left" plain>{{ $t('payment.order.action.allocReceiverSection') }}</a-divider>
 
-        <div
-          v-for="(receiver, index) in formData.receivers"
-          :key="index"
-          class="mb-3 rounded-lg bg-background p-3"
-        >
+        <div v-for="(receiver, index) in formData.receivers" :key="index" class="mb-3 rounded-lg bg-background p-3">
           <div class="mb-2 flex items-center justify-between">
             <span class="text-xs text-muted-foreground">#{{ index + 1 }}</span>
             <a-button
@@ -320,14 +295,24 @@
               {{ $t('common.delete') }}
             </a-button>
           </div>
-          <a-form-item :label="$t('payment.order.action.allocReceiverTypeLabel')" class="!mb-2">
+          <a-form-item
+            :label="$t('payment.order.action.allocReceiverTypeLabel')"
+            :name="['receivers', index, 'receiverType']"
+            :rules="[{ required: true, message: $t('payment.order.action.allocValidateType') }]"
+            class="!mb-2"
+          >
             <a-select
               v-model:value="receiver.receiverType"
               :options="receiverTypeOptions"
               :placeholder="$t('payment.order.action.allocReceiverTypePlaceholder')"
             />
           </a-form-item>
-          <a-form-item :label="$t('payment.order.action.allocReceiverAccountLabel')" class="!mb-2">
+          <a-form-item
+            :label="$t('payment.order.action.allocReceiverAccountLabel')"
+            :name="['receivers', index, 'receiverAccount']"
+            :rules="[{ required: true, whitespace: true, message: $t('payment.order.action.allocValidateAccount') }]"
+            class="!mb-2"
+          >
             <a-input
               v-model:value="receiver.receiverAccount"
               :placeholder="accountPlaceholder(receiver.receiverType)"
@@ -338,8 +323,9 @@
           <a-form-item
             v-if="needName(receiver.receiverType)"
             :label="$t('payment.order.action.allocReceiverNameLabel')"
+            :name="['receivers', index, 'receiverName']"
+            :rules="[{ required: true, whitespace: true, message: $t('payment.order.action.allocValidateName') }]"
             class="!mb-2"
-            required
           >
             <a-input
               v-model:value="receiver.receiverName"
@@ -347,7 +333,12 @@
               allow-clear
             />
           </a-form-item>
-          <a-form-item :label="$t('payment.order.action.allocAmountLabel')" class="!mb-0">
+          <a-form-item
+            :label="$t('payment.order.action.allocAmountLabel')"
+            :name="['receivers', index, 'amount']"
+            :rules="amountRules"
+            class="!mb-0"
+          >
             <a-input-number
               v-model:value="receiver.amount"
               class="!w-full"

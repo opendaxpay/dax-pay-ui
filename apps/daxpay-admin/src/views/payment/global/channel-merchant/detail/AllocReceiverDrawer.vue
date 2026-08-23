@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+  import type { MenuProps } from 'antdv-next';
+
   import type {
     AllocReceiverAppOption,
     AllocReceiverResult,
@@ -157,6 +159,10 @@
     appRefId: '',
   });
 
+  /** 查看详情弹窗(完整展示账号/应用/失败原因, 补偿列表列宽截断) */
+  const viewVisible = ref(false);
+  const viewRow = ref<AllocReceiverResult>();
+
   /** 扫码获取接收方账号(弹窗 + 授权链接 + queryCode 轮询, 复用认证域 OAuth 机制) */
   const scanVisible = ref(false);
   const scanAuthUrl = ref<AllocReceiverScanAuthUrlResult>({});
@@ -206,6 +212,63 @@
   /** 重绑行是否子商户应用维度 openid(微信服务商 PERSONAL_SUB_OPENID) */
   const bindRowIsSubOpenid = computed(() => bindRow.value?.receiverType === 'PERSONAL_SUB_OPENID');
 
+  // 新增/重绑表单实例(校验走 form rules, 不手写 message)
+  const createFormRef = ref();
+  const bindFormRef = ref();
+
+  /** 必选类字段校验规则(下拉选择) */
+  function requiredRule(key: string) {
+    return [{ required: true, message: $t(key) }];
+  }
+
+  /** 新增表单校验规则(应用字段按 appMode 显隐, 隐藏项不注册不参与校验) */
+  const createRules = computed(() => {
+    const mode = config.value?.appMode;
+    return {
+      receiverType: requiredRule('payment.channel.allocReceiver.validateType'),
+      receiverAccount: [
+        { required: true, whitespace: true, message: $t('payment.channel.allocReceiver.validateAccount') },
+      ],
+      // 商户号类型必填商户全称(微信添加接收方 API 要求, 与表单 extra 提示一致)
+      receiverName: isMerchantType.value
+        ? [{ required: true, whitespace: true, message: $t('payment.channel.allocReceiver.nameRequiredTip') }]
+        : [],
+      relationType: config.value?.hasRelation ? requiredRule('payment.channel.allocReceiver.validateRelation') : [],
+      customRelation:
+        formData.relationType === 'custom'
+          ? [{ required: true, whitespace: true, message: $t('payment.channel.allocReceiver.validateCustomRelation') }]
+          : [],
+      channelAppId:
+        mode === 'wechat-merchant' || mode === 'douyin'
+          ? requiredRule('payment.channel.allocReceiver.validateApp')
+          : [],
+      spAppId: mode === 'wechat-isv' ? requiredRule('payment.channel.allocReceiver.validateSpApp') : [],
+      // 子商户应用仅 PERSONAL_SUB_OPENID 类型必填
+      subAppId:
+        mode === 'wechat-isv' && isSubOpenidType.value
+          ? requiredRule('payment.channel.allocReceiver.validateSubApp')
+          : [],
+      appRefId: mode === 'alipay' ? requiredRule('payment.channel.allocReceiver.validateApp') : [],
+    };
+  });
+
+  /** 重绑表单校验规则(应用必填模式沿用新增校验) */
+  const bindRules = computed(() => {
+    const mode = config.value?.appMode;
+    return {
+      channelAppId:
+        mode === 'wechat-merchant' || mode === 'douyin'
+          ? requiredRule('payment.channel.allocReceiver.validateApp')
+          : [],
+      spAppId: mode === 'wechat-isv' ? requiredRule('payment.channel.allocReceiver.validateSpApp') : [],
+      subAppId:
+        mode === 'wechat-isv' && bindRowIsSubOpenid.value
+          ? requiredRule('payment.channel.allocReceiver.validateSubApp')
+          : [],
+      appRefId: mode === 'alipay' ? requiredRule('payment.channel.allocReceiver.validateApp') : [],
+    };
+  });
+
   /** 新增表单当前类型是否支持扫码获取(openid/userId 类型; 商户号/登录账号不支持) */
   const canScanAccount = computed(() =>
     ['PERSONAL_OPENID', 'PERSONAL_SUB_OPENID', 'USER_ID'].includes(formData.receiverType),
@@ -253,7 +316,7 @@
     cols.push(
       { title: $t('payment.channel.allocReceiver.statusLabel'), dataIndex: 'status', width: 110 },
       { title: $t('payment.channel.allocReceiver.bindTime'), dataIndex: 'bindTime', width: 160 },
-      { title: $t('common.operation'), dataIndex: 'action', width: 160, fixed: 'right' },
+      { title: $t('common.operation'), dataIndex: 'action', width: 190, fixed: 'right' },
     );
     return cols;
   });
@@ -403,45 +466,14 @@
 
   /** 提交新增(一步绑定, 失败记录保留由列表状态展示) */
   async function submitCreate() {
-    // 前端校验(敏感字段不由后端必填约束)
-    if (!formData.receiverType) {
-      message.warning($t('payment.channel.allocReceiver.validateType'));
-      return;
-    }
-    if (!formData.receiverAccount.trim()) {
-      message.warning($t('payment.channel.allocReceiver.validateAccount'));
+    // 前端校验(敏感字段不由后端必填约束), 走 form rules
+    try {
+      await createFormRef.value?.validate();
+    } catch {
+      // 校验失败: 表单已标红定位到字段, 中止提交
       return;
     }
     const mode = config.value?.appMode;
-    if (mode === 'wechat-merchant' && !formData.channelAppId) {
-      message.warning($t('payment.channel.allocReceiver.validateApp'));
-      return;
-    }
-    if (mode === 'wechat-isv' && !formData.spAppId) {
-      message.warning($t('payment.channel.allocReceiver.validateSpApp'));
-      return;
-    }
-    if (mode === 'wechat-isv' && isSubOpenidType.value && !formData.subAppId) {
-      message.warning($t('payment.channel.allocReceiver.validateSubApp'));
-      return;
-    }
-    if (mode === 'alipay' && !formData.appRefId) {
-      message.warning($t('payment.channel.allocReceiver.validateApp'));
-      return;
-    }
-    if (mode === 'douyin' && !formData.channelAppId) {
-      message.warning($t('payment.channel.allocReceiver.validateApp'));
-      return;
-    }
-    if (config.value?.hasRelation && !formData.relationType) {
-      message.warning($t('payment.channel.allocReceiver.validateRelation'));
-      return;
-    }
-    if (formData.relationType === 'custom' && !formData.customRelation.trim()) {
-      message.warning($t('payment.channel.allocReceiver.validateCustomRelation'));
-      return;
-    }
-
     saving.value = true;
     try {
       const param: AllocReceiverCreateParam = {
@@ -485,6 +517,28 @@
     }
   }
 
+  /** 打开查看详情弹窗 */
+  function openView(row: AllocReceiverResult) {
+    viewRow.value = row;
+    // 支付宝直连的应用引用需下拉数据解析显示名称
+    if (config.value?.appMode === 'alipay') {
+      loadAppOptions();
+    }
+    viewVisible.value = true;
+  }
+
+  /** 非绑定状态行的更多菜单(删除为危险操作, 置底红色) */
+  function getActionMenu(row: AllocReceiverResult): MenuProps {
+    return {
+      items: [{ key: 'delete', label: $t('common.delete'), danger: true }],
+      onClick: ({ key }: { key: string }) => {
+        if (key === 'delete') {
+          handleDelete(row);
+        }
+      },
+    };
+  }
+
   /** 打开重绑弹窗(预填落库应用, 选错应用可在此更换) */
   function openBindModal(row: AllocReceiverResult) {
     bindRow.value = row;
@@ -504,28 +558,14 @@
     if (!row?.id) {
       return;
     }
+    // 应用必填模式沿用新增校验(已预填落库值, 一般非空), 走 form rules
+    try {
+      await bindFormRef.value?.validate();
+    } catch {
+      // 校验失败: 表单已标红定位到字段, 中止提交
+      return;
+    }
     const mode = config.value?.appMode;
-    // 应用必填模式沿用新增校验(已预填落库值, 一般非空)
-    if (mode === 'wechat-merchant' && !bindForm.channelAppId) {
-      message.warning($t('payment.channel.allocReceiver.validateApp'));
-      return;
-    }
-    if (mode === 'wechat-isv' && !bindForm.spAppId) {
-      message.warning($t('payment.channel.allocReceiver.validateSpApp'));
-      return;
-    }
-    if (mode === 'wechat-isv' && row.receiverType === 'PERSONAL_SUB_OPENID' && !bindForm.subAppId) {
-      message.warning($t('payment.channel.allocReceiver.validateSubApp'));
-      return;
-    }
-    if (mode === 'alipay' && !bindForm.appRefId) {
-      message.warning($t('payment.channel.allocReceiver.validateApp'));
-      return;
-    }
-    if (mode === 'douyin' && !bindForm.channelAppId) {
-      message.warning($t('payment.channel.allocReceiver.validateApp'));
-      return;
-    }
     actionLoading.value = true;
     try {
       const data: AllocReceiverBindParam = {};
@@ -633,25 +673,29 @@
     { immediate: false },
   );
 
-  /** 打开扫码获取账号弹窗: 先生成授权链接, 成功后再开弹窗轮询(失败不闪弹窗) */
+  /** 打开扫码获取账号弹窗: 先校验应用必选并生成授权链接, 成功后再开弹窗轮询(失败不闪弹窗) */
   async function handleScanAccount() {
     // 微信/抖音 openid 与所选应用维度绑定, 须先选定对应应用(支付宝 userId 全局无应用维度)
     const mode = config.value?.appMode;
-    if (mode === 'wechat-merchant' && !formData.channelAppId) {
-      message.warning($t('payment.channel.allocReceiver.validateApp'));
-      return;
+    const appFields: string[] = [];
+    if (mode === 'wechat-merchant' || mode === 'douyin') {
+      appFields.push('channelAppId');
     }
-    if (mode === 'wechat-isv' && formData.receiverType === 'PERSONAL_OPENID' && !formData.spAppId) {
-      message.warning($t('payment.channel.allocReceiver.validateSpApp'));
-      return;
+    if (mode === 'wechat-isv') {
+      if (formData.receiverType === 'PERSONAL_OPENID') {
+        appFields.push('spAppId');
+      }
+      if (isSubOpenidType.value) {
+        appFields.push('subAppId');
+      }
     }
-    if (mode === 'wechat-isv' && isSubOpenidType.value && !formData.subAppId) {
-      message.warning($t('payment.channel.allocReceiver.validateSubApp'));
-      return;
-    }
-    if (mode === 'douyin' && !formData.channelAppId) {
-      message.warning($t('payment.channel.allocReceiver.validateApp'));
-      return;
+    if (appFields.length > 0) {
+      try {
+        // 仅校验应用字段, 未选时表单标红定位到字段
+        await createFormRef.value?.validate(appFields);
+      } catch {
+        return;
+      }
     }
     pauseScanPolling();
     scanAuthUrl.value = {};
@@ -745,11 +789,24 @@
           <template v-if="column.dataIndex === 'receiverType'">
             <span>{{ $t(`payment.channel.allocReceiver.type.${record.receiverType}`) }}</span>
           </template>
+          <!-- 账号较长被截断, 悬浮显示完整内容 -->
+          <template v-else-if="column.dataIndex === 'receiverAccount'">
+            <a-tooltip :title="record.receiverAccount">
+              <span>{{ record.receiverAccount || '-' }}</span>
+            </a-tooltip>
+          </template>
+          <template v-else-if="column.dataIndex === 'receiverName'">
+            <a-tooltip :title="record.receiverName">
+              <span>{{ record.receiverName || '-' }}</span>
+            </a-tooltip>
+          </template>
           <template v-else-if="column.dataIndex === 'relationType'">
             <span>{{ relationText(record) }}</span>
           </template>
           <template v-else-if="column.dataIndex === 'app'">
-            <span class="text-xs">{{ appLabel(record) }}</span>
+            <a-tooltip :title="appLabel(record)">
+              <span class="text-xs">{{ appLabel(record) }}</span>
+            </a-tooltip>
           </template>
           <template v-else-if="column.dataIndex === 'status'">
             <a-tooltip :title="record.errorMsg">
@@ -766,6 +823,10 @@
               <template #separator>
                 <a-divider type="vertical" />
               </template>
+              <!-- 查看详情(完整账号/应用/失败原因) -->
+              <a-button type="link" size="small" @click="openView(record)">
+                {{ $t('common.view') }}
+              </a-button>
               <!-- 已绑定: 解绑(危险操作, 二次确认) -->
               <a-button
                 v-if="record.status === 'bound'"
@@ -777,14 +838,17 @@
               >
                 {{ $t('payment.channel.allocReceiver.unbind') }}
               </a-button>
-              <!-- 绑定失败/已解绑: 重新绑定(可换应用) + 删除 -->
+              <!-- 绑定失败/已解绑: 重新绑定(可换应用) + 删除(收入更多) -->
               <template v-if="record.status !== 'bound'">
                 <a-button type="link" size="small" @click="openBindModal(record)">
                   {{ $t('payment.channel.allocReceiver.bind') }}
                 </a-button>
-                <a-button type="link" size="small" danger @click="handleDelete(record)">
-                  {{ $t('common.delete') }}
-                </a-button>
+                <a-dropdown :menu="getActionMenu(record)">
+                  <a-button type="link" size="small">
+                    {{ $t('common.more') }}
+                    <IconifyIcon icon="ant-design:down-outlined" class="inline" />
+                  </a-button>
+                </a-dropdown>
               </template>
             </a-space>
           </template>
@@ -800,15 +864,15 @@
       :width="560"
       @ok="submitCreate"
     >
-      <a-form layout="vertical" class="mt-2">
-        <a-form-item :label="$t('payment.channel.allocReceiver.typeLabel')" required>
+      <a-form ref="createFormRef" layout="vertical" :model="formData" :rules="createRules" class="mt-2">
+        <a-form-item :label="$t('payment.channel.allocReceiver.typeLabel')" name="receiverType">
           <a-select
             v-model:value="formData.receiverType"
             :options="receiverTypeOptions"
             :placeholder="$t('common.pleaseSelect')"
           />
         </a-form-item>
-        <a-form-item :label="$t('payment.channel.allocReceiver.account')" required>
+        <a-form-item :label="$t('payment.channel.allocReceiver.account')" name="receiverAccount">
           <a-input
             v-model:value="formData.receiverAccount"
             :placeholder="$t('payment.channel.allocReceiver.accountPlaceholder')"
@@ -826,7 +890,7 @@
         </a-form-item>
         <a-form-item
           :label="$t('payment.channel.allocReceiver.name')"
-          :required="isMerchantType"
+          name="receiverName"
           :extra="isMerchantType ? $t('payment.channel.allocReceiver.nameRequiredTip') : undefined"
         >
           <a-input
@@ -836,7 +900,7 @@
         </a-form-item>
         <!-- 分账关系类型(微信/抖音) -->
         <template v-if="config?.hasRelation">
-          <a-form-item :label="$t('payment.channel.allocReceiver.relationLabel')" required>
+          <a-form-item :label="$t('payment.channel.allocReceiver.relationLabel')" name="relationType">
             <a-select
               v-model:value="formData.relationType"
               :options="relationTypeOptions"
@@ -846,7 +910,7 @@
           <a-form-item
             v-if="formData.relationType === 'custom'"
             :label="$t('payment.channel.allocReceiver.customRelation')"
-            required
+            name="customRelation"
           >
             <a-input
               v-model:value="formData.customRelation"
@@ -858,7 +922,7 @@
         <a-form-item
           v-if="config?.appMode === 'wechat-merchant'"
           :label="$t('payment.channel.allocReceiver.app')"
-          required
+          name="channelAppId"
           :extra="isOpenidType ? $t('payment.channel.allocReceiver.appOpenidTip') : undefined"
         >
           <a-select
@@ -874,7 +938,7 @@
         <template v-if="config?.appMode === 'wechat-isv'">
           <a-form-item
             :label="$t('payment.channel.allocReceiver.spApp')"
-            required
+            name="spAppId"
             :extra="
               formData.receiverType === 'PERSONAL_OPENID' ? $t('payment.channel.allocReceiver.appOpenidTip') : undefined
             "
@@ -892,7 +956,7 @@
           <a-form-item
             v-if="isSubOpenidType"
             :label="$t('payment.channel.allocReceiver.subApp')"
-            required
+            name="subAppId"
             :extra="$t('payment.channel.allocReceiver.appOpenidTip')"
           >
             <a-select
@@ -907,7 +971,11 @@
           </a-form-item>
         </template>
         <!-- 绑定应用(支付宝直连) -->
-        <a-form-item v-if="config?.appMode === 'alipay'" :label="$t('payment.channel.allocReceiver.app')" required>
+        <a-form-item
+          v-if="config?.appMode === 'alipay'"
+          :label="$t('payment.channel.allocReceiver.app')"
+          name="appRefId"
+        >
           <a-select
             v-model:value="formData.appRefId"
             :options="appOptions"
@@ -921,7 +989,7 @@
         <a-form-item
           v-if="config?.appMode === 'douyin'"
           :label="$t('payment.channel.allocReceiver.app')"
-          required
+          name="channelAppId"
           :extra="isOpenidType ? $t('payment.channel.allocReceiver.appOpenidTip') : undefined"
         >
           <a-select
@@ -947,12 +1015,12 @@
       <div class="mb-2">
         <a-alert type="info" show-icon :message="$t('payment.channel.allocReceiver.bindTip')" />
       </div>
-      <a-form layout="vertical">
+      <a-form ref="bindFormRef" layout="vertical" :model="bindForm" :rules="bindRules">
         <!-- 绑定应用(微信直连) -->
         <a-form-item
           v-if="config?.appMode === 'wechat-merchant'"
           :label="$t('payment.channel.allocReceiver.app')"
-          required
+          name="channelAppId"
           :extra="bindRowIsOpenid ? $t('payment.channel.allocReceiver.appOpenidTip') : undefined"
         >
           <a-select
@@ -968,7 +1036,7 @@
         <template v-if="config?.appMode === 'wechat-isv'">
           <a-form-item
             :label="$t('payment.channel.allocReceiver.spApp')"
-            required
+            name="spAppId"
             :extra="bindRowIsSpOpenid ? $t('payment.channel.allocReceiver.appOpenidTip') : undefined"
           >
             <a-select
@@ -984,7 +1052,7 @@
           <a-form-item
             v-if="bindRowIsSubOpenid"
             :label="$t('payment.channel.allocReceiver.subApp')"
-            required
+            name="subAppId"
             :extra="$t('payment.channel.allocReceiver.appOpenidTip')"
           >
             <a-select
@@ -999,7 +1067,11 @@
           </a-form-item>
         </template>
         <!-- 绑定应用(支付宝直连) -->
-        <a-form-item v-if="config?.appMode === 'alipay'" :label="$t('payment.channel.allocReceiver.app')" required>
+        <a-form-item
+          v-if="config?.appMode === 'alipay'"
+          :label="$t('payment.channel.allocReceiver.app')"
+          name="appRefId"
+        >
           <a-select
             v-model:value="bindForm.appRefId"
             :options="appOptions"
@@ -1013,7 +1085,7 @@
         <a-form-item
           v-if="config?.appMode === 'douyin'"
           :label="$t('payment.channel.allocReceiver.app')"
-          required
+          name="channelAppId"
           :extra="bindRowIsOpenid ? $t('payment.channel.allocReceiver.appOpenidTip') : undefined"
         >
           <a-select
@@ -1048,6 +1120,63 @@
           {{ $t(`payment.channel.allocReceiver.scanTip.${scanChannel}`) }}
         </div>
       </div>
+    </a-modal>
+
+    <!-- 查看详情弹窗(完整账号/应用/失败原因, 补偿列表列宽截断) -->
+    <a-modal
+      :open="viewVisible"
+      :title="$t('payment.channel.allocReceiver.detailTitle')"
+      :footer="null"
+      :width="640"
+      @cancel="viewVisible = false"
+    >
+      <a-descriptions v-if="viewRow" :column="2" size="small" bordered class="mt-2">
+        <a-descriptions-item :label="$t('payment.channel.allocReceiver.typeLabel')">
+          {{ $t(`payment.channel.allocReceiver.type.${viewRow.receiverType ?? ''}`) }}
+        </a-descriptions-item>
+        <a-descriptions-item :label="$t('payment.channel.allocReceiver.statusLabel')">
+          <a-tag :color="STATUS_COLOR[viewRow.status ?? ''] ?? 'default'">
+            {{ $t(`payment.channel.allocReceiver.status.${viewRow.status ?? ''}`) }}
+          </a-tag>
+        </a-descriptions-item>
+        <!-- 账号完整展示(openid 等长串不截断) -->
+        <a-descriptions-item :label="$t('payment.channel.allocReceiver.account')" :span="2">
+          <span class="break-all">{{ viewRow.receiverAccount || '-' }}</span>
+        </a-descriptions-item>
+        <a-descriptions-item :label="$t('payment.channel.allocReceiver.name')" :span="2">
+          {{ viewRow.receiverName || '-' }}
+        </a-descriptions-item>
+        <!-- 分账关系(微信/抖音) -->
+        <a-descriptions-item v-if="config?.hasRelation" :label="$t('payment.channel.allocReceiver.relationLabel')">
+          {{ relationText(viewRow) }}
+        </a-descriptions-item>
+        <!-- 绑定应用(微信服务商: sp + sub 两档) -->
+        <template v-if="config?.appMode === 'wechat-isv'">
+          <a-descriptions-item :label="$t('payment.channel.allocReceiver.spApp')">
+            {{ viewRow.spAppId || '-' }}
+          </a-descriptions-item>
+          <a-descriptions-item v-if="viewRow.subAppId" :label="$t('payment.channel.allocReceiver.subApp')">
+            {{ viewRow.subAppId }}
+          </a-descriptions-item>
+        </template>
+        <!-- 绑定应用(其余模式) -->
+        <a-descriptions-item
+          v-else-if="config && config.appMode !== 'none'"
+          :label="$t('payment.channel.allocReceiver.app')"
+        >
+          {{ appLabel(viewRow) }}
+        </a-descriptions-item>
+        <a-descriptions-item :label="$t('payment.channel.allocReceiver.bindTime')">
+          {{ formatDateTime(viewRow.bindTime) || '-' }}
+        </a-descriptions-item>
+        <a-descriptions-item v-if="viewRow.unbindTime" :label="$t('payment.channel.allocReceiver.unbindTime')">
+          {{ formatDateTime(viewRow.unbindTime) }}
+        </a-descriptions-item>
+        <!-- 最近失败原因(绑定失败/解绑失败) -->
+        <a-descriptions-item v-if="viewRow.errorMsg" :label="$t('payment.channel.allocReceiver.errorLabel')" :span="2">
+          <span class="break-all text-red-500">{{ viewRow.errorMsg }}</span>
+        </a-descriptions-item>
+      </a-descriptions>
     </a-modal>
   </a-drawer>
 </template>
