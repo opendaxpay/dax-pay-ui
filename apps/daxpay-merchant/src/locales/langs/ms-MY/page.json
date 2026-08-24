@@ -3,7 +3,6 @@
     "profile": "tetapan",
     "login": "Log masuk",
     "qrcodeLogin": "Log Masuk Kod QR",
-    "forgetPassword": "Lupa Kata Laluan",
     "oauthCallback": "Panggilan Balik OAuth"
   },
   "dashboard": {

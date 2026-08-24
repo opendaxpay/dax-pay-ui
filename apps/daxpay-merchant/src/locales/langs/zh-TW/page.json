@@ -3,7 +3,6 @@
     "profile": "個人設定",
     "login": "登入",
     "qrcodeLogin": "二維碼登入",
-    "forgetPassword": "忘記密碼",
     "oauthCallback": "第三方登入回撥"
   },
   "dashboard": {

@@ -153,15 +153,6 @@ const coreRoutes: RouteRecordRaw[] = [
         },
       },
       {
-        name: 'ForgetPassword',
-        path: 'forget-password',
-        component: () => import('#/views/_core/authentication/forget-password.vue'),
-        meta: {
-          // 忘记密码
-          title: 'page.auth.forgetPassword',
-        },
-      },
-      {
         name: 'OauthCallback',
         // source 为路径参数, 用于回调页识别平台; 可选以兼容无 source 的旧地址
         path: 'oauth-callback/:source?',

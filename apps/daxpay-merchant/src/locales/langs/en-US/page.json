@@ -3,7 +3,6 @@
     "profile": "Settings",
     "login": "Login",
     "qrcodeLogin": "QR Code Login",
-    "forgetPassword": "Forget Password",
     "oauthCallback": "OAuth Callback"
   },
   "dashboard": {

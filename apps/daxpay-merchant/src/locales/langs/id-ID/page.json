@@ -3,7 +3,6 @@
     "profile": "Pengaturan",
     "login": "Login",
     "qrcodeLogin": "Masuk Kode QR",
-    "forgetPassword": "Lupa Kata Sandi",
     "oauthCallback": "Panggilan Balik OAuth"
   },
   "dashboard": {

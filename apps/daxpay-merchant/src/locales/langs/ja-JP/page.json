@@ -3,7 +3,6 @@
     "profile": "設定",
     "login": "ログイン",
     "qrcodeLogin": "QRコードログイン",
-    "forgetPassword": "パスワードを忘れた場合",
     "oauthCallback": "OAuth コールバック"
   },
   "dashboard": {

@@ -3,7 +3,6 @@
     "profile": "Cài đặt",
     "login": "Đăng nhập",
     "qrcodeLogin": "Đăng nhập bằng mã QR",
-    "forgetPassword": "Quên mật khẩu",
     "oauthCallback": "Gọi lại OAuth"
   },
   "dashboard": {

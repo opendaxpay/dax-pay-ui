@@ -3,7 +3,6 @@
     "profile": "การตั้งค่า",
     "login": "เข้าสู่ระบบ",
     "qrcodeLogin": "เข้าสู่ระบบรหัส QR",
-    "forgetPassword": "ลืมรหัสผ่าน",
     "oauthCallback": "การโทรกลับ OAuth"
   },
   "dashboard": {
