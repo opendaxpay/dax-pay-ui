@@ -17,6 +17,7 @@
   "oauthLoginSuccessWith": "{platform} đăng nhập thành công",
   "oauthUnknownPlatform": "Nền tảng không xác định",
   "passwordResetPending": "Việc đặt lại mật khẩu vẫn chưa khả dụng",
+  "passwordExpiringSoon": "Mật khẩu sẽ hết hạn trong 7 ngày. Vui lòng đổi mật khẩu sớm",
   "qrcodeRefreshPending": "Tính năng làm mới mã QR chưa khả dụng",
   "qrcodeLoadFailed": "Không tải được mã QR",
   "twoFactor": {

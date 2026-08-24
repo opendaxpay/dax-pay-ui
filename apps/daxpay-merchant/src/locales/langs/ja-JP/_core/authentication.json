@@ -16,6 +16,7 @@
   "oauthLoginSuccessWith": "{platform} ログインに成功しました",
   "oauthUnknownPlatform": "不明なプラットフォーム",
   "passwordResetPending": "パスワードのリセットはまだ利用できません",
+  "passwordExpiringSoon": "パスワードは7日以内に期限切れになります。早めに変更してください",
   "qrcodeRefreshPending": "QR コードの更新はまだ利用できません",
   "qrcodeLoadFailed": "QRコードの読み込みに失敗しました",
   "twoFactor": {

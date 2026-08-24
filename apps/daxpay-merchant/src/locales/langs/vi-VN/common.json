@@ -82,5 +82,6 @@
   "timestampExpired": "Dấu thời gian yêu cầu đã hết hạn, vui lòng thử lại",
   "nonceMissing": "Thiếu tham số xác minh chống phát lại",
   "retry": "Thử lại",
-  "merchantSuffix": "Merchant"
+  "merchantSuffix": "Merchant",
+  "resetPasswordNotice": "Sau khi đặt lại, tất cả phiên đăng nhập của người dùng sẽ bị đăng xuất và phải đổi mật khẩu ở lần đăng nhập tiếp theo."
 }

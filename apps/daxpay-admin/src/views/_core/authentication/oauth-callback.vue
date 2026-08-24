@@ -109,6 +109,10 @@
     if (token) {
       accessStore.setAccessToken(token);
       await authStore.fetchUserInfo();
+      if (authStore.needChangePassword) {
+        await router.replace(authStore.getForceChangePasswordRoute());
+        return;
+      }
       message.success(
         platformName.value
           ? $t('_core.authentication.oauthLoginSuccessWith', {
@@ -116,6 +120,7 @@
             })
           : $t('_core.authentication.oauthLoginSuccess'),
       );
+      authStore.notifyPasswordExpiringSoon();
       router.push(HOME_PATH);
     } else if (error === 'unbind') {
       backToLogin(true, $t('_core.authentication.oauthNotBind'));

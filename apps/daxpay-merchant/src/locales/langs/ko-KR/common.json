@@ -85,5 +85,6 @@
   "merchantSuffix": "가맹점",
   "remark": "비고",
   "isDefault": "기본",
-  "setDefault": "기본으로 설정"
+  "setDefault": "기본으로 설정",
+  "resetPasswordNotice": "재설정하면 대상 사용자의 모든 세션이 종료되며 다음 로그인 시 비밀번호를 변경해야 합니다."
 }

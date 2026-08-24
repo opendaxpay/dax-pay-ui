@@ -85,5 +85,6 @@
   "merchantSuffix": "Merchant",
   "remark": "Remark",
   "isDefault": "Default",
-  "setDefault": "Set Default"
+  "setDefault": "Set Default",
+  "resetPasswordNotice": "All sessions of the target user will be signed out after reset, and the password must be changed at the next login."
 }

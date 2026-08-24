@@ -116,6 +116,10 @@
     @ok="handleOk"
     @cancel="handleCancel"
   >
+    <div class="mb-4">
+      <!-- 国际化：重置密码后目标用户会话将被踢出提示 -->
+      <a-alert :message="$t('common.resetPasswordNotice')" show-icon type="warning" />
+    </div>
     <a-form
       ref="formRef"
       :model="formState"

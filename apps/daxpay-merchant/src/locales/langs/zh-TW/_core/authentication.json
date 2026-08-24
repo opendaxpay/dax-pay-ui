@@ -16,6 +16,7 @@
   "oauthLoginSuccessWith": "{platform} 登入成功",
   "oauthUnknownPlatform": "未知平臺",
   "passwordResetPending": "密碼重置功能待接入",
+  "passwordExpiringSoon": "密碼將在 7 天內到期，請儘快修改",
   "qrcodeRefreshPending": "二維碼重新整理功能待接入",
   "qrcodeLoadFailed": "二維碼載入失敗",
   "twoFactor": {

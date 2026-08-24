@@ -17,6 +17,7 @@
   "oauthLoginSuccessWith": "{platform} เข้าสู่ระบบสำเร็จ",
   "oauthUnknownPlatform": "แพลตฟอร์มที่ไม่รู้จัก",
   "passwordResetPending": "การรีเซ็ตรหัสผ่านยังไม่สามารถใช้ได้",
+  "passwordExpiringSoon": "รหัสผ่านจะหมดอายุภายใน 7 วัน โปรดเปลี่ยนรหัสผ่านโดยเร็ว",
   "qrcodeRefreshPending": "การรีเฟรชโค้ด QR ยังไม่พร้อมใช้งาน",
   "qrcodeLoadFailed": "ไม่สามารถโหลดโค้ด QR",
   "twoFactor": {

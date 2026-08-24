@@ -16,6 +16,7 @@
   "oauthLoginSuccessWith": "{platform} login successful",
   "oauthUnknownPlatform": "Unknown platform",
   "passwordResetPending": "Password reset is not yet available",
+  "passwordExpiringSoon": "Your password will expire within 7 days. Please change it soon",
   "qrcodeRefreshPending": "QR code refresh is not yet available",
   "qrcodeLoadFailed": "Failed to load QR code",
   "twoFactor": {

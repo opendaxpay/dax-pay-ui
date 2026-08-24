@@ -16,6 +16,7 @@
   "oauthLoginSuccessWith": "{platform} log masuk berjaya",
   "oauthUnknownPlatform": "Platform tidak diketahui",
   "passwordResetPending": "Tetapan semula kata laluan belum tersedia",
+  "passwordExpiringSoon": "Kata laluan anda akan tamat tempoh dalam 7 hari. Sila tukar segera",
   "qrcodeRefreshPending": "Muat semula kod QR belum tersedia",
   "qrcodeLoadFailed": "Gagal memuatkan kod QR",
   "twoFactor": {

@@ -84,5 +84,6 @@
   "retry": "再試行",
   "remark": "備考",
   "isDefault": "デフォルト",
-  "setDefault": "デフォルトに設定"
+  "setDefault": "デフォルトに設定",
+  "resetPasswordNotice": "リセットすると対象ユーザーのすべてのセッションが終了し、次回ログイン時にパスワードの変更が必要です。"
 }

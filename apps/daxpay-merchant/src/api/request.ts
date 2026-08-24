@@ -4,6 +4,7 @@
 import { useAppConfig } from '@vben/hooks';
 import { preferences } from '@vben/preferences';
 import { useAccessStore } from '@vben/stores';
+import { decodeSafeRedirect } from '@vben/utils';
 
 import { createDaxRequestClient } from '@daxpay/ui-biz/request';
 
@@ -37,9 +38,26 @@ async function doReAuthenticate() {
  * 用 location 硬跳而非 router: request.ts 处于模块依赖底层, 引 router 会造成循环依赖;
  * 硬刷新后路由守卫会重新拉取用户信息与密码状态, 行为等价于 F5 进入。
  */
+function getCurrentRoutePath(): string {
+  if (import.meta.env.VITE_ROUTER_HISTORY === 'hash') {
+    const hash = window.location.hash;
+    return hash.startsWith('#/') ? hash.slice(1) : '';
+  }
+  return `${window.location.pathname}${window.location.search}`;
+}
+
 function onPasswordExpired() {
-  if (!window.location.pathname.startsWith(FORCE_CHANGE_PASSWORD_PATH)) {
-    window.location.href = FORCE_CHANGE_PASSWORD_PATH;
+  const currentPath = decodeSafeRedirect(getCurrentRoutePath());
+  if (currentPath === FORCE_CHANGE_PASSWORD_PATH || currentPath.startsWith(`${FORCE_CHANGE_PASSWORD_PATH}?`)) {
+    return;
+  }
+
+  const query = currentPath && currentPath !== '/' ? `?redirect=${encodeURIComponent(currentPath)}` : '';
+  if (import.meta.env.VITE_ROUTER_HISTORY === 'hash') {
+    window.location.hash = `#${FORCE_CHANGE_PASSWORD_PATH}${query}`;
+  }
+  else {
+    window.location.href = `${FORCE_CHANGE_PASSWORD_PATH}${query}`;
   }
 }
 

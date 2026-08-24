@@ -84,5 +84,6 @@
   "retry": "重试",
   "remark": "备注",
   "isDefault": "默认",
-  "setDefault": "设为默认"
+  "setDefault": "设为默认",
+  "resetPasswordNotice": "重置后目标用户的所有登录会话将被踢出，下次登录必须修改密码。"
 }

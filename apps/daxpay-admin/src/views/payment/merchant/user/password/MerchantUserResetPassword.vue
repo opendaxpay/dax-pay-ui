@@ -116,6 +116,9 @@
     @ok="handleOk"
     @cancel="handleCancel"
   >
+    <div class="mb-4">
+      <a-alert :message="$t('common.resetPasswordNotice')" show-icon type="warning" />
+    </div>
     <a-form
       ref="formRef"
       :model="formState"

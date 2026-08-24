@@ -99,7 +99,7 @@ const forceChangePasswordRoute: RouteRecordRaw = {
   component: () => import('#/views/_core/authentication/force-change-password.vue'),
   meta: {
     // 强制修改密码
-    title: 'authentication.forceChangePassword.title',
+    title: '_core.authentication.forceChangePassword.title',
     hideInMenu: true,
     hideInBreadcrumb: true,
     hideInTab: true,
@@ -144,21 +144,24 @@ const coreRoutes: RouteRecordRaw[] = [
         },
       },
       {
+        name: 'LegacyForgetPassword',
+        path: 'forget-password',
+        redirect: LOGIN_PATH,
+        meta: {
+          // 运营端不提供公开找回密码，兼容旧地址并返回登录页
+          title: 'page.auth.forgetPassword',
+          hideInMenu: true,
+          hideInBreadcrumb: true,
+          hideInTab: true,
+        },
+      },
+      {
         name: 'QrCodeLogin',
         path: 'qrcode-login',
         component: () => import('#/views/_core/authentication/qrcode-login.vue'),
         meta: {
           // 二维码登录
           title: 'page.auth.qrcodeLogin',
-        },
-      },
-      {
-        name: 'ForgetPassword',
-        path: 'forget-password',
-        component: () => import('#/views/_core/authentication/forget-password.vue'),
-        meta: {
-          // 忘记密码
-          title: 'page.auth.forgetPassword',
         },
       },
       {

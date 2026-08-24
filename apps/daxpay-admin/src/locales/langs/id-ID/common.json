@@ -81,5 +81,6 @@
   "nonceInvalid": "Permintaan verifikasi sudah habis masa berlakunya, silakan coba lagi",
   "timestampExpired": "Stempel waktu permintaan sudah habis, silakan coba lagi",
   "nonceMissing": "Parameter verifikasi anti-pemutaran ulang tidak ada",
-  "retry": "Coba lagi"
+  "retry": "Coba lagi",
+  "resetPasswordNotice": "Setelah diatur ulang, semua sesi pengguna akan dikeluarkan dan kata sandi wajib diubah saat login berikutnya."
 }

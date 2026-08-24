@@ -99,7 +99,7 @@ const forceChangePasswordRoute: RouteRecordRaw = {
   component: () => import('#/views/_core/authentication/force-change-password.vue'),
   meta: {
     // 强制修改密码
-    title: 'authentication.forceChangePassword.title',
+    title: '_core.authentication.forceChangePassword.title',
     hideInMenu: true,
     hideInBreadcrumb: true,
     hideInTab: true,

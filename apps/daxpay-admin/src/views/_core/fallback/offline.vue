@@ -2,7 +2,8 @@
   import { onMounted } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
 
-  import { Fallback } from '@vben/common-ui';
+import { Fallback } from '@vben/common-ui';
+import { decodeSafeRedirect } from '@vben/utils';
 
   import { AuthApi } from '#/api/core/auth.api';
   import { $t } from '#/locales';
@@ -16,7 +17,7 @@
   // 读取重试后应跳转的路径：优先使用进入本页时记录的原页面（query.redirect），否则回首页
   function getRedirectPath(): string {
     const redirect = route.query.redirect;
-    return redirect ? decodeURIComponent(redirect as string) : HOME_PATH;
+    return decodeSafeRedirect(redirect, HOME_PATH);
   }
 
   // 重试连接: 回到原页面重新走认证流程

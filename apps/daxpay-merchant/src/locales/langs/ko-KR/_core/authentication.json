@@ -16,6 +16,7 @@
   "oauthLoginSuccessWith": "{platform} 로그인 성공",
   "oauthUnknownPlatform": "알 수 없는 플랫폼",
   "passwordResetPending": "아직 비밀번호 재설정을 사용할 수 없습니다.",
+  "passwordExpiringSoon": "비밀번호가 7일 이내에 만료됩니다. 빠르게 변경해 주세요",
   "qrcodeRefreshPending": "QR 코드 새로고침을 아직 사용할 수 없습니다.",
   "qrcodeLoadFailed": "QR 코드를 로드하지 못했습니다.",
   "twoFactor": {

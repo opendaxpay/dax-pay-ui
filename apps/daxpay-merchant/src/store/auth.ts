@@ -7,6 +7,7 @@ import { useRouter } from 'vue-router';
 
 import { LOGIN_PATH } from '@vben/constants';
 import { resetAllStores, useAccessStore, useUserStore } from '@vben/stores';
+import { decodeSafeRedirect } from '@vben/utils';
 
 import { defineStore } from 'pinia';
 
@@ -38,6 +39,18 @@ export const useAuthStore = defineStore('auth', () => {
   const needChangePassword = computed(
     () => passwordStatus.value?.initialPassword === true || passwordStatus.value?.expired === true,
   );
+
+  /** 获取强制改密后的安全回跳地址 */
+  function getForceChangePasswordRoute() {
+    const redirectPath = decodeSafeRedirect(router.currentRoute.value.query.redirect, HOME_PATH);
+    if (redirectPath === HOME_PATH) {
+      return { path: FORCE_CHANGE_PASSWORD_PATH };
+    }
+    return {
+      path: FORCE_CHANGE_PASSWORD_PATH,
+      query: { redirect: encodeURIComponent(redirectPath) },
+    };
+  }
 
   /**
    * 异步处理登录操作
@@ -78,7 +91,7 @@ export const useAuthStore = defineStore('auth', () => {
 
         if (needChangePassword.value) {
           // 初始密码/密码过期: 登录后强制跳改密页, 不进入系统
-          await router.push(FORCE_CHANGE_PASSWORD_PATH);
+          await router.replace(getForceChangePasswordRoute());
         } else if (accessStore.loginExpired) {
           accessStore.setLoginExpired(false);
         } else {
@@ -95,6 +108,7 @@ export const useAuthStore = defineStore('auth', () => {
             title: $t('authentication.loginSuccess'),
           });
         }
+        notifyPasswordExpiringSoon();
       }
     } finally {
       loginLoading.value = false;
@@ -125,7 +139,9 @@ export const useAuthStore = defineStore('auth', () => {
         twoFactorRequired.value = false;
         twoFactorPreAuthToken.value = '';
         // 初始密码/密码过期: 二次验证通过后同样强制跳改密页
-        await router.push(needChangePassword.value ? FORCE_CHANGE_PASSWORD_PATH : HOME_PATH);
+        await router.replace(
+          needChangePassword.value ? getForceChangePasswordRoute() : { path: HOME_PATH },
+        );
         if (userInfo?.name && !needChangePassword.value) {
           const { notification } = useMessage();
           notification.success({
@@ -134,6 +150,7 @@ export const useAuthStore = defineStore('auth', () => {
             title: $t('authentication.loginSuccess'),
           });
         }
+        notifyPasswordExpiringSoon();
       }
     } finally {
       loginLoading.value = false;
@@ -192,6 +209,20 @@ export const useAuthStore = defineStore('auth', () => {
     return userInfo;
   }
 
+  /** 登录成功后提示密码即将过期 */
+  function notifyPasswordExpiringSoon() {
+    if (!passwordStatus.value?.expiringSoon || needChangePassword.value) {
+      return;
+    }
+    const { notification } = useMessage();
+    notification.warning({
+      // 密码即将过期提示
+      description: $t('_core.authentication.passwordExpiringSoon'),
+      duration: 6,
+      title: $t('common.warning'),
+    });
+  }
+
   function $reset() {
     loginLoading.value = false;
     passwordStatus.value = null;
@@ -203,9 +234,11 @@ export const useAuthStore = defineStore('auth', () => {
     cancelTwoFactor,
     enterTwoFactor,
     fetchUserInfo,
+    getForceChangePasswordRoute,
     loginLoading,
     logout,
     needChangePassword,
+    notifyPasswordExpiringSoon,
     passwordStatus,
     twoFactorPreAuthToken,
     twoFactorRequired,

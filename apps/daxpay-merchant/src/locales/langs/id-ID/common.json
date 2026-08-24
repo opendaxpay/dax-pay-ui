@@ -82,5 +82,6 @@
   "timestampExpired": "Stempel waktu permintaan sudah habis, silakan coba lagi",
   "nonceMissing": "Parameter verifikasi anti-pemutaran ulang tidak ada",
   "retry": "Coba lagi",
-  "merchantSuffix": "Merchant"
+  "merchantSuffix": "Merchant",
+  "resetPasswordNotice": "Setelah diatur ulang, semua sesi pengguna akan dikeluarkan dan kata sandi wajib diubah saat login berikutnya."
 }

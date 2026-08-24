@@ -3,13 +3,26 @@ import type { Router } from 'vue-router';
 import { LOGIN_PATH } from '@vben/constants';
 import { preferences } from '@vben/preferences';
 import { useAccessStore, useUserStore } from '@vben/stores';
-import { startProgress, stopProgress } from '@vben/utils';
+import { decodeSafeRedirect, startProgress, stopProgress } from '@vben/utils';
 
 import { AuthApi } from '#/api/core/auth.api';
 import { coreRouteNames, FORCE_CHANGE_PASSWORD_PATH, HOME_PATH } from '#/router/routes';
 import { useAuthStore } from '#/store';
 
 import { generateAccess } from './access';
+
+const PASSWORD_STATUS_CODES = new Set([40_301, 40_302]);
+
+/** 判断请求是否因初始密码或密码过期被后端拦截 */
+function isPasswordStatusError(error: unknown): boolean {
+  const requestError = error as {
+    code?: number;
+    data?: { code?: number };
+    response?: { data?: { code?: number } };
+  };
+  const code = requestError.response?.data?.code ?? requestError.data?.code ?? requestError.code;
+  return PASSWORD_STATUS_CODES.has(code ?? 0);
+}
 
 /**
  * 通用守卫配置
@@ -54,7 +67,7 @@ function setupAccessGuard(router: Router) {
     // 基本路由，这些路由不需要进入权限拦截
     if (coreRouteNames.includes(to.name as string)) {
       if (to.path === LOGIN_PATH && accessStore.accessToken) {
-        return decodeURIComponent((to.query?.redirect as string) || HOME_PATH);
+        return decodeSafeRedirect(to.query?.redirect, HOME_PATH);
       }
       return true;
     }
@@ -113,13 +126,24 @@ function setupAccessGuard(router: Router) {
       accessStore.setAccessMenus(accessibleMenus);
       accessStore.setAccessRoutes(accessibleRoutes);
       accessStore.setIsAccessChecked(true);
-      const redirectPath = (from.query.redirect ?? (to.path === HOME_PATH ? HOME_PATH : to.fullPath)) as string;
+      const redirectPath = decodeSafeRedirect(
+        from.query.redirect,
+        to.path === HOME_PATH ? HOME_PATH : to.fullPath,
+      );
 
       return {
-        ...router.resolve(decodeURIComponent(redirectPath)),
+        ...router.resolve(redirectPath),
         replace: true,
       };
-    } catch {
+    } catch (error) {
+      // 密码状态拦截直接回到改密页，不进入服务不可用页
+      if (isPasswordStatusError(error)) {
+        return {
+          path: FORCE_CHANGE_PASSWORD_PATH,
+          query: { redirect: encodeURIComponent(to.fullPath) },
+          replace: true,
+        };
+      }
       // 401 token 失效时, authenticateResponseInterceptor 已调用 doReAuthenticate 清除 token, 此时跳登录页重新登录
       if (!accessStore.accessToken) {
         return { path: LOGIN_PATH, replace: true };

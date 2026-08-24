@@ -82,5 +82,6 @@
   "timestampExpired": "Cap masa permintaan telah tamat tempoh, sila cuba semula",
   "nonceMissing": "Parameter pengesahan anti-main semula tiada",
   "retry": "Cuba lagi",
-  "merchantSuffix": "Merchant"
+  "merchantSuffix": "Merchant",
+  "resetPasswordNotice": "Selepas ditetapkan semula, semua sesi pengguna sasaran akan dilog keluar dan kata laluan mesti ditukar pada log masuk seterusnya."
 }

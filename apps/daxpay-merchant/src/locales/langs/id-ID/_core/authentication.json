@@ -16,6 +16,7 @@
   "oauthLoginSuccessWith": "{platform} login berhasil",
   "oauthUnknownPlatform": "Platform tidak dikenal",
   "passwordResetPending": "Penyetelan ulang kata sandi belum tersedia",
+  "passwordExpiringSoon": "Kata sandi Anda akan kedaluwarsa dalam 7 hari. Segera ubah kata sandi",
   "qrcodeRefreshPending": "Penyegaran kode QR belum tersedia",
   "qrcodeLoadFailed": "Gagal memuat kode QR",
   "twoFactor": {

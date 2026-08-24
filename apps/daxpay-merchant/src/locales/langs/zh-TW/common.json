@@ -85,5 +85,6 @@
   "merchantSuffix": "商戶端",
   "remark": "備註",
   "isDefault": "預設",
-  "setDefault": "設為預設"
+  "setDefault": "設為預設",
+  "resetPasswordNotice": "重置後目標使用者的所有登入工作階段將被踢出，下次登入必須修改密碼。"
 }

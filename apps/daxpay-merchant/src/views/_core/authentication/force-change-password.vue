@@ -1,8 +1,9 @@
 <script setup lang="ts">
   import { computed, onMounted } from 'vue';
-  import { useRouter } from 'vue-router';
+  import { useRoute, useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
+  import { decodeSafeRedirect } from '@vben/utils';
 
   import { HOME_PATH } from '#/router/routes';
   import { useAuthStore } from '#/store';
@@ -13,22 +14,24 @@
   });
 
   const router = useRouter();
+  const route = useRoute();
   const authStore = useAuthStore();
 
   // 场景说明: 初始密码优先于密码过期展示
   const sceneDesc = computed(() => {
     if (authStore.passwordStatus?.initialPassword) {
       // 当前密码为管理员设置的初始密码, 修改后才能进入系统
-      return $t('authentication.forceChangePassword.initialDesc');
+      return $t('_core.authentication.forceChangePassword.initialDesc');
     }
-    return $t('authentication.forceChangePassword.expiredDesc');
+    return $t('_core.authentication.forceChangePassword.expiredDesc');
   });
 
-  /** 改密成功: 刷新密码状态后进入系统 */
+  /** 改密成功: 刷新密码状态后重新走权限初始化并返回原页面 */
   async function handleSuccess() {
     await authStore.fetchUserInfo();
     if (!authStore.needChangePassword) {
-      await router.push(HOME_PATH);
+      const redirectPath = decodeSafeRedirect(route.query.redirect, HOME_PATH);
+      await router.replace(redirectPath);
     }
   }
 
@@ -50,11 +53,11 @@
     <div class="w-full max-w-xl px-4">
       <a-card>
         <template #title>
-          {{ $t('authentication.forceChangePassword.title') }}
+          {{ $t('_core.authentication.forceChangePassword.title') }}
         </template>
         <template #extra>
           <a-button type="link" @click="handleLogout">
-            {{ $t('authentication.forceChangePassword.logout') }}
+            {{ $t('_core.authentication.forceChangePassword.logout') }}
           </a-button>
         </template>
         <div class="mb-6">
