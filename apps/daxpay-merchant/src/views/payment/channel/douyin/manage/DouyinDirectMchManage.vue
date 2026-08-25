@@ -8,6 +8,8 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  // 分账接收方管理抽屉(通道侧绑定)
+  import AllocReceiverDrawer from '#/views/payment/channel-merchant/detail/AllocReceiverDrawer.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
   import DyChannelAppCapability from '#/views/payment/douyin/channel/DyChannelAppCapability.vue';
 
@@ -24,6 +26,8 @@
 
   const loading = ref(false);
   const channelMchNo = ref('');
+  // 分账接收方抽屉
+  const allocReceiverRef = ref<InstanceType<typeof AllocReceiverDrawer>>();
   const channelMerchant = ref<ChannelMerchantResult>({});
   const basicInfoRef = ref<InstanceType<typeof DouyinDirectChannelMerchantBasicInfo>>();
   const keyConfigRef = ref<InstanceType<typeof DouyinDirectKeyConfigEdit>>();
@@ -53,6 +57,19 @@
           title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
           icon: 'ant-design:edit-outlined',
           description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),
+        },
+      ],
+    },
+    {
+      // 交易配置: 通道侧业务能力配置(分账接收方)
+      group: $t('payment.merchant.channelMerchant.groupTrade'),
+      color: 'purple',
+      cards: [
+        {
+          key: 'allocReceiver',
+          title: $t('payment.channel.allocReceiver.cardTitle'),
+          icon: 'ant-design:group-outlined',
+          description: $t('payment.channel.allocReceiver.cardDesc'),
         },
       ],
     },
@@ -103,6 +120,11 @@
   }
 
   function handleCardClick(card: { key: string }) {
+    // 分账接收方(商户端登录态绑定商户, 仅传通道商户号与产品)
+    if (card.key === 'allocReceiver') {
+      allocReceiverRef.value?.open(channelMchNo.value, channelMerchant.value.product || 'douyin_pay');
+      return;
+    }
     if (card.key === 'basicInfo') {
       basicInfoRef.value?.open();
     }
@@ -183,6 +205,7 @@
     <DouyinDirectKeyConfigEdit ref="keyConfigRef" :channel-mch-no="channelMchNo" />
 
     <DyChannelAppCapability ref="capabilityRef" />
+    <AllocReceiverDrawer ref="allocReceiverRef" />
   </div>
 </template>
 

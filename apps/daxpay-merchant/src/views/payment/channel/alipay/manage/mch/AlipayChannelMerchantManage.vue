@@ -10,6 +10,8 @@
   import { PermCodes } from '#/constants/perm-codes';
   import { usePermission } from '#/hooks/usePermission';
   import AlipayIsvAuthDrawer from '#/views/payment/channel-merchant/detail/AlipayIsvAuthDrawer.vue';
+  // 分账接收方管理抽屉(通道侧绑定)
+  import AllocReceiverDrawer from '#/views/payment/channel-merchant/detail/AllocReceiverDrawer.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
   import CommonChannelMerchantBasicInfo from '#/views/payment/channel-merchant/detail/CommonChannelMerchantBasicInfo.vue';
 
@@ -22,6 +24,8 @@
   const { hasPermission } = usePermission();
 
   const channelMchNo = ref('');
+  // 分账接收方抽屉
+  const allocReceiverRef = ref<InstanceType<typeof AllocReceiverDrawer>>();
   const channelMerchant = ref<ChannelMerchantResult>({});
   const basicInfoRef = ref<InstanceType<typeof CommonChannelMerchantBasicInfo>>();
   const alipayIsvAuthRef = ref<InstanceType<typeof AlipayIsvAuthDrawer>>();
@@ -59,6 +63,19 @@
         },
       ],
     },
+    {
+      // 交易配置: 通道侧业务能力配置(分账接收方)
+      group: $t('payment.merchant.channelMerchant.groupTrade'),
+      color: 'purple',
+      cards: [
+        {
+          key: 'allocReceiver',
+          title: $t('payment.channel.allocReceiver.cardTitle'),
+          icon: 'ant-design:group-outlined',
+          description: $t('payment.channel.allocReceiver.cardDesc'),
+        },
+      ],
+    },
   ]);
 
   /** 获取组主题颜色（底条） */
@@ -88,6 +105,11 @@
   }
 
   function handleCardClick(card: { key: string }) {
+    // 分账接收方(商户端登录态绑定商户, 仅传通道商户号与产品)
+    if (card.key === 'allocReceiver') {
+      allocReceiverRef.value?.open(channelMchNo.value, channelMerchant.value.product || 'alipay_isv');
+      return;
+    }
     if (card.key === 'basicInfo') {
       basicInfoRef.value?.open();
     }
@@ -155,6 +177,7 @@
     />
     <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
     <AlipayIsvAuthDrawer ref="alipayIsvAuthRef" />
+    <AllocReceiverDrawer ref="allocReceiverRef" />
   </div>
 </template>
 
