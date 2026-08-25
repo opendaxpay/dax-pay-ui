@@ -1,0 +1,36 @@
+{
+  "title": "Passkeys",
+  "description": "Configure the site domain and allowed origins for passkey login",
+  "summary": {
+    "enabled": "Passkeys enabled",
+    "disabled": "Passkeys disabled",
+    "unconfigured": "Site domain not configured"
+  },
+  "section": {
+    "basic": "Basic",
+    "rp": "Domain"
+  },
+  "enabled": {
+    "label": "Enable passkey login",
+    "desc": "When enabled, users can register passkeys for passwordless login, exempt from two-step verification."
+  },
+  "rpId": {
+    "label": "Site domain",
+    "desc": "The site domain bound to passkeys (e.g. admin.example.com; use localhost for local debugging). Changing it invalidates all registered passkeys.",
+    "placeholder": "e.g. admin.example.com",
+    "required": "Please configure the site domain before enabling",
+    "invalid": "Invalid site domain format: enter a plain domain name without protocol or port, e.g. admin.example.com or localhost"
+  },
+  "rpName": {
+    "label": "Display name",
+    "desc": "Site name shown in the system prompt.",
+    "placeholder": "e.g. DaxPay"
+  },
+  "origins": {
+    "label": "Origins",
+    "desc": "Full origins (scheme + domain + port) allowed to use passkeys, e.g. https://admin.example.com. When deploying both admin and merchant apps, add both origins.",
+    "placeholder": "Type an origin and press Enter",
+    "required": "Please configure at least one origin before enabling"
+  },
+  "confirmSaveContent": "Save the current configuration? Note: changing the site domain invalidates all registered passkeys."
+}

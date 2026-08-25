@@ -35,5 +35,9 @@
     "initialDesc": "Kata sandi Anda adalah kata sandi awal. Harap atur kata sandi baru untuk melanjutkan",
     "expiredDesc": "Kata sandi Anda sudah kedaluwarsa. Harap atur kata sandi baru untuk melanjutkan",
     "logout": "Keluar"
+  },
+  "passkey": {
+    "login": "Masuk dengan passkey",
+    "failed": "Operasi passkey gagal. Pastikan domain situs pada pengaturan platform cocok dengan domain akses saat ini (mis. \"localhost\" memerlukan akses via localhost)."
   }
 }

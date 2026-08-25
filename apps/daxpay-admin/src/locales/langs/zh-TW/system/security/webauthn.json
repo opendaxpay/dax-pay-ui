@@ -1,0 +1,36 @@
+{
+  "title": "通行密鑰",
+  "description": "設定通行密鑰的站點網域與存取位址",
+  "summary": {
+    "enabled": "通行密鑰已啟用",
+    "disabled": "通行密鑰未啟用",
+    "unconfigured": "站點網域未設定"
+  },
+  "section": {
+    "basic": "基礎設定",
+    "rp": "網域設定"
+  },
+  "enabled": {
+    "label": "啟用通行密鑰登入",
+    "desc": "開啟後，使用者可綁定通行密鑰並用於免密登入，登入時豁免兩步驟驗證。"
+  },
+  "rpId": {
+    "label": "站點網域",
+    "desc": "通行密鑰綁定的站點網域(如 admin.example.com，本機偵錯用 localhost)。變更後已綁定的通行密鑰將全部失效。",
+    "placeholder": "如 admin.example.com",
+    "required": "啟用前請設定站點網域",
+    "invalid": "站點網域格式不正確：請填寫純網域（不含通訊協定與連接埠），如 admin.example.com 或 localhost"
+  },
+  "rpName": {
+    "label": "顯示名稱",
+    "desc": "系統彈窗中展示的站點名稱。",
+    "placeholder": "如 DaxPay"
+  },
+  "origins": {
+    "label": "存取位址",
+    "desc": "允許使用通行密鑰的頁面完整位址(協定+網域+連接埠)，如 https://admin.example.com。營運端與商戶端同時部署時，將兩端位址都加入清單。",
+    "placeholder": "輸入位址後按 Enter 新增",
+    "required": "啟用前請設定至少一個存取位址"
+  },
+  "confirmSaveContent": "確定要儲存目前設定嗎？注意：站點網域變更將導致已綁定的通行密鑰全部失效。"
+}

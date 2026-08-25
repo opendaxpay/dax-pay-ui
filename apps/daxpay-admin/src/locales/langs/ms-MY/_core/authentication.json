@@ -35,5 +35,9 @@
     "initialDesc": "Kata laluan semasa ialah kata laluan awal. Sila tetapkan kata laluan baharu untuk meneruskan",
     "expiredDesc": "Kata laluan anda telah tamat tempoh. Sila tetapkan kata laluan baharu untuk meneruskan",
     "logout": "Log Keluar"
+  },
+  "passkey": {
+    "login": "Log masuk dengan passkey",
+    "failed": "Operasi passkey gagal. Pastikan domain tapak dalam tetapan platform sepadan dengan domain akses semasa (cth. \"localhost\" memerlukan akses melalui localhost)."
   }
 }

@@ -8,6 +8,7 @@
   import PasswordPolicy from './components/PasswordPolicy.vue';
   import SessionManagement from './components/SessionManagement.vue';
   import TwoFactorAuth from './components/TwoFactorAuth.vue';
+  import WebAuthnConfig from './components/WebAuthnConfig.vue';
 
   defineOptions({ name: 'SystemSecurityConfig' });
 
@@ -42,6 +43,13 @@
       label: $t('system.security.two-factor-auth.title'),
       // 双因素认证描述
       description: $t('system.security.two-factor-auth.description'),
+    },
+    {
+      key: 'webauthn',
+      // 通行密钥标题
+      label: $t('system.security.webauthn.title'),
+      // 通行密钥描述
+      description: $t('system.security.webauthn.description'),
     },
     {
       key: 'iamReplayProtect',
@@ -87,6 +95,7 @@
           <LoginSecurity v-else-if="activeKey === 'loginSecurity'" />
           <SessionManagement v-else-if="activeKey === 'sessionManagement'" />
           <TwoFactorAuth v-else-if="activeKey === 'twoFactorAuth'" />
+          <WebAuthnConfig v-else-if="activeKey === 'webauthn'" />
           <IamReplayProtect v-else-if="activeKey === 'iamReplayProtect'" />
         </div>
       </section>

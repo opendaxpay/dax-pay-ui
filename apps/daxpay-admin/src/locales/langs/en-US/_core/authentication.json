@@ -35,5 +35,9 @@
     "initialDesc": "Your current password is an initial password. Please set a new password to continue",
     "expiredDesc": "Your password has expired. Please set a new password to continue",
     "logout": "Log Out"
+  },
+  "passkey": {
+    "login": "Sign in with passkey",
+    "failed": "Passkey operation failed. Make sure the site domain in platform settings matches the current site (e.g. domain \"localhost\" requires visiting via localhost)."
   }
 }

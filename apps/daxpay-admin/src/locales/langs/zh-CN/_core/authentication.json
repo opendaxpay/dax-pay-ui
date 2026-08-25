@@ -35,5 +35,9 @@
     "initialDesc": "当前密码为初始密码，请设置新密码后继续使用系统",
     "expiredDesc": "密码已过期，请设置新密码后继续使用系统",
     "logout": "退出登录"
+  },
+  "passkey": {
+    "login": "通行密钥登录",
+    "failed": "通行密钥操作失败，请确认平台配置的站点域名与当前访问域名一致（如配置 localhost 需以 localhost 访问）"
   }
 }

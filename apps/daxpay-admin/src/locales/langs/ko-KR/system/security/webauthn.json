@@ -1,0 +1,36 @@
+{
+  "title": "패스키",
+  "description": "패스키 로그인의 사이트 도메인과 접속 주소를 설정합니다",
+  "summary": {
+    "enabled": "패스키 활성화됨",
+    "disabled": "패스키 비활성화됨",
+    "unconfigured": "사이트 도메인 미설정"
+  },
+  "section": {
+    "basic": "기본 설정",
+    "rp": "도메인 설정"
+  },
+  "enabled": {
+    "label": "패스키 로그인 활성화",
+    "desc": "활성화하면 사용자가 패스키를 등록해 비밀번호 없이 로그인할 수 있으며 2단계 인증이 면제됩니다."
+  },
+  "rpId": {
+    "label": "사이트 도메인",
+    "desc": "패스키에 연결된 사이트 도메인(예: admin.example.com, 로컬 디버깅은 localhost). 변경하면 등록된 패스키가 모두 무효화됩니다.",
+    "placeholder": "예: admin.example.com",
+    "required": "활성화 전에 사이트 도메인을 설정해 주세요",
+    "invalid": "사이트 도메인 형식이 올바르지 않습니다. 프로토콜과 포트 없이 순수 도메인을 입력해 주세요 (예: admin.example.com 또는 localhost)"
+  },
+  "rpName": {
+    "label": "표시 이름",
+    "desc": "시스템 팝업에 표시되는 사이트 이름입니다.",
+    "placeholder": "예: DaxPay"
+  },
+  "origins": {
+    "label": "접속 주소",
+    "desc": "패스키 사용을 허용하는 페이지의 전체 주소(스킴+도메인+포트). 예: https://admin.example.com. 운영자와 가맹점 앱을 모두 배포하는 경우 두 주소를 모두 추가하세요.",
+    "placeholder": "주소를 입력한 후 Enter",
+    "required": "활성화 전에 최소 하나의 접속 주소를 설정해 주세요"
+  },
+  "confirmSaveContent": "현재 설정을 저장하시겠습니까? 참고: 사이트 도메인 변경 시 등록된 패스키가 모두 무효화됩니다."
+}

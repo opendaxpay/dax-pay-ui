@@ -35,5 +35,9 @@
     "initialDesc": "Mật khẩu hiện tại là mật khẩu ban đầu. Vui lòng đặt mật khẩu mới để tiếp tục",
     "expiredDesc": "Mật khẩu đã hết hạn. Vui lòng đặt mật khẩu mới để tiếp tục",
     "logout": "Đăng xuất"
+  },
+  "passkey": {
+    "login": "Đăng nhập bằng passkey",
+    "failed": "Thao tác khóa truy cập thất bại. Hãy đảm bảo tên miền trang trong cài đặt nền tảng khớp với tên miền truy cập hiện tại (vd. \"localhost\" yêu cầu truy cập qua localhost)."
   }
 }

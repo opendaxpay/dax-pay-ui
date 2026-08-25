@@ -1,0 +1,36 @@
+{
+  "title": "通行密钥",
+  "description": "配置通行密钥的站点域名与访问地址",
+  "summary": {
+    "enabled": "通行密钥已启用",
+    "disabled": "通行密钥未启用",
+    "unconfigured": "站点域名未配置"
+  },
+  "section": {
+    "basic": "基础设置",
+    "rp": "域名配置"
+  },
+  "enabled": {
+    "label": "启用通行密钥登录",
+    "desc": "开启后，用户可绑定通行密钥并用于免密登录，登录时豁免两步验证。"
+  },
+  "rpId": {
+    "label": "站点域名",
+    "desc": "通行密钥绑定的站点域名(如 admin.example.com，本地调试用 localhost)。变更后已绑定的通行密钥将全部失效。",
+    "placeholder": "如 admin.example.com",
+    "required": "启用前请配置站点域名",
+    "invalid": "站点域名格式不正确：请填写纯域名（不带协议和端口），如 admin.example.com 或 localhost"
+  },
+  "rpName": {
+    "label": "显示名称",
+    "desc": "系统弹窗中展示的站点名称。",
+    "placeholder": "如 DaxPay"
+  },
+  "origins": {
+    "label": "访问地址",
+    "desc": "允许使用通行密钥的页面完整地址(协议+域名+端口)，如 https://admin.example.com。运营端与商户端同时部署时，将两端地址都加入列表。",
+    "placeholder": "输入地址后回车添加",
+    "required": "启用前请配置至少一个访问地址"
+  },
+  "confirmSaveContent": "确定要保存当前配置吗？注意：站点域名变更将导致已绑定的通行密钥全部失效。"
+}

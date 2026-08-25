@@ -72,6 +72,18 @@ export const SecurityApi = {
   updateIamReplayProtectConfig(data: IamReplayProtectConfig): Promise<Result<void>> {
     return defHttp.post({ url: '/platform/config/security/iam-replay-protect/update', data });
   },
+  /**
+   * 获取通行密钥(WebAuthn)配置
+   */
+  getWebAuthnConfig(): Promise<Result<WebAuthnConfig>> {
+    return defHttp.get({ url: '/platform/config/security/webauthn/get' });
+  },
+  /**
+   * 更新通行密钥(WebAuthn)配置
+   */
+  updateWebAuthnConfig(data: WebAuthnConfig): Promise<Result<void>> {
+    return defHttp.post({ url: '/platform/config/security/webauthn/update', data });
+  },
 };
 
 import type { PasswordPolicyConfig, PasswordPolicyValidateConfig } from '@daxpay/ui-biz/types/password-policy';
@@ -138,4 +150,16 @@ export interface IamReplayProtectConfig {
   timestampToleranceSeconds?: number;
 }
 
-
+/**
+ * 通行密钥(WebAuthn)配置
+ */
+export interface WebAuthnConfig {
+  /** 是否启用通行密钥认证 */
+  enabled?: boolean;
+  /** 依赖方ID(域名, 变更将导致已注册凭据全部失效) */
+  rpId?: string;
+  /** 依赖方显示名称(认证器弹窗展示) */
+  rpName?: string;
+  /** 允许的调用来源列表(完整 origin, 含协议域名端口) */
+  origins?: string[];
+}

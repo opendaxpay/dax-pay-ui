@@ -1,21 +1,23 @@
 <script lang="ts" setup>
   import type { FormInstance, FormProps } from 'antdv-next';
 
+  import type { LoginContentResult } from '#/api/core/auth.api';
+
   import { nextTick, onMounted, reactive, ref } from 'vue';
   import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
   import { useAccessStore } from '@vben/stores';
 
+  import { IconifyIcon } from '@vben-core/icons';
+
   import { AuthApi } from '#/api/core/auth.api';
+  import { isPasskeySupported } from '#/api/core/passkey.api';
   import { SocialApi } from '#/api/iam/social.api';
   import { CLIENT_CODE } from '#/constants/client';
+  import { useMessage } from '#/hooks/useMessage';
   import { useAuthStore } from '#/store';
-  import {
-    isAutoSocialSkipped,
-    isInAppForSource,
-    markAutoSocialAttempt,
-  } from '#/utils/auto-social-login';
+  import { isAutoSocialSkipped, isInAppForSource, markAutoSocialAttempt } from '#/utils/auto-social-login';
 
   import { AuthPageCard, AuthThirdPartyPanel } from './components';
   import TwoFactorVerifyPanel from './components/TwoFactorVerifyPanel.vue';
@@ -27,6 +29,9 @@
   const accessStore = useAccessStore();
 
   const formRef = ref<FormInstance>();
+
+  // 通行密钥登录入口是否显示(浏览器能力 + 平台开关双条件)
+  const passkeyAvailable = ref(false);
 
   // 用户协议/隐私政策"已同意"在 localStorage 中的键名（登录成功后持久化，下次免勾选）
   const AGREEMENT_ACCEPTED_KEY = 'daxpay_admin_agreement_accepted';
@@ -83,21 +88,34 @@
   };
 
   /**
+   * 登录页初始化: 单次拉取登录上下文, 驱动通行密钥入口探测与应用内自动登录
+   */
+  async function initLoginPage() {
+    try {
+      const { data } = await AuthApi.getLoginContent(CLIENT_CODE);
+      // 探测通行密钥入口(浏览器能力 + 平台开关)
+      resolvePasskeyAvailability(data?.loginTypes ?? []);
+      await tryAutoSocialLogin(data);
+    } catch {
+      // 上下文拉取失败静默, 展示基础登录表单
+    }
+  }
+
+  /**
    * 应用内自动 OAuth 登录: 配置开启 + UA 匹配 + 本会话未跳过 + 无 token
    */
-  async function tryAutoSocialLogin() {
+  async function tryAutoSocialLogin(content: LoginContentResult | undefined) {
     if (accessStore.accessToken || authStore.twoFactorRequired || isAutoSocialSkipped()) {
       return;
     }
+    const auto = content?.autoSocialLogin;
+    // 从已配置平台中按 UA 匹配一家
+    const matched = auto?.sources?.find((s) => isInAppForSource(s));
+    if (!auto?.enabled || !matched) {
+      return;
+    }
+    markAutoSocialAttempt();
     try {
-      const { data } = await AuthApi.getLoginContent(CLIENT_CODE);
-      const auto = data?.autoSocialLogin;
-      // 从已配置平台中按 UA 匹配一家
-      const matched = auto?.sources?.find((s) => isInAppForSource(s));
-      if (!auto?.enabled || !matched) {
-        return;
-      }
-      markAutoSocialAttempt();
       // silent=true: 企微网页授权 / 微信 snsapi_base
       const { data: url } = await SocialApi.render(matched, CLIENT_CODE, 'LOGIN', undefined, true);
       if (url) {
@@ -108,9 +126,38 @@
     }
   }
 
+  /**
+   * 解析通行密钥入口可见性: 浏览器支持 WebAuthn 且平台 loginTypes 含 passkey
+   */
+  function resolvePasskeyAvailability(loginTypes: string[]) {
+    passkeyAvailable.value = isPasskeySupported() && loginTypes.includes('passkey');
+  }
+
   onMounted(() => {
-    tryAutoSocialLogin();
+    initLoginPage();
   });
+
+  /**
+   * 通行密钥登录: 先校验协议勾选, 再唤起系统凭据选择弹窗
+   */
+  async function handlePasskeyLogin() {
+    // 协议勾选守卫(与账密/三方登录一致)
+    if (!(await ensureAgreement())) {
+      return;
+    }
+    try {
+      await authStore.passkeyLogin();
+    } catch (error: unknown) {
+      // NotAllowedError/AbortError 多为用户在系统弹窗主动取消, 静默返回;
+      // 其余为环境错误(如平台 rpId 与访问域名不匹配), 给出提示便于定位
+      const name = (error as { name?: string })?.name ?? '';
+      console.warn('[passkey] 登录流程中断:', name, error);
+      if (name !== 'NotAllowedError' && name !== 'AbortError') {
+        const { message } = useMessage();
+        message.error($t('_core.authentication.passkey.failed'));
+      }
+    }
+  }
 
   /**
    * 刷新图形验证码（点击图片或验证码错误时调用）
@@ -285,6 +332,22 @@
         <!-- 国际化：登录 -->
         {{ $t('_core.authentication.login') }}
       </a-button>
+
+      <!-- 通行密钥登录入口(浏览器支持 WebAuthn 且平台开启时显示, 免输账号唤起系统凭据选择) -->
+      <a-button
+        v-if="passkeyAvailable && !authStore.twoFactorRequired"
+        block
+        size="large"
+        class="passkey-btn"
+        :disabled="authStore.loginLoading"
+        @click="handlePasskeyLogin"
+      >
+        <template #icon>
+          <IconifyIcon icon="lucide:fingerprint" />
+        </template>
+        <!-- 国际化：通行密钥登录 -->
+        {{ $t('_core.authentication.passkey.login') }}
+      </a-button>
     </a-form>
 
     <!-- 暂时隐藏扫码登录入口, 后续需要时将 v-if 改为 true 即可恢复 -->
@@ -300,6 +363,11 @@
 </template>
 
 <style scoped>
+  /* 通行密钥登录按钮: 与主登录按钮留出间距 */
+  .passkey-btn {
+    margin-top: 12px;
+  }
+
   /* 协议勾选项：收紧下间距，使其与常规表单项视觉一致 */
   .agreement-item {
     margin-bottom: 8px;

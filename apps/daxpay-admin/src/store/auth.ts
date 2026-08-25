@@ -9,9 +9,11 @@ import { LOGIN_PATH } from '@vben/constants';
 import { resetAllStores, useAccessStore, useUserStore } from '@vben/stores';
 import { decodeSafeRedirect } from '@vben/utils';
 
+import { startAuthentication } from '@simplewebauthn/browser';
 import { defineStore } from 'pinia';
 
 import { AuthApi, TWO_FACTOR_REQUIRED_CODE } from '#/api/core/auth.api';
+import { PasskeyApi } from '#/api/core/passkey.api';
 import { UserCommonApi } from '#/api/core/user.api';
 import { CLIENT_CODE } from '#/constants/client';
 import { useMessage } from '#/hooks/useMessage';
@@ -120,6 +122,50 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   /**
+   * 通行密钥登录(discoverable 免输账号, 系统弹窗选择凭据)
+   * 验证通过后不再叠加 TOTP 两步验证(后端按登录类型豁免), 成功链路与密码登录一致
+   */
+  async function passkeyLogin() {
+    let userInfo: null | UserInfo = null;
+    try {
+      loginLoading.value = true;
+      // 第一步: 获取认证选项(挑战)
+      const { data: optionsData } = await PasskeyApi.loginOptions(CLIENT_CODE);
+      if (!optionsData) {
+        return { userInfo };
+      }
+      // 第二步: 唤起系统凭据选择弹窗(用户取消会抛错, 由外层统一提示)
+      const credential = await startAuthentication({
+        optionsJSON: optionsData.options,
+      });
+      // 第三步: 提交断言验证换取 token
+      const { data: accessToken } = await PasskeyApi.loginVerify({
+        client: CLIENT_CODE,
+        challengeId: optionsData.challengeId,
+        credentialJson: JSON.stringify(credential),
+      });
+      if (accessToken) {
+        accessStore.setAccessToken(accessToken);
+        userInfo = await fetchUserInfo();
+        userStore.setUserInfo(userInfo!);
+        await router.replace(needChangePassword.value ? getForceChangePasswordRoute() : { path: HOME_PATH });
+        if (userInfo?.name && !needChangePassword.value) {
+          const { notification } = useMessage();
+          notification.success({
+            description: `${$t('authentication.loginSuccessDesc')}: ${userInfo.name}`,
+            duration: 3,
+            title: $t('authentication.loginSuccess'),
+          });
+        }
+        notifyPasswordExpiringSoon();
+      }
+    } finally {
+      loginLoading.value = false;
+    }
+    return { userInfo };
+  }
+
+  /**
    * 二次验证: 临时凭证 + 动态码/备用码完成登录
    */
   async function twoFactorVerify(code: string, codeType: string = 'TOTP') {
@@ -139,9 +185,7 @@ export const useAuthStore = defineStore('auth', () => {
         twoFactorRequired.value = false;
         twoFactorPreAuthToken.value = '';
         // 初始密码/密码过期: 二次验证通过后同样强制跳改密页
-        await router.replace(
-          needChangePassword.value ? getForceChangePasswordRoute() : { path: HOME_PATH },
-        );
+        await router.replace(needChangePassword.value ? getForceChangePasswordRoute() : { path: HOME_PATH });
         if (userInfo?.name && !needChangePassword.value) {
           const { notification } = useMessage();
           notification.success({
@@ -239,6 +283,7 @@ export const useAuthStore = defineStore('auth', () => {
     logout,
     needChangePassword,
     notifyPasswordExpiringSoon,
+    passkeyLogin,
     passwordStatus,
     twoFactorPreAuthToken,
     twoFactorRequired,

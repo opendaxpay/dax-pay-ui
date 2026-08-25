@@ -58,6 +58,9 @@ catalogs:
     '@pnpm/workspace.read-manifest':
       specifier: ^1000.3.1
       version: 1000.3.1
+    '@simplewebauthn/browser':
+      specifier: ^13.3.0
+      version: 13.3.0
     '@stylistic/stylelint-plugin':
       specifier: ^5.0.1
       version: 5.2.0
@@ -551,6 +554,9 @@ importers:
       '@iconify/json':
         specifier: 'catalog:'
         version: 2.2.489
+      '@simplewebauthn/browser':
+        specifier: 'catalog:'
+        version: 13.3.0
       '@vben-core/icons':
         specifier: workspace:*
         version: link:../../packages/@core/base/icons
@@ -4085,6 +4091,9 @@ packages:
   '@simple-libs/stream-utils@1.2.0':
     resolution: {integrity: sha512-KxXvfapcixpz6rVEB6HPjOUZT22yN6v0vI0urQSk1L8MlEWPDFCZkhw2xmkyoTGYeFw7tWTZd7e3lVzRZRN/EA==}
     engines: {node: '>=18'}
+
+  '@simplewebauthn/browser@13.3.0':
+    resolution: {integrity: sha512-BE/UWv6FOToAdVk0EokzkqQQDOWtNydYlY6+OrmiZ5SCNmb41VehttboTetUM3T/fr6EAFYVXjz4My2wg230rQ==}
 
   '@sindresorhus/merge-streams@4.0.0':
     resolution: {integrity: sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==}
@@ -12113,6 +12122,8 @@ snapshots:
       '@simple-libs/stream-utils': 1.2.0
 
   '@simple-libs/stream-utils@1.2.0': {}
+
+  '@simplewebauthn/browser@13.3.0': {}
 
   '@sindresorhus/merge-streams@4.0.0': {}
 

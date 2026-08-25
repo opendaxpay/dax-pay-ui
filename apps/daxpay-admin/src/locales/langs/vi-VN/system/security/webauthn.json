@@ -1,0 +1,36 @@
+{
+  "title": "Khóa truy cập",
+  "description": "Cấu hình tên miền trang và địa chỉ truy cập được phép cho đăng nhập bằng khóa truy cập",
+  "summary": {
+    "enabled": "Khóa truy cập đã bật",
+    "disabled": "Khóa truy cập đã tắt",
+    "unconfigured": "Chưa cấu hình tên miền trang"
+  },
+  "section": {
+    "basic": "Cài đặt cơ bản",
+    "rp": "Cấu hình tên miền"
+  },
+  "enabled": {
+    "label": "Bật đăng nhập bằng khóa truy cập",
+    "desc": "Khi bật, người dùng có thể đăng ký khóa truy cập để đăng nhập không cần mật khẩu, miễn xác thực hai bước."
+  },
+  "rpId": {
+    "label": "Tên miền trang",
+    "desc": "Tên miền trang gắn với khóa truy cập (vd. admin.example.com; dùng localhost khi gỡ lỗi cục bộ). Thay đổi sẽ vô hiệu tất cả khóa truy cập đã đăng ký.",
+    "placeholder": "vd. admin.example.com",
+    "required": "Vui lòng cấu hình tên miền trang trước khi bật",
+    "invalid": "Định dạng tên miền trang không hợp lệ: vui lòng nhập tên miền thuần (không kèm giao thức và cổng), ví dụ admin.example.com hoặc localhost"
+  },
+  "rpName": {
+    "label": "Tên hiển thị",
+    "desc": "Tên trang hiển thị trên hộp thoại hệ thống.",
+    "placeholder": "vd. DaxPay"
+  },
+  "origins": {
+    "label": "Địa chỉ truy cập",
+    "desc": "Địa chỉ đầy đủ của trang (giao thức+tên miền+cổng) được phép dùng khóa truy cập, vd. https://admin.example.com. Khi triển khai đồng thời ứng dụng vận hành và merchant, hãy thêm cả hai địa chỉ.",
+    "placeholder": "Nhập địa chỉ rồi nhấn Enter",
+    "required": "Vui lòng cấu hình ít nhất một địa chỉ truy cập trước khi bật"
+  },
+  "confirmSaveContent": "Lưu cấu hình hiện tại? Lưu ý: thay đổi tên miền trang sẽ vô hiệu mọi khóa truy cập đã đăng ký."
+}

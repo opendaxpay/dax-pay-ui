@@ -16,6 +16,7 @@
   "dependencies": {
     "@daxpay/ui-biz": "workspace:*",
     "@iconify/json": "catalog:",
+    "@simplewebauthn/browser": "catalog:",
     "@vben-core/icons": "workspace:*",
     "@vben/access": "workspace:*",
     "@vben/common-ui": "workspace:*",

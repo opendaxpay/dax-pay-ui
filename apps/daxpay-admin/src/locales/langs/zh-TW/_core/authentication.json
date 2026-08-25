@@ -35,5 +35,9 @@
     "initialDesc": "當前密碼為初始密碼，請設定新密碼後繼續使用系統",
     "expiredDesc": "密碼已過期，請設定新密碼後繼續使用系統",
     "logout": "登出"
+  },
+  "passkey": {
+    "login": "通行密鑰登入",
+    "failed": "通行密鑰操作失敗，請確認平台設定的站點網域與目前存取網域一致（如設定 localhost 需以 localhost 存取）"
   }
 }

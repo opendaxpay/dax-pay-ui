@@ -136,6 +136,7 @@ catalog:
   sass: ^1.98.0
   sass-embedded: ^1.98.0
   secure-ls: ^2.0.0
+  '@simplewebauthn/browser': ^13.3.0
   sortablejs: ^1.15.7
   stylelint: ^17.13.0
   stylelint-config-recess-order: ^7.6.1

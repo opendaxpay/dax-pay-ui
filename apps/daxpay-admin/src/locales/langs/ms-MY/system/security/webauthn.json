@@ -1,0 +1,36 @@
+{
+  "title": "Passkey",
+  "description": "Konfigurasikan domain tapak dan alamat akses yang dibenarkan untuk log masuk passkey",
+  "summary": {
+    "enabled": "Passkey diaktifkan",
+    "disabled": "Passkey dilumpuhkan",
+    "unconfigured": "Domain tapak belum dikonfigurasi"
+  },
+  "section": {
+    "basic": "Tetapan asas",
+    "rp": "Konfigurasi domain"
+  },
+  "enabled": {
+    "label": "Aktifkan log masuk passkey",
+    "desc": "Apabila aktif, pengguna boleh mendaftar passkey untuk log masuk tanpa kata laluan, dikecualikan daripada pengesahan dua langkah."
+  },
+  "rpId": {
+    "label": "Domain tapak",
+    "desc": "Domain tapak yang terikat dengan passkey (cth. admin.example.com; gunakan localhost untuk penyahpepijatan setempat). Mengubahnya membatalkan semua passkey berdaftar.",
+    "placeholder": "cth. admin.example.com",
+    "required": "Sila konfigurasikan domain tapak sebelum mengaktifkan",
+    "invalid": "Format domain tapak tidak sah: masukkan nama domain sahaja (tanpa protokol dan port), cth. admin.example.com atau localhost"
+  },
+  "rpName": {
+    "label": "Nama paparan",
+    "desc": "Nama tapak yang dipaparkan dalam dialog sistem.",
+    "placeholder": "cth. DaxPay"
+  },
+  "origins": {
+    "label": "Alamat akses",
+    "desc": "Alamat penuh halaman (skema+domain+port) yang dibenarkan menggunakan passkey, cth. https://admin.example.com. Apabila melancarkan aplikasi pentadbir dan merchant serentak, tambahkan kedua-dua alamat.",
+    "placeholder": "Taip alamat dan tekan Enter",
+    "required": "Sila konfigurasikan sekurang-kurangnya satu alamat akses sebelum mengaktifkan"
+  },
+  "confirmSaveContent": "Simpan konfigurasi semasa? Nota: mengubah domain tapak membatalkan semua passkey berdaftar."
+}

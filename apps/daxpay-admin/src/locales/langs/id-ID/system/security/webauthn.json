@@ -1,0 +1,36 @@
+{
+  "title": "Passkey",
+  "description": "Konfigurasikan domain situs dan alamat akses yang diizinkan untuk login passkey",
+  "summary": {
+    "enabled": "Passkey diaktifkan",
+    "disabled": "Passkey dinonaktifkan",
+    "unconfigured": "Domain situs belum dikonfigurasi"
+  },
+  "section": {
+    "basic": "Pengaturan dasar",
+    "rp": "Konfigurasi domain"
+  },
+  "enabled": {
+    "label": "Aktifkan login passkey",
+    "desc": "Saat aktif, pengguna dapat mendaftarkan passkey untuk login tanpa kata sandi, bebas dari verifikasi dua langkah."
+  },
+  "rpId": {
+    "label": "Domain situs",
+    "desc": "Domain situs yang terikat pada passkey (mis. admin.example.com; gunakan localhost untuk debugging lokal). Mengubahnya membatalkan semua passkey terdaftar.",
+    "placeholder": "mis. admin.example.com",
+    "required": "Konfigurasikan domain situs sebelum mengaktifkan",
+    "invalid": "Format domain situs tidak valid: masukkan nama domain murni tanpa protokol dan port, mis. admin.example.com atau localhost"
+  },
+  "rpName": {
+    "label": "Nama tampilan",
+    "desc": "Nama situs yang ditampilkan pada dialog sistem.",
+    "placeholder": "mis. DaxPay"
+  },
+  "origins": {
+    "label": "Alamat akses",
+    "desc": "Alamat lengkap halaman (skema+domain+port) yang diizinkan menggunakan passkey, mis. https://admin.example.com. Saat menerapkan aplikasi admin dan merchant sekaligus, tambahkan kedua alamat tersebut.",
+    "placeholder": "Ketik alamat lalu tekan Enter",
+    "required": "Konfigurasikan minimal satu alamat akses sebelum mengaktifkan"
+  },
+  "confirmSaveContent": "Simpan konfigurasi saat ini? Catatan: mengubah domain situs membatalkan semua passkey terdaftar."
+}
