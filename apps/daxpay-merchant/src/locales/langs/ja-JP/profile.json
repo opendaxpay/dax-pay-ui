@@ -34,8 +34,6 @@
   "basicSettingDesc": "名前、性別、その他のプロフィール情報を管理します",
   "changePasswordDesc": "アカウントのセキュリティを保護するためにパスワードを定期的に変更してください",
   "socialAccountDesc": "バインドされたサードパーティ プラットフォーム アカウントを管理する",
-  "securitySetting": "安全",
-  "securitySettingDesc": "二要素認証",
   "twoFactor": {
     "title": "二要素認証",
     "platformOff": "有効ではありません",

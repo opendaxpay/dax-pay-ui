@@ -34,8 +34,6 @@
   "basicSettingDesc": "管理姓名、性別等個人資料",
   "changePasswordDesc": "定期更換密碼以保護賬號安全",
   "socialAccountDesc": "管理已綁定的第三方平台賬號",
-  "securitySetting": "安全設置",
-  "securitySettingDesc": "雙因素認證",
   "twoFactor": {
     "title": "雙因素認證",
     "platformOff": "平台未啓用",

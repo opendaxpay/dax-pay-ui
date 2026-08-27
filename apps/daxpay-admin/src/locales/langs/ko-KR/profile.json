@@ -34,8 +34,6 @@
   "basicSettingDesc": "이름, 성별, 기타 프로필 정보를 관리하세요.",
   "changePasswordDesc": "계정 보안을 보호하기 위해 정기적으로 비밀번호를 변경하세요.",
   "socialAccountDesc": "바인딩된 제3자 플랫폼 계정 관리",
-  "securitySetting": "보안",
-  "securitySettingDesc": "2단계 인증",
   "twoFactor": {
     "title": "2단계 인증",
     "platformOff": "활성화되지 않음",

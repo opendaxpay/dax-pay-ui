@@ -36,8 +36,9 @@
     },
     {
       key: 'security',
-      label: $t('profile.securitySetting'),
-      description: $t('profile.securitySettingDesc'),
+      // 复用双因素认证页签标题与未绑定描述, 保证左侧菜单与右侧页签文案一致
+      label: $t('profile.twoFactor.title'),
+      description: $t('profile.twoFactor.unboundDesc'),
     },
   ] as const;
 </script>

@@ -34,8 +34,6 @@
   "basicSettingDesc": "Kelola nama Anda, jenis kelamin, dan info profil lainnya",
   "changePasswordDesc": "Ubah kata sandi Anda secara teratur untuk melindungi keamanan akun",
   "socialAccountDesc": "Kelola akun platform pihak ketiga yang terikat",
-  "securitySetting": "Keamanan",
-  "securitySettingDesc": "Otentikasi Dua Faktor",
   "twoFactor": {
     "title": "Otentikasi Dua Faktor",
     "platformOff": "Tidak Diaktifkan",

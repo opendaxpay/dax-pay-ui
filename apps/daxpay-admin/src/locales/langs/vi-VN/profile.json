@@ -34,8 +34,6 @@
   "basicSettingDesc": "Quản lý tên, giới tính và thông tin hồ sơ khác của bạn",
   "changePasswordDesc": "Thường xuyên thay đổi mật khẩu để bảo vệ an toàn tài khoản",
   "socialAccountDesc": "Quản lý tài khoản nền tảng của bên thứ ba bị ràng buộc",
-  "securitySetting": "Bảo vệ",
-  "securitySettingDesc": "Xác thực hai yếu tố",
   "twoFactor": {
     "title": "Xác thực hai yếu tố",
     "platformOff": "Chưa kích hoạt",

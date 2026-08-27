@@ -34,8 +34,6 @@
   "basicSettingDesc": "Urus nama, jantina dan maklumat profil anda yang lain",
   "changePasswordDesc": "Tukar kata laluan anda secara kerap untuk melindungi keselamatan akaun",
   "socialAccountDesc": "Urus akaun platform pihak ketiga terikat",
-  "securitySetting": "Keselamatan",
-  "securitySettingDesc": "Pengesahan Dua Faktor",
   "twoFactor": {
     "title": "Pengesahan Dua Faktor",
     "platformOff": "Tidak Didayakan",
