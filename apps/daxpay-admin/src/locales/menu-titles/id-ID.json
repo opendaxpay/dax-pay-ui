@@ -65,7 +65,6 @@
   "menu.device.qrcode": "Manajemen Kode QR",
   "menu.develop.auth": "Auth Kembangkan",
   "menu.develop.gateway": "Pembayaran Berkembang (Gateway)",
-  "menu.system.notify.wechatConfig": "Pemberitahuan Pesan Wechat",
   "menu.payment.merchant.group.manage": "Manajemen Pedagang",
   "menu.payment.merchant.group.channelMerchant": "Pedagang Saluran",
   "menu.payment.merchant.cashierConfig": "Konfigurasi Kasir",

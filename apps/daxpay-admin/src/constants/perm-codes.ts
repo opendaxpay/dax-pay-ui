@@ -285,12 +285,6 @@ export const PermCodes = {
       MANAGE: 'system:notify:notice:manage',
       PUBLISH: 'system:notify:notice:publish',
     },
-    WechatNotify: {
-      MANAGE: 'system:notify:wechat-config:manage',
-      VIEW: 'system:notify:wechat-config:view',
-      RESEND: 'system:notify:wechat-config:resend',
-      TEST: 'system:notify:wechat-config:test',
-    },
     File: {
       VIEW: 'system:file:view',
     },

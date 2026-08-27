@@ -65,7 +65,6 @@
   "menu.device.qrcode": "Quản lý mã QR",
   "menu.develop.auth": "Xác thực phát triển",
   "menu.develop.gateway": "Phát triển thanh toán (Cổng)",
-  "menu.system.notify.wechatConfig": "Thông báo tin nhắn Wechat",
   "menu.payment.merchant.group.manage": "Quản lý thương gia",
   "menu.payment.merchant.group.channelMerchant": "Người bán kênh",
   "menu.payment.merchant.cashierConfig": "Cấu hình thu ngân",

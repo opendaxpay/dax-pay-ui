@@ -65,7 +65,6 @@
   "menu.device.qrcode": "碼牌管理",
   "menu.develop.auth": "認證除錯",
   "menu.develop.gateway": "支付除錯(網關)",
-  "menu.system.notify.wechatConfig": "微信訊息通知",
   "menu.payment.merchant.group.manage": "商戶管理",
   "menu.payment.merchant.group.channelMerchant": "通道商戶",
   "menu.payment.merchant.cashierConfig": "收銀臺配置",

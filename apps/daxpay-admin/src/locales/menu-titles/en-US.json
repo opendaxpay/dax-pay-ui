@@ -66,7 +66,6 @@
   "menu.device.qrcode": "QR Code Management",
   "menu.develop.auth": "Auth Develop",
   "menu.develop.gateway": "Payment Develop (Gateway)",
-  "menu.system.notify.wechatConfig": "Wechat Message Notification",
   "menu.payment.merchant.group.manage": "Merchant Management",
   "menu.payment.merchant.group.channelMerchant": "Channel Merchant",
   "menu.payment.merchant.cashierConfig": "Cashier Config",
