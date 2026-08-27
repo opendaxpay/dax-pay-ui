@@ -660,6 +660,9 @@ importers:
       '@iconify/json':
         specifier: 'catalog:'
         version: 2.2.489
+      '@simplewebauthn/browser':
+        specifier: 'catalog:'
+        version: 13.3.0
       '@vben-core/icons':
         specifier: workspace:*
         version: link:../../packages/@core/base/icons

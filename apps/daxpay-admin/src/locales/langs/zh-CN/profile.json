@@ -84,6 +84,7 @@
   "passkeyPasswordLabel": "登录密码",
   "passkeyPasswordHint": "为防止他人借用您的会话添加凭据，请输入登录密码确认身份",
   "passkeyPasswordRequired": "请输入登录密码",
+  "passkeyInvoking": "正在唤起系统验证，请在弹出的窗口中完成操作…",
   "passkeyNamingTitle": "命名通行密钥",
   "passkeyNameLabel": "设备名称",
   "passkeyNamePlaceholder": "如：我的 iPhone",

@@ -34,5 +34,13 @@
     "initialDesc": "Kata laluan semasa ialah kata laluan awal. Sila tetapkan kata laluan baharu untuk meneruskan",
     "expiredDesc": "Kata laluan anda telah tamat tempoh. Sila tetapkan kata laluan baharu untuk meneruskan",
     "logout": "Log Keluar"
+  },
+  "passkey": {
+    "login": "Log masuk dengan passkey",
+    "preparing": "Memanggil pengesahan sistem…",
+    "awaitingDevice": "Sila selesaikan pengesahan dalam tetingkap sistem",
+    "verifying": "Mengesahkan…",
+    "failed": "Log masuk dengan passkey gagal. Sila cuba lagi atau log masuk dengan kata laluan, dan hubungi pentadbir jika terus gagal.",
+    "tlsBlocked": "Sijil laman tidak dipercayai oleh pelayar jadi log masuk passkey tidak tersedia buat sementara. Sila log masuk dengan kata laluan atau hubungi pentadbir."
   }
 }

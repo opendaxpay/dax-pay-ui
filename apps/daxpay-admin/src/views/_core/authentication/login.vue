@@ -3,7 +3,7 @@
 
   import type { LoginContentResult } from '#/api/core/auth.api';
 
-  import { nextTick, onMounted, reactive, ref } from 'vue';
+  import { computed, nextTick, onMounted, reactive, ref } from 'vue';
   import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
@@ -132,6 +132,30 @@
   function resolvePasskeyAvailability(loginTypes: string[]) {
     passkeyAvailable.value = isPasskeySupported() && loginTypes.includes('passkey');
   }
+
+  /**
+   * 通行密钥按钮阶段性文案: 点击后按流程阶段切换(准备/等待系统验证/验证中),
+   * 让"取选项→系统弹窗→提交验证"的每一段都有明确反馈
+   */
+  const passkeyButtonText = computed(() => {
+    switch (authStore.passkeyPhase) {
+      // 等待用户在系统弹窗中完成验证
+      case 'awaitingDevice': {
+        return $t('_core.authentication.passkey.awaitingDevice');
+      }
+      // 正在获取认证选项
+      case 'preparing': {
+        return $t('_core.authentication.passkey.preparing');
+      }
+      // 提交断言验证中
+      case 'verifying': {
+        return $t('_core.authentication.passkey.verifying');
+      }
+      default: {
+        return $t('_core.authentication.passkey.login');
+      }
+    }
+  });
 
   onMounted(() => {
     initLoginPage();
@@ -340,6 +364,7 @@
         block
         size="large"
         :loading="authStore.loginLoading"
+        :disabled="authStore.passkeyLoading"
         @click.prevent="handleLogin"
       >
         <!-- 国际化：登录 -->
@@ -352,14 +377,15 @@
         block
         size="large"
         class="passkey-btn"
+        :loading="authStore.passkeyLoading"
         :disabled="authStore.loginLoading"
         @click="handlePasskeyLogin"
       >
         <template #icon>
           <IconifyIcon icon="lucide:fingerprint" />
         </template>
-        <!-- 国际化：通行密钥登录 -->
-        {{ $t('_core.authentication.passkey.login') }}
+        <!-- 国际化：通行密钥登录(进行中切换为阶段性文案) -->
+        {{ passkeyButtonText }}
       </a-button>
     </a-form>
 

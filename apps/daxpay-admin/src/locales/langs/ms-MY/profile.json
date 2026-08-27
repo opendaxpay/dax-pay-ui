@@ -84,6 +84,7 @@
   "passkeyPasswordLabel": "Kata laluan log masuk",
   "passkeyPasswordHint": "Untuk mengelakkan orang lain menambah kelayakan melalui sesi anda, sila masukkan kata laluan log masuk untuk pengesahan",
   "passkeyPasswordRequired": "Sila masukkan kata laluan log masuk",
+  "passkeyInvoking": "Memanggil pengesahan sistem. Sila selesaikan dalam tetingkap timbul…",
   "passkeyNamingTitle": "Namakan passkey",
   "passkeyNameLabel": "Nama peranti",
   "passkeyNamePlaceholder": "cth. iPhone saya",

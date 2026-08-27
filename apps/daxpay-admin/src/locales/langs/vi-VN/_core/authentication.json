@@ -38,6 +38,9 @@
   },
   "passkey": {
     "login": "Đăng nhập bằng passkey",
+    "preparing": "Đang gọi xác minh hệ thống…",
+    "awaitingDevice": "Hãy hoàn tất xác minh trong cửa sổ hệ thống",
+    "verifying": "Đang xác minh…",
     "failed": "Đăng nhập bằng khóa truy cập thất bại. Vui lòng thử lại hoặc đăng nhập bằng mật khẩu, và liên hệ quản trị viên nếu vẫn thất bại.",
     "tlsBlocked": "Chứng chỉ của trang không được trình duyệt tin cậy nên đăng nhập bằng passkey tạm thời không khả dụng. Vui lòng đăng nhập bằng mật khẩu hoặc liên hệ quản trị viên."
   }

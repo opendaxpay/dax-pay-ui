@@ -34,5 +34,13 @@
     "initialDesc": "Your current password is an initial password. Please set a new password to continue",
     "expiredDesc": "Your password has expired. Please set a new password to continue",
     "logout": "Log Out"
+  },
+  "passkey": {
+    "login": "Sign in with passkey",
+    "preparing": "Contacting your device…",
+    "awaitingDevice": "Complete the system prompt",
+    "verifying": "Verifying…",
+    "failed": "Passkey sign-in failed. Please try again or sign in with your password, and contact the administrator if it keeps failing.",
+    "tlsBlocked": "The site certificate is not trusted by the browser, so passkey sign-in is temporarily unavailable. Please sign in with your password or contact the administrator."
   }
 }

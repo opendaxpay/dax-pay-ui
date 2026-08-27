@@ -84,6 +84,7 @@
   "passkeyPasswordLabel": "Kata sandi login",
   "passkeyPasswordHint": "Untuk mencegah orang lain menambahkan kredensial melalui sesi Anda, masukkan kata sandi login untuk konfirmasi",
   "passkeyPasswordRequired": "Silakan masukkan kata sandi login",
+  "passkeyInvoking": "Memanggil verifikasi sistem. Selesaikan di jendela popup…",
   "passkeyNamingTitle": "Beri nama passkey",
   "passkeyNameLabel": "Nama perangkat",
   "passkeyNamePlaceholder": "mis. iPhone saya",

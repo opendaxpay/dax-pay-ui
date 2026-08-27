@@ -84,6 +84,7 @@
   "passkeyPasswordLabel": "Login password",
   "passkeyPasswordHint": "To prevent others from adding credentials using your session, please enter your login password to confirm",
   "passkeyPasswordRequired": "Please enter your login password",
+  "passkeyInvoking": "Invoking system verification. Please complete it in the popup window…",
   "passkeyNamingTitle": "Name your passkey",
   "passkeyNameLabel": "Device name",
   "passkeyNamePlaceholder": "e.g. My iPhone",

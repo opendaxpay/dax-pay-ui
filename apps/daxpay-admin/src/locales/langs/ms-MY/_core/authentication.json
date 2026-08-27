@@ -38,6 +38,9 @@
   },
   "passkey": {
     "login": "Log masuk dengan passkey",
+    "preparing": "Memanggil pengesahan sistem…",
+    "awaitingDevice": "Sila selesaikan pengesahan dalam tetingkap sistem",
+    "verifying": "Mengesahkan…",
     "failed": "Log masuk dengan passkey gagal. Sila cuba lagi atau log masuk dengan kata laluan, dan hubungi pentadbir jika terus gagal.",
     "tlsBlocked": "Sijil laman tidak dipercayai oleh pelayar jadi log masuk passkey tidak tersedia buat sementara. Sila log masuk dengan kata laluan atau hubungi pentadbir."
   }

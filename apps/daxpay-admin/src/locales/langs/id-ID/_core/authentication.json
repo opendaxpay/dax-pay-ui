@@ -38,6 +38,9 @@
   },
   "passkey": {
     "login": "Masuk dengan passkey",
+    "preparing": "Memanggil verifikasi sistem…",
+    "awaitingDevice": "Selesaikan verifikasi di jendela sistem",
+    "verifying": "Memverifikasi…",
     "failed": "Login dengan passkey gagal. Silakan coba lagi atau masuk dengan kata sandi, dan hubungi administrator jika terus gagal.",
     "tlsBlocked": "Sertifikat situs tidak dipercaya browser sehingga login passkey sementara tidak tersedia. Silakan masuk dengan kata sandi atau hubungi administrator."
   }

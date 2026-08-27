@@ -84,6 +84,7 @@
   "passkeyPasswordLabel": "ログインパスワード",
   "passkeyPasswordHint": "なりすましによる認証情報の追加を防ぐため、ログインパスワードで本人確認してください",
   "passkeyPasswordRequired": "ログインパスワードを入力してください",
+  "passkeyInvoking": "システム認証を呼び出しています。ポップアップで操作を完了してください…",
   "passkeyNamingTitle": "パスキーに名前を付ける",
   "passkeyNameLabel": "デバイス名",
   "passkeyNamePlaceholder": "例：私の iPhone",

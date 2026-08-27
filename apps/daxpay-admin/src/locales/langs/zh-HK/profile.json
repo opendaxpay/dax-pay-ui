@@ -84,6 +84,7 @@
   "passkeyPasswordLabel": "登入密碼",
   "passkeyPasswordHint": "為防止他人借用您的工作階段新增憑證，請輸入登入密碼確認身分",
   "passkeyPasswordRequired": "請輸入登入密碼",
+  "passkeyInvoking": "正在喚起系統驗證，請在彈出的視窗中完成操作…",
   "passkeyNamingTitle": "命名通行密鑰",
   "passkeyNameLabel": "裝置名稱",
   "passkeyNamePlaceholder": "如：我的 iPhone",

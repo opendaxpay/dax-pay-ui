@@ -84,6 +84,7 @@
   "passkeyPasswordLabel": "Mật khẩu đăng nhập",
   "passkeyPasswordHint": "Để tránh người khác thêm thông tin xác thực qua phiên của bạn, vui lòng nhập mật khẩu đăng nhập để xác nhận",
   "passkeyPasswordRequired": "Vui lòng nhập mật khẩu đăng nhập",
+  "passkeyInvoking": "Đang gọi xác minh hệ thống. Vui lòng hoàn tất trong cửa sổ bật lên…",
   "passkeyNamingTitle": "Đặt tên khóa truy cập",
   "passkeyNameLabel": "Tên thiết bị",
   "passkeyNamePlaceholder": "vd. iPhone của tôi",

@@ -84,6 +84,7 @@
   "passkeyPasswordLabel": "รหัสผ่านเข้าสู่ระบบ",
   "passkeyPasswordHint": "เพื่อป้องกันผู้อื่นเพิ่มข้อมูลรับรองผ่านเซสชันของคุณ โปรดกรอกรหัสผ่านเข้าสู่ระบบเพื่อยืนยัน",
   "passkeyPasswordRequired": "โปรดกรอกรหัสผ่านเข้าสู่ระบบ",
+  "passkeyInvoking": "กำลังเรียกการยืนยันของระบบ โปรดดำเนินการให้เสร็จในหน้าต่างป๊อปอัป…",
   "passkeyNamingTitle": "ตั้งชื่อพาสคีย์",
   "passkeyNameLabel": "ชื่ออุปกรณ์",
   "passkeyNamePlaceholder": "เช่น iPhone ของฉัน",

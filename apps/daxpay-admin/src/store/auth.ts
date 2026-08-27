@@ -30,6 +30,13 @@ export const useAuthStore = defineStore('auth', () => {
 
   const loginLoading = ref(false);
 
+  // 通行密钥登录阶段(独立于 loginLoading, 避免密码登录按钮反馈错位):
+  // idle=未进行 preparing=获取认证选项 awaitingDevice=等待系统弹窗完成验证 verifying=提交断言验证
+  type PasskeyPhase = 'awaitingDevice' | 'idle' | 'preparing' | 'verifying';
+  const passkeyPhase = ref<PasskeyPhase>('idle');
+  // 通行密钥流程进行中(任一非 idle 阶段)
+  const passkeyLoading = computed(() => passkeyPhase.value !== 'idle');
+
   // 是否处于二次验证
   const twoFactorRequired = ref(false);
   const twoFactorPreAuthToken = ref('');
@@ -128,17 +135,19 @@ export const useAuthStore = defineStore('auth', () => {
   async function passkeyLogin() {
     let userInfo: null | UserInfo = null;
     try {
-      loginLoading.value = true;
       // 第一步: 获取认证选项(挑战)
+      passkeyPhase.value = 'preparing';
       const { data: optionsData } = await PasskeyApi.loginOptions(CLIENT_CODE);
       if (!optionsData) {
         return { userInfo };
       }
       // 第二步: 唤起系统凭据选择弹窗(用户取消会抛错, 由外层统一提示)
+      passkeyPhase.value = 'awaitingDevice';
       const credential = await startAuthentication({
         optionsJSON: optionsData.options,
       });
       // 第三步: 提交断言验证换取 token
+      passkeyPhase.value = 'verifying';
       const { data: accessToken } = await PasskeyApi.loginVerify({
         client: CLIENT_CODE,
         challengeId: optionsData.challengeId,
@@ -160,7 +169,7 @@ export const useAuthStore = defineStore('auth', () => {
         notifyPasswordExpiringSoon();
       }
     } finally {
-      loginLoading.value = false;
+      passkeyPhase.value = 'idle';
     }
     return { userInfo };
   }
@@ -269,6 +278,7 @@ export const useAuthStore = defineStore('auth', () => {
 
   function $reset() {
     loginLoading.value = false;
+    passkeyPhase.value = 'idle';
     passwordStatus.value = null;
   }
 
@@ -283,7 +293,9 @@ export const useAuthStore = defineStore('auth', () => {
     logout,
     needChangePassword,
     notifyPasswordExpiringSoon,
+    passkeyLoading,
     passkeyLogin,
+    passkeyPhase,
     passwordStatus,
     twoFactorPreAuthToken,
     twoFactorRequired,

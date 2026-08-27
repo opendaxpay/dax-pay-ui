@@ -84,6 +84,7 @@
   "passkeyPasswordLabel": "로그인 비밀번호",
   "passkeyPasswordHint": "다른 사람이 세션을 이용해 인증 정보를 추가하지 못하도록 로그인 비밀번호로 확인합니다",
   "passkeyPasswordRequired": "로그인 비밀번호를 입력해 주세요",
+  "passkeyInvoking": "시스템 인증을 호출하고 있습니다. 팝업 창에서 작업을 완료해 주세요…",
   "passkeyNamingTitle": "패스키 이름 지정",
   "passkeyNameLabel": "기기 이름",
   "passkeyNamePlaceholder": "예: 내 iPhone",
