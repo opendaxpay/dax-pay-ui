@@ -63,15 +63,6 @@ export const PermCodes = {
       VIEW: 'merchant:app:route:view',
       MANAGE: 'merchant:app:route:manage',
     },
-    GatewayAggregate: {
-      VIEW: 'merchant:gateway-aggregate:view',
-      MANAGE: 'merchant:gateway-aggregate:manage',
-    },
-    /** 码牌支付策略配置 menuCode=merchant:gateway-code */
-    GatewayCode: {
-      VIEW: 'merchant:gateway-code:view',
-      MANAGE: 'merchant:gateway-code:manage',
-    },
     /** 网关支付配置(码牌/聚合共用) menuCode=merchant:gateway-pay-config */
     GatewayPayConfig: {
       VIEW: 'merchant:gateway-pay-config:view',
@@ -86,6 +77,11 @@ export const PermCodes = {
       VIEW: 'merchant:easypay:view',
       MANAGE: 'merchant:easypay:manage',
     },
+    /** 支付宝服务商代运营授权 menuCode=merchant:alipay-isv-auth */
+    AlipayIsvAuth: {
+      VIEW: 'merchant:alipay-isv-auth:view',
+      MANAGE: 'merchant:alipay-isv-auth:manage',
+    },
     Store: {
       VIEW: 'merchant:store:view',
       MANAGE: 'merchant:store:manage',
@@ -95,10 +91,13 @@ export const PermCodes = {
       VIEW: 'merchant:terminal:view',
       MANAGE: 'merchant:terminal:manage',
     },
-    /** 预留 */
+    /** 商户用户(子账号) menuCode=merchant:user（运营端管理与商户端自助共用） */
     User: {
       VIEW: 'merchant:user:view',
       MANAGE: 'merchant:user:manage',
+      ASSIGN_ROLE: 'merchant:user:assign-role',
+      STATUS: 'merchant:user:status',
+      RESET_PASSWORD: 'merchant:user:reset-password',
     },
     WxDomainVerify: {
       VIEW: 'merchant:wx-verify:view',
@@ -132,11 +131,6 @@ export const PermCodes = {
         VIEW: 'payment:platform:product:view',
         MANAGE: 'payment:platform:product:manage',
       },
-      /** 支付方式 */
-      PayMethod: {
-        VIEW: 'payment:platform:pay-method:view',
-        MANAGE: 'payment:platform:pay-method:manage',
-      },
       /** 支付渠道 */
       Provider: {
         VIEW: 'payment:platform:provider:view',
@@ -157,6 +151,11 @@ export const PermCodes = {
       WxDomainVerify: {
         VIEW: 'payment:config:wx-verify:view',
         MANAGE: 'payment:config:wx-verify:manage',
+      },
+      /** 移动端应用管理 menuCode=payment:config:mobile-app */
+      MobileApp: {
+        VIEW: 'payment:config:mobile-app:view',
+        MANAGE: 'payment:config:mobile-app:manage',
       },
     },
     /** 微信开放应用主数据 menuCode=payment:wx:* */
@@ -193,11 +192,15 @@ export const PermCodes = {
       },
       Hit: {
         VIEW: 'payment:risk:hit:view',
-        MANAGE: 'payment:risk:hit:manage',
       },
       MchConfig: {
         VIEW: 'payment:risk:mch-config:view',
         MANAGE: 'payment:risk:mch-config:manage',
+      },
+      /** 支付安全配置(接口防重放+风控开关) menuCode=payment:risk:security */
+      Security: {
+        VIEW: 'payment:risk:security:view',
+        MANAGE: 'payment:risk:security:manage',
       },
     },
   },
@@ -249,7 +252,6 @@ export const PermCodes = {
       VIEW: 'develop:auth:view',
     },
     Gateway: {
-      VIEW: 'develop:gateway:view',
       SIGN: 'develop:gateway:sign',
     },
   },

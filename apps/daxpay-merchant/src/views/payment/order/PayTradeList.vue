@@ -209,7 +209,8 @@
    */
   function getActionMenu(row: PayTradeResult): MenuProps {
     const items: { danger?: boolean; key: string; label: string }[] = [];
-    const canManage = hasPermission(PermCodes.Trade.Fund.MANAGE);
+    // 关闭/同步走订单管理权限(后端 close/sync 接口挂 trade:order:manage)
+    const canManage = hasPermission(PermCodes.Trade.Order.MANAGE);
     const canRefund = hasPermission(PermCodes.Trade.Refund.MANAGE);
     const canAlloc = hasPermission(PermCodes.Trade.Alloc.MANAGE);
     const isTerminal = ['cancel', 'close', 'fail'].includes(row.status ?? '');

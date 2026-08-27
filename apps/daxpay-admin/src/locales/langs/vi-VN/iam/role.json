@@ -16,7 +16,7 @@
   "assignPermissionConfirmStats": "Lưu {menu} menu và {code} mã quyền?",
   "permCodeScan": "Đồng bộ hóa mã cấp phép",
   "permCodeScanConfirm": "Bạn có chắc chắn muốn quét và đồng bộ hóa mã cấp phép ngay bây giờ không?",
-  "permCodeScanSuccess": "Đồng bộ hóa mã quyền đã hoàn tất",
+  "permCodeScanSuccess": "Đã hoàn tất đồng bộ dữ liệu gốc mã quyền",
   "permCodeLabel": "Mã giấy phép",
   "permCodeTag": "Mã số",
   "searchPerm": "Menu tìm kiếm hoặc mã cấp phép",

@@ -16,7 +16,7 @@
   "assignPermissionConfirmStats": "將保存選單 {menu} 項、權限碼 {code} 項，確定保存嗎？",
   "permCodeScan": "同步權限碼",
   "permCodeScanConfirm": "確認立即掃描並同步權限碼嗎？",
-  "permCodeScanSuccess": "權限碼同步完成",
+  "permCodeScanSuccess": "權限碼主資料同步完成",
   "permCodeLabel": "權限碼",
   "permCodeTag": "權限碼",
   "searchPerm": "搜尋選單或權限碼",

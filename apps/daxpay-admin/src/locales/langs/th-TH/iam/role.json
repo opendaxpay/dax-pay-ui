@@ -16,7 +16,7 @@
   "assignPermissionConfirmStats": "บันทึกเมนู {menu} และรหัสอนุญาต {code} หรือไม่",
   "permCodeScan": "ซิงค์รหัสสิทธิ์",
   "permCodeScanConfirm": "คุณแน่ใจหรือไม่ว่าต้องการสแกนและซิงค์รหัสสิทธิ์ทันที",
-  "permCodeScanSuccess": "การซิงค์รหัสสิทธิ์เสร็จสมบูรณ์",
+  "permCodeScanSuccess": "ซิงค์ข้อมูลหลักของรหัสสิทธิ์เสร็จสมบูรณ์",
   "permCodeLabel": "รหัสการอนุญาต",
   "permCodeTag": "รหัส",
   "searchPerm": "เมนูค้นหาหรือรหัสอนุญาต",

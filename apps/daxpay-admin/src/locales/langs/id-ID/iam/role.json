@@ -16,7 +16,7 @@
   "assignPermissionConfirmStats": "Simpan {menu} menu dan {code} kode izin?",
   "permCodeScan": "Sinkronkan Kode Izin",
   "permCodeScanConfirm": "Apakah Anda yakin ingin memindai dan menyinkronkan kode izin sekarang?",
-  "permCodeScanSuccess": "Sinkronisasi kode izin selesai",
+  "permCodeScanSuccess": "Sinkronisasi data master kode izin selesai",
   "permCodeLabel": "Kode Izin",
   "permCodeTag": "Kode",
   "searchPerm": "Menu pencarian atau kode izin",

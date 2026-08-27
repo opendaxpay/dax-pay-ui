@@ -16,7 +16,7 @@
   "assignPermissionConfirmStats": "Simpan {menu} menu dan {code} kod kebenaran?",
   "permCodeScan": "Kod Kebenaran Segerak",
   "permCodeScanConfirm": "Adakah anda pasti mahu mengimbas dan menyegerakkan kod kebenaran sekarang?",
-  "permCodeScanSuccess": "Penyegerakan kod kebenaran selesai",
+  "permCodeScanSuccess": "Penyegerakan data induk kod kebenaran selesai",
   "permCodeLabel": "Kod Kebenaran",
   "permCodeTag": "Kod",
   "searchPerm": "Menu carian atau kod kebenaran",

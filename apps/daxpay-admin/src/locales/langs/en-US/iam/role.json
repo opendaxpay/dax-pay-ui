@@ -16,7 +16,7 @@
   "assignPermissionConfirmStats": "Save {menu} menu(s) and {code} permission code(s)?",
   "permCodeScan": "Sync Permission Codes",
   "permCodeScanConfirm": "Are you sure you want to scan and sync permission codes now?",
-  "permCodeScanSuccess": "Permission code sync completed",
+  "permCodeScanSuccess": "Permission-code master data sync completed",
   "permCodeLabel": "Permission Code",
   "permCodeTag": "Code",
   "searchPerm": "Search menu or permission code",

@@ -16,7 +16,7 @@
   "assignPermissionConfirmStats": "メニュー {menu} 件・権限コード {code} 件を保存しますか？",
   "permCodeScan": "同期許可コード",
   "permCodeScanConfirm": "今すぐ許可コードをスキャンして同期してもよろしいですか?",
-  "permCodeScanSuccess": "許可コードの同期が完了しました",
+  "permCodeScanSuccess": "権限コードのマスターデータ同期が完了しました",
   "permCodeLabel": "許可コード",
   "permCodeTag": "権限コード",
   "searchPerm": "メニューまたは権限コードを検索",

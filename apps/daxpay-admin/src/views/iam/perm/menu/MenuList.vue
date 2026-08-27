@@ -315,6 +315,8 @@
         message.success(
           `${$t('iam.role.permCodeScanSuccess')}: +${data.addedCount || 0} / ~${data.updatedCount || 0} / -${data.deletedCount || 0}`,
         );
+        queryPage();
+        permCodeManager.value?.refresh?.();
       },
     });
   }

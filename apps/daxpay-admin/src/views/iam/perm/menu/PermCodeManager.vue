@@ -65,7 +65,14 @@
     tableData.value = [];
   }
 
-  defineExpose({ init });
+  /**
+   * 刷新当前菜单权限码列表
+   */
+  function refresh() {
+    queryPermCodes();
+  }
+
+  defineExpose({ init, refresh });
 </script>
 
 <template>

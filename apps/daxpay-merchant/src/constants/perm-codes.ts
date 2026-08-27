@@ -63,15 +63,6 @@ export const PermCodes = {
       VIEW: 'merchant:app:route:view',
       MANAGE: 'merchant:app:route:manage',
     },
-    GatewayAggregate: {
-      VIEW: 'merchant:gateway-aggregate:view',
-      MANAGE: 'merchant:gateway-aggregate:manage',
-    },
-    /** 码牌支付策略配置 menuCode=merchant:gateway-code */
-    GatewayCode: {
-      VIEW: 'merchant:gateway-code:view',
-      MANAGE: 'merchant:gateway-code:manage',
-    },
     /** 网关支付配置(码牌/聚合共用) menuCode=merchant:gateway-pay-config */
     GatewayPayConfig: {
       VIEW: 'merchant:gateway-pay-config:view',
@@ -100,10 +91,13 @@ export const PermCodes = {
       VIEW: 'merchant:terminal:view',
       MANAGE: 'merchant:terminal:manage',
     },
-    /** 预留 */
+    /** 商户用户(子账号) menuCode=merchant:user（商户端自助管理） */
     User: {
       VIEW: 'merchant:user:view',
       MANAGE: 'merchant:user:manage',
+      ASSIGN_ROLE: 'merchant:user:assign-role',
+      STATUS: 'merchant:user:status',
+      RESET_PASSWORD: 'merchant:user:reset-password',
     },
     WxDomainVerify: {
       VIEW: 'merchant:wx-verify:view',
@@ -136,11 +130,6 @@ export const PermCodes = {
       Product: {
         VIEW: 'payment:platform:product:view',
         MANAGE: 'payment:platform:product:manage',
-      },
-      /** 支付方式 */
-      PayMethod: {
-        VIEW: 'payment:platform:pay-method:view',
-        MANAGE: 'payment:platform:pay-method:manage',
       },
       /** 支付渠道 */
       Provider: {
@@ -186,7 +175,11 @@ export const PermCodes = {
       },
       Hit: {
         VIEW: 'payment:risk:hit:view',
-        MANAGE: 'payment:risk:hit:manage',
+      },
+      /** 商户风控配置(地理围栏等商户级风控) menuCode=payment:risk:mch-config */
+      MchConfig: {
+        VIEW: 'payment:risk:mch-config:view',
+        MANAGE: 'payment:risk:mch-config:manage',
       },
     },
   },
@@ -252,7 +245,6 @@ export const PermCodes = {
       VIEW: 'develop:auth:view',
     },
     Gateway: {
-      VIEW: 'develop:gateway:view',
       SIGN: 'develop:gateway:sign',
     },
   },
