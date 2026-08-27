@@ -1,3 +1,5 @@
+import type { UserPasswordResult } from './merchant-user.api';
+
 import type { BaseEntity, LabelValue, PageResult, Result } from '#/types/web';
 
 import { defHttp } from '#/api/request';
@@ -20,8 +22,9 @@ export const MerchantApi = {
   },
   /**
    * 新增商户
+   * 未传管理员密码时由后端生成随机初始密码, 返回明文供一次性转告商户
    */
-  add(data: MerchantCreateParam): Promise<Result<void>> {
+  add(data: MerchantCreateParam): Promise<Result<UserPasswordResult>> {
     return defHttp.post({ url: '/admin/merchant/add', data });
   },
   /**
@@ -82,7 +85,8 @@ export interface MerchantCreateParam {
   mchShortName: string;
   subjectType: string;
   account: string;
-  password: string;
+  /** 管理员密码(RSA 加密), 可选; 不传由后端生成随机初始密码 */
+  password?: string;
 }
 
 /**

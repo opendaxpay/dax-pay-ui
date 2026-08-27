@@ -82,5 +82,13 @@
   "timestampExpired": "Stempel waktu permintaan sudah habis, silakan coba lagi",
   "nonceMissing": "Parameter verifikasi anti-pemutaran ulang tidak ada",
   "retry": "Coba lagi",
-  "resetPasswordNotice": "Setelah diatur ulang, semua sesi pengguna akan dikeluarkan dan kata sandi wajib diubah saat login berikutnya."
+  "resetPasswordNotice": "Kata sandi awal acak akan dibuat untuk setiap pengguna; semua sesi akan dikeluarkan dan kata sandi wajib diubah saat login pertama.",
+  "copySuccess": "Berhasil disalin",
+  "copyFail": "Gagal disalin",
+  "passwordGenerated": "Kata sandi awal dibuat",
+  "passwordGeneratedTip": "Salin sekarang dan sampaikan ke pengguna dengan aman; pengguna wajib mengubahnya saat login pertama",
+  "copyAll": "Salin semua",
+  "newPassword": "Kata sandi baru",
+  "name": "Nama",
+  "passwordAutoGenPlaceholder": "Kosongkan untuk membuat kata sandi awal acak secara otomatis"
 }

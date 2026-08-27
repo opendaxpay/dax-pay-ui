@@ -114,8 +114,9 @@ export const MerchantUserApi = {
 
   /**
    * 新增商户用户
+   * 未传密码时由后端生成随机初始密码, 返回明文供一次性转告用户
    */
-  add(data: MerchantUserParam): Promise<Result<void>> {
+  add(data: MerchantUserParam): Promise<Result<UserPasswordResult>> {
     return defHttp.post({ url: '/mch/user/add', data });
   },
 
@@ -163,15 +164,31 @@ export const MerchantUserApi = {
 
   /**
    * 重置密码
+   * 不传密码时由后端生成随机密码, 返回明文供一次性转告用户
    */
-  restartPassword(userId: string, newPassword: string): Promise<Result<void>> {
+  restartPassword(userId: string, newPassword?: string): Promise<Result<UserPasswordResult>> {
     return defHttp.post({ url: '/mch/user/restart-password', data: { userId, newPassword } });
   },
 
   /**
    * 批量重置密码
+   * 不传密码时为每个用户独立生成随机密码, 返回明文列表
    */
-  restartPasswordBatch(userIds: string[], newPassword: string): Promise<Result<void>> {
+  restartPasswordBatch(userIds: string[], newPassword?: string): Promise<Result<UserPasswordResult[]>> {
     return defHttp.post({ url: '/mch/user/restart-password-batch', data: { userIds, newPassword } });
   },
 };
+
+/**
+ * 初始密码结果(重置/新建未传密码时由后端生成, 明文仅本次响应返回一次)
+ */
+export interface UserPasswordResult {
+  /** 用户ID */
+  userId?: string;
+  /** 登录账号 */
+  account?: string;
+  /** 用户名称 */
+  name?: string;
+  /** 初始密码明文 */
+  password?: string;
+}

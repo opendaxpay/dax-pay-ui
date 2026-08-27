@@ -85,5 +85,13 @@
   "remark": "备注",
   "isDefault": "默认",
   "setDefault": "设为默认",
-  "resetPasswordNotice": "重置后目标用户的所有登录会话将被踢出，下次登录必须修改密码。"
+  "resetPasswordNotice": "系统将为每位用户生成随机初始密码，原登录会话将被全部踢出，用户首次登录后需自行修改密码。",
+  "copySuccess": "复制成功",
+  "copyFail": "复制失败",
+  "passwordGenerated": "初始密码已生成",
+  "passwordGeneratedTip": "请立即复制并妥善转告用户，对方首次登录后需自行修改密码",
+  "copyAll": "复制全部",
+  "newPassword": "新密码",
+  "name": "姓名",
+  "passwordAutoGenPlaceholder": "留空则自动生成随机初始密码"
 }

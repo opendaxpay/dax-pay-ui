@@ -83,5 +83,13 @@
   "nonceMissing": "Parameter pengesahan anti-main semula tiada",
   "retry": "Cuba lagi",
   "merchantSuffix": "Merchant",
-  "resetPasswordNotice": "Selepas ditetapkan semula, semua sesi pengguna sasaran akan dilog keluar dan kata laluan mesti ditukar pada log masuk seterusnya."
+  "resetPasswordNotice": "Kata laluan awal rawak akan dijana untuk setiap pengguna; semua sesi akan dilog keluar dan kata laluan mesti ditukar semasa log masuk pertama.",
+  "copySuccess": "Disalin",
+  "copyFail": "Gagal disalin",
+  "passwordGenerated": "Kata laluan awal dijana",
+  "passwordGeneratedTip": "Salin sekarang dan serahkan kepada pengguna dengan selamat; pengguna mesti menukarnya semasa log masuk pertama",
+  "copyAll": "Salin semua",
+  "newPassword": "Kata laluan baharu",
+  "name": "Nama",
+  "passwordAutoGenPlaceholder": "Biarkan kosong untuk jana kata laluan awal rawak secara automatik"
 }

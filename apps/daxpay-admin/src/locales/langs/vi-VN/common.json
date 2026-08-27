@@ -82,5 +82,13 @@
   "timestampExpired": "Dấu thời gian yêu cầu đã hết hạn, vui lòng thử lại",
   "nonceMissing": "Thiếu tham số xác minh chống phát lại",
   "retry": "Thử lại",
-  "resetPasswordNotice": "Sau khi đặt lại, tất cả phiên đăng nhập của người dùng sẽ bị đăng xuất và phải đổi mật khẩu ở lần đăng nhập tiếp theo."
+  "resetPasswordNotice": "Mật khẩu ban đầu ngẫu nhiên sẽ được tạo cho từng người dùng; tất cả phiên sẽ bị đăng xuất và phải đổi mật khẩu khi đăng nhập lần đầu.",
+  "copySuccess": "Đã sao chép",
+  "copyFail": "Sao chép thất bại",
+  "passwordGenerated": "Đã tạo mật khẩu ban đầu",
+  "passwordGeneratedTip": "Hãy sao chép ngay và chuyển cho người dùng một cách an toàn; người dùng phải đổi mật khẩu khi đăng nhập lần đầu",
+  "copyAll": "Sao chép tất cả",
+  "newPassword": "Mật khẩu mới",
+  "name": "Tên",
+  "passwordAutoGenPlaceholder": "Để trống để tự động tạo mật khẩu ban đầu ngẫu nhiên"
 }

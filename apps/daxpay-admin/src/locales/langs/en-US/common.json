@@ -85,5 +85,13 @@
   "remark": "Remark",
   "isDefault": "Default",
   "setDefault": "Set Default",
-  "resetPasswordNotice": "All sessions of the target user will be signed out after reset, and the password must be changed at the next login."
+  "resetPasswordNotice": "A random initial password will be generated for each user; all current sessions will be signed out, and the password must be changed at first login.",
+  "copySuccess": "Copied",
+  "copyFail": "Copy failed",
+  "passwordGenerated": "Initial password generated",
+  "passwordGeneratedTip": "Copy it now and pass it to the user securely; the user must change it at first login",
+  "copyAll": "Copy all",
+  "newPassword": "New password",
+  "name": "Name",
+  "passwordAutoGenPlaceholder": "Leave empty to auto-generate a random initial password"
 }

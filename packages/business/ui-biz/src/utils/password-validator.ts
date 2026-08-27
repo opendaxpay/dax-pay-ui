@@ -113,6 +113,14 @@ export function generatePasswordRules(config: PasswordPolicyValidateConfig) {
 }
 
 /**
+ * 生成可选密码的表单校验规则(留空表示由后端生成随机初始密码, 填写时才校验强度)
+ */
+export function generateOptionalPasswordRules(config: PasswordPolicyValidateConfig) {
+  // 复用必填版规则, 仅去掉 required 项(其 validator 对空值本就直接通过)
+  return generatePasswordRules(config).filter((rule) => !('required' in rule));
+}
+
+/**
  * 账号验证规则（只允许字母、数字、下划线、中划线）
  */
 export function generateAccountRules() {

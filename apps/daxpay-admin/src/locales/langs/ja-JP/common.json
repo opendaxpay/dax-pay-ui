@@ -85,5 +85,13 @@
   "remark": "備考",
   "isDefault": "デフォルト",
   "setDefault": "デフォルトに設定",
-  "resetPasswordNotice": "リセットすると対象ユーザーのすべてのセッションが終了し、次回ログイン時にパスワードの変更が必要です。"
+  "resetPasswordNotice": "各ユーザーにランダムな初期パスワードを生成し、既存のセッションはすべて終了します。初回ログイン時に変更が必要です。",
+  "copySuccess": "コピーしました",
+  "copyFail": "コピーに失敗しました",
+  "passwordGenerated": "初期パスワードを生成しました",
+  "passwordGeneratedTip": "すぐにコピーしてユーザーに安全に伝達してください。ユーザーは初回ログイン時に変更する必要があります",
+  "copyAll": "すべてコピー",
+  "newPassword": "新しいパスワード",
+  "name": "氏名",
+  "passwordAutoGenPlaceholder": "空欄の場合はランダムな初期パスワードを自動生成します"
 }

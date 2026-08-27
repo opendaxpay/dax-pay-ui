@@ -86,5 +86,13 @@
   "remark": "비고",
   "isDefault": "기본",
   "setDefault": "기본으로 설정",
-  "resetPasswordNotice": "재설정하면 대상 사용자의 모든 세션이 종료되며 다음 로그인 시 비밀번호를 변경해야 합니다."
+  "resetPasswordNotice": "각 사용자에게 무작위 초기 비밀번호가 생성되고 기존 세션이 모두 종료되며, 첫 로그인 시 변경해야 합니다.",
+  "copySuccess": "복사됨",
+  "copyFail": "복사 실패",
+  "passwordGenerated": "초기 비밀번호가 생성되었습니다",
+  "passwordGeneratedTip": "지금 복사하여 사용자에게 안전하게 전달하세요. 사용자는 첫 로그인 시 변경해야 합니다",
+  "copyAll": "모두 복사",
+  "newPassword": "새 비밀번호",
+  "name": "이름",
+  "passwordAutoGenPlaceholder": "비워 두면 무작위 초기 비밀번호가 자동 생성됩니다"
 }

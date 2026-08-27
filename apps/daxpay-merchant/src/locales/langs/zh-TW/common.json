@@ -86,5 +86,13 @@
   "remark": "備註",
   "isDefault": "預設",
   "setDefault": "設為預設",
-  "resetPasswordNotice": "重置後目標使用者的所有登入工作階段將被踢出，下次登入必須修改密碼。"
+  "resetPasswordNotice": "系統將為每位使用者產生隨機初始密碼，原登入工作階段將被全部踢出，使用者首次登入後需自行修改密碼。",
+  "copySuccess": "複製成功",
+  "copyFail": "複製失敗",
+  "passwordGenerated": "初始密碼已產生",
+  "passwordGeneratedTip": "請立即複製並妥善轉告使用者，對方首次登入後需自行修改密碼",
+  "copyAll": "複製全部",
+  "newPassword": "新密碼",
+  "name": "姓名",
+  "passwordAutoGenPlaceholder": "留空則自動產生隨機初始密碼"
 }

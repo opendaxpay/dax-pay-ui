@@ -20,8 +20,9 @@ export const UserApi = {
   },
   /**
    * 新增用户
+   * 未传密码时由后端生成随机初始密码, 返回明文供一次性转告用户
    */
-  add(data: User): Promise<Result<void>> {
+  add(data: User): Promise<Result<UserPasswordResult>> {
     return defHttp.post({ url: '/user/admin/add', data });
   },
   /**
@@ -68,14 +69,16 @@ export const UserApi = {
   },
   /**
    * 重置密码
+   * 不传密码时由后端生成随机密码, 返回明文供一次性转告用户
    */
-  restartPassword(id: string, newPassword: string): Promise<Result<void>> {
+  restartPassword(id: string, newPassword?: string): Promise<Result<UserPasswordResult>> {
     return defHttp.post({ url: '/user/admin/restart-password', data: { userId: id, newPassword } });
   },
   /**
    * 批量重置密码
+   * 不传密码时为每个用户独立生成随机密码, 返回明文列表
    */
-  restartPasswordBatch(userIds: string[], newPassword: string): Promise<Result<void>> {
+  restartPasswordBatch(userIds: string[], newPassword?: string): Promise<Result<UserPasswordResult[]>> {
     return defHttp.post({ url: '/user/admin/restart-password-batch', data: { userIds, newPassword } });
   },
   /**
@@ -216,4 +219,18 @@ export interface ResetPasswordForm {
   newPassword?: string;
   /** 确认密码 */
   confirmPassword?: string;
+}
+
+/**
+ * 初始密码结果(重置/新建未传密码时由后端生成, 明文仅本次响应返回一次)
+ */
+export interface UserPasswordResult {
+  /** 用户ID */
+  userId?: string;
+  /** 登录账号 */
+  account?: string;
+  /** 用户名称 */
+  name?: string;
+  /** 初始密码明文 */
+  password?: string;
 }
