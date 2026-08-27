@@ -51,3 +51,6 @@ vite.config.ts.*
 .history
 .cursor
 .trae
+
+# dev HTTPS self-signed certs (Passkey real device debugging)
+certs/
