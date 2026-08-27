@@ -150,5 +150,49 @@
       "notConfigured": "구성되지 않음",
       "bucket": "버킷: {bucket}"
     }
+  },
+  "mail": {
+    "title": "메일 설정",
+    "description": "플랫폼 메일 알림 발신자(SMTP) 설정 관리",
+    "section": {
+      "channel": "채널 스위치",
+      "server": "서버 설정",
+      "sender": "발신자 정보"
+    },
+    "enabled": "메일 채널 활성화",
+    "enabledDesc": "비활성화하면 모든 업무 메일 발송이 건너뜁니다(테스트 발송에는 영향 없음)",
+    "host": "SMTP 서버 주소",
+    "hostDesc": "메일 서비스 제공자의 SMTP 서버 주소 (예: smtp.example.com)",
+    "inputHost": "SMTP 서버 주소를 입력하세요",
+    "port": "SMTP 서버 포트",
+    "portDesc": "SSL은 465, STARTTLS는 587, 평문은 25이 일반적",
+    "inputPort": "SMTP 서버 포트를 입력하세요",
+    "securityType": "전송 암호화 방식",
+    "securityTypeDesc": "포트에 맞는 연결 암호화 방식. 대부분의 클라우드 메일은 SSL 사용",
+    "security": {
+      "ssl": "SSL/TLS",
+      "starttls": "STARTTLS",
+      "none": "평문"
+    },
+    "timeout": "타임아웃",
+    "timeoutDesc": "SMTP 연결 및 읽기/쓰기 타임아웃",
+    "unit": {
+      "seconds": "초"
+    },
+    "username": "발신자 메일 계정",
+    "usernameDesc": "SMTP 로그인 사용자 이름. 일반적으로 발신자 메일 주소",
+    "inputUsername": "발신자 메일 계정을 입력하세요",
+    "password": "SMTP 인증 코드",
+    "passwordDesc": "메일 서비스 제공자가 생성한 인증 코드(로그인 비밀번호 아님). 변경하지 않으면 재입력 불필요",
+    "inputPassword": "SMTP 인증 코드를 입력하세요",
+    "from": "발신 주소",
+    "fromDesc": "발신 이메일의 발신자 주소. 비워두면 발신자 계정 사용",
+    "inputFrom": "발신 주소 입력(비워두면 발신자 계정 사용)",
+    "nickname": "발신자 표시 이름",
+    "nicknameDesc": "수신자에게 표시되는 발신자 이름 (예: \"DaxPay 플랫폼\")",
+    "inputNickname": "발신자 표시 이름을 입력하세요",
+    "confirmSaveContent": "메일 발신자 설정을 저장하시겠습니까?",
+    "testSend": "테스트 메일 발송",
+    "testSendSuccess": "테스트 메일이 발송되었습니다. 수신함을 확인하세요"
   }
 }

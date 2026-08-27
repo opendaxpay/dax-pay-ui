@@ -43,5 +43,30 @@
   "isTopRequired": "Harap konfirmasi apakah akan memasang pin",
   "effectiveTimeHelp": "Jika disetel, pemberitahuan akan terlihat setelah waktu ini. Biarkan kosong untuk menampilkannya segera setelah dipublikasikan.",
   "expireTimeHelp": "Jika disetel, pemberitahuan akan disembunyikan setelah waktu ini. Biarkan kosong untuk menyimpannya secara permanen.",
-  "confirmCloseContent": "Konten telah diubah. Buang perubahan dan tutup?"
+  "confirmCloseContent": "Konten telah diubah. Buang perubahan dan tutup?",
+  "mail": {
+    "receiverEmail": "Email penerima",
+    "inputReceiverEmail": "Masukkan email penerima",
+    "subjectField": "Subjek",
+    "contentField": "Isi email",
+    "businessType": "Jenis bisnis",
+    "businessTest": "Kirim uji",
+    "businessManual": "Kirim manual",
+    "status": "Status",
+    "statusSending": "Mengirim",
+    "statusSuccess": "Berhasil",
+    "statusFail": "Gagal",
+    "errorMsg": "Pesan galat",
+    "retryCount": "Jumlah coba ulang",
+    "sendTime": "Waktu kirim",
+    "createTime": "Dibuat pada",
+    "detailTitle": "Detail email",
+    "resend": "Kirim ulang",
+    "confirmResend": "Kirim ulang email ini?",
+    "confirmDelete": "Hapus catatan pengiriman ini?",
+    "testEmail": "Email penerima",
+    "inputTestEmail": "Masukkan email penerima uji",
+    "testEmailExtra": "Dikirim dengan konfigurasi pengirim tersimpan; perubahan yang belum disimpan tidak berlaku",
+    "emailInvalid": "Format email tidak valid"
+  }
 }

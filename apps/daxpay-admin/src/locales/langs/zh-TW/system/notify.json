@@ -43,5 +43,30 @@
   "isTopRequired": "請確認是否置頂",
   "effectiveTimeHelp": "設定後公告在該時間後才對使用者可見，不填則釋出後立即可見",
   "expireTimeHelp": "設定後公告在該時間後不再可見，不填則永久有效",
-  "confirmCloseContent": "正文內容已修改，確認放棄修改並關閉嗎？"
+  "confirmCloseContent": "正文內容已修改，確認放棄修改並關閉嗎？",
+  "mail": {
+    "receiverEmail": "收件信箱",
+    "inputReceiverEmail": "請輸入收件信箱",
+    "subjectField": "主旨",
+    "contentField": "郵件內文",
+    "businessType": "業務場景",
+    "businessTest": "測試發送",
+    "businessManual": "手動發送",
+    "status": "發送狀態",
+    "statusSending": "發送中",
+    "statusSuccess": "發送成功",
+    "statusFail": "發送失敗",
+    "errorMsg": "失敗原因",
+    "retryCount": "重試次數",
+    "sendTime": "發送時間",
+    "createTime": "建立時間",
+    "detailTitle": "郵件發送詳情",
+    "resend": "重發",
+    "confirmResend": "確認重發這封郵件嗎？",
+    "confirmDelete": "確認刪除這條發送記錄嗎？",
+    "testEmail": "收件信箱",
+    "inputTestEmail": "請輸入測試收件信箱",
+    "testEmailExtra": "使用已儲存的寄件設定發送, 未儲存的修改不生效",
+    "emailInvalid": "信箱格式不正確"
+  }
 }

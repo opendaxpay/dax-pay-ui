@@ -150,5 +150,49 @@
       "notConfigured": "未配置",
       "bucket": "存储桶: {bucket}"
     }
+  },
+  "mail": {
+    "title": "邮件配置",
+    "description": "管理平台邮件通知发件箱(SMTP)配置",
+    "section": {
+      "channel": "通道开关",
+      "server": "服务器配置",
+      "sender": "发件身份"
+    },
+    "enabled": "启用邮件通道",
+    "enabledDesc": "关闭后所有业务邮件发送将被跳过, 不影响测试发送",
+    "host": "SMTP服务器地址",
+    "hostDesc": "发件邮箱服务商的SMTP服务器地址, 如 smtp.example.com",
+    "inputHost": "请输入SMTP服务器地址",
+    "port": "SMTP服务器端口",
+    "portDesc": "SSL常用465, STARTTLS常用587, 明文25",
+    "inputPort": "请输入SMTP服务器端口",
+    "securityType": "传输加密方式",
+    "securityTypeDesc": "与端口匹配的连接加密方式, 绝大多数云邮箱使用SSL",
+    "security": {
+      "ssl": "SSL/TLS",
+      "starttls": "STARTTLS",
+      "none": "明文"
+    },
+    "timeout": "超时时间",
+    "timeoutDesc": "SMTP连接与读写超时时长",
+    "unit": {
+      "seconds": "秒"
+    },
+    "username": "发件邮箱账号",
+    "usernameDesc": "登录SMTP的用户名, 通常即发件邮箱地址",
+    "inputUsername": "请输入发件邮箱账号",
+    "password": "SMTP授权码",
+    "passwordDesc": "邮箱服务商生成的授权码(非登录密码), 未修改时保存不需要重新输入",
+    "inputPassword": "请输入SMTP授权码",
+    "from": "发件地址",
+    "fromDesc": "邮件的发件人地址, 留空时使用发件邮箱账号",
+    "inputFrom": "请输入发件地址(留空使用发件账号)",
+    "nickname": "发件人显示名",
+    "nicknameDesc": "收件人看到的发件人名称, 如 \"DaxPay 平台\"",
+    "inputNickname": "请输入发件人显示名",
+    "confirmSaveContent": "确定要保存邮件发件箱配置吗？",
+    "testSend": "发送测试邮件",
+    "testSendSuccess": "测试邮件已发送, 请注意查收"
   }
 }

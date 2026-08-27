@@ -111,5 +111,6 @@
   "menu.trade.transfer.trade": "Lịch sử chuyển khoản",
   "menu.trade.transfer.create": "Bắt đầu chuyển khoản",
   "menu.trade.transfer.channel": "Chuyển khoản kênh",
-  "menu.trade.allocOrder": "Đơn Phân Toán"
+  "menu.trade.allocOrder": "Đơn Phân Toán",
+  "menu.system.notify.mailRecord": "Bản ghi gửi email"
 }

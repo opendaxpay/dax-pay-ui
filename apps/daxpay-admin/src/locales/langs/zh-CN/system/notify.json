@@ -43,5 +43,30 @@
   "isTopRequired": "请确认是否置顶",
   "effectiveTimeHelp": "设置后公告在该时间后才对用户可见，不填则发布后立即可见",
   "expireTimeHelp": "设置后公告在该时间后不再可见，不填则永久有效",
-  "confirmCloseContent": "正文内容已修改，确认放弃修改并关闭吗？"
+  "confirmCloseContent": "正文内容已修改，确认放弃修改并关闭吗？",
+  "mail": {
+    "receiverEmail": "收件邮箱",
+    "inputReceiverEmail": "请输入收件邮箱",
+    "subjectField": "主题",
+    "contentField": "邮件正文",
+    "businessType": "业务场景",
+    "businessTest": "测试发送",
+    "businessManual": "手动发送",
+    "status": "发送状态",
+    "statusSending": "发送中",
+    "statusSuccess": "发送成功",
+    "statusFail": "发送失败",
+    "errorMsg": "失败原因",
+    "retryCount": "重试次数",
+    "sendTime": "发送时间",
+    "createTime": "创建时间",
+    "detailTitle": "邮件发送详情",
+    "resend": "重发",
+    "confirmResend": "确认重发这封邮件吗？",
+    "confirmDelete": "确认删除这条发送记录吗？",
+    "testEmail": "收件邮箱",
+    "inputTestEmail": "请输入测试收件邮箱",
+    "testEmailExtra": "使用已保存的发件箱配置发送, 未保存的修改不生效",
+    "emailInvalid": "邮箱格式不正确"
+  }
 }

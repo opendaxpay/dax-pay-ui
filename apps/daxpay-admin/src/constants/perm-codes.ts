@@ -285,12 +285,18 @@ export const PermCodes = {
       MANAGE: 'system:notify:notice:manage',
       PUBLISH: 'system:notify:notice:publish',
     },
+    MailRecord: {
+      VIEW: 'system:notify:mail-record:view',
+      MANAGE: 'system:notify:mail-record:manage',
+      RESEND: 'system:notify:mail-record:resend',
+    },
     File: {
       VIEW: 'system:file:view',
     },
     PlatformConfig: {
       VIEW: 'system:platform-config:view',
       MANAGE: 'system:platform-config:manage',
+      TEST: 'system:platform-config:test',
     },
     OssConfig: {
       VIEW: 'system:oss-config:view',

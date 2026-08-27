@@ -43,5 +43,30 @@
   "isTopRequired": "Vui lòng xác nhận có nên ghim hay không",
   "effectiveTimeHelp": "Nếu được đặt, thông báo sẽ hiển thị sau thời gian này. Để trống để hiển thị nó ngay sau khi xuất bản.",
   "expireTimeHelp": "Nếu được đặt, thông báo sẽ bị ẩn sau thời gian này. Để trống để giữ nó vĩnh viễn.",
-  "confirmCloseContent": "Nội dung đã được sửa đổi. Hủy các thay đổi và đóng?"
+  "confirmCloseContent": "Nội dung đã được sửa đổi. Hủy các thay đổi và đóng?",
+  "mail": {
+    "receiverEmail": "Email người nhận",
+    "inputReceiverEmail": "Nhập email người nhận",
+    "subjectField": "Chủ đề",
+    "contentField": "Nội dung email",
+    "businessType": "Loại nghiệp vụ",
+    "businessTest": "Gửi thử",
+    "businessManual": "Gửi thủ công",
+    "status": "Trạng thái",
+    "statusSending": "Đang gửi",
+    "statusSuccess": "Thành công",
+    "statusFail": "Thất bại",
+    "errorMsg": "Lỗi",
+    "retryCount": "Số lần thử lại",
+    "sendTime": "Thời gian gửi",
+    "createTime": "Thời gian tạo",
+    "detailTitle": "Chi tiết email",
+    "resend": "Gửi lại",
+    "confirmResend": "Gửi lại email này?",
+    "confirmDelete": "Xóa bản ghi gửi này?",
+    "testEmail": "Email người nhận",
+    "inputTestEmail": "Nhập email nhận kiểm tra",
+    "testEmailExtra": "Gửi bằng cấu hình người gửi đã lưu; thay đổi chưa lưu không có hiệu lực",
+    "emailInvalid": "Định dạng email không hợp lệ"
+  }
 }

@@ -150,5 +150,49 @@
       "notConfigured": "未構成",
       "bucket": "バケット: {bucket}"
     }
+  },
+  "mail": {
+    "title": "メール設定",
+    "description": "プラットフォームのメール通知送信元(SMTP)設定を管理",
+    "section": {
+      "channel": "チャネルスイッチ",
+      "server": "サーバー設定",
+      "sender": "送信者情報"
+    },
+    "enabled": "メールチャネルを有効化",
+    "enabledDesc": "無効化すると業務メールの送信はスキップされます(テスト送信には影響しません)",
+    "host": "SMTPサーバーアドレス",
+    "hostDesc": "メールプロバイダーのSMTPサーバーアドレス(例: smtp.example.com)",
+    "inputHost": "SMTPサーバーアドレスを入力してください",
+    "port": "SMTPサーバーポート",
+    "portDesc": "SSLは465、STARTTLSは587、平文は25が一般的",
+    "inputPort": "SMTPサーバーポートを入力してください",
+    "securityType": "传输暗号化方式",
+    "securityTypeDesc": "ポートに対応する接続暗号化方式。多くのクラウドメールではSSLを使用",
+    "security": {
+      "ssl": "SSL/TLS",
+      "starttls": "STARTTLS",
+      "none": "平文"
+    },
+    "timeout": "タイムアウト",
+    "timeoutDesc": "SMTP接続と読み書きのタイムアウト時間",
+    "unit": {
+      "seconds": "秒"
+    },
+    "username": "送信者メールアカウント",
+    "usernameDesc": "SMTPログインのユーザー名。通常は送信者メールアドレス",
+    "inputUsername": "送信者メールアカウントを入力してください",
+    "password": "SMTP認証コード",
+    "passwordDesc": "メールプロバイダーが発行する認証コード(ログインパスワードではありません)。未変更の場合は再入力不要",
+    "inputPassword": "SMTP認証コードを入力してください",
+    "from": "送信元アドレス",
+    "fromDesc": "メールの送信元アドレス。空欄の場合は送信者アカウントを使用",
+    "inputFrom": "送信元アドレスを入力(空欄で送信者アカウントを使用)",
+    "nickname": "送信者表示名",
+    "nicknameDesc": "受信者に表示される送信者名(例: 「DaxPay プラットフォーム」)",
+    "inputNickname": "送信者表示名を入力してください",
+    "confirmSaveContent": "メール送信元設定を保存しますか？",
+    "testSend": "テストメールを送信",
+    "testSendSuccess": "テストメールを送信しました。受信をご確認ください"
   }
 }

@@ -111,5 +111,6 @@
   "menu.trade.transfer.trade": "ประวัติการโอนเงิน",
   "menu.trade.transfer.create": "เริ่มการโอนเงิน",
   "menu.trade.transfer.channel": "การโอนเงินตามช่องทาง",
-  "menu.trade.allocOrder": "คำสั่งแบ่งเงิน"
+  "menu.trade.allocOrder": "คำสั่งแบ่งเงิน",
+  "menu.system.notify.mailRecord": "บันทึกการส่งอีเมล"
 }

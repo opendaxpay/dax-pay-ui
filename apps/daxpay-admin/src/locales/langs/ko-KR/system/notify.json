@@ -43,5 +43,30 @@
   "isTopRequired": "고정 여부를 확인해 주세요.",
   "effectiveTimeHelp": "설정하면 이 시간 이후에 알림이 표시됩니다. 게시 후 즉시 표시하려면 비워 두세요.",
   "expireTimeHelp": "설정하면 이 시간 이후에는 알림이 숨겨집니다. 영구적으로 보관하려면 비워 두세요.",
-  "confirmCloseContent": "내용이 수정되었습니다. 변경사항을 취소하고 닫으시겠습니까?"
+  "confirmCloseContent": "내용이 수정되었습니다. 변경사항을 취소하고 닫으시겠습니까?",
+  "mail": {
+    "receiverEmail": "수신자 메일",
+    "inputReceiverEmail": "수신자 메일을 입력하세요",
+    "subjectField": "제목",
+    "contentField": "메일 본문",
+    "businessType": "업무 유형",
+    "businessTest": "테스트 발송",
+    "businessManual": "수동 발송",
+    "status": "발송 상태",
+    "statusSending": "발송 중",
+    "statusSuccess": "발송 성공",
+    "statusFail": "발송 실패",
+    "errorMsg": "실패 사유",
+    "retryCount": "재시도 횟수",
+    "sendTime": "발송 시간",
+    "createTime": "생성 시간",
+    "detailTitle": "메일 발송 상세",
+    "resend": "재발송",
+    "confirmResend": "이 메일을 재발송하시겠습니까?",
+    "confirmDelete": "이 발송 기록을 삭제하시겠습니까?",
+    "testEmail": "수신자 메일",
+    "inputTestEmail": "테스트 수신 메일을 입력하세요",
+    "testEmailExtra": "저장된 발신자 설정으로 발송됩니다. 저장되지 않은 변경 사항은 적용되지 않습니다",
+    "emailInvalid": "메일 주소 형식이 올바르지 않습니다"
+  }
 }

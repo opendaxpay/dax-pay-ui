@@ -43,5 +43,30 @@
   "isTopRequired": "Sila sahkan sama ada hendak menyemat",
   "effectiveTimeHelp": "Jika ditetapkan, notis itu akan kelihatan selepas masa ini. Biarkan kosong untuk menunjukkannya serta-merta selepas diterbitkan.",
   "expireTimeHelp": "Jika ditetapkan, notis itu disembunyikan selepas masa ini. Biarkan kosong untuk menyimpannya secara kekal.",
-  "confirmCloseContent": "Kandungan telah diubah suai. Buang perubahan dan tutup?"
+  "confirmCloseContent": "Kandungan telah diubah suai. Buang perubahan dan tutup?",
+  "mail": {
+    "receiverEmail": "E-mel penerima",
+    "inputReceiverEmail": "Masukkan e-mel penerima",
+    "subjectField": "Subjek",
+    "contentField": "Kandungan e-mel",
+    "businessType": "Jenis perniagaan",
+    "businessTest": "Hantar uji",
+    "businessManual": "Hantar manual",
+    "status": "Status",
+    "statusSending": "Menghantar",
+    "statusSuccess": "Berjaya",
+    "statusFail": "Gagal",
+    "errorMsg": "Mesej ralat",
+    "retryCount": "Bilangan cuba semula",
+    "sendTime": "Masa hantar",
+    "createTime": "Dicipta pada",
+    "detailTitle": "Butiran e-mel",
+    "resend": "Hantar semula",
+    "confirmResend": "Hantar semula e-mel ini?",
+    "confirmDelete": "Padam rekod penghantaran ini?",
+    "testEmail": "E-mel penerima",
+    "inputTestEmail": "Masukkan e-mel penerima ujian",
+    "testEmailExtra": "Dihantar dengan konfigurasi penghantar tersimpan; perubahan yang belum disimpan tidak terpakai",
+    "emailInvalid": "Format e-mel tidak sah"
+  }
 }

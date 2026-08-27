@@ -111,5 +111,6 @@
   "menu.trade.transfer.trade": "Transfer Records",
   "menu.trade.transfer.create": "Initiate Transfer",
   "menu.trade.transfer.channel": "Channel Transfers",
-  "menu.trade.allocOrder": "Allocation Orders"
+  "menu.trade.allocOrder": "Allocation Orders",
+  "menu.system.notify.mailRecord": "Mail Send Records"
 }

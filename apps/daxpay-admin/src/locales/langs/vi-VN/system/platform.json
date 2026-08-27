@@ -150,5 +150,49 @@
       "notConfigured": "Chưa được định cấu hình",
       "bucket": "Nhóm: {bucket}"
     }
+  },
+  "mail": {
+    "title": "Cấu hình Email",
+    "description": "Quản lý cấu hình người gửi thông báo email nền tảng (SMTP)",
+    "section": {
+      "channel": "Công tắc kênh",
+      "server": "Máy chủ",
+      "sender": "Danh tính người gửi"
+    },
+    "enabled": "Bật kênh email",
+    "enabledDesc": "Khi tắt, mọi email nghiệp vụ sẽ bị bỏ qua; gửi thử không bị ảnh hưởng",
+    "host": "Địa chỉ máy chủ SMTP",
+    "hostDesc": "Địa chỉ máy chủ SMTP của nhà cung cấp, vd: smtp.example.com",
+    "inputHost": "Nhập địa chỉ máy chủ SMTP",
+    "port": "Cổng máy chủ SMTP",
+    "portDesc": "465 cho SSL, 587 cho STARTTLS, 25 cho không mã hóa",
+    "inputPort": "Nhập cổng máy chủ SMTP",
+    "securityType": "Bảo mật truyền tải",
+    "securityTypeDesc": "Mã hóa kết nối tương ứng với cổng; hầu hết email đám mây dùng SSL",
+    "security": {
+      "ssl": "SSL/TLS",
+      "starttls": "STARTTLS",
+      "none": "Không mã hóa"
+    },
+    "timeout": "Thời gian chờ",
+    "timeoutDesc": "Thời gian chờ kết nối và đọc/ghi SMTP",
+    "unit": {
+      "seconds": "giây"
+    },
+    "username": "Tài khoản email người gửi",
+    "usernameDesc": "Tên đăng nhập SMTP, thường là địa chỉ email người gửi",
+    "inputUsername": "Nhập tài khoản email người gửi",
+    "password": "Mã xác thực SMTP",
+    "passwordDesc": "Mã cấp phép do nhà cung cấp tạo (không phải mật khẩu đăng nhập); không cần nhập lại nếu không đổi",
+    "inputPassword": "Nhập mã xác thực SMTP",
+    "from": "Địa chỉ người gửi",
+    "fromDesc": "Địa chỉ người gửi email; để trống dùng tài khoản người gửi",
+    "inputFrom": "Nhập địa chỉ người gửi (để trống dùng tài khoản người gửi)",
+    "nickname": "Tên hiển thị người gửi",
+    "nicknameDesc": "Tên người gửi hiển thị với người nhận, vd: \"Nền tảng DaxPay\"",
+    "inputNickname": "Nhập tên hiển thị người gửi",
+    "confirmSaveContent": "Lưu cấu hình người gửi email?",
+    "testSend": "Gửi email kiểm tra",
+    "testSendSuccess": "Email kiểm tra đã được gửi, vui lòng kiểm tra hộp thư"
   }
 }

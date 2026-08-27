@@ -150,5 +150,49 @@
       "notConfigured": "未配置",
       "bucket": "儲存桶: {bucket}"
     }
+  },
+  "mail": {
+    "title": "郵件設定",
+    "description": "管理平台郵件通知寄件設定(SMTP)",
+    "section": {
+      "channel": "通道開關",
+      "server": "伺服器設定",
+      "sender": "寄件身份"
+    },
+    "enabled": "啟用郵件通道",
+    "enabledDesc": "關閉後所有業務郵件發送將被跳過, 不影響測試發送",
+    "host": "SMTP伺服器位址",
+    "hostDesc": "寄件信箱服務商的SMTP伺服器位址, 如 smtp.example.com",
+    "inputHost": "請輸入SMTP伺服器位址",
+    "port": "SMTP伺服器連接埠",
+    "portDesc": "SSL常用465, STARTTLS常用587, 明文25",
+    "inputPort": "請輸入SMTP伺服器連接埠",
+    "securityType": "傳輸加密方式",
+    "securityTypeDesc": "與連接埠匹配的連線加密方式, 絕大多數雲端信箱使用SSL",
+    "security": {
+      "ssl": "SSL/TLS",
+      "starttls": "STARTTLS",
+      "none": "明文"
+    },
+    "timeout": "逾時時間",
+    "timeoutDesc": "SMTP連線與讀寫逾時時長",
+    "unit": {
+      "seconds": "秒"
+    },
+    "username": "寄件信箱帳號",
+    "usernameDesc": "登入SMTP的使用者名稱, 通常即寄件信箱地址",
+    "inputUsername": "請輸入寄件信箱帳號",
+    "password": "SMTP授權碼",
+    "passwordDesc": "信箱服務商產生的授權碼(非登入密碼), 未修改時儲存不需要重新輸入",
+    "inputPassword": "請輸入SMTP授權碼",
+    "from": "寄件地址",
+    "fromDesc": "郵件的寄件人地址, 留空時使用寄件信箱帳號",
+    "inputFrom": "請輸入寄件地址(留空使用寄件帳號)",
+    "nickname": "寄件人顯示名稱",
+    "nicknameDesc": "收件人看到的寄件人名稱, 如 \"DaxPay 平台\"",
+    "inputNickname": "請輸入寄件人顯示名稱",
+    "confirmSaveContent": "確定要儲存郵件寄件設定嗎？",
+    "testSend": "發送測試郵件",
+    "testSendSuccess": "測試郵件已發送, 請注意查收"
   }
 }

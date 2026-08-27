@@ -43,5 +43,30 @@
   "isTopRequired": "Please confirm whether to pin",
   "effectiveTimeHelp": "If set, the notice becomes visible after this time. Leave empty to show it immediately after publishing.",
   "expireTimeHelp": "If set, the notice is hidden after this time. Leave empty to keep it permanently.",
-  "confirmCloseContent": "Content has been modified. Discard changes and close?"
+  "confirmCloseContent": "Content has been modified. Discard changes and close?",
+  "mail": {
+    "receiverEmail": "Recipient email",
+    "inputReceiverEmail": "Enter recipient email",
+    "subjectField": "Subject",
+    "contentField": "Email body",
+    "businessType": "Business type",
+    "businessTest": "Test send",
+    "businessManual": "Manual send",
+    "status": "Status",
+    "statusSending": "Sending",
+    "statusSuccess": "Success",
+    "statusFail": "Failed",
+    "errorMsg": "Error message",
+    "retryCount": "Retries",
+    "sendTime": "Send time",
+    "createTime": "Created at",
+    "detailTitle": "Email detail",
+    "resend": "Resend",
+    "confirmResend": "Resend this email?",
+    "confirmDelete": "Delete this send record?",
+    "testEmail": "Recipient email",
+    "inputTestEmail": "Enter test recipient email",
+    "testEmailExtra": "Sent with the saved sender config; unsaved changes do not apply",
+    "emailInvalid": "Invalid email format"
+  }
 }

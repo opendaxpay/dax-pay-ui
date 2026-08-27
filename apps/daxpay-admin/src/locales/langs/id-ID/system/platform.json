@@ -150,5 +150,49 @@
       "notConfigured": "Tidak Dikonfigurasi",
       "bucket": "Ember: {bucket}"
     }
+  },
+  "mail": {
+    "title": "Konfigurasi Email",
+    "description": "Kelola konfigurasi pengirim notifikasi email platform (SMTP)",
+    "section": {
+      "channel": "Sakelar kanal",
+      "server": "Server",
+      "sender": "Identitas pengirim"
+    },
+    "enabled": "Aktifkan kanal email",
+    "enabledDesc": "Jika dinonaktifkan, semua email bisnis dilewati; kirim uji tidak terpengaruh",
+    "host": "Alamat server SMTP",
+    "hostDesc": "Alamat server SMTP penyedia email, mis. smtp.example.com",
+    "inputHost": "Masukkan alamat server SMTP",
+    "port": "Port server SMTP",
+    "portDesc": "465 untuk SSL, 587 untuk STARTTLS, 25 untuk tanpa enkripsi",
+    "inputPort": "Masukkan port server SMTP",
+    "securityType": "Keamanan transport",
+    "securityTypeDesc": "Enkripsi koneksi yang sesuai dengan port; sebagian besar email awan menggunakan SSL",
+    "security": {
+      "ssl": "SSL/TLS",
+      "starttls": "STARTTLS",
+      "none": "Tanpa enkripsi"
+    },
+    "timeout": "Timeout",
+    "timeoutDesc": "Batas waktu koneksi dan baca/tulis SMTP",
+    "unit": {
+      "seconds": "detik"
+    },
+    "username": "Akun email pengirim",
+    "usernameDesc": "Nama pengguna login SMTP, biasanya alamat email pengirim",
+    "inputUsername": "Masukkan akun email pengirim",
+    "password": "Kode autentikasi SMTP",
+    "passwordDesc": "Kode otorisasi dari penyedia email (bukan kata sandi login); tidak perlu diisi ulang jika tidak berubah",
+    "inputPassword": "Masukkan kode autentikasi SMTP",
+    "from": "Alamat pengirim",
+    "fromDesc": "Alamat pengirim email; kosongkan untuk menggunakan akun pengirim",
+    "inputFrom": "Masukkan alamat pengirim (kosongkan untuk akun pengirim)",
+    "nickname": "Nama tampilan pengirim",
+    "nicknameDesc": "Nama pengirim yang dilihat penerima, mis. \"Platform DaxPay\"",
+    "inputNickname": "Masukkan nama tampilan pengirim",
+    "confirmSaveContent": "Simpan konfigurasi pengirim email?",
+    "testSend": "Kirim Email Uji",
+    "testSendSuccess": "Email uji terkirim, silakan periksa kotak masuk"
   }
 }

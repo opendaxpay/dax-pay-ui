@@ -43,5 +43,30 @@
   "isTopRequired": "ピン留めするかどうかを確認してください",
   "effectiveTimeHelp": "設定すると、この時間が経過すると通知が表示されるようになります。公開直後に表示するには、空のままにします。",
   "expireTimeHelp": "設定すると、この時間が経過すると通知が非表示になります。永久に保持するには空のままにします。",
-  "confirmCloseContent": "内容が変更されました。変更を破棄して閉じますか?"
+  "confirmCloseContent": "内容が変更されました。変更を破棄して閉じますか?",
+  "mail": {
+    "receiverEmail": "受信者メール",
+    "inputReceiverEmail": "受信者メールを入力してください",
+    "subjectField": "件名",
+    "contentField": "メール本文",
+    "businessType": "業務種別",
+    "businessTest": "テスト送信",
+    "businessManual": "手動送信",
+    "status": "送信状態",
+    "statusSending": "送信中",
+    "statusSuccess": "送信成功",
+    "statusFail": "送信失敗",
+    "errorMsg": "失敗理由",
+    "retryCount": "再試行回数",
+    "sendTime": "送信時間",
+    "createTime": "作成時間",
+    "detailTitle": "メール送信詳細",
+    "resend": "再送",
+    "confirmResend": "このメールを再送しますか？",
+    "confirmDelete": "この送信記録を削除しますか？",
+    "testEmail": "受信者メール",
+    "inputTestEmail": "テスト用受信メールを入力してください",
+    "testEmailExtra": "保存済みの送信元設定で送信されます。未保存の変更は適用されません",
+    "emailInvalid": "メールアドレスの形式が不正です"
+  }
 }

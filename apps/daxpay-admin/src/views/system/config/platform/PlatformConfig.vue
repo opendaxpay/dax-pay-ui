@@ -3,6 +3,7 @@
 
   import { $t } from '#/locales';
 
+  import MailConfigForm from './mail/MailConfigForm.vue';
   import OssConfigForm from './oss/OssConfigForm.vue';
   import SensitiveWordConfigForm from './sensitive-word/SensitiveWordConfigForm.vue';
   import UrlConfigForm from './url/UrlConfigForm.vue';
@@ -34,6 +35,13 @@
       label: $t('system.platform.oss.title'),
       // OSS配置描述
       description: $t('system.platform.oss.description'),
+    },
+    {
+      key: 'mail',
+      // 邮件配置标题
+      label: $t('system.platform.mail.title'),
+      // 邮件配置描述
+      description: $t('system.platform.mail.description'),
     },
     {
       key: 'sensitive-word',
@@ -74,6 +82,7 @@
           <UrlConfigForm v-if="activeKey === 'url'" />
           <WebsiteConfigForm v-if="activeKey === 'website'" />
           <OssConfigForm v-if="activeKey === 'oss'" />
+          <MailConfigForm v-if="activeKey === 'mail'" />
           <SensitiveWordConfigForm v-if="activeKey === 'sensitive-word'" />
         </div>
       </section>

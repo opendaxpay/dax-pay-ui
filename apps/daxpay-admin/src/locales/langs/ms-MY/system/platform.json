@@ -150,5 +150,49 @@
       "notConfigured": "Tidak Dikonfigurasikan",
       "bucket": "Baldi: {bucket}"
     }
+  },
+  "mail": {
+    "title": "Konfigurasi E-mel",
+    "description": "Urus konfigurasi penghantar notifikasi e-mel platform (SMTP)",
+    "section": {
+      "channel": "Suis saluran",
+      "server": "Pelayan",
+      "sender": "Identiti penghantar"
+    },
+    "enabled": "Aktifkan saluran e-mel",
+    "enabledDesc": "Apabila dilumpuhkan, semua e-mel perniagaan dilangkau; hantar uji tidak terjejas",
+    "host": "Alamat pelayan SMTP",
+    "hostDesc": "Alamat pelayan SMTP pembekal, cth. smtp.example.com",
+    "inputHost": "Masukkan alamat pelayan SMTP",
+    "port": "Port pelayan SMTP",
+    "portDesc": "465 untuk SSL, 587 untuk STARTTLS, 25 untuk tanpa penyulitan",
+    "inputPort": "Masukkan port pelayan SMTP",
+    "securityType": "Keselamatan penghantaran",
+    "securityTypeDesc": "Penyulitan sambungan yang sepadan dengan port; kebanyakan e-mel awan menggunakan SSL",
+    "security": {
+      "ssl": "SSL/TLS",
+      "starttls": "STARTTLS",
+      "none": "Tanpa penyulitan"
+    },
+    "timeout": "Had masa",
+    "timeoutDesc": "Had masa sambungan dan baca/tulis SMTP",
+    "unit": {
+      "seconds": "saat"
+    },
+    "username": "Akaun e-mel penghantar",
+    "usernameDesc": "Nama pengguna log masuk SMTP, biasanya alamat e-mel penghantar",
+    "inputUsername": "Masukkan akaun e-mel penghantar",
+    "password": "Kod pengesahan SMTP",
+    "passwordDesc": "Kod kebenaran daripada pembekal (bukan kata laluan log masuk); tidak perlu dimasukkan semula jika tidak berubah",
+    "inputPassword": "Masukkan kod pengesahan SMTP",
+    "from": "Alamat penghantar",
+    "fromDesc": "Alamat penghantar e-mel; kosongkan untuk menggunakan akaun penghantar",
+    "inputFrom": "Masukkan alamat penghantar (kosongkan untuk akaun penghantar)",
+    "nickname": "Nama paparan penghantar",
+    "nicknameDesc": "Nama penghantar yang dilihat penerima, cth. \"Platform DaxPay\"",
+    "inputNickname": "Masukkan nama paparan penghantar",
+    "confirmSaveContent": "Simpan konfigurasi penghantar e-mel?",
+    "testSend": "Hantar E-mel Ujian",
+    "testSendSuccess": "E-mel ujian telah dihantar, sila semak kotak masuk"
   }
 }

@@ -111,5 +111,6 @@
   "menu.trade.transfer.trade": "轉帳記錄",
   "menu.trade.transfer.create": "發起轉帳",
   "menu.trade.transfer.channel": "通道轉帳",
-  "menu.trade.allocOrder": "分帳訂單"
+  "menu.trade.allocOrder": "分帳訂單",
+  "menu.system.notify.mailRecord": "郵件發送記錄"
 }
