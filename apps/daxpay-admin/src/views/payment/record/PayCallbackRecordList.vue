@@ -42,6 +42,8 @@
     { label: $t('payment.record.callbackRecord.typeRefund'), value: 'refund' },
     // 转账
     { label: $t('payment.record.callbackRecord.typeTransfer'), value: 'transfer' },
+    // 分账
+    { label: $t('payment.record.callbackRecord.typeAlloc'), value: 'alloc' },
   ]);
 
   // 支付产品
@@ -106,6 +108,7 @@
     if (type === 'pay') return $t('payment.record.callbackRecord.typePay');
     if (type === 'refund') return $t('payment.record.callbackRecord.typeRefund');
     if (type === 'transfer') return $t('payment.record.callbackRecord.typeTransfer');
+    if (type === 'alloc') return $t('payment.record.callbackRecord.typeAlloc');
     return type || '-';
   }
 

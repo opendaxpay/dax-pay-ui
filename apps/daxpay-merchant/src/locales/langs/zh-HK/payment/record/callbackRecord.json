@@ -12,6 +12,7 @@
   "typePay": "支付",
   "typeRefund": "退款",
   "typeTransfer": "轉帳",
+  "typeAlloc": "分賬",
   "detail": "回調詳情",
   "channelMchNo": "通道商戶",
   "placeholderChannelMchNo": "請輸入通道商戶號",

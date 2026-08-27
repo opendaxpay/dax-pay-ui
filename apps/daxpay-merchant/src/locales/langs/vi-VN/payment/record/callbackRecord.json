@@ -12,6 +12,7 @@
   "typePay": "Thanh toán",
   "typeRefund": "Hoàn tiền",
   "typeTransfer": "Chuyển khoản",
+  "typeAlloc": "Phân toán",
   "detail": "Chi tiết callback",
   "channelMchNo": "Người bán kênh",
   "placeholderChannelMchNo": "Nhập mã merchant kênh",

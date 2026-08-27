@@ -12,6 +12,7 @@
   "typePay": "Pay",
   "typeRefund": "Refund",
   "typeTransfer": "Transfer",
+  "typeAlloc": "Allocation",
   "detail": "Callback Detail",
   "channelMchNo": "Channel Merchant",
   "placeholderChannelMchNo": "Enter channel merchant no.",

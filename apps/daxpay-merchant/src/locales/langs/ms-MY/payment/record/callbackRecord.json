@@ -12,6 +12,7 @@
   "typePay": "Bayar",
   "typeRefund": "Bayaran Balik",
   "typeTransfer": "Pemindahan",
+  "typeAlloc": "Pengasingan",
   "detail": "Butiran Callback",
   "channelMchNo": "Peniaga Saluran",
   "placeholderChannelMchNo": "Masukkan no. pedagang saluran",
