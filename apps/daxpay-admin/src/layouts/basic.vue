@@ -11,9 +11,8 @@
   import { useAccessStore, useUserStore } from '@vben/stores';
   import { formatDateTime } from '@vben/utils';
 
-  import { MdPreview } from 'md-editor-v3';
-
   import { LoginExpiredModal } from '#/components/login-expired-modal';
+  import { NotifyDetailModal } from '#/components/notify';
   import { TimezonePicker } from '#/components/timezone';
   import { useMessage } from '#/hooks/useMessage';
   import { HOME_PATH } from '#/router/routes';
@@ -22,15 +21,12 @@
   import LoginForm from '#/views/_core/authentication/login.vue';
   import { LockScreen, UserDropdown } from '#/widgets/user-dropdown';
 
-  import 'md-editor-v3/lib/style.css';
-  import 'md-editor-v3/lib/preview.css';
-
   const notifyStore = useNotifyStore();
   const { message } = useMessage();
 
-  // 铃铛"查看正文"弹窗
+  // 铃铛"查看正文"弹窗(正文由组件内请求完整详情)
   const detailOpen = ref(false);
-  const detail = ref<NotificationItem>();
+  const viewTarget = ref<null | { id: string; type: string }>(null);
 
   // 通知项(公告 + 个人消息), 适配铃铛组件结构
   const notifications = computed<NotificationItem[]>(() =>
@@ -92,9 +88,10 @@
 
   // 点击铃铛通知项查看正文(查看即标记已读)
   function handleView(item: NotificationItem) {
-    detail.value = item;
+    if (!item.type || !item.id) return;
+    viewTarget.value = { id: String(item.id), type: item.type };
     detailOpen.value = true;
-    if (!item.isRead && item.type && item.id) {
+    if (!item.isRead) {
       notifyStore.markRead(item.type, String(item.id));
     }
   }
@@ -158,8 +155,6 @@
       <LockScreen :text="userStore.userInfo?.name" @to-login="handleLogout" />
     </template>
   </BasicLayout>
-  <!-- 铃铛通知正文查看弹窗 -->
-  <a-modal :open="detailOpen" :title="detail?.title" :footer="null" width="800" @cancel="detailOpen = false">
-    <MdPreview v-if="detail" :model-value="detail.message ?? ''" />
-  </a-modal>
+  <!-- 铃铛通知正文查看弹窗(与通知中心列表页共用同一详情组件) -->
+  <NotifyDetailModal v-model:open="detailOpen" :target="viewTarget" />
 </template>

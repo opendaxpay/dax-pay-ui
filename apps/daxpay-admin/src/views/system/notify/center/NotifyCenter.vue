@@ -4,16 +4,11 @@
   import { onMounted, ref } from 'vue';
 
   import { $t } from '@vben/locales';
-  import { formatDateTime } from '@vben/utils';
-
-  import { MdPreview } from 'md-editor-v3';
 
   import { NotifyUserApi } from '#/api/system/notify/user.api';
+  import { NotifyDetailModal } from '#/components/notify';
   import { useMessage } from '#/hooks/useMessage';
   import { useNotifyStore } from '#/store/notify';
-
-  import 'md-editor-v3/lib/style.css';
-  import 'md-editor-v3/lib/preview.css';
 
   const store = useNotifyStore();
   const { confirm, message } = useMessage();
@@ -28,7 +23,8 @@
 
   // 详情弹窗
   const detailOpen = ref(false);
-  const detail = ref<NotifyNoticeBrief>();
+  // 详情查看目标(类型 + id), 正文由组件内请求完整详情
+  const viewTarget = ref<null | { id: string; type: string }>(null);
 
   /**
    * 类型文本
@@ -78,12 +74,11 @@
   }
 
   /**
-   * 查看正文(独立请求详情, 未读则自动标记已读)
+   * 查看正文(打开详情弹窗, 未读则自动标记已读)
    */
-  async function handleView(row: NotifyNoticeBrief) {
+  function handleView(row: NotifyNoticeBrief) {
     if (!row.type || !row.id) return;
-    const { data } = await NotifyUserApi.detail(row.type, row.id);
-    detail.value = data;
+    viewTarget.value = { id: row.id, type: row.type };
     detailOpen.value = true;
     // 以列表行阅读状态判定, 未读则标记(标记用原 row 的 type/id)
     if (!row.isRead) {
@@ -217,75 +212,7 @@
       </a-card>
     </div>
 
-    <!-- 正文详情 -->
-    <a-modal
-      :open="detailOpen"
-      :title="detail?.title"
-      :footer="null"
-      width="800"
-      :mask-closable="false"
-      :body-style="{ minHeight: '520px' }"
-      @cancel="detailOpen = false"
-    >
-      <div v-if="detail" class="notify-detail">
-        <!-- 元信息区: 类型/重要程度/置顶/创建时间 -->
-        <div class="notify-meta">
-          <!-- 类型 -->
-          <a-tag :color="detail.type === 'message' ? 'blue' : 'green'">{{ typeText(detail.type) }}</a-tag>
-          <!-- 重要程度 -->
-          <a-tag v-if="detail.severity === 'important'" color="red">{{ $t('system.notify.severityImportant') }}</a-tag>
-          <a-tag v-else color="default">{{ $t('system.notify.severityNormal') }}</a-tag>
-          <!-- 置顶 -->
-          <a-tag v-if="detail.isTop" color="gold">{{ $t('system.notify.isTop') }}</a-tag>
-          <!-- 创建时间 -->
-          <span class="meta-time">
-            <IconifyIcon icon="ant-design:clock-circle-outlined" class="meta-time-icon" />
-            {{ formatDateTime(detail.createTime) }}
-          </span>
-        </div>
-        <!-- 正文区(超出滚动) -->
-        <div class="notify-body">
-          <MdPreview :model-value="detail.message ?? ''" />
-        </div>
-      </div>
-    </a-modal>
+    <!-- 正文详情(共用组件: 元信息 + 完整正文) -->
+    <NotifyDetailModal v-model:open="detailOpen" :target="viewTarget" />
   </div>
 </template>
-
-<style scoped>
-  /* 详情弹窗: 固定最小高度, 内容多时正文区滚动 */
-  .notify-detail {
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* 元信息横排标签流 */
-  .notify-meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 16px;
-  }
-
-  .meta-time {
-    display: inline-flex;
-    align-items: center;
-    margin-left: auto;
-    color: #909399;
-    font-size: 13px;
-  }
-
-  .meta-time-icon {
-    margin-right: 4px;
-  }
-
-  /* 正文区: 限高滚动 + 浅灰卡片底 */
-  .notify-body {
-    max-height: calc(70vh - 200px);
-    overflow-y: auto;
-    padding: 16px;
-    background-color: #fafafa;
-    border-radius: 8px;
-  }
-</style>
