@@ -102,5 +102,6 @@
   "passkeyRenameSuccess": "名前を変更しました",
   "passkeyDeleteSuccess": "パスキーを削除しました",
   "passkeyUnsupported": "このブラウザはパスキーに対応していないか、安全なコンテキスト(HTTPS)ではありません。登録済みパスキーの管理は可能です",
-  "passkeyCreateFailed": "パスキーの作成に失敗しました。プラットフォーム設定のサイトドメインが現在アクセスしているドメインと一致しているか確認してください（例: localhost の場合は localhost でアクセス）"
+  "passkeyCreateFailed": "パスキーの作成に失敗しました。もう一度お試しください。解決しない場合は管理者にお問い合わせください",
+  "passkeyTlsBlocked": "現在のサイトの証明書がブラウザに信頼されていないため、パスキーは一時的に利用できません。管理者にお問い合わせください"
 }

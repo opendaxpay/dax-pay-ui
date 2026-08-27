@@ -38,6 +38,7 @@
   },
   "passkey": {
     "login": "Đăng nhập bằng passkey",
-    "failed": "Thao tác khóa truy cập thất bại. Hãy đảm bảo tên miền trang trong cài đặt nền tảng khớp với tên miền truy cập hiện tại (vd. \"localhost\" yêu cầu truy cập qua localhost)."
+    "failed": "Đăng nhập bằng khóa truy cập thất bại. Vui lòng thử lại hoặc đăng nhập bằng mật khẩu, và liên hệ quản trị viên nếu vẫn thất bại.",
+    "tlsBlocked": "Chứng chỉ của trang không được trình duyệt tin cậy nên đăng nhập bằng passkey tạm thời không khả dụng. Vui lòng đăng nhập bằng mật khẩu hoặc liên hệ quản trị viên."
   }
 }

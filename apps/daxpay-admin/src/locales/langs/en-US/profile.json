@@ -102,5 +102,6 @@
   "passkeyRenameSuccess": "Renamed",
   "passkeyDeleteSuccess": "Passkey deleted",
   "passkeyUnsupported": "Your browser does not support passkeys or the page is not in a secure context (HTTPS). You can still manage registered passkeys.",
-  "passkeyCreateFailed": "Failed to create a passkey. Make sure the site domain in platform settings matches the current site (e.g. domain \"localhost\" requires visiting via localhost)."
+  "passkeyCreateFailed": "Failed to create a passkey. Please try again, and contact the administrator if it keeps failing.",
+  "passkeyTlsBlocked": "The site certificate is not trusted by the browser, so passkeys are temporarily unavailable. Please contact the administrator."
 }

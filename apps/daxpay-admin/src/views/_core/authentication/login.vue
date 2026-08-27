@@ -148,18 +148,26 @@
     try {
       await authStore.passkeyLogin();
     } catch (error: unknown) {
-      // 请求层异常(如凭据验证失败)已由全局拦截器统一提示, 此处不重复弹错;
-      // 仅处理浏览器 WebAuthn 环节抛出的 DOMException:
+      // 请求层异常(如凭据验证失败)已由全局拦截器统一提示, 此处不重复弹错:
+      // 业务错误对象无 name, HTTP/网络错误为 AxiosError
+      // 注意不能用 instanceof DOMException 判断浏览器错误: @simplewebauthn/browser v13
+      // 会包装浏览器异常(保留 name/message、挂 cause), 包装后已不是 DOMException 实例
+      const name = (error as { name?: string })?.name ?? '';
+      console.warn('[passkey] 登录流程中断:', name, error);
+      if (!name || name === 'AxiosError') {
+        return;
+      }
+      const { message } = useMessage();
+      // 证书错误豁免页("高级→继续访问"自签证书)上浏览器禁用 WebAuthn, 同样抛 NotAllowedError
+      // (与用户取消撞名), 按 message 内容识别并给出明确指引
+      if (name === 'NotAllowedError' && /TLS certificate errors?/i.test((error as { message?: string })?.message ?? '')) {
+        message.error($t('_core.authentication.passkey.tlsBlocked'));
+        return;
+      }
       // NotAllowedError/AbortError 多为用户在系统弹窗主动取消, 静默返回;
-      // 其余为环境错误(如平台 rpId 与访问域名不匹配), 给出提示便于定位
-      if (error instanceof DOMException) {
-        console.warn('[passkey] 登录流程中断:', error.name, error);
-        if (error.name !== 'NotAllowedError' && error.name !== 'AbortError') {
-          const { message } = useMessage();
-          message.error($t('_core.authentication.passkey.failed'));
-        }
-      } else {
-        console.warn('[passkey] 登录流程异常:', error);
+      // 其余为环境错误(如平台 rpId 与访问域名不匹配的 SecurityError), 给出提示便于定位
+      if (name !== 'NotAllowedError' && name !== 'AbortError') {
+        message.error($t('_core.authentication.passkey.failed'));
       }
     }
   }

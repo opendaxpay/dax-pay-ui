@@ -6,6 +6,8 @@
   import { $t } from '@vben/locales';
   import { formatDateTime } from '@vben/utils';
 
+  import { IconifyIcon } from '@vben-core/icons';
+
   import { startRegistration } from '@simplewebauthn/browser';
 
   import { PasskeyApi } from '#/api/core/passkey.api';
@@ -111,10 +113,17 @@
       deviceName.value = '';
       namingVisible.value = true;
     } catch (error: unknown) {
-      // NotAllowedError/AbortError 多为用户在系统弹窗主动取消, 静默返回;
-      // 其余为环境错误(如平台 rpId 与访问域名不匹配), 给出提示便于定位
       const name = (error as { name?: string })?.name ?? '';
       console.warn('[passkey] 注册流程中断:', name, error);
+      // 证书错误豁免页("高级→继续访问"自签证书)上浏览器禁用 WebAuthn, 同样抛 NotAllowedError
+      // (与用户取消撞名), 按 message 内容识别并给出明确指引
+      const errorMessage = (error as { message?: string })?.message ?? '';
+      if (name === 'NotAllowedError' && /TLS certificate errors?/i.test(errorMessage)) {
+        message.error($t('profile.passkeyTlsBlocked'));
+        return;
+      }
+      // NotAllowedError/AbortError 多为用户在系统弹窗主动取消, 静默返回;
+      // 其余为环境错误(如平台 rpId 与访问域名不匹配), 给出提示便于定位
       if (name !== 'NotAllowedError' && name !== 'AbortError') {
         message.error($t('profile.passkeyCreateFailed'));
       }
@@ -236,10 +245,14 @@
         <div
           v-for="item in passkeyList"
           :key="item.id"
-          class="flex items-center justify-between border-b border-gray-100 py-3 last:border-0"
+          class="flex items-center justify-between rounded-lg px-3 py-3 transition-colors hover:bg-accent"
         >
-          <div class="flex items-center gap-3">
-            <div class="flex flex-col gap-1">
+          <div class="flex min-w-0 items-center gap-3">
+            <!-- 凭据图标(与登录页通行密钥入口同图标) -->
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+              <IconifyIcon class="text-xl text-primary" icon="lucide:fingerprint" />
+            </div>
+            <div class="flex min-w-0 flex-col gap-1">
               <div class="flex items-center gap-2">
                 <span class="text-base font-medium">{{ item.deviceName }}</span>
                 <!-- 同步状态标签 -->
@@ -262,19 +275,17 @@
               </div>
             </div>
           </div>
-          <a-space :size="2">
-            <template #separator>
-              <a-divider type="vertical" />
-            </template>
-            <a-button size="small" type="link" @click="handleRenameStart(item)">
+          <!-- 操作按钮(与三方账号卡片同款实心小按钮) -->
+          <div class="flex shrink-0 items-center gap-2">
+            <a-button size="small" @click="handleRenameStart(item)">
               <!-- 国际化：重命名 -->
               {{ $t('profile.passkeyRename') }}
             </a-button>
-            <a-button size="small" type="link" danger @click="handleDeleteStart(item)">
+            <a-button danger size="small" @click="handleDeleteStart(item)">
               <!-- 国际化：删除 -->
               {{ $t('profile.passkeyDelete') }}
             </a-button>
-          </a-space>
+          </div>
         </div>
       </div>
     </a-card>

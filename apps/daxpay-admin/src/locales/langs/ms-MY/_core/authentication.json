@@ -38,6 +38,7 @@
   },
   "passkey": {
     "login": "Log masuk dengan passkey",
-    "failed": "Operasi passkey gagal. Pastikan domain tapak dalam tetapan platform sepadan dengan domain akses semasa (cth. \"localhost\" memerlukan akses melalui localhost)."
+    "failed": "Log masuk dengan passkey gagal. Sila cuba lagi atau log masuk dengan kata laluan, dan hubungi pentadbir jika terus gagal.",
+    "tlsBlocked": "Sijil laman tidak dipercayai oleh pelayar jadi log masuk passkey tidak tersedia buat sementara. Sila log masuk dengan kata laluan atau hubungi pentadbir."
   }
 }

@@ -38,6 +38,7 @@
   },
   "passkey": {
     "login": "Sign in with passkey",
-    "failed": "Passkey operation failed. Make sure the site domain in platform settings matches the current site (e.g. domain \"localhost\" requires visiting via localhost)."
+    "failed": "Passkey sign-in failed. Please try again or sign in with your password, and contact the administrator if it keeps failing.",
+    "tlsBlocked": "The site certificate is not trusted by the browser, so passkey sign-in is temporarily unavailable. Please sign in with your password or contact the administrator."
   }
 }

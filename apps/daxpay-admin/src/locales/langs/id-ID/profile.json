@@ -102,5 +102,6 @@
   "passkeyRenameSuccess": "Nama diubah",
   "passkeyDeleteSuccess": "Passkey dihapus",
   "passkeyUnsupported": "Browser Anda tidak mendukung passkey atau halaman bukan konteks aman (HTTPS). Passkey terdaftar tetap dapat dikelola.",
-  "passkeyCreateFailed": "Gagal membuat passkey. Pastikan domain situs pada pengaturan platform cocok dengan domain akses saat ini (mis. \"localhost\" memerlukan akses via localhost)."
+  "passkeyCreateFailed": "Gagal membuat passkey. Silakan coba lagi dan hubungi administrator jika terus gagal.",
+  "passkeyTlsBlocked": "Sertifikat situs tidak dipercaya browser sehingga passkey sementara tidak tersedia. Silakan hubungi administrator."
 }

@@ -102,5 +102,6 @@
   "passkeyRenameSuccess": "已重命名",
   "passkeyDeleteSuccess": "通行密钥已删除",
   "passkeyUnsupported": "当前浏览器不支持通行密钥或页面非安全上下文(HTTPS)，仍可管理已绑定凭据",
-  "passkeyCreateFailed": "创建通行密钥失败，请确认平台配置的站点域名与当前访问域名一致（如配置 localhost 需以 localhost 访问）"
+  "passkeyCreateFailed": "创建通行密钥失败，请重试；若持续失败，请联系管理员",
+  "passkeyTlsBlocked": "当前站点证书不受浏览器信任，通行密钥暂不可用，请联系管理员"
 }

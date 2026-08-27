@@ -102,5 +102,6 @@
   "passkeyRenameSuccess": "Đã đổi tên",
   "passkeyDeleteSuccess": "Đã xóa khóa truy cập",
   "passkeyUnsupported": "Trình duyệt không hỗ trợ khóa truy cập hoặc trang không ở ngữ cảnh an toàn (HTTPS). Vẫn có thể quản lý khóa đã đăng ký.",
-  "passkeyCreateFailed": "Tạo khóa truy cập thất bại. Hãy đảm bảo tên miền trang trong cài đặt nền tảng khớp với tên miền truy cập hiện tại (vd. \"localhost\" yêu cầu truy cập qua localhost)."
+  "passkeyCreateFailed": "Tạo khóa truy cập thất bại. Vui lòng thử lại và liên hệ quản trị viên nếu vẫn thất bại.",
+  "passkeyTlsBlocked": "Chứng chỉ của trang không được trình duyệt tin cậy nên passkey tạm thời không khả dụng. Vui lòng liên hệ quản trị viên."
 }
