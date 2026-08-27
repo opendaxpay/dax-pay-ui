@@ -90,5 +90,8 @@
   "copyAll": "Sao chép tất cả",
   "newPassword": "Mật khẩu mới",
   "name": "Tên",
-  "passwordAutoGenPlaceholder": "Để trống để tự động tạo mật khẩu ban đầu ngẫu nhiên"
+  "passwordAutoGenPlaceholder": "Để trống để tự động tạo mật khẩu ban đầu ngẫu nhiên",
+  "remark": "Ghi chú",
+  "isDefault": "Mặc định",
+  "setDefault": "Đặt làm mặc định"
 }

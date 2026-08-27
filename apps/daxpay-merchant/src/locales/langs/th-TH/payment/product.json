@@ -20,6 +20,12 @@
     "hkrtPay": "HKRT จ่าย",
     "vbillPay": "วีบิล",
     "hmPay": "อืม",
-    "fuyouPay": "ฟู่ยู่ เพย์"
+    "fuyouPay": "ฟู่ยู่ เพย์",
+    "stripePay": "Stripe",
+    "shengPay": "เซิงเปย์",
+    "ysepPay": "YSEP จ่าย",
+    "quickPay": "จ่ายด่วน",
+    "yeePay": "Yee Pay",
+    "jeePay": "Jeepay"
   }
 }

@@ -1,0 +1,14 @@
+{
+  "typeCatalog": "カタログ",
+  "typeMenu": "メニュー",
+  "typeSubpage": "サブページ",
+  "typeSubpageGroup": "サブページグループ",
+  "typeEmbedded": "埋め込み",
+  "typeLink": "リンク",
+  "typeCatalogTip": "サイドバーグループコンテナ。ページをレンダリングしません。カタログ、メニュー、埋め込みページ、またはリンクを保持できます",
+  "typeMenuTip": "パスとコンポーネントを含むクリック可能なページ エントリ。サブページまたはサブページ グループを保持できる",
+  "typeSubpageTip": "メニューまたはグループの下にある隠しルート。サイドバーには表示されません（詳細/編集ページなど）",
+  "typeSubpageGroupTip": "サブページの論理グループ。ページはレンダリングされず、サイドバーにも表示されません",
+  "typeEmbeddedTip": "システム内に iframe 経由で外部ページを埋め込みます。 iframe URL が必要です",
+  "typeLinkTip": "新しいウィンドウで外部 URL を開きます。リンクURLが必要です"
+}

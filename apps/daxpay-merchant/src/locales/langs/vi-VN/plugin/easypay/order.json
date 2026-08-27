@@ -1,0 +1,68 @@
+{
+  "title": "Đơn hàng EasyPay",
+  "detail": "Chi tiết đơn hàng EasyPay",
+  "field": {
+    "orderId": "ID container liên quan",
+    "pid": "Mã merchant EasyPay",
+    "tradeNo": "Mã giao dịch nghiệp vụ nền tảng",
+    "outTradeNo": "Mã đơn hàng của merchant",
+    "apiTradeNo": "Mã đơn hàng kênh",
+    "type": "Phương thức thanh toán",
+    "status": "Trạng thái đơn hàng",
+    "addTime": "Thời gian tạo",
+    "endTime": "Thời gian hoàn tất",
+    "name": "Tên sản phẩm",
+    "money": "Số tiền (yuan)",
+    "refundMoney": "Đã hoàn tiền (yuan)",
+    "notifyUrl": "Địa chỉ thông báo không đồng bộ",
+    "returnUrl": "Địa chỉ chuyển hướng đồng bộ",
+    "param": "Tham số mở rộng nghiệp vụ",
+    "buyer": "Định danh người dùng thanh toán",
+    "clientIp": "IP máy khách",
+    "apiVersion": "Phiên bản API",
+    "pcCallType": "Kiểu gọi PC",
+    "payUrl": "Liên kết thanh toán",
+    "payBody": "Nội dung tham số thanh toán",
+    "createTime": "Thời gian tạo",
+    "merchant": "Merchant",
+    "appId": "ID ứng dụng"
+  },
+  "placeholder": {
+    "outTradeNo": "Nhập mã đơn hàng của merchant",
+    "tradeNo": "Nhập mã giao dịch nghiệp vụ nền tảng",
+    "name": "Nhập tên sản phẩm"
+  },
+  "status": {
+    "0": "Chờ thanh toán",
+    "1": "Đã thanh toán",
+    "success": "Đã thanh toán",
+    "pending": "Chờ thanh toán"
+  },
+  "statusColor": {
+    "0": "orange",
+    "1": "green"
+  },
+  "type": {
+    "alipay": "Alipay",
+    "wxpay": "WeChat Pay",
+    "aggregate": "Thanh toán tổng hợp"
+  },
+  "action": {
+    "sync": "Đồng bộ trạng thái",
+    "close": "Đóng đơn hàng",
+    "syncSuccess": "Đồng bộ thành công",
+    "closeSuccess": "Đóng thành công",
+    "syncConfirmTitle": "Xác nhận đồng bộ trạng thái",
+    "syncConfirmContent": "Sẽ chủ động truy vấn trạng thái mới nhất của đơn hàng này từ kênh thanh toán, tiếp tục?",
+    "closeConfirmTitle": "Xác nhận đóng đơn hàng",
+    "closeConfirmContent": "Sau khi đóng, đơn hàng sẽ không thể tiếp tục thanh toán, tiếp tục?"
+  },
+  "section": {
+    "basic": "Thông tin đơn hàng",
+    "time": "Thông tin thời gian",
+    "extra": "Thanh toán & Mở rộng",
+    "order": "Thông tin đơn hàng",
+    "app": "Ứng dụng & Giao thức",
+    "pay": "Thanh toán & Callback"
+  }
+}

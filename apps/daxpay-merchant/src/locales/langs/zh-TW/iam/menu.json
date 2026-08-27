@@ -1,0 +1,14 @@
+{
+  "typeCatalog": "目錄",
+  "typeMenu": "選單",
+  "typeSubpage": "子頁面",
+  "typeSubpageGroup": "子頁面分組",
+  "typeEmbedded": "內嵌頁",
+  "typeLink": "外鏈",
+  "typeCatalogTip": "側欄分組容器，本身不渲染頁面；可掛下級目錄、選單、內嵌頁或外鏈",
+  "typeMenuTip": "可點選的頁面入口，需配置路徑與元件；下級可掛子頁面或子頁面分組",
+  "typeSubpageTip": "掛在選單或分組下的隱藏路由頁，不出現在側欄，常用於詳情、編輯等",
+  "typeSubpageGroupTip": "子頁面的邏輯分組容器，不渲染頁面、不顯示在側欄",
+  "typeEmbeddedTip": "系統內通過 iframe 嵌入外部頁面，需填寫內嵌地址",
+  "typeLinkTip": "新視窗開啟外部連結，需填寫外鏈地址"
+}

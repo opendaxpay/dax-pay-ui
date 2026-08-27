@@ -20,6 +20,12 @@
     "hkrtPay": "HKRT trả tiền",
     "vbillPay": "Hóa đơn",
     "hmPay": "Hmpay",
-    "fuyouPay": "Fuyou Pay"
+    "fuyouPay": "Fuyou Pay",
+    "stripePay": "Stripe",
+    "shengPay": "Sheng Pay",
+    "ysepPay": "YSEP trả tiền",
+    "quickPay": "Thanh toán nhanh",
+    "yeePay": "Yee Pay",
+    "jeePay": "Jeepay"
   }
 }

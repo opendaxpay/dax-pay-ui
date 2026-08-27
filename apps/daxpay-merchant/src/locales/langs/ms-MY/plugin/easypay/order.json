@@ -1,0 +1,68 @@
+{
+  "title": "Pesanan EasyPay",
+  "detail": "Butiran Pesanan EasyPay",
+  "field": {
+    "orderId": "ID Bekas Berkaitan",
+    "pid": "No. Pedagang EasyPay",
+    "tradeNo": "No. Urus Niaga Platform",
+    "outTradeNo": "No. Pesanan Pedagang",
+    "apiTradeNo": "No. Pesanan Saluran",
+    "type": "Kaedah Bayaran",
+    "status": "Status Pesanan",
+    "addTime": "Waktu Dicipta",
+    "endTime": "Waktu Siap",
+    "name": "Nama Produk",
+    "money": "Amaun (Yuan)",
+    "refundMoney": "Bayaran Semula (Yuan)",
+    "notifyUrl": "Alamat Pemberitahuan Tak Segerak",
+    "returnUrl": "Alamat Pengalihan Segerak",
+    "param": "Parameter Lanjutan Perniagaan",
+    "buyer": "Penanda Pengguna Pembayar",
+    "clientIp": "IP Pelanggan",
+    "apiVersion": "Versi API",
+    "pcCallType": "Kaedah Panggilan PC",
+    "payUrl": "Pautan Bayaran",
+    "payBody": "Isi Parameter Bayaran",
+    "createTime": "Waktu Dicipta",
+    "merchant": "Pedagang",
+    "appId": "ID Aplikasi"
+  },
+  "placeholder": {
+    "outTradeNo": "Sila masukkan no. pesanan pedagang",
+    "tradeNo": "Sila masukkan no. urus niaga platform",
+    "name": "Sila masukkan nama produk"
+  },
+  "status": {
+    "0": "Menunggu Bayaran",
+    "1": "Telah Dibayar",
+    "success": "Telah Dibayar",
+    "pending": "Menunggu Bayaran"
+  },
+  "statusColor": {
+    "0": "orange",
+    "1": "green"
+  },
+  "type": {
+    "alipay": "Alipay",
+    "wxpay": "WeChat Pay",
+    "aggregate": "Bayaran Agregat"
+  },
+  "action": {
+    "sync": "Segerakkan Status",
+    "close": "Tutup Pesanan",
+    "syncSuccess": "Segerak berjaya",
+    "closeSuccess": "Tutup berjaya",
+    "syncConfirmTitle": "Sahkan Segerak Status",
+    "syncConfirmContent": "Status terkini pesanan ini akan disemak secara aktif kepada saluran bayaran, teruskan?",
+    "closeConfirmTitle": "Sahkan Tutup Pesanan",
+    "closeConfirmContent": "Selepas ditutup, pesanan tidak boleh dibayar lagi, teruskan?"
+  },
+  "section": {
+    "basic": "Maklumat Pesanan",
+    "time": "Maklumat Masa",
+    "extra": "Bayaran & Lanjutan",
+    "order": "Maklumat Pesanan",
+    "app": "Aplikasi & Protokol",
+    "pay": "Bayaran & Panggil Balik"
+  }
+}

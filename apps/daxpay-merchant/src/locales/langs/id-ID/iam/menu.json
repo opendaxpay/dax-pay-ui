@@ -1,0 +1,14 @@
+{
+  "typeCatalog": "Katalog",
+  "typeMenu": "Menu",
+  "typeSubpage": "Subhalaman",
+  "typeSubpageGroup": "Grup Subhalaman",
+  "typeEmbedded": "Tertanam",
+  "typeLink": "Link",
+  "typeCatalogTip": "Wadah grup sidebar; tidak merender halaman. Dapat menampung katalog, menu, halaman tersemat, atau link",
+  "typeMenuTip": "Entri halaman yang dapat diklik dengan jalur dan komponen. Dapat menampung subhalaman atau grup subhalaman",
+  "typeSubpageTip": "Rute tersembunyi di bawah menu atau grup; tidak ditampilkan di sidebar (misalnya halaman detail/edit)",
+  "typeSubpageGroupTip": "Grup logis untuk subhalaman; tidak ada halaman yang dirender dan tidak ditampilkan di sidebar",
+  "typeEmbeddedTip": "Sematkan halaman eksternal melalui iframe di dalam sistem; memerlukan URL iframe",
+  "typeLinkTip": "Buka URL eksternal di jendela baru; memerlukan URL tautan"
+}

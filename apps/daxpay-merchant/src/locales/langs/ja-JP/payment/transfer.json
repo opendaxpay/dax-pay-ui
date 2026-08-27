@@ -102,7 +102,9 @@
     "loginNameNameRequired": "ログインIDで受取る場合、受取人の氏名が必須です",
     "largeAmountReasonRequired": "振込金額が50,000元に達した場合、支払い理由の記入が必須です",
     "sceneRequired": "振込シーンを選択してください",
-    "phoneInvalid": "電話番号は11桁の数字である必要があります"
+    "phoneInvalid": "電話番号は11桁の数字である必要があります",
+    "titleRequired": "振込タイトルを入力してください(受取人に表示されます)",
+    "reportInfoRequired": "振込シーンの報備項目をすべて入力してください"
   },
   "confirmUrlCopied": "リンクをコピーしました",
   "confirmUrlCopyFailed": "コピー失敗",
@@ -116,5 +118,9 @@
   "scanGetPayee": "スキャンで取得",
   "scanAlipayTitle": "スキャンで受取人アカウントを取得",
   "scanAlipayTip": "受取人本人の支付宝でスキャンしてください。認証完了後、ユーザーIDが自動入力されます",
-  "scanAlipaySuccess": "受取人のユーザーIDを取得しました"
+  "scanAlipaySuccess": "受取人のユーザーIDを取得しました",
+  "scanGetOpenId": "スキャンで取得",
+  "scanOpenIdFailed": "認証の有効期限が切れました。QRコードを再生成してください",
+  "scanChannelMchRequired": "先にチャネル加盟店を選択してください",
+  "scanAppNotConfigured": "このチャネル加盟店に振込起動アプリが設定されていません。先に設定してください"
 }

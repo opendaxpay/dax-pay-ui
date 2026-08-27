@@ -20,6 +20,12 @@
     "hkrtPay": "Bayar HKRT",
     "vbillPay": "VBill",
     "hmPay": "Hmpay",
-    "fuyouPay": "Fuyou Bayar"
+    "fuyouPay": "Fuyou Bayar",
+    "stripePay": "Stripe",
+    "shengPay": "Sheng Pay",
+    "ysepPay": "Bayar YSEP",
+    "quickPay": "Bayar Cepat",
+    "yeePay": "Yee Bayar",
+    "jeePay": "Jeepay"
   }
 }

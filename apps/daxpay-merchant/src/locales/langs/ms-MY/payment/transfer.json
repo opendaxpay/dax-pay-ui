@@ -102,7 +102,9 @@
     "loginNameNameRequired": "Nama penerima wajib diisi apabila menggunakan ID log masuk",
     "largeAmountReasonRequired": "Sebab pembayaran wajib diisi apabila jumlah pindahan mencecah 50,000 yuan",
     "sceneRequired": "Sila pilih senario pindahan",
-    "phoneInvalid": "Nombor telefon mesti 11 digit"
+    "phoneInvalid": "Nombor telefon mesti 11 digit",
+    "titleRequired": "Sila masukkan tajuk pindah wang (dapat dilihat oleh penerima)",
+    "reportInfoRequired": "Sila isi semua medan laporan senario pindah wang"
   },
   "confirmUrlCopied": "Pautan disalin",
   "confirmUrlCopyFailed": "Salin gagal",
@@ -116,5 +118,9 @@
   "scanGetPayee": "Imbas untuk dapat",
   "scanAlipayTitle": "Imbas untuk dapatkan akaun penerima",
   "scanAlipayTip": "Minta penerima mengimbas dengan Alipay sendiri; ID pengguna akan diisi automatik selepas kebenaran",
-  "scanAlipaySuccess": "ID pengguna penerima berjaya diperoleh"
+  "scanAlipaySuccess": "ID pengguna penerima berjaya diperoleh",
+  "scanGetOpenId": "Imbas untuk Ambil",
+  "scanOpenIdFailed": "Kebenaran telah tamat tempoh, sila jana semula kod QR",
+  "scanChannelMchRequired": "Sila pilih merchant saluran dahulu",
+  "scanAppNotConfigured": "Aplikasi pindah wang belum dikonfigurasi untuk merchant saluran ini, sila konfigurasi dahulu"
 }

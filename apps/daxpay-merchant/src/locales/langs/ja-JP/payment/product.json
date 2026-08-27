@@ -20,6 +20,12 @@
     "hkrtPay": "香港RT支払い",
     "vbillPay": "Vビル",
     "hmPay": "ハムペイ",
-    "fuyouPay": "芙蓉ペイ"
+    "fuyouPay": "芙蓉ペイ",
+    "stripePay": "Stripe",
+    "shengPay": "シェンペイ",
+    "ysepPay": "YSEPペイ",
+    "quickPay": "クイックペイ",
+    "yeePay": "イーペイ",
+    "jeePay": "ジーペイ"
   }
 }

@@ -102,7 +102,9 @@
     "loginNameNameRequired": "로그인 ID로 수취할 때 수취인 이름이 필수입니다",
     "largeAmountReasonRequired": "이체 금액이 50,000위안에 도달하면 결제 사유를 반드시 입력해야 합니다",
     "sceneRequired": "이체 시나리오를 선택하세요",
-    "phoneInvalid": "전화번호는 11자리 숫자여야 합니다"
+    "phoneInvalid": "전화번호는 11자리 숫자여야 합니다",
+    "titleRequired": "이체 제목을 입력해 주세요(수취인에게 표시됩니다)",
+    "reportInfoRequired": "이체 시나리오 보고 항목을 모두 입력해 주세요"
   },
   "confirmUrlCopied": "링크 복사됨",
   "confirmUrlCopyFailed": "복사 실패",
@@ -116,5 +118,9 @@
   "scanGetPayee": "스캔하여 가져오기",
   "scanAlipayTitle": "스캔하여 수취인 계정 가져오기",
   "scanAlipayTip": "수취인 본인의 알리페이로 스캔하세요. 인증 완료 후 사용자 ID가 자동으로 입력됩니다",
-  "scanAlipaySuccess": "수취인 사용자 ID를 가져왔습니다"
+  "scanAlipaySuccess": "수취인 사용자 ID를 가져왔습니다",
+  "scanGetOpenId": "스캔하여 가져오기",
+  "scanOpenIdFailed": "인증이 만료되었습니다. QR 코드를 다시 생성해 주세요",
+  "scanChannelMchRequired": "먼저 채널 가맹점을 선택하세요",
+  "scanAppNotConfigured": "이 채널 가맹점에 이체 시작 앱이 설정되지 않았습니다. 먼저 설정하세요"
 }

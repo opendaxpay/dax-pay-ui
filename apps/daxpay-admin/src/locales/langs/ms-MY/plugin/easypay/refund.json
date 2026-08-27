@@ -1,0 +1,49 @@
+{
+  "title": "Pesanan Bayaran Semula EasyPay",
+  "detail": "Butiran Pesanan Bayaran Semula EasyPay",
+  "field": {
+    "refundId": "ID Bayaran Semula",
+    "easyPayOrderId": "ID Pesanan EasyPay",
+    "pid": "ID Peniaga EasyPay",
+    "refundNo": "No. Bayaran Semula Platform",
+    "bizRefundNo": "No. Bayaran Semula Peniaga",
+    "tradeNo": "No. Transaksi Platform",
+    "outTradeNo": "No. Pesanan Peniaga",
+    "money": "Jumlah Bayaran Semula (CNY)",
+    "status": "Status Bayaran Semula",
+    "apiVersion": "Versi API",
+    "addTime": "Masa Bayaran Semula Dimulakan",
+    "endTime": "Masa Bayaran Semula Selesai",
+    "createTime": "Masa Dibuat",
+    "merchant": "Peniaga",
+    "appId": "ID Aplikasi"
+  },
+  "placeholder": {
+    "refundNo": "Masukkan nombor bayaran semula platform",
+    "bizRefundNo": "Masukkan nombor bayaran semula peniaga",
+    "outTradeNo": "Masukkan nombor pesanan peniaga",
+    "tradeNo": "Masukkan nombor transaksi platform"
+  },
+  "status": {
+    "0": "Sedang Diproses/Gagal",
+    "1": "Bayaran Semula Berjaya",
+    "success": "Bayaran Semula Berjaya",
+    "progress": "Sedang Diproses/Gagal"
+  },
+  "statusColor": {
+    "0": "orange",
+    "1": "green"
+  },
+  "action": {
+    "sync": "Segerakkan Status",
+    "syncSuccess": "Segerak berjaya",
+    "syncConfirmTitle": "Sahkan Segerakan Status",
+    "syncConfirmContent": "Sistem akan bertanya status terkini pesanan bayaran semula ini daripada saluran bayaran secara aktif, teruskan?"
+  },
+  "section": {
+    "basic": "Maklumat Bayaran Semula",
+    "time": "Maklumat Masa",
+    "refund": "Maklumat Bayaran Semula",
+    "app": "Aplikasi & Protokol"
+  }
+}

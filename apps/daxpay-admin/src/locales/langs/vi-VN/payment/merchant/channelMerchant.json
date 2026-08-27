@@ -129,5 +129,13 @@
   "transferApp": "Ứng dụng chuyển ra",
   "transferAppPlaceholder": "Chọn ứng dụng chuyển khoản",
   "transferConfigTipDesc": "Liên kết ứng dụng chuyển ra: AppId và khóa Alipay của ứng dụng này sẽ được dùng khi chuyển khoản. Cấu hình ứng dụng và khóa trong 'Quản lý ứng dụng' trước",
-  "transferAppNotConfigured": "Chưa liên kết ứng dụng chuyển khoản, bấm 'Chỉnh sửa' để chọn"
+  "transferAppNotConfigured": "Chưa liên kết ứng dụng chuyển khoản, bấm 'Chỉnh sửa' để chọn",
+  "cardTransferScene": "Quản lý kịch bản chuyển khoản",
+  "cardTransferSceneDesc": "Quản lý kịch bản chuyển khoản của Alipay (merchant mới kết nối từ năm 2026 bắt buộc phải cấu hình để chuyển khoản)",
+  "transferSceneManage": "Quản lý kịch bản chuyển khoản",
+  "transferSceneTip": "Kể từ năm 2026, merchant mới kết nối phải cấu hình kịch bản chuyển khoản trước khi chuyển khoản. Vui lòng cấu hình ít nhất một kịch bản và đặt làm mặc định",
+  "transferSceneName": "Tên kịch bản chuyển khoản",
+  "transferSceneReportInfoContent": "Nội dung thông tin báo cáo",
+  "transferSceneSetDefaultConfirm": "Xác nhận đặt kịch bản này làm mặc định? Khi chuyển khoản mà không chỉ định kịch bản, kịch bản mặc định sẽ được sử dụng",
+  "transferSceneDefaultTip": "Mỗi merchant kênh chỉ có thể có một kịch bản mặc định"
 }

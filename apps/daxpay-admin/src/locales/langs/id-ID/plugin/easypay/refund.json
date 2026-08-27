@@ -1,0 +1,49 @@
+{
+  "title": "Pesanan Refund EasyPay",
+  "detail": "Detail Pesanan Refund EasyPay",
+  "field": {
+    "refundId": "ID Refund",
+    "easyPayOrderId": "ID Pesanan EasyPay",
+    "pid": "ID Merchant EasyPay",
+    "refundNo": "No. Refund Platform",
+    "bizRefundNo": "No. Refund Merchant",
+    "tradeNo": "No. Transaksi Platform",
+    "outTradeNo": "No. Pesanan Merchant",
+    "money": "Jumlah Refund (CNY)",
+    "status": "Status Refund",
+    "apiVersion": "Versi API",
+    "addTime": "Waktu Refund Diajukan",
+    "endTime": "Waktu Refund Selesai",
+    "createTime": "Waktu Dibuat",
+    "merchant": "Merchant",
+    "appId": "ID Aplikasi"
+  },
+  "placeholder": {
+    "refundNo": "Masukkan nomor refund platform",
+    "bizRefundNo": "Masukkan nomor refund merchant",
+    "outTradeNo": "Masukkan nomor pesanan merchant",
+    "tradeNo": "Masukkan nomor transaksi platform"
+  },
+  "status": {
+    "0": "Diproses/Gagal",
+    "1": "Refund Berhasil",
+    "success": "Refund Berhasil",
+    "progress": "Diproses/Gagal"
+  },
+  "statusColor": {
+    "0": "orange",
+    "1": "green"
+  },
+  "action": {
+    "sync": "Sinkronkan Status",
+    "syncSuccess": "Sinkronisasi berhasil",
+    "syncConfirmTitle": "Konfirmasi Sinkronisasi Status",
+    "syncConfirmContent": "Status terbaru pesanan refund ini akan ditanyakan langsung ke saluran pembayaran, lanjutkan?"
+  },
+  "section": {
+    "basic": "Info Refund",
+    "time": "Info Waktu",
+    "refund": "Info Refund",
+    "app": "Aplikasi & Protokol"
+  }
+}

@@ -102,7 +102,9 @@
     "loginNameNameRequired": "ต้องระบุชื่อผู้รับเมื่อใช้ login ID",
     "largeAmountReasonRequired": "ต้องระบุเหตุผลการชำระเงินเมื่อจำนวนเงินโอนถึง 50,000 หยวน",
     "sceneRequired": "กรุณาเลือกสถานการณ์การโอน",
-    "phoneInvalid": "หมายเลขโทรศัพท์ต้องเป็นตัวเลข 11 หลัก"
+    "phoneInvalid": "หมายเลขโทรศัพท์ต้องเป็นตัวเลข 11 หลัก",
+    "titleRequired": "กรุณากรอกหัวข้อการโอนเงิน (ผู้รับเงินมองเห็นได้)",
+    "reportInfoRequired": "กรุณากรอกข้อมูลรายงานสถานการณ์การโอนเงินทั้งหมด"
   },
   "confirmUrlCopied": "คัดลอกลิงก์แล้ว",
   "confirmUrlCopyFailed": "คัดลอกล้มเหลว",
@@ -116,5 +118,9 @@
   "scanGetPayee": "สแกนเพื่อรับ",
   "scanAlipayTitle": "สแกนเพื่อรับบัญชีผู้รับ",
   "scanAlipayTip": "ให้ผู้รับสแกนด้วย Alipay ของตนเอง ระบบจะเติม ID ผู้ใช้โดยอัตโนมัติหลังการอนุญาต",
-  "scanAlipaySuccess": "ได้รับ ID ผู้ใช้ของผู้รับแล้ว"
+  "scanAlipaySuccess": "ได้รับ ID ผู้ใช้ของผู้รับแล้ว",
+  "scanGetOpenId": "สแกนเพื่อรับ",
+  "scanOpenIdFailed": "การยืนยันสิทธิ์หมดอายุ กรุณาสร้าง QR Code ใหม่",
+  "scanChannelMchRequired": "กรุณาเลือกร้านค้าช่องทางก่อน",
+  "scanAppNotConfigured": "ยังไม่ได้ตั้งค่าแอปโอนเงินสำหรับร้านค้าช่องทางนี้ กรุณาตั้งค่าก่อน"
 }

@@ -1,0 +1,14 @@
+{
+  "typeCatalog": "目录",
+  "typeMenu": "菜单",
+  "typeSubpage": "子页面",
+  "typeSubpageGroup": "子页面分组",
+  "typeEmbedded": "内嵌页",
+  "typeLink": "外链",
+  "typeCatalogTip": "侧栏分组容器，本身不渲染页面；可挂下级目录、菜单、内嵌页或外链",
+  "typeMenuTip": "可点击的页面入口，需配置路径与组件；下级可挂子页面或子页面分组",
+  "typeSubpageTip": "挂在菜单或分组下的隐藏路由页，不出现在侧栏，常用于详情、编辑等",
+  "typeSubpageGroupTip": "子页面的逻辑分组容器，不渲染页面、不显示在侧栏",
+  "typeEmbeddedTip": "系统内通过 iframe 嵌入外部页面，需填写内嵌地址",
+  "typeLinkTip": "新窗口打开外部链接，需填写外链地址"
+}

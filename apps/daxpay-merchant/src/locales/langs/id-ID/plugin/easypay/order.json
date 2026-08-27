@@ -1,0 +1,68 @@
+{
+  "title": "Pesanan EasyPay",
+  "detail": "Detail Pesanan EasyPay",
+  "field": {
+    "orderId": "ID Kontainer Terkait",
+    "pid": "Nomor Merchant EasyPay",
+    "tradeNo": "Nomor Transaksi Bisnis Platform",
+    "outTradeNo": "Nomor Pesanan Merchant",
+    "apiTradeNo": "Nomor Pesanan Saluran",
+    "type": "Metode Pembayaran",
+    "status": "Status Pesanan",
+    "addTime": "Waktu Dibuat",
+    "endTime": "Waktu Selesai",
+    "name": "Nama Produk",
+    "money": "Jumlah (Yuan)",
+    "refundMoney": "Sudah Dikembalikan (Yuan)",
+    "notifyUrl": "Alamat Notifikasi Asinkron",
+    "returnUrl": "Alamat Pengalihan Sinkron",
+    "param": "Parameter Ekstensi Bisnis",
+    "buyer": "Identitas Pengguna Pembayar",
+    "clientIp": "IP Klien",
+    "apiVersion": "Versi API",
+    "pcCallType": "Metode Panggilan PC",
+    "payUrl": "Tautan Pembayaran",
+    "payBody": "Isi Parameter Pembayaran",
+    "createTime": "Waktu Dibuat",
+    "merchant": "Merchant",
+    "appId": "ID Aplikasi"
+  },
+  "placeholder": {
+    "outTradeNo": "Masukkan nomor pesanan merchant",
+    "tradeNo": "Masukkan nomor transaksi bisnis platform",
+    "name": "Masukkan nama produk"
+  },
+  "status": {
+    "0": "Menunggu Pembayaran",
+    "1": "Dibayar",
+    "success": "Dibayar",
+    "pending": "Menunggu Pembayaran"
+  },
+  "statusColor": {
+    "0": "orange",
+    "1": "green"
+  },
+  "type": {
+    "alipay": "Alipay",
+    "wxpay": "WeChat Pay",
+    "aggregate": "Pembayaran Agregat"
+  },
+  "action": {
+    "sync": "Sinkronkan Status",
+    "close": "Tutup Pesanan",
+    "syncSuccess": "Sinkronisasi berhasil",
+    "closeSuccess": "Berhasil ditutup",
+    "syncConfirmTitle": "Konfirmasi Sinkronisasi Status",
+    "syncConfirmContent": "Status terbaru pesanan ini akan ditanyakan langsung ke saluran pembayaran, lanjutkan?",
+    "closeConfirmTitle": "Konfirmasi Penutupan Pesanan",
+    "closeConfirmContent": "Setelah ditutup pesanan tidak dapat dibayar lagi, lanjutkan?"
+  },
+  "section": {
+    "basic": "Informasi Pesanan",
+    "time": "Informasi Waktu",
+    "extra": "Pembayaran & Ekstensi",
+    "order": "Informasi Pesanan",
+    "app": "Aplikasi & Protokol",
+    "pay": "Pembayaran & Callback"
+  }
+}

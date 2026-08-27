@@ -102,7 +102,9 @@
     "loginNameNameRequired": "使用登入號收款時必須填寫收款人姓名",
     "largeAmountReasonRequired": "轉帳金額達到50000元時,必須填寫付款理由",
     "sceneRequired": "請選擇轉帳場景",
-    "phoneInvalid": "手機號需為11位數字"
+    "phoneInvalid": "手機號需為11位數字",
+    "titleRequired": "請輸入轉帳標題(收款人可見)",
+    "reportInfoRequired": "請填寫全部轉帳場景報備欄位"
   },
   "confirmUrlCopied": "連結已複製",
   "confirmUrlCopyFailed": "複製失敗",
@@ -116,5 +118,9 @@
   "scanGetPayee": "掃碼獲取",
   "scanAlipayTitle": "掃碼獲取收款人帳號",
   "scanAlipayTip": "請使用收款人本人支付寶掃碼，完成授權後自動回填用戶ID",
-  "scanAlipaySuccess": "已獲取收款人用戶ID"
+  "scanAlipaySuccess": "已獲取收款人用戶ID",
+  "scanGetOpenId": "掃碼取得",
+  "scanOpenIdFailed": "授權已失效，請重新產生 QR Code",
+  "scanChannelMchRequired": "請先選擇通道商戶",
+  "scanAppNotConfigured": "該通道商戶未配置轉帳發起應用，請先到通道商戶選單配置"
 }

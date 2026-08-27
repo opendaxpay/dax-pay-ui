@@ -91,5 +91,8 @@
   "copyAll": "Salin semua",
   "newPassword": "Kata laluan baharu",
   "name": "Nama",
-  "passwordAutoGenPlaceholder": "Biarkan kosong untuk jana kata laluan awal rawak secara automatik"
+  "passwordAutoGenPlaceholder": "Biarkan kosong untuk jana kata laluan awal rawak secara automatik",
+  "remark": "Catatan",
+  "isDefault": "Lalai",
+  "setDefault": "Tetap sebagai Lalai"
 }

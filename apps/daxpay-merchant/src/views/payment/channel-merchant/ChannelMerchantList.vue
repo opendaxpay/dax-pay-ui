@@ -41,7 +41,9 @@
     if (!product) return '-';
     const i18nKey = productI18nMap[product];
     if (i18nKey) {
-      return $t(i18nKey);
+      // 词条缺失时回退中文名, 避免显示裸 key
+      const text = $t(i18nKey);
+      if (text && text !== i18nKey) return text;
     }
     return productNameMap[product] || product;
   }

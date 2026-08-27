@@ -129,5 +129,13 @@
   "transferApp": "Apl Pemindahan Keluar",
   "transferAppPlaceholder": "Sila pilih apl pemindahan keluar",
   "transferConfigTipDesc": "Ikat apl pemindahan keluar: AppId dan kunci Alipay apl ini akan digunakan semasa pindahan. Konfigurasikan apl dan kunci dalam 'Pengurusan Apl' terlebih dahulu",
-  "transferAppNotConfigured": "Belum mengikat apl pindahan, klik 'Edit' untuk memilih"
+  "transferAppNotConfigured": "Belum mengikat apl pindahan, klik 'Edit' untuk memilih",
+  "cardTransferScene": "Pengurusan Senario Pemindahan",
+  "cardTransferSceneDesc": "Urus senario pemindahan Alipay (wajib bagi pemindahan peniaga baharu yang berdaftar mulai 2026)",
+  "transferSceneManage": "Pengurusan Senario Pemindahan",
+  "transferSceneTip": "Mulai 2026, peniaga baharu wajib mengkonfigurasi senario pemindahan sebelum memulakan pemindahan. Sila konfigurasikan sekurang-kurangnya satu dan tetapkan sebagai lalai",
+  "transferSceneName": "Nama Senario Pemindahan",
+  "transferSceneReportInfoContent": "Kandungan Maklumat yang Dilaporkan",
+  "transferSceneSetDefaultConfirm": "Sahkan jadikan senario ini sebagai lalai? Apabila memulakan pemindahan tanpa menentukan senario, senario lalai akan digunakan",
+  "transferSceneDefaultTip": "Satu peniaga saluran hanya boleh mempunyai satu senario lalai"
 }

@@ -20,6 +20,12 @@
     "hkrtPay": "海科融通支付",
     "vbillPay": "随行付",
     "hmPay": "河马付",
-    "fuyouPay": "富友支付"
+    "fuyouPay": "富友支付",
+    "stripePay": "Stripe",
+    "shengPay": "盛付通",
+    "ysepPay": "银盛支付",
+    "quickPay": "快钱支付",
+    "yeePay": "易宝支付",
+    "jeePay": "Jeepay"
   }
 }

@@ -20,6 +20,12 @@
     "hkrtPay": "HKRT페이",
     "vbillPay": "VBill",
     "hmPay": "Hmpay",
-    "fuyouPay": "후요페이"
+    "fuyouPay": "후요페이",
+    "stripePay": "Stripe",
+    "shengPay": "셩페이",
+    "ysepPay": "YSEP 페이",
+    "quickPay": "빠른 지불",
+    "yeePay": "예 페이",
+    "jeePay": "지페이"
   }
 }

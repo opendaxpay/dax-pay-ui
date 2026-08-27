@@ -1,0 +1,14 @@
+{
+  "typeCatalog": "Danh mục",
+  "typeMenu": "Thực đơn",
+  "typeSubpage": "Trang con",
+  "typeSubpageGroup": "Nhóm trang con",
+  "typeEmbedded": "Đã nhúng",
+  "typeLink": "liên kết",
+  "typeCatalogTip": "Vùng chứa nhóm thanh bên; không hiển thị một trang. Có thể chứa danh mục, menu, trang nhúng hoặc liên kết",
+  "typeMenuTip": "Mục nhập trang có thể nhấp với đường dẫn và thành phần. Có thể giữ các trang con hoặc nhóm trang con",
+  "typeSubpageTip": "Tuyến đường ẩn dưới menu hoặc nhóm; không được hiển thị trên thanh bên (ví dụ: trang chi tiết/chỉnh sửa)",
+  "typeSubpageGroupTip": "Nhóm logic cho các trang con; không có trang nào hiển thị và không hiển thị trong thanh bên",
+  "typeEmbeddedTip": "Nhúng trang bên ngoài qua iframe bên trong hệ thống; yêu cầu URL iframe",
+  "typeLinkTip": "Mở URL bên ngoài trong cửa sổ mới; yêu cầu một URL liên kết"
+}

@@ -91,5 +91,8 @@
   "copyAll": "Salin semua",
   "newPassword": "Kata sandi baru",
   "name": "Nama",
-  "passwordAutoGenPlaceholder": "Kosongkan untuk membuat kata sandi awal acak secara otomatis"
+  "passwordAutoGenPlaceholder": "Kosongkan untuk membuat kata sandi awal acak secara otomatis",
+  "remark": "Catatan",
+  "isDefault": "Bawaan",
+  "setDefault": "Jadikan Bawaan"
 }

@@ -102,7 +102,9 @@
     "loginNameNameRequired": "Nama penerima wajib diisi saat menggunakan login ID",
     "largeAmountReasonRequired": "Alasan pembayaran wajib diisi saat jumlah transfer mencapai 50.000 yuan",
     "sceneRequired": "Silakan pilih skenario transfer",
-    "phoneInvalid": "Nomor telepon harus 11 digit"
+    "phoneInvalid": "Nomor telepon harus 11 digit",
+    "titleRequired": "Silakan masukkan judul transfer (terlihat oleh penerima)",
+    "reportInfoRequired": "Silakan isi semua bidang pelaporan skema transfer"
   },
   "confirmUrlCopied": "Tautan disalin",
   "confirmUrlCopyFailed": "Salin gagal",
@@ -116,5 +118,9 @@
   "scanGetPayee": "Pindai untuk dapatkan",
   "scanAlipayTitle": "Pindai untuk mendapatkan akun penerima",
   "scanAlipayTip": "Minta penerima memindai dengan Alipay miliknya; ID pengguna akan diisi otomatis setelah otorisasi",
-  "scanAlipaySuccess": "ID pengguna penerima berhasil didapatkan"
+  "scanAlipaySuccess": "ID pengguna penerima berhasil didapatkan",
+  "scanGetOpenId": "Pindai untuk Ambil",
+  "scanOpenIdFailed": "Otorisasi kedaluwarsa, silakan buat ulang kode QR",
+  "scanChannelMchRequired": "Pilih merchant saluran terlebih dahulu",
+  "scanAppNotConfigured": "Aplikasi transfer belum dikonfigurasi untuk merchant saluran ini, silakan konfigurasi terlebih dahulu"
 }

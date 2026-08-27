@@ -1,0 +1,49 @@
+{
+  "title": "Đơn hoàn tiền EasyPay",
+  "detail": "Chi tiết đơn hoàn tiền EasyPay",
+  "field": {
+    "refundId": "ID đơn hoàn tiền liên quan",
+    "easyPayOrderId": "ID đơn hàng EasyPay liên quan",
+    "pid": "Mã merchant EasyPay",
+    "refundNo": "Mã hoàn tiền nền tảng",
+    "bizRefundNo": "Mã hoàn tiền của merchant",
+    "tradeNo": "Mã giao dịch nghiệp vụ nền tảng",
+    "outTradeNo": "Mã đơn hàng của merchant",
+    "money": "Số tiền hoàn (yuan)",
+    "status": "Trạng thái hoàn tiền",
+    "apiVersion": "Phiên bản API",
+    "addTime": "Thời gian khởi tạo hoàn tiền",
+    "endTime": "Thời gian hoàn tất hoàn tiền",
+    "createTime": "Thời gian tạo",
+    "merchant": "Merchant",
+    "appId": "ID ứng dụng"
+  },
+  "placeholder": {
+    "refundNo": "Nhập mã hoàn tiền nền tảng",
+    "bizRefundNo": "Nhập mã hoàn tiền của merchant",
+    "outTradeNo": "Nhập mã đơn hàng của merchant",
+    "tradeNo": "Nhập mã giao dịch nghiệp vụ nền tảng"
+  },
+  "status": {
+    "0": "Đang xử lý/Thất bại",
+    "1": "Hoàn tiền thành công",
+    "success": "Hoàn tiền thành công",
+    "progress": "Đang xử lý/Thất bại"
+  },
+  "statusColor": {
+    "0": "orange",
+    "1": "green"
+  },
+  "action": {
+    "sync": "Đồng bộ trạng thái",
+    "syncSuccess": "Đồng bộ thành công",
+    "syncConfirmTitle": "Xác nhận đồng bộ trạng thái",
+    "syncConfirmContent": "Sẽ chủ động truy vấn trạng thái mới nhất của đơn hoàn tiền này từ kênh thanh toán, tiếp tục?"
+  },
+  "section": {
+    "basic": "Thông tin hoàn tiền",
+    "time": "Thông tin thời gian",
+    "refund": "Thông tin hoàn tiền",
+    "app": "Ứng dụng & Giao thức"
+  }
+}

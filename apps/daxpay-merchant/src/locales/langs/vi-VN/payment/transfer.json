@@ -102,7 +102,9 @@
     "loginNameNameRequired": "Bắt buộc nhập tên người nhận khi sử dụng login ID",
     "largeAmountReasonRequired": "Bắt buộc nhập lý do thanh toán khi số tiền chuyển đạt 50.000 tệ",
     "sceneRequired": "Vui lòng chọn kịch bản chuyển khoản",
-    "phoneInvalid": "Số điện thoại phải là 11 chữ số"
+    "phoneInvalid": "Số điện thoại phải là 11 chữ số",
+    "titleRequired": "Vui lòng nhập tiêu đề chuyển khoản (người nhận có thể thấy)",
+    "reportInfoRequired": "Vui lòng điền đầy đủ các trường báo cáo kịch bản chuyển khoản"
   },
   "confirmUrlCopied": "Đã sao chép liên kết",
   "confirmUrlCopyFailed": "Sao chép thất bại",
@@ -116,5 +118,9 @@
   "scanGetPayee": "Quét để lấy",
   "scanAlipayTitle": "Quét để lấy tài khoản người nhận",
   "scanAlipayTip": "Yêu cầu người nhận quét bằng Alipay của họ; ID người dùng sẽ được tự động điền sau khi ủy quyền",
-  "scanAlipaySuccess": "Đã lấy được ID người dùng người nhận"
+  "scanAlipaySuccess": "Đã lấy được ID người dùng người nhận",
+  "scanGetOpenId": "Quét để lấy",
+  "scanOpenIdFailed": "Ủy quyền đã hết hạn, vui lòng tạo lại mã QR",
+  "scanChannelMchRequired": "Vui lòng chọn đối tác kênh trước",
+  "scanAppNotConfigured": "Chưa cấu hình ứng dụng chuyển khoản cho đối tác kênh này, vui lòng cấu hình trước"
 }

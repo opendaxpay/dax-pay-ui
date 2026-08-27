@@ -1,0 +1,14 @@
+{
+  "typeCatalog": "Catalog",
+  "typeMenu": "Menu",
+  "typeSubpage": "Subpage",
+  "typeSubpageGroup": "Subpage Group",
+  "typeEmbedded": "Embedded",
+  "typeLink": "Link",
+  "typeCatalogTip": "Sidebar group container; does not render a page. Can hold catalogs, menus, embedded pages, or links",
+  "typeMenuTip": "Clickable page entry with path and component. Can hold subpages or subpage groups",
+  "typeSubpageTip": "Hidden route under a menu or group; not shown in the sidebar (e.g. detail/edit pages)",
+  "typeSubpageGroupTip": "Logical group for subpages; no page render and not shown in the sidebar",
+  "typeEmbeddedTip": "Embed an external page via iframe inside the system; requires an iframe URL",
+  "typeLinkTip": "Open an external URL in a new window; requires a link URL"
+}

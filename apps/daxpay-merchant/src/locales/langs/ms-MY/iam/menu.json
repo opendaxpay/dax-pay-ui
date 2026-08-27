@@ -1,0 +1,14 @@
+{
+  "typeCatalog": "Katalog",
+  "typeMenu": "Menu",
+  "typeSubpage": "Subhalaman",
+  "typeSubpageGroup": "Kumpulan Subhalaman",
+  "typeEmbedded": "Terbenam",
+  "typeLink": "Pautan",
+  "typeCatalogTip": "Bekas kumpulan bar sisi; tidak memaparkan halaman. Boleh menyimpan katalog, menu, halaman terbenam atau pautan",
+  "typeMenuTip": "Kemasukan halaman boleh klik dengan laluan dan komponen. Boleh memegang subhalaman atau kumpulan subhalaman",
+  "typeSubpageTip": "Laluan tersembunyi di bawah menu atau kumpulan; tidak ditunjukkan dalam bar sisi (cth. perincian/edit halaman)",
+  "typeSubpageGroupTip": "Kumpulan logik untuk subhalaman; tiada paparan halaman dan tidak ditunjukkan dalam bar sisi",
+  "typeEmbeddedTip": "Benamkan halaman luaran melalui iframe di dalam sistem; memerlukan URL iframe",
+  "typeLinkTip": "Buka URL luaran dalam tetingkap baharu; memerlukan URL pautan"
+}

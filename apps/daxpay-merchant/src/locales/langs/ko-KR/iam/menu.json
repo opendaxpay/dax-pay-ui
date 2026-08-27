@@ -1,0 +1,14 @@
+{
+  "typeCatalog": "목록",
+  "typeMenu": "메뉴",
+  "typeSubpage": "서브페이지",
+  "typeSubpageGroup": "하위 페이지 그룹",
+  "typeEmbedded": "임베디드",
+  "typeLink": "링크",
+  "typeCatalogTip": "사이드바 그룹 컨테이너; 페이지를 렌더링하지 않습니다. 카탈로그, 메뉴, 포함된 페이지 또는 링크를 보관할 수 있습니다.",
+  "typeMenuTip": "경로 및 구성 요소가 포함된 클릭 가능한 페이지 항목입니다. 하위 페이지 또는 하위 페이지 그룹을 보유할 수 있습니다.",
+  "typeSubpageTip": "메뉴 또는 그룹 아래에 숨겨진 경로; 사이드바에 표시되지 않음(예: 세부정보/편집 페이지)",
+  "typeSubpageGroupTip": "하위 페이지에 대한 논리 그룹입니다. 페이지가 렌더링되지 않고 사이드바에 표시되지 않습니다.",
+  "typeEmbeddedTip": "시스템 내부에 iframe을 통해 외부 페이지를 삽입합니다. iframe URL이 필요합니다",
+  "typeLinkTip": "새 창에서 외부 URL을 엽니다. 링크 URL이 필요합니다"
+}

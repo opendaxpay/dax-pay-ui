@@ -102,7 +102,9 @@
     "loginNameNameRequired": "登录号收款时必须填写收款人姓名",
     "largeAmountReasonRequired": "转账金额达到50000元时,必须填写付款理由",
     "sceneRequired": "请选择转账场景",
-    "phoneInvalid": "手机号需为11位数字"
+    "phoneInvalid": "手机号需为11位数字",
+    "titleRequired": "请输入转账标题(收款人可见)",
+    "reportInfoRequired": "请填写全部转账场景报备字段"
   },
   "confirmUrlCopied": "链接已复制",
   "confirmUrlCopyFailed": "复制失败",
@@ -116,5 +118,9 @@
   "scanGetPayee": "扫码获取",
   "scanAlipayTitle": "扫码获取收款人账号",
   "scanAlipayTip": "请使用收款人本人支付宝扫码，完成授权后自动回填用户ID",
-  "scanAlipaySuccess": "已获取收款人用户ID"
+  "scanAlipaySuccess": "已获取收款人用户ID",
+  "scanGetOpenId": "扫码获取",
+  "scanOpenIdFailed": "授权已失效，请重新生成二维码",
+  "scanChannelMchRequired": "请先选择通道商户",
+  "scanAppNotConfigured": "该通道商户未配置转账发起应用，请先到通道商户菜单配置"
 }

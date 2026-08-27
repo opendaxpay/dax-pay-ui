@@ -129,5 +129,13 @@
   "transferApp": "Aplikasi Pengirim",
   "transferAppPlaceholder": "Pilih aplikasi pengirim transfer",
   "transferConfigTipDesc": "Ikat aplikasi pengirim transfer: AppId dan kunci Alipay aplikasi ini akan digunakan saat transfer. Konfigurasikan aplikasi dan kunci di 'Manajemen Aplikasi' terlebih dahulu",
-  "transferAppNotConfigured": "Belum ada aplikasi transfer yang diikat, klik 'Edit' untuk memilih"
+  "transferAppNotConfigured": "Belum ada aplikasi transfer yang diikat, klik 'Edit' untuk memilih",
+  "cardTransferScene": "Manajemen Skenario Transfer",
+  "cardTransferSceneDesc": "Kelola skenario transfer Alipay (wajib dikonfigurasi untuk transfer merchant baru mulai 2026)",
+  "transferSceneManage": "Manajemen Skenario Transfer",
+  "transferSceneTip": "Mulai 2026, merchant baru wajib mengonfigurasi skenario transfer sebelum mengirim transfer. Konfigurasikan setidaknya satu dan jadikan sebagai default",
+  "transferSceneName": "Nama Skenario Transfer",
+  "transferSceneReportInfoContent": "Konten Informasi yang Dilaporkan",
+  "transferSceneSetDefaultConfirm": "Jadikan skenario ini sebagai default? Skenario default akan digunakan saat transfer dikirim tanpa menentukan skenario",
+  "transferSceneDefaultTip": "Satu merchant saluran hanya dapat memiliki satu skenario default"
 }

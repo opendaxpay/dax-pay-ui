@@ -102,7 +102,9 @@
     "loginNameNameRequired": "Payee name is required when using login ID",
     "largeAmountReasonRequired": "Payment reason is required when amount reaches 50,000 yuan",
     "sceneRequired": "Please select a transfer scene",
-    "phoneInvalid": "Phone number must be 11 digits"
+    "phoneInvalid": "Phone number must be 11 digits",
+    "titleRequired": "Please enter the transfer title (visible to the payee)",
+    "reportInfoRequired": "Please fill in all transfer scene report fields"
   },
   "confirmUrlCopied": "Link copied",
   "confirmUrlCopyFailed": "Copy failed",
@@ -116,5 +118,9 @@
   "scanGetPayee": "Scan to get",
   "scanAlipayTitle": "Scan to get payee account",
   "scanAlipayTip": "Ask the payee to scan with their own Alipay; the user ID will be filled in after authorization",
-  "scanAlipaySuccess": "Payee user ID obtained"
+  "scanAlipaySuccess": "Payee user ID obtained",
+  "scanGetOpenId": "Scan to Get",
+  "scanOpenIdFailed": "Authorization expired, please regenerate the QR code",
+  "scanChannelMchRequired": "Please select a channel merchant first",
+  "scanAppNotConfigured": "Transfer app not configured for this channel merchant, please configure it first"
 }
