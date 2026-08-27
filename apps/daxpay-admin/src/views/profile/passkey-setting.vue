@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import type { UserPasskeyItem } from '#/api/core/passkey.api';
+  import type { PasskeyRegisterOptionsResult, UserPasskeyItem } from '#/api/core/passkey.api';
 
   import { onMounted, ref } from 'vue';
 
@@ -90,7 +90,18 @@
         return;
       }
       passwordVisible.value = false;
-      // 唤起系统注册弹窗
+      await startSystemRegistration(data);
+    } catch (error: unknown) {
+      // 密码错误等请求层业务异常已由全局拦截器统一提示, 此处吞掉避免重复弹错
+      console.warn('[passkey] 获取注册选项失败:', error);
+    } finally {
+      passwordLoading.value = false;
+    }
+  }
+
+  /** 唤起系统注册弹窗, 成功后暂存凭据并打开命名弹窗(与请求阶段分开捕获) */
+  async function startSystemRegistration(data: PasskeyRegisterOptionsResult) {
+    try {
       const credential = await startRegistration({ optionsJSON: data.options });
       pendingCredential.value = {
         challengeId: data.challengeId,
@@ -107,8 +118,6 @@
       if (name !== 'NotAllowedError' && name !== 'AbortError') {
         message.error($t('profile.passkeyCreateFailed'));
       }
-    } finally {
-      passwordLoading.value = false;
     }
   }
 

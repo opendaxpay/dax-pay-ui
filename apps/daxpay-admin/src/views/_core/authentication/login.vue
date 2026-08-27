@@ -148,13 +148,18 @@
     try {
       await authStore.passkeyLogin();
     } catch (error: unknown) {
+      // 请求层异常(如凭据验证失败)已由全局拦截器统一提示, 此处不重复弹错;
+      // 仅处理浏览器 WebAuthn 环节抛出的 DOMException:
       // NotAllowedError/AbortError 多为用户在系统弹窗主动取消, 静默返回;
       // 其余为环境错误(如平台 rpId 与访问域名不匹配), 给出提示便于定位
-      const name = (error as { name?: string })?.name ?? '';
-      console.warn('[passkey] 登录流程中断:', name, error);
-      if (name !== 'NotAllowedError' && name !== 'AbortError') {
-        const { message } = useMessage();
-        message.error($t('_core.authentication.passkey.failed'));
+      if (error instanceof DOMException) {
+        console.warn('[passkey] 登录流程中断:', error.name, error);
+        if (error.name !== 'NotAllowedError' && error.name !== 'AbortError') {
+          const { message } = useMessage();
+          message.error($t('_core.authentication.passkey.failed'));
+        }
+      } else {
+        console.warn('[passkey] 登录流程异常:', error);
       }
     }
   }
