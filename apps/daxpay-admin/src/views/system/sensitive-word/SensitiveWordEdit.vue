@@ -144,10 +144,11 @@
         class="form-compact"
         :disabled="showable"
       >
-        <!-- 敏感词 -->
+        <!-- 敏感词（tooltip 说明建议简体录入与系统规范化规则） -->
         <a-form-item
           name="word"
           :label="$t('system.sensitiveWord.word.field.word')"
+          :tooltip="$t('system.sensitiveWord.tip')"
           :rules="[{ required: true, message: $t('common.pleaseInput') }]"
         >
           <a-input

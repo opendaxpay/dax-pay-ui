@@ -165,11 +165,6 @@
 
 <template>
   <div class="m-3 p-3 bg-background rounded-lg list-page-compact">
-    <div class="mb-3">
-      <!-- 间距放 wrapper，避免 antd cssinjs 覆盖 Tailwind margin -->
-      <a-alert type="info" show-icon :message="$t('system.sensitiveWord.tip')" />
-    </div>
-
     <a-card>
       <BQuery :fields="queryFields" :query-params="queryForm" @query="queryPage" @reset="resetQuery" />
     </a-card>
