@@ -50,5 +50,6 @@
   "menu.trade.transfer.douyin": "抖音送金",
   "menu.trade.transfer.trade": "送金記録",
   "menu.trade.transfer.create": "送金開始",
-  "menu.trade.transfer.channel": "チャネル送金"
+  "menu.trade.transfer.channel": "チャネル送金",
+  "menu.trade.allocOrder": "精算注文"
 }
