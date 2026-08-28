@@ -94,10 +94,10 @@
   },
   "autoLogin": {
     "tabTitle": "Đăng nhập tự động trong app",
-    "tabDescription": "OAuth tự động trong Feishu/WeChat/WeCom",
+    "tabDescription": "OAuth tự động trong Feishu/WeCom/DingTalk",
     "title": "Đăng nhập tự động trong app",
-    "description": "Configure admin/merchant separately: when opened in Feishu/WeChat/WeCom, match one selected platform by UA and start OAuth.",
-    "usageTip": "Multi-select Feishu, WeChat Official Account, and WeCom. Enable the platform under Third-party Login Config first. WeChat Open Platform QR login is not used for in-app auto login. Users must bind first; unbound falls back silently to password login.",
+    "description": "Configure admin/merchant separately: when opened in Feishu/WeCom/DingTalk, match one selected platform by UA and start OAuth.",
+    "usageTip": "Multi-select Feishu, WeCom, and DingTalk. Enable the platform under Third-party Login Config first. DingTalk asks for consent on first authorization and is silent afterwards; WeChat is not used for in-app auto login. Users must bind first; unbound falls back silently to password login.",
     "confirmSaveContent": "Lưu cấu hình đăng nhập tự động trong app?",
     "section": {
       "admin": "Admin",
@@ -109,7 +109,7 @@
     },
     "source": {
       "label": "Auto-login platforms",
-      "desc": "Multi-select; match one by the current in-app browser. Must be enabled Feishu / WeChat Official Account / WeCom",
+      "desc": "Multi-select; match one by the current in-app browser. Must be enabled Feishu / WeCom / DingTalk",
       "placeholder": "Select platforms (multi)"
     },
     "validate": {

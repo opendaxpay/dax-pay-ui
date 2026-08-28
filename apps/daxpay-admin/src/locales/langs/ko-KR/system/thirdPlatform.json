@@ -94,10 +94,10 @@
   },
   "autoLogin": {
     "tabTitle": "인앱 자동 로그인",
-    "tabDescription": "Feishu/WeChat/WeCom 내 자동 OAuth 로그인",
+    "tabDescription": "Feishu/WeCom/DingTalk 내 자동 OAuth 로그인",
     "title": "인앱 자동 로그인",
-    "description": "운영/가맹점별로 설정: Feishu/WeChat/WeCom 인앱 브라우저에서 열면 UA로 선택한 플랫폼 중 하나에 자동 매칭해 인증합니다.",
-    "usageTip": "Feishu, WeChat 공식 계정, 기업 WeChat 다중 선택 가능. 먼저 「외부 로그인 설정」에서 활성화하세요. WeChat 오픈 플랫폼 QR은 인앱 자동 로그인 대상이 아닙니다. 미연동 시 비밀번호 로그인으로 조용히 돌아갑니다.",
+    "description": "운영/가맹점별로 설정: Feishu/WeCom/DingTalk 인앱 브라우저에서 열면 UA로 선택한 플랫폼 중 하나에 자동 매칭해 인증합니다.",
+    "usageTip": "Feishu, 기업 WeChat, DingTalk 다중 선택 가능. 먼저 「외부 로그인 설정」에서 활성화하세요. DingTalk은 첫 인증 시에만 확인이 필요하며 이후에는 자동입니다. WeChat은 인앱 자동 로그인 대상이 아닙니다. 미연동 시 비밀번호 로그인으로 조용히 돌아갑니다.",
     "confirmSaveContent": "인앱 자동 로그인 설정을 저장하시겠습니까?",
     "section": {
       "admin": "운영단",
@@ -109,7 +109,7 @@
     },
     "source": {
       "label": "자동 로그인 플랫폼",
-      "desc": "다중 선택; 현재 인앱 브라우저로 하나 매칭. 활성화된 Feishu / WeChat 공식 / 기업 WeChat만",
+      "desc": "다중 선택; 현재 인앱 브라우저로 하나 매칭. 활성화된 Feishu / 기업 WeChat / DingTalk만",
       "placeholder": "플랫폼 선택(다중)"
     },
     "validate": {

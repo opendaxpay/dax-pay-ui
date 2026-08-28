@@ -17,11 +17,11 @@
 
   defineOptions({ name: 'SocialAutoLoginConfigForm' });
 
-  /** 支持应用内 UA 静默授权的平台(不含微信开放平台扫码) */
+  /** 支持应用内 UA 静默授权的平台(飞书/企微/钉钉; 微信已退出应用内自动登录) */
   const AUTO_LOGIN_SOURCES = new Set<string>([
     SocialSourceEnum.FEISHU,
-    SocialSourceEnum.WE_CHAT,
     SocialSourceEnum.WE_COM,
+    SocialSourceEnum.DING_TALK,
   ]);
 
   const { confirm, message } = useMessage();
@@ -88,15 +88,18 @@
   }
 
   /**
-   * 单端归一: sources 优先, 旧 source 回退为单元素数组
+   * 单端归一: sources 优先, 旧 source 回退为单元素数组;
+   * 同时剔除历史遗留的不支持平台(如 weChat), 避免旧值继续出现在表单或保存请求中
    */
   function normalizeClient(client?: SocialAutoLoginClientItem): SocialAutoLoginClientItem {
-    const sources =
+    const raw =
       client?.sources && client.sources.length > 0
         ? [...client.sources]
         : client?.source
           ? [client.source]
           : [];
+    // 历史配置中的微信等已下线平台在此过滤, 保存后即从配置中清除
+    const sources = raw.filter((item) => AUTO_LOGIN_SOURCES.has(item));
     return {
       enabled: Boolean(client?.enabled),
       sources,

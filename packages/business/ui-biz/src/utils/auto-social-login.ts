@@ -1,7 +1,8 @@
 /**
  * 应用内社交自动登录辅助
  *
- * 仅在飞书 / 微信 / 企微内置浏览器中，且本端配置开启时触发。
+ * 仅在飞书 / 企微 / 钉钉内置浏览器中，且本端配置开启时触发。
+ * 微信已退出应用内自动登录(公众号授权仍可用于手动登录), 不再识别微信内置浏览器。
  * 未绑定回退时写 skipped，避免死循环。
  */
 
@@ -17,13 +18,13 @@ export const AUTO_SOCIAL_ATTEMPT_KEY = 'daxpay_auto_social_attempt';
 export function isInAppForSource(source: string, userAgent: string = navigator.userAgent): boolean {
   const ua = userAgent || '';
   switch (source) {
-    case 'weChat':
-      // 微信内置浏览器, 排除企业微信
-      return /MicroMessenger/i.test(ua) && !/wxwork/i.test(ua);
     case 'weCom':
       return /wxwork/i.test(ua);
     case 'feishu':
       return /Lark|Feishu|LarkLocale/i.test(ua);
+    // 钉钉内置浏览器(PC 与移动端 UA 均含 DingTalk 标识, 如 AliApp(DingTalk/...))
+    case 'dingTalk':
+      return /DingTalk/i.test(ua);
     default:
       return false;
   }
