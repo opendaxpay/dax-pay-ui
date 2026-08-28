@@ -67,6 +67,12 @@
     "testEmail": "收件邮箱",
     "inputTestEmail": "请输入测试收件邮箱",
     "testEmailExtra": "使用已保存的发件箱配置发送, 未保存的修改不生效",
-    "emailInvalid": "邮箱格式不正确"
+    "emailInvalid": "邮箱格式不正确",
+    "businessPasswordReset": "密码找回验证码",
+    "businessEmailBind": "邮箱绑定验证码",
+    "businessEmailChangeNotice": "绑定邮箱变更通知",
+    "businessPasswordResetNotice": "密码重置成功通知",
+    "businessEmailUnbind": "邮箱解绑验证码",
+    "businessEmailUnbindNotice": "邮箱解绑通知"
   }
 }

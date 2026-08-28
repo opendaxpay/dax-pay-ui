@@ -67,6 +67,12 @@
     "testEmail": "E-mel penerima",
     "inputTestEmail": "Masukkan e-mel penerima ujian",
     "testEmailExtra": "Dihantar dengan konfigurasi penghantar tersimpan; perubahan yang belum disimpan tidak terpakai",
-    "emailInvalid": "Format e-mel tidak sah"
+    "emailInvalid": "Format e-mel tidak sah",
+    "businessPasswordReset": "Kod set semula kata laluan",
+    "businessEmailBind": "Kod pengikatan e-mel",
+    "businessEmailChangeNotice": "Notis perubahan e-mel",
+    "businessPasswordResetNotice": "Notis set semula kata laluan",
+    "businessEmailUnbind": "Kod penyahikatan e-mel",
+    "businessEmailUnbindNotice": "Pemberitahuan penyahikatan e-mel"
   }
 }

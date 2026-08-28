@@ -19,7 +19,7 @@
   import { useAuthStore } from '#/store';
   import { isAutoSocialSkipped, isInAppForSource, markAutoSocialAttempt } from '#/utils/auto-social-login';
 
-  import { AuthPageCard, AuthThirdPartyPanel } from './components';
+  import { AuthPageCard, AuthPageFooterActions, AuthThirdPartyPanel } from './components';
   import TwoFactorVerifyPanel from './components/TwoFactorVerifyPanel.vue';
 
   defineOptions({ name: 'Login' });
@@ -116,7 +116,7 @@
     }
     markAutoSocialAttempt();
     try {
-      // silent=true: 企微网页授权 / 微信 snsapi_base
+      // silent=true: 企微网页授权 / 钉钉免确认授权 / 飞书应用内授权
       const { data: url } = await SocialApi.render(matched, CLIENT_CODE, 'LOGIN', undefined, true);
       if (url) {
         window.location.href = url;
@@ -391,6 +391,14 @@
         {{ passkeyButtonText }}
       </a-button>
     </a-form>
+
+    <!-- 国际化：忘记密码入口(跳转邮箱验证码找回页) -->
+    <AuthPageFooterActions
+      v-if="!authStore.twoFactorRequired"
+      :question-text="$t('authentication.forgetPassword')"
+      :action-text="$t('_core.authentication.forgetPassword.findNow')"
+      action-path="/auth/forget-password"
+    />
 
     <!-- 暂时隐藏扫码登录入口, 后续需要时将 v-if 改为 true 即可恢复 -->
     <div v-if="false" class="mt-4 flex items-center justify-center gap-4 text-sm">

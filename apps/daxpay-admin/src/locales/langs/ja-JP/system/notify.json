@@ -67,6 +67,12 @@
     "testEmail": "受信者メール",
     "inputTestEmail": "テスト用受信メールを入力してください",
     "testEmailExtra": "保存済みの送信元設定で送信されます。未保存の変更は適用されません",
-    "emailInvalid": "メールアドレスの形式が不正です"
+    "emailInvalid": "メールアドレスの形式が不正です",
+    "businessPasswordReset": "パスワード再設定コード",
+    "businessEmailBind": "メール紐付けコード",
+    "businessEmailChangeNotice": "紐付けメール変更通知",
+    "businessPasswordResetNotice": "パスワード再設定完了通知",
+    "businessEmailUnbind": "メール解除コード",
+    "businessEmailUnbindNotice": "メール解除通知"
   }
 }

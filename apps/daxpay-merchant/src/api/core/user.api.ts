@@ -18,20 +18,22 @@ export interface UserBaseInfo {
   birthday?: string;
   /** 邮箱 */
   email?: string;
+  /** 邮箱是否已验证(未验证邮箱不可用于找回密码, 变更走邮箱绑定流程) */
+  emailVerified?: boolean;
   /** 手机号 */
   phone?: string;
 }
 
 /**
  * 用户基础信息修改参数
+ *
+ * email 不在本参数受理: 邮箱是找回密码的安全凭证, 绑定/换绑/解绑走 EmailApi 验证流程
  */
 export interface UserBaseInfoParam {
   /** 名称 */
   name?: string;
   /** 性别 */
   sex?: string;
-  /** 邮箱 */
-  email?: string;
   /** 手机号 */
   phone?: string;
 }

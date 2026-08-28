@@ -1,7 +1,6 @@
 {
   "login": "登录",
   "qrcodeLogin": "二维码登录",
-  "forgetPassword": "忘记密码",
   "profile": "个人中心",
   "pageTitle": "DaxPay 支付运营管理平台",
   "pageDesc": "安全、稳定、高效的支付运营解决方案",
@@ -43,5 +42,28 @@
     "verifying": "正在验证…",
     "failed": "通行密钥登录失败，请重试或改用密码登录；若持续失败，请联系管理员",
     "tlsBlocked": "当前站点证书不受浏览器信任，通行密钥登录暂不可用，请改用密码登录或联系管理员"
+  },
+  "forgetPassword": {
+    "subtitle": "通过已绑定邮箱的验证码重置登录密码",
+    "account": "用户账户",
+    "accountTip": "请输入用户账户",
+    "email": "邮箱",
+    "emailTip": "请输入已绑定的邮箱",
+    "sendCode": "发送验证码",
+    "codeSent": "验证码已发送, 请至邮箱查收(含垃圾邮件)",
+    "codeSentTo": "验证码已发送至 ",
+    "verifyCode": "邮箱验证码",
+    "verifyCodeTip": "请输入邮箱收到的6位验证码",
+    "newPassword": "新密码",
+    "newPasswordTip": "请输入新密码",
+    "confirmPassword": "确认新密码",
+    "confirmPasswordTip": "请再次输入新密码",
+    "passwordMismatch": "两次输入的密码不一致",
+    "resend": "重新发送验证码",
+    "reset": "重置密码",
+    "resetSuccess": "密码重置成功, 请使用新密码登录",
+    "backToLoginQ": "想起密码了?",
+    "backToLoginA": "返回登录",
+    "findNow": "立即找回"
   }
 }

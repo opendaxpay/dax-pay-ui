@@ -42,5 +42,28 @@
     "verifying": "확인 중…",
     "failed": "패스키 로그인에 실패했습니다. 다시 시도하거나 비밀번호로 로그인해 주세요. 계속 실패하면 관리자에게 문의하세요.",
     "tlsBlocked": "현재 사이트의 인증서가 브라우저에서 신뢰되지 않아 패스키 로그인을 일시적으로 사용할 수 없습니다. 비밀번호로 로그인하거나 관리자에게 문의하세요."
+  },
+  "forgetPassword": {
+    "subtitle": "연결된 이메일의 인증 코드로 로그인 비밀번호를 재설정합니다",
+    "account": "계정",
+    "accountTip": "계정을 입력하세요",
+    "email": "이메일",
+    "emailTip": "연결된 이메일을 입력하세요",
+    "sendCode": "인증 코드 전송",
+    "codeSent": "인증 코드가 전송되었습니다. 받은 편지함(스팸 포함)을 확인하세요",
+    "codeSentTo": "인증 코드 전송 대상: ",
+    "verifyCode": "이메일 인증 코드",
+    "verifyCodeTip": "이메일로 받은 6자리 인증 코드를 입력하세요",
+    "newPassword": "새 비밀번호",
+    "newPasswordTip": "새 비밀번호를 입력하세요",
+    "confirmPassword": "새 비밀번호 확인",
+    "confirmPasswordTip": "새 비밀번호를 다시 입력하세요",
+    "passwordMismatch": "입력한 두 비밀번호가 일치하지 않습니다",
+    "resend": "인증 코드 재전송",
+    "reset": "비밀번호 재설정",
+    "resetSuccess": "비밀번호가 재설정되었습니다. 새 비밀번호로 로그인하세요",
+    "backToLoginQ": "비밀번호가 기억나셨나요?",
+    "backToLoginA": "로그인으로 돌아가기",
+    "findNow": "지금 복구"
   }
 }

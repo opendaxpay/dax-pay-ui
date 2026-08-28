@@ -67,6 +67,12 @@
     "testEmail": "收件郵箱",
     "inputTestEmail": "請輸入測試收件郵箱",
     "testEmailExtra": "使用已保存的寄件配置發送, 未保存的修改不生效",
-    "emailInvalid": "郵箱格式不正確"
+    "emailInvalid": "郵箱格式不正確",
+    "businessPasswordReset": "密碼找回驗證碼",
+    "businessEmailBind": "郵箱綁定驗證碼",
+    "businessEmailChangeNotice": "綁定郵箱變更通知",
+    "businessPasswordResetNotice": "密碼重置成功通知",
+    "businessEmailUnbind": "郵箱解綁驗證碼",
+    "businessEmailUnbindNotice": "郵箱解綁通知"
   }
 }

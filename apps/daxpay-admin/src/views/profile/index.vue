@@ -4,6 +4,7 @@
   import { $t } from '@vben/locales';
 
   import ProfileBase from './base-setting.vue';
+  import ProfileEmailSetting from './email-setting.vue';
   import ProfilePasskeySetting from './passkey-setting.vue';
   import ProfilePasswordSetting from './password-setting.vue';
   import ProfileSecuritySetting from './security-setting.vue';
@@ -23,6 +24,11 @@
       key: 'password',
       label: $t('profile.changePassword'),
       description: $t('profile.changePasswordDesc'),
+    },
+    {
+      key: 'email',
+      label: $t('profile.emailBind'),
+      description: $t('profile.emailBindDesc'),
     },
     {
       key: 'social',
@@ -67,6 +73,7 @@
         <div class="profile-content__scroll">
           <ProfileBase v-if="activeKey === 'basic'" />
           <ProfilePasswordSetting v-else-if="activeKey === 'password'" />
+          <ProfileEmailSetting v-else-if="activeKey === 'email'" />
           <ProfileSocialBind v-else-if="activeKey === 'social'" />
           <ProfilePasskeySetting v-else-if="activeKey === 'passkey'" />
           <ProfileSecuritySetting v-else-if="activeKey === 'security'" />

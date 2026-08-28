@@ -42,5 +42,28 @@
     "verifying": "正在驗證…",
     "failed": "通行密鑰登入失敗，請重試或改用密碼登入；若持續失敗，請聯絡管理員",
     "tlsBlocked": "目前站點憑證未受瀏覽器信任，通行密鑰登入暫不可用，請改用密碼登入或聯絡管理員"
+  },
+  "forgetPassword": {
+    "subtitle": "透過已綁定郵箱的驗證碼重設登入密碼",
+    "account": "用戶帳戶",
+    "accountTip": "請輸入用戶帳戶",
+    "email": "郵箱",
+    "emailTip": "請輸入已綁定的郵箱",
+    "sendCode": "發送驗證碼",
+    "codeSent": "驗證碼已發送, 請至郵箱查收(含垃圾郵件)",
+    "codeSentTo": "驗證碼已發送至 ",
+    "verifyCode": "郵箱驗證碼",
+    "verifyCodeTip": "請輸入郵箱收到的6位驗證碼",
+    "newPassword": "新密碼",
+    "newPasswordTip": "請輸入新密碼",
+    "confirmPassword": "確認新密碼",
+    "confirmPasswordTip": "請再次輸入新密碼",
+    "passwordMismatch": "兩次輸入的密碼不一致",
+    "resend": "重新發送驗證碼",
+    "reset": "重設密碼",
+    "resetSuccess": "密碼重設成功, 請使用新密碼登入",
+    "backToLoginQ": "想起密碼了?",
+    "backToLoginA": "返回登入",
+    "findNow": "立即找回"
   }
 }

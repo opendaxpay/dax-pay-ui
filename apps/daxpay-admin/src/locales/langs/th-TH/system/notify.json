@@ -67,6 +67,12 @@
     "testEmail": "อีเมลผู้รับ",
     "inputTestEmail": "กรอกอีเมลรับทดสอบ",
     "testEmailExtra": "ส่งด้วยการตั้งค่าผู้ส่งที่บันทึกไว้ การเปลี่ยนแปลงที่ยังไม่บันทึกจะไม่มีผล",
-    "emailInvalid": "รูปแบบอีเมลไม่ถูกต้อง"
+    "emailInvalid": "รูปแบบอีเมลไม่ถูกต้อง",
+    "businessPasswordReset": "รหัสรีเซ็ตรหัสผ่าน",
+    "businessEmailBind": "รหัสผูกอีเมล",
+    "businessEmailChangeNotice": "แจ้งเตือนการเปลี่ยนอีเมล",
+    "businessPasswordResetNotice": "แจ้งเตือนการรีเซ็ตรหัสผ่านสำเร็จ",
+    "businessEmailUnbind": "รหัสยกเลิกอีเมล",
+    "businessEmailUnbindNotice": "แจ้งเตือนการยกเลิกอีเมล"
   }
 }

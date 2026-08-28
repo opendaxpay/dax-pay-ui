@@ -67,6 +67,12 @@
     "testEmail": "Email người nhận",
     "inputTestEmail": "Nhập email nhận kiểm tra",
     "testEmailExtra": "Gửi bằng cấu hình người gửi đã lưu; thay đổi chưa lưu không có hiệu lực",
-    "emailInvalid": "Định dạng email không hợp lệ"
+    "emailInvalid": "Định dạng email không hợp lệ",
+    "businessPasswordReset": "Mã đặt lại mật khẩu",
+    "businessEmailBind": "Mã liên kết email",
+    "businessEmailChangeNotice": "Thông báo thay đổi email",
+    "businessPasswordResetNotice": "Thông báo đặt lại mật khẩu",
+    "businessEmailUnbind": "Mã gỡ bỏ email",
+    "businessEmailUnbindNotice": "Thông báo gỡ bỏ email"
   }
 }

@@ -24,15 +24,7 @@
   const baseInfo = reactive({
     name: '',
     sex: '',
-    email: '',
-    phone: '',
   });
-
-  /** 邮箱显示值（空值显示"暂未设置"） */
-  const emailDisplay = computed(() => baseInfo.email || $t('profile.notSet'));
-
-  /** 手机号显示值（空值显示"暂未设置"） */
-  const phoneDisplay = computed(() => baseInfo.phone || $t('profile.notSet'));
 
   /** 表单数据（name/sex 可编辑） */
   const formState = reactive({
@@ -66,8 +58,6 @@
       const { data } = await UserCommonApi.getUserBaseInfo();
       baseInfo.name = data.name || '';
       baseInfo.sex = data.sex || '';
-      baseInfo.email = data.email || '';
-      baseInfo.phone = data.phone || '';
       // 同步表单数据
       formState.name = baseInfo.name;
       formState.sex = baseInfo.sex || 'unknown';
@@ -143,14 +133,6 @@
           :disabled="!isEditing"
           :placeholder="$t('common.pleaseSelect')"
         />
-      </a-form-item>
-      <!-- 邮箱（始终只读） -->
-      <a-form-item :label="$t('profile.email')">
-        <a-input :value="emailDisplay" disabled />
-      </a-form-item>
-      <!-- 手机号（始终只读） -->
-      <a-form-item :label="$t('profile.phone')">
-        <a-input :value="phoneDisplay" disabled />
       </a-form-item>
       <!-- 操作按钮 -->
       <a-form-item :wrapper-col="{ offset: 5 }">

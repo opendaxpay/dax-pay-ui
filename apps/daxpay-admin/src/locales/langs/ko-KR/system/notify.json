@@ -67,6 +67,12 @@
     "testEmail": "수신자 메일",
     "inputTestEmail": "테스트 수신 메일을 입력하세요",
     "testEmailExtra": "저장된 발신자 설정으로 발송됩니다. 저장되지 않은 변경 사항은 적용되지 않습니다",
-    "emailInvalid": "메일 주소 형식이 올바르지 않습니다"
+    "emailInvalid": "메일 주소 형식이 올바르지 않습니다",
+    "businessPasswordReset": "비밀번호 재설정 코드",
+    "businessEmailBind": "이메일 연결 코드",
+    "businessEmailChangeNotice": "이메일 변경 알림",
+    "businessPasswordResetNotice": "비밀번호 재설정 알림",
+    "businessEmailUnbind": "이메일 해제 코드",
+    "businessEmailUnbindNotice": "이메일 해제 알림"
   }
 }

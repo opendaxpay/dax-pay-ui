@@ -8,7 +8,7 @@
   import { $t } from '@vben/locales';
   import { formatDateTime } from '@vben/utils';
 
-  import { MailRecordApi, type MailRecord } from '#/api/system/notify/mail-record.api';
+  import { type MailRecord, MailRecordApi } from '#/api/system/notify/mail-record.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
@@ -36,7 +36,22 @@
   const businessTypeOptions = [
     { label: $t('system.notify.mail.businessTest'), value: 'test' },
     { label: $t('system.notify.mail.businessManual'), value: 'manual' },
+    { label: $t('system.notify.mail.businessPasswordReset'), value: 'password_reset' },
+    { label: $t('system.notify.mail.businessEmailBind'), value: 'email_bind' },
+    { label: $t('system.notify.mail.businessEmailChangeNotice'), value: 'email_change_notice' },
+    { label: $t('system.notify.mail.businessPasswordResetNotice'), value: 'password_reset_notice' },
+    { label: $t('system.notify.mail.businessEmailUnbind'), value: 'email_unbind' },
+    { label: $t('system.notify.mail.businessEmailUnbindNotice'), value: 'email_unbind_notice' },
   ];
+
+  /** 业务场景文案(详情展示用, 未知类型透传原码) */
+  function businessTypeText(type: null | string | undefined) {
+    if (!type) {
+      return '-';
+    }
+    const found = businessTypeOptions.find((item) => item.value === type);
+    return found ? found.label : type;
+  }
 
   // 查询字段配置
   const queryFields = computed<QueryField[]>(() => [
@@ -162,8 +177,7 @@
         {
           key: 'resend',
           label: $t('system.notify.mail.resend'),
-          disabled:
-            row.status !== 'fail' || !hasPermission(PermCodes.System.MailRecord.RESEND),
+          disabled: row.status !== 'fail' || !hasPermission(PermCodes.System.MailRecord.RESEND),
         },
         { type: 'divider' },
         // 删除
@@ -212,12 +226,38 @@
           <!-- 主题 -->
           <vxe-column field="subject" :title="$t('system.notify.mail.subjectField')" :min-width="200" show-overflow />
           <!-- 业务场景 -->
-          <vxe-column field="businessType" :title="$t('system.notify.mail.businessType')" :min-width="100" align="center">
+          <vxe-column
+            field="businessType"
+            :title="$t('system.notify.mail.businessType')"
+            :min-width="100"
+            align="center"
+          >
             <template #default="{ row }">
               <a-tag v-if="row.businessType === 'test'" color="blue">
                 {{ $t('system.notify.mail.businessTest') }}
               </a-tag>
-              <a-tag v-else>{{ $t('system.notify.mail.businessManual') }}</a-tag>
+              <!-- 验证码类邮件(找回密码/邮箱绑定/邮箱解绑)绿色, 通知类邮件青色 -->
+              <a-tag v-else-if="row.businessType === 'password_reset'" color="green">
+                {{ $t('system.notify.mail.businessPasswordReset') }}
+              </a-tag>
+              <a-tag v-else-if="row.businessType === 'email_bind'" color="green">
+                {{ $t('system.notify.mail.businessEmailBind') }}
+              </a-tag>
+              <a-tag v-else-if="row.businessType === 'email_unbind'" color="green">
+                {{ $t('system.notify.mail.businessEmailUnbind') }}
+              </a-tag>
+              <a-tag v-else-if="row.businessType === 'email_change_notice'" color="cyan">
+                {{ $t('system.notify.mail.businessEmailChangeNotice') }}
+              </a-tag>
+              <a-tag v-else-if="row.businessType === 'password_reset_notice'" color="cyan">
+                {{ $t('system.notify.mail.businessPasswordResetNotice') }}
+              </a-tag>
+              <a-tag v-else-if="row.businessType === 'email_unbind_notice'" color="cyan">
+                {{ $t('system.notify.mail.businessEmailUnbindNotice') }}
+              </a-tag>
+              <a-tag v-else>
+                {{ businessTypeText(row.businessType) }}
+              </a-tag>
             </template>
           </vxe-column>
           <!-- 发送状态 -->
@@ -308,11 +348,17 @@
           </a-descriptions-item>
           <!-- 业务场景 -->
           <a-descriptions-item :label="$t('system.notify.mail.businessType')">
-            {{ detailModal.record.businessType === 'test' ? $t('system.notify.mail.businessTest') : $t('system.notify.mail.businessManual') }}
+            {{ businessTypeText(detailModal.record.businessType) }}
           </a-descriptions-item>
           <!-- 发送状态 -->
           <a-descriptions-item :label="$t('system.notify.mail.status')">
-            {{ detailModal.record.status === 'success' ? $t('system.notify.mail.statusSuccess') : detailModal.record.status === 'fail' ? $t('system.notify.mail.statusFail') : $t('system.notify.mail.statusSending') }}
+            {{
+              detailModal.record.status === 'success'
+                ? $t('system.notify.mail.statusSuccess')
+                : detailModal.record.status === 'fail'
+                  ? $t('system.notify.mail.statusFail')
+                  : $t('system.notify.mail.statusSending')
+            }}
           </a-descriptions-item>
           <!-- 失败原因 -->
           <a-descriptions-item v-if="detailModal.record.status === 'fail'" :label="$t('system.notify.mail.errorMsg')">

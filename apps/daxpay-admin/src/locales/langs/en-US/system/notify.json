@@ -67,6 +67,12 @@
     "testEmail": "Recipient email",
     "inputTestEmail": "Enter test recipient email",
     "testEmailExtra": "Sent with the saved sender config; unsaved changes do not apply",
-    "emailInvalid": "Invalid email format"
+    "emailInvalid": "Invalid email format",
+    "businessPasswordReset": "Password reset code",
+    "businessEmailBind": "Email binding code",
+    "businessEmailChangeNotice": "Email change notice",
+    "businessPasswordResetNotice": "Password reset notification",
+    "businessEmailUnbind": "Email unbind code",
+    "businessEmailUnbindNotice": "Email unbind notice"
   }
 }

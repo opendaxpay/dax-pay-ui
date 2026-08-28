@@ -144,11 +144,11 @@ const coreRoutes: RouteRecordRaw[] = [
         },
       },
       {
-        name: 'LegacyForgetPassword',
+        name: 'ForgetPassword',
         path: 'forget-password',
-        redirect: LOGIN_PATH,
+        component: () => import('#/views/_core/authentication/forget-password.vue'),
         meta: {
-          // 运营端不提供公开找回密码，兼容旧地址并返回登录页
+          // 忘记密码(邮箱验证码找回)
           title: 'page.auth.forgetPassword',
           hideInMenu: true,
           hideInBreadcrumb: true,

@@ -1,7 +1,6 @@
 {
   "login": "Log masuk",
   "qrcodeLogin": "Log Masuk Kod Qr",
-  "forgetPassword": "Lupa Kata Laluan",
   "profile": "Profil",
   "pageTitle": "Platform Operasi Pembayaran DaxPay",
   "pageDesc": "Penyelesaian operasi pembayaran yang selamat, stabil dan cekap",
@@ -43,5 +42,28 @@
     "verifying": "Mengesahkan…",
     "failed": "Log masuk dengan passkey gagal. Sila cuba lagi atau log masuk dengan kata laluan, dan hubungi pentadbir jika terus gagal.",
     "tlsBlocked": "Sijil laman tidak dipercayai oleh pelayar jadi log masuk passkey tidak tersedia buat sementara. Sila log masuk dengan kata laluan atau hubungi pentadbir."
+  },
+  "forgetPassword": {
+    "subtitle": "Set semula kata laluan log masuk melalui kod pengesahan yang dihantar ke e-mel yang dikaitkan",
+    "account": "Akaun",
+    "accountTip": "Masukkan akaun anda",
+    "email": "E-mel",
+    "emailTip": "Masukkan e-mel yang dikaitkan",
+    "sendCode": "Hantar Kod",
+    "codeSent": "Kod dihantar, sila semak peti masuk (termasuk folder spam)",
+    "codeSentTo": "Kod dihantar ke ",
+    "verifyCode": "Kod Pengesahan E-mel",
+    "verifyCodeTip": "Masukkan kod 6 digit daripada e-mel anda",
+    "newPassword": "Kata Laluan Baharu",
+    "newPasswordTip": "Masukkan kata laluan baharu",
+    "confirmPassword": "Sahkan Kata Laluan",
+    "confirmPasswordTip": "Masukkan kata laluan baharu sekali lagi",
+    "passwordMismatch": "Dua kata laluan tidak sepadan",
+    "resend": "Hantar Semula Kod",
+    "reset": "Set Semula Kata Laluan",
+    "resetSuccess": "Kata laluan berjaya ditetapkan semula, sila log masuk dengan kata laluan baharu",
+    "backToLoginQ": "Ingat kata laluan anda?",
+    "backToLoginA": "Kembali ke Log Masuk",
+    "findNow": "Pulihkan Sekarang"
   }
 }

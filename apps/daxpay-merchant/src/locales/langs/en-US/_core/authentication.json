@@ -42,5 +42,28 @@
     "verifying": "Verifying…",
     "failed": "Passkey sign-in failed. Please try again or sign in with your password, and contact the administrator if it keeps failing.",
     "tlsBlocked": "The site certificate is not trusted by the browser, so passkey sign-in is temporarily unavailable. Please sign in with your password or contact the administrator."
+  },
+  "forgetPassword": {
+    "subtitle": "Reset your login password via the verification code sent to your bound email",
+    "account": "Account",
+    "accountTip": "Enter your account",
+    "email": "Email",
+    "emailTip": "Enter your bound email",
+    "sendCode": "Send Code",
+    "codeSent": "Code sent, please check your inbox (and spam folder)",
+    "codeSentTo": "Code sent to ",
+    "verifyCode": "Email Code",
+    "verifyCodeTip": "Enter the 6-digit code from your email",
+    "newPassword": "New Password",
+    "newPasswordTip": "Enter the new password",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordTip": "Enter the new password again",
+    "passwordMismatch": "The two passwords do not match",
+    "resend": "Resend Code",
+    "reset": "Reset Password",
+    "resetSuccess": "Password reset successfully, please log in with the new password",
+    "backToLoginQ": "Remembered your password?",
+    "backToLoginA": "Back to Login",
+    "findNow": "Recover Now"
   }
 }

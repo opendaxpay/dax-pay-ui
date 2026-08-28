@@ -42,5 +42,28 @@
     "verifying": "Đang xác minh…",
     "failed": "Đăng nhập bằng khóa truy cập thất bại. Vui lòng thử lại hoặc đăng nhập bằng mật khẩu, và liên hệ quản trị viên nếu vẫn thất bại.",
     "tlsBlocked": "Chứng chỉ của trang không được trình duyệt tin cậy nên đăng nhập bằng passkey tạm thời không khả dụng. Vui lòng đăng nhập bằng mật khẩu hoặc liên hệ quản trị viên."
+  },
+  "forgetPassword": {
+    "subtitle": "Đặt lại mật khẩu đăng nhập qua mã xác minh gửi đến email đã liên kết",
+    "account": "Tài khoản",
+    "accountTip": "Nhập tài khoản của bạn",
+    "email": "Email",
+    "emailTip": "Nhập email đã liên kết",
+    "sendCode": "Gửi mã",
+    "codeSent": "Đã gửi mã, vui lòng kiểm tra hộp thư (kể cả thư rác)",
+    "codeSentTo": "Đã gửi mã đến ",
+    "verifyCode": "Mã xác minh email",
+    "verifyCodeTip": "Nhập mã xác minh 6 số từ email",
+    "newPassword": "Mật khẩu mới",
+    "newPasswordTip": "Nhập mật khẩu mới",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "confirmPasswordTip": "Nhập lại mật khẩu mới",
+    "passwordMismatch": "Hai mật khẩu không khớp",
+    "resend": "Gửi lại mã",
+    "reset": "Đặt lại mật khẩu",
+    "resetSuccess": "Đặt lại mật khẩu thành công, vui lòng đăng nhập bằng mật khẩu mới",
+    "backToLoginQ": "Nhớ mật khẩu rồi?",
+    "backToLoginA": "Quay lại đăng nhập",
+    "findNow": "Khôi phục ngay"
   }
 }

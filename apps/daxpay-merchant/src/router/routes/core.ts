@@ -144,6 +144,18 @@ const coreRoutes: RouteRecordRaw[] = [
         },
       },
       {
+        name: 'ForgetPassword',
+        path: 'forget-password',
+        component: () => import('#/views/_core/authentication/forget-password.vue'),
+        meta: {
+          // 忘记密码(邮箱验证码找回)
+          title: 'page.auth.forgetPassword',
+          hideInMenu: true,
+          hideInBreadcrumb: true,
+          hideInTab: true,
+        },
+      },
+      {
         name: 'QrCodeLogin',
         path: 'qrcode-login',
         component: () => import('#/views/_core/authentication/qrcode-login.vue'),
