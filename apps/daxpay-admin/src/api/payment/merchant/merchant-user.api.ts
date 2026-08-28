@@ -163,18 +163,18 @@ export const MerchantUserApi = {
 
   /**
    * 重置密码
-   * 不传密码时由后端生成随机密码, 返回明文供一次性转告用户
+   * 由后端生成随机密码, 返回明文供一次性转告用户
    */
-  restartPassword(userId: string, newPassword?: string): Promise<Result<UserPasswordResult>> {
-    return defHttp.post({ url: '/admin/merchant/user/restart-password', data: { userId, newPassword } });
+  restartPassword(userId: string): Promise<Result<UserPasswordResult>> {
+    return defHttp.post({ url: '/admin/merchant/user/restart-password', data: { userId } });
   },
 
   /**
    * 批量重置密码
-   * 不传密码时为每个用户独立生成随机密码, 返回明文列表
+   * 为每个用户独立生成随机密码, 返回明文列表
    */
-  restartPasswordBatch(userIds: string[], newPassword?: string): Promise<Result<UserPasswordResult[]>> {
-    return defHttp.post({ url: '/admin/merchant/user/restart-password-batch', data: { userIds, newPassword } });
+  restartPasswordBatch(userIds: string[]): Promise<Result<UserPasswordResult[]>> {
+    return defHttp.post({ url: '/admin/merchant/user/restart-password-batch', data: { userIds } });
   },
 };
 
