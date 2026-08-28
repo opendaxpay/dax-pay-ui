@@ -32,6 +32,13 @@ export const UserApi = {
     return defHttp.post({ url: '/user/admin/update', data });
   },
   /**
+   * 强制解绑用户邮箱
+   * 用户邮箱本体失效时的管理员代管通道, 仅清空邮箱与验证状态, 不可指定新邮箱
+   */
+  unbindEmail(id: string): Promise<Result<void>> {
+    return defHttp.post({ url: '/user/admin/unbind-email', params: { userId: id } });
+  },
+  /**
    * 封禁用户
    */
   ban(id: string): Promise<Result<void>> {
@@ -145,6 +152,8 @@ export interface User {
   phone?: string;
   /** 邮箱 */
   email?: string;
+  /** 邮箱是否已验证(仅用户本人走绑定验证流程后为 true) */
+  emailVerified?: boolean;
   /** 客户端编码 */
   clientCode?: string;
   /** 状态 */

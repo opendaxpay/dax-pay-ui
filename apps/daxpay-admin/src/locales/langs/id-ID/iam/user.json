@@ -15,7 +15,10 @@
     "administrator": "Administrator",
     "registerTime": "Waktu Pendaftaran",
     "loginCount": "Jumlah Login",
-    "lastLoginIp": "IP Login Terakhir"
+    "lastLoginIp": "IP Login Terakhir",
+    "emailNotBound": "Belum terikat",
+    "emailVerified": "Terverifikasi",
+    "emailUnverified": "Belum terverifikasi"
   },
   "status": {
     "normal": "Normal",
@@ -34,7 +37,9 @@
     "confirmBan": "Apakah Anda yakin akan mencekal pengguna tertentu?",
     "confirmUnlock": "Apakah Anda yakin untuk membuka kunci pengguna yang dipilih?",
     "confirmResetPassword": "Apakah Anda yakin untuk menyetel ulang sandi untuk pengguna tertentu?",
-    "socialBind": "Ikatan Sosial"
+    "socialBind": "Ikatan Sosial",
+    "unbindEmail": "Lepaskan Email",
+    "confirmUnbindEmail": "Lepaskan email pengguna ini? Setelah dilepaskan, email tidak dapat digunakan untuk pemulihan kata sandi dan harus diikat kembali oleh pengguna."
   },
   "social": {
     "title": "Pengikatan Akun Sosial",

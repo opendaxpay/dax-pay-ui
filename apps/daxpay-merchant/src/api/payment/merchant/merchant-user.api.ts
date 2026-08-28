@@ -66,8 +66,6 @@ export interface MerchantUserParam {
   confirmPassword?: string;
   /** 手机号 */
   phone?: string;
-  /** 邮箱 */
-  email?: string;
 }
 
 /**
@@ -82,6 +80,8 @@ export interface UserInfoResult extends BaseEntity {
   phone?: string;
   /** 邮箱 */
   email?: string;
+  /** 邮箱是否已验证(仅用户本人走绑定验证流程后为 true) */
+  emailVerified?: boolean;
   /** 状态 */
   status?: string;
   /** 是否管理员 */
@@ -125,6 +125,14 @@ export const MerchantUserApi = {
    */
   update(data: MerchantUserParam): Promise<Result<void>> {
     return defHttp.post({ url: '/mch/user/update', data });
+  },
+
+  /**
+   * 强制解绑商户用户邮箱
+   * 用户邮箱本体失效时的管理员代管通道, 仅清空邮箱与验证状态, 不可指定新邮箱
+   */
+  unbindEmail(userId: string): Promise<Result<void>> {
+    return defHttp.post({ url: '/mch/user/unbind-email', params: { userId } });
   },
 
   /**

@@ -15,7 +15,10 @@
     "administrator": "管理員",
     "registerTime": "註冊時間",
     "loginCount": "登入次數",
-    "lastLoginIp": "最後登入 IP"
+    "lastLoginIp": "最後登入 IP",
+    "emailNotBound": "未綁定",
+    "emailVerified": "已驗證",
+    "emailUnverified": "未驗證"
   },
   "status": {
     "normal": "正常",
@@ -34,7 +37,9 @@
     "confirmBan": "確定要封禁選中的用户嗎？",
     "confirmUnlock": "確定要解鎖選中的用户嗎？",
     "confirmResetPassword": "確定要重置選中用户的密碼嗎？",
-    "socialBind": "三方綁定"
+    "socialBind": "三方綁定",
+    "unbindEmail": "解綁電郵",
+    "confirmUnbindEmail": "確定要解綁該用戶的電郵嗎？解綁後該電郵不可用於找回密碼，需用戶重新綁定"
   },
   "social": {
     "title": "三方賬號綁定",

@@ -126,7 +126,6 @@
         account: formState.value.account,
         password: encryptedPassword,
         phone: formState.value.phone,
-        email: formState.value.email,
       });
       // 切换到结果态展示初始密码
       createdResult.value = data!;
@@ -189,10 +188,6 @@
       <!-- 手机号 -->
       <a-form-item :label="$t('iam.user.field.phone')">
         <a-input v-model:value="formState.phone" :placeholder="$t('common.pleaseInput')" />
-      </a-form-item>
-      <!-- 邮箱 -->
-      <a-form-item :label="$t('iam.user.field.email')">
-        <a-input v-model:value="formState.email" :placeholder="$t('common.pleaseInput')" />
       </a-form-item>
     </a-form>
     <!-- 结果态: 展示账号与初始密码 -->

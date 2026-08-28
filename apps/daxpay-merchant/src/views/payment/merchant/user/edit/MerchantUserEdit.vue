@@ -10,7 +10,7 @@
 
   const emit = defineEmits(['ok']);
 
-  const { message } = useMessage();
+  const { message, confirm } = useMessage();
 
   // 表单引用
   const formRef = ref();
@@ -56,6 +56,7 @@
         name: data.name || '',
         phone: data.phone || '',
         email: data.email || '',
+        emailVerified: data.emailVerified,
       };
     }
   }
@@ -70,11 +71,11 @@
     confirmLoading.value = true;
 
     try {
+      // email 不随编辑提交: 邮箱变更仅允许用户本人走绑定验证流程
       await MerchantUserApi.update({
         id: userId.value,
         name: formState.value.name,
         phone: formState.value.phone,
-        email: formState.value.email,
       });
       message.success($t('common.success'));
       handleCancel();
@@ -82,6 +83,42 @@
     } finally {
       confirmLoading.value = false;
     }
+  }
+
+  /**
+   * 强制解绑邮箱
+   * 用户邮箱本体失效、无法走本人解绑流程时的管理员代管通道, 仅清空邮箱与验证状态
+   */
+  function handleUnbindEmail() {
+    confirm({
+      title: $t('common.confirm'),
+      // 确认要解绑该用户的邮箱吗？解绑后该邮箱不可用于找回密码，需用户重新绑定
+      content: $t('iam.user.action.confirmUnbindEmail'),
+      okText: $t('common.okText'),
+      cancelText: $t('common.cancelText'),
+      onOk: async () => {
+        try {
+          await MerchantUserApi.unbindEmail(userId.value);
+          // 成功
+          message.success($t('common.success'));
+          // 重新拉取详情刷新邮箱展示, 并通知列表刷新
+          const { data } = await MerchantUserApi.findById(userId.value);
+          if (data) {
+            formState.value = {
+              id: data.id || '',
+              name: data.name || '',
+              phone: data.phone || '',
+              email: data.email || '',
+              emailVerified: data.emailVerified,
+            };
+          }
+          emit('ok');
+        } catch {
+          // 失败
+          message.error($t('common.failed'));
+        }
+      },
+    });
   }
 
   defineExpose({ show });
@@ -111,9 +148,19 @@
       <a-form-item :label="$t('iam.user.field.phone')" name="phone">
         <a-input v-model:value="formState.phone" :placeholder="$t('common.pleaseInput')" />
       </a-form-item>
-      <!-- 邮箱 -->
-      <a-form-item :label="$t('iam.user.field.email')" name="email">
-        <a-input v-model:value="formState.email" :placeholder="$t('common.pleaseInput')" />
+      <!-- 邮箱（不可编辑: 变更仅允许用户本人走绑定验证流程; 已绑定时可强制解绑） -->
+      <a-form-item :label="$t('iam.user.field.email')">
+        <div class="flex items-center gap-2">
+          <span>{{ formState.email || $t('iam.user.field.emailNotBound') }}</span>
+          <!-- 邮箱验证状态 -->
+          <a-tag v-if="formState.email" :color="formState.emailVerified ? 'green' : 'orange'">
+            {{ $t(formState.emailVerified ? 'iam.user.field.emailVerified' : 'iam.user.field.emailUnverified') }}
+          </a-tag>
+          <!-- 强制解绑邮箱（危险操作） -->
+          <a-button v-if="formState.email" type="link" size="small" danger @click="handleUnbindEmail">
+            {{ $t('iam.user.action.unbindEmail') }}
+          </a-button>
+        </div>
       </a-form-item>
     </a-form>
 

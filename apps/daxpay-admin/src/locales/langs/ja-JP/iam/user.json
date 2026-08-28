@@ -15,7 +15,10 @@
     "administrator": "管理者",
     "registerTime": "登録時間",
     "loginCount": "ログイン回数",
-    "lastLoginIp": "最終ログイン IP"
+    "lastLoginIp": "最終ログイン IP",
+    "emailNotBound": "未設定",
+    "emailVerified": "認証済み",
+    "emailUnverified": "未認証"
   },
   "status": {
     "normal": "普通",
@@ -34,7 +37,9 @@
     "confirmBan": "選択したユーザーを禁止してもよろしいですか?",
     "confirmUnlock": "選択したユーザーのロックを解除してもよろしいですか?",
     "confirmResetPassword": "選択したユーザーのパスワードをリセットしてもよろしいですか?",
-    "socialBind": "社会的な束縛"
+    "socialBind": "社会的な束縛",
+    "unbindEmail": "メール解除",
+    "confirmUnbindEmail": "このユーザーのメールアドレスを解除しますか？解除後、そのメールアドレスはパスワード再設定に使用できず、ユーザーが再度設定する必要があります"
   },
   "social": {
     "title": "ソーシャルアカウントのバインド",

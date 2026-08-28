@@ -15,7 +15,10 @@
     "administrator": "Quản trị viên",
     "registerTime": "Thời gian đăng ký",
     "loginCount": "Số lần đăng nhập",
-    "lastLoginIp": "IP đăng nhập cuối"
+    "lastLoginIp": "IP đăng nhập cuối",
+    "emailNotBound": "Chưa liên kết",
+    "emailVerified": "Đã xác minh",
+    "emailUnverified": "Chưa xác minh"
   },
   "status": {
     "normal": "Bình thường",
@@ -34,7 +37,9 @@
     "confirmBan": "Bạn có chắc chắn cấm người dùng đã chọn không?",
     "confirmUnlock": "Bạn có chắc chắn mở khóa những người dùng đã chọn không?",
     "confirmResetPassword": "Bạn có chắc chắn đặt lại mật khẩu cho những người dùng đã chọn không?",
-    "socialBind": "Ràng buộc xã hội"
+    "socialBind": "Ràng buộc xã hội",
+    "unbindEmail": "Gỡ liên kết email",
+    "confirmUnbindEmail": "Gỡ liên kết email của người dùng này? Sau khi gỡ, email sẽ không thể dùng để khôi phục mật khẩu và người dùng cần liên kết lại."
   },
   "social": {
     "title": "Ràng buộc tài khoản xã hội",

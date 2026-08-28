@@ -15,7 +15,10 @@
     "administrator": "Administrator",
     "registerTime": "Registration Time",
     "loginCount": "Login Count",
-    "lastLoginIp": "Last Login IP"
+    "lastLoginIp": "Last Login IP",
+    "emailNotBound": "Not bound",
+    "emailVerified": "Verified",
+    "emailUnverified": "Unverified"
   },
   "status": {
     "normal": "Normal",
@@ -34,7 +37,9 @@
     "confirmBan": "Are you sure to ban selected users?",
     "confirmUnlock": "Are you sure to unlock selected users?",
     "confirmResetPassword": "Are you sure to reset password for selected users?",
-    "socialBind": "Social Bindings"
+    "socialBind": "Social Bindings",
+    "unbindEmail": "Unbind Email",
+    "confirmUnbindEmail": "Unbind this user's email? After unbinding, it can no longer be used for password recovery and must be re-bound by the user."
   },
   "social": {
     "title": "Social Account Bindings",

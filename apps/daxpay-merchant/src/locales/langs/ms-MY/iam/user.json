@@ -15,7 +15,10 @@
     "administrator": "Pentadbir",
     "registerTime": "Masa Pendaftaran",
     "loginCount": "Kiraan Log Masuk",
-    "lastLoginIp": "IP Log Masuk Terakhir"
+    "lastLoginIp": "IP Log Masuk Terakhir",
+    "emailNotBound": "Belum dikaitkan",
+    "emailVerified": "Disahkan",
+    "emailUnverified": "Belum disahkan"
   },
   "status": {
     "normal": "Biasalah",
@@ -34,7 +37,9 @@
     "confirmBan": "Adakah anda pasti melarang pengguna terpilih?",
     "confirmUnlock": "Adakah anda pasti untuk membuka kunci pengguna terpilih?",
     "confirmResetPassword": "Adakah anda pasti untuk menetapkan semula kata laluan untuk pengguna terpilih?",
-    "socialBind": "Ikatan Sosial"
+    "socialBind": "Ikatan Sosial",
+    "unbindEmail": "Nyahkait E-mel",
+    "confirmUnbindEmail": "Nyahkait e-mel pengguna ini? Selepas nyahkait, e-mel tidak boleh digunakan untuk pemulihan kata laluan dan pengguna perlu mengaitkannya semula."
   },
   "social": {
     "title": "Pengikatan Akaun Sosial",

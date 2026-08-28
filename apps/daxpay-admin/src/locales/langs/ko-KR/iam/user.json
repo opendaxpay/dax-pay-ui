@@ -15,7 +15,10 @@
     "administrator": "관리자",
     "registerTime": "가입 시간",
     "loginCount": "로그인 횟수",
-    "lastLoginIp": "최근 로그인 IP"
+    "lastLoginIp": "최근 로그인 IP",
+    "emailNotBound": "미설정",
+    "emailVerified": "인증됨",
+    "emailUnverified": "미인증"
   },
   "status": {
     "normal": "정상",
@@ -34,7 +37,9 @@
     "confirmBan": "선택한 사용자를 차단하시겠습니까?",
     "confirmUnlock": "선택한 사용자를 잠금 해제하시겠습니까?",
     "confirmResetPassword": "선택한 사용자의 비밀번호를 재설정하시겠습니까?",
-    "socialBind": "소셜 바인딩"
+    "socialBind": "소셜 바인딩",
+    "unbindEmail": "이메일 해제",
+    "confirmUnbindEmail": "이 사용자의 이메일을 해제하시겠습니까? 해제 후 해당 이메일은 비밀번호 찾기에 사용할 수 없으며 사용자가 다시 등록해야 합니다"
   },
   "social": {
     "title": "소셜 계정 바인딩",
