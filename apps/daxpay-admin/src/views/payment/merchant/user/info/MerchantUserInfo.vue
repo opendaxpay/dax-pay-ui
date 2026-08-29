@@ -86,10 +86,6 @@
         <a-descriptions-item :label="$t('iam.user.field.account')">
           {{ userInfo.account }}
         </a-descriptions-item>
-        <!-- 手机号 -->
-        <a-descriptions-item :label="$t('iam.user.field.phone')">
-          {{ userInfo.phone || '-' }}
-        </a-descriptions-item>
         <!-- 邮箱 -->
         <a-descriptions-item :label="$t('iam.user.field.email')">
           {{ userInfo.email || '-' }}

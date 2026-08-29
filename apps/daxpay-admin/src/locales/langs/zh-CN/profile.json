@@ -103,9 +103,7 @@
   "emailBind": "邮箱绑定",
   "emailBindDesc": "绑定邮箱用于找回密码与安全通知",
   "emailVerifiedTag": "已验证",
-  "emailUnverifiedTag": "未验证",
   "emailBindAction": "绑定邮箱",
-  "emailVerifyAction": "验证邮箱",
   "emailChangeAction": "换绑邮箱",
   "emailUnbindAction": "解绑",
   "emailBindTip": "已验证的邮箱可用于登录页找回密码",
@@ -122,6 +120,5 @@
   "emailUnbindConfirm": "解绑后将无法通过邮箱找回密码, 确定解绑?",
   "emailUnbindSuccess": "邮箱已解绑",
   "emailUnbindCodeSent": "验证码已发送至 {email}, 请查收",
-  "emailUnboundTag": "未绑定",
-  "emailVerifyTip": "验证后该邮箱方可用于登录页找回密码"
+  "emailUnboundTag": "未绑定"
 }

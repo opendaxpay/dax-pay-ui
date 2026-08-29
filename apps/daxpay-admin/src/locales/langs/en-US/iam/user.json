@@ -2,7 +2,6 @@
   "field": {
     "name": "Name",
     "account": "Account",
-    "phone": "Phone",
     "email": "Email",
     "clientCode": "Client",
     "status": "Status",
@@ -16,9 +15,7 @@
     "registerTime": "Registration Time",
     "loginCount": "Login Count",
     "lastLoginIp": "Last Login IP",
-    "emailNotBound": "Not bound",
-    "emailVerified": "Verified",
-    "emailUnverified": "Unverified"
+    "emailNotBound": "Not bound"
   },
   "status": {
     "normal": "Normal",

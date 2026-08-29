@@ -95,12 +95,6 @@ export const UserApi = {
     return defHttp.get({ url: '/user/check/exists-account-by-client', params: { account, clientCode } });
   },
   /**
-   * 校验手机号是否已存在
-   */
-  existsPhoneByClient(phone: string, clientCode: string): Promise<Result<boolean>> {
-    return defHttp.get({ url: '/user/check/exists-phone-by-client', params: { phone, clientCode } });
-  },
-  /**
    * 校验邮箱是否已存在
    */
   existsEmailByClient(email: string, clientCode: string): Promise<Result<boolean>> {
@@ -148,12 +142,8 @@ export interface User {
   name?: string;
   /** 用户账号 */
   account?: string;
-  /** 手机号 */
-  phone?: string;
   /** 邮箱 */
   email?: string;
-  /** 邮箱是否已验证(仅用户本人走绑定验证流程后为 true) */
-  emailVerified?: boolean;
   /** 客户端编码 */
   clientCode?: string;
   /** 状态 */
@@ -182,8 +172,6 @@ export interface UserQuery {
   name?: string;
   /** 用户账号 */
   account?: string;
-  /** 手机号 */
-  phone?: string;
   /** 邮箱 */
   email?: string;
   /** 客户端编码 */

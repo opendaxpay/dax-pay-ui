@@ -386,11 +386,6 @@
             </template>
           </vxe-column>
           <vxe-column field="account" :title="$t('iam.user.field.account')" min-width="120" />
-          <vxe-column field="phone" :title="$t('iam.user.field.phone')" min-width="120">
-            <template #default="{ row }">
-              {{ row.phone || $t('common.none') }}
-            </template>
-          </vxe-column>
           <vxe-column field="email" :title="$t('iam.user.field.email')" min-width="150">
             <template #default="{ row }">
               {{ row.email || $t('common.none') }}

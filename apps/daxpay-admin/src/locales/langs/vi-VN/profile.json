@@ -103,9 +103,7 @@
   "emailBind": "Liên kết email",
   "emailBindDesc": "Liên kết email để khôi phục mật khẩu và nhận thông báo bảo mật",
   "emailVerifiedTag": "Đã xác minh",
-  "emailUnverifiedTag": "Chưa xác minh",
   "emailBindAction": "Liên kết email",
-  "emailVerifyAction": "Xác minh email",
   "emailChangeAction": "Đổi email",
   "emailUnbindAction": "Hủy liên kết",
   "emailBindTip": "Email đã xác minh có thể dùng để khôi phục mật khẩu tại trang đăng nhập",
@@ -122,6 +120,5 @@
   "emailUnbindConfirm": "Sau khi hủy liên kết, email sẽ không thể dùng để khôi phục mật khẩu. Hủy liên kết?",
   "emailUnbindSuccess": "Đã hủy liên kết email",
   "emailUnbindCodeSent": "Mã xác nhận đã được gửi tới {email}, vui lòng kiểm tra",
-  "emailUnboundTag": "Chưa liên kết",
-  "emailVerifyTip": "Email này chỉ có thể dùng để khôi phục mật khẩu sau khi xác minh"
+  "emailUnboundTag": "Chưa liên kết"
 }

@@ -33,8 +33,6 @@ export interface MerchantUserResult extends BaseEntity {
   name?: string;
   /** 账号 */
   account?: string;
-  /** 手机号 */
-  phone?: string;
   /** 邮箱 */
   email?: string;
   /** 是否管理员 */
@@ -59,10 +57,6 @@ export interface MerchantUserParam {
   password?: string;
   /** 密码 */
   confirmPassword?: string;
-  /** 手机号 */
-  phone?: string;
-  /** 邮箱 */
-  email?: string;
 }
 
 /**
@@ -73,8 +67,6 @@ export interface UserInfoResult extends BaseEntity {
   name?: string;
   /** 账号 */
   account?: string;
-  /** 手机号 */
-  phone?: string;
   /** 邮箱 */
   email?: string;
   /** 状态 */

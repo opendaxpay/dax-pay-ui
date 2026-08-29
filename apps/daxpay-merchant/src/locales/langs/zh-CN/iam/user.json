@@ -2,7 +2,6 @@
   "field": {
     "name": "名称",
     "account": "账号",
-    "phone": "手机号",
     "email": "邮箱",
     "clientCode": "终端",
     "status": "状态",
@@ -16,9 +15,7 @@
     "registerTime": "注册时间",
     "loginCount": "登录次数",
     "lastLoginIp": "最后登录 IP",
-    "emailNotBound": "未绑定",
-    "emailVerified": "已验证",
-    "emailUnverified": "未验证"
+    "emailNotBound": "未绑定"
   },
   "status": {
     "normal": "正常",

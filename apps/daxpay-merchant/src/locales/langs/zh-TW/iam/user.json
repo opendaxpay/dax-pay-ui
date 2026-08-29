@@ -2,7 +2,6 @@
   "field": {
     "name": "名稱",
     "account": "賬號",
-    "phone": "手機號",
     "email": "郵箱",
     "clientCode": "終端",
     "status": "狀態",
@@ -16,9 +15,7 @@
     "registerTime": "註冊時間",
     "loginCount": "登入次數",
     "lastLoginIp": "最後登入 IP",
-    "emailNotBound": "未綁定",
-    "emailVerified": "已驗證",
-    "emailUnverified": "未驗證"
+    "emailNotBound": "未綁定"
   },
   "status": {
     "normal": "正常",

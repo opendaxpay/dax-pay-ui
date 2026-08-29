@@ -2,7 +2,6 @@
   "field": {
     "name": "Tên",
     "account": "Tài khoản",
-    "phone": "Điện thoại",
     "email": "E-mail",
     "clientCode": "Khách hàng",
     "status": "Trạng thái",
@@ -16,9 +15,7 @@
     "registerTime": "Thời gian đăng ký",
     "loginCount": "Số lần đăng nhập",
     "lastLoginIp": "IP đăng nhập cuối",
-    "emailNotBound": "Chưa liên kết",
-    "emailVerified": "Đã xác minh",
-    "emailUnverified": "Chưa xác minh"
+    "emailNotBound": "Chưa liên kết"
   },
   "status": {
     "normal": "Bình thường",

@@ -103,9 +103,7 @@
   "emailBind": "Email Binding",
   "emailBindDesc": "Bind an email for password recovery and security notifications",
   "emailVerifiedTag": "Verified",
-  "emailUnverifiedTag": "Unverified",
   "emailBindAction": "Bind Email",
-  "emailVerifyAction": "Verify Email",
   "emailChangeAction": "Change Email",
   "emailUnbindAction": "Unbind",
   "emailBindTip": "A verified email can be used to recover your password on the login page",
@@ -122,6 +120,5 @@
   "emailUnbindConfirm": "After unbinding, the email can no longer be used for password recovery. Unbind anyway?",
   "emailUnbindSuccess": "Email unbound",
   "emailUnbindCodeSent": "Verification code has been sent to {email}, please check",
-  "emailUnboundTag": "Unbound",
-  "emailVerifyTip": "The email can be used for password recovery after verification"
+  "emailUnboundTag": "Unbound"
 }

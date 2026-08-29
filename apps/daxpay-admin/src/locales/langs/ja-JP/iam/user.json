@@ -2,7 +2,6 @@
   "field": {
     "name": "名前",
     "account": "アカウント",
-    "phone": "電話",
     "email": "電子メール",
     "clientCode": "クライアント",
     "status": "状態",
@@ -16,9 +15,7 @@
     "registerTime": "登録時間",
     "loginCount": "ログイン回数",
     "lastLoginIp": "最終ログイン IP",
-    "emailNotBound": "未設定",
-    "emailVerified": "認証済み",
-    "emailUnverified": "未認証"
+    "emailNotBound": "未設定"
   },
   "status": {
     "normal": "普通",

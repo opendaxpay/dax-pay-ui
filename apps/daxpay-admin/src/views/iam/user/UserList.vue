@@ -92,7 +92,6 @@
     { field: 'name', name: $t('iam.user.field.name'), placeholder: $t('common.pleaseInput') },
     { field: 'account', name: $t('iam.user.field.account'), placeholder: $t('common.pleaseInput') },
     { field: 'status', type: 'list', name: $t('iam.user.field.status'), selectList: statusOptions.value },
-    { field: 'phone', name: $t('iam.user.field.phone'), placeholder: $t('common.pleaseInput') },
     { field: 'email', name: $t('iam.user.field.email'), placeholder: $t('common.pleaseInput') },
   ]);
 
@@ -477,12 +476,6 @@
           <vxe-column field="name" :title="$t('iam.user.field.name')" min-width="120" />
           <!-- 账号 -->
           <vxe-column field="account" :title="$t('iam.user.field.account')" min-width="120" />
-          <!-- 手机号 -->
-          <vxe-column field="phone" :title="$t('iam.user.field.phone')" min-width="120">
-            <template #default="{ row }">
-              {{ row.phone || $t('common.none') }}
-            </template>
-          </vxe-column>
           <!-- 邮箱 -->
           <vxe-column field="email" :title="$t('iam.user.field.email')" min-width="150">
             <template #default="{ row }">

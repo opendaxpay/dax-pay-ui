@@ -50,8 +50,6 @@ export const EmailApi = {
 export interface EmailInfoResult {
   /** 绑定邮箱(未绑定为null) */
   email?: null | string;
-  /** 邮箱是否已验证(未验证邮箱不可用于找回密码) */
-  emailVerified?: boolean;
 }
 
 /**
@@ -60,7 +58,7 @@ export interface EmailInfoResult {
 export interface EmailBindSendCodeParams {
   /** 登录密码(RSA加密传输) */
   password: string;
-  /** 新邮箱(验证已有邮箱时传当前邮箱) */
+  /** 新邮箱 */
   email: string;
 }
 

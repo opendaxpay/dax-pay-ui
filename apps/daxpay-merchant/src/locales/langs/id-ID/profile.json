@@ -103,9 +103,7 @@
   "emailBind": "Pengikatan Email",
   "emailBindDesc": "Ikat email untuk pemulihan kata sandi dan notifikasi keamanan",
   "emailVerifiedTag": "Terverifikasi",
-  "emailUnverifiedTag": "Belum terverifikasi",
   "emailBindAction": "Ikat Email",
-  "emailVerifyAction": "Verifikasi Email",
   "emailChangeAction": "Ganti Email",
   "emailUnbindAction": "Lepaskan",
   "emailBindTip": "Email yang terverifikasi dapat digunakan untuk memulihkan kata sandi di halaman masuk",
@@ -122,6 +120,5 @@
   "emailUnbindConfirm": "Setelah dilepaskan, email tidak dapat digunakan untuk pemulihan kata sandi. Lepaskan?",
   "emailUnbindSuccess": "Email telah dilepaskan",
   "emailUnbindCodeSent": "Kode verifikasi telah dikirim ke {email}, silakan periksa",
-  "emailUnboundTag": "Belum terikat",
-  "emailVerifyTip": "Email dapat digunakan untuk pemulihan kata sandi setelah diverifikasi"
+  "emailUnboundTag": "Belum terikat"
 }

@@ -103,9 +103,7 @@
   "emailBind": "郵箱綁定",
   "emailBindDesc": "綁定郵箱用於找回密碼與安全通知",
   "emailVerifiedTag": "已驗證",
-  "emailUnverifiedTag": "未驗證",
   "emailBindAction": "綁定郵箱",
-  "emailVerifyAction": "驗證郵箱",
   "emailChangeAction": "換綁郵箱",
   "emailUnbindAction": "解綁",
   "emailBindTip": "已驗證的郵箱可用於登入頁找回密碼",
@@ -122,6 +120,5 @@
   "emailUnbindConfirm": "解綁後將無法透過郵箱找回密碼, 確定解綁?",
   "emailUnbindSuccess": "郵箱已解綁",
   "emailUnbindCodeSent": "驗證碼已發送至 {email}, 請查收",
-  "emailUnboundTag": "未綁定",
-  "emailVerifyTip": "驗證後該郵箱方可用於登入頁找回密碼"
+  "emailUnboundTag": "未綁定"
 }

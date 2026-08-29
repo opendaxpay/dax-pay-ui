@@ -14,7 +14,6 @@
   /** 邮箱绑定状态 */
   const emailInfo = reactive({
     email: '',
-    emailVerified: false,
   });
   const loading = ref(false);
 
@@ -42,20 +41,18 @@
     try {
       const { data } = await EmailApi.getInfo();
       emailInfo.email = data?.email ?? '';
-      emailInfo.emailVerified = data?.emailVerified ?? false;
     } finally {
       loading.value = false;
     }
   }
 
   /**
-   * 打开绑定/换绑/验证弹窗(未验证的已有邮箱预填, 密码确认在前防会话劫持)
+   * 打开绑定/换绑弹窗(密码确认在前防会话劫持)
    */
   function handleBindStart() {
     bindPhase.value = 'form';
     bindForm.password = '';
-    // 已绑定但未验证时预填当前邮箱(重新验证场景)
-    bindForm.email = emailInfo.email && !emailInfo.emailVerified ? emailInfo.email : '';
+    bindForm.email = '';
     bindCode.value = '';
     bindVisible.value = true;
   }
@@ -167,9 +164,8 @@
       <template #title>
         <div class="email-card-title">
           <span>{{ $t('profile.emailBind') }}</span>
-          <!-- 状态标签与双因素认证页签同范式: 未绑定灰 / 未验证橙 / 已验证绿 -->
+          <!-- 状态标签与双因素认证页签同范式: 未绑定灰 / 已验证绿 -->
           <a-tag v-if="!emailInfo.email" color="default">{{ $t('profile.emailUnboundTag') }}</a-tag>
-          <a-tag v-else-if="!emailInfo.emailVerified" color="orange">{{ $t('profile.emailUnverifiedTag') }}</a-tag>
           <a-tag v-else color="green">{{ $t('profile.emailVerifiedTag') }}</a-tag>
         </div>
       </template>
@@ -182,22 +178,7 @@
           {{ $t('profile.emailBindAction') }}
         </a-button>
       </div>
-      <!-- 已绑定未验证: 当前邮箱 + 验证/解绑 -->
-      <div v-else-if="!emailInfo.emailVerified" class="email-overview">
-        <div class="email-overview__meta">{{ $t('profile.emailBindEmailLabel') }}: {{ emailInfo.email }}</div>
-        <div class="email-overview__desc">{{ $t('profile.emailVerifyTip') }}</div>
-        <div class="email-overview__actions">
-          <a-button type="primary" @click="handleBindStart">
-            <!-- 国际化: 验证邮箱 -->
-            {{ $t('profile.emailVerifyAction') }}
-          </a-button>
-          <a-button danger @click="handleUnbindStart">
-            <!-- 国际化: 解绑 -->
-            {{ $t('profile.emailUnbindAction') }}
-          </a-button>
-        </div>
-      </div>
-      <!-- 已验证: 当前邮箱 + 换绑/解绑(与双因素认证已绑定态同构) -->
+      <!-- 已绑定: 当前邮箱 + 换绑/解绑(与双因素认证已绑定态同构) -->
       <div v-else class="email-overview">
         <div class="email-overview__meta">{{ $t('profile.emailBindEmailLabel') }}: {{ emailInfo.email }}</div>
         <div class="email-overview__actions">

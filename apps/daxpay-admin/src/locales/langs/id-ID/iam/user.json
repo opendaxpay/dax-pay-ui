@@ -2,7 +2,6 @@
   "field": {
     "name": "Nama",
     "account": "Akun",
-    "phone": "Telepon",
     "email": "E-mail",
     "clientCode": "Klien",
     "status": "Status",
@@ -16,9 +15,7 @@
     "registerTime": "Waktu Pendaftaran",
     "loginCount": "Jumlah Login",
     "lastLoginIp": "IP Login Terakhir",
-    "emailNotBound": "Belum terikat",
-    "emailVerified": "Terverifikasi",
-    "emailUnverified": "Belum terverifikasi"
+    "emailNotBound": "Belum terikat"
   },
   "status": {
     "normal": "Normal",

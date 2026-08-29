@@ -103,9 +103,7 @@
   "emailBind": "이메일 연결",
   "emailBindDesc": "비밀번호 찾기 및 보안 알림을 위한 이메일을 연결합니다",
   "emailVerifiedTag": "인증됨",
-  "emailUnverifiedTag": "미인증",
   "emailBindAction": "이메일 연결",
-  "emailVerifyAction": "이메일 인증",
   "emailChangeAction": "이메일 변경",
   "emailUnbindAction": "해제",
   "emailBindTip": "인증된 이메일은 로그인 페이지에서 비밀번호 찾기에 사용할 수 있습니다",
@@ -122,6 +120,5 @@
   "emailUnbindConfirm": "해제하면 이메일로 비밀번호를 찾을 수 없습니다. 해제하시겠습니까?",
   "emailUnbindSuccess": "이메일 연결이 해제되었습니다",
   "emailUnbindCodeSent": "인증 코드가 {email} 로 전송되었습니다. 확인해 주세요",
-  "emailUnboundTag": "미연결",
-  "emailVerifyTip": "인증 후 이 이메일로 로그인 페이지에서 비밀번호 찾기가 가능합니다"
+  "emailUnboundTag": "미연결"
 }

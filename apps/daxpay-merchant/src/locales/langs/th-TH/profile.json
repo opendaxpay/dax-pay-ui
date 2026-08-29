@@ -103,9 +103,7 @@
   "emailBind": "การผูกอีเมล",
   "emailBindDesc": "ผูกอีเมลสำหรับกู้คืนรหัสผ่านและรับการแจ้งเตือนความปลอดภัย",
   "emailVerifiedTag": "ยืนยันแล้ว",
-  "emailUnverifiedTag": "ยังไม่ยืนยัน",
   "emailBindAction": "ผูกอีเมล",
-  "emailVerifyAction": "ยืนยันอีเมล",
   "emailChangeAction": "เปลี่ยนอีเมล",
   "emailUnbindAction": "ยกเลิกการผูก",
   "emailBindTip": "อีเมลที่ยืนยันแล้วสามารถใช้กู้คืนรหัสผ่านได้ที่หน้าเข้าสู่ระบบ",
@@ -122,6 +120,5 @@
   "emailUnbindConfirm": "เมื่อยกเลิกการผูกแล้วจะไม่สามารถใช้อีเมลกู้คืนรหัสผ่านได้ ยืนยันการยกเลิกหรือไม่?",
   "emailUnbindSuccess": "ยกเลิกการผูกอีเมลแล้ว",
   "emailUnbindCodeSent": "รหัสยืนยันถูกส่งไปที่ {email} แล้ว กรุณาตรวจสอบ",
-  "emailUnboundTag": "ยังไม่ผูก",
-  "emailVerifyTip": "หลังยืนยันแล้วอีเมลนี้จึงจะใช้กู้คืนรหัสผ่านที่หน้าเข้าสู่ระบบได้"
+  "emailUnboundTag": "ยังไม่ผูก"
 }

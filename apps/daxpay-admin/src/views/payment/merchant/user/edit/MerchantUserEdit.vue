@@ -22,7 +22,6 @@
   const formState = ref<UserInfoResult>({
     id: '',
     name: '',
-    phone: '',
     email: '',
   });
 
@@ -35,7 +34,6 @@
     formState.value = {
       id: '',
       name: '',
-      phone: '',
       email: '',
     };
     formRef.value?.resetFields();
@@ -51,7 +49,6 @@
       formState.value = {
         id: data.id || '',
         name: data.name || '',
-        phone: data.phone || '',
         email: data.email || '',
       };
     }
@@ -67,11 +64,11 @@
     confirmLoading.value = true;
 
     try {
+      // email/phone 不随编辑提交: 邮箱变更仅允许用户本人走绑定验证流程,
+      // 手机号功能已冻结, 待接入短信验证后启用
       await MerchantUserApi.update({
         id: userId.value,
         name: formState.value.name,
-        phone: formState.value.phone,
-        email: formState.value.email,
       });
       message.success($t('common.success'));
       handleCancel();
@@ -104,13 +101,9 @@
       <a-form-item :label="$t('iam.user.field.name')" name="name">
         <a-input v-model:value="formState.name" :placeholder="$t('common.pleaseInput')" />
       </a-form-item>
-      <!-- 手机号 -->
-      <a-form-item :label="$t('iam.user.field.phone')" name="phone">
-        <a-input v-model:value="formState.phone" :placeholder="$t('common.pleaseInput')" />
-      </a-form-item>
-      <!-- 邮箱 -->
-      <a-form-item :label="$t('iam.user.field.email')" name="email">
-        <a-input v-model:value="formState.email" :placeholder="$t('common.pleaseInput')" />
+      <!-- 邮箱（不可编辑: 变更仅允许用户本人走绑定验证流程） -->
+      <a-form-item :label="$t('iam.user.field.email')">
+        <span>{{ formState.email || $t('iam.user.field.emailNotBound') }}</span>
       </a-form-item>
     </a-form>
 

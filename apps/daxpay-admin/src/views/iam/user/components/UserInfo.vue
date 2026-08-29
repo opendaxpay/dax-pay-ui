@@ -131,10 +131,6 @@
 
       <!-- 详细信息 -->
       <a-descriptions :column="2" size="small" bordered>
-        <!-- 手机号 -->
-        <a-descriptions-item :label="$t('iam.user.field.phone')">
-          {{ userInfo.phone || '-' }}
-        </a-descriptions-item>
         <!-- 邮箱 -->
         <a-descriptions-item :label="$t('iam.user.field.email')">
           {{ userInfo.email || '-' }}

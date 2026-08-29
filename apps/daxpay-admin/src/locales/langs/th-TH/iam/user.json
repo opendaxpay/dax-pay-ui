@@ -2,7 +2,6 @@
   "field": {
     "name": "ชื่อ",
     "account": "บัญชี",
-    "phone": "โทรศัพท์",
     "email": "อีเมล",
     "clientCode": "ลูกค้า",
     "status": "สถานะ",
@@ -16,9 +15,7 @@
     "registerTime": "เวลาลงทะเบียน",
     "loginCount": "จำนวนการเข้าสู่ระบบ",
     "lastLoginIp": "IP เข้าสู่ระบบล่าสุด",
-    "emailNotBound": "ยังไม่ผูกบัญชี",
-    "emailVerified": "ยืนยันแล้ว",
-    "emailUnverified": "ยังไม่ยืนยัน"
+    "emailNotBound": "ยังไม่ผูกบัญชี"
   },
   "status": {
     "normal": "ปกติ",

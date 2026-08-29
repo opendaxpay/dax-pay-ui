@@ -2,7 +2,6 @@
   "field": {
     "name": "이름",
     "account": "계정",
-    "phone": "핸드폰",
     "email": "이메일",
     "clientCode": "고객",
     "status": "상태",
@@ -16,9 +15,7 @@
     "registerTime": "가입 시간",
     "loginCount": "로그인 횟수",
     "lastLoginIp": "최근 로그인 IP",
-    "emailNotBound": "미설정",
-    "emailVerified": "인증됨",
-    "emailUnverified": "미인증"
+    "emailNotBound": "미설정"
   },
   "status": {
     "normal": "정상",

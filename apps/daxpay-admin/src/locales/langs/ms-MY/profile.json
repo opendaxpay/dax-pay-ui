@@ -103,9 +103,7 @@
   "emailBind": "Pengikatan E-mel",
   "emailBindDesc": "Ikat e-mel untuk pemulihan kata laluan dan notifikasi keselamatan",
   "emailVerifiedTag": "Disahkan",
-  "emailUnverifiedTag": "Belum disahkan",
   "emailBindAction": "Ikat E-mel",
-  "emailVerifyAction": "Sahkan E-mel",
   "emailChangeAction": "Tukar E-mel",
   "emailUnbindAction": "Leraikan",
   "emailBindTip": "E-mel yang disahkan boleh digunakan untuk memulihkan kata laluan di halaman log masuk",
@@ -122,6 +120,5 @@
   "emailUnbindConfirm": "Selepas dilerai, e-mel tidak boleh digunakan untuk memulihkan kata laluan. Leraikan?",
   "emailUnbindSuccess": "E-mel telah dilerai",
   "emailUnbindCodeSent": "Kod pengesahan telah dihantar ke {email}, sila semak",
-  "emailUnboundTag": "Belum dikaitkan",
-  "emailVerifyTip": "E-mel boleh digunakan untuk pemulihan kata laluan selepas disahkan"
+  "emailUnboundTag": "Belum dikaitkan"
 }

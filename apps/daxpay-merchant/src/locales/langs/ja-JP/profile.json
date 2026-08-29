@@ -103,9 +103,7 @@
   "emailBind": "メール紐付け",
   "emailBindDesc": "パスワード再設定とセキュリティ通知用のメールアドレスを紐付けます",
   "emailVerifiedTag": "認証済み",
-  "emailUnverifiedTag": "未認証",
   "emailBindAction": "メールを紐付け",
-  "emailVerifyAction": "メールを認証",
   "emailChangeAction": "メールを変更",
   "emailUnbindAction": "解除",
   "emailBindTip": "認証済みのメールアドレスはログイン画面でのパスワード再設定に利用できます",
@@ -122,6 +120,5 @@
   "emailUnbindConfirm": "解除するとメールでのパスワード再設定ができなくなります。解除しますか?",
   "emailUnbindSuccess": "メール紐付けを解除しました",
   "emailUnbindCodeSent": "認証コードを {email} に送信しました。ご確認ください",
-  "emailUnboundTag": "未登録",
-  "emailVerifyTip": "認証後、このメールアドレスでログイン画面のパスワード再設定が利用できます"
+  "emailUnboundTag": "未登録"
 }

@@ -57,12 +57,12 @@
 
     try {
       // email 不随编辑提交: 邮箱变更仅允许用户本人走绑定验证流程
+      // phone 不随编辑提交: 手机号功能已冻结, 待接入短信验证后启用
       await UserApi.update({
         id: userId.value,
         name: formState.value.name,
         account: formState.value.account,
         clientCode: formState.value.clientCode,
-        phone: formState.value.phone,
       });
 
       message.success($t('common.success'));
@@ -75,7 +75,7 @@
 
   /**
    * 强制解绑邮箱
-   * 用户邮箱本体失效、无法走本人解绑流程时的管理员代管通道, 仅清空邮箱与验证状态
+   * 用户邮箱本体失效、无法走本人解绑流程时的管理员代管通道, 仅清空邮箱
    */
   function handleUnbindEmail() {
     confirm({
@@ -132,18 +132,10 @@
         <a-form-item :label="$t('iam.user.field.account')">
           <a-input v-model:value="formState.account" disabled />
         </a-form-item>
-        <!-- 手机号 -->
-        <a-form-item :label="$t('iam.user.field.phone')">
-          <a-input v-model:value="formState.phone" :placeholder="$t('common.pleaseInput')" />
-        </a-form-item>
         <!-- 邮箱（不可编辑: 变更仅允许用户本人走绑定验证流程; 已绑定时可强制解绑） -->
         <a-form-item :label="$t('iam.user.field.email')">
           <div class="flex items-center gap-2">
             <span>{{ formState.email || $t('iam.user.field.emailNotBound') }}</span>
-            <!-- 邮箱验证状态 -->
-            <a-tag v-if="formState.email" :color="formState.emailVerified ? 'green' : 'orange'">
-              {{ $t(formState.emailVerified ? 'iam.user.field.emailVerified' : 'iam.user.field.emailUnverified') }}
-            </a-tag>
             <!-- 强制解绑邮箱（危险操作） -->
             <a-button v-if="formState.email" type="link" size="small" danger @click="handleUnbindEmail">
               {{ $t('iam.user.action.unbindEmail') }}
