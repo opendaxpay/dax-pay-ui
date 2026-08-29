@@ -35,6 +35,11 @@ export const PermCodes = {
       VIEW: 'iam:online:view',
       KICKOUT: 'iam:online:kickout',
     },
+    /** 锁定用户(登录重试锁定监控) menuCode=iam:lock */
+    Lock: {
+      VIEW: 'iam:lock:view',
+      UNLOCK: 'iam:lock:unlock',
+    },
     Social: {
       VIEW: 'iam:social:view',
       MANAGE: 'iam:social:manage',

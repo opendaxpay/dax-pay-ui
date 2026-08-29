@@ -13,6 +13,8 @@
   "iam:menu:manage": "Manage",
   "iam:menu:view": "View",
   "iam:online:kickout": "Kick Out",
+  "iam:lock:unlock": "Unlock",
+  "iam:lock:view": "View",
   "iam:online:view": "View",
   "iam:role:manage": "Manage",
   "iam:role:view": "View",

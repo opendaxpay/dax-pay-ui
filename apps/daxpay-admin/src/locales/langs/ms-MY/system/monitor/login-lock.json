@@ -1,0 +1,16 @@
+{
+  "username": "Nama pengguna",
+  "account": "Akaun",
+  "clientCode": "Pelanggan",
+  "status": "Status",
+  "statusLocked": "Dikunci",
+  "statusExpired": "Tamat Tempoh",
+  "statusCounting": "Sedang Mengira",
+  "errorCount": "Bilangan Kegagalan",
+  "lockExpireTime": "Masa Tamat Kunci",
+  "remainingMinutes": "Baki (minit)",
+  "lastFailureTime": "Masa Kegagalan Terakhir",
+  "unlock": "Buka Kunci",
+  "confirmUnlock": "Buka kunci log masuk pengguna ini? Bilangan kegagalan juga akan dikosongkan.",
+  "lockoutDisabled": "Ciri kunci log masuk dilumpuhkan, senarai di bawah ialah data sejarah."
+}

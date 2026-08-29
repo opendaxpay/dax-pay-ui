@@ -13,6 +13,8 @@
   "iam:menu:manage": "관리하다",
   "iam:menu:view": "보다",
   "iam:online:kickout": "킥아웃",
+  "iam:lock:unlock": "잠금 해제",
+  "iam:lock:view": "보기",
   "iam:online:view": "보다",
   "iam:role:manage": "관리하다",
   "iam:role:view": "보다",

@@ -13,6 +13,8 @@
   "iam:menu:manage": "Mengelola",
   "iam:menu:view": "Melihat",
   "iam:online:kickout": "Menendang keluar",
+  "iam:lock:unlock": "Buka Kunci",
+  "iam:lock:view": "Lihat",
   "iam:online:view": "Melihat",
   "iam:role:manage": "Mengelola",
   "iam:role:view": "Melihat",

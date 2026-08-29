@@ -24,6 +24,7 @@
   "menu.system.config.platform": "プラットフォーム構成",
   "menu.system.perm.role": "役割管理",
   "menu.system.monitor.online": "オンラインユーザー",
+  "menu.system.monitor.lock": "ロック中ユーザー",
   "menu.payment.merchant.list": "加盟店リスト",
   "menu.payment.merchant.channelMerchant.global": "チャネルマーチャント",
   "menu.payment.platform.capability": "支払い能力",

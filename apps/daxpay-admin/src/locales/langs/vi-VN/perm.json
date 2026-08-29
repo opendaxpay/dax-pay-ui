@@ -13,6 +13,8 @@
   "iam:menu:manage": "Quản lý",
   "iam:menu:view": "Xem",
   "iam:online:kickout": "đá ra",
+  "iam:lock:unlock": "Mở khóa",
+  "iam:lock:view": "Xem",
   "iam:online:view": "Xem",
   "iam:role:manage": "Quản lý",
   "iam:role:view": "Xem",

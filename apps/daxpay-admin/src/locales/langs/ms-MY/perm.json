@@ -13,6 +13,8 @@
   "iam:menu:manage": "Uruskan",
   "iam:menu:view": "Lihat",
   "iam:online:kickout": "Tendang Keluar",
+  "iam:lock:unlock": "Buka Kunci",
+  "iam:lock:view": "Lihat",
   "iam:online:view": "Lihat",
   "iam:role:manage": "Uruskan",
   "iam:role:view": "Lihat",

@@ -24,6 +24,7 @@
   "menu.system.config.platform": "Cấu hình nền tảng",
   "menu.system.perm.role": "Quản lý vai trò",
   "menu.system.monitor.online": "Người dùng trực tuyến",
+  "menu.system.monitor.lock": "Người dùng bị khóa",
   "menu.payment.merchant.list": "Danh sách người bán",
   "menu.payment.merchant.channelMerchant.global": "Người bán kênh",
   "menu.payment.platform.capability": "Khả năng thanh toán",

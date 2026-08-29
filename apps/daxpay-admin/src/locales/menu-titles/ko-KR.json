@@ -24,6 +24,7 @@
   "menu.system.config.platform": "플랫폼 구성",
   "menu.system.perm.role": "역할 관리",
   "menu.system.monitor.online": "온라인 사용자",
+  "menu.system.monitor.lock": "잠긴 사용자",
   "menu.payment.merchant.list": "판매자 목록",
   "menu.payment.merchant.channelMerchant.global": "채널 판매자",
   "menu.payment.platform.capability": "결제 능력",

@@ -1,0 +1,16 @@
+{
+  "username": "用户名称",
+  "account": "账号",
+  "clientCode": "终端",
+  "status": "状态",
+  "statusLocked": "锁定中",
+  "statusExpired": "已到期",
+  "statusCounting": "计数中",
+  "errorCount": "失败次数",
+  "lockExpireTime": "锁定到期时间",
+  "remainingMinutes": "剩余锁定(分钟)",
+  "lastFailureTime": "最近失败时间",
+  "unlock": "解锁",
+  "confirmUnlock": "确定要解除该用户的登录锁定吗？将同时清除失败计数",
+  "lockoutDisabled": "登录锁定功能未启用，当前列表为历史残留数据"
+}

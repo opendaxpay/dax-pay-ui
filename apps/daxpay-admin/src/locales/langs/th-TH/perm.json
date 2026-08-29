@@ -13,6 +13,8 @@
   "iam:menu:manage": "จัดการ",
   "iam:menu:view": "ดู",
   "iam:online:kickout": "เตะออก",
+  "iam:lock:unlock": "ปลดล็อก",
+  "iam:lock:view": "ดู",
   "iam:online:view": "ดู",
   "iam:role:manage": "จัดการ",
   "iam:role:view": "ดู",

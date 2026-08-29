@@ -1,0 +1,16 @@
+{
+  "username": "Nama belakang",
+  "account": "Akun",
+  "clientCode": "Klien",
+  "status": "Status",
+  "statusLocked": "Terkunci",
+  "statusExpired": "Kedaluwarsa",
+  "statusCounting": "Menghitung",
+  "errorCount": "Jumlah Kegagalan",
+  "lockExpireTime": "Waktu Berakhir Kunci",
+  "remainingMinutes": "Sisa Kunci (mnt)",
+  "lastFailureTime": "Waktu Gagal Terakhir",
+  "unlock": "Buka Kunci",
+  "confirmUnlock": "Buka kunci login pengguna ini? Jumlah kegagalan juga akan dihapus.",
+  "lockoutDisabled": "Fitur kunci login nonaktif, daftar berikut adalah data historis."
+}

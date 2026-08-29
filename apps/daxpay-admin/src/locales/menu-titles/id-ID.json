@@ -24,6 +24,7 @@
   "menu.system.config.platform": "Konfigurasi Platform",
   "menu.system.perm.role": "Manajemen Peran",
   "menu.system.monitor.online": "Pengguna Daring",
+  "menu.system.monitor.lock": "Pengguna Terkunci",
   "menu.payment.merchant.list": "Daftar Pedagang",
   "menu.payment.merchant.channelMerchant.global": "Pedagang Saluran",
   "menu.payment.platform.capability": "Kemampuan Pembayaran",

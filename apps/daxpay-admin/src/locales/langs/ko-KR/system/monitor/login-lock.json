@@ -1,0 +1,16 @@
+{
+  "username": "사용자 이름",
+  "account": "계정",
+  "clientCode": "고객",
+  "status": "상태",
+  "statusLocked": "잠금 중",
+  "statusExpired": "만료됨",
+  "statusCounting": "카운트 중",
+  "errorCount": "실패 횟수",
+  "lockExpireTime": "잠금 만료 시간",
+  "remainingMinutes": "남은 잠금(분)",
+  "lastFailureTime": "최근 실패 시간",
+  "unlock": "잠금 해제",
+  "confirmUnlock": "이 사용자의 로그인 잠금을 해제하시겠습니까? 실패 횟수도 함께 초기화됩니다.",
+  "lockoutDisabled": "로그인 잠금 기능이 비활성화되어 있으며, 현재 목록은 과거 데이터입니다."
+}

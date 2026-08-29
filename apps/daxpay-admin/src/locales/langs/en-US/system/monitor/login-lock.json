@@ -1,0 +1,16 @@
+{
+  "username": "Username",
+  "account": "Account",
+  "clientCode": "Client",
+  "status": "Status",
+  "statusLocked": "Locked",
+  "statusExpired": "Expired",
+  "statusCounting": "Counting",
+  "errorCount": "Failure Count",
+  "lockExpireTime": "Lock Expiry Time",
+  "remainingMinutes": "Remaining (min)",
+  "lastFailureTime": "Last Failure Time",
+  "unlock": "Unlock",
+  "confirmUnlock": "Unlock this user's login lock? The failure count will also be cleared.",
+  "lockoutDisabled": "Login lockout is disabled. The list below is historical data."
+}

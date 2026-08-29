@@ -1,0 +1,16 @@
+{
+  "username": "ユーザー名",
+  "account": "アカウント",
+  "clientCode": "クライアント",
+  "status": "ステータス",
+  "statusLocked": "ロック中",
+  "statusExpired": "期限切れ",
+  "statusCounting": "カウント中",
+  "errorCount": "失敗回数",
+  "lockExpireTime": "ロック解除予定時刻",
+  "remainingMinutes": "残りロック(分)",
+  "lastFailureTime": "最終失敗時刻",
+  "unlock": "ロック解除",
+  "confirmUnlock": "このユーザーのログインロックを解除しますか？失敗回数も同時にクリアされます。",
+  "lockoutDisabled": "ログインロック機能が無効のため、現在のリストは過去の履歴データです。"
+}

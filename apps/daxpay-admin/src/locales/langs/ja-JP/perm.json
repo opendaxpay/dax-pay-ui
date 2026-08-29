@@ -13,6 +13,8 @@
   "iam:menu:manage": "管理",
   "iam:menu:view": "ビュー",
   "iam:online:kickout": "キックアウト",
+  "iam:lock:unlock": "ロック解除",
+  "iam:lock:view": "表示",
   "iam:online:view": "ビュー",
   "iam:role:manage": "管理",
   "iam:role:view": "ビュー",

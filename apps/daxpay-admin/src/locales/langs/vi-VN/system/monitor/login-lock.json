@@ -1,0 +1,16 @@
+{
+  "username": "Tên người dùng",
+  "account": "Tài khoản",
+  "clientCode": "Khách hàng",
+  "status": "Trạng thái",
+  "statusLocked": "Đang khóa",
+  "statusExpired": "Đã hết hạn",
+  "statusCounting": "Đang đếm",
+  "errorCount": "Số lần thất bại",
+  "lockExpireTime": "Thời gian hết khóa",
+  "remainingMinutes": "Còn lại (phút)",
+  "lastFailureTime": "Thời gian thất bại gần nhất",
+  "unlock": "Mở khóa",
+  "confirmUnlock": "Mở khóa đăng nhập cho người dùng này? Số lần thất bại cũng sẽ bị xóa.",
+  "lockoutDisabled": "Tính năng khóa đăng nhập đang tắt, danh sách dưới đây là dữ liệu lịch sử."
+}

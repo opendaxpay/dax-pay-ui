@@ -24,6 +24,7 @@
   "menu.system.config.platform": "平台配置",
   "menu.system.perm.role": "角色管理",
   "menu.system.monitor.online": "在線用户",
+  "menu.system.monitor.lock": "鎖定用户",
   "menu.payment.merchant.list": "商户列表",
   "menu.payment.merchant.channelMerchant.global": "通道商户",
   "menu.payment.platform.capability": "支付能力",

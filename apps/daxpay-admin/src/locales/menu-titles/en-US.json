@@ -24,6 +24,7 @@
   "menu.system.config.platform": "Platform Config",
   "menu.system.perm.role": "Role Management",
   "menu.system.monitor.online": "Online User",
+  "menu.system.monitor.lock": "Locked Users",
   "menu.payment.merchant.list": "Merchant List",
   "menu.payment.merchant.channelMerchant.global": "Channel Merchant",
   "menu.payment.platform.capability": "Payment Capability",

@@ -1,0 +1,16 @@
+{
+  "username": "使用者名稱稱",
+  "account": "賬號",
+  "clientCode": "終端",
+  "status": "狀態",
+  "statusLocked": "鎖定中",
+  "statusExpired": "已到期",
+  "statusCounting": "計數中",
+  "errorCount": "失敗次數",
+  "lockExpireTime": "鎖定到期時間",
+  "remainingMinutes": "剩餘鎖定(分鐘)",
+  "lastFailureTime": "最近失敗時間",
+  "unlock": "解鎖",
+  "confirmUnlock": "確定要解除該使用者的登入鎖定嗎？將同時清除失敗計數",
+  "lockoutDisabled": "登入鎖定功能未啟用，目前列表為歷史殘留資料"
+}

@@ -24,6 +24,7 @@
   "menu.system.config.platform": "การกำหนดค่าแพลตฟอร์ม",
   "menu.system.perm.role": "การจัดการบทบาท",
   "menu.system.monitor.online": "ผู้ใช้ออนไลน์",
+  "menu.system.monitor.lock": "ผู้ใช้ที่ถูกล็อก",
   "menu.payment.merchant.list": "รายชื่อผู้ค้า",
   "menu.payment.merchant.channelMerchant.global": "พ่อค้าช่องทาง",
   "menu.payment.platform.capability": "ความสามารถในการชำระเงิน",
