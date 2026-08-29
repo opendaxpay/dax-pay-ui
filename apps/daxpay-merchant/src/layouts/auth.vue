@@ -13,8 +13,8 @@
 </script>
 
 <template>
-  <!-- 国际化：安全、稳定、高效的支付运营解决方案 -->
-  <!-- 国际化：DaxPay 支付运营管理平台 -->
+  <!-- 国际化：一站式收款、对账与经营管理(商户端定位, 勿回退成运营端文案) -->
+  <!-- 国际化：DaxPay 商户服务平台 -->
   <AuthPageLayout
     :app-name="appName"
     :logo="logo"
