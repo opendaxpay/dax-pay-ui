@@ -1,0 +1,7 @@
+{
+  "detail": "Detail Arus Dana",
+  "flowType": "Jenis Arus",
+  "typePay": "Pembayaran",
+  "typeRefund": "Pengembalian",
+  "finishTime": "Waktu Selesai"
+}

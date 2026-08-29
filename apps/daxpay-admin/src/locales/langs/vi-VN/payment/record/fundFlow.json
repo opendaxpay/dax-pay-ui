@@ -1,0 +1,7 @@
+{
+  "detail": "Chi tiết dòng tiền",
+  "flowType": "Loại dòng tiền",
+  "typePay": "Thu",
+  "typeRefund": "Hoàn tiền",
+  "finishTime": "Thời gian hoàn tất"
+}

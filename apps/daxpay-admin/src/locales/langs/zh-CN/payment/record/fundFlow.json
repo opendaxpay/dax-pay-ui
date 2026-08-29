@@ -1,0 +1,7 @@
+{
+  "detail": "资金流水详情",
+  "flowType": "流水类型",
+  "typePay": "收款",
+  "typeRefund": "退款",
+  "finishTime": "资金完成时间"
+}

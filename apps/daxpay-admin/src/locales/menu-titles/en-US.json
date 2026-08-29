@@ -113,5 +113,7 @@
   "menu.trade.transfer.create": "Initiate Transfer",
   "menu.trade.transfer.channel": "Channel Transfers",
   "menu.trade.allocOrder": "Allocation Orders",
-  "menu.system.notify.mailRecord": "Mail Send Records"
+  "menu.system.notify.mailRecord": "Mail Send Records",
+  "menu.trade.abnormalOrder": "Abnormal Orders",
+  "menu.trade.fundFlow": "Fund Flows"
 }

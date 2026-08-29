@@ -113,5 +113,7 @@
   "menu.trade.transfer.create": "송금 시작",
   "menu.trade.transfer.channel": "채널 송금",
   "menu.trade.allocOrder": "정산 주문",
-  "menu.system.notify.mailRecord": "메일 발송 기록"
+  "menu.system.notify.mailRecord": "메일 발송 기록",
+  "menu.trade.abnormalOrder": "비정상 주문",
+  "menu.trade.fundFlow": "자금 흐름"
 }

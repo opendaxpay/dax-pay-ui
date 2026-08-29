@@ -113,5 +113,7 @@
   "menu.trade.transfer.create": "Mulai Transfer",
   "menu.trade.transfer.channel": "Transfer Channel",
   "menu.trade.allocOrder": "Pesanan Alokasi",
-  "menu.system.notify.mailRecord": "Catatan Kirim Email"
+  "menu.system.notify.mailRecord": "Catatan Kirim Email",
+  "menu.trade.abnormalOrder": "Pesanan Abnormal",
+  "menu.trade.fundFlow": "Arus Dana"
 }

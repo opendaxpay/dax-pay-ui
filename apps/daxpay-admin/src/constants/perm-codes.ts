@@ -243,6 +243,13 @@ export const PermCodes = {
     CallbackRecord: {
       VIEW: 'trade:callback-record:view',
     },
+    AbnormalOrder: {
+      VIEW: 'trade:abnormal-order:view',
+      MANAGE: 'trade:abnormal-order:manage',
+    },
+    FundFlow: {
+      VIEW: 'trade:fund-flow:view',
+    },
   },
 
   Develop: {

@@ -113,5 +113,7 @@
   "menu.trade.transfer.create": "Bắt đầu chuyển khoản",
   "menu.trade.transfer.channel": "Chuyển khoản kênh",
   "menu.trade.allocOrder": "Đơn Phân Toán",
-  "menu.system.notify.mailRecord": "Bản ghi gửi email"
+  "menu.system.notify.mailRecord": "Bản ghi gửi email",
+  "menu.trade.abnormalOrder": "Đơn hàng bất thường",
+  "menu.trade.fundFlow": "Dòng tiền"
 }

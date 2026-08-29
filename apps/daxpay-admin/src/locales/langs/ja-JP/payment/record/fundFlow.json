@@ -1,0 +1,7 @@
+{
+  "detail": "資金フロー詳細",
+  "flowType": "フロー種別",
+  "typePay": "入金",
+  "typeRefund": "返金",
+  "finishTime": "資金完了時間"
+}

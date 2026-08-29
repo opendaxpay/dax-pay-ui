@@ -113,5 +113,7 @@
   "menu.trade.transfer.create": "Mulakan Pindahan",
   "menu.trade.transfer.channel": "Pindahan Saluran",
   "menu.trade.allocOrder": "Pesanan Pengasingan",
-  "menu.system.notify.mailRecord": "Rekod Hantar E-mel"
+  "menu.system.notify.mailRecord": "Rekod Hantar E-mel",
+  "menu.trade.abnormalOrder": "Pesanan Tidak Normal",
+  "menu.trade.fundFlow": "Aliran Dana"
 }
