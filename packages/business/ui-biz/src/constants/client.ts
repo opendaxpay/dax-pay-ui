@@ -10,3 +10,11 @@
 export const CLIENT_CODE = import.meta.env.VITE_APP_CLIENT_CODE as
   | 'admin'
   | 'merchant';
+
+/**
+ * 请求终端(壳维度, 对齐后端 x-terminal 请求头): web=PC Web 端, app=移动管理端
+ *
+ * Web 管理端恒为 web; 与 clientCode(身份域)正交, 共同决定用户偏好类数据的分桶,
+ * 由请求拦截器统一注入请求头 x-terminal, 后端从上下文读取, 业务接口无需显式传参.
+ */
+export const TERMINAL = 'web' as const;

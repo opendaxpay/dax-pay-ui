@@ -9,7 +9,7 @@ import {
 } from '@vben/request';
 import { useAccessStore } from '@vben/stores';
 
-import { CLIENT_CODE } from '../constants/client';
+import { CLIENT_CODE, TERMINAL } from '../constants/client';
 import { useMessage } from '../hooks/useMessage';
 import { createNonceRequestInterceptor } from './nonce';
 
@@ -116,6 +116,8 @@ export function createDaxRequestClient(options: DaxRequestClientOptions): {
       config.headers.Authorization = token;
       config.headers['Accept-Language'] = preferences.app.locale;
       config.headers['x-client-code'] = CLIENT_CODE;
+      // 壳维度终端标识(与 x-client-code 正交), 后端用于偏好类数据分桶
+      config.headers['x-terminal'] = TERMINAL;
       return config;
     },
   });
