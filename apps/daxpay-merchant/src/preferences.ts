@@ -41,8 +41,10 @@ export const overridesPreferences = defineOverridesPreferences({
   },
   theme: {
     mode: 'auto',
-    builtinType: 'default',
-    colorPrimary: 'hsl(212 100% 45%)',
+    // 自定义主题:主色完全由 colorPrimary 驱动,避免内置预设在明暗切换时把主色重置回预设蓝
+    builtinType: 'custom',
+    // 商户端主色 #07c160,与商户端 App(theme.scss 的 --wot-color-theme)保持一致
+    colorPrimary: 'hsl(149 93% 39%)',
   },
   widget: {
     timezone: true,
