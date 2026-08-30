@@ -1,0 +1,51 @@
+{
+  "title": "码牌管理",
+  "status": {
+    "enabled": "启用",
+    "disabled": "停用"
+  },
+  "amountType": {
+    "random": "自定义金额",
+    "fixed": "固定金额"
+  },
+  "defaultApp": "默认应用",
+  "validateName": "请输入码牌名称",
+  "validateAmountType": "请选择金额类型",
+  "validateFixedAmount": "请输入固定金额",
+  "pleaseSelectApp": "请选择应用(可空则使用默认应用)",
+  "enable": "启用",
+  "disable": "停用",
+  "confirmEnable": "确定要启用该码牌吗？",
+  "confirmDisable": "确定要停用该码牌吗？扫码将无法支付。",
+  "viewCode": "查看码牌",
+  "qrCodeTitle": "码牌二维码",
+  "qrCodeTip": "扫码即可进入支付页面",
+  "copyLink": "复制链接",
+  "amountLabel": "金额",
+  "programType": {
+    "h5": "H5",
+    "mini_app": "小程序"
+  },
+  "pleaseSelectStore": "请选择门店",
+  "defaultStoreHint": "默认门店(若已配置)",
+  "allocationTip": "开启后扫码支付将请求通道冻结资金用于分账",
+  "allocationOn": "分账",
+  "allocWarningTitle": "分账能力预警",
+  "allocWarningDesc": "以下扫码场景当前路由的支付产品不支持分账，开启后对应支付将降级为普通收款（交易分账状态标记为「不支持分账」）",
+  "clientEnv": {
+    "wechat": "微信",
+    "alipay": "支付宝",
+    "union_pay": "云闪付",
+    "douyin": "抖音"
+  },
+  "payForm": {
+    "h5": "H5",
+    "mini": "小程序"
+  },
+  "claim": "认领码牌",
+  "claimTitle": "认领码牌",
+  "claimCodePlaceholder": "请输入码牌编号",
+  "claimTip": "输入印制在码牌物料上的编号，将平台空白码牌认领到当前商户名下",
+  "claimRequired": "请输入码牌编号",
+  "claimSuccess": "认领成功"
+}

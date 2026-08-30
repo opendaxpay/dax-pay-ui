@@ -53,5 +53,6 @@
   "menu.trade.transfer.channel": "通道转账",
   "menu.trade.allocOrder": "分账订单",
   "menu.trade.abnormalOrder": "异常订单",
-  "menu.trade.fundFlow": "资金流水"
+  "menu.trade.fundFlow": "资金流水",
+  "menu.payment.merchant.qrcode": "码牌管理"
 }

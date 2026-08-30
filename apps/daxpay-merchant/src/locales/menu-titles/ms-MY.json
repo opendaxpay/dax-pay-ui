@@ -53,5 +53,6 @@
   "menu.trade.transfer.channel": "Pindahan Saluran",
   "menu.trade.allocOrder": "Pesanan Pengasingan",
   "menu.trade.abnormalOrder": "Pesanan Tidak Normal",
-  "menu.trade.fundFlow": "Aliran Dana"
+  "menu.trade.fundFlow": "Aliran Dana",
+  "menu.payment.merchant.qrcode": "Pengurusan Kod QR"
 }

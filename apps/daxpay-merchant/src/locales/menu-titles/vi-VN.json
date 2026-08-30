@@ -53,5 +53,6 @@
   "menu.trade.transfer.channel": "Chuyển khoản kênh",
   "menu.trade.allocOrder": "Đơn Phân Toán",
   "menu.trade.abnormalOrder": "Đơn hàng bất thường",
-  "menu.trade.fundFlow": "Dòng tiền"
+  "menu.trade.fundFlow": "Dòng tiền",
+  "menu.payment.merchant.qrcode": "Quản lý mã QR"
 }

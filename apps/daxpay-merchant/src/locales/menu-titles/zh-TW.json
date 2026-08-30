@@ -53,5 +53,6 @@
   "menu.trade.transfer.channel": "通道轉帳",
   "menu.trade.allocOrder": "分帳訂單",
   "menu.trade.abnormalOrder": "異常訂單",
-  "menu.trade.fundFlow": "資金流水"
+  "menu.trade.fundFlow": "資金流水",
+  "menu.payment.merchant.qrcode": "碼牌管理"
 }

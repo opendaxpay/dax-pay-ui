@@ -1,0 +1,51 @@
+{
+  "title": "Pengurusan Kod QR",
+  "status": {
+    "enabled": "Didayakan",
+    "disabled": "Dilumpuhkan"
+  },
+  "amountType": {
+    "random": "Amaun Tersuai",
+    "fixed": "Jumlah Tetap"
+  },
+  "defaultApp": "Aplikasi lalai",
+  "validateName": "Sila masukkan nama",
+  "validateAmountType": "Sila pilih jenis amaun",
+  "validateFixedAmount": "Sila masukkan jumlah tetap",
+  "pleaseSelectApp": "Pilih aplikasi (kosong = lalai)",
+  "enable": "Dayakan",
+  "disable": "Lumpuhkan",
+  "confirmEnable": "Adakah anda pasti mendayakan papan kod QR ini?",
+  "confirmDisable": "Adakah anda pasti untuk melumpuhkan papan kod QR ini? Pembayaran melalui imbasan tidak akan tersedia.",
+  "viewCode": "Lihat Kod",
+  "qrCodeTitle": "Kod QR",
+  "qrCodeTip": "Imbas untuk masuk ke halaman pembayaran",
+  "copyLink": "Salin Pautan",
+  "amountLabel": "Jumlah",
+  "programType": {
+    "h5": "H5",
+    "mini_app": "Program mini"
+  },
+  "pleaseSelectStore": "Sila pilih kedai",
+  "defaultStoreHint": "Kedai lalai (jika dikonfigurasi)",
+  "allocationTip": "Apabila diaktifkan, pembayaran kod akan meminta saluran membekukan dana untuk peruntukan",
+  "allocationOn": "Peruntukan",
+  "allocWarningTitle": "Amaran Keupayaan Peruntukan",
+  "allocWarningDesc": "Produk pembayaran yang dirutekan untuk senario imbas berikut tidak menyokong peruntukan; pembayaran tersebut akan diturunkan kepada pembayaran biasa (status peruntukan transaksi ditandakan \"tidak disokong\")",
+  "clientEnv": {
+    "wechat": "WeChat",
+    "alipay": "Alipay",
+    "union_pay": "UnionPay",
+    "douyin": "Douyin"
+  },
+  "payForm": {
+    "h5": "H5",
+    "mini": "Program Mini"
+  },
+  "claim": "Claim QR Code",
+  "claimTitle": "Claim QR Code",
+  "claimCodePlaceholder": "Please enter the QR code",
+  "claimTip": "Enter the code printed on the QR code board to claim a blank platform QR code to your merchant",
+  "claimRequired": "Please enter the QR code",
+  "claimSuccess": "QR code claimed successfully"
+}

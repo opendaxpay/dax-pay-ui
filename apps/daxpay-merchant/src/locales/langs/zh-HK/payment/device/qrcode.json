@@ -1,0 +1,51 @@
+{
+  "title": "碼牌管理",
+  "status": {
+    "enabled": "啓用",
+    "disabled": "停用"
+  },
+  "amountType": {
+    "random": "自定義金額",
+    "fixed": "固定金額"
+  },
+  "defaultApp": "預設應用",
+  "validateName": "請輸入碼牌名稱",
+  "validateAmountType": "請選擇金額類型",
+  "validateFixedAmount": "請輸入固定金額",
+  "pleaseSelectApp": "請選擇應用(可空則使用預設應用)",
+  "enable": "啓用",
+  "disable": "停用",
+  "confirmEnable": "確定要啓用該碼牌嗎？",
+  "confirmDisable": "確定要停用該碼牌嗎？掃碼將無法支付。",
+  "viewCode": "查看碼牌",
+  "qrCodeTitle": "碼牌二維碼",
+  "qrCodeTip": "掃碼即可進入支付頁面",
+  "copyLink": "複製鏈接",
+  "amountLabel": "金額",
+  "programType": {
+    "h5": "H5",
+    "mini_app": "小程序"
+  },
+  "pleaseSelectStore": "請選擇門店",
+  "defaultStoreHint": "預設門店(若已配置)",
+  "allocationTip": "開啟後掃碼支付將請求通道凍結資金用於分帳",
+  "allocationOn": "分帳",
+  "allocWarningTitle": "分帳能力預警",
+  "allocWarningDesc": "以下掃碼場景目前路由的支付產品不支援分帳，開啟後對應支付將降級為普通收款（交易分帳狀態標記為「不支援分帳」）",
+  "clientEnv": {
+    "wechat": "微信",
+    "alipay": "支付寶",
+    "union_pay": "雲閃付",
+    "douyin": "抖音"
+  },
+  "payForm": {
+    "h5": "H5",
+    "mini": "小程式"
+  },
+  "claim": "認領碼牌",
+  "claimTitle": "認領碼牌",
+  "claimCodePlaceholder": "請輸入碼牌編號",
+  "claimTip": "輸入印製在碼牌物料上的編號，將平台空白碼牌認領到當前商戶名下",
+  "claimRequired": "請輸入碼牌編號",
+  "claimSuccess": "認領成功"
+}

@@ -1,0 +1,51 @@
+{
+  "title": "QR Code Management",
+  "status": {
+    "enabled": "Enabled",
+    "disabled": "Disabled"
+  },
+  "amountType": {
+    "random": "Custom Amount",
+    "fixed": "Fixed Amount"
+  },
+  "defaultApp": "Default app",
+  "validateName": "Please enter the name",
+  "validateAmountType": "Please select an amount type",
+  "validateFixedAmount": "Please enter the fixed amount",
+  "pleaseSelectApp": "Select app (empty = default app)",
+  "enable": "Enable",
+  "disable": "Disable",
+  "confirmEnable": "Are you sure to enable this QR code board?",
+  "confirmDisable": "Are you sure to disable this QR code board? Payment via scan will be unavailable.",
+  "viewCode": "View Code",
+  "qrCodeTitle": "QR Code",
+  "qrCodeTip": "Scan to enter the payment page",
+  "copyLink": "Copy Link",
+  "amountLabel": "Amount",
+  "programType": {
+    "h5": "H5",
+    "mini_app": "Mini program"
+  },
+  "pleaseSelectStore": "Please select a store",
+  "defaultStoreHint": "Default store (if configured)",
+  "allocationTip": "When enabled, code payments request the channel to freeze funds for allocation",
+  "allocationOn": "Alloc",
+  "allocWarningTitle": "Allocation Capability Warning",
+  "allocWarningDesc": "The payment products routed for the following scan scenarios do not support allocation; those payments will be downgraded to normal payments (trade allocation status marked as \"unsupported\")",
+  "clientEnv": {
+    "wechat": "WeChat",
+    "alipay": "Alipay",
+    "union_pay": "UnionPay",
+    "douyin": "Douyin"
+  },
+  "payForm": {
+    "h5": "H5",
+    "mini": "Mini Program"
+  },
+  "claim": "Claim QR Code",
+  "claimTitle": "Claim QR Code",
+  "claimCodePlaceholder": "Please enter the QR code",
+  "claimTip": "Enter the code printed on the QR code board to claim a blank platform QR code to your merchant",
+  "claimRequired": "Please enter the QR code",
+  "claimSuccess": "QR code claimed successfully"
+}

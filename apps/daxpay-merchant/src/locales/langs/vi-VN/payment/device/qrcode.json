@@ -1,0 +1,51 @@
+{
+  "title": "Quản lý mã QR",
+  "status": {
+    "enabled": "Đã bật",
+    "disabled": "Tàn tật"
+  },
+  "amountType": {
+    "random": "Số tiền tùy chỉnh",
+    "fixed": "Số tiền cố định"
+  },
+  "defaultApp": "Ứng dụng mặc định",
+  "validateName": "Vui lòng nhập tên",
+  "validateAmountType": "Vui lòng chọn loại số tiền",
+  "validateFixedAmount": "Vui lòng nhập số tiền cố định",
+  "pleaseSelectApp": "Chọn ứng dụng (trống = mặc định)",
+  "enable": "Cho phép",
+  "disable": "Vô hiệu hóa",
+  "confirmEnable": "Bạn có chắc chắn bật bảng mã QR này không?",
+  "confirmDisable": "Bạn có chắc chắn tắt bảng mã QR này không? Thanh toán qua quét sẽ không có sẵn.",
+  "viewCode": "Xem mã",
+  "qrCodeTitle": "Mã QR",
+  "qrCodeTip": "Quét để vào trang thanh toán",
+  "copyLink": "Sao chép liên kết",
+  "amountLabel": "Số lượng",
+  "programType": {
+    "h5": "H5",
+    "mini_app": "Mini program"
+  },
+  "pleaseSelectStore": "Vui lòng chọn cửa hàng",
+  "defaultStoreHint": "Cửa hàng mặc định (nếu có)",
+  "allocationTip": "Khi bật, thanh toán qua mã sẽ yêu cầu kênh đóng băng tiền để phân bổ",
+  "allocationOn": "Phân bổ",
+  "allocWarningTitle": "Cảnh báo khả năng phân bổ",
+  "allocWarningDesc": "Sản phẩm thanh toán được định tuyến cho các tình huống quét sau không hỗ trợ phân bổ; các thanh toán đó sẽ bị hạ cấp thành thanh toán thường (trạng thái phân bổ ghi \"không hỗ trợ\")",
+  "clientEnv": {
+    "wechat": "WeChat",
+    "alipay": "Alipay",
+    "union_pay": "UnionPay",
+    "douyin": "Douyin"
+  },
+  "payForm": {
+    "h5": "H5",
+    "mini": "Mini Program"
+  },
+  "claim": "Claim QR Code",
+  "claimTitle": "Claim QR Code",
+  "claimCodePlaceholder": "Please enter the QR code",
+  "claimTip": "Enter the code printed on the QR code board to claim a blank platform QR code to your merchant",
+  "claimRequired": "Please enter the QR code",
+  "claimSuccess": "QR code claimed successfully"
+}

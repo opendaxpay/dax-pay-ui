@@ -1,0 +1,51 @@
+{
+  "title": "การจัดการรหัส QR",
+  "status": {
+    "enabled": "เปิดใช้งานแล้ว",
+    "disabled": "พิการ"
+  },
+  "amountType": {
+    "random": "จำนวนเงินที่กำหนดเอง",
+    "fixed": "จำนวนเงินคงที่"
+  },
+  "defaultApp": "แอปเริ่มต้น",
+  "validateName": "กรุณากรอกชื่อ",
+  "validateAmountType": "กรุณาเลือกประเภทจำนวนเงิน",
+  "validateFixedAmount": "กรุณากรอกจำนวนเงินที่แน่นอน",
+  "pleaseSelectApp": "เลือกแอป (ว่าง = เริ่มต้น)",
+  "enable": "เปิดใช้งาน",
+  "disable": "ปิดการใช้งาน",
+  "confirmEnable": "คุณแน่ใจหรือว่าจะเปิดใช้งานบอร์ดโค้ด QR นี้",
+  "confirmDisable": "คุณแน่ใจหรือว่าปิดใช้งานบอร์ดโค้ด QR นี้ การชำระเงินผ่านการสแกนจะไม่สามารถใช้ได้",
+  "viewCode": "ดูรหัส",
+  "qrCodeTitle": "คิวอาร์โค้ด",
+  "qrCodeTip": "สแกนเพื่อเข้าสู่หน้าชำระเงิน",
+  "copyLink": "คัดลอกลิงค์",
+  "amountLabel": "จำนวน",
+  "programType": {
+    "h5": "H5",
+    "mini_app": "มินิโปรแกรม"
+  },
+  "pleaseSelectStore": "กรุณาเลือกสาขา",
+  "defaultStoreHint": "สาขาเริ่มต้น (ถ้ามี)",
+  "allocationTip": "เมื่อเปิดใช้งาน การชำระเงินผ่านรหัสจะร้องขอให้ช่องทางระงับเงินสำหรับการแบ่ง",
+  "allocationOn": "แบ่ง",
+  "allocWarningTitle": "คำเตือนความสามารถการแบ่ง",
+  "allocWarningDesc": "ผลิตภัณฑ์การชำระเงินที่กำหนดเส้นทางสำหรับสถานการณ์สแกนต่อไปนี้ไม่รองรับการแบ่ง การชำระเงินเหล่านั้นจะถูกลดระดับเป็นการชำระเงินปกติ (สถานะการแบ่งของธุรกรรมจะถูกระบุว่า \"ไม่รองรับ\")",
+  "clientEnv": {
+    "wechat": "WeChat",
+    "alipay": "Alipay",
+    "union_pay": "UnionPay",
+    "douyin": "Douyin"
+  },
+  "payForm": {
+    "h5": "H5",
+    "mini": "มินิโปรแกรม"
+  },
+  "claim": "Claim QR Code",
+  "claimTitle": "Claim QR Code",
+  "claimCodePlaceholder": "Please enter the QR code",
+  "claimTip": "Enter the code printed on the QR code board to claim a blank platform QR code to your merchant",
+  "claimRequired": "Please enter the QR code",
+  "claimSuccess": "QR code claimed successfully"
+}

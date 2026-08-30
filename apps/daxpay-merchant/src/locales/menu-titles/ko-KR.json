@@ -53,5 +53,6 @@
   "menu.trade.transfer.channel": "채널 송금",
   "menu.trade.allocOrder": "정산 주문",
   "menu.trade.abnormalOrder": "비정상 주문",
-  "menu.trade.fundFlow": "자금 흐름"
+  "menu.trade.fundFlow": "자금 흐름",
+  "menu.payment.merchant.qrcode": "QR 코드 관리"
 }

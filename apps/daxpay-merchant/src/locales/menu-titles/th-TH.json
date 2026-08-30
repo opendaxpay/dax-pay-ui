@@ -53,5 +53,6 @@
   "menu.trade.transfer.channel": "การโอนเงินตามช่องทาง",
   "menu.trade.allocOrder": "คำสั่งแบ่งเงิน",
   "menu.trade.abnormalOrder": "คำสั่งซื้อผิดปกติ",
-  "menu.trade.fundFlow": "กระแสเงินสด"
+  "menu.trade.fundFlow": "กระแสเงินสด",
+  "menu.payment.merchant.qrcode": "การจัดการรหัส QR"
 }

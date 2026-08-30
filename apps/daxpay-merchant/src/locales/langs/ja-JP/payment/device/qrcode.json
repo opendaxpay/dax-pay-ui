@@ -1,0 +1,51 @@
+{
+  "title": "QRコード管理",
+  "status": {
+    "enabled": "有効",
+    "disabled": "無効"
+  },
+  "amountType": {
+    "random": "カスタム金額",
+    "fixed": "定額"
+  },
+  "defaultApp": "デフォルトアプリ",
+  "validateName": "名前を入力してください",
+  "validateAmountType": "金額タイプを選択してください",
+  "validateFixedAmount": "固定金額を入力してください",
+  "pleaseSelectApp": "アプリを選択(空=デフォルト)",
+  "enable": "有効にする",
+  "disable": "無効にする",
+  "confirmEnable": "この QR コード ボードを有効にしてもよろしいですか?",
+  "confirmDisable": "この QR コード ボードを無効にしてもよろしいですか?スキャンによるお支払いはご利用いただけません。",
+  "viewCode": "コードを表示",
+  "qrCodeTitle": "QRコード",
+  "qrCodeTip": "スキャンして支払いページに入ります",
+  "copyLink": "リンクをコピー",
+  "amountLabel": "額",
+  "programType": {
+    "h5": "H5",
+    "mini_app": "ミニプログラム"
+  },
+  "pleaseSelectStore": "店舗を選択してください",
+  "defaultStoreHint": "デフォルト店舗(設定時)",
+  "allocationTip": "有効にすると、コード決済時にチャネルへ精算用の資金凍結を要求します",
+  "allocationOn": "精算",
+  "allocWarningTitle": "精算能力の警告",
+  "allocWarningDesc": "以下のスキャン場面で現在ルーティングされる決済商品は精算に対応していません。有効にすると該当する決済は通常決済に切り替わります（取引の精算状態は「精算非対応」と表示されます）",
+  "clientEnv": {
+    "wechat": "WeChat",
+    "alipay": "Alipay",
+    "union_pay": "UnionPay",
+    "douyin": "Douyin"
+  },
+  "payForm": {
+    "h5": "H5",
+    "mini": "ミニプログラム"
+  },
+  "claim": "QRコードを取得",
+  "claimTitle": "QRコードを取得",
+  "claimCodePlaceholder": "コードを入力してください",
+  "claimTip": "QRコードボードに印字されたコードを入力すると、プラットフォームの未割り当てQRコードを自分の加盟店に取得できます",
+  "claimRequired": "コードを入力してください",
+  "claimSuccess": "取得しました"
+}
