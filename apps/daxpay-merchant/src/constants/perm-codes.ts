@@ -217,6 +217,14 @@ export const PermCodes = {
     CallbackRecord: {
       VIEW: 'trade:callback-record:view',
     },
+    /** 异常订单(终态收款台账, 商户端只读) */
+    AbnormalOrder: {
+      VIEW: 'trade:abnormal-order:view',
+    },
+    /** 资金流水(成功资金进出, 商户端只读) */
+    FundFlow: {
+      VIEW: 'trade:fund-flow:view',
+    },
   },
 
   /** 扩展插件 */

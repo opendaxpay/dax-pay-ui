@@ -51,5 +51,7 @@
   "menu.trade.transfer.trade": "Riwayat Transfer",
   "menu.trade.transfer.create": "Mulai Transfer",
   "menu.trade.transfer.channel": "Transfer Channel",
-  "menu.trade.allocOrder": "Pesanan Alokasi"
+  "menu.trade.allocOrder": "Pesanan Alokasi",
+  "menu.trade.abnormalOrder": "Pesanan Abnormal",
+  "menu.trade.fundFlow": "Arus Dana"
 }

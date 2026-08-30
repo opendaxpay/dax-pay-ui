@@ -1,0 +1,7 @@
+{
+  "detail": "자금 흐름 상세",
+  "flowType": "흐름 유형",
+  "typePay": "입금",
+  "typeRefund": "환불",
+  "finishTime": "자금 완료 시간"
+}

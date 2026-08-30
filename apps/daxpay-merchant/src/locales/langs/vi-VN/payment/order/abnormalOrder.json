@@ -1,0 +1,20 @@
+{
+  "detail": "Chi tiết đơn hàng bất thường",
+  "abnormalType": "Loại bất thường",
+  "typeClosePaid": "Đã nhận sau khi đóng",
+  "typeFailPaid": "Đã nhận sau khi thất bại",
+  "typeCancelPaid": "Đã nhận sau khi hủy",
+  "sourceLabel": "Nguồn phát hiện",
+  "sourceCallback": "Callback kênh",
+  "sourceSync": "Truy vấn đồng bộ",
+  "sourceJob": "Tác vụ định kỳ",
+  "handleStatusLabel": "Trạng thái xử lý",
+  "statusPending": "Chờ xử lý",
+  "statusConfirmed": "Đã xác nhận",
+  "statusIgnored": "Đã bỏ qua",
+  "channelStatusLabel": "Trạng thái kênh",
+  "handler": "Người xử lý",
+  "handleTime": "Thời gian xử lý",
+  "handleRemark": "Ghi chú",
+  "notifyInfo": "Bản tin Callback"
+}

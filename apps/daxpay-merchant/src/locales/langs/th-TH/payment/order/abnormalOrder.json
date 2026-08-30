@@ -1,0 +1,20 @@
+{
+  "detail": "รายละเอียดคำสั่งซื้อผิดปกติ",
+  "abnormalType": "ประเภทความผิดปกติ",
+  "typeClosePaid": "รับเงินหลังปิดรายการ",
+  "typeFailPaid": "รับเงินหลังล้มเหลว",
+  "typeCancelPaid": "รับเงินหลังยกเลิก",
+  "sourceLabel": "แหล่งที่พบ",
+  "sourceCallback": "Callback ช่องทาง",
+  "sourceSync": "สอบถามแบบซิงค์",
+  "sourceJob": "งานตามกำหนดเวลา",
+  "handleStatusLabel": "สถานะการดำเนินการ",
+  "statusPending": "รอดำเนินการ",
+  "statusConfirmed": "ยืนยันแล้ว",
+  "statusIgnored": "ละเว้นแล้ว",
+  "channelStatusLabel": "สถานะช่องทาง",
+  "handler": "ผู้ดำเนินการ",
+  "handleTime": "เวลาดำเนินการ",
+  "handleRemark": "หมายเหตุ",
+  "notifyInfo": "ข้อมูล Callback"
+}

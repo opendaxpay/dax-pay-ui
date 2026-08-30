@@ -1,0 +1,7 @@
+{
+  "detail": "Butiran Aliran Dana",
+  "flowType": "Jenis Aliran",
+  "typePay": "Pembayaran",
+  "typeRefund": "Bayaran Balik",
+  "finishTime": "Masa Selesai"
+}

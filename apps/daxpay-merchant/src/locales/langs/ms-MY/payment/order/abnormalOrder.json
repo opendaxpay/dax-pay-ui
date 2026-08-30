@@ -1,0 +1,20 @@
+{
+  "detail": "Butiran Pesanan Tidak Normal",
+  "abnormalType": "Jenis Tidak Normal",
+  "typeClosePaid": "Diterima selepas ditutup",
+  "typeFailPaid": "Diterima selepas gagal",
+  "typeCancelPaid": "Diterima selepas dibatalkan",
+  "sourceLabel": "Sumber Penemuan",
+  "sourceCallback": "Callback saluran",
+  "sourceSync": "Pertanyaan segerak",
+  "sourceJob": "Tugas berjadwal",
+  "handleStatusLabel": "Status Pengendalian",
+  "statusPending": "Menunggu",
+  "statusConfirmed": "Disahkan",
+  "statusIgnored": "Diabaikan",
+  "channelStatusLabel": "Status Saluran",
+  "handler": "Pengendali",
+  "handleTime": "Masa Pengendalian",
+  "handleRemark": "Catatan",
+  "notifyInfo": "Muatan Callback"
+}

@@ -1,0 +1,20 @@
+{
+  "detail": "异常订单详情",
+  "abnormalType": "异常类型",
+  "typeClosePaid": "关单后收款",
+  "typeFailPaid": "失败后收款",
+  "typeCancelPaid": "撤销后收款",
+  "sourceLabel": "发现来源",
+  "sourceCallback": "通道回调",
+  "sourceSync": "同步查单",
+  "sourceJob": "定时任务",
+  "handleStatusLabel": "处理状态",
+  "statusPending": "待处理",
+  "statusConfirmed": "已确认成功",
+  "statusIgnored": "已忽略",
+  "channelStatusLabel": "通道侧状态",
+  "handler": "处理人",
+  "handleTime": "处置时间",
+  "handleRemark": "处置备注",
+  "notifyInfo": "回调报文"
+}

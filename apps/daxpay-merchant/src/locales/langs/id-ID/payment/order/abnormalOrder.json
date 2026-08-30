@@ -1,0 +1,20 @@
+{
+  "detail": "Detail Pesanan Abnormal",
+  "abnormalType": "Jenis Abnormal",
+  "typeClosePaid": "Diterima setelah ditutup",
+  "typeFailPaid": "Diterima setelah gagal",
+  "typeCancelPaid": "Diterima setelah dibatalkan",
+  "sourceLabel": "Sumber",
+  "sourceCallback": "Callback channel",
+  "sourceSync": "Kueri sinkron",
+  "sourceJob": "Tugas terjadwal",
+  "handleStatusLabel": "Status Penanganan",
+  "statusPending": "Menunggu",
+  "statusConfirmed": "Dikonfirmasi",
+  "statusIgnored": "Diabaikan",
+  "channelStatusLabel": "Status Channel",
+  "handler": "Pemroses",
+  "handleTime": "Waktu Penanganan",
+  "handleRemark": "Catatan",
+  "notifyInfo": "Payload Callback"
+}

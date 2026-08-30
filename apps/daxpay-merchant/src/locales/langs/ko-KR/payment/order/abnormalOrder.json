@@ -1,0 +1,20 @@
+{
+  "detail": "비정상 주문 상세",
+  "abnormalType": "비정상 유형",
+  "typeClosePaid": "종결 후 입금",
+  "typeFailPaid": "실패 후 입금",
+  "typeCancelPaid": "취소 후 입금",
+  "sourceLabel": "발견 경로",
+  "sourceCallback": "채널 콜백",
+  "sourceSync": "동기 조회",
+  "sourceJob": "정기 작업",
+  "handleStatusLabel": "처리 상태",
+  "statusPending": "처리 대기",
+  "statusConfirmed": "확인 완료",
+  "statusIgnored": "무시됨",
+  "channelStatusLabel": "채널 측 상태",
+  "handler": "처리자",
+  "handleTime": "처리 시간",
+  "handleRemark": "처리 비고",
+  "notifyInfo": "콜백 메시지"
+}

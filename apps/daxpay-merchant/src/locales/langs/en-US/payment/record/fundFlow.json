@@ -1,0 +1,7 @@
+{
+  "detail": "Fund Flow Detail",
+  "flowType": "Flow Type",
+  "typePay": "Payment",
+  "typeRefund": "Refund",
+  "finishTime": "Finish Time"
+}

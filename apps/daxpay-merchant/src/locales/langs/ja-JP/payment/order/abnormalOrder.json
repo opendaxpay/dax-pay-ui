@@ -1,0 +1,20 @@
+{
+  "detail": "異常注文詳細",
+  "abnormalType": "異常タイプ",
+  "typeClosePaid": "クローズ後に入金",
+  "typeFailPaid": "失敗後に入金",
+  "typeCancelPaid": "取消後に入金",
+  "sourceLabel": "発見経路",
+  "sourceCallback": "チャネルコールバック",
+  "sourceSync": "同期照会",
+  "sourceJob": "定時タスク",
+  "handleStatusLabel": "処理状態",
+  "statusPending": "対応待ち",
+  "statusConfirmed": "確認済み成功",
+  "statusIgnored": "無視済み",
+  "channelStatusLabel": "チャネル側状態",
+  "handler": "処理者",
+  "handleTime": "処理時間",
+  "handleRemark": "処理備考",
+  "notifyInfo": "コールバック報文"
+}

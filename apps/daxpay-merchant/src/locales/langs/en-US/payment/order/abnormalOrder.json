@@ -1,0 +1,20 @@
+{
+  "detail": "Abnormal Order Detail",
+  "abnormalType": "Abnormal Type",
+  "typeClosePaid": "Received after close",
+  "typeFailPaid": "Received after fail",
+  "typeCancelPaid": "Received after cancel",
+  "sourceLabel": "Source",
+  "sourceCallback": "Channel callback",
+  "sourceSync": "Sync query",
+  "sourceJob": "Scheduled job",
+  "handleStatusLabel": "Handle Status",
+  "statusPending": "Pending",
+  "statusConfirmed": "Confirmed",
+  "statusIgnored": "Ignored",
+  "channelStatusLabel": "Channel Status",
+  "handler": "Handler",
+  "handleTime": "Handle Time",
+  "handleRemark": "Remark",
+  "notifyInfo": "Callback Payload"
+}

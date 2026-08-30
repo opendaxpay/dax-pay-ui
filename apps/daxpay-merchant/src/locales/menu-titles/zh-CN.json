@@ -51,5 +51,7 @@
   "menu.trade.transfer.trade": "转账记录",
   "menu.trade.transfer.create": "发起转账",
   "menu.trade.transfer.channel": "通道转账",
-  "menu.trade.allocOrder": "分账订单"
+  "menu.trade.allocOrder": "分账订单",
+  "menu.trade.abnormalOrder": "异常订单",
+  "menu.trade.fundFlow": "资金流水"
 }

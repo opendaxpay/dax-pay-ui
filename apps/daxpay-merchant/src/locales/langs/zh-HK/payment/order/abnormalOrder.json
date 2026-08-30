@@ -1,0 +1,20 @@
+{
+  "detail": "異常訂單詳情",
+  "abnormalType": "異常類型",
+  "typeClosePaid": "關單後收款",
+  "typeFailPaid": "失敗後收款",
+  "typeCancelPaid": "撤銷後收款",
+  "sourceLabel": "發現來源",
+  "sourceCallback": "通道回調",
+  "sourceSync": "同步查單",
+  "sourceJob": "定時任務",
+  "handleStatusLabel": "處理狀態",
+  "statusPending": "待處理",
+  "statusConfirmed": "已確認成功",
+  "statusIgnored": "已忽略",
+  "channelStatusLabel": "通道側狀態",
+  "handler": "處理人",
+  "handleTime": "處置時間",
+  "handleRemark": "處置備註",
+  "notifyInfo": "回調報文"
+}
