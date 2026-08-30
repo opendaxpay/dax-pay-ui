@@ -16,6 +16,7 @@
   import { SocialApi } from '#/api/iam/social.api';
   import { CLIENT_CODE } from '#/constants/client';
   import { useMessage } from '#/hooks/useMessage';
+  import { websiteConfig } from '#/logics/init-website-config';
   import { useAuthStore } from '#/store';
   import { isAutoSocialSkipped, isInAppForSource, markAutoSocialAttempt } from '#/utils/auto-social-login';
 
@@ -29,6 +30,11 @@
   const accessStore = useAccessStore();
 
   const formRef = ref<FormInstance>();
+
+  // 找回密码入口是否显示(后端按邮件发件箱配置就绪度下发; 字段缺失或配置未加载时保持显示)
+  const forgetPasswordEnabled = computed(
+    () => websiteConfig.value.forgetPasswordEnabled !== false,
+  );
 
   // 用户协议/隐私政策"已同意"在 localStorage 中的键名（登录成功后持久化，下次免勾选）
   const AGREEMENT_ACCEPTED_KEY = 'daxpay_admin_agreement_accepted';
@@ -392,9 +398,9 @@
       </a-button>
     </a-form>
 
-    <!-- 国际化：忘记密码入口(跳转邮箱验证码找回页) -->
+    <!-- 国际化：忘记密码入口(跳转邮箱验证码找回页; 邮件服务未配置时后端下发 false 隐藏, 避免死路) -->
     <AuthPageFooterActions
-      v-if="!authStore.twoFactorRequired"
+      v-if="!authStore.twoFactorRequired && forgetPasswordEnabled"
       :question-text="$t('authentication.forgetPassword')"
       :action-text="$t('_core.authentication.forgetPassword.findNow')"
       action-path="/auth/forget-password"

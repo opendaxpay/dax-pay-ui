@@ -8,7 +8,7 @@ import { requestClient } from '#/api/request';
 export const ForgetPasswordApi = {
   /**
    * 发送找回密码验证码
-   * 说明: 需同时携带用户账户与邮箱, 无论账户与邮箱是否匹配已验证, 后端统一返回流程ID与一致的成功响应, 不泄露账号存在性
+   * 说明: 需同时携带用户账户与邮箱, 后端校验账户存在且邮箱为该账户绑定并已验证的邮箱, 不匹配时明确报错
    */
   sendCode(data: ForgetSendCodeParams): Promise<Result<ForgetSendCodeResult>> {
     return requestClient.post('/token/forget/send-code', data, {

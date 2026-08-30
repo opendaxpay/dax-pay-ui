@@ -56,6 +56,8 @@ export interface WebsiteConfig {
   icpPlusLink?: string;
   /** 版权信息 */
   copyright?: string;
+  /** 找回密码入口是否可用(只读, 按邮件发件箱配置是否就绪计算, 未配置时登录页隐藏入口) */
+  forgetPasswordEnabled?: boolean;
   /** 配置内容哈希(只读, 供客户端缓存比对) */
   contentHash?: string;
 }
