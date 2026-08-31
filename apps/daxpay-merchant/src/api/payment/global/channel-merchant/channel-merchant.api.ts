@@ -39,12 +39,6 @@ export const ChannelMerchantApi = {
     return defHttp.post({ url: '/mch/channel-merchant/update', data });
   },
   /**
-   * 删除通道商户
-   */
-  delete(id: string): Promise<Result<void>> {
-    return defHttp.post({ url: '/mch/channel-merchant/delete', params: { id } });
-  },
-  /**
    * 通道商户下拉（按产品/通道编码）
    */
   dropdown(channel: string): Promise<Result<LabelValue[]>> {
