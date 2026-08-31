@@ -1,5 +1,4 @@
 {
-  "missingMchNo": "缺少商户编号，请从商户列表进入",
   "missingAppContext": "请从应用管理进入通道路由配置",
   "productDetail": {
     "notSupported": "该产品类型暂不支持详情配置",

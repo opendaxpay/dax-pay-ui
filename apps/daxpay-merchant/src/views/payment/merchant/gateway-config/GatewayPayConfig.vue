@@ -305,16 +305,11 @@
     capabilityMap.value = { ...capabilityMap.value, [key]: data || [] };
   }
 
-  /** 加载当前应用信息 */
   async function loadAppInfo() {
     if (!appId.value) return;
+    // 后端按登录态商户上下文隔离，仅需 appId
     const { data } = await MchAppInfoApi.getByAppId(appId.value);
     appInfo.value = data || {};
-  }
-
-  /** 返回应用工作台 */
-  function handleBack() {
-    router.push({ path: '/mch/app/manage', query: { appId: appId.value } });
   }
 
   async function loadConfig() {
@@ -328,11 +323,17 @@
     loading.value = false;
   }
 
+  function handleBack() {
+    router.push({
+      path: '/mch/app/manage',
+      query: { appId: appId.value },
+    });
+  }
+
   /** 跳转通道路由配置 */
   function goPayRoute() {
-    // 商户端仅带 appId，路由页自带应用选择器
     router.push({
-      path: '/payment/route',
+      path: '/mch/route',
       query: { appId: appId.value },
     });
   }
