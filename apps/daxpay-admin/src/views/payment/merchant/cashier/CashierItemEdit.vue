@@ -3,6 +3,7 @@
 
   import { computed, ref } from 'vue';
 
+  import { useIsMobile } from '@vben/hooks';
   import { $t } from '@vben/locales';
 
   import { CashierConfigApi, type CashierItemParam, type CashierItemResult } from '#/api/payment/merchant/cashier.api';
@@ -25,6 +26,10 @@
 
   const { message } = useMessage();
   const formRef = ref();
+
+  // 移动端(<768px)抽屉全屏，桌面固定 800px
+  const { isMobile } = useIsMobile();
+  const drawerSize = computed(() => (isMobile.value ? '100%' : 800));
 
   const { visible, confirmLoading, title, initFormEditType, handleCancel, formEditType, showable } = useFormEdit();
 
@@ -341,7 +346,7 @@
   <a-drawer
     v-model:open="visible"
     :title="title"
-    :size="800"
+    :size="drawerSize"
     :destroy-on-hidden="true"
     :mask-closable="showable"
     @close="handleCancel"
@@ -349,7 +354,7 @@
     <a-spin :spinning="confirmLoading">
       <a-form ref="formRef" :model="formState" :rules="formRules" layout="vertical" class="pt-2">
         <a-row :gutter="16">
-          <a-col :span="12">
+          <a-col :xs="24" :sm="12">
             <a-form-item :label="$t('payment.merchant.cashier.cashier.name')" name="name">
               <a-input
                 v-model:value="formState.name"
@@ -358,7 +363,7 @@
               />
             </a-form-item>
           </a-col>
-          <a-col :span="12">
+          <a-col :xs="24" :sm="12">
             <a-form-item :label="$t('payment.merchant.cashier.cashier.sortNo')" name="sortNo">
               <a-input-number
                 v-model:value="formState.sortNo"
@@ -403,7 +408,7 @@
           </template>
 
           <template v-else>
-            <a-col :span="12">
+            <a-col :xs="24" :sm="12">
               <a-form-item :label="$t('payment.merchant.cashier.cashier.channelMerchant')" name="channelMchNo">
                 <ChannelMerchantSelect
                   :value="formState.channelMchNo"
@@ -414,7 +419,7 @@
                 />
               </a-form-item>
             </a-col>
-            <a-col :span="12">
+            <a-col :xs="24" :sm="12">
               <a-form-item :label="$t('payment.merchant.cashier.cashier.capability')" name="capability">
                 <a-select
                   v-model:value="formState.capability"
@@ -429,7 +434,7 @@
             </a-col>
           </template>
 
-          <a-col :span="12">
+          <a-col :xs="24" :sm="12">
             <a-form-item :label="$t('payment.merchant.cashier.cashier.recommend')" name="recommend">
               <a-radio-group v-model:value="formState.recommend" button-style="solid" :disabled="showable">
                 <a-radio-button :value="false">{{ $t('payment.merchant.cashier.cashier.recommendNo') }}</a-radio-button>
@@ -437,7 +442,7 @@
               </a-radio-group>
             </a-form-item>
           </a-col>
-          <a-col :span="12">
+          <a-col :xs="24" :sm="12">
             <a-form-item :label="$t('payment.merchant.cashier.cashier.icon')" name="icon">
               <a-select
                 v-model:value="formState.icon"

@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-  import { PAY_ROUTE_MODE, type PayRouteMode } from './shared/payRoute.constants';
-
   import { computed, nextTick, onMounted, ref, watch } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
 
+  import { useIsMobile } from '@vben/hooks';
   import { $t } from '@vben/locales';
 
   import { IconifyIcon } from '@vben-core/icons';
@@ -19,6 +18,7 @@
   import PayRouteBasicPanel from './basic/PayRouteBasicPanel.vue';
   import PayRouteModeToolbar from './components/PayRouteModeToolbar.vue';
   import PayRouteScenePanel from './scene/PayRouteScenePanel.vue';
+  import { PAY_ROUTE_MODE, type PayRouteMode } from './shared/payRoute.constants';
   import { modeDisplayName, normalizePayRouteMode } from './shared/payRoute.labels';
 
   defineOptions({ name: 'PayRouteConfig' });
@@ -51,16 +51,20 @@
   const appInfo = ref<MchAppInfoResult>({});
   const strategy = ref<PayRouteStrategyResult>({});
   const loading = ref(false);
-  const activeTab = ref('config');
   const editMode = ref<PayRouteMode>(PAY_ROUTE_MODE.BASIC);
+
+  // 移动端(<768px)标识：编辑/保存/取消在移动端切换为底部固定操作栏
+  const { isMobile } = useIsMobile();
 
   const basicPanelRef = ref<InstanceType<typeof PayRouteBasicPanel> | null>(null);
   const scenePanelRef = ref<InstanceType<typeof PayRouteScenePanel> | null>(null);
 
-  // 编辑态由父组件统一持有，编辑/保存/取消按钮置于 a-tabs 标签行右侧
+  // 编辑态由父组件统一持有，编辑/保存/取消按钮：桌面在卡片右上角，移动端为底部固定操作栏
   const editing = ref(false);
   // 按 editMode 路由到当前可见 panel 的方法（两 panel 均已 expose startEdit/save/cancel）
-  const activePanel = computed(() => (editMode.value === PAY_ROUTE_MODE.BASIC ? basicPanelRef.value : scenePanelRef.value));
+  const activePanel = computed(() =>
+    editMode.value === PAY_ROUTE_MODE.BASIC ? basicPanelRef.value : scenePanelRef.value,
+  );
 
   function onStartEdit() {
     activePanel.value?.startEdit();
@@ -157,7 +161,11 @@
   <RouteQueryMissingState
     v-if="!routeContext.isValid"
     :description="
-      $t(!routeContext.query.value.mchNo ? 'payment.common.route.missingMchNo' : 'payment.common.route.missingAppContext')
+      $t(
+        !routeContext.query.value.mchNo
+          ? 'payment.common.route.missingMchNo'
+          : 'payment.common.route.missingAppContext',
+      )
     "
     :back-text="$t('payment.merchant.workbench.workbench.backToList')"
     @back="routeContext.goFallback"
@@ -165,14 +173,32 @@
   <div v-else class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
           <a-button type="text" @click="handleBack">
             <template #icon>
               <IconifyIcon icon="ant-design:arrow-left-outlined" />
             </template>
           </a-button>
           <span class="text-lg font-bold">{{ $t('payment.merchant.route.route.title') }}</span>
-          <span v-if="appInfo.appName" class="text-sm text-muted-foreground">({{ appInfo.appName }})</span>
+          <!-- 应用名：窄屏换行完整展示 -->
+          <span v-if="appInfo.appName" class="min-w-0 break-all text-sm text-muted-foreground"
+            >({{ appInfo.appName }})</span
+          >
+        </div>
+      </template>
+
+      <!-- 编辑操作：桌面在卡片右上角；移动端编辑态由底部固定操作栏承接 -->
+      <template #extra>
+        <div v-if="hasPermission(PermCodes.Merchant.AppRoute.MANAGE)" class="flex gap-2">
+          <a-button v-if="!editing" type="primary" @click="onStartEdit">
+            {{ $t('common.edit') }}
+          </a-button>
+          <template v-else-if="!isMobile">
+            <a-button type="primary" @click="onSave">
+              {{ $t('common.save') }}
+            </a-button>
+            <a-button @click="onCancel">{{ $t('common.cancel') }}</a-button>
+          </template>
         </div>
       </template>
 
@@ -184,36 +210,35 @@
           @apply-active-mode="applyActiveMode"
         />
 
-        <a-tabs v-model:active-key="activeTab">
-          <template #rightExtra>
-            <div v-if="hasPermission(PermCodes.Merchant.AppRoute.MANAGE)" class="flex gap-2">
-              <a-button v-if="!editing" type="primary" @click="onStartEdit">
-                {{ $t('common.edit') }}
-              </a-button>
-              <template v-else>
-                <a-button type="primary" @click="onSave">
-                  {{ $t('common.save') }}
-                </a-button>
-                <a-button @click="onCancel">{{ $t('common.cancel') }}</a-button>
-              </template>
-            </div>
-          </template>
-          <a-tab-pane key="config" :tab="$t('payment.merchant.route.route.configTab')" force-render>
-            <PayRouteBasicPanel
-              v-show="editMode === PAY_ROUTE_MODE.BASIC"
-              ref="basicPanelRef"
-              v-model:editing="editing"
-              :app-id="appId"
-            />
-            <PayRouteScenePanel
-              v-show="editMode === PAY_ROUTE_MODE.SCENE"
-              ref="scenePanelRef"
-              v-model:editing="editing"
-              :app-id="appId"
-            />
-          </a-tab-pane>
-        </a-tabs>
+        <PayRouteBasicPanel
+          v-show="editMode === PAY_ROUTE_MODE.BASIC"
+          ref="basicPanelRef"
+          v-model:editing="editing"
+          :app-id="appId"
+        />
+        <PayRouteScenePanel
+          v-show="editMode === PAY_ROUTE_MODE.SCENE"
+          ref="scenePanelRef"
+          v-model:editing="editing"
+          :app-id="appId"
+        />
       </a-spin>
     </a-card>
+
+    <!-- 移动端编辑态底部占位，防止内容被固定操作栏遮挡 -->
+    <div v-if="isMobile && editing" class="h-20"></div>
+
+    <!-- 移动端编辑态固定底部操作栏（拇指可达区） -->
+    <div
+      v-if="isMobile && editing"
+      class="fixed inset-x-0 bottom-0 z-10 border-t border-border bg-background px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]"
+    >
+      <div class="flex gap-3">
+        <a-button class="min-w-0 flex-1" @click="onCancel">{{ $t('common.cancel') }}</a-button>
+        <a-button class="min-w-0 flex-1" type="primary" @click="onSave">
+          {{ $t('common.save') }}
+        </a-button>
+      </div>
+    </div>
   </div>
 </template>
