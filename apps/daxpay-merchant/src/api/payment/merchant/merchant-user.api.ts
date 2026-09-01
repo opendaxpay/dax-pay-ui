@@ -98,6 +98,13 @@ export const MerchantUserApi = {
   },
 
   /**
+   * 校验账号在身份域内是否已存在（新增防抖预检用）
+   */
+  existsAccountByClient(account: string, clientCode: string): Promise<Result<boolean>> {
+    return defHttp.get({ url: '/user/check/exists-account-by-client', params: { account, clientCode } });
+  },
+
+  /**
    * 根据 ID 查询用户详情
    */
   findById(id: string): Promise<Result<UserInfoResult>> {

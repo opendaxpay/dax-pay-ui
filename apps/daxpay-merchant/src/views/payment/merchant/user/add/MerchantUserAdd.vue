@@ -10,12 +10,14 @@
   import { SecurityApi } from '#/api/system/security.api';
   import { InputPassword } from '#/components/input-password';
   import { useMessage } from '#/hooks/useMessage';
+  import { useValidate } from '#/hooks/useValidate';
   import { generateOptionalPasswordRules } from '#/utils/password-validator';
   import { encryptPassword } from '#/utils/rsa-encrypt';
 
   const emit = defineEmits(['ok']);
 
   const { message } = useMessage();
+  const { useDebounceValidator } = useValidate();
 
   // 表单引用
   const formRef = ref();
@@ -49,16 +51,32 @@
     return Promise.resolve();
   }
 
+  /**
+   * 校验账号是否已被使用(商户身份域内唯一)
+   */
+  async function validateAccountExists(_rule: any, value: string) {
+    if (!value) return;
+    const { data: exists } = await MerchantUserApi.existsAccountByClient(value, 'merchant');
+    if (exists) {
+      throw $t('common.accountExists');
+    }
+  }
+
+  // 账号防抖判重校验
+  const validateAccountDebounced = useDebounceValidator(formRef, 'account', validateAccountExists, 800);
+
   // 表单校验规则
   const formRules = computed(() => ({
     name: [
       { required: true, message: $t('common.pleaseInput') },
       { min: 3, max: 15, message: $t('iam.user.validation.nameLength') },
     ],
+    // 账号（含防抖判重）
     account: [
       { required: true, message: $t('common.pleaseInput') },
       { min: 6, max: 20, message: $t('iam.user.validation.accountLength') },
       { pattern: /^[a-zA-Z0-9_-]+$/, message: $t('iam.user.validation.accountPattern') },
+      { validator: validateAccountDebounced },
     ],
     // 密码(可选: 留空由后端生成随机初始密码)
     password: generateOptionalPasswordRules(passwordConfig.value),
@@ -73,6 +91,8 @@
       password: '',
     };
     formRef.value?.resetFields();
+    // 清空防抖校验缓存，避免上次判重结果残留
+    validateAccountDebounced.reset();
   }
 
   /**
