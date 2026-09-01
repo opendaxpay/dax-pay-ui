@@ -244,10 +244,8 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
 ];
 
 /** 默认序列：defaultVisible=true 的按 defaultOrder 升序 */
-export const DEFAULT_ENTRIES: string[] = ENTRY_CATALOG.filter(
-  (e) => e.defaultVisible,
-)
-  .sort((a, b) => a.defaultOrder - b.defaultOrder)
+export const DEFAULT_ENTRIES: string[] = ENTRY_CATALOG.filter((e) => e.defaultVisible)
+  .toSorted((a, b) => a.defaultOrder - b.defaultOrder)
   .map((e) => e.key);
 
 /**
@@ -258,10 +256,8 @@ export const DEFAULT_ENTRIES: string[] = ENTRY_CATALOG.filter(
  *
  * @param hasPermission 权限判断函数（来自 usePermission）
  */
-export function getAvailableEntries(
-  hasPermission: (code: string) => boolean,
-): QuickEntryMeta[] {
-  return ENTRY_CATALOG.filter((e) => e.perms.some((p) => hasPermission(p))).sort(
+export function getAvailableEntries(hasPermission: (code: string) => boolean): QuickEntryMeta[] {
+  return ENTRY_CATALOG.filter((e) => e.perms.length === 0 || e.perms.some((p) => hasPermission(p))).toSorted(
     (a, b) => a.defaultOrder - b.defaultOrder,
   );
 }
@@ -272,7 +268,5 @@ export function getAvailableEntries(
  * 过滤掉 catalog 中已不存在的脏数据（如旧配置残留的失效 key）
  */
 export function resolveEntries(keys: string[]): QuickEntryMeta[] {
-  return keys
-    .map((k) => ENTRY_CATALOG.find((e) => e.key === k))
-    .filter((v): v is QuickEntryMeta => !!v);
+  return keys.map((k) => ENTRY_CATALOG.find((e) => e.key === k)).filter((v): v is QuickEntryMeta => !!v);
 }
