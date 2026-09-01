@@ -2,26 +2,24 @@
   import type { QuickEntryMeta } from './catalog';
 
   import { computed, ref, watch } from 'vue';
-  import draggable from 'vuedraggable';
 
   import { IconifyIcon } from '@vben/icons';
   import { $t } from '@vben/locales';
 
-  import {
-    DEFAULT_ENTRIES,
-    getAvailableEntries,
-    resolveEntries,
-  } from './catalog';
+  import draggable from 'vuedraggable';
+
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
   import { useQuickEntryStore } from '#/store/quick-entry';
+
+  import { DEFAULT_ENTRIES, getAvailableEntries, resolveEntries } from './catalog';
 
   defineOptions({ name: 'QuickEntryEditDrawer' });
 
   const props = defineProps<{ open: boolean }>();
   const emit = defineEmits<{
-    'update:open': [value: boolean];
     saved: [];
+    'update:open': [value: boolean];
   }>();
 
   const quickEntryStore = useQuickEntryStore();
@@ -36,9 +34,7 @@
     () => props.open,
     (open) => {
       if (open) {
-        selectedItems.value = resolveEntries(
-          quickEntryStore.entries ?? DEFAULT_ENTRIES,
-        );
+        selectedItems.value = resolveEntries(quickEntryStore.entries ?? DEFAULT_ENTRIES);
       }
     },
     { immediate: true },
@@ -99,9 +95,7 @@
     if (!confirmed) return;
     // 强制从后端重新加载，回到上次保存的状态
     await quickEntryStore.load(true);
-    selectedItems.value = resolveEntries(
-      quickEntryStore.entries ?? DEFAULT_ENTRIES,
-    );
+    selectedItems.value = resolveEntries(quickEntryStore.entries ?? DEFAULT_ENTRIES);
   }
 
   /** 关闭抽屉 */
@@ -132,27 +126,15 @@
           ghost-class="opacity-50"
         >
           <template #item="{ element, index }">
-            <div
-              class="hover:bg-accent mb-2 flex items-center gap-2 rounded-md border p-2"
-            >
-              <div
-                class="text-muted-foreground drag-handle cursor-move px-1"
-              >
+            <div class="hover:bg-accent mb-2 flex items-center gap-2 rounded-md border p-2">
+              <div class="text-muted-foreground drag-handle cursor-move px-1">
                 <IconifyIcon icon="lucide:grip-vertical" class="size-4" />
               </div>
-              <div
-                :class="element.color"
-                class="text-background flex size-7 items-center justify-center rounded"
-              >
+              <div :class="element.color" class="text-background flex size-7 items-center justify-center rounded">
                 <IconifyIcon :icon="element.icon" class="size-4" />
               </div>
               <span class="flex-1 text-sm">{{ $t(element.titleKey) }}</span>
-              <a-button
-                type="text"
-                size="small"
-                :disabled="index === 0"
-                @click="moveUp(index)"
-              >
+              <a-button type="text" size="small" :disabled="index === 0" @click="moveUp(index)">
                 <IconifyIcon icon="lucide:arrow-up" class="size-4" />
               </a-button>
               <a-button
@@ -163,21 +145,13 @@
               >
                 <IconifyIcon icon="lucide:arrow-down" class="size-4" />
               </a-button>
-              <a-button
-                type="link"
-                size="small"
-                danger
-                @click="removeEntry(element.key)"
-              >
+              <a-button type="link" size="small" danger @click="removeEntry(element.key)">
                 <IconifyIcon icon="lucide:x" class="size-4" />
               </a-button>
             </div>
           </template>
         </draggable>
-        <a-empty
-          v-if="selectedItems.length === 0"
-          :description="$t('dashboard.workspace.quickEntry.empty')"
-        />
+        <a-empty v-if="selectedItems.length === 0" :description="$t('dashboard.workspace.quickEntry.empty')" />
       </div>
 
       <!-- 可选池：点击追加 -->
@@ -192,23 +166,14 @@
             class="hover:bg-accent flex cursor-pointer items-center gap-2 rounded-md border p-2"
             @click="addEntry(entry)"
           >
-            <div
-              :class="entry.color"
-              class="text-background flex size-7 items-center justify-center rounded"
-            >
+            <div :class="entry.color" class="text-background flex size-7 items-center justify-center rounded">
               <IconifyIcon :icon="entry.icon" class="size-4" />
             </div>
             <span class="flex-1 text-sm">{{ $t(entry.titleKey) }}</span>
-            <IconifyIcon
-              icon="lucide:plus"
-              class="text-muted-foreground size-4"
-            />
+            <IconifyIcon icon="lucide:plus" class="text-muted-foreground size-4" />
           </div>
         </div>
-        <a-empty
-          v-if="availableEntries.length === 0"
-          :description="$t('dashboard.workspace.quickEntry.allAdded')"
-        />
+        <a-empty v-if="availableEntries.length === 0" :description="$t('dashboard.workspace.quickEntry.allAdded')" />
       </div>
     </div>
 

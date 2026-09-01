@@ -26,8 +26,10 @@ export interface QuickEntryMeta {
  * 单一事实源：所有可用入口在此声明，widget 与编辑抽屉共用
  * routeName 必须等于菜单 path（前端 name = menu.path）
  * profile / notify / analytics 均为 core 路由，无菜单权限门槛
+ * 新增入口（用户/门店/码牌/终端/通道商户/域名验证）默认不显示，仅在编辑抽屉可选池提供
  */
 export const ENTRY_CATALOG: QuickEntryMeta[] = [
+  // ===== 常用（core 路由） =====
   {
     key: 'profile',
     routeName: 'Profile',
@@ -59,6 +61,7 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     defaultVisible: true,
     defaultOrder: 3,
   },
+  // ===== 基础管理（对齐侧栏「商户中心 → 基础管理」） =====
   {
     key: 'merchant',
     // 商户资料（菜单 path）
@@ -69,6 +72,62 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     perms: [PermCodes.Merchant.Info.VIEW],
     defaultVisible: true,
     defaultOrder: 4,
+  },
+  {
+    // 商户用户 — 菜单 path /mch/user
+    key: 'merchantUser',
+    routeName: '/mch/user',
+    icon: 'lucide:users',
+    titleKey: 'menu.payment.merchant.user',
+    color: 'bg-cyan-500',
+    perms: [PermCodes.Merchant.User.VIEW],
+    defaultVisible: false,
+    defaultOrder: 11,
+  },
+  {
+    // 门店管理 — 菜单 path /mch/store
+    key: 'merchantStore',
+    routeName: '/mch/store',
+    icon: 'lucide:store',
+    titleKey: 'menu.payment.merchant.store',
+    color: 'bg-orange-400',
+    perms: [PermCodes.Merchant.Store.VIEW],
+    defaultVisible: false,
+    defaultOrder: 12,
+  },
+  {
+    // 码牌管理 — 菜单 path /mch/qrcode
+    key: 'qrcode',
+    routeName: '/mch/qrcode',
+    icon: 'lucide:qr-code',
+    titleKey: 'menu.payment.merchant.qrcode',
+    color: 'bg-fuchsia-500',
+    perms: [PermCodes.Device.QrCode.VIEW],
+    defaultVisible: false,
+    defaultOrder: 13,
+  },
+  {
+    // 系统终端 — 菜单 path /mch/terminal
+    key: 'terminal',
+    routeName: '/mch/terminal',
+    icon: 'lucide:monitor',
+    titleKey: 'menu.payment.merchant.terminal',
+    color: 'bg-slate-500',
+    perms: [PermCodes.Merchant.Terminal.VIEW],
+    defaultVisible: false,
+    defaultOrder: 14,
+  },
+  // ===== 支付配置（对齐侧栏「商户中心 → 支付配置」） =====
+  {
+    // 通道商户 — 菜单 path /mch/channel-merchant
+    key: 'channelMerchant',
+    routeName: '/mch/channel-merchant',
+    icon: 'lucide:plug',
+    titleKey: 'menu.payment.merchant.channelMerchant',
+    color: 'bg-lime-500',
+    perms: [PermCodes.Channel.Merchant.VIEW],
+    defaultVisible: false,
+    defaultOrder: 15,
   },
   {
     key: 'app',
@@ -83,7 +142,7 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
   },
   {
     key: 'wxApp',
-    // 支付应用(微信) — 菜单 path /mch/wx-app
+    // 微信应用 — 菜单 path /mch/wx-app
     routeName: '/mch/wx-app',
     icon: 'lucide:message-circle',
     titleKey: 'dashboard.workspace.quickEntry.wxApp',
@@ -94,7 +153,7 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
   },
   {
     key: 'douyinApp',
-    // 支付应用(抖音) — 菜单 path /mch/douyin-app
+    // 抖音应用 — 菜单 path /mch/douyin-app
     routeName: '/mch/douyin-app',
     icon: 'lucide:music-2',
     titleKey: 'dashboard.workspace.quickEntry.douyinApp',
@@ -103,6 +162,7 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     defaultVisible: true,
     defaultOrder: 7,
   },
+  // ===== 业务配置（对齐侧栏「商户中心 → 业务配置」） =====
   {
     key: 'credential',
     // 对接配置
@@ -114,6 +174,18 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     defaultVisible: true,
     defaultOrder: 8,
   },
+  {
+    // 微信域名验证 — 菜单 path /mch/wx-verify
+    key: 'wxVerify',
+    routeName: '/mch/wx-verify',
+    icon: 'lucide:shield-check',
+    titleKey: 'menu.payment.merchant.wxVerify',
+    color: 'bg-indigo-500',
+    perms: [PermCodes.Merchant.WxDomainVerify.VIEW],
+    defaultVisible: false,
+    defaultOrder: 16,
+  },
+  // ===== 交易与工具 =====
   {
     key: 'payTrade',
     // 支付交易 / 资金交易

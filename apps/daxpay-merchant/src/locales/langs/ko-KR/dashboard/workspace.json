@@ -63,8 +63,8 @@
     "allAdded": "모두 추가됨",
     "profile": "프로필",
     "credential": "연동 설정",
-    "wxApp": "결제 앱(위챗)",
-    "douyinApp": "결제 앱(두인)"
+    "wxApp": "WeChat 앱",
+    "douyinApp": "더우인 앱"
   },
   "notice": {
     "important": "중요한",

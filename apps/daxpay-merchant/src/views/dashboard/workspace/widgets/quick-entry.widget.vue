@@ -7,13 +7,11 @@
   import { IconifyIcon } from '@vben/icons';
   import { $t } from '@vben/locales';
 
-  import QuickEntryEditDrawer from './quick-entry/quick-entry-edit.drawer.vue';
-  import {
-    DEFAULT_ENTRIES,
-    resolveEntries,
-  } from './quick-entry/catalog';
   import { usePermission } from '#/hooks/usePermission';
   import { useQuickEntryStore } from '#/store/quick-entry';
+
+  import { DEFAULT_ENTRIES, resolveEntries } from './quick-entry/catalog';
+  import QuickEntryEditDrawer from './quick-entry/quick-entry-edit.drawer.vue';
 
   interface Props {
     /** 工作台聚合数据（快捷入口不消费统计，保留以统一 widget props 契约） */
@@ -37,10 +35,10 @@
   // 实际渲染序列：用户自定义 ?? 默认，按权限过滤（空 perms 表示登录即可访问）
   const entries = computed(() => {
     const keys = quickEntryStore.entries ?? DEFAULT_ENTRIES;
-    return resolveEntries(keys).filter(
-      (e) => e.perms.length === 0 || e.perms.some((p) => hasPermission(p)),
-    );
+    return resolveEntries(keys).filter((e) => e.perms.length === 0 || e.perms.some((p) => hasPermission(p)));
   });
+
+  // 按用户自定义顺序连续渲染入口
 
   /** 跳转到目标路由 */
   function navTo(routeName: string) {
@@ -82,22 +80,13 @@
         class="hover:bg-accent flex cursor-pointer flex-col items-center gap-2 rounded-lg p-3 transition-colors"
         @click="navTo(entry.routeName)"
       >
-        <div
-          :class="entry.color"
-          class="text-background flex size-11 items-center justify-center rounded-lg shadow-sm"
-        >
+        <div :class="entry.color" class="text-background flex size-11 items-center justify-center rounded-lg shadow-sm">
           <IconifyIcon :icon="entry.icon" class="size-5" />
         </div>
-        <span class="text-foreground/80 line-clamp-1 text-center text-xs">{{
-          $t(entry.titleKey)
-        }}</span>
+        <span class="text-foreground/80 line-clamp-1 text-center text-xs">{{ $t(entry.titleKey) }}</span>
       </div>
     </div>
-    <a-empty
-      v-if="entries.length === 0"
-      :description="$t('dashboard.workspace.quickEntry.empty')"
-      class="!my-4"
-    />
+    <a-empty v-if="entries.length === 0" :description="$t('dashboard.workspace.quickEntry.empty')" class="!my-4" />
 
     <!-- 编辑抽屉 -->
     <QuickEntryEditDrawer v-model:open="editVisible" @saved="handleSaved" />

@@ -63,8 +63,8 @@
     "allAdded": "すべて追加されました",
     "profile": "プロフィール",
     "credential": "連携設定",
-    "wxApp": "決済アプリ(WeChat)",
-    "douyinApp": "決済アプリ(Douyin)"
+    "wxApp": "WeChatアプリ",
+    "douyinApp": "Douyinアプリ"
   },
   "notice": {
     "important": "重要",

@@ -63,8 +63,8 @@
     "allAdded": "Semua ditambah",
     "profile": "Profil",
     "credential": "Konfigurasi Integrasi",
-    "wxApp": "Apl Pembayaran (WeChat)",
-    "douyinApp": "Apl Pembayaran (Douyin)"
+    "wxApp": "Aplikasi WeChat",
+    "douyinApp": "Aplikasi Douyin"
   },
   "notice": {
     "important": "penting",
