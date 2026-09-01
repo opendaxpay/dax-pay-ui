@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-  import { PAY_ROUTE_MODE, type PayRouteMode } from '../shared/payRoute.constants';
-
   import { $t } from '@vben/locales';
 
   import { PermCodes } from '#/constants/perm-codes';
   import { usePermission } from '#/hooks/usePermission';
+
+  import { PAY_ROUTE_MODE, type PayRouteMode } from '../shared/payRoute.constants';
 
   defineOptions({ name: 'PayRouteModeToolbar' });
 
@@ -27,7 +27,8 @@
 </script>
 
 <template>
-  <div class="mb-4 flex flex-wrap items-center gap-4">
+  <!-- 移动端纵向堆叠，桌面横排 -->
+  <div class="mb-4 flex flex-col items-start gap-3 md:flex-row md:flex-wrap md:items-center md:gap-4">
     <span>{{ $t('payment.merchant.route.route.editModeLabel') }}</span>
     <a-radio-group v-model:value="editMode" button-style="solid">
       <a-radio :value="PAY_ROUTE_MODE.BASIC">

@@ -81,6 +81,8 @@ export const MchAppInfoApi = {
 
 /** 商户应用查询参数 */
 export interface MchAppInfoQuery {
+  /** 商户号（页面与运营端同构携带；商户端服务端从登录态解析商户，此参数可忽略） */
+  mchNo?: string;
   /** 应用号 */
   appId?: string;
   /** 应用名称 */

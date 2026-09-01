@@ -26,7 +26,11 @@ export const GatewayPayConfigApi = {
   /**
    * DIRECT: 按当前商户+支付渠道列通道商户候选
    */
-  listDirectChannelMchCandidates(params: { provider: string }): Promise<Result<ChannelMchOption[]>> {
+  listDirectChannelMchCandidates(params: {
+    /** 商户号（页面与运营端同构携带；商户端服务端从登录态解析商户，此参数可忽略） */
+    mchNo?: string;
+    provider: string;
+  }): Promise<Result<ChannelMchOption[]>> {
     return defHttp.get({
       url: '/mch/gateway/pay-config/direct-channel-mch-candidates',
       params,

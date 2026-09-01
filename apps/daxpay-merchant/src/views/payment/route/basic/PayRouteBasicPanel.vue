@@ -21,7 +21,7 @@
 
   const basicConfigRows = ref<PayRouteBasicConfigResult[]>([]);
   const basicConfigMap = ref<Record<string, string | undefined>>({});
-  // 编辑态由父组件持有（v-model:editing），编辑/保存/取消按钮置于 a-tabs 标签行右侧
+  // 编辑态由父组件持有（v-model:editing），编辑/保存/取消按钮：桌面在卡片右上角，移动端为底部固定操作栏
   const editing = defineModel<boolean>('editing', { default: false });
 
   async function loadBasicConfig() {

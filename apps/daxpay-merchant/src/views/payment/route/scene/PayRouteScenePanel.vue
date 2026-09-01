@@ -37,7 +37,7 @@
   const sceneRows = ref<SceneRow[]>([]);
   const sceneChannelMchOptionsMap = ref<Record<string, LabelValue[]>>({});
   const sceneCapabilityOptionsMap = ref<Record<string, LabelValue[]>>({});
-  // 编辑态由父组件持有（v-model:editing），编辑/保存/取消按钮置于 a-tabs 标签行右侧
+  // 编辑态由父组件持有（v-model:editing），编辑/保存/取消按钮：桌面在卡片右上角，移动端为底部固定操作栏
   const editing = defineModel<boolean>('editing', { default: false });
 
   // 通道商户候选缓存键
@@ -333,63 +333,89 @@
         <img :src="getProviderSvgUrl(card.code)" class="w-5 h-5" :alt="card.code" />
         {{ providerLabel(card.code) }}
       </div>
+      <!-- 列表头：移动端隐藏，字段名内联到各行卡片 -->
       <div
-        class="mb-2 grid grid-cols-[minmax(8rem,1fr)_minmax(10rem,1fr)_minmax(10rem,1fr)] gap-2 text-xs text-muted-foreground"
+        class="mb-2 hidden gap-2 text-xs text-muted-foreground md:grid md:grid-cols-[minmax(8rem,1fr)_minmax(10rem,1fr)_minmax(10rem,1fr)]"
       >
         <span>{{ $t('payment.merchant.route.route.method') }}</span>
         <span>{{ $t('payment.merchant.route.route.channelMerchant') }}</span>
         <span>{{ $t('payment.merchant.route.route.payCapability') }}</span>
       </div>
+      <!-- 移动端：每行一张卡片（方式名作卡片头，字段纵向堆叠）；桌面：三列 grid 行 -->
       <div
         v-for="entry in card.methods"
         :key="channelMchOptionsKey(entry.provider, entry.method)"
-        class="mb-2 grid grid-cols-[minmax(8rem,1fr)_minmax(10rem,1fr)_minmax(10rem,1fr)] items-start gap-2"
+        class="mb-2 grid grid-cols-1 gap-1 rounded-lg border border-border p-3 md:grid-cols-[minmax(8rem,1fr)_minmax(10rem,1fr)_minmax(10rem,1fr)] md:items-start md:gap-2 md:rounded-none md:border-0 md:p-0"
       >
-        <div class="min-h-8 py-1.5 text-sm">
+        <div class="min-h-8 py-1.5 text-sm font-medium md:font-normal">
           {{ entry.methodLabel || entry.method }}
         </div>
         <template v-if="!editing">
-          <div class="min-h-8 rounded-md border border-border bg-muted/30 px-3 py-1.5 text-sm">
-            {{ sceneChannelMchDisplay(entry.provider, entry.method) }}
+          <div>
+            <!-- 通道商户（移动端字段名） -->
+            <div class="mb-1 text-xs text-muted-foreground md:hidden">
+              {{ $t('payment.merchant.route.route.channelMerchant') }}
+            </div>
+            <div class="text-sm md:min-h-8 md:rounded-md md:border md:border-border md:bg-muted/30 md:px-3 md:py-1.5">
+              {{ sceneChannelMchDisplay(entry.provider, entry.method) }}
+            </div>
           </div>
-          <div class="min-h-8 rounded-md border border-border bg-muted/30 px-3 py-1.5 text-sm">
-            {{ sceneCapabilityDisplay(entry.provider, entry.method) }}
+          <div>
+            <!-- 支付能力（移动端字段名） -->
+            <div class="mb-1 text-xs text-muted-foreground md:hidden">
+              {{ $t('payment.merchant.route.route.payCapability') }}
+            </div>
+            <div class="text-sm md:min-h-8 md:rounded-md md:border md:border-border md:bg-muted/30 md:px-3 md:py-1.5">
+              {{ sceneCapabilityDisplay(entry.provider, entry.method) }}
+            </div>
           </div>
         </template>
         <template v-else>
-          <a-select
-            v-model:value="getSceneRow(entry.provider, entry.method).channelMchNo"
-            allow-clear
-            class="w-full"
-            :placeholder="$t('payment.merchant.route.route.channelMerchantPlaceholder')"
-            :options="sceneChannelMchSelectOptions(entry.provider, entry.method)"
-            @change="onSceneChannelMchChange(entry.provider, entry.method)"
-            @focus="loadSceneChannelMch(entry.provider, entry.method)"
-          >
-            <template #notFoundContent>
-              {{ $t('payment.merchant.route.route.channelMerchantNotFound') }}
-            </template>
-          </a-select>
-          <a-select
-            v-model:value="getSceneRow(entry.provider, entry.method).capability"
-            allow-clear
-            class="w-full"
-            :placeholder="$t('payment.merchant.route.route.payCapabilityPlaceholder')"
-            :options="
-              sceneCapabilitySelectOptions(
-                entry.provider,
-                entry.method,
-                getSceneRow(entry.provider, entry.method).channelMchNo || '',
-              )
-            "
-            @focus="
-              loadSceneCapabilities(
-                entry.provider,
-                entry.method,
-                getSceneRow(entry.provider, entry.method).channelMchNo || '',
-              )
-            "
-          />
+          <div>
+            <!-- 通道商户（移动端字段名） -->
+            <div class="mb-1 text-xs text-muted-foreground md:hidden">
+              {{ $t('payment.merchant.route.route.channelMerchant') }}
+            </div>
+            <a-select
+              v-model:value="getSceneRow(entry.provider, entry.method).channelMchNo"
+              allow-clear
+              class="w-full"
+              :placeholder="$t('payment.merchant.route.route.channelMerchantPlaceholder')"
+              :options="sceneChannelMchSelectOptions(entry.provider, entry.method)"
+              @change="onSceneChannelMchChange(entry.provider, entry.method)"
+              @focus="loadSceneChannelMch(entry.provider, entry.method)"
+            >
+              <template #notFoundContent>
+                {{ $t('payment.merchant.route.route.channelMerchantNotFound') }}
+              </template>
+            </a-select>
+          </div>
+          <div>
+            <!-- 支付能力（移动端字段名） -->
+            <div class="mb-1 text-xs text-muted-foreground md:hidden">
+              {{ $t('payment.merchant.route.route.payCapability') }}
+            </div>
+            <a-select
+              v-model:value="getSceneRow(entry.provider, entry.method).capability"
+              allow-clear
+              class="w-full"
+              :placeholder="$t('payment.merchant.route.route.payCapabilityPlaceholder')"
+              :options="
+                sceneCapabilitySelectOptions(
+                  entry.provider,
+                  entry.method,
+                  getSceneRow(entry.provider, entry.method).channelMchNo || '',
+                )
+              "
+              @focus="
+                loadSceneCapabilities(
+                  entry.provider,
+                  entry.method,
+                  getSceneRow(entry.provider, entry.method).channelMchNo || '',
+                )
+              "
+            />
+          </div>
         </template>
       </div>
     </div>

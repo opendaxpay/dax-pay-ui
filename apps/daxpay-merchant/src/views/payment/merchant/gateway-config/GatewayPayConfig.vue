@@ -4,6 +4,7 @@
   import { computed, onMounted, ref, watch } from 'vue';
   import { useRouter } from 'vue-router';
 
+  import { useIsMobile } from '@vben/hooks';
   import { $t } from '@vben/locales';
 
   import { IconifyIcon } from '@vben-core/icons';
@@ -25,13 +26,13 @@
   import { modeDisplayName } from '#/views/payment/route/shared/payRoute.labels';
 
   import {
+    defaultMethodFor,
     GW_CLIENT_ENVS,
     GW_LEVEL,
     GW_PAY_FORM,
     GW_PAY_FORMS,
     type GwLevel,
     type GwPayForm,
-    defaultMethodFor,
     rowKey,
   } from './shared/constants';
 
@@ -43,7 +44,7 @@
   // 商户端无 mchNo URL 维度，仅校验 appId
   const routeContext = useRequiredRouteQuery({
     keys: ['appId'],
-    messageKey: 'payment.common.route.missingAppContext',
+    messageKey: 'payment.merchant.gatewayConfig.gatewayConfig.missingAppContext',
     fallbackPath: '/mch/app',
   });
 
@@ -52,6 +53,7 @@
   const loading = ref(false);
   const editing = ref(false);
   const appInfo = ref<MchAppInfoResult>({});
+  // mchNo 由应用信息反查（保存参数需携带，后端按登录态商户强制覆盖）
   const mchNo = computed(() => appInfo.value.mchNo || '');
   const config = ref<GatewayPayConfigResult>({});
 
@@ -71,6 +73,18 @@
     load: loadRouteHit,
     preview: previewRouteHit,
   } = useRouteHitPreview();
+
+  // 移动端(<768px)标识：矩阵改行卡片、AUTO 按环境折叠收纳、编辑操作切换为底部固定栏
+  const { isMobile } = useIsMobile();
+
+  // 移动端 AUTO 模式折叠面板默认展开第一个环境（微信，最常用）
+  const mobileAutoActiveKeys = ref<string[]>([GW_CLIENT_ENVS[0]!.clientEnv]);
+
+  // 路由命中预览的移动端内联字段名（桌面由表头承担）
+  const routePreviewMobileLabels = computed(() => ({
+    channelMch: $t('payment.merchant.route.route.channelMerchant'),
+    capability: $t('payment.merchant.route.route.payCapability'),
+  }));
 
   const effectiveLevel = computed(() => config.value.level || GW_LEVEL.AUTO);
   const isLevelActive = computed(() => editLevel.value === effectiveLevel.value);
@@ -278,8 +292,8 @@
     const map: Record<string, ChannelMchOption[]> = {};
     await Promise.all(
       GW_CLIENT_ENVS.map(async (sc) => {
-        // mchNo 由后端 PaymentContext 强制，前端不再传
         const { data } = await GatewayPayConfigApi.listDirectChannelMchCandidates({
+          mchNo: mchNo.value,
           provider: sc.provider,
         });
         const list = data || [];
@@ -458,29 +472,34 @@
 <template>
   <RouteQueryMissingState
     v-if="!routeContext.isValid"
-    :description="$t('payment.common.route.missingAppContext')"
-    :back-text="$t('payment.merchant.app.app.backToAppList')"
+    :description="$t('payment.merchant.gatewayConfig.gatewayConfig.missingAppContext')"
+    :back-text="$t('payment.merchant.workbench.workbench.backToList')"
     @back="routeContext.goFallback"
   />
   <div v-else class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
           <a-button type="text" @click="handleBack">
             <template #icon>
               <IconifyIcon icon="ant-design:arrow-left-outlined" />
             </template>
           </a-button>
-          <span class="text-lg font-bold">{{ $t('menu.payment.merchant.codePayConfig') }}</span>
+          <span class="text-lg font-bold">{{ $t('payment.merchant.gatewayConfig.gatewayConfig.title') }}</span>
+          <!-- 应用名：窄屏换行完整展示 -->
+          <span v-if="appInfo.appName" class="min-w-0 break-all text-sm text-muted-foreground">
+            ({{ appInfo.appName }})
+          </span>
         </div>
       </template>
 
+      <!-- 编辑操作：桌面在卡片右上角；移动端编辑态由底部固定操作栏承接 -->
       <template #extra>
         <div class="flex gap-2">
           <a-button v-if="!editing" type="primary" @click="startEdit">
             {{ $t('common.edit') }}
           </a-button>
-          <template v-else>
+          <template v-else-if="!isMobile">
             <a-button type="primary" @click="save">{{ $t('common.save') }}</a-button>
             <a-button @click="cancel">{{ $t('common.cancel') }}</a-button>
           </template>
@@ -488,8 +507,11 @@
       </template>
 
       <a-spin :spinning="loading || routeHitLoading">
-        <div class="mb-5 flex flex-wrap items-center gap-3">
-          <span class="text-sm font-medium">{{ $t('payment.merchant.gatewayConfig.gatewayConfig.editModeLabel') }}</span>
+        <!-- 配置模式切换：移动端纵向堆叠，桌面横排 -->
+        <div class="mb-5 flex flex-col items-start gap-3 md:flex-row md:flex-wrap md:items-center">
+          <span class="text-sm font-medium">{{
+            $t('payment.merchant.gatewayConfig.gatewayConfig.editModeLabel')
+          }}</span>
           <a-radio-group v-model:value="editLevel" button-style="solid" :disabled="!editing">
             <a-radio-button :value="GW_LEVEL.AUTO">
               {{ $t('payment.merchant.gatewayConfig.gatewayConfig.modeAuto') }}
@@ -510,7 +532,11 @@
           <a-alert :message="modeHint" type="info" show-icon />
         </div>
 
-        <div v-if="showRoutePreview" class="mb-5 flex flex-wrap items-center gap-3 text-sm">
+        <!-- 路由模式与覆盖摘要：移动端纵向堆叠（缺口列表独占行可换行），桌面横排 -->
+        <div
+          v-if="showRoutePreview"
+          class="mb-5 flex flex-col items-start gap-1.5 text-sm md:flex-row md:flex-wrap md:items-center md:gap-3"
+        >
           <span class="text-muted-foreground"
             >{{ $t('payment.merchant.gatewayConfig.gatewayConfig.currentRouteMode') }}:</span
           >
@@ -524,7 +550,7 @@
                 })
               }}
             </span>
-            <span v-if="routeCoverage.gapLabels.length > 0" class="text-xs text-orange-500">
+            <span v-if="routeCoverage.gapLabels.length > 0" class="w-full text-xs text-orange-500 md:w-auto">
               {{ $t('payment.merchant.gatewayConfig.gatewayConfig.routeGaps') }}:
               {{ routeCoverage.gapLabels.join(' · ') }}
             </span>
@@ -536,7 +562,8 @@
         </div>
 
         <!-- 按打开环境分块；块内 H5/小程序单行；AUTO 同 method 合并 -->
-        <div class="env-blocks">
+        <!-- 桌面：多列 grid 矩阵 -->
+        <div v-if="!isMobile" class="env-blocks">
           <div v-for="sc in GW_CLIENT_ENVS" :key="sc.clientEnv" class="env-block">
             <div class="env-block-title">{{ clientEnvLabel(sc.clientEnv) }}</div>
 
@@ -624,8 +651,147 @@
             </div>
           </div>
         </div>
+
+        <!-- 移动端：AUTO 按环境折叠收纳，METHOD/DIRECT 平铺环境块，行改纵向堆叠卡片 -->
+        <div v-else class="flex flex-col gap-3">
+          <a-collapse v-if="editLevel === GW_LEVEL.AUTO" v-model:active-key="mobileAutoActiveKeys">
+            <a-collapse-panel v-for="sc in GW_CLIENT_ENVS" :key="sc.clientEnv" :header="clientEnvLabel(sc.clientEnv)">
+              <div class="flex flex-col gap-2">
+                <div
+                  v-for="drow in displayFormRows(sc.clientEnv)"
+                  :key="drow.key"
+                  class="flex flex-col gap-2 rounded-lg border border-border bg-background p-3"
+                >
+                  <!-- 形态：合并时展示 H5 + 小程序 -->
+                  <div class="form-tags">
+                    <template v-if="drow.merged">
+                      <a-tag color="blue" class="!m-0">{{ payFormLabel(GW_PAY_FORM.H5) }}</a-tag>
+                      <span class="text-muted-foreground text-xs">/</span>
+                      <a-tag color="purple" class="!m-0">{{ payFormLabel(GW_PAY_FORM.MINI) }}</a-tag>
+                    </template>
+                    <a-tag v-else :color="drow.primaryForm === GW_PAY_FORM.MINI ? 'purple' : 'blue'" class="!m-0">
+                      {{ payFormLabel(drow.primaryForm) }}
+                    </a-tag>
+                  </div>
+
+                  <!-- AUTO：默认支付方式 + 路由命中预览 -->
+                  <div>
+                    <div class="mb-1 text-xs text-muted-foreground">
+                      {{ $t('payment.merchant.gatewayConfig.gatewayConfig.method') }}
+                    </div>
+                    <div class="text-sm break-all">
+                      {{ findMethodLabel(sc.provider, defaultMethodFor(sc.clientEnv, drow.primaryForm)) }}
+                    </div>
+                  </div>
+                  <RouteHitPreviewBlock
+                    :hit="previewRouteHit(sc.provider, defaultMethodFor(sc.clientEnv, drow.primaryForm))"
+                    :empty-tone="emptyToneFor(sc.provider, sc.clientEnv, drow.primaryForm)"
+                    i18n-prefix="payment.merchant.gatewayConfig.gatewayConfig"
+                    :mobile-labels="routePreviewMobileLabels"
+                  />
+                </div>
+              </div>
+            </a-collapse-panel>
+          </a-collapse>
+
+          <template v-else>
+            <div v-for="sc in GW_CLIENT_ENVS" :key="sc.clientEnv" class="env-block">
+              <div class="env-block-title">{{ clientEnvLabel(sc.clientEnv) }}</div>
+              <div class="flex flex-col gap-2">
+                <div
+                  v-for="drow in displayFormRows(sc.clientEnv)"
+                  :key="drow.key"
+                  class="flex flex-col gap-2 rounded-lg border border-border bg-background p-3"
+                >
+                  <!-- 形态：合并时展示 H5 + 小程序 -->
+                  <div class="form-tags">
+                    <template v-if="drow.merged">
+                      <a-tag color="blue" class="!m-0">{{ payFormLabel(GW_PAY_FORM.H5) }}</a-tag>
+                      <span class="text-muted-foreground text-xs">/</span>
+                      <a-tag color="purple" class="!m-0">{{ payFormLabel(GW_PAY_FORM.MINI) }}</a-tag>
+                    </template>
+                    <a-tag v-else :color="drow.primaryForm === GW_PAY_FORM.MINI ? 'purple' : 'blue'" class="!m-0">
+                      {{ payFormLabel(drow.primaryForm) }}
+                    </a-tag>
+                  </div>
+
+                  <!-- METHOD -->
+                  <template v-if="editLevel === GW_LEVEL.METHOD">
+                    <div>
+                      <div class="mb-1 text-xs text-muted-foreground">
+                        {{ $t('payment.merchant.gatewayConfig.gatewayConfig.method') }}
+                      </div>
+                      <a-select
+                        :value="getRow(sc.clientEnv, drow.primaryForm).method"
+                        :options="methodOptions(sc.provider)"
+                        :placeholder="$t('payment.merchant.gatewayConfig.gatewayConfig.methodPlaceholder')"
+                        :disabled="!editing"
+                        allow-clear
+                        class="w-full"
+                        @change="(val: any) => (getRow(sc.clientEnv, drow.primaryForm).method = val || '')"
+                      />
+                    </div>
+                    <RouteHitPreviewBlock
+                      :hit="previewRouteHit(sc.provider, resolveMethodForRow(sc.clientEnv, drow.primaryForm))"
+                      :empty-tone="emptyToneFor(sc.provider, sc.clientEnv, drow.primaryForm)"
+                      i18n-prefix="payment.merchant.gatewayConfig.gatewayConfig"
+                      :mobile-labels="routePreviewMobileLabels"
+                    />
+                  </template>
+
+                  <!-- DIRECT -->
+                  <template v-else>
+                    <div>
+                      <div class="mb-1 text-xs text-muted-foreground">
+                        {{ $t('payment.merchant.route.route.channelMerchant') }}
+                      </div>
+                      <ChannelMerchantSelect
+                        :value="getRow(sc.clientEnv, drow.primaryForm).channelMchNo"
+                        :options="channelMchOptions(sc.clientEnv, drow.primaryForm)"
+                        :placeholder="$t('payment.merchant.gatewayConfig.gatewayConfig.channelMerchantPlaceholder')"
+                        :disabled="!editing"
+                        root-class-name="w-full"
+                        @change="(val: any) => onChannelMchChange(sc.clientEnv, drow.primaryForm, val)"
+                      />
+                    </div>
+                    <div>
+                      <div class="mb-1 text-xs text-muted-foreground">
+                        {{ $t('payment.merchant.route.route.payCapability') }}
+                      </div>
+                      <a-select
+                        :value="getRow(sc.clientEnv, drow.primaryForm).capability"
+                        :options="capabilityOptions(sc.clientEnv, drow.primaryForm)"
+                        :placeholder="$t('payment.merchant.gatewayConfig.gatewayConfig.capabilityPlaceholder')"
+                        :disabled="!editing || !getRow(sc.clientEnv, drow.primaryForm).channelMchNo"
+                        allow-clear
+                        class="w-full"
+                        @change="(val: any) => (getRow(sc.clientEnv, drow.primaryForm).capability = val)"
+                      />
+                    </div>
+                  </template>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
       </a-spin>
     </a-card>
+
+    <!-- 移动端编辑态底部占位，防止内容被固定操作栏遮挡 -->
+    <div v-if="isMobile && editing" class="h-20"></div>
+
+    <!-- 移动端编辑态固定底部操作栏（拇指可达区） -->
+    <div
+      v-if="isMobile && editing"
+      class="fixed inset-x-0 bottom-0 z-10 border-t border-border bg-background px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]"
+    >
+      <div class="flex gap-3">
+        <a-button class="min-w-0 flex-1" @click="cancel">{{ $t('common.cancel') }}</a-button>
+        <a-button class="min-w-0 flex-1" type="primary" @click="save">
+          {{ $t('common.save') }}
+        </a-button>
+      </div>
+    </div>
   </div>
 </template>
 

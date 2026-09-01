@@ -2,6 +2,7 @@
   import { computed, onMounted, ref, watch } from 'vue';
   import { useRouter } from 'vue-router';
 
+  import { useIsMobile } from '@vben/hooks';
   import { $t } from '@vben/locales';
 
   import { IconifyIcon } from '@vben-core/icons';
@@ -26,15 +27,15 @@
   } from './shared/constants';
 
   defineOptions({ name: 'CashierConfig' });
-  const { confirm, message } = useMessage();
-  const { hasPermission } = usePermission();
 
   const router = useRouter();
+  const { confirm, message } = useMessage();
+  const { hasPermission } = usePermission();
 
   // 商户端无 mchNo URL 维度，仅校验 appId
   const routeContext = useRequiredRouteQuery({
     keys: ['appId'],
-    messageKey: 'payment.common.route.missingAppContext',
+    messageKey: 'payment.merchant.cashier.cashier.missingAppContext',
     fallbackPath: '/mch/app',
   });
 
@@ -42,11 +43,15 @@
 
   const loading = ref(false);
   const appInfo = ref<MchAppInfoResult>({});
+  // mchNo 由应用信息反查（保存参数需携带，后端按登录态商户强制覆盖）
   const mchNo = computed(() => appInfo.value.mchNo || '');
   const tableData = ref<CashierItemResult[]>([]);
   const methodLabelMap = ref<Record<string, string>>({});
   // DIRECT 模式列表展示用：通道商户号 → 名称
   const channelMchLabelMap = ref<Record<string, string>>({});
+
+  // 移动端(<768px)标识：列表由 vxe-table 切换为卡片列表
+  const { isMobile } = useIsMobile();
 
   // 一级 / 二级 Tab
   const activeType = ref<CashierType>(CASHIER_TYPE.H5);
@@ -90,16 +95,12 @@
     return methodLabelMap.value[row.method || ''] || row.method || '-';
   }
 
-  /** 加载当前应用信息 */
+  /** 加载应用信息 */
   async function loadAppInfo() {
     if (!appId.value) return;
+    // 后端按登录态商户上下文隔离，仅需 appId
     const { data } = await MchAppInfoApi.getByAppId(appId.value);
     appInfo.value = data || {};
-  }
-
-  /** 返回应用工作台 */
-  function handleBack() {
-    router.push({ path: '/mch/app/manage', query: { appId: appId.value } });
   }
 
   /** 加载方式标签映射 */
@@ -152,6 +153,13 @@
   }
 
   /** 返回应用列表 */
+  function handleBack() {
+    router.push({
+      path: '/mch/app/manage',
+      query: { appId: appId.value },
+    });
+  }
+
   /** 新增 */
   function handleAdd() {
     itemEditRef.value?.show({
@@ -198,14 +206,13 @@
   });
 
   watch([activeType, activeClientEnv], () => {
-    if (!appId.value) return;
+    if (!routeContext.isValid.value) return;
     loadList();
   });
 
   onMounted(async () => {
     if (!routeContext.isValid.value) return;
-    await loadAppInfo();
-    await Promise.all([loadMethodLabels(), loadChannelMchLabels()]);
+    await Promise.all([loadAppInfo(), loadMethodLabels(), loadChannelMchLabels()]);
     await loadList();
   });
 </script>
@@ -213,20 +220,24 @@
 <template>
   <RouteQueryMissingState
     v-if="!routeContext.isValid"
-    :description="$t('payment.common.route.missingAppContext')"
-    :back-text="$t('payment.merchant.app.app.backToAppList')"
+    :description="$t('payment.merchant.cashier.cashier.missingAppContext')"
+    :back-text="$t('payment.merchant.workbench.workbench.backToList')"
     @back="routeContext.goFallback"
   />
   <div v-else class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
           <a-button type="text" @click="handleBack">
             <template #icon>
               <IconifyIcon icon="ant-design:arrow-left-outlined" />
             </template>
           </a-button>
-          <span class="text-lg font-bold">{{ $t('menu.payment.merchant.cashierConfig') }}</span>
+          <span class="text-lg font-bold">{{ $t('payment.merchant.cashier.cashier.title') }}</span>
+          <!-- 应用名：窄屏换行完整展示 -->
+          <span v-if="appInfo.appName" class="min-w-0 break-all text-sm text-muted-foreground">
+            ({{ appInfo.appName }})
+          </span>
         </div>
       </template>
 
@@ -236,8 +247,8 @@
         </a-button>
       </template>
 
-      <!-- 一级: H5 / WEB / 小程序 -->
-      <div class="mb-4">
+      <!-- 一级: H5 / WEB / 小程序（移动端档位按钮 chips 化允许换行） -->
+      <div class="radio-chips mb-4">
         <a-radio-group v-model:value="activeType" button-style="solid">
           <a-radio-button :value="CASHIER_TYPE.H5">{{ $t('payment.merchant.cashier.cashier.typeH5') }}</a-radio-button>
           <a-radio-button :value="CASHIER_TYPE.WEB">{{
@@ -249,8 +260,8 @@
         </a-radio-group>
       </div>
 
-      <!-- H5 五档 / 小程序四档(含云闪付) 二级终端 -->
-      <div v-if="cashierTypeRequiresClientEnv(activeType)" class="mb-4">
+      <!-- H5 五档 / 小程序四档(含云闪付) 二级终端（移动端 chips 化换行防溢出） -->
+      <div v-if="cashierTypeRequiresClientEnv(activeType)" class="radio-chips mb-4">
         <a-radio-group v-model:value="activeClientEnv" button-style="solid">
           <a-radio-button v-for="sc in activeClientEnvOptions" :key="sc.clientEnv" :value="sc.clientEnv">
             {{ clientEnvLabel(sc.clientEnv) }}
@@ -259,7 +270,8 @@
       </div>
 
       <a-spin :spinning="loading">
-        <vxe-table :data="tableData" :row-config="{ keyField: 'id' }" min-height="200">
+        <!-- 桌面：vxe-table -->
+        <vxe-table v-if="!isMobile" :data="tableData" :row-config="{ keyField: 'id' }" min-height="200">
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
           <vxe-column field="name" :title="$t('payment.merchant.cashier.cashier.name')" min-width="70" />
           <vxe-column field="icon" :title="$t('payment.merchant.cashier.cashier.icon')" width="120" align="center">
@@ -325,9 +337,83 @@
             </div>
           </template>
         </vxe-table>
+
+        <!-- 移动端：卡片列表 -->
+        <template v-else>
+          <div v-if="tableData.length > 0" class="flex flex-col gap-3">
+            <div
+              v-for="(row, idx) in tableData"
+              :key="row.id ?? idx"
+              class="rounded-xl border border-border bg-background p-3"
+            >
+              <!-- 卡头：序号 + 图标 + 名称 + 推荐 -->
+              <div class="flex items-center gap-2">
+                <span class="text-xs text-muted-foreground">{{ idx + 1 }}</span>
+                <img
+                  v-if="getProviderSvgUrl(row.icon || '')"
+                  :src="getProviderSvgUrl(row.icon || '')"
+                  class="h-5 w-5 shrink-0 object-contain"
+                  :alt="row.icon"
+                />
+                <span class="min-w-0 flex-1 truncate text-sm font-medium">{{ row.name }}</span>
+                <a-tag v-if="row.recommend" color="green" class="!m-0">
+                  {{ $t('payment.merchant.cashier.cashier.recommendYes') }}
+                </a-tag>
+              </div>
+              <!-- 属性行：字段名内联 -->
+              <div class="mt-2 flex flex-col gap-1 text-sm">
+                <div>
+                  <span class="text-muted-foreground">{{ $t('payment.merchant.cashier.cashier.resolveMode') }}: </span>
+                  {{ resolveModeLabel(row.resolveMode) }}
+                </div>
+                <div class="min-w-0 break-all">
+                  <span class="text-muted-foreground">{{ $t('payment.merchant.cashier.cashier.method') }}: </span>
+                  {{ paySummary(row) }}
+                </div>
+                <div>
+                  <span class="text-muted-foreground">{{ $t('payment.merchant.cashier.cashier.sortNo') }}: </span>
+                  {{ row.sortNo }}
+                </div>
+              </div>
+              <!-- 操作 -->
+              <div v-if="canManage" class="mt-2 flex justify-end">
+                <a-space :size="2">
+                  <template #separator>
+                    <a-divider type="vertical" />
+                  </template>
+                  <a-button type="link" size="small" @click="handleEdit(row)">
+                    {{ $t('common.edit') }}
+                  </a-button>
+                  <a-button type="link" size="small" danger @click="handleDelete(row)">
+                    {{ $t('common.delete') }}
+                  </a-button>
+                </a-space>
+              </div>
+            </div>
+          </div>
+          <div v-else class="py-8 text-center text-muted-foreground">
+            {{ $t('payment.merchant.cashier.cashier.empty') }}
+          </div>
+        </template>
       </a-spin>
     </a-card>
 
     <CashierItemEdit ref="itemEditRef" @ok="loadList" />
   </div>
 </template>
+
+<style scoped>
+  /* 移动端：档位实心按钮 chips 化（独立圆角 + 换行 + 间距），防止多个长文案档位横排溢出 */
+  @media (max-width: 767px) {
+    .radio-chips :deep(.ant-radio-group) {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .radio-chips :deep(.ant-radio-button-wrapper) {
+      border-left-width: 1px;
+      border-radius: 6px;
+    }
+  }
+</style>
