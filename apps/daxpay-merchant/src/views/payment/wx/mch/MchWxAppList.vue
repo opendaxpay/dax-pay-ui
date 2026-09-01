@@ -82,7 +82,7 @@
     <!-- 外层白卡片包裹，对齐运营端支付产品配置 / WxAppHub -->
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
-        <!-- 页头与菜单一致：支付应用(微信) -->
+        <!-- 页头与菜单一致：微信应用 -->
         <span class="text-lg font-bold text-foreground">{{ $t('menu.payment.wx.mchApp') }}</span>
       </template>
       <template #extra>

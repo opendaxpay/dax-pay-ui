@@ -15,7 +15,8 @@ export interface QuickEntrySaveParam {
 /**
  * 工作台快捷入口偏好 API
  *
- * PC 与移动端由后端按请求终端(clientCode)自动区分，前端无需传 clientCode
+ * 分桶维度均由请求头自动携带: x-client-code(身份域, 拦截器注入) + x-terminal(壳维度,
+ * 拦截器统一注入 web), 后端从上下文读取, 接口无需显式传参; 与移动管理端 App(app) 各存一份, 互不覆盖
  */
 export const QuickEntryApi = {
   /** 查询当前用户的快捷入口序列 */
@@ -24,6 +25,6 @@ export const QuickEntryApi = {
   },
   /** 保存当前用户的快捷入口序列(整体覆盖) */
   save(data: QuickEntrySaveParam): Promise<Result<void>> {
-    return defHttp.put({ url: '/iam/dashboard/quick-entry', data });
+    return defHttp.post({ url: '/iam/dashboard/quick-entry', data });
   },
 };

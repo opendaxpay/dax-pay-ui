@@ -82,7 +82,7 @@
     <!-- 外层白卡片包裹，对齐运营端支付产品配置 / DyAppHub -->
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
-        <!-- 页头与菜单一致：支付应用(抖音) -->
+        <!-- 页头与菜单一致：抖音应用 -->
         <span class="text-lg font-bold text-foreground">{{ $t('menu.payment.douyin.mchApp') }}</span>
       </template>
       <template #extra>
