@@ -1,6 +1,6 @@
 {
   "name": "@vben/constants",
-  "version": "4.0.0-beta4",
+  "version": "4.0.0-beta5",
   "license": "LGPL-3.0-or-later",
   "type": "module",
   "sideEffects": [
