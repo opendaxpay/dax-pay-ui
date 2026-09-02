@@ -24,7 +24,7 @@
   "rpName": {
     "label": "顯示名稱",
     "desc": "系統彈窗中展示的站點名稱。",
-    "placeholder": "如 DaxPay"
+    "placeholder": "如 {name}"
   },
   "origins": {
     "label": "訪問地址",

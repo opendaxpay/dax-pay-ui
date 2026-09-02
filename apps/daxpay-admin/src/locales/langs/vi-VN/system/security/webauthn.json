@@ -24,7 +24,7 @@
   "rpName": {
     "label": "Tên hiển thị",
     "desc": "Tên trang hiển thị trên hộp thoại hệ thống.",
-    "placeholder": "vd. DaxPay"
+    "placeholder": "vd. {name}"
   },
   "origins": {
     "label": "Địa chỉ truy cập",

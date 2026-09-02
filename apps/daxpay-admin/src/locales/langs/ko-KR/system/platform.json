@@ -189,7 +189,7 @@
     "fromDesc": "발신 이메일의 발신자 주소. 비워두면 발신자 계정 사용",
     "inputFrom": "발신 주소 입력(비워두면 발신자 계정 사용)",
     "nickname": "발신자 표시 이름",
-    "nicknameDesc": "수신자에게 표시되는 발신자 이름 (예: \"DaxPay 플랫폼\")",
+    "nicknameDesc": "수신자에게 표시되는 발신자 이름 (예: \"{name} 플랫폼\")",
     "inputNickname": "발신자 표시 이름을 입력하세요",
     "confirmSaveContent": "메일 발신자 설정을 저장하시겠습니까?",
     "testSend": "테스트 메일 발송",

@@ -19,7 +19,7 @@
 
 <template>
   <!-- 国际化：安全、稳定、高效的支付运营解决方案 -->
-  <!-- 国际化：DaxPay 支付运营管理平台 -->
+  <!-- 国际化：{name} 支付运营管理平台(品牌名读站点配置) -->
   <AuthPageLayout
     :app-name="appName"
     :logo="logo"

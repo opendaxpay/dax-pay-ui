@@ -7,6 +7,7 @@
   import { useUserStore } from '@vben/stores';
 
   import { UserAvatar } from '#/components/user-avatar';
+  import { getRawSystemName } from '#/logics/init-website-config';
 
   interface Props {
     /** 工作台聚合数据（含统计计数与加载态） */
@@ -52,7 +53,8 @@
       <div class="ml-5 flex flex-col justify-center">
         <h1 class="text-lg font-semibold md:text-xl"> {{ $t(greetingKey) }}，{{ userName }} </h1>
         <span class="text-foreground/70 mt-1 text-sm">
-          {{ $t('dashboard.workspace.greeting.subtitle') }}
+          <!-- 欢迎语品牌名走站点配置, 词条 {name} 插值 -->
+          {{ $t('dashboard.workspace.greeting.subtitle', { name: getRawSystemName() }) }}
         </span>
       </div>
     </div>

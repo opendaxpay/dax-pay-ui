@@ -3,7 +3,7 @@
     "morning": "Chào buổi sáng",
     "afternoon": "Chào buổi chiều",
     "evening": "Buổi tối vui vẻ",
-    "subtitle": "Chào mừng quay trở lại Quản trị viên DaxPay"
+    "subtitle": "Chào mừng quay trở lại Quản trị viên {name}"
   },
   "stat": {
     "merchantCount": "Thương gia",

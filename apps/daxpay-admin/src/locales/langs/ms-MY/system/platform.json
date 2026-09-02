@@ -189,7 +189,7 @@
     "fromDesc": "Alamat penghantar e-mel; kosongkan untuk menggunakan akaun penghantar",
     "inputFrom": "Masukkan alamat penghantar (kosongkan untuk akaun penghantar)",
     "nickname": "Nama paparan penghantar",
-    "nicknameDesc": "Nama penghantar yang dilihat penerima, cth. \"Platform DaxPay\"",
+    "nicknameDesc": "Nama penghantar yang dilihat penerima, cth. \"Platform {name}\"",
     "inputNickname": "Masukkan nama paparan penghantar",
     "confirmSaveContent": "Simpan konfigurasi penghantar e-mel?",
     "testSend": "Hantar E-mel Ujian",

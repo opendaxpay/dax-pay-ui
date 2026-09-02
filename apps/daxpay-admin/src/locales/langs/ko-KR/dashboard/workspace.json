@@ -3,7 +3,7 @@
     "morning": "좋은 아침이에요",
     "afternoon": "좋은 오후에요",
     "evening": "좋은 저녁이에요",
-    "subtitle": "DaxPay 관리자에 다시 오신 것을 환영합니다"
+    "subtitle": "{name} 관리자에 다시 오신 것을 환영합니다"
   },
   "stat": {
     "merchantCount": "상인",

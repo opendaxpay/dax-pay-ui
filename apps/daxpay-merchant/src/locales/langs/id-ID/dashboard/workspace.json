@@ -3,7 +3,7 @@
     "morning": "Selamat pagi",
     "afternoon": "Selamat siang",
     "evening": "Selamat malam",
-    "subtitle": "Selamat datang kembali di DaxPay Merchant"
+    "subtitle": "Selamat datang kembali di {name} Merchant"
   },
   "stat": {
     "appCount": "Aplikasi",

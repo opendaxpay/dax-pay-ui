@@ -189,7 +189,7 @@
     "fromDesc": "Alamat pengirim email; kosongkan untuk menggunakan akun pengirim",
     "inputFrom": "Masukkan alamat pengirim (kosongkan untuk akun pengirim)",
     "nickname": "Nama tampilan pengirim",
-    "nicknameDesc": "Nama pengirim yang dilihat penerima, mis. \"Platform DaxPay\"",
+    "nicknameDesc": "Nama pengirim yang dilihat penerima, mis. \"Platform {name}\"",
     "inputNickname": "Masukkan nama tampilan pengirim",
     "confirmSaveContent": "Simpan konfigurasi pengirim email?",
     "testSend": "Kirim Email Uji",

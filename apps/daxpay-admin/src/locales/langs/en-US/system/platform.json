@@ -189,7 +189,7 @@
     "fromDesc": "From address of outgoing emails; defaults to the sender account",
     "inputFrom": "Enter from address (blank to use sender account)",
     "nickname": "Sender display name",
-    "nicknameDesc": "Sender name shown to recipients, e.g. \"DaxPay Platform\"",
+    "nicknameDesc": "Sender name shown to recipients, e.g. \"{name} Platform\"",
     "inputNickname": "Enter sender display name",
     "confirmSaveContent": "Save the mail sender configuration?",
     "testSend": "Send Test Email",

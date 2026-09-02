@@ -24,7 +24,7 @@
   "rpName": {
     "label": "Display name",
     "desc": "Site name shown in the system prompt.",
-    "placeholder": "e.g. DaxPay"
+    "placeholder": "e.g. {name}"
   },
   "origins": {
     "label": "Origins",

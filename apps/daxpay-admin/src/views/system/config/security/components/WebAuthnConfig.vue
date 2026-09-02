@@ -6,6 +6,7 @@
   import { SecurityApi } from '#/api/system/security.api';
   import { useMessage } from '#/hooks/useMessage';
   import { $t } from '#/locales';
+  import { getRawSystemName } from '#/logics/init-website-config';
 
   defineOptions({ name: 'WebAuthnConfig' });
 
@@ -199,7 +200,7 @@
               </div>
               <a-input
                 v-model:value="formState.rpName"
-                :placeholder="$t('system.security.webauthn.rpName.placeholder')"
+                :placeholder="$t('system.security.webauthn.rpName.placeholder', { name: getRawSystemName() })"
                 :disabled="!isEditing"
                 style="width: 220px"
               />

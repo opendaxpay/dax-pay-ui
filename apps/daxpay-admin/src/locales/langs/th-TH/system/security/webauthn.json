@@ -24,7 +24,7 @@
   "rpName": {
     "label": "ชื่อที่แสดง",
     "desc": "ชื่อไซต์ที่แสดงในหน้าต่างของระบบ",
-    "placeholder": "เช่น DaxPay"
+    "placeholder": "เช่น {name}"
   },
   "origins": {
     "label": "ที่อยู่ที่เข้าถึง",

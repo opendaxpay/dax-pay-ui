@@ -189,7 +189,7 @@
     "fromDesc": "メールの送信元アドレス。空欄の場合は送信者アカウントを使用",
     "inputFrom": "送信元アドレスを入力(空欄で送信者アカウントを使用)",
     "nickname": "送信者表示名",
-    "nicknameDesc": "受信者に表示される送信者名(例: 「DaxPay プラットフォーム」)",
+    "nicknameDesc": "受信者に表示される送信者名(例: 「{name} プラットフォーム」)",
     "inputNickname": "送信者表示名を入力してください",
     "confirmSaveContent": "メール送信元設定を保存しますか？",
     "testSend": "テストメールを送信",

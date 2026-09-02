@@ -189,7 +189,7 @@
     "fromDesc": "郵件的寄件人地址, 留空時使用寄件信箱帳號",
     "inputFrom": "請輸入寄件地址(留空使用寄件帳號)",
     "nickname": "寄件人顯示名稱",
-    "nicknameDesc": "收件人看到的寄件人名稱, 如 \"DaxPay 平台\"",
+    "nicknameDesc": "收件人看到的寄件人名稱, 如 \"{name} 平台\"",
     "inputNickname": "請輸入寄件人顯示名稱",
     "confirmSaveContent": "確定要儲存郵件寄件設定嗎？",
     "testSend": "發送測試郵件",

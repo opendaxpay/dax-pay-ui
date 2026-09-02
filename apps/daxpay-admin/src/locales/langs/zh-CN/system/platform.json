@@ -189,7 +189,7 @@
     "fromDesc": "邮件的发件人地址, 留空时使用发件邮箱账号",
     "inputFrom": "请输入发件地址(留空使用发件账号)",
     "nickname": "发件人显示名",
-    "nicknameDesc": "收件人看到的发件人名称, 如 \"DaxPay 平台\"",
+    "nicknameDesc": "收件人看到的发件人名称, 如 \"{name} 平台\"",
     "inputNickname": "请输入发件人显示名",
     "confirmSaveContent": "确定要保存邮件发件箱配置吗？",
     "testSend": "发送测试邮件",

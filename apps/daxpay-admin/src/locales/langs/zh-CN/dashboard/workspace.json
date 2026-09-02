@@ -3,7 +3,7 @@
     "morning": "早上好",
     "afternoon": "下午好",
     "evening": "晚上好",
-    "subtitle": "欢迎回到 DaxPay 运营平台"
+    "subtitle": "欢迎回到 {name} 运营平台"
   },
   "stat": {
     "merchantCount": "商户总数",

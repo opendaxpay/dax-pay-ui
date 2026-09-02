@@ -24,7 +24,7 @@
   "rpName": {
     "label": "Nama paparan",
     "desc": "Nama tapak yang dipaparkan dalam dialog sistem.",
-    "placeholder": "cth. DaxPay"
+    "placeholder": "cth. {name}"
   },
   "origins": {
     "label": "Alamat akses",

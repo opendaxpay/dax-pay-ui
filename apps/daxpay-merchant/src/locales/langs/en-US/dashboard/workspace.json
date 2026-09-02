@@ -3,7 +3,7 @@
     "morning": "Good morning",
     "afternoon": "Good afternoon",
     "evening": "Good evening",
-    "subtitle": "Welcome back to DaxPay Merchant"
+    "subtitle": "Welcome back to {name} Merchant"
   },
   "stat": {
     "appCount": "Applications",

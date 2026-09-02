@@ -3,7 +3,7 @@
     "morning": "おはよう",
     "afternoon": "こんにちは",
     "evening": "こんばんは",
-    "subtitle": "DaxPay 管理者へようこそ"
+    "subtitle": "{name} 管理者へようこそ"
   },
   "stat": {
     "merchantCount": "商人",

@@ -24,7 +24,7 @@
   "rpName": {
     "label": "表示名",
     "desc": "システムのポップアップに表示されるサイト名。",
-    "placeholder": "例: DaxPay"
+    "placeholder": "例: {name}"
   },
   "origins": {
     "label": "アクセスアドレス",

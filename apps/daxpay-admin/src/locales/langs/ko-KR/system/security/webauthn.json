@@ -24,7 +24,7 @@
   "rpName": {
     "label": "표시 이름",
     "desc": "시스템 팝업에 표시되는 사이트 이름입니다.",
-    "placeholder": "예: DaxPay"
+    "placeholder": "예: {name}"
   },
   "origins": {
     "label": "접속 주소",

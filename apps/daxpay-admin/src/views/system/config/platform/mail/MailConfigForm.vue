@@ -10,6 +10,7 @@
   import { MailRecordApi } from '#/api/system/notify/mail-record.api';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
+  import { getRawSystemName } from '#/logics/init-website-config';
 
   const { confirm, message } = useMessage();
   const { diffForm } = useFormEdit();
@@ -421,7 +422,8 @@
                     {{ $t('system.platform.mail.nickname') }}
                   </div>
                   <div class="config-item__desc">
-                    {{ $t('system.platform.mail.nicknameDesc') }}
+                    <!-- 示例品牌名走站点配置, 词条 {name} 插值 -->
+                    {{ $t('system.platform.mail.nicknameDesc', { name: getRawSystemName() }) }}
                   </div>
                 </div>
                 <!-- 国际化：请输入发件人显示名 -->

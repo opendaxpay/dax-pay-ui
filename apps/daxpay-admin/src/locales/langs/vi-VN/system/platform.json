@@ -189,7 +189,7 @@
     "fromDesc": "Địa chỉ người gửi email; để trống dùng tài khoản người gửi",
     "inputFrom": "Nhập địa chỉ người gửi (để trống dùng tài khoản người gửi)",
     "nickname": "Tên hiển thị người gửi",
-    "nicknameDesc": "Tên người gửi hiển thị với người nhận, vd: \"Nền tảng DaxPay\"",
+    "nicknameDesc": "Tên người gửi hiển thị với người nhận, vd: \"Nền tảng {name}\"",
     "inputNickname": "Nhập tên hiển thị người gửi",
     "confirmSaveContent": "Lưu cấu hình người gửi email?",
     "testSend": "Gửi email kiểm tra",

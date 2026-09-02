@@ -3,7 +3,7 @@
     "morning": "おはよう",
     "afternoon": "こんにちは",
     "evening": "こんばんは",
-    "subtitle": "DaxPay マーチャントへようこそ"
+    "subtitle": "{name} マーチャントへようこそ"
   },
   "stat": {
     "appCount": "アプリ",
