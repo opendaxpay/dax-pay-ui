@@ -2,7 +2,7 @@
   "login": "登入",
   "qrcodeLogin": "二維碼登入",
   "profile": "個人中心",
-  "pageTitle": "DaxPay 商戶服務平台",
+  "pageTitle": "{name} 商戶服務平台",
   "pageDesc": "一站式收款、對帳與經營管理",
   "oauthLoginSuccess": "登入成功",
   "oauthBindSuccess": "三方賬號繫結成功",

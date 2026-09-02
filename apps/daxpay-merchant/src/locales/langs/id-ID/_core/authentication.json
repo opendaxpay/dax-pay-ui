@@ -2,7 +2,7 @@
   "login": "Login",
   "qrcodeLogin": "Masuk Kode Qr",
   "profile": "Profil",
-  "pageTitle": "Portal Merchant DaxPay",
+  "pageTitle": "Portal Merchant {name}",
   "pageDesc": "Pembayaran, rekonsiliasi, dan pengelolaan bisnis dalam satu platform",
   "oauthLoginSuccess": "Masuk berhasil",
   "oauthBindSuccess": "Akun sosial berhasil diikat",

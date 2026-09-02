@@ -2,7 +2,7 @@
   "login": "ログイン",
   "qrcodeLogin": "QRコードログイン",
   "profile": "プロフィール",
-  "pageTitle": "DaxPay マーチャントポータル",
+  "pageTitle": "{name} マーチャントポータル",
   "pageDesc": "決済・対帳・経営管理をワンストップで",
   "oauthLoginSuccess": "ログイン成功",
   "oauthBindSuccess": "ソーシャルアカウントが正常にバインドされました",

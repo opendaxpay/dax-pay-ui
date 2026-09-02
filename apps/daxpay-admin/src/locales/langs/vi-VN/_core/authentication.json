@@ -2,7 +2,7 @@
   "login": "Đăng nhập",
   "qrcodeLogin": "Đăng nhập mã Qr",
   "profile": "Hồ sơ",
-  "pageTitle": "Nền tảng hoạt động thanh toán DaxPay",
+  "pageTitle": "Nền tảng hoạt động thanh toán {name}",
   "pageDesc": "Giải pháp hoạt động thanh toán an toàn, ổn định và hiệu quả",
   "oauthLoginSuccess": "Đăng nhập thành công",
   "oauthBindSuccess": "Tài khoản xã hội được liên kết thành công",

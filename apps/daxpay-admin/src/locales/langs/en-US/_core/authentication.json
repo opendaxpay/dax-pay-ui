@@ -2,7 +2,7 @@
   "login": "Login",
   "qrcodeLogin": "Qr Code Login",
   "profile": "Profile",
-  "pageTitle": "DaxPay Payment Operations Platform",
+  "pageTitle": "{name} Payment Operations Platform",
   "pageDesc": "Secure, stable and efficient payment operations solution",
   "oauthLoginSuccess": "Login successful",
   "oauthBindSuccess": "Social account bound successfully",

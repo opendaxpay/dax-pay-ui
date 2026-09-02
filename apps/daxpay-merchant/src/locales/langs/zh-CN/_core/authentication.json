@@ -2,7 +2,7 @@
   "login": "登录",
   "qrcodeLogin": "二维码登录",
   "profile": "个人中心",
-  "pageTitle": "DaxPay 商户服务平台",
+  "pageTitle": "{name} 商户服务平台",
   "pageDesc": "一站式收款、对账与经营管理",
   "oauthLoginSuccess": "登录成功",
   "oauthBindSuccess": "三方账号绑定成功",

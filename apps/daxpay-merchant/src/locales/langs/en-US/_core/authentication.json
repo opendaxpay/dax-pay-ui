@@ -2,7 +2,7 @@
   "login": "Login",
   "qrcodeLogin": "Qr Code Login",
   "profile": "Profile",
-  "pageTitle": "DaxPay Merchant Portal",
+  "pageTitle": "{name} Merchant Portal",
   "pageDesc": "One-stop payment, reconciliation and business management",
   "oauthLoginSuccess": "Login successful",
   "oauthBindSuccess": "Social account bound successfully",

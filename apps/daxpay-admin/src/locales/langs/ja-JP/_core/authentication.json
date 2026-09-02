@@ -2,7 +2,7 @@
   "login": "ログイン",
   "qrcodeLogin": "QRコードログイン",
   "profile": "プロフィール",
-  "pageTitle": "DaxPay 決済運用プラットフォーム",
+  "pageTitle": "{name} 決済運用プラットフォーム",
   "pageDesc": "安全、安定、効率的な決済業務ソリューション",
   "oauthLoginSuccess": "ログイン成功",
   "oauthBindSuccess": "ソーシャルアカウントが正常にバインドされました",

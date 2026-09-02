@@ -2,7 +2,7 @@
   "login": "로그인",
   "qrcodeLogin": "Qr코드 로그인",
   "profile": "윤곽",
-  "pageTitle": "DaxPay 머천트 포털",
+  "pageTitle": "{name} 머천트 포털",
   "pageDesc": "원스톱 결제·정산·경영 관리",
   "oauthLoginSuccess": "로그인 성공",
   "oauthBindSuccess": "소셜 계정이 성공적으로 연결되었습니다.",

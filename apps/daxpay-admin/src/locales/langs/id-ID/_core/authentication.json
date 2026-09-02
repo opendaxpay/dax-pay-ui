@@ -2,7 +2,7 @@
   "login": "Login",
   "qrcodeLogin": "Masuk Kode Qr",
   "profile": "Profil",
-  "pageTitle": "Platform Operasi Pembayaran DaxPay",
+  "pageTitle": "Platform Operasi Pembayaran {name}",
   "pageDesc": "Solusi operasi pembayaran yang aman, stabil dan efisien",
   "oauthLoginSuccess": "Masuk berhasil",
   "oauthBindSuccess": "Akun sosial berhasil diikat",

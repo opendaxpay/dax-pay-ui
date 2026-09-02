@@ -2,7 +2,7 @@
   "login": "Log masuk",
   "qrcodeLogin": "Log Masuk Kod Qr",
   "profile": "Profil",
-  "pageTitle": "Portal Peniaga DaxPay",
+  "pageTitle": "Portal Peniaga {name}",
   "pageDesc": "Pembayaran, penyelarasan dan pengurusan perniagaan serba dalam satu",
   "oauthLoginSuccess": "Log masuk berjaya",
   "oauthBindSuccess": "Akaun sosial berjaya terikat",

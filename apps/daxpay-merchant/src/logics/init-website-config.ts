@@ -157,9 +157,14 @@ function applyFavicon(logoId: string, apiPrefix: string) {
 
 // ---------- getters(商业版风格, 页面只读 getter) ----------
 
+/** 裸品牌名(不带端后缀), 供 i18n 插值场景使用(如登录页大标题 {name} 商户服务平台) */
+export function getRawSystemName() {
+  return websiteConfig.value.systemName?.trim() || DEFAULT_BRAND.systemName;
+}
+
 export function getSystemName() {
   // 商户端统一拼接后缀, 与 applyWebsiteBranding 写入 preferences.app.name 保持一致
-  const rawName = websiteConfig.value.systemName?.trim() || DEFAULT_BRAND.systemName;
+  const rawName = getRawSystemName();
   return `${rawName} ${$t('common.merchantSuffix')}`;
 }
 
