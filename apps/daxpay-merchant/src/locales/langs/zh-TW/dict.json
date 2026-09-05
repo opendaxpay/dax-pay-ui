@@ -199,19 +199,6 @@
     "douyin_h5": "抖音H5",
     "douyin_app": "抖音APP"
   },
-  "onb_apply_status": {
-    "draft": "草稿",
-    "pre_trial": "預審",
-    "apply": "申請中",
-    "pass": "通過",
-    "reject": "駁回",
-    "pre_trial_reject": "預審拒絕",
-    "generated": "已生成進件商戶",
-    "completion": "資料補填",
-    "sign": "待簽署",
-    "error": "錯誤",
-    "closed": "關閉"
-  },
   "user_status": {
     "normal": "正常",
     "lock": "鎖定",
@@ -375,22 +362,6 @@
   "settle_status": {
     "not_settle": "未結算",
     "settled": "已結算"
-  },
-  "onb_mch_source": {
-    "apply": "進件申請",
-    "manual": "手動建立",
-    "auth_bind": "認證繫結"
-  },
-  "wallet_flow_type": {
-    "refund_profit": "退款軋差",
-    "withdraw": "提現",
-    "adjust": "人工調賬",
-    "order_profit": "訂單分潤"
-  },
-  "onb_apply_type": {
-    "merchant": "商戶進件",
-    "enterprise": "企業進件",
-    "micro": "小微進件"
   },
   "alloc_receiver_type": {
     "common": "通用型別",
