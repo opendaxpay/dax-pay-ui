@@ -149,7 +149,8 @@
       "configured": "已配置",
       "notConfigured": "未配置",
       "bucket": "儲存桶: {bucket}"
-    }
+    },
+    "checkUsesFormValue": "測試使用表單目前值, 儲存後才會生效"
   },
   "mail": {
     "title": "郵件設定",

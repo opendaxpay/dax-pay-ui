@@ -149,7 +149,8 @@
       "configured": "設定済み",
       "notConfigured": "未構成",
       "bucket": "バケット: {bucket}"
-    }
+    },
+    "checkUsesFormValue": "テストはフォームの現在値を使用します。保存後に反映されます"
   },
   "mail": {
     "title": "メール設定",

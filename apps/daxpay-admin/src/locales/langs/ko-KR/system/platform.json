@@ -149,7 +149,8 @@
       "configured": "구성됨",
       "notConfigured": "구성되지 않음",
       "bucket": "버킷: {bucket}"
-    }
+    },
+    "checkUsesFormValue": "테스트는 현재 양식 값을 사용하며, 저장 후에 적용됩니다."
   },
   "mail": {
     "title": "메일 설정",

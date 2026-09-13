@@ -149,7 +149,8 @@
       "configured": "已配置",
       "notConfigured": "未配置",
       "bucket": "存储桶: {bucket}"
-    }
+    },
+    "checkUsesFormValue": "测试使用表单当前值, 保存后才会生效"
   },
   "mail": {
     "title": "邮件配置",

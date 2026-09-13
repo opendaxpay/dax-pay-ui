@@ -149,7 +149,8 @@
       "configured": "Dikonfigurasi",
       "notConfigured": "Tidak Dikonfigurasi",
       "bucket": "Ember: {bucket}"
-    }
+    },
+    "checkUsesFormValue": "Pemeriksaan menggunakan nilai formulir saat ini; berlaku setelah disimpan"
   },
   "mail": {
     "title": "Konfigurasi Email",

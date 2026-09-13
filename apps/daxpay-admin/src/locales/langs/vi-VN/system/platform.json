@@ -149,7 +149,8 @@
       "configured": "Đã định cấu hình",
       "notConfigured": "Chưa được định cấu hình",
       "bucket": "Nhóm: {bucket}"
-    }
+    },
+    "checkUsesFormValue": "Kiểm tra sử dụng giá trị biểu mẫu hiện tại; chỉ có hiệu lực sau khi lưu"
   },
   "mail": {
     "title": "Cấu hình Email",

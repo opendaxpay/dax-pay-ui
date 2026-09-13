@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { onMounted, ref } from 'vue';
+  import { computed, onMounted, ref } from 'vue';
 
   import { $t } from '@vben/locales';
 
@@ -21,6 +21,11 @@
   const originalValues = ref<OssConfig>({});
   // 表单数据
   const formState = ref<OssConfig>({});
+  // 表单是否与已保存配置存在差异(影响"测试连接"结果的含义, 见 handleCheck)
+  const isConfigChanged = computed(() => {
+    const diff = diffForm(originalValues.value, formState.value, ...Object.keys(formState.value));
+    return Object.values(diff).some((value) => value !== undefined);
+  });
 
   // 表单校验规则
   const formRules = {
@@ -137,6 +142,14 @@
       if (data?.success) {
         const latency = data.latencyMs != null ? ` (${data.latencyMs}ms)` : '';
         message.success(`${data.message || $t('system.platform.oss.checkSuccess')}${latency}`);
+        // 存储读写正常但公开访问域名取不到文件, 单独给出警告(不影响测试结论)
+        if (data.warning) {
+          message.warning(data.warning);
+        }
+        // 测试使用表单当前值, 未保存时实际上传仍按库中旧配置执行
+        if (isConfigChanged.value) {
+          message.warning($t('system.platform.oss.checkUsesFormValue'));
+        }
       } else {
         message.error(data?.message || $t('system.platform.oss.checkFailed'));
       }

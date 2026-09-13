@@ -64,4 +64,6 @@ export interface ConnectivityCheckResult {
   message?: string;
   statusCode?: number;
   latencyMs?: number;
+  /** 警告信息（检查通过但存在隐患时有值，如公开访问域名不可达） */
+  warning?: string;
 }

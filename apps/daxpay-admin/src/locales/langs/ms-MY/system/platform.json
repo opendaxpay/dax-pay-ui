@@ -149,7 +149,8 @@
       "configured": "Dikonfigurasikan",
       "notConfigured": "Tidak Dikonfigurasikan",
       "bucket": "Baldi: {bucket}"
-    }
+    },
+    "checkUsesFormValue": "Semakan menggunakan nilai borang semasa; berkuat kuasa selepas disimpan"
   },
   "mail": {
     "title": "Konfigurasi E-mel",

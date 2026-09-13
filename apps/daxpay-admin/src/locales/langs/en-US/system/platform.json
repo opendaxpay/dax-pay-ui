@@ -149,7 +149,8 @@
       "configured": "Configured",
       "notConfigured": "Not Configured",
       "bucket": "Bucket: {bucket}"
-    }
+    },
+    "checkUsesFormValue": "The check uses the current form values; they take effect only after saving"
   },
   "mail": {
     "title": "Mail Config",
