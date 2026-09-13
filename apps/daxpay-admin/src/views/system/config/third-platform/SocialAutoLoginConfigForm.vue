@@ -19,9 +19,9 @@
 
   /** 支持应用内 UA 静默授权的平台(飞书/企微/钉钉; 微信已退出应用内自动登录) */
   const AUTO_LOGIN_SOURCES = new Set<string>([
+    SocialSourceEnum.DING_TALK,
     SocialSourceEnum.FEISHU,
     SocialSourceEnum.WE_COM,
-    SocialSourceEnum.DING_TALK,
   ]);
 
   const { confirm, message } = useMessage();
@@ -42,13 +42,7 @@
   // 下拉选项: 仅已配置且启用、且支持应用内自动登录的平台
   const sourceOptions = computed(() =>
     enabledPlatforms.value
-      .filter(
-        (item) =>
-          item.configured &&
-          item.enabled &&
-          item.source &&
-          AUTO_LOGIN_SOURCES.has(item.source),
-      )
+      .filter((item) => item.configured && item.enabled && item.source && AUTO_LOGIN_SOURCES.has(item.source))
       .map((item) => ({
         value: item.source as string,
         // 平台显示名走 i18n
@@ -93,11 +87,7 @@
    */
   function normalizeClient(client?: SocialAutoLoginClientItem): SocialAutoLoginClientItem {
     const raw =
-      client?.sources && client.sources.length > 0
-        ? [...client.sources]
-        : client?.source
-          ? [client.source]
-          : [];
+      client?.sources && client.sources.length > 0 ? [...client.sources] : client?.source ? [client.source] : [];
     // 历史配置中的微信等已下线平台在此过滤, 保存后即从配置中清除
     const sources = raw.filter((item) => AUTO_LOGIN_SOURCES.has(item));
     return {
@@ -134,11 +124,7 @@
   /**
    * 单端 sources 必填校验(仅开启时)
    */
-  function validateSources(
-    _rule: unknown,
-    value: string[] | undefined,
-    client: SocialAutoLoginClientItem | undefined,
-  ) {
+  function validateSources(_rule: unknown, value: string[] | undefined, client: SocialAutoLoginClientItem | undefined) {
     if (client?.enabled && (!value || value.length === 0)) {
       return Promise.reject(new Error($t('system.thirdPlatform.autoLogin.validate.source')));
     }
@@ -161,15 +147,11 @@
             await SocialLoginConfigApi.updateAutoLogin({
               admin: {
                 enabled: Boolean(formState.value.admin?.enabled),
-                sources: formState.value.admin?.enabled
-                  ? formState.value.admin?.sources || []
-                  : [],
+                sources: formState.value.admin?.enabled ? formState.value.admin?.sources || [] : [],
               },
               merchant: {
                 enabled: Boolean(formState.value.merchant?.enabled),
-                sources: formState.value.merchant?.enabled
-                  ? formState.value.merchant?.sources || []
-                  : [],
+                sources: formState.value.merchant?.enabled ? formState.value.merchant?.sources || [] : [],
               },
             });
             message.success($t('common.saveSuccess'));
@@ -182,36 +164,24 @@
       });
     });
   }
+
+  // 供外壳 PageShell 常驻 header 渲染编辑操作(标题/描述由外壳 tabs 数据提供)
+  defineExpose({
+    isEditing,
+    saving,
+    handleEdit,
+    handleCancel,
+    handleSave,
+  });
 </script>
 
 <template>
   <div v-loading="loading" class="auto-login-form">
-    <div class="module-overview">
-      <div class="module-overview__header">
-        <div>
-          <!-- 应用内自动登录标题 -->
-          <div class="module-overview__title">{{ $t('system.thirdPlatform.autoLogin.title') }}</div>
-          <!-- 应用内自动登录描述 -->
-          <div class="module-overview__desc">{{ $t('system.thirdPlatform.autoLogin.description') }}</div>
-        </div>
-        <div class="module-overview__actions">
-          <a-button v-if="!isEditing" type="primary" @click="handleEdit">
-            {{ $t('common.edit') }}
-          </a-button>
-          <template v-else>
-            <a-button @click="handleCancel">{{ $t('common.cancel') }}</a-button>
-            <a-button type="primary" :loading="saving" @click="handleSave">
-              {{ $t('common.save') }}
-            </a-button>
-          </template>
-        </div>
-      </div>
-      <div class="mb-4">
-        <a-alert type="info" show-icon :message="$t('system.thirdPlatform.autoLogin.usageTip')" />
-      </div>
+    <!-- 用途提示 -->
+    <div class="mb-4">
+      <a-alert type="info" show-icon :message="$t('system.thirdPlatform.autoLogin.usageTip')" />
     </div>
-
-    <a-form ref="formRef" :model="formState" layout="vertical" :disabled="!isEditing">
+    <a-form ref="formRef" :model="formState" layout="vertical" class="module-form" :disabled="!isEditing">
       <!-- 运营端 -->
       <div class="config-section">
         <div class="config-section__title">{{ $t('system.thirdPlatform.autoLogin.section.admin') }}</div>
@@ -224,8 +194,7 @@
           name="admin.sources"
           :rules="[
             {
-              validator: (_r: unknown, v: string[] | undefined) =>
-                validateSources(_r, v, formState.admin),
+              validator: (_r: unknown, v: string[] | undefined) => validateSources(_r, v, formState.admin),
             },
           ]"
         >
@@ -254,8 +223,7 @@
           name="merchant.sources"
           :rules="[
             {
-              validator: (_r: unknown, v: string[] | undefined) =>
-                validateSources(_r, v, formState.merchant),
+              validator: (_r: unknown, v: string[] | undefined) => validateSources(_r, v, formState.merchant),
             },
           ]"
         >
@@ -278,50 +246,5 @@
 <style scoped>
   .auto-login-form {
     max-width: 720px;
-  }
-
-  .module-overview__header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 16px;
-  }
-
-  .module-overview__title {
-    font-size: 18px;
-    font-weight: 600;
-    color: hsl(var(--foreground));
-  }
-
-  .module-overview__desc {
-    margin-top: 6px;
-    font-size: 13px;
-    line-height: 1.6;
-    color: hsl(var(--muted-foreground));
-  }
-
-  .module-overview__actions {
-    display: flex;
-    flex-shrink: 0;
-    gap: 8px;
-  }
-
-  .config-section {
-    margin-bottom: 28px;
-  }
-
-  .config-section__title {
-    margin-bottom: 16px;
-    font-size: 15px;
-    font-weight: 600;
-    color: hsl(var(--foreground));
-  }
-
-  .config-item__desc {
-    margin-top: 6px;
-    font-size: 12px;
-    line-height: 1.5;
-    color: hsl(var(--muted-foreground));
   }
 </style>

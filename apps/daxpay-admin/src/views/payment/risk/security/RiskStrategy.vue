@@ -5,6 +5,8 @@
 
   import { computed, onMounted, ref } from 'vue';
 
+  import { PageShell } from '@daxpay/ui-biz/components/page-shell';
+
   import { RiskSecurityApi } from '#/api/payment/risk/risk-security.api';
   import { useMessage } from '#/hooks/useMessage';
   import { $t } from '#/locales';
@@ -115,284 +117,121 @@
 </script>
 
 <template>
-  <div class="risk-security-page">
-    <a-spin :spinning="loading" class="w-full">
-      <div class="security-module-page">
-        <div class="module-overview">
-          <div class="module-overview__header">
-            <!-- 风控策略标题 -->
-            <div class="module-overview__title">{{ $t('payment.risk.risk-strategy.title') }}</div>
-            <div class="module-actions">
-              <a-space>
-                <!-- 非编辑状态：显示编辑按钮 -->
-                <template v-if="!isEditing">
-                  <a-button type="primary" @click="handleEdit">{{ $t('common.edit') }}</a-button>
-                </template>
-                <!-- 编辑状态：显示取消和确认按钮 -->
-                <template v-else>
-                  <a-button @click="handleCancel">{{ $t('payment.risk.common.cancel') }}</a-button>
-                  <a-button type="primary" :loading="loading" @click="handleSave">{{
-                    $t('payment.risk.common.confirm')
-                  }}</a-button>
-                </template>
-              </a-space>
-            </div>
-          </div>
-          <!-- 风控策略描述 -->
-          <div class="module-overview__desc">{{ $t('payment.risk.risk-strategy.description') }}</div>
-          <a-space wrap size="small" class="module-overview__tags">
-            <a-tag v-for="item in summaryItems" :key="item">{{ item }}</a-tag>
-          </a-space>
+  <!-- 配置页外壳: 右栏 header(标题/描述/状态标签/操作按钮)常驻, 内容区内部滚动 -->
+  <PageShell
+    :title="$t('payment.risk.risk-strategy.title')"
+    :description="$t('payment.risk.risk-strategy.description')"
+    :tags="summaryItems"
+    :loading="loading"
+  >
+    <!-- 右上操作区: 编辑/取消/确认按钮常驻 -->
+    <template #actions>
+      <!-- 非编辑状态：显示编辑按钮 -->
+      <template v-if="!isEditing">
+        <a-button type="primary" @click="handleEdit">{{ $t('common.edit') }}</a-button>
+      </template>
+      <!-- 编辑状态：显示取消和确认按钮 -->
+      <template v-else>
+        <a-button @click="handleCancel">{{ $t('payment.risk.common.cancel') }}</a-button>
+        <a-button type="primary" :loading="loading" @click="handleSave">{{
+          $t('payment.risk.common.confirm')
+        }}</a-button>
+      </template>
+    </template>
+
+    <a-form ref="formRef" :model="formState" layout="vertical" class="module-form">
+      <!-- 风控总开关（全宽置顶, 独立于分组, 关闭后所有风控检查跳过） -->
+      <div class="config-item config-item--full">
+        <div class="config-item__main">
+          <div class="config-item__label">{{ $t('payment.risk.risk-strategy.riskEnabled.label') }}</div>
+          <div class="config-item__desc">{{ $t('payment.risk.risk-strategy.riskEnabled.desc') }}</div>
         </div>
-
-        <a-form ref="formRef" :model="formState" layout="vertical" class="module-form">
-          <!-- 风控总开关（全宽置顶, 独立于分组, 关闭后所有风控检查跳过） -->
-          <div class="config-item config-item--full">
-            <div class="config-item__main">
-              <div class="config-item__label">{{ $t('payment.risk.risk-strategy.riskEnabled.label') }}</div>
-              <div class="config-item__desc">{{ $t('payment.risk.risk-strategy.riskEnabled.desc') }}</div>
-            </div>
-            <a-switch v-model:checked="formState.riskEnabled" :disabled="!isEditing" />
-          </div>
-
-          <!-- 公共设置: 影响海外/地区等 IP 归属地检查的公共开关 -->
-          <div class="config-section">
-            <div class="config-section__title">{{ $t('payment.risk.risk-strategy.section.common') }}</div>
-            <div class="config-grid">
-              <!-- IPv6 地区匹配 -->
-              <div class="config-item">
-                <div class="config-item__main">
-                  <div class="config-item__label">{{
-                    $t('payment.risk.risk-strategy.ipv6MatchEnabled.label')
-                  }}</div>
-                  <div class="config-item__desc">{{
-                    $t('payment.risk.risk-strategy.ipv6MatchEnabled.desc')
-                  }}</div>
-                </div>
-                <a-switch
-                  v-model:checked="formState.ipv6MatchEnabled"
-                  :disabled="!isEditing || !formState.riskEnabled"
-                />
-              </div>
-
-              <!-- IPv6 精度提示（开关打开时显示） -->
-              <div v-if="formState.ipv6MatchEnabled" class="config-item">
-                <a-alert
-                  type="warning"
-                  show-icon
-                  :message="$t('payment.risk.risk-strategy.ipv6MatchEnabled.precisionHint')"
-                  class="w-full"
-                />
-              </div>
-            </div>
-          </div>
-
-          <!-- 名单拦截: 按 IP 匹配黑名单名单 -->
-          <div class="config-section">
-            <div class="config-section__title">{{ $t('payment.risk.risk-strategy.section.blacklist') }}</div>
-            <div class="config-grid">
-              <!-- 黑名单拦截 -->
-              <div class="config-item">
-                <div class="config-item__main">
-                  <div class="config-item__label">{{
-                    $t('payment.risk.risk-strategy.blacklistEnabled.label')
-                  }}</div>
-                  <div class="config-item__desc">{{
-                    $t('payment.risk.risk-strategy.blacklistEnabled.desc')
-                  }}</div>
-                </div>
-                <a-switch
-                  v-model:checked="formState.blacklistEnabled"
-                  :disabled="!isEditing || !formState.riskEnabled"
-                />
-              </div>
-            </div>
-          </div>
-
-          <!-- 地域限制: 按支付 IP 归属地（海外 / 省份 / 城市）限制 -->
-          <div class="config-section">
-            <div class="config-section__title">{{ $t('payment.risk.risk-strategy.section.region') }}</div>
-            <div class="config-grid">
-              <!-- 海外 IP 拦截 -->
-              <div class="config-item">
-                <div class="config-item__main">
-                  <div class="config-item__label">{{
-                    $t('payment.risk.risk-strategy.blockOverseasIp.label')
-                  }}</div>
-                  <div class="config-item__desc">{{
-                    $t('payment.risk.risk-strategy.blockOverseasIp.desc')
-                  }}</div>
-                </div>
-                <a-switch
-                  v-model:checked="formState.blockOverseasIp"
-                  :disabled="!isEditing || !formState.riskEnabled"
-                />
-              </div>
-
-              <!-- 地区拦截（含省级 + 市级名单） -->
-              <div class="config-item">
-                <div class="config-item__main">
-                  <div class="config-item__label">{{
-                    $t('payment.risk.risk-strategy.regionBlacklistEnabled.label')
-                  }}</div>
-                  <div class="config-item__desc">{{
-                    $t('payment.risk.risk-strategy.regionBlacklistEnabled.desc')
-                  }}</div>
-                </div>
-                <a-switch
-                  v-model:checked="formState.regionBlacklistEnabled"
-                  :disabled="!isEditing || !formState.riskEnabled"
-                />
-              </div>
-            </div>
-          </div>
-
-          <!-- 拦截策略 -->
-          <div class="config-section">
-            <div class="config-section__title">
-              {{ $t('payment.risk.risk-strategy.section.strategy') }}
-            </div>
-            <div class="config-grid">
-              <!-- 命中阻断下单 -->
-              <div class="config-item">
-                <div class="config-item__main">
-                  <div class="config-item__label">{{
-                    $t('payment.risk.risk-strategy.riskBlockBeforePay.label')
-                  }}</div>
-                  <div class="config-item__desc">{{
-                    $t('payment.risk.risk-strategy.riskBlockBeforePay.desc')
-                  }}</div>
-                </div>
-                <a-switch
-                  v-model:checked="formState.riskBlockBeforePay"
-                  :disabled="!isEditing || !formState.riskEnabled"
-                />
-              </div>
-            </div>
-          </div>
-        </a-form>
+        <a-switch v-model:checked="formState.riskEnabled" :disabled="!isEditing" />
       </div>
-    </a-spin>
-  </div>
+
+      <!-- 公共设置: 影响海外/地区等 IP 归属地检查的公共开关 -->
+      <div class="config-section">
+        <div class="config-section__title">{{ $t('payment.risk.risk-strategy.section.common') }}</div>
+        <div class="config-grid">
+          <!-- IPv6 地区匹配 -->
+          <div class="config-item">
+            <div class="config-item__main">
+              <div class="config-item__label">{{ $t('payment.risk.risk-strategy.ipv6MatchEnabled.label') }}</div>
+              <div class="config-item__desc">{{ $t('payment.risk.risk-strategy.ipv6MatchEnabled.desc') }}</div>
+            </div>
+            <a-switch v-model:checked="formState.ipv6MatchEnabled" :disabled="!isEditing || !formState.riskEnabled" />
+          </div>
+
+          <!-- IPv6 精度提示（开关打开时显示） -->
+          <div v-if="formState.ipv6MatchEnabled" class="config-item">
+            <a-alert
+              type="warning"
+              show-icon
+              :message="$t('payment.risk.risk-strategy.ipv6MatchEnabled.precisionHint')"
+              class="w-full"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- 名单拦截: 按 IP 匹配黑名单名单 -->
+      <div class="config-section">
+        <div class="config-section__title">{{ $t('payment.risk.risk-strategy.section.blacklist') }}</div>
+        <div class="config-grid">
+          <!-- 黑名单拦截 -->
+          <div class="config-item">
+            <div class="config-item__main">
+              <div class="config-item__label">{{ $t('payment.risk.risk-strategy.blacklistEnabled.label') }}</div>
+              <div class="config-item__desc">{{ $t('payment.risk.risk-strategy.blacklistEnabled.desc') }}</div>
+            </div>
+            <a-switch v-model:checked="formState.blacklistEnabled" :disabled="!isEditing || !formState.riskEnabled" />
+          </div>
+        </div>
+      </div>
+
+      <!-- 地域限制: 按支付 IP 归属地（海外 / 省份 / 城市）限制 -->
+      <div class="config-section">
+        <div class="config-section__title">{{ $t('payment.risk.risk-strategy.section.region') }}</div>
+        <div class="config-grid">
+          <!-- 海外 IP 拦截 -->
+          <div class="config-item">
+            <div class="config-item__main">
+              <div class="config-item__label">{{ $t('payment.risk.risk-strategy.blockOverseasIp.label') }}</div>
+              <div class="config-item__desc">{{ $t('payment.risk.risk-strategy.blockOverseasIp.desc') }}</div>
+            </div>
+            <a-switch v-model:checked="formState.blockOverseasIp" :disabled="!isEditing || !formState.riskEnabled" />
+          </div>
+
+          <!-- 地区拦截（含省级 + 市级名单） -->
+          <div class="config-item">
+            <div class="config-item__main">
+              <div class="config-item__label">{{ $t('payment.risk.risk-strategy.regionBlacklistEnabled.label') }}</div>
+              <div class="config-item__desc">{{ $t('payment.risk.risk-strategy.regionBlacklistEnabled.desc') }}</div>
+            </div>
+            <a-switch
+              v-model:checked="formState.regionBlacklistEnabled"
+              :disabled="!isEditing || !formState.riskEnabled"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- 拦截策略 -->
+      <div class="config-section">
+        <div class="config-section__title">
+          {{ $t('payment.risk.risk-strategy.section.strategy') }}
+        </div>
+        <div class="config-grid">
+          <!-- 命中阻断下单 -->
+          <div class="config-item">
+            <div class="config-item__main">
+              <div class="config-item__label">{{ $t('payment.risk.risk-strategy.riskBlockBeforePay.label') }}</div>
+              <div class="config-item__desc">{{ $t('payment.risk.risk-strategy.riskBlockBeforePay.desc') }}</div>
+            </div>
+            <a-switch v-model:checked="formState.riskBlockBeforePay" :disabled="!isEditing || !formState.riskEnabled" />
+          </div>
+        </div>
+      </div>
+    </a-form>
+  </PageShell>
 </template>
-
-<style scoped>
-  .risk-security-page {
-    box-sizing: border-box;
-    height: 100%;
-    min-height: 0;
-    padding: 12px;
-  }
-
-  .security-module-page {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 24px 28px;
-    background: hsl(var(--card));
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgb(15 23 42 / 6%);
-  }
-
-  .module-overview {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .module-overview__header {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
-
-  .module-overview__title {
-    font-size: 18px;
-    font-weight: 600;
-    color: hsl(var(--foreground));
-  }
-
-  .module-overview__desc {
-    font-size: 13px;
-    line-height: 1.7;
-    color: hsl(var(--muted-foreground));
-  }
-
-  .module-overview__tags {
-    padding-top: 2px;
-  }
-
-  .module-form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .module-form :deep(.ant-form-item) {
-    margin-bottom: 0;
-  }
-
-  .config-section {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .config-section__title {
-    font-size: 15px;
-    font-weight: 600;
-    color: hsl(var(--foreground));
-  }
-
-  .config-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  .config-item {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 16px;
-    background: hsl(var(--card));
-    border: 1px solid hsl(var(--border));
-    border-radius: 12px;
-    transition:
-      border-color 0.2s ease,
-      box-shadow 0.2s ease;
-  }
-
-  .config-item--full {
-    grid-column: span 2;
-  }
-
-  .config-item:hover {
-    border-color: hsl(var(--primary) / 30%);
-    box-shadow: 0 1px 2px rgb(15 23 42 / 4%);
-  }
-
-  .config-item__main {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .config-item__label {
-    font-size: 14px;
-    font-weight: 500;
-    color: hsl(var(--foreground));
-  }
-
-  .config-item__desc {
-    margin-top: 4px;
-    font-size: 12px;
-    line-height: 1.6;
-    color: hsl(var(--muted-foreground));
-  }
-
-  .module-actions {
-    flex-shrink: 0;
-  }
-</style>

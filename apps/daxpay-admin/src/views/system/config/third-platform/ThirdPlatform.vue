@@ -1,18 +1,25 @@
 <script lang="ts" setup>
-  import { ref } from 'vue';
+  import type { ConfigSubForm } from '../config-sub-form';
+
+  import { computed, ref } from 'vue';
+
+  import { PageShell } from '@daxpay/ui-biz/components/page-shell';
 
   import { $t } from '#/locales';
+  import SocialLoginConfigList from '#/views/iam/social/social-login-config.vue';
 
   import AlipayAuthConfigForm from './alipay/AlipayAuthConfigForm.vue';
   import DouyinH5AuthConfigForm from './douyin-h5/DouyinH5AuthConfigForm.vue';
   import SocialAutoLoginConfigForm from './SocialAutoLoginConfigForm.vue';
   import WechatMpAuthConfigForm from './wechat-mp/WechatMpAuthConfigForm.vue';
-  import SocialLoginConfigList from '#/views/iam/social/social-login-config.vue';
 
   defineOptions({ name: 'ThirdPlatform' });
 
   // 默认展示"三方平台登录配置"(基础配置优先)
   const activeKey = ref<string>('loginConfig');
+
+  // 当前激活子表单实例(供常驻 header 渲染操作按钮与状态标签; 卡片墙列表不绑定)
+  const subForm = ref<ConfigSubForm | null>(null);
 
   // 左侧 tab 清单
   const tabs = [
@@ -53,6 +60,11 @@
     },
   ] as const;
 
+  // 当前激活 tab(key 异常时回退首项), 标题/描述常驻右栏 header
+  const activeTab = computed(() => {
+    return tabs.find((tab) => tab.key === activeKey.value) ?? tabs[0]!;
+  });
+
   /**
    * 跳转型平台卡片点击时, 切换到对应平台级配置 tab
    * 目前仅支付宝仍属于三方登录跳转型
@@ -68,143 +80,50 @@
 </script>
 
 <template>
-  <div class="third-platform-page">
-    <div class="platform-layout">
-      <aside class="platform-sidebar">
-        <!-- 三方平台管理标题 -->
-        <div class="platform-sidebar__title">{{ $t('system.thirdPlatform.common.title') }}</div>
-        <!-- 三方平台管理描述 -->
-        <div class="platform-sidebar__desc">{{ $t('system.thirdPlatform.common.description') }}</div>
+  <!-- 配置页外壳: 左右栏各自内部滚动, 右栏 header(标题/描述/操作按钮)常驻 -->
+  <PageShell :title="activeTab.label" :description="activeTab.description" :tags="subForm?.summaryTags ?? []">
+    <!-- 左栏: 分组导航 -->
+    <template #nav>
+      <!-- 三方平台管理标题 -->
+      <div class="config-nav__title">{{ $t('system.thirdPlatform.common.title') }}</div>
+      <!-- 三方平台管理描述 -->
+      <div class="config-nav__desc">{{ $t('system.thirdPlatform.common.description') }}</div>
 
-        <div class="platform-tab-list">
-          <button
-            v-for="tab in tabs"
-            :key="tab.key"
-            type="button"
-            class="platform-tab-item"
-            :class="{ 'platform-tab-item--active': activeKey === tab.key }"
-            @click="activeKey = tab.key"
-          >
-            <div class="platform-tab-item__label">{{ tab.label }}</div>
-            <div class="platform-tab-item__desc">{{ tab.description }}</div>
-          </button>
-        </div>
-      </aside>
+      <div class="config-tab-list">
+        <button
+          v-for="tab in tabs"
+          :key="tab.key"
+          type="button"
+          class="config-tab-item"
+          :class="{ 'config-tab-item--active': activeKey === tab.key }"
+          @click="activeKey = tab.key"
+        >
+          <div class="config-tab-item__label">{{ tab.label }}</div>
+          <div class="config-tab-item__desc">{{ tab.description }}</div>
+        </button>
+      </div>
+    </template>
 
-      <section class="platform-content">
-        <div class="platform-content__scroll">
-          <SocialLoginConfigList
-            v-show="activeKey === 'loginConfig'"
-            @jump="handleJump"
-          />
-          <SocialAutoLoginConfigForm v-if="activeKey === 'autoLogin'" />
-          <AlipayAuthConfigForm v-if="activeKey === 'alipay'" />
-          <WechatMpAuthConfigForm v-if="activeKey === 'wechatMp'" />
-          <DouyinH5AuthConfigForm v-if="activeKey === 'douyinH5'" />
-        </div>
-      </section>
-    </div>
-  </div>
+    <!-- 右上操作区: 编辑/取消/保存按钮常驻(卡片墙列表等未暴露编辑接口的内容页不渲染) -->
+    <template v-if="subForm" #actions>
+      <!-- 非编辑状态: 显示编辑按钮 -->
+      <template v-if="!subForm.isEditing">
+        <a-button type="primary" @click="subForm.handleEdit()">{{ $t('common.edit') }}</a-button>
+      </template>
+      <!-- 编辑状态: 显示取消和保存按钮 -->
+      <template v-else>
+        <a-button @click="subForm.handleCancel()">{{ $t('common.cancel') }}</a-button>
+        <a-button type="primary" :loading="subForm.saving" @click="subForm.handleSave()">
+          {{ $t('common.save') }}
+        </a-button>
+      </template>
+    </template>
+
+    <!-- 三方登录卡片墙(v-show 保持列表状态, 不暴露编辑接口) -->
+    <SocialLoginConfigList v-show="activeKey === 'loginConfig'" @jump="handleJump" />
+    <SocialAutoLoginConfigForm v-if="activeKey === 'autoLogin'" ref="subForm" />
+    <AlipayAuthConfigForm v-if="activeKey === 'alipay'" ref="subForm" />
+    <WechatMpAuthConfigForm v-if="activeKey === 'wechatMp'" ref="subForm" />
+    <DouyinH5AuthConfigForm v-if="activeKey === 'douyinH5'" ref="subForm" />
+  </PageShell>
 </template>
-
-<style scoped>
-  .third-platform-page {
-    box-sizing: border-box;
-
-    /* 锁定为视口内内容区高度(顶栏+页签栏由 --vben-header-height 表达, 布局启动即写入 :root),
-       左右栏在各自内部滚动, 不再随 document 整页滚动 */
-    height: calc(100vh - var(--vben-header-height, 88px));
-    padding: 12px;
-  }
-
-  .platform-layout {
-    display: flex;
-    height: 100%;
-    min-height: 0;
-    overflow: hidden;
-    background: hsl(var(--card));
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgb(15 23 42 / 6%);
-  }
-
-  .platform-sidebar {
-    display: flex;
-    flex: 0 0 280px;
-    flex-direction: column;
-    gap: 16px;
-    height: 100%;
-    min-height: 0;
-    padding: 24px 20px;
-    overflow-y: auto;
-    background: hsl(var(--card));
-    border-right: 1px solid hsl(var(--border));
-  }
-
-  .platform-sidebar__title {
-    font-size: 18px;
-    font-weight: 600;
-    color: hsl(var(--foreground));
-  }
-
-  .platform-sidebar__desc {
-    font-size: 13px;
-    line-height: 1.7;
-    color: hsl(var(--muted-foreground));
-  }
-
-  .platform-tab-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .platform-tab-item {
-    width: 100%;
-    padding: 14px 16px;
-    text-align: left;
-    cursor: pointer;
-    background: transparent;
-    border: 1px solid transparent;
-    border-radius: 12px;
-    transition:
-      background-color 0.2s ease,
-      border-color 0.2s ease,
-      box-shadow 0.2s ease;
-  }
-
-  .platform-tab-item:hover {
-    background: hsl(var(--accent));
-  }
-
-  .platform-tab-item--active {
-    background: hsl(var(--primary) / 10%);
-    border-color: hsl(var(--primary) / 30%);
-    box-shadow: 0 1px 2px rgb(15 23 42 / 4%);
-  }
-
-  .platform-tab-item__label {
-    font-size: 15px;
-    font-weight: 600;
-    color: hsl(var(--foreground));
-  }
-
-  .platform-tab-item__desc {
-    margin-top: 4px;
-    font-size: 12px;
-    line-height: 1.6;
-    color: hsl(var(--muted-foreground));
-  }
-
-  .platform-content {
-    flex: 1;
-    min-width: 0;
-    min-height: 0;
-    padding: 24px 28px;
-    overflow-y: auto;
-    background: hsl(var(--card));
-  }
-
-  .platform-content__scroll {
-    min-height: 0;
-  }
-</style>

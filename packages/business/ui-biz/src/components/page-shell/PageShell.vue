@@ -1,6 +1,9 @@
 <script lang="ts" setup>
   import { computed } from 'vue';
 
+  // 配置页公共表单样式(config-* 与 module-* 类), 随 PageShell 引入全局生效
+  import './config-form.css';
+
   /**
    * 配置类页面外壳:右上固定(标题/描述/状态标签/操作按钮) + 右下滚动(内容区)
    *
@@ -10,16 +13,16 @@
    */
   const props = withDefaults(
     defineProps<{
-      /** 右栏标题 */
-      title: string;
       /** 右栏描述文案 */
       description?: string;
-      /** 状态概要标签(跟随配置数据计算,如"风控：已开启") */
-      tags?: string[];
       /** 加载中(内置 a-spin 并撑满高度链) */
       loading?: boolean;
       /** 左栏宽度(px),仅双栏形态生效 */
       navWidth?: number;
+      /** 状态概要标签(跟随配置数据计算,如"风控：已开启") */
+      tags?: string[];
+      /** 右栏标题 */
+      title: string;
     }>(),
     {
       description: '',

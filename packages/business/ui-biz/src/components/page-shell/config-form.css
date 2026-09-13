@@ -1,0 +1,180 @@
+/**
+ * 配置类页面(PageShell 内容区)的公共表单样式。
+ * 由 [PageShell] 通过脚本副作用 import 自动引入(全局生效):
+ * 页面内同名 scoped 样式特异性更高(.cls[data-v-x]), 迁移期两套并存不冲突。
+ * 类名统一 config-* / module-* 前缀, 不与 antd / 全局样式冲突。
+ */
+
+/* 表单纵向容器: 各配置小节之间的间距 */
+.module-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 配置项直接挂在 a-form-item 下时去掉默认下边距, 间距统一由网格 gap 控制 */
+.module-form .ant-form-item {
+  margin-bottom: 0;
+}
+
+/* 配置小节 */
+.config-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.config-section__title {
+  font-size: 15px;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+}
+
+/* 两列配置项网格 */
+.config-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* 单个配置项卡片 */
+.config-item {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 12px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.config-item:hover {
+  border-color: hsl(var(--primary) / 30%);
+  box-shadow: 0 1px 2px rgb(15 23 42 / 4%);
+}
+
+/* 跨两列的全宽配置项 */
+.config-item--full {
+  grid-column: span 2;
+}
+
+/* 纵向排布(输入控件在文字下方) */
+.config-item--block {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* 紧凑排布(开关类窄卡片, 文字与控件同行但留白更小) */
+.config-item--compact {
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 10px 14px;
+}
+
+.config-item__main {
+  flex: 1;
+  min-width: 0;
+}
+
+.config-item__label {
+  font-size: 14px;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+}
+
+.config-item__desc {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: hsl(var(--muted-foreground));
+}
+
+/* 带单位后缀的数字输入组合 */
+.number-field {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.number-field__suffix {
+  flex: 0 0 auto;
+  font-size: 13px;
+  color: hsl(var(--muted-foreground));
+}
+
+/* 左栏导航(PageShell 双栏形态的 #nav 插槽内容) */
+.config-nav__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+}
+
+.config-nav__desc {
+  font-size: 13px;
+  line-height: 1.7;
+  color: hsl(var(--muted-foreground));
+}
+
+.config-tab-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 分组导航(左栏 tab 按多个分组罗列时) */
+.config-tab-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.config-tab-group__title {
+  padding: 0 16px 2px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+}
+
+.config-tab-item {
+  width: 100%;
+  padding: 14px 16px;
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.config-tab-item:hover {
+  background: hsl(var(--accent));
+}
+
+.config-tab-item--active {
+  background: hsl(var(--primary) / 10%);
+  border-color: hsl(var(--primary) / 30%);
+  box-shadow: 0 1px 2px rgb(15 23 42 / 4%);
+}
+
+.config-tab-item__label {
+  font-size: 15px;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+}
+
+.config-tab-item__desc {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: hsl(var(--muted-foreground));
+}
