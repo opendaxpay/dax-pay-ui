@@ -21,6 +21,13 @@ export const PayProductConfigApi = {
   },
 
   /**
+   * 切换支付产品启停（2026-09-13 启停入口随配置页迁移）
+   */
+  switchEnabled(product: string, enabled: boolean): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/product-config/switch-enabled', params: { product, enabled } });
+  },
+
+  /**
    * 保存产品配置
    */
   save(param: PayProductConfigParam): Promise<Result<void>> {
@@ -42,6 +49,8 @@ export interface PayProductConfigResult extends BaseEntity {
   sandboxSupport?: boolean;
   /** 生效环境: prod/sandbox */
   activeEnv?: string;
+  /** 是否启用（来自支付产品主数据，卡片状态点与详情页启停使用） */
+  enabled?: boolean;
   /** 是否为服务商模式（true=服务商, false=直连） */
   isv?: boolean;
 }

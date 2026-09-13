@@ -33,7 +33,9 @@
     "sandboxConfigBtn": "Bak pasir",
     "switchEnv": "Ganti Lingkungan",
     "switchToSandboxConfirm": "Beralih ke lingkungan kotak pasir? Semua transaksi akan menggunakan titik akhir API sandbox, cocok untuk integrasi dan pengujian fungsional.",
-    "switchToProdConfirm": "Beralih ke lingkungan produksi? Semua transaksi akan menggunakan titik akhir API produksi dan melibatkan aliran dana nyata."
+    "switchToProdConfirm": "Beralih ke lingkungan produksi? Semua transaksi akan menggunakan titik akhir API produksi dan melibatkan aliran dana nyata.",
+    "statusLabel": "Status Produk",
+    "enabledTip": "Setelah dinonaktifkan, pembayaran baru tidak dapat dimulai; refund/sinkronisasi pesanan lama tidak terpengaruh"
   },
   "placeholder": {
     "name": "Masukkan nama produk",

@@ -6,15 +6,12 @@
   import { $t } from '@vben/locales';
 
   import { PayProviderApi, type PayProviderGroup } from '#/api/payment/masterdata/provider.api';
-  import { useMessage } from '#/hooks/useMessage';
   import { getProviderSvgUrl } from '#/views/payment/shared/payProviderDisplay';
 
   defineOptions({ name: 'PayProviderList' });
 
   const loading = ref(false);
   const providerList = ref<PayProviderGroup[]>([]);
-  const { message, confirm } = useMessage();
-  const enabledRefreshKey = ref(0);
   const xTable = ref<VxeTableInstance>();
   const xToolbar = ref<VxeToolbarInstance>();
 
@@ -28,28 +25,6 @@
       .finally(() => {
         loading.value = false;
       });
-  }
-
-  function handleEnabledSwitch(row: PayProviderGroup, enabled: boolean) {
-    const title = enabled ? $t('common.enableConfirm') : $t('common.disableConfirm');
-    const content = enabled ? $t('common.providerEnableContent') : $t('common.providerDisableContent');
-    confirm({
-      title,
-      content,
-      onOk: () => {
-        return PayProviderApi.switchEnabled(row.provider, enabled)
-          .then(() => {
-            row.enabled = enabled;
-          })
-          .catch(() => {
-            enabledRefreshKey.value++;
-            message.error($t('common.operationFailed'));
-          });
-      },
-      onCancel: () => {
-        enabledRefreshKey.value++;
-      },
-    });
   }
 
   function providerSvgUrl(row: PayProviderGroup) {
@@ -86,16 +61,6 @@
           :min-width="200"
           show-overflow
         />
-        <vxe-column :title="$t('common.status')" width="80" align="center">
-          <template #default="{ row }">
-            <a-switch
-              :key="`enabled-${row.provider}-${enabledRefreshKey}`"
-              :checked="row.enabled"
-              size="small"
-              @change="(val: boolean) => handleEnabledSwitch(row, val)"
-            />
-          </template>
-        </vxe-column>
       </vxe-table>
     </a-card>
   </div>

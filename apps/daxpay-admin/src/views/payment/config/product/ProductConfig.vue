@@ -168,8 +168,18 @@
               <div class="mb-3 transform transition-transform duration-300 group-hover:scale-110">
                 <ChannelLogo :product="row.product" :channel="row.channel!" :size="44" />
               </div>
-              <div class="text-center font-bold text-foreground text-[14px] mb-3 px-4">
+              <div class="text-center font-bold text-foreground text-[14px] mb-2 px-4">
                 {{ getProductName(row) }}
+              </div>
+              <!-- 启停状态独立一行(纯展示, 切换入口在详情页) -->
+              <div class="mb-3 flex items-center justify-center gap-1.5">
+                <span class="status-dot" :class="row.enabled ? 'status-dot-on' : 'status-dot-off'"></span>
+                <span
+                  class="text-[11px]"
+                  :class="row.enabled ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted-foreground'"
+                >
+                  {{ row.enabled ? $t('common.enable') : $t('common.disable') }}
+                </span>
               </div>
             </div>
 
@@ -220,6 +230,23 @@
   .product-config-card {
     height: 210px;
     position: relative;
+  }
+
+  /* 启停状态点: 绿=启用 / 灰=停用 */
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    flex-shrink: 0;
+  }
+
+  .status-dot-on {
+    background: #10b981;
+    box-shadow: 0 0 4px rgb(16 185 129 / 0.6);
+  }
+
+  .status-dot-off {
+    background: hsl(var(--muted-foreground) / 0.5);
   }
 
   .config-slot {

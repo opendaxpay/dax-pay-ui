@@ -2,7 +2,7 @@
   "missingMchNo": "缺少商戶編號，請從商戶列表進入",
   "missingAppContext": "請從應用管理進入通道路由配置",
   "productDetail": {
-    "notSupported": "該產品型別暫不支援詳情配置",
-    "notSupportedDesc": "產品「{product}」的詳情配置功能尚未實現"
+    "notSupported": "該產品無平台側配置項",
+    "notSupportedDesc": "通道參數在各通道商戶配置中維護"
   }
 }

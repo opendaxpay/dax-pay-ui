@@ -33,7 +33,9 @@
     "sandboxConfigBtn": "Kotak pasir",
     "switchEnv": "Tukar Persekitaran",
     "switchToSandboxConfirm": "Tukar kepada persekitaran kotak pasir? Semua urus niaga akan menggunakan titik akhir API kotak pasir, sesuai untuk penyepaduan dan ujian fungsi.",
-    "switchToProdConfirm": "Beralih kepada persekitaran pengeluaran? Semua urus niaga akan menggunakan titik akhir API pengeluaran dan melibatkan aliran dana sebenar."
+    "switchToProdConfirm": "Beralih kepada persekitaran pengeluaran? Semua urus niaga akan menggunakan titik akhir API pengeluaran dan melibatkan aliran dana sebenar.",
+    "statusLabel": "Status Produk",
+    "enabledTip": "Selepas dinyahdayakan, pembayaran baharu tidak boleh dimulakan; bayaran balik/penyelarasan pesanan sedia ada tidak terjejas"
   },
   "placeholder": {
     "name": "Masukkan nama produk",

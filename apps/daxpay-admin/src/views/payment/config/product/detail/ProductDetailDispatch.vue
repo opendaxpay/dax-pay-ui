@@ -6,6 +6,9 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { PayProductConfigApi } from '#/api/payment/config/pay-product-config.api';
+  import { PayProductApi, type PayProductResult } from '#/api/payment/masterdata/product.api';
+  import { useMessage } from '#/hooks/useMessage';
   import AdapayManage from '#/views/payment/channel/adapay/manage/AdapayManage.vue';
   import AlipayIsvManage from '#/views/payment/channel/alipay/manage/AlipayIsvManage.vue';
   import DougongManage from '#/views/payment/channel/dougong/manage/DougongManage.vue';
@@ -27,6 +30,52 @@
   const sandbox = ref(false);
   const currentComponent = ref<Component | null>(null);
   const childRef = ref<null | { init: (sandbox: boolean) => void }>(null);
+
+  const { confirm, message } = useMessage();
+
+  // 产品详情(启停状态, 头部启停开关使用)
+  const productDetail = ref<PayProductResult>({});
+  // 启停开关强制刷新 key(取消确认/失败时回滚开关状态)
+  const enabledRefreshKey = ref(0);
+
+  /**
+   * 加载产品详情(启停状态)
+   */
+  async function loadDetail() {
+    if (!product.value) return;
+    try {
+      const { data } = await PayProductApi.findByCode(product.value);
+      productDetail.value = data || {};
+    } catch {
+      productDetail.value = {};
+    }
+  }
+
+  /**
+   * 切换产品启停(2026-09-13 启停入口迁入详情页, 二次确认)
+   */
+  function handleEnabledSwitch(enabled: boolean) {
+    const title = enabled ? $t('common.enableConfirm') : $t('common.disableConfirm');
+    const content = enabled ? $t('common.productEnableContent') : $t('common.productDisableContent');
+    confirm({
+      title,
+      content,
+      onOk: () => {
+        return PayProductConfigApi.switchEnabled(product.value, enabled)
+          .then(() => {
+            productDetail.value.enabled = enabled;
+            message.success($t('common.operationSuccess'));
+          })
+          .catch(() => {
+            enabledRefreshKey.value++;
+            message.error($t('common.operationFailed'));
+          });
+      },
+      onCancel: () => {
+        enabledRefreshKey.value++;
+      },
+    });
+  }
 
   /**
    * 返回产品列表
@@ -134,6 +183,7 @@
 
   onMounted(() => {
     initDispatch();
+    loadDetail();
   });
 
   // 修复断链: 组件挂载后传递 sandbox 参数给子组件
@@ -164,6 +214,20 @@
             <span class="text-lg font-bold text-foreground">{{ productName }}</span>
           </div>
           <div class="flex items-center gap-2 text-sm text-muted-foreground">
+            <!-- 产品启停开关(2026-09-13 启停入口由产品列表迁入此处) -->
+            <a-tooltip :title="$t('payment.constant.product.productConfig.enabledTip')">
+              <span class="flex items-center gap-2">
+                <span class="text-xs">{{ $t('payment.constant.product.productConfig.statusLabel') }}</span>
+                <a-switch
+                  :key="`enabled-${product}-${enabledRefreshKey}`"
+                  :checked="productDetail.enabled"
+                  :checked-children="$t('common.enable')"
+                  :un-checked-children="$t('common.disable')"
+                  size="small"
+                  @change="(val: any) => handleEnabledSwitch(!!val)"
+                />
+              </span>
+            </a-tooltip>
             <span v-if="sandbox" class="flex items-center gap-1">
               <IconifyIcon icon="ant-design:experiment-filled" class="text-amber-500 text-sm" />
               {{ $t('payment.constant.product.productConfig.sandboxLabel') }}

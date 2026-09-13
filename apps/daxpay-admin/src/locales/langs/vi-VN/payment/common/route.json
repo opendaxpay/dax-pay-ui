@@ -2,7 +2,7 @@
   "missingMchNo": "Thiếu số người bán. Mở từ danh sách người bán",
   "missingAppContext": "Định tuyến kênh mở từ Quản lý ứng dụng",
   "productDetail": {
-    "notSupported": "Cấu hình chi tiết sản phẩm chưa được hỗ trợ",
-    "notSupportedDesc": "Cấu hình chi tiết cho \"{product}\" chưa được triển khai"
+    "notSupported": "Sản phẩm này không có mục cấu hình phía nền tảng",
+    "notSupportedDesc": "Tham số kênh được quản lý trong cấu hình merchant kênh tương ứng"
   }
 }

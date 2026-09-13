@@ -2,7 +2,7 @@
   "missingMchNo": "Nombor peniaga tiada. Buka daripada senarai pedagang",
   "missingAppContext": "Buka penghalaan saluran daripada Pengurusan Apl",
   "productDetail": {
-    "notSupported": "Konfigurasi butiran produk belum lagi disokong",
-    "notSupportedDesc": "Konfigurasi terperinci untuk \"{product}\" belum dilaksanakan"
+    "notSupported": "Produk ini tiada item konfigurasi sebelah platform",
+    "notSupportedDesc": "Parameter saluran diurus dalam konfigurasi setiap merchant saluran"
   }
 }

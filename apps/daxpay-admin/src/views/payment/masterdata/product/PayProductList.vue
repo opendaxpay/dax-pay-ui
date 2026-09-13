@@ -9,13 +9,10 @@
   import ChannelLogo from '#/components/channel/ChannelLogo.vue';
   import { BQuery, type QueryField } from '#/components/query';
   import { channelI18nMap, channelNameMap } from '#/enums/payment';
-  import { useMessage } from '#/hooks/useMessage';
 
   const loading = ref(false);
   const xTable = ref<VxeTableInstance>();
   const xToolbar = ref<VxeToolbarInstance>();
-  const { message, confirm } = useMessage();
-  const enabledRefreshKey = ref(0);
 
   // 查询条件
   const queryForm = ref<Record<string, any>>({});
@@ -108,31 +105,6 @@
   }
 
   /**
-   * 切换产品启停（二次确认）
-   */
-  function handleEnabledSwitch(row: PayProductResult, enabled: boolean) {
-    const title = enabled ? $t('common.enableConfirm') : $t('common.disableConfirm');
-    const content = enabled ? $t('common.productEnableContent') : $t('common.productDisableContent');
-    confirm({
-      title,
-      content,
-      onOk: () => {
-        return PayProductApi.switchEnabled(row.code!, enabled)
-          .then(() => {
-            row.enabled = enabled;
-          })
-          .catch(() => {
-            enabledRefreshKey.value++;
-            message.error($t('common.operationFailed'));
-          });
-      },
-      onCancel: () => {
-        enabledRefreshKey.value++;
-      },
-    });
-  }
-
-  /**
    * 获取产品特征标签列表
    */
   function getFeatureTags(row: PayProductResult) {
@@ -202,16 +174,6 @@
               <a-tag v-else>{{ $t('payment.constant.product.sandboxNotSupported') }}</a-tag>
             </template>
           </vxe-column>
-          <vxe-column :title="$t('common.status')" width="80" align="center">
-            <template #default="{ row }">
-              <a-switch
-                :key="`enabled-${row.code}-${enabledRefreshKey}`"
-                :checked="row.enabled"
-                size="small"
-                @change="(val: boolean) => handleEnabledSwitch(row, val)"
-              />
-            </template>
-          </vxe-column>
           <vxe-column
             field="description"
             :title="$t('payment.constant.product.field.description')"
@@ -244,13 +206,7 @@
       @close="handleDrawerClose"
     >
       <a-spin :spinning="drawerLoading">
-        <a-descriptions
-          class="product-detail-descriptions"
-          :column="1"
-          size="small"
-          bordered
-          :label-style="{ whiteSpace: 'nowrap' }"
-        >
+        <a-descriptions class="product-detail-descriptions" :column="1" size="small" bordered>
           <a-descriptions-item :label="$t('payment.constant.product.field.name')">
             {{ productDetail.name || '-' }}
           </a-descriptions-item>

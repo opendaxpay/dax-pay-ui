@@ -2,7 +2,7 @@
   "missingMchNo": "판매자 번호가 누락되었습니다. 판매자 목록에서 열기",
   "missingAppContext": "앱 관리에서 채널 라우팅 열기",
   "productDetail": {
-    "notSupported": "제품 세부정보 구성은 아직 지원되지 않습니다.",
-    "notSupportedDesc": "\"{product}\"에 대한 세부 구성이 아직 구현되지 않았습니다."
+    "notSupported": "이 상품에는 플랫폼 측 구성 항목이 없습니다",
+    "notSupportedDesc": "채널 파라미터는 각 채널 가맹점 설정에서 관리됩니다"
   }
 }
