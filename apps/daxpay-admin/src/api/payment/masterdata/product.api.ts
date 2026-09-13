@@ -33,6 +33,8 @@ export interface PayProductPageParam {
   code?: string;
   name?: string;
   channel?: string;
+  /** 仅启用产品(选择场景使用, 管理页不传) */
+  enabled?: boolean;
 }
 
 /** 支付产品已挂载能力项 */

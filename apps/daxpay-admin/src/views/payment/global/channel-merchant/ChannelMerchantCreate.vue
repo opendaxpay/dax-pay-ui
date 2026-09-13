@@ -95,11 +95,11 @@
   }
 
   /**
-   * 加载支付产品列表
+   * 加载支付产品列表(仅启用产品, 停用产品不允许再创建通道商户)
    */
   function loadProductList() {
     loading.value = true;
-    PayProductApi.page({ current: 1, size: 200 })
+    PayProductApi.page({ current: 1, size: 200, enabled: true })
       .then(({ data }) => {
         productList.value = data?.records || [];
         loading.value = false;
