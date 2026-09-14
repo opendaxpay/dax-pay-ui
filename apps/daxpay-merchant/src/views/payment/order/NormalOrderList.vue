@@ -9,8 +9,10 @@
   import { currencyLabel } from '@daxpay/ui-biz/utils/currency';
   import { formatFen as formatAmount } from '@daxpay/ui-biz/utils/pay-amount';
 
+  import { MchAppInfoApi } from '#/api/payment/merchant/mch-app-info.api';
   import { OrderCloseApi } from '#/api/payment/order/close.api';
   import { NormalOrderApi, type NormalOrderQuery, type NormalOrderResult } from '#/api/payment/order/normal-order.api';
+  import type { LabelValue } from '#/types/web';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { productI18nMap, productNameMap } from '#/enums/payment';
@@ -62,6 +64,9 @@
     })),
   );
 
+  // 应用下拉(当前商户下启用应用)
+  const appOptions = ref<LabelValue[]>([]);
+
   // 查询字段
   const queryFields = computed<QueryField[]>(() => [
     {
@@ -75,6 +80,12 @@
       field: 'title',
       name: $t('payment.order.field.title'),
       placeholder: $t('payment.order.placeholder.title'),
+    },
+    {
+      type: 'list',
+      field: 'appId',
+      name: $t('payment.order.field.appId'),
+      selectList: appOptions.value,
     },
     {
       type: 'list',
@@ -204,6 +215,13 @@
 
   onMounted(() => {
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
+    MchAppInfoApi.enableList().then(({ data }) => {
+      appOptions.value =
+        data?.map((item) => ({
+          label: item.appName ? `${item.appName} (${item.appId})` : (item.appId ?? ''),
+          value: item.appId ?? '',
+        })) ?? [];
+    });
     queryPage();
   });
 </script>
