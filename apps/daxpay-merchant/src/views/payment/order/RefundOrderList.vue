@@ -10,6 +10,8 @@
   import { formatFen as formatAmount } from '@daxpay/ui-biz/utils/pay-amount';
 
   import { RefundOrderApi, type RefundOrderQuery, type RefundOrderResult } from '#/api/payment/order/refund-order.api';
+  import { MchAppInfoApi } from '#/api/payment/merchant/mch-app-info.api';
+  import type { LabelValue } from '#/types/web';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { productI18nMap, productNameMap } from '#/enums/payment';
@@ -69,6 +71,9 @@
     })),
   );
 
+  // 应用下拉(当前商户下启用应用)
+  const appOptions = ref<LabelValue[]>([]);
+
   const queryFields = computed<QueryField[]>(() => [
     {
       type: 'string',
@@ -82,6 +87,12 @@
       // 资金交易号
       name: $t('payment.order.field.tradeNo'),
       placeholder: $t('payment.order.placeholder.tradeNo'),
+    },
+    {
+      type: 'list',
+      field: 'appId',
+      name: $t('payment.order.field.appId'),
+      selectList: appOptions.value,
     },
     {
       type: 'string',
@@ -234,6 +245,13 @@
 
   onMounted(() => {
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
+    MchAppInfoApi.enableList().then(({ data }) => {
+      appOptions.value =
+        data?.map((item) => ({
+          label: item.appName ? `${item.appName} (${item.appId})` : (item.appId ?? ''),
+          value: item.appId ?? '',
+        })) ?? [];
+    });
     queryPage();
   });
 </script>

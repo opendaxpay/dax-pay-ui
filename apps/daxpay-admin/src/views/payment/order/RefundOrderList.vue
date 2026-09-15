@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
 
-  import { computed, onMounted, ref } from 'vue';
+  import { computed, onMounted, ref, watch } from 'vue';
 
   import { $t } from '@vben/locales';
   import { formatDateTime } from '@vben/utils';
@@ -9,7 +9,10 @@
   import { currencyLabel } from '@daxpay/ui-biz/utils/currency';
   import { formatFen as formatAmount } from '@daxpay/ui-biz/utils/pay-amount';
 
+  import { MchAppInfoApi } from '#/api/payment/merchant/mch-app-info.api';
+  import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { RefundOrderApi, type RefundOrderQuery, type RefundOrderResult } from '#/api/payment/order/refund-order.api';
+  import type { LabelValue } from '#/types/web';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { productI18nMap, productNameMap } from '#/enums/payment';
@@ -69,6 +72,11 @@
     })),
   );
 
+  // 商户下拉
+  const mchNoOptions = ref<LabelValue[]>([]);
+  // 应用下拉(级联: 跟随商户)
+  const appOptions = ref<LabelValue[]>([]);
+
   const queryFields = computed<QueryField[]>(() => [
     {
       type: 'string',
@@ -82,6 +90,18 @@
       // 资金交易号
       name: $t('payment.order.field.tradeNo'),
       placeholder: $t('payment.order.placeholder.tradeNo'),
+    },
+    {
+      type: 'list',
+      field: 'mchNo',
+      name: $t('payment.order.field.merchant'),
+      selectList: mchNoOptions.value,
+    },
+    {
+      type: 'list',
+      field: 'appId',
+      name: $t('payment.order.field.appId'),
+      selectList: appOptions.value,
     },
     {
       type: 'string',
@@ -232,8 +252,28 @@
     detail.value = {};
   }
 
+  // 商户变更: 清空应用, 重载应用下拉
+  watch(
+    () => queryForm.value.mchNo,
+    (mchNo) => {
+      queryForm.value.appId = undefined;
+      appOptions.value = [];
+      if (!mchNo) return;
+      MchAppInfoApi.enableList(mchNo).then(({ data }) => {
+        appOptions.value =
+          data?.map((item) => ({
+            label: item.appName ? `${item.appName} (${item.appId})` : (item.appId ?? ''),
+            value: item.appId ?? '',
+          })) ?? [];
+      });
+    },
+  );
+
   onMounted(() => {
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
+    MerchantApi.dropdown().then(({ data }) => {
+      mchNoOptions.value = data ?? [];
+    });
     queryPage();
   });
 </script>
