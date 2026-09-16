@@ -228,7 +228,7 @@
   <a-drawer
     v-model:open="visible"
     :title="$t('payment.channel.allocReceiver.drawerTitle')"
-    :width="1100"
+    :size="1100"
     destroy-on-hidden
   >
     <div v-if="config" class="flex h-full flex-col">

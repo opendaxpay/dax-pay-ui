@@ -169,7 +169,7 @@
       </a-card>
     </div>
 
-    <a-drawer v-model:open="drawerVisible" :title="$t('payment.record.fundFlow.detail')" width="640" destroy-on-close>
+    <a-drawer v-model:open="drawerVisible" :title="$t('payment.record.fundFlow.detail')" size="640" destroy-on-close>
       <div class="space-y-2 text-sm">
         <div>
           {{ $t('payment.record.fundFlow.flowType') }}:

@@ -274,7 +274,7 @@
     <a-drawer
       v-model:open="taskDrawerVisible"
       :title="$t('payment.notice.mchNotice.taskDetail')"
-      width="1080"
+      size="1080"
       destroy-on-close
     >
       <a-spin :spinning="taskDetailLoading">
@@ -329,7 +329,7 @@
     <a-drawer
       v-model:open="recordDrawerVisible"
       :title="$t('payment.notice.mchNotice.records')"
-      width="1080"
+      size="1080"
       destroy-on-close
     >
       <div class="mb-4 space-y-2 text-sm">

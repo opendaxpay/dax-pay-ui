@@ -162,7 +162,7 @@
   <a-drawer
     v-model:open="visible"
     :title="drawerTitle"
-    :width="960"
+    :size="960"
     :destroy-on-hidden="true"
     :body-style="{ paddingBottom: '24px' }"
   >

@@ -188,7 +188,7 @@
     <a-drawer
       v-model:open="drawerVisible"
       :title="$t('payment.transfer.detail')"
-      :width="760"
+      :size="760"
       @close="handleDrawerClose"
     >
       <a-spin :spinning="drawerLoading">

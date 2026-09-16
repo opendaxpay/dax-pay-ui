@@ -111,7 +111,7 @@
   <a-drawer
     v-model:open="visible"
     :title="$t('payment.merchant.channelMerchant.cardTransferApp')"
-    :width="720"
+    :size="720"
     :styles="{ footer: { textAlign: 'right' } }"
     destroy-on-hidden
   >

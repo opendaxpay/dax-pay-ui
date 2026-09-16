@@ -171,7 +171,7 @@
   <a-drawer
     :open="visible"
     :title="drawerTitle"
-    width="70%"
+    size="70%"
     :destroy-on-hidden="true"
     @update:open="(v: boolean) => emit('update:visible', v)"
   >

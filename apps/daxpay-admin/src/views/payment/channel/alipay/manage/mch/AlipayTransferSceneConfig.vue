@@ -110,7 +110,7 @@
   <a-drawer
     v-model:open="listVisible"
     :title="$t('payment.merchant.channelMerchant.transferSceneManage')"
-    :width="1200"
+    :size="1200"
     destroy-on-hidden
   >
     <div class="mb-3">

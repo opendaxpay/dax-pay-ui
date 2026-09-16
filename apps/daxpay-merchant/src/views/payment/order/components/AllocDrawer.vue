@@ -251,7 +251,7 @@
   <a-drawer
     v-model:open="visible"
     :title="$t('payment.order.action.allocDrawerTitle')"
-    :width="720"
+    :size="720"
     @close="handleClose"
   >
     <a-spin :spinning="fetching">

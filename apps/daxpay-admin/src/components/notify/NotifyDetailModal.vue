@@ -3,6 +3,7 @@
 
   import { ref, watch } from 'vue';
 
+  import { IconifyIcon } from '@vben/icons';
   import { $t } from '@vben/locales';
   import { formatDateTime } from '@vben/utils';
 
@@ -75,7 +76,7 @@
     :footer="null"
     width="800"
     :mask-closable="false"
-    :body-style="{ minHeight: '520px' }"
+    :styles="{ body: { minHeight: '520px' } }"
     @cancel="emit('update:open', false)"
   >
     <a-spin :spinning="loading">
