@@ -102,13 +102,13 @@
 </script>
 
 <template>
-  <!-- 配置页外壳: 右栏 header(标题/描述/状态标签/操作按钮)常驻, 内容区内部滚动 -->
   <PageShell
     :title="$t('payment.risk.api-security.title')"
     :description="$t('payment.risk.api-security.description')"
     :tags="summaryItems"
     :loading="loading"
   >
+    <!-- 配置页外壳: 右栏 header(标题/描述/状态标签/操作按钮)常驻, 内容区内部滚动 -->
     <!-- 右上操作区: 编辑/取消/确认按钮常驻 -->
     <template #actions>
       <!-- 非编辑状态：显示编辑按钮 -->

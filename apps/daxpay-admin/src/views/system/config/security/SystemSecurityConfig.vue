@@ -74,8 +74,8 @@
 </script>
 
 <template>
-  <!-- 配置页外壳: 左右栏各自内部滚动, 右栏 header(标题/描述/操作按钮)常驻 -->
   <PageShell :title="activeTab.label" :description="activeTab.description" :tags="subForm?.summaryTags ?? []">
+    <!-- 配置页外壳: 左右栏各自内部滚动, 右栏 header(标题/描述/操作按钮)常驻 -->
     <!-- 左栏: 分组导航 -->
     <template #nav>
       <!-- 系统安全配置标题 -->
