@@ -4,7 +4,8 @@
     "mchInfo": "Thông tin người bán",
     "mchNamePlaceholder": "Vui lòng nhập tên người bán",
     "mchShortNamePlaceholder": "Vui lòng nhập tên viết tắt của người bán",
-    "subjectTypePlaceholder": "Vui lòng chọn loại người bán"
+    "subjectTypePlaceholder": "Vui lòng chọn loại người bán",
+    "adminNamePlaceholder": "Để trống sẽ mặc định \"Tên merchant + Quản trị\""
   },
   "manage": {
     "info": {

@@ -6,7 +6,8 @@
     "status": "상태",
     "subjectType": "주제 유형",
     "createTime": "시간 만들기",
-    "id": "ID"
+    "id": "ID",
+    "adminName": "관리자 이름"
   },
   "status": {
     "enable": "활성화됨",

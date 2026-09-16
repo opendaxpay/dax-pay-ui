@@ -4,7 +4,8 @@
     "mchInfo": "ข้อมูลร้านค้า",
     "mchNamePlaceholder": "กรุณากรอกชื่อร้านค้า",
     "mchShortNamePlaceholder": "กรุณากรอกชื่อย่อของผู้ขาย",
-    "subjectTypePlaceholder": "กรุณาเลือกประเภทร้านค้า"
+    "subjectTypePlaceholder": "กรุณาเลือกประเภทร้านค้า",
+    "adminNamePlaceholder": "เว้นว่างเพื่อใช้ค่าเริ่มต้น \"ชื่อร้าน+ผู้ดูแล\""
   },
   "manage": {
     "info": {

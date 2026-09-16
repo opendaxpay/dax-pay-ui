@@ -6,7 +6,8 @@
     "status": "状態",
     "subjectType": "件名タイプ",
     "createTime": "時間を作る",
-    "id": "ID"
+    "id": "ID",
+    "adminName": "管理者名"
   },
   "status": {
     "enable": "有効",

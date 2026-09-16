@@ -4,7 +4,8 @@
     "mchInfo": "Maklumat Pedagang",
     "mchNamePlaceholder": "Sila masukkan nama pedagang",
     "mchShortNamePlaceholder": "Sila masukkan nama pendek pedagang",
-    "subjectTypePlaceholder": "Sila pilih jenis pedagang"
+    "subjectTypePlaceholder": "Sila pilih jenis pedagang",
+    "adminNamePlaceholder": "Kosongkan untuk lalai \"Nama Merchant + Pentadbir\""
   },
   "manage": {
     "info": {

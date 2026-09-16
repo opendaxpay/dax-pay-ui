@@ -6,7 +6,8 @@
     "status": "Status",
     "subjectType": "Jenis Mata Pelajaran",
     "createTime": "Cipta Masa",
-    "id": "ID"
+    "id": "ID",
+    "adminName": "Nama Pentadbir"
   },
   "status": {
     "enable": "Didayakan",

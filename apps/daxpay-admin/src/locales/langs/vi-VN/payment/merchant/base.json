@@ -6,7 +6,8 @@
     "status": "Trạng thái",
     "subjectType": "Loại chủ đề",
     "createTime": "Tạo thời gian",
-    "id": "NHẬN DẠNG"
+    "id": "NHẬN DẠNG",
+    "adminName": "Tên quản trị"
   },
   "status": {
     "enable": "Đã bật",

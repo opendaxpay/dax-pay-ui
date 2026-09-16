@@ -6,7 +6,8 @@
     "status": "Status",
     "subjectType": "Jenis Subjek",
     "createTime": "Ciptakan Waktu",
-    "id": "PENGENAL"
+    "id": "PENGENAL",
+    "adminName": "Nama Admin"
   },
   "status": {
     "enable": "Diaktifkan",

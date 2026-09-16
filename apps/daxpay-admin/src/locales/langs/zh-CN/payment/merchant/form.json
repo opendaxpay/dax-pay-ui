@@ -4,7 +4,8 @@
     "mchInfo": "商户信息",
     "mchNamePlaceholder": "请输入商户名称",
     "mchShortNamePlaceholder": "请输入商户简称",
-    "subjectTypePlaceholder": "请选择商户类型"
+    "subjectTypePlaceholder": "请选择商户类型",
+    "adminNamePlaceholder": "留空默认为「商户名称+管理员」"
   },
   "manage": {
     "info": {

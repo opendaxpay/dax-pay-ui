@@ -6,7 +6,8 @@
     "status": "状态",
     "subjectType": "主体类型",
     "createTime": "创建时间",
-    "id": "主键"
+    "id": "主键",
+    "adminName": "管理员姓名"
   },
   "status": {
     "enable": "启用",

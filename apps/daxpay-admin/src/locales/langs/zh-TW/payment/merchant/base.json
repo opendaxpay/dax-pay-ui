@@ -6,7 +6,8 @@
     "status": "狀態",
     "subjectType": "主體型別",
     "createTime": "建立時間",
-    "id": "主鍵"
+    "id": "主鍵",
+    "adminName": "管理員姓名"
   },
   "status": {
     "enable": "啟用",

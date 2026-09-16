@@ -6,7 +6,8 @@
     "status": "Status",
     "subjectType": "Subject Type",
     "createTime": "Create Time",
-    "id": "ID"
+    "id": "ID",
+    "adminName": "Admin Name"
   },
   "status": {
     "enable": "Enabled",

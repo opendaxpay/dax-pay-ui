@@ -4,7 +4,8 @@
     "mchInfo": "판매자 정보",
     "mchNamePlaceholder": "판매자 이름을 입력하세요.",
     "mchShortNamePlaceholder": "판매자 약칭을 입력하세요.",
-    "subjectTypePlaceholder": "판매자 유형을 선택하세요."
+    "subjectTypePlaceholder": "판매자 유형을 선택하세요.",
+    "adminNamePlaceholder": "비워 두면 \"상호명+관리자\"가 기본값으로 설정됩니다"
   },
   "manage": {
     "info": {

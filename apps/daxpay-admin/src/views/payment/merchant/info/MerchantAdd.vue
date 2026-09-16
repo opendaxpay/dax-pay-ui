@@ -29,6 +29,7 @@
     mchShortName: '',
     subjectType: '',
     account: '',
+    adminName: '',
     password: '',
     confirmPassword: '',
   });
@@ -59,6 +60,7 @@
       mchShortName: '',
       subjectType: '',
       account: '',
+      adminName: '',
       password: '',
       confirmPassword: '',
     };
@@ -115,6 +117,8 @@
         mchShortName: formState.value.mchShortName!,
         subjectType: formState.value.subjectType!,
         account: formState.value.account!,
+        // 管理员姓名可选: 留空由后端默认「商户名称+管理员」
+        adminName: formState.value.adminName || undefined,
         password: encryptedPassword,
       });
       // 切换到结果态展示商户管理员初始密码
@@ -179,6 +183,15 @@
 
         <a-form-item :label="$t('common.account')" name="account" validate-first>
           <a-input v-model:value="formState.account" :placeholder="$t('common.accountPlaceholder')" />
+        </a-form-item>
+
+        <!-- 管理员姓名(可选): 留空默认「商户名称+管理员」 -->
+        <a-form-item :label="$t('payment.merchant.base.field.adminName')" name="adminName">
+          <a-input
+            v-model:value="formState.adminName"
+            :placeholder="$t('payment.merchant.form.add.adminNamePlaceholder')"
+            :maxlength="50"
+          />
         </a-form-item>
 
         <a-form-item :label="$t('common.password')" name="password">

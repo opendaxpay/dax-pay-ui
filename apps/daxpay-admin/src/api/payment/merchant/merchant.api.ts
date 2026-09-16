@@ -86,6 +86,8 @@ export interface MerchantCreateParam {
   mchShortName: string;
   subjectType: string;
   account: string;
+  /** 管理员姓名, 可选; 不传默认「商户名称+管理员」 */
+  adminName?: string;
   /** 管理员密码(RSA 加密), 可选; 不传由后端生成随机初始密码 */
   password?: string;
 }
