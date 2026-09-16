@@ -139,5 +139,8 @@
   "transferAppPlaceholder": "振込元アプリを選択してください",
   "transferConfigTipDesc": "振込元アプリをバインド: 振込時にはこのアプリのAlipay AppIdと鍵を使用します。先に「アプリ管理」でアプリと鍵を設定してください",
   "transferAppNotConfigured": "振込アプリが未バインドです。「編集」から選択してください",
-  "globalListTip": "チャネルマーチャントの追加・削除は、マーチャント管理内のチャネルマーチャント一覧から行う必要があります"
+  "globalListTip": "チャネルマーチャントの追加・削除は、マーチャント管理内のチャネルマーチャント一覧から行う必要があります",
+  "groupDanger": "危険操作",
+  "cardDelete": "チャネル加盟店を削除",
+  "cardDeleteDesc": "削除すると本チャネル加盟店と全設定は使用不可になります。取り消せません。"
 }

@@ -29,6 +29,9 @@
     "cardWxApp": "결제 앱(위챗)",
     "cardWxAppDesc": "해당 가맹점의 위챗 공식계정·미니프로그램 등 오픈 앱 관리",
     "cardDyApp": "결제 앱(두인)",
-    "cardDyAppDesc": "해당 가맹점의 두인 미니프로그램·모바일 앱·웹 앱 등 오픈 앱 관리"
+    "cardDyAppDesc": "해당 가맹점의 두인 미니프로그램·모바일 앱·웹 앱 등 오픈 앱 관리",
+    "groupDanger": "위험 작업",
+    "cardDeleteMerchant": "가맹점 삭제",
+    "cardDeleteMerchantDesc": "가맹점과 모든 관련 설정을 삭제합니다. 되돌릴 수 없습니다."
   }
 }

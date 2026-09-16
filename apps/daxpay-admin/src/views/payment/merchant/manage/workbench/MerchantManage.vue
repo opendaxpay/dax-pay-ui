@@ -8,7 +8,10 @@
 
   import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
+  import { PermCodes } from '#/constants/perm-codes';
+  import { useDeleteConfirm } from '#/hooks/useDeleteConfirm';
   import { useMessage } from '#/hooks/useMessage';
+  import { usePermission } from '#/hooks/usePermission';
   import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
 
   defineOptions({ name: 'MerchantManage' });
@@ -21,6 +24,8 @@
     fallbackPath: '/payment/merchant',
   });
   const { message: msg } = useMessage();
+  const { openDeleteConfirm } = useDeleteConfirm();
+  const { hasPermission } = usePermission();
 
   const loading = ref(false);
   const mchNo = ref<string>('');
@@ -135,6 +140,25 @@
         },
       ],
     },
+    // 危险操作: 仅持有商户管理权限的用户可见(删除入口从列表操作列移入此处)
+    ...(hasPermission(PermCodes.Merchant.Info.MANAGE)
+      ? [
+          {
+            group: $t('payment.merchant.workbench.workbench.groupDanger'),
+            color: 'red',
+            cards: [
+              {
+                key: 'deleteMerchant',
+                // 删除商户
+                title: $t('payment.merchant.workbench.workbench.cardDeleteMerchant'),
+                icon: 'ant-design:delete-outlined',
+                // 删除商户及其全部关联配置, 不可恢复
+                description: $t('payment.merchant.workbench.workbench.cardDeleteMerchantDesc'),
+              },
+            ],
+          },
+        ]
+      : []),
   ]);
 
   /**
@@ -145,6 +169,7 @@
       blue: 'bg-blue-500',
       green: 'bg-emerald-500',
       purple: 'bg-purple-500',
+      red: 'bg-red-500',
     };
     return map[color] || 'bg-gray-500';
   }
@@ -157,6 +182,7 @@
       blue: 'bg-primary/10 text-primary',
       green: 'bg-success/10 text-success',
       purple: 'bg-purple-500/10 text-purple-500',
+      red: 'bg-red-500/10 text-red-500',
     };
     return map[color] || 'bg-muted text-muted-foreground';
   }
@@ -189,11 +215,12 @@
   /**
    * 卡片点击跳转（固定带 mchNo；卡片可附带额外 query）
    */
-  function handleCardClick(card: {
-    key: string;
-    route?: string;
-    query?: Record<string, string>;
-  }) {
+  function handleCardClick(card: { key: string; query?: Record<string, string>; route?: string }) {
+    // 删除商户卡片 → 强确认删除
+    if (card.key === 'deleteMerchant') {
+      handleDeleteMerchant();
+      return;
+    }
     if (card.route) {
       router.push({
         path: card.route,
@@ -202,6 +229,23 @@
     } else {
       msg.info($t('payment.merchant.workbench.workbench.developing'));
     }
+  }
+
+  /**
+   * 删除商户（强确认：用户必须输入商户名称匹配才能确认，成功后返回商户列表）
+   */
+  function handleDeleteMerchant() {
+    const merchant = merchantInfo.value;
+    openDeleteConfirm({
+      name: merchant.mchName || '',
+      verificationText: merchant.mchName || '',
+      title: $t('payment.merchant.base.action.delete'),
+      onConfirm: () =>
+        MerchantApi.delete(merchant.id!).then(() => {
+          msg.success($t('common.deleteSuccess'));
+          router.push('/payment/merchant');
+        }),
+    });
   }
 
   /**
@@ -268,8 +312,10 @@
                     <IconifyIcon :icon="card.icon" class="h-7 w-7" />
                   </div>
 
+                  <!-- 危险操作组 hover 标题变红, 其余组为主题色 -->
                   <div
-                    class="mb-1.5 text-base font-bold text-foreground group-hover:text-primary transition-colors duration-300"
+                    class="mb-1.5 text-base font-bold text-foreground transition-colors duration-300"
+                    :class="group.color === 'red' ? 'group-hover:text-red-500' : 'group-hover:text-primary'"
                     >{{ card.title }}</div
                   >
                   <a-tooltip :title="card.description" placement="bottom">

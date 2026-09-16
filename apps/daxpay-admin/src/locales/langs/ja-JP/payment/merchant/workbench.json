@@ -29,6 +29,9 @@
     "cardWxApp": "決済アプリ(WeChat)",
     "cardWxAppDesc": "当該加盟店のWeChat公式アカウント・ミニプログラム等の開放アプリを管理",
     "cardDyApp": "決済アプリ(Douyin)",
-    "cardDyAppDesc": "当該加盟店のDouyinミニプログラム・モバイルアプリ・ウェブアプリ等の開放アプリを管理"
+    "cardDyAppDesc": "当該加盟店のDouyinミニプログラム・モバイルアプリ・ウェブアプリ等の開放アプリを管理",
+    "groupDanger": "危険操作",
+    "cardDeleteMerchant": "加盟店を削除",
+    "cardDeleteMerchantDesc": "加盟店と関連する全設定を削除します。取り消せません。"
   }
 }

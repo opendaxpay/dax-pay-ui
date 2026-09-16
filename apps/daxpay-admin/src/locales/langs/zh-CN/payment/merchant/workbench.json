@@ -29,6 +29,9 @@
     "cardWxApp": "支付应用(微信)",
     "cardWxAppDesc": "管理该商户的微信公众号、小程序等开放应用",
     "cardDyApp": "支付应用(抖音)",
-    "cardDyAppDesc": "管理该商户的抖音小程序、移动应用、网页应用等开放应用"
+    "cardDyAppDesc": "管理该商户的抖音小程序、移动应用、网页应用等开放应用",
+    "groupDanger": "危险操作",
+    "cardDeleteMerchant": "删除商户",
+    "cardDeleteMerchantDesc": "删除商户及其全部关联配置，操作不可撤销"
   }
 }

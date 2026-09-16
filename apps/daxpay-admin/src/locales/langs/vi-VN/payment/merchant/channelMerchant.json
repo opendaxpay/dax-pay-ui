@@ -139,5 +139,8 @@
   "transferSceneReportInfoContent": "Nội dung thông tin báo cáo",
   "transferSceneSetDefaultConfirm": "Xác nhận đặt kịch bản này làm mặc định? Khi chuyển khoản mà không chỉ định kịch bản, kịch bản mặc định sẽ được sử dụng",
   "transferSceneDefaultTip": "Mỗi merchant kênh chỉ có thể có một kịch bản mặc định",
-  "globalListTip": "Việc thêm hoặc xóa người bán kênh chỉ có thể thực hiện từ danh sách người bán kênh trong Quản lý người bán"
+  "globalListTip": "Việc thêm hoặc xóa người bán kênh chỉ có thể thực hiện từ danh sách người bán kênh trong Quản lý người bán",
+  "groupDanger": "Vùng nguy hiểm",
+  "cardDelete": "Xóa thương nhân kênh",
+  "cardDeleteDesc": "Sau khi xóa, thương nhân kênh này cùng toàn bộ cấu hình sẽ không thể sử dụng. Không thể hoàn tác."
 }

@@ -139,5 +139,8 @@
   "transferAppPlaceholder": "Please select the transfer-out app",
   "transferConfigTipDesc": "Bind the transfer-out app: its Alipay AppId and keys will be used when initiating transfers. Configure the app and keys in 'App Management' first",
   "transferAppNotConfigured": "No transfer app bound yet, click 'Edit' to select one",
-  "globalListTip": "Adding or deleting channel merchants is only available from the channel merchant list under Merchant Management"
+  "globalListTip": "Adding or deleting channel merchants is only available from the channel merchant list under Merchant Management",
+  "groupDanger": "Danger Zone",
+  "cardDelete": "Delete Channel Merchant",
+  "cardDeleteDesc": "Once deleted, this channel merchant and all its configurations become unusable. This cannot be undone."
 }

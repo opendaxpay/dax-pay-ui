@@ -139,5 +139,8 @@
   "transferAppPlaceholder": "请选择转账转出应用",
   "transferConfigTipDesc": "绑定转账转出应用: 发起转账时将使用该应用的支付宝AppId与密钥, 需先在「应用管理」中配置应用及密钥",
   "transferAppNotConfigured": "尚未绑定转账应用, 点击「编辑」选择转出应用",
-  "globalListTip": "通道商户的增删需要从商户管理中进入到通道商户列表中才可以进行管理"
+  "globalListTip": "通道商户的增删需要从商户管理中进入到通道商户列表中才可以进行管理",
+  "groupDanger": "危险操作",
+  "cardDelete": "删除通道商户",
+  "cardDeleteDesc": "删除后该通道商户及其所有配置将不可使用，操作不可撤销"
 }

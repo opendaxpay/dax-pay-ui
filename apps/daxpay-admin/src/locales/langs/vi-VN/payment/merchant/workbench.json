@@ -29,6 +29,9 @@
     "cardWxApp": "Ứng dụng thanh toán (WeChat)",
     "cardWxAppDesc": "Quản lý tài khoản chính thức WeChat, Mini Program và ứng dụng mở khác của thương nhân này",
     "cardDyApp": "Ứng dụng thanh toán (Douyin)",
-    "cardDyAppDesc": "Quản lý mini program, ứng dụng mobile, ứng dụng web Douyin và ứng dụng mở khác của thương nhân này"
+    "cardDyAppDesc": "Quản lý mini program, ứng dụng mobile, ứng dụng web Douyin và ứng dụng mở khác của thương nhân này",
+    "groupDanger": "Vùng nguy hiểm",
+    "cardDeleteMerchant": "Xóa thương nhân",
+    "cardDeleteMerchantDesc": "Xóa thương nhân này cùng toàn bộ cấu hình liên quan. Không thể hoàn tác."
   }
 }

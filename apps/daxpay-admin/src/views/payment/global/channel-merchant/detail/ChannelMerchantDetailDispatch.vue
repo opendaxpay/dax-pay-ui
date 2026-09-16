@@ -13,7 +13,11 @@
     type ChannelMerchantResult,
   } from '#/api/payment/global/channel-merchant/channel-merchant.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
+  import { PermCodes } from '#/constants/perm-codes';
   import { ProductEnum, productI18nMap, productNameMap } from '#/enums/payment';
+  import { useDeleteConfirm } from '#/hooks/useDeleteConfirm';
+  import { useMessage } from '#/hooks/useMessage';
+  import { usePermission } from '#/hooks/usePermission';
   import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
 
   defineOptions({ name: 'ChannelMerchantDetailDispatch' });
@@ -119,6 +123,9 @@
 
   const route = useRoute();
   const router = useRouter();
+  const { message: msg } = useMessage();
+  const { openDeleteConfirm } = useDeleteConfirm();
+  const { hasPermission } = usePermission();
 
   const routeContext = useRequiredRouteQuery({
     keys: ['mchNo', 'id'],
@@ -195,6 +202,30 @@
     router.push({
       path: '/payment/global/channel-merchant',
       query: { mchNo: mchNo.value },
+    });
+  }
+
+  /**
+   * 删除通道商户（强确认：用户必须输入通道商户名称匹配才能确认，成功后返回通道商户列表）
+   */
+  function handleDeleteChannelMerchant() {
+    const record = channelMerchant.value;
+    if (!record.id) {
+      return;
+    }
+    openDeleteConfirm({
+      name: record.channelMerchantName || '',
+      verificationText: record.channelMerchantName || '',
+      title: $t('payment.merchant.channelMerchant.confirmDeleteOk'),
+      descriptionKey: 'payment.merchant.channelMerchant.confirmDeleteDesc',
+      onConfirm: () =>
+        ChannelMerchantApi.delete(record.id!).then(() => {
+          msg.success($t('payment.merchant.channelMerchant.deleteSuccess'));
+          router.push({
+            path: '/payment/global/channel-merchant',
+            query: { mchNo: mchNo.value },
+          });
+        }),
     });
   }
 
@@ -297,12 +328,7 @@
       <template #title>
         <div class="flex w-full items-center justify-between gap-4">
           <!-- 国际化：按通道动态展示页头标题 -->
-          <PageTitleBar
-            back
-            :title="pageTitle"
-            :name="channelMerchant.channelMerchantName || ''"
-            @back="goBack"
-          >
+          <PageTitleBar back :title="pageTitle" :name="channelMerchant.channelMerchantName || ''" @back="goBack">
             <!-- 银联商务多产品共页, 用标签区分具体产品类型(如"银联商务(C扫B)") -->
             <a-tag v-if="isUmsProduct(resolvedProduct) && productTypeName" color="blue" class="!ml-1">
               {{ productTypeName }}
@@ -331,7 +357,71 @@
         <div v-else class="flex items-center justify-center" style="min-height: 400px">
           <a-empty :description="$t('payment.merchant.channelMerchant.detailNotSupportYet')" />
         </div>
+
+        <!-- 危险操作分组: 删除入口从列表操作列移入此处(与工作台功能卡片同款图标形式) -->
+        <div v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)" class="mt-10 border-t border-border pt-10">
+          <div class="mb-6 flex items-center gap-3 px-2">
+            <div class="h-6 w-1.5 rounded-full shadow-sm bg-red-500"></div>
+            <span class="text-xl font-extrabold tracking-tight text-foreground">{{
+              $t('payment.merchant.channelMerchant.groupDanger')
+            }}</span>
+          </div>
+          <div class="card-grid">
+            <a-card
+              hoverable
+              class="group relative overflow-hidden rounded-2xl border-none bg-card shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
+              :styles="{ body: { padding: '24px 20px' } }"
+              @click="handleDeleteChannelMerchant"
+            >
+              <div class="flex flex-col items-center text-center">
+                <div
+                  class="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:shadow-md bg-red-500/10 text-red-500"
+                >
+                  <IconifyIcon icon="ant-design:delete-outlined" class="h-7 w-7" />
+                </div>
+                <div
+                  class="mb-1.5 text-base font-bold text-foreground transition-colors duration-300 group-hover:text-red-500"
+                  >{{ $t('payment.merchant.channelMerchant.cardDelete') }}</div
+                >
+                <a-tooltip :title="$t('payment.merchant.channelMerchant.cardDeleteDesc')" placement="bottom">
+                  <div
+                    class="card-desc line-clamp-1 text-xs leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-foreground"
+                  >
+                    {{ $t('payment.merchant.channelMerchant.cardDeleteDesc') }}
+                  </div>
+                </a-tooltip>
+              </div>
+              <div
+                class="absolute bottom-0 left-0 h-1.5 w-0 transition-all duration-300 group-hover:w-full bg-red-500"
+              ></div>
+            </a-card>
+          </div>
+        </div>
       </a-spin>
     </a-card>
   </div>
 </template>
+
+<style scoped>
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 220px);
+    gap: 24px;
+    justify-content: center;
+  }
+
+  .card-desc {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
+  .line-clamp-1 {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+</style>

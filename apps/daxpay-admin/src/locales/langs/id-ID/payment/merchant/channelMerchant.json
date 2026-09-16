@@ -139,5 +139,8 @@
   "transferSceneReportInfoContent": "Konten Informasi yang Dilaporkan",
   "transferSceneSetDefaultConfirm": "Jadikan skenario ini sebagai default? Skenario default akan digunakan saat transfer dikirim tanpa menentukan skenario",
   "transferSceneDefaultTip": "Satu merchant saluran hanya dapat memiliki satu skenario default",
-  "globalListTip": "Penambahan atau penghapusan pedagang saluran hanya dapat dilakukan dari daftar pedagang saluran di Manajemen Pedagang"
+  "globalListTip": "Penambahan atau penghapusan pedagang saluran hanya dapat dilakukan dari daftar pedagang saluran di Manajemen Pedagang",
+  "groupDanger": "Zona Berbahaya",
+  "cardDelete": "Hapus Merchant Saluran",
+  "cardDeleteDesc": "Setelah dihapus, merchant saluran ini beserta seluruh konfigurasinya tidak dapat digunakan lagi. Tidak dapat dibatalkan."
 }

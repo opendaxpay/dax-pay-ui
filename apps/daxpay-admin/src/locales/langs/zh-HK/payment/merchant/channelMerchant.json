@@ -139,5 +139,8 @@
   "transferAppPlaceholder": "請選擇轉賬轉出應用",
   "transferConfigTipDesc": "綁定轉賬轉出應用: 發起轉賬時將使用該應用的支付寶AppId與密鑰, 需先在「應用管理」中設定應用及密鑰",
   "transferAppNotConfigured": "尚未綁定轉賬應用, 點擊「編輯」選擇轉出應用",
-  "globalListTip": "通道商户的增刪需要從商戶管理中進入到通道商户列表中才可以進行管理"
+  "globalListTip": "通道商户的增刪需要從商戶管理中進入到通道商户列表中才可以進行管理",
+  "groupDanger": "危險操作",
+  "cardDelete": "刪除通道商戶",
+  "cardDeleteDesc": "刪除後該通道商戶及其所有配置將不可使用，操作不可撤銷"
 }
