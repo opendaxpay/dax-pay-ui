@@ -215,7 +215,7 @@
 <style lang="less" scoped>
   .password-panel {
     padding: 12px 16px;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    border: 1px solid hsl(var(--border));
     border-radius: 8px;
   }
 
@@ -228,7 +228,7 @@
 
   .password-label {
     width: 64px;
-    color: rgba(0, 0, 0, 0.45);
+    color: hsl(var(--muted-foreground));
   }
 
   .password-value {
@@ -240,13 +240,5 @@
     font-size: 15px;
     font-weight: 600;
     letter-spacing: 0.5px;
-  }
-
-  .dark .password-label {
-    color: rgba(255, 255, 255, 0.45);
-  }
-
-  .dark .password-panel {
-    border-color: rgba(255, 255, 255, 0.08);
   }
 </style>

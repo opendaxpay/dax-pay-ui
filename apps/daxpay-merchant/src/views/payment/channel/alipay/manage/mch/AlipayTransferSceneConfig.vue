@@ -183,20 +183,20 @@
   .scene-card {
     display: flex;
     flex-direction: column;
-    border: 1px solid #e5e7eb;
+    border: 1px solid hsl(var(--border));
     border-radius: 12px;
-    background: #fff;
+    background: hsl(var(--card));
     padding: 16px;
     transition: all 0.3s ease;
   }
 
   .scene-card:hover {
-    border-color: #1677ff;
+    border-color: hsl(var(--primary));
     box-shadow: 0 4px 16px rgb(0 0 0 / 8%);
   }
 
   .scene-card-muted {
-    background: #fafafa;
+    background: hsl(var(--muted) / 0.4);
   }
 
   .scene-card-header {
@@ -216,7 +216,7 @@
   .scene-card-name {
     font-size: 15px;
     font-weight: 600;
-    color: #303133;
+    color: hsl(var(--foreground));
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -229,7 +229,7 @@
   .scene-card-section-title {
     font-size: 12px;
     font-weight: 600;
-    color: #909399;
+    color: hsl(var(--muted-foreground));
     margin-bottom: 4px;
   }
 
@@ -244,13 +244,13 @@
     flex-shrink: 0;
     font-size: 13px;
     font-weight: 500;
-    color: #303133;
+    color: hsl(var(--foreground));
   }
 
   .scene-field-desc {
     flex: 1;
     font-size: 12px;
-    color: #909399;
+    color: hsl(var(--muted-foreground));
     line-height: 1.5;
     overflow: hidden;
     text-overflow: ellipsis;

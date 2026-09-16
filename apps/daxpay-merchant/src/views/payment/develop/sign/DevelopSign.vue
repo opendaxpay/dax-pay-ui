@@ -191,7 +191,7 @@
                 {{ $t('payment.develop.sign.result.divider') }}
               </a-divider>
 
-              <div v-if="signResult.signStr" class="result-item mb-4 rounded bg-gray-50 p-4">
+              <div v-if="signResult.signStr" class="result-item mb-4 rounded bg-muted p-4">
                 <div class="mb-2 flex items-center justify-between">
                   <h4 class="m-0 text-sm font-medium">{{ $t('payment.develop.sign.field.signStr') }}</h4>
                   <a-button size="small" type="link" @click="copyToClipboard(signResult.signStr)">
@@ -201,10 +201,10 @@
                     {{ $t('payment.develop.sign.btn.copy') }}
                   </a-button>
                 </div>
-                <div class="code-box rounded border bg-white p-3">{{ signResult.signStr }}</div>
+                <div class="code-box rounded border border-border bg-background p-3">{{ signResult.signStr }}</div>
               </div>
 
-              <div v-if="signResult.sign" class="result-item rounded bg-gray-50 p-4">
+              <div v-if="signResult.sign" class="result-item rounded bg-muted p-4">
                 <div class="mb-2 flex items-center justify-between">
                   <h4 class="m-0 text-sm font-medium">{{ $t('payment.develop.sign.field.signValue') }}</h4>
                   <a-button size="small" type="link" @click="copyToClipboard(signResult.sign)">
@@ -214,7 +214,7 @@
                     {{ $t('payment.develop.sign.btn.copy') }}
                   </a-button>
                 </div>
-                <div class="code-box break-all rounded border bg-white p-3">{{ signResult.sign }}</div>
+                <div class="code-box break-all rounded border border-border bg-background p-3">{{ signResult.sign }}</div>
               </div>
             </div>
           </div>
@@ -279,7 +279,7 @@
               <!-- 验签结果区 -->
               <a-col :span="8">
                 <div
-                  class="verify-result-container flex h-full items-center justify-center border-l border-gray-100 pl-6"
+                  class="verify-result-container flex h-full items-center justify-center border-l border-border pl-6"
                 >
                   <div v-if="verifyResult !== null" class="w-full">
                     <a-result
@@ -299,7 +299,7 @@
                       </template>
                     </a-result>
                   </div>
-                  <div v-else class="text-center text-gray-400">
+                  <div v-else class="text-center text-muted-foreground">
                     <IconifyIcon icon="ant-design:safety-certificate-outlined" style="font-size: 64px; opacity: 0.2" />
                     <p class="mt-4">{{ $t('payment.develop.sign.result.verifyEmpty') }}</p>
                   </div>
@@ -315,21 +315,18 @@
 
 <style scoped lang="less">
   .develop-sign-debug {
-    min-height: calc(100vh - 80px);
-    background-color: #f0f2f5;
-
     .code-textarea {
       width: 100%;
       padding: 8px 11px;
       font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
       font-size: 13px;
       line-height: 1.6;
-      background-color: #fafafa;
+      background-color: hsl(var(--muted) / 0.4);
       border-radius: 4px;
       transition: all 0.3s;
 
       &:focus {
-        background-color: #fff;
+        background-color: hsl(var(--background));
       }
     }
 
@@ -344,7 +341,7 @@
     }
 
     .result-container {
-      background: #fff;
+      background: hsl(var(--card));
       border-radius: 8px;
     }
 

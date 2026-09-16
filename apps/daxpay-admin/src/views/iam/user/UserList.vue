@@ -517,7 +517,7 @@
                   v-if="hasPermission(PermCodes.Iam.User.MANAGE)"
                   href="javascript:"
                   :class="isAdminClient ? '' : 'ant-typography-disabled'"
-                  :style="isAdminClient ? '' : 'pointer-events: none; color: rgba(0, 0, 0, 0.25);'"
+                  :style="isAdminClient ? '' : 'pointer-events: none;'"
                   @click="isAdminClient && handleEdit(row)"
                 >
                   {{ $t('common.edit') }}

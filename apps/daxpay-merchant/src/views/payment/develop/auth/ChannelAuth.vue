@@ -447,8 +447,7 @@
 
 <style scoped>
   .channel-auth-debug {
-    min-height: calc(100vh - 80px);
-    background-color: #f0f2f5;
+    // 页面背景由布局主题提供, 不自设底色(暗色模式跟随)
   }
 
   /* tabs 与下方内容：scoped 固定 gap，不依赖 tailwind utility */
@@ -467,8 +466,8 @@
 
   .form-panel {
     padding: 16px;
-    background: #fff;
-    border: 1px solid #e5e7eb;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
     border-radius: 8px;
   }
 
@@ -483,8 +482,8 @@
 
   .auth-url-box {
     padding: 12px;
-    background: #f9fafb;
-    border: 1px dashed #d1d5db;
+    background: hsl(var(--muted) / 0.4);
+    border: 1px dashed hsl(var(--border));
     border-radius: 8px;
   }
 
@@ -498,12 +497,12 @@
   .auth-url-label {
     font-size: 12px;
     font-weight: 500;
-    color: #9ca3af;
+    color: hsl(var(--muted-foreground));
   }
 
   .auth-url-text {
     font-size: 12px;
-    color: #6b7280;
+    color: hsl(var(--foreground) / 0.75);
     word-break: break-all;
   }
 
@@ -526,8 +525,8 @@
     min-height: 380px;
     height: 100%;
     padding: 24px;
-    background: #f9fafb;
-    border: 1px dashed #d1d5db;
+    background: hsl(var(--muted) / 0.4);
+    border: 1px dashed hsl(var(--border));
     border-radius: 12px;
   }
 
@@ -541,6 +540,7 @@
   .qr-card {
     display: inline-block;
     padding: 20px;
+    // 二维码刻意保持白底: 暗色模式下也需白底保证扫码识别率
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 1px 2px rgb(0 0 0 / 6%);
@@ -590,7 +590,7 @@
     margin-top: 20px;
     margin-bottom: 0;
     font-size: 14px;
-    color: #6b7280;
+    color: hsl(var(--muted-foreground));
   }
 
   .qr-tip-icon {
@@ -603,7 +603,7 @@
     align-items: center;
     justify-content: center;
     padding: 40px 0;
-    color: #9ca3af;
+    color: hsl(var(--muted-foreground));
   }
 
   .qr-empty-icon {
@@ -630,15 +630,15 @@
 
   .result-card {
     padding: 16px;
-    background: #fff;
-    border: 1px solid #e5e7eb;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
     border-radius: 8px;
     box-shadow: 0 1px 2px rgb(0 0 0 / 4%);
     transition: border-color 0.2s;
   }
 
   .result-card:hover {
-    border-color: #1677ff;
+    border-color: hsl(var(--primary));
   }
 
   .result-card-header {
@@ -651,14 +651,14 @@
   .result-card-label {
     font-size: 12px;
     font-weight: 700;
-    color: #9ca3af;
+    color: hsl(var(--muted-foreground));
     letter-spacing: 0.05em;
     text-transform: uppercase;
   }
 
   .result-card-value {
     font-size: 14px;
-    color: #2563eb;
+    color: hsl(var(--primary));
     word-break: break-all;
   }
 

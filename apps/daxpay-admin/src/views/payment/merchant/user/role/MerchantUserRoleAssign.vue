@@ -166,21 +166,21 @@
     justify-content: space-between;
     padding: 16px;
     cursor: pointer;
-    background-color: #fff;
-    border: 1px solid #f0f0f0;
+    background-color: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
     border-radius: 8px;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .role-item-card:hover {
-    background-color: #fafafa;
-    border-color: #d9d9d9;
+    background-color: hsl(var(--muted));
+    border-color: hsl(var(--foreground) / 0.2);
     box-shadow: 0 2px 8px rgb(0 0 0 / 5%);
   }
 
   .role-item-card.is-active {
-    background-color: #e6f7ff;
-    border-color: #1890ff;
+    background-color: hsl(var(--primary) / 0.12);
+    border-color: hsl(var(--primary));
   }
 
   .role-item-main {
@@ -199,21 +199,21 @@
     font-size: 15px;
     font-weight: 600;
     line-height: 1.4;
-    color: #262626;
+    color: hsl(var(--foreground));
   }
 
   .role-code {
     font-family: monaco, Consolas, 'Lucida Console', monospace;
     font-size: 12px;
-    color: #8c8c8c;
+    color: hsl(var(--muted-foreground));
   }
 
   .is-active .role-name {
-    color: #1890ff;
+    color: hsl(var(--primary));
   }
 
   .is-active .role-code {
-    color: #40a9ff;
+    color: hsl(var(--primary) / 0.75);
   }
 
   .active-check {
@@ -232,7 +232,7 @@
     width: 0;
     height: 0;
     content: '';
-    border-top: 24px solid #1890ff;
+    border-top: 24px solid hsl(var(--primary));
     border-left: 24px solid transparent;
   }
 
@@ -263,11 +263,11 @@
   }
 
   .role-list::-webkit-scrollbar-thumb {
-    background: #e8e8e8;
+    background: hsl(var(--border));
     border-radius: 10px;
   }
 
   .role-list::-webkit-scrollbar-thumb:hover {
-    background: #ccc;
+    background: hsl(var(--muted-foreground) / 0.4);
   }
 </style>

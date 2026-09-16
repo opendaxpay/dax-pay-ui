@@ -129,7 +129,7 @@
         <div
           v-for="item in boundList"
           :key="item.terminalNo"
-          class="flex items-center justify-between border-b border-gray-100 py-3 last:border-0"
+          class="flex items-center justify-between border-b border-border py-3 last:border-0"
         >
           <div class="min-w-0 flex-1">
             <div class="truncate font-medium">{{ item.name }}</div>

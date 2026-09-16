@@ -415,7 +415,7 @@
     line-height: 1.5;
     white-space: pre-wrap;
     word-break: break-all;
-    background-color: #f6f8fa;
+    background-color: hsl(var(--muted) / 0.4);
     border-radius: 6px;
   }
 </style>
