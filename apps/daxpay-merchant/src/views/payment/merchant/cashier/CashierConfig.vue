@@ -5,12 +5,11 @@
   import { useIsMobile } from '@vben/hooks';
   import { $t } from '@vben/locales';
 
-  import { IconifyIcon } from '@vben-core/icons';
+  import { PageShell } from '@daxpay/ui-biz/components/page-shell';
 
   import { CashierConfigApi, type CashierItemResult } from '#/api/payment/merchant/cashier.api';
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import { PayRouteApi } from '#/api/payment/route/pay-route.api';
-  import { PageShell } from '@daxpay/ui-biz/components/page-shell';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
@@ -227,16 +226,13 @@
   />
   <PageShell
     v-else
+    back
     :title="$t('payment.merchant.cashier.cashier.title')"
-    :description="appInfo.appName || ''"
+    :name="appInfo.appName || ''"
     :loading="loading"
+    @back="handleBack"
   >
     <template #actions>
-      <a-button type="text" @click="handleBack">
-        <template #icon>
-          <IconifyIcon icon="ant-design:arrow-left-outlined" />
-        </template>
-      </a-button>
       <a-button v-if="canManage" type="primary" @click="handleAdd">
         {{ $t('payment.merchant.cashier.cashier.addItem') }}
       </a-button>
@@ -389,9 +385,9 @@
             {{ $t('payment.merchant.cashier.cashier.empty') }}
           </div>
         </template>
-  </PageShell>
-
+    <!-- 档位编辑抽屉；必须留在 PageShell 内: 页面模板多根节点会让布局层 Transition 丢掉离场动画 -->
     <CashierItemEdit ref="itemEditRef" @ok="loadList" />
+  </PageShell>
 </template>
 
 <style scoped>

@@ -37,6 +37,7 @@
   "source": "Source",
   "enable": "Status",
   "envStatus": "Environment",
+  "envStatusTip": "Environment is fixed when created and does not change when the product is switched",
   "remark": "Remark",
   "sourceManual": "Manual",
   "typeSub": "Sub Merchant",

@@ -37,6 +37,7 @@
   "source": "Nguồn",
   "enable": "Trạng thái",
   "envStatus": "Môi trường",
+  "envStatusTip": "Môi trường được cố định khi tạo và không thay đổi khi chuyển sản phẩm",
   "remark": "Nhận xét",
   "sourceManual": "Thủ công",
   "typeSub": "Người bán phụ",

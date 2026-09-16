@@ -2,17 +2,20 @@
   import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
 
   import { computed, onMounted, ref } from 'vue';
+  import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
+  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+
   import {
     MchWxDomainVerifyApi,
     type MchWxDomainVerifyQuery,
     type MchWxDomainVerifyVo,
   } from '#/api/payment/merchant/mch-wx-domain-verify.api';
+  import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import { BQuery, type QueryField } from '#/components/query';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
@@ -23,6 +26,8 @@
   import MchWxDomainVerifyEdit from './MchWxDomainVerifyEdit.vue';
 
   defineOptions({ name: 'MchWxDomainVerifyList' });
+
+  const router = useRouter();
 
   const { confirm, message } = useMessage();
   const { hasPermission } = usePermission();
@@ -80,6 +85,16 @@
     if (!mchNo.value) return;
     const { data } = await MerchantApi.findByMchNo(mchNo.value);
     merchantInfo.value = data || {};
+  }
+
+  /**
+   * 返回商户工作台
+   */
+  function handleBack() {
+    router.push({
+      path: '/payment/merchant/manage',
+      query: { mchNo: mchNo.value },
+    });
   }
 
   /**
@@ -190,12 +205,13 @@
   <div v-else class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
-        <div class="flex items-center gap-2">
-          <span class="text-lg font-bold text-foreground">{{ $t('payment.wxVerify.title') }}</span>
-          <span v-if="merchantInfo.mchName" class="text-sm text-muted-foreground"
-            >({{ merchantInfo.mchName }})</span
-          >
-        </div>
+        <!-- 国际化：微信域名验证 -->
+        <PageTitleBar
+          back
+          :title="$t('payment.wxVerify.title')"
+          :name="merchantInfo.mchName || ''"
+          @back="handleBack"
+        />
       </template>
 
       <BQuery :fields="queryFields" :query-params="queryForm" @query="queryPage" @reset="resetQuery" />

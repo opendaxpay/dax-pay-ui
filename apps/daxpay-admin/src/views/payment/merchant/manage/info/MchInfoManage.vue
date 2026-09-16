@@ -4,9 +4,9 @@
 
   import { $t } from '@vben/locales';
 
-  import { IconifyIcon } from '@vben-core/icons';
+  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
 
-  import { type MerchantInfo, MerchantApi } from '#/api/payment/merchant/merchant.api';
+  import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
@@ -155,20 +155,13 @@
   <div v-else class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
-        <div class="flex items-center gap-2">
-          <a-button
-            type="text"
-            class="flex items-center justify-center rounded-full hover:bg-accent"
-            @click="handleBack"
-          >
-            <template #icon>
-              <IconifyIcon icon="ant-design:arrow-left-outlined" class="text-lg" />
-            </template>
-          </a-button>
-          <!-- 商户信息 -->
-          <span class="text-lg font-bold text-foreground">{{ $t('payment.merchant.form.manage.info.title') }}</span>
-          <span v-if="form.mchName" class="text-sm text-muted-foreground">({{ form.mchName }})</span>
-        </div>
+        <!-- 商户信息 -->
+        <PageTitleBar
+          back
+          :title="$t('payment.merchant.form.manage.info.title')"
+          :name="form.mchName || ''"
+          @back="handleBack"
+        />
       </template>
       <template #extra>
         <a-space>

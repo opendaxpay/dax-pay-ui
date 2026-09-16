@@ -9,7 +9,10 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+
   import { MerchantUserApi, type MerchantUserResult } from '#/api/payment/merchant/merchant-user.api';
+  import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { ResetPasswordModal } from '#/components/reset-password';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
@@ -48,6 +51,9 @@
   // 表格数据
   const tableData = ref<MerchantUserResult[]>([]);
 
+  // 商户信息（标题栏展示商户名称）
+  const merchantInfo = ref<MerchantInfo>({});
+
   // 选中的行
   const selectedRows = ref<MerchantUserResult[]>([]);
 
@@ -82,9 +88,24 @@
     if (!routeContext.isValid.value) {
       return;
     }
+    loadMerchantInfo();
     queryForm.value.mchNo = mchNo.value;
     queryPage();
   });
+
+  /**
+   * 加载商户信息（标题栏展示商户名称）
+   */
+  function loadMerchantInfo() {
+    if (!mchNo.value) {
+      return;
+    }
+    MerchantApi.findByMchNo(mchNo.value).then(({ data }) => {
+      if (data) {
+        merchantInfo.value = data;
+      }
+    });
+  }
 
   /**
    * 返回商户工作台
@@ -328,21 +349,16 @@
     :back-text="$t('payment.merchant.workbench.workbench.backToList')"
     @back="routeContext.goFallback"
   />
-  <div v-else class="m-3 p-3 bg-background rounded-lg list-page-compact">
-    <a-card>
+  <div v-else class="m-4 list-page-compact">
+    <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
-        <div class="flex items-center gap-2">
-          <a-button
-            type="text"
-            class="flex items-center justify-center rounded-full hover:bg-accent"
-            @click="handleBack"
-          >
-            <template #icon>
-              <IconifyIcon icon="ant-design:arrow-left-outlined" class="text-lg" />
-            </template>
-          </a-button>
-          <span>{{ $t('payment.merchant.user.title') }}</span>
-        </div>
+        <!-- 国际化：商户用户 -->
+        <PageTitleBar
+          back
+          :title="$t('payment.merchant.user.title')"
+          :name="merchantInfo.mchName || ''"
+          @back="handleBack"
+        />
       </template>
 
       <!-- 查询表单 -->
@@ -350,7 +366,7 @@
     </a-card>
 
     <div class="mt-4">
-      <a-card>
+      <a-card variant="borderless" class="rounded-xl shadow-sm">
         <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
           <template #buttons>
             <a-space>

@@ -5,6 +5,8 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+
   import { type WxMchApp, WxMchAppApi } from '#/api/payment/wx/mch-app.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { useDeleteConfirm } from '#/hooks/useDeleteConfirm';
@@ -83,7 +85,7 @@
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <!-- 页头与菜单一致：微信应用 -->
-        <span class="text-lg font-bold text-foreground">{{ $t('menu.payment.wx.mchApp') }}</span>
+        <PageTitleBar :title="$t('menu.payment.wx.mchApp')" />
       </template>
       <template #extra>
         <a-input

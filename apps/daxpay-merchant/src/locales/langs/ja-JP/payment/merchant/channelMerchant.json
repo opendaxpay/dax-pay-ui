@@ -37,6 +37,7 @@
   "source": "ソース",
   "enable": "状態",
   "envStatus": "環境",
+  "envStatusTip": "作成時に固定された環境識別子で、プロダクト切替では変わりません",
   "remark": "述べる",
   "sourceManual": "マニュアル",
   "typeSub": "サブマーチャント",

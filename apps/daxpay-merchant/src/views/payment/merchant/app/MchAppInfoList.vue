@@ -6,6 +6,8 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { PermCodes } from '#/constants/perm-codes';
@@ -109,6 +111,10 @@
 <template>
   <div class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
+      <template #title>
+        <!-- 页头与菜单名一致（应用管理） -->
+        <PageTitleBar :title="$t('payment.merchant.app.app.myApps')" />
+      </template>
       <!-- 国际化：有应用但未设置默认应用时提示 -->
       <div v-if="showNoDefaultTip" class="mb-4">
         <a-alert :message="$t('payment.merchant.app.app.noDefaultAppTip')" type="warning" show-icon />

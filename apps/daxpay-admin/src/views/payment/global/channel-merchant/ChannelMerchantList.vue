@@ -8,6 +8,8 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+
   import { ChannelMerchantApi, type ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
   import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import ChannelLogo from '#/components/channel/ChannelLogo.vue';
@@ -246,25 +248,18 @@
   <div v-else class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
-        <div class="flex items-center gap-2">
-          <a-button
-            type="text"
-            class="flex items-center justify-center rounded-full hover:bg-accent"
-            @click="handleBack"
-          >
-            <template #icon>
-              <IconifyIcon icon="ant-design:arrow-left-outlined" class="text-lg" />
-            </template>
-          </a-button>
-          <!-- 国际化：通道商户（与菜单 title 一致） -->
-          <span class="text-lg font-bold text-foreground">{{ $t('payment.merchant.channelMerchant.title') }}</span>
+        <!-- 国际化：通道商户（与菜单 title 一致） -->
+        <PageTitleBar
+          back
+          :title="$t('payment.merchant.channelMerchant.title')"
+          :name="merchantLoading ? '' : merchantInfo.mchName || ''"
+          @back="handleBack"
+        >
+          <!-- 商户名加载中占位 -->
           <span v-if="merchantLoading" class="text-sm text-muted-foreground">
             <a-skeleton-input :active="true" size="small" />
           </span>
-          <span v-else-if="merchantInfo.mchName" class="text-sm text-muted-foreground"
-            >({{ merchantInfo.mchName }})</span
-          >
-        </div>
+        </PageTitleBar>
       </template>
 
       <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: loadList }">

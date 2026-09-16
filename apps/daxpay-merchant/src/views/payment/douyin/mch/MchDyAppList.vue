@@ -5,6 +5,8 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+
   import { type DyMchApp, DyMchAppApi } from '#/api/payment/douyin/mch-app.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { useDeleteConfirm } from '#/hooks/useDeleteConfirm';
@@ -83,7 +85,7 @@
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <!-- 页头与菜单一致：抖音应用 -->
-        <span class="text-lg font-bold text-foreground">{{ $t('menu.payment.douyin.mchApp') }}</span>
+        <PageTitleBar :title="$t('menu.payment.douyin.mchApp')" />
       </template>
       <template #extra>
         <a-input

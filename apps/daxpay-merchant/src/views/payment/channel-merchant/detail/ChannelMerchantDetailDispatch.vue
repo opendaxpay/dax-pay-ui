@@ -6,6 +6,8 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+
   import {
     ChannelMerchantApi,
     type ChannelMerchantResult,
@@ -172,17 +174,27 @@
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <div class="flex w-full items-center justify-between gap-4">
-          <div class="flex items-center gap-2">
-            <a-button type="text" class="flex items-center justify-center rounded-full hover:bg-accent" @click="goBack">
-              <template #icon>
-                <IconifyIcon icon="ant-design:arrow-left-outlined" class="text-lg" />
-              </template>
-            </a-button>
-            <!-- 国际化：按通道动态展示页头标题 -->
-            <span class="text-lg font-bold text-foreground">{{ pageTitle }}</span>
-            <span v-if="channelMerchant.channelMerchantName" class="text-sm text-muted-foreground">
-              ({{ channelMerchant.channelMerchantName }})
-            </span>
+          <!-- 标题栏: 返回 + 功能名 +（通道商户名）, 与其它卡片页统一形态 -->
+          <PageTitleBar
+            back
+            :title="pageTitle"
+            :name="channelMerchant.channelMerchantName || ''"
+            @back="goBack"
+          />
+          <!-- 环境标识: 仅支持沙箱的产品展示(与支付产品配置详情页同款样式), 读通道商户固化的 sandbox 字段 -->
+          <div v-if="channelMerchant.sandboxSupport" class="flex flex-none items-center">
+            <a-tooltip :title="$t('payment.merchant.channelMerchant.envStatusTip')">
+              <span class="flex items-center gap-1 text-sm text-muted-foreground">
+                <template v-if="channelMerchant.sandbox">
+                  <IconifyIcon icon="ant-design:experiment-filled" class="text-sm text-amber-500" />
+                  {{ $t('payment.merchant.channelMerchant.sandboxLabel') }}
+                </template>
+                <template v-else>
+                  <IconifyIcon icon="ant-design:setting-filled" class="text-sm text-blue-500" />
+                  {{ $t('payment.merchant.channelMerchant.prodLabel') }}
+                </template>
+              </span>
+            </a-tooltip>
           </div>
         </div>
       </template>

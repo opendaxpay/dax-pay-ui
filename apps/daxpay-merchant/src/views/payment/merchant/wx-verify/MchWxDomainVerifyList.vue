@@ -7,6 +7,8 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+
   import {
     MchWxDomainVerifyApi,
     type MchWxDomainVerifyQuery,
@@ -140,6 +142,10 @@
 <template>
   <div class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
+      <template #title>
+        <!-- 页头与菜单名一致（微信域名验证） -->
+        <PageTitleBar :title="$t('menu.payment.merchant.wxVerify')" />
+      </template>
       <BQuery :fields="queryFields" :query-params="queryForm" @query="queryPage" @reset="resetQuery" />
 
       <div class="mt-4">

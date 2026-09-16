@@ -37,6 +37,7 @@
   "source": "Sumber",
   "enable": "Status",
   "envStatus": "Persekitaran",
+  "envStatusTip": "Persekitaran ditetapkan semasa dicipta dan tidak berubah apabila produk ditukar",
   "remark": "Teguran",
   "sourceManual": "Manual",
   "typeSub": "Sub Saudagar",

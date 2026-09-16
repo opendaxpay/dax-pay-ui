@@ -5,7 +5,7 @@
   import { useTabs } from '@vben/hooks';
   import { $t } from '@vben/locales';
 
-  import { IconifyIcon } from '@vben-core/icons';
+  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
 
   import { PayProductApi, type PayProductResult } from '#/api/payment/masterdata/product.api';
   import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
@@ -181,27 +181,18 @@
   <div v-else class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
-        <div class="flex items-center gap-2">
-          <a-button
-            type="text"
-            class="flex items-center justify-center rounded-full hover:bg-accent"
-            @click="handleBack"
-          >
-            <template #icon>
-              <IconifyIcon icon="ant-design:arrow-left-outlined" class="text-lg" />
-            </template>
-          </a-button>
-          <!-- 国际化：创建通道商户 -->
-          <span class="text-lg font-bold text-foreground">{{
-            $t('payment.merchant.channelMerchant.createTitle')
-          }}</span>
+        <!-- 国际化：创建通道商户 -->
+        <PageTitleBar
+          back
+          :title="$t('payment.merchant.channelMerchant.createTitle')"
+          :name="merchantLoading ? '' : merchantInfo.mchName || ''"
+          @back="handleBack"
+        >
+          <!-- 商户名加载中占位 -->
           <span v-if="merchantLoading" class="text-sm text-muted-foreground">
             <a-skeleton-input :active="true" size="small" />
           </span>
-          <span v-else-if="merchantInfo.mchName" class="text-sm text-muted-foreground"
-            >({{ merchantInfo.mchName }})</span
-          >
-        </div>
+        </PageTitleBar>
       </template>
 
       <!-- Step1: 选择支付产品 -->

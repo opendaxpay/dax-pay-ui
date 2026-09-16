@@ -37,6 +37,7 @@
   "source": "來源",
   "enable": "啟用狀態",
   "envStatus": "環境狀態",
+  "envStatusTip": "建立時固定的環境標識，不隨產品切換改變",
   "remark": "備註",
   "sourceManual": "手動建立",
   "typeSub": "子商戶",

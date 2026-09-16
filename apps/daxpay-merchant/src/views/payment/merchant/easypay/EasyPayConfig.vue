@@ -6,6 +6,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { PageShell } from '@daxpay/ui-biz/components/page-shell';
   import { useClipboard } from '@vueuse/core';
 
   import {
@@ -15,7 +16,6 @@
   } from '#/api/payment/merchant/easypay-credential.api';
   import { KeyGenApi } from '#/api/payment/merchant/key-gen.api';
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
-  import { PageShell } from '@daxpay/ui-biz/components/page-shell';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
   import { useFormEdit } from '#/hooks/useFormEdit';
@@ -280,17 +280,14 @@
   />
   <PageShell
     v-else
+    back
     :title="$t('menu.payment.merchant.easypay')"
-    :description="appInfo.appName || ''"
+    :name="appInfo.appName || ''"
     :loading="loading"
+    @back="handleBack"
   >
     <!-- 页头与菜单 i18n_key 一致 -->
     <template #actions>
-      <a-button type="text" @click="handleBack">
-        <template #icon>
-          <IconifyIcon icon="ant-design:arrow-left-outlined" />
-        </template>
-      </a-button>
       <template v-if="canManage">
         <template v-if="!isEditing">
           <a-button type="primary" @click="handleEdit">{{ $t('common.edit') }}</a-button>

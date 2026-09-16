@@ -8,7 +8,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { IconifyIcon } from '@vben-core/icons';
+  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
 
   import { ChinaRegionApi } from '#/api/core/region.api';
   import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
@@ -274,23 +274,16 @@
     :back-text="$t('payment.merchant.workbench.workbench.backToList')"
     @back="routeContext.goFallback"
   />
-  <div v-else class="m-3 p-3 bg-background rounded-lg list-page-compact">
-    <a-card>
+  <div v-else class="m-4 list-page-compact">
+    <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
-        <div class="flex items-center gap-2">
-          <!-- 国际化：门店管理 -->
-          <a-button
-            type="text"
-            class="flex items-center justify-center rounded-full hover:bg-accent"
-            @click="handleBack"
-          >
-            <template #icon>
-              <IconifyIcon icon="ant-design:arrow-left-outlined" class="text-lg" />
-            </template>
-          </a-button>
-          <span class="text-lg font-bold text-foreground">{{ $t('payment.merchant.store.store.title') }}</span>
-          <span v-if="merchantInfo.mchName" class="text-sm text-muted-foreground">({{ merchantInfo.mchName }})</span>
-        </div>
+        <!-- 国际化：门店管理 -->
+        <PageTitleBar
+          back
+          :title="$t('payment.merchant.store.store.title')"
+          :name="merchantInfo.mchName || ''"
+          @back="handleBack"
+        />
       </template>
       <BQuery :fields="queryFields" :query-params="queryForm" @query="queryPage" @reset="resetQuery" />
     </a-card>
@@ -301,7 +294,7 @@
     </div>
 
     <div class="mt-4">
-      <a-card>
+      <a-card variant="borderless" class="rounded-xl shadow-sm">
         <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
           <template #buttons>
             <a-space>

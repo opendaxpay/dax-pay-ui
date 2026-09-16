@@ -6,19 +6,17 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { PageShell } from '@daxpay/ui-biz/components/page-shell';
   import { useClipboard } from '@vueuse/core';
 
   import {
-  MerchantApi, type MerchantInfo,
-  } from '#/api/payment/merchant/merchant.api';
-  import {
-  MerchantCredentialApi, type MerchantCredentialParam, type MerchantCredentialResult,
+    MerchantCredentialApi, type MerchantCredentialParam, type MerchantCredentialResult,
   } from '#/api/payment/merchant/credential.api';
   import { KeyGenApi } from '#/api/payment/merchant/key-gen.api';
-  import { PageShell } from '@daxpay/ui-biz/components/page-shell';
+  import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
-  import { useFormEdit } from '#/hooks/useFormEdit';
   import { PermCodes } from '#/constants/perm-codes';
+  import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
   import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
@@ -223,21 +221,14 @@
   />
   <PageShell
     v-else
+    back
     :title="$t('payment.merchant.credential.credential.title')"
-    :description="merchantInfo.mchName || ''"
+    :name="merchantInfo.mchName || ''"
     :loading="loading"
+    @back="handleBack"
   >
     <!-- 国际化：对接配置 -->
     <template #actions>
-      <a-button
-        type="text"
-        class="flex items-center justify-center rounded-full hover:bg-accent"
-        @click="handleBack"
-      >
-        <template #icon>
-          <IconifyIcon icon="ant-design:arrow-left-outlined" class="text-lg" />
-        </template>
-      </a-button>
       <template v-if="!isEditing">
         <a-button v-if="hasPermission(PermCodes.Merchant.Credential.MANAGE)" type="primary" @click="handleEdit">{{
           $t('common.edit')

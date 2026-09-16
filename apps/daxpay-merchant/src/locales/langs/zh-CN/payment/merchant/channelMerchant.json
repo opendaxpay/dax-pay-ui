@@ -37,6 +37,7 @@
   "source": "来源",
   "enable": "启用状态",
   "envStatus": "环境状态",
+  "envStatusTip": "创建时固化的环境标识，不随产品切换改变",
   "remark": "备注",
   "sourceManual": "手动创建",
   "typeSub": "子商户",

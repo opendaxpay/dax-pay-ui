@@ -6,6 +6,8 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+
   import {
     ChannelMerchantApi,
     type ChannelMerchantResult,
@@ -294,21 +296,32 @@
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <div class="flex w-full items-center justify-between gap-4">
-          <div class="flex items-center gap-2">
-            <a-button type="text" class="flex items-center justify-center rounded-full hover:bg-accent" @click="goBack">
-              <template #icon>
-                <IconifyIcon icon="ant-design:arrow-left-outlined" class="text-lg" />
-              </template>
-            </a-button>
-            <!-- 国际化：按通道动态展示页头标题 -->
-            <span class="text-lg font-bold text-foreground">{{ pageTitle }}</span>
+          <!-- 国际化：按通道动态展示页头标题 -->
+          <PageTitleBar
+            back
+            :title="pageTitle"
+            :name="channelMerchant.channelMerchantName || ''"
+            @back="goBack"
+          >
             <!-- 银联商务多产品共页, 用标签区分具体产品类型(如"银联商务(C扫B)") -->
             <a-tag v-if="isUmsProduct(resolvedProduct) && productTypeName" color="blue" class="!ml-1">
               {{ productTypeName }}
             </a-tag>
-            <span v-if="channelMerchant.channelMerchantName" class="text-sm text-muted-foreground">
-              ({{ channelMerchant.channelMerchantName }})
-            </span>
+          </PageTitleBar>
+          <!-- 环境标识: 仅支持沙箱的产品展示(与支付产品配置详情页同款样式), 读通道商户固化的 sandbox 字段 -->
+          <div v-if="channelMerchant.sandboxSupport" class="flex flex-none items-center">
+            <a-tooltip :title="$t('payment.merchant.channelMerchant.envStatusTip')">
+              <span class="flex items-center gap-1 text-sm text-muted-foreground">
+                <template v-if="channelMerchant.sandbox">
+                  <IconifyIcon icon="ant-design:experiment-filled" class="text-sm text-amber-500" />
+                  {{ $t('payment.constant.product.productConfig.sandboxLabel') }}
+                </template>
+                <template v-else>
+                  <IconifyIcon icon="ant-design:setting-filled" class="text-sm text-blue-500" />
+                  {{ $t('payment.constant.product.productConfig.prodLabel') }}
+                </template>
+              </span>
+            </a-tooltip>
           </div>
         </div>
       </template>

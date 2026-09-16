@@ -6,13 +6,15 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
-  import useTablePage from '#/hooks/useTablePage';
   import { usePermission } from '#/hooks/usePermission';
   import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
+  import useTablePage from '#/hooks/useTablePage';
 
   import MchAppInfoCard from './MchAppInfoCard.vue';
   import MchAppInfoEdit from './MchAppInfoEdit.vue';
@@ -145,20 +147,13 @@
     <!-- 顶栏对齐对接配置等下级页：a-card title，text-lg，非工作台级大标题 -->
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
-        <div class="flex items-center gap-2">
-          <a-button
-            type="text"
-            class="flex items-center justify-center rounded-full hover:bg-accent"
-            @click="handleBack"
-          >
-            <template #icon>
-              <IconifyIcon icon="ant-design:arrow-left-outlined" class="text-lg" />
-            </template>
-          </a-button>
-          <!-- 国际化：应用管理 -->
-          <span class="text-lg font-bold text-foreground">{{ $t('payment.merchant.app.app.myApps') }}</span>
-          <span v-if="merchantInfo.mchName" class="text-sm text-muted-foreground">({{ merchantInfo.mchName }})</span>
-        </div>
+        <!-- 国际化：应用管理 -->
+        <PageTitleBar
+          back
+          :title="$t('payment.merchant.app.app.myApps')"
+          :name="merchantInfo.mchName || ''"
+          @back="handleBack"
+        />
       </template>
 
       <!-- 国际化：有应用但未设置默认应用时提示 -->

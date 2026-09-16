@@ -1,6 +1,8 @@
 <script lang="ts" setup>
   import { computed } from 'vue';
 
+  import { PageTitleBar } from '../page-title-bar';
+
   // 配置页公共表单样式(config-* 与 module-* 类), 随 PageShell 引入全局生效
   import './config-form.css';
 
@@ -13,10 +15,14 @@
    */
   const props = withDefaults(
     defineProps<{
-      /** 右栏描述文案 */
+      /** 是否显示返回按钮(仅"有上级页"的子页传 true, 与卡片页标题栏形态一致) */
+      back?: boolean;
+      /** 右栏描述文案(说明性文字, 渲染在标题下方; 商户名/应用名请改用 name) */
       description?: string;
       /** 加载中(内置 a-spin 并撑满高度链) */
       loading?: boolean;
+      /** 商户名/应用名等, 灰色淡化显示在标题后方(与卡片页标题栏统一形态) */
+      name?: string;
       /** 左栏宽度(px),仅双栏形态生效 */
       navWidth?: number;
       /** 状态概要标签(跟随配置数据计算,如"风控：已开启") */
@@ -25,12 +31,16 @@
       title: string;
     }>(),
     {
+      back: false,
       description: '',
+      name: '',
       tags: () => [],
       loading: false,
       navWidth: 280,
     },
   );
+
+  const emit = defineEmits<{ back: [] }>();
 
   const navStyle = computed(() => ({
     flexBasis: `${props.navWidth}px`,
@@ -49,7 +59,8 @@
         <section class="page-shell__main">
           <div class="page-shell__header">
             <div class="page-shell__header-main">
-              <div class="page-shell__title">{{ title }}</div>
+              <!-- 标题栏: 返回 + 功能名 +（商户/应用名称）, 与卡片页统一形态 -->
+              <PageTitleBar :title="title" :name="name" :back="back" @back="emit('back')" />
               <div v-if="description" class="page-shell__desc">{{ description }}</div>
               <!-- 状态概要标签 -->
               <a-space v-if="tags.length > 0" wrap size="small" class="page-shell__tags">
@@ -135,12 +146,6 @@
 
   .page-shell__header-main {
     min-width: 0;
-  }
-
-  .page-shell__title {
-    font-size: 18px;
-    font-weight: 600;
-    color: hsl(var(--foreground));
   }
 
   .page-shell__desc {

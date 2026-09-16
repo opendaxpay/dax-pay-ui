@@ -6,6 +6,8 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
@@ -356,27 +358,18 @@
     <a-spin :spinning="loading">
       <a-card variant="borderless" class="rounded-xl shadow-sm">
         <template #title>
-          <div class="flex items-center gap-2">
-            <a-button
-              type="text"
-              class="flex items-center justify-center rounded-full hover:bg-accent"
-              @click="handleBack"
-            >
-              <template #icon>
-                <IconifyIcon icon="ant-design:arrow-left-outlined" class="text-lg" />
-              </template>
-            </a-button>
-            <!-- 国际化：应用配置 -->
-            <span class="text-lg font-bold text-foreground">
-              {{ $t('payment.merchant.app.app.workbenchTitle') }}
-            </span>
-            <span v-if="appInfo.appName" class="text-sm text-muted-foreground">
-              ({{ appInfo.appName }})
-            </span>
+          <!-- 国际化：应用配置 -->
+          <PageTitleBar
+            back
+            :title="$t('payment.merchant.app.app.workbenchTitle')"
+            :name="appInfo.appName || ''"
+            @back="handleBack"
+          >
+            <!-- 默认应用标签 -->
             <a-tag v-if="appInfo.defaultApp" color="processing" class="!m-0 !text-xs">
               {{ $t('payment.merchant.app.app.defaultTag') }}
             </a-tag>
-          </div>
+          </PageTitleBar>
         </template>
 
         <!-- 功能分组磁贴 -->

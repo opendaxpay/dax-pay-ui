@@ -37,6 +37,7 @@
   "source": "Sumber",
   "enable": "Status",
   "envStatus": "Lingkungan",
+  "envStatusTip": "Lingkungan ditetapkan saat dibuat dan tidak berubah saat produk dialihkan",
   "remark": "Komentar",
   "sourceManual": "petunjuk",
   "typeSub": "Sub Pedagang",

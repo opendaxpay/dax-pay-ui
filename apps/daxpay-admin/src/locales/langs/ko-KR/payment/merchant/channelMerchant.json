@@ -37,6 +37,7 @@
   "source": "원천",
   "enable": "상태",
   "envStatus": "환경",
+  "envStatusTip": "생성 시 고정된 환경이며, 상품 전환 시 변경되지 않습니다",
   "remark": "주목",
   "sourceManual": "수동",
   "typeSub": "하위 판매자",

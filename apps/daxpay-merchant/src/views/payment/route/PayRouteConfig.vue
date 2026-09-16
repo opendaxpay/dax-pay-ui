@@ -5,7 +5,7 @@
   import { useIsMobile } from '@vben/hooks';
   import { $t } from '@vben/locales';
 
-  import { IconifyIcon } from '@vben-core/icons';
+  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
 
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import { PayRouteApi, type PayRouteStrategyResult } from '#/api/payment/route/pay-route.api';
@@ -155,18 +155,14 @@
   <div v-else class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
-        <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
-          <a-button type="text" @click="handleBack">
-            <template #icon>
-              <IconifyIcon icon="ant-design:arrow-left-outlined" />
-            </template>
-          </a-button>
-          <span class="text-lg font-bold">{{ $t('payment.merchant.route.route.title') }}</span>
-          <!-- 应用名：窄屏换行完整展示 -->
-          <span v-if="appInfo.appName" class="min-w-0 break-all text-sm text-muted-foreground"
-            >({{ appInfo.appName }})</span
-          >
-        </div>
+        <!-- 标题栏: 返回 + 功能名 +（应用名）, 与其它卡片页统一形态; 应用名窄屏换行完整展示 -->
+        <PageTitleBar
+          back
+          wrap
+          :title="$t('payment.merchant.route.route.title')"
+          :name="appInfo.appName || ''"
+          @back="handleBack"
+        />
       </template>
 
       <!-- 编辑操作：桌面在卡片右上角；移动端编辑态由底部固定操作栏承接 -->

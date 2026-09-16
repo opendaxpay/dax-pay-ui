@@ -9,6 +9,8 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { PageShell } from '@daxpay/ui-biz/components/page-shell';
+
   import {
     type GatewayPayClientEnvParam,
     GatewayPayConfigApi,
@@ -16,7 +18,6 @@
   } from '#/api/payment/merchant/gateway-config.api';
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import { PayRouteApi } from '#/api/payment/route/pay-route.api';
-  import { PageShell } from '@daxpay/ui-biz/components/page-shell';
   import ChannelMerchantSelect from '#/components/channel/ChannelMerchantSelect.vue';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { useMessage } from '#/hooks/useMessage';
@@ -490,17 +491,14 @@
   />
   <PageShell
     v-else
+    back
     :title="$t('payment.merchant.gatewayConfig.gatewayConfig.title')"
-    :description="appInfo.appName || ''"
+    :name="appInfo.appName || ''"
     :loading="loading || routeHitLoading"
+    @back="handleBack"
   >
     <!-- 编辑操作：桌面在右上角常驻；移动端编辑态由底部固定操作栏承接 -->
     <template #actions>
-      <a-button type="text" @click="handleBack">
-        <template #icon>
-          <IconifyIcon icon="ant-design:arrow-left-outlined" />
-        </template>
-      </a-button>
       <a-button v-if="!editing" type="primary" @click="startEdit">
         {{ $t('common.edit') }}
       </a-button>
@@ -777,12 +775,10 @@
             </div>
           </template>
         </div>
-    </PageShell>
-
     <!-- 移动端编辑态底部占位，防止内容被固定操作栏遮挡 -->
     <div v-if="isMobile && editing" class="h-20"></div>
 
-    <!-- 移动端编辑态固定底部操作栏（拇指可达区） -->
+    <!-- 移动端编辑态固定底部操作栏（拇指可达区）；必须留在 PageShell 内: 页面模板多根节点会让布局层 Transition 丢掉离场动画 -->
     <div
       v-if="isMobile && editing"
       class="fixed inset-x-0 bottom-0 z-10 border-t border-border bg-background px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]"
@@ -794,6 +790,7 @@
         </a-button>
       </div>
     </div>
+  </PageShell>
 </template>
 
 <style scoped>

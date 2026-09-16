@@ -8,6 +8,8 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+
   import { MerchantUserApi, type MerchantUserResult } from '#/api/payment/merchant/merchant-user.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { BQuery, type QueryField } from '#/components/query';
@@ -339,14 +341,18 @@
 </script>
 
 <template>
-  <div class="m-3 p-3 bg-background rounded-lg list-page-compact">
-    <a-card>
+  <div class="m-4 list-page-compact">
+    <a-card variant="borderless" class="rounded-xl shadow-sm">
+      <template #title>
+        <!-- 页头与菜单名一致（商户用户） -->
+        <PageTitleBar :title="$t('menu.payment.merchant.user')" />
+      </template>
       <!-- 查询表单 -->
       <BQuery :fields="queryFields" :query-params="queryForm" @query="queryPage" @reset="resetQuery" />
     </a-card>
 
     <div class="mt-4">
-      <a-card>
+      <a-card variant="borderless" class="rounded-xl shadow-sm">
         <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
           <template #buttons>
             <a-space>
