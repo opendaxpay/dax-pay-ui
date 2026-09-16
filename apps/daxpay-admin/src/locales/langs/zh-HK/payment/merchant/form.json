@@ -5,7 +5,7 @@
     "mchNamePlaceholder": "請輸入商户名稱",
     "mchShortNamePlaceholder": "請輸入商户簡稱",
     "subjectTypePlaceholder": "請選擇商户類型",
-    "adminNamePlaceholder": "留空預設為「商戶名稱+管理員」"
+    "adminNamePlaceholder": "請輸入名稱"
   },
   "manage": {
     "info": {

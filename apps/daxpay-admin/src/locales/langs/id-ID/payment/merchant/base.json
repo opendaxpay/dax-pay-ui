@@ -7,7 +7,7 @@
     "subjectType": "Jenis Subjek",
     "createTime": "Ciptakan Waktu",
     "id": "PENGENAL",
-    "adminName": "Nama Admin"
+    "adminName": "Nama"
   },
   "status": {
     "enable": "Diaktifkan",
@@ -29,6 +29,7 @@
     "pleaseInputAccount": "Silakan masukkan akun administrator",
     "pleaseConfirmPassword": "Mohon konfirmasi kata sandinya",
     "pleaseSelectSubjectType": "Silakan pilih jenis subjek",
-    "pleaseSelectStatus": "Silakan pilih status"
+    "pleaseSelectStatus": "Silakan pilih status",
+    "pleaseInputAdminName": "Masukkan nama"
   }
 }

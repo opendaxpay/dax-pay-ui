@@ -7,7 +7,7 @@
     "subjectType": "ประเภทหัวเรื่อง",
     "createTime": "สร้างเวลา",
     "id": "บัตรประจำตัวประชาชน",
-    "adminName": "ชื่อผู้ดูแล"
+    "adminName": "ชื่อ"
   },
   "status": {
     "enable": "เปิดใช้งานแล้ว",
@@ -29,6 +29,7 @@
     "pleaseInputAccount": "กรุณากรอกบัญชีผู้ดูแลระบบ",
     "pleaseConfirmPassword": "กรุณายืนยันรหัสผ่าน",
     "pleaseSelectSubjectType": "กรุณาเลือกประเภทหัวเรื่อง",
-    "pleaseSelectStatus": "กรุณาเลือกสถานะ"
+    "pleaseSelectStatus": "กรุณาเลือกสถานะ",
+    "pleaseInputAdminName": "กรุณากรอกชื่อ"
   }
 }

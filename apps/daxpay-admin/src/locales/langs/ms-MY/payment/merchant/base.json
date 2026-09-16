@@ -7,7 +7,7 @@
     "subjectType": "Jenis Mata Pelajaran",
     "createTime": "Cipta Masa",
     "id": "ID",
-    "adminName": "Nama Pentadbir"
+    "adminName": "Nama"
   },
   "status": {
     "enable": "Didayakan",
@@ -29,6 +29,7 @@
     "pleaseInputAccount": "Sila masukkan akaun pentadbir",
     "pleaseConfirmPassword": "Sila sahkan kata laluan",
     "pleaseSelectSubjectType": "Sila pilih jenis subjek",
-    "pleaseSelectStatus": "Sila pilih status"
+    "pleaseSelectStatus": "Sila pilih status",
+    "pleaseInputAdminName": "Sila masukkan nama"
   }
 }

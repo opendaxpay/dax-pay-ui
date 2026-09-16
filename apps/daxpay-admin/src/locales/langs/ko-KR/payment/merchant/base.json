@@ -7,7 +7,7 @@
     "subjectType": "주제 유형",
     "createTime": "시간 만들기",
     "id": "ID",
-    "adminName": "관리자 이름"
+    "adminName": "이름"
   },
   "status": {
     "enable": "활성화됨",
@@ -29,6 +29,7 @@
     "pleaseInputAccount": "관리자 계정을 입력해주세요",
     "pleaseConfirmPassword": "비밀번호를 확인해 주세요",
     "pleaseSelectSubjectType": "주제 유형을 선택하세요.",
-    "pleaseSelectStatus": "상태를 선택해주세요"
+    "pleaseSelectStatus": "상태를 선택해주세요",
+    "pleaseInputAdminName": "이름을 입력하세요"
   }
 }

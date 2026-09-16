@@ -7,7 +7,7 @@
     "subjectType": "Subject Type",
     "createTime": "Create Time",
     "id": "ID",
-    "adminName": "Admin Name"
+    "adminName": "Name"
   },
   "status": {
     "enable": "Enabled",
@@ -29,6 +29,7 @@
     "pleaseInputAccount": "Please enter administrator account",
     "pleaseConfirmPassword": "Please confirm the password",
     "pleaseSelectSubjectType": "Please select subject type",
-    "pleaseSelectStatus": "Please select status"
+    "pleaseSelectStatus": "Please select status",
+    "pleaseInputAdminName": "Please enter the name"
   }
 }

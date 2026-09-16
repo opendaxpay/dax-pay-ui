@@ -7,7 +7,7 @@
     "subjectType": "件名タイプ",
     "createTime": "時間を作る",
     "id": "ID",
-    "adminName": "管理者名"
+    "adminName": "名前"
   },
   "status": {
     "enable": "有効",
@@ -29,6 +29,7 @@
     "pleaseInputAccount": "管理者アカウントを入力してください",
     "pleaseConfirmPassword": "パスワードを確認してください",
     "pleaseSelectSubjectType": "件名の種類を選択してください",
-    "pleaseSelectStatus": "ステータスを選択してください"
+    "pleaseSelectStatus": "ステータスを選択してください",
+    "pleaseInputAdminName": "名前を入力してください"
   }
 }

@@ -7,7 +7,7 @@
     "subjectType": "Loại chủ đề",
     "createTime": "Tạo thời gian",
     "id": "NHẬN DẠNG",
-    "adminName": "Tên quản trị"
+    "adminName": "Tên"
   },
   "status": {
     "enable": "Đã bật",
@@ -29,6 +29,7 @@
     "pleaseInputAccount": "Vui lòng nhập tài khoản quản trị viên",
     "pleaseConfirmPassword": "Vui lòng xác nhận mật khẩu",
     "pleaseSelectSubjectType": "Vui lòng chọn loại chủ đề",
-    "pleaseSelectStatus": "Vui lòng chọn trạng thái"
+    "pleaseSelectStatus": "Vui lòng chọn trạng thái",
+    "pleaseInputAdminName": "Vui lòng nhập tên"
   }
 }

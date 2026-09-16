@@ -49,6 +49,8 @@
     mchShortName: [{ required: true, message: $t('payment.merchant.base.validation.pleaseInputMchShortName') }],
     subjectType: [{ required: true, message: $t('payment.merchant.base.validation.pleaseSelectSubjectType') }],
     account: [...generateAccountRules()],
+    // 管理员名称(必填)
+    adminName: [{ required: true, message: $t('payment.merchant.base.validation.pleaseInputAdminName') }],
     // 密码(可选: 留空由后端生成随机初始密码)
     password: generateOptionalPasswordRules(passwordConfig.value),
     confirmPassword: [{ validator: validateConfirmPassword }],
@@ -117,8 +119,7 @@
         mchShortName: formState.value.mchShortName!,
         subjectType: formState.value.subjectType!,
         account: formState.value.account!,
-        // 管理员姓名可选: 留空由后端默认「商户名称+管理员」
-        adminName: formState.value.adminName || undefined,
+        adminName: formState.value.adminName!,
         password: encryptedPassword,
       });
       // 切换到结果态展示商户管理员初始密码
@@ -185,7 +186,7 @@
           <a-input v-model:value="formState.account" :placeholder="$t('common.accountPlaceholder')" />
         </a-form-item>
 
-        <!-- 管理员姓名(可选): 留空默认「商户名称+管理员」 -->
+        <!-- 管理员名称(必填) -->
         <a-form-item :label="$t('payment.merchant.base.field.adminName')" name="adminName">
           <a-input
             v-model:value="formState.adminName"
@@ -262,7 +263,7 @@
 
   .password-label {
     width: 64px;
-    color: rgba(0, 0, 0, 0.45);
+    color: hsl(var(--muted-foreground));
   }
 
   .password-value {

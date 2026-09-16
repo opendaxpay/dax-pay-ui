@@ -7,7 +7,7 @@
     "subjectType": "主体类型",
     "createTime": "创建时间",
     "id": "主键",
-    "adminName": "管理员姓名"
+    "adminName": "名称"
   },
   "status": {
     "enable": "启用",
@@ -29,6 +29,7 @@
     "pleaseInputAccount": "请输入管理员账号",
     "pleaseConfirmPassword": "请确认密码",
     "pleaseSelectSubjectType": "请选择主体类型",
-    "pleaseSelectStatus": "请选择状态"
+    "pleaseSelectStatus": "请选择状态",
+    "pleaseInputAdminName": "请输入名称"
   }
 }

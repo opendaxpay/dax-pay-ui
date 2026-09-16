@@ -5,7 +5,7 @@
     "mchNamePlaceholder": "Please enter merchant name",
     "mchShortNamePlaceholder": "Please enter merchant short name",
     "subjectTypePlaceholder": "Please select merchant type",
-    "adminNamePlaceholder": "Leave blank to default to \"Merchant Name + Admin\""
+    "adminNamePlaceholder": "Please enter the name"
   },
   "manage": {
     "info": {

@@ -7,7 +7,7 @@
     "subjectType": "主體型別",
     "createTime": "建立時間",
     "id": "主鍵",
-    "adminName": "管理員姓名"
+    "adminName": "名稱"
   },
   "status": {
     "enable": "啟用",
@@ -29,6 +29,7 @@
     "pleaseInputAccount": "請輸入管理員賬號",
     "pleaseConfirmPassword": "請確認密碼",
     "pleaseSelectSubjectType": "請選擇主體型別",
-    "pleaseSelectStatus": "請選擇狀態"
+    "pleaseSelectStatus": "請選擇狀態",
+    "pleaseInputAdminName": "請輸入名稱"
   }
 }

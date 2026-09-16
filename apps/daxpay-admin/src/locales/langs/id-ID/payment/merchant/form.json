@@ -5,7 +5,7 @@
     "mchNamePlaceholder": "Silakan masukkan nama pedagang",
     "mchShortNamePlaceholder": "Silakan masukkan nama pendek pedagang",
     "subjectTypePlaceholder": "Silakan pilih jenis pedagang",
-    "adminNamePlaceholder": "Kosongkan untuk default \"Nama Merchant + Admin\""
+    "adminNamePlaceholder": "Masukkan nama"
   },
   "manage": {
     "info": {

@@ -5,7 +5,7 @@
     "mchNamePlaceholder": "販売者名を入力してください",
     "mchShortNamePlaceholder": "販売者の略称を入力してください",
     "subjectTypePlaceholder": "販売者のタイプを選択してください",
-    "adminNamePlaceholder": "空欄の場合は「商戶名+管理者」がデフォルトになります"
+    "adminNamePlaceholder": "名前を入力してください"
   },
   "manage": {
     "info": {
