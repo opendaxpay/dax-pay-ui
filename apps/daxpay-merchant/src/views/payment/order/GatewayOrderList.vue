@@ -211,7 +211,7 @@
 
   onMounted(() => {
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
-    MchAppInfoApi.enableList().then(({ data }) => {
+    MchAppInfoApi.enableList(true).then(({ data }) => {
       appOptions.value =
         data?.map((item) => ({
           label: item.appName ? `${item.appName} (${item.appId})` : (item.appId ?? ''),

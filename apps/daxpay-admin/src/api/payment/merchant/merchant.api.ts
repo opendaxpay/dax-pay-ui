@@ -59,9 +59,10 @@ export const MerchantApi = {
   },
   /**
    * 商户下拉列表
+   * @param silent 静默错误(订单页等跨模块引用时, 纯交易角色无商户查看权限 403 不弹全局 toast, 降级为空下拉)
    */
-  dropdown(): Promise<Result<LabelValue[]>> {
-    return defHttp.get({ url: '/admin/merchant/dropdown' });
+  dropdown(silent = false): Promise<Result<LabelValue[]>> {
+    return defHttp.get({ url: '/admin/merchant/dropdown', silentError: silent });
   },
 };
 

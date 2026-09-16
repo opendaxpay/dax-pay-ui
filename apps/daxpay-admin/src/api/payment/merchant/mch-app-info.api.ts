@@ -15,9 +15,10 @@ export const MchAppInfoApi = {
 
   /**
    * 启用应用列表(下拉选择器用, 仅返回启用状态)
+   * @param silent 静默错误(订单页等跨模块引用时, 无应用查看权限 403 不弹全局 toast, 降级为空下拉)
    */
-  enableList(mchNo: string): Promise<Result<MchAppInfoResult[]>> {
-    return defHttp.get({ url: '/admin/merchant/app-info/enable-list', params: { mchNo } });
+  enableList(mchNo: string, silent = false): Promise<Result<MchAppInfoResult[]>> {
+    return defHttp.get({ url: '/admin/merchant/app-info/enable-list', params: { mchNo }, silentError: silent });
   },
 
   /**

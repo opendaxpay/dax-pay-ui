@@ -229,7 +229,7 @@
       queryForm.value.appId = undefined;
       appOptions.value = [];
       if (!mchNo) return;
-      MchAppInfoApi.enableList(mchNo).then(({ data }) => {
+      MchAppInfoApi.enableList(mchNo, true).then(({ data }) => {
         appOptions.value =
           data?.map((item) => ({
             label: item.appName ? `${item.appName} (${item.appId})` : (item.appId ?? ''),
@@ -241,7 +241,7 @@
 
   onMounted(() => {
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
-    MerchantApi.dropdown().then(({ data }) => {
+    MerchantApi.dropdown(true).then(({ data }) => {
       mchNoOptions.value = data ?? [];
     });
     queryPage();
