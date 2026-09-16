@@ -51,10 +51,7 @@
 
   const canAdd = computed(() => hasPermission(PermCodes.Channel.App.MANAGE));
 
-  const pageTitle = computed(() => {
-    const base = $t('payment.channel.alipayMchManage.cardMchApp');
-    return channelMerchantName.value ? `${base} (${channelMerchantName.value})` : base;
-  });
+  const pageTitle = computed(() => $t('payment.channel.alipayMchManage.cardMchApp'));
 
   /** 加载应用列表 */
   function loadAppList() {
@@ -164,6 +161,8 @@
               </template>
             </a-button>
             <span class="text-lg font-bold text-foreground">{{ pageTitle }}</span>
+            <!-- 通道商户名: 淡灰小字, 与功能名分层 -->
+            <span v-if="channelMerchantName" class="text-sm text-muted-foreground"> ({{ channelMerchantName }})</span>
           </div>
         </div>
       </template>

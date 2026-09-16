@@ -36,14 +36,6 @@
   const formState = ref<MchAppNotifyConfigResult & { subscribedEventList?: string[] }>({});
 
   /**
-   * 抽屉标题
-   */
-  const drawerTitle = computed(() => {
-    const title = $t('payment.merchant.notifyConfig.notifyConfig.title');
-    return props.appName ? `${title} (${props.appName})` : title;
-  });
-
-  /**
    * 订阅事件选项(按业务域分组, 存储具体事件码, 后端支持精确匹配)
    */
   const eventGroups = computed(() => [
@@ -170,11 +162,16 @@
 <template>
   <a-drawer
     :open="visible"
-    :title="drawerTitle"
-    size="70%"
     :destroy-on-hidden="true"
+    size="70%"
     @update:open="(v: boolean) => emit('update:visible', v)"
   >
+    <template #title>
+      <!-- 国际化：异步通知配置 -->
+      <span>{{ $t('payment.merchant.notifyConfig.notifyConfig.title') }}</span>
+      <!-- 应用名: 淡灰小字, 与功能名分层 -->
+      <span v-if="appName" class="text-sm text-muted-foreground"> ({{ appName }})</span>
+    </template>
     <a-spin :spinning="loading">
       <div class="notify-form-container">
         <!-- 信息提示 -->
