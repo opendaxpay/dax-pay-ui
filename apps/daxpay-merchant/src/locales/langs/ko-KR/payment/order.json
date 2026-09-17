@@ -205,7 +205,9 @@
     "allocReceiverNamePlaceholder": "수취 사용자 실명 입력(평문, openid 실명과 일치)",
     "allocAmountPlaceholder": "분담 금액 입력",
     "allocValidateName": "개인 openid 수취인은 이름 입력이 필수입니다",
-    "allocValidateTitle": "분담 제목을 입력하세요"
+    "allocValidateTitle": "분담 제목을 입력하세요",
+    "export": "내보내기",
+    "exportFailed": "내보내기에 실패했습니다. 잠시 후 다시 시도해 주세요"
   },
   "method": {
     "jsapi": "JSAPI",

@@ -3,5 +3,13 @@
   "flowType": "흐름 유형",
   "typePay": "입금",
   "typeRefund": "환불",
-  "finishTime": "자금 완료 시간"
+  "finishTime": "자금 완료 시간",
+  "title": "자금 흐름",
+  "action": {
+    "export": "내보내기",
+    "exportFailed": "내보내기에 실패했습니다. 잠시 후 다시 시도해 주세요"
+  },
+  "field": {
+    "createTime": "생성 시간"
+  }
 }

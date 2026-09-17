@@ -205,7 +205,9 @@
     "allocReceiverNamePlaceholder": "請輸入收款用戶姓名(明文, 與openid實名一致)",
     "allocAmountPlaceholder": "請輸入分帳金額",
     "allocValidateName": "個人 openid 接收方必須填寫姓名",
-    "allocValidateTitle": "請輸入分帳標題"
+    "allocValidateTitle": "請輸入分帳標題",
+    "export": "匯出",
+    "exportFailed": "匯出失敗, 請稍後重試"
   },
   "method": {
     "jsapi": "JSAPI",

@@ -3,5 +3,13 @@
   "flowType": "流水类型",
   "typePay": "收款",
   "typeRefund": "退款",
-  "finishTime": "资金完成时间"
+  "finishTime": "资金完成时间",
+  "title": "资金流水",
+  "action": {
+    "export": "导出",
+    "exportFailed": "导出失败, 请稍后重试"
+  },
+  "field": {
+    "createTime": "创建时间"
+  }
 }

@@ -3,5 +3,13 @@
   "flowType": "ประเภทกระแส",
   "typePay": "รับชำระ",
   "typeRefund": "คืนเงิน",
-  "finishTime": "เวลาเสร็จสิ้น"
+  "finishTime": "เวลาเสร็จสิ้น",
+  "title": "กระแสเงิน",
+  "action": {
+    "export": "ส่งออก",
+    "exportFailed": "ส่งออกล้มเหลว กรุณาลองใหม่ภายหลัง"
+  },
+  "field": {
+    "createTime": "เวลาที่สร้าง"
+  }
 }

@@ -213,7 +213,9 @@
     "allocReceiverNamePlaceholder": "Enter receiver's real name (plaintext, must match the openid identity)",
     "allocAmountPlaceholder": "Enter allocation amount",
     "allocValidateName": "Receiver name is required for personal openid type",
-    "allocValidateTitle": "Please enter allocation title"
+    "allocValidateTitle": "Please enter allocation title",
+    "export": "Export",
+    "exportFailed": "Export failed. Please try again later."
   },
   "method": {
     "jsapi": "JSAPI",

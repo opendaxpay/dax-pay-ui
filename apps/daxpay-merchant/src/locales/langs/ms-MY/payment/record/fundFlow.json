@@ -3,5 +3,13 @@
   "flowType": "Jenis Aliran",
   "typePay": "Pembayaran",
   "typeRefund": "Bayaran Balik",
-  "finishTime": "Masa Selesai"
+  "finishTime": "Masa Selesai",
+  "title": "Aliran Dana",
+  "action": {
+    "export": "Eksport",
+    "exportFailed": "Eksport gagal. Silakan cuba lagi kemudian."
+  },
+  "field": {
+    "createTime": "Masa Dicipta"
+  }
 }

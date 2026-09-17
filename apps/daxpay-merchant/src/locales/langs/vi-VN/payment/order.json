@@ -205,7 +205,9 @@
     "allocReceiverNamePlaceholder": "Nhập họ tên thật của người dùng nhận tiền (dạng văn bản rõ, trùng khớp với tên thật của openid)",
     "allocAmountPlaceholder": "Nhập số tiền phân chia",
     "allocValidateName": "Bên nhận dạng openid cá nhân bắt buộc phải điền họ tên",
-    "allocValidateTitle": "Nhập tiêu đề phân chia"
+    "allocValidateTitle": "Nhập tiêu đề phân chia",
+    "export": "Xuất",
+    "exportFailed": "Xuất thất bại. Vui lòng thử lại sau."
   },
   "method": {
     "jsapi": "JSAPI",

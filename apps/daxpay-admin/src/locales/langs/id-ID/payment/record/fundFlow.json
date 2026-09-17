@@ -3,5 +3,13 @@
   "flowType": "Jenis Arus",
   "typePay": "Pembayaran",
   "typeRefund": "Pengembalian",
-  "finishTime": "Waktu Selesai"
+  "finishTime": "Waktu Selesai",
+  "title": "Arus Dana",
+  "action": {
+    "export": "Ekspor",
+    "exportFailed": "Ekspor gagal. Silakan coba lagi nanti."
+  },
+  "field": {
+    "createTime": "Waktu Dibuat"
+  }
 }

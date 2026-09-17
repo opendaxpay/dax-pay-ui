@@ -1,6 +1,8 @@
 import type { MchEntity, PageResult, Result } from '#/types/web';
 
-import { defHttp } from '#/api/request';
+import { downloadExportFile } from '@daxpay/ui-biz/utils/export-download';
+
+import { defHttp, requestClient } from '#/api/request';
 
 /**
  * 资金流水 API(商户端, 只读)
@@ -9,6 +11,22 @@ export const FundFlowApi = {
   /** 资金流水分页 */
   page(params: FundFlowQuery & { current?: number; size?: number }): Promise<Result<PageResult<FundFlowResult>>> {
     return defHttp.get({ url: '/mch/fund-flow/page', params });
+  },
+
+  /**
+   * 导出当前查询条件下的数据
+   *
+   * 服务端为内存生成后落响应, 失败时返回 JSON(而非文件);
+   * 错误文案已在 downloadExportFile 内统一提示, 返回 false 便于调用方复位按钮状态。
+   */
+  exportExcel(query: FundFlowQuery, options: { failedText: string; fileName: string }): Promise<boolean> {
+    return downloadExportFile({
+      client: requestClient,
+      url: '/mch/fund-flow/export',
+      params: { ...query },
+      fileName: options.fileName,
+      failedText: options.failedText,
+    });
   },
 
   /** 资金流水详情 */

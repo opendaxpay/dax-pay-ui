@@ -205,7 +205,9 @@
     "allocReceiverNamePlaceholder": "Masukkan nama pengguna penerima (plaintext, mesti sepadan dengan nama sebenar openid)",
     "allocAmountPlaceholder": "Masukkan jumlah pengagihan",
     "allocValidateName": "Penerima openid peribadi wajib mengisi nama",
-    "allocValidateTitle": "Masukkan tajuk pengagihan"
+    "allocValidateTitle": "Masukkan tajuk pengagihan",
+    "export": "Eksport",
+    "exportFailed": "Eksport gagal. Silakan cuba lagi kemudian."
   },
   "method": {
     "jsapi": "JSAPI",

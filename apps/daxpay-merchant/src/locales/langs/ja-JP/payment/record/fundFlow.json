@@ -3,5 +3,13 @@
   "flowType": "フロー種別",
   "typePay": "入金",
   "typeRefund": "返金",
-  "finishTime": "資金完了時間"
+  "finishTime": "資金完了時間",
+  "title": "資金フロー",
+  "action": {
+    "export": "エクスポート",
+    "exportFailed": "エクスポートに失敗しました。しばらくしてから再試行してください"
+  },
+  "field": {
+    "createTime": "作成日時"
+  }
 }

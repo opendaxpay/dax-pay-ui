@@ -2,6 +2,8 @@
   import type { MenuProps } from 'antdv-next';
   import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
 
+  import type { LabelValue } from '#/types/web';
+
   import { computed, onMounted, ref, watch } from 'vue';
 
   import { $t } from '@vben/locales';
@@ -9,13 +11,13 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { buildExportFileName } from '@daxpay/ui-biz/utils/export-download';
   import { formatFen as formatAmount } from '@daxpay/ui-biz/utils/pay-amount';
 
   import { MchAppInfoApi } from '#/api/payment/merchant/mch-app-info.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { OrderCloseApi } from '#/api/payment/order/close.api';
   import { PayTradeApi, type PayTradeQuery, type PayTradeResult } from '#/api/payment/order/pay-trade.api';
-  import type { LabelValue } from '#/types/web';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { usePermission } from '#/hooks/usePermission';
@@ -38,6 +40,23 @@
 
   // 查询条件
   const queryForm = ref<PayTradeQuery>({});
+  // 导出中标记(服务端为内存生成, 期间禁用按钮防重复提交)
+  const exporting = ref(false);
+
+  // 导出当前查询条件下的数据(时间列由后端按当前用户时区格式化)
+  async function handleExport() {
+    exporting.value = true;
+    // 失败提示已由 downloadExportFile 统一弹出, 此处只复位按钮状态
+    await PayTradeApi.exportExcel(queryForm.value, {
+      fileName: buildExportFileName($t('payment.order.trade.title'), {
+        start: queryForm.value.createTimeStart,
+        end: queryForm.value.createTimeEnd,
+      }),
+      failedText: $t('payment.order.action.exportFailed'),
+    }).finally(() => {
+      exporting.value = false;
+    });
+  }
 
   const pageConfig = ref({
     currentPage: 1,
@@ -308,7 +327,15 @@
 
     <div class="mt-4">
       <a-card>
-        <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }" />
+        <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
+          <template #buttons>
+            <a-space>
+              <a-button v-if="hasPermission(PermCodes.Trade.Fund.EXPORT)" :loading="exporting" @click="handleExport">
+                {{ $t('payment.order.action.export') }}
+              </a-button>
+            </a-space>
+          </template>
+        </vxe-toolbar>
         <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
           <vxe-column field="tradeNo" :title="$t('payment.order.field.tradeNo')" :min-width="200" show-overflow />

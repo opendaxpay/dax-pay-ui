@@ -3,5 +3,13 @@
   "flowType": "Flow Type",
   "typePay": "Payment",
   "typeRefund": "Refund",
-  "finishTime": "Finish Time"
+  "finishTime": "Finish Time",
+  "title": "Fund Flow",
+  "action": {
+    "export": "Export",
+    "exportFailed": "Export failed. Please try again later."
+  },
+  "field": {
+    "createTime": "Created At"
+  }
 }

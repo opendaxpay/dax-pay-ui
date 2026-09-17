@@ -3,5 +3,13 @@
   "flowType": "Loại dòng tiền",
   "typePay": "Thu",
   "typeRefund": "Hoàn tiền",
-  "finishTime": "Thời gian hoàn tất"
+  "finishTime": "Thời gian hoàn tất",
+  "title": "Dòng tiền",
+  "action": {
+    "export": "Xuất",
+    "exportFailed": "Xuất thất bại. Vui lòng thử lại sau."
+  },
+  "field": {
+    "createTime": "Thời gian tạo"
+  }
 }

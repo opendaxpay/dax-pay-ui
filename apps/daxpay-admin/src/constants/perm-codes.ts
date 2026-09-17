@@ -215,10 +215,12 @@ export const PermCodes = {
     Order: {
       VIEW: 'trade:order:view',
       MANAGE: 'trade:order:manage',
+      EXPORT: 'trade:order:export',
     },
     Refund: {
       VIEW: 'trade:refund:view',
       MANAGE: 'trade:refund:manage',
+      EXPORT: 'trade:refund:export',
     },
     Alloc: {
       VIEW: 'trade:alloc:view',
@@ -231,10 +233,12 @@ export const PermCodes = {
     Fund: {
       VIEW: 'trade:fund:view',
       MANAGE: 'trade:fund:manage',
+      EXPORT: 'trade:fund:export',
     },
     GatewayOrder: {
       VIEW: 'trade:gateway-order:view',
       MANAGE: 'trade:gateway-order:manage',
+      EXPORT: 'trade:gateway-order:export',
     },
     Notice: {
       VIEW: 'trade:mch-notice:view',
@@ -249,6 +253,7 @@ export const PermCodes = {
     },
     FundFlow: {
       VIEW: 'trade:fund-flow:view',
+      EXPORT: 'trade:fund-flow:export',
     },
   },
 

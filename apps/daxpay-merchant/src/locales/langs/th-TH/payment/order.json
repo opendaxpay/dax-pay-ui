@@ -205,7 +205,9 @@
     "allocReceiverNamePlaceholder": "กรุณากรอกชื่อจริงของผู้ใช้ที่รับเงิน (ข้อความล้วน ต้องตรงกับชื่อจริงของ openid)",
     "allocAmountPlaceholder": "กรุณากรอกยอดเงินแบ่ง",
     "allocValidateName": "ผู้รับแบบ openid ส่วนบุคคลต้องกรอกชื่อ",
-    "allocValidateTitle": "กรุณากรอกหัวข้อการแบ่งเงิน"
+    "allocValidateTitle": "กรุณากรอกหัวข้อการแบ่งเงิน",
+    "export": "ส่งออก",
+    "exportFailed": "ส่งออกล้มเหลว กรุณาลองใหม่ภายหลัง"
   },
   "method": {
     "jsapi": "JSAPI",

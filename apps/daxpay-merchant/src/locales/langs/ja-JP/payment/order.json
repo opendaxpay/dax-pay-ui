@@ -205,7 +205,9 @@
     "allocReceiverNamePlaceholder": "受取ユーザーの実名を入力(平文、openidの実名と一致)",
     "allocAmountPlaceholder": "分配金額を入力",
     "allocValidateName": "個人openid受取人は氏名の入力が必須です",
-    "allocValidateTitle": "分配タイトルを入力してください"
+    "allocValidateTitle": "分配タイトルを入力してください",
+    "export": "エクスポート",
+    "exportFailed": "エクスポートに失敗しました。しばらくしてから再試行してください"
   },
   "method": {
     "jsapi": "JSAPI",

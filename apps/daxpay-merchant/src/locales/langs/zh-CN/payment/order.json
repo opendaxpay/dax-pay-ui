@@ -221,7 +221,9 @@
     "allocReceiverNamePlaceholder": "请输入收款用户姓名(明文, 与openid实名一致)",
     "allocAmountPlaceholder": "请输入分账金额",
     "allocValidateName": "个人 openid 接收方必须填写姓名",
-    "allocValidateTitle": "请输入分账标题"
+    "allocValidateTitle": "请输入分账标题",
+    "export": "导出",
+    "exportFailed": "导出失败, 请稍后重试"
   },
   "alloc": {
     "title": "分账订单",
