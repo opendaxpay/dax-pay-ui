@@ -17,6 +17,7 @@
   import HmpayManage from '#/views/payment/channel/hmpay/manage/HmpayManage.vue';
   import LakalaManage from '#/views/payment/channel/lakala/manage/LakalaManage.vue';
   import LeshuaManage from '#/views/payment/channel/leshua/manage/LeshuaManage.vue';
+  import ShengIsvManage from '#/views/payment/channel/sheng/manage/ShengIsvManage.vue';
   import VbillManage from '#/views/payment/channel/vbill/manage/VbillManage.vue';
   import WechatIsvManage from '#/views/payment/channel/wechat/manage/WechatIsvManage.vue';
 
@@ -125,6 +126,10 @@
         currentComponent.value = markRaw(LeshuaManage);
         break;
       }
+      case 'sheng_isv': {
+        currentComponent.value = markRaw(ShengIsvManage);
+        break;
+      }
       case 'vbill_pay': {
         currentComponent.value = markRaw(VbillManage);
         break;
@@ -159,6 +164,9 @@
     }
     if (product.value === 'leshua_pay') {
       return $t('payment.product.enum.leshuaPay');
+    }
+    if (product.value === 'sheng_isv') {
+      return $t('payment.product.enum.shengIsv');
     }
     if (product.value === 'hkrt_pay') {
       return $t('payment.product.enum.hkrtPay');

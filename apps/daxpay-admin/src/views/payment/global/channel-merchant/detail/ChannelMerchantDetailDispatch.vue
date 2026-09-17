@@ -77,6 +77,12 @@
     [ProductEnum.HM_PAY]: defineAsyncComponent(
       () => import('#/views/payment/channel/hmpay/manage/mch/HmpayMchManage.vue'),
     ),
+    [ProductEnum.SHENG_ISV]: defineAsyncComponent(
+      () => import('#/views/payment/channel/sheng/manage/mch/ShengIsvMchManage.vue'),
+    ),
+    [ProductEnum.SHENG_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/sheng/manage/mch/ShengMchManage.vue'),
+    ),
     // 银联商务家族: 6 个产品共用同一组件
     [ProductEnum.UMS_QRCODE]: UmsDirectMchManage,
     [ProductEnum.UMS_JSAPI]: UmsDirectMchManage,
@@ -109,6 +115,8 @@
     [ProductEnum.HM_PAY]: 'payment.channel.hmpayIsv.manageTitle',
     [ProductEnum.UNION_PAY]: 'payment.channel.unionManage.manageTitle',
     [ProductEnum.STRIPE_PAY]: 'payment.channel.stripeManage.manageTitle',
+    [ProductEnum.SHENG_ISV]: 'payment.channel.shengIsv.isvManageTitle',
+    [ProductEnum.SHENG_PAY]: 'payment.channel.shengIsv.manageTitle',
     // 银联商务家族共用同一标题
     [ProductEnum.UMS_QRCODE]: UMS_MANAGE_TITLE_KEY,
     [ProductEnum.UMS_JSAPI]: UMS_MANAGE_TITLE_KEY,

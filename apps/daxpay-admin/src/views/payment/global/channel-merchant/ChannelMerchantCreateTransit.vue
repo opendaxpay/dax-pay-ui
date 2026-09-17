@@ -63,6 +63,12 @@
     [ProductEnum.STRIPE_PAY]: defineAsyncComponent(
       () => import('#/views/payment/channel/stripe/manage/StripeMchCreateConfig.vue'),
     ),
+    [ProductEnum.SHENG_ISV]: defineAsyncComponent(
+      () => import('#/views/payment/channel/sheng/config/ShengIsvMchCreateConfig.vue'),
+    ),
+    [ProductEnum.SHENG_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/sheng/config/ShengMchCreateConfig.vue'),
+    ),
     // 银联商务家族: 6 个产品共用同一组件
     [ProductEnum.UMS_QRCODE]: UmsMchCreateConfig,
     [ProductEnum.UMS_JSAPI]: UmsMchCreateConfig,

@@ -28,7 +28,9 @@ export enum ProductEnum {
   LESHUA_PAY = 'leshua_pay',
   /** 快钱 */
   QUICK_PAY = 'quick_pay',
-  /** 盛付通 */
+  /** 盛付通(服务商) */
+  SHENG_ISV = 'sheng_isv',
+  /** 盛付通(商户) */
   SHENG_PAY = 'sheng_pay',
   /** Stripe */
   STRIPE_PAY = 'stripe_pay',
@@ -83,6 +85,7 @@ export const productI18nMap: Record<string, string> = {
   [ProductEnum.HM_PAY]: 'payment.product.enum.hmPay',
   [ProductEnum.FUYOU_PAY]: 'payment.product.enum.fuyouPay',
   [ProductEnum.STRIPE_PAY]: 'payment.product.enum.stripePay',
+  [ProductEnum.SHENG_ISV]: 'payment.product.enum.shengIsv',
   [ProductEnum.SHENG_PAY]: 'payment.product.enum.shengPay',
   [ProductEnum.YSEP_PAY]: 'payment.product.enum.ysepPay',
   [ProductEnum.QUICK_PAY]: 'payment.product.enum.quickPay',
@@ -119,8 +122,10 @@ export const productNameMap: Record<string, string> = {
   [ProductEnum.FUYOU_PAY]: '富友支付',
   // Stripe
   [ProductEnum.STRIPE_PAY]: 'Stripe',
-  // 盛付通
-  [ProductEnum.SHENG_PAY]: '盛付通',
+  // 盛付通(服务商)
+  [ProductEnum.SHENG_ISV]: '盛付通(服务商)',
+  // 盛付通(商户)
+  [ProductEnum.SHENG_PAY]: '盛付通(商户)',
   // 银盛支付
   [ProductEnum.YSEP_PAY]: '银盛支付',
   // 快钱支付
@@ -160,7 +165,8 @@ export const productChannelMap: Record<string, string> = {
   [ProductEnum.FUYOU_PAY]: ChannelEnum.FUYOU_PAY,
   // Stripe
   [ProductEnum.STRIPE_PAY]: ChannelEnum.STRIPE,
-  // 盛付通(一通道一产品)
+  // 盛付通(一通道两产品: 商户模式/服务商模式共用 SHENG_PAY 通道)
+  [ProductEnum.SHENG_ISV]: ChannelEnum.SHENG_PAY,
   [ProductEnum.SHENG_PAY]: ChannelEnum.SHENG_PAY,
   // 银盛(一通道一产品)
   [ProductEnum.YSEP_PAY]: ChannelEnum.YSEP_PAY,
