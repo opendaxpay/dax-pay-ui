@@ -447,7 +447,7 @@
 
 <style scoped>
   .channel-auth-debug {
-    // 页面背景由布局主题提供, 不自设底色(暗色模式跟随)
+    /* 页面背景由布局主题提供, 不自设底色(暗色模式跟随) */
   }
 
   /* tabs 与下方内容：scoped 固定 gap，不依赖 tailwind utility */
@@ -540,7 +540,7 @@
   .qr-card {
     display: inline-block;
     padding: 20px;
-    // 二维码刻意保持白底: 暗色模式下也需白底保证扫码识别率
+    /* 二维码刻意保持白底: 暗色模式下也需白底保证扫码识别率 */
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 1px 2px rgb(0 0 0 / 6%);
