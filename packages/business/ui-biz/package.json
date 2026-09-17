@@ -121,6 +121,10 @@
       "types": "./src/utils/file.ts",
       "default": "./src/utils/file.ts"
     },
+    "./utils/export-download": {
+      "types": "./src/utils/export-download.ts",
+      "default": "./src/utils/export-download.ts"
+    },
     "./utils/pay-amount": {
       "types": "./src/utils/pay-amount.ts",
       "default": "./src/utils/pay-amount.ts"

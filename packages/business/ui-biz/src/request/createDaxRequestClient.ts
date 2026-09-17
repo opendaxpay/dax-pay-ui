@@ -8,6 +8,7 @@ import {
   RequestClient,
 } from '@vben/request';
 import { useAccessStore } from '@vben/stores';
+import { getCurrentTimezone } from '@vben/utils';
 
 import { CLIENT_CODE, TERMINAL } from '../constants/client';
 import { useMessage } from '../hooks/useMessage';
@@ -118,6 +119,9 @@ export function createDaxRequestClient(options: DaxRequestClientOptions): {
       config.headers['x-client-code'] = CLIENT_CODE;
       // 壳维度终端标识(与 x-client-code 正交), 后端用于偏好类数据分桶
       config.headers['x-terminal'] = TERMINAL;
+      // 用户时区: 供后端终端展示类格式化使用(Excel 导出等无前端转换环节的场景);
+      // 传输层时间仍为 UTC/带偏移 ISO 串, 不影响接口出入参语义
+      config.headers['x-timezone'] = getCurrentTimezone();
       return config;
     },
   });
