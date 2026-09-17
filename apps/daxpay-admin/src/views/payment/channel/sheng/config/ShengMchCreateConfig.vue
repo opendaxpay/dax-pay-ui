@@ -29,7 +29,6 @@
   const form = ref({
     channelMerchantName: '',
     shengMchId: '',
-    sdpAppId: '',
   });
 
   const visible = ref(false);
@@ -112,7 +111,6 @@
     form.value = {
       channelMerchantName: '',
       shengMchId: '',
-      sdpAppId: '',
     };
     nextTick(() => {
       formRef.value?.resetFields();
@@ -148,16 +146,12 @@
               :placeholder="$t('payment.merchant.channelMerchant.pleaseInputName')"
             />
           </a-form-item>
-          <!-- 国际化：盛付通商户号 -->
+          <!-- 国际化：盛付通商户号(应用ID sdpAppId 属对接密钥, 由密钥配置抽屉维护) -->
           <a-form-item :label="$t('payment.channel.shengIsv.shengMchId')" name="shengMchId">
             <a-input
               v-model:value="form.shengMchId"
               :placeholder="$t('payment.channel.shengIsv.shengMchIdPlaceholder')"
             />
-          </a-form-item>
-          <!-- 国际化：盛付通分配的应用ID -->
-          <a-form-item :label="$t('payment.channel.shengIsv.sdpAppId')" name="sdpAppId">
-            <a-input v-model:value="form.sdpAppId" :placeholder="$t('payment.channel.shengIsv.sdpAppIdPlaceholder')" />
           </a-form-item>
           <div class="flex justify-center gap-4 mt-8 pt-6 border-t border-border">
             <a-button @click="handlePrev">

@@ -51,8 +51,6 @@ export interface ShengChannelMerchantCreateParam {
   product: string;
   /** 盛付通商户号(mchId) */
   shengMchId: string;
-  /** 盛付通分配的应用ID(sdpAppId, 一期聚合可空) */
-  sdpAppId?: string;
 }
 
 /** 盛付通商户密钥配置(查询返回, 密钥字段为脱敏值) */
