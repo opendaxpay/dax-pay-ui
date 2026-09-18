@@ -2,6 +2,7 @@
   "title": "ShengPay Merchant Management",
   "manageTitle": "ShengPay Merchant Management",
   "isvManageTitle": "ShengPay Service Provider Merchant Management",
+  "isvNotConnectedTip": "The channel for ShengPay service provider (ISV) mode is not yet connected. Related configurations are reserved only and cannot be used for actual transactions.",
   "groupConfig": "Configuration Management",
   "cardMchKey": "Merchant Key",
   "cardMchKeyDesc": "Configure ShengPay merchant No and RSA signing key",
@@ -30,6 +31,8 @@
   "isvPrivateKey": "Service Provider Private Key",
   "isvPrivateKeyTooltip": "Service provider RSA private key (PEM format, PKCS#1/PKCS#8 accepted) for request signing; masked when already configured, clear and re-paste to update",
   "isvPrivateKeyPlaceholder": "Paste the service provider RSA private key (PEM format, with -----BEGIN/END markers)",
+  "cardCapabilityBinding": "WeChat App Binding",
+  "cardCapabilityBindingDesc": "Bind WeChat app to the channel merchant (JSAPI/Mini Program payment)",
   "validation": {
     "shengMchId": "Please enter the ShengPay merchant No",
     "subMchId": "Please enter the sub merchant No",

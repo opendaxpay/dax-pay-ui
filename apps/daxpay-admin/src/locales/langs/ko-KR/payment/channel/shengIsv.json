@@ -2,6 +2,7 @@
   "title": "셩페이 판매자 관리",
   "manageTitle": "셩페이 판매자 관리",
   "isvManageTitle": "셩페이 서비스 제공자 판매자 관리",
+  "isvNotConnectedTip": "셩페이 서비스 제공자(ISV) 모드 채널이 아직 연동되지 않았습니다. 관련 구성은 예약용이며 실제 거래에 사용할 수 없습니다",
   "groupConfig": "구성 관리",
   "cardMchKey": "판매자 키",
   "cardMchKeyDesc": "셩페이 판매자 번호와 RSA 서명 키를 구성합니다",
@@ -30,6 +31,8 @@
   "isvPrivateKey": "서비스 제공자 개인 키",
   "isvPrivateKeyTooltip": "서비스 제공자 RSA 개인 키(PEM 형식, PKCS#1/PKCS#8 가능), 요청 서명용. 이미 구성된 경우 마스킹되어 표시되므로 업데이트하려면 지우고 다시 붙여넣으세요.",
   "isvPrivateKeyPlaceholder": "서비스 제공자 RSA 개인 키를 붙여넣으세요(PEM 형식, -----BEGIN/END 마커 포함).",
+  "cardCapabilityBinding": "위챗 앱 바인딩",
+  "cardCapabilityBindingDesc": "채널 가맹점에 위챗 앱을 바인딩(JSAPI/미니 프로그램 결제)",
   "validation": {
     "shengMchId": "셩페이 판매자 번호를 입력하세요.",
     "subMchId": "하위 판매자 번호를 입력하세요.",

@@ -2,6 +2,7 @@
   "title": "Pengurusan Pedagang ShengPay",
   "manageTitle": "Pengurusan Pedagang ShengPay",
   "isvManageTitle": "Pengurusan Pedagang Penyedia Perkhidmatan ShengPay",
+  "isvNotConnectedTip": "Saluran mod penyedia perkhidmatan (ISV) ShengPay belum disambungkan. Konfigurasi berkaitan hanya simpanan dan belum boleh digunakan untuk transaksi sebenar.",
   "groupConfig": "Pengurusan Konfigurasi",
   "cardMchKey": "Kunci Pedagang",
   "cardMchKeyDesc": "Konfigurasikan nombor pedagang ShengPay dan kunci tandatangan RSA",
@@ -30,6 +31,8 @@
   "isvPrivateKey": "Kunci Peribadi Penyedia Perkhidmatan",
   "isvPrivateKeyTooltip": "Kunci peribadi RSA penyedia perkhidmatan (format PEM, PKCS#1/PKCS#8 diterima) untuk tandatangan permintaan; dipaparkan bertopeng apabila sudah dikonfigurasi, kosongkan dan tampal semula untuk mengemas kini",
   "isvPrivateKeyPlaceholder": "Tampal kunci peribadi RSA penyedia perkhidmatan (format PEM, dengan penanda -----BEGIN/END)",
+  "cardCapabilityBinding": "Ikatan Apl WeChat",
+  "cardCapabilityBindingDesc": "Ikat apl WeChat pada peniaga saluran (pembayaran JSAPI/Mini Program)",
   "validation": {
     "shengMchId": "Sila masukkan No. pedagang ShengPay",
     "subMchId": "Sila masukkan No. sub pedagang",

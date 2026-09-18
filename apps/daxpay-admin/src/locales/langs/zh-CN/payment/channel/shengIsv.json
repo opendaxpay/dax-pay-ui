@@ -2,6 +2,7 @@
   "title": "盛付通商户管理",
   "manageTitle": "盛付通商户管理",
   "isvManageTitle": "盛付通服务商商户管理",
+  "isvNotConnectedTip": "盛付通服务商模式通道暂未对接，相关配置仅作预留，暂不支持发起实际交易",
   "groupConfig": "配置管理",
   "cardMchKey": "商户密钥",
   "cardMchKeyDesc": "配置盛付通商户号与RSA签名密钥",
@@ -30,6 +31,8 @@
   "isvPrivateKey": "服务商私钥",
   "isvPrivateKeyTooltip": "服务商RSA私钥(PEM格式, PKCS#1/PKCS#8 皆可), 用于请求签名; 已配置时显示为脱敏值, 如需更新请清空后重新粘贴",
   "isvPrivateKeyPlaceholder": "请粘贴服务商RSA私钥(PEM格式, 含-----BEGIN/END标记)",
+  "cardCapabilityBinding": "微信应用绑定",
+  "cardCapabilityBindingDesc": "为通道商户绑定微信应用(JSAPI/小程序支付)",
   "validation": {
     "shengMchId": "请输入盛付通商户号",
     "subMchId": "请输入子商户号",

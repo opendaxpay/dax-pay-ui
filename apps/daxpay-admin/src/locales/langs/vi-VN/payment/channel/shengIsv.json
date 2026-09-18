@@ -2,6 +2,7 @@
   "title": "Quản lý thương nhân ShengPay",
   "manageTitle": "Quản lý thương nhân ShengPay",
   "isvManageTitle": "Quản lý thương nhân nhà cung cấp dịch vụ ShengPay",
+  "isvNotConnectedTip": "Kênh chế độ nhà cung cấp dịch vụ (ISV) ShengPay chưa được kết nối. Cấu hình liên quan chỉ mang tính dự phòng, chưa thể sử dụng cho giao dịch thực tế.",
   "groupConfig": "Quản lý cấu hình",
   "cardMchKey": "Khóa thương nhân",
   "cardMchKeyDesc": "Cấu hình số thương nhân ShengPay và khóa ký RSA",
@@ -30,6 +31,8 @@
   "isvPrivateKey": "Khóa riêng của nhà cung cấp dịch vụ",
   "isvPrivateKeyTooltip": "Khóa riêng RSA của nhà cung cấp dịch vụ (định dạng PEM, hỗ trợ PKCS#1/PKCS#8) để ký yêu cầu; hiển thị dạng che khi đã cấu hình, xóa và dán lại để cập nhật",
   "isvPrivateKeyPlaceholder": "Dán khóa riêng RSA của nhà cung cấp dịch vụ (định dạng PEM, kèm dấu -----BEGIN/END)",
+  "cardCapabilityBinding": "Liên kết ứng dụng WeChat",
+  "cardCapabilityBindingDesc": "Liên kết ứng dụng WeChat cho thương nhân kênh (thanh toán JSAPI/Mini Program)",
   "validation": {
     "shengMchId": "Vui lòng nhập số thương nhân ShengPay",
     "subMchId": "Vui lòng nhập số tiểu thương nhân",

@@ -37,9 +37,14 @@
   const isIsv = computed(() => mode.value === 'isv');
   const hasApps = computed(() => mchApps.value.length > 0 || isIsv.value);
 
-  /** 弹窗描述文案: 乐刷/Adapay 聚合产品仅 JSAPI/小程序需指定应用, 显示精简文案 */
+  /** 弹窗描述文案: 乐刷/Adapay/斗拱/盛付通聚合产品仅 JSAPI/小程序需指定应用, 显示精简文案 */
   const descKey = computed(() => {
-    if (product.value === 'leshua_pay' || product.value === 'ada_pay') {
+    if (
+      product.value === 'leshua_pay' ||
+      product.value === 'ada_pay' ||
+      product.value === 'dougong_pay' ||
+      product.value === 'sheng_pay'
+    ) {
       return 'payment.wx.app.channelCapabilityDescLeshua';
     }
     return isIsv.value ? 'payment.wx.app.channelCapabilityDescIsv' : 'payment.wx.app.channelCapabilityDescDirect';
@@ -106,10 +111,13 @@
   function appSelectOptions(capability: string) {
     const options: Array<{ label: string; value: string }> = [];
     if (isIsv.value) {
+      // 服务商默认(回显产品级默认绑应用名, 未配置时不带应用名后缀)
+      const defaultAppName = capabilities.value.find((c) => c.code === capability)?.defaultAppName;
       options.push({
         value: ISP_DEFAULT,
-        // 服务商默认
-        label: $t('payment.wx.app.capabilityIspDefault'),
+        label: defaultAppName
+          ? `${$t('payment.wx.app.capabilityIspDefault')} (${defaultAppName})`
+          : $t('payment.wx.app.capabilityIspDefault'),
       });
     }
     mchApps.value
@@ -183,8 +191,11 @@
     mchNo.value = no;
     channelMchNo.value = cMchNo;
     product.value = productCode;
-    // ISV 档: 微信服务商/乐刷聚合(平台档由产品级默认绑兜底, 商户档可选绑)
-    mode.value = productCode === 'wechat_isv' || productCode === 'leshua_pay' ? 'isv' : 'direct';
+    // ISV 档: 微信服务商/乐刷/斗拱聚合(平台档由产品级默认绑兜底, 商户档可选绑)
+    mode.value =
+      productCode === 'wechat_isv' || productCode === 'leshua_pay' || productCode === 'dougong_pay'
+        ? 'isv'
+        : 'direct';
     visible.value = true;
     loadData();
   }

@@ -2,6 +2,7 @@
   "title": "シェンペイ加盟店管理",
   "manageTitle": "シェンペイ加盟店管理",
   "isvManageTitle": "シェンペイサービスプロバイダー加盟店管理",
+  "isvNotConnectedTip": "シェンペイサービスプロバイダー(ISV)モードのチャネルは未接続です。関連設定は予約用のため、実際の取引にはご利用いただけません",
   "groupConfig": "構成管理",
   "cardMchKey": "加盟店キー",
   "cardMchKeyDesc": "シェンペイ加盟店番号と RSA 署名キーを構成します",
@@ -30,6 +31,8 @@
   "isvPrivateKey": "サービスプロバイダー秘密鍵",
   "isvPrivateKeyTooltip": "サービスプロバイダー RSA 秘密キー (PEM 形式、PKCS#1/PKCS#8 可)、リクエスト署名用。すでに構成されている場合はマスクされて表示されるため、クリアして再貼り付けして更新します",
   "isvPrivateKeyPlaceholder": "サービスプロバイダー RSA 秘密キーを貼り付けます (PEM 形式、-----BEGIN/END マーカー付き)",
+  "cardCapabilityBinding": "微信アプリ連携",
+  "cardCapabilityBindingDesc": "チャネル加盟店に微信アプリを連携します(JSAPI/ミニプログラム決済)",
   "validation": {
     "shengMchId": "シェンペイ加盟店番号を入力してください",
     "subMchId": "サブ加盟店番号を入力してください",

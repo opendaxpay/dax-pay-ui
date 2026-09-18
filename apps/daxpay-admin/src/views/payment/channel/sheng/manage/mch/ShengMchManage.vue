@@ -3,6 +3,7 @@
   import type { ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
 
   import { computed, ref } from 'vue';
+  import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
@@ -12,6 +13,7 @@
   import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/global/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
   import CommonChannelMerchantBasicInfo from '#/views/payment/global/channel-merchant/detail/CommonChannelMerchantBasicInfo.vue';
+  import WxChannelAppCapability from '#/views/payment/wx/channel/WxChannelAppCapability.vue';
 
   import ShengKeyConfigEdit from './ShengKeyConfigEdit.vue';
 
@@ -20,6 +22,8 @@
   const emit = defineEmits<{
     (e: 'success'): void;
   }>();
+
+  const router = useRouter();
 
   /** 功能卡片分组配置 */
   interface FunctionGroup {
@@ -37,6 +41,7 @@
   const basicInfoRef = ref<InstanceType<typeof CommonChannelMerchantBasicInfo>>();
   const keyConfigRef = ref<InstanceType<typeof ShengKeyConfigEdit>>();
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
+  const capabilityRef = ref<InstanceType<typeof WxChannelAppCapability>>();
 
   /** 通道专属字段(基本信息抽屉展示: 盛付通商户号/应用ID) */
   const extraFields = computed(() => [
@@ -70,6 +75,25 @@
           title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
           icon: 'ant-design:edit-outlined',
           description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),
+        },
+      ],
+    },
+    {
+      // 微信应用关联(仅微信 JSAPI/小程序支付需绑定应用)
+      group: $t('payment.merchant.channelMerchant.groupApp'),
+      color: 'green',
+      cards: [
+        {
+          key: 'appManage',
+          title: $t('payment.merchant.channelMerchant.cardApp'),
+          icon: 'ant-design:appstore-outlined',
+          description: $t('payment.merchant.channelMerchant.cardAppDesc'),
+        },
+        {
+          key: 'capabilityBinding',
+          title: $t('payment.channel.shengIsv.cardCapabilityBinding'),
+          icon: 'ant-design:api-outlined',
+          description: $t('payment.channel.shengIsv.cardCapabilityBindingDesc'),
         },
       ],
     },
@@ -124,6 +148,20 @@
     }
     if (card.key === 'editMerchantName') {
       editNameRef.value?.open();
+    }
+    if (card.key === 'appManage') {
+      // 跳转微信应用管理 Hub(商户档), 创建/管理该商户微信应用
+      router.push({
+        path: '/payment/wx/app',
+        query: {
+          tab: 'merchant',
+          mchNo: mchNo.value,
+        },
+      });
+    }
+    if (card.key === 'capabilityBinding') {
+      // 微信应用能力绑定(仅微信 JSAPI/小程序需绑定), 未绑定时按解析链兜底
+      capabilityRef.value?.show(mchNo.value, channelMchNo.value, channelMerchant.value.product || 'sheng_pay');
     }
   }
 
@@ -183,6 +221,8 @@
     <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 
     <ShengKeyConfigEdit ref="keyConfigRef" :channel-mch-no="channelMchNo" @saved="emit('success')" />
+
+    <WxChannelAppCapability ref="capabilityRef" @ok="emit('success')" />
   </div>
 </template>
 
