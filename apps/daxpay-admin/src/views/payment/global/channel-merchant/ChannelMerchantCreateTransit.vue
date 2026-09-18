@@ -30,6 +30,9 @@
     [ProductEnum.DOUGONG_PAY]: defineAsyncComponent(
       () => import('#/views/payment/channel/dougong/config/DougongMchCreateConfig.vue'),
     ),
+    [ProductEnum.EASY_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/easypay/config/EasyPayMchCreateConfig.vue'),
+    ),
     [ProductEnum.DOUYIN_PAY]: defineAsyncComponent(
       () => import('#/views/payment/channel/douyin/config/DouyinMchCreateConfig.vue'),
     ),

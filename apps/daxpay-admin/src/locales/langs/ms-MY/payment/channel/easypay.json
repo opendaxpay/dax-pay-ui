@@ -1,0 +1,23 @@
+{
+  "manageTitle": "Pengurusan Merchant EasyPay",
+  "cardMchKey": "Kunci Merchant",
+  "cardMchKeyDesc": "Konfigurasikan kunci tandatangan RSA merchant EasyPay",
+  "configTitle": "Konfigurasi Kunci Merchant EasyPay",
+  "keyConfigSection": "Konfigurasi Kunci",
+  "serverUrl": "URL Gateway Platform",
+  "serverUrlPlaceholder": "Masukkan URL gateway platform EasyPay (cth. https://pay.xxx.com)",
+  "partnerId": "ID Merchant (pid)",
+  "partnerIdPlaceholder": "Masukkan ID merchant EasyPay (pid)",
+  "privateKey": "Kunci Peribadi Merchant",
+  "privateKeyTooltip": "Kunci peribadi RSA merchant (PKCS8, PEM/Base64) untuk penandatanganan permintaan SHA256withRSA; dipaparkan dimask apabila dikonfigurasi, kosongkan dan tampal semula untuk mengemas kini",
+  "privateKeyPlaceholder": "Tampal kunci peribadi RSA merchant",
+  "publicKey": "Kunci Awam Platform",
+  "publicKeyTooltip": "Kunci awam RSA platform EasyPay untuk pengesahan tandatangan respons/callback; dipaparkan dimask apabila dikonfigurasi, kosongkan dan tampal semula untuk mengemas kini",
+  "publicKeyPlaceholder": "Tampal kunci awam RSA platform EasyPay",
+  "validation": {
+    "serverUrl": "Sila masukkan URL gateway platform EasyPay",
+    "partnerId": "Sila masukkan ID merchant EasyPay (pid)",
+    "privateKey": "Sila masukkan kunci peribadi merchant",
+    "publicKey": "Sila masukkan kunci awam platform"
+  }
+}

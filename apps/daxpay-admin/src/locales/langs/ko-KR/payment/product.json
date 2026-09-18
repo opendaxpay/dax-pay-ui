@@ -49,7 +49,8 @@
     "ysepPay": "YSEP 페이",
     "quickPay": "빠른 지불",
     "yeePay": "예 페이",
-    "jeePay": "지페이"
+    "jeePay": "지페이",
+    "easyPay": "이지페이"
   },
   "placeholder": {
     "name": "제품명을 입력하세요",

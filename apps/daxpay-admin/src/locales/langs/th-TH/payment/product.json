@@ -49,7 +49,8 @@
     "ysepPay": "YSEP จ่าย",
     "quickPay": "จ่ายด่วน",
     "yeePay": "Yee Pay",
-    "jeePay": "Jeepay"
+    "jeePay": "Jeepay",
+    "easyPay": "EasyPay"
   },
   "placeholder": {
     "name": "ป้อนชื่อผลิตภัณฑ์",

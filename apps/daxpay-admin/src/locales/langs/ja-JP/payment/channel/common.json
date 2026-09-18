@@ -20,5 +20,6 @@
   "umsPay": "UMS",
   "jeePay": "ジーペイ",
   "huifu": "アダペイ",
-  "stripe": "Stripe"
+  "stripe": "Stripe",
+  "easyPay": "イージーペイ"
 }

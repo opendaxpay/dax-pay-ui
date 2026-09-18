@@ -49,7 +49,8 @@
     "ysepPay": "YSEPペイ",
     "quickPay": "クイックペイ",
     "yeePay": "イーペイ",
-    "jeePay": "ジーペイ"
+    "jeePay": "ジーペイ",
+    "easyPay": "イージーペイ"
   },
   "placeholder": {
     "name": "製品名を入力してください",

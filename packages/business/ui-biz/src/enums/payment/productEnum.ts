@@ -58,6 +58,8 @@ export enum ProductEnum {
   YEE_PAY = 'yee_pay',
   /** 银盛 */
   YSEP_PAY = 'ysep_pay',
+  /** 易支付(三方聚合平台, 一期扫码两类) */
+  EASY_PAY = 'easy_pay',
 }
 
 /**
@@ -91,6 +93,8 @@ export const productI18nMap: Record<string, string> = {
   [ProductEnum.QUICK_PAY]: 'payment.product.enum.quickPay',
   [ProductEnum.YEE_PAY]: 'payment.product.enum.yeePay',
   [ProductEnum.JEE_PAY]: 'payment.product.enum.jeePay',
+  // 易支付
+  [ProductEnum.EASY_PAY]: 'payment.product.enum.easyPay',
 };
 
 /**
@@ -134,6 +138,8 @@ export const productNameMap: Record<string, string> = {
   [ProductEnum.YEE_PAY]: '易宝支付',
   // Jeepay
   [ProductEnum.JEE_PAY]: 'Jeepay',
+  // 易支付
+  [ProductEnum.EASY_PAY]: '易支付',
 };
 
 /**
@@ -176,6 +182,8 @@ export const productChannelMap: Record<string, string> = {
   [ProductEnum.YEE_PAY]: ChannelEnum.YEE_PAY,
   // jeepay(一通道一产品)
   [ProductEnum.JEE_PAY]: ChannelEnum.JEE_PAY,
+  // 易支付(一通道一产品)
+  [ProductEnum.EASY_PAY]: ChannelEnum.EASY_PAY,
 };
 
 /**

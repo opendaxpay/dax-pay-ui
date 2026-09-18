@@ -49,7 +49,8 @@
     "ysepPay": "YSEP Bayar",
     "quickPay": "Pembayaran Cepat",
     "yeePay": "Yee Bayar",
-    "jeePay": "Jeepay"
+    "jeePay": "Jeepay",
+    "easyPay": "EasyPay"
   },
   "placeholder": {
     "name": "Masukkan nama produk",

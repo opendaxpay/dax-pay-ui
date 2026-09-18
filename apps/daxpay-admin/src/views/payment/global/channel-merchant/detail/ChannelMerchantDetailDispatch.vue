@@ -68,6 +68,9 @@
     [ProductEnum.DOUGONG_PAY]: defineAsyncComponent(
       () => import('#/views/payment/channel/dougong/manage/mch/DougongMchManage.vue'),
     ),
+    [ProductEnum.EASY_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/easypay/manage/mch/EasyPayMchManage.vue'),
+    ),
     [ProductEnum.VBILL_PAY]: defineAsyncComponent(
       () => import('#/views/payment/channel/vbill/manage/mch/VbillMchManage.vue'),
     ),
@@ -117,6 +120,8 @@
     [ProductEnum.STRIPE_PAY]: 'payment.channel.stripeManage.manageTitle',
     [ProductEnum.SHENG_ISV]: 'payment.channel.shengIsv.isvManageTitle',
     [ProductEnum.SHENG_PAY]: 'payment.channel.shengIsv.manageTitle',
+    // 易支付
+    [ProductEnum.EASY_PAY]: 'payment.channel.easypay.manageTitle',
     // 银联商务家族共用同一标题
     [ProductEnum.UMS_QRCODE]: UMS_MANAGE_TITLE_KEY,
     [ProductEnum.UMS_JSAPI]: UMS_MANAGE_TITLE_KEY,

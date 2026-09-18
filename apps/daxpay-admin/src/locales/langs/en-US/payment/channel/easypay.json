@@ -1,0 +1,23 @@
+{
+  "manageTitle": "EasyPay Merchant Management",
+  "cardMchKey": "Merchant Key",
+  "cardMchKeyDesc": "Configure EasyPay merchant RSA signing keys",
+  "configTitle": "EasyPay Merchant Key Configuration",
+  "keyConfigSection": "Key Configuration",
+  "serverUrl": "Platform Gateway URL",
+  "serverUrlPlaceholder": "Enter EasyPay platform gateway URL (e.g. https://pay.xxx.com)",
+  "partnerId": "Merchant ID (pid)",
+  "partnerIdPlaceholder": "Enter EasyPay merchant ID (pid)",
+  "privateKey": "Merchant Private Key",
+  "privateKeyTooltip": "Merchant RSA private key (PKCS8, PEM/Base64) for SHA256withRSA request signing; shown masked when configured, clear and re-paste to update",
+  "privateKeyPlaceholder": "Paste merchant RSA private key",
+  "publicKey": "Platform Public Key",
+  "publicKeyTooltip": "EasyPay platform RSA public key for response/callback signature verification; shown masked when configured, clear and re-paste to update",
+  "publicKeyPlaceholder": "Paste EasyPay platform RSA public key",
+  "validation": {
+    "serverUrl": "Please enter the EasyPay platform gateway URL",
+    "partnerId": "Please enter the EasyPay merchant ID (pid)",
+    "privateKey": "Please enter the merchant private key",
+    "publicKey": "Please enter the platform public key"
+  }
+}

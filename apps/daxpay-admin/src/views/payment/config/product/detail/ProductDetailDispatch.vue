@@ -183,6 +183,9 @@
     if (product.value === 'hm_pay') {
       return $t('payment.product.enum.hmPay');
     }
+    if (product.value === 'easy_pay') {
+      return $t('payment.product.enum.easyPay');
+    }
     if (product.value) {
       return $t('payment.constant.product.productName.unknown', { product: product.value });
     }

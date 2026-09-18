@@ -20,5 +20,6 @@
   "umsPay": "銀聯商務",
   "jeePay": "jeepay",
   "huifu": "匯付天下",
-  "stripe": "Stripe"
+  "stripe": "Stripe",
+  "easyPay": "易支付"
 }

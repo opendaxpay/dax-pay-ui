@@ -1,0 +1,23 @@
+{
+  "manageTitle": "Quản lý merchant EasyPay",
+  "cardMchKey": "Khóa merchant",
+  "cardMchKeyDesc": "Cấu hình khóa ký RSA merchant EasyPay",
+  "configTitle": "Cấu hình khóa merchant EasyPay",
+  "keyConfigSection": "Cấu hình khóa",
+  "serverUrl": "Địa chỉ gateway nền tảng",
+  "serverUrlPlaceholder": "Nhập địa chỉ gateway nền tảng EasyPay (vd: https://pay.xxx.com)",
+  "partnerId": "ID merchant (pid)",
+  "partnerIdPlaceholder": "Nhập ID merchant EasyPay (pid)",
+  "privateKey": "Khóa riêng merchant",
+  "privateKeyTooltip": "Khóa riêng RSA merchant (PKCS8, PEM/Base64) dùng ký yêu cầu SHA256withRSA; hiển thị che masc khi đã cấu hình, xóa và dán lại để cập nhật",
+  "privateKeyPlaceholder": "Dán khóa riêng RSA merchant",
+  "publicKey": "Khóa công khai nền tảng",
+  "publicKeyTooltip": "Khóa công khai RSA nền tảng EasyPay dùng xác minh chữ ký phản hồi/callback; hiển thị che masc khi đã cấu hình, xóa và dán lại để cập nhật",
+  "publicKeyPlaceholder": "Dán khóa công khai RSA nền tảng EasyPay",
+  "validation": {
+    "serverUrl": "Vui lòng nhập địa chỉ gateway nền tảng EasyPay",
+    "partnerId": "Vui lòng nhập ID merchant EasyPay (pid)",
+    "privateKey": "Vui lòng nhập khóa riêng merchant",
+    "publicKey": "Vui lòng nhập khóa công khai nền tảng"
+  }
+}

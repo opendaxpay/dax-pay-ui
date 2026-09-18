@@ -38,6 +38,8 @@ export enum ChannelEnum {
   YEE_PAY = 'yee_pay',
   /** 银盛 */
   YSEP_PAY = 'ysep_pay',
+  /** 易支付(三方聚合平台) */
+  EASY_PAY = 'easy_pay',
 }
 
 /**
@@ -62,6 +64,8 @@ export const channelI18nMap: Record<string, string> = {
   [ChannelEnum.UMS_PAY]: 'payment.channel.common.umsPay',
   [ChannelEnum.JEE_PAY]: 'payment.channel.common.jeePay',
   [ChannelEnum.STRIPE]: 'payment.channel.common.stripe',
+  // 易支付
+  [ChannelEnum.EASY_PAY]: 'payment.channel.common.easyPay',
 };
 
 /**
@@ -86,6 +90,8 @@ export const channelNameMap: Record<string, string> = {
   [ChannelEnum.UMS_PAY]: '银联商务',
   [ChannelEnum.JEE_PAY]: 'jeepay',
   [ChannelEnum.STRIPE]: 'Stripe',
+  // 易支付
+  [ChannelEnum.EASY_PAY]: '易支付',
 };
 
 /**
@@ -113,4 +119,6 @@ export const channelLogoMap: Record<string, string> = {
   [ChannelEnum.JEE_PAY]: 'jee_pay',
   // Stripe 通道
   [ChannelEnum.STRIPE]: 'stripe',
+  // 易支付(easy_pay.svg 已存在, 直接登记)
+  [ChannelEnum.EASY_PAY]: 'easy_pay',
 };

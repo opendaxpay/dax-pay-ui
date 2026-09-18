@@ -1,0 +1,23 @@
+{
+  "manageTitle": "EasyPay加盟店管理",
+  "cardMchKey": "加盟店鍵",
+  "cardMchKeyDesc": "EasyPay加盟店のRSA署名鍵を設定",
+  "configTitle": "EasyPay加盟店鍵設定",
+  "keyConfigSection": "鍵設定",
+  "serverUrl": "プラットフォームゲートウェイURL",
+  "serverUrlPlaceholder": "EasyPayプラットフォームのゲートウェイURLを入力(例: https://pay.xxx.com)",
+  "partnerId": "加盟店ID(pid)",
+  "partnerIdPlaceholder": "EasyPay加盟店ID(pid)を入力",
+  "privateKey": "加盟店秘密鍵",
+  "privateKeyTooltip": "加盟店RSA秘密鍵(PKCS8, PEM/Base64), SHA256withRSAリクエスト署名に使用; 設定済みの場合はマスク表示され、更新時はクリアして再貼り付け",
+  "privateKeyPlaceholder": "加盟店RSA秘密鍵を貼り付け",
+  "publicKey": "プラットフォーム公開鍵",
+  "publicKeyTooltip": "EasyPayプラットフォームRSA公開鍵, レスポンス/コールバック署名検証に使用; 設定済みの場合はマスク表示され、更新時はクリアして再貼り付け",
+  "publicKeyPlaceholder": "EasyPayプラットフォームRSA公開鍵を貼り付け",
+  "validation": {
+    "serverUrl": "EasyPayプラットフォームのゲートウェイURLを入力してください",
+    "partnerId": "EasyPay加盟店ID(pid)を入力してください",
+    "privateKey": "加盟店秘密鍵を入力してください",
+    "publicKey": "プラットフォーム公開鍵を入力してください"
+  }
+}

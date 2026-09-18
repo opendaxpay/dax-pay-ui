@@ -20,5 +20,6 @@
   "umsPay": "UMS",
   "jeePay": "JeePay",
   "huifu": "Huifu",
-  "stripe": "Stripe"
+  "stripe": "Stripe",
+  "easyPay": "EasyPay"
 }

@@ -1,0 +1,23 @@
+{
+  "manageTitle": "จัดการร้านค้า EasyPay",
+  "cardMchKey": "คีย์ร้านค้า",
+  "cardMchKeyDesc": "กำหนดค่าคีย์ลายเซ็น RSA ของร้านค้า EasyPay",
+  "configTitle": "กำหนดค่าคีย์ร้านค้า EasyPay",
+  "keyConfigSection": "กำหนดค่าคีย์",
+  "serverUrl": "ที่อยู่เกตเวย์แพลตฟอร์ม",
+  "serverUrlPlaceholder": "ป้อนที่อยู่เกตเวย์แพลตฟอร์ม EasyPay (เช่น https://pay.xxx.com)",
+  "partnerId": "ID ร้านค้า (pid)",
+  "partnerIdPlaceholder": "ป้อน ID ร้านค้า EasyPay (pid)",
+  "privateKey": "คีย์ส่วนตัวร้านค้า",
+  "privateKeyTooltip": "คีย์ส่วนตัว RSA ของร้านค้า (PKCS8, PEM/Base64) ใช้ลงนามคำขอ SHA256withRSA; แสดงแบบมาสก์เมื่อกำหนดแล้ว ล้างและวางใหม่เพื่ออัปเดต",
+  "privateKeyPlaceholder": "วางคีย์ส่วนตัว RSA ของร้านค้า",
+  "publicKey": "คีย์สาธารณะแพลตฟอร์ม",
+  "publicKeyTooltip": "คีย์สาธารณะ RSA ของแพลตฟอร์ม EasyPay ใช้ตรวจสอบลายเซ็นการตอบกลับ/คอลแบ็ก; แสดงแบบมาสก์เมื่อกำหนดแล้ว ล้างและวางใหม่เพื่ออัปเดต",
+  "publicKeyPlaceholder": "วางคีย์สาธารณะ RSA ของแพลตฟอร์ม EasyPay",
+  "validation": {
+    "serverUrl": "กรุณาป้อนที่อยู่เกตเวย์แพลตฟอร์ม EasyPay",
+    "partnerId": "กรุณาป้อน ID ร้านค้า EasyPay (pid)",
+    "privateKey": "กรุณาป้อนคีย์ส่วนตัวร้านค้า",
+    "publicKey": "กรุณาป้อนคีย์สาธารณะแพลตฟอร์ม"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "manageTitle": "易支付商户管理",
+  "cardMchKey": "商户密钥",
+  "cardMchKeyDesc": "配置易支付商户RSA签名密钥",
+  "configTitle": "易支付商户密钥配置",
+  "keyConfigSection": "密钥配置",
+  "serverUrl": "平台网关地址",
+  "serverUrlPlaceholder": "请输入易支付平台网关地址(如 https://pay.xxx.com)",
+  "partnerId": "商户ID(pid)",
+  "partnerIdPlaceholder": "请输入易支付商户ID(pid)",
+  "privateKey": "商户私钥",
+  "privateKeyTooltip": "商户RSA私钥(PKCS8, PEM/Base64 皆可), 用于 SHA256withRSA 请求签名; 已配置时显示为脱敏值, 如需更新请清空后重新粘贴",
+  "privateKeyPlaceholder": "请粘贴商户RSA私钥",
+  "publicKey": "平台公钥",
+  "publicKeyTooltip": "易支付平台RSA公钥, 用于响应/回调验签; 已配置时显示为脱敏值, 如需更新请清空后重新粘贴",
+  "publicKeyPlaceholder": "请粘贴易支付平台RSA公钥",
+  "validation": {
+    "serverUrl": "请输入易支付平台网关地址",
+    "partnerId": "请输入易支付商户ID(pid)",
+    "privateKey": "请输入商户私钥",
+    "publicKey": "请输入易支付平台公钥"
+  }
+}

@@ -49,7 +49,8 @@
     "ysepPay": "银盛支付",
     "quickPay": "快钱支付",
     "yeePay": "易宝支付",
-    "jeePay": "Jeepay"
+    "jeePay": "Jeepay",
+    "easyPay": "易支付"
   },
   "placeholder": {
     "name": "请输入产品名称",
