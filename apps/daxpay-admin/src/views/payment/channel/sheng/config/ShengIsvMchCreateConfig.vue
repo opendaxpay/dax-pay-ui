@@ -134,6 +134,15 @@
           :wrapper-col="{ span: 16 }"
           :validate-trigger="['blur', 'change']"
         >
+          <!-- 国际化：服务商模式通道暂未对接提示(通道子应用侧未实施, 配置仅作预留) -->
+          <div class="mb-6">
+            <a-alert
+              show-icon
+              type="warning"
+              class="sheng-isv-tip"
+              :message="$t('payment.channel.shengIsv.isvNotConnectedTip')"
+            />
+          </div>
           <!-- 国际化：支付产品 -->
           <a-form-item :label="$t('payment.merchant.channelMerchant.product')">
             <div class="flex items-center gap-2 h-8">
@@ -192,3 +201,15 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+  /* 警示条紧凑化: 默认上下 8px 内边距使单行提示偏高显空, 收紧后内容更居中饱满 */
+  .sheng-isv-tip {
+    padding-block: 5px;
+  }
+
+  /* 行高与 14px 字号贴合, 消除 CJK 墨迹相对图标偏低的观感, 图标与文字光学对齐 */
+  .sheng-isv-tip :deep(.ant-alert-title) {
+    line-height: 20px;
+  }
+</style>

@@ -61,7 +61,14 @@
 </script>
 
 <template>
-  <div class="space-y-12 py-4">
+  <div class="py-4">
+    <!-- 国际化：服务商模式通道暂未对接提示(通道子应用侧未实施, 配置仅作预留) -->
+    <a-alert
+      show-icon
+      type="warning"
+      class="sheng-isv-tip"
+      :message="$t('payment.channel.shengIsv.isvNotConnectedTip')"
+    />
     <div v-for="group in functionCards" :key="group.group">
       <div class="mb-6 flex items-center gap-3 px-2">
         <div class="h-6 w-1.5 rounded-full shadow-sm" :class="getGroupColorClass(group.color)"></div>
@@ -112,5 +119,17 @@
 
   .isv-card {
     max-height: 200px;
+  }
+
+  /* 警示条紧凑化: 默认上下 8px 内边距使单行提示偏高显空, 收紧后内容更居中饱满;
+     下边距替代未生效的 space-y-12, 与「配置管理」标题拉开节奏 */
+  .sheng-isv-tip {
+    padding-block: 5px;
+    margin-bottom: 12px;
+  }
+
+  /* 行高与 14px 字号贴合, 消除 CJK 墨迹相对图标偏低的观感, 图标与文字光学对齐 */
+  .sheng-isv-tip :deep(.ant-alert-title) {
+    line-height: 20px;
   }
 </style>
