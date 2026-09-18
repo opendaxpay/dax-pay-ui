@@ -1,8 +1,9 @@
 {
   "manageTitle": "이지페이 가맹점 관리",
-  "cardMchKey": "가맹점 키",
-  "cardMchKeyDesc": "이지페이 가맹점 RSA 서명 키 구성",
-  "configTitle": "이지페이 가맹점 키 구성",
+  "cardMchKey": "연동 설정",
+  "cardMchKeyDesc": "이지페이 플랫폼 주소와 서명 키 구성",
+  "configTitle": "이지페이 연동 설정",
+  "baseConfigSection": "기본 설정",
   "keyConfigSection": "키 구성",
   "serverUrl": "플랫폼 게이트웨이 주소",
   "serverUrlPlaceholder": "이지페이 플랫폼 게이트웨이 주소 입력(예: https://pay.xxx.com)",

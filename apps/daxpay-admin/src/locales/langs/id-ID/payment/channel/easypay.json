@@ -1,8 +1,9 @@
 {
   "manageTitle": "Manajemen Merchant EasyPay",
-  "cardMchKey": "Kunci Merchant",
-  "cardMchKeyDesc": "Konfigurasikan kunci tanda tangan RSA merchant EasyPay",
-  "configTitle": "Konfigurasi Kunci Merchant EasyPay",
+  "cardMchKey": "Konfigurasi Integrasi",
+  "cardMchKeyDesc": "Konfigurasikan URL gateway dan kunci tanda tangan EasyPay",
+  "configTitle": "Konfigurasi Integrasi EasyPay",
+  "baseConfigSection": "Konfigurasi Dasar",
   "keyConfigSection": "Konfigurasi Kunci",
   "serverUrl": "URL Gateway Platform",
   "serverUrlPlaceholder": "Masukkan URL gateway platform EasyPay (mis. https://pay.xxx.com)",

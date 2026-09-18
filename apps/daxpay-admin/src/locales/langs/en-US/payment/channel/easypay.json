@@ -1,8 +1,9 @@
 {
   "manageTitle": "EasyPay Merchant Management",
-  "cardMchKey": "Merchant Key",
-  "cardMchKeyDesc": "Configure EasyPay merchant RSA signing keys",
-  "configTitle": "EasyPay Merchant Key Configuration",
+  "cardMchKey": "Integration Config",
+  "cardMchKeyDesc": "Configure EasyPay gateway URL and signing keys",
+  "configTitle": "EasyPay Integration Config",
+  "baseConfigSection": "Basic Config",
   "keyConfigSection": "Key Configuration",
   "serverUrl": "Platform Gateway URL",
   "serverUrlPlaceholder": "Enter EasyPay platform gateway URL (e.g. https://pay.xxx.com)",

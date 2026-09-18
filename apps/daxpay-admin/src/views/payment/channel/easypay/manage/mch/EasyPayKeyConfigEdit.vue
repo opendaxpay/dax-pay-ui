@@ -34,10 +34,14 @@
   // 密钥配置需通道商户管理权限, 无权限时表单只读
   const canEdit = computed(() => hasPermission(PermCodes.Channel.Merchant.MANAGE));
 
-  // 易支付商户密钥配置
+  // 易支付对接配置(基础配置 + 密钥配置)
   const drawerTitle = $t('payment.channel.easypay.configTitle');
 
   const rules = {
+    // 易支付平台网关地址
+    serverUrl: [{ required: true, message: $t('payment.channel.easypay.validation.serverUrl') }],
+    // 易支付商户ID(pid)
+    partnerId: [{ required: true, message: $t('payment.channel.easypay.validation.partnerId') }],
     // 商户私钥
     merchantPrivateKey: [{ required: true, message: $t('payment.channel.easypay.validation.privateKey') }],
     // 易支付平台公钥
@@ -114,17 +118,27 @@
         :wrapper-col="wrapperCol"
         :validate-trigger="['blur', 'change']"
       >
-        <a-divider orientation="left">{{ $t('payment.channel.easypay.keyConfigSection') }}</a-divider>
+        <a-divider orientation="left">{{ $t('payment.channel.easypay.baseConfigSection') }}</a-divider>
 
-        <!-- 国际化: 易支付平台网关地址(创建时录入, 不可修改) -->
+        <!-- 国际化: 易支付平台网关地址(后配, 后端去尾斜杠归一) -->
         <a-form-item :label="$t('payment.channel.easypay.serverUrl')" name="serverUrl">
-          <a-input :value="form.serverUrl" disabled />
+          <a-input
+            v-model:value="form.serverUrl"
+            :disabled="!canEdit"
+            :placeholder="$t('payment.channel.easypay.serverUrlPlaceholder')"
+          />
         </a-form-item>
 
-        <!-- 国际化: 易支付商户ID(创建时录入, 不可修改) -->
+        <!-- 国际化: 易支付商户ID(pid, 同一商户下唯一) -->
         <a-form-item :label="$t('payment.channel.easypay.partnerId')" name="partnerId">
-          <a-input :value="form.partnerId" disabled />
+          <a-input
+            v-model:value="form.partnerId"
+            :disabled="!canEdit"
+            :placeholder="$t('payment.channel.easypay.partnerIdPlaceholder')"
+          />
         </a-form-item>
+
+        <a-divider orientation="left">{{ $t('payment.channel.easypay.keyConfigSection') }}</a-divider>
 
         <!-- 国际化: 商户私钥(脱敏回显, diffForm 判断是否修改) -->
         <a-form-item

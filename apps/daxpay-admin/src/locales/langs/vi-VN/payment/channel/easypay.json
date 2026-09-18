@@ -1,8 +1,9 @@
 {
   "manageTitle": "Quản lý merchant EasyPay",
-  "cardMchKey": "Khóa merchant",
-  "cardMchKeyDesc": "Cấu hình khóa ký RSA merchant EasyPay",
-  "configTitle": "Cấu hình khóa merchant EasyPay",
+  "cardMchKey": "Cấu hình tích hợp",
+  "cardMchKeyDesc": "Cấu hình địa chỉ gateway và khóa ký EasyPay",
+  "configTitle": "Cấu hình tích hợp EasyPay",
+  "baseConfigSection": "Cấu hình cơ bản",
   "keyConfigSection": "Cấu hình khóa",
   "serverUrl": "Địa chỉ gateway nền tảng",
   "serverUrlPlaceholder": "Nhập địa chỉ gateway nền tảng EasyPay (vd: https://pay.xxx.com)",

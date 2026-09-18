@@ -28,8 +28,6 @@
   const formRef = ref();
   const form = ref({
     channelMerchantName: '',
-    serverUrl: '',
-    partnerId: '',
   });
 
   const visible = ref(false);
@@ -52,10 +50,6 @@
     channelMerchantName: [
       { required: true, message: $t('payment.merchant.channelMerchant.channelMerchantNameRequired') },
     ],
-    // 易支付平台网关地址
-    serverUrl: [{ required: true, message: $t('payment.channel.easypay.validation.serverUrl') }],
-    // 易支付商户ID(pid)
-    partnerId: [{ required: true, message: $t('payment.channel.easypay.validation.partnerId') }],
   }));
 
   function init(no: string, product: string, channel: string) {
@@ -113,8 +107,6 @@
   function resetForm() {
     form.value = {
       channelMerchantName: '',
-      serverUrl: '',
-      partnerId: '',
     };
     nextTick(() => {
       formRef.value?.resetFields();
@@ -143,25 +135,11 @@
               <span class="text-foreground">{{ productDisplayName }}</span>
             </div>
           </a-form-item>
-          <!-- 国际化：商户名称 -->
+          <!-- 国际化：商户名称(纯建档, 对接配置由密钥配置后置维护) -->
           <a-form-item :label="$t('payment.merchant.channelMerchant.channelMerchantName')" name="channelMerchantName">
             <a-input
               v-model:value="form.channelMerchantName"
               :placeholder="$t('payment.merchant.channelMerchant.pleaseInputName')"
-            />
-          </a-form-item>
-          <!-- 国际化：易支付平台网关地址(签名密钥由密钥配置抽屉维护) -->
-          <a-form-item :label="$t('payment.channel.easypay.serverUrl')" name="serverUrl">
-            <a-input
-              v-model:value="form.serverUrl"
-              :placeholder="$t('payment.channel.easypay.serverUrlPlaceholder')"
-            />
-          </a-form-item>
-          <!-- 国际化：易支付商户ID(pid) -->
-          <a-form-item :label="$t('payment.channel.easypay.partnerId')" name="partnerId">
-            <a-input
-              v-model:value="form.partnerId"
-              :placeholder="$t('payment.channel.easypay.partnerIdPlaceholder')"
             />
           </a-form-item>
           <div class="flex justify-center gap-4 mt-8 pt-6 border-t border-border">

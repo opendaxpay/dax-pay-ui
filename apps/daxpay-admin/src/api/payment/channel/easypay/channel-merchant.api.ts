@@ -41,7 +41,7 @@ export const EasyPayKeyConfigApi = {
   },
 };
 
-/** 易支付通道商户创建参数 */
+/** 易支付通道商户创建参数(纯建档, 对接配置由密钥配置后置维护) */
 export interface EasyPayChannelMerchantCreateParam {
   /** 商户号 */
   mchNo: string;
@@ -49,10 +49,6 @@ export interface EasyPayChannelMerchantCreateParam {
   channelMerchantName: string;
   /** 所属支付产品 */
   product: string;
-  /** 易支付平台网关地址 */
-  serverUrl: string;
-  /** 易支付商户ID(pid) */
-  partnerId: string;
 }
 
 /** 易支付商户密钥配置(查询返回, 密钥字段为脱敏值) */
@@ -77,9 +73,9 @@ export interface EasyPayKeyConfig {
 export interface EasyPayKeyConfigParam {
   /** 通道商户号 */
   channelMchNo: string;
-  /** 易支付平台网关地址(创建时录入, 不可修改) */
+  /** 易支付平台网关地址(后端去尾斜杠归一) */
   serverUrl?: string;
-  /** 易支付商户ID(pid, 创建时录入, 不可修改) */
+  /** 易支付商户ID(pid, 同一商户下唯一) */
   partnerId?: string;
   /** 商户私钥(PKCS8 格式; 未修改时由 diffForm 置空, 后端保留原值) */
   merchantPrivateKey?: string;

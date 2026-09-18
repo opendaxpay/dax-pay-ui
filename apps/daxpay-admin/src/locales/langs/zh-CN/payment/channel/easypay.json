@@ -1,8 +1,9 @@
 {
   "manageTitle": "易支付商户管理",
-  "cardMchKey": "商户密钥",
-  "cardMchKeyDesc": "配置易支付商户RSA签名密钥",
-  "configTitle": "易支付商户密钥配置",
+  "cardMchKey": "对接配置",
+  "cardMchKeyDesc": "配置易支付平台地址与签名密钥",
+  "configTitle": "易支付对接配置",
+  "baseConfigSection": "基础配置",
   "keyConfigSection": "密钥配置",
   "serverUrl": "平台网关地址",
   "serverUrlPlaceholder": "请输入易支付平台网关地址(如 https://pay.xxx.com)",

@@ -46,7 +46,7 @@
 
   /**
    * 功能卡片配置
-   * 易支付聚合收款: 平台地址与商户ID在开通时录入, 开通后仅密钥可维护
+   * 易支付聚合收款: 开通为纯建档, 平台地址/商户ID/签名密钥等对接配置全部后置维护
    */
   const functionCards = computed<FunctionGroup[]>(() => [
     {
@@ -62,7 +62,7 @@
         {
           key: 'keyConfig',
           title: $t('payment.channel.easypay.cardMchKey'),
-          icon: 'ant-design:key-outlined',
+          icon: 'ant-design:setting-outlined',
           description: $t('payment.channel.easypay.cardMchKeyDesc'),
         },
         {

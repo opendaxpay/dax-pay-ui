@@ -1,8 +1,9 @@
 {
   "manageTitle": "จัดการร้านค้า EasyPay",
-  "cardMchKey": "คีย์ร้านค้า",
-  "cardMchKeyDesc": "กำหนดค่าคีย์ลายเซ็น RSA ของร้านค้า EasyPay",
-  "configTitle": "กำหนดค่าคีย์ร้านค้า EasyPay",
+  "cardMchKey": "กำหนดค่าการเชื่อมต่อ",
+  "cardMchKeyDesc": "กำหนดค่าที่อยู่เกตเวย์และคีย์ลายเซ็น EasyPay",
+  "configTitle": "กำหนดค่าการเชื่อมต่อ EasyPay",
+  "baseConfigSection": "กำหนดค่าพื้นฐาน",
   "keyConfigSection": "กำหนดค่าคีย์",
   "serverUrl": "ที่อยู่เกตเวย์แพลตฟอร์ม",
   "serverUrlPlaceholder": "ป้อนที่อยู่เกตเวย์แพลตฟอร์ม EasyPay (เช่น https://pay.xxx.com)",

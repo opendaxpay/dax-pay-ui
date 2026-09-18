@@ -1,8 +1,9 @@
 {
   "manageTitle": "EasyPay加盟店管理",
-  "cardMchKey": "加盟店鍵",
-  "cardMchKeyDesc": "EasyPay加盟店のRSA署名鍵を設定",
-  "configTitle": "EasyPay加盟店鍵設定",
+  "cardMchKey": "接続設定",
+  "cardMchKeyDesc": "EasyPayプラットフォームURLと署名鍵を設定",
+  "configTitle": "EasyPay接続設定",
+  "baseConfigSection": "基本設定",
   "keyConfigSection": "鍵設定",
   "serverUrl": "プラットフォームゲートウェイURL",
   "serverUrlPlaceholder": "EasyPayプラットフォームのゲートウェイURLを入力(例: https://pay.xxx.com)",
