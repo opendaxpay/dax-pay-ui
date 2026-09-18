@@ -59,4 +59,8 @@ export interface WxPlatformAppCapabilityBatchParam {
 export interface WxCapabilityOption {
   code: string;
   name: string;
+  /** 产品级平台默认绑应用名称(未配置为空, 供「服务商默认」选项回显生效应用) */
+  defaultAppName?: string;
+  /** 产品级平台默认绑应用微信AppId */
+  defaultWxAppId?: string;
 }

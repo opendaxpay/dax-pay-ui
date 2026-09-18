@@ -105,10 +105,13 @@
   function appSelectOptions(capability: string) {
     const options: Array<{ label: string; value: string }> = [];
     if (isIsv.value) {
+      // 服务商默认(回显产品级默认绑应用名, 未配置时不带应用名后缀)
+      const defaultAppName = capabilities.value.find((c) => c.code === capability)?.defaultAppName;
       options.push({
         value: ISP_DEFAULT,
-        // 服务商默认
-        label: $t('payment.wx.app.capabilityIspDefault'),
+        label: defaultAppName
+          ? `${$t('payment.wx.app.capabilityIspDefault')} (${defaultAppName})`
+          : $t('payment.wx.app.capabilityIspDefault'),
       });
     }
     mchApps.value
