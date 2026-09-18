@@ -130,6 +130,14 @@
 
 <template>
   <PageShell :title="$t('payment.constant.product.productConfig.title')" :loading="loading">
+    <!-- 标题栏右侧: 手动刷新产品配置列表(tooltip 文案为「刷新」) -->
+    <template #actions>
+      <a-tooltip :title="$t('common.refresh')">
+        <a-button type="text" size="small" :loading="loading" @click="loadProductConfig">
+          <IconifyIcon icon="ant-design:reload-outlined" />
+        </a-button>
+      </a-tooltip>
+    </template>
     <div v-if="productList.length === 0 && !loading" class="flex items-center justify-center empty-container">
           <a-empty :description="$t('payment.constant.product.productConfig.emptyDesc')" />
         </div>
