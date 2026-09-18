@@ -3,16 +3,17 @@
   import type { DougongIsvChannelMerchant } from '#/api/payment/channel/dougong/channel-merchant.api';
 
   import { computed, ref } from 'vue';
+  import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
   import { IconifyIcon } from '@vben-core/icons';
 
   import { DougongChannelMerchantApi } from '#/api/payment/channel/dougong/channel-merchant.api';
-  import DougongMchConfigEdit from '#/views/payment/channel/dougong/config/DougongMchConfigEdit.vue';
   import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/global/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
   import CommonChannelMerchantBasicInfo from '#/views/payment/global/channel-merchant/detail/CommonChannelMerchantBasicInfo.vue';
+  import WxChannelAppCapability from '#/views/payment/wx/channel/WxChannelAppCapability.vue';
 
   defineOptions({ name: 'DougongMchManage' });
 
@@ -29,23 +30,23 @@
     (e: 'success'): void;
   }>();
 
+  const router = useRouter();
   const mchNo = ref('');
   const channelMchNo = ref('');
   const channelMerchant = ref<ChannelMerchantResult>({});
   const channelConfig = ref<DougongIsvChannelMerchant>({});
   const basicInfoRef = ref<InstanceType<typeof CommonChannelMerchantBasicInfo>>();
-  const configEditRef = ref<InstanceType<typeof DougongMchConfigEdit>>();
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
+  const capabilityRef = ref<InstanceType<typeof WxChannelAppCapability>>();
 
   /** 通道专属字段(基本信息抽屉展示) */
   const extraFields = computed(() => [
     { label: $t('payment.channel.dougongIsv.merchantNo'), value: channelConfig.value.merchantNo || '-' },
-    { label: $t('payment.channel.dougongIsv.appId'), value: channelConfig.value.appId || '-' },
   ]);
 
   /**
    * 功能卡片配置
-   * 斗拱(汇付天下)服务商模式, 商户配置(汇付商户号 + 商户AppId)
+   * 斗拱(汇付天下)服务商模式, 商户配置(汇付商户号)与微信应用绑定(JSAPI/小程序)
    */
   const functionCards = computed<FunctionGroup[]>(() => [
     {
@@ -59,16 +60,29 @@
           description: $t('payment.merchant.channelMerchant.cardBasicInfoDesc'),
         },
         {
-          key: 'mchConfig',
-          title: $t('payment.channel.dougongIsv.mchConfigTitle'),
-          icon: 'ant-design:setting-outlined',
-          description: $t('payment.channel.dougongIsv.appIdTooltip'),
-        },
-        {
           key: 'editMerchantName',
           title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
           icon: 'ant-design:edit-outlined',
           description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),
+        },
+      ],
+    },
+    {
+      // 微信应用关联(JSAPI/小程序)
+      group: $t('payment.merchant.channelMerchant.groupApp'),
+      color: 'green',
+      cards: [
+        {
+          key: 'appManage',
+          title: $t('payment.merchant.channelMerchant.cardApp'),
+          icon: 'ant-design:appstore-outlined',
+          description: $t('payment.merchant.channelMerchant.cardAppDesc'),
+        },
+        {
+          key: 'capabilityBinding',
+          title: $t('payment.channel.dougongIsv.cardCapabilityBinding'),
+          icon: 'ant-design:api-outlined',
+          description: $t('payment.channel.dougongIsv.cardCapabilityBindingDesc'),
         },
       ],
     },
@@ -116,10 +130,20 @@
     }
     if (card.key === 'editMerchantName') {
       editNameRef.value?.open();
-      return;
     }
-    if (card.key === 'mchConfig') {
-      configEditRef.value?.init();
+    if (card.key === 'appManage') {
+      // 跳转微信应用管理 Hub(商户档), 创建/管理该商户微信应用
+      router.push({
+        path: '/payment/wx/app',
+        query: {
+          tab: 'merchant',
+          mchNo: mchNo.value,
+        },
+      });
+    }
+    if (card.key === 'capabilityBinding') {
+      // 微信应用能力绑定(JSAPI/小程序), 未绑时走产品级默认/平台应用推导
+      capabilityRef.value?.show(mchNo.value, channelMchNo.value, channelMerchant.value.product || 'dougong_pay');
     }
   }
 
@@ -176,8 +200,7 @@
 
     <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 
-    <!-- 斗拱商户配置(AppId编辑), channelMchNo 由父级传入 -->
-    <DougongMchConfigEdit v-if="channelMchNo" ref="configEditRef" :channel-mch-no="channelMchNo" />
+    <WxChannelAppCapability ref="capabilityRef" @ok="emit('success')" />
   </div>
 </template>
 

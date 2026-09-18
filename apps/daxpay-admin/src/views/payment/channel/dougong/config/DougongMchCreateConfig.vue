@@ -26,7 +26,6 @@ const formRef = ref();
 const form = ref({
   channelMerchantName: '',
   merchantNo: '',
-  appId: '',
 });
 
 const visible = ref(false);
@@ -47,7 +46,6 @@ const productDisplayName = computed(() => {
 const rules = computed(() => ({
   channelMerchantName: [{ required: true, message: $t('payment.merchant.channelMerchant.channelMerchantNameRequired') }],
   merchantNo: [{ required: true, message: $t('payment.channel.dougongIsv.validation.merchantNo') }],
-  appId: [{ required: true, message: $t('payment.channel.dougongIsv.validation.appId') }],
 }));
 
 function init(no: string, product: string, channel: string) {
@@ -123,7 +121,8 @@ defineExpose({ init, validate, getData, submit });
         <!-- 国际化：支付产品 -->
         <a-form-item :label="$t('payment.merchant.channelMerchant.product')">
           <div class="flex items-center gap-2 h-8">
-            <ChannelLogo v-if="channelCode" :channel="channelCode" :size="24" />
+            <!-- 产品上下文传 product, 优先取斗拱产品Logo(回退通道Logo) -->
+            <ChannelLogo v-if="channelCode" :product="productCode" :channel="channelCode" :size="24" />
             <span class="text-foreground">{{ productDisplayName }}</span>
           </div>
         </a-form-item>
@@ -139,13 +138,6 @@ defineExpose({ init, validate, getData, submit });
           <a-input
             v-model:value="form.merchantNo"
             :placeholder="$t('payment.channel.dougongIsv.merchantNoPlaceholder')"
-          />
-        </a-form-item>
-        <!-- 国际化：商户AppId -->
-        <a-form-item :label="$t('payment.channel.dougongIsv.appId')" name="appId">
-          <a-input
-            v-model:value="form.appId"
-            :placeholder="$t('payment.channel.dougongIsv.appIdPlaceholder')"
           />
         </a-form-item>
         <div class="flex justify-center gap-4 mt-8 pt-6 border-t border-border">

@@ -4,6 +4,8 @@
   "manageTitle": "斗拱商户管理",
   "cardMchKey": "服务商密钥",
   "cardMchKeyDesc": "配置斗拱服务商系统ID、产品号、RSA密钥",
+  "cardCapabilityBinding": "微信应用绑定",
+  "cardCapabilityBindingDesc": "为通道商户绑定微信应用(JSAPI/小程序支付)",
   "configTitle": "斗拱服务商密钥配置",
   "isvIdentity": "服务商身份",
   "keyConfig": "密钥配置",
@@ -13,24 +15,17 @@
   "productIdPlaceholder": "请输入汇付产品号(productId)",
   "dgPublicKey": "斗拱公钥",
   "dgPublicKeyTooltip": "汇付平台RSA公钥(PEM), 用于回调/响应验签",
-  "uploadPublicKey": "上传公钥",
-  "publicKeyUploaded": "公钥已上传",
+  "dgPublicKeyPlaceholder": "请粘贴汇付平台RSA公钥",
   "privateKey": "商户私钥",
   "privateKeyTooltip": "商户RSA私钥(PEM PKCS#8), 用于请求签名",
-  "uploadPrivateKey": "上传私钥",
-  "privateKeyUploaded": "私钥已上传",
-  "mchConfigTitle": "斗拱商户配置",
+  "privateKeyPlaceholder": "请粘贴商户RSA私钥",
   "merchantNo": "汇付商户号",
   "merchantNoPlaceholder": "请输入汇付商户号(merchantNo/huifuId)",
-  "appId": "商户AppId",
-  "appIdTooltip": "汇付SDK BasePay.putMerConfigs的key, 区别于汇付商户号(merchantNo)",
-  "appIdPlaceholder": "请输入商户AppId",
   "validation": {
     "sysId": "请输入服务商系统ID",
     "productId": "请输入产品号",
-    "privateKey": "请上传商户私钥",
-    "dgPublicKey": "请上传斗拱公钥",
-    "merchantNo": "请输入汇付商户号",
-    "appId": "请输入商户AppId"
+    "privateKey": "请输入商户私钥",
+    "dgPublicKey": "请输入斗拱公钥",
+    "merchantNo": "请输入汇付商户号"
   }
 }

@@ -4,6 +4,8 @@
   "manageTitle": "DouGong Merchant Management",
   "cardMchKey": "ISV Key",
   "cardMchKeyDesc": "Configure DouGong ISV system ID, product ID, RSA keys",
+  "cardCapabilityBinding": "WeChat App Binding",
+  "cardCapabilityBindingDesc": "Bind WeChat app to the channel merchant (JSAPI/Mini Program payment)",
   "configTitle": "Dougong ISV Key Configuration",
   "isvIdentity": "ISV Identity",
   "keyConfig": "Key Configuration",
@@ -13,24 +15,17 @@
   "productIdPlaceholder": "Please enter Huifu product ID (productId)",
   "dgPublicKey": "Dougong Public Key",
   "dgPublicKeyTooltip": "Huifu RSA public key (PEM), for callback/response signature verification",
-  "uploadPublicKey": "Upload Public Key",
-  "publicKeyUploaded": "Public key uploaded",
+  "dgPublicKeyPlaceholder": "Paste the Huifu platform RSA public key",
   "privateKey": "Merchant Private Key",
   "privateKeyTooltip": "Merchant RSA private key (PEM PKCS#8), for request signing",
-  "uploadPrivateKey": "Upload Private Key",
-  "privateKeyUploaded": "Private key uploaded",
-  "mchConfigTitle": "Dougong Merchant Configuration",
+  "privateKeyPlaceholder": "Paste the merchant RSA private key",
   "merchantNo": "Huifu Merchant No",
   "merchantNoPlaceholder": "Please enter Huifu merchant No (merchantNo/huifuId)",
-  "appId": "Merchant AppId",
-  "appIdTooltip": "The key of Huifu SDK BasePay.putMerConfigs, distinct from Huifu merchant number (merchantNo)",
-  "appIdPlaceholder": "Please enter merchant AppId",
   "validation": {
     "sysId": "Please enter ISV system ID",
     "productId": "Please enter product ID",
-    "privateKey": "Please upload merchant private key",
-    "dgPublicKey": "Please upload Dougong public key",
-    "merchantNo": "Please enter Huifu merchant No",
-    "appId": "Please enter merchant AppId"
+    "privateKey": "Please enter merchant private key",
+    "dgPublicKey": "Please enter Dougong public key",
+    "merchantNo": "Please enter Huifu merchant No"
   }
 }

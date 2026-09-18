@@ -4,6 +4,8 @@
   "manageTitle": "Pengurusan Pedagang DouGong",
   "cardMchKey": "Kunci ISV",
   "cardMchKeyDesc": "Konfigurasikan ID sistem ISV ​​DouGong, ID produk, kunci RSA",
+  "cardCapabilityBinding": "Ikatan Apl WeChat",
+  "cardCapabilityBindingDesc": "Ikat apl WeChat pada peniaga saluran (pembayaran JSAPI/Mini Program)",
   "configTitle": "Konfigurasi Kunci ISV Dougong",
   "isvIdentity": "Identiti ISV",
   "keyConfig": "Konfigurasi Kekunci",
@@ -13,24 +15,17 @@
   "productIdPlaceholder": "Sila masukkan ID produk Huifu (productId)",
   "dgPublicKey": "Kunci Awam Dougong",
   "dgPublicKeyTooltip": "Kunci awam (PEM) Huifu RSA, untuk pengesahan tandatangan panggilan balik/balas",
-  "uploadPublicKey": "Muat naik Kunci Awam",
-  "publicKeyUploaded": "Kunci awam dimuat naik",
+  "dgPublicKeyPlaceholder": "Tampal kunci awam RSA platform Huifu",
   "privateKey": "Kunci Peribadi Pedagang",
   "privateKeyTooltip": "Kunci persendirian RSA Pedagang (PEM PKCS#8), untuk menandatangani permintaan",
-  "uploadPrivateKey": "Muat naik Kunci Peribadi",
-  "privateKeyUploaded": "Kunci peribadi dimuat naik",
-  "mchConfigTitle": "Konfigurasi Pedagang Dougong",
+  "privateKeyPlaceholder": "Tampal kunci peribadi RSA pedagang",
   "merchantNo": "Peniaga Huifu No",
   "merchantNoPlaceholder": "Sila masukkan No pedagang Huifu (No pedagang/huifuId)",
-  "appId": "AppId Pedagang",
-  "appIdTooltip": "Kunci Huifu SDK BasePay.putMerConfigs, berbeza daripada nombor pedagang Huifu (merchantNo)",
-  "appIdPlaceholder": "Sila masukkan AppId pedagang",
   "validation": {
     "sysId": "Sila masukkan ID sistem ISV",
     "productId": "Sila masukkan ID produk",
-    "privateKey": "Sila muat naik kunci peribadi pedagang",
-    "dgPublicKey": "Sila muat naik kunci awam Dougong",
-    "merchantNo": "Sila masukkan No. pedagang Huifu",
-    "appId": "Sila masukkan AppId pedagang"
+    "privateKey": "Sila masukkan kunci peribadi pedagang",
+    "dgPublicKey": "Sila masukkan kunci awam Dougong",
+    "merchantNo": "Sila masukkan No. pedagang Huifu"
   }
 }

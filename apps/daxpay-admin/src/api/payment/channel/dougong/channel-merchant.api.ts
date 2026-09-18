@@ -26,13 +26,6 @@ export const DougongChannelMerchantApi = {
       data,
     });
   },
-  /** 更新商户AppId */
-  updateAppId(channelMchNo: string, appId: string): Promise<Result<void>> {
-    return defHttp.post({
-      url: '/admin/dougong/isv-channel-merchant/update-app-id',
-      params: { channelMchNo, appId },
-    });
-  },
 };
 
 /** 斗拱通道商户绑定 */
@@ -45,8 +38,6 @@ export interface DougongIsvChannelMerchant {
   product?: string;
   /** 汇付商户号(merchantNo/huifuId) */
   merchantNo?: string;
-  /** 商户AppId(汇付SDK key) */
-  appId?: string;
 }
 
 /** 斗拱通道商户创建参数 */
@@ -59,6 +50,4 @@ export interface DougongIsvChannelMerchantCreateParam {
   product: string;
   /** 汇付商户号 */
   merchantNo: string;
-  /** 商户AppId */
-  appId: string;
 }

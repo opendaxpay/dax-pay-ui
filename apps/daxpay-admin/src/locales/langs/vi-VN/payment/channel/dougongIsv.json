@@ -4,6 +4,8 @@
   "manageTitle": "Quản lý thương mại DouGong",
   "cardMchKey": "Khóa ISV",
   "cardMchKeyDesc": "Định cấu hình ID hệ thống DouGong ISV, ID sản phẩm, khóa RSA",
+  "cardCapabilityBinding": "Liên kết ứng dụng WeChat",
+  "cardCapabilityBindingDesc": "Liên kết ứng dụng WeChat cho thương nhân kênh (thanh toán JSAPI/Mini Program)",
   "configTitle": "Cấu hình khóa ISV của Dougong",
   "isvIdentity": "Danh tính ISV",
   "keyConfig": "Cấu hình khóa",
@@ -13,24 +15,17 @@
   "productIdPlaceholder": "Vui lòng nhập ID sản phẩm Huifu (productId)",
   "dgPublicKey": "Khóa công khai Dougong",
   "dgPublicKeyTooltip": "Khóa công khai Huifu RSA (PEM), để xác minh chữ ký gọi lại/phản hồi",
-  "uploadPublicKey": "Tải khóa công khai lên",
-  "publicKeyUploaded": "Khóa công khai đã được tải lên",
+  "dgPublicKeyPlaceholder": "Vui lòng dán khóa công khai RSA của nền tảng Huifu",
   "privateKey": "Khóa riêng của người bán",
   "privateKeyTooltip": "Khóa riêng RSA của người bán (PEM PKCS#8), để ký yêu cầu",
-  "uploadPrivateKey": "Tải lên khóa riêng",
-  "privateKeyUploaded": "Khóa riêng đã được tải lên",
-  "mchConfigTitle": "Cấu hình thương gia Dougong",
+  "privateKeyPlaceholder": "Vui lòng dán khóa riêng RSA của người bán",
   "merchantNo": "Thương gia Huifu số",
   "merchantNoPlaceholder": "Vui lòng nhập Số người bán Huifu (merchantNo/huifuId)",
-  "appId": "Id ứng dụng người bán",
-  "appIdTooltip": "Khóa của Huifu SDK BasePay.putMerConfigs, khác với mã số người bán Huifu (merchantNo)",
-  "appIdPlaceholder": "Vui lòng nhập AppId người bán",
   "validation": {
     "sysId": "Vui lòng nhập ID hệ thống ISV",
     "productId": "Vui lòng nhập ID sản phẩm",
-    "privateKey": "Vui lòng tải lên khóa riêng của người bán",
-    "dgPublicKey": "Vui lòng tải lên khóa công khai Dougong",
-    "merchantNo": "Vui lòng nhập thương gia Huifu Không",
-    "appId": "Vui lòng nhập AppId người bán"
+    "privateKey": "Vui lòng nhập khóa riêng của người bán",
+    "dgPublicKey": "Vui lòng nhập khóa công khai Dougong",
+    "merchantNo": "Vui lòng nhập thương gia Huifu Không"
   }
 }

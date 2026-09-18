@@ -4,6 +4,8 @@
   "manageTitle": "두공 가맹점 관리",
   "cardMchKey": "ISV 키",
   "cardMchKeyDesc": "DouGong ISV 시스템 ID, 제품 ID, RSA 키 구성",
+  "cardCapabilityBinding": "위챗 앱 바인딩",
+  "cardCapabilityBindingDesc": "채널 가맹점에 위챗 앱을 바인딩(JSAPI/미니 프로그램 결제)",
   "configTitle": "Dougong ISV 키 구성",
   "isvIdentity": "ISV 아이덴티티",
   "keyConfig": "키 구성",
@@ -13,24 +15,17 @@
   "productIdPlaceholder": "Huifu 제품 ID(productId)를 입력하세요.",
   "dgPublicKey": "도공 공개키",
   "dgPublicKeyTooltip": "Huifu RSA 공개 키(PEM), 콜백/응답 서명 확인용",
-  "uploadPublicKey": "공개 키 업로드",
-  "publicKeyUploaded": "공개 키가 업로드됨",
+  "dgPublicKeyPlaceholder": "Huifu 플랫폼 RSA 공개 키를 붙여넣으세요",
   "privateKey": "판매자 개인 키",
   "privateKeyTooltip": "판매자 RSA 개인 키(PEM PKCS#8), 요청 서명용",
-  "uploadPrivateKey": "개인 키 업로드",
-  "privateKeyUploaded": "비공개 키가 업로드됨",
-  "mchConfigTitle": "도공 상인 구성",
+  "privateKeyPlaceholder": "판매자 RSA 개인 키를 붙여넣으세요",
   "merchantNo": "후이푸 상인 번호",
   "merchantNoPlaceholder": "Huifu 판매자 번호(merchantNo/huifuId)를 입력하세요.",
-  "appId": "판매자 앱 ID",
-  "appIdTooltip": "Huifu SDK BasePay.putMerConfigs의 키, Huifu 판매자 번호(merchantNo)와 구별됨",
-  "appIdPlaceholder": "판매자 AppId를 입력하세요.",
   "validation": {
     "sysId": "ISV 시스템 ID를 입력하세요.",
     "productId": "제품 ID를 입력하세요.",
-    "privateKey": "판매자 개인 키를 업로드하세요.",
-    "dgPublicKey": "Dougong 공개 키를 업로드해 주세요.",
-    "merchantNo": "Huifu 판매자 번호를 입력하세요.",
-    "appId": "판매자 AppId를 입력하세요."
+    "privateKey": "판매자 개인 키를 입력하세요.",
+    "dgPublicKey": "Dougong 공개 키를 입력해 주세요.",
+    "merchantNo": "Huifu 판매자 번호를 입력하세요."
   }
 }
