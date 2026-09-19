@@ -3,6 +3,7 @@
   import type { FuyouIsvChannelMerchant } from '#/api/payment/channel/fuyou/channel-merchant.api';
 
   import { computed, ref } from 'vue';
+  import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
@@ -12,6 +13,7 @@
   import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/global/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
   import CommonChannelMerchantBasicInfo from '#/views/payment/global/channel-merchant/detail/CommonChannelMerchantBasicInfo.vue';
+  import WxChannelAppCapability from '#/views/payment/wx/channel/WxChannelAppCapability.vue';
 
   defineOptions({ name: 'FuyouMchManage' });
 
@@ -28,12 +30,14 @@
     (e: 'success'): void;
   }>();
 
+  const router = useRouter();
   const mchNo = ref('');
   const channelMchNo = ref('');
   const channelMerchant = ref<ChannelMerchantResult>({});
   const channelConfig = ref<FuyouIsvChannelMerchant>({});
   const basicInfoRef = ref<InstanceType<typeof CommonChannelMerchantBasicInfo>>();
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
+  const capabilityRef = ref<InstanceType<typeof WxChannelAppCapability>>();
 
   /** 通道专属字段(基本信息抽屉展示) */
   const extraFields = computed(() => [
@@ -43,7 +47,8 @@
 
   /**
    * 功能卡片配置
-   * 富友服务商模式, 商户仅有富友商户号(mchnt_cd)+终端号(term_id), 创建后无需额外编辑
+   * 富友服务商模式, 商户仅有富友商户号(mchnt_cd)+终端号(term_id), 创建后无需额外编辑;
+   * 另提供微信应用绑定(JSAPI/小程序)
    */
   const functionCards = computed<FunctionGroup[]>(() => [
     {
@@ -61,6 +66,25 @@
           title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
           icon: 'ant-design:edit-outlined',
           description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),
+        },
+      ],
+    },
+    {
+      // 微信应用关联(JSAPI/小程序)
+      group: $t('payment.merchant.channelMerchant.groupApp'),
+      color: 'green',
+      cards: [
+        {
+          key: 'appManage',
+          title: $t('payment.merchant.channelMerchant.cardApp'),
+          icon: 'ant-design:appstore-outlined',
+          description: $t('payment.merchant.channelMerchant.cardAppDesc'),
+        },
+        {
+          key: 'capabilityBinding',
+          title: $t('payment.channel.fuyouIsv.cardCapabilityBinding'),
+          icon: 'ant-design:api-outlined',
+          description: $t('payment.channel.fuyouIsv.cardCapabilityBindingDesc'),
         },
       ],
     },
@@ -108,6 +132,20 @@
     }
     if (card.key === 'editMerchantName') {
       editNameRef.value?.open();
+    }
+    if (card.key === 'appManage') {
+      // 跳转微信应用管理 Hub(商户档), 创建/管理该商户微信应用
+      router.push({
+        path: '/payment/wx/app',
+        query: {
+          tab: 'merchant',
+          mchNo: mchNo.value,
+        },
+      });
+    }
+    if (card.key === 'capabilityBinding') {
+      // 微信应用能力绑定(JSAPI/小程序), 未绑时走产品级默认/平台应用推导
+      capabilityRef.value?.show(mchNo.value, channelMchNo.value, channelMerchant.value.product || 'fuyou_pay');
     }
   }
 
@@ -163,6 +201,8 @@
     />
 
     <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
+
+    <WxChannelAppCapability ref="capabilityRef" @ok="emit('success')" />
   </div>
 </template>
 

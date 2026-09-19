@@ -16,6 +16,8 @@
   "groupMchConfig": "Merchant Config",
   "cardMchConfig": "Merchant Config",
   "cardMchConfigDesc": "Configure SAAS terminal number for channel merchant",
+  "cardCapabilityBinding": "WeChat App Binding",
+  "cardCapabilityBindingDesc": "Bind WeChat app to the channel merchant (JSAPI/Mini Program payment)",
   "mchConfigTitle": "Merchant Config",
   "merchNo": "HKRT Merchant No",
   "merchNoPlaceholder": "Please enter HKRT merchant number",

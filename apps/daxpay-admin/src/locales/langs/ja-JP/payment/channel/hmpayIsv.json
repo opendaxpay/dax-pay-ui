@@ -27,5 +27,7 @@
     "privateKey": "販売者の秘密キーを入力してください",
     "publicKey": "Sand 公開キーを入力してください",
     "merchantNo": "砂の販売者番号を入力してください"
-  }
+  },
+  "cardCapabilityBinding": "微信アプリ連携",
+  "cardCapabilityBindingDesc": "チャネル加盟店に微信アプリを連携します(JSAPI/ミニプログラム決済)"
 }

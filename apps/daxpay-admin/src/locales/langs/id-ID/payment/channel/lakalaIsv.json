@@ -45,5 +45,7 @@
   "groupMchConfig": "Konfigurasi Pedagang",
   "cardMchConfig": "Konfigurasi Pedagang",
   "cardMchConfigDesc": "Konfigurasikan nomor terminal untuk pedagang saluran",
-  "mchConfigTitle": "Konfigurasi Pedagang"
+  "mchConfigTitle": "Konfigurasi Pedagang",
+  "cardCapabilityBinding": "Ikatan Aplikasi WeChat",
+  "cardCapabilityBindingDesc": "Ikat aplikasi WeChat ke channel merchant (pembayaran JSAPI/Mini Program)"
 }

@@ -37,13 +37,18 @@
   const isIsv = computed(() => mode.value === 'isv');
   const hasApps = computed(() => mchApps.value.length > 0 || isIsv.value);
 
-  /** 弹窗描述文案: 乐刷/Adapay/斗拱/盛付通聚合产品仅 JSAPI/小程序需指定应用, 显示精简文案 */
+  /** 弹窗描述文案: 聚合类产品(乐刷/Adapay/斗拱/盛付通/富友/随行付/拉卡拉/海科/河马付)仅 JSAPI/小程序需指定应用, 显示精简文案 */
   const descKey = computed(() => {
     if (
       product.value === 'leshua_pay' ||
       product.value === 'ada_pay' ||
       product.value === 'dougong_pay' ||
-      product.value === 'sheng_pay'
+      product.value === 'sheng_pay' ||
+      product.value === 'fuyou_pay' ||
+      product.value === 'vbill_pay' ||
+      product.value === 'lakala_pay' ||
+      product.value === 'hkrt_pay' ||
+      product.value === 'hm_pay'
     ) {
       return 'payment.wx.app.channelCapabilityDescLeshua';
     }
@@ -191,9 +196,16 @@
     mchNo.value = no;
     channelMchNo.value = cMchNo;
     product.value = productCode;
-    // ISV 档: 微信服务商/乐刷/斗拱聚合(平台档由产品级默认绑兜底, 商户档可选绑)
+    // ISV 档: 微信服务商/乐刷/斗拱/富友/随行付/拉卡拉/海科/河马付聚合(平台档由产品级默认绑兜底, 商户档可选绑)
     mode.value =
-      productCode === 'wechat_isv' || productCode === 'leshua_pay' || productCode === 'dougong_pay'
+      productCode === 'wechat_isv' ||
+      productCode === 'leshua_pay' ||
+      productCode === 'dougong_pay' ||
+      productCode === 'fuyou_pay' ||
+      productCode === 'vbill_pay' ||
+      productCode === 'lakala_pay' ||
+      productCode === 'hkrt_pay' ||
+      productCode === 'hm_pay'
         ? 'isv'
         : 'direct';
     visible.value = true;

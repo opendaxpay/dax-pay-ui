@@ -16,6 +16,8 @@
   "groupMchConfig": "販売者の設定",
   "cardMchConfig": "販売者の設定",
   "cardMchConfigDesc": "チャネル加盟店の SAAS 端末番号を構成する",
+  "cardCapabilityBinding": "微信アプリ連携",
+  "cardCapabilityBindingDesc": "チャネル加盟店に微信アプリを連携します(JSAPI/ミニプログラム決済)",
   "mchConfigTitle": "販売者の設定",
   "merchNo": "HKRT 加盟店番号",
   "merchNoPlaceholder": "HKRT 販売者番号を入力してください",

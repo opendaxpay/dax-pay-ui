@@ -16,6 +16,8 @@
   "groupMchConfig": "商户配置",
   "cardMchConfig": "商户配置",
   "cardMchConfigDesc": "配置通道商户SAAS終端號",
+  "cardCapabilityBinding": "微信應用綁定",
+  "cardCapabilityBindingDesc": "為通道商戶綁定微信應用(JSAPI/小程序支付)",
   "mchConfigTitle": "商户配置",
   "merchNo": "海科商户編號",
   "merchNoPlaceholder": "請輸入海科商户編號",

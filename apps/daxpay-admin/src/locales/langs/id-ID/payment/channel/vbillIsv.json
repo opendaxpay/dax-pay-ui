@@ -20,6 +20,8 @@
   "mchConfigTitle": "Konfigurasi Pedagang",
   "vbillMchNo": "Pedagang Tianque No",
   "vbillMchNoPlaceholder": "Silakan masukkan No pedagang Tianque (mno)",
+  "cardCapabilityBinding": "Ikatan Aplikasi WeChat",
+  "cardCapabilityBindingDesc": "Ikat aplikasi WeChat ke channel merchant (pembayaran JSAPI/Mini Program)",
   "validation": {
     "orgId": "Silakan masukkan ID organisasi Tianque",
     "publicKey": "Silakan masukkan kunci publik Tianque RSA",

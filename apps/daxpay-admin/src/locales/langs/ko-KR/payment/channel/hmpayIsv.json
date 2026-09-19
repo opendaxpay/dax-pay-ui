@@ -27,5 +27,7 @@
     "privateKey": "판매자 개인 키를 입력하세요.",
     "publicKey": "샌드 공개키를 입력해주세요",
     "merchantNo": "모래 판매자 번호를 입력하세요."
-  }
+  },
+  "cardCapabilityBinding": "위챗 앱 바인딩",
+  "cardCapabilityBindingDesc": "채널 가맹점에 위챗 앱을 바인딩(JSAPI/미니 프로그램 결제)"
 }

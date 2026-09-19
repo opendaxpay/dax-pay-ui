@@ -16,6 +16,8 @@
   "groupMchConfig": "Cấu hình người bán",
   "cardMchConfig": "Cấu hình người bán",
   "cardMchConfigDesc": "Định cấu hình số thiết bị đầu cuối SAAS cho người bán kênh",
+  "cardCapabilityBinding": "Liên kết ứng dụng WeChat",
+  "cardCapabilityBindingDesc": "Liên kết ứng dụng WeChat cho thương nhân kênh (thanh toán JSAPI/Mini Program)",
   "mchConfigTitle": "Cấu hình người bán",
   "merchNo": "HKRT Người bán số",
   "merchNoPlaceholder": "Vui lòng nhập số người bán HKRT",

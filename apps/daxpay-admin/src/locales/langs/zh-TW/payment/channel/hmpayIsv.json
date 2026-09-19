@@ -27,5 +27,7 @@
     "privateKey": "請輸入商戶私鑰",
     "publicKey": "請輸入杉德公鑰",
     "merchantNo": "請輸入杉德商戶號"
-  }
+  },
+  "cardCapabilityBinding": "微信應用綁定",
+  "cardCapabilityBindingDesc": "為通道商戶綁定微信應用(JSAPI/小程序支付)"
 }

@@ -27,6 +27,8 @@
   "groupMchConfig": "การกำหนดค่าผู้ขาย",
   "cardMchConfig": "การกำหนดค่าผู้ขาย",
   "cardMchConfigDesc": "กำหนดค่าหมายเลขผู้ค้า Fuyou และหมายเลขเทอร์มินัล",
+  "cardCapabilityBinding": "ผูกแอป WeChat",
+  "cardCapabilityBindingDesc": "ผูกแอป WeChat กับผู้ค้าช่องทาง (ชำระเงิน JSAPI/มินิโปรแกรม)",
   "validation": {
     "fyAppId": "กรุณากรอกรหัสแอป Fuyou",
     "fuyouMchNo": "กรุณากรอกหมายเลขร้านค้า Fuyou",

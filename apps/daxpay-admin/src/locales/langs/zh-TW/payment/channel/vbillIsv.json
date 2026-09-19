@@ -20,6 +20,8 @@
   "mchConfigTitle": "商戶配置",
   "vbillMchNo": "天闕商戶號",
   "vbillMchNoPlaceholder": "請輸入天闕商戶號(mno)",
+  "cardCapabilityBinding": "微信應用綁定",
+  "cardCapabilityBindingDesc": "為通道商戶綁定微信應用(JSAPI/小程序支付)",
   "validation": {
     "orgId": "請輸入天闕機構ID",
     "publicKey": "請輸入天闕RSA公鑰",

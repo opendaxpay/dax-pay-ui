@@ -2,6 +2,7 @@
   import type { ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
 
   import { computed, ref } from 'vue';
+  import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
@@ -10,6 +11,7 @@
   import { HkrtChannelMerchantApi } from '#/api/payment/channel/hkrt/channel-merchant.api';
   import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/global/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
+  import WxChannelAppCapability from '#/views/payment/wx/channel/WxChannelAppCapability.vue';
 
   import HkrtChannelMerchantBasicInfo from './HkrtChannelMerchantBasicInfo.vue';
   import HkrtMchConfigEdit from './HkrtMchConfigEdit.vue';
@@ -29,16 +31,18 @@
     (e: 'success'): void;
   }>();
 
+  const router = useRouter();
   const mchNo = ref('');
   const channelMchNo = ref('');
   const channelMerchant = ref<ChannelMerchantResult>({});
   const basicInfoRef = ref<InstanceType<typeof HkrtChannelMerchantBasicInfo>>();
   const configEditRef = ref<InstanceType<typeof HkrtMchConfigEdit>>();
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
+  const capabilityRef = ref<InstanceType<typeof WxChannelAppCapability>>();
 
   /**
    * 功能卡片配置
-   * 海科融通服务商模式, 商户配置(SAAS 终端号)
+   * 海科融通服务商模式, 商户配置(SAAS 终端号)与微信应用绑定(JSAPI/小程序)
    */
   const functionCards = computed<FunctionGroup[]>(() => [
     {
@@ -62,6 +66,25 @@
           title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
           icon: 'ant-design:edit-outlined',
           description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),
+        },
+      ],
+    },
+    {
+      // 微信应用关联(JSAPI/小程序)
+      group: $t('payment.merchant.channelMerchant.groupApp'),
+      color: 'green',
+      cards: [
+        {
+          key: 'appManage',
+          title: $t('payment.merchant.channelMerchant.cardApp'),
+          icon: 'ant-design:appstore-outlined',
+          description: $t('payment.merchant.channelMerchant.cardAppDesc'),
+        },
+        {
+          key: 'capabilityBinding',
+          title: $t('payment.channel.hkrtIsv.cardCapabilityBinding'),
+          icon: 'ant-design:api-outlined',
+          description: $t('payment.channel.hkrtIsv.cardCapabilityBindingDesc'),
         },
       ],
     },
@@ -112,6 +135,22 @@
       HkrtChannelMerchantApi.findByChannelMchNo(channelMchNo.value).then(({ data }) => {
         configEditRef.value?.show(channelMchNo.value, data?.pn);
       });
+      return;
+    }
+    if (card.key === 'appManage') {
+      // 跳转微信应用管理 Hub(商户档), 创建/管理该商户微信应用
+      router.push({
+        path: '/payment/wx/app',
+        query: {
+          tab: 'merchant',
+          mchNo: mchNo.value,
+        },
+      });
+      return;
+    }
+    if (card.key === 'capabilityBinding') {
+      // 微信应用能力绑定(JSAPI/小程序), 未绑时走产品级默认/平台应用推导
+      capabilityRef.value?.show(mchNo.value, channelMchNo.value, channelMerchant.value.product || 'hkrt_pay');
     }
   }
 
@@ -168,6 +207,8 @@
     <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 
     <HkrtMchConfigEdit ref="configEditRef" />
+
+    <WxChannelAppCapability ref="capabilityRef" @ok="emit('success')" />
   </div>
 </template>
 

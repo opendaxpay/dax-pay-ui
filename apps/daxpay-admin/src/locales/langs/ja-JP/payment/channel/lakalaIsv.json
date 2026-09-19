@@ -45,5 +45,7 @@
   "groupMchConfig": "販売者の設定",
   "cardMchConfig": "販売者の設定",
   "cardMchConfigDesc": "チャネル加盟店の端末番号を設定する",
-  "mchConfigTitle": "販売者の設定"
+  "mchConfigTitle": "販売者の設定",
+  "cardCapabilityBinding": "微信アプリ連携",
+  "cardCapabilityBindingDesc": "チャネル加盟店に微信アプリを連携します(JSAPI/ミニプログラム決済)"
 }

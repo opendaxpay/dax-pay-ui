@@ -27,5 +27,7 @@
     "privateKey": "กรุณากรอกรหัสส่วนตัวของผู้ขาย",
     "publicKey": "กรุณากรอกรหัสสาธารณะแซนด์",
     "merchantNo": "กรุณากรอกหมายเลขผู้ค้าทราย"
-  }
+  },
+  "cardCapabilityBinding": "ผูกแอป WeChat",
+  "cardCapabilityBindingDesc": "ผูกแอป WeChat กับผู้ค้าช่องทาง (ชำระเงิน JSAPI/มินิโปรแกรม)"
 }

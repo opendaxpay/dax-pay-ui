@@ -27,5 +27,7 @@
     "privateKey": "Sila masukkan kunci peribadi pedagang",
     "publicKey": "Sila masukkan kunci awam Pasir",
     "merchantNo": "Sila masukkan saudagar pasir No"
-  }
+  },
+  "cardCapabilityBinding": "Ikatan Apl WeChat",
+  "cardCapabilityBindingDesc": "Ikat apl WeChat pada peniaga saluran (pembayaran JSAPI/Mini Program)"
 }

@@ -27,6 +27,8 @@
   "groupMchConfig": "商户配置",
   "cardMchConfig": "商户配置",
   "cardMchConfigDesc": "配置富友商户号与终端号",
+  "cardCapabilityBinding": "微信应用绑定",
+  "cardCapabilityBindingDesc": "为通道商户绑定微信应用(JSAPI/小程序支付)",
   "validation": {
     "fyAppId": "请输入富友应用编号",
     "fuyouMchNo": "请输入富友商户号",

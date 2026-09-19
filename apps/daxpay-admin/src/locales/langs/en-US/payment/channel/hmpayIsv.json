@@ -27,5 +27,7 @@
     "privateKey": "Please enter merchant private key",
     "publicKey": "Please enter Sand public key",
     "merchantNo": "Please enter Sand merchant No"
-  }
+  },
+  "cardCapabilityBinding": "WeChat App Binding",
+  "cardCapabilityBindingDesc": "Bind WeChat app to the channel merchant (JSAPI/Mini Program payment)"
 }

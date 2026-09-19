@@ -20,6 +20,8 @@
   "mchConfigTitle": "Merchant Config",
   "vbillMchNo": "Tianque Merchant No",
   "vbillMchNoPlaceholder": "Please enter Tianque merchant No (mno)",
+  "cardCapabilityBinding": "WeChat App Binding",
+  "cardCapabilityBindingDesc": "Bind WeChat app to the channel merchant (JSAPI/Mini Program payment)",
   "validation": {
     "orgId": "Please enter Tianque org ID",
     "publicKey": "Please enter Tianque RSA public key",

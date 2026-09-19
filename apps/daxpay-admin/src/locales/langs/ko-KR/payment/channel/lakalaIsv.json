@@ -45,5 +45,7 @@
   "groupMchConfig": "판매자 구성",
   "cardMchConfig": "판매자 구성",
   "cardMchConfigDesc": "채널 판매자의 단말기 번호 구성",
-  "mchConfigTitle": "판매자 구성"
+  "mchConfigTitle": "판매자 구성",
+  "cardCapabilityBinding": "위챗 앱 바인딩",
+  "cardCapabilityBindingDesc": "채널 가맹점에 위챗 앱을 바인딩(JSAPI/미니 프로그램 결제)"
 }

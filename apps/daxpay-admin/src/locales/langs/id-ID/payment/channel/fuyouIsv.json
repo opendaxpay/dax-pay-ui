@@ -27,6 +27,8 @@
   "groupMchConfig": "Konfigurasi Pedagang",
   "cardMchConfig": "Konfigurasi Pedagang",
   "cardMchConfigDesc": "Konfigurasikan no pedagang Fuyou dan no terminal",
+  "cardCapabilityBinding": "Ikatan Aplikasi WeChat",
+  "cardCapabilityBindingDesc": "Ikat aplikasi WeChat ke channel merchant (pembayaran JSAPI/Mini Program)",
   "validation": {
     "fyAppId": "Silakan masukkan ID Aplikasi Fuyou",
     "fuyouMchNo": "Silakan masukkan no pedagang Fuyou",

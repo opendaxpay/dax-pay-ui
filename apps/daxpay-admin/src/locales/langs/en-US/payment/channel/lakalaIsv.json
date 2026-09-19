@@ -45,5 +45,7 @@
   "groupMchConfig": "Merchant Config",
   "cardMchConfig": "Merchant Config",
   "cardMchConfigDesc": "Configure terminal number for channel merchant",
-  "mchConfigTitle": "Merchant Config"
+  "mchConfigTitle": "Merchant Config",
+  "cardCapabilityBinding": "WeChat App Binding",
+  "cardCapabilityBindingDesc": "Bind WeChat app to the channel merchant (JSAPI/Mini Program payment)"
 }

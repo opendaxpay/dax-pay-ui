@@ -27,5 +27,7 @@
     "privateKey": "Vui lòng nhập khóa riêng của người bán",
     "publicKey": "Vui lòng nhập khóa công khai Sand",
     "merchantNo": "Vui lòng nhập Người bán cát số"
-  }
+  },
+  "cardCapabilityBinding": "Liên kết ứng dụng WeChat",
+  "cardCapabilityBindingDesc": "Liên kết ứng dụng WeChat cho thương nhân kênh (thanh toán JSAPI/Mini Program)"
 }

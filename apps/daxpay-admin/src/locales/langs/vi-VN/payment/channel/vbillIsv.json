@@ -20,6 +20,8 @@
   "mchConfigTitle": "Cấu hình người bán",
   "vbillMchNo": "Thương gia Tianque Không",
   "vbillMchNoPlaceholder": "Vui lòng nhập số thương gia Tianque (mno)",
+  "cardCapabilityBinding": "Liên kết ứng dụng WeChat",
+  "cardCapabilityBindingDesc": "Liên kết ứng dụng WeChat cho thương nhân kênh (thanh toán JSAPI/Mini Program)",
   "validation": {
     "orgId": "Vui lòng nhập ID tổ chức Tianque",
     "publicKey": "Vui lòng nhập khóa công khai Tianque RSA",

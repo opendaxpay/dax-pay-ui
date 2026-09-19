@@ -27,6 +27,8 @@
   "groupMchConfig": "Merchant Configuration",
   "cardMchConfig": "Merchant Configuration",
   "cardMchConfigDesc": "Configure Fuyou merchant no and terminal no",
+  "cardCapabilityBinding": "WeChat App Binding",
+  "cardCapabilityBindingDesc": "Bind WeChat app to the channel merchant (JSAPI/Mini Program payment)",
   "validation": {
     "fyAppId": "Please enter Fuyou App ID",
     "fuyouMchNo": "Please enter Fuyou merchant no",

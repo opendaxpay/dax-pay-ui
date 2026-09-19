@@ -27,6 +27,8 @@
   "groupMchConfig": "販売者の構成",
   "cardMchConfig": "販売者の構成",
   "cardMchConfigDesc": "Fuyou 加盟店番号と端末番号を設定します",
+  "cardCapabilityBinding": "微信アプリ連携",
+  "cardCapabilityBindingDesc": "チャネル加盟店に微信アプリを連携します(JSAPI/ミニプログラム決済)",
   "validation": {
     "fyAppId": "Fuyou アプリ ID を入力してください",
     "fuyouMchNo": "芙蓉の販売者番号を入力してください",

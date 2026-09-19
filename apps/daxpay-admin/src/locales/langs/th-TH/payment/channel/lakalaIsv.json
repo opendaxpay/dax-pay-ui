@@ -45,5 +45,7 @@
   "groupMchConfig": "การกำหนดค่าผู้ขาย",
   "cardMchConfig": "การกำหนดค่าผู้ขาย",
   "cardMchConfigDesc": "กำหนดค่าหมายเลขเทอร์มินัลสำหรับผู้ค้าช่องทาง",
-  "mchConfigTitle": "การกำหนดค่าผู้ขาย"
+  "mchConfigTitle": "การกำหนดค่าผู้ขาย",
+  "cardCapabilityBinding": "ผูกแอป WeChat",
+  "cardCapabilityBindingDesc": "ผูกแอป WeChat กับผู้ค้าช่องทาง (ชำระเงิน JSAPI/มินิโปรแกรม)"
 }

@@ -45,5 +45,7 @@
   "groupMchConfig": "Cấu hình người bán",
   "cardMchConfig": "Cấu hình người bán",
   "cardMchConfigDesc": "Định cấu hình số thiết bị đầu cuối cho người bán kênh",
-  "mchConfigTitle": "Cấu hình người bán"
+  "mchConfigTitle": "Cấu hình người bán",
+  "cardCapabilityBinding": "Liên kết ứng dụng WeChat",
+  "cardCapabilityBindingDesc": "Liên kết ứng dụng WeChat cho thương nhân kênh (thanh toán JSAPI/Mini Program)"
 }

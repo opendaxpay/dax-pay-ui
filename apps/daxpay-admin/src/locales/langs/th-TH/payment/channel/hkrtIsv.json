@@ -16,6 +16,8 @@
   "groupMchConfig": "การกำหนดค่าผู้ขาย",
   "cardMchConfig": "การกำหนดค่าผู้ขาย",
   "cardMchConfigDesc": "กำหนดค่าหมายเลขเทอร์มินัล SAAS สำหรับผู้ค้าช่องทาง",
+  "cardCapabilityBinding": "ผูกแอป WeChat",
+  "cardCapabilityBindingDesc": "ผูกแอป WeChat กับผู้ค้าช่องทาง (ชำระเงิน JSAPI/มินิโปรแกรม)",
   "mchConfigTitle": "การกำหนดค่าผู้ขาย",
   "merchNo": "หมายเลขผู้ค้า HKRT",
   "merchNoPlaceholder": "กรุณากรอกหมายเลขร้านค้า HKRT",

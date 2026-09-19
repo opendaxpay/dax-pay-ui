@@ -16,6 +16,8 @@
   "groupMchConfig": "Konfigurasi Pedagang",
   "cardMchConfig": "Konfigurasi Pedagang",
   "cardMchConfigDesc": "Konfigurasikan nombor terminal SAAS untuk pedagang saluran",
+  "cardCapabilityBinding": "Ikatan Apl WeChat",
+  "cardCapabilityBindingDesc": "Ikat apl WeChat pada peniaga saluran (pembayaran JSAPI/Mini Program)",
   "mchConfigTitle": "Konfigurasi Pedagang",
   "merchNo": "Peniaga HKRT No",
   "merchNoPlaceholder": "Sila masukkan nombor pedagang HKRT",

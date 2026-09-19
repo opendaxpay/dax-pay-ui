@@ -3,6 +3,7 @@
   import type { HmpayIsvChannelMerchant } from '#/api/payment/channel/hmpay/channel-merchant.api';
 
   import { computed, ref } from 'vue';
+  import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
@@ -13,6 +14,7 @@
   import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/global/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
   import CommonChannelMerchantBasicInfo from '#/views/payment/global/channel-merchant/detail/CommonChannelMerchantBasicInfo.vue';
+  import WxChannelAppCapability from '#/views/payment/wx/channel/WxChannelAppCapability.vue';
 
   defineOptions({ name: 'HmpayMchManage' });
 
@@ -29,6 +31,7 @@
     (e: 'success'): void;
   }>();
 
+  const router = useRouter();
   const mchNo = ref('');
   const channelMchNo = ref('');
   const channelMerchant = ref<ChannelMerchantResult>({});
@@ -36,6 +39,7 @@
   const basicInfoRef = ref<InstanceType<typeof CommonChannelMerchantBasicInfo>>();
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
   const mchConfigRef = ref<InstanceType<typeof HmpayMchConfigEdit>>();
+  const capabilityRef = ref<InstanceType<typeof WxChannelAppCapability>>();
 
   /** 通道专属字段(基本信息抽屉展示) */
   const extraFields = computed(() => [
@@ -45,7 +49,7 @@
 
   /**
    * 功能卡片配置
-   * 河马付(杉德)服务商模式, 商户有杉德商户号/门店号等配置, 创建后可查看/配置
+   * 河马付(杉德)服务商模式, 商户配置(杉德商户号/门店号)与微信应用绑定(JSAPI/小程序)
    */
   const functionCards = computed<FunctionGroup[]>(() => [
     {
@@ -69,6 +73,25 @@
           title: $t('payment.merchant.channelMerchant.cardEditMerchantName'),
           icon: 'ant-design:edit-outlined',
           description: $t('payment.merchant.channelMerchant.cardEditMerchantNameDesc'),
+        },
+      ],
+    },
+    {
+      // 微信应用关联(JSAPI/小程序)
+      group: $t('payment.merchant.channelMerchant.groupApp'),
+      color: 'green',
+      cards: [
+        {
+          key: 'appManage',
+          title: $t('payment.merchant.channelMerchant.cardApp'),
+          icon: 'ant-design:appstore-outlined',
+          description: $t('payment.merchant.channelMerchant.cardAppDesc'),
+        },
+        {
+          key: 'capabilityBinding',
+          title: $t('payment.channel.hmpayIsv.cardCapabilityBinding'),
+          icon: 'ant-design:api-outlined',
+          description: $t('payment.channel.hmpayIsv.cardCapabilityBindingDesc'),
         },
       ],
     },
@@ -131,6 +154,21 @@
     }
     if (card.key === 'mchConfig') {
       mchConfigRef.value?.init();
+      return;
+    }
+    if (card.key === 'appManage') {
+      // 跳转微信应用管理 Hub(商户档), 创建/管理该商户微信应用
+      router.push({
+        path: '/payment/wx/app',
+        query: {
+          tab: 'merchant',
+          mchNo: mchNo.value,
+        },
+      });
+    }
+    if (card.key === 'capabilityBinding') {
+      // 微信应用能力绑定(JSAPI/小程序), 未绑时走产品级默认/平台应用推导
+      capabilityRef.value?.show(mchNo.value, channelMchNo.value, channelMerchant.value.product || 'hm_pay');
     }
   }
 
@@ -188,6 +226,8 @@
     <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 
     <HmpayMchConfigEdit ref="mchConfigRef" :channel-mch-no="channelMchNo" @ok="handleMchConfigOk" />
+
+    <WxChannelAppCapability ref="capabilityRef" @ok="emit('success')" />
   </div>
 </template>
 

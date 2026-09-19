@@ -20,6 +20,8 @@
   "mchConfigTitle": "การกำหนดค่าผู้ขาย",
   "vbillMchNo": "พ่อค้าเทียนเกอ หมายเลข",
   "vbillMchNoPlaceholder": "กรุณากรอกหมายเลขผู้ค้า Tianque (mno)",
+  "cardCapabilityBinding": "ผูกแอป WeChat",
+  "cardCapabilityBindingDesc": "ผูกแอป WeChat กับผู้ค้าช่องทาง (ชำระเงิน JSAPI/มินิโปรแกรม)",
   "validation": {
     "orgId": "กรุณากรอกรหัสองค์กร Tianque",
     "publicKey": "โปรดป้อนรหัสสาธารณะ Tianque RSA",

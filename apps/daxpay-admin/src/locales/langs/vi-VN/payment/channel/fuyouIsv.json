@@ -27,6 +27,8 @@
   "groupMchConfig": "Cấu hình người bán",
   "cardMchConfig": "Cấu hình người bán",
   "cardMchConfigDesc": "Định cấu hình số thương gia Fuyou và số thiết bị đầu cuối",
+  "cardCapabilityBinding": "Liên kết ứng dụng WeChat",
+  "cardCapabilityBindingDesc": "Liên kết ứng dụng WeChat cho thương nhân kênh (thanh toán JSAPI/Mini Program)",
   "validation": {
     "fyAppId": "Vui lòng nhập ID ứng dụng Fuyou",
     "fuyouMchNo": "Vui lòng nhập số thương gia Fuyou",

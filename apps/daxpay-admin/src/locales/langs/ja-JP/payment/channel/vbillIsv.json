@@ -20,6 +20,8 @@
   "mchConfigTitle": "販売者の設定",
   "vbillMchNo": "Tianque 商人番号",
   "vbillMchNoPlaceholder": "Tianque 販売者番号 (mno) を入力してください",
+  "cardCapabilityBinding": "微信アプリ連携",
+  "cardCapabilityBindingDesc": "チャネル加盟店に微信アプリを連携します(JSAPI/ミニプログラム決済)",
   "validation": {
     "orgId": "Tianque 組織 ID を入力してください",
     "publicKey": "Tianque RSA 公開キーを入力してください",

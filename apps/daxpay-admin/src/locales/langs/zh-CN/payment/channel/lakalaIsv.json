@@ -45,5 +45,7 @@
   "groupMchConfig": "商户配置",
   "cardMchConfig": "商户配置",
   "cardMchConfigDesc": "配置通道商户终端号",
-  "mchConfigTitle": "商户配置"
+  "mchConfigTitle": "商户配置",
+  "cardCapabilityBinding": "微信应用绑定",
+  "cardCapabilityBindingDesc": "为通道商户绑定微信应用(JSAPI/小程序支付)"
 }
