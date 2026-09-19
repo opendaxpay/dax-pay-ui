@@ -12,7 +12,7 @@
   "accessId": "機関IDにアクセスする",
   "accessIdPlaceholder": "アクセス機関IDを入力してください",
   "accessKey": "署名キー",
-  "accessKeyPlaceholder": "署名キーを入力してください (MD5 大文字署名の場合)",
+  "accessKeyPlaceholder": "署名キーを入力してください",
   "groupMchConfig": "販売者の設定",
   "cardMchConfig": "販売者の設定",
   "cardMchConfigDesc": "チャネル加盟店の SAAS 端末番号を構成する",

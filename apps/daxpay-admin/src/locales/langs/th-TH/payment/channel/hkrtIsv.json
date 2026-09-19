@@ -12,7 +12,7 @@
   "accessId": "รหัสสถาบันการเข้าถึง",
   "accessIdPlaceholder": "กรุณากรอก ID สถาบันการเข้าถึง",
   "accessKey": "คีย์ลายเซ็น",
-  "accessKeyPlaceholder": "กรุณากรอกรหัสลายเซ็น (สำหรับการเซ็นชื่อตัวพิมพ์ใหญ่ MD5)",
+  "accessKeyPlaceholder": "กรุณากรอกรหัสลายเซ็น",
   "groupMchConfig": "การกำหนดค่าผู้ขาย",
   "cardMchConfig": "การกำหนดค่าผู้ขาย",
   "cardMchConfigDesc": "กำหนดค่าหมายเลขเทอร์มินัล SAAS สำหรับผู้ค้าช่องทาง",

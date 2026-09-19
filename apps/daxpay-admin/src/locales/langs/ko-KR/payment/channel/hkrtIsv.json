@@ -12,7 +12,7 @@
   "accessId": "기관 ID에 액세스",
   "accessIdPlaceholder": "접속 기관 ID를 입력해주세요.",
   "accessKey": "서명 키",
-  "accessKeyPlaceholder": "서명 키를 입력하세요(MD5 대문자 서명의 경우).",
+  "accessKeyPlaceholder": "서명 키를 입력하세요.",
   "groupMchConfig": "판매자 구성",
   "cardMchConfig": "판매자 구성",
   "cardMchConfigDesc": "채널 판매자를 위한 SAAS 터미널 번호 구성",

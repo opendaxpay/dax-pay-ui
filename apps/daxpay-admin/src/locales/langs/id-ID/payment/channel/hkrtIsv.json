@@ -12,7 +12,7 @@
   "accessId": "Akses ID Institusi",
   "accessIdPlaceholder": "Silakan masukkan ID institusi akses",
   "accessKey": "Kunci Tanda Tangan",
-  "accessKeyPlaceholder": "Silakan masukkan kunci tanda tangan (untuk penandatanganan huruf besar MD5)",
+  "accessKeyPlaceholder": "Silakan masukkan kunci tanda tangan",
   "groupMchConfig": "Konfigurasi Pedagang",
   "cardMchConfig": "Konfigurasi Pedagang",
   "cardMchConfigDesc": "Konfigurasikan nomor terminal SAAS untuk pedagang saluran",

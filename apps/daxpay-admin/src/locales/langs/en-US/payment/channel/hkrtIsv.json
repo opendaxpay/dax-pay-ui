@@ -12,7 +12,7 @@
   "accessId": "Access Institution ID",
   "accessIdPlaceholder": "Please enter access institution ID",
   "accessKey": "Signature Key",
-  "accessKeyPlaceholder": "Please enter signature key (for MD5 uppercase signing)",
+  "accessKeyPlaceholder": "Please enter signature key",
   "groupMchConfig": "Merchant Config",
   "cardMchConfig": "Merchant Config",
   "cardMchConfigDesc": "Configure SAAS terminal number for channel merchant",

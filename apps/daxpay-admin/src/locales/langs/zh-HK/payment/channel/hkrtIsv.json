@@ -12,7 +12,7 @@
   "accessId": "接入機構標識",
   "accessIdPlaceholder": "請輸入接入機構標識",
   "accessKey": "簽名密鑰",
-  "accessKeyPlaceholder": "請輸入簽名密鑰(MD5 大寫簽名用)",
+  "accessKeyPlaceholder": "請輸入簽名密鑰",
   "groupMchConfig": "商户配置",
   "cardMchConfig": "商户配置",
   "cardMchConfigDesc": "配置通道商户SAAS終端號",

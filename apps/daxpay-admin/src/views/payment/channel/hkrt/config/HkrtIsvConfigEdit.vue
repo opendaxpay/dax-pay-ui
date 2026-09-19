@@ -139,10 +139,9 @@
 
         <!-- 国际化: 签名密钥 -->
         <a-form-item :label="$t('payment.channel.hkrtIsv.accessKey')" name="accessKey">
-          <a-textarea
+          <a-input
             v-model:value="form.accessKey"
             :disabled="!canEdit"
-            :rows="3"
             :placeholder="$t('payment.channel.hkrtIsv.accessKeyPlaceholder')"
           />
         </a-form-item>

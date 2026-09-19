@@ -12,7 +12,7 @@
   "accessId": "ID tổ chức truy cập",
   "accessIdPlaceholder": "Vui lòng nhập ID tổ chức truy cập",
   "accessKey": "Khóa chữ ký",
-  "accessKeyPlaceholder": "Vui lòng nhập key chữ ký (đối với chữ ký MD5 viết hoa)",
+  "accessKeyPlaceholder": "Vui lòng nhập key chữ ký",
   "groupMchConfig": "Cấu hình người bán",
   "cardMchConfig": "Cấu hình người bán",
   "cardMchConfigDesc": "Định cấu hình số thiết bị đầu cuối SAAS cho người bán kênh",

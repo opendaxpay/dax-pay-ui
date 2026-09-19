@@ -12,7 +12,7 @@
   "accessId": "接入机构标识",
   "accessIdPlaceholder": "请输入接入机构标识",
   "accessKey": "签名密钥",
-  "accessKeyPlaceholder": "请输入签名密钥(MD5 大写签名用)",
+  "accessKeyPlaceholder": "请输入签名密钥",
   "groupMchConfig": "商户配置",
   "cardMchConfig": "商户配置",
   "cardMchConfigDesc": "配置通道商户SAAS终端号",
