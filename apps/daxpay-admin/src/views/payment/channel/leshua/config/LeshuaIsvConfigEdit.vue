@@ -30,7 +30,7 @@
   // 当前环境(由管理页传入)
   const sandbox = ref(false);
 
-  // 乐刷权限码(参考 lakala, 需在 PermCodes 中注册)
+  // 服务商密钥为产品级全局配置, 需服务商 ISV 配置权限, 无权限时表单只读
   const canEdit = computed(() => hasPermission(PermCodes.Payment.Isv.MANAGE));
 
   const drawerTitle = $t('payment.channel.leshuaIsv.configTitle');
@@ -41,12 +41,13 @@
   ];
 
   const rules = {
-    lsMchNo: [{ required: true, message: $t('payment.channel.leshuaIsv.validation.lsMchNo') }],
-    tradeKey: [{ required: true, message: $t('payment.channel.leshuaIsv.validation.tradeKey') }],
+    lsIsvNo: [{ required: true, message: $t('payment.channel.leshuaIsv.validation.lsIsvNo') }],
     signType: [{ required: true, message: $t('payment.channel.leshuaIsv.validation.signType') }],
+    tradeKey: [{ required: true, message: $t('payment.channel.leshuaIsv.validation.tradeKey') }],
+    notifyKey: [{ required: true, message: $t('payment.channel.leshuaIsv.validation.notifyKey') }],
   };
 
-  /** 打开抽屉并加载乐刷服务商密钥配置（平台为唯一服务商，密钥全局唯一，按环境区分） */
+  /** 打开抽屉并加载乐刷服务商密钥配置（平台为唯一服务商，密钥全局唯一，按环境区分；乐刷商户号属商户级， 在通道商户绑定中维护） */
   function init(isSandbox: boolean) {
     sandbox.value = isSandbox;
     visible.value = true;
@@ -63,6 +64,10 @@
           product: ProductEnum.LESHUA_PAY,
           ...data,
         } as LeshuaIsvKeyConfig;
+        // 签名类型默认选中 MD5(首次配置时后端为空)
+        if (!form.value.signType) {
+          form.value.signType = 'MD5';
+        }
       })
       .finally(() => {
         confirmLoading.value = false;
@@ -122,13 +127,18 @@
         :wrapper-col="wrapperCol"
         :validate-trigger="['blur', 'change']"
       >
-        <a-divider orientation="left">{{ $t('payment.channel.leshuaIsv.basicConfig') }}</a-divider>
+        <a-divider orientation="left">{{ $t('payment.channel.leshuaIsv.keyConfig') }}</a-divider>
 
-        <a-form-item :label="$t('payment.channel.leshuaIsv.lsMchNo')" name="lsMchNo">
+        <!-- 国际化: 乐刷服务商号(必填, 进件等接口场景使用) -->
+        <a-form-item
+          :label="$t('payment.channel.leshuaIsv.lsIsvNo')"
+          name="lsIsvNo"
+          :tooltip="$t('payment.channel.leshuaIsv.lsIsvNoTooltip')"
+        >
           <a-input
-            v-model:value="form.lsMchNo"
+            v-model:value="form.lsIsvNo"
             :disabled="!canEdit"
-            :placeholder="$t('payment.channel.leshuaIsv.lsMchNoPlaceholder')"
+            :placeholder="$t('payment.channel.leshuaIsv.lsIsvNoPlaceholder')"
           />
         </a-form-item>
 
@@ -140,29 +150,29 @@
           </a-radio-group>
         </a-form-item>
 
-        <a-divider orientation="left">{{ $t('payment.channel.leshuaIsv.keyConfig') }}</a-divider>
-
-        <a-form-item :label="$t('payment.channel.leshuaIsv.tradeKey')" name="tradeKey">
-          <a-input-password
+        <!-- 国际化: 交易密钥(脱敏回显, diffForm 判断是否修改) -->
+        <a-form-item
+          :label="$t('payment.channel.leshuaIsv.tradeKey')"
+          name="tradeKey"
+          :tooltip="$t('payment.channel.leshuaIsv.tradeKeyTooltip')"
+        >
+          <a-input
             v-model:value="form.tradeKey"
             :disabled="!canEdit"
             :placeholder="$t('payment.channel.leshuaIsv.tradeKeyPlaceholder')"
           />
         </a-form-item>
 
-        <a-form-item :label="$t('payment.channel.leshuaIsv.notifyKey')" name="notifyKey">
-          <a-input-password
+        <!-- 国际化: 异步通知密钥(脱敏回显, diffForm 判断是否修改) -->
+        <a-form-item
+          :label="$t('payment.channel.leshuaIsv.notifyKey')"
+          name="notifyKey"
+          :tooltip="$t('payment.channel.leshuaIsv.notifyKeyTooltip')"
+        >
+          <a-input
             v-model:value="form.notifyKey"
             :disabled="!canEdit"
             :placeholder="$t('payment.channel.leshuaIsv.notifyKeyPlaceholder')"
-          />
-        </a-form-item>
-
-        <a-form-item :label="$t('payment.channel.leshuaIsv.lsIsvNo')" name="lsIsvNo">
-          <a-input
-            v-model:value="form.lsIsvNo"
-            :disabled="!canEdit"
-            :placeholder="$t('payment.channel.leshuaIsv.lsIsvNoPlaceholder')"
           />
         </a-form-item>
       </a-form>

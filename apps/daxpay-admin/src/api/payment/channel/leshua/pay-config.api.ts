@@ -21,21 +21,19 @@ export const LeshuaPayConfigApi = {
   },
 };
 
-/** 乐刷服务商密钥配置 */
+/** 乐刷服务商密钥配置(乐刷商户号属商户级, 由通道商户绑定维护) */
 export interface LeshuaIsvKeyConfig {
   /** 主键 */
   id?: string;
   /** 产品编码 */
   product?: string;
-  /** 乐刷商户号(merchant_id) */
-  lsMchNo?: string;
-  /** 交易密钥(tradeKey) */
+  /** 交易密钥(tradeKey, 交易/进件等所有服务商接口请求签名) */
   tradeKey?: string;
-  /** 异步通知密钥(notifyKey) */
+  /** 异步通知密钥(notifyKey, 异步通知回调验签) */
   notifyKey?: string;
   /** 签名类型(MD5 / SM3) */
   signType?: string;
-  /** 乐刷服务商号(可选) */
+  /** 乐刷服务商号(必填, 进件等接口场景使用) */
   lsIsvNo?: string;
   /** 是否沙箱环境 */
   sandbox?: boolean;
