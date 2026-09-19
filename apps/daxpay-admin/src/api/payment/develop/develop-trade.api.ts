@@ -76,6 +76,8 @@ export interface PayParam {
   capability?: string;
   /** 用户标识 OpenId(微信 jsapi/mini 场景) */
   openId?: string;
+  /** 通道应用AppId(微信 wxAppId 等, 非空强制使用须预先配置) */
+  channelAppId?: string;
   /** 付款码(被扫支付) */
   authCode?: string;
   /** 异步通知地址 */

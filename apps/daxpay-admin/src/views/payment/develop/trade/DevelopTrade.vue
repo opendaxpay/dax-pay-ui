@@ -417,6 +417,7 @@
       description: '',
       allocation: false,
       openId: undefined,
+      channelAppId: undefined,
       authCode: undefined,
       notifyUrl: undefined,
       returnUrl: undefined,
@@ -608,6 +609,15 @@
                       <a-input
                         v-model:value="form.openId"
                         :placeholder="$t('payment.develop.trade.placeholder.openId')"
+                      />
+                    </a-form-item>
+                  </a-col>
+                  <!-- 通道应用AppId(微信 JSAPI/小程序支付指定应用, 非空强制使用) -->
+                  <a-col :span="12">
+                    <a-form-item :label="$t('payment.develop.trade.field.channelAppId')" name="channelAppId">
+                      <a-input
+                        v-model:value="form.channelAppId"
+                        :placeholder="$t('payment.develop.trade.placeholder.channelAppId')"
                       />
                     </a-form-item>
                   </a-col>
