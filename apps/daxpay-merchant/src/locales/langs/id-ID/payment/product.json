@@ -27,6 +27,14 @@
     "ysepPay": "YSEP Bayar",
     "quickPay": "Pembayaran Cepat",
     "yeePay": "Yee Bayar",
-    "jeePay": "Jeepay"
+    "jeePay": "Jeepay",
+    "easyPay": "EasyPay",
+    "xingyiPay": "Xingyi Pay",
+    "longPay": "CCB Long Pay",
+    "allinCloud": "Cloud",
+    "allinCashier": "Cashier",
+    "allinPayfund": "Payfund",
+    "allinDirect": "Direct",
+    "shouqianba": "Shouqianba"
   }
 }

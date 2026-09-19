@@ -27,6 +27,14 @@
     "ysepPay": "銀盛支付",
     "quickPay": "快錢支付",
     "yeePay": "易寶支付",
-    "jeePay": "Jeepay"
+    "jeePay": "Jeepay",
+    "easyPay": "易支付",
+    "xingyiPay": "星驛付",
+    "longPay": "建行龍支付",
+    "allinCloud": "雲商通",
+    "allinCashier": "收銀寶",
+    "allinPayfund": "收付通",
+    "allinDirect": "金服寶",
+    "shouqianba": "收錢吧"
   }
 }

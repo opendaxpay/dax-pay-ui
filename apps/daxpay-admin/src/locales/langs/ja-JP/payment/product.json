@@ -50,7 +50,14 @@
     "quickPay": "クイックペイ",
     "yeePay": "イーペイ",
     "jeePay": "ジーペイ",
-    "easyPay": "イージーペイ"
+    "easyPay": "イージーペイ",
+    "xingyiPay": "星驛付(シンイーペイ)",
+    "longPay": "建行龍支付(CCB Long Pay)",
+    "allinCloud": "雲商通(クラウド)",
+    "allinCashier": "収銀宝(キャッシャー)",
+    "allinPayfund": "収付通(ペイファンド)",
+    "allinDirect": "金服宝(ダイレクト)",
+    "shouqianba": "Shouqianba(収銭吧)"
   },
   "placeholder": {
     "name": "製品名を入力してください",

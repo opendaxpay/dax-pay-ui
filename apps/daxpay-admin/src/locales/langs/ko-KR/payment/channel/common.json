@@ -21,5 +21,9 @@
   "jeePay": "지페이",
   "huifu": "아다페이",
   "stripe": "Stripe",
-  "easyPay": "이지페이"
+  "easyPay": "이지페이",
+  "xingyiPay": "싱이페이",
+  "longPay": "CCB 롱페이",
+  "allinPay": "Allinpay(퉁롄페이)",
+  "shouqianba": "Shouqianba(서우첸바)"
 }

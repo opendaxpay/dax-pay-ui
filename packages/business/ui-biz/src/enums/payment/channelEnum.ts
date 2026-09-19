@@ -40,6 +40,14 @@ export enum ChannelEnum {
   YSEP_PAY = 'ysep_pay',
   /** 易支付(三方聚合平台) */
   EASY_PAY = 'easy_pay',
+  /** 星驿付(新大陆旗下国通星驿) */
+  XINGYI_PAY = 'xingyi_pay',
+  /** 建行龙支付(建设银行聚合支付) */
+  LONG_PAY = 'long_pay',
+  /** 通联支付(聚合收单) */
+  ALLIN_PAY = 'allin_pay',
+  /** 收钱吧(聚合扫码收单) */
+  SHOUQIANBA = 'shouqianba',
 }
 
 /**
@@ -66,6 +74,14 @@ export const channelI18nMap: Record<string, string> = {
   [ChannelEnum.STRIPE]: 'payment.channel.common.stripe',
   // 易支付
   [ChannelEnum.EASY_PAY]: 'payment.channel.common.easyPay',
+  // 星驿付
+  [ChannelEnum.XINGYI_PAY]: 'payment.channel.common.xingyiPay',
+  // 建行龙支付
+  [ChannelEnum.LONG_PAY]: 'payment.channel.common.longPay',
+  // 通联支付
+  [ChannelEnum.ALLIN_PAY]: 'payment.channel.common.allinPay',
+  // 收钱吧
+  [ChannelEnum.SHOUQIANBA]: 'payment.channel.common.shouqianba',
 };
 
 /**
@@ -92,6 +108,14 @@ export const channelNameMap: Record<string, string> = {
   [ChannelEnum.STRIPE]: 'Stripe',
   // 易支付
   [ChannelEnum.EASY_PAY]: '易支付',
+  // 星驿付
+  [ChannelEnum.XINGYI_PAY]: '星驿付',
+  // 建行龙支付
+  [ChannelEnum.LONG_PAY]: '建行龙支付',
+  // 通联支付
+  [ChannelEnum.ALLIN_PAY]: '通联支付',
+  // 收钱吧
+  [ChannelEnum.SHOUQIANBA]: '收钱吧',
 };
 
 /**
@@ -121,4 +145,12 @@ export const channelLogoMap: Record<string, string> = {
   [ChannelEnum.STRIPE]: 'stripe',
   // 易支付(easy_pay.svg 已存在, 直接登记)
   [ChannelEnum.EASY_PAY]: 'easy_pay',
+  // 星驿付
+  [ChannelEnum.XINGYI_PAY]: 'xingyi_pay',
+  // 建行龙支付
+  [ChannelEnum.LONG_PAY]: 'long_pay',
+  // 通联支付(allin_pay.svg 已存在, 直接登记)
+  [ChannelEnum.ALLIN_PAY]: 'allin_pay',
+  // 收钱吧(shouqianba.svg 已存在, 直接登记)
+  [ChannelEnum.SHOUQIANBA]: 'shouqianba',
 };

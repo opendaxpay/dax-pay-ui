@@ -20,5 +20,10 @@
   "umsPay": "UMS",
   "jeePay": "JeePay",
   "huifu": "Adapay",
-  "stripe": "Stripe"
+  "stripe": "Stripe",
+  "easyPay": "EasyPay",
+  "xingyiPay": "Xingyi Pay",
+  "longPay": "CCB Long Pay",
+  "allinPay": "Allinpay",
+  "shouqianba": "Shouqianba"
 }

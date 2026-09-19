@@ -21,5 +21,9 @@
   "jeePay": "jeepay",
   "huifu": "匯付天下",
   "stripe": "Stripe",
-  "easyPay": "易支付"
+  "easyPay": "易支付",
+  "xingyiPay": "星驛付",
+  "longPay": "建行龍支付",
+  "allinPay": "通聯支付",
+  "shouqianba": "收錢吧"
 }

@@ -21,5 +21,9 @@
   "jeePay": "ジーペイ",
   "huifu": "アダペイ",
   "stripe": "Stripe",
-  "easyPay": "イージーペイ"
+  "easyPay": "イージーペイ",
+  "xingyiPay": "星驛付(シンイーペイ)",
+  "longPay": "建行龍支付(CCB Long Pay)",
+  "allinPay": "通聯支付(アリンペイ)",
+  "shouqianba": "Shouqianba(収銭吧)"
 }

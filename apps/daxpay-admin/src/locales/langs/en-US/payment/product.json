@@ -50,7 +50,14 @@
     "quickPay": "Quick Pay",
     "yeePay": "Yee Pay",
     "jeePay": "Jeepay",
-    "easyPay": "EasyPay"
+    "easyPay": "EasyPay",
+    "xingyiPay": "Xingyi Pay",
+    "longPay": "CCB Long Pay",
+    "allinCloud": "Cloud",
+    "allinCashier": "Cashier",
+    "allinPayfund": "Payfund",
+    "allinDirect": "Direct",
+    "shouqianba": "Shouqianba"
   },
   "placeholder": {
     "name": "Enter product name",

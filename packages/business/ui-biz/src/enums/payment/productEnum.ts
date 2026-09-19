@@ -60,6 +60,20 @@ export enum ProductEnum {
   YSEP_PAY = 'ysep_pay',
   /** 易支付(三方聚合平台, 一期扫码两类) */
   EASY_PAY = 'easy_pay',
+  /** 星驿付(新大陆旗下国通星驿, 一通道一产品) */
+  XINGYI_PAY = 'xingyi_pay',
+  /** 建行龙支付(建设银行聚合支付, 一通道一产品) */
+  LONG_PAY = 'long_pay',
+  /** 通联支付·云商通(综合支付, 归属通联通道 allin_pay) */
+  ALLIN_CLOUD = 'allin_cloud',
+  /** 通联支付·收银宝(收单, 统一下单 API) */
+  ALLIN_CASHIER = 'allin_cashier',
+  /** 通联支付·收付通(收款+付款) */
+  ALLIN_PAYFUND = 'allin_payfund',
+  /** 通联支付·金服宝(直联, AT 直连收单) */
+  ALLIN_DIRECT = 'allin_direct',
+  /** 收钱吧(聚合扫码收单, 一通道一产品) */
+  SHOUQIANBA = 'shouqianba',
 }
 
 /**
@@ -95,6 +109,17 @@ export const productI18nMap: Record<string, string> = {
   [ProductEnum.JEE_PAY]: 'payment.product.enum.jeePay',
   // 易支付
   [ProductEnum.EASY_PAY]: 'payment.product.enum.easyPay',
+  // 星驿付
+  [ProductEnum.XINGYI_PAY]: 'payment.product.enum.xingyiPay',
+  // 建行龙支付
+  [ProductEnum.LONG_PAY]: 'payment.product.enum.longPay',
+  // 通联支付(一通道四产品)
+  [ProductEnum.ALLIN_CLOUD]: 'payment.product.enum.allinCloud',
+  [ProductEnum.ALLIN_CASHIER]: 'payment.product.enum.allinCashier',
+  [ProductEnum.ALLIN_PAYFUND]: 'payment.product.enum.allinPayfund',
+  [ProductEnum.ALLIN_DIRECT]: 'payment.product.enum.allinDirect',
+  // 收钱吧
+  [ProductEnum.SHOUQIANBA]: 'payment.product.enum.shouqianba',
 };
 
 /**
@@ -140,6 +165,20 @@ export const productNameMap: Record<string, string> = {
   [ProductEnum.JEE_PAY]: 'Jeepay',
   // 易支付
   [ProductEnum.EASY_PAY]: '易支付',
+  // 星驿付
+  [ProductEnum.XINGYI_PAY]: '星驿付',
+  // 建行龙支付
+  [ProductEnum.LONG_PAY]: '建行龙支付',
+  // 通联支付·云商通
+  [ProductEnum.ALLIN_CLOUD]: '云商通',
+  // 通联支付·收银宝
+  [ProductEnum.ALLIN_CASHIER]: '收银宝',
+  // 通联支付·收付通
+  [ProductEnum.ALLIN_PAYFUND]: '收付通',
+  // 通联支付·金服宝
+  [ProductEnum.ALLIN_DIRECT]: '金服宝',
+  // 收钱吧
+  [ProductEnum.SHOUQIANBA]: '收钱吧',
 };
 
 /**
@@ -184,6 +223,17 @@ export const productChannelMap: Record<string, string> = {
   [ProductEnum.JEE_PAY]: ChannelEnum.JEE_PAY,
   // 易支付(一通道一产品)
   [ProductEnum.EASY_PAY]: ChannelEnum.EASY_PAY,
+  // 星驿付(一通道一产品)
+  [ProductEnum.XINGYI_PAY]: ChannelEnum.XINGYI_PAY,
+  // 建行龙支付(一通道一产品)
+  [ProductEnum.LONG_PAY]: ChannelEnum.LONG_PAY,
+  // 通联支付(一通道四产品共用 allin_pay 通道)
+  [ProductEnum.ALLIN_CLOUD]: ChannelEnum.ALLIN_PAY,
+  [ProductEnum.ALLIN_CASHIER]: ChannelEnum.ALLIN_PAY,
+  [ProductEnum.ALLIN_PAYFUND]: ChannelEnum.ALLIN_PAY,
+  [ProductEnum.ALLIN_DIRECT]: ChannelEnum.ALLIN_PAY,
+  // 收钱吧(一通道一产品)
+  [ProductEnum.SHOUQIANBA]: ChannelEnum.SHOUQIANBA,
 };
 
 /**
@@ -225,4 +275,15 @@ export const productLogoMap: Record<string, string> = {
   [ProductEnum.FUYOU_PAY]: 'fuyou',
   // 河马付(杉德旗下聚合支付产品, 独立品牌Logo)
   [ProductEnum.HM_PAY]: 'hm_pay',
+  // 星驿付
+  [ProductEnum.XINGYI_PAY]: 'xingyi_pay',
+  // 建行龙支付
+  [ProductEnum.LONG_PAY]: 'long_pay',
+  // 通联四产品共用通联 Logo
+  [ProductEnum.ALLIN_CLOUD]: 'allin_pay',
+  [ProductEnum.ALLIN_CASHIER]: 'allin_pay',
+  [ProductEnum.ALLIN_PAYFUND]: 'allin_pay',
+  [ProductEnum.ALLIN_DIRECT]: 'allin_pay',
+  // 收钱吧
+  [ProductEnum.SHOUQIANBA]: 'shouqianba',
 };

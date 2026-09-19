@@ -50,7 +50,14 @@
     "quickPay": "快钱支付",
     "yeePay": "易宝支付",
     "jeePay": "Jeepay",
-    "easyPay": "易支付"
+    "easyPay": "易支付",
+    "xingyiPay": "星驿付",
+    "longPay": "建行龙支付",
+    "allinCloud": "云商通",
+    "allinCashier": "收银宝",
+    "allinPayfund": "收付通",
+    "allinDirect": "金服宝",
+    "shouqianba": "收钱吧"
   },
   "placeholder": {
     "name": "请输入产品名称",

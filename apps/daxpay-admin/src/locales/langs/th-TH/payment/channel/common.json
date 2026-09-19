@@ -21,5 +21,9 @@
   "jeePay": "จีเพย์",
   "huifu": "อาดาเพย์",
   "stripe": "Stripe",
-  "easyPay": "EasyPay"
+  "easyPay": "EasyPay",
+  "xingyiPay": "Xingyi Pay",
+  "longPay": "CCB Long Pay",
+  "allinPay": "Allinpay",
+  "shouqianba": "Shouqianba"
 }

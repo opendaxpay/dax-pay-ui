@@ -50,7 +50,14 @@
     "quickPay": "จ่ายด่วน",
     "yeePay": "Yee Pay",
     "jeePay": "Jeepay",
-    "easyPay": "EasyPay"
+    "easyPay": "EasyPay",
+    "xingyiPay": "Xingyi Pay",
+    "longPay": "CCB Long Pay",
+    "allinCloud": "Cloud",
+    "allinCashier": "Cashier",
+    "allinPayfund": "Payfund",
+    "allinDirect": "Direct",
+    "shouqianba": "Shouqianba"
   },
   "placeholder": {
     "name": "ป้อนชื่อผลิตภัณฑ์",
