@@ -68,6 +68,7 @@
   "baseInfo": "Thông tin cơ bản",
   "pleaseSelectProduct": "Vui lòng chọn sản phẩm thanh toán trước",
   "noEnabledProduct": "Không có sản phẩm thanh toán nào được kích hoạt",
+  "createNotSupportYet": "Kênh này chưa hỗ trợ đăng ký trực tuyến",
   "selectedProduct": "Sản phẩm thanh toán",
   "channelType": "Loại kênh",
   "channelMchNoRequired": "Vui lòng nhập số kênh người bán.",

@@ -76,6 +76,7 @@
   "baseInfo": "基础信息",
   "pleaseSelectProduct": "请先选择支付产品",
   "noEnabledProduct": "暂无已启用的支付产品",
+  "createNotSupportYet": "该通道暂未支持在线开通",
   "selectedProduct": "所属支付产品",
   "channelType": "通道类型",
   "channelMchNoRequired": "请输入通道商户号",

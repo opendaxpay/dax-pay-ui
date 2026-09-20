@@ -68,6 +68,7 @@
   "baseInfo": "ข้อมูลพื้นฐาน",
   "pleaseSelectProduct": "โปรดเลือกผลิตภัณฑ์การชำระเงินก่อน",
   "noEnabledProduct": "ไม่มีผลิตภัณฑ์การชำระเงินที่เปิดใช้งาน",
+  "createNotSupportYet": "ยังไม่รองรับการเปิดใช้งานออนไลน์สำหรับช่องทางนี้",
   "selectedProduct": "สินค้าชำระเงิน",
   "channelType": "ประเภทช่อง",
   "channelMchNoRequired": "กรุณากรอกหมายเลขร้านค้าช่องทาง",

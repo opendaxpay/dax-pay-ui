@@ -68,6 +68,7 @@
   "baseInfo": "基本情報",
   "pleaseSelectProduct": "最初に支払い商品を選択してください",
   "noEnabledProduct": "有効な支払い商品がありません",
+  "createNotSupportYet": "このチャネルのオンライン開設はまだサポートされていません",
   "selectedProduct": "決済商品",
   "channelType": "チャンネルタイプ",
   "channelMchNoRequired": "チャネル販売者番号を入力してください。",

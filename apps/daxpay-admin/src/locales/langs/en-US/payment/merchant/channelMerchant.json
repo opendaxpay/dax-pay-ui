@@ -68,6 +68,7 @@
   "baseInfo": "Basic Information",
   "pleaseSelectProduct": "Please select a payment product first",
   "noEnabledProduct": "No enabled payment products",
+  "createNotSupportYet": "Online onboarding for this channel is not supported yet",
   "selectedProduct": "Payment Product",
   "channelType": "Channel Type",
   "channelMchNoRequired": "Please enter channel merchant no.",

@@ -1,6 +1,8 @@
 <script lang="ts" setup>
   import { type Component, defineAsyncComponent, nextTick, ref, shallowRef, watch } from 'vue';
 
+  import { $t } from '@vben/locales';
+
   import { ProductEnum } from '#/enums/payment/productEnum';
 
   const emit = defineEmits<{
@@ -72,6 +74,9 @@
     [ProductEnum.SHENG_PAY]: defineAsyncComponent(
       () => import('#/views/payment/channel/sheng/config/ShengMchCreateConfig.vue'),
     ),
+    [ProductEnum.YEE_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/yeepay/config/YeepayMchCreateConfig.vue'),
+    ),
     // 银联商务家族: 6 个产品共用同一组件
     [ProductEnum.UMS_QRCODE]: UmsMchCreateConfig,
     [ProductEnum.UMS_JSAPI]: UmsMchCreateConfig,
@@ -107,6 +112,8 @@
     currentProduct.value = { product, channel };
     const comp = channelProductComponentMap[product];
     if (!comp) {
+      // 未实现通道: 清空激活组件, 模板走 a-empty 兜底(与详情分发页同款策略)
+      activeComponent.value = undefined;
       return;
     }
     pendingInit.value = { mchNo, product, channel };
@@ -126,5 +133,13 @@
 </script>
 
 <template>
-  <component :is="activeComponent" ref="activeRef" @prev="emit('prev')" @close="emit('close')" />
+  <component v-if="activeComponent" :is="activeComponent" ref="activeRef" @prev="emit('prev')" @close="emit('close')" />
+  <!-- 未实现通道兜底: 空状态提示 + 返回上一步重选产品 -->
+  <div v-else class="flex flex-col items-center justify-center" style="min-height: 400px">
+    <!-- 国际化：该通道暂未支持在线开通 -->
+    <a-empty :description="$t('payment.merchant.channelMerchant.createNotSupportYet')" />
+    <div class="mt-4">
+      <a-button @click="emit('prev')">{{ $t('payment.merchant.channelMerchant.prevStep') }}</a-button>
+    </div>
+  </div>
 </template>

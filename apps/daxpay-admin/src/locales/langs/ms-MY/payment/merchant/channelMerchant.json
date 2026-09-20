@@ -68,6 +68,7 @@
   "baseInfo": "Maklumat Asas",
   "pleaseSelectProduct": "Sila pilih produk pembayaran dahulu",
   "noEnabledProduct": "Tiada produk pembayaran yang didayakan",
+  "createNotSupportYet": "Saluran ini belum menyokong pembukaan secara dalam talian",
   "selectedProduct": "Produk Pembayaran",
   "channelType": "Jenis Saluran",
   "channelMchNoRequired": "Sila masukkan no pedagang saluran.",
