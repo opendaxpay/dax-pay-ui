@@ -119,7 +119,7 @@
     "checkSuccess": "Semakan sambungan OSS lulus",
     "checkFailed": "Semakan sambungan OSS gagal",
     "endpointDesc": "Alamat akses API perkhidmatan S3",
-    "regionDesc": "Kawasan pusat data di mana perkhidmatan storan terletak",
+    "regionDesc": "Kawasan pusat data di mana perkhidmatan storan terletak. Hanya diperlukan untuk perkhidmatan yang mengesahkan kawasan tandatangan (cth. Tencent COS, AWS S3); boleh dibiarkan kosong untuk MinIO dan storan kendiri",
     "publicBucketDesc": "Simpan fail yang boleh diakses secara umum",
     "privateBucketDesc": "Simpan fail peribadi yang memerlukan kebenaran",
     "publicBaseUrlDesc": "Alamat akses luaran untuk fail baldi awam",

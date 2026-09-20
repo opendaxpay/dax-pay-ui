@@ -119,7 +119,7 @@
     "checkSuccess": "OSS 連通性檢查通過",
     "checkFailed": "OSS 連通性檢查失敗",
     "endpointDesc": "S3服務的API訪問地址",
-    "regionDesc": "存儲服務所在的數據中心區域",
+    "regionDesc": "存儲服務所在的數據中心區域。僅騰訊雲 COS、AWS S3 等校驗簽名區域的存儲需要填寫，MinIO 等自建存儲可留空",
     "publicBucketDesc": "存放可直接公開訪問的文件",
     "privateBucketDesc": "存放需授權訪問的私有文件",
     "publicBaseUrlDesc": "公開桶文件的對外訪問地址",

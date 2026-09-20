@@ -119,7 +119,7 @@
     "checkSuccess": "Pemeriksaan konektivitas OSS berhasil",
     "checkFailed": "Pemeriksaan konektivitas OSS gagal",
     "endpointDesc": "Alamat akses API layanan S3",
-    "regionDesc": "Wilayah pusat data tempat layanan penyimpanan berada",
+    "regionDesc": "Wilayah pusat data tempat layanan penyimpanan berada. Hanya diperlukan untuk layanan yang memvalidasi wilayah tanda tangan (mis. Tencent COS, AWS S3); dapat dikosongkan untuk MinIO dan penyimpanan mandiri lainnya",
     "publicBucketDesc": "Menyimpan file yang dapat diakses secara publik",
     "privateBucketDesc": "Simpan file pribadi yang memerlukan otorisasi",
     "publicBaseUrlDesc": "Alamat akses eksternal untuk file bucket publik",

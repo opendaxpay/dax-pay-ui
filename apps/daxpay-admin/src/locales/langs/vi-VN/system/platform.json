@@ -119,7 +119,7 @@
     "checkSuccess": "Đã vượt qua kiểm tra kết nối OSS",
     "checkFailed": "Kiểm tra kết nối OSS không thành công",
     "endpointDesc": "Địa chỉ truy cập API dịch vụ S3",
-    "regionDesc": "Khu vực trung tâm dữ liệu nơi đặt dịch vụ lưu trữ",
+    "regionDesc": "Khu vực trung tâm dữ liệu nơi đặt dịch vụ lưu trữ. Chỉ cần nhập với các dịch vụ xác thực khu vực chữ ký (ví dụ: Tencent COS, AWS S3); có thể để trống với MinIO và các kho lưu trữ tự dựng",
     "publicBucketDesc": "Lưu trữ các tập tin có thể được truy cập công khai",
     "privateBucketDesc": "Lưu trữ các tệp riêng tư cần được ủy quyền",
     "publicBaseUrlDesc": "Địa chỉ truy cập bên ngoài cho các tệp nhóm công khai",

@@ -119,7 +119,7 @@
     "checkSuccess": "OSS 连通性检查通过",
     "checkFailed": "OSS 连通性检查失败",
     "endpointDesc": "S3服务的API访问地址",
-    "regionDesc": "存储服务所在的数据中心区域",
+    "regionDesc": "存储服务所在的数据中心区域。仅腾讯云 COS、AWS S3 等校验签名区域的存储需要填写，MinIO 等自建存储可留空",
     "publicBucketDesc": "存放可直接公开访问的文件",
     "privateBucketDesc": "存放需授权访问的私有文件",
     "publicBaseUrlDesc": "公开桶文件的对外访问地址",

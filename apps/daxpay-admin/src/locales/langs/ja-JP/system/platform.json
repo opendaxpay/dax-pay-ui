@@ -119,7 +119,7 @@
     "checkSuccess": "OSS 接続チェックに合格しました",
     "checkFailed": "OSS 接続チェックに失敗しました",
     "endpointDesc": "S3サービスAPIアクセスアドレス",
-    "regionDesc": "ストレージ サービスが配置されているデータセンター リージョン",
+    "regionDesc": "ストレージ サービスが配置されているデータセンター リージョン。Tencent COS・AWS S3 など署名リージョンを検証するストレージのみ入力が必要で、MinIO などの自己構築ストレージは空欄で問題ありません",
     "publicBucketDesc": "パブリックにアクセスできるファイルを保存する",
     "privateBucketDesc": "認証が必要なプライベート ファイルを保存する",
     "publicBaseUrlDesc": "パブリックバケットファイルの外部アクセスアドレス",

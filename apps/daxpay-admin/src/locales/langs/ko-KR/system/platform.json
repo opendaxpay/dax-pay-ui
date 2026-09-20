@@ -119,7 +119,7 @@
     "checkSuccess": "OSS 연결 확인 통과",
     "checkFailed": "OSS 연결 확인 실패",
     "endpointDesc": "S3 서비스 API 액세스 주소",
-    "regionDesc": "스토리지 서비스가 위치한 데이터센터 지역",
+    "regionDesc": "스토리지 서비스가 위치한 데이터센터 지역. 서명 지역을 검증하는 스토리지(Tencent COS, AWS S3 등)만 입력이 필요하며 MinIO 등 자체 구축 스토리지는 비워 둘 수 있습니다",
     "publicBucketDesc": "공개적으로 액세스할 수 있는 파일 저장",
     "privateBucketDesc": "인증이 필요한 개인 파일 저장",
     "publicBaseUrlDesc": "공개 버킷 파일의 외부 액세스 주소",
