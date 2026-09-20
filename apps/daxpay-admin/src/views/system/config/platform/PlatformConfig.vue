@@ -90,8 +90,16 @@
       </div>
     </template>
 
-    <!-- 右上操作区: 编辑/取消/保存按钮常驻 -->
+    <!-- 右上操作区: 测试连接/编辑/取消/保存按钮常驻 -->
     <template v-if="subForm" #actions>
+      <!-- 测试连接/测试发送: 验证类操作, 编辑态与只读态均可用 -->
+      <a-button
+        v-if="subForm.handleCheck && subForm.checkText"
+        :loading="subForm.checking"
+        @click="subForm.handleCheck?.()"
+      >
+        {{ subForm.checkText }}
+      </a-button>
       <!-- 非编辑状态: 显示编辑按钮 -->
       <template v-if="!subForm.isEditing">
         <a-button type="primary" @click="subForm.handleEdit()">{{ $t('common.edit') }}</a-button>

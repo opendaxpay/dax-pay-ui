@@ -8,6 +8,12 @@ export interface ConfigSubForm {
   isEditing?: boolean;
   /** 保存提交中(操作按钮 loading) */
   saving?: boolean;
+  /** 测试类操作进行中(测试连接/测试发送按钮 loading) */
+  checking?: boolean;
+  /** 测试类操作按钮文案(与 handleCheck 成对暴露, 常驻 header 操作区) */
+  checkText?: string;
+  /** 测试连接/测试发送等验证类操作(编辑态与只读态均可用) */
+  handleCheck?: () => void;
   /** 状态概要标签(可选, 跟随配置数据计算) */
   summaryTags?: string[];
   /** 进入编辑模式 */

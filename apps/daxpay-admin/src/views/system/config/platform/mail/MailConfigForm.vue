@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { onMounted, reactive, ref } from 'vue';
+  import { computed, onMounted, reactive, ref } from 'vue';
 
   import { $t } from '@vben/locales';
 
@@ -168,10 +168,17 @@
       });
   }
 
-  // 供外壳 PageShell 常驻 header 渲染编辑操作(标题/描述由外壳 tabs 数据提供)
+  // 测试发送按钮文案(响应式, 随语言切换更新)
+  const checkText = computed(() => $t('system.platform.mail.testSend'));
+
+  // 供外壳 PageShell 常驻 header 渲染编辑与测试发送操作(标题/描述由外壳 tabs 数据提供)
   defineExpose({
     isEditing,
     saving,
+    // 测试发送: 使用已保存配置, 编辑/只读均可, 常驻 header 操作区
+    checking: computed(() => testModal.sending),
+    checkText,
+    handleCheck: handleOpenTest,
     handleEdit,
     handleCancel,
     handleSave,
@@ -180,14 +187,6 @@
 
 <template>
   <a-spin :spinning="loading" class="w-full">
-    <!-- 测试发送入口(随内容区滚动) -->
-    <div class="mb-3 flex justify-end">
-      <!-- 测试发送: 使用已保存配置, 编辑/只读均可 -->
-      <a-button :loading="testModal.sending" @click="handleOpenTest">
-        {{ $t('system.platform.mail.testSend') }}
-      </a-button>
-    </div>
-
     <a-form
         ref="formRef"
         :model="formState"

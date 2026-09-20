@@ -1,6 +1,7 @@
 <script lang="ts" setup>
   import { computed, onMounted, ref } from 'vue';
 
+  import { IconifyIcon } from '@vben-core/icons';
   import { $t } from '@vben/locales';
 
   import { type OssConfig, OssConfigApi } from '#/api/system/oss-config.api';
@@ -158,10 +159,17 @@
     }
   }
 
-  // 供外壳 PageShell 常驻 header 渲染编辑操作(标题/描述由外壳 tabs 数据提供)
+  // 测试连接按钮文案(响应式, 随语言切换更新)
+  const checkText = computed(() => $t('system.platform.oss.check'));
+
+  // 供外壳 PageShell 常驻 header 渲染编辑与测试连接操作(标题/描述由外壳 tabs 数据提供)
   defineExpose({
     isEditing,
     saving,
+    // 测试连接: 编辑/只读均可, 常驻 header 操作区
+    checking,
+    checkText,
+    handleCheck,
     handleEdit,
     handleCancel,
     handleSave,
@@ -170,14 +178,6 @@
 
 <template>
   <a-spin :spinning="loading" class="w-full">
-    <!-- OSS 连通性测试入口(随内容区滚动) -->
-    <div class="mb-3 flex justify-end">
-      <!-- 测试连接: 编辑/只读均可 -->
-      <a-button :loading="checking" @click="handleCheck">
-        {{ $t('system.platform.oss.check') }}
-      </a-button>
-    </div>
-
     <a-form ref="formRef" :model="formState" :rules="formRules" layout="vertical" class="module-form">
         <!-- 基础配置 -->
         <div class="config-section">
@@ -188,7 +188,13 @@
               <div class="config-item config-item--block">
                 <div class="config-item__main">
                   <!-- 服务端点 -->
-                  <div class="config-item__label">{{ $t('system.platform.oss.endpoint') }}</div>
+                  <div class="config-item__label">
+                    {{ $t('system.platform.oss.endpoint') }}
+                    <!-- 悬浮提示: 完整服务级地址说明 -->
+                    <a-tooltip :title="$t('system.platform.oss.endpointTip')">
+                      <IconifyIcon icon="ant-design:question-circle-outlined" class="ml-1 cursor-help text-muted-foreground" />
+                    </a-tooltip>
+                  </div>
                   <div class="config-item__desc">{{ $t('system.platform.oss.endpointDesc') }}</div>
                 </div>
                 <!-- 国际化：请输入服务端点 -->
@@ -204,7 +210,13 @@
               <div class="config-item config-item--block">
                 <div class="config-item__main">
                   <!-- 存储区域 -->
-                  <div class="config-item__label">{{ $t('system.platform.oss.region') }}</div>
+                  <div class="config-item__label">
+                    {{ $t('system.platform.oss.region') }}
+                    <!-- 悬浮提示: 区域参数非必填场景说明 -->
+                    <a-tooltip :title="$t('system.platform.oss.regionTip')">
+                      <IconifyIcon icon="ant-design:question-circle-outlined" class="ml-1 cursor-help text-muted-foreground" />
+                    </a-tooltip>
+                  </div>
                   <div class="config-item__desc">{{ $t('system.platform.oss.regionDesc') }}</div>
                 </div>
                 <!-- 国际化：请输入存储区域 -->
