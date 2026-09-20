@@ -32,6 +32,8 @@
     "notifyWayHttp": "HTTP Callback",
     "notifyWayMq": "MQ Push",
     "mqTopicLabel": "MQ Topic",
-    "mqTopicHint": "Platform menerbitkan pemberitahuan ke topik terpencil per aplikasi; guna langganan tahan lama JMS (tiada kehilangan mesej luar talian)"
+    "mqTopicHint": "Platform menerbitkan pemberitahuan ke topik terpencil per aplikasi; guna langganan tahan lama JMS (tiada kehilangan mesej luar talian)",
+    "building": "Ciri sedang dibina, belum dibuka",
+    "buildingBadge": "Sedang dibina"
   }
 }

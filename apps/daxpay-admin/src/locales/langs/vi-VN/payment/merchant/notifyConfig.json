@@ -32,6 +32,8 @@
     "notifyWayHttp": "Callback HTTP",
     "notifyWayMq": "Đẩy MQ",
     "mqTopicLabel": "MQ Topic",
-    "mqTopicHint": "Nền tảng xuất bản thông báo vào topic cách ly theo ứng dụng; tiêu thụ qua JMS durable subscriber (không mất tin nhắn khi ngoại tuyến)"
+    "mqTopicHint": "Nền tảng xuất bản thông báo vào topic cách ly theo ứng dụng; tiêu thụ qua JMS durable subscriber (không mất tin nhắn khi ngoại tuyến)",
+    "building": "Tính năng đang được xây dựng, chưa mở dùng",
+    "buildingBadge": "Đang xây dựng"
   }
 }

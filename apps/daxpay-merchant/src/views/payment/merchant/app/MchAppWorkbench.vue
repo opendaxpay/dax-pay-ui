@@ -10,6 +10,7 @@
 
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
+  import { NOTIFY_CONFIG_BUILDING } from '#/constants/feature-flags';
   import { PermCodes } from '#/constants/perm-codes';
   import { useDeleteConfirm } from '#/hooks/useDeleteConfirm';
   import { useMessage } from '#/hooks/useMessage';
@@ -199,6 +200,13 @@
   }
 
   /**
+   * 建设中卡片：异步通知配置功能未开放，入口保留并加建设中角标，点入显示占位
+   */
+  function isBuildingCard(card: WorkbenchCard) {
+    return NOTIFY_CONFIG_BUILDING && card.key === 'notify';
+  }
+
+  /**
    * 加载当前应用信息（后端按登录态商户上下文隔离，仅需 appId）
    */
   async function loadAppInfo() {
@@ -231,6 +239,10 @@
    * 功能卡点击
    */
   function handleCardClick(card: WorkbenchCard) {
+    // 建设中入口不可点
+    if (isBuildingCard(card)) {
+      return;
+    }
     if (card.route) {
       // 商户端配置页用 useRequiredRouteQuery 校验 appId，仅传 appId
       router.push({
@@ -369,12 +381,25 @@
               <a-card
                 v-for="card in group.cards"
                 :key="card.key"
-                hoverable
-                class="mch-card group relative overflow-hidden rounded-2xl border-none bg-card shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
-                :class="{ 'mch-card--danger': isDangerCard(card) }"
+                :hoverable="!isBuildingCard(card)"
+                class="mch-card relative overflow-hidden rounded-2xl border-none bg-card shadow-md transition-all duration-300"
+                :class="{
+                  'mch-card--danger': isDangerCard(card),
+                  'mch-card--building': isBuildingCard(card),
+                  // 建设中卡禁用交互与 hover 动效(group 驱动的图标/标题/底条效果随之失效)
+                  'group hover:-translate-y-1.5 hover:shadow-xl': !isBuildingCard(card),
+                }"
                 :styles="{ body: { padding: '24px 20px' } }"
                 @click="handleCardClick(card)"
               >
+                <!-- 建设中角标 -->
+                <div
+                  v-if="isBuildingCard(card)"
+                  class="absolute right-2 top-2 z-10 rounded-full bg-muted-foreground/15 px-2 py-0.5 text-[10px] font-medium text-muted-foreground"
+                >
+                  <!-- 国际化：建设中 -->
+                  {{ $t('payment.merchant.notifyConfig.notifyConfig.buildingBadge') }}
+                </div>
                 <div class="flex flex-col items-center text-center">
                   <div
                     class="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:shadow-md"
@@ -434,6 +459,12 @@
 
   .mch-card {
     max-height: 200px;
+  }
+
+  /* 建设中卡片: 整卡降透明弱化, 禁止点击 */
+  .mch-card--building {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 
   .card-desc {

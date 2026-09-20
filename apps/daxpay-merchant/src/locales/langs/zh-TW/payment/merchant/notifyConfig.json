@@ -32,6 +32,8 @@
     "notifyWayHttp": "HTTP回呼",
     "notifyWayMq": "MQ推送",
     "mqTopicLabel": "MQ Topic",
-    "mqTopicHint": "平台將通知訊息發布到此按應用隔離的 Topic, 商戶側用 JMS 持久訂閱消費(離線不丟訊息)"
+    "mqTopicHint": "平台將通知訊息發布到此按應用隔離的 Topic, 商戶側用 JMS 持久訂閱消費(離線不丟訊息)",
+    "building": "功能建設中，暫不開放",
+    "buildingBadge": "建設中"
   }
 }

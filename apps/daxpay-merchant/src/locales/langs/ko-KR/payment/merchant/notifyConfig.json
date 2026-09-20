@@ -32,6 +32,8 @@
     "notifyWayHttp": "HTTP 콜백",
     "notifyWayMq": "MQ 푸시",
     "mqTopicLabel": "MQ Topic",
-    "mqTopicHint": "플랫폼이 앱별로 격리된 Topic에 알림을 게시합니다. JMS 내구성 구독자로 소비하세요(오프라인 시에도 메시지 유실 없음)"
+    "mqTopicHint": "플랫폼이 앱별로 격리된 Topic에 알림을 게시합니다. JMS 내구성 구독자로 소비하세요(오프라인 시에도 메시지 유실 없음)",
+    "building": "기능 개발 중이며 현재 이용할 수 없습니다",
+    "buildingBadge": "개발 중"
   }
 }

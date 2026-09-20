@@ -32,6 +32,8 @@
     "notifyWayHttp": "HTTPコールバック",
     "notifyWayMq": "MQプッシュ",
     "mqTopicLabel": "MQ Topic",
-    "mqTopicHint": "プラットフォームはアプリ別に分離された Topic に通知を公開します。JMS の durable サブスクライバで消費してください(オフラインでもメッセージを失いません)"
+    "mqTopicHint": "プラットフォームはアプリ別に分離された Topic に通知を公開します。JMS の durable サブスクライバで消費してください(オフラインでもメッセージを失いません)",
+    "building": "機能は開発中のため、現時点ではご利用いただけません",
+    "buildingBadge": "開発中"
   }
 }

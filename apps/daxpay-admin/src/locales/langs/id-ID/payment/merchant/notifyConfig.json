@@ -32,6 +32,8 @@
     "notifyWayHttp": "Callback HTTP",
     "notifyWayMq": "Push MQ",
     "mqTopicLabel": "MQ Topic",
-    "mqTopicHint": "Platform menerbitkan notifikasi ke topik terisolasi per aplikasi; konsumsi via JMS durable subscriber (tidak hilang saat offline)"
+    "mqTopicHint": "Platform menerbitkan notifikasi ke topik terisolasi per aplikasi; konsumsi via JMS durable subscriber (tidak hilang saat offline)",
+    "building": "Fitur sedang dikembangkan, belum tersedia",
+    "buildingBadge": "Dikembangkan"
   }
 }

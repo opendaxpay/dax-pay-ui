@@ -8,6 +8,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { MchAppNotifyConfigApi } from '#/api/payment/merchant/app-notify-config.api';
+  import { NOTIFY_CONFIG_BUILDING } from '#/constants/feature-flags';
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
@@ -150,7 +151,7 @@
   watch(
     () => props.visible,
     (val) => {
-      if (val && props.appId) {
+      if (val && props.appId && !NOTIFY_CONFIG_BUILDING) {
         isEditing.value = false;
         loadConfig();
       }
@@ -172,7 +173,16 @@
       <span v-if="appName" class="text-sm text-muted-foreground"> ({{ appName }})</span>
     </template>
     <a-spin :spinning="loading">
-      <div class="notify-form-container">
+      <!-- 功能建设中占位: 不加载表单不发请求 -->
+      <div
+        v-if="NOTIFY_CONFIG_BUILDING"
+        class="flex items-center justify-center"
+        style="min-height: 400px"
+      >
+        <!-- 国际化：功能建设中，暂不开放 -->
+        <a-empty :description="$t('payment.merchant.notifyConfig.notifyConfig.building')" />
+      </div>
+      <div v-else class="notify-form-container">
         <!-- 信息提示 -->
         <div class="info-banner">
           <IconifyIcon icon="ant-design:info-circle-filled" />
@@ -274,7 +284,11 @@
           <a-button @click="emit('update:visible', false)">
             {{ $t('common.close') }}
           </a-button>
-          <a-button v-if="hasPermission(PermCodes.Merchant.NotifyConfig.MANAGE)" type="primary" @click="handleEdit">
+          <a-button
+            v-if="!NOTIFY_CONFIG_BUILDING && hasPermission(PermCodes.Merchant.NotifyConfig.MANAGE)"
+            type="primary"
+            @click="handleEdit"
+          >
             {{ $t('common.edit') }}
           </a-button>
         </template>

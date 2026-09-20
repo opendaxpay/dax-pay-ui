@@ -32,6 +32,8 @@
     "notifyWayHttp": "HTTP Callback",
     "notifyWayMq": "MQ Push",
     "mqTopicLabel": "MQ Topic",
-    "mqTopicHint": "แพลตฟอร์มเผยแพร่การแจ้งเตือนไปยัง topic แยกตามแอป; บริโภคผ่าน JMS durable subscriber (ไม่สูญข้อความเมื่อออฟไลน์)"
+    "mqTopicHint": "แพลตฟอร์มเผยแพร่การแจ้งเตือนไปยัง topic แยกตามแอป; บริโภคผ่าน JMS durable subscriber (ไม่สูญข้อความเมื่อออฟไลน์)",
+    "building": "ฟีเจอร์อยู่ระหว่างพัฒนา ยังไม่เปิดใช้งาน",
+    "buildingBadge": "กำลังพัฒนา"
   }
 }
