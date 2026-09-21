@@ -164,7 +164,8 @@
     "limitPayOption": {
       "no_credit": "信用卡支付"
     },
-    "allocationTip": "開啟後訂單資金將被凍結,僅可透過發起分帳進行拆分"
+    "allocationTip": "開啟後訂單資金將被凍結,僅可透過發起分帳進行拆分",
+    "methodOptionalTip": "被掃場景可留空: 已填付款碼時, 平台按前綴自動識別微信/支付寶/銀聯並回填支付方式"
   },
   "auth": {
     "title": "認證調試",

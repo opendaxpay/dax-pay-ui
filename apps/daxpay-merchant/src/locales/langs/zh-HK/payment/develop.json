@@ -162,7 +162,8 @@
     },
     "limitPayOption": {
       "no_credit": "信用卡支付"
-    }
+    },
+    "methodOptionalTip": "被掃場景可留空: 已填付款碼時, 平台按前綴自動識別微信/支付寶/銀聯並回填支付方式"
   },
   "auth": {
     "title": "認證調試",

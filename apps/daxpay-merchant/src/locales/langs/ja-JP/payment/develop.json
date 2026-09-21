@@ -162,7 +162,8 @@
     },
     "limitPayOption": {
       "no_credit": "クレジットカード決済"
-    }
+    },
+    "methodOptionalTip": "バーコード決済(被読取)では空欄可: 支払コードの接頭辞からWeChat/Alipay/UnionPayを自動判別し、支払方法を補完します"
   },
   "auth": {
     "title": "認証開発",

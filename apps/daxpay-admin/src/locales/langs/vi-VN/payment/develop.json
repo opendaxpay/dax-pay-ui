@@ -164,7 +164,8 @@
     "limitPayOption": {
       "no_credit": "Thanh toán bằng thẻ tín dụng"
     },
-    "allocationTip": "Khi bật, tiền đơn hàng sẽ bị đóng băng và chỉ có thể chia nhỏ qua phân toán."
+    "allocationTip": "Khi bật, tiền đơn hàng sẽ bị đóng băng và chỉ có thể chia nhỏ qua phân toán.",
+    "methodOptionalTip": "Có thể để trống khi thanh toán mã vạch: nền tảng nhận diện WeChat/Alipay/UnionPay theo tiền tố mã và tự điền phương thức"
   },
   "auth": {
     "title": "Xác thực phát triển",

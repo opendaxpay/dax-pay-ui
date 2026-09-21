@@ -162,7 +162,8 @@
     },
     "limitPayOption": {
       "no_credit": "Credit Card Payment"
-    }
+    },
+    "methodOptionalTip": "Can be left empty for barcode (merchant-scanned) payments: the platform detects WeChat/Alipay/UnionPay from the code prefix and fills in the method"
   },
   "auth": {
     "title": "Auth Develop",

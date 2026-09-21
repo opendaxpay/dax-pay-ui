@@ -164,7 +164,8 @@
     "limitPayOption": {
       "no_credit": "Credit Card Payment"
     },
-    "allocationTip": "When enabled, the order funds will be frozen and can only be split by initiating an allocation."
+    "allocationTip": "When enabled, the order funds will be frozen and can only be split by initiating an allocation.",
+    "methodOptionalTip": "Can be left empty for barcode (merchant-scanned) payments: the platform detects WeChat/Alipay/UnionPay from the code prefix and fills in the method"
   },
   "auth": {
     "title": "Auth Develop",

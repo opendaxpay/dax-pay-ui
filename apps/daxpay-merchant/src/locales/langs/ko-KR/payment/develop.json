@@ -162,7 +162,8 @@
     },
     "limitPayOption": {
       "no_credit": "신용카드 결제"
-    }
+    },
+    "methodOptionalTip": "바코드(피스캔) 결제 시 비워둘 수 있습니다: 결제 코드 접두사로 WeChat/Alipay/UnionPay를 자동 판별해 결제 수단을 채웁니다"
   },
   "auth": {
     "title": "인증 개발",

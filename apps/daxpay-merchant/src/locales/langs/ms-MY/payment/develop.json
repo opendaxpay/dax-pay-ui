@@ -162,7 +162,8 @@
     },
     "limitPayOption": {
       "no_credit": "Pembayaran Kad Kredit"
-    }
+    },
+    "methodOptionalTip": "Boleh dibiarkan kosong untuk pembayaran kod bar: platform mengenal pasti WeChat/Alipay/UnionPay daripada awalan kod dan mengisi kaedah bayaran"
   },
   "auth": {
     "title": "Membangunkan Pengesahan",

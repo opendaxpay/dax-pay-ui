@@ -162,7 +162,8 @@
     },
     "limitPayOption": {
       "no_credit": "Pembayaran Kartu Kredit"
-    }
+    },
+    "methodOptionalTip": "Boleh dikosongkan untuk pembayaran barcode: platform mengenali WeChat/Alipay/UnionPay dari prefiks kode dan mengisi metode pembayaran"
   },
   "auth": {
     "title": "Auth Kembangkan",

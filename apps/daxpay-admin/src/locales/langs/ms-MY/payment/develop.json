@@ -164,7 +164,8 @@
     "limitPayOption": {
       "no_credit": "Pembayaran Kad Kredit"
     },
-    "allocationTip": "Apabila diaktifkan, dana pesanan akan dibekukan dan hanya boleh dipecahkan melalui pembahagian."
+    "allocationTip": "Apabila diaktifkan, dana pesanan akan dibekukan dan hanya boleh dipecahkan melalui pembahagian.",
+    "methodOptionalTip": "Boleh dibiarkan kosong untuk pembayaran kod bar: platform mengenal pasti WeChat/Alipay/UnionPay daripada awalan kod dan mengisi kaedah bayaran"
   },
   "auth": {
     "title": "Membangunkan Pengesahan",

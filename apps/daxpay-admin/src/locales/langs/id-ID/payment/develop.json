@@ -164,7 +164,8 @@
     "limitPayOption": {
       "no_credit": "Pembayaran Kartu Kredit"
     },
-    "allocationTip": "Saat diaktifkan, dana pesanan akan dibekukan dan hanya dapat dipisah melalui alokasi."
+    "allocationTip": "Saat diaktifkan, dana pesanan akan dibekukan dan hanya dapat dipisah melalui alokasi.",
+    "methodOptionalTip": "Boleh dikosongkan untuk pembayaran barcode: platform mengenali WeChat/Alipay/UnionPay dari prefiks kode dan mengisi metode pembayaran"
   },
   "auth": {
     "title": "Auth Kembangkan",

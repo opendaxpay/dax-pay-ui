@@ -74,9 +74,17 @@
         },
       ],
     };
-    // 路由模式: 支付方式必填
+    // 路由模式: 支付方式一般必填; 被扫场景(已填付款码)可留空, 由平台按付款码前缀识别回填
     if (routeMode.value === 'route') {
-      rules.method = [{ required: true, message: $t('payment.develop.trade.rule.method') }];
+      rules.method = [
+        {
+          validator: async (_rule: any, value: string) => {
+            if (!value && !form.authCode) {
+              throw new Error($t('payment.develop.trade.rule.method'));
+            }
+          },
+        },
+      ];
     } else {
       // 直接指定: 通道商户与支付能力必填
       rules.channelMchNo = [{ required: true, message: $t('payment.develop.trade.rule.channelMchNo') }];
@@ -539,9 +547,13 @@
                       />
                     </a-form-item>
                   </a-col>
-                  <!-- 路由模式: 支付方式(必填, 经路由引擎匹配) -->
+                  <!-- 路由模式: 支付方式(一般必填, 经路由引擎匹配; 被扫场景填了付款码可留空) -->
                   <a-col v-if="routeMode === 'route'" :span="8">
-                    <a-form-item :label="$t('payment.develop.trade.field.method')" name="method">
+                    <a-form-item
+                      :label="$t('payment.develop.trade.field.method')"
+                      name="method"
+                      :tooltip="$t('payment.develop.trade.methodOptionalTip')"
+                    >
                       <a-select
                         v-model:value="form.method"
                         show-search

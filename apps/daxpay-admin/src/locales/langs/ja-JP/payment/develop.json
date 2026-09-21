@@ -164,7 +164,8 @@
     "limitPayOption": {
       "no_credit": "クレジットカード決済"
     },
-    "allocationTip": "有効にすると注文資金が凍結され、分割決済の発起によってのみ分割できます"
+    "allocationTip": "有効にすると注文資金が凍結され、分割決済の発起によってのみ分割できます",
+    "methodOptionalTip": "バーコード決済(被読取)では空欄可: 支払コードの接頭辞からWeChat/Alipay/UnionPayを自動判別し、支払方法を補完します"
   },
   "auth": {
     "title": "認証開発",
