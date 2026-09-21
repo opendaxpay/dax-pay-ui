@@ -3,6 +3,8 @@
   "manageTitle": "การจัดการผู้ค้า Yeepay",
   "basicConfig": "การกำหนดค่าพื้นฐาน",
   "keyConfig": "การกำหนดค่าที่สำคัญ",
+  "cardDirectKeyConfig": "การกำหนดค่าคีย์",
+  "cardDirectKeyConfigDesc": "กำหนดค่า AppKey ของแอป Yeepay กุญแจส่วนตัวผู้ค้า และกุญแจสาธารณะแพลตฟอร์ม",
   "environment": "สิ่งแวดล้อม",
   "prodEnv": "การผลิต",
   "sandboxEnv": "แซนด์บ็อกซ์",

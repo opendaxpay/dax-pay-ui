@@ -24,6 +24,7 @@
     "lsMchNo": "Leshua 販売者 ID を入力してください",
     "lsIsvNo": "Leshua ISV 番号を入力してください",
     "tradeKey": "トレードキーを入力してください",
+    "notifyKey": "通知キーを入力してください",
     "signType": "記号の種類を選択してください"
   },
   "groupMchConfig": "販売者の構成",

@@ -3,6 +3,8 @@
   "manageTitle": "Yeepay加盟店管理",
   "basicConfig": "基本構成",
   "keyConfig": "キー構成",
+  "cardDirectKeyConfig": "キーコンフィグ",
+  "cardDirectKeyConfigDesc": "YeepayアプリのAppKey、加盟店秘密鍵、プラットフォーム公開鍵を設定",
   "environment": "環境",
   "prodEnv": "生産",
   "sandboxEnv": "サンドボックス",

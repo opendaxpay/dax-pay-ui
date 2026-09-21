@@ -24,6 +24,7 @@
     "lsMchNo": "請輸入樂刷商戶號",
     "lsIsvNo": "請輸入樂刷服務商號",
     "tradeKey": "請輸入交易金鑰",
+    "notifyKey": "請輸入非同步通知金鑰",
     "signType": "請選擇簽名型別"
   },
   "groupMchConfig": "商戶配置",

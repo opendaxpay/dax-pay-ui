@@ -24,6 +24,7 @@
     "lsMchNo": "Vui lòng nhập ID người bán Leshua",
     "lsIsvNo": "Vui lòng nhập số ISV của Leshua",
     "tradeKey": "Vui lòng nhập khóa giao dịch",
+    "notifyKey": "Vui lòng nhập khóa thông báo",
     "signType": "Vui lòng chọn loại biển báo"
   },
   "groupMchConfig": "Cấu hình người bán",

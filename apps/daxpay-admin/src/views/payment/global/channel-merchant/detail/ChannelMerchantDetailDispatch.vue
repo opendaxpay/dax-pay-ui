@@ -71,6 +71,9 @@
     [ProductEnum.EASY_PAY]: defineAsyncComponent(
       () => import('#/views/payment/channel/easypay/manage/mch/EasyPayMchManage.vue'),
     ),
+    [ProductEnum.YEE_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/yeepay/manage/mch/YeepayMchManage.vue'),
+    ),
     [ProductEnum.VBILL_PAY]: defineAsyncComponent(
       () => import('#/views/payment/channel/vbill/manage/mch/VbillMchManage.vue'),
     ),
@@ -111,7 +114,7 @@
     [ProductEnum.LAKALA_PAY]: 'payment.channel.lakalaIsv.manageTitle',
     [ProductEnum.ADA_PAY]: 'payment.channel.adapayManage.manageTitle',
     [ProductEnum.HKRT_PAY]: 'payment.channel.hkrtIsv.manageTitle',
-    [ProductEnum.LESHUA_PAY]: 'payment.channel.leshuaIsv.title',
+    [ProductEnum.LESHUA_PAY]: 'payment.channel.leshuaIsv.manageTitle',
     [ProductEnum.DOUGONG_PAY]: 'payment.channel.dougongIsv.manageTitle',
     [ProductEnum.VBILL_PAY]: 'payment.channel.vbillIsv.manageTitle',
     [ProductEnum.FUYOU_PAY]: 'payment.channel.fuyouIsv.manageTitle',
@@ -122,6 +125,8 @@
     [ProductEnum.SHENG_PAY]: 'payment.channel.shengIsv.manageTitle',
     // 易支付
     [ProductEnum.EASY_PAY]: 'payment.channel.easypay.manageTitle',
+    // 易宝
+    [ProductEnum.YEE_PAY]: 'payment.channel.yeepay.manageTitle',
     // 银联商务家族共用同一标题
     [ProductEnum.UMS_QRCODE]: UMS_MANAGE_TITLE_KEY,
     [ProductEnum.UMS_JSAPI]: UMS_MANAGE_TITLE_KEY,

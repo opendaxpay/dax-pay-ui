@@ -3,6 +3,8 @@
   "manageTitle": "Yeepay Merchant Management",
   "basicConfig": "Basic Configuration",
   "keyConfig": "Key Configuration",
+  "cardDirectKeyConfig": "Key Config",
+  "cardDirectKeyConfigDesc": "Configure Yeepay app AppKey, merchant private key and platform public key",
   "environment": "Environment",
   "prodEnv": "Production",
   "sandboxEnv": "Sandbox",

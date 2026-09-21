@@ -3,6 +3,8 @@
   "manageTitle": "Quản lý người bán Yeepay",
   "basicConfig": "Cấu hình cơ bản",
   "keyConfig": "Cấu hình khóa",
+  "cardDirectKeyConfig": "Cấu hình khóa",
+  "cardDirectKeyConfigDesc": "Định cấu hình AppKey ứng dụng Yeepay, khóa riêng người bán và khóa công khai nền tảng",
   "environment": "Môi trường",
   "prodEnv": "Sản xuất",
   "sandboxEnv": "Hộp cát",

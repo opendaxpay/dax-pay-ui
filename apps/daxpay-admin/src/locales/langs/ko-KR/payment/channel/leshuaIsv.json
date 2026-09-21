@@ -24,6 +24,7 @@
     "lsMchNo": "레슈아 판매자 ID를 입력해주세요",
     "lsIsvNo": "Leshua ISV 번호를 입력해주세요",
     "tradeKey": "거래키를 입력해주세요",
+    "notifyKey": "알림 키를 입력해주세요",
     "signType": "간판 종류를 선택해주세요"
   },
   "groupMchConfig": "판매자 구성",

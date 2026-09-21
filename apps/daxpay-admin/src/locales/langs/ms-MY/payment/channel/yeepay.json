@@ -3,6 +3,8 @@
   "manageTitle": "Pengurusan Pedagang Yeepay",
   "basicConfig": "Konfigurasi Asas",
   "keyConfig": "Konfigurasi Kekunci",
+  "cardDirectKeyConfig": "Konfigurasi Kekunci",
+  "cardDirectKeyConfigDesc": "Konfigurasikan AppKey aplikasi Yeepay, kunci persendirian pedagang dan kunci awam platform",
   "environment": "Persekitaran",
   "prodEnv": "Pengeluaran",
   "sandboxEnv": "Kotak pasir",

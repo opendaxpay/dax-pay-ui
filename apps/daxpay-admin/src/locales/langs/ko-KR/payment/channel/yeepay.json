@@ -3,6 +3,8 @@
   "manageTitle": "Yeepay 판매자 관리",
   "basicConfig": "기본 구성",
   "keyConfig": "키 구성",
+  "cardDirectKeyConfig": "키 구성",
+  "cardDirectKeyConfigDesc": "Yeepay 앱 AppKey, 판매자 개인 키 및 플랫폼 공개 키 구성",
   "environment": "환경",
   "prodEnv": "생산",
   "sandboxEnv": "모래 상자",

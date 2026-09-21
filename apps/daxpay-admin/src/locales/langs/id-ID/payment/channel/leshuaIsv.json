@@ -24,6 +24,7 @@
     "lsMchNo": "Silakan masukkan ID pedagang Leshua",
     "lsIsvNo": "Silakan masukkan nomor Leshua ISV",
     "tradeKey": "Silakan masukkan kunci perdagangan",
+    "notifyKey": "Silakan masukkan kunci notifikasi",
     "signType": "Silakan pilih jenis tanda"
   },
   "groupMchConfig": "Konfigurasi Pedagang",

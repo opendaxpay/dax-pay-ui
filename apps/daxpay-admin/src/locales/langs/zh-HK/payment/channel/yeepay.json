@@ -3,6 +3,8 @@
   "manageTitle": "易寶商户管理",
   "basicConfig": "基礎配置",
   "keyConfig": "密鑰配置",
+  "cardDirectKeyConfig": "密鑰配置",
+  "cardDirectKeyConfigDesc": "配置易寶應用AppKey、商户密鑰與平台公鑰",
   "environment": "環境",
   "prodEnv": "生產",
   "sandboxEnv": "沙箱",

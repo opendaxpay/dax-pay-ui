@@ -24,6 +24,7 @@
     "lsMchNo": "Please enter Leshua merchant ID",
     "lsIsvNo": "Please enter Leshua ISV number",
     "tradeKey": "Please enter trade key",
+    "notifyKey": "Please enter notify key",
     "signType": "Please select sign type"
   },
   "groupMchConfig": "Merchant Configuration",
