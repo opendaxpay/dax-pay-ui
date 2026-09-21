@@ -149,7 +149,7 @@ export interface TransferParam {
   channelMchNo: string;
   /** 商户转账号（幂等键） */
   bizTransferNo: string;
-  /** 转账金额（元） */
+  /** 转账金额(分, 提交前由表单元值换算) */
   amount: number;
   /** 转账标题 */
   title?: string;

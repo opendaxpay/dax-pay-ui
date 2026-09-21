@@ -73,7 +73,7 @@ export interface AllocReceiverParam {
   receiverAccount: string;
   /** 接收方姓名 */
   receiverName?: string;
-  /** 分账金额(元) */
+  /** 分账金额(分, 提交前由表单元值换算) */
   amount: number;
 }
 

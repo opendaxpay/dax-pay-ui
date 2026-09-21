@@ -36,6 +36,7 @@
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
+  import { yuanToFen } from '#/utils/pay-amount';
 
   defineOptions({ name: 'TransferCreate' });
 
@@ -737,6 +738,8 @@
       // 校验未通过, 字段错误已由表单自动展示
       return;
     }
+    // 金额表单以元采集, 校验通过后统一换算为分提交(后端契约金额单位为分)
+    param.amount = yuanToFen(param.amount) ?? 0;
     submitting.value = true;
     try {
       const { data } = await createFn(param);

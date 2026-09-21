@@ -50,3 +50,16 @@ export function formatFen(fen?: unknown): string {
   if (n === undefined) return '-';
   return (n / 100).toFixed(2);
 }
+
+/**
+ * 金额元 → 分（提交用）
+ *
+ * 表单以元采集（两位小数），提交后端前换算为分。
+ * 使用 Math.round(yuan * 100) 消除浮点误差（10.1 * 100 === 1009.999…）。
+ * 无效输入返回 undefined，由后端必填校验兜底。
+ */
+export function yuanToFen(yuan?: unknown): number | undefined {
+  const n = toNumber(yuan);
+  if (n === undefined) return undefined;
+  return Math.round(n * 100);
+}

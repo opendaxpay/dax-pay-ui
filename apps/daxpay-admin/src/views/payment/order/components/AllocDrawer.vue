@@ -5,6 +5,7 @@
 
   import { AllocOrderApi, type AllocParam, type AllocReceiverParam } from '#/api/payment/order/alloc-order.api';
   import { useMessage } from '#/hooks/useMessage';
+  import { yuanToFen } from '#/utils/pay-amount';
 
   defineOptions({ name: 'AllocDrawer' });
 
@@ -13,7 +14,7 @@
    *
    * 由 PayTradeList 通过 ref.open(row) 调用, 经 fetchDetail 获取 tradeNo/amount/channel/mchNo,
    * 内部封装分账接收方动态表单 + 校验 + 二次确认 + AllocOrderApi.create 调用。
-   * 金额单位为元(后端统一元转分); 运营端代发必传原支付所属商户号 mchNo。
+   * 表单金额以元采集, 提交时前端换算为分(后端契约金额单位为分); 运营端代发必传原支付所属商户号 mchNo。
    */
   const props = defineProps<{
     /** 获取含 tradeNo/amount/channel 的订单详情 */
@@ -173,7 +174,7 @@
   /**
    * 提交发起分账(校验 → 二次确认 → 调用 API)
    * 字段校验走 form rules, 合计超限为跨行校验单独拦截
-   * 金额单位为元, 由后端统一元转分(majorToMinor), 前端禁止预转换
+   * 表单金额以元采集, 提交时前端换算为分(后端契约金额单位为分)
    */
   async function submit() {
     try {
@@ -198,7 +199,7 @@
         receiverType: r.receiverType,
         receiverAccount: r.receiverAccount.trim(),
         receiverName: r.receiverName.trim() || undefined,
-        amount: r.amount ?? 0,
+        amount: yuanToFen(r.amount) ?? 0,
       })),
     };
     confirm({
