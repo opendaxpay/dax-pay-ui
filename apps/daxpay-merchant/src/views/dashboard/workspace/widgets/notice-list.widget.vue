@@ -8,12 +8,9 @@
   import { $t } from '@vben/locales';
   import { formatDateTime } from '@vben/utils';
 
-  import { MdPreview } from 'md-editor-v3';
-
-  import { type NotifyNotice, NotifyNoticeApi } from '#/api/system/notify/notice.api';
-
-  import 'md-editor-v3/lib/style.css';
-  import 'md-editor-v3/lib/preview.css';
+  import { type NotifyNoticeBrief, NotifyUserApi } from '#/api/system/notify/user.api';
+  import { NotifyDetailModal } from '#/components/notify';
+  import { useNotifyStore } from '#/store/notify';
 
   interface Props {
     /** 工作台聚合数据（公告独立拉数据，不消费统计） */
@@ -28,19 +25,22 @@
   });
 
   const router = useRouter();
+  // 通知 store：查看即读后经此刷新铃铛未读徽标与列表
+  const notifyStore = useNotifyStore();
   const loading = ref(false);
-  const records = ref<NotifyNotice[]>([]);
+  const records = ref<NotifyNoticeBrief[]>([]);
 
-  // 公告正文查看弹窗（与右上角铃铛通知查看弹窗结构一致：a-modal + MdPreview）
+  // 公告正文查看弹窗(与顶栏铃铛、通知中心共用标准版组件: 类型/重要程度/置顶/时间元信息 + 正文)
   const detailOpen = ref(false);
-  const detail = ref<NotifyNotice>();
-  const detailLoading = ref(false);
+  // 查看目标(通知类型 + 主键), 正文由弹窗组件内独立请求详情接口
+  const viewTarget = ref<null | { id: string; type: string }>(null);
 
-  /** 拉取已发布公告（后端强制 published 且在生效时间窗内，按置顶+时间倒序取 20 条） */
+  /** 拉取可见公告(与顶栏铃铛、通知中心同源: 后端只返回已发布且在生效时间窗内、未被忽略的公告) */
   async function load() {
     loading.value = true;
-    const res = await NotifyNoticeApi.page({ current: 1, size: 20 });
-    records.value = res?.data?.records || [];
+    // /notify/user/page 为公告 + 个人消息聚合列表, 工作台卡片只展示公告, 取最新 20 条
+    const { data } = await NotifyUserApi.page();
+    records.value = (data ?? []).filter((item) => item.type === 'notice').slice(0, 20);
     loading.value = false;
   }
 
@@ -51,18 +51,14 @@
     router.push({ name: 'NotifyCenter' }).catch(() => {});
   }
 
-  /** 点击公告条目：打开弹窗查看正文（与铃铛查看一致，纯展示 title + Markdown content） */
-  async function openDetail(row: NotifyNotice) {
+  /** 点击公告条目：打开标准版详情弹窗查看正文（查看即标记已读，与铃铛、通知中心一致） */
+  function openDetail(row: NotifyNoticeBrief) {
     if (!row?.id) return;
-    // 立即打开弹窗，title 先用列表已知值即时显示，正文异步加载
-    detail.value = row;
+    viewTarget.value = { id: String(row.id), type: row.type ?? 'notice' };
     detailOpen.value = true;
-    detailLoading.value = true;
-    try {
-      const { data } = await NotifyNoticeApi.findById(row.id);
-      detail.value = data;
-    } finally {
-      detailLoading.value = false;
+    // 查看即读：未读则标记，store.markRead 内部会刷新未读徽标
+    if (!row.isRead && row.type) {
+      notifyStore.markRead(row.type, String(row.id));
     }
   }
 
@@ -111,18 +107,12 @@
           >[{{ $t('dashboard.workspace.notice.top') }}]</span
         >
         <span class="text-foreground/80 flex-1 truncate text-sm">{{ row.title || '-' }}</span>
-        <span class="text-foreground/40 shrink-0 text-xs">{{
-          fmtNoticeTime(row.lastModifiedTime || row.createTime)
-        }}</span>
+        <span class="text-foreground/40 shrink-0 text-xs">{{ fmtNoticeTime(row.createTime) }}</span>
       </li>
     </ul>
 
-    <!-- 公告正文查看弹窗（与右上角铃铛通知查看弹窗一致：a-modal + MdPreview 纯展示） -->
-    <a-modal :open="detailOpen" :title="detail?.title" :footer="null" width="800" @cancel="detailOpen = false">
-      <a-spin :spinning="detailLoading">
-        <MdPreview v-if="detail?.content" :model-value="detail.content" />
-      </a-spin>
-    </a-modal>
+    <!-- 公告正文查看弹窗（与顶栏铃铛、通知中心共用标准版组件：元信息 + 完整正文） -->
+    <NotifyDetailModal v-model:open="detailOpen" :target="viewTarget" />
   </a-card>
 </template>
 
