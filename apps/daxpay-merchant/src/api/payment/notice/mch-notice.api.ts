@@ -33,7 +33,7 @@ export interface MchNoticeTaskQuery {
   appId?: string;
   bizNo?: string;
   event?: string;
-  protocol?: string;
+  format?: string;
   source?: string;
   success?: boolean;
 }
@@ -44,7 +44,7 @@ export interface MchNoticeTaskResult extends MchEntity {
   bizId?: string;
   bizNo?: string;
   event?: string;
-  protocol?: string;
+  format?: string;
   source?: string;
   contentMode?: string;
   content?: string;

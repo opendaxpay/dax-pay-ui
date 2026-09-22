@@ -64,9 +64,9 @@
     },
     {
       type: 'string',
-      field: 'protocol',
-      // 协议
-      name: $t('payment.notice.mchNotice.protocol'),
+      field: 'format',
+      // 报文格式
+      name: $t('payment.notice.mchNotice.format'),
     },
     {
       type: 'string',
@@ -82,10 +82,11 @@
     return source || '-';
   }
 
-  function protocolLabel(protocol?: string) {
-    if (protocol === 'system') return $t('payment.notice.mchNotice.protocolSystem');
-    if (protocol === 'easy_pay') return $t('payment.notice.mchNotice.protocolEasyPay');
-    return protocol || '-';
+  // 报文格式翻译（NoticeFormatEnum: system 标准JSON / easy_pay 易支付GET query）
+  function formatLabel(format?: string) {
+    if (format === 'system') return $t('payment.notice.mchNotice.formatSystem');
+    if (format === 'easy_pay') return $t('payment.notice.mchNotice.formatEasyPay');
+    return format || '-';
   }
 
   // 发送类型翻译
@@ -203,8 +204,8 @@
             </template>
           </vxe-column>
           <vxe-column field="event" :title="$t('payment.notice.mchNotice.event')" :min-width="120" />
-          <vxe-column field="protocol" :title="$t('payment.notice.mchNotice.protocol')" :min-width="100">
-            <template #default="{ row }">{{ protocolLabel(row.protocol) }}</template>
+          <vxe-column field="format" :title="$t('payment.notice.mchNotice.format')" :min-width="100">
+            <template #default="{ row }">{{ formatLabel(row.format) }}</template>
           </vxe-column>
           <vxe-column field="source" :title="$t('payment.notice.mchNotice.source')" :min-width="90">
             <template #default="{ row }">{{ sourceLabel(row.source) }}</template>
@@ -288,8 +289,8 @@
           <a-descriptions-item :label="$t('payment.notice.mchNotice.event')">
             {{ taskDetail.event || '-' }}
           </a-descriptions-item>
-          <a-descriptions-item :label="$t('payment.notice.mchNotice.protocol')">
-            {{ protocolLabel(taskDetail.protocol) }}
+          <a-descriptions-item :label="$t('payment.notice.mchNotice.format')">
+            {{ formatLabel(taskDetail.format) }}
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.notice.mchNotice.source')">
             {{ sourceLabel(taskDetail.source) }}
