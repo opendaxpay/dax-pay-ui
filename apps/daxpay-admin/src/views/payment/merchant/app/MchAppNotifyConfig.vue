@@ -58,10 +58,6 @@
         { label: $t('payment.merchant.notifyConfig.notifyConfig.eventRefundClose'), value: 'refund.close' },
       ],
     },
-    {
-      title: $t('payment.merchant.notifyConfig.notifyConfig.eventGroupRisk'),
-      options: [{ label: $t('payment.merchant.notifyConfig.notifyConfig.eventRiskHit'), value: 'risk.hit' }],
-    },
   ]);
 
   /** 是否 MQ 推送方式 */
