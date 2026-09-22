@@ -8,17 +8,17 @@
 
   import { refDebounced } from '@vueuse/core';
 
-  import { getLocalIcons, isLocalIcon } from './icons';
+  import { ensureBrandIcons, getLocalIcons, isLocalIcon } from './icons';
 
   interface Props {
+    disabled?: boolean;
+    /** 外部自定义图标列表(传入后优先于本地集合) */
+    icons?: string[];
     pageSize?: number;
     pageSizeOptions?: number[];
     /** 图标集前缀(保留兼容,数据源已固定为本地 lucide+simple-icons 合并) */
     prefix?: string;
-    /** 外部自定义图标列表(传入后优先于本地集合) */
-    icons?: string[];
     type?: 'icon' | 'input';
-    disabled?: boolean;
   }
 
   defineOptions({
@@ -44,6 +44,8 @@
   const defaultPreviewIcon = 'lucide:image';
 
   const open = ref(false);
+  // 品牌图标集加载中(后台预取未完成就打开选择器时短暂为 true, 列表先展示 lucide)
+  const brandPending = ref(false);
   const currentSelect = ref('');
   const keyword = ref('');
   const keywordDebounced = refDebounced(keyword, 300);
@@ -103,6 +105,20 @@
     () => filteredIcons.value.length,
     () => {
       currentPage.value = 1;
+    },
+  );
+
+  // 打开选择器时兜底触发品牌图标集加载(覆盖所有置 open 的路径),
+  // 品牌集就位后 mergedIcons/notLocalHint 经 brandVersion 响应式自动刷新
+  watch(
+    open,
+    (value) => {
+      if (value) {
+        brandPending.value = true;
+        void ensureBrandIcons().finally(() => {
+          brandPending.value = false;
+        });
+      }
     },
   );
 
@@ -207,9 +223,13 @@
           </button>
         </div>
         <div v-else class="icon-picker-empty">
-          <EmptyIcon class="icon-picker-empty-icon" />
+          <!-- 品牌集后台加载中且当前过滤结果为空: 显示加载态而非空状态(品牌图标稍后自动刷出) -->
+          <a-spin v-if="brandPending" class="icon-picker-empty-icon" />
+          <EmptyIcon v-else class="icon-picker-empty-icon" />
           <!-- 国际化：图标列表空状态 -->
-          <div class="icon-picker-empty-text">{{ $t('components.icon-picker.noData') }}</div>
+          <div class="icon-picker-empty-text">
+            {{ brandPending ? $t('components.icon-picker.loading') : $t('components.icon-picker.noData') }}
+          </div>
         </div>
         <div v-if="total > currentPageSize" class="icon-picker-pagination">
           <a-pagination

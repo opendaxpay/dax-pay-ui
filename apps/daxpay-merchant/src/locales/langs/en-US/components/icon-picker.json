@@ -2,5 +2,6 @@
   "placeholder": "Select an icon",
   "search": "Search icon...",
   "noData": "No data",
+  "loading": "Loading icons...",
   "notLocal": "Not in local set, will render online"
 }

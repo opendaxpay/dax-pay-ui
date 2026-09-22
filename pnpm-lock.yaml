@@ -1293,6 +1293,9 @@ importers:
 
   packages/business/ui-biz:
     dependencies:
+      '@iconify/json':
+        specifier: 'catalog:'
+        version: 2.2.489
       '@types/qrcode':
         specifier: 'catalog:'
         version: 1.5.6
