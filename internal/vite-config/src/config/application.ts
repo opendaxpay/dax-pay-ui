@@ -72,9 +72,7 @@ function defineApplicationConfig(userConfigPromise?: DefineApplicationOptions) {
               : false,
           },
         },
-        // es2020: 去掉 async/await、可选链等语法降级(实测 JS 总量约 -2%);
-        // 要求 Chrome 87+ / Safari 14+ / Firefox 78+, 与 Vue 3.5 + antdv-next 的现代浏览器基线一致
-        target: 'es2020',
+        target: 'es2015',
       },
       css: createCssOptions(injectGlobalScss),
       plugins,

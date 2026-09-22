@@ -5,8 +5,6 @@ import { preferences } from '@vben/preferences';
 import { useAccessStore, useUserStore } from '@vben/stores';
 import { decodeSafeRedirect, startProgress, stopProgress } from '@vben/utils';
 
-import { ensureVxe } from '@daxpay/ui-biz/adapter/component/vxe-table/register';
-
 import { AuthApi } from '#/api/core/auth.api';
 import { coreRouteNames, FORCE_CHANGE_PASSWORD_PATH, HOME_PATH } from '#/router/routes';
 import { useAuthStore } from '#/store';
@@ -94,9 +92,6 @@ function setupAccessGuard(router: Router) {
       return to;
     }
 
-    // token 有效, 即将进入业务路由: 确保 vxe 已注册(登录页不渲染 vxe, 延后加载 2.6MB JS + 577KB CSS; 幂等)
-    await ensureVxe();
-
     // 是否已经生成过动态路由
     if (accessStore.isAccessChecked) {
       return true;
@@ -131,7 +126,10 @@ function setupAccessGuard(router: Router) {
       accessStore.setAccessMenus(accessibleMenus);
       accessStore.setAccessRoutes(accessibleRoutes);
       accessStore.setIsAccessChecked(true);
-      const redirectPath = decodeSafeRedirect(from.query.redirect, to.path === HOME_PATH ? HOME_PATH : to.fullPath);
+      const redirectPath = decodeSafeRedirect(
+        from.query.redirect,
+        to.path === HOME_PATH ? HOME_PATH : to.fullPath,
+      );
 
       return {
         ...router.resolve(redirectPath),

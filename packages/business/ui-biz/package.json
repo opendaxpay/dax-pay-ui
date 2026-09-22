@@ -45,10 +45,6 @@
     "./adapter/component/vxe-table/style": {
       "default": "./src/adapter/component/vxe-table/index.less"
     },
-    "./adapter/component/vxe-table/register": {
-      "types": "./src/adapter/component/vxe-table/register.ts",
-      "default": "./src/adapter/component/vxe-table/register.ts"
-    },
     "./enums/clientCode": {
       "types": "./src/enums/clientCode.ts",
       "default": "./src/enums/clientCode.ts"
