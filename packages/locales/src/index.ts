@@ -11,6 +11,7 @@
 import {
   i18n,
   loadLocaleMessages,
+  loadLocalesMapFromBarrel,
   loadLocalesMapFromDir,
   setupI18n,
 } from './i18n';
@@ -32,6 +33,7 @@ export {
   $te,
   i18n,
   loadLocaleMessages,
+  loadLocalesMapFromBarrel,
   loadLocalesMapFromDir,
   setupI18n,
 };

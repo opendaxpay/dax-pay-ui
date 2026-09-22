@@ -29,26 +29,25 @@ const i18n = createI18n({
 });
 
 /**
- * 使用 Vite 的 glob 导入功能加载所有语言包文件
- * 匹配 ./langs 目录下的所有 .json 文件（包括嵌套目录）
- * 例如：./langs/zh-CN/common.json, ./langs/zh-CN/iam/perm/role.json
+ * 语言包模块加载（dev / production 双轨）
+ *
+ * dev：直接 glob 词条 json，新增/修改词条文件即时生效（HMR），
+ *      无需重跑 barrel 生成脚本，开发体验与 barrel 化之前完全一致；
+ * production：走 barrel（每语言一个 index.ts，由 scripts/gen-locale-barrels.mjs
+ *      生成，根 package.json 的 build 已前置自动重生成），打包产物从
+ *      「每个词条 json 一个动态 chunk」收敛为「每个语言一个 chunk」。
+ *      import.meta.env.DEV 为构建期常量，json glob 分支在 production
+ *      构建时被 tree-shaking 整体消除，不会产生碎片 chunk。
  */
-const modules = import.meta.glob('./langs/**/*.json');
+const jsonModules = import.meta.glob('./langs/**/*.json');
+const barrelModules = import.meta.glob('./langs/*/index.ts');
 
 const { setSimpleLocale } = useSimpleLocale();
 
-/**
- * 解析语言包文件路径，生成语言到加载函数的映射
- *
- * 正则说明：/\.\/langs\/([^/]+)\/(.*)\.json$/
- * - ([^/]+) 匹配语言代码（如 zh-CN、en-US）
- * - (.*) 匹配文件路径（支持嵌套目录，如 iam/perm/role）
- *
- * 示例转换：
- * - ./langs/zh-CN/common.json → locale: zh-CN, keyPath: ['common']
- * - ./langs/zh-CN/iam/perm/role.json → locale: zh-CN, keyPath: ['iam', 'perm', 'role']
- */
-const localesMap = loadLocalesMapFromDir(/\.\/langs\/([^/]+)\/(.*)\.json$/, modules);
+// 语言到加载函数的映射：dev 按词条 json 逐文件加载，production 按 barrel 加载
+const localesMap = import.meta.env.DEV
+  ? loadLocalesMapFromDir(/\.\/langs\/([^/]+)\/(.*)\.json$/, jsonModules)
+  : loadLocalesMapFromBarrel(/\.\/langs\/([^/]+)\/index\.ts$/, barrelModules);
 let loadMessages: LoadMessageFn;
 
 /**
@@ -274,6 +273,50 @@ function loadLocalesMapFromDir(
 }
 
 /**
+ * 加载 barrel 形式的语言包模块（每个语言一个 index.ts barrel）
+ *
+ * barrel 由 scripts/gen-locale-barrels.mjs 生成：静态聚合该语言全部词条 json，
+ * default 导出 [keyPath, messages] 记录数组。加载时逐条走 [assignLocaleMessage]
+ * 组装嵌套消息对象，key 结构与 [loadLocalesMapFromDir] 的按文件路径切段完全等价，
+ * 深合并与冲突检测语义不变。
+ *
+ * @param regexp - 用于解析 barrel 路径的正则（捕获语言代码）
+ * @param modules - Vite glob 导入的 barrel 模块对象
+ * @returns 语言到加载函数的映射
+ */
+function loadLocalesMapFromBarrel(
+  regexp: RegExp,
+  modules: Record<string, () => Promise<unknown>>,
+): Record<Locale, ImportLocaleFn> {
+  const localesMap: Record<Locale, ImportLocaleFn> = {};
+
+  for (const path in modules) {
+    const importFn = modules[path];
+    const match = path.match(regexp);
+    const locale = match?.[1];
+    if (!locale || !importFn) {
+      continue;
+    }
+
+    localesMap[locale] = async () => {
+      const messages: Record<string, LocaleMessageValue> = {};
+      const module = (await importFn()) as {
+        default?: Array<[string[], LocaleMessageValue]>;
+      };
+
+      // barrel 记录按生成期文件路径排序，逐条赋值/深合并与旧逐文件加载语义一致
+      for (const [keyPath, value] of module.default ?? []) {
+        assignLocaleMessage(messages, locale, path, keyPath, value);
+      }
+
+      return { default: messages };
+    };
+  }
+
+  return localesMap;
+}
+
+/**
  * 设置 i18n 当前语言
  * 同时更新 HTML 标签的 lang 属性
  *
@@ -365,4 +408,10 @@ async function loadLocaleMessages(lang: SupportedLanguagesType) {
   return setI18nLanguage(lang);
 }
 
-export { i18n, loadLocaleMessages, loadLocalesMapFromDir, setupI18n };
+export {
+  i18n,
+  loadLocaleMessages,
+  loadLocalesMapFromBarrel,
+  loadLocalesMapFromDir,
+  setupI18n,
+};
