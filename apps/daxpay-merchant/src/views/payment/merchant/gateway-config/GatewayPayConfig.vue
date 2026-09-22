@@ -386,7 +386,8 @@
         const sd = getRow(sc.clientEnv, pf);
         if (editLevel.value === GW_LEVEL.METHOD) {
           if (sd.method) {
-            filled.push({ ...sd });
+            // 只上送 METHOD 模式字段, 防止 DIRECT 残留的商户/能力随行落库
+            filled.push({ clientEnv: sd.clientEnv, payForm: sd.payForm, method: sd.method });
           }
           continue;
         }
@@ -405,7 +406,13 @@
           );
           return null;
         }
-        filled.push({ ...sd });
+        // 只上送 DIRECT 模式字段, 防止 METHOD 残留的支付方式与能力组成矛盾配置(路由校验会拒绝)
+        filled.push({
+          clientEnv: sd.clientEnv,
+          payForm: sd.payForm,
+          channelMchNo: sd.channelMchNo,
+          capability: sd.capability,
+        });
       }
     }
     if (filled.length === 0) {
