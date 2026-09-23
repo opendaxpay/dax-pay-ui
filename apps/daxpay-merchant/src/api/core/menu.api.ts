@@ -242,7 +242,16 @@ function convertMenuToRoute(
       route.meta!.hideInMenu = true;
       // 注入完整面包屑链（含 catalog/menu/group），弥补路由提升后 matched 缺失 menu 层
       if (menu.id && breadcrumbMap?.has(menu.id)) {
-        route.meta!.customBreadcrumb = breadcrumbMap.get(menu.id);
+        const chain = breadcrumbMap.get(menu.id)!;
+        route.meta!.customBreadcrumb = chain;
+        // 侧栏高亮回落到链上最近的带 path 祖先(如商户列表), 子页自身 hideInMenu 不在菜单树
+        const ancestor = chain
+          .slice(0, -1)
+          .toReversed()
+          .find((item) => item.path);
+        if (ancestor?.path) {
+          route.meta!.activePath = ancestor.path;
+        }
       }
       break;
     }
