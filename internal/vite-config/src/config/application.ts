@@ -25,6 +25,7 @@ function defineApplicationConfig(userConfigPromise?: DefineApplicationOptions) {
     const env = loadEnv(mode, root);
 
     const plugins = await loadApplicationPlugins({
+      antdNextComponents: true,
       archiver: true,
       archiverPluginOptions: {},
       compress: false,

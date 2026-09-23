@@ -18,6 +18,7 @@ import { createHtmlPlugin as viteHtmlPlugin } from 'vite-plugin-html';
 import { VitePWA } from 'vite-plugin-pwa';
 import viteVueDevTools from 'vite-plugin-vue-devtools';
 
+import { viteAntdNextComponentsPlugin } from './antd-next';
 import { viteArchiverPlugin } from './archiver';
 import { viteExtraAppConfigPlugin } from './extra-app-config';
 import { viteImportMapPlugin } from './importmap';
@@ -98,6 +99,7 @@ async function loadApplicationPlugins(
   const env = options.env;
 
   const {
+    antdNextComponents,
     archiver,
     archiverPluginOptions,
     compress,
@@ -146,6 +148,12 @@ async function loadApplicationPlugins(
       },
     },
 
+    {
+      condition: !!antdNextComponents,
+      plugins: async () => {
+        return [await viteAntdNextComponentsPlugin()];
+      },
+    },
     {
       condition: injectAppLoading,
       plugins: async () => [await viteInjectAppLoadingPlugin(!!isBuild, env)],

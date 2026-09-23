@@ -20,6 +20,7 @@
     }
   },
   "dependencies": {
+    "@antdv-next/auto-import-resolver": "catalog:",
     "@intlify/unplugin-vue-i18n": "catalog:",
     "@jspm/generator": "catalog:",
     "@tailwindcss/vite": "catalog:",
@@ -27,6 +28,7 @@
     "cheerio": "catalog:",
     "html-minifier-terser": "catalog:",
     "resolve.exports": "catalog:",
+    "unplugin-vue-components": "catalog:",
     "vite-plugin-pwa": "catalog:",
     "vite-plugin-vue-devtools": "catalog:"
   },

@@ -161,6 +161,13 @@ interface CommonPluginOptions {
  */
 interface ApplicationPluginOptions extends CommonPluginOptions {
   /**
+   * 是否开启 antdv-next 按需加载
+   * @default false
+   * @description 通过 unplugin-vue-components + 官方 resolver, 将模板中的 a-* 标签
+   * 编译期为按组件具名导入, 配合 bootstrap 去掉 app.use(Antd) 全量注册
+   */
+  antdNextComponents?: boolean;
+  /**
    * 是否开启压缩归档
    * @default false
    * @description 开启后会在打包目录生成 zip 文件

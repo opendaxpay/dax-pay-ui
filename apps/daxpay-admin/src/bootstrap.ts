@@ -12,7 +12,6 @@ import { registerVxeComponents, setDark } from '@daxpay/ui-biz/adapter/component
 import { initSetupVbenForm } from '@daxpay/ui-biz/adapter/form';
 import lucide from '@iconify/json/json/lucide.json';
 import { useTitle } from '@vueuse/core';
-import Antd from 'antdv-next';
 
 import { $t, setupI18n } from '#/locales';
 
@@ -40,8 +39,8 @@ async function bootstrap(namespace: string) {
 
   const app = createApp(App);
 
-  // 注册 Antd Next
-  app.use(Antd);
+  // Antd Next 已改为按需加载(unplugin-vue-components + 官方 resolver,
+  // 模板 a-* 标签编译期具名导入), 不再 app.use(Antd) 全量注册
 
   // 按需注册 vxe 组件(具名导入+构建期按组件拆分, 不再整包 app.use, vxe 全量 2.6MB 移出首屏)
   registerVxeComponents(app);
