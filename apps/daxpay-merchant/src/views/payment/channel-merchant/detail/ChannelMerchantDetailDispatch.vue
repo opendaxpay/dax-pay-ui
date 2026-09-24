@@ -7,6 +7,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+  import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
 
   import {
     ChannelMerchantApi,
@@ -38,6 +39,8 @@
   const product = ref('');
   const channelMerchant = ref<ChannelMerchantResult>({});
   const loading = ref(false);
+  // 页签标题动态化为「{通道商户名} · 通道商户管理」(页头标题随产品变化, 页签用通用功能名)
+  const { setTabObjectTitle } = useDynamicTabTitle($t('payment.merchant.channelMerchant.manageTitleDefault'));
 
   const alipayMchManageRef = ref<InstanceType<typeof AlipayMchManage>>();
   const alipayChannelMerchantManageRef = ref<InstanceType<typeof AlipayChannelMerchantManage>>();
@@ -95,6 +98,8 @@
       .then(({ data }) => {
         if (data) {
           channelMerchant.value = data;
+          // 页签标题动态化为「{通道商户名} · 通道商户管理」(名字超长由页签栏截断)
+          setTabObjectTitle(data.channelMerchantName || '');
           if (!product.value && data.product) {
             product.value = data.product;
           }

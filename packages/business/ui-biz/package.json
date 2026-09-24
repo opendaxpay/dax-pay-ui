@@ -117,6 +117,10 @@
       "types": "./src/hooks/useSensitiveDataCleanup.ts",
       "default": "./src/hooks/useSensitiveDataCleanup.ts"
     },
+    "./hooks/useDynamicTabTitle": {
+      "types": "./src/hooks/use-dynamic-tab-title.ts",
+      "default": "./src/hooks/use-dynamic-tab-title.ts"
+    },
     "./utils/file": {
       "types": "./src/utils/file.ts",
       "default": "./src/utils/file.ts"

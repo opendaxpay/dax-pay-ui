@@ -94,7 +94,7 @@ function onMouseDown(e: MouseEvent, tab: TabConfig) {
         ]"
         :data-active-tab="active"
         :data-index="i"
-        class="draggable group tabs-chrome__item translate-all relative -mr-3 flex h-full items-center select-none"
+        class="draggable group tabs-chrome__item translate-all relative -mr-3 flex h-full max-w-[220px] items-center select-none"
         data-tab-item="true"
         @click="active = tab.key"
         @mousedown="onMouseDown($event, tab)"
@@ -161,7 +161,10 @@ function onMouseDown(e: MouseEvent, tab: TabConfig) {
                 class="mr-1 flex size-4 items-center overflow-hidden group-hover:animate-[shrink_0.3s_ease-in-out]"
               />
 
-              <span class="flex-1 overflow-hidden text-sm whitespace-nowrap">
+              <span
+                :title="tab.title"
+                class="min-w-0 flex-1 truncate text-sm"
+              >
                 {{ tab.title }}
               </span>
             </div>

@@ -7,6 +7,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+  import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
 
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
@@ -66,6 +67,8 @@
   const appInfo = ref<MchAppInfoResult>({});
   const appEditRef = ref<InstanceType<typeof MchAppInfoEdit>>();
   const notifyDrawerVisible = ref(false);
+  // 页签标题动态化为「{应用名} · 应用配置」
+  const { setTabObjectTitle } = useDynamicTabTitle($t('payment.merchant.app.app.workbenchTitle'));
 
   /**
    * 功能卡片（权限过滤后展示），视觉对齐商户工作台
@@ -234,6 +237,8 @@
         return;
       }
       appInfo.value = app;
+      // 页签标题动态化为「{应用名} · 应用配置」(名字超长由页签栏截断)
+      setTabObjectTitle(app.appName || '');
     } finally {
       loading.value = false;
     }

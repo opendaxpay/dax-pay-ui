@@ -6,6 +6,8 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
+
   import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
@@ -30,6 +32,8 @@
   const loading = ref(false);
   const mchNo = ref<string>('');
   const merchantInfo = ref<MerchantInfo>({});
+  // 页签标题动态化为「{商户名} · 商户工作台」
+  const { setTabObjectTitle } = useDynamicTabTitle($t('payment.merchant.workbench.workbench.title'));
 
   /**
    * 功能卡片配置
@@ -204,6 +208,8 @@
       .then(({ data }) => {
         if (data) {
           merchantInfo.value = data;
+          // 页签标题动态化为「{商户名} · 商户工作台」(名字超长由页签栏截断)
+          setTabObjectTitle(data.mchName || '');
           mchNo.value = data.mchNo || '';
         }
       })

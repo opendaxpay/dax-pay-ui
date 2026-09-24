@@ -96,7 +96,7 @@ function onMouseDown(e: MouseEvent, tab: TabConfig) {
           typeWithClass.content,
         ]"
         :data-index="i"
-        class="group tab-item translate-all relative flex cursor-pointer select-none [&:not(.is-active)]:hover:bg-accent"
+        class="group tab-item translate-all relative flex max-w-[220px] cursor-pointer select-none [&:not(.is-active)]:hover:bg-accent"
         data-tab-item="true"
         @click="active = tab.key"
         @mousedown="onMouseDown($event, tab)"
@@ -136,7 +136,10 @@ function onMouseDown(e: MouseEvent, tab: TabConfig) {
                 fallback
               />
 
-              <span class="flex-1 overflow-hidden text-sm whitespace-nowrap">
+              <span
+                :title="tab.title"
+                class="min-w-0 flex-1 truncate text-sm"
+              >
                 {{ tab.title }}
               </span>
             </div>
