@@ -221,6 +221,10 @@
       "types": "./src/components/page-title-bar/index.ts",
       "default": "./src/components/page-title-bar/index.ts"
     },
+    "./components/quick-entry": {
+      "types": "./src/components/quick-entry/index.ts",
+      "default": "./src/components/quick-entry/index.ts"
+    },
     "./components/AntdAppProvider": {
       "types": "./src/components/AntdAppProvider.vue",
       "default": "./src/components/AntdAppProvider.vue"
@@ -242,9 +246,11 @@
     "@vueuse/core": "catalog:",
     "@types/qrcode": "catalog:",
     "antdv-next": "catalog:",
+    "pinia": "catalog:",
     "qrcode": "catalog:",
     "vue": "catalog:",
     "vue-router": "catalog:",
+    "vuedraggable": "catalog:",
     "vxe-pc-ui": "catalog:",
     "vxe-table": "catalog:"
   },

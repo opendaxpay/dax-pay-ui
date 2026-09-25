@@ -1,30 +1,39 @@
 <script lang="ts" setup>
-  import type { QuickEntryMeta } from './catalog';
+  import type { QuickEntryMeta, QuickEntryStore } from './types';
 
   import { computed, ref, watch } from 'vue';
-  import draggable from 'vuedraggable';
 
   import { IconifyIcon } from '@vben/icons';
   import { $t } from '@vben/locales';
 
+  import draggable from 'vuedraggable';
+
+  import { useMessage } from '../../hooks/useMessage';
+  import { usePermission } from '../../hooks/usePermission';
   import {
-    DEFAULT_ENTRIES,
-    getAvailableEntries,
-    resolveEntries,
+    getAvailableCatalogEntries,
+    getDefaultEntries,
+    resolveCatalogEntries,
   } from './catalog';
-  import { useMessage } from '#/hooks/useMessage';
-  import { usePermission } from '#/hooks/usePermission';
-  import { useQuickEntryStore } from '#/store/quick-entry';
 
   defineOptions({ name: 'QuickEntryEditDrawer' });
 
-  const props = defineProps<{ open: boolean }>();
+  const props = defineProps<Props>();
+
   const emit = defineEmits<{
-    'update:open': [value: boolean];
     saved: [];
+    'update:open': [value: boolean];
   }>();
 
-  const quickEntryStore = useQuickEntryStore();
+  interface Props {
+    /** 入口目录（各端自行声明的单一事实源） */
+    catalog: QuickEntryMeta[];
+    /** 抽屉显隐 */
+    open: boolean;
+    /** 快捷入口偏好 store（由调用方注入，负责加载/保存持久化） */
+    store: QuickEntryStore;
+  }
+
   const { hasPermission } = usePermission();
   const { confirm, message } = useMessage();
 
@@ -36,8 +45,9 @@
     () => props.open,
     (open) => {
       if (open) {
-        selectedItems.value = resolveEntries(
-          quickEntryStore.entries ?? DEFAULT_ENTRIES,
+        selectedItems.value = resolveCatalogEntries(
+          props.catalog,
+          props.store.entries ?? getDefaultEntries(props.catalog),
         );
       }
     },
@@ -46,7 +56,7 @@
 
   // 可选池：有权限且尚未选中的入口
   const availableEntries = computed(() => {
-    const all = getAvailableEntries(hasPermission);
+    const all = getAvailableCatalogEntries(props.catalog, hasPermission);
     return all.filter((e) => !selectedItems.value.some((s) => s.key === e.key));
   });
 
@@ -84,7 +94,7 @@
 
   /** 保存(整体覆盖) */
   async function handleSave() {
-    await quickEntryStore.save(selectedItems.value.map((e) => e.key));
+    await props.store.save(selectedItems.value.map((e) => e.key));
     message.success($t('common.saveSuccess'));
     emit('saved');
     emit('update:open', false);
@@ -98,9 +108,10 @@
     });
     if (!confirmed) return;
     // 强制从后端重新加载，回到上次保存的状态
-    await quickEntryStore.load(true);
-    selectedItems.value = resolveEntries(
-      quickEntryStore.entries ?? DEFAULT_ENTRIES,
+    await props.store.load(true);
+    selectedItems.value = resolveCatalogEntries(
+      props.catalog,
+      props.store.entries ?? getDefaultEntries(props.catalog),
     );
   }
 
