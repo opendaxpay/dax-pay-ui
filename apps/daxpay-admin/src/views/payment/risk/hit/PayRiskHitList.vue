@@ -135,9 +135,14 @@
           <!-- 交易号 -->
           <vxe-column field="tradeNo" :title="$t('payment.risk.hit.field.tradeNo')" :min-width="140" />
           <!-- 商户: 名称上 + 号下小字两排 -->
-          <vxe-column field="mchName" :title="$t('payment.risk.hit.field.merchant')" :min-width="160">
+          <vxe-column
+            field="mchName"
+            :title="$t('payment.risk.hit.field.merchant')"
+            :min-width="160"
+            :show-overflow="false"
+          >
             <template #default="{ row }">
-              <div class="flex flex-col">
+              <div class="flex flex-col gap-y-1">
                 <span>{{ row.mchName || '-' }}</span>
                 <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
               </div>

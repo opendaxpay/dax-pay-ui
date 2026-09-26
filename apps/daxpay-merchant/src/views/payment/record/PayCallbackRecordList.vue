@@ -187,11 +187,7 @@
             :min-width="200"
             show-overflow
           />
-          <vxe-column
-            field="callbackType"
-            :title="$t('payment.record.callbackRecord.callbackType')"
-            :min-width="100"
-          >
+          <vxe-column field="callbackType" :title="$t('payment.record.callbackRecord.callbackType')" :min-width="100">
             <template #default="{ row }">{{ callbackTypeLabel(row.callbackType) }}</template>
           </vxe-column>
           <vxe-column field="status" :title="$t('payment.record.callbackRecord.status')" :min-width="110">
@@ -212,9 +208,10 @@
             field="channelMchNo"
             :title="$t('payment.record.callbackRecord.channelMchNo')"
             :min-width="160"
+            :show-overflow="false"
           >
             <template #default="{ row }">
-              <div class="flex flex-col">
+              <div class="flex flex-col gap-y-1">
                 <span>{{ row.channelMerchantName || row.channelMchNo || '-' }}</span>
                 <span v-if="row.channelMchNo" class="text-xs text-muted-foreground">{{ row.channelMchNo }}</span>
               </div>
@@ -278,17 +275,11 @@
           {{ $t('payment.record.callbackRecord.status') }}:
           {{ statusLabel(detail.status) }}
         </div>
-        <div v-if="detail.errorMsg">
-          {{ $t('payment.record.callbackRecord.errorMsg') }}: {{ detail.errorMsg }}
-        </div>
+        <div v-if="detail.errorMsg"> {{ $t('payment.record.callbackRecord.errorMsg') }}: {{ detail.errorMsg }} </div>
       </div>
       <!-- 原始报文不下发, 引导商户联系平台客服 -->
       <div class="mt-4">
-        <a-alert
-          type="info"
-          :message="$t('payment.record.callbackRecord.contactSupportForRawNotice')"
-          banner
-        />
+        <a-alert type="info" :message="$t('payment.record.callbackRecord.contactSupportForRawNotice')" banner />
       </div>
     </a-drawer>
   </div>

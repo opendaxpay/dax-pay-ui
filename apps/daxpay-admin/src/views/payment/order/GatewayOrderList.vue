@@ -310,9 +310,14 @@
           <vxe-column field="capability" :title="$t('payment.order.field.capability')" :min-width="140" show-overflow>
             <template #default="{ row }">{{ capabilityLabel(row.capability) }}</template>
           </vxe-column>
-          <vxe-column field="mchName" :title="$t('payment.order.field.merchant')" :min-width="160">
+          <vxe-column
+            field="mchName"
+            :title="$t('payment.order.field.merchant')"
+            :min-width="160"
+            :show-overflow="false"
+          >
             <template #default="{ row }">
-              <div class="flex flex-col">
+              <div class="flex flex-col gap-y-1">
                 <span>{{ row.mchName || '-' }}</span>
                 <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
               </div>

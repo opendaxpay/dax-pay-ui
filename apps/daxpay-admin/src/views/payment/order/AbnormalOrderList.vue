@@ -245,9 +245,14 @@
           <vxe-column field="source" :title="$t('payment.order.abnormalOrder.sourceLabel')" :min-width="100">
             <template #default="{ row }">{{ sourceLabel(row.source) }}</template>
           </vxe-column>
-          <vxe-column field="mchName" :title="$t('payment.order.field.merchant')" :min-width="140">
+          <vxe-column
+            field="mchName"
+            :title="$t('payment.order.field.merchant')"
+            :min-width="140"
+            :show-overflow="false"
+          >
             <template #default="{ row }">
-              <div class="flex flex-col">
+              <div class="flex flex-col gap-y-1">
                 <span>{{ row.mchName || row.mchNo || '-' }}</span>
                 <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
               </div>

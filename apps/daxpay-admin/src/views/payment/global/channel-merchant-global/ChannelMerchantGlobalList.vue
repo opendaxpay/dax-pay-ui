@@ -1,12 +1,13 @@
 <script lang="ts" setup>
   import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
 
+  import type { ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
+
   import { computed, onMounted, ref } from 'vue';
   import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
-  import type { ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
   import { ChannelMerchantGlobalApi } from '#/api/payment/global/channel-merchant-global/channel-merchant-global.api';
   import ChannelLogo from '#/components/channel/ChannelLogo.vue';
   import { BQuery, type QueryField } from '#/components/query';
@@ -257,9 +258,14 @@
             </template>
           </vxe-column>
           <!-- 所属商户 -->
-          <vxe-column field="mchName" :title="$t('payment.merchant.channelMerchant.belongMch')" :min-width="180">
+          <vxe-column
+            field="mchName"
+            :title="$t('payment.merchant.channelMerchant.belongMch')"
+            :min-width="180"
+            :show-overflow="false"
+          >
             <template #default="{ row }">
-              <div class="flex flex-col">
+              <div class="flex flex-col gap-y-1">
                 <span>{{ row.mchName || '-' }}</span>
                 <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
               </div>

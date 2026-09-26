@@ -74,6 +74,8 @@ VxeUI.setConfig({
     border: true,
     stripe: true,
     round: true,
+    // 全局溢出省略: 所有单元格固定行高(medium=44px)+内容溢出隐藏+悬浮原生title。
+    // 两行堆叠单元格(名称+灰色小字)的列必须显式 :show-overflow="false" 退出, 否则第二行会被固定行高裁切
     showOverflow: 'title',
     showHeaderOverflow: 'title',
     size: 'medium',

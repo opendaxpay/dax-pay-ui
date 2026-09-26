@@ -237,11 +237,26 @@
         <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
           <!-- 平台退款单号 -->
-          <vxe-column field="refundNo" :title="$t('plugin.easypay.refund.field.refundNo')" :min-width="200" show-overflow />
+          <vxe-column
+            field="refundNo"
+            :title="$t('plugin.easypay.refund.field.refundNo')"
+            :min-width="200"
+            show-overflow
+          />
           <!-- 商户退款单号 -->
-          <vxe-column field="bizRefundNo" :title="$t('plugin.easypay.refund.field.bizRefundNo')" :min-width="180" show-overflow />
+          <vxe-column
+            field="bizRefundNo"
+            :title="$t('plugin.easypay.refund.field.bizRefundNo')"
+            :min-width="180"
+            show-overflow
+          />
           <!-- 商户订单号 -->
-          <vxe-column field="outTradeNo" :title="$t('plugin.easypay.refund.field.outTradeNo')" :min-width="180" show-overflow />
+          <vxe-column
+            field="outTradeNo"
+            :title="$t('plugin.easypay.refund.field.outTradeNo')"
+            :min-width="180"
+            show-overflow
+          />
           <!-- 退款金额(元) -->
           <vxe-column field="money" :title="$t('plugin.easypay.refund.field.money')" :min-width="110" align="right">
             <template #default="{ row }">{{ formatMoney(row.money) }}</template>
@@ -253,11 +268,21 @@
             </template>
           </vxe-column>
           <!-- 协议版本 -->
-          <vxe-column field="apiVersion" :title="$t('plugin.easypay.refund.field.apiVersion')" :min-width="110" show-overflow />
+          <vxe-column
+            field="apiVersion"
+            :title="$t('plugin.easypay.refund.field.apiVersion')"
+            :min-width="110"
+            show-overflow
+          />
           <!-- 商户: 名称上 + 号下小字两排 -->
-          <vxe-column field="mchName" :title="$t('plugin.easypay.refund.field.merchant')" :min-width="160">
+          <vxe-column
+            field="mchName"
+            :title="$t('plugin.easypay.refund.field.merchant')"
+            :min-width="160"
+            :show-overflow="false"
+          >
             <template #default="{ row }">
-              <div class="flex flex-col">
+              <div class="flex flex-col gap-y-1">
                 <span>{{ row.mchName || '-' }}</span>
                 <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
               </div>
