@@ -3,10 +3,7 @@
 
   import { $t } from '@vben/locales';
 
-  import {
-    type LeshuaIsvKeyConfig,
-    LeshuaPayConfigApi,
-  } from '#/api/payment/channel/leshua/pay-config.api';
+  import { type LeshuaIsvKeyConfig, LeshuaPayConfigApi } from '#/api/payment/channel/leshua/pay-config.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { ProductEnum } from '#/enums/payment/productEnum';
   import { useFormEdit } from '#/hooks/useFormEdit';
@@ -26,7 +23,8 @@
 
   const formRef = ref();
   const form = ref<LeshuaIsvKeyConfig>({} as LeshuaIsvKeyConfig);
-  let rawForm: Record<string, any> = {};
+  // 后端返回的原始数据(密钥为脱敏串), 用于 diffForm 比对与密钥是否已配置的判定
+  const rawForm = ref<Record<string, any>>({});
   // 当前环境(由管理页传入)
   const sandbox = ref(false);
 
@@ -40,12 +38,25 @@
     { label: 'SM3', value: 'SM3' },
   ];
 
-  const rules = {
+  // 校验规则: 密钥字段未配置(原始回显值为空)时必填, 已配置(回显脱敏串非空)时可留空=保留原值
+  const rules = computed(() => ({
     lsIsvNo: [{ required: true, message: $t('payment.channel.leshuaIsv.validation.lsIsvNo') }],
     signType: [{ required: true, message: $t('payment.channel.leshuaIsv.validation.signType') }],
-    tradeKey: [{ required: true, message: $t('payment.channel.leshuaIsv.validation.tradeKey') }],
-    notifyKey: [{ required: true, message: $t('payment.channel.leshuaIsv.validation.notifyKey') }],
-  };
+    tradeKey: [{ required: !rawForm.value.tradeKey, message: $t('payment.channel.leshuaIsv.validation.tradeKey') }],
+    notifyKey: [{ required: !rawForm.value.notifyKey, message: $t('payment.channel.leshuaIsv.validation.notifyKey') }],
+  }));
+
+  // 密钥占位提示两态: 未配置用常规提示, 已配置提示留空则保留原值
+  const tradeKeyPlaceholder = computed(() =>
+    rawForm.value.tradeKey
+      ? $t('payment.channel.leshuaIsv.tradeKeyKeepPlaceholder')
+      : $t('payment.channel.leshuaIsv.tradeKeyPlaceholder'),
+  );
+  const notifyKeyPlaceholder = computed(() =>
+    rawForm.value.notifyKey
+      ? $t('payment.channel.leshuaIsv.notifyKeyKeepPlaceholder')
+      : $t('payment.channel.leshuaIsv.notifyKeyPlaceholder'),
+  );
 
   /** 打开抽屉并加载乐刷服务商密钥配置（平台为唯一服务商，密钥全局唯一，按环境区分；乐刷商户号属商户级， 在通道商户绑定中维护） */
   function init(isSandbox: boolean) {
@@ -59,7 +70,7 @@
     confirmLoading.value = true;
     LeshuaPayConfigApi.findConfig(ProductEnum.LESHUA_PAY, sandbox.value)
       .then(({ data }) => {
-        rawForm = { ...data };
+        rawForm.value = { ...data };
         form.value = {
           product: ProductEnum.LESHUA_PAY,
           ...data,
@@ -75,28 +86,26 @@
   }
 
   function handleOk() {
-    formRef.value?.validate().then(() => {
-      confirmLoading.value = true;
-      LeshuaPayConfigApi.saveConfig({
-        ...form.value,
-        ...diffForm(
-          rawForm,
-          form.value,
-          'tradeKey',
-          'notifyKey',
-        ),
-        product: ProductEnum.LESHUA_PAY,
-        sandbox: sandbox.value,
-      })
-        .then(() => {
-          message.success($t('common.saveSuccess'));
-          handleCancel();
-          emit('saved');
+    formRef.value
+      ?.validate()
+      .then(() => {
+        confirmLoading.value = true;
+        LeshuaPayConfigApi.saveConfig({
+          ...form.value,
+          ...diffForm(rawForm.value, form.value, 'tradeKey', 'notifyKey'),
+          product: ProductEnum.LESHUA_PAY,
+          sandbox: sandbox.value,
         })
-        .finally(() => {
-          confirmLoading.value = false;
-        });
-    }).catch(() => {});
+          .then(() => {
+            message.success($t('common.saveSuccess'));
+            handleCancel();
+            emit('saved');
+          })
+          .finally(() => {
+            confirmLoading.value = false;
+          });
+      })
+      .catch(() => {});
   }
 
   function resetForm() {
@@ -156,11 +165,7 @@
           name="tradeKey"
           :tooltip="$t('payment.channel.leshuaIsv.tradeKeyTooltip')"
         >
-          <a-input
-            v-model:value="form.tradeKey"
-            :disabled="!canEdit"
-            :placeholder="$t('payment.channel.leshuaIsv.tradeKeyPlaceholder')"
-          />
+          <a-input v-model:value="form.tradeKey" :disabled="!canEdit" :placeholder="tradeKeyPlaceholder" />
         </a-form-item>
 
         <!-- 国际化: 异步通知密钥(脱敏回显, diffForm 判断是否修改) -->
@@ -169,11 +174,7 @@
           name="notifyKey"
           :tooltip="$t('payment.channel.leshuaIsv.notifyKeyTooltip')"
         >
-          <a-input
-            v-model:value="form.notifyKey"
-            :disabled="!canEdit"
-            :placeholder="$t('payment.channel.leshuaIsv.notifyKeyPlaceholder')"
-          />
+          <a-input v-model:value="form.notifyKey" :disabled="!canEdit" :placeholder="notifyKeyPlaceholder" />
         </a-form-item>
       </a-form>
     </a-spin>
