@@ -10,16 +10,19 @@
   "pay_method": {
     "other": "其他支付方式",
     "barcode": "通用付款碼支付",
+    "aggregate_pay_qrcode": "聚合掃碼",
     "wechat_qr": "微信掃碼",
     "wechat_jsapi": "微信jsapi",
     "wechat_mini": "微信小程式",
     "wechat_h5": "微信H5",
     "wechat_app": "微信應用支付",
+    "wechat_barcode": "微信付款碼",
     "alipay_qr": "支付寶掃碼",
     "alipay_jsapi": "支付寶JSAPI",
     "alipay_pc": "支付寶電腦支付",
     "alipay_h5": "支付寶H5",
     "alipay_app": "支付寶應用支付",
+    "alipay_barcode": "支付寶付款碼",
     "qrcode": "通用掃碼支付",
     "wechat_cashier": "微信小程式收銀臺",
     "union_qr": "銀聯掃碼",
@@ -30,7 +33,15 @@
     "douyin_qr": "抖音掃碼",
     "douyin_jsapi": "抖音JSAPI",
     "douyin_h5": "抖音H5",
-    "douyin_app": "抖音APP"
+    "douyin_app": "抖音APP",
+    "visa_card_gateway": "Visa閘道",
+    "visa_card_present": "Visa刷卡",
+    "mastercard_card_gateway": "萬事達閘道",
+    "mastercard_card_present": "萬事達刷卡"
+  },
+  "alipay_auth_type": {
+    "public_key": "公鑰模式",
+    "cert": "憑證模式"
   },
   "channel_terminal_status": {
     "submit": "已上報",
@@ -48,7 +59,7 @@
   "currency": {
     "cny": "人民幣",
     "usd": "美元",
-    "jpy": "日元",
+    "jpy": "日圓",
     "eur": "歐元",
     "hkd": "港元",
     "gbp": "英鎊"

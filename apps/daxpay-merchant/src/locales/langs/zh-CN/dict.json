@@ -10,16 +10,19 @@
   "pay_method": {
     "other": "其他支付方式",
     "barcode": "通用付款码支付",
+    "aggregate_pay_qrcode": "聚合扫码",
     "wechat_qr": "微信扫码",
     "wechat_jsapi": "微信jsapi",
     "wechat_mini": "微信小程序",
     "wechat_h5": "微信H5",
     "wechat_app": "微信应用支付",
+    "wechat_barcode": "微信付款码",
     "alipay_qr": "支付宝扫码",
     "alipay_jsapi": "支付宝JSAPI",
     "alipay_pc": "支付宝电脑支付",
     "alipay_h5": "支付宝H5",
     "alipay_app": "支付宝应用支付",
+    "alipay_barcode": "支付宝付款码",
     "qrcode": "通用扫码支付",
     "wechat_cashier": "微信小程序收银台",
     "union_qr": "银联扫码",
@@ -30,7 +33,15 @@
     "douyin_qr": "抖音扫码",
     "douyin_jsapi": "抖音JSAPI",
     "douyin_h5": "抖音H5",
-    "douyin_app": "抖音APP"
+    "douyin_app": "抖音APP",
+    "visa_card_gateway": "Visa网关",
+    "visa_card_present": "Visa刷卡",
+    "mastercard_card_gateway": "万事达网关",
+    "mastercard_card_present": "万事达刷卡"
+  },
+  "alipay_auth_type": {
+    "public_key": "公钥模式",
+    "cert": "证书模式"
   },
   "channel_terminal_status": {
     "submit": "已上报",
