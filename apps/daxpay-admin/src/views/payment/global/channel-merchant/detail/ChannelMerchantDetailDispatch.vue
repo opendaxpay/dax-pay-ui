@@ -146,6 +146,9 @@
   const { openDeleteConfirm } = useDeleteConfirm();
   const { hasPermission } = usePermission();
 
+  /** 独立入口判别(全局通道商户列表进入): 返回/兜底落点切到全局列表, 使高亮与入口菜单一致 */
+  const isGlobalEntry = computed(() => route.path === '/payment/global/channel-merchant/detail-global');
+
   const routeContext = useRequiredRouteQuery({
     keys: ['mchNo', 'id'],
     messageKey: computed(() => {
@@ -155,6 +158,10 @@
       return 'payment.merchant.channelMerchant.missingId';
     }),
     fallbackPath: computed(() => {
+      // 独立入口(全局通道商户列表): 兜底回全局列表
+      if (isGlobalEntry.value) {
+        return '/payment/global/channel-merchants';
+      }
       const no = normalizeRouteQueryValue(route.query.mchNo);
       return no ? { path: '/payment/global/channel-merchant', query: { mchNo: no } } : '/payment/merchant';
     }),
@@ -220,8 +227,12 @@
       });
   }
 
-  /** 返回通道商户列表 */
+  /** 返回通道商户列表(独立入口回全局列表, 商户上下文回商户维度列表) */
   function goBack() {
+    if (isGlobalEntry.value) {
+      router.push('/payment/global/channel-merchants');
+      return;
+    }
     router.push({
       path: '/payment/global/channel-merchant',
       query: { mchNo: mchNo.value },
@@ -244,10 +255,7 @@
       onConfirm: () =>
         ChannelMerchantApi.delete(record.id!).then(() => {
           msg.success($t('payment.merchant.channelMerchant.deleteSuccess'));
-          router.push({
-            path: '/payment/global/channel-merchant',
-            query: { mchNo: mchNo.value },
-          });
+          goBack();
         }),
     });
   }

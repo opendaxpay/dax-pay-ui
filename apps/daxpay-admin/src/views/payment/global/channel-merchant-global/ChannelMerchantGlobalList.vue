@@ -92,11 +92,11 @@
   }
 
   /**
-   * 管理通道商户（复用通道商户详情分发页）
+   * 管理通道商户（复用通道商户详情分发页; 走挂通道商户下的独立子页路由, 高亮随通道商户）
    */
   function handleManage(record: ChannelMerchantResult) {
     router.push({
-      path: '/payment/global/channel-merchant/detail',
+      path: '/payment/global/channel-merchant/detail-global',
       query: {
         mchNo: record.mchNo!,
         id: record.id!,
