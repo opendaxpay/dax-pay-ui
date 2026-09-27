@@ -87,6 +87,12 @@
   color: hsl(var(--foreground));
 }
 
+/* 标题行内嵌的帮助图标(IconifyIcon 渲染裸 svg): Tailwind preflight 的 svg{display:block}
+   会让它在普通 div 里独占一行掉到标题下方, 恢复内联与 antd 按钮图标的处理一致 */
+.config-item__label svg {
+  display: inline-block;
+}
+
 .config-item__desc {
   margin-top: 4px;
   font-size: 12px;
