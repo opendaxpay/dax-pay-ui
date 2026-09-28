@@ -121,7 +121,7 @@
     "endpointDesc": "Alamat akses API perkhidmatan S3",
     "endpointTip": "Isi alamat peringkat perkhidmatan yang lengkap (dengan https://, tanpa nama baldi). Nilai digunakan seadanya tanpa pelengkapan atau penyambungan automatik",
     "regionDesc": "Kawasan pusat data di mana perkhidmatan storan terletak",
-    "regionTip": "Hanya digunakan untuk penandatanganan permintaan, tidak menentukan alamat akses sebenar. Boleh dibiarkan kosong untuk MinIO, Aliyun OSS dan kebanyakan storan lain; hanya diperlukan untuk perkhidmatan yang mengesahkan kawasan tandatangan (cth. Tencent COS, AWS S3). Menggunakan us-east-1 apabila dibiarkan kosong",
+    "regionTip": "Hanya digunakan untuk penandatanganan permintaan, tidak menentukan alamat akses sebenar. Boleh dibiarkan kosong untuk MinIO, Aliyun OSS dan kebanyakan storan lain; hanya diperlukan untuk perkhidmatan yang mengesahkan kawasan tandatangan (cth. Tencent COS, AWS S3). Menggunakan us-east-1 apabila dibiarkan kosong (protokol penandatanganan S3 memerlukan kawasan)",
     "publicBucketDesc": "Simpan fail yang boleh diakses secara umum",
     "privateBucketDesc": "Simpan fail peribadi yang memerlukan kebenaran",
     "publicBaseUrlDesc": "Alamat akses luaran untuk fail baldi awam",

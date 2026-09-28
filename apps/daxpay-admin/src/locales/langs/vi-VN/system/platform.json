@@ -121,7 +121,7 @@
     "endpointDesc": "Địa chỉ truy cập API dịch vụ S3",
     "endpointTip": "Nhập địa chỉ cấp dịch vụ đầy đủ (có https://, không có tên bucket). Giá trị được sử dụng nguyên trạng, không tự động hoàn thiện hay ghép nối",
     "regionDesc": "Khu vực trung tâm dữ liệu nơi đặt dịch vụ lưu trữ",
-    "regionTip": "Chỉ dùng để ký yêu cầu, không quyết định địa chỉ truy cập thực tế. Có thể để trống với MinIO, Aliyun OSS và hầu hết các kho lưu trữ khác; chỉ cần nhập với các dịch vụ xác thực khu vực chữ ký (ví dụ: Tencent COS, AWS S3). Mặc định dùng us-east-1 khi để trống",
+    "regionTip": "Chỉ dùng để ký yêu cầu, không quyết định địa chỉ truy cập thực tế. Có thể để trống với MinIO, Aliyun OSS và hầu hết các kho lưu trữ khác; chỉ cần nhập với các dịch vụ xác thực khu vực chữ ký (ví dụ: Tencent COS, AWS S3). Mặc định dùng us-east-1 khi để trống (giao thức ký S3 bắt buộc phải có khu vực)",
     "publicBucketDesc": "Lưu trữ các tập tin có thể được truy cập công khai",
     "privateBucketDesc": "Lưu trữ các tệp riêng tư cần được ủy quyền",
     "publicBaseUrlDesc": "Địa chỉ truy cập bên ngoài cho các tệp nhóm công khai",

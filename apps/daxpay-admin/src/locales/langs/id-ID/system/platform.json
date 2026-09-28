@@ -121,7 +121,7 @@
     "endpointDesc": "Alamat akses API layanan S3",
     "endpointTip": "Isi alamat tingkat layanan yang lengkap (dengan https://, tanpa nama bucket). Digunakan apa adanya, tanpa pelengkapan atau penggabungan otomatis",
     "regionDesc": "Wilayah pusat data tempat layanan penyimpanan berada",
-    "regionTip": "Hanya digunakan untuk penandatanganan permintaan, tidak menentukan alamat akses sebenarnya. Dapat dikosongkan untuk MinIO, Aliyun OSS, dan sebagian besar penyimpanan lainnya; hanya diperlukan untuk layanan yang memvalidasi wilayah tanda tangan (mis. Tencent COS, AWS S3). Menggunakan us-east-1 saat dibiarkan kosong",
+    "regionTip": "Hanya digunakan untuk penandatanganan permintaan, tidak menentukan alamat akses sebenarnya. Dapat dikosongkan untuk MinIO, Aliyun OSS, dan sebagian besar penyimpanan lainnya; hanya diperlukan untuk layanan yang memvalidasi wilayah tanda tangan (mis. Tencent COS, AWS S3). Menggunakan us-east-1 saat dibiarkan kosong (protokol penandatanganan S3 mewajibkan wilayah)",
     "publicBucketDesc": "Menyimpan file yang dapat diakses secara publik",
     "privateBucketDesc": "Simpan file pribadi yang memerlukan otorisasi",
     "publicBaseUrlDesc": "Alamat akses eksternal untuk file bucket publik",

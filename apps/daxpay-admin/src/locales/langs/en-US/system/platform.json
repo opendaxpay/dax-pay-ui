@@ -121,7 +121,7 @@
     "endpointDesc": "S3 service API access address",
     "endpointTip": "Fill in the complete service-level address (with https://, without the bucket name). It is used as-is, with no automatic completion or concatenation",
     "regionDesc": "Data center region where storage service is located",
-    "regionTip": "Only used for request signing, it does not determine the actual access address. Leave empty for MinIO, Aliyun OSS and most other storage; only required by services that validate the signing region (e.g. Tencent COS, AWS S3). Defaults to us-east-1 when left empty",
+    "regionTip": "Only used for request signing, it does not determine the actual access address. Leave empty for MinIO, Aliyun OSS and most other storage; only required by services that validate the signing region (e.g. Tencent COS, AWS S3). Defaults to us-east-1 when left empty (the S3 signing protocol requires a region)",
     "publicBucketDesc": "Store files that can be accessed publicly",
     "privateBucketDesc": "Store private files that require authorization",
     "publicBaseUrlDesc": "External access address for public bucket files",

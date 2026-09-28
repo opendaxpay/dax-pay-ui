@@ -121,7 +121,7 @@
     "endpointDesc": "S3 서비스 API 액세스 주소",
     "endpointTip": "https://를 포함한 전체 서비스 수준 주소(버킷 이름 제외)를 입력하세요. 입력한 값은 그대로 사용되며 자동 완성이나 결합은 이루어지지 않습니다",
     "regionDesc": "스토리지 서비스가 위치한 데이터센터 지역",
-    "regionTip": "요청 서명에만 사용되며 실제 액세스 주소와는 무관합니다. MinIO, Alibaba Cloud OSS 등 대부분의 스토리지는 비워 두어도 되며, 서명 지역을 검증하는 스토리지(Tencent COS, AWS S3 등)만 입력이 필요합니다. 비워 두면 us-east-1로 서명됩니다",
+    "regionTip": "요청 서명에만 사용되며 실제 액세스 주소와는 무관합니다. MinIO, Alibaba Cloud OSS 등 대부분의 스토리지는 비워 두어도 되며, 서명 지역을 검증하는 스토리지(Tencent COS, AWS S3 등)만 입력이 필요합니다. 비워 두면 us-east-1로 서명됩니다(S3 서명 프로토콜상 리전이 필수)",
     "publicBucketDesc": "공개적으로 액세스할 수 있는 파일 저장",
     "privateBucketDesc": "인증이 필요한 개인 파일 저장",
     "publicBaseUrlDesc": "공개 버킷 파일의 외부 액세스 주소",
