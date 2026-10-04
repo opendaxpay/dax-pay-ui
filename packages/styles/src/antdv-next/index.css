@@ -78,3 +78,15 @@
 .ant-app .form-valid-error .ant-picker-focused {
   box-shadow: 0 0 0 2px rgb(255 38 5 / 6%);
 }
+
+/** 修复 disabled 的 Select 选中文字仍为黑色(antdv-next 1.5.3 缺陷):
+ *  库内 disabled 的灰色只以变量形式声明在 .ant-select-disabled(单类)上,
+ *  而 outlined/filled 等 variant 在 .ant-select.ant-select-xxx(双类)重新声明了黑色
+ *  --ant-select-color, 特异性更高把灰色压掉; 此处重复类名提权稳压 variant, 暗色下换白色系 */
+.ant-select.ant-select.ant-select-disabled {
+  --ant-select-color: rgb(0 0 0 / 25%);
+
+  &:is(.dark *) {
+    --ant-select-color: rgb(255 255 255 / 30%);
+  }
+}
