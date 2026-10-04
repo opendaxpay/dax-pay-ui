@@ -105,51 +105,53 @@
 
 <template>
   <a-spin :spinning="loading">
-    <a-form
-      ref="formRef"
-      :model="formState"
-      :rules="formRules"
-      :label-col="{ span: 5 }"
-      :wrapper-col="{ span: 16 }"
-      class="max-w-2xl"
-    >
-      <!-- 登录账号（始终只读） -->
-      <a-form-item :label="$t('profile.loginAccount')">
-        <a-input :value="account" disabled />
-      </a-form-item>
-      <!-- 姓名（查看禁用/编辑可写） -->
-      <a-form-item :label="$t('profile.name')" name="name">
-        <a-input
-          v-model:value="formState.name"
-          :disabled="!isEditing"
-          :placeholder="`${$t('common.pleaseInput')}${$t('profile.name')}`"
-        />
-      </a-form-item>
-      <!-- 性别（查看禁用/编辑可写） -->
-      <a-form-item :label="$t('profile.sex')" name="sex">
-        <a-select
-          v-model:value="formState.sex"
-          :options="sexOptions"
-          :disabled="!isEditing"
-          :placeholder="$t('common.pleaseSelect')"
-        />
-      </a-form-item>
-      <!-- 操作按钮 -->
-      <a-form-item :wrapper-col="{ offset: 5 }">
-        <template v-if="!isEditing">
-          <a-button type="primary" @click="handleEdit">
-            {{ $t('common.edit') }}
-          </a-button>
-        </template>
-        <a-space v-else>
-          <a-button type="primary" :loading="saving" @click="handleSave">
-            {{ $t('common.save') }}
-          </a-button>
-          <a-button @click="handleCancel">
-            {{ $t('common.cancel') }}
-          </a-button>
-        </a-space>
-      </a-form-item>
-    </a-form>
+    <a-card :title="$t('profile.basicSetting')" variant="borderless">
+      <a-form
+        ref="formRef"
+        :model="formState"
+        :rules="formRules"
+        :label-col="{ span: 5 }"
+        :wrapper-col="{ span: 16 }"
+        class="max-w-2xl"
+      >
+        <!-- 登录账号（始终只读） -->
+        <a-form-item :label="$t('profile.loginAccount')">
+          <a-input :value="account" disabled />
+        </a-form-item>
+        <!-- 姓名（查看禁用/编辑可写） -->
+        <a-form-item :label="$t('profile.name')" name="name">
+          <a-input
+            v-model:value="formState.name"
+            :disabled="!isEditing"
+            :placeholder="`${$t('common.pleaseInput')}${$t('profile.name')}`"
+          />
+        </a-form-item>
+        <!-- 性别（查看禁用/编辑可写） -->
+        <a-form-item :label="$t('profile.sex')" name="sex">
+          <a-select
+            v-model:value="formState.sex"
+            :options="sexOptions"
+            :disabled="!isEditing"
+            :placeholder="`${$t('common.pleaseSelect')}`"
+          />
+        </a-form-item>
+        <!-- 操作按钮 -->
+        <a-form-item :wrapper-col="{ offset: 5 }">
+          <template v-if="!isEditing">
+            <a-button type="primary" @click="handleEdit">
+              {{ $t('common.edit') }}
+            </a-button>
+          </template>
+          <a-space v-else>
+            <a-button type="primary" :loading="saving" @click="handleSave">
+              {{ $t('common.save') }}
+            </a-button>
+            <a-button @click="handleCancel">
+              {{ $t('common.cancel') }}
+            </a-button>
+          </a-space>
+        </a-form-item>
+      </a-form>
+    </a-card>
   </a-spin>
 </template>
