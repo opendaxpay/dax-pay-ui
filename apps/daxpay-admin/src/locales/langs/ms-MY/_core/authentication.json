@@ -64,6 +64,7 @@
     "resetSuccess": "Kata laluan berjaya ditetapkan semula, sila log masuk dengan kata laluan baharu",
     "backToLoginQ": "Ingat kata laluan anda?",
     "backToLoginA": "Kembali ke Log Masuk",
-    "findNow": "Pulihkan Sekarang"
+    "findNow": "Pulihkan Sekarang",
+    "mailNotReady": "Saluran e-mel belum dikonfigurasi. Sila hubungi pentadbir platform untuk mengaktifkan ciri ini"
   }
 }

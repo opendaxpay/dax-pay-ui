@@ -64,6 +64,7 @@
     "resetSuccess": "密碼重設成功, 請使用新密碼登入",
     "backToLoginQ": "想起密碼了?",
     "backToLoginA": "返回登入",
-    "findNow": "立即找回"
+    "findNow": "立即找回",
+    "mailNotReady": "郵件通道未配置,請聯繫平台管理員開啟本功能"
   }
 }

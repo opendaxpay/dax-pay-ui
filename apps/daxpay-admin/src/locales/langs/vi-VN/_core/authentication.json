@@ -64,6 +64,7 @@
     "resetSuccess": "Đặt lại mật khẩu thành công, vui lòng đăng nhập bằng mật khẩu mới",
     "backToLoginQ": "Nhớ mật khẩu rồi?",
     "backToLoginA": "Quay lại đăng nhập",
-    "findNow": "Khôi phục ngay"
+    "findNow": "Khôi phục ngay",
+    "mailNotReady": "Kênh email chưa được cấu hình. Vui lòng liên hệ quản trị viên nền tảng để bật tính năng này"
   }
 }

@@ -64,6 +64,7 @@
     "resetSuccess": "Kata sandi berhasil diatur ulang, silakan masuk dengan kata sandi baru",
     "backToLoginQ": "Sudah ingat kata sandi Anda?",
     "backToLoginA": "Kembali ke Masuk",
-    "findNow": "Pulihkan Sekarang"
+    "findNow": "Pulihkan Sekarang",
+    "mailNotReady": "Saluran email belum dikonfigurasi. Silakan hubungi administrator platform untuk mengaktifkan fitur ini"
   }
 }

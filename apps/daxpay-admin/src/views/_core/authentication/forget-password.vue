@@ -39,6 +39,12 @@
   const sending = ref(false);
   const resetting = ref(false);
 
+  // 邮件通道是否可用(进入页面时查询, 未配置时不渲染可提交表单)
+  const emailEnabled = ref(true);
+
+  // 通道状态是否加载完成(防闪: 加载完成前不渲染表单与提示)
+  const channelsLoaded = ref(false);
+
   // 图形验证码(防脚本批量探测)
   const captchaKey = ref('');
   const captchaImg = ref('');
@@ -91,6 +97,21 @@
       },
     ],
   }));
+
+  /**
+   * 查询找回密码可用通道(邮件发件箱未配置时表单不可提交, 改为单行提示)
+   */
+  async function loadChannels() {
+    try {
+      const { data } = await ForgetPasswordApi.channels();
+      emailEnabled.value = data?.emailEnabled !== false;
+    } catch {
+      // 查询失败不阻塞页面, 按可用渲染, 提交时由后端兜底报错
+      emailEnabled.value = true;
+    } finally {
+      channelsLoaded.value = true;
+    }
+  }
 
   /**
    * 刷新图形验证码(进入页面或验证码错误时调用)
@@ -170,6 +191,8 @@
   }
 
   onMounted(async () => {
+    // 拉取找回密码可用通道(未配置时提示并阻断表单提交)
+    loadChannels();
     refreshCaptcha();
     // 拉取密码策略配置(强度条与前端校验)
     const { data } = await SecurityApi.getPasswordPolicyValidateConfig();
@@ -182,9 +205,21 @@
     :title="$t('authentication.forgetPassword')"
     :subtitle="$t('_core.authentication.forgetPassword.subtitle')"
   >
+    <!-- 通道状态加载中(防闪: 加载完成前不渲染表单与提示, 避免先闪表单再切换为提示) -->
+    <a-spin v-if="!channelsLoaded" class="flex justify-center py-8" />
+
+    <!-- 邮件通道未配置: 不渲染可提交表单, 单行提示 -->
+    <div v-else-if="!emailEnabled" class="mb-4">
+      <a-alert
+        :message="$t('_core.authentication.forgetPassword.mailNotReady')"
+        show-icon
+        type="warning"
+      />
+    </div>
+
     <!-- 第一步: 邮箱 + 图形验证码 -->
     <a-form
-      v-if="step === 'email'"
+      v-else-if="step === 'email'"
       ref="formRef"
       :model="formData"
       :rules="emailRules"

@@ -64,6 +64,7 @@
     "resetSuccess": "Password reset successfully, please log in with the new password",
     "backToLoginQ": "Remembered your password?",
     "backToLoginA": "Back to Login",
-    "findNow": "Recover Now"
+    "findNow": "Recover Now",
+    "mailNotReady": "Email channel is not configured. Please contact the platform administrator to enable this feature"
   }
 }

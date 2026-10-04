@@ -7,6 +7,13 @@ import { requestClient } from '#/api/request';
  */
 export const ForgetPasswordApi = {
   /**
+   * 查询找回密码可用通道(免登, 登录页入口常显后由此判断表单可否提交)
+   */
+  channels(): Promise<Result<ForgetChannelsResult>> {
+    return requestClient.get('/token/forget/channels');
+  },
+
+  /**
    * 发送找回密码验证码
    * 说明: 需同时携带用户账户与邮箱, 后端校验账户存在且邮箱为该账户绑定并已验证的邮箱, 不匹配时明确报错
    */
@@ -40,6 +47,14 @@ export interface ForgetSendCodeParams {
   captchaKey: string;
   /** 图形验证码 */
   captchaCode: string;
+}
+
+/**
+ * 找回密码可用通道(当前仅邮件)
+ */
+export interface ForgetChannelsResult {
+  /** 邮件通道是否可用(发件箱配置就绪) */
+  emailEnabled?: boolean;
 }
 
 /**
