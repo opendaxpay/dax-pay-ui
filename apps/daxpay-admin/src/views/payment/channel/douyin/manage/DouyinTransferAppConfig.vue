@@ -116,8 +116,8 @@
   >
     <a-spin :spinning="loading">
       <!-- 提示条: 转账发起应用说明 -->
-      <div class="mb-6">
-        <a-alert type="info" banner :message="$t('payment.channel.douyinManage.transferAppTip')" />
+      <div class="mb-6 rounded-md bg-muted px-4 py-2 text-xs leading-5 text-muted-foreground">
+        {{ $t('payment.channel.douyinManage.transferAppTip') }}
       </div>
 
       <!-- 配置区(查看时禁用, 编辑时可选) -->

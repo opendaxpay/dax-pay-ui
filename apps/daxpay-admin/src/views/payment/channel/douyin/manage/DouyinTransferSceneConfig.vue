@@ -59,8 +59,8 @@
   >
     <a-spin :spinning="loading">
       <!-- 提示条: 抖音转账场景为枚举驱动, 无需预配置 -->
-      <div class="mb-6">
-        <a-alert type="info" banner :message="$t('payment.channel.douyinManage.transferSceneReadonlyTip')" />
+      <div class="mb-6 rounded-md bg-muted px-4 py-2 text-xs leading-5 text-muted-foreground">
+        {{ $t('payment.channel.douyinManage.transferSceneReadonlyTip') }}
       </div>
 
       <!-- 场景列表(主数据枚举, 只读展示) -->

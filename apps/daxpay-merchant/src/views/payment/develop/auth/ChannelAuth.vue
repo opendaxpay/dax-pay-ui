@@ -290,12 +290,11 @@
           <!-- 左侧：操作区 -->
           <a-col :xs="24" :lg="11">
             <div class="auth-ops">
-              <a-alert
-                :message="$t('payment.develop.auth.guide.title')"
-                :description="guideDesc"
-                type="info"
-                show-icon
-              />
+              <a-collapse ghost>
+                <a-collapse-panel key="guide" :header="$t('payment.develop.auth.guide.title')">
+                  <div class="text-xs leading-5 text-muted-foreground">{{ guideDesc }}</div>
+                </a-collapse-panel>
+              </a-collapse>
 
               <!-- 微信支付：直接选择应用(商户号只读) -->
               <div v-if="authType === 'wechatChannel'" class="form-panel">

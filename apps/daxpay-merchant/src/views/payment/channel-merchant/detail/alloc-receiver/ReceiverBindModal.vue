@@ -153,9 +153,7 @@
     :width="520"
     @ok="submitBind"
   >
-    <div class="mb-2">
-      <a-alert type="info" show-icon :message="$t('payment.channel.allocReceiver.bindTip')" />
-    </div>
+    <div class="mb-2 text-xs leading-5 text-muted-foreground">{{ $t('payment.channel.allocReceiver.bindTip') }}</div>
     <a-form ref="bindFormRef" layout="vertical" :model="bindForm" :rules="bindRules">
       <!-- 绑定应用(微信直连) -->
       <a-form-item

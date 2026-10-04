@@ -234,7 +234,9 @@
     <div v-if="config" class="flex h-full flex-col">
       <!-- 操作区 -->
       <div class="mb-3 flex items-center justify-between">
-        <a-alert type="info" show-icon class="flex-1" :message="$t('payment.channel.allocReceiver.tip')" />
+        <div class="flex-1 rounded-md bg-muted px-4 py-2 text-xs leading-5 text-muted-foreground">
+          {{ $t('payment.channel.allocReceiver.tip') }}
+        </div>
         <div class="ml-3">
           <a-button type="primary" @click="openCreate">
             {{ $t('payment.channel.allocReceiver.create') }}

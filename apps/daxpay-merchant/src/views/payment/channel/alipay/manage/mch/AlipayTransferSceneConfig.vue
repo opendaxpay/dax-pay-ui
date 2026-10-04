@@ -111,8 +111,8 @@
     :size="1200"
     destroy-on-hidden
   >
-    <div class="mb-3">
-      <a-alert type="info" :show-icon="true" :message="$t('payment.merchant.channelMerchant.transferScenePresetTip')" />
+    <div class="mb-3 rounded-md bg-muted px-4 py-2 text-xs leading-5 text-muted-foreground">
+      {{ $t('payment.merchant.channelMerchant.transferScenePresetTip') }}
     </div>
     <a-spin :spinning="loading">
       <!-- 卡片网格(每行2张, 以场景选项枚举为基准渲染) -->
