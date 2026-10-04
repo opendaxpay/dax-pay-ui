@@ -215,19 +215,16 @@
       <template #title>
         <div class="tf-card-title">
           <span>{{ $t('profile.twoFactor.title') }}</span>
-          <!-- 平台开启时显示绑定状态标签 -->
-          <a-tag v-if="platformEnabled && !bound" color="default">{{ $t('profile.twoFactor.unbound') }}</a-tag>
-          <a-tag v-else-if="platformEnabled && bound" color="green">{{ $t('profile.twoFactor.bound') }}</a-tag>
+          <!-- 绑定状态标签(平台未启用/未绑定/已绑定三态) -->
+          <a-tag v-if="!platformEnabled" color="default">{{ $t('profile.twoFactor.platformOff') }}</a-tag>
+          <a-tag v-else-if="!bound" color="default">{{ $t('profile.twoFactor.unbound') }}</a-tag>
+          <a-tag v-else color="green">{{ $t('profile.twoFactor.bound') }}</a-tag>
         </div>
       </template>
       <!-- 平台未开启 -->
-      <a-alert
-        v-if="!platformEnabled"
-        type="info"
-        show-icon
-        :message="$t('profile.twoFactor.platformOff')"
-        :description="$t('profile.twoFactor.platformOffDesc')"
-      />
+      <div v-if="!platformEnabled" class="tf-overview">
+        <div class="tf-overview__desc">{{ $t('profile.twoFactor.platformOffDesc') }}</div>
+      </div>
       <!-- 平台开启 + 未绑定 -->
       <div v-else-if="!bound" class="tf-overview">
         <div class="tf-overview__desc">{{ $t('profile.twoFactor.unboundDesc') }}</div>
