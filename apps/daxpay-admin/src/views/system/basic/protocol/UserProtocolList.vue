@@ -323,10 +323,10 @@
                 }}</a-button>
                 <!-- 更多(设为/取消默认、复制到其他端、删除) -->
                 <a-dropdown :menu="getActionMenu(row)">
-                  <a href="javascript:">
+                  <a-button type="link" size="small">
                     {{ $t('common.more') }}
                     <IconifyIcon icon="ant-design:down-outlined" class="inline" />
-                  </a>
+                  </a-button>
                 </a-dropdown>
               </a-space>
             </template>

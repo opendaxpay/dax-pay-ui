@@ -336,10 +336,10 @@
                 </a-button>
                 <!-- 更多操作(同步/关单, 按状态与权限动态生成) -->
                 <a-dropdown v-if="getActionMenu(row).items?.length" :menu="getActionMenu(row)">
-                  <a href="javascript:">
+                  <a-button type="link" size="small">
                     {{ $t('common.more') }}
                     <IconifyIcon icon="ant-design:down-outlined" class="inline" />
-                  </a>
+                  </a-button>
                 </a-dropdown>
               </a-space>
             </template>

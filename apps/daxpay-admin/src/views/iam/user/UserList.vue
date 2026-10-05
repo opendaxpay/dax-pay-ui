@@ -509,25 +509,30 @@
                   <a-divider type="vertical" />
                 </template>
                 <!-- 查看 -->
-                <a v-if="hasPermission(PermCodes.Iam.User.VIEW)" href="javascript:" @click="handleView(row)">{{
-                  $t('common.view')
-                }}</a>
-                <!-- 编辑 -->
-                <a
+                <a-button
+                  v-if="hasPermission(PermCodes.Iam.User.VIEW)"
+                  type="link"
+                  size="small"
+                  @click="handleView(row)"
+                >
+                  {{ $t('common.view') }}
+                </a-button>
+                <!-- 编辑(非运营端用户不可编辑) -->
+                <a-button
                   v-if="hasPermission(PermCodes.Iam.User.MANAGE)"
-                  href="javascript:"
-                  :class="isAdminClient ? '' : 'ant-typography-disabled'"
-                  :style="isAdminClient ? '' : 'pointer-events: none;'"
-                  @click="isAdminClient && handleEdit(row)"
+                  type="link"
+                  size="small"
+                  :disabled="!isAdminClient"
+                  @click="handleEdit(row)"
                 >
                   {{ $t('common.edit') }}
-                </a>
+                </a-button>
                 <a-dropdown :menu="getActionMenu(row)">
                   <!-- 更多 -->
-                  <a href="javascript:">
+                  <a-button type="link" size="small">
                     {{ $t('common.more') }}
                     <IconifyIcon icon="ant-design:down-outlined" class="inline" />
-                  </a>
+                  </a-button>
                 </a-dropdown>
               </a-space>
             </template>

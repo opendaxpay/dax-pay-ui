@@ -413,12 +413,12 @@
                 <template #separator>
                   <a-divider type="vertical" />
                 </template>
-                <a href="javascript:" @click="handleEdit(row)">{{ $t('common.edit') }}</a>
+                <a-button type="link" size="small" @click="handleEdit(row)">{{ $t('common.edit') }}</a-button>
                 <a-dropdown :menu="getActionMenu(row)">
-                  <a href="javascript:">
+                  <a-button type="link" size="small">
                     {{ $t('common.more') }}
                     <IconifyIcon icon="ant-design:down-outlined" class="inline" />
-                  </a>
+                  </a-button>
                 </a-dropdown>
               </a-space>
             </template>
