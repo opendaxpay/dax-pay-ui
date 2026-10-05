@@ -6,8 +6,8 @@ const props = defineProps<{
   class?: string;
 }>();
 
-// 控制箭头展开/收起状态
-const collapsed = defineModel({ default: false });
+// 控制箭头展开/收起状态(显式泛型避免 default 字面量把类型收窄成 false)
+const collapsed = defineModel<boolean>({ default: false });
 </script>
 
 <template>
