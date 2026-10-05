@@ -25,6 +25,11 @@
     return {
       algorithm,
       token: tokens,
+      components: {
+        // antdv-next 尺寸体系(sizeUnit=4/sizeStep=4)下 iconGap 默认跟随 marginXS=8px,
+        // 按钮内文字与图标(如操作列「更多 ⌄」)间隔明显偏大, 收紧为 antd 生态惯例的 4px
+        Button: { iconGap: 4 },
+      },
     };
   });
 </script>
