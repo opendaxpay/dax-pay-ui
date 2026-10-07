@@ -60,9 +60,14 @@ export const MerchantApi = {
   /**
    * 商户下拉列表
    * @param silent 静默错误(订单页等跨模块引用时, 纯交易角色无商户查看权限 403 不弹全局 toast, 降级为空下拉)
+   * @param includeDisabled 含停用商户(管理/查询场景; 停用商户简称带「（已停用）」后缀), 默认仅启用
    */
-  dropdown(silent = false): Promise<Result<LabelValue[]>> {
-    return defHttp.get({ url: '/admin/merchant/dropdown', silentError: silent });
+  dropdown(silent = false, includeDisabled = false): Promise<Result<LabelValue[]>> {
+    return defHttp.get({
+      url: '/admin/merchant/dropdown',
+      params: includeDisabled ? { includeDisabled: true } : undefined,
+      silentError: silent,
+    });
   },
 };
 

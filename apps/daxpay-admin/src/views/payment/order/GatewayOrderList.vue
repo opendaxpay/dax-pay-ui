@@ -256,7 +256,7 @@
 
   onMounted(() => {
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
-    MerchantApi.dropdown(true).then(({ data }) => {
+    MerchantApi.dropdown(true, true).then(({ data }) => {
       mchNoOptions.value = data ?? [];
     });
     queryPage();

@@ -45,7 +45,7 @@
    * 加载商户下拉
    */
   async function loadMchOptions() {
-    const { data } = await MerchantApi.dropdown();
+    const { data } = await MerchantApi.dropdown(false, true);
     mchOptions.value = data || [];
   }
 

@@ -56,7 +56,7 @@
 
   function loadMerchants() {
     mchLoading.value = true;
-    MerchantApi.dropdown()
+    MerchantApi.dropdown(false, true)
       .then(({ data }) => {
         merchantOptions.value = data || [];
       })
