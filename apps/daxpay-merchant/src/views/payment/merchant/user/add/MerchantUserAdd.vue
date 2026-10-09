@@ -1,11 +1,14 @@
 <script lang="ts" setup>
+  import type { UserRole } from '#/api/iam/user.api';
   import type { UserPasswordResult } from '#/api/payment/merchant/merchant-user.api';
   import type { PasswordPolicyValidateConfig } from '#/api/system/security.api';
 
   import { computed, onMounted, ref } from 'vue';
 
   import { $t } from '@vben/locales';
+  import { useUserStore } from '@vben/stores';
 
+  import { UserRoleApi } from '#/api/iam/user.api';
   import { MerchantUserApi, type MerchantUserParam } from '#/api/payment/merchant/merchant-user.api';
   import { SecurityApi } from '#/api/system/security.api';
   import { InputPassword } from '#/components/input-password';
@@ -18,6 +21,7 @@
 
   const { message } = useMessage();
   const { useDebounceValidator } = useValidate();
+  const userStore = useUserStore();
 
   // 表单引用
   const formRef = ref();
@@ -31,6 +35,36 @@
   const mchNo = ref('');
   // 创建结果(含初始密码明文), 为 null 时显示表单态, 否则显示结果态
   const createdResult = ref<null | UserPasswordResult>(null);
+  // 商户终端角色列表(创建时绑定)
+  const roleList = ref<UserRole[]>([]);
+  // 选中角色ID, 默认内置商户普通用户(merchant_user)
+  const selectedRoleId = ref('');
+
+  /**
+   * 加载商户终端可分配角色(以当前登录管理员的终端为准), 默认选中内置普通角色(merchant_user), 不存在时回退第一个
+   */
+  async function loadRoles() {
+    const selfId = userStore.userInfo?.id;
+    if (!selfId) return;
+    const { data } = await UserRoleApi.findAssignableRolesByUser(String(selfId));
+    roleList.value = data ?? [];
+    selectedRoleId.value =
+      roleList.value.find((item) => item.code === 'merchant_user')?.id ?? roleList.value[0]?.id ?? '';
+  }
+
+  /**
+   * 根据当前语言获取角色名称（缺词条时回退 code）
+   */
+  function getRoleName(item: UserRole): string {
+    if (!item.i18nKey) {
+      return item.code || '';
+    }
+    const text = $t(item.i18nKey);
+    if (!text || text === item.i18nKey) {
+      return item.code || item.i18nKey;
+    }
+    return text;
+  }
 
   // 表单数据
   const formState = ref<MerchantUserParam>({
@@ -103,9 +137,10 @@
     createdResult.value = null;
     visible.value = true;
     resetForm();
-    // 获取密码策略配置
+    // 获取密码策略配置与角色列表
     const { data } = await SecurityApi.getPasswordPolicyValidateConfig();
     passwordConfig.value = data;
+    loadRoles();
   }
 
   function handleCancel() {
@@ -145,6 +180,7 @@
         name: formState.value.name,
         account: formState.value.account,
         password: encryptedPassword,
+        roleId: selectedRoleId.value || undefined,
       });
       // 切换到结果态展示初始密码
       createdResult.value = data!;
@@ -204,6 +240,26 @@
           :placeholder="$t('common.passwordAutoGenPlaceholder')"
         />
       </a-form-item>
+      <!-- 角色(默认普通角色, 创建即有角色防止登录后菜单为空) -->
+      <a-form-item :label="$t('iam.user.field.role')" name="roleId">
+        <div class="role-cards">
+          <div
+            v-for="item in roleList"
+            :key="item.id"
+            class="role-card"
+            :class="{ 'is-active': selectedRoleId === item.id }"
+            @click="selectedRoleId = item.id!"
+          >
+            <div class="role-card-main">
+              <a-radio :checked="selectedRoleId === item.id" />
+              <div class="role-card-info">
+                <div class="role-name">{{ getRoleName(item) }}</div>
+                <div class="role-code">{{ item.code }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a-form-item>
     </a-form>
     <!-- 结果态: 展示账号与初始密码 -->
     <template v-else>
@@ -241,6 +297,53 @@
 </template>
 
 <style lang="less" scoped>
+  .role-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .role-card {
+    padding: 10px 12px;
+    border: 1px solid hsl(var(--border));
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .role-card:hover {
+    background-color: hsl(var(--muted));
+  }
+
+  .role-card.is-active {
+    background-color: hsl(var(--primary) / 12%);
+    border-color: hsl(var(--primary));
+  }
+
+  .role-card-main {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .role-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .role-name {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .role-code {
+    font-family: monaco, Consolas, monospace;
+    font-size: 12px;
+    color: hsl(var(--muted-foreground));
+  }
+
   .password-panel {
     padding: 12px 16px;
     border: 1px solid hsl(var(--border));

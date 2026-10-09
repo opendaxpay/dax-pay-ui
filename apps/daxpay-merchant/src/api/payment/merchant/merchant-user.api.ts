@@ -62,6 +62,8 @@ export interface MerchantUserParam {
   password?: string;
   /** 确认密码 */
   confirmPassword?: string;
+  /** 绑定角色ID, 可选; 不传时后端默认绑定内置商户普通用户角色(merchant_user) */
+  roleId?: string;
 }
 
 /**

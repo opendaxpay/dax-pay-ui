@@ -39,7 +39,8 @@
     "confirmResetPassword": "Bạn có chắc chắn đặt lại mật khẩu cho những người dùng đã chọn không?",
     "socialBind": "Ràng buộc xã hội",
     "unbindEmail": "Gỡ liên kết email",
-    "confirmUnbindEmail": "Gỡ liên kết email của người dùng này? Sau khi gỡ, email sẽ không thể dùng để khôi phục mật khẩu và người dùng cần liên kết lại."
+    "confirmUnbindEmail": "Gỡ liên kết email của người dùng này? Sau khi gỡ, email sẽ không thể dùng để khôi phục mật khẩu và người dùng cần liên kết lại.",
+    "banAdminRejected": "Không thể cấm quản trị viên người bán ({names}). Vui lòng bỏ chọn rồi thử lại"
   },
   "social": {
     "title": "Ràng buộc tài khoản xã hội",

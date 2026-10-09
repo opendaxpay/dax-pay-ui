@@ -39,7 +39,8 @@
     "confirmResetPassword": "Apakah Anda yakin untuk menyetel ulang sandi untuk pengguna tertentu?",
     "socialBind": "Ikatan Sosial",
     "unbindEmail": "Lepaskan Email",
-    "confirmUnbindEmail": "Lepaskan email pengguna ini? Setelah dilepaskan, email tidak dapat digunakan untuk pemulihan kata sandi dan harus diikat kembali oleh pengguna."
+    "confirmUnbindEmail": "Lepaskan email pengguna ini? Setelah dilepaskan, email tidak dapat digunakan untuk pemulihan kata sandi dan harus diikat kembali oleh pengguna.",
+    "banAdminRejected": "Admin pedagang ({names}) tidak dapat diblokir. Batalkan pilihan lalu coba lagi"
   },
   "social": {
     "title": "Pengikatan Akun Sosial",

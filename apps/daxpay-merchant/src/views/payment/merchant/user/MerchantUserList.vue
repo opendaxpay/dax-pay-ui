@@ -168,8 +168,9 @@
       items.push(
         {
           key: 'assignRole',
-          // 分配角色
+          // 分配角色; 商户管理员角色固定不可变更
           label: $t('iam.user.action.assignRole'),
+          disabled: row.administrator,
         },
         {
           key: 'resetPassword',
@@ -179,9 +180,9 @@
         { type: 'divider' },
         {
           key: 'ban',
-          // 封禁
+          // 封禁; 商户管理员不可封禁(封禁会导致商户失管)
           label: $t('iam.user.action.ban'),
-          disabled: row.status === 'ban',
+          disabled: row.status === 'ban' || row.administrator,
           danger: true,
         },
         {
@@ -275,6 +276,14 @@
    * 封禁
    */
   function handleBan(userIds: string[]) {
+    // 商户管理员不可封禁(后端同样拦截, 前置校验避免整批报错)
+    const adminNames = selectedRows.value
+      .filter((row) => row.administrator && userIds.includes(row.id!))
+      .map((row) => row.name);
+    if (adminNames.length > 0) {
+      message.warning($t('iam.user.action.banAdminRejected', { names: adminNames.join('、') }));
+      return;
+    }
     confirm({
       title: $t('common.confirm'),
       content: $t('iam.user.action.confirmBan'),
@@ -380,15 +389,19 @@
           <vxe-column type="checkbox" width="60" />
           <vxe-column field="name" :title="$t('iam.user.field.name')" min-width="120">
             <template #default="{ row }">
-              <a
-                v-if="hasPermission(PermCodes.Merchant.User.VIEW)"
-                href="javascript:"
-                class="vben-link"
-                @click="handleView(row)"
-              >
-                {{ row.name }}
-              </a>
-              <span v-else>{{ row.name }}</span>
+              <a-space :size="4">
+                <a
+                  v-if="hasPermission(PermCodes.Merchant.User.VIEW)"
+                  href="javascript:"
+                  class="vben-link"
+                  @click="handleView(row)"
+                >
+                  {{ row.name }}
+                </a>
+                <span v-else>{{ row.name }}</span>
+                <!-- 商户管理员标识(角色固定, 不可封禁/改角色) -->
+                <a-tag v-if="row.administrator" color="gold">{{ $t('iam.user.field.administrator') }}</a-tag>
+              </a-space>
             </template>
           </vxe-column>
           <vxe-column field="account" :title="$t('iam.user.field.account')" min-width="120" />

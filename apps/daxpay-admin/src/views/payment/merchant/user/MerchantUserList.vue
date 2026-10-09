@@ -185,7 +185,9 @@
       items: [
         {
           key: 'assignRole',
+          // 分配角色; 商户管理员角色固定不可变更
           label: $t('iam.user.action.assignRole'),
+          disabled: row.administrator,
         },
         {
           key: 'resetPassword',
@@ -194,8 +196,9 @@
         { type: 'divider' },
         {
           key: 'ban',
+          // 封禁; 商户管理员不可封禁(封禁会导致商户失管)
           label: $t('iam.user.action.ban'),
-          disabled: row.status === 'ban',
+          disabled: row.status === 'ban' || row.administrator,
         },
         {
           key: 'unlock',
@@ -280,6 +283,14 @@
    * 封禁
    */
   function handleBan(userIds: string[]) {
+    // 商户管理员不可封禁(后端同样拦截, 前置校验避免整批报错)
+    const adminNames = selectedRows.value
+      .filter((row) => row.administrator && userIds.includes(row.id!))
+      .map((row) => row.name);
+    if (adminNames.length > 0) {
+      message.warning($t('iam.user.action.banAdminRejected', { names: adminNames.join('、') }));
+      return;
+    }
     confirm({
       title: $t('common.confirm'),
       content: $t('iam.user.action.confirmBan'),
@@ -392,7 +403,15 @@
           @checkbox-all="handleCheckboxChange"
         >
           <vxe-column type="checkbox" width="60" />
-          <vxe-column field="name" :title="$t('iam.user.field.name')" min-width="120" />
+          <vxe-column field="name" :title="$t('iam.user.field.name')" min-width="120">
+            <template #default="{ row }">
+              <a-space :size="4">
+                {{ row.name }}
+                <!-- 商户管理员标识(角色固定, 不可封禁/改角色) -->
+                <a-tag v-if="row.administrator" color="gold">{{ $t('iam.user.field.administrator') }}</a-tag>
+              </a-space>
+            </template>
+          </vxe-column>
           <vxe-column field="account" :title="$t('iam.user.field.account')" min-width="120" />
           <vxe-column field="email" :title="$t('iam.user.field.email')" min-width="150">
             <template #default="{ row }">

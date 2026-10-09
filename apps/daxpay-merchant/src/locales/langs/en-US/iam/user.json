@@ -36,7 +36,8 @@
     "confirmResetPassword": "Are you sure to reset password for selected users?",
     "socialBind": "Social Bindings",
     "unbindEmail": "Unbind Email",
-    "confirmUnbindEmail": "Unbind this user's email? After unbinding, it can no longer be used for password recovery and must be re-bound by the user."
+    "confirmUnbindEmail": "Unbind this user's email? After unbinding, it can no longer be used for password recovery and must be re-bound by the user.",
+    "banAdminRejected": "Merchant administrators ({names}) cannot be banned. Please deselect them and try again"
   },
   "social": {
     "title": "Social Account Bindings",

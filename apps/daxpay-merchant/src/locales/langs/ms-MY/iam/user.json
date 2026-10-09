@@ -36,7 +36,8 @@
     "confirmResetPassword": "Adakah anda pasti untuk menetapkan semula kata laluan untuk pengguna terpilih?",
     "socialBind": "Ikatan Sosial",
     "unbindEmail": "Nyahkait E-mel",
-    "confirmUnbindEmail": "Nyahkait e-mel pengguna ini? Selepas nyahkait, e-mel tidak boleh digunakan untuk pemulihan kata laluan dan pengguna perlu mengaitkannya semula."
+    "confirmUnbindEmail": "Nyahkait e-mel pengguna ini? Selepas nyahkait, e-mel tidak boleh digunakan untuk pemulihan kata laluan dan pengguna perlu mengaitkannya semula.",
+    "banAdminRejected": "Pentadbir saudagar ({names}) tidak boleh disekat. Sila batalkan pilihan dan cuba lagi"
   },
   "social": {
     "title": "Pengikatan Akaun Sosial",
