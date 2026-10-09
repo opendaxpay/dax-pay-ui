@@ -114,5 +114,6 @@
   "menu.trade.allocOrder": "Pesanan Alokasi",
   "menu.system.notify.mailRecord": "Catatan Kirim Email",
   "menu.trade.abnormalOrder": "Pesanan Abnormal",
-  "menu.trade.fundFlow": "Arus Dana"
+  "menu.trade.fundFlow": "Arus Dana",
+  "menu.system.notify.mailTemplate": "Templat Email"
 }

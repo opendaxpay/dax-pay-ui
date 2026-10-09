@@ -114,5 +114,6 @@
   "menu.trade.allocOrder": "คำสั่งแบ่งเงิน",
   "menu.system.notify.mailRecord": "บันทึกการส่งอีเมล",
   "menu.trade.abnormalOrder": "คำสั่งซื้อผิดปกติ",
-  "menu.trade.fundFlow": "กระแสเงินสด"
+  "menu.trade.fundFlow": "กระแสเงินสด",
+  "menu.system.notify.mailTemplate": "เทมเพลตอีเมล"
 }

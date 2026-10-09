@@ -91,6 +91,9 @@
     record: {} as MailRecord,
   });
 
+  // 正文视图: 渲染效果(默认)/HTML 原文
+  const contentView = ref<'render' | 'source'>('render');
+
   onMounted(() => {
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
     queryPage();
@@ -132,6 +135,8 @@
   async function handleView(row: any) {
     const { data } = await MailRecordApi.findById(row.id);
     detailModal.record = data || {};
+    // 每次打开回到默认的渲染视图
+    contentView.value = 'render';
     detailModal.visible = true;
   }
 
@@ -374,29 +379,75 @@
           </a-descriptions-item>
         </a-descriptions>
       </div>
-      <!-- 邮件正文(HTML 原文, 文本展示) -->
+      <!-- 邮件正文: 默认渲染效果(iframe 沙箱隔离, content 为完整 HTML 文档, v-html 会丢 body 级样式), 可切 HTML 原文排查样式问题 -->
       <div class="detail-content">
-        <div class="detail-content__title">{{ $t('system.notify.mail.contentField') }}</div>
-        <pre class="detail-content__body">{{ detailModal.record.content || '-' }}</pre>
+        <div class="detail-content__header">
+          <div class="detail-content__title">{{ $t('system.notify.mail.contentField') }}</div>
+          <!-- 正文视图切换: 渲染效果/HTML 原文 -->
+          <a-radio-group v-model:value="contentView" button-style="solid" size="small">
+            <!-- 渲染效果 -->
+            <a-radio-button value="render">{{ $t('system.notify.mail.contentViewRender') }}</a-radio-button>
+            <!-- HTML 原文 -->
+            <a-radio-button value="source">{{ $t('system.notify.mail.contentViewSource') }}</a-radio-button>
+          </a-radio-group>
+        </div>
+        <template v-if="detailModal.record.content">
+          <iframe
+            v-if="contentView === 'render'"
+            :srcdoc="detailModal.record.content"
+            sandbox=""
+            class="detail-content__frame"
+          />
+          <pre v-else class="detail-content__source">{{ detailModal.record.content }}</pre>
+        </template>
+        <div v-else class="detail-content__empty">-</div>
       </div>
     </a-modal>
   </div>
 </template>
 
 <style scoped>
-  .detail-content__title {
+  .detail-content__header {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 8px;
+  }
+
+  .detail-content__title {
     font-size: 14px;
     font-weight: 500;
   }
 
-  .detail-content__body {
-    max-height: 320px;
+  /* 渲染效果视图: iframe 沙箱渲染完整 HTML 文档 */
+  .detail-content__frame {
+    width: 100%;
+    min-height: 520px;
+    background: #f4f6f8;
+    border: 1px solid hsl(var(--border));
+    border-radius: 8px;
+  }
+
+  /* HTML 原文视图: 等宽排版 + 自动换行 */
+  .detail-content__source {
+    max-height: 520px;
     padding: 12px;
     overflow: auto;
     font-size: 12px;
-    white-space: pre-wrap;
     word-break: break-all;
+    white-space: pre-wrap;
+    background: hsl(var(--muted) / 40%);
+    border-radius: 8px;
+  }
+
+  .detail-content__empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
+    font-size: 12px;
+    color: hsl(var(--muted-foreground));
     background: hsl(var(--muted) / 40%);
     border-radius: 8px;
   }

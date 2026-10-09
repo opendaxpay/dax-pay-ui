@@ -114,5 +114,6 @@
   "menu.trade.allocOrder": "Allocation Orders",
   "menu.system.notify.mailRecord": "Mail Send Records",
   "menu.trade.abnormalOrder": "Abnormal Orders",
-  "menu.trade.fundFlow": "Fund Flows"
+  "menu.trade.fundFlow": "Fund Flows",
+  "menu.system.notify.mailTemplate": "Mail Templates"
 }

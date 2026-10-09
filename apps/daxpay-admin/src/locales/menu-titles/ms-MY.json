@@ -114,5 +114,6 @@
   "menu.trade.allocOrder": "Pesanan Pengasingan",
   "menu.system.notify.mailRecord": "Rekod Hantar E-mel",
   "menu.trade.abnormalOrder": "Pesanan Tidak Normal",
-  "menu.trade.fundFlow": "Aliran Dana"
+  "menu.trade.fundFlow": "Aliran Dana",
+  "menu.system.notify.mailTemplate": "Templat E-mel"
 }

@@ -309,6 +309,11 @@ export const PermCodes = {
       MANAGE: 'system:notify:mail-record:manage',
       RESEND: 'system:notify:mail-record:resend',
     },
+    MailTemplate: {
+      VIEW: 'system:notify:mail-template:view',
+      MANAGE: 'system:notify:mail-template:manage',
+      TEST: 'system:notify:mail-template:test',
+    },
     File: {
       VIEW: 'system:file:view',
     },

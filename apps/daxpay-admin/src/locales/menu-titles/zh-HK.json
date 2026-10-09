@@ -114,5 +114,6 @@
   "menu.trade.allocOrder": "分賬訂單",
   "menu.system.notify.mailRecord": "郵件發送記錄",
   "menu.trade.abnormalOrder": "異常訂單",
-  "menu.trade.fundFlow": "資金流水"
+  "menu.trade.fundFlow": "資金流水",
+  "menu.system.notify.mailTemplate": "郵件模板"
 }

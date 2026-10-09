@@ -114,5 +114,6 @@
   "menu.trade.allocOrder": "Đơn Phân Toán",
   "menu.system.notify.mailRecord": "Bản ghi gửi email",
   "menu.trade.abnormalOrder": "Đơn hàng bất thường",
-  "menu.trade.fundFlow": "Dòng tiền"
+  "menu.trade.fundFlow": "Dòng tiền",
+  "menu.system.notify.mailTemplate": "Mẫu email"
 }
