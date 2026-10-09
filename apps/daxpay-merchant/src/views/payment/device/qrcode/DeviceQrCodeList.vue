@@ -271,30 +271,6 @@
               <span v-else style="color: var(--text-color-placeholder)">-</span>
             </template>
           </vxe-column>
-          <!-- 应用: 名称上+号下小字; 空=默认应用 -->
-          <vxe-column field="appId" :title="$t('payment.device.qrcode.field.appId')" :min-width="160">
-            <template #default="{ row }">
-              <div v-if="row.appId" class="flex flex-col">
-                <span>{{ row.appName || '-' }}</span>
-                <span class="text-xs text-muted-foreground">{{ row.appId }}</span>
-              </div>
-              <span v-else style="color: var(--text-color-placeholder)">{{
-                $t('payment.device.qrcode.defaultApp')
-              }}</span>
-            </template>
-          </vxe-column>
-          <!-- 门店: 名称上+号下小字; 未绑显示「默认门店」提示(支付侧 resolve) -->
-          <vxe-column field="storeName" :title="$t('payment.device.qrcode.field.store')" :min-width="160">
-            <template #default="{ row }">
-              <div v-if="row.storeNo" class="flex flex-col">
-                <span>{{ row.storeName || '-' }}</span>
-                <span class="text-xs text-muted-foreground">{{ row.storeNo }}</span>
-              </div>
-              <span v-else style="color: var(--text-color-placeholder)">{{
-                $t('payment.device.qrcode.defaultStoreHint')
-              }}</span>
-            </template>
-          </vxe-column>
           <!-- 金额类型 + 固定金额合并: 固定显示金额, 自定义显示类型文案 -->
           <vxe-column
             field="amountType"

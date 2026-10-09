@@ -220,9 +220,6 @@
             <a-radio-button value="disabled">{{ $t('payment.device.qrcode.status.disabled') }}</a-radio-button>
           </a-radio-group>
         </a-form-item>
-        <a-form-item :label="$t('payment.device.qrcode.field.remark')">
-          <a-textarea v-model:value="formState.remark" :rows="2" :placeholder="$t('common.pleaseInput')" />
-        </a-form-item>
       </a-form>
     </a-spin>
   </a-modal>

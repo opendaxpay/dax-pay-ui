@@ -170,8 +170,6 @@ export interface DeviceQrCodeBatchParam {
   fixedAmount?: number;
   /** 状态 enabled/disabled, 空则默认启用 */
   status?: string;
-  /** 备注 */
-  remark?: string;
 }
 
 /** 绑定商户参数 */
