@@ -14,6 +14,7 @@
   import { channelI18nMap, channelNameMap, productI18nMap, productNameMap } from '#/enums/payment';
   import { useMessage } from '#/hooks/useMessage';
   import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
+  import { useSandboxEnabled } from '#/hooks/useSandboxEnabled';
 
   import ChannelMerchantCreateTransit from './ChannelMerchantCreateTransit.vue';
 
@@ -28,6 +29,9 @@
   });
   const { closeCurrentTab, setTabTitle } = useTabs();
   const { message } = useMessage();
+
+  // 平台沙箱总闸关闭时产品卡右上角环境标签不展示(生产部署不出现沙箱概念)
+  const { sandboxEnabled } = useSandboxEnabled();
 
   // 从路由参数获取mchNo
   const mchNo = ref('');
@@ -225,8 +229,8 @@
                   {{ getChannelName(item.channel || '') }}
                 </div>
               </div>
-              <!-- 右上角:环境状态标签(仅支持沙箱的产品显示,只读展示产品当前 activeEnv) -->
-              <div v-if="item.sandbox" class="absolute top-2 right-2 z-20">
+              <!-- 右上角:环境状态标签(仅支持沙箱的产品且平台沙箱总闸开启时显示,只读展示产品当前 activeEnv) -->
+              <div v-if="sandboxEnabled && item.sandbox" class="absolute top-2 right-2 z-20">
                 <a-tag
                   :color="item.activeEnv === 'sandbox' ? 'orange' : 'blue'"
                   class="!m-0 env-tag-compact"

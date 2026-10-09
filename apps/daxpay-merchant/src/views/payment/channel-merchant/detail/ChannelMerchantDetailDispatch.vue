@@ -16,6 +16,7 @@
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { ProductEnum } from '#/enums/payment';
   import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
+  import { useSandboxEnabled } from '#/hooks/useSandboxEnabled';
   import AlipayChannelMerchantManage from '#/views/payment/channel/alipay/manage/mch/AlipayChannelMerchantManage.vue';
   import AlipayMchManage from '#/views/payment/channel/alipay/manage/mch/AlipayMchManage.vue';
   import DouyinDirectMchManage from '#/views/payment/channel/douyin/manage/DouyinDirectMchManage.vue';
@@ -27,6 +28,9 @@
 
   const route = useRoute();
   const router = useRouter();
+
+  // 平台沙箱总闸关闭时环境标识不渲染
+  const { sandboxEnabled } = useSandboxEnabled();
 
   // 商户端仅要求 id（product 可选，缺失时用详情回填）
   const routeContext = useRequiredRouteQuery({
@@ -186,8 +190,8 @@
             :name="channelMerchant.channelMerchantName || ''"
             @back="goBack"
           />
-          <!-- 环境标识: 仅支持沙箱的产品展示(与支付产品配置详情页同款样式), 读通道商户固化的 sandbox 字段 -->
-          <div v-if="channelMerchant.sandboxSupport" class="flex flex-none items-center">
+          <!-- 环境标识: 仅支持沙箱的产品且平台沙箱总闸开启时展示(与支付产品配置详情页同款样式), 读通道商户固化的 sandbox 字段 -->
+          <div v-if="sandboxEnabled && channelMerchant.sandboxSupport" class="flex flex-none items-center">
             <a-tooltip :title="$t('payment.merchant.channelMerchant.envStatusTip')">
               <span class="flex items-center gap-1 text-sm text-muted-foreground">
                 <template v-if="channelMerchant.sandbox">

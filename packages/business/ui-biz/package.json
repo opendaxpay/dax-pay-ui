@@ -121,6 +121,10 @@
       "types": "./src/hooks/use-dynamic-tab-title.ts",
       "default": "./src/hooks/use-dynamic-tab-title.ts"
     },
+    "./hooks/useSandboxEnabled": {
+      "types": "./src/hooks/useSandboxEnabled.ts",
+      "default": "./src/hooks/useSandboxEnabled.ts"
+    },
     "./utils/file": {
       "types": "./src/utils/file.ts",
       "default": "./src/utils/file.ts"

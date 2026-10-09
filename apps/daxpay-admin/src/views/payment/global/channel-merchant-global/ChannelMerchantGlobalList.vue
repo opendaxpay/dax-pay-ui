@@ -15,12 +15,16 @@
   import { productChannelMap, productI18nMap, productNameMap } from '#/enums/payment';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
+  import { useSandboxEnabled } from '#/hooks/useSandboxEnabled';
 
   defineOptions({ name: 'ChannelMerchantGlobalList' });
 
   const router = useRouter();
   const { confirm, message } = useMessage();
   const { hasPermission } = usePermission();
+
+  // 平台沙箱总闸关闭时环境状态列整列不显示(后端已同时过滤沙箱行)
+  const { sandboxEnabled } = useSandboxEnabled();
 
   const loading = ref(false);
   // 切换启用状态按行 loading（key=record.id）
@@ -210,9 +214,9 @@
             :title="$t('payment.merchant.channelMerchant.channelMerchantName')"
             :min-width="180"
           />
-          <!-- 环境状态（仅有沙箱数据时显示，其余可通过 toolbar custom 自定义） -->
+          <!-- 环境状态（仅有沙箱数据且平台沙箱总闸开启时显示，其余可通过 toolbar custom 自定义） -->
           <vxe-column
-            v-if="list.some((r) => r.sandboxSupport)"
+            v-if="sandboxEnabled && list.some((r) => r.sandboxSupport)"
             field="sandbox"
             :title="$t('payment.merchant.channelMerchant.envStatus')"
             :min-width="100"
