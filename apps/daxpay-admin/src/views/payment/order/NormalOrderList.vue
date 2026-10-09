@@ -4,6 +4,7 @@
   import type { LabelValue } from '#/types/web';
 
   import { computed, onMounted, ref, watch } from 'vue';
+  import { useRoute } from 'vue-router';
 
   import { $t } from '@vben/locales';
   import { formatDateTime } from '@vben/utils';
@@ -32,6 +33,7 @@
   const { channelLabel, methodLabel } = useOrderLabels();
 
   const loading = ref(false);
+  const route = useRoute();
   const xTable = ref<VxeTableInstance>();
   const xToolbar = ref<VxeToolbarInstance>();
 
@@ -263,6 +265,11 @@
     MerchantApi.dropdown(true, true).then(({ data }) => {
       mchNoOptions.value = data ?? [];
     });
+    // 支付订单列表「订单明细」下钻: 按路由携带的业务单号预填查询
+    const routeBizOrderNo = route.query.bizOrderNo;
+    if (typeof routeBizOrderNo === 'string' && routeBizOrderNo) {
+      queryForm.value.bizOrderNo = routeBizOrderNo;
+    }
     queryPage();
   });
 </script>

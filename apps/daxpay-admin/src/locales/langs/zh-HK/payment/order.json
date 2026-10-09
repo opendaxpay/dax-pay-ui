@@ -207,7 +207,8 @@
     "allocValidateName": "個人 openid 接收方必須填寫姓名",
     "allocValidateTitle": "請輸入分帳標題",
     "export": "匯出",
-    "exportFailed": "匯出失敗, 請稍後重試"
+    "exportFailed": "匯出失敗, 請稍後重試",
+    "orderDetail": "訂單明細"
   },
   "method": {
     "jsapi": "JSAPI",

@@ -207,7 +207,8 @@
     "allocValidateName": "ผู้รับเงินประเภท openid ส่วนบุคคลต้องกรอกชื่อ",
     "allocValidateTitle": "โปรดกรอกหัวข้อการแบ่งเงิน",
     "export": "ส่งออก",
-    "exportFailed": "ส่งออกล้มเหลว กรุณาลองใหม่ภายหลัง"
+    "exportFailed": "ส่งออกล้มเหลว กรุณาลองใหม่ภายหลัง",
+    "orderDetail": "รายละเอียดคำสั่งซื้อ"
   },
   "method": {
     "jsapi": "JSAPI",

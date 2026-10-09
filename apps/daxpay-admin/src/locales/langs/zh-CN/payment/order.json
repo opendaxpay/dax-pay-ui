@@ -253,7 +253,8 @@
     "allocValidateName": "个人 openid 接收方必须填写姓名",
     "allocValidateTitle": "请输入分账标题",
     "export": "导出",
-    "exportFailed": "导出失败, 请稍后重试"
+    "exportFailed": "导出失败, 请稍后重试",
+    "orderDetail": "订单明细"
   },
   "receiverType": {
     "MERCHANT_ID": "商户号",

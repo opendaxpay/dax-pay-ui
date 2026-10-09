@@ -207,7 +207,8 @@
     "allocValidateName": "Penerima openid peribadi wajib mengisi nama",
     "allocValidateTitle": "Masukkan tajuk pengagihan",
     "export": "Eksport",
-    "exportFailed": "Eksport gagal. Silakan cuba lagi kemudian."
+    "exportFailed": "Eksport gagal. Silakan cuba lagi kemudian.",
+    "orderDetail": "Butiran Pesanan"
   },
   "method": {
     "jsapi": "JSAPI",

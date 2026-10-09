@@ -207,7 +207,8 @@
     "allocValidateName": "Penerima openid pribadi wajib mengisi nama",
     "allocValidateTitle": "Masukkan judul alokasi",
     "export": "Ekspor",
-    "exportFailed": "Ekspor gagal. Silakan coba lagi nanti."
+    "exportFailed": "Ekspor gagal. Silakan coba lagi nanti.",
+    "orderDetail": "Detail Pesanan"
   },
   "method": {
     "jsapi": "JSAPI",

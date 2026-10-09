@@ -207,7 +207,8 @@
     "allocValidateName": "개인 openid 수취인은 이름 입력이 필수입니다",
     "allocValidateTitle": "분담 제목을 입력하세요",
     "export": "내보내기",
-    "exportFailed": "내보내기에 실패했습니다. 잠시 후 다시 시도해 주세요"
+    "exportFailed": "내보내기에 실패했습니다. 잠시 후 다시 시도해 주세요",
+    "orderDetail": "주문 상세"
   },
   "method": {
     "jsapi": "JSAPI",

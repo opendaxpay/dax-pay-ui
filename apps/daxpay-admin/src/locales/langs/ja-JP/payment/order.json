@@ -207,7 +207,8 @@
     "allocValidateName": "個人openid受取人は氏名の入力が必須です",
     "allocValidateTitle": "分配タイトルを入力してください",
     "export": "エクスポート",
-    "exportFailed": "エクスポートに失敗しました。しばらくしてから再試行してください"
+    "exportFailed": "エクスポートに失敗しました。しばらくしてから再試行してください",
+    "orderDetail": "注文明細"
   },
   "method": {
     "jsapi": "JSAPI",

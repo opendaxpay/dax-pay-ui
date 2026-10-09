@@ -5,6 +5,7 @@
   import type { LabelValue } from '#/types/web';
 
   import { computed, onMounted, ref, watch } from 'vue';
+  import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
   import { formatDateTime } from '@vben/utils';
@@ -30,6 +31,7 @@
   defineOptions({ name: 'PayTradeList' });
 
   const { hasPermission } = usePermission();
+  const router = useRouter();
 
   // 订单详情编码字段展示名(支付通道/支付方式/支付渠道/支付产品)
   const { channelLabel, methodLabel, providerLabel, productLabel } = useOrderLabels();
@@ -238,10 +240,21 @@
   });
 
   /**
-   * 更多操作菜单(同步/关闭, 按资金状态与权限动态生成)
+   * 下钻订单明细(普通/网关分表视角, 按业务单号预填查询)
+   */
+  function handleOrderDetail(row: PayTradeResult) {
+    const path = row.tradeType === 'gateway' ? '/trade/pay-order/gateway' : '/trade/pay-order/normal';
+    router.push({ path, query: { bizOrderNo: row.bizOrderNo } });
+  }
+
+  /**
+   * 更多操作菜单(订单明细/退款/分账/关闭/同步, 按资金状态与权限动态生成)
    */
   function getActionMenu(row: PayTradeResult): MenuProps {
-    const items: { danger?: boolean; key: string; label: string }[] = [];
+    // 订单明细(分表视角, 恒可用)恒为首项
+    const items: { danger?: boolean; key: string; label: string }[] = [
+      { key: 'order-detail', label: $t('payment.order.action.orderDetail') },
+    ];
     // 关闭/同步走订单管理权限(后端 close/sync 接口挂 trade:order:manage)
     const canManage = hasPermission(PermCodes.Trade.Order.MANAGE);
     const canRefund = hasPermission(PermCodes.Trade.Refund.MANAGE);
@@ -273,6 +286,10 @@
           }
           case 'close': {
             handleClose(row);
+            break;
+          }
+          case 'order-detail': {
+            handleOrderDetail(row);
             break;
           }
           case 'refund': {
