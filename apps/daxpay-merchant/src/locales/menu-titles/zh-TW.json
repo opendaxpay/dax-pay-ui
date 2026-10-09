@@ -29,7 +29,7 @@
   "menu.payment.merchant.cashierConfig": "收銀臺配置",
   "menu.payment.merchant.easypay": "易支付配置",
   "menu.payment.merchant.terminal": "系統終端",
-  "menu.payment.merchant.wxVerify": "微信域名驗證",
+  "menu.payment.merchant.wxVerify": "域名校驗檔案",
   "menu.payment.wx.mchApp": "微信應用",
   "menu.payment.douyin.mchApp": "抖音應用",
   "menu.payment.merchant.channelMerchant.alipayApp": "支付寶應用",

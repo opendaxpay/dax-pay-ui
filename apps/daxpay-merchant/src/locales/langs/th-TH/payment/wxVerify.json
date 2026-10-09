@@ -1,10 +1,15 @@
 {
-  "title": "ยืนยันโดเมน WeChat",
-  "adminTitle": "ยืนยันโดเมน WeChat",
+  "title": "ไฟล์ตรวจสอบโดเมน",
+  "adminTitle": "ไฟล์ตรวจสอบโดเมน",
   "upload": "อัปโหลดไฟล์ยืนยัน",
-  "uploadTip": "เลือกไฟล์ .txt สำหรับการยืนยันโดเมน WeChat",
+  "uploadTip": "เลือกไฟล์ตรวจสอบโดเมนที่ดาวน์โหลดจาก WeChat (MP_verify_*.txt)",
   "uploadSuccess": "อัปโหลดสำเร็จ",
   "uploadFail": "การอัปโหลดล้มเหลว",
+  "chooseFile": "เลือกไฟล์",
+  "reChooseFile": "เลือกใหม่",
+  "fileNameRequired": "กรุณาเลือกไฟล์ตรวจสอบก่อน",
+  "fileNameInvalid": "รองรับเฉพาะไฟล์ MP_verify_*.txt ที่ดาวน์โหลดจาก WeChat",
+  "fileContentEmpty": "เนื้อหาไฟล์ที่เลือกว่างเปล่า โปรดตรวจสอบว่าเป็นไฟล์ที่สมบูรณ์ดาวน์โหลดจาก WeChat แล้วเลือกใหม่",
   "confirmDelete": "คุณแน่ใจหรือว่าจะลบไฟล์การยืนยันนี้",
   "editTitle": "แก้ไขไฟล์ยืนยัน",
   "field": {

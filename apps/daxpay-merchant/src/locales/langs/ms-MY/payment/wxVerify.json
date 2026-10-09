@@ -1,10 +1,15 @@
 {
-  "title": "Pengesahan Domain WeChat",
-  "adminTitle": "Pengesahan Domain WeChat",
+  "title": "Fail Verifikasi Domain",
+  "adminTitle": "Fail Verifikasi Domain",
   "upload": "Muat Naik Sahkan Fail",
-  "uploadTip": "Pilih fail .txt pengesahan domain WeChat",
+  "uploadTip": "Pilih fail verifikasi domain daripada WeChat (MP_verify_*.txt)",
   "uploadSuccess": "Muat naik berjaya",
   "uploadFail": "Muat naik gagal",
+  "chooseFile": "Pilih Fail",
+  "reChooseFile": "Pilih Semula",
+  "fileNameRequired": "Sila pilih fail pengesahan dahulu",
+  "fileNameInvalid": "Hanya fail MP_verify_*.txt yang dimuat turun daripada WeChat disokong",
+  "fileContentEmpty": "Kandungan fail yang dipilih kosong. Sila pastikan ia fail lengkap yang dimuat turun daripada WeChat kemudian pilih semula",
   "confirmDelete": "Adakah anda pasti akan memadamkan fail pengesahan ini?",
   "editTitle": "Edit Sahkan Fail",
   "field": {

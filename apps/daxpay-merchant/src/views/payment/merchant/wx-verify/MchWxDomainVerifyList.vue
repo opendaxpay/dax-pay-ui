@@ -27,8 +27,6 @@
   const { hasPermission } = usePermission();
 
   const loading = ref(false);
-  // 上传中状态
-  const uploading = ref(false);
   const xTable = ref<VxeTableInstance>();
   const xToolbar = ref<VxeToolbarInstance>();
 
@@ -90,23 +88,10 @@
   }
 
   /**
-   * a-upload 选择文件回调（单选），读取文件内容后 JSON 提交上传
+   * 打开上传弹窗（弹窗内选文件、填备注后确认上传）
    */
-  async function handleBeforeUpload(file: File) {
-    uploading.value = true;
-    try {
-      const fileContent = await file.text();
-      // 上传不传 mchNo，由后端 PaymentContext 写入
-      await MchWxDomainVerifyApi.upload({ fileName: file.name, fileContent });
-      message.success($t('payment.wxVerify.uploadSuccess'));
-      queryPage();
-    } catch {
-      // 错误消息已由全局响应拦截器统一提示
-    } finally {
-      uploading.value = false;
-    }
-    // 返回 false 阻止 a-upload 自动上传
-    return false;
+  function handleUpload() {
+    editRef.value?.showAdd();
   }
 
   function handleEdit(row: MchWxDomainVerifyVo) {
@@ -151,19 +136,17 @@
       <div class="mt-4">
         <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
           <template #buttons>
-            <a-upload :show-upload-list="false" accept=".txt" :before-upload="handleBeforeUpload">
-              <a-button
-                v-if="hasPermission(PermCodes.Merchant.WxDomainVerify.MANAGE)"
-                type="primary"
-                :loading="uploading"
-              >
-                <template #icon>
-                  <IconifyIcon icon="ant-design:upload-outlined" />
-                </template>
-                <!-- 国际化：上传验证文件 -->
-                {{ $t('payment.wxVerify.upload') }}
-              </a-button>
-            </a-upload>
+            <a-button
+              v-if="hasPermission(PermCodes.Merchant.WxDomainVerify.MANAGE)"
+              type="primary"
+              @click="handleUpload"
+            >
+              <template #icon>
+                <IconifyIcon icon="ant-design:upload-outlined" />
+              </template>
+              <!-- 国际化：上传验证文件 -->
+              {{ $t('payment.wxVerify.upload') }}
+            </a-button>
           </template>
         </vxe-toolbar>
         <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">

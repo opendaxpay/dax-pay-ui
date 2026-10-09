@@ -1,10 +1,15 @@
 {
-  "title": "WeChatドメインの検証",
-  "adminTitle": "WeChatドメインの検証",
+  "title": "ドメイン検証ファイル",
+  "adminTitle": "ドメイン検証ファイル",
   "upload": "検証ファイルをアップロードする",
-  "uploadTip": "WeChat ドメイン検証 .txt ファイルを選択します",
+  "uploadTip": "WeChat からダウンロードしたドメイン検証ファイル（MP_verify_*.txt）を選択してください",
   "uploadSuccess": "アップロードに成功しました",
   "uploadFail": "アップロードに失敗しました",
+  "chooseFile": "ファイルを選択",
+  "reChooseFile": "再選択",
+  "fileNameRequired": "最初に検証ファイルを選択してください",
+  "fileNameInvalid": "WeChat からダウンロードした MP_verify_*.txt ファイルのみサポートされます",
+  "fileContentEmpty": "選択したファイルの内容が空です。WeChat からダウンロードした完全なファイルか確認して、選び直してください",
   "confirmDelete": "この確認ファイルを削除してもよろしいですか?",
   "editTitle": "検証ファイルの編集",
   "field": {

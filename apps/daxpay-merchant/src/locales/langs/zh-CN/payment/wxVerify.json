@@ -1,10 +1,15 @@
 {
-  "title": "微信域名验证",
-  "adminTitle": "微信域名验证",
+  "title": "域名校验文件",
+  "adminTitle": "域名校验文件",
   "upload": "上传验证文件",
-  "uploadTip": "请选择微信下载的域名验证 .txt 文件",
+  "uploadTip": "请选择微信下载的域名验证文件（MP_verify_*.txt）",
   "uploadSuccess": "上传成功",
   "uploadFail": "上传失败",
+  "chooseFile": "选择文件",
+  "reChooseFile": "重新选择",
+  "fileNameRequired": "请先选择校验文件",
+  "fileNameInvalid": "仅支持微信下载的 MP_verify_*.txt 文件",
+  "fileContentEmpty": "所选校验文件内容为空，请确认是微信下载的完整文件后重新选择",
   "confirmDelete": "确定删除该验证文件吗？",
   "editTitle": "编辑验证文件",
   "field": {

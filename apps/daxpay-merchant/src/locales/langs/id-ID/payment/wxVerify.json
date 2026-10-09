@@ -1,10 +1,15 @@
 {
-  "title": "Verifikasi Domain WeChat",
-  "adminTitle": "Verifikasi Domain WeChat",
+  "title": "File Verifikasi Domain",
+  "adminTitle": "File Verifikasi Domain",
   "upload": "Unggah File Verifikasi",
-  "uploadTip": "Pilih file .txt verifikasi domain WeChat",
+  "uploadTip": "Pilih file verifikasi domain dari WeChat (MP_verify_*.txt)",
   "uploadSuccess": "Pengunggahan berhasil",
   "uploadFail": "Gagal mengunggah",
+  "chooseFile": "Pilih Berkas",
+  "reChooseFile": "Pilih Ulang",
+  "fileNameRequired": "Silakan pilih berkas verifikasi terlebih dahulu",
+  "fileNameInvalid": "Hanya berkas MP_verify_*.txt yang diunduh dari WeChat yang didukung",
+  "fileContentEmpty": "Konten berkas yang dipilih kosong. Pastikan berkas lengkap yang diunduh dari WeChat lalu pilih ulang",
   "confirmDelete": "Apakah Anda yakin akan menghapus file verifikasi ini?",
   "editTitle": "Edit Verifikasi File",
   "field": {

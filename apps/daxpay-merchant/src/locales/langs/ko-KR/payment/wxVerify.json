@@ -1,10 +1,15 @@
 {
-  "title": "WeChat 도메인 확인",
-  "adminTitle": "WeChat 도메인 확인",
+  "title": "도메인 검증 파일",
+  "adminTitle": "도메인 검증 파일",
   "upload": "확인 파일 업로드",
-  "uploadTip": "WeChat 도메인 확인 .txt 파일을 선택하세요.",
+  "uploadTip": "위챗에서 다운로드한 도메인 검증 파일(MP_verify_*.txt)을 선택하세요",
   "uploadSuccess": "업로드 성공",
   "uploadFail": "업로드 실패",
+  "chooseFile": "파일 선택",
+  "reChooseFile": "다시 선택",
+  "fileNameRequired": "먼저 검증 파일을 선택하세요",
+  "fileNameInvalid": "WeChat에서 다운로드한 MP_verify_*.txt 파일만 지원됩니다",
+  "fileContentEmpty": "선택한 파일 내용이 비어 있습니다. WeChat에서 다운로드한 완전한 파일인지 확인 후 다시 선택하세요",
   "confirmDelete": "이 확인 파일을 삭제하시겠습니까?",
   "editTitle": "검증 파일 편집",
   "field": {
