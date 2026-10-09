@@ -24,6 +24,8 @@
 
   // 待绑定码牌 id
   const ids = ref<string[]>([]);
+  // 换绑警示: 勾选中已绑定商户的牌数与原商户名(>0 时弹窗顶部警示覆盖语义)
+  const bindWarn = ref<{ boundCount: number; boundMchNames: string[] } | null>(null);
   // 商户下拉
   const mchOptions = ref<LabelValue[]>([]);
   // 应用下拉(随商户级联, 可空=支付走默认应用)
@@ -101,10 +103,14 @@
   }
 
   /**
-   * 打开绑定弹窗
+   * 打开绑定弹窗(可携带换绑警示: 勾选中含已绑定牌时展示覆盖语义)
    */
-  async function show(selectedIds: string[]) {
+  async function show(
+    selectedIds: string[],
+    warn?: { boundCount: number; boundMchNames: string[] },
+  ) {
     ids.value = selectedIds;
+    bindWarn.value = warn && warn.boundCount > 0 ? warn : null;
     formState.value = { mchNo: undefined, appId: undefined, storeNo: undefined };
     appOptions.value = [];
     storeOptions.value = [];
@@ -163,6 +169,19 @@
     @cancel="handleCancel"
   >
     <a-spin :spinning="confirmLoading">
+      <!-- 换绑警示: 仅勾选中含已绑定牌时显示 -->
+      <div v-if="bindWarn" class="mb-4">
+        <a-alert type="warning" show-icon>
+          <template #message>
+            {{
+              $t('payment.device.qrcode.rebindWarn', {
+                count: bindWarn.boundCount,
+                names: bindWarn.boundMchNames.join('、') || '-',
+              })
+            }}
+          </template>
+        </a-alert>
+      </div>
       <a-form
         ref="formRef"
         :model="formState"

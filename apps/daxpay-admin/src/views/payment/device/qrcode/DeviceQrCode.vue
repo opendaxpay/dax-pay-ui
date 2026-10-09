@@ -179,26 +179,51 @@
   }
 
   /**
-   * 批量绑定商户
+   * 勾选中已绑定商户的行(可解绑; 再次绑定=覆盖原归属的换绑)
+   */
+  const boundRows = computed(() => selectedRows.value.filter((row) => row.mchNo));
+
+  /**
+   * 批量绑定商户(已绑定牌允许换绑, 弹窗内警示覆盖语义)
    */
   function handleBindMerchant() {
     const ids = getSelectedIds();
     if (!ids) {
       return;
     }
-    bindMerchantRef.value?.show(ids);
+    bindMerchantRef.value?.show(ids, {
+      boundCount: boundRows.value.length,
+      boundMchNames: [
+        ...new Set(
+          boundRows.value
+            .map((row) => row.mchName)
+            .filter((name): name is string => !!name),
+        ),
+      ],
+    });
   }
 
   /**
-   * 批量解绑商户
+   * 批量解绑商户(仅已绑定牌生效, 未绑定牌跳过)
    */
   function handleUnbindMerchant() {
     const ids = getSelectedIds();
     if (!ids) {
       return;
     }
+    if (boundRows.value.length === 0) {
+      message.warning($t('payment.device.qrcode.unbindNoneBound'));
+      return;
+    }
+    const skippedCount = selectedRows.value.length - boundRows.value.length;
     confirm({
-      content: $t('payment.device.qrcode.confirmUnbind'),
+      content:
+        skippedCount > 0
+          ? $t('payment.device.qrcode.confirmUnbindPartial', {
+              skip: skippedCount,
+              count: boundRows.value.length,
+            })
+          : $t('payment.device.qrcode.confirmUnbind'),
       onOk() {
         return DeviceQrCodeApi.unbindMerchant(ids).then(() => {
           message.success($t('common.operationSuccess'));
@@ -210,6 +235,8 @@
 
   /**
    * 工具栏批量操作菜单(仅绑定/解绑商户; 应用/门店在绑商户弹窗可选)
+   *
+   * 解绑须勾选中含已绑定牌(均未绑定时置灰)
    */
   function getBatchActionMenu(): MenuProps {
     return {
@@ -219,6 +246,7 @@
           key: 'unbindMerchant',
           label: $t('payment.device.qrcode.unbindMerchant'),
           danger: true,
+          disabled: boundRows.value.length === 0,
         },
       ],
       onClick: ({ key }: { key: string }) => {

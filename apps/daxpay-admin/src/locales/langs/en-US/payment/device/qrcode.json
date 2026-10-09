@@ -91,5 +91,8 @@
   "payForm": {
     "h5": "H5",
     "mini": "Mini Program"
-  }
+  },
+  "unbindNoneBound": "None of the selected QR code boards are bound to a merchant, nothing to unbind",
+  "confirmUnbindPartial": "{skip} unbound QR code boards will be skipped. Unbind the merchant for the remaining {count} boards? They will return to blank inventory.",
+  "rebindWarn": "{count} of the selected QR code boards are already bound to a merchant ({names}). This binding will overwrite the original assignment and clear their app/store/allocation settings."
 }

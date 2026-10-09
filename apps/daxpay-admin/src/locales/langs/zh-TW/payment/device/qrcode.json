@@ -91,5 +91,8 @@
   "payForm": {
     "h5": "H5",
     "mini": "小程式"
-  }
+  },
+  "unbindNoneBound": "勾選碼牌均未綁定商戶, 無需解綁",
+  "confirmUnbindPartial": "勾選中 {skip} 張未綁定商戶將被跳過, 確定解綁其餘 {count} 張碼牌的商戶嗎？解綁後將回到空白庫存。",
+  "rebindWarn": "勾選中 {count} 張碼牌已綁定商戶({names}), 本次綁定將覆蓋原歸屬, 並清空其應用/門市/分帳設定。"
 }
