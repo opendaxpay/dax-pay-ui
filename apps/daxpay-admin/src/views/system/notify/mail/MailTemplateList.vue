@@ -45,7 +45,7 @@
     // 英文主题
     { title: $t('system.notify.mailTemplate.subjectEn'), dataIndex: 'en.subject', width: 240, ellipsis: true },
     // 状态
-    { title: $t('system.notify.mailTemplate.status'), dataIndex: 'customized', width: 150, align: 'center' },
+    { title: $t('system.notify.mailTemplate.status'), dataIndex: 'customized', width: 210, align: 'center' },
     // 操作
     { title: $t('common.operation'), key: 'operation', width: 200, align: 'center' },
   ];
@@ -164,9 +164,17 @@
           <template v-if="column.dataIndex === 'name'">
             {{ sceneName(record as MailTemplate) }}
           </template>
+          <!-- 中文主题(嵌套字段 dataIndex 带点字符串不会被 antd 解析为路径, 需在此手动取值) -->
+          <template v-else-if="column.dataIndex === 'zh.subject'">
+            {{ (record as MailTemplate).zh?.subject || '-' }}
+          </template>
+          <!-- 英文主题 -->
+          <template v-else-if="column.dataIndex === 'en.subject'">
+            {{ (record as MailTemplate).en?.subject || '-' }}
+          </template>
           <!-- 状态(中英两语言各自的覆盖状态) -->
           <template v-else-if="column.dataIndex === 'customized'">
-            <div class="flex flex-col items-center gap-1">
+            <div class="flex flex-wrap items-center justify-center gap-1">
               <a-tag v-if="(record as MailTemplate).zh?.customized" color="blue">
                 {{ $t('system.notify.mailTemplate.languageZh') }} ·
                 {{ $t('system.notify.mailTemplate.customized') }}

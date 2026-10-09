@@ -85,8 +85,8 @@
   // 表格数据
   const tableData = ref<any[]>([]);
 
-  // 详情弹窗状态
-  const detailModal = reactive({
+  // 详情抽屉状态
+  const detailDrawer = reactive({
     visible: false,
     record: {} as MailRecord,
   });
@@ -134,10 +134,10 @@
    */
   async function handleView(row: any) {
     const { data } = await MailRecordApi.findById(row.id);
-    detailModal.record = data || {};
+    detailDrawer.record = data || {};
     // 每次打开回到默认的渲染视图
     contentView.value = 'render';
-    detailModal.visible = true;
+    detailDrawer.visible = true;
   }
 
   /**
@@ -333,49 +333,44 @@
       </a-card>
     </div>
 
-    <!-- 详情弹窗 -->
-    <a-modal
-      v-model:open="detailModal.visible"
-      :title="$t('system.notify.mail.detailTitle')"
-      :footer="null"
-      width="640px"
-    >
+    <!-- 详情抽屉(弹窗高度受限放不下描述列表+正文预览, 改侧滑抽屉全高滚动) -->
+    <a-drawer v-model:open="detailDrawer.visible" :title="$t('system.notify.mail.detailTitle')" :width="800">
       <!-- 描述列表: 间距类加 wrapper 避免被组件 cssinjs 样式覆盖 -->
       <div class="mb-4">
         <a-descriptions :column="1" bordered size="small">
           <!-- 收件邮箱 -->
           <a-descriptions-item :label="$t('system.notify.mail.receiverEmail')">
-            {{ detailModal.record.receiverEmail }}
+            {{ detailDrawer.record.receiverEmail }}
           </a-descriptions-item>
           <!-- 主题 -->
           <a-descriptions-item :label="$t('system.notify.mail.subjectField')">
-            {{ detailModal.record.subject }}
+            {{ detailDrawer.record.subject }}
           </a-descriptions-item>
           <!-- 业务场景 -->
           <a-descriptions-item :label="$t('system.notify.mail.businessType')">
-            {{ businessTypeText(detailModal.record.businessType) }}
+            {{ businessTypeText(detailDrawer.record.businessType) }}
           </a-descriptions-item>
           <!-- 发送状态 -->
           <a-descriptions-item :label="$t('system.notify.mail.status')">
             {{
-              detailModal.record.status === 'success'
+              detailDrawer.record.status === 'success'
                 ? $t('system.notify.mail.statusSuccess')
-                : detailModal.record.status === 'fail'
+                : detailDrawer.record.status === 'fail'
                   ? $t('system.notify.mail.statusFail')
                   : $t('system.notify.mail.statusSending')
             }}
           </a-descriptions-item>
           <!-- 失败原因 -->
-          <a-descriptions-item v-if="detailModal.record.status === 'fail'" :label="$t('system.notify.mail.errorMsg')">
-            {{ detailModal.record.errorMsg || '-' }}
+          <a-descriptions-item v-if="detailDrawer.record.status === 'fail'" :label="$t('system.notify.mail.errorMsg')">
+            {{ detailDrawer.record.errorMsg || '-' }}
           </a-descriptions-item>
           <!-- 重试次数 -->
           <a-descriptions-item :label="$t('system.notify.mail.retryCount')">
-            {{ detailModal.record.retryCount ?? 0 }}
+            {{ detailDrawer.record.retryCount ?? 0 }}
           </a-descriptions-item>
           <!-- 发送时间 -->
           <a-descriptions-item :label="$t('system.notify.mail.sendTime')">
-            {{ formatDateTime(detailModal.record.sendTime) || '-' }}
+            {{ formatDateTime(detailDrawer.record.sendTime) || '-' }}
           </a-descriptions-item>
         </a-descriptions>
       </div>
@@ -391,18 +386,18 @@
             <a-radio-button value="source">{{ $t('system.notify.mail.contentViewSource') }}</a-radio-button>
           </a-radio-group>
         </div>
-        <template v-if="detailModal.record.content">
+        <template v-if="detailDrawer.record.content">
           <iframe
             v-if="contentView === 'render'"
-            :srcdoc="detailModal.record.content"
+            :srcdoc="detailDrawer.record.content"
             sandbox=""
             class="detail-content__frame"
           />
-          <pre v-else class="detail-content__source">{{ detailModal.record.content }}</pre>
+          <pre v-else class="detail-content__source">{{ detailDrawer.record.content }}</pre>
         </template>
         <div v-else class="detail-content__empty">-</div>
       </div>
-    </a-modal>
+    </a-drawer>
   </div>
 </template>
 
