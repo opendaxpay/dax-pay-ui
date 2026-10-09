@@ -219,9 +219,9 @@
         <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
           <vxe-column field="terminalNo" :title="$t('payment.device.terminal.field.terminalNo')" :min-width="200" />
           <vxe-column field="name" :title="$t('payment.device.terminal.field.name')" :min-width="140" />
-          <vxe-column field="storeName" :title="$t('payment.device.terminal.field.store')" :min-width="160">
+          <vxe-column field="storeName" :title="$t('payment.device.terminal.field.store')" :min-width="160" :show-overflow="false">
             <template #default="{ row }">
-              <div v-if="row.storeNo" class="flex flex-col">
+              <div v-if="row.storeNo" class="flex flex-col gap-y-1">
                 <span>{{ row.storeName || '-' }}</span>
                 <span class="text-xs text-muted-foreground">{{ row.storeNo }}</span>
               </div>

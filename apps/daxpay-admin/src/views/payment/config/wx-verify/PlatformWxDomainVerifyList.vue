@@ -224,11 +224,11 @@
             field="mchName"
             :title="$t('payment.wxVerify.field.merchant')"
             :min-width="160"
-            show-overflow
+            :show-overflow="false"
           >
             <template #default="{ row }">
               <template v-if="row.platform">-</template>
-              <div v-else class="flex flex-col">
+              <div v-else class="flex flex-col gap-y-1">
                 <span>{{ row.mchName || '-' }}</span>
                 <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
               </div>
