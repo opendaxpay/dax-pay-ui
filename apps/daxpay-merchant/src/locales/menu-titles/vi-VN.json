@@ -56,5 +56,7 @@
   "menu.trade.allocOrder": "Đơn Phân Toán",
   "menu.trade.abnormalOrder": "Đơn hàng bất thường",
   "menu.trade.fundFlow": "Dòng tiền",
+
+  "menu.trade.unipayLog": "Nhật ký API thanh toán",
   "menu.payment.merchant.qrcode": "Quản lý mã QR"
 }

@@ -57,6 +57,7 @@ import mPaymentProduct from './payment/product.json';
 import mPaymentProviderCommon from './payment/provider/common.json';
 import mPaymentRecordCallbackRecord from './payment/record/callbackRecord.json';
 import mPaymentRecordFundFlow from './payment/record/fundFlow.json';
+import mPaymentRecordUnipayLog from './payment/record/unipayLog.json';
 import mPaymentTransfer from './payment/transfer.json';
 import mPaymentWxApp from './payment/wx/app.json';
 import mPaymentWxVerify from './payment/wxVerify.json';
@@ -124,6 +125,7 @@ const entries: LocaleEntry[] = [
   [['payment', 'provider', 'common'], mPaymentProviderCommon],
   [['payment', 'record', 'callbackRecord'], mPaymentRecordCallbackRecord],
   [['payment', 'record', 'fundFlow'], mPaymentRecordFundFlow],
+  [['payment', 'record', 'unipayLog'], mPaymentRecordUnipayLog],
   [['payment', 'transfer'], mPaymentTransfer],
   [['payment', 'wx', 'app'], mPaymentWxApp],
   [['payment', 'wxVerify'], mPaymentWxVerify],

@@ -56,5 +56,7 @@
   "menu.trade.allocOrder": "Pesanan Alokasi",
   "menu.trade.abnormalOrder": "Pesanan Abnormal",
   "menu.trade.fundFlow": "Arus Dana",
+
+  "menu.trade.unipayLog": "Log API Pembayaran",
   "menu.payment.merchant.qrcode": "Manajemen Kode QR"
 }

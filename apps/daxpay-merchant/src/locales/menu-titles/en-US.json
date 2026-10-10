@@ -56,5 +56,7 @@
   "menu.trade.allocOrder": "Allocation Orders",
   "menu.trade.abnormalOrder": "Abnormal Orders",
   "menu.trade.fundFlow": "Fund Flows",
+
+  "menu.trade.unipayLog": "Payment API Log",
   "menu.payment.merchant.qrcode": "QR Code Management"
 }

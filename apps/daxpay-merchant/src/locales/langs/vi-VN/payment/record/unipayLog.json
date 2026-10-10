@@ -1,0 +1,21 @@
+{
+  "reqId": "Request ID",
+  "apiPath": "Đường dẫn API",
+  "apiTitle": "Tên API",
+  "requestMethod": "HTTP Method",
+  "clientIp": "Client IP (declared)",
+  "requestIp": "Request IP",
+  "requestLocation": "Location",
+  "status": "Trạng thái",
+  "errorCode": "Error Code",
+  "errorMsg": "Error Message",
+  "durationMs": "Duration (ms)",
+  "traceId": "Trace ID",
+  "reqParam": "Request Body",
+  "resBody": "Response Body",
+  "operateTime": "Time",
+  "inputReqId": "Nhập request ID",
+  "inputApiPath": "Enter API path",
+  "inputTraceId": "Enter trace ID",
+  "detailTitle": "Chi tiết nhật ký API thanh toán"
+}

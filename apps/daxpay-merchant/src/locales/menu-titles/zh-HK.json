@@ -56,5 +56,7 @@
   "menu.trade.allocOrder": "分賬訂單",
   "menu.trade.abnormalOrder": "異常訂單",
   "menu.trade.fundFlow": "資金流水",
+
+  "menu.trade.unipayLog": "支付接口日誌",
   "menu.payment.merchant.qrcode": "碼牌管理"
 }

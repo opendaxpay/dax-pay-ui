@@ -221,6 +221,10 @@ export const PermCodes = {
     CallbackRecord: {
       VIEW: 'trade:callback-record:view',
     },
+    /** 统一支付接口调用日志(商户自助排障, 商户端只读) */
+    UnipayLog: {
+      VIEW: 'trade:unipay-log:view',
+    },
     /** 异常订单(终态收款台账, 商户端只读) */
     AbnormalOrder: {
       VIEW: 'trade:abnormal-order:view',
