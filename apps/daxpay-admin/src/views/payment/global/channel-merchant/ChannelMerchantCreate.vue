@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-  import { nextTick, onMounted, ref } from 'vue';
-  import { useRouter } from 'vue-router';
+  import { computed, nextTick, onMounted, ref } from 'vue';
+  import { useRoute, useRouter } from 'vue-router';
 
   import { useTabs } from '@vben/hooks';
   import { $t } from '@vben/locales';
@@ -10,31 +10,29 @@
   import { PayProductApi, type PayProductResult } from '#/api/payment/masterdata/product.api';
   import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import ChannelLogo from '#/components/channel/ChannelLogo.vue';
-  import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
+  import { MchPickerTable } from '#/components/mch-picker';
   import { channelI18nMap, channelNameMap, productI18nMap, productNameMap } from '#/enums/payment';
   import { useMessage } from '#/hooks/useMessage';
-  import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
   import { useSandboxEnabled } from '#/hooks/useSandboxEnabled';
 
   import ChannelMerchantCreateTransit from './ChannelMerchantCreateTransit.vue';
 
   defineOptions({ name: 'ChannelMerchantCreate' });
 
+  const route = useRoute();
   const router = useRouter();
 
-  const routeContext = useRequiredRouteQuery({
-    keys: ['mchNo'],
-    messageKey: 'payment.common.route.missingMchNo',
-    fallbackPath: '/payment/merchant',
-  });
   const { closeCurrentTab, setTabTitle } = useTabs();
   const { message } = useMessage();
 
   // 平台沙箱总闸关闭时产品卡右上角环境标签不展示(生产部署不出现沙箱概念)
   const { sandboxEnabled } = useSandboxEnabled();
 
-  // 从路由参数获取mchNo
+  // 商户号(路由携带时直达选产品, 否则先在页内选商户)
   const mchNo = ref('');
+
+  // 是否从页内选商户步发起(返回行为据此区分)
+  const fromPicker = ref(false);
 
   // 商户信息
   const merchantInfo = ref<MerchantInfo>({});
@@ -42,17 +40,28 @@
   // 商户信息加载状态
   const merchantLoading = ref(false);
 
-  // 当前步骤 (0-1)
+  // 当前步骤 (-1=选商户 0=选支付产品 1=通道配置)
   const currentStep = ref(0);
 
   // 加载状态
   const loading = ref(false);
 
-  // Step1: 选中的支付产品
+  // Step0: 选中的支付产品
   const selectedProduct = ref<null | PayProductResult>(null);
 
   // 支付产品列表
   const productList = ref<PayProductResult[]>([]);
+
+  // Step0 模式筛选: 全部/服务商/直连(服务商型产品开通时须在表单中选定归属服务商)
+  const modeFilter = ref<'all' | 'direct' | 'isv'>('all');
+
+  // 按模式筛选后的产品列表(isv 标识由后端产品接口随策略层下发)
+  const filteredProductList = computed(() => {
+    if (modeFilter.value === 'all') {
+      return productList.value;
+    }
+    return productList.value.filter((item) => (modeFilter.value === 'isv' ? item.isv === true : item.isv !== true));
+  });
 
   // Transit组件引用
   const transitRef = ref();
@@ -82,7 +91,7 @@
   }
 
   /**
-   * 加载商户信息
+   * 加载商户信息(路由携带商户号直达时补标题栏上下文)
    */
   function loadMerchantInfo() {
     if (!mchNo.value) return;
@@ -96,6 +105,25 @@
       .finally(() => {
         merchantLoading.value = false;
       });
+  }
+
+  /**
+   * 选中商户(选择表格上抛): 行数据直供标题栏上下文, 不再单独查详情
+   */
+  function handleSelectMch(row: MerchantInfo) {
+    mchNo.value = row.mchNo || '';
+    merchantInfo.value = row;
+  }
+
+  /**
+   * 选商户步下一步: 进入支付产品选择
+   */
+  function handlePickerNext() {
+    if (!mchNo.value) {
+      message.warning($t('payment.merchant.channelMerchant.pleaseSelectMch'));
+      return;
+    }
+    currentStep.value = 0;
   }
 
   /**
@@ -121,6 +149,15 @@
   }
 
   /**
+   * 切换模式筛选: 已选产品不在筛选结果内时清空选择, 避免"看不见但已选中"
+   */
+  function handleModeFilterChange() {
+    if (selectedProduct.value && !filteredProductList.value.some((item) => item.code === selectedProduct.value?.code)) {
+      selectedProduct.value = null;
+    }
+  }
+
+  /**
    * 下一步：进入通道配置
    */
   function handleNext() {
@@ -138,12 +175,20 @@
    * 返回：根据当前步骤判断返回行为
    */
   function handleBack() {
-    if (currentStep.value === 0) {
-      // 第一步：返回通道商户管理列表页面
-      router.push({
-        path: '/payment/global/channel-merchant',
-        query: { mchNo: mchNo.value },
-      });
+    if (currentStep.value === -1) {
+      // 选商户步: 返回全局通道商户列表
+      router.push('/payment/global/channel-merchants');
+    } else if (currentStep.value === 0) {
+      if (fromPicker.value) {
+        // 独立发起: 返回选商户步
+        currentStep.value = -1;
+      } else {
+        // 商户上下文进入: 返回通道商户管理列表页面
+        router.push({
+          path: '/payment/global/channel-merchant',
+          query: { mchNo: mchNo.value },
+        });
+      }
     } else {
       // 第二步及以后：返回上一步
       currentStep.value--;
@@ -165,24 +210,23 @@
   }
 
   onMounted(() => {
-    if (!routeContext.isValid.value) {
-      return;
-    }
-    mchNo.value = routeContext.query.value.mchNo;
     setTabTitle($t('payment.merchant.channelMerchant.createTitle'));
-    loadMerchantInfo();
+    // 路由携带商户号时直达选产品(从商户维度列表等上下文进入), 否则先选商户
+    const queryMchNo = route.query.mchNo ? String(route.query.mchNo) : '';
+    if (queryMchNo) {
+      mchNo.value = queryMchNo;
+      loadMerchantInfo();
+      currentStep.value = 0;
+    } else {
+      fromPicker.value = true;
+      currentStep.value = -1;
+    }
     loadProductList();
   });
 </script>
 
 <template>
-  <RouteQueryMissingState
-    v-if="!routeContext.isValid"
-    :description="$t('payment.common.route.missingMchNo')"
-    :back-text="$t('payment.merchant.workbench.workbench.backToList')"
-    @back="routeContext.goFallback"
-  />
-  <div v-else class="m-4">
+  <div class="m-4">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <!-- 国际化：创建通道商户 -->
@@ -199,16 +243,48 @@
         </PageTitleBar>
       </template>
 
-      <!-- Step1: 选择支付产品 -->
+      <!-- Step -1: 选择商户(表格单选+服务端分页, 独立发起时) -->
+      <div v-if="currentStep === -1">
+        <MchPickerTable :mch-no="mchNo" @select="handleSelectMch" />
+        <div class="mt-6 flex justify-center border-t border-border pt-6">
+          <a-button type="primary" :disabled="!mchNo" @click="handlePickerNext">
+            {{ $t('payment.merchant.channelMerchant.nextStep') }}
+          </a-button>
+        </div>
+      </div>
+
+      <!-- Step0: 选择支付产品 -->
       <div v-if="currentStep === 0">
+        <!-- 模式筛选: 服务商型产品开通时须选归属服务商, 直连型直接录通道凭据 -->
+        <div class="mb-3 flex justify-end">
+          <a-radio-group v-model:value="modeFilter" button-style="solid" size="small" @change="handleModeFilterChange">
+            <!-- 全部 -->
+            <a-radio-button value="all">{{ $t('payment.merchant.channelMerchant.modeFilterAll') }}</a-radio-button>
+            <!-- 服务商 -->
+            <a-radio-button value="isv">{{ $t('payment.merchant.channelMerchant.modeFilterIsv') }}</a-radio-button>
+            <!-- 直连 -->
+            <a-radio-button value="direct">{{
+              $t('payment.merchant.channelMerchant.modeFilterDirect')
+            }}</a-radio-button>
+          </a-radio-group>
+        </div>
         <a-spin :spinning="loading">
-          <div v-if="productList.length === 0 && !loading" class="flex items-center justify-center empty-container">
+          <div
+            v-if="filteredProductList.length === 0 && !loading"
+            class="flex items-center justify-center empty-container"
+          >
             <!-- 国际化：暂无可用支付产品 -->
-            <a-empty :description="$t('payment.merchant.channelMerchant.noEnabledProduct')" />
+            <a-empty
+              :description="
+                modeFilter === 'all'
+                  ? $t('payment.merchant.channelMerchant.noEnabledProduct')
+                  : $t('payment.merchant.channelMerchant.noEnabledProductInMode')
+              "
+            />
           </div>
           <div v-else class="product-select-grid">
             <div
-              v-for="item in productList"
+              v-for="item in filteredProductList"
               :key="item.code"
               class="product-select-card group relative overflow-hidden rounded-xl border transition-all duration-300 cursor-pointer hover:-translate-y-1 hover:shadow-lg"
               :class="
@@ -218,6 +294,29 @@
               "
               @click="handleSelectProduct(item)"
             >
+              <!-- 右上角角标区: 性质角标(创建页语境=选开通模式, 全部标注不豁免) + 环境标签(仅支持沙箱的产品且平台沙箱总闸开启时显示) -->
+              <div class="absolute top-2 right-2 z-20 flex items-center gap-1">
+                <!-- 服务商/直连性质角标 -->
+                <a-tag :color="item.isv ? 'geekblue' : 'green'" class="!m-0 env-tag-compact">
+                  {{
+                    item.isv
+                      ? $t('payment.merchant.channelMerchant.modeFilterIsv')
+                      : $t('payment.merchant.channelMerchant.modeFilterDirect')
+                  }}
+                </a-tag>
+                <!-- 环境标签: 只读展示产品当前 activeEnv -->
+                <a-tag
+                  v-if="sandboxEnabled && item.sandbox"
+                  :color="item.activeEnv === 'sandbox' ? 'orange' : 'blue'"
+                  class="!m-0 env-tag-compact"
+                >
+                  {{
+                    item.activeEnv === 'sandbox'
+                      ? $t('payment.constant.product.productConfig.sandboxLabel')
+                      : $t('payment.constant.product.productConfig.prodLabel')
+                  }}
+                </a-tag>
+              </div>
               <div class="flex flex-col items-center justify-center h-full p-5">
                 <div class="mb-3 transform transition-transform duration-300 group-hover:scale-110">
                   <ChannelLogo :product="item.code" :channel="item.channel!" :size="44" />
@@ -229,32 +328,19 @@
                   {{ getChannelName(item.channel || '') }}
                 </div>
               </div>
-              <!-- 右上角:环境状态标签(仅支持沙箱的产品且平台沙箱总闸开启时显示,只读展示产品当前 activeEnv) -->
-              <div v-if="sandboxEnabled && item.sandbox" class="absolute top-2 right-2 z-20">
-                <a-tag
-                  :color="item.activeEnv === 'sandbox' ? 'orange' : 'blue'"
-                  class="!m-0 env-tag-compact"
-                >
-                  {{
-                    item.activeEnv === 'sandbox'
-                      ? $t('payment.constant.product.productConfig.sandboxLabel')
-                      : $t('payment.constant.product.productConfig.prodLabel')
-                  }}
-                </a-tag>
-              </div>
             </div>
           </div>
         </a-spin>
       </div>
 
-      <!-- Step2: 通道配置（通道组件全权渲染） -->
+      <!-- Step1: 通道配置（通道组件全权渲染） -->
       <div v-if="currentStep === 1">
         <ChannelMerchantCreateTransit ref="transitRef" @prev="handleTransitPrev" @close="handleTransitClose" />
       </div>
 
       <!-- 底部操作按钮（只在产品选择步骤显示） -->
       <div v-if="currentStep === 0" class="flex justify-center gap-4 mt-8 pt-6 border-t border-border">
-        <a-button type="primary" :disabled="productList.length === 0" @click="handleNext">
+        <a-button type="primary" :disabled="filteredProductList.length === 0" @click="handleNext">
           {{ $t('payment.merchant.channelMerchant.nextStep') }}
         </a-button>
       </div>
@@ -296,7 +382,7 @@
     position: relative;
   }
 
-  /* 右上角环境标签迷你样式:穿透 antd scoped 边界,缩小为小徽标 */
+  /* 右上角角标迷你样式:穿透 antd scoped 边界,缩小为小徽标 */
   :deep(.env-tag-compact.ant-tag) {
     margin-right: 0;
     padding: 0 6px;

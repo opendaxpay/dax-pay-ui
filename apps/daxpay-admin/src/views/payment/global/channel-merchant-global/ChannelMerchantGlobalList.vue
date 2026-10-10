@@ -109,6 +109,13 @@
   }
 
   /**
+   * 独立发起创建通道商户(创建页无商户号时先选商户; 走挂通道商户下的独立子页路由, 高亮随通道商户)
+   */
+  function handleCreate() {
+    router.push('/payment/global/channel-merchant/create-global');
+  }
+
+  /**
    * 加载列表
    */
   function queryPage() {
@@ -181,18 +188,20 @@
 
 <template>
   <div class="m-3 p-3 bg-background rounded-lg list-page-compact">
-    <!-- 本页为平台侧公共(跨商户)通道商户只读视图, 增删需从商户管理下的通道商户列表操作 -->
-    <div class="mb-4 rounded-md bg-muted px-4 py-2 text-xs leading-5 text-muted-foreground">
-      {{ $t('payment.merchant.channelMerchant.globalListTip') }}
-    </div>
-
     <a-card>
       <BQuery :fields="queryFields" :query-params="queryForm" @query="queryPage" @reset="resetQuery" />
     </a-card>
 
     <div class="mt-4">
       <a-card>
-        <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }" />
+        <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
+          <template #buttons>
+            <!-- 独立发起创建通道商户(创建页无商户号时先选商户) -->
+            <a-button v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)" type="primary" @click="handleCreate">
+              {{ $t('payment.merchant.channelMerchant.create') }}
+            </a-button>
+          </template>
+        </vxe-toolbar>
         <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="list" :loading="loading">
           <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
           <!-- 支付产品（图标+名称） -->
