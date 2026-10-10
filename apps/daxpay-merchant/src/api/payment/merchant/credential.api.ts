@@ -33,11 +33,9 @@ export interface MerchantCredentialResult extends BaseEntity {
 }
 
 /**
- * 商户对接配置参数
+ * 商户对接配置参数（mchNo 由服务端从登录上下文组装，不透传）
  */
 export interface MerchantCredentialParam {
-  /** 商户号 */
-  mchNo: string;
   /** 商户公钥 */
   publicKey?: string;
   /** 通信密钥 */

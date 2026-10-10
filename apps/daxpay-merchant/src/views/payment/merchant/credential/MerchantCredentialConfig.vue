@@ -172,7 +172,6 @@
         const submitData: MerchantCredentialParam = {
           ...formState.value,
           ...sensitiveData,
-          mchNo: mchNo.value,
         };
         await MerchantCredentialApi.update(submitData);
         message.success($t('payment.merchant.credential.credential.saveSuccess'));
