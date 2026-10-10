@@ -57,6 +57,32 @@ export interface OssConfig {
 }
 
 /**
+ * 连通性检查步骤结果
+ */
+export interface CheckStep {
+  /** 步骤标识: connect-连接与桶存在 / write-写入 / read-读取 / publicAccess-公开访问 */
+  step?: string;
+  /** 步骤状态: success-通过 / failed-失败 / warning-警告 / skipped-跳过 */
+  status?: 'failed' | 'skipped' | 'success' | 'warning';
+  /** 失败或警告说明 */
+  message?: string;
+}
+
+/**
+ * 存储桶连通性检查明细
+ */
+export interface BucketCheckDetail {
+  /** 桶名称 */
+  bucketName?: string;
+  /** 该桶读写闭环是否通过 */
+  success?: boolean;
+  /** 失败概述 */
+  message?: string;
+  /** 分步检查结果 */
+  steps?: CheckStep[];
+}
+
+/**
  * 连通性检查结果
  */
 export interface ConnectivityCheckResult {
@@ -66,4 +92,8 @@ export interface ConnectivityCheckResult {
   latencyMs?: number;
   /** 警告信息（检查通过但存在隐患时有值，如公开访问域名不可达） */
   warning?: string;
+  /** 公开桶检查明细（两桶各自独立检查，一桶失败不影响另一桶明细呈现） */
+  publicBucketDetail?: BucketCheckDetail;
+  /** 私有桶检查明细 */
+  privateBucketDetail?: BucketCheckDetail;
 }

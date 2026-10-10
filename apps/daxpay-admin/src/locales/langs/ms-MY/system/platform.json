@@ -152,7 +152,21 @@
       "notConfigured": "Tidak Dikonfigurasikan",
       "bucket": "Baldi: {bucket}"
     },
-    "checkUsesFormValue": "Semakan menggunakan nilai borang semasa; berkuat kuasa selepas disimpan"
+    "checkUsesFormValue": "Semakan menggunakan nilai borang semasa; berkuat kuasa selepas disimpan",
+    "checkResultTitle": "Keputusan uji sambungan",
+    "checkLatency": "Masa: {ms} ms",
+    "checkStep": {
+      "connect": "Sambungan & bucket wujud",
+      "write": "Kebenaran tulis",
+      "read": "Kebenaran baca",
+      "publicAccess": "Akses awam"
+    },
+    "checkStatus": {
+      "success": "Lulus",
+      "failed": "Gagal",
+      "warning": "Amaran",
+      "skipped": "Tidak diperiksa"
+    }
   },
   "mail": {
     "title": "Konfigurasi E-mel",

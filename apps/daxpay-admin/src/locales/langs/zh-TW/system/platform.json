@@ -152,7 +152,21 @@
       "notConfigured": "未配置",
       "bucket": "儲存桶: {bucket}"
     },
-    "checkUsesFormValue": "測試使用表單目前值, 儲存後才會生效"
+    "checkUsesFormValue": "測試使用表單目前值, 儲存後才會生效",
+    "checkResultTitle": "連線測試結果",
+    "checkLatency": "耗時 {ms} ms",
+    "checkStep": {
+      "connect": "連線與桶存在",
+      "write": "寫入權限",
+      "read": "讀取權限",
+      "publicAccess": "公開存取"
+    },
+    "checkStatus": {
+      "success": "通過",
+      "failed": "未通過",
+      "warning": "警告",
+      "skipped": "未檢查"
+    }
   },
   "mail": {
     "title": "郵件設定",

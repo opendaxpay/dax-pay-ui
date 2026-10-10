@@ -152,7 +152,21 @@
       "notConfigured": "Chưa được định cấu hình",
       "bucket": "Nhóm: {bucket}"
     },
-    "checkUsesFormValue": "Kiểm tra sử dụng giá trị biểu mẫu hiện tại; chỉ có hiệu lực sau khi lưu"
+    "checkUsesFormValue": "Kiểm tra sử dụng giá trị biểu mẫu hiện tại; chỉ có hiệu lực sau khi lưu",
+    "checkResultTitle": "Kết quả kiểm tra kết nối",
+    "checkLatency": "Thời gian: {ms} ms",
+    "checkStep": {
+      "connect": "Kết nối & bucket tồn tại",
+      "write": "Quyền ghi",
+      "read": "Quyền đọc",
+      "publicAccess": "Truy cập công khai"
+    },
+    "checkStatus": {
+      "success": "Đạt",
+      "failed": "Không đạt",
+      "warning": "Cảnh báo",
+      "skipped": "Chưa kiểm tra"
+    }
   },
   "mail": {
     "title": "Cấu hình Email",

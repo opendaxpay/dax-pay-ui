@@ -4,7 +4,11 @@
   import { IconifyIcon } from '@vben-core/icons';
   import { $t } from '@vben/locales';
 
-  import { type OssConfig, OssConfigApi } from '#/api/system/oss-config.api';
+  import {
+    type ConnectivityCheckResult,
+    type OssConfig,
+    OssConfigApi,
+  } from '#/api/system/oss-config.api';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
 
@@ -22,6 +26,10 @@
   const originalValues = ref<OssConfig>({});
   // 表单数据
   const formState = ref<OssConfig>({});
+  // 连接测试结果弹窗
+  const checkResultOpen = ref(false);
+  // 最近一次连接测试结果(含公开桶/私有桶分步明细)
+  const checkResult = ref<ConnectivityCheckResult>();
   // 表单是否与已保存配置存在差异(影响"测试连接"结果的含义, 见 handleCheck)
   const isConfigChanged = computed(() => {
     const diff = diffForm(originalValues.value, formState.value, ...Object.keys(formState.value));
@@ -123,6 +131,8 @@
    * 测试 OSS 连通性
    *
    * 密钥未改时不传 accessKey/secretKey, 后端用库中真实密钥合并探测.
+   * 新版后端返回公开桶/私有桶各自独立的分步明细, 弹窗展示整体情况(一桶失败不影响另一桶呈现);
+   * 无明细的响应(如配置不完整)退回 toast 提示.
    */
   async function handleCheck() {
     checking.value = true;
@@ -140,6 +150,11 @@
         ...sensitiveData,
       };
       const { data } = await OssConfigApi.check(payload);
+      if (data?.publicBucketDetail || data?.privateBucketDetail) {
+        checkResult.value = data;
+        checkResultOpen.value = true;
+        return;
+      }
       if (data?.success) {
         const latency = data.latencyMs != null ? ` (${data.latencyMs}ms)` : '';
         message.success(`${data.message || $t('system.platform.oss.checkSuccess')}${latency}`);
@@ -157,6 +172,82 @@
     } finally {
       checking.value = false;
     }
+  }
+
+  // 弹窗中分桶展示的检查明细(公开桶/私有桶各一块)
+  const checkBuckets = computed(() => {
+    if (!checkResult.value) {
+      return [];
+    }
+    return [
+      {
+        label: $t('system.platform.oss.publicBucket'),
+        detail: checkResult.value.publicBucketDetail,
+      },
+      {
+        label: $t('system.platform.oss.privateBucket'),
+        detail: checkResult.value.privateBucketDetail,
+      },
+    ];
+  });
+
+  /**
+   * 检查步骤标识对应的展示名称
+   */
+  function stepLabel(step?: string) {
+    const labelMap: Record<string, string> = {
+      connect: $t('system.platform.oss.checkStep.connect'),
+      publicAccess: $t('system.platform.oss.checkStep.publicAccess'),
+      read: $t('system.platform.oss.checkStep.read'),
+      write: $t('system.platform.oss.checkStep.write'),
+    };
+    return labelMap[step ?? ''] ?? step ?? '';
+  }
+
+  /**
+   * 步骤状态对应的图标
+   */
+  function stepIcon(status?: string) {
+    const iconMap: Record<string, string> = {
+      failed: 'ant-design:close-circle-filled',
+      skipped: 'ant-design:minus-circle-filled',
+      success: 'ant-design:check-circle-filled',
+      warning: 'ant-design:exclamation-circle-filled',
+    };
+    return iconMap[status ?? ''] ?? 'ant-design:minus-circle-filled';
+  }
+
+  /**
+   * 步骤状态图标的颜色
+   */
+  function stepIconClass(status?: string) {
+    const classMap: Record<string, string> = {
+      failed: 'text-red-500',
+      skipped: 'text-gray-400',
+      success: 'text-green-600',
+      warning: 'text-orange-500',
+    };
+    return classMap[status ?? ''] ?? 'text-gray-400';
+  }
+
+  /**
+   * 步骤状态的展示文案
+   */
+  function statusText(status?: string) {
+    const textMap: Record<string, string> = {
+      failed: $t('system.platform.oss.checkStatus.failed'),
+      skipped: $t('system.platform.oss.checkStatus.skipped'),
+      success: $t('system.platform.oss.checkStatus.success'),
+      warning: $t('system.platform.oss.checkStatus.warning'),
+    };
+    return textMap[status ?? ''] ?? '';
+  }
+
+  /**
+   * 步骤失败/警告说明的展示颜色
+   */
+  function stepMessageClass(status?: string) {
+    return status === 'warning' ? 'text-orange-500' : 'text-red-500';
   }
 
   // 测试连接按钮文案(响应式, 随语言切换更新)
@@ -416,5 +507,81 @@
         </div>
       </a-form>
   </a-spin>
+
+  <!-- 连接测试结果弹窗: 公开桶/私有桶各自独立检查, 分步展示整体情况 -->
+  <a-modal
+    v-model:open="checkResultOpen"
+    :footer="null"
+    :title="$t('system.platform.oss.checkResultTitle')"
+    :width="600"
+  >
+    <div v-if="checkResult" class="flex flex-col gap-4">
+      <!-- 总体结果与耗时 -->
+      <a-alert :type="checkResult.success ? 'success' : 'error'" show-icon>
+        <template #message>
+          <span>{{ checkResult.message }}</span>
+          <span v-if="checkResult.latencyMs != null" class="ml-2 text-xs opacity-70">
+            {{ $t('system.platform.oss.checkLatency', { ms: checkResult.latencyMs }) }}
+          </span>
+        </template>
+      </a-alert>
+
+      <!-- 分桶明细 -->
+      <div
+        v-for="bucket in checkBuckets"
+        :key="bucket.label"
+        class="rounded-lg border border-gray-200 p-3 dark:border-gray-700"
+      >
+        <div class="mb-2 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="font-medium">{{ bucket.label }}</span>
+            <span class="text-xs text-gray-400">{{ bucket.detail?.bucketName }}</span>
+          </div>
+          <!-- 该桶读写闭环结论(公开访问不可达属警告, 不影响本结论) -->
+          <a-tag :color="bucket.detail?.success ? 'success' : 'error'">
+            {{ bucket.detail?.success
+              ? $t('system.platform.oss.checkStatus.success')
+              : $t('system.platform.oss.checkStatus.failed') }}
+          </a-tag>
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <div
+            v-for="step in bucket.detail?.steps"
+            :key="step.step"
+            class="flex flex-col"
+          >
+            <!-- 步骤名与状态固定一行不换行, 避免被长说明挤压成逐字断行 -->
+            <div class="flex items-center gap-2 text-sm">
+              <IconifyIcon
+                :icon="stepIcon(step.status)"
+                :class="stepIconClass(step.status)"
+                class="shrink-0"
+              />
+              <span class="whitespace-nowrap">{{ stepLabel(step.step) }}</span>
+              <span :class="stepIconClass(step.status)" class="text-xs whitespace-nowrap">
+                {{ statusText(step.status) }}
+              </span>
+            </div>
+            <!-- 失败或警告说明独立成行, 左侧缩进与步骤名文字对齐 -->
+            <div
+              v-if="step.message"
+              :class="stepMessageClass(step.status)"
+              class="pl-6 text-xs leading-relaxed"
+            >
+              {{ step.message }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 测试使用表单当前值, 未保存时实际上传仍按库中旧配置执行 -->
+      <a-alert
+        v-if="isConfigChanged"
+        :message="$t('system.platform.oss.checkUsesFormValue')"
+        show-icon
+        type="warning"
+      />
+    </div>
+  </a-modal>
 </template>
 

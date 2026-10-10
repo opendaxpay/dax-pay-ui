@@ -152,7 +152,21 @@
       "notConfigured": "未構成",
       "bucket": "バケット: {bucket}"
     },
-    "checkUsesFormValue": "テストはフォームの現在値を使用します。保存後に反映されます"
+    "checkUsesFormValue": "テストはフォームの現在値を使用します。保存後に反映されます",
+    "checkResultTitle": "接続テスト結果",
+    "checkLatency": "所要時間 {ms} ms",
+    "checkStep": {
+      "connect": "接続とバケット存在",
+      "write": "書き込み権限",
+      "read": "読み取り権限",
+      "publicAccess": "公開アクセス"
+    },
+    "checkStatus": {
+      "success": "合格",
+      "failed": "不合格",
+      "warning": "警告",
+      "skipped": "未チェック"
+    }
   },
   "mail": {
     "title": "メール設定",

@@ -152,7 +152,21 @@
       "notConfigured": "Tidak Dikonfigurasi",
       "bucket": "Ember: {bucket}"
     },
-    "checkUsesFormValue": "Pemeriksaan menggunakan nilai formulir saat ini; berlaku setelah disimpan"
+    "checkUsesFormValue": "Pemeriksaan menggunakan nilai formulir saat ini; berlaku setelah disimpan",
+    "checkResultTitle": "Hasil uji koneksi",
+    "checkLatency": "Waktu: {ms} ms",
+    "checkStep": {
+      "connect": "Koneksi & bucket ada",
+      "write": "Izin tulis",
+      "read": "Izin baca",
+      "publicAccess": "Akses publik"
+    },
+    "checkStatus": {
+      "success": "Lolos",
+      "failed": "Gagal",
+      "warning": "Peringatan",
+      "skipped": "Tidak diperiksa"
+    }
   },
   "mail": {
     "title": "Konfigurasi Email",

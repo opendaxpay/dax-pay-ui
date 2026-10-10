@@ -152,7 +152,21 @@
       "notConfigured": "구성되지 않음",
       "bucket": "버킷: {bucket}"
     },
-    "checkUsesFormValue": "테스트는 현재 양식 값을 사용하며, 저장 후에 적용됩니다."
+    "checkUsesFormValue": "테스트는 현재 양식 값을 사용하며, 저장 후에 적용됩니다.",
+    "checkResultTitle": "연결 테스트 결과",
+    "checkLatency": "소요 시간 {ms} ms",
+    "checkStep": {
+      "connect": "연결 및 버킷 존재",
+      "write": "쓰기 권한",
+      "read": "읽기 권한",
+      "publicAccess": "공개 액세스"
+    },
+    "checkStatus": {
+      "success": "통과",
+      "failed": "실패",
+      "warning": "경고",
+      "skipped": "미확인"
+    }
   },
   "mail": {
     "title": "메일 설정",

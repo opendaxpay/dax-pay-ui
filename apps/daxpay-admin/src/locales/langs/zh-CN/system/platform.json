@@ -152,7 +152,21 @@
       "notConfigured": "未配置",
       "bucket": "存储桶: {bucket}"
     },
-    "checkUsesFormValue": "测试使用表单当前值, 保存后才会生效"
+    "checkUsesFormValue": "测试使用表单当前值, 保存后才会生效",
+    "checkResultTitle": "连接测试结果",
+    "checkLatency": "耗时 {ms} ms",
+    "checkStep": {
+      "connect": "连接与桶存在",
+      "write": "写入权限",
+      "read": "读取权限",
+      "publicAccess": "公开访问"
+    },
+    "checkStatus": {
+      "success": "通过",
+      "failed": "未通过",
+      "warning": "警告",
+      "skipped": "未检查"
+    }
   },
   "mail": {
     "title": "邮件配置",

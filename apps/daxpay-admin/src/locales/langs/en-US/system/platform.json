@@ -152,7 +152,21 @@
       "notConfigured": "Not Configured",
       "bucket": "Bucket: {bucket}"
     },
-    "checkUsesFormValue": "The check uses the current form values; they take effect only after saving"
+    "checkUsesFormValue": "The check uses the current form values; they take effect only after saving",
+    "checkResultTitle": "Connection test result",
+    "checkLatency": "Time: {ms} ms",
+    "checkStep": {
+      "connect": "Connect & bucket exists",
+      "write": "Write permission",
+      "read": "Read permission",
+      "publicAccess": "Public access"
+    },
+    "checkStatus": {
+      "success": "Pass",
+      "failed": "Fail",
+      "warning": "Warning",
+      "skipped": "Not checked"
+    }
   },
   "mail": {
     "title": "Mail Config",
