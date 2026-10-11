@@ -52,14 +52,11 @@
   // 支付产品列表
   const productList = ref<PayProductResult[]>([]);
 
-  // Step0 模式筛选: 全部/服务商/直连(服务商型产品开通时须在表单中选定归属服务商)
-  const modeFilter = ref<'all' | 'direct' | 'isv'>('all');
+  // Step0 模式筛选: 服务商/直连二选一, 无"全部"(服务商型产品开通时须在表单中选定归属服务商)
+  const modeFilter = ref<'direct' | 'isv'>('direct');
 
   // 按模式筛选后的产品列表(isv 标识由后端产品接口随策略层下发)
   const filteredProductList = computed(() => {
-    if (modeFilter.value === 'all') {
-      return productList.value;
-    }
     return productList.value.filter((item) => (modeFilter.value === 'isv' ? item.isv === true : item.isv !== true));
   });
 
@@ -255,11 +252,9 @@
 
       <!-- Step0: 选择支付产品 -->
       <div v-if="currentStep === 0">
-        <!-- 模式筛选: 服务商型产品开通时须选归属服务商, 直连型直接录通道凭据 -->
+        <!-- 模式筛选: 服务商/直连二选一(服务商型产品开通时须选归属服务商, 直连型直接录通道凭据) -->
         <div class="mb-3 flex justify-end">
           <a-radio-group v-model:value="modeFilter" button-style="solid" size="small" @change="handleModeFilterChange">
-            <!-- 全部 -->
-            <a-radio-button value="all">{{ $t('payment.merchant.channelMerchant.modeFilterAll') }}</a-radio-button>
             <!-- 服务商 -->
             <a-radio-button value="isv">{{ $t('payment.merchant.channelMerchant.modeFilterIsv') }}</a-radio-button>
             <!-- 直连 -->
@@ -273,10 +268,10 @@
             v-if="filteredProductList.length === 0 && !loading"
             class="flex items-center justify-center empty-container"
           >
-            <!-- 国际化：暂无可用支付产品 -->
+            <!-- 国际化：暂无可用支付产品(区分整体无产品与该模式下无产品) -->
             <a-empty
               :description="
-                modeFilter === 'all'
+                productList.length === 0
                   ? $t('payment.merchant.channelMerchant.noEnabledProduct')
                   : $t('payment.merchant.channelMerchant.noEnabledProductInMode')
               "
@@ -294,27 +289,14 @@
               "
               @click="handleSelectProduct(item)"
             >
-              <!-- 右上角角标区: 性质角标(创建页语境=选开通模式, 全部标注不豁免) + 环境标签(仅支持沙箱的产品且平台沙箱总闸开启时显示) -->
+              <!-- 右上角角标区: 环境警示角标(生产为常态不标注, 仅产品处于沙箱环境时警示本次开通将落沙箱) -->
               <div class="absolute top-2 right-2 z-20 flex items-center gap-1">
-                <!-- 服务商/直连性质角标 -->
-                <a-tag :color="item.isv ? 'geekblue' : 'green'" class="!m-0 env-tag-compact">
-                  {{
-                    item.isv
-                      ? $t('payment.merchant.channelMerchant.modeFilterIsv')
-                      : $t('payment.merchant.channelMerchant.modeFilterDirect')
-                  }}
-                </a-tag>
-                <!-- 环境标签: 只读展示产品当前 activeEnv -->
                 <a-tag
-                  v-if="sandboxEnabled && item.sandbox"
-                  :color="item.activeEnv === 'sandbox' ? 'orange' : 'blue'"
+                  v-if="sandboxEnabled && item.sandbox && item.activeEnv === 'sandbox'"
+                  color="orange"
                   class="!m-0 env-tag-compact"
                 >
-                  {{
-                    item.activeEnv === 'sandbox'
-                      ? $t('payment.constant.product.productConfig.sandboxLabel')
-                      : $t('payment.constant.product.productConfig.prodLabel')
-                  }}
+                  {{ $t('payment.constant.product.productConfig.sandboxLabel') }}
                 </a-tag>
               </div>
               <div class="flex flex-col items-center justify-center h-full p-5">

@@ -134,11 +134,13 @@
 
 <template>
   <component v-if="activeComponent" :is="activeComponent" ref="activeRef" @prev="emit('prev')" @close="emit('close')" />
-  <!-- 未实现通道兜底: 空状态提示 + 返回上一步重选产品 -->
-  <div v-else class="flex flex-col items-center justify-center" style="min-height: 400px">
+  <!-- 未实现通道兜底: 空状态提示 + 底部返回上一步(按钮形态与常规步骤页一致) -->
+  <div v-else class="flex flex-col" style="min-height: 400px">
     <!-- 国际化：该通道暂未支持在线开通 -->
-    <a-empty :description="$t('payment.merchant.channelMerchant.createNotSupportYet')" />
-    <div class="mt-4">
+    <div class="flex flex-1 items-center justify-center">
+      <a-empty :description="$t('payment.merchant.channelMerchant.createNotSupportYet')" />
+    </div>
+    <div class="flex justify-center gap-4 pt-6 border-t border-border">
       <a-button @click="emit('prev')">{{ $t('payment.merchant.channelMerchant.prevStep') }}</a-button>
     </div>
   </div>

@@ -78,7 +78,6 @@
   "noEnabledProduct": "暂无已启用的支付产品",
   "noEnabledProductInMode": "该模式下暂无已启用的支付产品",
   "pleaseSelectMch": "请先选择商户",
-  "modeFilterAll": "全部",
   "modeFilterIsv": "服务商",
   "modeFilterDirect": "直连",
   "createNotSupportYet": "该通道暂未支持在线开通",
