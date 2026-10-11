@@ -194,17 +194,14 @@
               </a-tag>
             </template>
           </vxe-column>
-          <vxe-column
-            field="mchName"
-            :title="$t('payment.order.field.merchant')"
-            :min-width="160"
-            :show-overflow="false"
-          >
+          <vxe-column field="mchName" :title="$t('payment.order.field.merchant')" :min-width="160">
             <template #default="{ row }">
-              <div class="flex flex-col gap-y-1">
-                <span>{{ row.mchName || row.mchNo || '-' }}</span>
-                <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
-              </div>
+              <span
+                >{{ row.mchNo || row.mchName || '-'
+                }}<span v-if="row.mchNo && row.mchName" class="text-xs text-muted-foreground"
+                  >（{{ row.mchName }}）</span
+                ></span
+              >
             </template>
           </vxe-column>
           <vxe-column

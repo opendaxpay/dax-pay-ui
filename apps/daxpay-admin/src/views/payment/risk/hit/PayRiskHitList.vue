@@ -134,18 +134,15 @@
           <vxe-column field="clientCity" :title="$t('payment.risk.hit.field.clientCity')" :min-width="110" />
           <!-- 交易号 -->
           <vxe-column field="tradeNo" :title="$t('payment.risk.hit.field.tradeNo')" :min-width="140" />
-          <!-- 商户: 名称上 + 号下小字两排 -->
-          <vxe-column
-            field="mchName"
-            :title="$t('payment.risk.hit.field.merchant')"
-            :min-width="160"
-            :show-overflow="false"
-          >
+          <!-- 商户: 号(名称)单行 -->
+          <vxe-column field="mchName" :title="$t('payment.risk.hit.field.merchant')" :min-width="160">
             <template #default="{ row }">
-              <div class="flex flex-col gap-y-1">
-                <span>{{ row.mchName || '-' }}</span>
-                <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
-              </div>
+              <span
+                >{{ row.mchNo || row.mchName || '-'
+                }}<span v-if="row.mchNo && row.mchName" class="text-xs text-muted-foreground"
+                  >（{{ row.mchName }}）</span
+                ></span
+              >
             </template>
           </vxe-column>
           <!-- 创建时间 -->

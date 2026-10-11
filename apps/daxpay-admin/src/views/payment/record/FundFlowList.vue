@@ -185,17 +185,14 @@
             <template #default="{ row }">{{ formatAmount(row.amount) }}</template>
           </vxe-column>
           <vxe-column field="title" :title="$t('payment.order.field.title')" :min-width="150" show-overflow />
-          <vxe-column
-            field="mchName"
-            :title="$t('payment.order.field.merchant')"
-            :min-width="140"
-            :show-overflow="false"
-          >
+          <vxe-column field="mchName" :title="$t('payment.order.field.merchant')" :min-width="140">
             <template #default="{ row }">
-              <div class="flex flex-col gap-y-1">
-                <span>{{ row.mchName || row.mchNo || '-' }}</span>
-                <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
-              </div>
+              <span
+                >{{ row.mchNo || row.mchName || '-'
+                }}<span v-if="row.mchNo && row.mchName" class="text-xs text-muted-foreground"
+                  >（{{ row.mchName }}）</span
+                ></span
+              >
             </template>
           </vxe-column>
           <vxe-column field="outOrderNo" :title="$t('payment.order.field.outOrderNo')" :min-width="190" show-overflow />

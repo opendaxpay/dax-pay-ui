@@ -9,8 +9,8 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { DeviceQrCodeApi, type DeviceQrCodeResult } from '#/api/payment/device/qrcode.api';
-  import { BQuery, type QueryField } from '#/components/query';
   import { QrCode } from '#/components/qrcode';
+  import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
@@ -193,13 +193,7 @@
     }
     bindMerchantRef.value?.show(ids, {
       boundCount: boundRows.value.length,
-      boundMchNames: [
-        ...new Set(
-          boundRows.value
-            .map((row) => row.mchName)
-            .filter((name): name is string => !!name),
-        ),
-      ],
+      boundMchNames: [...new Set(boundRows.value.map((row) => row.mchName).filter((name): name is string => !!name))],
     });
   }
 
@@ -432,13 +426,13 @@
               <span v-else style="color: var(--text-color-placeholder)">-</span>
             </template>
           </vxe-column>
-          <!-- 商户: 已绑定名称上+号下小字; 未绑定 tag -->
-          <vxe-column field="mchName" :title="$t('payment.device.qrcode.field.merchant')" :min-width="160" :show-overflow="false">
+          <!-- 商户: 已绑定号(名称)单行; 未绑定 tag -->
+          <vxe-column field="mchName" :title="$t('payment.device.qrcode.field.merchant')" :min-width="160">
             <template #default="{ row }">
-              <div v-if="row.mchNo" class="flex flex-col gap-y-1">
-                <span>{{ row.mchName || '-' }}</span>
-                <span class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
-              </div>
+              <span v-if="row.mchNo"
+                >{{ row.mchNo
+                }}<span v-if="row.mchName" class="text-xs text-muted-foreground">（{{ row.mchName }}）</span></span
+              >
               <a-tag v-else color="default">{{ $t('payment.device.qrcode.unbound') }}</a-tag>
             </template>
           </vxe-column>

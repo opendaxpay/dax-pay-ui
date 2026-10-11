@@ -190,12 +190,7 @@
             </template>
           </vxe-column>
           <!-- 国际化：归属 -->
-          <vxe-column
-            field="platform"
-            :title="$t('payment.wxVerify.field.belong')"
-            :width="100"
-            align="center"
-          >
+          <vxe-column field="platform" :title="$t('payment.wxVerify.field.belong')" :width="100" align="center">
             <template #default="{ row }">
               <a-tag v-if="row.platform" color="blue">
                 {{ $t('payment.wxVerify.belong.platform') }}
@@ -213,25 +208,17 @@
             show-overflow
           />
           <!-- 国际化：备注 -->
-          <vxe-column
-            field="remark"
-            :title="$t('payment.wxVerify.field.remark')"
-            :min-width="160"
-            show-overflow
-          />
-          <!-- 国际化：商户(名称上 + 号下小字; 平台级显示 -) -->
-          <vxe-column
-            field="mchName"
-            :title="$t('payment.wxVerify.field.merchant')"
-            :min-width="160"
-            :show-overflow="false"
-          >
+          <vxe-column field="remark" :title="$t('payment.wxVerify.field.remark')" :min-width="160" show-overflow />
+          <!-- 国际化：商户(号(名称)单行; 平台级显示 -) -->
+          <vxe-column field="mchName" :title="$t('payment.wxVerify.field.merchant')" :min-width="160">
             <template #default="{ row }">
               <template v-if="row.platform">-</template>
-              <div v-else class="flex flex-col gap-y-1">
-                <span>{{ row.mchName || '-' }}</span>
-                <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
-              </div>
+              <span v-else
+                >{{ row.mchNo || row.mchName || '-'
+                }}<span v-if="row.mchNo && row.mchName" class="text-xs text-muted-foreground"
+                  >（{{ row.mchName }}）</span
+                ></span
+              >
             </template>
           </vxe-column>
           <!-- 国际化：创建时间 -->

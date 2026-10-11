@@ -218,17 +218,14 @@
             </template>
           </vxe-column>
           <vxe-column field="sendCount" :title="$t('payment.notice.mchNotice.sendCount')" width="90" align="center" />
-          <vxe-column
-            field="mchName"
-            :title="$t('payment.order.field.merchant')"
-            :min-width="140"
-            :show-overflow="false"
-          >
+          <vxe-column field="mchName" :title="$t('payment.order.field.merchant')" :min-width="140">
             <template #default="{ row }">
-              <div class="flex flex-col gap-y-1">
-                <span>{{ row.mchName || row.mchNo || '-' }}</span>
-                <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
-              </div>
+              <span
+                >{{ row.mchNo || row.mchName || '-'
+                }}<span v-if="row.mchNo && row.mchName" class="text-xs text-muted-foreground"
+                  >（{{ row.mchName }}）</span
+                ></span
+              >
             </template>
           </vxe-column>
           <vxe-column

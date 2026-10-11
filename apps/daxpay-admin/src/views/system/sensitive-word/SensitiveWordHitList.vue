@@ -175,18 +175,15 @@
             <template #default="{ row }">{{ sourceLabel(row.source) }}</template>
           </vxe-column>
           <vxe-column field="clientIp" :title="$t('system.sensitiveWord.hit.field.clientIp')" width="140" />
-          <!-- 商户: 名称上 + 号下小字两排(名可能为空) -->
-          <vxe-column
-            field="mchName"
-            :title="$t('system.sensitiveWord.hit.field.merchant')"
-            :min-width="160"
-            :show-overflow="false"
-          >
+          <!-- 商户: 号(名称)单行(名可能为空) -->
+          <vxe-column field="mchName" :title="$t('system.sensitiveWord.hit.field.merchant')" :min-width="160">
             <template #default="{ row }">
-              <div class="flex flex-col gap-y-1">
-                <span>{{ row.mchName || '-' }}</span>
-                <span v-if="row.mchNo" class="text-xs text-muted-foreground">{{ row.mchNo }}</span>
-              </div>
+              <span
+                >{{ row.mchNo || row.mchName || '-'
+                }}<span v-if="row.mchNo && row.mchName" class="text-xs text-muted-foreground"
+                  >（{{ row.mchName }}）</span
+                ></span
+              >
             </template>
           </vxe-column>
           <vxe-column
