@@ -1347,6 +1347,9 @@ importers:
       antdv-next:
         specifier: 'catalog:'
         version: 1.6.0(vue@3.5.43(typescript@5.9.3))
+      dayjs:
+        specifier: 'catalog:'
+        version: 1.11.23
       pinia:
         specifier: ^3.0.4
         version: 3.0.4(typescript@5.9.3)(vue@3.5.43(typescript@5.9.3))

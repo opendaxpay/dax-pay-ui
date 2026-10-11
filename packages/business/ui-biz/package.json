@@ -250,6 +250,7 @@
     "@vueuse/core": "catalog:",
     "@types/qrcode": "catalog:",
     "antdv-next": "catalog:",
+    "dayjs": "catalog:",
     "pinia": "catalog:",
     "qrcode": "catalog:",
     "vue": "catalog:",

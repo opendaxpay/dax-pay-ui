@@ -35,6 +35,7 @@ export interface QueryField {
   placeholder?: [string, string] | string;
   precision?: number;
   selectList?: null | SelectOption[];
+  /** 范围选择器是否显示预设快捷范围(默认开启, 传 false 关闭; 仅 date_range / date_time_range 类型生效) */
   shortcuts?: boolean;
   startField?: string;
   type?: QueryFieldType;

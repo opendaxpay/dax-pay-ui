@@ -1,10 +1,13 @@
 <script lang="ts" setup>
+  import type { RangePickerProps } from 'antdv-next';
+
   import type { QueryField } from './query';
 
   import { computed } from 'vue';
 
   import { $t } from '@vben/locales';
-  import { formatDate } from '@vben/utils';
+
+  import dayjs from 'dayjs';
 
   import { BOOLEAN, DATE, DATE_RANGE, DATE_TIME, DATE_TIME_RANGE, LIST, NUMBER, NUMBER_RANGE, STRING, TIME } from './query';
 
@@ -80,61 +83,52 @@
     return $t('components.query.inputQueryValue');
   }
 
-  const dateRangeShortcuts = [
+  // 范围选择器的预设快捷范围(默认开启, 字段配置 shortcuts 传 false 可单独关闭)
+  // value 用函数返回 dayjs, 每次点击实时计算; 结束边统一取当天 23:59:59,
+  // 避免带时分秒的 date_time_range 类型点预设后漏掉结束当天的数据
+  const dateRangePresets: RangePickerProps['presets'] = [
+    // 今天
     {
       label: $t('components.query.today'),
-      value: () => {
-        const today = new Date();
-        const todayStr = formatDate(today);
-        return [todayStr, todayStr];
-      },
+      value: () => [dayjs().startOf('day'), dayjs().endOf('day')],
     },
+    // 昨天
     {
       label: $t('components.query.yesterday'),
-      value: () => {
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        const yesterdayStr = formatDate(yesterday);
-        return [yesterdayStr, yesterdayStr];
-      },
+      value: () => [
+        dayjs().subtract(1, 'day').startOf('day'),
+        dayjs().subtract(1, 'day').endOf('day'),
+      ],
     },
+    // 近 7 天(含今天)
     {
       label: $t('components.query.last7Days'),
-      value: () => {
-        const end = new Date();
-        const start = new Date();
-        start.setDate(start.getDate() - 6);
-        return [formatDate(start), formatDate(end)];
-      },
+      value: () => [dayjs().subtract(6, 'day').startOf('day'), dayjs().endOf('day')],
     },
+    // 近 30 天(含今天)
     {
       label: $t('components.query.last30Days'),
-      value: () => {
-        const end = new Date();
-        const start = new Date();
-        start.setDate(start.getDate() - 29);
-        return [formatDate(start), formatDate(end)];
-      },
+      value: () => [dayjs().subtract(29, 'day').startOf('day'), dayjs().endOf('day')],
     },
+    // 本月
     {
       label: $t('components.query.thisMonth'),
-      value: () => {
-        const now = new Date();
-        const start = new Date(now.getFullYear(), now.getMonth(), 1);
-        const end = new Date(now.getFullYear(), now.getMonth() + 1, 0);
-        return [formatDate(start), formatDate(end)];
-      },
+      value: () => [dayjs().startOf('month'), dayjs().endOf('month')],
     },
+    // 上月
     {
       label: $t('components.query.lastMonth'),
-      value: () => {
-        const now = new Date();
-        const start = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-        const end = new Date(now.getFullYear(), now.getMonth(), 0);
-        return [formatDate(start), formatDate(end)];
-      },
+      value: () => [
+        dayjs().subtract(1, 'month').startOf('month'),
+        dayjs().subtract(1, 'month').endOf('month'),
+      ],
     },
   ];
+
+  // 预设快捷范围默认开启, 字段配置显式传 false 时才关闭
+  function getRangePresets() {
+    return props.field.shortcuts === false ? undefined : dateRangePresets;
+  }
 
   function query() {
     emits('enterQuery');
@@ -234,7 +228,7 @@
         style="width: 100%"
         :value-format="field.format || 'YYYY-MM-DD'"
         :placeholder="getRangePlaceholder()"
-        :shortcuts="field.shortcuts ? dateRangeShortcuts : undefined"
+        :presets="getRangePresets()"
         @change="handleRangeChange"
       />
       <a-range-picker
@@ -245,6 +239,7 @@
         style="width: 100%"
         :value-format="field.format || 'YYYY-MM-DD HH:mm:ss'"
         :placeholder="getRangePlaceholder()"
+        :presets="getRangePresets()"
         @change="handleRangeChange"
       />
       <!-- 国际化：默认输入框占位符 -->
