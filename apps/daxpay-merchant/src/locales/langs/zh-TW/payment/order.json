@@ -80,7 +80,7 @@
     "source": "訂單來源",
     "limitPay": "限制支付型別",
     "mchNo": "商戶號",
-    "appId": "應用號",
+    "appId": "商戶應用",
     "createTime": "建立時間",
     "refundNo": "退款號",
     "bizRefundNo": "商戶退款號",

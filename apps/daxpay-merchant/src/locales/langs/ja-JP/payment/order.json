@@ -80,7 +80,7 @@
     "source": "ソース",
     "limitPay": "限度額支払い",
     "mchNo": "販売者番号",
-    "appId": "アプリID",
+    "appId": "マーチャントアプリ",
     "createTime": "時間を作る",
     "refundNo": "返金番号",
     "bizRefundNo": "ビズ返金番号",

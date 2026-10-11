@@ -80,7 +80,7 @@
     "source": "Sumber",
     "limitPay": "Batasi Pembayaran",
     "mchNo": "Nomor Pedagang.",
-    "appId": "ID Aplikasi",
+    "appId": "Aplikasi Merchant",
     "createTime": "Ciptakan Waktu",
     "refundNo": "Nomor Pengembalian Dana.",
     "bizRefundNo": "Nomor Pengembalian Bisnis.",

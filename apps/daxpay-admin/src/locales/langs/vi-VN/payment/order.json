@@ -80,7 +80,7 @@
     "source": "Nguồn",
     "limitPay": "Giới hạn thanh toán",
     "mchNo": "Số thương gia",
-    "appId": "ID ứng dụng",
+    "appId": "Ứng Dụng Merchant",
     "createTime": "Tạo thời gian",
     "refundNo": "Số tiền hoàn lại",
     "bizRefundNo": "Số tiền hoàn lại Biz",

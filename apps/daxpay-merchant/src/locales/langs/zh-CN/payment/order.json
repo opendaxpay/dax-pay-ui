@@ -81,7 +81,7 @@
     "source": "订单来源",
     "limitPay": "限制支付类型",
     "mchNo": "商户号",
-    "appId": "应用号",
+    "appId": "商户应用",
     "createTime": "创建时间",
     "refundNo": "退款号",
     "bizRefundNo": "商户退款号",

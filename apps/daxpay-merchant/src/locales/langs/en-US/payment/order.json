@@ -80,7 +80,7 @@
     "source": "Source",
     "limitPay": "Limit Pay",
     "mchNo": "Merchant No.",
-    "appId": "App ID",
+    "appId": "Merchant App",
     "createTime": "Create Time",
     "refundNo": "Refund No.",
     "bizRefundNo": "Biz Refund No.",
