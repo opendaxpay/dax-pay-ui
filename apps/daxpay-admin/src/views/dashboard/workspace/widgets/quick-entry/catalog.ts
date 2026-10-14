@@ -25,18 +25,9 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     defaultOrder: 1,
   },
   {
-    key: 'app',
-    routeName: '/payment/merchant/app',
-    icon: 'lucide:app-window',
-    titleKey: 'dashboard.workspace.quickEntry.app',
-    color: 'bg-emerald-500',
-    perms: [PermCodes.Merchant.App.VIEW],
-    defaultVisible: true,
-    defaultOrder: 2,
-  },
-  {
+    // 通道商户（全局列表，无需 mchNo；/payment/global/channel-merchant 为需 mchNo 的商户代管子页，勿指向）
     key: 'channelMerchant',
-    routeName: '/payment/global/channel-merchant',
+    routeName: '/payment/global/channel-merchants',
     icon: 'lucide:plug',
     titleKey: 'dashboard.workspace.quickEntry.channelMerchant',
     color: 'bg-violet-500',
@@ -216,8 +207,9 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     defaultOrder: 20,
   },
   {
+    // 第三方登录平台（routeName 须为菜单 path，ThirdPlatform 是组件名不是路由名）
     key: 'socialLogin',
-    routeName: '/system/config/third-platform/ThirdPlatform',
+    routeName: '/system/config/third-platform',
     icon: 'lucide:share-2',
     titleKey: 'dashboard.workspace.quickEntry.socialLogin',
     color: 'bg-fuchsia-500',
