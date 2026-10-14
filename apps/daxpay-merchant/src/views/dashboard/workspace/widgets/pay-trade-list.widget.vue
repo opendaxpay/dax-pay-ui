@@ -63,7 +63,12 @@
 </script>
 
 <template>
-  <a-card variant="borderless" class="!h-full min-h-[260px] !bg-card">
+  <!-- 列表卡片内边距收紧：上下 12px、左右 16px；标题区左右同步 16px，与列表内容左对齐 -->
+  <a-card
+    variant="borderless"
+    class="!h-full min-h-[260px] !bg-card"
+    :styles="{ body: { padding: '12px 16px' }, header: { paddingInline: '16px' } }"
+  >
     <template #title>
       <div class="flex items-center gap-2">
         <IconifyIcon icon="lucide:arrow-left-right" class="text-primary size-4" />

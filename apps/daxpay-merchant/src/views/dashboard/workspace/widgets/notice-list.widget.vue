@@ -76,7 +76,12 @@
 </script>
 
 <template>
-  <a-card variant="borderless" class="!bg-card !h-full">
+  <!-- 列表卡片内边距收紧：上下 12px、左右 16px；标题区左右同步 16px，与列表内容左对齐 -->
+  <a-card
+    variant="borderless"
+    class="!bg-card !h-full"
+    :styles="{ body: { padding: '12px 16px' }, header: { paddingInline: '16px' } }"
+  >
     <template #title>
       <div class="flex items-center gap-2">
         <IconifyIcon icon="lucide:megaphone" class="text-primary size-4" />
@@ -89,7 +94,8 @@
 
     <a-skeleton v-if="loading" active :paragraph="{ rows: 4 }" />
     <a-empty v-else-if="records.length === 0" class="!my-6" />
-    <ul v-else class="notice-scroll flex max-h-[230px] flex-col gap-3 overflow-y-auto pr-1">
+    <!-- 条目间距比资金交易卡片更紧：单行条目用 gap-2(8px)，视觉密度对齐双行条目 -->
+    <ul v-else class="notice-scroll flex max-h-[230px] flex-col gap-2 overflow-y-auto pr-1">
       <li
         v-for="(row, index) in records"
         :key="row.id ?? index"
