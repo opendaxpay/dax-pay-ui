@@ -127,8 +127,10 @@
   "socialScanExpired": "QR code expired",
   "socialScanRefresh": "Refresh QR Code",
   "socialScanCancelled": "Cancelled on your phone. Please refresh the QR code and retry",
+  "socialScanScanned": "Scanned successfully. Please finish the operation on your phone",
   "socialLoginScanTitle": "Scan to Log in {name}",
   "socialLoginScanTip": "Scan the QR code with WeChat and complete the login authorization on your phone",
   "socialLoginScanNotBound": "This WeChat account is not linked to any account yet. Log in with your username and password first, then link WeChat under \"Account & Security\"",
-  "socialLoginScanCancelled": "Cancelled on your phone. Please refresh the QR code and retry"
+  "socialLoginScanCancelled": "Cancelled on your phone. Please refresh the QR code and retry",
+  "socialLoginScanScanned": "Scanned successfully. Please finish the operation on your phone"
 }

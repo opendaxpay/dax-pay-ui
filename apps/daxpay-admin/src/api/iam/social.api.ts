@@ -290,10 +290,10 @@ export interface SocialBindScanQrResult {
 }
 
 /**
- * 扫码绑定状态(waiting=等待扫码授权 / success=绑定完成 / cancelled=手机端已取消 / not_exist=票据不存在或已过期)
+ * 扫码绑定状态(waiting=等待扫码授权 / scanned=已扫码待手机端操作 / success=绑定完成 / cancelled=手机端已取消 / not_exist=票据不存在或已过期)
  */
 export interface SocialBindScanStatusResult {
-  status: 'cancelled' | 'not_exist' | 'success' | 'waiting';
+  status: 'cancelled' | 'not_exist' | 'scanned' | 'success' | 'waiting';
 }
 
 /**
@@ -307,10 +307,10 @@ export interface SocialLoginScanQrResult {
 }
 
 /**
- * 扫码登录状态(waiting=等待扫码授权 / not_bound=微信未绑定账号 / cancelled=手机端已取消 / success=登录完成 / not_exist=票据不存在或已过期)
+ * 扫码登录状态(waiting=等待扫码授权 / scanned=已扫码待手机端操作 / not_bound=微信未绑定账号 / cancelled=手机端已取消 / success=登录完成 / not_exist=票据不存在或已过期)
  */
 export interface SocialLoginScanStatusResult {
-  status: 'cancelled' | 'not_bound' | 'not_exist' | 'success' | 'waiting';
+  status: 'cancelled' | 'not_bound' | 'not_exist' | 'scanned' | 'success' | 'waiting';
   /** 登录 token(status=success 时返回) */
   token?: string;
   /** 需二次验证时的临时凭证(业务码 40101 时返回, 与 exchange-login 同协议) */

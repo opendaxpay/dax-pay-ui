@@ -51,6 +51,8 @@
   const ticket = ref('');
   /** 票据已过期(等待用户刷新二维码) */
   const expired = ref(false);
+  /** 已扫码中间态(手机端已打开发起页待操作, 继续轮询等终态) */
+  const scanned = ref(false);
   /** 授权微信未绑定账号(终态: 引导用账号密码登录后绑定, 不自动注册) */
   const notBound = ref(false);
   /** 手机端确认页已取消(终态: 提示刷新二维码重新发起) */
@@ -78,18 +80,36 @@
         if (status === 'success' && res.data?.token) {
           pausePolling();
           await completeLogin(res.data.token);
-        } else if (status === 'not_exist') {
-          // 票据过期(5 分钟无人完成授权), 展示刷新入口
-          pausePolling();
-          expired.value = true;
-        } else if (status === 'not_bound') {
-          pausePolling();
-          notBound.value = true;
-        } else if (status === 'cancelled') {
-          // 手机端确认页取消本次登录, 停止轮询并展示刷新入口
-          pausePolling();
-          cancelled.value = true;
-        }
+        } else
+          switch (status) {
+            case 'cancelled': {
+              // 手机端确认页取消本次登录, 停止轮询并展示刷新入口
+              pausePolling();
+              cancelled.value = true;
+
+              break;
+            }
+            case 'not_bound': {
+              pausePolling();
+              notBound.value = true;
+
+              break;
+            }
+            case 'not_exist': {
+              // 票据过期(5 分钟无人完成授权), 展示刷新入口
+              pausePolling();
+              expired.value = true;
+
+              break;
+            }
+            case 'scanned': {
+              // 已扫码中间态: 手机端已打开发起页, 展示提示并继续轮询等终态
+              scanned.value = true;
+
+              break;
+            }
+            // No default
+          }
       } catch {
         // 网络抖动静默重试, 过期由 not_exist 状态兜底
       }
@@ -117,6 +137,7 @@
     pausePolling();
     generating.value = true;
     expired.value = false;
+    scanned.value = false;
     notBound.value = false;
     cancelled.value = false;
     try {
@@ -140,6 +161,7 @@
     qrUrl.value = '';
     ticket.value = '';
     expired.value = false;
+    scanned.value = false;
     notBound.value = false;
     cancelled.value = false;
     twoFactor.value = false;
@@ -201,15 +223,28 @@
     <div v-else-if="qrUrl" class="flex flex-col items-center gap-2 py-2">
       <div class="qr-wrap">
         <QrCode :value="qrUrl" :width="220" :margin="0" />
-        <!-- 过期/手机端取消遮罩: 重新生成二维码 -->
-        <div v-if="expired || cancelled" class="qr-mask">
-          <div class="flex flex-col items-center gap-2">
+        <!-- 已扫码中间态 / 过期、手机端取消终态遮罩 -->
+        <div v-if="scanned || expired || cancelled" class="qr-mask">
+          <!-- 过期/取消(终态): 重新生成二维码 -->
+          <div v-if="expired || cancelled" class="flex flex-col items-center gap-2">
             <span class="text-sm text-gray-500">
               {{ expired ? $t('profile.socialScanExpired') : $t('profile.socialLoginScanCancelled') }}
             </span>
             <a-button type="primary" size="small" @click="generate">
               {{ $t('profile.socialScanRefresh') }}
             </a-button>
+          </div>
+          <!-- 已扫码(进行中): 等待手机端完成操作, 终态出现时自动切换 -->
+          <div v-else class="flex flex-col items-center gap-2">
+            <svg viewBox="0 0 1024 1024" width="40" height="40" aria-hidden="true">
+              <path
+                fill="#52c41a"
+                d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 01-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z"
+              />
+            </svg>
+            <span class="text-sm text-gray-500">
+              {{ $t('profile.socialLoginScanScanned') }}
+            </span>
           </div>
         </div>
       </div>

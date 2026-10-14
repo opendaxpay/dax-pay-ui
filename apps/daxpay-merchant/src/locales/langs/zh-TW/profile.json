@@ -127,8 +127,10 @@
   "socialScanExpired": "QR Code 已過期",
   "socialScanRefresh": "重新產生 QR Code",
   "socialScanCancelled": "已在手機端取消，請重新整理二維碼重試",
+  "socialScanScanned": "掃碼成功，請在手機上完成操作",
   "socialLoginScanTitle": "掃碼登入 {name}",
   "socialLoginScanTip": "請使用微信掃描 QR Code，在手機上完成授權登入",
   "socialLoginScanNotBound": "此微信尚未綁定帳號，請使用帳號密碼登入後，在「帳戶與安全」中綁定微信",
-  "socialLoginScanCancelled": "已在手機端取消，請重新整理二維碼重試"
+  "socialLoginScanCancelled": "已在手機端取消，請重新整理二維碼重試",
+  "socialLoginScanScanned": "掃碼成功，請在手機上完成操作"
 }

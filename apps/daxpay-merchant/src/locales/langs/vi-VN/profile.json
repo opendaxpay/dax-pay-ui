@@ -127,8 +127,10 @@
   "socialScanExpired": "Mã QR đã hết hạn",
   "socialScanRefresh": "Làm mới mã QR",
   "socialScanCancelled": "Đã hủy trên điện thoại. Vui lòng làm mới mã QR và thử lại",
+  "socialScanScanned": "Đã quét thành công. Vui lòng hoàn tất thao tác trên điện thoại của bạn",
   "socialLoginScanTitle": "Quét để đăng nhập {name}",
   "socialLoginScanTip": "Quét mã QR bằng WeChat và hoàn tất đăng nhập trên điện thoại",
   "socialLoginScanNotBound": "WeChat này chưa được liên kết với tài khoản nào. Vui lòng đăng nhập bằng tên người dùng và mật khẩu, sau đó liên kết WeChat trong \"Bảo mật tài khoản\"",
-  "socialLoginScanCancelled": "Đã hủy trên điện thoại. Vui lòng làm mới mã QR và thử lại"
+  "socialLoginScanCancelled": "Đã hủy trên điện thoại. Vui lòng làm mới mã QR và thử lại",
+  "socialLoginScanScanned": "Đã quét thành công. Vui lòng hoàn tất thao tác trên điện thoại của bạn"
 }
