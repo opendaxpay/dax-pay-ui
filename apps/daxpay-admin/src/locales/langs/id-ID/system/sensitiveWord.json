@@ -61,6 +61,7 @@
     "scene": {
       "pay_title": "Judul bayar",
       "pay_description": "Deskripsi bayar",
+      "refund_reason": "Alasan pengembalian dana",
       "goods_name": "Nama barang",
       "goods_description": "Deskripsi barang",
       "mch_name": "Nama merchant",

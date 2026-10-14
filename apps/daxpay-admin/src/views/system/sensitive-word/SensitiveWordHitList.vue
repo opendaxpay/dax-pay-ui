@@ -33,6 +33,7 @@
     [
       'pay_title',
       'pay_description',
+      'refund_reason',
       'goods_name',
       'goods_description',
       'mch_name',
