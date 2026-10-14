@@ -22,6 +22,5 @@
   "aliAppIdPrefix": "アプリID: {appId}",
   "detailTitle": "{name} - アプリケーション管理",
   "tabBasicInfo": "基本情報",
-  "tabKeyConfig": "キー構成",
-  "tabAuthConfig": "認可"
+  "tabKeyConfig": "キー構成"
 }

@@ -25,10 +25,6 @@
     "appKey": {
       "title": "Konfigurasi Kunci Aplikasi",
       "description": "Minimal satu aplikasi memiliki konfigurasi kunci lengkap (mode public key atau sertifikat)"
-    },
-    "appAuth": {
-      "title": "Otorisasi Aplikasi",
-      "description": "Minimal satu aplikasi memiliki tipe ID pengguna (userIdType) yang dikonfigurasi"
     }
   },
   "summary": {

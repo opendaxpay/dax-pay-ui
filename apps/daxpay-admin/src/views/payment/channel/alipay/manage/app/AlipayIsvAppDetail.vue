@@ -5,7 +5,6 @@
 
   import { type AlipayIsvApp, AlipayIsvAppApi } from '#/api/payment/channel/alipay/isv-app.api';
 
-  import AlipayIsvAppAuthConfig from './tabs/AlipayIsvAppAuthConfig.vue';
   import AlipayIsvAppBasicInfo from './tabs/AlipayIsvAppBasicInfo.vue';
   import AlipayIsvAppKeyConfig from './tabs/AlipayIsvAppKeyConfig.vue';
 
@@ -83,10 +82,6 @@
             :alipay-isv-app-id="appDetail.id!"
             :ali-app-id="appDetail.aliAppId"
           />
-        </a-tab-pane>
-        <!-- 授权认证 -->
-        <a-tab-pane key="auth" :tab="$t('payment.channel.alipayManage.tabAuthConfig')">
-          <AlipayIsvAppAuthConfig :alipay-isv-app-id="appDetail.id!" />
         </a-tab-pane>
       </a-tabs>
     </a-spin>

@@ -83,9 +83,16 @@
    */
   const showCallbackUrls = computed(() => !isPlatformRedirect.value);
 
-  /** 网关域名(去协议, 支付宝「授权回调地址」与微信公众号「网页授权域名」的登记值) */
+  /** 网关域名(去协议, 微信公众号「网页授权域名」的登记值, 该字段仅接受纯域名) */
   const gatewayDomain = computed(() => {
     return gatewayBaseUrl.value.replace(/^https?:\/\//, '').replace(/\/$/, '');
+  });
+
+  /** 开放平台登记值: 支付宝「授权回调地址」需带协议的完整地址(取网关配置原样去尾斜杠), 微信为纯域名 */
+  const gatewayRegisterValue = computed(() => {
+    return currentSource.value === 'alipay'
+      ? gatewayBaseUrl.value.replace(/\/$/, '')
+      : gatewayDomain.value;
   });
 
   /**
@@ -304,9 +311,9 @@
         <template v-else>
           <div class="mb-3">
             <div class="mb-1 text-xs text-muted-foreground">{{ $t('iam.social.form.gatewayUrlLabel') }}</div>
-            <a-input :value="gatewayDomain" readonly>
+            <a-input :value="gatewayRegisterValue" readonly>
               <template #suffix>
-                <a-button type="link" size="small" @click="handleCopy(gatewayDomain)">
+                <a-button type="link" size="small" @click="handleCopy(gatewayRegisterValue)">
                   <IconifyIcon icon="ant-design:copy-outlined" />
                   {{ $t('iam.social.action.copy') }}
                 </a-button>
@@ -318,7 +325,7 @@
             class="!mb-0"
             :message="
               currentSource === 'alipay'
-                ? $t('iam.social.form.gatewayAlipayHint', { domain: gatewayDomain })
+                ? $t('iam.social.form.gatewayAlipayHint', { domain: gatewayRegisterValue })
                 : $t('iam.social.form.gatewayWeChatHint', { domain: gatewayDomain })
             "
           />

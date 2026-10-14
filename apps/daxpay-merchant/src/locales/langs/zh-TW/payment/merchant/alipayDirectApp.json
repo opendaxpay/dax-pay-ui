@@ -5,7 +5,6 @@
   "configTitleEdit": "設定支付寶應用",
   "tabBasic": "基礎資訊",
   "tabKeyConfig": "金鑰設定",
-  "tabAuthConfig": "授權設定",
   "appName": "應用名稱",
   "appNamePlaceholder": "請輸入應用名稱",
   "appNameRequired": "請輸入應用名稱",
@@ -31,7 +30,6 @@
   "certPlaceholder": "貼上憑證內容",
   "secretKey": "AES通訊金鑰",
   "secretKeyPlaceholder": "請輸入AES通訊金鑰（可選）",
-  "userIdType": "使用者標識類型",
   "addApp": "新增應用",
   "config": "設定",
   "confirmDelete": "確認刪除該應用？",
@@ -69,18 +67,13 @@
   "uploadAlipayCert": "上傳支付寶公鑰證書",
   "uploadRootCert": "上傳支付寶根證書",
   "authTypePlaceholder": "請選擇認證方式",
-  "authConfigTitle": "授權認證配置",
-  "userIdTypeOpenid": "OpenId",
-  "userIdTypeUserid": "UserId",
-  "userIdTypeBoth": "同時支援 OpenId 和 UserId",
   "validation": {
     "authType": "請選擇認證方式",
     "alipayPublicKey": "請輸入支付寶公鑰",
     "privateKey": "請輸入應用私鑰",
     "appCert": "請上傳應用公鑰證書",
     "alipayCert": "請上傳支付寶公鑰證書",
-    "alipayRootCert": "請上傳支付寶根證書",
-    "userIdType": "請選擇使用者標識型別"
+    "alipayRootCert": "請上傳支付寶根證書"
   },
   "alipayUserId": "支付寶商戶PID",
   "envFollowProductHint": "跟隨通道商戶環境，由通道商戶建立時決定"

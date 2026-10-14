@@ -22,6 +22,5 @@
   "aliAppIdPrefix": "รหัสแอป: {appId}",
   "detailTitle": "{name} - การจัดการแอปพลิเคชัน",
   "tabBasicInfo": "ข้อมูลพื้นฐาน",
-  "tabKeyConfig": "การกำหนดค่าที่สำคัญ",
-  "tabAuthConfig": "การอนุญาต"
+  "tabKeyConfig": "การกำหนดค่าที่สำคัญ"
 }

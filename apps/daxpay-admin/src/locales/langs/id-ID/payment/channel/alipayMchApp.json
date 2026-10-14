@@ -23,6 +23,5 @@
   "appTypeWebApp": "Aplikasi Web",
   "detailTitle": "{name} - Manajemen Aplikasi",
   "tabBasicInfo": "Info Dasar",
-  "tabKeyConfig": "Konfigurasi Kunci",
-  "tabAuthConfig": "Otorisasi"
+  "tabKeyConfig": "Konfigurasi Kunci"
 }

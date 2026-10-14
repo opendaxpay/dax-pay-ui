@@ -23,6 +23,5 @@
   "appTypeWebApp": "웹 앱",
   "detailTitle": "{name} - 앱 관리",
   "tabBasicInfo": "기본 정보",
-  "tabKeyConfig": "키 구성",
-  "tabAuthConfig": "권한 부여"
+  "tabKeyConfig": "키 구성"
 }

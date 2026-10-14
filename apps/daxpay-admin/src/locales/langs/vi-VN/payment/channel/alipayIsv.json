@@ -24,18 +24,12 @@
   "communicateKeyConfig": "Khóa giao tiếp",
   "secretKey": "Khóa giao tiếp",
   "secretKeyPlaceholder": "Nhập khóa từ bảng điều khiển Nền tảng mở Alipay",
-  "authConfigTitle": "Cấu hình ủy quyền",
-  "userIdType": "Loại ID người dùng",
-  "userIdTypeOpenid": "ID mở",
-  "userIdTypeUserid": "ID người dùng",
-  "userIdTypeBoth": "Cả OpenId và UserId",
   "validation": {
     "authType": "Vui lòng chọn loại xác thực",
     "alipayPublicKey": "Vui lòng nhập khóa công khai Alipay",
     "privateKey": "Vui lòng nhập khóa riêng",
     "appCert": "Cần có chứng chỉ ứng dụng",
     "alipayCert": "Cần có chứng chỉ Alipay",
-    "alipayRootCert": "Cần có chứng chỉ gốc Alipay",
-    "userIdType": "Vui lòng chọn loại ID người dùng"
+    "alipayRootCert": "Cần có chứng chỉ gốc Alipay"
   }
 }

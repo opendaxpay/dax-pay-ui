@@ -5,7 +5,6 @@
 
   import { AlipayDirectAppApi, type AlipayDirectAppResult } from '#/api/payment/alipay/alipay-direct-app.api';
 
-  import AlipayMchAppAuthConfig from './tabs/AlipayMchAppAuthConfig.vue';
   import AlipayMchAppBasicInfo from './tabs/AlipayMchAppBasicInfo.vue';
   import AlipayMchAppKeyConfig from './tabs/AlipayMchAppKeyConfig.vue';
 
@@ -80,9 +79,6 @@
             :ali-app-id="appDetail.aliAppId"
             :sandbox="props.sandbox ?? false"
           />
-        </a-tab-pane>
-        <a-tab-pane key="auth" :tab="$t('payment.merchant.alipayDirectApp.tabAuthConfig')">
-          <AlipayMchAppAuthConfig :alipay-direct-app-id="appDetail.id!" :channel-mch-no="channelMchNo" />
         </a-tab-pane>
       </a-tabs>
     </a-spin>

@@ -22,6 +22,5 @@
   "aliAppIdPrefix": "ID Aplikasi: {appId}",
   "detailTitle": "{name} - Manajemen Aplikasi",
   "tabBasicInfo": "Informasi Dasar",
-  "tabKeyConfig": "Konfigurasi Kunci",
-  "tabAuthConfig": "Otorisasi"
+  "tabKeyConfig": "Konfigurasi Kunci"
 }

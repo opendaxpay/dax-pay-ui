@@ -5,7 +5,6 @@
   "configTitleEdit": "Configure Alipay App",
   "tabBasic": "Basic Info",
   "tabKeyConfig": "Key Config",
-  "tabAuthConfig": "Auth Config",
   "appName": "App Name",
   "appNamePlaceholder": "Enter app name",
   "appNameRequired": "Please enter app name",
@@ -31,7 +30,6 @@
   "certPlaceholder": "Paste certificate content",
   "secretKey": "AES Secret Key",
   "secretKeyPlaceholder": "Enter AES secret key (optional)",
-  "userIdType": "User ID Type",
   "addApp": "Add App",
   "config": "Configure",
   "confirmDelete": "Confirm delete this app?",
@@ -69,18 +67,13 @@
   "uploadAlipayCert": "Upload Alipay Certificate",
   "uploadRootCert": "Upload Alipay Root Certificate",
   "authTypePlaceholder": "Please select auth type",
-  "authConfigTitle": "Authorization Config",
-  "userIdTypeOpenid": "OpenId",
-  "userIdTypeUserid": "UserId",
-  "userIdTypeBoth": "Both OpenId and UserId",
   "validation": {
     "authType": "Please select auth type",
     "alipayPublicKey": "Please enter Alipay public key",
     "privateKey": "Please enter private key",
     "appCert": "App certificate is required",
     "alipayCert": "Alipay certificate is required",
-    "alipayRootCert": "Alipay root certificate is required",
-    "userIdType": "Please select user ID type"
+    "alipayRootCert": "Alipay root certificate is required"
   },
   "alipayUserId": "Alipay Merchant PID",
   "envFollowProductHint": "Follows the channel merchant environment, set when the channel merchant is created"

@@ -23,6 +23,5 @@
   "appTypeWebApp": "เว็บแอป",
   "detailTitle": "{name} - การจัดการแอป",
   "tabBasicInfo": "ข้อมูลพื้นฐาน",
-  "tabKeyConfig": "การกำหนดค่าคีย์",
-  "tabAuthConfig": "การอนุญาต"
+  "tabKeyConfig": "การกำหนดค่าคีย์"
 }

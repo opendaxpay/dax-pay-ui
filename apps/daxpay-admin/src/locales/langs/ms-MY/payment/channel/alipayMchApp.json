@@ -23,6 +23,5 @@
   "appTypeWebApp": "Apl Web",
   "detailTitle": "{name} - Pengurusan Apl",
   "tabBasicInfo": "Maklumat Asas",
-  "tabKeyConfig": "Konfigurasi Kekunci",
-  "tabAuthConfig": "Keizinan"
+  "tabKeyConfig": "Konfigurasi Kekunci"
 }

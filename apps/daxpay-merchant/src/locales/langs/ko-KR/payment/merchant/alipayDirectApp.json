@@ -5,7 +5,6 @@
   "configTitleEdit": "Alipay 앱 설정",
   "tabBasic": "기본 정보",
   "tabKeyConfig": "키 설정",
-  "tabAuthConfig": "인증 설정",
   "appName": "앱 이름",
   "appNamePlaceholder": "앱 이름 입력",
   "appNameRequired": "앱 이름을 입력해 주세요",
@@ -31,7 +30,6 @@
   "certPlaceholder": "인증서 내용 붙여넣기",
   "secretKey": "AES 통신 키",
   "secretKeyPlaceholder": "AES 통신 키 입력(선택)",
-  "userIdType": "사용자 ID 유형",
   "addApp": "앱 추가",
   "config": "설정",
   "confirmDelete": "이 앱을 삭제하시겠습니까?",
@@ -69,18 +67,13 @@
   "uploadAlipayCert": "Alipay 인증서 업로드",
   "uploadRootCert": "Alipay 루트 인증서 업로드",
   "authTypePlaceholder": "인증 유형을 선택하세요.",
-  "authConfigTitle": "승인 구성",
-  "userIdTypeOpenid": "오픈아이디",
-  "userIdTypeUserid": "사용자 ID",
-  "userIdTypeBoth": "OpenId와 UserId 모두",
   "validation": {
     "authType": "인증 유형을 선택하세요.",
     "alipayPublicKey": "Alipay 공개키를 입력해주세요",
     "privateKey": "개인키를 입력해주세요",
     "appCert": "앱 인증서가 필요합니다.",
     "alipayCert": "Alipay 인증서가 필요합니다",
-    "alipayRootCert": "Alipay 루트 인증서가 필요합니다",
-    "userIdType": "사용자 ID 유형을 선택하세요."
+    "alipayRootCert": "Alipay 루트 인증서가 필요합니다"
   },
   "alipayUserId": "알리페이 가맹점 PID",
   "envFollowProductHint": "채널 가맹점 환경을 따릅니다 (채널 가맹점 생성 시 확정)"

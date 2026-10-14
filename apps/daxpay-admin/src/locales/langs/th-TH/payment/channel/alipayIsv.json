@@ -24,18 +24,12 @@
   "communicateKeyConfig": "คีย์การสื่อสาร",
   "secretKey": "คีย์การสื่อสาร",
   "secretKeyPlaceholder": "ป้อนรหัสจากคอนโซลแพลตฟอร์มเปิดของ Alipay",
-  "authConfigTitle": "การกำหนดค่าการอนุญาต",
-  "userIdType": "ประเภทรหัสผู้ใช้",
-  "userIdTypeOpenid": "OpenId",
-  "userIdTypeUserid": "รหัสผู้ใช้",
-  "userIdTypeBoth": "ทั้ง OpenId และ UserId",
   "validation": {
     "authType": "โปรดเลือกประเภทการรับรองความถูกต้อง",
     "alipayPublicKey": "กรุณากรอกรหัสสาธารณะ Alipay",
     "privateKey": "กรุณาใส่รหัสส่วนตัว",
     "appCert": "ต้องมีใบรับรองแอป",
     "alipayCert": "ต้องมีใบรับรอง Alipay",
-    "alipayRootCert": "ต้องมีใบรับรองรูทของ Alipay",
-    "userIdType": "โปรดเลือกประเภทรหัสผู้ใช้"
+    "alipayRootCert": "ต้องมีใบรับรองรูทของ Alipay"
   }
 }

@@ -22,6 +22,5 @@
   "aliAppIdPrefix": "ID ứng dụng: {appId}",
   "detailTitle": "{name} - Quản lý ứng dụng",
   "tabBasicInfo": "Thông tin cơ bản",
-  "tabKeyConfig": "Cấu hình khóa",
-  "tabAuthConfig": "Ủy quyền"
+  "tabKeyConfig": "Cấu hình khóa"
 }

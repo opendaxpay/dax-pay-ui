@@ -23,6 +23,5 @@
   "appTypeWebApp": "Ứng dụng web",
   "detailTitle": "{name} - Quản lý ứng dụng",
   "tabBasicInfo": "Thông tin cơ bản",
-  "tabKeyConfig": "Cấu hình khóa",
-  "tabAuthConfig": "Ủy quyền"
+  "tabKeyConfig": "Cấu hình khóa"
 }

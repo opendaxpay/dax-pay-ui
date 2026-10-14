@@ -69,21 +69,6 @@ export const AlipayIsvAppApi = {
   saveKeyConfig(data: AlipayIsvAppKeyConfig): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/alipay/isv-app/save-key-config', data });
   },
-  /**
-   * 查询应用授权认证配置
-   */
-  findAuthConfigByAlipayIsvAppId(alipayIsvAppId: string): Promise<Result<AlipayIsvAppAuthConfig>> {
-    return defHttp.get({
-      url: '/admin/alipay/isv-app/find-auth-config-by-app-id',
-      params: { alipayIsvAppId },
-    });
-  },
-  /**
-   * 保存应用授权认证配置
-   */
-  saveAuthConfig(data: AlipayIsvAppAuthConfig): Promise<Result<void>> {
-    return defHttp.post({ url: '/admin/alipay/isv-app/save-auth-config', data });
-  },
 };
 
 /** 支付宝服务商应用 */
@@ -112,12 +97,4 @@ export interface AlipayIsvAppKeyConfig {
   alipayRootCert?: string;
   /** AES通信密钥 */
   secretKey?: string;
-}
-
-/** 支付宝服务商应用授权认证配置 */
-export interface AlipayIsvAppAuthConfig {
-  /** 应用ID */
-  alipayIsvAppId?: string;
-  /** 用户标识类型 */
-  userIdType?: string;
 }

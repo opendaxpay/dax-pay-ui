@@ -24,18 +24,12 @@
   "communicateKeyConfig": "Kunci Komunikasi",
   "secretKey": "Kunci Komunikasi",
   "secretKeyPlaceholder": "Masukkan kunci daripada konsol Platform Terbuka Alipay",
-  "authConfigTitle": "Konfigurasi Kebenaran",
-  "userIdType": "Jenis ID Pengguna",
-  "userIdTypeOpenid": "OpenId",
-  "userIdTypeUserid": "UserId",
-  "userIdTypeBoth": "Kedua-dua OpenId dan UserId",
   "validation": {
     "authType": "Sila pilih jenis pengesahan",
     "alipayPublicKey": "Sila masukkan kunci awam Alipay",
     "privateKey": "Sila masukkan kunci peribadi",
     "appCert": "Sijil apl diperlukan",
     "alipayCert": "Sijil Alipay diperlukan",
-    "alipayRootCert": "Sijil akar Alipay diperlukan",
-    "userIdType": "Sila pilih jenis ID pengguna"
+    "alipayRootCert": "Sijil akar Alipay diperlukan"
   }
 }

@@ -23,6 +23,5 @@
   "appTypeWebApp": "ウェブアプリ",
   "detailTitle": "{name} - アプリ管理",
   "tabBasicInfo": "基本情報",
-  "tabKeyConfig": "キーコンフィグ",
-  "tabAuthConfig": "認可"
+  "tabKeyConfig": "キーコンフィグ"
 }

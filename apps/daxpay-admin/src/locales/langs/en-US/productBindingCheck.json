@@ -25,10 +25,6 @@
     "appKey": {
       "title": "App Key Configuration",
       "description": "At least one app has complete key configuration (public key or certificate mode)"
-    },
-    "appAuth": {
-      "title": "App Authorization",
-      "description": "At least one app has a configured user ID type (userIdType)"
     }
   },
   "summary": {

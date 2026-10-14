@@ -5,7 +5,6 @@
   "configTitleEdit": "Alipayアプリ設定",
   "tabBasic": "基本情報",
   "tabKeyConfig": "キー設定",
-  "tabAuthConfig": "認可設定",
   "appName": "アプリ名",
   "appNamePlaceholder": "アプリ名を入力",
   "appNameRequired": "アプリ名を入力してください",
@@ -31,7 +30,6 @@
   "certPlaceholder": "証明書の内容を貼り付け",
   "secretKey": "AES通信キー",
   "secretKeyPlaceholder": "AES通信キーを入力（任意）",
-  "userIdType": "ユーザーIDタイプ",
   "addApp": "アプリ追加",
   "config": "設定",
   "confirmDelete": "このアプリを削除しますか？",
@@ -69,18 +67,13 @@
   "uploadAlipayCert": "Alipay証明書をアップロードする",
   "uploadRootCert": "Alipay ルート証明書をアップロードする",
   "authTypePlaceholder": "認証タイプを選択してください",
-  "authConfigTitle": "認可設定",
-  "userIdTypeOpenid": "オープンID",
-  "userIdTypeUserid": "ユーザーID",
-  "userIdTypeBoth": "OpenId と UserId の両方",
   "validation": {
     "authType": "認証タイプを選択してください",
     "alipayPublicKey": "Alipayの公開キーを入力してください",
     "privateKey": "秘密キーを入力してください",
     "appCert": "アプリ証明書が必要です",
     "alipayCert": "Alipay証明書が必要です",
-    "alipayRootCert": "Alipayのルート証明書が必要です",
-    "userIdType": "ユーザーIDの種類を選択してください"
+    "alipayRootCert": "Alipayのルート証明書が必要です"
   },
   "alipayUserId": "AlipayマーチャントPID",
   "envFollowProductHint": "チャネルマーチャントの環境に従います（チャネルマーチャント作成時に確定）"

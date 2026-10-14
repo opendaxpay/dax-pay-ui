@@ -5,7 +5,6 @@
   "configTitleEdit": "กำหนดค่าแอป Alipay",
   "tabBasic": "ข้อมูลพื้นฐาน",
   "tabKeyConfig": "การตั้งค่าคีย์",
-  "tabAuthConfig": "การตั้งค่าการอนุญาต",
   "appName": "ชื่อแอป",
   "appNamePlaceholder": "กรอกชื่อแอป",
   "appNameRequired": "กรุณากรอกชื่อแอป",
@@ -31,7 +30,6 @@
   "certPlaceholder": "วางเนื้อหาใบรับรอง",
   "secretKey": "คีย์สื่อสาร AES",
   "secretKeyPlaceholder": "กรอกคีย์สื่อสาร AES (ไม่บังคับ)",
-  "userIdType": "ประเภทรหัสผู้ใช้",
   "addApp": "เพิ่มแอป",
   "config": "กำหนดค่า",
   "confirmDelete": "ยืนยันลบแอปนี้?",
@@ -69,18 +67,13 @@
   "uploadAlipayCert": "อัปโหลดใบรับรอง Alipay",
   "uploadRootCert": "อัปโหลดใบรับรองหลัก Alipay",
   "authTypePlaceholder": "โปรดเลือกประเภทการรับรองความถูกต้อง",
-  "authConfigTitle": "การกำหนดค่าการอนุญาต",
-  "userIdTypeOpenid": "OpenId",
-  "userIdTypeUserid": "รหัสผู้ใช้",
-  "userIdTypeBoth": "ทั้ง OpenId และ UserId",
   "validation": {
     "authType": "โปรดเลือกประเภทการรับรองความถูกต้อง",
     "alipayPublicKey": "กรุณากรอกรหัสสาธารณะ Alipay",
     "privateKey": "กรุณาใส่รหัสส่วนตัว",
     "appCert": "ต้องมีใบรับรองแอป",
     "alipayCert": "ต้องมีใบรับรอง Alipay",
-    "alipayRootCert": "ต้องมีใบรับรองรูทของ Alipay",
-    "userIdType": "โปรดเลือกประเภทรหัสผู้ใช้"
+    "alipayRootCert": "ต้องมีใบรับรองรูทของ Alipay"
   },
   "alipayUserId": "PID ร้านค้า Alipay",
   "envFollowProductHint": "ตามสภาพแวดล้อมของร้านค้าช่องทาง กำหนดเมื่อสร้างร้านค้าช่องทาง"

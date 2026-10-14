@@ -56,17 +56,6 @@ export const AlipayDirectAppApi = {
   saveKeyConfig(data: AlipayDirectAppKeyConfigParam): Promise<Result<void>> {
     return defHttp.post({ url: '/mch/alipay/direct-app/save-key-config', data });
   },
-  /** 查询应用授权认证配置 */
-  findAuthConfig(alipayDirectAppId: string): Promise<Result<AlipayDirectAppAuthConfigResult>> {
-    return defHttp.get({
-      url: '/mch/alipay/direct-app/find-auth-config-by-app-id',
-      params: { alipayDirectAppId },
-    });
-  },
-  /** 保存应用授权认证配置 */
-  saveAuthConfig(data: AlipayDirectAppAuthConfigParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/mch/alipay/direct-app/save-auth-config', data });
-  },
 };
 
 /** 支付宝直连商户应用 */
@@ -115,20 +104,4 @@ export interface AlipayDirectAppKeyConfigParam {
   alipayRootCert?: string;
   secretKey?: string;
   sandbox: boolean;
-}
-
-/** 支付宝直连应用授权认证配置结果 */
-export interface AlipayDirectAppAuthConfigResult {
-  id?: string;
-  mchNo?: string;
-  channelMchNo?: string;
-  alipayDirectAppId?: string;
-  userIdType?: string;
-}
-
-/** 支付宝直连应用授权认证配置保存参数 */
-export interface AlipayDirectAppAuthConfigParam {
-  alipayDirectAppId: string;
-  channelMchNo: string;
-  userIdType: string;
 }

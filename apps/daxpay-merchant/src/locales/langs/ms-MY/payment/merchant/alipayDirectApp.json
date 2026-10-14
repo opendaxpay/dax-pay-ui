@@ -5,7 +5,6 @@
   "configTitleEdit": "Konfigurasi Aplikasi Alipay",
   "tabBasic": "Maklumat Asas",
   "tabKeyConfig": "Konfigurasi Kunci",
-  "tabAuthConfig": "Konfigurasi Kebenaran",
   "appName": "Nama Aplikasi",
   "appNamePlaceholder": "Masukkan nama aplikasi",
   "appNameRequired": "Sila masukkan nama aplikasi",
@@ -31,7 +30,6 @@
   "certPlaceholder": "Tampal kandungan sijil",
   "secretKey": "Kunci Komunikasi AES",
   "secretKeyPlaceholder": "Masukkan kunci komunikasi AES (pilihan)",
-  "userIdType": "Jenis ID Pengguna",
   "addApp": "Tambah Aplikasi",
   "config": "Konfigurasi",
   "confirmDelete": "Sahkan padam aplikasi ini?",
@@ -69,18 +67,13 @@
   "uploadAlipayCert": "Muat naik Sijil Alipay",
   "uploadRootCert": "Muat naik Sijil Root Alipay",
   "authTypePlaceholder": "Sila pilih jenis pengesahan",
-  "authConfigTitle": "Konfigurasi Kebenaran",
-  "userIdTypeOpenid": "OpenId",
-  "userIdTypeUserid": "UserId",
-  "userIdTypeBoth": "Kedua-dua OpenId dan UserId",
   "validation": {
     "authType": "Sila pilih jenis pengesahan",
     "alipayPublicKey": "Sila masukkan kunci awam Alipay",
     "privateKey": "Sila masukkan kunci peribadi",
     "appCert": "Sijil apl diperlukan",
     "alipayCert": "Sijil Alipay diperlukan",
-    "alipayRootCert": "Sijil akar Alipay diperlukan",
-    "userIdType": "Sila pilih jenis ID pengguna"
+    "alipayRootCert": "Sijil akar Alipay diperlukan"
   },
   "alipayUserId": "PID Peniaga Alipay",
   "envFollowProductHint": "Mengikut persekitaran peniaga saluran, ditentukan semasa peniaga saluran dicipta"

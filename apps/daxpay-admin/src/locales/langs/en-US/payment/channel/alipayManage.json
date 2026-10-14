@@ -22,6 +22,5 @@
   "aliAppIdPrefix": "App ID: {appId}",
   "detailTitle": "{name} - Application Management",
   "tabBasicInfo": "Basic Information",
-  "tabKeyConfig": "Key Configuration",
-  "tabAuthConfig": "Authorization"
+  "tabKeyConfig": "Key Configuration"
 }

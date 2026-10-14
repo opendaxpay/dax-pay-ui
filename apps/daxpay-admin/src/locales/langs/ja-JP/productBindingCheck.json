@@ -25,10 +25,6 @@
     "appKey": {
       "title": "アプリキー設定",
       "description": "少なくとも1つのアプリでキー設定が完了していること(公開鍵モードまたは証明書モード)"
-    },
-    "appAuth": {
-      "title": "アプリ認証設定",
-      "description": "少なくとも1つのアプリでユーザーIDタイプ(userIdType)が設定されていること"
     }
   },
   "summary": {

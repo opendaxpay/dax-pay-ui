@@ -24,18 +24,12 @@
   "communicateKeyConfig": "コミュニケーションキー",
   "secretKey": "コミュニケーションキー",
   "secretKeyPlaceholder": "Alipay Open Platformコンソールからキーを入力してください",
-  "authConfigTitle": "認可設定",
-  "userIdType": "ユーザーIDの種類",
-  "userIdTypeOpenid": "オープンID",
-  "userIdTypeUserid": "ユーザーID",
-  "userIdTypeBoth": "OpenId と UserId の両方",
   "validation": {
     "authType": "認証タイプを選択してください",
     "alipayPublicKey": "Alipayの公開キーを入力してください",
     "privateKey": "秘密キーを入力してください",
     "appCert": "アプリ証明書が必要です",
     "alipayCert": "Alipay証明書が必要です",
-    "alipayRootCert": "Alipayのルート証明書が必要です",
-    "userIdType": "ユーザーIDの種類を選択してください"
+    "alipayRootCert": "Alipayのルート証明書が必要です"
   }
 }

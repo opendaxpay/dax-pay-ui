@@ -23,6 +23,5 @@
   "appTypeWebApp": "Web App",
   "detailTitle": "{name} - App Management",
   "tabBasicInfo": "Basic Info",
-  "tabKeyConfig": "Key Config",
-  "tabAuthConfig": "Authorization"
+  "tabKeyConfig": "Key Config"
 }

@@ -5,7 +5,6 @@
   "configTitleEdit": "Cấu hình ứng dụng Alipay",
   "tabBasic": "Thông tin cơ bản",
   "tabKeyConfig": "Cấu hình khóa",
-  "tabAuthConfig": "Cấu hình ủy quyền",
   "appName": "Tên ứng dụng",
   "appNamePlaceholder": "Nhập tên ứng dụng",
   "appNameRequired": "Vui lòng nhập tên ứng dụng",
@@ -31,7 +30,6 @@
   "certPlaceholder": "Dán nội dung chứng chỉ",
   "secretKey": "Khóa giao tiếp AES",
   "secretKeyPlaceholder": "Nhập khóa giao tiếp AES (tùy chọn)",
-  "userIdType": "Loại ID người dùng",
   "addApp": "Thêm ứng dụng",
   "config": "Cấu hình",
   "confirmDelete": "Xác nhận xóa ứng dụng này?",
@@ -69,18 +67,13 @@
   "uploadAlipayCert": "Tải lên chứng chỉ Alipay",
   "uploadRootCert": "Tải lên chứng chỉ gốc Alipay",
   "authTypePlaceholder": "Vui lòng chọn loại xác thực",
-  "authConfigTitle": "Cấu hình ủy quyền",
-  "userIdTypeOpenid": "ID mở",
-  "userIdTypeUserid": "ID người dùng",
-  "userIdTypeBoth": "Cả OpenId và UserId",
   "validation": {
     "authType": "Vui lòng chọn loại xác thực",
     "alipayPublicKey": "Vui lòng nhập khóa công khai Alipay",
     "privateKey": "Vui lòng nhập khóa riêng",
     "appCert": "Cần có chứng chỉ ứng dụng",
     "alipayCert": "Cần có chứng chỉ Alipay",
-    "alipayRootCert": "Cần có chứng chỉ gốc Alipay",
-    "userIdType": "Vui lòng chọn loại ID người dùng"
+    "alipayRootCert": "Cần có chứng chỉ gốc Alipay"
   },
   "alipayUserId": "PID đối tác Alipay",
   "envFollowProductHint": "Theo môi trường merchant kênh, được xác định khi tạo merchant kênh"

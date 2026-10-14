@@ -5,7 +5,6 @@
   "configTitleEdit": "配置支付宝应用",
   "tabBasic": "基础信息",
   "tabKeyConfig": "密钥配置",
-  "tabAuthConfig": "授权配置",
   "appName": "应用名称",
   "appNamePlaceholder": "请输入应用名称",
   "appNameRequired": "请输入应用名称",
@@ -31,7 +30,6 @@
   "certPlaceholder": "粘贴证书内容",
   "secretKey": "AES通信密钥",
   "secretKeyPlaceholder": "请输入AES通信密钥（可选）",
-  "userIdType": "用户标识类型",
   "addApp": "新增应用",
   "config": "配置",
   "confirmDelete": "确认删除该应用？",
@@ -69,18 +67,13 @@
   "uploadAlipayCert": "上传支付宝公钥证书",
   "uploadRootCert": "上传支付宝根证书",
   "authTypePlaceholder": "请选择认证方式",
-  "authConfigTitle": "授权认证配置",
-  "userIdTypeOpenid": "OpenId",
-  "userIdTypeUserid": "UserId",
-  "userIdTypeBoth": "同时支持 OpenId 和 UserId",
   "validation": {
     "authType": "请选择认证方式",
     "alipayPublicKey": "请输入支付宝公钥",
     "privateKey": "请输入应用私钥",
     "appCert": "请上传应用公钥证书",
     "alipayCert": "请上传支付宝公钥证书",
-    "alipayRootCert": "请上传支付宝根证书",
-    "userIdType": "请选择用户标识类型"
+    "alipayRootCert": "请上传支付宝根证书"
   },
   "alipayUserId": "支付宝商户PID",
   "envFollowProductHint": "跟随通道商户环境，由通道商户创建时确定"

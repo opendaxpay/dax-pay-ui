@@ -25,10 +25,6 @@
     "appKey": {
       "title": "應用密鑰配置",
       "description": "至少一個應用完成密鑰配置(公鑰模式或證書模式)"
-    },
-    "appAuth": {
-      "title": "應用授權認證",
-      "description": "至少一個應用配置用戶標識類型(userIdType)"
     }
   },
   "summary": {

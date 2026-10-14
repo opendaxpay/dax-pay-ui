@@ -24,18 +24,12 @@
   "communicateKeyConfig": "通訊金鑰",
   "secretKey": "通訊金鑰",
   "secretKeyPlaceholder": "請從支付寶開放平臺控制台獲取並填寫",
-  "authConfigTitle": "授權認證配置",
-  "userIdType": "使用者標識型別",
-  "userIdTypeOpenid": "OpenId",
-  "userIdTypeUserid": "UserId",
-  "userIdTypeBoth": "同時支援 OpenId 和 UserId",
   "validation": {
     "authType": "請選擇認證方式",
     "alipayPublicKey": "請輸入支付寶公鑰",
     "privateKey": "請輸入應用私鑰",
     "appCert": "請上傳應用公鑰證書",
     "alipayCert": "請上傳支付寶公鑰證書",
-    "alipayRootCert": "請上傳支付寶根證書",
-    "userIdType": "請選擇使用者標識型別"
+    "alipayRootCert": "請上傳支付寶根證書"
   }
 }

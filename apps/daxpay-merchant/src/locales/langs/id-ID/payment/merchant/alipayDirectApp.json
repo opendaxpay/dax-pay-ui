@@ -5,7 +5,6 @@
   "configTitleEdit": "Konfigurasi Aplikasi Alipay",
   "tabBasic": "Info Dasar",
   "tabKeyConfig": "Konfigurasi Kunci",
-  "tabAuthConfig": "Konfigurasi Otorisasi",
   "appName": "Nama Aplikasi",
   "appNamePlaceholder": "Masukkan nama aplikasi",
   "appNameRequired": "Silakan masukkan nama aplikasi",
@@ -31,7 +30,6 @@
   "certPlaceholder": "Tempel konten sertifikat",
   "secretKey": "Kunci Komunikasi AES",
   "secretKeyPlaceholder": "Masukkan kunci komunikasi AES (opsional)",
-  "userIdType": "Tipe ID Pengguna",
   "addApp": "Tambah Aplikasi",
   "config": "Konfigurasi",
   "confirmDelete": "Konfirmasi hapus aplikasi ini?",
@@ -69,18 +67,13 @@
   "uploadAlipayCert": "Unggah Sertifikat Alipay",
   "uploadRootCert": "Unggah Sertifikat Root Alipay",
   "authTypePlaceholder": "Silakan pilih jenis autentikasi",
-  "authConfigTitle": "Konfigurasi Otorisasi",
-  "userIdTypeOpenid": "OpenId",
-  "userIdTypeUserid": "ID Pengguna",
-  "userIdTypeBoth": "OpenId dan UserId",
   "validation": {
     "authType": "Silakan pilih jenis autentikasi",
     "alipayPublicKey": "Silakan masukkan kunci publik Alipay",
     "privateKey": "Silakan masukkan kunci pribadi",
     "appCert": "Sertifikat aplikasi diperlukan",
     "alipayCert": "Sertifikat Alipay diperlukan",
-    "alipayRootCert": "Diperlukan sertifikat root Alipay",
-    "userIdType": "Silakan pilih jenis ID pengguna"
+    "alipayRootCert": "Diperlukan sertifikat root Alipay"
   },
   "alipayUserId": "PID Merchant Alipay",
   "envFollowProductHint": "Mengikuti lingkungan merchant saluran, ditentukan saat merchant saluran dibuat"

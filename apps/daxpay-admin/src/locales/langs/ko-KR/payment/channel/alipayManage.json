@@ -22,6 +22,5 @@
   "aliAppIdPrefix": "앱 ID: {appId}",
   "detailTitle": "{name} - 애플리케이션 관리",
   "tabBasicInfo": "기본정보",
-  "tabKeyConfig": "키 구성",
-  "tabAuthConfig": "권한 부여"
+  "tabKeyConfig": "키 구성"
 }
