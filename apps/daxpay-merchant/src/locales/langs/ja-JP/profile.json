@@ -120,5 +120,14 @@
   "emailUnbindConfirm": "解除するとメールでのパスワード再設定ができなくなります。解除しますか?",
   "emailUnbindSuccess": "メール紐付けを解除しました",
   "emailUnbindCodeSent": "認証コードを {email} に送信しました。ご確認ください",
-  "emailUnboundTag": "未登録"
+  "emailUnboundTag": "未登録",
+  "socialScanTitle": "{name}をQRコードで紐付け",
+  "socialScanTip": "WeChatでQRコードをスキャンし、スマートフォンで認証を完了してください",
+  "socialScanGenerating": "QRコード生成中...",
+  "socialScanExpired": "QRコードの有効期限が切れました",
+  "socialScanRefresh": "QRコードを更新",
+  "socialLoginScanTitle": "{name}をQRコードでログイン",
+  "socialLoginScanTip": "WeChatでQRコードをスキャンし、スマートフォンでログイン認証を完了してください",
+  "socialLoginScanNotBound": "このWeChatはまだアカウントに紐付けられていません。IDとパスワードでログイン後、「アカウントとセキュリティ」でWeChatを紐付けてください",
+  "socialLoginScanCancelled": "スマートフォンでキャンセルされました。QRコードを更新して再試行してください"
 }

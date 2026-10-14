@@ -120,5 +120,14 @@
   "emailUnbindConfirm": "After unbinding, the email can no longer be used for password recovery. Unbind anyway?",
   "emailUnbindSuccess": "Email unbound",
   "emailUnbindCodeSent": "Verification code has been sent to {email}, please check",
-  "emailUnboundTag": "Unbound"
+  "emailUnboundTag": "Unbound",
+  "socialScanTitle": "Scan to Bind {name}",
+  "socialScanTip": "Scan the QR code with WeChat and complete the authorization on your phone",
+  "socialScanGenerating": "Generating QR code...",
+  "socialScanExpired": "QR code expired",
+  "socialScanRefresh": "Refresh QR Code",
+  "socialLoginScanTitle": "Scan to Log in {name}",
+  "socialLoginScanTip": "Scan the QR code with WeChat and complete the login authorization on your phone",
+  "socialLoginScanNotBound": "This WeChat account is not linked to any account yet. Log in with your username and password first, then link WeChat under \"Account & Security\"",
+  "socialLoginScanCancelled": "Cancelled on your phone. Please refresh the QR code and retry"
 }

@@ -61,7 +61,7 @@
     "loginCallback": "Masuk Panggilan Balik",
     "bindCallback": "Ikat Panggilan Balik",
     "gatewayWeChatHint": "Isi {domain} (tanpa protokol) di domain otorisasi web Akun Resmi WeChat; callback login dan pengikatan diteruskan melalui gateway kembali ke sistem ini",
-    "gatewayAlipayHint": "Isi {domain} (tanpa protokol) di alamat callback otorisasi aplikasi platform terbuka Alipay dan aktifkan validasi level domain di halaman yang sama; callback login/pengikatan diteruskan melalui gateway kembali ke sistem ini",
+    "gatewayAlipayHint": "Isi {domain} (alamat lengkap dengan protokol) di alamat callback otorisasi aplikasi platform terbuka Alipay dan aktifkan validasi level domain di halaman yang sama; callback login/pengikatan diteruskan melalui gateway kembali ke sistem ini",
     "gatewayUrlNotConfigured": "Atur URL frontend gateway pembayaran (paymentGatewayBaseUrl) di konfigurasi endpoint terlebih dahulu; callback login platform redirect diteruskan melalui domain gateway",
     "gatewayUrlLabel": "Domain Gateway Pembayaran",
     "gatewayRegisterHelp": "Callback login dan binding platform redirect (Alipay/Akun Resmi) diteruskan melalui domain gateway; hanya domain gateway yang perlu didaftarkan di platform terbuka",

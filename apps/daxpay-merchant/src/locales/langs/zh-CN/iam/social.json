@@ -61,7 +61,7 @@
     "loginCallback": "登录回调",
     "bindCallback": "绑定回调",
     "gatewayWeChatHint": "在微信公众平台「网页授权域名」中填写 {domain}（不带协议）；登录与绑定回调经网关透传路径跳回本系统",
-    "gatewayAlipayHint": "在支付宝开放平台应用的「授权回调地址」中填写 {domain}（不带协议），并在同一页面开启域名级校验；登录与绑定回调经网关透传路径跳回本系统",
+    "gatewayAlipayHint": "在支付宝开放平台应用的「授权回调地址」中填写 {domain}（带协议的完整地址），并在同一页面开启域名级校验；登录与绑定回调经网关透传路径跳回本系统",
     "gatewayUrlNotConfigured": "请先在端点配置中设置「支付网关前端地址」(paymentGatewayBaseUrl)，跳转型平台登录回调经网关域名透传",
     "gatewayUrlLabel": "支付网关域名",
     "gatewayRegisterHelp": "跳转型平台(支付宝/公众号)的登录与绑定回调统一经支付网关域名透传，开放平台只需登记网关域名相关信息",

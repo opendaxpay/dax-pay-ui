@@ -1,5 +1,6 @@
 <script lang="ts" setup>
   import type { SocialBindResult } from '#/api/iam/social.api';
+  import type { SocialEnabledPlatform } from '#/api/iam/social.api';
 
   import { computed, onMounted, onUnmounted, ref } from 'vue';
 
@@ -10,12 +11,14 @@
   import { CLIENT_CODE } from '#/constants/client';
   import { useMessage } from '#/hooks/useMessage';
 
+  import SocialBindScanModal from './components/SocialBindScanModal.vue';
+
   defineOptions({ name: 'ProfileSocialBind' });
 
   const { message, confirm } = useMessage();
 
   /** 后端已启用的平台列表 */
-  const enabledPlatforms = ref<{ source: string }[]>([]);
+  const enabledPlatforms = ref<SocialEnabledPlatform[]>([]);
 
   const platformList = computed(() =>
     enabledPlatforms.value.map((p) => ({
@@ -26,6 +29,11 @@
 
   const bindList = ref<SocialBindResult[]>([]);
   const loading = ref(false);
+
+  /** 扫码绑定弹窗(公众号等仅微信内可授权的平台) */
+  const scanVisible = ref(false);
+  const scanSource = ref('');
+  const scanPlatformName = ref('');
 
   /** 拉取已启用平台 + 已绑定账号 */
   async function fetchData() {
@@ -47,9 +55,25 @@
   }
 
   /**
-   * 绑定第三方账号(打开弹窗进行授权, 授权后弹窗自动关闭并通知刷新)
+   * 是否微信内置浏览器(公众号网页授权仅微信内可完成)
    */
-  async function handleBind(source: string) {
+  function isWechatClient() {
+    return /MicroMessenger/i.test(navigator.userAgent);
+  }
+
+  /**
+   * 绑定第三方账号
+   *
+   * 普通平台: 打开弹窗授权, 授权后弹窗自动关闭并通知刷新;
+   * 公众号等仅微信内可授权的平台: PC 浏览器改走扫码跨设备绑定(手机微信扫码完成授权)
+   */
+  async function handleBind(source: string, scanBind?: boolean, platformName?: string) {
+    if (scanBind && !isWechatClient()) {
+      scanSource.value = source;
+      scanPlatformName.value = platformName ?? source;
+      scanVisible.value = true;
+      return;
+    }
     const { data: url } = await SocialApi.render(source, CLIENT_CODE, 'BIND');
     if (url) {
       window.open(url, 'social-bind', 'width=600,height=700');
@@ -118,12 +142,24 @@
                 {{ $t('profile.socialUnbindAction') }}
               </a-button>
             </template>
-            <a-button v-else type="primary" size="small" @click="handleBind(platform.source)">
+            <a-button
+              v-else
+              type="primary"
+              size="small"
+              @click="handleBind(platform.source, platform.scanBind, platform.name)"
+            >
               {{ $t('profile.socialBindAction') }}
             </a-button>
           </div>
         </div>
       </div>
     </a-card>
+    <!-- 公众号扫码绑定弹窗(手机微信扫码完成授权) -->
+    <SocialBindScanModal
+      v-model:open="scanVisible"
+      :source="scanSource"
+      :platform-name="scanPlatformName"
+      @success="fetchData"
+    />
   </a-spin>
 </template>

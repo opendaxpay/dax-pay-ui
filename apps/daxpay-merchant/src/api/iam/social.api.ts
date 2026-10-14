@@ -75,6 +75,35 @@ export const SocialApi = {
   enabledList(): Promise<Result<SocialEnabledPlatform[]>> {
     return defHttp.get({ url: '/social/enabled-list' });
   },
+
+  /**
+   * 生成扫码绑定二维码(公众号等仅微信内可授权的平台, PC 端发起)
+   * 返回含票据的 H5 页面地址, 前端转二维码供手机微信扫码完成绑定
+   */
+  bindScanCreate(source: string, client: string = CLIENT_CODE): Promise<Result<SocialBindScanQrResult>> {
+    return defHttp.get({ url: '/social/bind-scan/create', params: { source, client } });
+  },
+
+  /**
+   * 轮询扫码绑定结果(票据 5 分钟过期)
+   */
+  bindScanStatus(ticket: string): Promise<Result<SocialBindScanStatusResult>> {
+    return defHttp.get({ url: '/social/bind-scan/status', params: { ticket } });
+  },
+
+  /**
+   * 生成扫码登录二维码(公众号等仅微信内可授权的平台, PC 登录页匿名发起)
+   */
+  loginScanCreate(source: string, client: string = CLIENT_CODE): Promise<Result<SocialLoginScanQrResult>> {
+    return defHttp.get({ url: '/social/login-scan/create', params: { source, client } });
+  },
+
+  /**
+   * 轮询扫码登录结果(票据 5 分钟过期, success 一次性返回登录 token)
+   */
+  loginScanStatus(ticket: string): Promise<Result<SocialLoginScanStatusResult>> {
+    return defHttp.get({ url: '/social/login-scan/status', params: { ticket } });
+  },
 };
 
 /**
@@ -205,4 +234,44 @@ export interface SocialExchangeResult {
 export interface SocialEnabledPlatform {
   /** 平台编码(weChat/weCom/qq/github/gitee/feishu/dingTalk/douyin/alipay) */
   source: string;
+  /** 是否仅微信客户端内可完成授权(公众号), PC 端发起绑定时须改走扫码流程 */
+  scanBind?: boolean;
+}
+
+/**
+ * 扫码绑定二维码(公众号跨设备绑定)
+ */
+export interface SocialBindScanQrResult {
+  /** 扫码绑定票据(轮询绑定结果的凭证, 5 分钟过期) */
+  ticket: string;
+  /** 手机微信扫码打开的 H5 发起页地址(前端转二维码) */
+  qrUrl: string;
+}
+
+/**
+ * 扫码绑定状态(waiting=等待扫码授权 / success=绑定完成 / not_exist=票据不存在或已过期)
+ */
+export interface SocialBindScanStatusResult {
+  status: 'not_exist' | 'success' | 'waiting';
+}
+
+/**
+ * 扫码登录二维码(公众号跨设备登录)
+ */
+export interface SocialLoginScanQrResult {
+  /** 扫码登录票据(轮询登录结果的凭证, 5 分钟过期) */
+  ticket: string;
+  /** 手机微信扫码打开的 H5 发起页地址(前端转二维码) */
+  qrUrl: string;
+}
+
+/**
+ * 扫码登录状态(waiting=等待扫码授权 / not_bound=微信未绑定账号 / cancelled=手机端已取消 / success=登录完成 / not_exist=票据不存在或已过期)
+ */
+export interface SocialLoginScanStatusResult {
+  status: 'cancelled' | 'not_bound' | 'not_exist' | 'success' | 'waiting';
+  /** 登录 token(status=success 时返回) */
+  token?: string;
+  /** 需二次验证时的临时凭证(业务码 40101 时返回, 与 exchange-login 同协议) */
+  preAuthToken?: string;
 }

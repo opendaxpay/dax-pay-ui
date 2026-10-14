@@ -120,5 +120,14 @@
   "emailUnbindConfirm": "解绑后将无法通过邮箱找回密码, 确定解绑?",
   "emailUnbindSuccess": "邮箱已解绑",
   "emailUnbindCodeSent": "验证码已发送至 {email}, 请查收",
-  "emailUnboundTag": "未绑定"
+  "emailUnboundTag": "未绑定",
+  "socialScanTitle": "扫码绑定 {name}",
+  "socialScanTip": "请使用微信扫描二维码，在手机上完成授权绑定",
+  "socialScanGenerating": "二维码生成中...",
+  "socialScanExpired": "二维码已过期",
+  "socialScanRefresh": "刷新二维码",
+  "socialLoginScanTitle": "扫码登录 {name}",
+  "socialLoginScanTip": "请使用微信扫描二维码，在手机上完成授权登录",
+  "socialLoginScanNotBound": "该微信尚未绑定账号，请使用账号密码登录后，在「账户与安全」中绑定微信",
+  "socialLoginScanCancelled": "已在手机端取消，请刷新二维码重试"
 }

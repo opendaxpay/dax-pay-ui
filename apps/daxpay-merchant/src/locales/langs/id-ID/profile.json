@@ -120,5 +120,14 @@
   "emailUnbindConfirm": "Setelah dilepaskan, email tidak dapat digunakan untuk pemulihan kata sandi. Lepaskan?",
   "emailUnbindSuccess": "Email telah dilepaskan",
   "emailUnbindCodeSent": "Kode verifikasi telah dikirim ke {email}, silakan periksa",
-  "emailUnboundTag": "Belum terikat"
+  "emailUnboundTag": "Belum terikat",
+  "socialScanTitle": "Pindai untuk Mengikat {name}",
+  "socialScanTip": "Pindai kode QR dengan WeChat dan selesaikan otorisasi di ponsel Anda",
+  "socialScanGenerating": "Membuat kode QR...",
+  "socialScanExpired": "Kode QR kedaluwarsa",
+  "socialScanRefresh": "Muat ulang kode QR",
+  "socialLoginScanTitle": "Pindai untuk Masuk {name}",
+  "socialLoginScanTip": "Pindai kode QR dengan WeChat dan selesaikan otorisasi masuk di ponsel Anda",
+  "socialLoginScanNotBound": "WeChat ini belum terhubung ke akun mana pun. Masuk dengan nama pengguna dan kata sandi Anda terlebih dahulu, lalu hubungkan WeChat di \"Keamanan Akun\"",
+  "socialLoginScanCancelled": "Dibatalkan di ponsel. Muat ulang kode QR lalu coba lagi"
 }

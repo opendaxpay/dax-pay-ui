@@ -120,5 +120,14 @@
   "emailUnbindConfirm": "Selepas dilerai, e-mel tidak boleh digunakan untuk memulihkan kata laluan. Leraikan?",
   "emailUnbindSuccess": "E-mel telah dilerai",
   "emailUnbindCodeSent": "Kod pengesahan telah dihantar ke {email}, sila semak",
-  "emailUnboundTag": "Belum dikaitkan"
+  "emailUnboundTag": "Belum dikaitkan",
+  "socialScanTitle": "Imbas untuk Mengikat {name}",
+  "socialScanTip": "Imbas kod QR dengan WeChat dan selesaikan kebenaran pada telefon anda",
+  "socialScanGenerating": "Menjana kod QR...",
+  "socialScanExpired": "Kod QR tamat tempoh",
+  "socialScanRefresh": "Muat semula kod QR",
+  "socialLoginScanTitle": "Imbas untuk Log Masuk {name}",
+  "socialLoginScanTip": "Imbas kod QR dengan WeChat dan selesaikan log masuk pada telefon anda",
+  "socialLoginScanNotBound": "WeChat ini belum dipautkan kepada sebarang akaun. Log masuk dengan nama pengguna dan kata laluan anda dahulu, kemudian pautkan WeChat di \"Keselamatan Akaun\"",
+  "socialLoginScanCancelled": "Dibatalkan pada telefon. Muat semula kod QR dan cuba lagi"
 }

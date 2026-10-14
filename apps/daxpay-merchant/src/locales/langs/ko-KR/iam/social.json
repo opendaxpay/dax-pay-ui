@@ -61,7 +61,7 @@
     "loginCallback": "로그인 콜백",
     "bindCallback": "콜백 바인딩",
     "gatewayWeChatHint": "WeChat 공식 계정 플랫폼의 '웹 인가 도메인'에 {domain} (프로토콜 제외)을 입력하세요. 로그인·바인딩 콜백은 게이트웨이를 경유해 본 시스템으로 돌아옵니다",
-    "gatewayAlipayHint": "Alipay 오픈 플랫폼 앱의 '인가 콜백 주소'에 {domain} (프로토콜 제외)을 입력하고 같은 페이지에서 도메인 수준 검증을 활성화하세요. 로그인·바인딩 콜백은 게이트웨이를 경유해 본 시스템으로 돌아옵니다",
+    "gatewayAlipayHint": "Alipay 오픈 플랫폼 앱의 '인가 콜백 주소'에 {domain} (프로토콜을 포함한 전체 주소)를 입력하고 같은 페이지에서 도메인 수준 검증을 활성화하세요. 로그인·바인딩 콜백은 게이트웨이를 경유해 본 시스템으로 돌아옵니다",
     "gatewayUrlNotConfigured": "먼저 엔드포인트 설정에서 '결제 게이트웨이 프론트 주소'(paymentGatewayBaseUrl)를 설정하세요. 리다이렉트형 플랫폼 로그인 콜백은 게이트웨이 도메인을 경유합니다",
     "gatewayUrlLabel": "결제 게이트웨이 도메인",
     "gatewayRegisterHelp": "리다이렉트형 플랫폼(Alipay/공식 계정)의 로그인·바인딩 콜백은 게이트웨이 도메인을 경유합니다. 오픈 플랫폼에는 게이트웨이 도메인만 등록하면 됩니다",

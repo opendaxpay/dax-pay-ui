@@ -61,7 +61,7 @@
     "loginCallback": "Đăng nhập Gọi lại",
     "bindCallback": "Liên kết gọi lại",
     "gatewayWeChatHint": "Điền {domain} (không có giao thức) vào tên miền ủy quyền web Tài khoản chính thức WeChat; callback đăng nhập và liên kết chuyển qua gateway quay lại hệ thống này",
-    "gatewayAlipayHint": "Điền {domain} (không có giao thức) vào địa chỉ callback ủy quyền của ứng dụng nền tảng mở Alipay và bật kiểm chứng cấp tên miền trên cùng trang; callback đăng nhập/liên kết chuyển qua gateway quay lại hệ thống này",
+    "gatewayAlipayHint": "Điền {domain} (địa chỉ đầy đủ kèm giao thức) vào địa chỉ callback ủy quyền của ứng dụng nền tảng mở Alipay và bật kiểm chứng cấp tên miền trên cùng trang; callback đăng nhập/liên kết chuyển qua gateway quay lại hệ thống này",
     "gatewayUrlNotConfigured": "Thiết lập địa chỉ frontend cổng thanh toán (paymentGatewayBaseUrl) trong cấu hình endpoint trước; callback đăng nhập nền tảng redirect được chuyển tiếp qua tên miền gateway",
     "gatewayUrlLabel": "Tên miền cổng thanh toán",
     "gatewayRegisterHelp": "Callback đăng nhập và liên kết của nền tảng dạng redirect (Alipay/Tài khoản chính thức) được chuyển tiếp qua tên miền gateway; chỉ cần đăng ký tên miền gateway trên nền tảng mở",

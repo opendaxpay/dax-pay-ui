@@ -120,5 +120,14 @@
   "emailUnbindConfirm": "解綁後將無法透過郵箱找回密碼, 確定解綁?",
   "emailUnbindSuccess": "郵箱已解綁",
   "emailUnbindCodeSent": "驗證碼已發送至 {email}, 請查收",
-  "emailUnboundTag": "未綁定"
+  "emailUnboundTag": "未綁定",
+  "socialScanTitle": "掃碼綁定 {name}",
+  "socialScanTip": "請使用微信掃描二維碼，在手機上完成授權綁定",
+  "socialScanGenerating": "二維碼生成中...",
+  "socialScanExpired": "二維碼已過期",
+  "socialScanRefresh": "刷新二維碼",
+  "socialLoginScanTitle": "掃碼登入 {name}",
+  "socialLoginScanTip": "請使用微信掃描二維碼，在手機上完成授權登入",
+  "socialLoginScanNotBound": "此微信尚未綁定帳號，請使用帳號密碼登入後，在「帳戶與安全」中綁定微信",
+  "socialLoginScanCancelled": "已在手機端取消，請重新整理二維碼重試"
 }

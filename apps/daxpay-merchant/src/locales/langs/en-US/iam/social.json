@@ -61,7 +61,7 @@
     "loginCallback": "Login Callback",
     "bindCallback": "Bind Callback",
     "gatewayWeChatHint": "Fill {domain} (without protocol) in the WeChat Official Account web authorization domain; login and bind callbacks transit via the gateway back to this system",
-    "gatewayAlipayHint": "Fill {domain} (without protocol) in the authorization callback address of the Alipay open-platform app, and enable domain-level validation on the same page; login and bind callbacks transit via the gateway back to this system",
+    "gatewayAlipayHint": "Fill {domain} (full address with protocol) in the authorization callback address of the Alipay open-platform app, and enable domain-level validation on the same page; login and bind callbacks transit via the gateway back to this system",
     "gatewayUrlNotConfigured": "Set the payment gateway frontend URL (paymentGatewayBaseUrl) in endpoint config first; platform-redirect login callbacks transit via the gateway domain",
     "gatewayUrlLabel": "Payment Gateway Domain",
     "gatewayRegisterHelp": "Platform-redirect sources (Alipay / WeChat Official Account) transit login and bind callbacks via the gateway domain; only the gateway domain needs to be registered on the open platform",
