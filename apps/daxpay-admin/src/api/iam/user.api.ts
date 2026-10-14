@@ -144,18 +144,28 @@ export interface User {
   account?: string;
   /** 邮箱 */
   email?: string;
+  /** 手机号 */
+  phone?: string;
   /** 客户端编码 */
   clientCode?: string;
   /** 状态 */
   status?: string;
   /** 是否管理员 */
   administrator?: boolean;
+  /** 角色名称(单角色模式, 后端存 i18nKey 由 $t 渲染; 内置超管无角色) */
+  roleName?: string;
+  /** 角色编码(i18nKey 缺翻译时的兜底展示) */
+  roleCode?: string;
   /** 密码（新增/编辑时使用） */
   password?: string;
   /** 创建时间 */
   createTime?: string;
   /** 最后登录时间 */
   lastLoginTime?: string;
+  /** 最后登录 IP */
+  lastLoginIp?: string;
+  /** 登录次数 */
+  loginCount?: number;
   /** 头像 */
   avatar?: string;
   /** 密码过期时间 (UTC ISO), 为空表示未设置有效期 */

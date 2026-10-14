@@ -15,7 +15,7 @@
   import { BQuery, type QueryField } from '#/components/query';
   import { ResetPasswordModal } from '#/components/reset-password';
   import { PermCodes } from '#/constants/perm-codes';
-  import { ClientCode, clientCodeColorMap, clientCodeI18nMap } from '#/enums/clientCode';
+  import { ClientCode } from '#/enums/clientCode';
   import { useClientOptions } from '#/hooks/useClientOptions';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
@@ -34,7 +34,6 @@
     key: string;
     label: string;
     clientCode: string;
-    color?: string;
   }
 
   // 终端主数据(排除 gateway, 用户管理仅 admin/merchant)
@@ -46,7 +45,6 @@
       key: item.value,
       label: item.label,
       clientCode: item.value,
-      color: clientCodeColorMap[item.value],
     })),
   );
 
@@ -174,16 +172,28 @@
   }
 
   /**
+   * 角色展示(roleName 为 i18nKey, $t 渲染; 缺翻译回退 roleCode)
+   */
+  function getRoleDisplay(row: any): string {
+    if (!row.roleName) return '-';
+    const text = $t(row.roleName);
+    return text && text !== row.roleName ? text : row.roleCode || row.roleName;
+  }
+
+  /**
    * 获取更多操作菜单配置
    */
   function getActionMenu(row: any): MenuProps {
     return {
       items: [
-        // 分配角色
+        // 分配角色(内置超管无需角色, 后端同拦)
         {
           key: 'assignRole',
           label: $t('iam.user.action.assignRole'),
-          disabled: !hasPermission(PermCodes.Iam.User.ASSIGN_ROLE) || !isAdminClient.value,
+          disabled:
+            !hasPermission(PermCodes.Iam.User.ASSIGN_ROLE) ||
+            !isAdminClient.value ||
+            !!row.administrator,
         },
         // 重置密码
         {
@@ -198,11 +208,14 @@
           disabled: !hasPermission(PermCodes.Iam.User.VIEW),
         },
         { type: 'divider' },
-        // 封禁
+        // 封禁(内置超管后端同拦: 登录链跳过状态检查, 封禁只会造成矛盾态)
         {
           key: 'ban',
           label: $t('iam.user.action.ban'),
-          disabled: !hasPermission(PermCodes.Iam.User.STATUS) || row.status === 'ban',
+          disabled:
+            !hasPermission(PermCodes.Iam.User.STATUS) ||
+            row.status === 'ban' ||
+            !!row.administrator,
         },
         // 解锁（后端 unlock 无条件置为 NORMAL，对 lock/ban 均生效）
         {
@@ -452,20 +465,26 @@
           <vxe-column type="checkbox" width="60" />
           <!-- 姓名 -->
           <vxe-column field="name" :title="$t('iam.user.field.name')" min-width="120" />
+          <!-- 身份(内置超管金色标签; 普通用户蓝色角色标签) -->
+          <vxe-column field="administrator" :title="$t('iam.user.field.identity')" width="110" align="center">
+            <template #default="{ row }">
+              <a-tag v-if="row.administrator" color="gold">{{ $t('iam.user.field.superAdmin') }}</a-tag>
+              <a-tag v-else-if="row.roleName" color="blue">{{ getRoleDisplay(row) }}</a-tag>
+              <span v-else>-</span>
+            </template>
+          </vxe-column>
           <!-- 账号 -->
           <vxe-column field="account" :title="$t('iam.user.field.account')" min-width="120" />
+          <!-- 手机号 -->
+          <vxe-column field="phone" :title="$t('iam.user.field.phone')" min-width="120">
+            <template #default="{ row }">
+              {{ row.phone || $t('common.none') }}
+            </template>
+          </vxe-column>
           <!-- 邮箱 -->
           <vxe-column field="email" :title="$t('iam.user.field.email')" min-width="150">
             <template #default="{ row }">
               {{ row.email || $t('common.none') }}
-            </template>
-          </vxe-column>
-          <!-- 终端 -->
-          <vxe-column field="clientCode" :title="$t('iam.user.field.clientCode')" min-width="100" align="center">
-            <template #default="{ row }">
-              <a-tag :color="clientCodeColorMap[row.clientCode] || 'default'">
-                {{ $t(clientCodeI18nMap[row.clientCode] || row.clientCode) }}
-              </a-tag>
             </template>
           </vxe-column>
           <!-- 状态 -->
@@ -517,12 +536,12 @@
                 >
                   {{ $t('common.view') }}
                 </a-button>
-                <!-- 编辑(非运营端用户不可编辑) -->
+                <!-- 编辑(非运营端用户/内置超管不可编辑, 后端同拦) -->
                 <a-button
                   v-if="hasPermission(PermCodes.Iam.User.MANAGE)"
                   type="link"
                   size="small"
-                  :disabled="!isAdminClient"
+                  :disabled="!isAdminClient || !!row.administrator"
                   @click="handleEdit(row)"
                 >
                   {{ $t('common.edit') }}

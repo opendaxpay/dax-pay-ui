@@ -6,7 +6,8 @@
     "phone": "telefon",
     "email": "E-mel",
     "status": "Status",
-    "administrator": "Pentadbir"
+    "administrator": "Pentadbir",
+    "identity": "Identiti"
   },
   "action": {
     "add": "Tambah Pengguna",

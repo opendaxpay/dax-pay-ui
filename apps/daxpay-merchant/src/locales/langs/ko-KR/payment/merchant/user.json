@@ -6,7 +6,8 @@
     "phone": "핸드폰",
     "email": "이메일",
     "status": "상태",
-    "administrator": "관리자"
+    "administrator": "관리자",
+    "identity": "신분"
   },
   "action": {
     "add": "사용자 추가",

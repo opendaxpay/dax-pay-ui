@@ -12,13 +12,16 @@
     "lastLoginTime": "Last Login Time",
     "detail": "User Detail",
     "administrator": "Administrator",
+    "identity": "Identity",
+    "superAdmin": "Super Admin",
     "registerTime": "Registration Time",
     "loginCount": "Login Count",
     "lastLoginIp": "Last Login IP",
     "emailNotBound": "Not bound",
     "passwordExpireTime": "Password Expire Time",
     "lastChangePasswordTime": "Last Password Change",
-    "initialPassword": "Initial Password"
+    "initialPassword": "Initial Password",
+    "phone": "Phone"
   },
   "status": {
     "normal": "Normal",

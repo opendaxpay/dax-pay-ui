@@ -12,13 +12,16 @@
     "lastLoginTime": "Lần đăng nhập cuối cùng",
     "detail": "Chi tiết người dùng",
     "administrator": "Quản trị viên",
+    "identity": "Danh tính",
+    "superAdmin": "Siêu quản trị viên",
     "registerTime": "Thời gian đăng ký",
     "loginCount": "Số lần đăng nhập",
     "lastLoginIp": "IP đăng nhập cuối",
     "emailNotBound": "Chưa liên kết",
     "passwordExpireTime": "Thời gian hết hạn mật khẩu",
     "lastChangePasswordTime": "Lần đổi mật khẩu gần nhất",
-    "initialPassword": "Mật khẩu ban đầu"
+    "initialPassword": "Mật khẩu ban đầu",
+    "phone": "Số điện thoại"
   },
   "status": {
     "normal": "Bình thường",

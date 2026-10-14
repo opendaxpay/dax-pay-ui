@@ -6,7 +6,8 @@
     "phone": "手机号",
     "email": "邮箱",
     "status": "状态",
-    "administrator": "管理员"
+    "administrator": "管理员",
+    "identity": "身份"
   },
   "action": {
     "add": "新增用户",

@@ -12,13 +12,16 @@
     "lastLoginTime": "Masa Log Masuk Terakhir",
     "detail": "Butiran Pengguna",
     "administrator": "Pentadbir",
+    "identity": "Identiti",
+    "superAdmin": "Pentadbir Super",
     "registerTime": "Masa Pendaftaran",
     "loginCount": "Kiraan Log Masuk",
     "lastLoginIp": "IP Log Masuk Terakhir",
     "emailNotBound": "Belum dikaitkan",
     "passwordExpireTime": "Masa Tamat Kata Laluan",
     "lastChangePasswordTime": "Perubahan Kata Laluan Terakhir",
-    "initialPassword": "Kata Laluan Awal"
+    "initialPassword": "Kata Laluan Awal",
+    "phone": "Nombor telefon"
   },
   "status": {
     "normal": "Biasalah",

@@ -12,13 +12,16 @@
     "lastLoginTime": "Waktu Masuk Terakhir",
     "detail": "Detil Pengguna",
     "administrator": "Administrator",
+    "identity": "Identitas",
+    "superAdmin": "Admin Super",
     "registerTime": "Waktu Pendaftaran",
     "loginCount": "Jumlah Login",
     "lastLoginIp": "IP Login Terakhir",
     "emailNotBound": "Belum terikat",
     "passwordExpireTime": "Waktu Kedaluwarsa Kata Sandi",
     "lastChangePasswordTime": "Perubahan Kata Sandi Terakhir",
-    "initialPassword": "Kata Sandi Awal"
+    "initialPassword": "Kata Sandi Awal",
+    "phone": "Nomor telepon"
   },
   "status": {
     "normal": "Normal",

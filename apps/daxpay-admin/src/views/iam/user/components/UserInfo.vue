@@ -101,7 +101,8 @@
   <a-drawer
     v-model:open="visible"
     :title="$t('iam.user.field.detail')"
-    :size="600"
+    :default-size="720"
+    resizable
     :styles="{ footer: { textAlign: 'right' } }"
     @close="handleCancel"
   >
@@ -130,13 +131,22 @@
       <a-divider />
 
       <!-- 详细信息 -->
-      <a-descriptions :column="2" size="small" bordered>
+      <a-descriptions
+        :column="2"
+        size="small"
+        bordered
+        :label-style="{ width: '110px', whiteSpace: 'nowrap' }"
+      >
+        <!-- 手机号 -->
+        <a-descriptions-item :label="$t('iam.user.field.phone')">
+          {{ userInfo.phone || '-' }}
+        </a-descriptions-item>
         <!-- 邮箱 -->
         <a-descriptions-item :label="$t('iam.user.field.email')">
           {{ userInfo.email || '-' }}
         </a-descriptions-item>
         <!-- 角色 -->
-        <a-descriptions-item :label="$t('iam.user.field.role')" :span="2">
+        <a-descriptions-item :label="$t('iam.user.field.role')">
           <a-tag v-if="roleInfo" color="blue">
             {{ getRoleName(roleInfo) }}
           </a-tag>
@@ -144,22 +154,30 @@
         </a-descriptions-item>
         <!-- 创建时间 -->
         <a-descriptions-item :label="$t('common.createTime')">
-          {{ formatDateTime(userInfo.createTime) }}
+          <span class="whitespace-nowrap">{{ formatDateTime(userInfo.createTime) }}</span>
         </a-descriptions-item>
         <!-- 最后登录时间 -->
         <a-descriptions-item :label="$t('iam.user.field.lastLoginTime')">
-          {{ formatDateTime(userInfo.lastLoginTime) || '-' }}
+          <span class="whitespace-nowrap">{{ formatDateTime(userInfo.lastLoginTime) || '-' }}</span>
+        </a-descriptions-item>
+        <!-- 最后登录 IP -->
+        <a-descriptions-item :label="$t('iam.user.field.lastLoginIp')">
+          {{ userInfo.lastLoginIp || '-' }}
+        </a-descriptions-item>
+        <!-- 登录次数 -->
+        <a-descriptions-item :label="$t('iam.user.field.loginCount')">
+          {{ userInfo.loginCount ?? '-' }}
         </a-descriptions-item>
         <!-- 密码到期时间 -->
         <a-descriptions-item :label="$t('iam.user.field.passwordExpireTime')">
-          {{ formatDateTime(userInfo.passwordExpireTime) || $t('common.none') }}
+          <span class="whitespace-nowrap">{{ formatDateTime(userInfo.passwordExpireTime) || $t('common.none') }}</span>
         </a-descriptions-item>
         <!-- 上次修改密码时间 -->
         <a-descriptions-item :label="$t('iam.user.field.lastChangePasswordTime')">
-          {{ formatDateTime(userInfo.lastChangePasswordTime) || $t('common.none') }}
+          <span class="whitespace-nowrap">{{ formatDateTime(userInfo.lastChangePasswordTime) || $t('common.none') }}</span>
         </a-descriptions-item>
         <!-- 是否初始密码 -->
-        <a-descriptions-item :label="$t('iam.user.field.initialPassword')" :span="2">
+        <a-descriptions-item :label="$t('iam.user.field.initialPassword')">
           <a-tag v-if="userInfo.initialPassword" color="orange">{{ $t('common.yes') }}</a-tag>
           <span v-else>{{ $t('common.no') }}</span>
         </a-descriptions-item>

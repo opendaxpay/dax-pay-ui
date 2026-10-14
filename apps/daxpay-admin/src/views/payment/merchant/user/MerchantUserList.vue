@@ -21,6 +21,7 @@
 
   import MerchantUserAdd from './add/MerchantUserAdd.vue';
   import MerchantUserEdit from './edit/MerchantUserEdit.vue';
+  import MerchantUserInfo from './info/MerchantUserInfo.vue';
   import MerchantUserRoleAssign from './role/MerchantUserRoleAssign.vue';
 
   defineOptions({ name: 'MerchantUserList' });
@@ -42,6 +43,7 @@
   const xToolbar = ref<VxeToolbarInstance>();
   const userAddRef = ref();
   const userEditRef = ref();
+  const userInfoRef = ref();
   const userResetPasswordRef = ref();
   const userRoleAssignRef = ref();
 
@@ -175,6 +177,24 @@
    */
   function handleEdit(row: MerchantUserResult) {
     userEditRef.value?.show(row.id);
+  }
+
+  /**
+   * 查看详情
+   */
+  function handleView(row: MerchantUserResult) {
+    userInfoRef.value?.show(row.id);
+  }
+
+  /**
+   * 渲染角色展示名: roleName 存 i18nKey, 缺失或语言包无对应项时回退角色编码
+   */
+  function getRoleDisplay(row: MerchantUserResult) {
+    if (!row.roleName) {
+      return '-';
+    }
+    const text = $t(row.roleName);
+    return text && text !== row.roleName ? text : row.roleCode || row.roleName;
   }
 
   /**
@@ -403,13 +423,13 @@
           @checkbox-all="handleCheckboxChange"
         >
           <vxe-column type="checkbox" width="60" />
-          <vxe-column field="name" :title="$t('iam.user.field.name')" min-width="120">
+          <vxe-column field="name" :title="$t('iam.user.field.name')" min-width="120" />
+          <!-- 身份(主管理员金色标签; 普通用户蓝色角色标签) -->
+          <vxe-column field="administrator" :title="$t('payment.merchant.user.field.identity')" width="110" align="center">
             <template #default="{ row }">
-              <a-space :size="4">
-                {{ row.name }}
-                <!-- 商户管理员标识(角色固定, 不可封禁/改角色) -->
-                <a-tag v-if="row.administrator" color="gold">{{ $t('iam.user.field.administrator') }}</a-tag>
-              </a-space>
+              <a-tag v-if="row.administrator" color="gold">{{ $t('iam.user.field.administrator') }}</a-tag>
+              <a-tag v-else-if="row.roleName" color="blue">{{ getRoleDisplay(row) }}</a-tag>
+              <span v-else>-</span>
             </template>
           </vxe-column>
           <vxe-column field="account" :title="$t('iam.user.field.account')" min-width="120" />
@@ -426,12 +446,13 @@
             </template>
           </vxe-column>
           <vxe-column field="createTime" :title="$t('common.createTime')" min-width="160" formatter="formatDateTime" />
-          <vxe-column fixed="right" width="180" :show-overflow="false" :title="$t('common.operation')">
+          <vxe-column fixed="right" width="200" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">
               <a-space :size="2">
                 <template #separator>
                   <a-divider type="vertical" />
                 </template>
+                <a-button type="link" size="small" @click="handleView(row)">{{ $t('common.view') }}</a-button>
                 <a-button type="link" size="small" @click="handleEdit(row)">{{ $t('common.edit') }}</a-button>
                 <a-dropdown :menu="getActionMenu(row)">
                   <a-button type="link" size="small">
@@ -456,6 +477,7 @@
 
     <MerchantUserAdd ref="userAddRef" @ok="queryPage" />
     <MerchantUserEdit ref="userEditRef" @ok="queryPage" />
+    <MerchantUserInfo ref="userInfoRef" />
     <ResetPasswordModal
       ref="userResetPasswordRef"
       :restart-password="MerchantUserApi.restartPassword"

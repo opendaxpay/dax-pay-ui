@@ -12,13 +12,16 @@
     "lastLoginTime": "마지막 로그인 시간",
     "detail": "사용자 세부정보",
     "administrator": "관리자",
+    "identity": "신분",
+    "superAdmin": "내장 슈퍼 관리자",
     "registerTime": "가입 시간",
     "loginCount": "로그인 횟수",
     "lastLoginIp": "최근 로그인 IP",
     "emailNotBound": "미설정",
     "passwordExpireTime": "비밀번호 만료 시간",
     "lastChangePasswordTime": "비밀번호 변경 일시",
-    "initialPassword": "초기 비밀번호"
+    "initialPassword": "초기 비밀번호",
+    "phone": "전화번호"
   },
   "status": {
     "normal": "정상",

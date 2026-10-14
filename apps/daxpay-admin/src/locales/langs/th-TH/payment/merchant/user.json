@@ -6,7 +6,8 @@
     "phone": "โทรศัพท์",
     "email": "อีเมล",
     "status": "สถานะ",
-    "administrator": "ผู้ดูแลระบบ"
+    "administrator": "ผู้ดูแลระบบ",
+    "identity": "บทบาท"
   },
   "action": {
     "add": "เพิ่มผู้ใช้",

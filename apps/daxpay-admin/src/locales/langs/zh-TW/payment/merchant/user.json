@@ -6,7 +6,8 @@
     "phone": "手機號",
     "email": "郵箱",
     "status": "狀態",
-    "administrator": "管理員"
+    "administrator": "管理員",
+    "identity": "身份"
   },
   "action": {
     "add": "新增使用者",

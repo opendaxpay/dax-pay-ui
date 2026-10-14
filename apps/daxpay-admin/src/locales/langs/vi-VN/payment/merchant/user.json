@@ -6,7 +6,8 @@
     "phone": "Điện thoại",
     "email": "E-mail",
     "status": "Trạng thái",
-    "administrator": "Quản trị viên"
+    "administrator": "Quản trị viên",
+    "identity": "Danh tính"
   },
   "action": {
     "add": "Thêm người dùng",

@@ -37,6 +37,10 @@ export interface MerchantUserResult extends BaseEntity {
   email?: string;
   /** 是否管理员 */
   administrator?: boolean;
+  /** 角色展示名(单角色模型, 存 i18nKey 由 $t 渲染; 分页批量回填) */
+  roleName?: string;
+  /** 角色编码(i18nKey 缺失时的展示回退) */
+  roleCode?: string;
   /** 账号状态 */
   status?: string;
 }
@@ -76,15 +80,25 @@ export interface UserInfoResult extends BaseEntity {
 }
 
 /**
- * 商户用户详情(含登录信息)
+ * 商户用户详情(含角色与登录/密码安全信息)
  */
 export interface MerchantUserDetail extends MerchantUserResult {
+  /** 头像 */
+  avatar?: string;
+  /** 手机号 */
+  phone?: string;
   /** 最后登录时间 */
   lastLoginTime?: string;
   /** 登录次数 */
   loginCount?: number;
   /** 最后登录IP */
   lastLoginIp?: string;
+  /** 密码过期时间(空=未设置有效期) */
+  passwordExpireTime?: string;
+  /** 上次修改密码时间 */
+  lastChangePasswordTime?: string;
+  /** 是否初始密码(管理员代设, 需用户首次登录修改) */
+  initialPassword?: boolean;
 }
 
 /**
@@ -103,6 +117,13 @@ export const MerchantUserApi = {
    */
   findById(id: string): Promise<Result<MerchantUserDetail>> {
     return defHttp.get({ url: '/admin/merchant/user/get', params: { id } });
+  },
+
+  /**
+   * 查询用户详情(含角色与登录/密码信息)
+   */
+  findDetail(id: string): Promise<Result<MerchantUserDetail>> {
+    return defHttp.get({ url: '/admin/merchant/user/get-detail', params: { id } });
   },
 
   /**

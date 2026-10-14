@@ -12,13 +12,16 @@
     "lastLoginTime": "เวลาเข้าสู่ระบบล่าสุด",
     "detail": "รายละเอียดผู้ใช้",
     "administrator": "ผู้ดูแลระบบ",
+    "identity": "บทบาท",
+    "superAdmin": "ซูเปอร์แอดมิน",
     "registerTime": "เวลาลงทะเบียน",
     "loginCount": "จำนวนการเข้าสู่ระบบ",
     "lastLoginIp": "IP เข้าสู่ระบบล่าสุด",
     "emailNotBound": "ยังไม่ผูกบัญชี",
     "passwordExpireTime": "เวลาหมดอายุรหัสผ่าน",
     "lastChangePasswordTime": "เปลี่ยนรหัสผ่านล่าสุด",
-    "initialPassword": "รหัสผ่านเริ่มต้น"
+    "initialPassword": "รหัสผ่านเริ่มต้น",
+    "phone": "หมายเลขโทรศัพท์"
   },
   "status": {
     "normal": "ปกติ",

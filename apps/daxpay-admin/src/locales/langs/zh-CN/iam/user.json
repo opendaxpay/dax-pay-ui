@@ -12,13 +12,16 @@
     "lastLoginTime": "最后登录时间",
     "detail": "用户详情",
     "administrator": "管理员",
+    "identity": "身份",
+    "superAdmin": "内置超管",
     "registerTime": "注册时间",
     "loginCount": "登录次数",
     "lastLoginIp": "最后登录 IP",
     "emailNotBound": "未绑定",
     "passwordExpireTime": "密码到期时间",
     "lastChangePasswordTime": "上次修改密码",
-    "initialPassword": "初始密码"
+    "initialPassword": "初始密码",
+    "phone": "手机号"
   },
   "status": {
     "normal": "正常",

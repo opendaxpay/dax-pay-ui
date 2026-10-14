@@ -6,7 +6,8 @@
     "phone": "Phone",
     "email": "Email",
     "status": "Status",
-    "administrator": "Administrator"
+    "administrator": "Administrator",
+    "identity": "Identity"
   },
   "action": {
     "add": "Add User",

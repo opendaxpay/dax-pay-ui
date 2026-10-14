@@ -6,7 +6,8 @@
     "phone": "電話",
     "email": "電子メール",
     "status": "状態",
-    "administrator": "管理者"
+    "administrator": "管理者",
+    "identity": "身分"
   },
   "action": {
     "add": "ユーザーの追加",

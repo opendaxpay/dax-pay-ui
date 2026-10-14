@@ -159,6 +159,17 @@
   }
 
   /**
+   * 渲染角色展示名: roleName 存 i18nKey, 缺失或语言包无对应项时回退角色编码
+   */
+  function getRoleDisplay(row: MerchantUserResult) {
+    if (!row.roleName) {
+      return '-';
+    }
+    const text = $t(row.roleName);
+    return text && text !== row.roleName ? text : row.roleCode || row.roleName;
+  }
+
+  /**
    * 获取更多操作菜单配置
    */
   function getActionMenu(row: MerchantUserResult): MenuProps {
@@ -389,19 +400,23 @@
           <vxe-column type="checkbox" width="60" />
           <vxe-column field="name" :title="$t('iam.user.field.name')" min-width="120">
             <template #default="{ row }">
-              <a-space :size="4">
-                <a
-                  v-if="hasPermission(PermCodes.Merchant.User.VIEW)"
-                  href="javascript:"
-                  class="vben-link"
-                  @click="handleView(row)"
-                >
-                  {{ row.name }}
-                </a>
-                <span v-else>{{ row.name }}</span>
-                <!-- 商户管理员标识(角色固定, 不可封禁/改角色) -->
-                <a-tag v-if="row.administrator" color="gold">{{ $t('iam.user.field.administrator') }}</a-tag>
-              </a-space>
+              <a
+                v-if="hasPermission(PermCodes.Merchant.User.VIEW)"
+                href="javascript:"
+                class="vben-link"
+                @click="handleView(row)"
+              >
+                {{ row.name }}
+              </a>
+              <span v-else>{{ row.name }}</span>
+            </template>
+          </vxe-column>
+          <!-- 身份(主管理员金色标签; 普通用户蓝色角色标签) -->
+          <vxe-column field="administrator" :title="$t('payment.merchant.user.field.identity')" width="110" align="center">
+            <template #default="{ row }">
+              <a-tag v-if="row.administrator" color="gold">{{ $t('iam.user.field.administrator') }}</a-tag>
+              <a-tag v-else-if="row.roleName" color="blue">{{ getRoleDisplay(row) }}</a-tag>
+              <span v-else>-</span>
             </template>
           </vxe-column>
           <vxe-column field="account" :title="$t('iam.user.field.account')" min-width="120" />

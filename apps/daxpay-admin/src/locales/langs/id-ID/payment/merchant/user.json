@@ -6,7 +6,8 @@
     "phone": "Telepon",
     "email": "E-mail",
     "status": "Status",
-    "administrator": "Administrator"
+    "administrator": "Administrator",
+    "identity": "Identitas"
   },
   "action": {
     "add": "Tambahkan Pengguna",

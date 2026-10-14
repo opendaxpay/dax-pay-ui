@@ -12,13 +12,16 @@
     "lastLoginTime": "最後登入時間",
     "detail": "使用者詳情",
     "administrator": "管理員",
+    "identity": "身份",
+    "superAdmin": "內置超管",
     "registerTime": "註冊時間",
     "loginCount": "登入次數",
     "lastLoginIp": "最後登入 IP",
     "emailNotBound": "未綁定",
     "passwordExpireTime": "密碼到期時間",
     "lastChangePasswordTime": "上次修改密碼",
-    "initialPassword": "初始密碼"
+    "initialPassword": "初始密碼",
+    "phone": "手機號"
   },
   "status": {
     "normal": "正常",
