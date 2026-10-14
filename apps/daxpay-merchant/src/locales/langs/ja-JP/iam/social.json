@@ -59,7 +59,13 @@
     "callbackUrlEmptyAdmin": "最初にエンドポイント構成で管理ベース URL を設定してください",
     "callbackUrlEmptyMerchant": "エンドポイント構成でマーチャントベース URL (merchantBaseUrl) を設定してください。販売者のソーシャルログインに必要",
     "loginCallback": "ログインコールバック",
-    "bindCallback": "バインドコールバック"
+    "bindCallback": "バインドコールバック",
+    "gatewayWeChatHint": "WeChat公式アカウントプラットフォームの「ウェブ認可ドメイン」に {domain}（プロトコルなし）を入力してください。ログイン・バインドコールバックはゲートウェイ経由で本システムに戻ります",
+    "gatewayAlipayHint": "Alipayオープンプラットフォームのアプリ「認可コールバックアドレス」に {domain}（プロトコルなし）を入力し、同じページでドメインレベル検証を有効にしてください。ログイン・バインドコールバックはゲートウェイ経由で本システムに戻ります",
+    "gatewayUrlNotConfigured": "まずエンドポイント設定で「支払いゲートウェイフロントエンドアドレス」(paymentGatewayBaseUrl)を設定してください。リダイレクト型プラットフォームのログインコールバックはゲートウェイドメイン経由で転送されます",
+    "gatewayUrlLabel": "支払いゲートウェイドメイン",
+    "gatewayRegisterHelp": "リダイレクト型プラットフォーム(Alipay/公式アカウント)のログイン・バインドコールバックはゲートウェイドメイン経由で転送されます。オープンプラットフォームにはゲートウェイドメインのみ登録が必要です",
+    "gatewayRegister": "オープンプラットフォーム登録ガイド"
   },
   "confirm": {
     "delete": "{name} 構成を削除してもよろしいですか?"

@@ -4,8 +4,10 @@
   import { computed, reactive, ref, watch } from 'vue';
 
   import { $t } from '@vben/locales';
-  import { useClipboard } from '@vueuse/core';
+
   import { IconifyIcon } from '@vben-core/icons';
+
+  import { useClipboard } from '@vueuse/core';
 
   import { SocialLoginConfigApi } from '#/api/iam/social.api';
   import { UrlConfigApi } from '#/api/system/url-config.api';
@@ -32,6 +34,8 @@
   // 管理端/商户端访问地址(用于展示回调地址, 抽屉打开时从端点配置获取)
   const adminBaseUrl = ref('');
   const merchantBaseUrl = ref('');
+  // 支付网关前端地址(跳转型平台回调统一经网关域名透传, 开放平台登记指引展示用)
+  const gatewayBaseUrl = ref('');
 
   const modalTitle = ref('');
   const submitLoading = ref(false);
@@ -75,12 +79,14 @@
   const showAgentId = computed(() => currentSource.value === 'weCom');
 
   /**
-   * 是否展示完整 OAuth 回调地址
-   * 微信公众号仅配网页授权域名, 不展示; 支付宝开放平台与标准 OAuth 需完整 URL
+   * 是否展示标准 OAuth 回调地址块; 跳转型平台改展示网关登记指引块
    */
-  const showCallbackUrls = computed(
-    () => !(isPlatformRedirect.value && currentSource.value === 'weChat'),
-  );
+  const showCallbackUrls = computed(() => !isPlatformRedirect.value);
+
+  /** 网关域名(去协议, 支付宝「授权回调地址」与微信公众号「网页授权域名」的登记值) */
+  const gatewayDomain = computed(() => {
+    return gatewayBaseUrl.value.replace(/^https?:\/\//, '').replace(/\/$/, '');
+  });
 
   /**
    * agentId 取值(从 formData.extra 读)
@@ -95,13 +101,6 @@
   // 回调路径常量(与后端 SocialLoginService 路径约定一致)
   const LOGIN_CALLBACK_PATH = '/auth/oauth-callback';
   const BIND_CALLBACK_PATH = '/auth/social-bind-callback';
-
-  /**
-   * 打开抽屉时是否需要拉端点地址拼回调(与 showCallbackUrls 对齐)
-   */
-  function shouldLoadUrlConfig(item: SocialLoginConfigResult): boolean {
-    return !item.platformRedirect || item.source === 'alipay';
-  }
 
   /**
    * 拼完整回调 URL
@@ -156,17 +155,15 @@
       const item = props.configItem;
       isPlatformRedirect.value = !!item.platformRedirect;
 
-      if (shouldLoadUrlConfig(item)) {
-        UrlConfigApi.get().then((res) => {
-          adminBaseUrl.value = res.data?.adminBaseUrl ?? '';
-          merchantBaseUrl.value = res.data?.merchantBaseUrl ?? '';
-        });
-      } else {
-        adminBaseUrl.value = '';
-        merchantBaseUrl.value = '';
-      }
+      // 标准型拼两端回调、跳转型展示网关登记指引, 均依赖端点配置
+      UrlConfigApi.get().then((res) => {
+        adminBaseUrl.value = res.data?.adminBaseUrl ?? '';
+        merchantBaseUrl.value = res.data?.merchantBaseUrl ?? '';
+        gatewayBaseUrl.value = res.data?.paymentGatewayBaseUrl ?? '';
+      });
 
-      const record = (await SocialLoginConfigApi.findBySource(item.source!)).data;
+      const recordRes = await SocialLoginConfigApi.findBySource(item.source!);
+      const record = recordRes.data;
       applyRecordBase(record);
 
       // 已有库行 / 跳转型占位: 回填记录; 标准平台首次配置: 清空凭据并默认启用
@@ -256,7 +253,11 @@
 
         <!-- 标准 OAuth 平台: clientId / clientSecret -->
         <template v-else>
-          <a-form-item :label="$t('iam.social.form.clientId')" name="clientId" :tooltip="$t('iam.social.form.clientIdHelp')">
+          <a-form-item
+            :label="$t('iam.social.form.clientId')"
+            name="clientId"
+            :tooltip="$t('iam.social.form.clientIdHelp')"
+          >
             <a-input
               v-model:value="formData.clientId"
               :placeholder="$t('iam.social.form.clientIdPlaceholder')"
@@ -285,7 +286,46 @@
         </template>
       </a-form>
 
-      <!-- 回调地址: 标准 OAuth + 支付宝(开放平台需完整 URL); 微信公众号仅配授权域名故隐藏 -->
+      <!-- 跳转型平台: 开放平台登记指引(登录/绑定回调统一经支付网关域名透传) -->
+      <div v-if="isPlatformRedirect" class="mt-2 rounded-lg bg-muted/40 p-4">
+        <div class="mb-3 flex items-center gap-1.5">
+          <span class="text-sm font-semibold">{{ $t('iam.social.form.gatewayRegister') }}</span>
+          <a-tooltip :title="$t('iam.social.form.gatewayRegisterHelp')">
+            <IconifyIcon icon="ant-design:question-circle-outlined" class="text-muted-foreground" />
+          </a-tooltip>
+        </div>
+        <a-alert
+          v-if="!gatewayBaseUrl"
+          type="warning"
+          :message="$t('iam.social.form.gatewayUrlNotConfigured')"
+          banner
+          class="!mb-0"
+        />
+        <template v-else>
+          <div class="mb-3">
+            <div class="mb-1 text-xs text-muted-foreground">{{ $t('iam.social.form.gatewayUrlLabel') }}</div>
+            <a-input :value="gatewayDomain" readonly>
+              <template #suffix>
+                <a-button type="link" size="small" @click="handleCopy(gatewayDomain)">
+                  <IconifyIcon icon="ant-design:copy-outlined" />
+                  {{ $t('iam.social.action.copy') }}
+                </a-button>
+              </template>
+            </a-input>
+          </div>
+          <a-alert
+            type="info"
+            class="!mb-0"
+            :message="
+              currentSource === 'alipay'
+                ? $t('iam.social.form.gatewayAlipayHint', { domain: gatewayDomain })
+                : $t('iam.social.form.gatewayWeChatHint', { domain: gatewayDomain })
+            "
+          />
+        </template>
+      </div>
+
+      <!-- 回调地址: 标准 OAuth 平台(两端登录/绑定回调, 复制到第三方平台后台登记) -->
       <div v-if="showCallbackUrls" class="mt-2 rounded-lg bg-muted/40 p-4">
         <div class="mb-3 flex items-center gap-1.5">
           <span class="text-sm font-semibold">{{ $t('iam.social.form.callbackUrl') }}</span>

@@ -59,7 +59,13 @@
     "callbackUrlEmptyAdmin": "โปรดตั้งค่า Admin Base URL ในการกำหนดค่าปลายทางก่อน",
     "callbackUrlEmptyMerchant": "โปรดตั้งค่า Merchant Base URL (merchantBaseUrl) ในการกำหนดค่าปลายทาง จำเป็นสำหรับการเข้าสู่ระบบโซเชียลของผู้ขาย",
     "loginCallback": "เข้าสู่ระบบ โทรกลับ",
-    "bindCallback": "ผูกโทรกลับ"
+    "bindCallback": "ผูกโทรกลับ",
+    "gatewayWeChatHint": "กรอก {domain} (ไม่รวมโปรโตคอล) ในโดเมนการอนุญาตเว็บของบัญชีทางการ WeChat callback การเข้าสู่ระบบ/ผูกบัญชีจะส่งต่อผ่านเกตเวย์กลับสู่ระบบนี้",
+    "gatewayAlipayHint": "กรอก {domain} (ไม่รวมโปรโตคอล) ในที่อยู่ callback การอนุญาตของแอปแพลตฟอร์มเปิด Alipay และเปิดการตรวจสอบระดับโดเมนในหน้าเดียวกัน callback การเข้าสู่ระบบ/ผูกบัญชีจะส่งต่อผ่านเกตเวย์กลับสู่ระบบนี้",
+    "gatewayUrlNotConfigured": "ตั้งค่าที่อยู่ฟรอนต์เอนด์เกตเวย์การชำระเงิน (paymentGatewayBaseUrl) ในการตั้งค่า endpoint ก่อน callback การเข้าสู่ระบบแบบ redirect จะส่งต่อผ่านโดเมนเกตเวย์",
+    "gatewayUrlLabel": "โดเมนเกตเวย์การชำระเงิน",
+    "gatewayRegisterHelp": "callback การเข้าสู่ระบบและการผูกบัญชีของแพลตฟอร์มแบบ redirect (Alipay/บัญชีทางการ) จะส่งต่อผ่านโดเมนเกตเวย์ ลงทะเบียนเพียงโดเมนเกตเวย์บนแพลตฟอร์มเปิด",
+    "gatewayRegister": "คู่มือการลงทะเบียนแพลตฟอร์มเปิด"
   },
   "confirm": {
     "delete": "คุณแน่ใจหรือไม่ที่จะลบการกำหนดค่า {name}"

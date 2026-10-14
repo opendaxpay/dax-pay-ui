@@ -59,7 +59,13 @@
     "callbackUrlEmptyAdmin": "Sila tetapkan URL Pangkalan Pentadbir dalam konfigurasi titik akhir dahulu",
     "callbackUrlEmptyMerchant": "Sila tetapkan URL Pangkalan Pedagang (merchantBaseUrl) dalam konfigurasi titik akhir; diperlukan untuk log masuk sosial pedagang",
     "loginCallback": "Log Masuk Panggilan Balik",
-    "bindCallback": "Ikat Panggilan Balik"
+    "bindCallback": "Ikat Panggilan Balik",
+    "gatewayWeChatHint": "Isi {domain} (tanpa protokol) dalam domain kebenaran web Akaun Rasmi WeChat; callback log masuk dan pengikatan disampaikan melalui gateway kembali ke sistem ini",
+    "gatewayAlipayHint": "Isi {domain} (tanpa protokol) dalam alamat callback kebenaran aplikasi platform terbuka Alipay dan aktifkan pengesahan aras domain pada halaman yang sama; callback log masuk/pengikatan disampaikan melalui gateway kembali ke sistem ini",
+    "gatewayUrlNotConfigured": "Tetapkan alamat frontend gateway pembayaran (paymentGatewayBaseUrl) dalam konfigurasi endpoint dahulu; callback log masuk platform redirect disampaikan melalui domain gateway",
+    "gatewayUrlLabel": "Domain Gateway Pembayaran",
+    "gatewayRegisterHelp": "Callback log masuk dan pengikatan platform redirect (Alipay/Akaun Rasmi) disampaikan melalui domain gateway; hanya domain gateway perlu didaftarkan di platform terbuka",
+    "gatewayRegister": "Panduan Pendaftaran Platform Terbuka"
   },
   "confirm": {
     "delete": "Adakah anda pasti akan memadamkan konfigurasi {name}?"
