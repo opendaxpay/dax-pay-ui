@@ -126,6 +126,7 @@
   "socialScanGenerating": "Membuat kode QR...",
   "socialScanExpired": "Kode QR kedaluwarsa",
   "socialScanRefresh": "Muat ulang kode QR",
+  "socialScanCancelled": "Dibatalkan di ponsel. Muat ulang kode QR lalu coba lagi",
   "socialLoginScanTitle": "Pindai untuk Masuk {name}",
   "socialLoginScanTip": "Pindai kode QR dengan WeChat dan selesaikan otorisasi masuk di ponsel Anda",
   "socialLoginScanNotBound": "WeChat ini belum terhubung ke akun mana pun. Masuk dengan nama pengguna dan kata sandi Anda terlebih dahulu, lalu hubungkan WeChat di \"Keamanan Akun\"",

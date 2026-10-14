@@ -249,10 +249,10 @@ export interface SocialBindScanQrResult {
 }
 
 /**
- * 扫码绑定状态(waiting=等待扫码授权 / success=绑定完成 / not_exist=票据不存在或已过期)
+ * 扫码绑定状态(waiting=等待扫码授权 / success=绑定完成 / cancelled=手机端已取消 / not_exist=票据不存在或已过期)
  */
 export interface SocialBindScanStatusResult {
-  status: 'not_exist' | 'success' | 'waiting';
+  status: 'cancelled' | 'not_exist' | 'success' | 'waiting';
 }
 
 /**

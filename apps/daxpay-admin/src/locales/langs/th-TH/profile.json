@@ -126,6 +126,7 @@
   "socialScanGenerating": "กำลังสร้างคิวอาร์โคด...",
   "socialScanExpired": "คิวอาร์โคดหมดอายุแล้ว",
   "socialScanRefresh": "รีเฟรชคิวอาร์โคด",
+  "socialScanCancelled": "ถูกยกเลิกบนโทรศัพท์แล้ว โปรดรีเฟรชคิวอาร์โค้ดแล้วลองใหม่",
   "socialLoginScanTitle": "สแกนเพื่อเข้าสู่ระบบ {name}",
   "socialLoginScanTip": "สแกนคิวอาร์โคดด้วย WeChat แล้วเข้าสู่ระบบบนโทรศัพท์ของคุณ",
   "socialLoginScanNotBound": "WeChat นี้ยังไม่ได้ผูกกับบัญชีใด โปรดเข้าสู่ระบบด้วยชื่อผู้ใช้และรหัสผ่านก่อน แล้วจึงผูก WeChat ใน \"ความปลอดภัยบัญชี\"",

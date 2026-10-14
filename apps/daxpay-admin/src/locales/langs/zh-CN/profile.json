@@ -126,6 +126,7 @@
   "socialScanGenerating": "二维码生成中...",
   "socialScanExpired": "二维码已过期",
   "socialScanRefresh": "刷新二维码",
+  "socialScanCancelled": "已在手机端取消，请刷新二维码重试",
   "socialLoginScanTitle": "扫码登录 {name}",
   "socialLoginScanTip": "请使用微信扫描二维码，在手机上完成授权登录",
   "socialLoginScanNotBound": "该微信尚未绑定账号，请使用账号密码登录后，在「账户与安全」中绑定微信",

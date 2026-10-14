@@ -38,6 +38,8 @@
   const ticket = ref('');
   /** 票据已过期(等待用户刷新二维码) */
   const expired = ref(false);
+  /** 手机端确认页已取消(终态: 提示刷新二维码重新发起) */
+  const cancelled = ref(false);
 
   /** 轮询扫码绑定结果(对齐分账接收方扫码授权的轮询范式) */
   const { pause: pausePolling, resume: resumePolling } = useIntervalFn(
@@ -57,6 +59,10 @@
           // 票据过期(5 分钟无人完成授权), 展示刷新入口
           pausePolling();
           expired.value = true;
+        } else if (data?.status === 'cancelled') {
+          // 手机端确认页取消本次绑定, 停止轮询并展示刷新入口
+          pausePolling();
+          cancelled.value = true;
         }
       } catch {
         // 网络抖动静默重试, 过期由 not_exist 状态兜底
@@ -71,6 +77,7 @@
     pausePolling();
     generating.value = true;
     expired.value = false;
+    cancelled.value = false;
     try {
       const { data } = await SocialApi.bindScanCreate(props.source, CLIENT_CODE);
       if (data?.qrUrl && data?.ticket) {
@@ -92,6 +99,7 @@
     qrUrl.value = '';
     ticket.value = '';
     expired.value = false;
+    cancelled.value = false;
     emit('update:open', false);
   }
 
@@ -121,10 +129,12 @@
     <div v-else-if="qrUrl" class="flex flex-col items-center gap-2 py-2">
       <div class="qr-wrap">
         <QrCode :value="qrUrl" :width="220" :margin="0" />
-        <!-- 过期遮罩: 重新生成二维码 -->
-        <div v-if="expired" class="qr-mask">
+        <!-- 过期/手机端取消遮罩: 重新生成二维码 -->
+        <div v-if="expired || cancelled" class="qr-mask">
           <div class="flex flex-col items-center gap-2">
-            <span class="text-sm text-gray-500">{{ $t('profile.socialScanExpired') }}</span>
+            <span class="text-sm text-gray-500">
+              {{ expired ? $t('profile.socialScanExpired') : $t('profile.socialScanCancelled') }}
+            </span>
             <a-button type="primary" size="small" @click="generate">
               {{ $t('profile.socialScanRefresh') }}
             </a-button>

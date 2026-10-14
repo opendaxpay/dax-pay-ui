@@ -126,6 +126,7 @@
   "socialScanGenerating": "QRコード生成中...",
   "socialScanExpired": "QRコードの有効期限が切れました",
   "socialScanRefresh": "QRコードを更新",
+  "socialScanCancelled": "スマートフォンでキャンセルされました。QRコードを更新して再試行してください",
   "socialLoginScanTitle": "{name}をQRコードでログイン",
   "socialLoginScanTip": "WeChatでQRコードをスキャンし、スマートフォンでログイン認証を完了してください",
   "socialLoginScanNotBound": "このWeChatはまだアカウントに紐付けられていません。IDとパスワードでログイン後、「アカウントとセキュリティ」でWeChatを紐付けてください",
