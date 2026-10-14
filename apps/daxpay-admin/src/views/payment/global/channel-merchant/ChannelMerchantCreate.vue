@@ -252,9 +252,9 @@
 
       <!-- Step0: 选择支付产品 -->
       <div v-if="currentStep === 0">
-        <!-- 模式筛选: 服务商/直连二选一(服务商型产品开通时须选归属服务商, 直连型直接录通道凭据) -->
-        <div class="mb-3 flex justify-end">
-          <a-radio-group v-model:value="modeFilter" button-style="solid" size="small" @change="handleModeFilterChange">
+        <!-- 模式筛选: 服务商/直连二选一, 靠左放大展示(服务商型产品开通时须选归属服务商, 直连型直接录通道凭据) -->
+        <div class="mb-3 flex justify-start">
+          <a-radio-group v-model:value="modeFilter" button-style="solid" @change="handleModeFilterChange">
             <!-- 服务商 -->
             <a-radio-button value="isv">{{ $t('payment.merchant.channelMerchant.modeFilterIsv') }}</a-radio-button>
             <!-- 直连 -->
