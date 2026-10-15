@@ -403,7 +403,22 @@
           <div class="config-item">
             <div class="config-item__main">
               <!-- 路径样式访问 -->
-              <div class="config-item__label">{{ $t('system.platform.oss.pathStyleAccess') }}</div>
+              <div class="config-item__label">
+                {{ $t('system.platform.oss.pathStyleAccess') }}
+                <!-- 悬浮提示: 两种寻址形态的地址示例与验证方式 -->
+                <a-tooltip :overlay-style="{ maxWidth: '480px' }">
+                  <template #title>
+                    <div>{{ $t('system.platform.oss.pathStyleAccessTipOn') }}</div>
+                    <div>{{ $t('system.platform.oss.pathStyleAccessTipOff') }}</div>
+                    <div>{{ $t('system.platform.oss.pathStyleAccessTipCompat') }}</div>
+                    <div>{{ $t('system.platform.oss.pathStyleAccessTipRisk') }}</div>
+                  </template>
+                  <IconifyIcon
+                    icon="ant-design:question-circle-outlined"
+                    class="ml-1 cursor-help text-muted-foreground"
+                  />
+                </a-tooltip>
+              </div>
               <div class="config-item__desc">{{ $t('system.platform.oss.pathStyleAccessDesc') }}</div>
             </div>
             <a-switch v-model:checked="formState.pathStyleAccess" :disabled="!isEditing" />
@@ -553,11 +568,11 @@
                   <div class="config-item__desc">{{ $t('system.platform.oss.uploadExpireMinutesDesc') }}</div>
                 </div>
                 <div class="number-field">
-                  <!-- 国际化：请输入上传预签名URL有效期（分钟） -->
+                  <!-- 国际化：留空默认 10（单位由右侧后缀承载, 刻意不加载回填防默认值固化） -->
                   <a-input-number
                     v-model:value="formState.uploadExpireMinutes"
                     :disabled="!isEditing"
-                    :placeholder="$t('system.platform.oss.inputUploadExpireMinutes')"
+                    :placeholder="$t('system.platform.oss.uploadExpireMinutesPlaceholder')"
                     :min="1"
                     :precision="0"
                     style="width: 180px"
@@ -576,11 +591,11 @@
                   <div class="config-item__desc">{{ $t('system.platform.oss.downloadExpireHoursDesc') }}</div>
                 </div>
                 <div class="number-field">
-                  <!-- 国际化：请输入下载或查看预签名URL有效期（小时） -->
+                  <!-- 国际化：留空默认 72（单位由右侧后缀承载, 刻意不加载回填防默认值固化） -->
                   <a-input-number
                     v-model:value="formState.downloadExpireHours"
                     :disabled="!isEditing"
-                    :placeholder="$t('system.platform.oss.inputDownloadExpireHours')"
+                    :placeholder="$t('system.platform.oss.downloadExpireHoursPlaceholder')"
                     :min="1"
                     :precision="0"
                     style="width: 180px"
