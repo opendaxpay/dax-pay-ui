@@ -144,7 +144,6 @@
         publicBucket: formState.value.publicBucket,
         privateBucket: formState.value.privateBucket,
         publicBaseUrl: formState.value.publicBaseUrl,
-        privateBaseUrl: formState.value.privateBaseUrl,
         pathStyleAccess: formState.value.pathStyleAccess,
         basePath: formState.value.basePath,
         ...sensitiveData,
@@ -415,22 +414,6 @@
                   v-model:value="formState.publicBaseUrl"
                   :disabled="!isEditing"
                   :placeholder="$t('system.platform.oss.inputPublicBaseUrl')"
-                />
-              </div>
-            </a-form-item>
-
-            <a-form-item name="privateBaseUrl">
-              <div class="config-item config-item--block">
-                <div class="config-item__main">
-                  <!-- 私有访问域名 -->
-                  <div class="config-item__label">{{ $t('system.platform.oss.privateBaseUrl') }}</div>
-                  <div class="config-item__desc">{{ $t('system.platform.oss.privateBaseUrlDesc') }}</div>
-                </div>
-                <!-- 国际化：请输入私有访问域名 -->
-                <a-input
-                  v-model:value="formState.privateBaseUrl"
-                  :disabled="!isEditing"
-                  :placeholder="$t('system.platform.oss.inputPrivateBaseUrl')"
                 />
               </div>
             </a-form-item>

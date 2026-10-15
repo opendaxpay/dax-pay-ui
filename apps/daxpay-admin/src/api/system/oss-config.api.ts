@@ -40,8 +40,6 @@ export interface OssConfig {
   privateBucket?: string;
   /** 公开访问域名 */
   publicBaseUrl?: string;
-  /** 私有访问域名 */
-  privateBaseUrl?: string;
   /** 访问密钥 */
   accessKey?: string;
   /** 私有密钥 */
