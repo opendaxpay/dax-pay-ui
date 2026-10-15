@@ -544,8 +544,7 @@
         <div class="config-section">
           <div class="config-section__title">{{ $t('system.platform.oss.section.presign') }}</div>
 
-          <!-- 单列布局: 两个字段 desc 较长, 满宽纵排避免两列下文字挤压换行 -->
-          <div class="config-grid config-grid--single">
+          <div class="config-grid">
             <a-form-item name="uploadExpireMinutes">
               <div class="config-item config-item--block">
                 <div class="config-item__main">

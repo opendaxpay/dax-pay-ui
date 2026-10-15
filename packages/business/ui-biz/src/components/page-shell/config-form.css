@@ -37,11 +37,6 @@
   gap: 12px;
 }
 
-/* 单列变体: 字段满宽纵向堆叠(desc 较长的字段避免两列下文字挤压换行) */
-.config-grid--single {
-  grid-template-columns: minmax(0, 1fr);
-}
-
 /* 单个配置项卡片 */
 .config-item {
   display: flex;
