@@ -25,5 +25,14 @@
   "xingyiPay": "싱이페이",
   "longPay": "CCB 롱페이",
   "allinPay": "Allinpay(퉁롄페이)",
-  "shouqianba": "Shouqianba(서우첸바)"
+  "shouqianba": "Shouqianba(서우첸바)",
+  "llianPay": "LianLian Pay(리엔리엔페이)",
+  "joinPay": "JoinPay(후이쥐페이)",
+  "swiftpass": "Swiftpass(웨이푸퉁)",
+  "jlPay": "JLPay(자롄페이)",
+  "heliPay": "Helipay(허리바오)",
+  "fubei": "FuBei(푸베이)",
+  "epayLinks": "EPayLinks(이푸링커스)",
+  "paypal": "PayPal",
+  "airwallex": "Airwallex"
 }

@@ -25,5 +25,14 @@
   "xingyiPay": "Xingyi Pay",
   "longPay": "CCB Long Pay",
   "allinPay": "Allinpay",
-  "shouqianba": "Shouqianba"
+  "shouqianba": "Shouqianba",
+  "llianPay": "LianLian Pay",
+  "joinPay": "JoinPay",
+  "swiftpass": "Swiftpass",
+  "jlPay": "JLPay",
+  "heliPay": "Helipay",
+  "fubei": "FuBei",
+  "epayLinks": "EPayLinks",
+  "paypal": "PayPal",
+  "airwallex": "Airwallex"
 }

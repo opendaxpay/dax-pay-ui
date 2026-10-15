@@ -25,5 +25,14 @@
   "xingyiPay": "星驿付",
   "longPay": "建行龙支付",
   "allinPay": "通联支付",
-  "shouqianba": "收钱吧"
+  "shouqianba": "收钱吧",
+  "llianPay": "连连支付",
+  "joinPay": "汇聚支付",
+  "swiftpass": "威富通",
+  "jlPay": "嘉联支付",
+  "heliPay": "合利宝",
+  "fubei": "付呗",
+  "epayLinks": "易票联",
+  "paypal": "PayPal",
+  "airwallex": "Airwallex"
 }

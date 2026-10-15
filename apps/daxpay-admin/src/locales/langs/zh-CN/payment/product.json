@@ -63,7 +63,16 @@
     "allinCashier": "收银宝",
     "allinPayfund": "收付通",
     "allinDirect": "金服宝",
-    "shouqianba": "收钱吧"
+    "shouqianba": "收钱吧",
+    "llianPay": "连连聚合支付",
+    "joinPay": "汇聚聚合支付",
+    "swiftPass": "威富通支付",
+    "jlPay": "嘉联聚合支付",
+    "heliPay": "合利宝支付",
+    "fubeiPay": "付呗聚合支付",
+    "epayLinks": "易票联支付",
+    "paypal": "PayPal支付",
+    "airwallex": "Airwallex支付"
   },
   "placeholder": {
     "name": "请输入产品名称",

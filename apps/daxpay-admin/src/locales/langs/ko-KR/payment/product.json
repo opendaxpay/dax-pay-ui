@@ -63,7 +63,16 @@
     "allinCashier": "서우인바오(캐셔)",
     "allinPayfund": "서우푸퉁(페이펀드)",
     "allinDirect": "진푸바오(다이렉트)",
-    "shouqianba": "Shouqianba(서우첸바)"
+    "shouqianba": "Shouqianba(서우첸바)",
+    "llianPay": "LianLian Pay",
+    "joinPay": "JoinPay",
+    "swiftPass": "Swiftpass",
+    "jlPay": "JLPay",
+    "heliPay": "Helipay",
+    "fubeiPay": "FuBei",
+    "epayLinks": "EPayLinks",
+    "paypal": "PayPal",
+    "airwallex": "Airwallex"
   },
   "placeholder": {
     "name": "제품명을 입력하세요",

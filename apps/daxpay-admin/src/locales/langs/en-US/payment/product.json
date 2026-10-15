@@ -63,7 +63,16 @@
     "allinCashier": "Cashier",
     "allinPayfund": "Payfund",
     "allinDirect": "Direct",
-    "shouqianba": "Shouqianba"
+    "shouqianba": "Shouqianba",
+    "llianPay": "LianLian Pay",
+    "joinPay": "JoinPay",
+    "swiftPass": "Swiftpass",
+    "jlPay": "JLPay",
+    "heliPay": "Helipay",
+    "fubeiPay": "FuBei",
+    "epayLinks": "EPayLinks",
+    "paypal": "PayPal",
+    "airwallex": "Airwallex"
   },
   "placeholder": {
     "name": "Enter product name",

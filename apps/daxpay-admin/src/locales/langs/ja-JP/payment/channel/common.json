@@ -25,5 +25,14 @@
   "xingyiPay": "星驛付(シンイーペイ)",
   "longPay": "建行龍支付(CCB Long Pay)",
   "allinPay": "通聯支付(アリンペイ)",
-  "shouqianba": "Shouqianba(収銭吧)"
+  "shouqianba": "Shouqianba(収銭吧)",
+  "llianPay": "連連支付(LianLian Pay)",
+  "joinPay": "匯聚支付(JoinPay)",
+  "swiftpass": "威富通(Swiftpass)",
+  "jlPay": "嘉聯支付(JLPay)",
+  "heliPay": "合利宝(Helipay)",
+  "fubei": "付唄(FuBei)",
+  "epayLinks": "易票聯(EPayLinks)",
+  "paypal": "PayPal",
+  "airwallex": "Airwallex"
 }

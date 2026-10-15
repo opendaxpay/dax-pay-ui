@@ -48,6 +48,24 @@ export enum ChannelEnum {
   ALLIN_PAY = 'allin_pay',
   /** 收钱吧(聚合扫码收单) */
   SHOUQIANBA = 'shouqianba',
+  /** 连连支付(占位通道, 未对接) */
+  LLIAN_PAY = 'llianpay',
+  /** 汇聚支付(占位通道, 未对接) */
+  JOIN_PAY = 'joinpay',
+  /** 威富通(占位通道, 未对接) */
+  SWIFT_PASS = 'swiftpass',
+  /** 嘉联支付(占位通道, 未对接) */
+  JL_PAY = 'jlpay',
+  /** 合利宝(占位通道, 未对接) */
+  HELI_PAY = 'helipay',
+  /** 付呗(占位通道, 未对接) */
+  FUBEI_PAY = 'fubei',
+  /** 易票联(占位通道, 未对接) */
+  EPAY_LINKS = 'epaylinks',
+  /** PayPal(国际支付通道, 占位未对接) */
+  PAY_PAL = 'paypal',
+  /** Airwallex(国际支付通道, 占位未对接) */
+  AIRWALLEX = 'airwallex',
 }
 
 /**
@@ -82,6 +100,24 @@ export const channelI18nMap: Record<string, string> = {
   [ChannelEnum.ALLIN_PAY]: 'payment.channel.common.allinPay',
   // 收钱吧
   [ChannelEnum.SHOUQIANBA]: 'payment.channel.common.shouqianba',
+  // 连连支付(占位通道, 未对接)
+  [ChannelEnum.LLIAN_PAY]: 'payment.channel.common.llianPay',
+  // 汇聚支付(占位通道, 未对接)
+  [ChannelEnum.JOIN_PAY]: 'payment.channel.common.joinPay',
+  // 威富通(占位通道, 未对接)
+  [ChannelEnum.SWIFT_PASS]: 'payment.channel.common.swiftpass',
+  // 嘉联支付(占位通道, 未对接)
+  [ChannelEnum.JL_PAY]: 'payment.channel.common.jlPay',
+  // 合利宝(占位通道, 未对接)
+  [ChannelEnum.HELI_PAY]: 'payment.channel.common.heliPay',
+  // 付呗(占位通道, 未对接)
+  [ChannelEnum.FUBEI_PAY]: 'payment.channel.common.fubei',
+  // 易票联(占位通道, 未对接)
+  [ChannelEnum.EPAY_LINKS]: 'payment.channel.common.epayLinks',
+  // PayPal(国际通道, 占位未对接)
+  [ChannelEnum.PAY_PAL]: 'payment.channel.common.paypal',
+  // Airwallex(国际通道, 占位未对接)
+  [ChannelEnum.AIRWALLEX]: 'payment.channel.common.airwallex',
 };
 
 /**
@@ -116,6 +152,24 @@ export const channelNameMap: Record<string, string> = {
   [ChannelEnum.ALLIN_PAY]: '通联支付',
   // 收钱吧
   [ChannelEnum.SHOUQIANBA]: '收钱吧',
+  // 连连支付(占位通道, 未对接)
+  [ChannelEnum.LLIAN_PAY]: '连连支付',
+  // 汇聚支付(占位通道, 未对接)
+  [ChannelEnum.JOIN_PAY]: '汇聚支付',
+  // 威富通(占位通道, 未对接)
+  [ChannelEnum.SWIFT_PASS]: '威富通',
+  // 嘉联支付(占位通道, 未对接)
+  [ChannelEnum.JL_PAY]: '嘉联支付',
+  // 合利宝(占位通道, 未对接)
+  [ChannelEnum.HELI_PAY]: '合利宝',
+  // 付呗(占位通道, 未对接)
+  [ChannelEnum.FUBEI_PAY]: '付呗',
+  // 易票联(占位通道, 未对接)
+  [ChannelEnum.EPAY_LINKS]: '易票联',
+  // PayPal(国际通道, 占位未对接)
+  [ChannelEnum.PAY_PAL]: 'PayPal',
+  // Airwallex(国际通道, 占位未对接)
+  [ChannelEnum.AIRWALLEX]: 'Airwallex',
 };
 
 /**
@@ -153,4 +207,21 @@ export const channelLogoMap: Record<string, string> = {
   [ChannelEnum.ALLIN_PAY]: 'allin_pay',
   // 收钱吧(shouqianba.svg 已存在, 直接登记)
   [ChannelEnum.SHOUQIANBA]: 'shouqianba',
+  // 连连支付(占位通道, 未对接)
+  [ChannelEnum.LLIAN_PAY]: 'llianpay',
+  // 汇聚支付(占位通道, 未对接)
+  [ChannelEnum.JOIN_PAY]: 'joinpay',
+  // 威富通(占位通道, 未对接)
+  [ChannelEnum.SWIFT_PASS]: 'swiftpass',
+  // 嘉联支付(占位通道, 未对接)
+  [ChannelEnum.JL_PAY]: 'jlpay',
+  // 合利宝(占位通道, 未对接)
+  [ChannelEnum.HELI_PAY]: 'helipay',
+  // 付呗(占位通道, 未对接)
+  [ChannelEnum.FUBEI_PAY]: 'fubei',
+  // 易票联(占位通道, 未对接)
+  [ChannelEnum.EPAY_LINKS]: 'epaylinks',
+  // PayPal(国际通道, 占位未对接)
+  [ChannelEnum.PAY_PAL]: 'paypal',
+  // Airwallex 无专属图标, 不登记, 渲染走兜底
 };
