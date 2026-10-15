@@ -182,6 +182,8 @@
     "allocDescLabel": "Keterangan Pengagihan",
     "allocReceiverSection": "Penerima Pengagihan",
     "allocAddReceiver": "Tambah Penerima",
+    "allocSelectBoundReceiver": "Isi pantas daripada penerima yang telah diikat",
+    "allocReceiverDuplicated": "Penerima ini sudah ada dalam senarai",
     "allocReceiverTypeLabel": "Jenis Penerima",
     "allocReceiverAccountLabel": "Akaun Penerima",
     "allocReceiverNameLabel": "Nama Penerima",

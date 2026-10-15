@@ -3,6 +3,14 @@
 
   import { $t } from '@vben/locales';
 
+  import {
+    AlipayDirectAllocReceiverApi,
+    AlipayIsvAllocReceiverApi,
+    type AllocReceiverResult,
+    DouyinDirectAllocReceiverApi,
+    WechatDirectAllocReceiverApi,
+    WechatIsvAllocReceiverApi,
+  } from '#/api/payment/global/alloc-receiver/alloc-receiver.api';
   import { AllocOrderApi, type AllocParam, type AllocReceiverParam } from '#/api/payment/order/alloc-order.api';
   import { useMessage } from '#/hooks/useMessage';
   import { yuanToFen } from '#/utils/pay-amount';
@@ -32,6 +40,15 @@
     douyin: ['MERCHANT_ID', 'PERSONAL_OPENID'],
   };
 
+  // 支付产品 → 分账接收方档案 API(直连/服务商档案分表维护, 按交易产品精确取用)
+  const PRODUCT_RECEIVER_APIS: Record<string, typeof WechatDirectAllocReceiverApi> = {
+    wechat_pay: WechatDirectAllocReceiverApi,
+    wechat_isv: WechatIsvAllocReceiverApi,
+    alipay: AlipayDirectAllocReceiverApi,
+    alipay_isv: AlipayIsvAllocReceiverApi,
+    douyin_pay: DouyinDirectAllocReceiverApi,
+  };
+
   // 接收方编辑态(金额以元存储, 提交时转分)
   interface AllocReceiverForm {
     receiverType: string;
@@ -47,6 +64,10 @@
     tradeNo?: string;
     amount?: number;
     channel?: string;
+    /** 支付产品(定位接收方档案所属通道: 直连/服务商) */
+    product?: string;
+    /** 通道商户号(接收方档案按通道商户归属) */
+    channelMchNo?: string;
   }
 
   const visible = ref(false);
@@ -87,6 +108,76 @@
     const types = CHANNEL_RECEIVER_TYPES[orderInfo.value.channel ?? ''] ?? [];
     return types.map((v) => ({ value: v, label: $t(`payment.order.receiverType.${v}`) }));
   });
+
+  // 已绑定接收方快捷选项(加载失败/无权限时保持空, 不展示快捷选择)
+  const boundReceiverOptions = ref<{ label: string; receiver: AllocReceiverResult; value: string }[]>([]);
+
+  // 快捷选择当前值(选中填入后立即置空, 仅作动作触发器)
+  const selectedBoundReceiver = ref<string | undefined>();
+
+  /**
+   * 加载该笔交易所属通道商户下已绑定的接收方档案(供快捷填入, 规避手抄账号出错)
+   * 档案接口挂通道商户菜单权限, 无权限时静默降级为手工填写
+   */
+  async function loadBoundReceivers() {
+    boundReceiverOptions.value = [];
+    const api = PRODUCT_RECEIVER_APIS[orderInfo.value.product ?? ''];
+    if (!api || !orderInfo.value.channelMchNo) {
+      return;
+    }
+    try {
+      const { data } = await api.page({
+        current: 1,
+        size: 200,
+        mchNo: orderInfo.value.mchNo,
+        channelMchNo: orderInfo.value.channelMchNo,
+        // 仅通道侧绑定成功的档案可用于分账
+        status: 'bound',
+      });
+      boundReceiverOptions.value = (data?.records ?? [])
+        .filter((receiver) => !!receiver.id)
+        .map((receiver) => ({
+          value: String(receiver.id),
+          label: `${receiver.alias || receiver.receiverName || receiver.receiverAccount} · ${$t(`payment.order.receiverType.${receiver.receiverType}`)}`,
+          receiver,
+        }));
+    } catch {
+      // 无权限或档案接口不可用时保持手工填写
+      boundReceiverOptions.value = [];
+    }
+  }
+
+  /**
+   * 快捷填入选中接收方: 优先填入首个空白行, 无空白行则追加; 同类型同账号已存在时仅提示
+   */
+  function applyBoundReceiver(value: unknown) {
+    selectedBoundReceiver.value = undefined;
+    const option = boundReceiverOptions.value.find((item) => item.value === String(value));
+    if (!option) {
+      return;
+    }
+    const { receiver } = option;
+    const account = (receiver.receiverAccount ?? '').trim();
+    const duplicated = formData.value.receivers.some(
+      (item) => item.receiverType === receiver.receiverType && item.receiverAccount.trim() === account,
+    );
+    if (duplicated) {
+      message.info($t('payment.order.action.allocReceiverDuplicated'));
+      return;
+    }
+    const row: AllocReceiverForm = {
+      receiverType: receiver.receiverType ?? '',
+      receiverAccount: account,
+      receiverName: receiver.receiverName ?? '',
+      amount: undefined,
+    };
+    const emptyIndex = formData.value.receivers.findIndex((item) => !item.receiverType && !item.receiverAccount.trim());
+    if (emptyIndex === -1) {
+      formData.value.receivers.push(row);
+    } else {
+      formData.value.receivers[emptyIndex] = row;
+    }
+  }
 
   // 接收方账号输入提示 key(按类型动态, 类型本身已含通道语义: MERCHANT_ID/PERSONAL_OPENID=微信抖音, USER_ID/LOGIN_NAME=支付宝)
   const ACCOUNT_PLACEHOLDER_KEYS: Record<string, string> = {
@@ -145,6 +236,8 @@
         // 默认预置一行空接收方
         receivers: [{ receiverType: '', receiverAccount: '', receiverName: '', amount: undefined }],
       };
+      // 异步加载已绑定接收方档案(不阻塞表单)
+      loadBoundReceivers();
     } finally {
       fetching.value = false;
     }
@@ -225,6 +318,8 @@
   function handleClose() {
     visible.value = false;
     orderInfo.value = {};
+    boundReceiverOptions.value = [];
+    selectedBoundReceiver.value = undefined;
     formData.value = { bizAllocNo: '', title: '', description: '', receivers: [] };
   }
 
@@ -282,6 +377,20 @@
 
         <!-- 分账接收方动态表单 -->
         <a-divider orientation="left" plain>{{ $t('payment.order.action.allocReceiverSection') }}</a-divider>
+
+        <!-- 已绑定接收方快捷填入(档案取自通道侧绑定列表, 避免手工抄错账号; 无档案/无权限时不显示) -->
+        <div v-if="boundReceiverOptions.length > 0" class="mb-3">
+          <a-select
+            v-model:value="selectedBoundReceiver"
+            :options="boundReceiverOptions"
+            :placeholder="$t('payment.order.action.allocSelectBoundReceiver')"
+            option-filter-prop="label"
+            allow-clear
+            show-search
+            class="!w-full"
+            @change="applyBoundReceiver"
+          />
+        </div>
 
         <div v-for="(receiver, index) in formData.receivers" :key="index" class="mb-3 rounded-lg bg-background p-3">
           <div class="mb-2 flex items-center justify-between">

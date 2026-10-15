@@ -182,6 +182,8 @@
     "allocDescLabel": "분담 설명",
     "allocReceiverSection": "분담 수취인",
     "allocAddReceiver": "수취인 추가",
+    "allocSelectBoundReceiver": "바인딩된 수취인에서 빠른 입력",
+    "allocReceiverDuplicated": "이 수취인은 이미 목록에 있습니다",
     "allocReceiverTypeLabel": "수취인 유형",
     "allocReceiverAccountLabel": "수취인 계정",
     "allocReceiverNameLabel": "수취인 이름",

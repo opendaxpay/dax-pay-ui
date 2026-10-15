@@ -182,6 +182,8 @@
     "allocDescLabel": "คำอธิบายการแบ่งเงิน",
     "allocReceiverSection": "ผู้รับการแบ่งเงิน",
     "allocAddReceiver": "เพิ่มผู้รับ",
+    "allocSelectBoundReceiver": "กรอกด่วนจากผู้รับที่ผูกแล้ว",
+    "allocReceiverDuplicated": "ผู้รับรายนี้อยู่ในรายการแล้ว",
     "allocReceiverTypeLabel": "ประเภทผู้รับ",
     "allocReceiverAccountLabel": "บัญชีผู้รับ",
     "allocReceiverNameLabel": "ชื่อผู้รับ",

@@ -330,8 +330,9 @@
                 <a-button type="link" size="small" @click="handleView(row)">
                   {{ $t('common.view') }}
                 </a-button>
+                <!-- 同步仅退款中(progress)可点, 终态向通道拉取无实际意义 -->
                 <a-button
-                  v-if="hasPermission(PermCodes.Trade.Refund.MANAGE)"
+                  v-if="row.status === 'progress' && hasPermission(PermCodes.Trade.Refund.MANAGE)"
                   type="link"
                   size="small"
                   :loading="actionLoading"

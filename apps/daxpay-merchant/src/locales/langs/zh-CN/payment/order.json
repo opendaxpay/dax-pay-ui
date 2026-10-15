@@ -198,6 +198,8 @@
     "allocDescLabel": "分账描述",
     "allocReceiverSection": "分账接收方",
     "allocAddReceiver": "添加接收方",
+    "allocSelectBoundReceiver": "从已绑定接收方快捷填入",
+    "allocReceiverDuplicated": "该接收方已在列表中",
     "allocReceiverTypeLabel": "接收方类型",
     "allocReceiverAccountLabel": "接收方账号",
     "allocReceiverNameLabel": "接收方姓名",

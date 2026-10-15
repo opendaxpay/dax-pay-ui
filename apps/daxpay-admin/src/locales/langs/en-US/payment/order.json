@@ -190,6 +190,8 @@
     "allocDescLabel": "Allocation Description",
     "allocReceiverSection": "Allocation Receivers",
     "allocAddReceiver": "Add Receiver",
+    "allocSelectBoundReceiver": "Quick fill from a bound receiver",
+    "allocReceiverDuplicated": "This receiver is already in the list",
     "allocReceiverTypeLabel": "Receiver Type",
     "allocReceiverAccountLabel": "Receiver Account",
     "allocReceiverNameLabel": "Receiver Name",

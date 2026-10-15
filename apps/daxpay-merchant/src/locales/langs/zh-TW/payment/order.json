@@ -182,6 +182,8 @@
     "allocDescLabel": "分帳描述",
     "allocReceiverSection": "分帳接收方",
     "allocAddReceiver": "添加接收方",
+    "allocSelectBoundReceiver": "從已綁定接收方快速填入",
+    "allocReceiverDuplicated": "該接收方已在列表中",
     "allocReceiverTypeLabel": "接收方類型",
     "allocReceiverAccountLabel": "接收方帳號",
     "allocReceiverNameLabel": "接收方姓名",

@@ -182,6 +182,8 @@
     "allocDescLabel": "分配説明",
     "allocReceiverSection": "分配受取人",
     "allocAddReceiver": "受取人を追加",
+    "allocSelectBoundReceiver": "バインド済み受取人からクイック入力",
+    "allocReceiverDuplicated": "この受取人はすでにリストにあります",
     "allocReceiverTypeLabel": "受取人タイプ",
     "allocReceiverAccountLabel": "受取人アカウント",
     "allocReceiverNameLabel": "受取人名",

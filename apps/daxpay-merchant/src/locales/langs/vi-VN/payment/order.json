@@ -182,6 +182,8 @@
     "allocDescLabel": "Mô tả phân chia",
     "allocReceiverSection": "Bên nhận phân chia",
     "allocAddReceiver": "Thêm bên nhận",
+    "allocSelectBoundReceiver": "Điền nhanh từ người nhận đã liên kết",
+    "allocReceiverDuplicated": "Người nhận này đã có trong danh sách",
     "allocReceiverTypeLabel": "Loại bên nhận",
     "allocReceiverAccountLabel": "Tài khoản bên nhận",
     "allocReceiverNameLabel": "Tên bên nhận",
