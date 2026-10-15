@@ -122,7 +122,7 @@
     "regionTip": "僅參與請求簽名，不決定實際訪問地址。MinIO、阿里雲 OSS 等多數儲存無需填寫，留空即可；僅騰訊雲 COS、AWS S3 等校驗簽名區域的儲存需要填寫。留空時預設按 us-east-1 參與簽名（S3 簽名協定要求必須攜帶區域）",
     "publicBucketDesc": "存放可直接公開訪問的檔案",
     "privateBucketDesc": "存放需授權訪問的私有檔案",
-    "publicBaseUrlDesc": "公開桶檔案的對外訪問地址",
+    "publicBaseUrlDesc": "公開桶檔案的對外存取位址前綴, 直拼接物件路徑不含桶名(R2/阿里雲OSS等桶級網域直接填, MinIO 需含桶路徑)",
     "accessKeyDesc": "用於身份驗證的訪問金鑰（AccessKey），通常由雲服務商提供",
     "secretKeyDesc": "用於身份驗證的私有金鑰（SecretKey），請妥善保管",
     "pathStyleAccessDesc": "開啟後使用路徑樣式，關閉使用虛擬主機樣式",
@@ -150,7 +150,8 @@
       "bucket": "儲存桶: {bucket}"
     },
     "checkUsesFormValue": "測試使用表單目前值, 儲存後才會生效",
-    "checkResultTitle": "連線測試結果",
+    "checkInProgress": "正在探測連通性(會真實上傳/讀取探測檔案), 通常需要數秒…",
+    "checkResultTitle": "連線測試",
     "checkLatency": "耗時 {ms} ms",
     "checkStep": {
       "connect": "連線與桶存在",

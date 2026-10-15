@@ -122,7 +122,7 @@
     "regionTip": "Chỉ dùng để ký yêu cầu, không quyết định địa chỉ truy cập thực tế. Có thể để trống với MinIO, Aliyun OSS và hầu hết các kho lưu trữ khác; chỉ cần nhập với các dịch vụ xác thực khu vực chữ ký (ví dụ: Tencent COS, AWS S3). Mặc định dùng us-east-1 khi để trống (giao thức ký S3 bắt buộc phải có khu vực)",
     "publicBucketDesc": "Lưu trữ các tập tin có thể được truy cập công khai",
     "privateBucketDesc": "Lưu trữ các tệp riêng tư cần được ủy quyền",
-    "publicBaseUrlDesc": "Địa chỉ truy cập bên ngoài cho các tệp nhóm công khai",
+    "publicBaseUrlDesc": "Tiền tố URL truy cập công khai của tệp bucket công khai, nối trực tiếp với object key và không bao gồm tên bucket (domain cấp bucket như R2/OSS Aliyun: chỉ cần domain; MinIO: cần bao gồm đường dẫn bucket)",
     "accessKeyDesc": "Mã định danh khóa truy cập để xác thực",
     "secretKeyDesc": "Nội dung khóa riêng để xác thực",
     "pathStyleAccessDesc": "Bật kiểu đường dẫn, tắt kiểu máy chủ ảo",
@@ -150,7 +150,8 @@
       "bucket": "Nhóm: {bucket}"
     },
     "checkUsesFormValue": "Kiểm tra sử dụng giá trị biểu mẫu hiện tại; chỉ có hiệu lực sau khi lưu",
-    "checkResultTitle": "Kết quả kiểm tra kết nối",
+    "checkInProgress": "Đang kiểm tra kết nối (sẽ thực tế tải lên/đọc tệp dò), thường mất vài giây…",
+    "checkResultTitle": "Kiểm tra kết nối",
     "checkLatency": "Thời gian: {ms} ms",
     "checkStep": {
       "connect": "Kết nối & bucket tồn tại",

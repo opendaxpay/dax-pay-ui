@@ -122,7 +122,7 @@
     "regionTip": "Hanya digunakan untuk penandatanganan permintaan, tidak menentukan alamat akses sebenar. Boleh dibiarkan kosong untuk MinIO, Aliyun OSS dan kebanyakan storan lain; hanya diperlukan untuk perkhidmatan yang mengesahkan kawasan tandatangan (cth. Tencent COS, AWS S3). Menggunakan us-east-1 apabila dibiarkan kosong (protokol penandatanganan S3 memerlukan kawasan)",
     "publicBucketDesc": "Simpan fail yang boleh diakses secara umum",
     "privateBucketDesc": "Simpan fail peribadi yang memerlukan kebenaran",
-    "publicBaseUrlDesc": "Alamat akses luaran untuk fail baldi awam",
+    "publicBaseUrlDesc": "Awalan URL akses awam untuk fail bucket awam, digabung terus dengan object key tanpa nama bucket (domain peringkat bucket seperti R2/OSS Aliyun: domain sahaja; MinIO: sertakan laluan bucket)",
     "accessKeyDesc": "Akses pengecam kunci untuk pengesahan",
     "secretKeyDesc": "Kandungan kunci peribadi untuk pengesahan",
     "pathStyleAccessDesc": "Dayakan untuk gaya laluan, lumpuhkan untuk gaya hos maya",
@@ -150,7 +150,8 @@
       "bucket": "Baldi: {bucket}"
     },
     "checkUsesFormValue": "Semakan menggunakan nilai borang semasa; berkuat kuasa selepas disimpan",
-    "checkResultTitle": "Keputusan uji sambungan",
+    "checkInProgress": "Sedang menguji kesambungan (akan memuat naik/membaca fail uji sebenar), biasanya mengambil masa beberapa saat…",
+    "checkResultTitle": "Uji Sambungan",
     "checkLatency": "Masa: {ms} ms",
     "checkStep": {
       "connect": "Sambungan & bucket wujud",

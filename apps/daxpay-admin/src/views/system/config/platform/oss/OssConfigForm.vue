@@ -136,6 +136,9 @@
    */
   async function handleCheck() {
     checking.value = true;
+    // 立即弹出测试窗口, 请求期间展示全窗 loading, 结果返回后原地替换
+    checkResult.value = undefined;
+    checkResultOpen.value = true;
     try {
       const sensitiveData = diffForm(originalValues, formState, 'accessKey', 'secretKey');
       const payload: OssConfig = {
@@ -151,9 +154,10 @@
       const { data } = await OssConfigApi.check(payload);
       if (data?.publicBucketDetail || data?.privateBucketDetail) {
         checkResult.value = data;
-        checkResultOpen.value = true;
         return;
       }
+      // 无分步明细的响应(如配置不完整): 关闭窗口退回 toast 提示
+      checkResultOpen.value = false;
       if (data?.success) {
         const latency = data.latencyMs != null ? ` (${data.latencyMs}ms)` : '';
         message.success(`${data.message || $t('system.platform.oss.checkSuccess')}${latency}`);
@@ -491,14 +495,19 @@
       </a-form>
   </a-spin>
 
-  <!-- 连接测试结果弹窗: 公开桶/私有桶各自独立检查, 分步展示整体情况 -->
+  <!-- 连接测试弹窗: 点击即弹出, 请求期间全窗 loading, 结果返回后原地替换 -->
   <a-modal
     v-model:open="checkResultOpen"
     :footer="null"
     :title="$t('system.platform.oss.checkResultTitle')"
     :width="600"
   >
-    <div v-if="checkResult" class="flex flex-col gap-4">
+    <!-- 请求进行中: 探测含真实上传/读取, 通常需要数秒 -->
+    <div v-if="checking" class="flex flex-col items-center gap-3 py-10">
+      <a-spin size="large" />
+      <div class="text-sm text-gray-500">{{ $t('system.platform.oss.checkInProgress') }}</div>
+    </div>
+    <div v-else-if="checkResult" class="flex flex-col gap-4">
       <!-- 总体结果与耗时 -->
       <a-alert :type="checkResult.success ? 'success' : 'error'" show-icon>
         <template #message>

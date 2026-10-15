@@ -122,7 +122,7 @@
     "regionTip": "Hanya digunakan untuk penandatanganan permintaan, tidak menentukan alamat akses sebenarnya. Dapat dikosongkan untuk MinIO, Aliyun OSS, dan sebagian besar penyimpanan lainnya; hanya diperlukan untuk layanan yang memvalidasi wilayah tanda tangan (mis. Tencent COS, AWS S3). Menggunakan us-east-1 saat dibiarkan kosong (protokol penandatanganan S3 mewajibkan wilayah)",
     "publicBucketDesc": "Menyimpan file yang dapat diakses secara publik",
     "privateBucketDesc": "Simpan file pribadi yang memerlukan otorisasi",
-    "publicBaseUrlDesc": "Alamat akses eksternal untuk file bucket publik",
+    "publicBaseUrlDesc": "Awalan URL akses publik untuk file bucket publik, digabung langsung dengan object key tanpa nama bucket (domain level-bucket seperti R2/OSS Aliyun: cukup domain; MinIO: sertakan path bucket)",
     "accessKeyDesc": "Akses pengidentifikasi kunci untuk otentikasi",
     "secretKeyDesc": "Konten kunci pribadi untuk otentikasi",
     "pathStyleAccessDesc": "Aktifkan untuk gaya jalur, nonaktifkan untuk gaya host virtual",
@@ -150,7 +150,8 @@
       "bucket": "Ember: {bucket}"
     },
     "checkUsesFormValue": "Pemeriksaan menggunakan nilai formulir saat ini; berlaku setelah disimpan",
-    "checkResultTitle": "Hasil uji koneksi",
+    "checkInProgress": "Sedang menguji konektivitas (akan mengunggah/membaca file uji sungguhan), biasanya membutuhkan beberapa detik…",
+    "checkResultTitle": "Uji Koneksi",
     "checkLatency": "Waktu: {ms} ms",
     "checkStep": {
       "connect": "Koneksi & bucket ada",

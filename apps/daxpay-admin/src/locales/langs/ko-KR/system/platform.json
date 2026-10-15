@@ -122,7 +122,7 @@
     "regionTip": "요청 서명에만 사용되며 실제 액세스 주소와는 무관합니다. MinIO, Alibaba Cloud OSS 등 대부분의 스토리지는 비워 두어도 되며, 서명 지역을 검증하는 스토리지(Tencent COS, AWS S3 등)만 입력이 필요합니다. 비워 두면 us-east-1로 서명됩니다(S3 서명 프로토콜상 리전이 필수)",
     "publicBucketDesc": "공개적으로 액세스할 수 있는 파일 저장",
     "privateBucketDesc": "인증이 필요한 개인 파일 저장",
-    "publicBaseUrlDesc": "공개 버킷 파일의 외부 액세스 주소",
+    "publicBaseUrlDesc": "공개 버킷 파일의 외부 접근 주소 접두어. 객체 키와 직접 연결되며 버킷명 미포함(R2/알리바바 OSS 등 버킷 단위 도메인은 도메인만, MinIO는 버킷 경로 포함)",
     "accessKeyDesc": "인증을 위한 액세스 키 식별자",
     "secretKeyDesc": "인증을 위한 개인키 내용",
     "pathStyleAccessDesc": "경로 스타일에 대해 활성화, 가상 호스트 스타일에 대해 비활성화",
@@ -150,7 +150,8 @@
       "bucket": "버킷: {bucket}"
     },
     "checkUsesFormValue": "테스트는 현재 양식 값을 사용하며, 저장 후에 적용됩니다.",
-    "checkResultTitle": "연결 테스트 결과",
+    "checkInProgress": "연결 테스트 중(실제로 프로브 파일을 업로드/읽기합니다), 보통 몇 초 걸립니다…",
+    "checkResultTitle": "연결 테스트",
     "checkLatency": "소요 시간 {ms} ms",
     "checkStep": {
       "connect": "연결 및 버킷 존재",
