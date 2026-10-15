@@ -16,12 +16,18 @@ export enum ProductEnum {
   DOUYIN_PAY = 'douyin_pay',
   /** 富友商户前置(直连商户模式) */
   FUYOU_DIRECT = 'fuyou_direct',
+  /** 富友(H5聚合收银台) */
+  FUYOU_H5 = 'fuyou_h5',
+  /** 富友(互联网直连) */
+  FUYOU_INTERNET = 'fuyou_internet',
   /** 富友支付 */
   FUYOU_PAY = 'fuyou_pay',
   /** 海科融通支付 */
   HKRT_PAY = 'hkrt_pay',
   /** 河马付(杉德旗下产品) */
   HM_PAY = 'hm_pay',
+  /** 汇付数字人民币(经斗拱) */
+  HUIFU_ECNY = 'huifu_ecny',
   /** jeepay */
   JEE_PAY = 'jee_pay',
   /** 拉卡拉支付 */
@@ -30,6 +36,8 @@ export enum ProductEnum {
   LESHUA_PAY = 'leshua_pay',
   /** 快钱 */
   QUICK_PAY = 'quick_pay',
+  /** 杉德支付(杉德通道主产品) */
+  SAND_PAY = 'sand_pay',
   /** 盛付通(服务商) */
   SHENG_ISV = 'sheng_isv',
   /** 盛付通(商户) */
@@ -60,6 +68,8 @@ export enum ProductEnum {
   YEE_PAY = 'yee_pay',
   /** 银盛 */
   YSEP_PAY = 'ysep_pay',
+  /** 银盛e企通 */
+  YSEQT_PAY = 'yseqt_pay',
   /** 易支付(三方聚合平台, 一期扫码两类) */
   EASY_PAY = 'easy_pay',
   /** 星驿付(新大陆旗下国通星驿, 一通道一产品) */
@@ -98,15 +108,25 @@ export const productI18nMap: Record<string, string> = {
   [ProductEnum.LESHUA_PAY]: 'payment.product.enum.leshuaPay',
   [ProductEnum.ADA_PAY]: 'payment.product.enum.adaPay',
   [ProductEnum.DOUGONG_PAY]: 'payment.product.enum.dougongPay',
+  // 汇付数字人民币(经斗拱)
+  [ProductEnum.HUIFU_ECNY]: 'payment.product.enum.huifuEcny',
   [ProductEnum.HKRT_PAY]: 'payment.product.enum.hkrtPay',
   [ProductEnum.VBILL_PAY]: 'payment.product.enum.vbillPay',
   [ProductEnum.HM_PAY]: 'payment.product.enum.hmPay',
+  // 杉德支付(杉德通道主产品)
+  [ProductEnum.SAND_PAY]: 'payment.product.enum.sandPay',
   [ProductEnum.FUYOU_PAY]: 'payment.product.enum.fuyouPay',
   [ProductEnum.FUYOU_DIRECT]: 'payment.product.enum.fuyouDirect',
+  // 富友(互联网直连)
+  [ProductEnum.FUYOU_INTERNET]: 'payment.product.enum.fuyouInternet',
+  // 富友(H5聚合收银台)
+  [ProductEnum.FUYOU_H5]: 'payment.product.enum.fuyouH5',
   [ProductEnum.STRIPE_PAY]: 'payment.product.enum.stripePay',
   [ProductEnum.SHENG_ISV]: 'payment.product.enum.shengIsv',
   [ProductEnum.SHENG_PAY]: 'payment.product.enum.shengPay',
   [ProductEnum.YSEP_PAY]: 'payment.product.enum.ysepPay',
+  // 银盛e企通
+  [ProductEnum.YSEQT_PAY]: 'payment.product.enum.yseqtPay',
   [ProductEnum.QUICK_PAY]: 'payment.product.enum.quickPay',
   [ProductEnum.YEE_PAY]: 'payment.product.enum.yeePay',
   [ProductEnum.JEE_PAY]: 'payment.product.enum.jeePay',
@@ -146,14 +166,22 @@ export const productNameMap: Record<string, string> = {
   // Adapay(直连): 中文环境显示汇付天下, 国际化环境经 i18n(enum.adaPay) 显示 Adapay
   [ProductEnum.ADA_PAY]: '汇付天下',
   [ProductEnum.DOUGONG_PAY]: '斗拱',
+  // 汇付数字人民币(经斗拱)
+  [ProductEnum.HUIFU_ECNY]: '汇付数字人民币',
   [ProductEnum.HKRT_PAY]: '海科融通支付',
   [ProductEnum.VBILL_PAY]: '随行付',
   // 河马付(杉德旗下聚合支付产品)
   [ProductEnum.HM_PAY]: '河马付',
+  // 杉德支付(杉德通道主产品)
+  [ProductEnum.SAND_PAY]: '杉德支付',
   // 富友支付
   [ProductEnum.FUYOU_PAY]: '富友支付',
   // 富友商户前置(直连商户模式)
   [ProductEnum.FUYOU_DIRECT]: '富友商户前置',
+  // 富友(互联网直连)
+  [ProductEnum.FUYOU_INTERNET]: '富友(互联网直连)',
+  // 富友(H5聚合收银台)
+  [ProductEnum.FUYOU_H5]: '富友(H5聚合收银台)',
   // Stripe
   [ProductEnum.STRIPE_PAY]: 'Stripe',
   // 盛付通(服务商)
@@ -162,6 +190,8 @@ export const productNameMap: Record<string, string> = {
   [ProductEnum.SHENG_PAY]: '盛付通(商户)',
   // 银盛支付
   [ProductEnum.YSEP_PAY]: '银盛支付',
+  // 银盛e企通
+  [ProductEnum.YSEQT_PAY]: '银盛e企通',
   // 快钱支付
   [ProductEnum.QUICK_PAY]: '快钱支付',
   // 易宝支付
@@ -207,13 +237,19 @@ export const productChannelMap: Record<string, string> = {
   [ProductEnum.ADA_PAY]: ChannelEnum.HUIFU,
   // 斗拱归属汇付天下(huifu)通道
   [ProductEnum.DOUGONG_PAY]: ChannelEnum.HUIFU,
+  // 汇付数字人民币(经斗拱)归属汇付天下(huifu)通道
+  [ProductEnum.HUIFU_ECNY]: ChannelEnum.HUIFU,
   [ProductEnum.HKRT_PAY]: ChannelEnum.HKRT_PAY,
   [ProductEnum.VBILL_PAY]: ChannelEnum.VBILL_PAY,
   // 河马付归属杉德通道
   [ProductEnum.HM_PAY]: ChannelEnum.SAND_PAY,
-  // 富友支付(一通道两产品: 服务商模式/直连商户模式共用 FUYOU_PAY 通道)
+  // 杉德支付(杉德通道主产品)
+  [ProductEnum.SAND_PAY]: ChannelEnum.SAND_PAY,
+  // 富友支付(一通道四产品: 服务商/商户前置/互联网直连/H5聚合收银台共用 FUYOU_PAY 通道)
   [ProductEnum.FUYOU_PAY]: ChannelEnum.FUYOU_PAY,
   [ProductEnum.FUYOU_DIRECT]: ChannelEnum.FUYOU_PAY,
+  [ProductEnum.FUYOU_INTERNET]: ChannelEnum.FUYOU_PAY,
+  [ProductEnum.FUYOU_H5]: ChannelEnum.FUYOU_PAY,
   // Stripe
   [ProductEnum.STRIPE_PAY]: ChannelEnum.STRIPE,
   // 盛付通(一通道两产品: 商户模式/服务商模式共用 SHENG_PAY 通道)
@@ -221,6 +257,8 @@ export const productChannelMap: Record<string, string> = {
   [ProductEnum.SHENG_PAY]: ChannelEnum.SHENG_PAY,
   // 银盛(一通道一产品)
   [ProductEnum.YSEP_PAY]: ChannelEnum.YSEP_PAY,
+  // 银盛e企通归属银盛通道
+  [ProductEnum.YSEQT_PAY]: ChannelEnum.YSEP_PAY,
   // 快钱(一通道一产品)
   [ProductEnum.QUICK_PAY]: ChannelEnum.QUICK_PAY,
   // 易宝(一通道一产品)
