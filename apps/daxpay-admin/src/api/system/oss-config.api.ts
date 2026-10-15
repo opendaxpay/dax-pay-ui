@@ -40,6 +40,8 @@ export interface OssConfig {
   privateBucket?: string;
   /** 公开访问域名 */
   publicBaseUrl?: string;
+  /** 公开访问URL拼接方式: bucketLevel-桶级域名(缺省) / withBucket-带桶名 */
+  publicUrlMode?: 'bucketLevel' | 'withBucket';
   /** 访问密钥 */
   accessKey?: string;
   /** 私有密钥 */

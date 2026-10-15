@@ -50,7 +50,48 @@
     accessKey: [{ required: true, message: $t('system.platform.oss.inputAccessKey') }],
     // 私有密钥
     secretKey: [{ required: true, message: $t('system.platform.oss.inputSecretKey') }],
+    // 公开访问域名: 非必填, 但填写时必须带协议前缀——无协议的地址经 302 跳转会被当作相对路径, 公开文件无法访问
+    publicBaseUrl: [
+      {
+        validator: (_rule: any, value: string) => {
+          if (value && !/^https?:\/\//.test(value.trim())) {
+            return Promise.reject(new Error($t('system.platform.oss.publicBaseUrlSchemeInvalid')));
+          }
+          return Promise.resolve();
+        },
+      },
+    ],
   };
+
+  // 公开访问 URL 拼接预览(随上方配置实时变化, 与后端 getPublicUrl 拼接规则一致):
+  // 域名(去尾部斜杠) + [桶名(带桶名方式)] + 基础路径(去首尾斜杠) + 上传日期(yyyy/MM/dd) + 文件名(UUID.扩展名)
+  const publicUrlPreview = computed(() => {
+    const baseUrl = (formState.value.publicBaseUrl ?? '').trim().replace(/\/+$/, '');
+    if (!baseUrl) {
+      return '';
+    }
+    const segments: string[] = [];
+    if (formState.value.publicUrlMode === 'withBucket') {
+      const bucket = (formState.value.publicBucket ?? '').trim();
+      if (bucket) {
+        segments.push(bucket);
+      }
+    }
+    const basePath = (formState.value.basePath ?? '').trim().replace(/^\/+|\/+$/g, '');
+    if (basePath) {
+      segments.push(basePath);
+    }
+    const now = new Date();
+    const datePath = `${now.getFullYear()}/${String(now.getMonth() + 1).padStart(2, '0')}/${String(now.getDate()).padStart(2, '0')}`;
+    segments.push(datePath, 'a1b2c3d4e5f64789abcdef1234567890.jpg');
+    return `${baseUrl}/${segments.join('/')}`;
+  });
+
+  // 域名是否缺少协议前缀(302 跳转按相对路径解析, 公开文件将无法访问)
+  const publicBaseUrlMissingScheme = computed(() => {
+    const baseUrl = (formState.value.publicBaseUrl ?? '').trim();
+    return !!baseUrl && !/^https?:\/\//.test(baseUrl);
+  });
 
   onMounted(() => {
     loadConfig();
@@ -61,9 +102,10 @@
     try {
       const { data } = await OssConfigApi.get();
       if (data) {
-        formState.value = data;
+        // 拼接方式为新增字段, 旧配置无值时按缺省"桶级域名"展示
+        formState.value = { publicUrlMode: 'bucketLevel', ...data };
         // 记录原始值，用于后续比较
-        originalValues.value = { ...data };
+        originalValues.value = { ...formState.value };
       }
     } finally {
       loading.value = false;
@@ -147,6 +189,7 @@
         publicBucket: formState.value.publicBucket,
         privateBucket: formState.value.privateBucket,
         publicBaseUrl: formState.value.publicBaseUrl,
+        publicUrlMode: formState.value.publicUrlMode,
         pathStyleAccess: formState.value.pathStyleAccess,
         basePath: formState.value.basePath,
         ...sensitiveData,
@@ -410,7 +453,13 @@
               <div class="config-item config-item--block">
                 <div class="config-item__main">
                   <!-- 公开访问域名 -->
-                  <div class="config-item__label">{{ $t('system.platform.oss.publicBaseUrl') }}</div>
+                  <div class="config-item__label">
+                    {{ $t('system.platform.oss.publicBaseUrl') }}
+                    <!-- 悬浮提示: 协议前缀要求 -->
+                    <a-tooltip :title="$t('system.platform.oss.publicBaseUrlTip')">
+                      <IconifyIcon icon="ant-design:question-circle-outlined" class="ml-1 cursor-help text-muted-foreground" />
+                    </a-tooltip>
+                  </div>
                   <div class="config-item__desc">{{ $t('system.platform.oss.publicBaseUrlDesc') }}</div>
                 </div>
                 <!-- 国际化：请输入公开访问域名 -->
@@ -419,6 +468,38 @@
                   :disabled="!isEditing"
                   :placeholder="$t('system.platform.oss.inputPublicBaseUrl')"
                 />
+              </div>
+            </a-form-item>
+
+            <a-form-item name="publicUrlMode">
+              <div class="config-item config-item--block">
+                <div class="config-item__main">
+                  <!-- URL 拼接方式 -->
+                  <div class="config-item__label">
+                    {{ $t('system.platform.oss.publicUrlMode') }}
+                    <!-- 悬浮提示: 两种拼接方式的规则与示例 -->
+                    <a-tooltip :title="$t('system.platform.oss.publicUrlModeTip')">
+                      <IconifyIcon
+                        icon="ant-design:question-circle-outlined"
+                        class="ml-1 cursor-help text-muted-foreground"
+                      />
+                    </a-tooltip>
+                  </div>
+                  <div class="config-item__desc">{{ $t('system.platform.oss.publicUrlModeDesc') }}</div>
+                </div>
+                <!-- 国际化：桶级域名 / 带桶名 -->
+                <a-radio-group
+                  v-model:value="formState.publicUrlMode"
+                  button-style="solid"
+                  :disabled="!isEditing"
+                >
+                  <a-radio-button value="bucketLevel">
+                    {{ $t('system.platform.oss.modeBucketLevel') }}
+                  </a-radio-button>
+                  <a-radio-button value="withBucket">
+                    {{ $t('system.platform.oss.modeWithBucket') }}
+                  </a-radio-button>
+                </a-radio-group>
               </div>
             </a-form-item>
 
@@ -437,6 +518,25 @@
                 />
               </div>
             </a-form-item>
+
+            <!-- 公开访问 URL 拼接预览: 随上方配置实时变化, 与基础存储路径同列补位; 只读态同样展示, 可直接暴露存量配置的拼接问题 -->
+            <div class="config-item config-item--block">
+              <div class="config-item__main">
+                <div class="config-item__label">
+                  {{ $t('system.platform.oss.urlPreviewTitle') }}
+                  <!-- 悬浮提示: 拼接构成的完整说明 -->
+                  <a-tooltip :title="$t('system.platform.oss.urlPreviewTip')">
+                    <IconifyIcon icon="ant-design:question-circle-outlined" class="ml-1 cursor-help text-muted-foreground" />
+                  </a-tooltip>
+                </div>
+                <div class="config-item__desc">{{ $t('system.platform.oss.urlPreviewDesc') }}</div>
+                <div v-if="publicUrlPreview" class="url-preview__code">{{ publicUrlPreview }}</div>
+                <div v-else class="config-item__desc">{{ $t('system.platform.oss.urlPreviewEmpty') }}</div>
+                <div v-if="publicBaseUrlMissingScheme" class="url-preview__warn">
+                  {{ $t('system.platform.oss.urlPreviewMissingScheme') }}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -444,7 +544,8 @@
         <div class="config-section">
           <div class="config-section__title">{{ $t('system.platform.oss.section.presign') }}</div>
 
-          <div class="config-grid">
+          <!-- 单列布局: 两个字段 desc 较长, 满宽纵排避免两列下文字挤压换行 -->
+          <div class="config-grid config-grid--single">
             <a-form-item name="uploadExpireMinutes">
               <div class="config-item config-item--block">
                 <div class="config-item__main">
@@ -576,4 +677,44 @@
     </div>
   </a-modal>
 </template>
+
+<style scoped>
+  /* 同行卡片等高: a-form-item 多层包裹, 用 flex 链把 grid 行高传到内层卡片
+     (如 基础存储路径|拼接预览 一行, 不加则矮卡底边悬空);
+     用 flex 而非 height:100% 锁死——校验错误文案出现时卡片在本格内压缩腾位, 不溢出重叠到下一行 */
+  .config-grid :deep(.ant-form-item),
+  .config-grid :deep(.ant-form-item-row),
+  .config-grid :deep(.ant-form-item-control) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .config-grid :deep(.ant-form-item-row),
+  .config-grid :deep(.ant-form-item-control-input) {
+    flex: 1;
+  }
+
+  .config-grid :deep(.ant-form-item-control-input-content),
+  .config-grid :deep(.ant-form-item .config-item) {
+    height: 100%;
+  }
+
+  /* 拼接预览地址: 等宽字体整串展示, 超长换行不断溢出 */
+  .url-preview__code {
+    margin-top: 6px;
+    padding: 6px 10px;
+    font-size: 12px;
+    line-height: 1.6;
+    word-break: break-all;
+    background: hsl(var(--accent) / 60%);
+    border-radius: 6px;
+  }
+
+  .url-preview__warn {
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: hsl(var(--warning, 24 95% 53%));
+  }
+</style>
 
