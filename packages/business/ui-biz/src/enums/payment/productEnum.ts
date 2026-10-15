@@ -14,6 +14,8 @@ export enum ProductEnum {
   DOUGONG_PAY = 'dougong_pay',
   /** 抖音支付(直连) */
   DOUYIN_PAY = 'douyin_pay',
+  /** 富友商户前置(直连商户模式) */
+  FUYOU_DIRECT = 'fuyou_direct',
   /** 富友支付 */
   FUYOU_PAY = 'fuyou_pay',
   /** 海科融通支付 */
@@ -100,6 +102,7 @@ export const productI18nMap: Record<string, string> = {
   [ProductEnum.VBILL_PAY]: 'payment.product.enum.vbillPay',
   [ProductEnum.HM_PAY]: 'payment.product.enum.hmPay',
   [ProductEnum.FUYOU_PAY]: 'payment.product.enum.fuyouPay',
+  [ProductEnum.FUYOU_DIRECT]: 'payment.product.enum.fuyouDirect',
   [ProductEnum.STRIPE_PAY]: 'payment.product.enum.stripePay',
   [ProductEnum.SHENG_ISV]: 'payment.product.enum.shengIsv',
   [ProductEnum.SHENG_PAY]: 'payment.product.enum.shengPay',
@@ -149,6 +152,8 @@ export const productNameMap: Record<string, string> = {
   [ProductEnum.HM_PAY]: '河马付',
   // 富友支付
   [ProductEnum.FUYOU_PAY]: '富友支付',
+  // 富友商户前置(直连商户模式)
+  [ProductEnum.FUYOU_DIRECT]: '富友商户前置',
   // Stripe
   [ProductEnum.STRIPE_PAY]: 'Stripe',
   // 盛付通(服务商)
@@ -206,8 +211,9 @@ export const productChannelMap: Record<string, string> = {
   [ProductEnum.VBILL_PAY]: ChannelEnum.VBILL_PAY,
   // 河马付归属杉德通道
   [ProductEnum.HM_PAY]: ChannelEnum.SAND_PAY,
-  // 富友支付
+  // 富友支付(一通道两产品: 服务商模式/直连商户模式共用 FUYOU_PAY 通道)
   [ProductEnum.FUYOU_PAY]: ChannelEnum.FUYOU_PAY,
+  [ProductEnum.FUYOU_DIRECT]: ChannelEnum.FUYOU_PAY,
   // Stripe
   [ProductEnum.STRIPE_PAY]: ChannelEnum.STRIPE,
   // 盛付通(一通道两产品: 商户模式/服务商模式共用 SHENG_PAY 通道)

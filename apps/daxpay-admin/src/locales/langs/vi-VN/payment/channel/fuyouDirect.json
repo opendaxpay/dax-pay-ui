@@ -1,0 +1,19 @@
+{
+  "title": "Fuyou Pay (Merchant Direct)",
+  "manageTitle": "Quản lý Fuyou Pay (Merchant Direct)",
+  "groupKey": "Cấu hình khóa",
+  "keyConfig": "Cấu hình khóa",
+  "configTitle": "Cấu hình khóa người bán",
+  "cardMchKey": "Khóa người bán",
+  "cardMchKeyDesc": "Quản lý số người bán Fuyou, khóa người bán và số thiết bị đầu cuối",
+  "mchntCd": "Số người bán Fuyou",
+  "mchntCdPlaceholder": "Nhập số người bán Fuyou (mchnt_cd)",
+  "mchntKey": "Khóa người bán",
+  "mchntKeyPlaceholder": "Nhập khóa người bán Fuyou (mchnt_key)",
+  "termNo": "Số thiết bị đầu cuối",
+  "termNoPlaceholder": "Nhập số thiết bị đầu cuối (term_id)",
+  "validation": {
+    "mchntCd": "Vui lòng nhập số người bán Fuyou",
+    "termNo": "Vui lòng nhập số thiết bị đầu cuối"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "title": "富友商戶前置",
+  "manageTitle": "富友商戶前置管理",
+  "groupKey": "金鑰配置",
+  "keyConfig": "金鑰配置",
+  "configTitle": "商戶金鑰配置",
+  "cardMchKey": "商戶金鑰",
+  "cardMchKeyDesc": "維護富友商戶號、商戶金鑰與終端號",
+  "mchntCd": "富友商戶號",
+  "mchntCdPlaceholder": "請輸入富友分配的商戶號(mchnt_cd)",
+  "mchntKey": "商戶金鑰",
+  "mchntKeyPlaceholder": "請輸入富友分配的商戶金鑰(mchnt_key)",
+  "termNo": "終端號",
+  "termNoPlaceholder": "請輸入終端號(term_id)",
+  "validation": {
+    "mchntCd": "請輸入富友商戶號",
+    "termNo": "請輸入終端號"
+  }
+}

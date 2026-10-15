@@ -1,0 +1,19 @@
+{
+  "title": "Fuyou Pay (Merchant Direct)",
+  "manageTitle": "Pengurusan Fuyou Pay (Merchant Direct)",
+  "groupKey": "Konfigurasi Kunci",
+  "keyConfig": "Konfigurasi Kunci",
+  "configTitle": "Konfigurasi Kunci Pedagang",
+  "cardMchKey": "Kunci Pedagang",
+  "cardMchKeyDesc": "Urus nombor pedagang Fuyou, kunci pedagang dan nombor terminal",
+  "mchntCd": "Nombor Pedagang Fuyou",
+  "mchntCdPlaceholder": "Masukkan nombor pedagang Fuyou (mchnt_cd)",
+  "mchntKey": "Kunci Pedagang",
+  "mchntKeyPlaceholder": "Masukkan kunci pedagang Fuyou (mchnt_key)",
+  "termNo": "Nombor Terminal",
+  "termNoPlaceholder": "Masukkan nombor terminal (term_id)",
+  "validation": {
+    "mchntCd": "Sila masukkan nombor pedagang Fuyou",
+    "termNo": "Sila masukkan nombor terminal"
+  }
+}

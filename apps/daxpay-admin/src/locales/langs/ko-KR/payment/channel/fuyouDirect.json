@@ -1,0 +1,19 @@
+{
+  "title": "후요페이(직접)",
+  "manageTitle": "후요페이(직접) 관리",
+  "groupKey": "키 구성",
+  "keyConfig": "키 구성",
+  "configTitle": "가맹점 키 구성",
+  "cardMchKey": "가맹점 키",
+  "cardMchKeyDesc": "Fuyou 가맹점 번호, 가맹점 키와 터미널 번호를 관리합니다",
+  "mchntCd": "Fuyou 판매자 번호",
+  "mchntCdPlaceholder": "Fuyou 판매자 번호(mchnt_cd)를 입력하세요",
+  "mchntKey": "가맹점 키",
+  "mchntKeyPlaceholder": "Fuyou 가맹점 키(mchnt_key)를 입력하세요",
+  "termNo": "터미널 번호",
+  "termNoPlaceholder": "터미널 번호(term_id)를 입력하세요",
+  "validation": {
+    "mchntCd": "Fuyou 판매자 번호를 입력하세요",
+    "termNo": "터미널 번호를 입력하세요"
+  }
+}

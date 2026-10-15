@@ -43,6 +43,7 @@
     "vbillPay": "VBill",
     "hmPay": "Hmpay",
     "fuyouPay": "Fuyou Pay",
+    "fuyouDirect": "Fuyou Pay (Merchant Direct)",
     "stripePay": "Stripe",
     "shengPay": "ShengPay (Merchant)",
     "shengIsv": "ShengPay (Service Provider)",

@@ -42,6 +42,7 @@ import mPaymentChannelDouyin from './payment/channel/douyin.json';
 import mPaymentChannelDouyinManage from './payment/channel/douyinManage.json';
 import mPaymentChannelDouyinMchApp from './payment/channel/douyinMchApp.json';
 import mPaymentChannelEasypay from './payment/channel/easypay.json';
+import mPaymentChannelFuyouDirect from './payment/channel/fuyouDirect.json';
 import mPaymentChannelFuyouIsv from './payment/channel/fuyouIsv.json';
 import mPaymentChannelHkrtIsv from './payment/channel/hkrtIsv.json';
 import mPaymentChannelHmpayIsv from './payment/channel/hmpayIsv.json';
@@ -173,6 +174,7 @@ const entries: LocaleEntry[] = [
   [['payment', 'channel', 'douyinMchApp'], mPaymentChannelDouyinMchApp],
   [['payment', 'channel', 'easypay'], mPaymentChannelEasypay],
   [['payment', 'channel', 'fuyouIsv'], mPaymentChannelFuyouIsv],
+  [['payment', 'channel', 'fuyouDirect'], mPaymentChannelFuyouDirect],
   [['payment', 'channel', 'hkrtIsv'], mPaymentChannelHkrtIsv],
   [['payment', 'channel', 'hmpayIsv'], mPaymentChannelHmpayIsv],
   [['payment', 'channel', 'lakalaIsv'], mPaymentChannelLakalaIsv],

@@ -1,0 +1,19 @@
+{
+  "title": "Fuyou Merchant Direct",
+  "manageTitle": "Fuyou Merchant Direct Management",
+  "groupKey": "Key Configuration",
+  "keyConfig": "Key Configuration",
+  "configTitle": "Merchant Key Configuration",
+  "cardMchKey": "Merchant Key",
+  "cardMchKeyDesc": "Configure Fuyou merchant no, merchant key and terminal no",
+  "mchntCd": "Fuyou Merchant No",
+  "mchntCdPlaceholder": "Enter Fuyou merchant no (mchnt_cd)",
+  "mchntKey": "Merchant Key",
+  "mchntKeyPlaceholder": "Enter Fuyou merchant key (mchnt_key)",
+  "termNo": "Terminal No",
+  "termNoPlaceholder": "Enter terminal no (term_id)",
+  "validation": {
+    "mchntCd": "Please enter Fuyou merchant no",
+    "termNo": "Please enter terminal no"
+  }
+}

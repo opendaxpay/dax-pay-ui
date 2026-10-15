@@ -1,0 +1,19 @@
+{
+  "title": "芙蓉ペイ(ダイレクト)",
+  "manageTitle": "芙蓉ペイ(ダイレクト)管理",
+  "groupKey": "キー構成",
+  "keyConfig": "キー構成",
+  "configTitle": "加盟店キー構成",
+  "cardMchKey": "加盟店キー",
+  "cardMchKeyDesc": "Fuyou 加盟店番号、加盟店キー、端末番号を管理します",
+  "mchntCd": "芙蓉商人No",
+  "mchntCdPlaceholder": "Fuyou 販売者番号 (mchnt_cd) を入力してください",
+  "mchntKey": "加盟店キー",
+  "mchntKeyPlaceholder": "Fuyou 加盟店キー (mchnt_key) を入力してください",
+  "termNo": "端子番号",
+  "termNoPlaceholder": "端末番号 (term_id) を入力してください",
+  "validation": {
+    "mchntCd": "芙蓉の販売者番号を入力してください",
+    "termNo": "端子番号を入力してください"
+  }
+}

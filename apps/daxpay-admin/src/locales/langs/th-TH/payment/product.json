@@ -43,6 +43,7 @@
     "vbillPay": "วีบิล",
     "hmPay": "อืม",
     "fuyouPay": "ฟู่ยู่ เพย์",
+    "fuyouDirect": "ฟู่ยู่ เพย์ (Merchant Direct)",
     "stripePay": "Stripe",
     "shengPay": "เซิงเปย์ (ผู้ค้า)",
     "shengIsv": "เซิงเปย์ (ผู้ให้บริการ)",

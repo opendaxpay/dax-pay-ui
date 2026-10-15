@@ -43,6 +43,7 @@
     "vbillPay": "Vビル",
     "hmPay": "ハムペイ",
     "fuyouPay": "芙蓉ペイ",
+    "fuyouDirect": "芙蓉ペイ(ダイレクト)",
     "stripePay": "Stripe",
     "shengPay": "盛付通(加盟店)",
     "shengIsv": "盛付通(サービスプロバイダー)",

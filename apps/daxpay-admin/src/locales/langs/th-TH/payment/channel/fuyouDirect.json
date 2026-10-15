@@ -1,0 +1,19 @@
+{
+  "title": "ฟู่ยู่ เพย์ (Merchant Direct)",
+  "manageTitle": "การจัดการ ฟู่ยู่ เพย์ (Merchant Direct)",
+  "groupKey": "การตั้งค่าคีย์",
+  "keyConfig": "การตั้งค่าคีย์",
+  "configTitle": "การตั้งค่าคีย์ร้านค้า",
+  "cardMchKey": "คีย์ร้านค้า",
+  "cardMchKeyDesc": "จัดการหมายเลขร้านค้า Fuyou คีย์ร้านค้า และหมายเลขเครื่อง",
+  "mchntCd": "หมายเลขร้านค้า Fuyou",
+  "mchntCdPlaceholder": "กรุณากรอกหมายเลขร้านค้า Fuyou (mchnt_cd)",
+  "mchntKey": "คีย์ร้านค้า",
+  "mchntKeyPlaceholder": "กรุณากรอกคีย์ร้านค้า Fuyou (mchnt_key)",
+  "termNo": "หมายเลขเครื่อง",
+  "termNoPlaceholder": "กรุณากรอกหมายเลขเครื่อง (term_id)",
+  "validation": {
+    "mchntCd": "กรุณากรอกหมายเลขร้านค้า Fuyou",
+    "termNo": "กรุณากรอกหมายเลขเครื่อง"
+  }
+}

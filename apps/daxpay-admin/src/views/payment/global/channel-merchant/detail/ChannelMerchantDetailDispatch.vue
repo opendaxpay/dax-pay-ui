@@ -81,6 +81,9 @@
     [ProductEnum.FUYOU_PAY]: defineAsyncComponent(
       () => import('#/views/payment/channel/fuyou/manage/mch/FuyouMchManage.vue'),
     ),
+    [ProductEnum.FUYOU_DIRECT]: defineAsyncComponent(
+      () => import('#/views/payment/channel/fuyou/manage/mch/FuyouDirectMchManage.vue'),
+    ),
     [ProductEnum.HM_PAY]: defineAsyncComponent(
       () => import('#/views/payment/channel/hmpay/manage/mch/HmpayMchManage.vue'),
     ),
@@ -119,6 +122,7 @@
     [ProductEnum.DOUGONG_PAY]: 'payment.channel.dougongIsv.manageTitle',
     [ProductEnum.VBILL_PAY]: 'payment.channel.vbillIsv.manageTitle',
     [ProductEnum.FUYOU_PAY]: 'payment.channel.fuyouIsv.manageTitle',
+    [ProductEnum.FUYOU_DIRECT]: 'payment.channel.fuyouDirect.manageTitle',
     [ProductEnum.HM_PAY]: 'payment.channel.hmpayIsv.manageTitle',
     [ProductEnum.UNION_PAY]: 'payment.channel.unionManage.manageTitle',
     [ProductEnum.STRIPE_PAY]: 'payment.channel.stripeManage.manageTitle',

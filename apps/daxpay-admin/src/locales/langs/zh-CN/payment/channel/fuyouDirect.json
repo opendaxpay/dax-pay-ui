@@ -1,0 +1,19 @@
+{
+  "title": "富友商户前置",
+  "manageTitle": "富友商户前置管理",
+  "groupKey": "密钥配置",
+  "keyConfig": "密钥配置",
+  "configTitle": "商户密钥配置",
+  "cardMchKey": "商户密钥",
+  "cardMchKeyDesc": "维护富友商户号、商户密钥与终端号",
+  "mchntCd": "富友商户号",
+  "mchntCdPlaceholder": "请输入富友分配的商户号(mchnt_cd)",
+  "mchntKey": "商户密钥",
+  "mchntKeyPlaceholder": "请输入富友分配的商户密钥(mchnt_key)",
+  "termNo": "终端号",
+  "termNoPlaceholder": "请输入终端号(term_id)",
+  "validation": {
+    "mchntCd": "请输入富友商户号",
+    "termNo": "请输入终端号"
+  }
+}

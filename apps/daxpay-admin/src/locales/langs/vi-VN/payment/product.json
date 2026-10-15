@@ -43,6 +43,7 @@
     "vbillPay": "Hóa đơn",
     "hmPay": "Hmpay",
     "fuyouPay": "Fuyou Pay",
+    "fuyouDirect": "Fuyou Pay (Merchant Direct)",
     "stripePay": "Stripe",
     "shengPay": "Sheng Pay (Người bán)",
     "shengIsv": "Sheng Pay (Nhà cung cấp dịch vụ)",

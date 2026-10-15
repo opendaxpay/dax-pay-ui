@@ -43,6 +43,7 @@
     "vbillPay": "VBill",
     "hmPay": "Hmpay",
     "fuyouPay": "후요페이",
+    "fuyouDirect": "후요페이(직접)",
     "stripePay": "Stripe",
     "shengPay": "선푸페이(가맹점)",
     "shengIsv": "선푸페이(서비스 제공자)",
