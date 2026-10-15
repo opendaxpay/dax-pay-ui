@@ -41,6 +41,9 @@
     [ProductEnum.FUYOU_PAY]: defineAsyncComponent(
       () => import('#/views/payment/channel/fuyou/config/FuyouMchCreateConfig.vue'),
     ),
+    [ProductEnum.FUYOU_DIRECT]: defineAsyncComponent(
+      () => import('#/views/payment/channel/fuyou/config/FuyouDirectMchCreateConfig.vue'),
+    ),
     [ProductEnum.HKRT_PAY]: defineAsyncComponent(
       () => import('#/views/payment/channel/hkrt/config/HkrtMchCreateConfig.vue'),
     ),
