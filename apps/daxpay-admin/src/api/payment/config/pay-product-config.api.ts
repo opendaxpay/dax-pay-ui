@@ -53,6 +53,8 @@ export interface PayProductConfigResult extends BaseEntity {
   enabled?: boolean;
   /** 是否为服务商模式（true=服务商, false=直连） */
   isv?: boolean;
+  /** 是否已对接上线（false=规划中, 卡片页渲染为不可点灰卡） */
+  online?: boolean;
 }
 
 /** 产品配置保存参数 */

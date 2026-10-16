@@ -79,9 +79,18 @@
   }
 
   /**
+   * 是否规划中(通道未实连或预留, 后端 online=false): 渲染为不可点灰卡
+   */
+  function isComing(row: PayProductConfigResult): boolean {
+    return row.online === false;
+  }
+
+  /**
    * 打开产品详情页
    */
   function openDetailPage(row: PayProductConfigResult, sandbox: boolean) {
+    // 规划中产品未实连, 不提供配置入口
+    if (isComing(row)) return;
     // 将来适配：跳转到对应通道的配置页面
     router.push({
       path: '/payment/product-detail',
@@ -145,16 +154,23 @@
           <a-card
             v-for="row in productList"
             :key="row.product"
-            class="product-config-card group relative overflow-hidden rounded-xl border transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+            class="product-config-card group relative overflow-hidden rounded-xl border bg-card"
             :class="
-              row.activeEnv === 'sandbox'
-                ? '!border-amber-400 dark:!border-amber-500 bg-card'
-                : 'border-blue-100/60 dark:border-blue-500/30 bg-card'
+              isComing(row)
+                ? 'product-config-card-coming'
+                : 'transition-all duration-300 hover:-translate-y-2 hover:shadow-xl ' +
+                  (row.activeEnv === 'sandbox'
+                    ? '!border-amber-400 dark:!border-amber-500'
+                    : 'border-blue-100/60 dark:border-blue-500/30')
             "
             :styles="{ body: { padding: 0, display: 'flex', flexDirection: 'column', height: '100%' } }"
           >
+            <!-- 右上角：规划中标识(未实连/预留产品, 不可点灰卡) -->
+            <div v-if="isComing(row)" class="absolute top-2.5 right-2.5 z-20">
+              <a-tag color="processing">{{ $t('payment.constant.product.productConfig.coming') }}</a-tag>
+            </div>
             <!-- 右上角：环境切换（产品支持沙箱且全局沙箱已启用时显示） -->
-            <div v-if="row.sandboxSupport && sandboxEnabled" class="absolute top-2.5 right-2.5 z-20">
+            <div v-else-if="row.sandboxSupport && sandboxEnabled" class="absolute top-2.5 right-2.5 z-20">
               <a-radio-group
                 :key="`env-${row.product}-${radioRefreshKey}`"
                 :value="getActiveEnvValue(row)"
@@ -173,14 +189,22 @@
 
             <!-- 主体内容 -->
             <div class="flex-1 flex flex-col items-center justify-center pt-5 pb-1">
-              <div class="mb-3 transform transition-transform duration-300 group-hover:scale-110">
+              <div
+                :class="isComing(row) ? 'mb-3' : 'mb-3 transform transition-transform duration-300 group-hover:scale-110'"
+              >
                 <ChannelLogo :product="row.product" :channel="row.channel!" :size="44" />
               </div>
               <div class="text-center font-bold text-foreground text-[14px] mb-2 px-4">
                 {{ getProductName(row) }}
               </div>
-              <!-- 启停状态独立一行(纯展示, 切换入口在详情页) -->
-              <div class="mb-3 flex items-center justify-center gap-1.5">
+              <!-- 状态行: 规划中=灰点+规划中文案(无启停语义); 其余为启停状态(纯展示, 切换入口在详情页) -->
+              <div v-if="isComing(row)" class="mb-3 flex items-center justify-center gap-1.5">
+                <span class="status-dot status-dot-off"></span>
+                <span class="text-[11px] text-muted-foreground">
+                  {{ $t('payment.constant.product.productConfig.coming') }}
+                </span>
+              </div>
+              <div v-else class="mb-3 flex items-center justify-center gap-1.5">
                 <span class="status-dot" :class="row.enabled ? 'status-dot-on' : 'status-dot-off'"></span>
                 <span
                   class="text-[11px]"
@@ -191,32 +215,39 @@
               </div>
             </div>
 
-            <!-- 底部分栏: 所有产品均可进入详情配置, 无配置组件的产品由详情页空状态提示 -->
+            <!-- 底部分栏: 规划中=灰字占位不可点; 其余进入详情配置, 无配置组件的产品由详情页空状态提示 -->
             <div class="flex border-t border-border h-10 bg-muted/50">
-              <div
-                class="config-slot prod-slot"
-                :class="{ 'border-r border-border': row.sandboxSupport && sandboxEnabled }"
-                @click.stop="openDetailPage(row, false)"
-              >
-                <div class="flex items-center gap-1.5">
-                  <IconifyIcon icon="ant-design:setting-filled" class="text-blue-500/80 text-sm" />
-                  <span class="text-[10px] font-bold text-muted-foreground uppercase">
-                    {{ $t('payment.constant.product.productConfig.prodConfigBtn') }}
-                  </span>
-                </div>
+              <div v-if="isComing(row)" class="flex-1 flex items-center justify-center">
+                <span class="text-[10px] font-bold text-muted-foreground/70 uppercase">
+                  {{ $t('payment.constant.product.productConfig.coming') }}
+                </span>
               </div>
-              <div
-                v-if="row.sandboxSupport && sandboxEnabled"
-                class="config-slot sandbox-slot"
-                @click.stop="openDetailPage(row, true)"
-              >
-                <div class="flex items-center gap-1.5">
-                  <IconifyIcon icon="ant-design:experiment-filled" class="text-amber-500/80 text-sm" />
-                  <span class="text-[10px] font-bold text-muted-foreground uppercase">
-                    {{ $t('payment.constant.product.productConfig.sandboxConfigBtn') }}
-                  </span>
+              <template v-else>
+                <div
+                  class="config-slot prod-slot"
+                  :class="{ 'border-r border-border': row.sandboxSupport && sandboxEnabled }"
+                  @click.stop="openDetailPage(row, false)"
+                >
+                  <div class="flex items-center gap-1.5">
+                    <IconifyIcon icon="ant-design:setting-filled" class="text-blue-500/80 text-sm" />
+                    <span class="text-[10px] font-bold text-muted-foreground uppercase">
+                      {{ $t('payment.constant.product.productConfig.prodConfigBtn') }}
+                    </span>
+                  </div>
                 </div>
-              </div>
+                <div
+                  v-if="row.sandboxSupport && sandboxEnabled"
+                  class="config-slot sandbox-slot"
+                  @click.stop="openDetailPage(row, true)"
+                >
+                  <div class="flex items-center gap-1.5">
+                    <IconifyIcon icon="ant-design:experiment-filled" class="text-amber-500/80 text-sm" />
+                    <span class="text-[10px] font-bold text-muted-foreground uppercase">
+                      {{ $t('payment.constant.product.productConfig.sandboxConfigBtn') }}
+                    </span>
+                  </div>
+                </div>
+              </template>
             </div>
           </a-card>
         </div>
@@ -238,6 +269,11 @@
   .product-config-card {
     height: 210px;
     position: relative;
+  }
+
+  /* 规划中灰卡: 不可点, 无抬升/阴影(hover 工具类已在模板按条件摘除) */
+  .product-config-card-coming {
+    cursor: default;
   }
 
   /* 启停状态点: 绿=启用 / 灰=停用 */
