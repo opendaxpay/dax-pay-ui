@@ -5,6 +5,7 @@
 
   import { PageShell } from '@daxpay/ui-biz/components/page-shell';
 
+  import { useQueryTab } from '#/hooks/useQueryTab';
   import { $t } from '#/locales';
 
   import IamReplayProtect from './components/IamReplayProtect.vue';
@@ -15,8 +16,6 @@
   import WebAuthnConfig from './components/WebAuthnConfig.vue';
 
   defineOptions({ name: 'SystemSecurityConfig' });
-
-  const activeKey = ref<string>('passwordPolicy');
 
   // 当前激活子表单实例(供常驻 header 渲染操作按钮与状态标签)
   const subForm = ref<ConfigSubForm | null>(null);
@@ -78,6 +77,9 @@
     },
   ];
 
+  // 分组激活与 ?tab= 双向同步(默认回退首组「密码策略」)
+  const { activeKey, handleTabChange } = useQueryTab(() => tabGroup.map((tab) => tab.key));
+
   // 当前激活 tab(key 异常时回退首项), 标题/描述常驻右栏 header
   const activeTab = computed(() => {
     return tabGroup.find((tab) => tab.key === activeKey.value) ?? tabGroup[0]!;
@@ -108,7 +110,7 @@
             type="button"
             class="config-tab-item"
             :class="{ 'config-tab-item--active': activeKey === tab.key }"
-            @click="activeKey = tab.key"
+            @click="handleTabChange(tab.key)"
           >
             <div class="config-tab-item__label">{{ tab.label }}</div>
             <div class="config-tab-item__desc">{{ tab.description }}</div>

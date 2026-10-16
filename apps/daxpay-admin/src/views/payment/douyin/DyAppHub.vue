@@ -21,7 +21,7 @@
 
   const activeTab = ref<HubTab>(resolveTab(route.query.tab));
 
-  /** 同步 ?tab= 到路由（需 meta.fullPathKey=false，否则会整页重挂） */
+  /** 同步 ?tab= 到路由（meta.fullPathKey=false 已在 menu.api.ts 的 QUERY_SYNC_PATHS 登记, 否则切 Tab 多页签+整页重挂） */
   function syncTabQuery(tab: HubTab) {
     if (route.query.tab === tab) {
       return;
@@ -30,7 +30,7 @@
     router.replace({ path: route.path, query: nextQuery });
   }
 
-  function handleTabChange(key: string | number) {
+  function handleTabChange(key: number | string) {
     const tab = resolveTab(key);
     activeTab.value = tab;
     syncTabQuery(tab);

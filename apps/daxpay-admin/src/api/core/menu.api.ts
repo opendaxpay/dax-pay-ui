@@ -4,16 +4,35 @@ import type { BaseEntity, Result } from '#/types/web';
 
 import { requestClient } from '#/api/request';
 import { i18n } from '#/locales';
-import zhCnMenuTitles from '../../locales/menu-titles/zh-CN.json';
+
 import enUsMenuTitles from '../../locales/menu-titles/en-US.json';
-import zhHkMenuTitles from '../../locales/menu-titles/zh-HK.json';
-import zhTwMenuTitles from '../../locales/menu-titles/zh-TW.json';
+import idIdMenuTitles from '../../locales/menu-titles/id-ID.json';
 import jaJpMenuTitles from '../../locales/menu-titles/ja-JP.json';
 import koKrMenuTitles from '../../locales/menu-titles/ko-KR.json';
-import idIdMenuTitles from '../../locales/menu-titles/id-ID.json';
-import viVnMenuTitles from '../../locales/menu-titles/vi-VN.json';
-import thThMenuTitles from '../../locales/menu-titles/th-TH.json';
 import msMyMenuTitles from '../../locales/menu-titles/ms-MY.json';
+import thThMenuTitles from '../../locales/menu-titles/th-TH.json';
+import viVnMenuTitles from '../../locales/menu-titles/vi-VN.json';
+import zhCnMenuTitles from '../../locales/menu-titles/zh-CN.json';
+import zhHkMenuTitles from '../../locales/menu-titles/zh-HK.json';
+import zhTwMenuTitles from '../../locales/menu-titles/zh-TW.json';
+
+/**
+ * query 同步页路径登记表(页签 key 忽略 query, fullPathKey=false)
+ * 这些页面用 ?tab= / ?mchNo= 做页内状态同步, 页签 key 必须忽略 query,
+ * 否则每种 query 组合各开一个页签, 且 keep-alive 随 key 失效导致切 Tab
+ * 整页重挂闪烁。覆盖两类页面: Hub 页(双页签应用中心)与 PageShell 左导航
+ * 配置页(分组 ?tab= 双向同步, 见 useQueryTab)。新增此类页面时必须在此
+ * 登记 path, 组件侧仅靠照抄骨架不会带上该 meta。
+ */
+const QUERY_SYNC_PATHS = new Set([
+  '/payment/douyin/app',
+  // Hub 页(双页签应用中心)
+  '/payment/wx/app',
+  // PageShell 左导航配置页(?tab= 分组定位, path 须与菜单种子的 menu.path 完全一致)
+  '/system/config/platform',
+  '/system/config/security/system',
+  '/system/config/third-platform',
+]);
 
 /**
  * 注入菜单标题国际化文案
@@ -109,11 +128,7 @@ function filterPermissionAnchorMenus(menus: PermMenuResult[]): PermMenuResult[] 
   return menus
     .filter((menu) => {
       const menuType = menu.menuType || 'menu';
-      if (
-        (menuType === 'menu' || menuType === 'subpage')
-        && !menu.path
-        && !menu.component
-      ) {
+      if ((menuType === 'menu' || menuType === 'subpage') && !menu.path && !menu.component) {
         return false;
       }
       return true;
@@ -274,8 +289,8 @@ function convertMenuToRoute(
     }
   }
 
-  // 应用 Hub 页（微信/抖音）：?tab= / ?mchNo= 仅状态同步，勿纳入 tab key，否则切 Tab 会整页重挂闪烁
-  if (['/payment/wx/app', '/payment/douyin/app'].includes(menu.path)) {
+  // query 同步页页签 key 忽略 query(见 QUERY_SYNC_PATHS 注释)
+  if (QUERY_SYNC_PATHS.has(menu.path)) {
     route.meta!.fullPathKey = false;
   }
 

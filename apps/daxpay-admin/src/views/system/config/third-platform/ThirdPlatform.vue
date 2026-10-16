@@ -5,6 +5,7 @@
 
   import { PageShell } from '@daxpay/ui-biz/components/page-shell';
 
+  import { useQueryTab } from '#/hooks/useQueryTab';
   import { $t } from '#/locales';
   import SocialLoginConfigList from '#/views/iam/social/social-login-config.vue';
 
@@ -14,9 +15,6 @@
   import WechatMpAuthConfigForm from './wechat-mp/WechatMpAuthConfigForm.vue';
 
   defineOptions({ name: 'ThirdPlatform' });
-
-  // 默认展示"三方平台登录配置"(基础配置优先)
-  const activeKey = ref<string>('loginConfig');
 
   // 当前激活子表单实例(供常驻 header 渲染操作按钮与状态标签; 卡片墙列表不绑定)
   const subForm = ref<ConfigSubForm | null>(null);
@@ -73,21 +71,24 @@
     },
   ];
 
+  // tab 激活与 ?tab= 双向同步(默认回退首个 tab「三方平台登录配置」, 基础配置优先)
+  const { activeKey, handleTabChange } = useQueryTab(() => tabs.map((tab) => tab.key));
+
   // 当前激活 tab(key 异常时回退首项), 标题/描述常驻右栏 header
   const activeTab = computed(() => {
     return tabs.find((tab) => tab.key === activeKey.value) ?? tabs[0]!;
   });
 
   /**
-   * 跳转型平台卡片点击时, 切换到对应平台级配置 tab
+   * 跳转型平台卡片点击时, 切换到对应平台级配置 tab(经 handleTabChange 同步 ?tab=)
    * 目前仅支付宝仍属于三方登录跳转型
    */
   function handleJump(source: string) {
     if (source === 'alipay') {
-      activeKey.value = 'alipay';
+      handleTabChange('alipay');
     } else if (source === 'weChat') {
       // 微信公众号: 跳转到平台级凭据 Tab
-      activeKey.value = 'wechatMp';
+      handleTabChange('wechatMp');
     }
   }
 </script>
@@ -113,7 +114,7 @@
           type="button"
           class="config-tab-item"
           :class="{ 'config-tab-item--active': activeKey === tab.key }"
-          @click="activeKey = tab.key"
+          @click="handleTabChange(tab.key)"
         >
           <div class="config-tab-item__label">{{ tab.label }}</div>
           <div class="config-tab-item__desc">{{ tab.description }}</div>
