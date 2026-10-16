@@ -10,6 +10,7 @@
   "alipay": {
     "tabTitle": "Alipay アプリ構成",
     "tabDescription": "認証ログインおよび支払いチャネル認証用の Alipay OAuth 認証情報",
+    "headerDescription": "Alipay OAuth資格情報。ログイン認可と支払いチャネル認証に使用します。自社利用型のウェブアプリケーションを使用してください",
     "title": "Alipay アプリの認証構成",
     "description": "ユーザー識別子 (userId) と支払いチャネル認証を取得するための認証ログイン用の Alipay OAuth 資格情報 (appId/秘密キー/証明書) を管理します。",
     "usageTip": "この構成は、次の両方に役立ちます。 1) サードパーティ ログインでの Alipay 認証ログイン。 2) 支払いシナリオでのチャネル認証 (支払い用のユーザー ID を取得)。",
@@ -19,7 +20,7 @@
       "credential": "資格情報の構成"
     },
     "appId": "アプリID",
-    "appIdDesc": "Alipay Open Platformで作成されたアプリケーションのappId",
+    "appIdDesc": "Alipayオープンプラットフォームで作成した自社利用型ウェブアプリケーションの appId。サードパーティアプリはログイン認可に対応していません",
     "inputAppId": "Alipay アプリ ID を入力してください",
     "authType": "認証タイプ",
     "authTypeDesc": "公開キーモードは Alipay 公開キーを使用し、証明書モードは 3 つの証明書を使用します",

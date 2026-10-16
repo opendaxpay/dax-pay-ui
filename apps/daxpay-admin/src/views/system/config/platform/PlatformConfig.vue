@@ -21,13 +21,26 @@
   // 当前激活子表单实例(供常驻 header 渲染操作按钮与状态标签)
   const subForm = ref<ConfigSubForm | null>(null);
 
-  const tabs = [
+  // 平台配置侧栏页签
+  interface PlatformTab {
+    key: string;
+    // 页签标题(同右栏头部标题)
+    label: string;
+    // 页签侧栏短描述
+    description: string;
+    // 右栏头部长描述(可选, 未配置时回退 description)
+    headerDescription?: string;
+  }
+
+  const tabs: PlatformTab[] = [
     {
       key: 'url',
       // 端点配置标题
       label: $t('system.platform.url.title'),
       // 端点配置描述
       description: $t('system.platform.url.description'),
+      // 端点配置头部长描述(链接拼装口径)
+      headerDescription: $t('system.platform.url.headerDescription'),
     },
     {
       key: 'website',
@@ -57,7 +70,7 @@
       // 敏感词策略描述
       description: $t('system.sensitiveWord.config.description'),
     },
-  ] as const;
+  ];
 
   // 当前激活 tab(key 异常时回退首项), 标题/描述常驻右栏 header
   const activeTab = computed(() => {
@@ -66,7 +79,11 @@
 </script>
 
 <template>
-  <PageShell :title="activeTab.label" :description="activeTab.description" :tags="subForm?.summaryTags ?? []">
+  <PageShell
+    :title="activeTab.label"
+    :description="activeTab.headerDescription ?? activeTab.description"
+    :tags="subForm?.summaryTags ?? []"
+  >
     <!-- 配置页外壳: 左右栏各自内部滚动, 右栏 header(标题/描述/操作按钮)常驻 -->
     <!-- 左栏: 分组导航 -->
     <template #nav>

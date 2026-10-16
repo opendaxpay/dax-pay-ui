@@ -6,6 +6,7 @@
   "url": {
     "title": "엔드포인트 구성",
     "description": "클라이언트별 접속 URL 관리",
+    "headerDescription": "각 단말의 접속 주소를 통합 관리하며, 결제 리디렉션·콜백·알림 링크가 이 주소를 기준으로 조립됩니다",
     "adminBaseUrl": "관리 URL",
     "adminBaseUrlDesc": "관리 포털의 기본 URL입니다. 타사 로그인 클라이언트=admin인 경우 콜백 URL을 생성하는 데 사용됩니다.",
     "merchantBaseUrl": "판매자 URL",
@@ -151,7 +152,6 @@
     "urlPreviewDesc": "예시 주소, 위 설정에 따라 실시간으로 변합니다",
     "urlPreviewEmpty": "공개 기반 URL이 미설정되어 공개 버킷 파일의 직접 접근 주소를 생성할 수 없습니다",
     "urlPreviewMissingScheme": "URL에 http:// 또는 https:// 프로토콜 접두사가 없습니다. 리다이렉트 시 상대 경로로 처리되어 공개 파일에 접근할 수 없게 됩니다",
-
     "section": {
       "basic": "기본 구성",
       "bucket": "버킷 구성",

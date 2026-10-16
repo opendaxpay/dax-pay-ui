@@ -21,8 +21,19 @@
   // 当前激活子表单实例(供常驻 header 渲染操作按钮与状态标签; 卡片墙列表不绑定)
   const subForm = ref<ConfigSubForm | null>(null);
 
+  // 左侧 tab 元数据
+  interface PlatformTab {
+    key: string;
+    // tab 标题(同右栏头部标题)
+    label: string;
+    // tab 侧栏短描述
+    description: string;
+    // 右栏头部长描述(可选, 未配置时回退 description)
+    headerDescription?: string;
+  }
+
   // 左侧 tab 清单
-  const tabs = [
+  const tabs: PlatformTab[] = [
     {
       key: 'loginConfig',
       // 三方平台登录配置标题
@@ -43,6 +54,8 @@
       label: $t('system.thirdPlatform.alipay.tabTitle'),
       // 支付宝应用描述
       description: $t('system.thirdPlatform.alipay.tabDescription'),
+      // 支付宝应用头部长描述(须使用网页应用的提示放头部, 侧栏保持简短)
+      headerDescription: $t('system.thirdPlatform.alipay.headerDescription'),
     },
     {
       key: 'wechatMp',
@@ -58,7 +71,7 @@
       // 抖音 H5 应用描述
       description: $t('system.thirdPlatform.douyinH5.tabDescription'),
     },
-  ] as const;
+  ];
 
   // 当前激活 tab(key 异常时回退首项), 标题/描述常驻右栏 header
   const activeTab = computed(() => {
@@ -80,7 +93,11 @@
 </script>
 
 <template>
-  <PageShell :title="activeTab.label" :description="activeTab.description" :tags="subForm?.summaryTags ?? []">
+  <PageShell
+    :title="activeTab.label"
+    :description="activeTab.headerDescription ?? activeTab.description"
+    :tags="subForm?.summaryTags ?? []"
+  >
     <!-- 配置页外壳: 左右栏各自内部滚动, 右栏 header(标题/描述/操作按钮)常驻 -->
     <!-- 左栏: 分组导航 -->
     <template #nav>

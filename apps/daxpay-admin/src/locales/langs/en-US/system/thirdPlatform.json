@@ -10,6 +10,7 @@
   "alipay": {
     "tabTitle": "Alipay App Config",
     "tabDescription": "Alipay OAuth credentials for auth login and payment channel authentication",
+    "headerDescription": "Alipay OAuth credentials for login authorization and payment channel authentication; a self-use web application is required",
     "title": "Alipay App Auth Configuration",
     "description": "Manage Alipay OAuth credentials (appId/private key/certs) for auth login to get user identifier (userId) and payment channel authentication.",
     "usageTip": "This configuration serves both: 1) Alipay auth login in third-party login; 2) Channel authentication in payment scenarios (get user identifier for payment).",
@@ -19,7 +20,7 @@
       "credential": "Credential Configuration"
     },
     "appId": "App ID",
-    "appIdDesc": "The appId of the application created on Alipay Open Platform",
+    "appIdDesc": "App ID of a self-use web application created on the Alipay Open Platform; third-party applications do not support login authorization",
     "inputAppId": "Please enter Alipay App ID",
     "authType": "Auth Type",
     "authTypeDesc": "Public key mode uses Alipay public key, Certificate mode uses three certificates",

@@ -10,6 +10,7 @@
   "alipay": {
     "tabTitle": "支付寶應用配置",
     "tabDescription": "支付寶 OAuth 憑據, 服務於授權登錄與支付通道認證",
+    "headerDescription": "支付寶 OAuth 憑據, 服務於授權登入與支付通道認證, 須使用網頁應用(自用型)",
     "title": "支付寶應用認證配置",
     "description": "管理支付寶 OAuth 憑據(appId/私鑰/證書), 用於授權登錄獲取用户標識(userId)與支付通道認證。",
     "usageTip": "本配置同時服務於: 1) 三方登錄的支付寶授權登錄; 2) 支付場景的通道認證(獲取支付所需的用户標識)。",
@@ -19,7 +20,7 @@
       "credential": "憑據配置"
     },
     "appId": "應用 AppId",
-    "appIdDesc": "支付寶開放平台創建的應用 appId",
+    "appIdDesc": "支付寶開放平臺建立的網頁應用(自用型) appId, 第三方應用不支援授權登入",
     "inputAppId": "請輸入支付寶應用 AppId",
     "authType": "鑑權方式",
     "authTypeDesc": "公鑰模式使用支付寶公鑰, 證書模式使用三本證書",

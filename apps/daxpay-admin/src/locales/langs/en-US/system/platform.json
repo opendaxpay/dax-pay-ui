@@ -6,6 +6,7 @@
   "url": {
     "title": "Endpoint Config",
     "description": "Manage access URLs for each client",
+    "headerDescription": "Centrally manage access URLs of each terminal; payment redirects, callbacks and notification links are assembled from them",
     "adminBaseUrl": "Admin URL",
     "adminBaseUrlDesc": "Base URL of the admin portal. Used to generate callback URLs when third-party login client=admin",
     "merchantBaseUrl": "Merchant URL",
@@ -151,7 +152,6 @@
     "urlPreviewDesc": "Sample address, updates in real time with the configuration above",
     "urlPreviewEmpty": "Public base URL not configured; direct access URLs cannot be generated for public-bucket files",
     "urlPreviewMissingScheme": "The URL is missing the http:// or https:// protocol prefix; redirects will treat it as a relative path and public files will be inaccessible",
-
     "section": {
       "basic": "Basic Configuration",
       "bucket": "Bucket Configuration",

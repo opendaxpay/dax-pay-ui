@@ -6,6 +6,7 @@
   "url": {
     "title": "Cấu hình điểm cuối",
     "description": "Quản lý URL truy cập cho từng khách hàng",
+    "headerDescription": "Quản lý tập trung địa chỉ truy cập của các đầu cuối; liên kết chuyển hướng thanh toán, callback và thông báo được ghép từ đây",
     "adminBaseUrl": "URL quản trị",
     "adminBaseUrlDesc": "URL cơ sở của cổng quản trị. Được sử dụng để tạo URL gọi lại khi đăng nhập của bên thứ ba client=admin",
     "merchantBaseUrl": "URL người bán",
@@ -151,7 +152,6 @@
     "urlPreviewDesc": "Địa chỉ mẫu, thay đổi theo thời gian thực cùng cấu hình phía trên",
     "urlPreviewEmpty": "Chưa cấu hình URL cơ sở công cộng, không thể tạo địa chỉ truy cập trực tiếp cho tệp nhóm công khai",
     "urlPreviewMissingScheme": "URL thiếu tiền tố giao thức http:// hoặc https://, chuyển hướng sẽ coi nó là đường dẫn tương đối và tệp công khai sẽ không truy cập được",
-
     "section": {
       "basic": "Cấu hình cơ bản",
       "bucket": "Cấu hình nhóm",

@@ -6,6 +6,7 @@
   "url": {
     "title": "Konfigurasi Titik Akhir",
     "description": "Kelola URL akses untuk setiap klien",
+    "headerDescription": "Kelola secara terpusat alamat akses setiap terminal; tautan redirect pembayaran, callback, dan notifikasi dirangkai darinya",
     "adminBaseUrl": "URL Admin",
     "adminBaseUrlDesc": "URL dasar portal admin. Digunakan untuk menghasilkan URL panggilan balik ketika pihak ketiga masuk klien=admin",
     "merchantBaseUrl": "URL pedagang",
@@ -151,7 +152,6 @@
     "urlPreviewDesc": "Alamat contoh, berubah secara real-time mengikuti konfigurasi di atas",
     "urlPreviewEmpty": "URL basis publik belum dikonfigurasi, alamat akses langsung untuk file ember publik tidak dapat dibuat",
     "urlPreviewMissingScheme": "URL tidak memiliki prefiks protokol http:// atau https://, pengalihan akan memperlakukannya sebagai jalur relatif dan file publik tidak dapat diakses",
-
     "section": {
       "basic": "Konfigurasi Dasar",
       "bucket": "Konfigurasi Keranjang",

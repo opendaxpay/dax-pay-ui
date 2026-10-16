@@ -10,6 +10,7 @@
   "alipay": {
     "tabTitle": "Cấu hình ứng dụng Alipay",
     "tabDescription": "Thông tin đăng nhập Alipay OAuth để đăng nhập xác thực và xác thực kênh thanh toán",
+    "headerDescription": "Thông tin xác thực OAuth Alipay, dùng cho đăng nhập ủy quyền và xác thực kênh thanh toán; phải dùng ứng dụng web loại tự sử dụng",
     "title": "Cấu hình xác thực ứng dụng Alipay",
     "description": "Quản lý thông tin đăng nhập Alipay OAuth (appId/khóa riêng/chứng chỉ) để đăng nhập xác thực nhằm nhận mã định danh người dùng (userId) và xác thực kênh thanh toán.",
     "usageTip": "Cấu hình này phục vụ cả: 1) Đăng nhập xác thực Alipay khi đăng nhập bên thứ ba; 2) Xác thực kênh trong các tình huống thanh toán (lấy mã định danh người dùng để thanh toán).",
@@ -19,7 +20,7 @@
       "credential": "Cấu hình thông tin xác thực"
     },
     "appId": "ID ứng dụng",
-    "appIdDesc": "AppId của ứng dụng được tạo trên Nền tảng mở Alipay",
+    "appIdDesc": "appId của ứng dụng web loại tự sử dụng được tạo trên Nền tảng mở Alipay; ứng dụng bên thứ ba không hỗ trợ đăng nhập ủy quyền",
     "inputAppId": "Vui lòng nhập ID ứng dụng Alipay",
     "authType": "Loại xác thực",
     "authTypeDesc": "Chế độ khóa chung sử dụng khóa chung Alipay, Chế độ chứng chỉ sử dụng ba chứng chỉ",

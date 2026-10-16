@@ -6,6 +6,7 @@
   "url": {
     "title": "端點配置",
     "description": "管理各端訪問地址",
+    "headerDescription": "統一管理各端訪問地址, 支付跳轉、回調與通知連結按此拼裝",
     "adminBaseUrl": "管理端訪問地址",
     "adminBaseUrlDesc": "運營管理端的基礎訪問地址, 第三方登入 client=admin 時使用此地址生成回撥 URL",
     "merchantBaseUrl": "商戶端訪問地址",
@@ -151,7 +152,6 @@
     "urlPreviewDesc": "示例位址，隨上方配置即時變化",
     "urlPreviewEmpty": "未配置公開訪問域名，公開桶檔案無法生成直鏈存取位址",
     "urlPreviewMissingScheme": "域名缺少 http:// 或 https:// 協議前綴，存取跳轉會被當作相對路徑，公開檔案將無法存取",
-
     "section": {
       "basic": "基礎配置",
       "bucket": "儲存桶配置",

@@ -10,6 +10,7 @@
   "alipay": {
     "tabTitle": "Konfigurasi Aplikasi Alipay",
     "tabDescription": "Kredensial Alipay OAuth untuk login autentikasi dan autentikasi saluran pembayaran",
+    "headerDescription": "Kredensial OAuth Alipay untuk login otorisasi dan autentikasi saluran pembayaran; harus menggunakan aplikasi web tipe penggunaan sendiri",
     "title": "Konfigurasi Otentikasi Aplikasi Alipay",
     "description": "Kelola kredensial Alipay OAuth (appId/kunci pribadi/sertifikat) untuk login autentikasi guna mendapatkan pengidentifikasi pengguna (userId) dan autentikasi saluran pembayaran.",
     "usageTip": "Konfigurasi ini melayani keduanya: 1) Login autentikasi Alipay di login pihak ketiga; 2) Otentikasi saluran dalam skenario pembayaran (dapatkan pengenal pengguna untuk pembayaran).",
@@ -19,7 +20,7 @@
       "credential": "Konfigurasi Kredensial"
     },
     "appId": "ID Aplikasi",
-    "appIdDesc": "AppId dari aplikasi yang dibuat pada Platform Terbuka Alipay",
+    "appIdDesc": "appId aplikasi web tipe penggunaan sendiri yang dibuat di Alipay Open Platform; aplikasi pihak ketiga tidak mendukung login otorisasi",
     "inputAppId": "Silakan masukkan ID Aplikasi Alipay",
     "authType": "Jenis Otentikasi",
     "authTypeDesc": "Mode kunci publik menggunakan kunci publik Alipay, mode Sertifikat menggunakan tiga sertifikat",

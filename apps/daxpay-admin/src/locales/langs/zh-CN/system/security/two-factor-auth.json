@@ -1,6 +1,6 @@
 {
   "title": "双因素认证",
-  "description": "维护TOTP认证与备用验证码配置",
+  "description": "维护 TOTP 认证与备用验证码配置",
   "summary": {
     "enabled": "双因素认证已启用",
     "disabled": "双因素认证未启用"

@@ -6,6 +6,7 @@
   "url": {
     "title": "端点配置",
     "description": "管理各端访问地址",
+    "headerDescription": "统一管理各端访问地址, 支付跳转、回调与通知链接按此拼装",
     "adminBaseUrl": "管理端访问地址",
     "adminBaseUrlDesc": "运营管理端的基础访问地址, 第三方登录 client=admin 时使用此地址生成回调 URL",
     "merchantBaseUrl": "商户端访问地址",
@@ -151,7 +152,6 @@
     "urlPreviewDesc": "示例地址，随上方配置实时变化",
     "urlPreviewEmpty": "未配置公开访问域名，公开桶文件无法生成直链访问地址",
     "urlPreviewMissingScheme": "域名缺少 http:// 或 https:// 协议前缀，访问跳转会被当作相对路径，公开文件将无法访问",
-
     "section": {
       "basic": "基础配置",
       "bucket": "存储桶配置",

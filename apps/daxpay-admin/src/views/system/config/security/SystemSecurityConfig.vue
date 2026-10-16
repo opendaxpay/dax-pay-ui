@@ -21,8 +21,19 @@
   // 当前激活子表单实例(供常驻 header 渲染操作按钮与状态标签)
   const subForm = ref<ConfigSubForm | null>(null);
 
+  // 左侧分组导航元数据
+  interface SecurityTab {
+    key: string;
+    // 分组标题(同右栏头部标题)
+    label: string;
+    // 侧栏短描述
+    description: string;
+    // 右栏头部长描述(可选, 未配置时回退 description)
+    headerDescription?: string;
+  }
+
   // 左侧导航: 访问安全(IAM域)
-  const tabGroup = [
+  const tabGroup: SecurityTab[] = [
     {
       key: 'passwordPolicy',
       // 密码策略标题
@@ -65,7 +76,7 @@
       // 防重放校验描述
       description: $t('system.security.iam-replay-protect.description'),
     },
-  ] as const;
+  ];
 
   // 当前激活 tab(key 异常时回退首项), 标题/描述常驻右栏 header
   const activeTab = computed(() => {
@@ -74,7 +85,11 @@
 </script>
 
 <template>
-  <PageShell :title="activeTab.label" :description="activeTab.description" :tags="subForm?.summaryTags ?? []">
+  <PageShell
+    :title="activeTab.label"
+    :description="activeTab.headerDescription ?? activeTab.description"
+    :tags="subForm?.summaryTags ?? []"
+  >
     <!-- 配置页外壳: 左右栏各自内部滚动, 右栏 header(标题/描述/操作按钮)常驻 -->
     <!-- 左栏: 分组导航 -->
     <template #nav>

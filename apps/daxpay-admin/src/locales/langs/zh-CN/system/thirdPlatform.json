@@ -10,6 +10,7 @@
   "alipay": {
     "tabTitle": "支付宝应用配置",
     "tabDescription": "支付宝 OAuth 凭据, 服务于授权登录与支付通道认证",
+    "headerDescription": "支付宝 OAuth 凭据, 服务于授权登录与支付通道认证, 须使用网页应用(自用型)",
     "title": "支付宝应用认证配置",
     "description": "管理支付宝 OAuth 凭据(appId/私钥/证书), 用于授权登录获取用户标识(userId)与支付通道认证。",
     "usageTip": "本配置同时服务于: 1) 三方登录的支付宝授权登录; 2) 支付场景的通道认证(获取支付所需的用户标识)。",
@@ -19,7 +20,7 @@
       "credential": "凭据配置"
     },
     "appId": "应用 AppId",
-    "appIdDesc": "支付宝开放平台创建的应用 appId",
+    "appIdDesc": "支付宝开放平台创建的网页应用(自用型) appId, 第三方应用不支持授权登录",
     "inputAppId": "请输入支付宝应用 AppId",
     "authType": "鉴权方式",
     "authTypeDesc": "公钥模式使用支付宝公钥, 证书模式使用三本证书",

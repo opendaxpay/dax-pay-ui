@@ -6,6 +6,7 @@
   "url": {
     "title": "エンドポイント構成",
     "description": "クライアントごとにアクセスURLを管理",
+    "headerDescription": "各端末のアクセスURLを一元管理します。支払いリダイレクト・コールバック・通知リンクはここから組み立てられます",
     "adminBaseUrl": "管理者URL",
     "adminBaseUrlDesc": "管理ポータルのベース URL。サードパーティのログイン client=admin の場合にコールバック URL を生成するために使用されます。",
     "merchantBaseUrl": "販売者のURL",
@@ -151,7 +152,6 @@
     "urlPreviewDesc": "サンプルアドレス、上記の設定に応じてリアルタイムに変化します",
     "urlPreviewEmpty": "公開ベースURLが未設定のため、公開バケットのファイルの直接アクセスURLを生成できません",
     "urlPreviewMissingScheme": "URLに http:// または https:// のプロトコル接頭辞がありません。リダイレクト時に相対パスとして扱われ、公開ファイルにアクセスできなくなります",
-
     "section": {
       "basic": "基本構成",
       "bucket": "バケット構成",

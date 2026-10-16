@@ -6,6 +6,7 @@
   "url": {
     "title": "Konfigurasi Titik Akhir",
     "description": "Urus URL akses untuk setiap pelanggan",
+    "headerDescription": "Urus secara berpusat alamat akses setiap terminal; pautan redirect pembayaran, callback dan notifikasi dipasang daripadanya",
     "adminBaseUrl": "URL pentadbir",
     "adminBaseUrlDesc": "URL asas portal pentadbir. Digunakan untuk menjana URL panggil balik apabila klien log masuk pihak ketiga=admin",
     "merchantBaseUrl": "URL Pedagang",
@@ -151,7 +152,6 @@
     "urlPreviewDesc": "Alamat contoh, berubah secara masa nyata mengikut konfigurasi di atas",
     "urlPreviewEmpty": "URL pangkalan awam belum dikonfigurasi, alamat akses terus untuk fail baldi awam tidak dapat dijana",
     "urlPreviewMissingScheme": "URL tiada prefiks protokol http:// atau https://, pengalihan akan menganggapnya sebagai laluan relatif dan fail awam tidak dapat diakses",
-
     "section": {
       "basic": "Konfigurasi Asas",
       "bucket": "Konfigurasi Baldi",

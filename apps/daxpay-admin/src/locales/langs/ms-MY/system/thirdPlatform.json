@@ -10,6 +10,7 @@
   "alipay": {
     "tabTitle": "Konfigurasi Apl Alipay",
     "tabDescription": "Bukti kelayakan Alipay OAuth untuk log masuk pengesahan dan pengesahan saluran pembayaran",
+    "headerDescription": "Kredensial OAuth Alipay untuk log masuk kebenaran dan pengesahan saluran pembayaran; aplikasi web jenis kegunaan sendiri diperlukan",
     "title": "Konfigurasi Pengesahan Apl Alipay",
     "description": "Urus bukti kelayakan Alipay OAuth (appId/kunci peribadi/sijil) untuk log masuk pengesahan untuk mendapatkan pengecam pengguna (userId) dan pengesahan saluran pembayaran.",
     "usageTip": "Konfigurasi ini berfungsi untuk kedua-duanya: 1) Log masuk pengesahan Alipay dalam log masuk pihak ketiga; 2) Pengesahan saluran dalam senario pembayaran (dapatkan pengecam pengguna untuk pembayaran).",
@@ -19,7 +20,7 @@
       "credential": "Konfigurasi Tauliah"
     },
     "appId": "ID apl",
-    "appIdDesc": "AppId aplikasi yang dibuat pada Platform Terbuka Alipay",
+    "appIdDesc": "appId aplikasi web jenis kegunaan sendiri yang dibuat di Alipay Open Platform; aplikasi pihak ketiga tidak menyokong log masuk kebenaran",
     "inputAppId": "Sila masukkan ID Apl Alipay",
     "authType": "Jenis Pengesahan",
     "authTypeDesc": "Mod kunci awam menggunakan kunci awam Alipay, mod Sijil menggunakan tiga sijil",
