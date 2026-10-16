@@ -78,6 +78,12 @@ export enum ChannelEnum {
   UMF_PAY = 'umfpay',
   /** 易生支付(占位通道, 未对接) */
   YISHENG_PAY = 'yisheng_pay',
+  /** WorldFirst(国际跨境收款通道, 占位未对接) */
+  WORLDFIRST = 'worldfirst',
+  /** 连连国际(国际跨境收款通道, 占位未对接; 与境内连连支付 llianpay 为两条独立通道) */
+  LIANLIAN_GLOBAL = 'lianlian_global',
+  /** PingPong(国际跨境收款通道, 占位未对接) */
+  PINGPONG = 'pingpong',
 }
 
 /**
@@ -142,6 +148,12 @@ export const channelI18nMap: Record<string, string> = {
   [ChannelEnum.UMF_PAY]: 'payment.channel.common.umfpay',
   // 易生支付(占位通道, 未对接)
   [ChannelEnum.YISHENG_PAY]: 'payment.channel.common.yishengPay',
+  // WorldFirst(国际跨境收款通道, 占位未对接)
+  [ChannelEnum.WORLDFIRST]: 'payment.channel.common.worldfirst',
+  // 连连国际(国际跨境收款通道, 占位未对接)
+  [ChannelEnum.LIANLIAN_GLOBAL]: 'payment.channel.common.lianlianGlobal',
+  // PingPong(国际跨境收款通道, 占位未对接)
+  [ChannelEnum.PINGPONG]: 'payment.channel.common.pingpong',
 };
 
 /**
@@ -206,6 +218,12 @@ export const channelNameMap: Record<string, string> = {
   [ChannelEnum.UMF_PAY]: '联动优势',
   // 易生支付(占位通道, 未对接)
   [ChannelEnum.YISHENG_PAY]: '易生支付',
+  // WorldFirst(国际跨境收款通道, 占位未对接)
+  [ChannelEnum.WORLDFIRST]: 'WorldFirst',
+  // 连连国际(国际跨境收款通道, 占位未对接)
+  [ChannelEnum.LIANLIAN_GLOBAL]: '连连国际',
+  // PingPong(国际跨境收款通道, 占位未对接)
+  [ChannelEnum.PINGPONG]: 'PingPong',
 };
 
 /**
@@ -273,4 +291,10 @@ export const channelLogoMap: Record<string, string> = {
   [ChannelEnum.UMF_PAY]: 'umfpay',
   // 易生支付(占位通道, 未对接)
   [ChannelEnum.YISHENG_PAY]: 'yisheng_pay',
+  // WorldFirst(国际跨境收款通道, 占位未对接)
+  [ChannelEnum.WORLDFIRST]: 'worldfirst',
+  // 连连国际(国际跨境收款通道, 占位未对接)
+  [ChannelEnum.LIANLIAN_GLOBAL]: 'lianlian_global',
+  // PingPong(国际跨境收款通道, 占位未对接)
+  [ChannelEnum.PINGPONG]: 'pingpong',
 };
