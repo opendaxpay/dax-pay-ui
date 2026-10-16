@@ -36,7 +36,12 @@
     "switchToProdConfirm": "Switch to production environment? This only affects the default environment for newly created channel merchants and the payment routing target. Existing channel merchants retain their original environment.",
     "statusLabel": "Product Status",
     "enabledTip": "New payments cannot be initiated once disabled; refunds/sync of existing orders are unaffected",
-    "coming": "Planned"
+    "coming": "Planned",
+    "searchPlaceholder": "Search by product or channel",
+    "noMatchDesc": "No matching payment products",
+    "modeAll": "All",
+    "modeIsv": "ISV",
+    "modeDirect": "Direct"
   },
   "placeholder": {
     "name": "Enter product name",

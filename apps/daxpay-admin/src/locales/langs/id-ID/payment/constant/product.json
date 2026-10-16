@@ -36,7 +36,12 @@
     "switchToProdConfirm": "Beralih ke lingkungan produksi? Semua transaksi akan menggunakan titik akhir API produksi dan melibatkan aliran dana nyata.",
     "statusLabel": "Status Produk",
     "enabledTip": "Setelah dinonaktifkan, pembayaran baru tidak dapat dimulai; refund/sinkronisasi pesanan lama tidak terpengaruh",
-    "coming": "Segera"
+    "coming": "Segera",
+    "searchPlaceholder": "Cari produk atau kanal",
+    "noMatchDesc": "Tidak ada produk pembayaran yang cocok",
+    "modeAll": "Semua",
+    "modeIsv": "ISV",
+    "modeDirect": "Langsung"
   },
   "placeholder": {
     "name": "Masukkan nama produk",

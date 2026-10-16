@@ -36,7 +36,12 @@
     "switchToProdConfirm": "Chuyển sang môi trường sản xuất? Tất cả các giao dịch sẽ sử dụng điểm cuối API sản xuất và liên quan đến dòng vốn thực.",
     "statusLabel": "Trạng thái sản phẩm",
     "enabledTip": "Sau khi tắt, không thể khởi tạo thanh toán mới; hoàn tiền/đồng bộ đơn hàng cũ không bị ảnh hưởng",
-    "coming": "Sắp ra mắt"
+    "coming": "Sắp ra mắt",
+    "searchPlaceholder": "Tìm kiếm sản phẩm hoặc kênh",
+    "noMatchDesc": "Không tìm thấy sản phẩm thanh toán phù hợp",
+    "modeAll": "Tất cả",
+    "modeIsv": "ISV",
+    "modeDirect": "Trực tiếp"
   },
   "placeholder": {
     "name": "Nhập tên sản phẩm",

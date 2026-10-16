@@ -36,7 +36,12 @@
     "switchToProdConfirm": "Beralih kepada persekitaran pengeluaran? Semua urus niaga akan menggunakan titik akhir API pengeluaran dan melibatkan aliran dana sebenar.",
     "statusLabel": "Status Produk",
     "enabledTip": "Selepas dinyahdayakan, pembayaran baharu tidak boleh dimulakan; bayaran balik/penyelarasan pesanan sedia ada tidak terjejas",
-    "coming": "Akan Datang"
+    "coming": "Akan Datang",
+    "searchPlaceholder": "Cari produk atau saluran",
+    "noMatchDesc": "Tiada produk pembayaran yang sepadan",
+    "modeAll": "Semua",
+    "modeIsv": "ISV",
+    "modeDirect": "Terus"
   },
   "placeholder": {
     "name": "Masukkan nama produk",

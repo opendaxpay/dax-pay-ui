@@ -36,7 +36,12 @@
     "switchToProdConfirm": "実稼働環境に切り替えますか?切り替え後、新規作成するチャネル加盟店のデフォルト環境と支払いルーティング先にのみ影響します。既存のチャネル加盟店はそれぞれ元の環境を維持します。",
     "statusLabel": "製品ステータス",
     "enabledTip": "無効にすると新規支払いを開始できません。既存注文の返金・同期は影響を受けません",
-    "coming": "計画中"
+    "coming": "計画中",
+    "searchPlaceholder": "製品またはチャネルを検索",
+    "noMatchDesc": "一致する決済製品が見つかりません",
+    "modeAll": "すべて",
+    "modeIsv": "ISV",
+    "modeDirect": "ダイレクト"
   },
   "placeholder": {
     "name": "製品名を入力してください",

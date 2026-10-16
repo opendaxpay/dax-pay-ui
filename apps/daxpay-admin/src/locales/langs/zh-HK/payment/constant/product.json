@@ -36,7 +36,12 @@
     "switchToProdConfirm": "確定要切換到生產環境嗎？切換後僅影響「新建通道商戶的預設環境」與「支付路由目標」，已建立的通道商戶保持各自原環境不變。",
     "statusLabel": "產品狀態",
     "enabledTip": "停用後無法發起新支付，存量訂單退款/同步不受影響",
-    "coming": "規劃中"
+    "coming": "規劃中",
+    "searchPlaceholder": "搜尋產品或通道名稱",
+    "noMatchDesc": "未找到符合的支付產品",
+    "modeAll": "全部",
+    "modeIsv": "服務商",
+    "modeDirect": "直連"
   },
   "placeholder": {
     "name": "請輸入產品名稱",
