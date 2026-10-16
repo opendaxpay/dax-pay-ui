@@ -35,7 +35,8 @@
     "switchToSandboxConfirm": "Chuyển sang môi trường hộp cát? Tất cả các giao dịch sẽ sử dụng điểm cuối API hộp cát, phù hợp cho việc tích hợp và thử nghiệm chức năng.",
     "switchToProdConfirm": "Chuyển sang môi trường sản xuất? Tất cả các giao dịch sẽ sử dụng điểm cuối API sản xuất và liên quan đến dòng vốn thực.",
     "statusLabel": "Trạng thái sản phẩm",
-    "enabledTip": "Sau khi tắt, không thể khởi tạo thanh toán mới; hoàn tiền/đồng bộ đơn hàng cũ không bị ảnh hưởng"
+    "enabledTip": "Sau khi tắt, không thể khởi tạo thanh toán mới; hoàn tiền/đồng bộ đơn hàng cũ không bị ảnh hưởng",
+    "coming": "Sắp ra mắt"
   },
   "placeholder": {
     "name": "Nhập tên sản phẩm",

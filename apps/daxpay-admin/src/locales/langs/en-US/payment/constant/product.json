@@ -35,7 +35,8 @@
     "switchToSandboxConfirm": "Switch to sandbox environment? This only affects the default environment for newly created channel merchants and the payment routing target. Existing channel merchants retain their original environment.",
     "switchToProdConfirm": "Switch to production environment? This only affects the default environment for newly created channel merchants and the payment routing target. Existing channel merchants retain their original environment.",
     "statusLabel": "Product Status",
-    "enabledTip": "New payments cannot be initiated once disabled; refunds/sync of existing orders are unaffected"
+    "enabledTip": "New payments cannot be initiated once disabled; refunds/sync of existing orders are unaffected",
+    "coming": "Planned"
   },
   "placeholder": {
     "name": "Enter product name",

@@ -108,66 +108,36 @@ export enum ProductEnum {
   CPCN_PAY = 'cpcn_pay',
   /** 宝付支付(占位, 未对接) */
   BAOFU_PAY = 'baofu_pay',
-  /** 丰付支付(占位, 未对接) */
-  SUMA_PAY = 'sumapay',
-  /** 丰付企账宝(占位, 未对接, 归属丰付通道) */
-  SUMA_QZB = 'sumapay_qzb',
   /** 首信易支付(占位, 未对接) */
   YIZHIFU_PAY = 'yizhifubj_pay',
-  /** 汇付宝支付(占位, 未对接) */
-  HEEPAY_PAY = 'heepay_pay',
-  /** 汇付宝快捷支付(占位, 未对接, 归属汇付宝通道) */
-  HEEPAY_BANK = 'heepay_bank',
   /** 哆啦宝支付(占位, 未对接) */
   DUOLABAO_PAY = 'duolabao_pay',
-  /** 精秀支付(占位, 未对接) */
-  PASSPAY = 'passpay_pay',
-  /** 鲲鹏支付(占位, 未对接) */
-  KUNPENG_PAY = 'kunpeng_pay',
-  /** 联拓支付(占位, 未对接) */
-  LIANTUOFU_PAY = 'liantuofu_pay',
   /** 火脸支付(占位, 未对接) */
   HUOLIAN_PAY = 'huolian_pay',
   /** 有赞支付(占位, 未对接) */
   YOUZAN_PAY = 'youzan_pay',
-  /** 移领支付(占位, 未对接) */
-  YLPAY = 'ylpay_pay',
-  /** 远付宝支付(占位, 未对接) */
-  YUANFUBAO_PAY = 'yuanfubao_pay',
-  /** 通莞金服(占位, 未对接) */
-  TOGOODFIN_PAY = 'togoodfin',
-  /** 乐收付(占位, 未对接) */
-  SOEZPAY = 'soezpay_pay',
-  /** 数汇联动支付(占位, 未对接) */
-  SHUHUI_PAY = 'shuhuipay_pay',
-  /** 红小点支付(占位, 未对接) */
-  XHD_PAY = 'xhdpay_pay',
-  /** 恒信通支付(占位, 未对接) */
-  HXT_PAY = 'hxtpay_pay',
-  /** 好生意支付(占位, 未对接) */
-  HSY_PAY = 'haoshengyi_pay',
   /** 银盈通支付(占位, 未对接) */
   YYT_PAY = 'yinyingtong_pay',
-  /** 支付宝云支付(占位, 未对接) */
-  CLOUD_PAY = 'cloudpay_pay',
-  /** O米支付(占位, 未对接) */
-  OMI_PAY = 'omipay_pay',
   /** 慧收钱(占位, 未对接) */
   HSQ_PAY = 'huishouqian_pay',
   /** 收银呗支付(占位, 未对接) */
   SYB_PAY = 'shouyinbei_pay',
-  /** 金多多支付(占位, 未对接) */
-  JINDD_PAY = 'jindd_pay',
-  /** 鸿闻支付(占位, 未对接) */
-  HWKJ_PAY = 'hwkpay_pay',
   /** Payssion(占位, 未对接) */
   PAYSSION = 'payssion',
-  /** 超级支付(占位, 未对接) */
-  PAYPRO = 'paypro_pay',
-  /** 商福通支付(占位, 未对接) */
-  SHANGFUTONG_PAY = 'shangfutong_pay',
-  /** 智付支付(占位, 未对接) */
-  DINPAY = 'dinpay_pay',
+  /** 拉卡拉MOSS(拉卡拉 MOSS 开放平台产品线, 占位未对接) */
+  LAKALA_MOSS = 'lakala_moss',
+  /** 富友合作方(scanpay 合作方模式, 占位未对接) */
+  FUYOU_PARTNER = 'fuyou_partner',
+  /** 海科聚合支付(海科融通 SaaS 聚合产品线, 占位未对接) */
+  HKRT_SAAS = 'hkrt_saas',
+  /** 新生支付(占位, 未对接) */
+  HNA_PAY = 'hnapay_pay',
+  /** 新生易(新生支付旗下机构模式聚合产品线, 占位未对接) */
+  XSY_PAY = 'xsy',
+  /** 联动优势(占位, 未对接) */
+  UMF_PAY = 'umf_pay',
+  /** 易生支付(占位, 未对接) */
+  YISHENG_PAY = 'yisheng_pay',
 }
 
 /**
@@ -247,66 +217,36 @@ export const productI18nMap: Record<string, string> = {
   [ProductEnum.CPCN_PAY]: 'payment.product.enum.cpcnPay',
   // 宝付支付(占位, 未对接)
   [ProductEnum.BAOFU_PAY]: 'payment.product.enum.baofuPay',
-  // 丰付支付(占位, 未对接)
-  [ProductEnum.SUMA_PAY]: 'payment.product.enum.sumaPay',
-  // 丰付企账宝(占位, 未对接, 归属丰付通道)
-  [ProductEnum.SUMA_QZB]: 'payment.product.enum.sumaQzb',
   // 首信易支付(占位, 未对接)
   [ProductEnum.YIZHIFU_PAY]: 'payment.product.enum.yizhifuPay',
-  // 汇付宝支付(占位, 未对接)
-  [ProductEnum.HEEPAY_PAY]: 'payment.product.enum.heepay',
-  // 汇付宝快捷支付(占位, 未对接, 归属汇付宝通道)
-  [ProductEnum.HEEPAY_BANK]: 'payment.product.enum.heepayBank',
   // 哆啦宝支付(占位, 未对接)
   [ProductEnum.DUOLABAO_PAY]: 'payment.product.enum.duolabaoPay',
-  // 精秀支付(占位, 未对接)
-  [ProductEnum.PASSPAY]: 'payment.product.enum.passpay',
-  // 鲲鹏支付(占位, 未对接)
-  [ProductEnum.KUNPENG_PAY]: 'payment.product.enum.kunpengPay',
-  // 联拓支付(占位, 未对接)
-  [ProductEnum.LIANTUOFU_PAY]: 'payment.product.enum.liantuofuPay',
   // 火脸支付(占位, 未对接)
   [ProductEnum.HUOLIAN_PAY]: 'payment.product.enum.huolianPay',
   // 有赞支付(占位, 未对接)
   [ProductEnum.YOUZAN_PAY]: 'payment.product.enum.youzanPay',
-  // 移领支付(占位, 未对接)
-  [ProductEnum.YLPAY]: 'payment.product.enum.ylPay',
-  // 远付宝支付(占位, 未对接)
-  [ProductEnum.YUANFUBAO_PAY]: 'payment.product.enum.yuanfubaoPay',
-  // 通莞金服(占位, 未对接)
-  [ProductEnum.TOGOODFIN_PAY]: 'payment.product.enum.togoodfin',
-  // 乐收付(占位, 未对接)
-  [ProductEnum.SOEZPAY]: 'payment.product.enum.soezPay',
-  // 数汇联动支付(占位, 未对接)
-  [ProductEnum.SHUHUI_PAY]: 'payment.product.enum.shuhuiPay',
-  // 红小点支付(占位, 未对接)
-  [ProductEnum.XHD_PAY]: 'payment.product.enum.xhdPay',
-  // 恒信通支付(占位, 未对接)
-  [ProductEnum.HXT_PAY]: 'payment.product.enum.hxtPay',
-  // 好生意支付(占位, 未对接)
-  [ProductEnum.HSY_PAY]: 'payment.product.enum.haoshengyiPay',
   // 银盈通支付(占位, 未对接)
   [ProductEnum.YYT_PAY]: 'payment.product.enum.yinyingtongPay',
-  // 支付宝云支付(占位, 未对接)
-  [ProductEnum.CLOUD_PAY]: 'payment.product.enum.cloudPay',
-  // O米支付(占位, 未对接)
-  [ProductEnum.OMI_PAY]: 'payment.product.enum.omiPay',
   // 慧收钱(占位, 未对接)
   [ProductEnum.HSQ_PAY]: 'payment.product.enum.huishouqianPay',
   // 收银呗支付(占位, 未对接)
   [ProductEnum.SYB_PAY]: 'payment.product.enum.shouyinbeiPay',
-  // 金多多支付(占位, 未对接)
-  [ProductEnum.JINDD_PAY]: 'payment.product.enum.jinddPay',
-  // 鸿闻支付(占位, 未对接)
-  [ProductEnum.HWKJ_PAY]: 'payment.product.enum.hwkPay',
   // Payssion(占位, 未对接)
   [ProductEnum.PAYSSION]: 'payment.product.enum.payssion',
-  // 超级支付(占位, 未对接)
-  [ProductEnum.PAYPRO]: 'payment.product.enum.paypro',
-  // 商福通支付(占位, 未对接)
-  [ProductEnum.SHANGFUTONG_PAY]: 'payment.product.enum.shangfutongPay',
-  // 智付支付(占位, 未对接)
-  [ProductEnum.DINPAY]: 'payment.product.enum.dinpay',
+  // 拉卡拉MOSS(占位, 未对接)
+  [ProductEnum.LAKALA_MOSS]: 'payment.product.enum.lakalaMoss',
+  // 富友合作方(占位, 未对接)
+  [ProductEnum.FUYOU_PARTNER]: 'payment.product.enum.fuyouPartner',
+  // 海科聚合支付(占位, 未对接)
+  [ProductEnum.HKRT_SAAS]: 'payment.product.enum.hkrtSaas',
+  // 新生支付(占位, 未对接)
+  [ProductEnum.HNA_PAY]: 'payment.product.enum.hnapayPay',
+  // 新生易(占位, 未对接)
+  [ProductEnum.XSY_PAY]: 'payment.product.enum.xsy',
+  // 联动优势(占位, 未对接)
+  [ProductEnum.UMF_PAY]: 'payment.product.enum.umfPay',
+  // 易生支付(占位, 未对接)
+  [ProductEnum.YISHENG_PAY]: 'payment.product.enum.yishengPay',
 };
 
 /**
@@ -400,66 +340,36 @@ export const productNameMap: Record<string, string> = {
   [ProductEnum.CPCN_PAY]: '中金聚合支付',
   // 宝付支付(占位, 未对接)
   [ProductEnum.BAOFU_PAY]: '宝付支付',
-  // 丰付支付(占位, 未对接)
-  [ProductEnum.SUMA_PAY]: '丰付支付',
-  // 丰付企账宝(占位, 未对接, 归属丰付通道)
-  [ProductEnum.SUMA_QZB]: '丰付企账宝',
   // 首信易支付(占位, 未对接)
   [ProductEnum.YIZHIFU_PAY]: '首信易支付',
-  // 汇付宝支付(占位, 未对接)
-  [ProductEnum.HEEPAY_PAY]: '汇付宝支付',
-  // 汇付宝快捷支付(占位, 未对接, 归属汇付宝通道)
-  [ProductEnum.HEEPAY_BANK]: '汇付宝快捷支付',
   // 哆啦宝支付(占位, 未对接)
   [ProductEnum.DUOLABAO_PAY]: '哆啦宝支付',
-  // 精秀支付(占位, 未对接)
-  [ProductEnum.PASSPAY]: '精秀支付',
-  // 鲲鹏支付(占位, 未对接)
-  [ProductEnum.KUNPENG_PAY]: '鲲鹏支付',
-  // 联拓支付(占位, 未对接)
-  [ProductEnum.LIANTUOFU_PAY]: '联拓支付',
   // 火脸支付(占位, 未对接)
   [ProductEnum.HUOLIAN_PAY]: '火脸支付',
   // 有赞支付(占位, 未对接)
   [ProductEnum.YOUZAN_PAY]: '有赞支付',
-  // 移领支付(占位, 未对接)
-  [ProductEnum.YLPAY]: '移领支付',
-  // 远付宝支付(占位, 未对接)
-  [ProductEnum.YUANFUBAO_PAY]: '远付宝支付',
-  // 通莞金服(占位, 未对接)
-  [ProductEnum.TOGOODFIN_PAY]: '通莞金服',
-  // 乐收付(占位, 未对接)
-  [ProductEnum.SOEZPAY]: '乐收付',
-  // 数汇联动支付(占位, 未对接)
-  [ProductEnum.SHUHUI_PAY]: '数汇联动支付',
-  // 红小点支付(占位, 未对接)
-  [ProductEnum.XHD_PAY]: '红小点支付',
-  // 恒信通支付(占位, 未对接)
-  [ProductEnum.HXT_PAY]: '恒信通支付',
-  // 好生意支付(占位, 未对接)
-  [ProductEnum.HSY_PAY]: '好生意支付',
   // 银盈通支付(占位, 未对接)
   [ProductEnum.YYT_PAY]: '银盈通支付',
-  // 支付宝云支付(占位, 未对接)
-  [ProductEnum.CLOUD_PAY]: '支付宝云支付',
-  // O米支付(占位, 未对接)
-  [ProductEnum.OMI_PAY]: 'O米支付',
   // 慧收钱(占位, 未对接)
   [ProductEnum.HSQ_PAY]: '慧收钱',
   // 收银呗支付(占位, 未对接)
   [ProductEnum.SYB_PAY]: '收银呗支付',
-  // 金多多支付(占位, 未对接)
-  [ProductEnum.JINDD_PAY]: '金多多支付',
-  // 鸿闻支付(占位, 未对接)
-  [ProductEnum.HWKJ_PAY]: '鸿闻支付',
   // Payssion(占位, 未对接)
   [ProductEnum.PAYSSION]: 'Payssion',
-  // 超级支付(占位, 未对接)
-  [ProductEnum.PAYPRO]: '超级支付',
-  // 商福通支付(占位, 未对接)
-  [ProductEnum.SHANGFUTONG_PAY]: '商福通支付',
-  // 智付支付(占位, 未对接)
-  [ProductEnum.DINPAY]: '智付支付',
+  // 拉卡拉MOSS(占位, 未对接)
+  [ProductEnum.LAKALA_MOSS]: '拉卡拉MOSS',
+  // 富友合作方(占位, 未对接)
+  [ProductEnum.FUYOU_PARTNER]: '富友(合作方)',
+  // 海科聚合支付(占位, 未对接)
+  [ProductEnum.HKRT_SAAS]: '海科聚合支付',
+  // 新生支付(占位, 未对接)
+  [ProductEnum.HNA_PAY]: '新生支付',
+  // 新生易(占位, 未对接)
+  [ProductEnum.XSY_PAY]: '新生易',
+  // 联动优势(占位, 未对接)
+  [ProductEnum.UMF_PAY]: '联动优势',
+  // 易生支付(占位, 未对接)
+  [ProductEnum.YISHENG_PAY]: '易生支付',
 };
 
 /**
@@ -544,12 +454,6 @@ export const productChannelMap: Record<string, string> = {
   // Airwallex(国际通道, 占位未对接)
   [ProductEnum.AIRWALLEX]: ChannelEnum.AIRWALLEX,
   // ===== 合规通道占位 C 批(未对接) =====
-  // 丰付: 支付/企账宝 两产品共用 sumapay 通道
-  [ProductEnum.SUMA_PAY]: ChannelEnum.SUMA_PAY,
-  [ProductEnum.SUMA_QZB]: ChannelEnum.SUMA_PAY,
-  // 汇付宝: 支付/快捷支付 两产品共用 heepay 通道
-  [ProductEnum.HEEPAY_PAY]: ChannelEnum.HEEPAY_PAY,
-  [ProductEnum.HEEPAY_BANK]: ChannelEnum.HEEPAY_PAY,
   // 中金支付(占位通道, 未对接)
   [ProductEnum.CPCN_PAY]: ChannelEnum.CPCN_PAY,
   // 宝付支付(占位通道, 未对接)
@@ -558,54 +462,31 @@ export const productChannelMap: Record<string, string> = {
   [ProductEnum.YIZHIFU_PAY]: ChannelEnum.YIZHIFU_PAY,
   // 哆啦宝(占位通道, 未对接)
   [ProductEnum.DUOLABAO_PAY]: ChannelEnum.DUOLABAO_PAY,
-  // 精秀支付(占位通道, 未对接)
-  [ProductEnum.PASSPAY]: ChannelEnum.PASSPAY,
-  // 鲲鹏支付(占位通道, 未对接)
-  [ProductEnum.KUNPENG_PAY]: ChannelEnum.KUNPENG_PAY,
-  // 联拓支付(占位通道, 未对接)
-  [ProductEnum.LIANTUOFU_PAY]: ChannelEnum.LIANTUOFU_PAY,
   // 火脸支付(占位通道, 未对接)
   [ProductEnum.HUOLIAN_PAY]: ChannelEnum.HUOLIAN_PAY,
   // 有赞支付(占位通道, 未对接)
   [ProductEnum.YOUZAN_PAY]: ChannelEnum.YOUZAN_PAY,
-  // 移领支付(占位通道, 未对接)
-  [ProductEnum.YLPAY]: ChannelEnum.YLPAY,
-  // 远付宝(占位通道, 未对接)
-  [ProductEnum.YUANFUBAO_PAY]: ChannelEnum.YUANFUBAO_PAY,
-  // 通莞金服(占位通道, 未对接)
-  [ProductEnum.TOGOODFIN_PAY]: ChannelEnum.TOGOODFIN_PAY,
-  // 乐收付(占位通道, 未对接)
-  [ProductEnum.SOEZPAY]: ChannelEnum.SOEZPAY,
-  // 数汇联动(占位通道, 未对接)
-  [ProductEnum.SHUHUI_PAY]: ChannelEnum.SHUHUI_PAY,
-  // 红小点支付(占位通道, 未对接)
-  [ProductEnum.XHD_PAY]: ChannelEnum.XHD_PAY,
-  // 恒信通(占位通道, 未对接)
-  [ProductEnum.HXT_PAY]: ChannelEnum.HXT_PAY,
-  // 好生意(占位通道, 未对接)
-  [ProductEnum.HSY_PAY]: ChannelEnum.HSY_PAY,
   // 银盈通(占位通道, 未对接)
   [ProductEnum.YYT_PAY]: ChannelEnum.YYT_PAY,
-  // 支付宝云支付(占位通道, 未对接)
-  [ProductEnum.CLOUD_PAY]: ChannelEnum.CLOUD_PAY,
-  // O米支付(占位通道, 未对接)
-  [ProductEnum.OMI_PAY]: ChannelEnum.OMI_PAY,
   // 慧收钱(占位通道, 未对接)
   [ProductEnum.HSQ_PAY]: ChannelEnum.HSQ_PAY,
   // 收银呗(占位通道, 未对接)
   [ProductEnum.SYB_PAY]: ChannelEnum.SYB_PAY,
-  // 金多多(占位通道, 未对接)
-  [ProductEnum.JINDD_PAY]: ChannelEnum.JINDD_PAY,
-  // 鸿闻Pay(占位通道, 未对接)
-  [ProductEnum.HWKJ_PAY]: ChannelEnum.HWKJ_PAY,
   // Payssion(占位通道, 未对接)
   [ProductEnum.PAYSSION]: ChannelEnum.PAYSSION,
-  // 超级支付(占位通道, 未对接)
-  [ProductEnum.PAYPRO]: ChannelEnum.PAYPRO,
-  // 商福通(占位通道, 未对接)
-  [ProductEnum.SHANGFUTONG_PAY]: ChannelEnum.SHANGFUTONG_PAY,
-  // 智付(占位通道, 未对接)
-  [ProductEnum.DINPAY]: ChannelEnum.DINPAY,
+  // 拉卡拉MOSS归属拉卡拉通道
+  [ProductEnum.LAKALA_MOSS]: ChannelEnum.LAKALA_PAY,
+  // 富友合作方归属富友通道
+  [ProductEnum.FUYOU_PARTNER]: ChannelEnum.FUYOU_PAY,
+  // 海科聚合支付归属海科融通通道
+  [ProductEnum.HKRT_SAAS]: ChannelEnum.HKRT_PAY,
+  // 新生支付/新生易归属新生支付通道
+  [ProductEnum.HNA_PAY]: ChannelEnum.HNA_PAY,
+  [ProductEnum.XSY_PAY]: ChannelEnum.HNA_PAY,
+  // 联动优势(占位通道, 未对接)
+  [ProductEnum.UMF_PAY]: ChannelEnum.UMF_PAY,
+  // 易生支付(占位通道, 未对接)
+  [ProductEnum.YISHENG_PAY]: ChannelEnum.YISHENG_PAY,
 };
 
 /**
