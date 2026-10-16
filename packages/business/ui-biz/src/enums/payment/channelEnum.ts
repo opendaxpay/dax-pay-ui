@@ -50,10 +50,6 @@ export enum ChannelEnum {
   SHOUQIANBA = 'shouqianba',
   /** 连连支付(占位通道, 未对接) */
   LLIAN_PAY = 'llianpay',
-  /** 汇聚支付(占位通道, 未对接) */
-  JOIN_PAY = 'joinpay',
-  /** 威富通(占位通道, 未对接) */
-  SWIFT_PASS = 'swiftpass',
   /** 嘉联支付(占位通道, 未对接) */
   JL_PAY = 'jlpay',
   /** 合利宝(占位通道, 未对接) */
@@ -74,20 +70,10 @@ export enum ChannelEnum {
   YIZHIFU_PAY = 'yizhifubj',
   /** 哆啦宝(占位通道, 未对接) */
   DUOLABAO_PAY = 'duolabao',
-  /** 火脸支付(占位通道, 未对接) */
-  HUOLIAN_PAY = 'huolian',
   /** 有赞支付(占位通道, 未对接) */
   YOUZAN_PAY = 'youzan',
-  /** 银盈通(占位通道, 未对接) */
-  YYT_PAY = 'yinyingtong',
-  /** 慧收钱(占位通道, 未对接) */
-  HSQ_PAY = 'huishouqian',
-  /** 收银呗(占位通道, 未对接) */
-  SYB_PAY = 'shouyinbei',
   /** Payssion(占位通道, 未对接) */
   PAYSSION = 'payssion',
-  /** 新生支付(占位通道, 未对接) */
-  HNA_PAY = 'hnapay',
   /** 联动优势(占位通道, 未对接) */
   UMF_PAY = 'umfpay',
   /** 易生支付(占位通道, 未对接) */
@@ -128,10 +114,6 @@ export const channelI18nMap: Record<string, string> = {
   [ChannelEnum.SHOUQIANBA]: 'payment.channel.common.shouqianba',
   // 连连支付(占位通道, 未对接)
   [ChannelEnum.LLIAN_PAY]: 'payment.channel.common.llianPay',
-  // 汇聚支付(占位通道, 未对接)
-  [ChannelEnum.JOIN_PAY]: 'payment.channel.common.joinPay',
-  // 威富通(占位通道, 未对接)
-  [ChannelEnum.SWIFT_PASS]: 'payment.channel.common.swiftpass',
   // 嘉联支付(占位通道, 未对接)
   [ChannelEnum.JL_PAY]: 'payment.channel.common.jlPay',
   // 合利宝(占位通道, 未对接)
@@ -152,20 +134,10 @@ export const channelI18nMap: Record<string, string> = {
   [ChannelEnum.YIZHIFU_PAY]: 'payment.channel.common.yizhifuPay',
   // 哆啦宝(占位通道, 未对接)
   [ChannelEnum.DUOLABAO_PAY]: 'payment.channel.common.duolabao',
-  // 火脸支付(占位通道, 未对接)
-  [ChannelEnum.HUOLIAN_PAY]: 'payment.channel.common.huolian',
   // 有赞支付(占位通道, 未对接)
   [ChannelEnum.YOUZAN_PAY]: 'payment.channel.common.youzan',
-  // 银盈通(占位通道, 未对接)
-  [ChannelEnum.YYT_PAY]: 'payment.channel.common.yinyingtong',
-  // 慧收钱(占位通道, 未对接)
-  [ChannelEnum.HSQ_PAY]: 'payment.channel.common.huishouqian',
-  // 收银呗(占位通道, 未对接)
-  [ChannelEnum.SYB_PAY]: 'payment.channel.common.shouyinbei',
   // Payssion(占位通道, 未对接)
   [ChannelEnum.PAYSSION]: 'payment.channel.common.payssion',
-  // 新生支付(占位通道, 未对接)
-  [ChannelEnum.HNA_PAY]: 'payment.channel.common.hnapay',
   // 联动优势(占位通道, 未对接)
   [ChannelEnum.UMF_PAY]: 'payment.channel.common.umfpay',
   // 易生支付(占位通道, 未对接)
@@ -206,10 +178,6 @@ export const channelNameMap: Record<string, string> = {
   [ChannelEnum.SHOUQIANBA]: '收钱吧',
   // 连连支付(占位通道, 未对接)
   [ChannelEnum.LLIAN_PAY]: '连连支付',
-  // 汇聚支付(占位通道, 未对接)
-  [ChannelEnum.JOIN_PAY]: '汇聚支付',
-  // 威富通(占位通道, 未对接)
-  [ChannelEnum.SWIFT_PASS]: '威富通',
   // 嘉联支付(占位通道, 未对接)
   [ChannelEnum.JL_PAY]: '嘉联支付',
   // 合利宝(占位通道, 未对接)
@@ -230,20 +198,10 @@ export const channelNameMap: Record<string, string> = {
   [ChannelEnum.YIZHIFU_PAY]: '首信易支付',
   // 哆啦宝(占位通道, 未对接)
   [ChannelEnum.DUOLABAO_PAY]: '哆啦宝',
-  // 火脸支付(占位通道, 未对接)
-  [ChannelEnum.HUOLIAN_PAY]: '火脸支付',
   // 有赞支付(占位通道, 未对接)
   [ChannelEnum.YOUZAN_PAY]: '有赞支付',
-  // 银盈通(占位通道, 未对接)
-  [ChannelEnum.YYT_PAY]: '银盈通',
-  // 慧收钱(占位通道, 未对接)
-  [ChannelEnum.HSQ_PAY]: '慧收钱',
-  // 收银呗(占位通道, 未对接)
-  [ChannelEnum.SYB_PAY]: '收银呗',
   // Payssion(占位通道, 未对接)
   [ChannelEnum.PAYSSION]: 'Payssion',
-  // 新生支付(占位通道, 未对接)
-  [ChannelEnum.HNA_PAY]: '新生支付',
   // 联动优势(占位通道, 未对接)
   [ChannelEnum.UMF_PAY]: '联动优势',
   // 易生支付(占位通道, 未对接)
@@ -287,10 +245,6 @@ export const channelLogoMap: Record<string, string> = {
   [ChannelEnum.SHOUQIANBA]: 'shouqianba',
   // 连连支付(占位通道, 未对接)
   [ChannelEnum.LLIAN_PAY]: 'llianpay',
-  // 汇聚支付(占位通道, 未对接)
-  [ChannelEnum.JOIN_PAY]: 'joinpay',
-  // 威富通(占位通道, 未对接)
-  [ChannelEnum.SWIFT_PASS]: 'swiftpass',
   // 嘉联支付(占位通道, 未对接)
   [ChannelEnum.JL_PAY]: 'jlpay',
   // 合利宝(占位通道, 未对接)
@@ -311,20 +265,10 @@ export const channelLogoMap: Record<string, string> = {
   [ChannelEnum.YIZHIFU_PAY]: 'yizhifubj',
   // 哆啦宝(占位通道, 未对接)
   [ChannelEnum.DUOLABAO_PAY]: 'duolabao',
-  // 火脸支付(占位通道, 未对接)
-  [ChannelEnum.HUOLIAN_PAY]: 'huolian',
   // 有赞支付(占位通道, 未对接)
   [ChannelEnum.YOUZAN_PAY]: 'youzan',
-  // 银盈通(占位通道, 未对接)
-  [ChannelEnum.YYT_PAY]: 'yinyingtong',
-  // 慧收钱(占位通道, 未对接)
-  [ChannelEnum.HSQ_PAY]: 'huishouqian',
-  // 收银呗(占位通道, 未对接)
-  [ChannelEnum.SYB_PAY]: 'shouyinbei',
   // Payssion(占位通道, 未对接)
   [ChannelEnum.PAYSSION]: 'payssion',
-  // 新生支付(占位通道, 未对接)
-  [ChannelEnum.HNA_PAY]: 'hnapay',
   // 联动优势(占位通道, 未对接)
   [ChannelEnum.UMF_PAY]: 'umfpay',
   // 易生支付(占位通道, 未对接)

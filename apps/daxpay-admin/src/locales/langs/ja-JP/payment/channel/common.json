@@ -27,8 +27,6 @@
   "allinPay": "通聯支付(アリンペイ)",
   "shouqianba": "Shouqianba(収銭吧)",
   "llianPay": "連連支付(LianLian Pay)",
-  "joinPay": "匯聚支付(JoinPay)",
-  "swiftpass": "威富通(Swiftpass)",
   "jlPay": "嘉聯支付(JLPay)",
   "heliPay": "合利宝(Helipay)",
   "fubei": "付唄(FuBei)",
@@ -39,13 +37,8 @@
   "baofu": "Baofoo Pay",
   "yizhifuPay": "Firstpay",
   "duolabao": "Duolabao",
-  "huolian": "Huolian Pay",
   "youzan": "Youzan Pay",
-  "yinyingtong": "Yinyingtong",
-  "huishouqian": "Huishouqian",
-  "shouyinbei": "Shouyinbei",
   "payssion": "Payssion",
-  "hnapay": "新生支付",
   "umfpay": "UMF",
   "yishengPay": "易生支付"
 }

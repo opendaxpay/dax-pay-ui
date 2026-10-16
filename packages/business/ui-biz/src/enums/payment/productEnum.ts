@@ -88,10 +88,6 @@ export enum ProductEnum {
   SHOUQIANBA = 'shouqianba',
   /** 连连聚合支付(占位, 未对接) */
   LLIAN_PAY = 'llian_pay',
-  /** 汇聚聚合支付(占位, 未对接) */
-  JOIN_PAY = 'join_pay',
-  /** 威富通支付(占位, 未对接) */
-  SWIFT_PASS = 'swift_pass',
   /** 嘉联聚合支付(占位, 未对接) */
   JL_PAY = 'jl_pay',
   /** 合利宝支付(占位, 未对接) */
@@ -112,28 +108,14 @@ export enum ProductEnum {
   YIZHIFU_PAY = 'yizhifubj_pay',
   /** 哆啦宝支付(占位, 未对接) */
   DUOLABAO_PAY = 'duolabao_pay',
-  /** 火脸支付(占位, 未对接) */
-  HUOLIAN_PAY = 'huolian_pay',
   /** 有赞支付(占位, 未对接) */
   YOUZAN_PAY = 'youzan_pay',
-  /** 银盈通支付(占位, 未对接) */
-  YYT_PAY = 'yinyingtong_pay',
-  /** 慧收钱(占位, 未对接) */
-  HSQ_PAY = 'huishouqian_pay',
-  /** 收银呗支付(占位, 未对接) */
-  SYB_PAY = 'shouyinbei_pay',
   /** Payssion(占位, 未对接) */
   PAYSSION = 'payssion',
   /** 拉卡拉MOSS(拉卡拉 MOSS 开放平台产品线, 占位未对接) */
   LAKALA_MOSS = 'lakala_moss',
   /** 富友合作方(scanpay 合作方模式, 占位未对接) */
   FUYOU_PARTNER = 'fuyou_partner',
-  /** 海科聚合支付(海科融通 SaaS 聚合产品线, 占位未对接) */
-  HKRT_SAAS = 'hkrt_saas',
-  /** 新生支付(占位, 未对接) */
-  HNA_PAY = 'hnapay_pay',
-  /** 新生易(新生支付旗下机构模式聚合产品线, 占位未对接) */
-  XSY_PAY = 'xsy',
   /** 联动优势(占位, 未对接) */
   UMF_PAY = 'umf_pay',
   /** 易生支付(占位, 未对接) */
@@ -197,10 +179,6 @@ export const productI18nMap: Record<string, string> = {
   [ProductEnum.SHOUQIANBA]: 'payment.product.enum.shouqianba',
   // 连连聚合支付(占位, 未对接)
   [ProductEnum.LLIAN_PAY]: 'payment.product.enum.llianPay',
-  // 汇聚聚合支付(占位, 未对接)
-  [ProductEnum.JOIN_PAY]: 'payment.product.enum.joinPay',
-  // 威富通支付(占位, 未对接)
-  [ProductEnum.SWIFT_PASS]: 'payment.product.enum.swiftPass',
   // 嘉联聚合支付(占位, 未对接)
   [ProductEnum.JL_PAY]: 'payment.product.enum.jlPay',
   // 合利宝支付(占位, 未对接)
@@ -221,28 +199,14 @@ export const productI18nMap: Record<string, string> = {
   [ProductEnum.YIZHIFU_PAY]: 'payment.product.enum.yizhifuPay',
   // 哆啦宝支付(占位, 未对接)
   [ProductEnum.DUOLABAO_PAY]: 'payment.product.enum.duolabaoPay',
-  // 火脸支付(占位, 未对接)
-  [ProductEnum.HUOLIAN_PAY]: 'payment.product.enum.huolianPay',
   // 有赞支付(占位, 未对接)
   [ProductEnum.YOUZAN_PAY]: 'payment.product.enum.youzanPay',
-  // 银盈通支付(占位, 未对接)
-  [ProductEnum.YYT_PAY]: 'payment.product.enum.yinyingtongPay',
-  // 慧收钱(占位, 未对接)
-  [ProductEnum.HSQ_PAY]: 'payment.product.enum.huishouqianPay',
-  // 收银呗支付(占位, 未对接)
-  [ProductEnum.SYB_PAY]: 'payment.product.enum.shouyinbeiPay',
   // Payssion(占位, 未对接)
   [ProductEnum.PAYSSION]: 'payment.product.enum.payssion',
   // 拉卡拉MOSS(占位, 未对接)
   [ProductEnum.LAKALA_MOSS]: 'payment.product.enum.lakalaMoss',
   // 富友合作方(占位, 未对接)
   [ProductEnum.FUYOU_PARTNER]: 'payment.product.enum.fuyouPartner',
-  // 海科聚合支付(占位, 未对接)
-  [ProductEnum.HKRT_SAAS]: 'payment.product.enum.hkrtSaas',
-  // 新生支付(占位, 未对接)
-  [ProductEnum.HNA_PAY]: 'payment.product.enum.hnapayPay',
-  // 新生易(占位, 未对接)
-  [ProductEnum.XSY_PAY]: 'payment.product.enum.xsy',
   // 联动优势(占位, 未对接)
   [ProductEnum.UMF_PAY]: 'payment.product.enum.umfPay',
   // 易生支付(占位, 未对接)
@@ -320,10 +284,6 @@ export const productNameMap: Record<string, string> = {
   [ProductEnum.SHOUQIANBA]: '收钱吧',
   // 连连聚合支付(占位, 未对接)
   [ProductEnum.LLIAN_PAY]: '连连聚合支付',
-  // 汇聚聚合支付(占位, 未对接)
-  [ProductEnum.JOIN_PAY]: '汇聚聚合支付',
-  // 威富通支付(占位, 未对接)
-  [ProductEnum.SWIFT_PASS]: '威富通支付',
   // 嘉联聚合支付(占位, 未对接)
   [ProductEnum.JL_PAY]: '嘉联聚合支付',
   // 合利宝支付(占位, 未对接)
@@ -344,28 +304,14 @@ export const productNameMap: Record<string, string> = {
   [ProductEnum.YIZHIFU_PAY]: '首信易支付',
   // 哆啦宝支付(占位, 未对接)
   [ProductEnum.DUOLABAO_PAY]: '哆啦宝支付',
-  // 火脸支付(占位, 未对接)
-  [ProductEnum.HUOLIAN_PAY]: '火脸支付',
   // 有赞支付(占位, 未对接)
   [ProductEnum.YOUZAN_PAY]: '有赞支付',
-  // 银盈通支付(占位, 未对接)
-  [ProductEnum.YYT_PAY]: '银盈通支付',
-  // 慧收钱(占位, 未对接)
-  [ProductEnum.HSQ_PAY]: '慧收钱',
-  // 收银呗支付(占位, 未对接)
-  [ProductEnum.SYB_PAY]: '收银呗支付',
   // Payssion(占位, 未对接)
   [ProductEnum.PAYSSION]: 'Payssion',
   // 拉卡拉MOSS(占位, 未对接)
   [ProductEnum.LAKALA_MOSS]: '拉卡拉MOSS',
   // 富友合作方(占位, 未对接)
   [ProductEnum.FUYOU_PARTNER]: '富友(合作方)',
-  // 海科聚合支付(占位, 未对接)
-  [ProductEnum.HKRT_SAAS]: '海科聚合支付',
-  // 新生支付(占位, 未对接)
-  [ProductEnum.HNA_PAY]: '新生支付',
-  // 新生易(占位, 未对接)
-  [ProductEnum.XSY_PAY]: '新生易',
   // 联动优势(占位, 未对接)
   [ProductEnum.UMF_PAY]: '联动优势',
   // 易生支付(占位, 未对接)
@@ -437,10 +383,6 @@ export const productChannelMap: Record<string, string> = {
   // ===== 合规通道占位(一通道一产品, 未对接) =====
   // 连连支付(占位通道, 未对接)
   [ProductEnum.LLIAN_PAY]: ChannelEnum.LLIAN_PAY,
-  // 汇聚支付(占位通道, 未对接)
-  [ProductEnum.JOIN_PAY]: ChannelEnum.JOIN_PAY,
-  // 威富通(占位通道, 未对接)
-  [ProductEnum.SWIFT_PASS]: ChannelEnum.SWIFT_PASS,
   // 嘉联支付(占位通道, 未对接)
   [ProductEnum.JL_PAY]: ChannelEnum.JL_PAY,
   // 合利宝(占位通道, 未对接)
@@ -462,27 +404,14 @@ export const productChannelMap: Record<string, string> = {
   [ProductEnum.YIZHIFU_PAY]: ChannelEnum.YIZHIFU_PAY,
   // 哆啦宝(占位通道, 未对接)
   [ProductEnum.DUOLABAO_PAY]: ChannelEnum.DUOLABAO_PAY,
-  // 火脸支付(占位通道, 未对接)
-  [ProductEnum.HUOLIAN_PAY]: ChannelEnum.HUOLIAN_PAY,
   // 有赞支付(占位通道, 未对接)
   [ProductEnum.YOUZAN_PAY]: ChannelEnum.YOUZAN_PAY,
-  // 银盈通(占位通道, 未对接)
-  [ProductEnum.YYT_PAY]: ChannelEnum.YYT_PAY,
-  // 慧收钱(占位通道, 未对接)
-  [ProductEnum.HSQ_PAY]: ChannelEnum.HSQ_PAY,
-  // 收银呗(占位通道, 未对接)
-  [ProductEnum.SYB_PAY]: ChannelEnum.SYB_PAY,
   // Payssion(占位通道, 未对接)
   [ProductEnum.PAYSSION]: ChannelEnum.PAYSSION,
   // 拉卡拉MOSS归属拉卡拉通道
   [ProductEnum.LAKALA_MOSS]: ChannelEnum.LAKALA_PAY,
   // 富友合作方归属富友通道
   [ProductEnum.FUYOU_PARTNER]: ChannelEnum.FUYOU_PAY,
-  // 海科聚合支付归属海科融通通道
-  [ProductEnum.HKRT_SAAS]: ChannelEnum.HKRT_PAY,
-  // 新生支付/新生易归属新生支付通道
-  [ProductEnum.HNA_PAY]: ChannelEnum.HNA_PAY,
-  [ProductEnum.XSY_PAY]: ChannelEnum.HNA_PAY,
   // 联动优势(占位通道, 未对接)
   [ProductEnum.UMF_PAY]: ChannelEnum.UMF_PAY,
   // 易生支付(占位通道, 未对接)
