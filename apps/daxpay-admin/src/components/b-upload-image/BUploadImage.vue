@@ -127,9 +127,14 @@
     </a-upload>
     <div v-else class="img-wrapper">
       <a-image :height="100" :preview="{ onOpenChange: setOpen, open: preview }" :src="imageUrl" :width="100" />
-      <div v-if="!showable && !disabled" class="img-mask">
+      <div class="img-mask">
         <IconifyIcon class="mask-icon" icon="ant-design:eye-outlined" @click="() => setOpen(true)" />
-        <IconifyIcon class="mask-icon" icon="ant-design:delete-outlined" @click="handleDelete" />
+        <IconifyIcon
+          v-if="!showable && !disabled"
+          class="mask-icon"
+          icon="ant-design:delete-outlined"
+          @click="handleDelete"
+        />
       </div>
     </div>
   </div>
