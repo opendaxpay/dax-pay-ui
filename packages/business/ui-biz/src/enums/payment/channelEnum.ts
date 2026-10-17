@@ -19,7 +19,7 @@ export enum ChannelEnum {
   /** 乐刷 */
   LESHUA_PAY = 'leshua_pay',
   /** 快钱 */
-  QUICK_PAY = 'quick_pay',
+  KUAIQIAN_PAY = 'kuaiqian_pay',
   /** 杉德 */
   SAND_PAY = 'sand_pay',
   /** 盛付通 */
@@ -102,7 +102,7 @@ export const channelI18nMap: Record<string, string> = {
   [ChannelEnum.FUYOU_PAY]: 'payment.channel.common.fuyouPay',
   [ChannelEnum.SHENG_PAY]: 'payment.channel.common.shengPay',
   [ChannelEnum.YSEP_PAY]: 'payment.channel.common.ysepPay',
-  [ChannelEnum.QUICK_PAY]: 'payment.channel.common.quickPay',
+  [ChannelEnum.KUAIQIAN_PAY]: 'payment.channel.common.kuaiqianPay',
   [ChannelEnum.SAND_PAY]: 'payment.channel.common.sandPay',
   [ChannelEnum.YEE_PAY]: 'payment.channel.common.yeePay',
   [ChannelEnum.UMS_PAY]: 'payment.channel.common.umsPay',
@@ -172,7 +172,7 @@ export const channelNameMap: Record<string, string> = {
   [ChannelEnum.FUYOU_PAY]: '富友',
   [ChannelEnum.SHENG_PAY]: '盛付通',
   [ChannelEnum.YSEP_PAY]: '银盛',
-  [ChannelEnum.QUICK_PAY]: '快钱',
+  [ChannelEnum.KUAIQIAN_PAY]: '快钱',
   [ChannelEnum.SAND_PAY]: '杉德',
   [ChannelEnum.YEE_PAY]: '易宝',
   [ChannelEnum.UMS_PAY]: '银联商务',
@@ -244,7 +244,7 @@ export const channelLogoMap: Record<string, string> = {
   [ChannelEnum.FUYOU_PAY]: 'fuyou',
   [ChannelEnum.SHENG_PAY]: 'sheng_pay',
   [ChannelEnum.YSEP_PAY]: 'ysep_pay',
-  [ChannelEnum.QUICK_PAY]: 'quick_pay',
+  [ChannelEnum.KUAIQIAN_PAY]: 'kuaiqian_pay',
   [ChannelEnum.SAND_PAY]: 'sand_pay',
   [ChannelEnum.YEE_PAY]: 'yee_pay',
   [ChannelEnum.UMS_PAY]: 'ums_pay',

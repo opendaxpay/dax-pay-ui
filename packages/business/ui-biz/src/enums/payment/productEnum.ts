@@ -35,7 +35,7 @@ export enum ProductEnum {
   /** 乐刷支付 */
   LESHUA_PAY = 'leshua_pay',
   /** 快钱 */
-  QUICK_PAY = 'quick_pay',
+  KUAIQIAN_PAY = 'kuaiqian_pay',
   /** 杉德支付(杉德通道主产品) */
   SAND_PAY = 'sand_pay',
   /** 盛付通(服务商) */
@@ -96,9 +96,9 @@ export enum ProductEnum {
   FUBEI_PAY = 'fubei_pay',
   /** 易票联支付(占位, 未对接) */
   EPAY_LINKS = 'epay_links',
-  /** PayPal 支付(国际, 占位未对接) */
+  /** PayPal(国际, 占位未对接) */
   PAY_PAL = 'paypal',
-  /** Airwallex 支付(国际, 占位未对接) */
+  /** Airwallex(国际, 占位未对接) */
   AIRWALLEX = 'airwallex',
   /** 中金聚合支付(占位, 未对接) */
   CPCN_PAY = 'cpcn_pay',
@@ -167,7 +167,7 @@ export const productI18nMap: Record<string, string> = {
   [ProductEnum.YSEP_PAY]: 'payment.product.enum.ysepPay',
   // 银盛e企通
   [ProductEnum.YSEQT_PAY]: 'payment.product.enum.yseqtPay',
-  [ProductEnum.QUICK_PAY]: 'payment.product.enum.quickPay',
+  [ProductEnum.KUAIQIAN_PAY]: 'payment.product.enum.kuaiqianPay',
   [ProductEnum.YEE_PAY]: 'payment.product.enum.yeePay',
   [ProductEnum.JEE_PAY]: 'payment.product.enum.jeePay',
   // 易支付
@@ -193,9 +193,9 @@ export const productI18nMap: Record<string, string> = {
   [ProductEnum.FUBEI_PAY]: 'payment.product.enum.fubeiPay',
   // 易票联支付(占位, 未对接)
   [ProductEnum.EPAY_LINKS]: 'payment.product.enum.epayLinks',
-  // PayPal 支付(国际, 占位未对接)
+  // PayPal(国际, 占位未对接)
   [ProductEnum.PAY_PAL]: 'payment.product.enum.paypal',
-  // Airwallex 支付(国际, 占位未对接)
+  // Airwallex(国际, 占位未对接)
   [ProductEnum.AIRWALLEX]: 'payment.product.enum.airwallex',
   // 中金聚合支付(占位, 未对接)
   [ProductEnum.CPCN_PAY]: 'payment.product.enum.cpcnPay',
@@ -273,7 +273,7 @@ export const productNameMap: Record<string, string> = {
   // 银盛e企通
   [ProductEnum.YSEQT_PAY]: '银盛e企通',
   // 快钱支付
-  [ProductEnum.QUICK_PAY]: '快钱支付',
+  [ProductEnum.KUAIQIAN_PAY]: '快钱支付',
   // 易宝支付
   [ProductEnum.YEE_PAY]: '易宝支付',
   // Jeepay
@@ -304,10 +304,10 @@ export const productNameMap: Record<string, string> = {
   [ProductEnum.FUBEI_PAY]: '付呗聚合支付',
   // 易票联支付(占位, 未对接)
   [ProductEnum.EPAY_LINKS]: '易票联支付',
-  // PayPal 支付(国际, 占位未对接)
-  [ProductEnum.PAY_PAL]: 'PayPal支付',
-  // Airwallex 支付(国际, 占位未对接)
-  [ProductEnum.AIRWALLEX]: 'Airwallex支付',
+  // PayPal(国际, 占位未对接)
+  [ProductEnum.PAY_PAL]: 'PayPal',
+  // Airwallex(国际, 占位未对接)
+  [ProductEnum.AIRWALLEX]: 'Airwallex',
   // 中金聚合支付(占位, 未对接)
   [ProductEnum.CPCN_PAY]: '中金聚合支付',
   // 宝付支付(占位, 未对接)
@@ -380,7 +380,7 @@ export const productChannelMap: Record<string, string> = {
   // 银盛e企通归属银盛通道
   [ProductEnum.YSEQT_PAY]: ChannelEnum.YSEP_PAY,
   // 快钱(一通道一产品)
-  [ProductEnum.QUICK_PAY]: ChannelEnum.QUICK_PAY,
+  [ProductEnum.KUAIQIAN_PAY]: ChannelEnum.KUAIQIAN_PAY,
   // 易宝(一通道一产品)
   [ProductEnum.YEE_PAY]: ChannelEnum.YEE_PAY,
   // jeepay(一通道一产品)
