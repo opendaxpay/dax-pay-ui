@@ -16,6 +16,7 @@
     type MobileAppResult,
     type WxMiniAppConfig,
   } from '#/api/payment/mobile-app.api';
+  import { useEditingGuard } from '#/hooks/useEditingGuard';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
 
@@ -47,6 +48,11 @@
   const saving = ref(false);
   // 是否处于编辑状态
   const isEditing = ref(false);
+
+  // 平台页签编辑守卫(编辑中切走先确认放弃未保存修改, 确认后经 watch 退出编辑并重载该端数据)
+  const { guardTabChange } = useEditingGuard(activePlatform, {
+    isEditing: () => isEditing.value,
+  });
   // 各平台表单子组件实例
   const formRefMap = reactive<Record<string, PlatformFormExpose>>({});
 
@@ -424,7 +430,14 @@
     router.push({ path: '/payment/config/mobile-app' });
   }
 
-  // 切 Tab 时退出编辑并重载
+  // 平台页签切换(a-tabs 受控, 经编辑守卫: 取消则停留在当前页签继续编辑)
+  function handlePlatformChange(key: number | string) {
+    guardTabChange(String(key), (next) => {
+      activePlatform.value = next;
+    });
+  }
+
+  // 切页签确认放弃后走到这里: 退出编辑并重载新页签的该端数据
   watch(activePlatform, async (next, prev) => {
     if (!prev || next === prev) return;
     if (isEditing.value) {
@@ -467,7 +480,7 @@
           :description="$t('payment.mobileApp.detail.cashierLimitDesc')"
         />
 
-        <a-tabs v-model:active-key="activePlatform">
+        <a-tabs :active-key="activePlatform" @change="handlePlatformChange">
           <template #rightExtra>
             <!-- 页签右侧编辑操作条 -->
             <PlatformEditBar

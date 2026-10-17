@@ -1,4 +1,8 @@
 {
+  "editGuardTitle": "放弃未保存的修改？",
+  "editGuardContent": "当前分组有未保存的修改，切换分组后将放弃修改并恢复为已保存的配置",
+  "editGuardOkText": "放弃修改",
+  "editGuardCancelText": "继续编辑",
   "cancelText": "取消",
   "okText": "确定",
   "cancel": "取消",

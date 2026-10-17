@@ -1,4 +1,8 @@
 {
+  "editGuardTitle": "未保存の変更を破棄しますか？",
+  "editGuardContent": "現在のグループに未保存の変更があります。グループを切り替えると変更は破棄され、保存済みの設定に戻ります",
+  "editGuardOkText": "変更を破棄",
+  "editGuardCancelText": "編集を続ける",
   "cancelText": "キャンセル",
   "okText": "確定",
   "cancel": "キャンセル",

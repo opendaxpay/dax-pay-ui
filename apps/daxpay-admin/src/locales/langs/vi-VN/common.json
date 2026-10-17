@@ -1,4 +1,8 @@
 {
+  "editGuardTitle": "Bỏ các thay đổi chưa lưu?",
+  "editGuardContent": "Nhóm hiện tại có thay đổi chưa lưu. Chuyển nhóm sẽ bỏ các thay đổi và khôi phục cấu hình đã lưu",
+  "editGuardOkText": "Bỏ thay đổi",
+  "editGuardCancelText": "Tiếp tục chỉnh sửa",
   "cancelText": "Hủy",
   "okText": "OK",
   "cancel": "Hủy",

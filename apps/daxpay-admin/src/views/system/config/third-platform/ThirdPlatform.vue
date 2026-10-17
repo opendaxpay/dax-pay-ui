@@ -5,6 +5,7 @@
 
   import { PageShell } from '@daxpay/ui-biz/components/page-shell';
 
+  import { useEditingGuard } from '#/hooks/useEditingGuard';
   import { useQueryTab } from '#/hooks/useQueryTab';
   import { $t } from '#/locales';
   import SocialLoginConfigList from '#/views/iam/social/social-login-config.vue';
@@ -74,21 +75,26 @@
   // tab 激活与 ?tab= 双向同步(默认回退首个 tab「三方平台登录配置」, 基础配置优先)
   const { activeKey, handleTabChange } = useQueryTab(() => tabs.map((tab) => tab.key));
 
+  // 分组级编辑守卫(子组件型: 编辑态由各表单分组子组件透出, 切分组即销毁, 确认后无需回填)
+  const { guardTabChange } = useEditingGuard(activeKey, {
+    isEditing: () => !!subForm.value?.isEditing,
+  });
+
   // 当前激活 tab(key 异常时回退首项), 标题/描述常驻右栏 header
   const activeTab = computed(() => {
     return tabs.find((tab) => tab.key === activeKey.value) ?? tabs[0]!;
   });
 
   /**
-   * 跳转型平台卡片点击时, 切换到对应平台级配置 tab(经 handleTabChange 同步 ?tab=)
+   * 跳转型平台卡片点击时, 切换到对应平台级配置 tab(经编辑守卫与 ?tab= 同步)
    * 目前仅支付宝仍属于三方登录跳转型
    */
   function handleJump(source: string) {
     if (source === 'alipay') {
-      handleTabChange('alipay');
+      guardTabChange('alipay', handleTabChange);
     } else if (source === 'weChat') {
       // 微信公众号: 跳转到平台级凭据 Tab
-      handleTabChange('wechatMp');
+      guardTabChange('wechatMp', handleTabChange);
     }
   }
 </script>
@@ -114,7 +120,7 @@
           type="button"
           class="config-tab-item"
           :class="{ 'config-tab-item--active': activeKey === tab.key }"
-          @click="handleTabChange(tab.key)"
+          @click="guardTabChange(tab.key, handleTabChange)"
         >
           <div class="config-tab-item__label">{{ tab.label }}</div>
           <div class="config-tab-item__desc">{{ tab.description }}</div>

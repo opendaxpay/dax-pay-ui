@@ -1,4 +1,8 @@
 {
+  "editGuardTitle": "Buang perubahan yang belum disimpan?",
+  "editGuardContent": "Bahagian semasa mempunyai perubahan yang belum disimpan. Menukar bahagian akan membuang perubahan dan memulihkan konfigurasi tersimpan",
+  "editGuardOkText": "Buang perubahan",
+  "editGuardCancelText": "Terus mengedit",
   "cancelText": "Batal",
   "okText": "OK",
   "cancel": "Batal",

@@ -89,6 +89,10 @@
       "types": "./src/hooks/useDeleteConfirm.ts",
       "default": "./src/hooks/useDeleteConfirm.ts"
     },
+    "./hooks/useEditingGuard": {
+      "types": "./src/hooks/useEditingGuard.ts",
+      "default": "./src/hooks/useEditingGuard.ts"
+    },
     "./hooks/usePermission": {
       "types": "./src/hooks/usePermission.ts",
       "default": "./src/hooks/usePermission.ts"

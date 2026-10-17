@@ -1,4 +1,8 @@
 {
+  "editGuardTitle": "Discard unsaved changes?",
+  "editGuardContent": "The current section has unsaved changes. Switching sections will discard them and restore the saved configuration",
+  "editGuardOkText": "Discard changes",
+  "editGuardCancelText": "Keep editing",
   "cancelText": "Cancel",
   "okText": "OK",
   "cancel": "Cancel",

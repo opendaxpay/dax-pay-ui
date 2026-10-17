@@ -5,6 +5,7 @@
 
   import { PageShell } from '@daxpay/ui-biz/components/page-shell';
 
+  import { useEditingGuard } from '#/hooks/useEditingGuard';
   import { useQueryTab } from '#/hooks/useQueryTab';
   import { $t } from '#/locales';
 
@@ -80,6 +81,11 @@
   // 分组激活与 ?tab= 双向同步(默认回退首组「密码策略」)
   const { activeKey, handleTabChange } = useQueryTab(() => tabGroup.map((tab) => tab.key));
 
+  // 分组级编辑守卫(子组件型: 编辑态由各分组子组件透出, 切分组即销毁, 确认后无需回填)
+  const { guardTabChange } = useEditingGuard(activeKey, {
+    isEditing: () => !!subForm.value?.isEditing,
+  });
+
   // 当前激活 tab(key 异常时回退首项), 标题/描述常驻右栏 header
   const activeTab = computed(() => {
     return tabGroup.find((tab) => tab.key === activeKey.value) ?? tabGroup[0]!;
@@ -110,7 +116,7 @@
             type="button"
             class="config-tab-item"
             :class="{ 'config-tab-item--active': activeKey === tab.key }"
-            @click="handleTabChange(tab.key)"
+            @click="guardTabChange(tab.key, handleTabChange)"
           >
             <div class="config-tab-item__label">{{ tab.label }}</div>
             <div class="config-tab-item__desc">{{ tab.description }}</div>

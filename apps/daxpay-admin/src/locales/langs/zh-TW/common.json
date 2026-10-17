@@ -1,4 +1,8 @@
 {
+  "editGuardTitle": "放棄未儲存的修改？",
+  "editGuardContent": "目前分組有未儲存的修改，切換分組後將放棄修改並還原為已儲存的設定",
+  "editGuardOkText": "放棄修改",
+  "editGuardCancelText": "繼續編輯",
   "cancelText": "取消",
   "okText": "確定",
   "cancel": "取消",
