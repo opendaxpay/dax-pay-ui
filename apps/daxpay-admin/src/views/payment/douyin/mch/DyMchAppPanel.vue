@@ -216,8 +216,8 @@
   .app-card-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 20px;
-    padding: 4px;
+    gap: 16px;
+    padding: 0;
     min-height: 120px;
   }
 

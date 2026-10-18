@@ -323,7 +323,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 16px;
-    padding: 4px;
+    padding: 0;
   }
 
   .product-config-card {

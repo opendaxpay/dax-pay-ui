@@ -1,0 +1,7 @@
+/* 通道配置/服务商/商户工作台 卡片网格公共样式(自各页 scoped 副本收敛, 2026-10-16px token 统一) */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 220px);
+  gap: 16px;
+  justify-content: center;
+}

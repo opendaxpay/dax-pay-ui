@@ -25,6 +25,7 @@ import 'vxe-pc-ui/lib/style.css';
 import 'vxe-table/lib/style.css';
 // 项目公共样式入口
 import '#/styles/index.less';
+import '#/styles/card-grid.css';
 
 async function bootstrap(namespace: string) {
   // 预加载通用图标集到内存: lucide(菜单图标主力, 首帧依赖), 使菜单图标可离线渲染;

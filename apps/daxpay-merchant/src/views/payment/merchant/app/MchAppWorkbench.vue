@@ -455,13 +455,6 @@
 </template>
 
 <style scoped>
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 220px);
-    gap: 24px;
-    justify-content: center;
-  }
-
   .mch-card {
     max-height: 200px;
   }

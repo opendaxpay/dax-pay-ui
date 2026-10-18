@@ -46,7 +46,7 @@
     @click="handleOpen"
     @keydown="handleKeydown"
   >
-    <div class="card-body flex flex-1 items-center gap-4 px-5 py-5">
+    <div class="card-body flex flex-1 items-center gap-4 px-4 py-4">
       <div
         class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:shadow-md"
       >
@@ -73,7 +73,7 @@
       </div>
     </div>
 
-    <div class="card-footer flex shrink-0 items-center justify-between px-5 pb-4 pt-1">
+    <div class="card-footer flex shrink-0 items-center justify-between px-4 pb-4 pt-1">
       <div class="flex items-center gap-1.5 text-xs leading-none text-muted-foreground">
         <span
           class="inline-block h-1.5 w-1.5 rounded-full"

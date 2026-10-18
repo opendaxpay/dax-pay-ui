@@ -79,6 +79,11 @@
 </template>
 
 <style scoped>
+  /* 对齐收银台 Hub 范式: 页签上方留白收紧(antd 默认 body 上下 24px 叠加页签自身 padding 偏空), 左右维持 24px */
+  .m-4 > .ant-card:first-child :deep(.ant-card-body) {
+    padding: 10px 24px;
+  }
+
   /* 隐藏空 pane 内容区，内容由下方 v-show 面板承载 */
   .wx-app-hub-tabs :deep(.ant-tabs-content-holder) {
     display: none;

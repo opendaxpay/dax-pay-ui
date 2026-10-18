@@ -294,7 +294,7 @@
           </div>
         </div>
 
-        <div class="space-y-12 py-4">
+        <div class="py-4">
           <div v-for="group in functionCards" :key="group.group">
             <div class="mb-6 flex items-center gap-3 px-2">
               <div class="h-6 w-1.5 rounded-full shadow-sm" :class="getGroupColorClass(group.color)"></div>
@@ -347,13 +347,6 @@
 </template>
 
 <style scoped>
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 220px);
-    gap: 24px;
-    justify-content: center;
-  }
-
   .mch-card {
     max-height: 200px;
   }

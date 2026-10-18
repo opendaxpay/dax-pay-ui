@@ -104,8 +104,8 @@
   .mobile-app-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-    padding: 8px;
+    gap: 16px;
+    padding: 0;
   }
 
   .mobile-app-card {

@@ -147,7 +147,7 @@
 
 <style scoped>
   .social-login-config-panel {
-    padding: 4px;
+    padding: 0;
   }
 
   .empty-container {

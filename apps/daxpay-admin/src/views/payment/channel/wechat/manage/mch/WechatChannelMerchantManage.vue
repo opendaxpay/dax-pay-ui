@@ -220,13 +220,6 @@
 </template>
 
 <style scoped>
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 220px);
-    gap: 24px;
-    justify-content: center;
-  }
-
   .isv-card {
     max-height: 200px;
   }
