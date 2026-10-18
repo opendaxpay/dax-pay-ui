@@ -354,7 +354,7 @@
     :back-text="$t('payment.merchant.app.app.backToAppList')"
     @back="routeContext.goFallback"
   />
-  <div v-else class="m-4">
+  <div v-else class="m-3">
     <!-- 顶栏对齐运营端应用工作台 -->
     <a-spin :spinning="loading">
       <a-card variant="borderless" class="rounded-xl shadow-sm">
@@ -394,7 +394,7 @@
                   // 建设中卡禁用交互与 hover 动效(group 驱动的图标/标题/底条效果随之失效)
                   'group hover:-translate-y-1.5 hover:shadow-xl': !isBuildingCard(card),
                 }"
-                :styles="{ body: { padding: '24px 20px' } }"
+                :styles="{ body: { padding: '16px' } }"
                 @click="handleCardClick(card)"
               >
                 <!-- 建设中角标 -->

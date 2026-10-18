@@ -50,7 +50,7 @@
     </div>
 
     <!-- 底部操作栏 -->
-    <div class="card-footer flex shrink-0 items-center justify-end border-t border-border px-3 py-1.5">
+    <div class="card-footer flex shrink-0 items-center justify-end border-t border-border px-4 py-1.5">
       <div class="flex items-center">
         <a-tooltip v-if="hasPermission(PermCodes.Payment.Isv.MANAGE)" :title="$t('payment.channel.alipayManage.edit')">
           <a-button

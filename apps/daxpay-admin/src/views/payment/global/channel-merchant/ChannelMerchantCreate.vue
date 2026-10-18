@@ -223,7 +223,7 @@
 </script>
 
 <template>
-  <div class="m-4">
+  <div class="m-3">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <!-- 国际化：创建通道商户 -->

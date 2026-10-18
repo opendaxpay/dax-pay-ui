@@ -80,7 +80,7 @@
 </script>
 
 <template>
-  <div class="m-4">
+  <div class="m-3">
     <!-- 外层白卡片包裹，对齐运营端支付产品配置 / WxAppHub -->
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>

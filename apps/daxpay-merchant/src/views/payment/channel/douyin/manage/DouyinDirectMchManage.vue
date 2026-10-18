@@ -161,7 +161,7 @@
               :key="card.key"
               hoverable
               class="isv-card group relative overflow-hidden rounded-2xl border-none bg-card shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
-              :styles="{ body: { padding: '24px 20px' } }"
+              :styles="{ body: { padding: '16px' } }"
               @click="handleCardClick(card)"
             >
               <div class="flex flex-col items-center text-center">

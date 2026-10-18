@@ -152,7 +152,7 @@
     :back-text="$t('payment.merchant.workbench.workbench.backToList')"
     @back="routeContext.goFallback"
   />
-  <div v-else class="m-4">
+  <div v-else class="m-3">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <!-- 标题栏: 返回 + 功能名 +（应用名）, 与其它卡片页统一形态; 应用名窄屏换行完整展示 -->

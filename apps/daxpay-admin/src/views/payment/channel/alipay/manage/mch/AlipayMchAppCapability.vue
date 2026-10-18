@@ -245,7 +245,7 @@
   .capability-list {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
     max-height: 60vh;
     padding: 4px;
     overflow-y: auto;

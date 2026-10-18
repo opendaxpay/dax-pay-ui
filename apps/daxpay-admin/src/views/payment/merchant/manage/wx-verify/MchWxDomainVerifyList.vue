@@ -185,7 +185,7 @@
     :back-text="$t('payment.merchant.workbench.workbench.backToList')"
     @back="routeContext.goFallback"
   />
-  <div v-else class="m-4">
+  <div v-else class="m-3">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <!-- 国际化：微信域名验证 -->

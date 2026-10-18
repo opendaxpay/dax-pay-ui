@@ -146,7 +146,7 @@
     :back-text="$t('payment.merchant.workbench.workbench.backToList')"
     @back="routeContext.goFallback"
   />
-  <div v-else class="m-4">
+  <div v-else class="m-3">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <div class="flex w-full items-center justify-between gap-4">

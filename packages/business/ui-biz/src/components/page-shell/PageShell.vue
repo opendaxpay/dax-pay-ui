@@ -167,8 +167,7 @@
   .page-shell__content {
     flex: 1;
     min-height: 0;
-    padding: 20px 28px 28px;
-    padding-right: 24px;
+    padding: 20px 24px 28px;
     overflow-y: auto;
   }
 </style>

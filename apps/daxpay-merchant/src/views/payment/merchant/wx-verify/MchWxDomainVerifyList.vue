@@ -125,7 +125,7 @@
 </script>
 
 <template>
-  <div class="m-4">
+  <div class="m-3">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <!-- 页头与菜单名一致（微信域名验证） -->

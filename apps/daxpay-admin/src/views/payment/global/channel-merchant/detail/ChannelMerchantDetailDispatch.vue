@@ -358,7 +358,7 @@
     :back-text="$t('payment.merchant.workbench.workbench.backToList')"
     @back="routeContext.goFallback"
   />
-  <div v-else class="m-4">
+  <div v-else class="m-3">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <div class="flex w-full items-center justify-between gap-4">
@@ -405,7 +405,7 @@
             <a-card
               hoverable
               class="group relative overflow-hidden rounded-2xl border-none bg-card shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
-              :styles="{ body: { padding: '24px 20px' } }"
+              :styles="{ body: { padding: '16px' } }"
               @click="handleDeleteChannelMerchant"
             >
               <div class="flex flex-col items-center text-center">

@@ -143,7 +143,7 @@
     :back-text="$t('payment.merchant.workbench.workbench.backToList')"
     @back="routeContext.goFallback"
   />
-  <div v-else class="m-4">
+  <div v-else class="m-3">
     <!-- 顶栏对齐对接配置等下级页：a-card title，text-lg，非工作台级大标题 -->
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
@@ -197,7 +197,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 16px;
-    padding: 0 0 8px;
+    padding: 0;
     min-height: 120px;
   }
 

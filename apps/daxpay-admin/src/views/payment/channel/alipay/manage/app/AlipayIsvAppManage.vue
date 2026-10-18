@@ -77,7 +77,7 @@
 </script>
 
 <template>
-  <div class="m-4">
+  <div class="m-3">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <div class="flex w-full items-center justify-between gap-4">

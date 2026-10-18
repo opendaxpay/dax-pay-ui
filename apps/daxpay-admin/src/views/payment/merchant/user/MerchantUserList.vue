@@ -380,8 +380,8 @@
     :back-text="$t('payment.merchant.workbench.workbench.backToList')"
     @back="routeContext.goFallback"
   />
-  <div v-else class="m-4 list-page-compact">
-    <a-card variant="borderless" class="rounded-xl shadow-sm">
+  <div v-else class="m-3 p-3 bg-background rounded-lg list-page-compact">
+    <a-card>
       <template #title>
         <!-- 国际化：商户用户 -->
         <PageTitleBar
@@ -397,7 +397,7 @@
     </a-card>
 
     <div class="mt-4">
-      <a-card variant="borderless" class="rounded-xl shadow-sm">
+      <a-card>
         <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
           <template #buttons>
             <a-space>

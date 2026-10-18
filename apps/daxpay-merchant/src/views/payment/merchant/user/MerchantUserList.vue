@@ -361,8 +361,8 @@
 </script>
 
 <template>
-  <div class="m-4 list-page-compact">
-    <a-card variant="borderless" class="rounded-xl shadow-sm">
+  <div class="m-3 p-3 bg-background rounded-lg list-page-compact">
+    <a-card>
       <template #title>
         <!-- 页头与菜单名一致（商户用户） -->
         <PageTitleBar :title="$t('menu.payment.merchant.user')" />
@@ -372,7 +372,7 @@
     </a-card>
 
     <div class="mt-4">
-      <a-card variant="borderless" class="rounded-xl shadow-sm">
+      <a-card>
         <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
           <template #buttons>
             <a-space>

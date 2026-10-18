@@ -127,7 +127,7 @@
 </script>
 
 <template>
-  <div class="m-4">
+  <div class="m-3">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
         <!-- 商户资料（与菜单 menu.payment.merchant.profile 一致） -->
