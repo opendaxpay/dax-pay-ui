@@ -10,7 +10,7 @@
   "transferSceneTipTitle": "转账场景配置",
   "cardTransferSceneDesc": "管理微信转账场景及报备字段(商户转账必配)",
   "transferSceneReportFieldsTip": "发起转账时需填写以下字段对应的内容",
-  "transferSceneTipDesc": "选择商户的转账场景, 不同场景要求填写不同的报备信息字段, 发起转账时将根据场景动态填写",
+  "transferSceneTipDesc": "选择商户的转账场景。不同场景需要填写不同的报备信息，发起转账时会根据场景动态显示。",
   "transferSceneNotConfigured": "未配置",
   "transferSceneFieldTypeName": "字段名称",
   "transferSceneUserPerception": "用户收款感知",

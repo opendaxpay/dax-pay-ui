@@ -193,7 +193,7 @@
     "allocTip": "分账将从该订单冻结资金中拆分给指定接收方,未分账部分自动解冻回商户",
     "allocOrderAmountLabel": "订单金额",
     "allocBizAllocNoLabel": "商户分账单号",
-    "allocBizAllocNoPlaceholder": "请输入商户分账单号(幂等键,同一商户不可重复)",
+    "allocBizAllocNoPlaceholder": "请输入商户分账单号（同一商户不可重复）",
     "allocTitleLabel": "分账标题",
     "allocDescLabel": "分账描述",
     "allocReceiverSection": "分账接收方",
