@@ -18,6 +18,7 @@
   import DeviceQrCodeBatchCreate from './DeviceQrCodeBatchCreate.vue';
   import DeviceQrCodeBindMerchant from './DeviceQrCodeBindMerchant.vue';
   import DeviceQrCodeEdit from './DeviceQrCodeEdit.vue';
+import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
   defineOptions({ name: 'DeviceQrCode' });
 
@@ -426,13 +427,10 @@
               <span v-else style="color: var(--text-color-placeholder)">-</span>
             </template>
           </vxe-column>
-          <!-- 商户: 已绑定号(名称)单行; 未绑定 tag -->
+          <!-- 商户: 已绑定名称(号)单行; 未绑定 tag -->
           <vxe-column field="mchName" :title="$t('payment.device.qrcode.field.merchant')" :min-width="160">
             <template #default="{ row }">
-              <span v-if="row.mchNo"
-                >{{ row.mchNo
-                }}<span v-if="row.mchName" class="text-xs text-muted-foreground">（{{ row.mchName }}）</span></span
-              >
+              <NameNoCell v-if="row.mchNo" :name="row.mchName" :no="row.mchNo" />
               <a-tag v-else color="default">{{ $t('payment.device.qrcode.unbound') }}</a-tag>
             </template>
           </vxe-column>

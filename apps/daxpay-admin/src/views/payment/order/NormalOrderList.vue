@@ -24,6 +24,7 @@
 
   import { useOrderLabels } from './composables/useOrderLabels';
   import { useTradeActions } from './composables/useTradeActions';
+import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
   defineOptions({ name: 'NormalOrderList' });
 
@@ -314,15 +315,10 @@
           <vxe-column field="capability" :title="$t('payment.order.field.capability')" :min-width="140" show-overflow>
             <template #default="{ row }">{{ capabilityLabel(row.capability) }}</template>
           </vxe-column>
-          <!-- 商户: 号(名称)单行 -->
+          <!-- 商户: 名称(号)单行 -->
           <vxe-column field="mchName" :title="$t('payment.order.field.merchant')" :min-width="160">
             <template #default="{ row }">
-              <span
-                >{{ row.mchNo || row.mchName || '-'
-                }}<span v-if="row.mchNo && row.mchName" class="text-xs text-muted-foreground"
-                  >（{{ row.mchName }}）</span
-                ></span
-              >
+              <NameNoCell :name="row.mchName" :no="row.mchNo" />
             </template>
           </vxe-column>
           <vxe-column

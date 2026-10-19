@@ -15,6 +15,7 @@
   import { usePermission } from '#/hooks/usePermission';
 
   import SensitiveWordHitView from './SensitiveWordHitView.vue';
+import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
   defineOptions({ name: 'SensitiveWordHitList' });
 
@@ -176,15 +177,10 @@
             <template #default="{ row }">{{ sourceLabel(row.source) }}</template>
           </vxe-column>
           <vxe-column field="clientIp" :title="$t('system.sensitiveWord.hit.field.clientIp')" width="140" />
-          <!-- 商户: 号(名称)单行(名可能为空) -->
+          <!-- 商户: 名称(号)单行(名可能为空) -->
           <vxe-column field="mchName" :title="$t('system.sensitiveWord.hit.field.merchant')" :min-width="160">
             <template #default="{ row }">
-              <span
-                >{{ row.mchNo || row.mchName || '-'
-                }}<span v-if="row.mchNo && row.mchName" class="text-xs text-muted-foreground"
-                  >（{{ row.mchName }}）</span
-                ></span
-              >
+              <NameNoCell :name="row.mchName" :no="row.mchNo" />
             </template>
           </vxe-column>
           <vxe-column

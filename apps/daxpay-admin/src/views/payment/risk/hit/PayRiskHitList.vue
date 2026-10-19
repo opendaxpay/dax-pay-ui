@@ -7,6 +7,7 @@
 
   import { PayRiskHitApi, type PayRiskHitQuery, type PayRiskHitVo } from '#/api/payment/risk/risk-hit.api';
   import { BQuery, type QueryField } from '#/components/query';
+import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
   defineOptions({ name: 'PayRiskHitList' });
 
@@ -134,15 +135,10 @@
           <vxe-column field="clientCity" :title="$t('payment.risk.hit.field.clientCity')" :min-width="110" />
           <!-- 交易号 -->
           <vxe-column field="tradeNo" :title="$t('payment.risk.hit.field.tradeNo')" :min-width="140" />
-          <!-- 商户: 号(名称)单行 -->
+          <!-- 商户: 名称(号)单行 -->
           <vxe-column field="mchName" :title="$t('payment.risk.hit.field.merchant')" :min-width="160">
             <template #default="{ row }">
-              <span
-                >{{ row.mchNo || row.mchName || '-'
-                }}<span v-if="row.mchNo && row.mchName" class="text-xs text-muted-foreground"
-                  >（{{ row.mchName }}）</span
-                ></span
-              >
+              <NameNoCell :name="row.mchName" :no="row.mchNo" />
             </template>
           </vxe-column>
           <!-- 创建时间 -->

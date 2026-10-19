@@ -18,6 +18,7 @@
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
+import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
   defineOptions({ name: 'AlipayTransferList' });
 
@@ -202,12 +203,7 @@
           </vxe-column>
           <vxe-column field="mchName" :title="$t('payment.transfer.field.merchant')" :min-width="150">
             <template #default="{ row }">
-              <span
-                >{{ row.mchNo || row.mchName || '-'
-                }}<span v-if="row.mchNo && row.mchName" class="text-xs text-muted-foreground"
-                  >（{{ row.mchName }}）</span
-                ></span
-              >
+              <NameNoCell :name="row.mchName" :no="row.mchNo" />
             </template>
           </vxe-column>
           <vxe-column

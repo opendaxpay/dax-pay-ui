@@ -12,6 +12,7 @@
   } from '#/api/payment/record/callback-record.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { productI18nMap, productNameMap } from '#/enums/payment';
+import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
   defineOptions({ name: 'PayCallbackRecordList' });
 
@@ -233,12 +234,7 @@
           </vxe-column>
           <vxe-column field="mchName" :title="$t('payment.order.field.merchant')" :min-width="140">
             <template #default="{ row }">
-              <span
-                >{{ row.mchNo || row.mchName || '-'
-                }}<span v-if="row.mchNo && row.mchName" class="text-xs text-muted-foreground"
-                  >（{{ row.mchName }}）</span
-                ></span
-              >
+              <NameNoCell :name="row.mchName" :no="row.mchNo" />
             </template>
           </vxe-column>
           <vxe-column

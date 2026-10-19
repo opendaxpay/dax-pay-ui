@@ -11,6 +11,7 @@
 
   import { TransferApi, type TransferTradeQuery, type TransferTradeResult } from '#/api/payment/transfer/transfer.api';
   import { BQuery, type QueryField } from '#/components/query';
+import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
   defineOptions({ name: 'TransferTradeList' });
 
   const loading = ref(false);
@@ -154,12 +155,7 @@
           </vxe-column>
           <vxe-column field="mchName" :title="$t('payment.transfer.field.merchant')" :min-width="150">
             <template #default="{ row }">
-              <span
-                >{{ row.mchNo || row.mchName || '-'
-                }}<span v-if="row.mchNo && row.mchName" class="text-xs text-muted-foreground"
-                  >（{{ row.mchName }}）</span
-                ></span
-              >
+              <NameNoCell :name="row.mchName" :no="row.mchNo" />
             </template>
           </vxe-column>
           <vxe-column

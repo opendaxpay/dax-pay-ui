@@ -18,6 +18,7 @@
   import { usePermission } from '#/hooks/usePermission';
 
   import PlatformWxDomainVerifyEdit from './PlatformWxDomainVerifyEdit.vue';
+import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
   defineOptions({ name: 'PlatformWxDomainVerifyList' });
 
@@ -209,16 +210,11 @@
           />
           <!-- 国际化：备注 -->
           <vxe-column field="remark" :title="$t('payment.wxVerify.field.remark')" :min-width="160" show-overflow />
-          <!-- 国际化：商户(号(名称)单行; 平台级显示 -) -->
+          <!-- 商户(名称(号)单行; 平台级显示 -) -->
           <vxe-column field="mchName" :title="$t('payment.wxVerify.field.merchant')" :min-width="160">
             <template #default="{ row }">
               <template v-if="row.platform">-</template>
-              <span v-else
-                >{{ row.mchNo || row.mchName || '-'
-                }}<span v-if="row.mchNo && row.mchName" class="text-xs text-muted-foreground"
-                  >（{{ row.mchName }}）</span
-                ></span
-              >
+              <NameNoCell v-else :name="row.mchName" :no="row.mchNo" />
             </template>
           </vxe-column>
           <!-- 国际化：创建时间 -->

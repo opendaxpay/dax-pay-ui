@@ -14,6 +14,7 @@
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { usePermission } from '#/hooks/usePermission';
+import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
   defineOptions({ name: 'FundFlowList' });
 
@@ -187,12 +188,7 @@
           <vxe-column field="title" :title="$t('payment.order.field.title')" :min-width="150" show-overflow />
           <vxe-column field="mchName" :title="$t('payment.order.field.merchant')" :min-width="140">
             <template #default="{ row }">
-              <span
-                >{{ row.mchNo || row.mchName || '-'
-                }}<span v-if="row.mchNo && row.mchName" class="text-xs text-muted-foreground"
-                  >（{{ row.mchName }}）</span
-                ></span
-              >
+              <NameNoCell :name="row.mchName" :no="row.mchNo" />
             </template>
           </vxe-column>
           <vxe-column field="outOrderNo" :title="$t('payment.order.field.outOrderNo')" :min-width="190" show-overflow />

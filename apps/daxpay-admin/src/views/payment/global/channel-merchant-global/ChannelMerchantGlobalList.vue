@@ -16,6 +16,7 @@
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
   import { useSandboxEnabled } from '#/hooks/useSandboxEnabled';
+import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
   defineOptions({ name: 'ChannelMerchantGlobalList' });
 
@@ -273,12 +274,7 @@
           <!-- 所属商户 -->
           <vxe-column field="mchName" :title="$t('payment.merchant.channelMerchant.belongMch')" :min-width="180">
             <template #default="{ row }">
-              <span
-                >{{ row.mchNo || row.mchName || '-'
-                }}<span v-if="row.mchNo && row.mchName" class="text-xs text-muted-foreground"
-                  >（{{ row.mchName }}）</span
-                ></span
-              >
+              <NameNoCell :name="row.mchName" :no="row.mchNo" />
             </template>
           </vxe-column>
 

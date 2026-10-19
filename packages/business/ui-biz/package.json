@@ -236,6 +236,10 @@
     "./components/AntdAppProvider": {
       "types": "./src/components/AntdAppProvider.vue",
       "default": "./src/components/AntdAppProvider.vue"
+    },
+    "./components/name-no-cell": {
+      "types": "./src/components/name-no-cell/index.ts",
+      "default": "./src/components/name-no-cell/index.ts"
     }
   },
   "dependencies": {

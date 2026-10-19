@@ -12,6 +12,7 @@
   import { usePermission } from '#/hooks/usePermission';
 
   import UnipayApiLogInfo from './UnipayApiLogInfo.vue';
+import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
   const { confirm, message } = useMessage();
   const { hasPermission } = usePermission();
@@ -230,15 +231,10 @@
           <vxe-column field="requestIp" :title="$t('system.log.unipay-api-log.requestIp')" :min-width="130" />
           <!-- 错误提示 -->
           <vxe-column field="errorMsg" :title="$t('system.log.unipay-api-log.errorMsg')" :min-width="150" />
-          <!-- 商户: 号(名称)单行 -->
+          <!-- 商户: 名称(号)单行 -->
           <vxe-column field="mchName" :title="$t('system.log.unipay-api-log.mchName')" :min-width="160">
             <template #default="{ row }">
-              <span
-                >{{ row.mchNo || row.mchName || '-'
-                }}<span v-if="row.mchNo && row.mchName" class="text-xs text-muted-foreground"
-                  >（{{ row.mchName }}）</span
-                ></span
-              >
+              <NameNoCell :name="row.mchName" :no="row.mchNo" />
             </template>
           </vxe-column>
           <!-- 时间 -->
