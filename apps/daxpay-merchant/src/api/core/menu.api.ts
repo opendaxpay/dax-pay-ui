@@ -203,6 +203,8 @@ function convertMenuToRoute(
       hideChildrenInMenu: menu.hideChildrenMenu,
       keepAlive: menu.keepAlive,
       affixTab: menu.affixTab,
+      // query 同步页(菜单 query_sync=true): 页签 key 忽略 query, 所有参数组合共用一个页签
+      fullPathKey: !menu.querySync,
       // 扩展字段
       badge: menu.badge || undefined,
       badgeType: (menu.badgeType as 'dot' | 'normal') || 'normal',
@@ -326,6 +328,8 @@ export interface PermMenuResult extends BaseEntity {
   keepAlive: boolean;
   /** 是否固定标签页 */
   affixTab: boolean;
+  /** query参数同步页(单页签模式): 开启后该路径所有query参数组合共用一个页签 */
+  querySync: boolean;
   /** 菜单类型: catalog-目录, menu-菜单, embedded-内嵌, link-外链, button-按钮 */
   menuType?: string;
   /** 徽章显示文本 */

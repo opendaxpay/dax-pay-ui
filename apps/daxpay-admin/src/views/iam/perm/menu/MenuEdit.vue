@@ -602,6 +602,11 @@
           <a-checkbox v-model:checked="form.affixTab" :disabled="showable" />
         </a-form-item>
 
+        <a-form-item v-if="showPageConfig" :label="$t('iam.menu.querySync')" class="col-span-2 md:col-span-1">
+          <!-- 单页签模式: 页签key忽略query, 所有参数组合共用一个页签, 防止?tab=等参数定位页裂页签 -->
+          <a-checkbox v-model:checked="form.querySync" :disabled="showable" />
+        </a-form-item>
+
         <!-- 国际化：请选择徽章类型 -->
         <a-form-item v-if="showBadge" :label="$t('iam.menu.badgeType')" class="col-span-2 md:col-span-1">
           <!-- 徽章类型 -->

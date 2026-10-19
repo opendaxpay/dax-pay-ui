@@ -17,24 +17,6 @@ import zhHkMenuTitles from '../../locales/menu-titles/zh-HK.json';
 import zhTwMenuTitles from '../../locales/menu-titles/zh-TW.json';
 
 /**
- * query 同步页路径登记表(页签 key 忽略 query, fullPathKey=false)
- * 这些页面用 ?tab= / ?mchNo= 做页内状态同步, 页签 key 必须忽略 query,
- * 否则每种 query 组合各开一个页签, 且 keep-alive 随 key 失效导致切 Tab
- * 整页重挂闪烁。覆盖两类页面: Hub 页(双页签应用中心)与 PageShell 左导航
- * 配置页(分组 ?tab= 双向同步, 见 useQueryTab)。新增此类页面时必须在此
- * 登记 path, 组件侧仅靠照抄骨架不会带上该 meta。
- */
-const QUERY_SYNC_PATHS = new Set([
-  '/payment/douyin/app',
-  // Hub 页(双页签应用中心)
-  '/payment/wx/app',
-  // PageShell 左导航配置页(?tab= 分组定位, path 须与菜单种子的 menu.path 完全一致)
-  '/system/config/platform',
-  '/system/config/security/system',
-  '/system/config/third-platform',
-]);
-
-/**
  * 注入菜单标题国际化文案
  * 数据源为静态语言包文件（menu-titles/*.json），不依赖 DB title_cn/title_en 列
  * DB 仅存 i18n_key，文案真相源在语言包
@@ -218,6 +200,9 @@ function convertMenuToRoute(
       hideChildrenInMenu: menu.hideChildrenMenu,
       keepAlive: menu.keepAlive,
       affixTab: menu.affixTab,
+      // query 同步页(菜单 query_sync=true): 页签 key 忽略 query, 所有参数组合共用一个页签
+      // 仅适用于页面内部自行响应 query 变化的参数定位页(?tab= 分组页/Hub 页, 见 useQueryTab)
+      fullPathKey: !menu.querySync,
       // 扩展字段
       badge: menu.badge || undefined,
       badgeType: (menu.badgeType as 'dot' | 'normal') || 'normal',
@@ -289,11 +274,6 @@ function convertMenuToRoute(
     }
   }
 
-  // query 同步页页签 key 忽略 query(见 QUERY_SYNC_PATHS 注释)
-  if (QUERY_SYNC_PATHS.has(menu.path)) {
-    route.meta!.fullPathKey = false;
-  }
-
   return route;
 }
 
@@ -346,6 +326,8 @@ export interface PermMenuResult extends BaseEntity {
   keepAlive: boolean;
   /** 是否固定标签页 */
   affixTab: boolean;
+  /** query参数同步页(单页签模式): 开启后该路径所有query参数组合共用一个页签 */
+  querySync: boolean;
   /** 菜单类型: catalog-目录, menu-菜单, embedded-内嵌, link-外链, button-按钮 */
   menuType?: string;
   /** 徽章显示文本 */

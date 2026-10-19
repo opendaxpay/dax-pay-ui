@@ -6,9 +6,9 @@ import { useRoute, useRouter } from 'vue-router';
 /**
  * PageShell 左导航配置页的 ?tab= 双向同步 hook(防裂页签配套)
  *
- * 使用页所在路由必须在 menu.api.ts 的 QUERY_SYNC_PATHS 登记(meta.fullPathKey=false,
+ * 使用页所在菜单必须开启 query_sync(菜单管理页配置, 映射为 meta.fullPathKey=false,
  * 页签 key 忽略 query), 否则带 query 访问会在页签栏裂出独立页签, 且 keep-alive
- * 随 key 失效导致切分组整页重挂闪烁(同 Hub 页登记机制)。
+ * 随 key 失效导致切分组整页重挂闪烁(同 Hub 页配置口径)。
  *
  * - 初始化: query.tab 命中可见分组则激活, 无效/缺省回退首个可见分组
  * - 切分组: router.replace 回写 ?tab=(其余 query 保留, 同 path 同 key 仅激活既有页签)
