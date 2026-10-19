@@ -28,7 +28,8 @@ interface UploadOptions {
  */
 async function getUploadPresignUrl(param: UploadPresignParam): Promise<UploadPresignResult> {
   const { data } = await defHttp.post({
-    url: '/file/platform/upload/presign',
+    // 商户端专用文件域(merchant:file:manage); 原平台级 /file/platform/upload/* 挂运营端菜单, 商户角色绑不上恒 403
+    url: '/mch/file/upload/presign',
     data: param,
   });
   return data;
@@ -39,7 +40,7 @@ async function getUploadPresignUrl(param: UploadPresignParam): Promise<UploadPre
  */
 async function confirmUpload(fileId: number, objectKey: string, etag?: string): Promise<void> {
   await defHttp.post({
-    url: '/file/platform/upload/confirm',
+    url: '/mch/file/upload/confirm',
     data: { fileId, objectKey, etag },
   });
 }

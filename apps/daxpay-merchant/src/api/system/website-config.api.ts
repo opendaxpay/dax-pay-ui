@@ -3,7 +3,9 @@ import type { Result } from '#/types/web';
 import { defHttp } from '#/api/request';
 
 /**
- * 站点配置 API
+ * 站点配置 API（商户端只读）
+ *
+ * update 端点挂运营端 system:platform-config 菜单, 商户端角色绑不上恒 403 且无管理页面, 已删除死代码。
  */
 export const WebsiteConfigApi = {
   /**
@@ -11,12 +13,6 @@ export const WebsiteConfigApi = {
    */
   get(): Promise<Result<WebsiteConfig>> {
     return defHttp.get({ url: '/platform/config/website/get' });
-  },
-  /**
-   * 更新站点配置
-   */
-  update(data: WebsiteConfig): Promise<Result<void>> {
-    return defHttp.post({ url: '/platform/config/website/update', data });
   },
 };
 

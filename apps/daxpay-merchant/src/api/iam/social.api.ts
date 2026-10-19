@@ -106,46 +106,7 @@ export const SocialApi = {
   },
 };
 
-/**
- * 第三方平台登录配置管理 API
- */
-export const SocialLoginConfigApi = {
-  /**
-   * 全量查询平台配置(枚举驱动, 首次访问读时初始化缺失平台)
-   * 未配置平台返回 configured=false 的占位记录(已落库, 含 id)
-   */
-  findAll(): Promise<Result<SocialLoginConfigResult[]>> {
-    return defHttp.get({ url: '/social/login-config/find-all' });
-  },
 
-  /**
-   * 查询应在第三方开放平台登记的回调地址清单(运营/商户 × 平台 × 登录/绑定)
-   */
-  callbackUrls(): Promise<Result<SocialCallbackUrlItem[]>> {
-    return defHttp.get({ url: '/social/login-config/callback-urls' });
-  },
-
-  /**
-   * 根据平台编码查询(不存在则初始化占位记录, 返回含 id 的记录)
-   */
-  findBySource(source: string): Promise<Result<SocialLoginConfigResult>> {
-    return defHttp.get({ url: '/social/login-config/get-by-source', params: { source } });
-  },
-
-  /**
-   * 修改平台配置(保存即标记为已配置)
-   */
-  update(data: SocialLoginConfigParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/social/login-config/update', data });
-  },
-
-  /**
-   * 切换平台启用状态(仅已配置平台可启停)
-   */
-  updateEnabled(source: string, enabled: boolean): Promise<Result<void>> {
-    return defHttp.post({ url: '/social/login-config/update-enabled', params: { source, enabled } });
-  },
-};
 
 /**
  * 社交账号绑定结果
@@ -169,50 +130,8 @@ export interface SocialBindResult {
   createTime?: string;
 }
 
-/**
- * 应登记的 OAuth 回调地址项
- */
-export interface SocialCallbackUrlItem {
-  /** 终端 admin/merchant */
-  clientCode: string;
-  /** 平台编码 */
-  source: string;
-  /** LOGIN / BIND */
-  mode: string;
-  /** 完整回调 URL */
-  url: string;
-  /** 对应端 baseUrl 是否已配置 */
-  baseUrlConfigured: boolean;
-}
 
-/**
- * 第三方平台登录配置
- */
-export interface SocialLoginConfigResult {
-  /** 主键 */
-  id?: string;
-  /** 平台编码 */
-  source?: string;
-  /** 客户端ID */
-  clientId?: string;
-  /** 客户端密钥(脱敏返回) */
-  clientSecret?: string;
-  /** 平台特有配置(如企业微信 agentId) */
-  extra?: Record<string, string>;
-  /** 是否已配置(内存合并缺失项为 false, 保存配置后为 true) */
-  configured?: boolean;
-  /** 是否启用 */
-  enabled?: boolean;
-  /** 是否平台级跳转型配置(运行时由后端 SocialSourceEnum.isPlatformRedirect 计算, 不落库)
-   *  true: 不在本表存 clientId/clientSecret, 使用独立平台级配置, 前端卡片渲染为跳转按钮
-   *  false: 标准 OAuth2 平台, 在本表存 clientId/clientSecret */
-  platformRedirect?: boolean;
-}
 
-/**
- * 第三方平台登录配置表单参数
- */
-export interface SocialLoginConfigParam extends Partial<SocialLoginConfigResult> {}
 
 /**
  * 社交登录授权码兑换结果
