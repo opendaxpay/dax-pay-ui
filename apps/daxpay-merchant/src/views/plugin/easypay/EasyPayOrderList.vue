@@ -354,7 +354,7 @@
     <a-drawer
       v-model:open="drawerVisible"
       :title="$t('plugin.easypay.order.detail')"
-      :size="900"
+      :default-size="900"
       @close="handleDrawerClose"
     >
       <a-spin :spinning="drawerLoading">

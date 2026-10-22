@@ -125,7 +125,7 @@
   <a-drawer
     :open="open"
     :title="$t('dashboard.workspace.quickEntry.editTitle')"
-    size="420"
+    default-size="420"
     :destroy-on-hidden="true"
     @close="handleClose"
   >

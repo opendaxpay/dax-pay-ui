@@ -30,7 +30,7 @@
   <a-drawer
     v-bind="$attrs"
     :title="$t('system.log.login-log.detailTitle')"
-    :size="1100"
+    :default-size="1100"
     :open="visible"
     :destroy-on-hidden="true"
     @close="visible = false"

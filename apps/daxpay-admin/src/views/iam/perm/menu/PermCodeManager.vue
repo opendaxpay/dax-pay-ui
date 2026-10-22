@@ -80,7 +80,7 @@
   <a-drawer
     :open="visible"
     :title="`${$t('iam.menu.managePermCode')} - ${menuContext.i18nKey ? $t(menuContext.i18nKey) : ''}`"
-    :size="900"
+    :default-size="900"
     @close="handleClose"
   >
     <vxe-toolbar ref="xToolbar" refresh :refresh-options="{ queryMethod: queryPermCodes }" />

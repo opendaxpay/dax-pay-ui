@@ -252,7 +252,7 @@
     <a-drawer
       v-model:open="drawerVisible"
       :title="$t('payment.order.abnormalOrder.detail')"
-      size="720"
+      default-size="720"
       destroy-on-close
     >
       <div class="mb-4 space-y-2 text-sm">

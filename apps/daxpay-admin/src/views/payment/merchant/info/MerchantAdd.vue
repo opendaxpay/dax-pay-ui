@@ -142,7 +142,7 @@
   <a-drawer
     v-model:open="visible"
     :title="$t('payment.merchant.form.add.title')"
-    :size="650"
+    :default-size="650"
     :styles="{ footer: { textAlign: 'right' } }"
     @close="handleCancel"
   >

@@ -325,7 +325,7 @@
   <a-drawer
     v-model:open="open"
     :title="`${$t('system.notify.mailTemplate.drawerTitle')} - ${sceneLabel}`"
-    :width="1180"
+    :default-size="1180"
     :destroy-on-close="true"
   >
     <!-- 根元素内部第一层: 说明注释写在这里(模板根级禁止 HTML 注释) -->

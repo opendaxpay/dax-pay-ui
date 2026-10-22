@@ -90,7 +90,7 @@
   <a-drawer
     v-model:open="visible"
     :title="$t('payment.merchant.channelMerchant.basicInfoDrawerTitle')"
-    :size="640"
+    :default-size="640"
     destroy-on-hidden
   >
     <a-spin :spinning="loading">

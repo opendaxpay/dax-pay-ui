@@ -113,7 +113,7 @@
   <a-drawer
     :open="visible"
     :title="`${$t('system.dict.item.title')} - ${displayDictName}`"
-    :size="1200"
+    :default-size="1200"
     @close="handleClose"
   >
     <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">

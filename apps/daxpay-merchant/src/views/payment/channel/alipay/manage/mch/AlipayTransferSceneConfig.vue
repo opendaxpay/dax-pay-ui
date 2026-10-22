@@ -108,7 +108,7 @@
   <a-drawer
     v-model:open="listVisible"
     :title="$t('payment.merchant.channelMerchant.transferSceneManage')"
-    :size="1200"
+    :default-size="1200"
     destroy-on-hidden
   >
     <div class="mb-3 rounded-md bg-muted px-4 py-2 text-xs leading-5 text-muted-foreground">

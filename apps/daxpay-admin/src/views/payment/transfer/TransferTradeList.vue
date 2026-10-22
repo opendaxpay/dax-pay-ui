@@ -186,7 +186,7 @@ import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
     <a-drawer
       v-model:open="drawerVisible"
       :title="$t('payment.transfer.detail')"
-      :size="760"
+      :default-size="760"
       @close="handleDrawerClose"
     >
       <a-spin :spinning="drawerLoading">

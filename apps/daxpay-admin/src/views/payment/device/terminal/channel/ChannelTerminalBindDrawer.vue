@@ -103,7 +103,7 @@
 </script>
 
 <template>
-  <a-drawer v-model:open="visible" :title="title" :size="640" :destroy-on-hidden="true">
+  <a-drawer v-model:open="visible" :title="title" :default-size="640" :destroy-on-hidden="true">
     <a-spin :spinning="loading">
       <div v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)" class="mb-4 flex gap-2">
         <a-select

@@ -166,7 +166,7 @@
   <a-drawer
     v-model:open="visible"
     :title="title"
-    :size="650"
+    :default-size="650"
     :destroy-on-hidden="true"
     :mask-closable="showable"
     :styles="{ footer: { textAlign: 'right' } }"

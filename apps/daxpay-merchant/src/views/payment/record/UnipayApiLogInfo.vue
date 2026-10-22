@@ -59,7 +59,7 @@
   <a-drawer
     v-bind="$attrs"
     :title="$t('payment.record.unipayLog.detailTitle')"
-    :size="1100"
+    :default-size="1100"
     :open="visible"
     :destroy-on-hidden="true"
     @close="visible = false"

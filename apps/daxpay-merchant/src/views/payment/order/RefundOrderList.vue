@@ -370,7 +370,7 @@
     <a-drawer
       v-model:open="drawerVisible"
       :title="$t('payment.order.refund.detail')"
-      :size="720"
+      :default-size="720"
       @close="handleDrawerClose"
     >
       <a-spin :spinning="drawerLoading">

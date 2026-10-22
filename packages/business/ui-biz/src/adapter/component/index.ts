@@ -19,7 +19,7 @@ import { IconifyIcon } from '@vben/icons';
 import { $t } from '@vben/locales';
 import { isEmpty } from '@vben/utils';
 
-import { Modal } from 'antdv-next';
+import { Drawer, Modal } from 'antdv-next';
 
 import { IconPicker } from '../../components/icon-picker';
 import { useMessage } from '../../hooks/useMessage';
@@ -439,6 +439,15 @@ export type ComponentType =
   | BaseFormComponentType;
 
 async function initComponentAdapter() {
+  // antdv-next 抽屉默认开启拖动调宽: 显式 :resizable="false" 可关闭, { onResize } 对象形式不受影响;
+  // 宽度必须用 :default-size 声明—— :width 会被内部转为 size 压制拖动状态(出现把手但拖不动)
+  const drawerProps = (
+    Drawer as unknown as { props: Record<string, { default?: unknown }> }
+  ).props;
+  if (drawerProps.resizable) {
+    drawerProps.resizable.default = true;
+  }
+
   const components: Partial<Record<ComponentType, Component>> = {
     // 如果你的组件体积比较大，可以使用异步加载
     // Button: () =>

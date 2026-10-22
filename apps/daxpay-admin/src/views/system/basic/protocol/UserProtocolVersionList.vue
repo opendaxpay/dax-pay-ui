@@ -226,7 +226,7 @@
   <a-drawer
     :open="visible"
     :title="$t('system.protocol.version.title') + (protocolName ? ` - ${protocolName}` : '')"
-    :size="1200"
+    :default-size="1200"
     @close="handleClose"
   >
     <a-form layout="inline" class="!mb-4">

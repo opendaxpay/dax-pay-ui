@@ -453,7 +453,7 @@
   <a-drawer
     :open="visible"
     :title="title"
-    :size="1000"
+    :default-size="1000"
     :styles="{ footer: { textAlign: 'right' } }"
     @close="closeDrawer"
   >

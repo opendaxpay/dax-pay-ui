@@ -224,7 +224,7 @@
   <a-drawer
     v-model:open="visible"
     :title="drawerTitle"
-    :size="720"
+    :default-size="720"
     :destroy-on-hidden="true"
     :mask-closable="showable"
     @close="handleCancel"

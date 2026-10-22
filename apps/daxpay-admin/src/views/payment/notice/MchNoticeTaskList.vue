@@ -273,7 +273,7 @@ import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
     <a-drawer
       v-model:open="taskDrawerVisible"
       :title="$t('payment.notice.mchNotice.taskDetail')"
-      size="1080"
+      default-size="1080"
       destroy-on-close
     >
       <a-spin :spinning="taskDetailLoading">
@@ -328,7 +328,7 @@ import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
     <a-drawer
       v-model:open="recordDrawerVisible"
       :title="$t('payment.notice.mchNotice.records')"
-      size="1080"
+      default-size="1080"
       destroy-on-close
     >
       <div class="mb-4 space-y-2 text-sm">

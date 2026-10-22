@@ -134,7 +134,7 @@
 
 <template>
   <!-- 国际化：分配权限 -->
-  <a-drawer :open="visible" :size="820" :mask-closable="false" @close="handleCancel">
+  <a-drawer :open="visible" :default-size="820" :mask-closable="false" @close="handleCancel">
     <template #title>
       <div class="flex min-w-0 items-center gap-2">
         <span class="shrink-0">{{ $t('iam.role.assignPermission') }}</span>

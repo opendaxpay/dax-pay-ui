@@ -202,7 +202,7 @@
   <a-drawer
     v-model:open="visible"
     :title="$t('common.add')"
-    :size="500"
+    :default-size="500"
     :styles="{ footer: { textAlign: 'right' } }"
     @close="handleCancel"
   >

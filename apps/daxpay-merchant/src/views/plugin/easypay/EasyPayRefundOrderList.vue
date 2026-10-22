@@ -309,7 +309,7 @@
     <a-drawer
       v-model:open="drawerVisible"
       :title="$t('plugin.easypay.refund.detail')"
-      :size="900"
+      :default-size="900"
       @close="handleDrawerClose"
     >
       <a-spin :spinning="drawerLoading">

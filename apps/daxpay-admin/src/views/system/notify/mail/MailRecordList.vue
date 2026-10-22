@@ -334,7 +334,7 @@
     </div>
 
     <!-- 详情抽屉(弹窗高度受限放不下描述列表+正文预览, 改侧滑抽屉全高滚动) -->
-    <a-drawer v-model:open="detailDrawer.visible" :title="$t('system.notify.mail.detailTitle')" :width="800">
+    <a-drawer v-model:open="detailDrawer.visible" :title="$t('system.notify.mail.detailTitle')" :default-size="800">
       <!-- 描述列表: 间距类加 wrapper 避免被组件 cssinjs 样式覆盖 -->
       <div class="mb-4">
         <a-descriptions :column="1" bordered size="small">

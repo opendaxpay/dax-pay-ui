@@ -178,7 +178,7 @@
   <a-drawer
     v-model:open="visible"
     :title="$t('payment.merchant.channelMerchant.appAuthTokenSetTitle')"
-    :size="860"
+    :default-size="860"
     destroy-on-hidden
   >
     <a-spin :spinning="loading" class="block">

@@ -85,7 +85,7 @@
   <a-drawer
     :open="visible"
     :title="title"
-    :size="500"
+    :default-size="500"
     :styles="{ footer: { textAlign: 'right' } }"
     @close="handleCancel"
   >

@@ -110,7 +110,7 @@
   <a-drawer
     v-model:open="visible"
     :title="$t('payment.channel.douyinManage.cardTransferAppConfig')"
-    :size="720"
+    :default-size="720"
     :styles="{ footer: { textAlign: 'right' } }"
     destroy-on-hidden
   >

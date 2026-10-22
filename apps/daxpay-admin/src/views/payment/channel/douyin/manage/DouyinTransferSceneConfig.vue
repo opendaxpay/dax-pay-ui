@@ -54,7 +54,7 @@
   <a-drawer
     v-model:open="visible"
     :title="$t('payment.channel.douyinManage.cardTransferScene')"
-    :size="880"
+    :default-size="880"
     destroy-on-hidden
   >
     <a-spin :spinning="loading">
