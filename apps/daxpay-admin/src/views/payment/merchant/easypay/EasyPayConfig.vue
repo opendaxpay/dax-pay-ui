@@ -7,6 +7,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { PageShell } from '@daxpay/ui-biz/components/page-shell';
+  import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
   import { useClipboard } from '@vueuse/core';
 
   import {
@@ -58,6 +59,7 @@
   // 编辑模式
   const isEditing = ref(false);
   const appInfo = ref<MchAppInfoResult>({});
+  const { setTabObjectTitle } = useDynamicTabTitle($t('menu.payment.merchant.easypay'));
   const form = reactive<EasyPayCredentialResult>({
     enable: false,
     enableV1: false,
@@ -139,6 +141,8 @@
     });
     const app = data?.records?.find((a) => a.appId === appId.value);
     appInfo.value = app || {};
+    // 页签标题动态化为「{应用名} · 功能名」
+    setTabObjectTitle(app?.appName || '');
   }
 
   /**
@@ -329,248 +333,245 @@
       </template>
     </template>
 
-        <div class="easypay-form-container max-w-6xl px-4 py-2">
-          <!-- 信息提示 -->
-          <div class="info-banner">
-            <IconifyIcon icon="ant-design:info-circle-filled" />
-            <span>{{ $t('payment.merchant.app.easypay.desc') }}</span>
+    <div class="easypay-form-container max-w-6xl px-4 py-2">
+      <!-- 信息提示 -->
+      <div class="info-banner">
+        <IconifyIcon icon="ant-design:info-circle-filled" />
+        <span>{{ $t('payment.merchant.app.easypay.desc') }}</span>
+      </div>
+      <div class="info-banner warning">
+        <IconifyIcon icon="ant-design:warning-filled" />
+        <span>{{ $t('payment.merchant.app.easypay.notifyHint') }}</span>
+      </div>
+
+      <a-form layout="vertical" class="module-form">
+        <!-- ① 基础对接 -->
+        <div class="config-section">
+          <div class="config-section__title">
+            {{ $t('payment.merchant.app.easypay.section.endpoint') }}
           </div>
-          <div class="info-banner warning">
-            <IconifyIcon icon="ant-design:warning-filled" />
-            <span>{{ $t('payment.merchant.app.easypay.notifyHint') }}</span>
+          <div class="config-grid">
+            <!-- 总开关：半列 -->
+            <div class="config-item config-item--block">
+              <div class="config-item__main">
+                <div class="config-item__label">
+                  {{ $t('payment.merchant.app.easypay.enable') }}
+                </div>
+                <div class="config-item__desc">
+                  {{ $t('payment.merchant.app.easypay.enableDesc') }}
+                </div>
+              </div>
+              <a-radio-group v-model:value="form.enable" button-style="solid" :disabled="!isEditing">
+                <a-radio-button :value="true">{{ $t('common.enable') }}</a-radio-button>
+                <a-radio-button :value="false">{{ $t('common.disable') }}</a-radio-button>
+              </a-radio-group>
+            </div>
+
+            <!-- pid：半列 -->
+            <div class="config-item config-item--block">
+              <div class="config-item__main">
+                <div class="config-item__label">
+                  {{ $t('payment.merchant.app.easypay.pid') }}
+                </div>
+                <div class="config-item__desc">
+                  {{ $t('payment.merchant.app.easypay.pidDesc') }}
+                </div>
+              </div>
+              <div class="readonly-field">
+                <a-input :value="form.pid" disabled class="font-mono text-sm" />
+                <a-button type="link" size="small" @click="handleCopy(form.pid)">
+                  <template #icon>
+                    <IconifyIcon icon="ant-design:copy-outlined" />
+                  </template>
+                  {{ $t('common.copy') }}
+                </a-button>
+              </div>
+            </div>
+
+            <!-- V2 URL：整行 -->
+            <div class="config-item config-item--block config-item--full">
+              <div class="config-item__main">
+                <div class="config-item__label">
+                  {{ $t('payment.merchant.app.easypay.v2Url') }}
+                </div>
+                <div class="config-item__desc">
+                  {{ $t('payment.merchant.app.easypay.v2UrlDesc') }}
+                </div>
+              </div>
+              <div class="readonly-field">
+                <a-input :value="form.easyPayV2ApiUrl" disabled class="font-mono text-sm" />
+                <a-button type="link" size="small" @click="handleCopy(form.easyPayV2ApiUrl)">
+                  <template #icon>
+                    <IconifyIcon icon="ant-design:copy-outlined" />
+                  </template>
+                  {{ $t('common.copy') }}
+                </a-button>
+              </div>
+            </div>
+
+            <!-- V1 URL：整行 -->
+            <div class="config-item config-item--block config-item--full">
+              <div class="config-item__main">
+                <div class="config-item__label">
+                  {{ $t('payment.merchant.app.easypay.v1Url') }}
+                </div>
+                <div class="config-item__desc">
+                  {{ $t('payment.merchant.app.easypay.v1UrlDesc') }}
+                </div>
+              </div>
+              <div class="readonly-field">
+                <a-input :value="form.easyPayV1ApiUrl" disabled class="font-mono text-sm" />
+                <a-button type="link" size="small" @click="handleCopy(form.easyPayV1ApiUrl)">
+                  <template #icon>
+                    <IconifyIcon icon="ant-design:copy-outlined" />
+                  </template>
+                  {{ $t('common.copy') }}
+                </a-button>
+              </div>
+            </div>
           </div>
-
-          <a-form layout="vertical" class="module-form">
-            <!-- ① 基础对接 -->
-            <div class="config-section">
-              <div class="config-section__title">
-                {{ $t('payment.merchant.app.easypay.section.endpoint') }}
-              </div>
-              <div class="config-grid">
-                <!-- 总开关：半列 -->
-                <div class="config-item config-item--block">
-                  <div class="config-item__main">
-                    <div class="config-item__label">
-                      {{ $t('payment.merchant.app.easypay.enable') }}
-                    </div>
-                    <div class="config-item__desc">
-                      {{ $t('payment.merchant.app.easypay.enableDesc') }}
-                    </div>
-                  </div>
-                  <a-radio-group v-model:value="form.enable" button-style="solid" :disabled="!isEditing">
-                    <a-radio-button :value="true">{{ $t('common.enable') }}</a-radio-button>
-                    <a-radio-button :value="false">{{ $t('common.disable') }}</a-radio-button>
-                  </a-radio-group>
-                </div>
-
-                <!-- pid：半列 -->
-                <div class="config-item config-item--block">
-                  <div class="config-item__main">
-                    <div class="config-item__label">
-                      {{ $t('payment.merchant.app.easypay.pid') }}
-                    </div>
-                    <div class="config-item__desc">
-                      {{ $t('payment.merchant.app.easypay.pidDesc') }}
-                    </div>
-                  </div>
-                  <div class="readonly-field">
-                    <a-input :value="form.pid" disabled class="font-mono text-sm" />
-                    <a-button type="link" size="small" @click="handleCopy(form.pid)">
-                      <template #icon>
-                        <IconifyIcon icon="ant-design:copy-outlined" />
-                      </template>
-                      {{ $t('common.copy') }}
-                    </a-button>
-                  </div>
-                </div>
-
-                <!-- V2 URL：整行 -->
-                <div class="config-item config-item--block config-item--full">
-                  <div class="config-item__main">
-                    <div class="config-item__label">
-                      {{ $t('payment.merchant.app.easypay.v2Url') }}
-                    </div>
-                    <div class="config-item__desc">
-                      {{ $t('payment.merchant.app.easypay.v2UrlDesc') }}
-                    </div>
-                  </div>
-                  <div class="readonly-field">
-                    <a-input :value="form.easyPayV2ApiUrl" disabled class="font-mono text-sm" />
-                    <a-button type="link" size="small" @click="handleCopy(form.easyPayV2ApiUrl)">
-                      <template #icon>
-                        <IconifyIcon icon="ant-design:copy-outlined" />
-                      </template>
-                      {{ $t('common.copy') }}
-                    </a-button>
-                  </div>
-                </div>
-
-                <!-- V1 URL：整行 -->
-                <div class="config-item config-item--block config-item--full">
-                  <div class="config-item__main">
-                    <div class="config-item__label">
-                      {{ $t('payment.merchant.app.easypay.v1Url') }}
-                    </div>
-                    <div class="config-item__desc">
-                      {{ $t('payment.merchant.app.easypay.v1UrlDesc') }}
-                    </div>
-                  </div>
-                  <div class="readonly-field">
-                    <a-input :value="form.easyPayV1ApiUrl" disabled class="font-mono text-sm" />
-                    <a-button type="link" size="small" @click="handleCopy(form.easyPayV1ApiUrl)">
-                      <template #icon>
-                        <IconifyIcon icon="ant-design:copy-outlined" />
-                      </template>
-                      {{ $t('common.copy') }}
-                    </a-button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- ② V1 协议配置 -->
-            <div class="config-section">
-              <div class="config-section__title">
-                {{ $t('payment.merchant.app.easypay.section.v1') }}
-              </div>
-              <div class="config-grid">
-                <!-- 开启 V1：半列 -->
-                <div class="config-item config-item--block">
-                  <div class="config-item__main">
-                    <div class="config-item__label">
-                      {{ $t('payment.merchant.app.easypay.enableV1') }}
-                    </div>
-                    <div class="config-item__desc">
-                      {{ $t('payment.merchant.app.easypay.enableV1Desc') }}
-                    </div>
-                  </div>
-                  <a-radio-group v-model:value="form.enableV1" button-style="solid" :disabled="!isEditing">
-                    <a-radio-button :value="true">{{ $t('common.enable') }}</a-radio-button>
-                    <a-radio-button :value="false">{{ $t('common.disable') }}</a-radio-button>
-                  </a-radio-group>
-                </div>
-
-                <!-- MD5：半列，仅 V1 开启时显示 -->
-                <div v-if="form.enableV1" class="config-item config-item--block">
-                  <div class="config-item__main">
-                    <div class="config-item__label">
-                      {{ $t('payment.merchant.app.easypay.md5Key') }}
-                    </div>
-                    <div class="config-item__desc">
-                      {{ $t('payment.merchant.app.easypay.md5KeyDesc') }}
-                    </div>
-                  </div>
-                  <a-input
-                    v-model:value="form.md5Key"
-                    :disabled="!isEditing"
-                    :placeholder="$t('payment.merchant.app.easypay.md5KeyPh')"
-                    allow-clear
-                  />
-                </div>
-              </div>
-            </div>
-
-            <!-- ③ V2 协议配置 -->
-            <div class="config-section">
-              <div class="config-section__title">
-                {{ $t('payment.merchant.app.easypay.section.v2') }}
-              </div>
-              <div class="config-grid">
-                <!-- 开启 V2：半列 -->
-                <div class="config-item config-item--block">
-                  <div class="config-item__main">
-                    <div class="config-item__label">
-                      {{ $t('payment.merchant.app.easypay.enableV2') }}
-                    </div>
-                    <div class="config-item__desc">
-                      {{ $t('payment.merchant.app.easypay.enableV2Desc') }}
-                    </div>
-                  </div>
-                  <a-radio-group v-model:value="form.enableV2" button-style="solid" :disabled="!isEditing">
-                    <a-radio-button :value="true">{{ $t('common.enable') }}</a-radio-button>
-                    <a-radio-button :value="false">{{ $t('common.disable') }}</a-radio-button>
-                  </a-radio-group>
-                </div>
-
-                <!-- 使用系统密钥：半列，仅 V2 开启时显示 -->
-                <div v-if="form.enableV2" class="config-item config-item--block">
-                  <div class="config-item__main">
-                    <div class="config-item__label">
-                      {{ $t('payment.merchant.app.easypay.useSystemKey') }}
-                    </div>
-                    <div class="config-item__desc">
-                      {{ $t('payment.merchant.app.easypay.useSystemKeyDesc') }}
-                    </div>
-                  </div>
-                  <a-radio-group v-model:value="form.useSystemKey" button-style="solid" :disabled="!isEditing">
-                    <a-radio-button :value="true">{{ $t('common.yes') }}</a-radio-button>
-                    <a-radio-button :value="false">{{ $t('common.no') }}</a-radio-button>
-                  </a-radio-group>
-                </div>
-
-                <!-- 平台公钥：整行，仅 V2 开启 -->
-                <div v-if="form.enableV2" class="config-item config-item--block config-item--full">
-                  <div class="config-item__main">
-                    <div class="config-item__label">
-                      {{ $t('payment.merchant.app.easypay.platformPublicKey') }}
-                    </div>
-                    <div class="config-item__desc">
-                      {{ $t('payment.merchant.app.easypay.platformPublicKeyDesc') }}
-                    </div>
-                  </div>
-                  <div class="textarea-wrapper">
-                    <a-textarea
-                      :value="form.platformPublicKey"
-                      :rows="4"
-                      readonly
-                      class="readonly-textarea font-mono text-sm"
-                    />
-                    <div class="textarea-actions">
-                      <a-button type="link" size="small" @click="handleCopy(form.platformPublicKey)">
-                        <template #icon>
-                          <IconifyIcon icon="ant-design:copy-outlined" />
-                        </template>
-                        {{ $t('common.copy') }}
-                      </a-button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- 商户公钥：整行，V2 开启且不使用系统密钥 -->
-                <div
-                  v-if="form.enableV2 && !form.useSystemKey"
-                  class="config-item config-item--block config-item--full"
-                >
-                  <div class="config-item__main">
-                    <div class="config-item__label">
-                      {{ $t('payment.merchant.app.easypay.publicKey') }}
-                    </div>
-                    <div class="config-item__desc">
-                      {{ $t('payment.merchant.app.easypay.publicKeyDesc') }}
-                    </div>
-                  </div>
-                  <div class="textarea-wrapper">
-                    <a-textarea
-                      v-model:value="form.publicKey"
-                      :rows="4"
-                      :disabled="!isEditing"
-                      allow-clear
-                      class="font-mono text-sm"
-                    />
-                    <div class="textarea-actions">
-                      <a-button type="link" size="small" :disabled="!isEditing" @click="handleGenRsaKeyPair">
-                        <template #icon>
-                          <IconifyIcon icon="ant-design:key-outlined" />
-                        </template>
-                        {{ $t('payment.merchant.app.easypay.genRsaKeyPair') }}
-                      </a-button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a-form>
         </div>
+
+        <!-- ② V1 协议配置 -->
+        <div class="config-section">
+          <div class="config-section__title">
+            {{ $t('payment.merchant.app.easypay.section.v1') }}
+          </div>
+          <div class="config-grid">
+            <!-- 开启 V1：半列 -->
+            <div class="config-item config-item--block">
+              <div class="config-item__main">
+                <div class="config-item__label">
+                  {{ $t('payment.merchant.app.easypay.enableV1') }}
+                </div>
+                <div class="config-item__desc">
+                  {{ $t('payment.merchant.app.easypay.enableV1Desc') }}
+                </div>
+              </div>
+              <a-radio-group v-model:value="form.enableV1" button-style="solid" :disabled="!isEditing">
+                <a-radio-button :value="true">{{ $t('common.enable') }}</a-radio-button>
+                <a-radio-button :value="false">{{ $t('common.disable') }}</a-radio-button>
+              </a-radio-group>
+            </div>
+
+            <!-- MD5：半列，仅 V1 开启时显示 -->
+            <div v-if="form.enableV1" class="config-item config-item--block">
+              <div class="config-item__main">
+                <div class="config-item__label">
+                  {{ $t('payment.merchant.app.easypay.md5Key') }}
+                </div>
+                <div class="config-item__desc">
+                  {{ $t('payment.merchant.app.easypay.md5KeyDesc') }}
+                </div>
+              </div>
+              <a-input
+                v-model:value="form.md5Key"
+                :disabled="!isEditing"
+                :placeholder="$t('payment.merchant.app.easypay.md5KeyPh')"
+                allow-clear
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- ③ V2 协议配置 -->
+        <div class="config-section">
+          <div class="config-section__title">
+            {{ $t('payment.merchant.app.easypay.section.v2') }}
+          </div>
+          <div class="config-grid">
+            <!-- 开启 V2：半列 -->
+            <div class="config-item config-item--block">
+              <div class="config-item__main">
+                <div class="config-item__label">
+                  {{ $t('payment.merchant.app.easypay.enableV2') }}
+                </div>
+                <div class="config-item__desc">
+                  {{ $t('payment.merchant.app.easypay.enableV2Desc') }}
+                </div>
+              </div>
+              <a-radio-group v-model:value="form.enableV2" button-style="solid" :disabled="!isEditing">
+                <a-radio-button :value="true">{{ $t('common.enable') }}</a-radio-button>
+                <a-radio-button :value="false">{{ $t('common.disable') }}</a-radio-button>
+              </a-radio-group>
+            </div>
+
+            <!-- 使用系统密钥：半列，仅 V2 开启时显示 -->
+            <div v-if="form.enableV2" class="config-item config-item--block">
+              <div class="config-item__main">
+                <div class="config-item__label">
+                  {{ $t('payment.merchant.app.easypay.useSystemKey') }}
+                </div>
+                <div class="config-item__desc">
+                  {{ $t('payment.merchant.app.easypay.useSystemKeyDesc') }}
+                </div>
+              </div>
+              <a-radio-group v-model:value="form.useSystemKey" button-style="solid" :disabled="!isEditing">
+                <a-radio-button :value="true">{{ $t('common.yes') }}</a-radio-button>
+                <a-radio-button :value="false">{{ $t('common.no') }}</a-radio-button>
+              </a-radio-group>
+            </div>
+
+            <!-- 平台公钥：整行，仅 V2 开启 -->
+            <div v-if="form.enableV2" class="config-item config-item--block config-item--full">
+              <div class="config-item__main">
+                <div class="config-item__label">
+                  {{ $t('payment.merchant.app.easypay.platformPublicKey') }}
+                </div>
+                <div class="config-item__desc">
+                  {{ $t('payment.merchant.app.easypay.platformPublicKeyDesc') }}
+                </div>
+              </div>
+              <div class="textarea-wrapper">
+                <a-textarea
+                  :value="form.platformPublicKey"
+                  :rows="4"
+                  readonly
+                  class="readonly-textarea font-mono text-sm"
+                />
+                <div class="textarea-actions">
+                  <a-button type="link" size="small" @click="handleCopy(form.platformPublicKey)">
+                    <template #icon>
+                      <IconifyIcon icon="ant-design:copy-outlined" />
+                    </template>
+                    {{ $t('common.copy') }}
+                  </a-button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 商户公钥：整行，V2 开启且不使用系统密钥 -->
+            <div v-if="form.enableV2 && !form.useSystemKey" class="config-item config-item--block config-item--full">
+              <div class="config-item__main">
+                <div class="config-item__label">
+                  {{ $t('payment.merchant.app.easypay.publicKey') }}
+                </div>
+                <div class="config-item__desc">
+                  {{ $t('payment.merchant.app.easypay.publicKeyDesc') }}
+                </div>
+              </div>
+              <div class="textarea-wrapper">
+                <a-textarea
+                  v-model:value="form.publicKey"
+                  :rows="4"
+                  :disabled="!isEditing"
+                  allow-clear
+                  class="font-mono text-sm"
+                />
+                <div class="textarea-actions">
+                  <a-button type="link" size="small" :disabled="!isEditing" @click="handleGenRsaKeyPair">
+                    <template #icon>
+                      <IconifyIcon icon="ant-design:key-outlined" />
+                    </template>
+                    {{ $t('payment.merchant.app.easypay.genRsaKeyPair') }}
+                  </a-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a-form>
+    </div>
 
     <!-- RSA 密钥对弹窗 -->
     <a-modal

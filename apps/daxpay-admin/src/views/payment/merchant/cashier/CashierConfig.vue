@@ -6,6 +6,7 @@
   import { $t } from '@vben/locales';
 
   import { PageShell } from '@daxpay/ui-biz/components/page-shell';
+  import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
 
   import { CashierConfigApi, type CashierItemResult } from '#/api/payment/merchant/cashier.api';
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
@@ -56,6 +57,7 @@
 
   const loading = ref(false);
   const appInfo = ref<MchAppInfoResult>({});
+  const { setTabObjectTitle } = useDynamicTabTitle($t('payment.merchant.cashier.cashier.title'));
   const tableData = ref<CashierItemResult[]>([]);
   const methodLabelMap = ref<Record<string, string>>({});
   // DIRECT 模式列表展示用：通道商户号 → 名称
@@ -112,6 +114,8 @@
     const { data } = await MchAppInfoApi.page({ mchNo: mchNo.value, current: 1, size: 200 });
     const app = data?.records?.find((a) => a.appId === appId.value);
     appInfo.value = app || {};
+    // 页签标题动态化为「{应用名} · 功能名」
+    setTabObjectTitle(app?.appName || '');
   }
 
   /** 加载方式标签映射 */
@@ -249,153 +253,144 @@
       </a-button>
     </template>
 
-      <!-- 一级: H5 / WEB / 小程序（移动端档位按钮 chips 化允许换行） -->
-      <div class="radio-chips mb-4">
-        <a-radio-group v-model:value="activeType" button-style="solid">
-          <a-radio-button :value="CASHIER_TYPE.H5">{{ $t('payment.merchant.cashier.cashier.typeH5') }}</a-radio-button>
-          <a-radio-button :value="CASHIER_TYPE.WEB">{{
-            $t('payment.merchant.cashier.cashier.typeWeb')
-          }}</a-radio-button>
-          <a-radio-button :value="CASHIER_TYPE.MINI">{{
-            $t('payment.merchant.cashier.cashier.typeMini')
-          }}</a-radio-button>
-        </a-radio-group>
-      </div>
+    <!-- 一级: H5 / WEB / 小程序（移动端档位按钮 chips 化允许换行） -->
+    <div class="radio-chips mb-4">
+      <a-radio-group v-model:value="activeType" button-style="solid">
+        <a-radio-button :value="CASHIER_TYPE.H5">{{ $t('payment.merchant.cashier.cashier.typeH5') }}</a-radio-button>
+        <a-radio-button :value="CASHIER_TYPE.WEB">{{ $t('payment.merchant.cashier.cashier.typeWeb') }}</a-radio-button>
+        <a-radio-button :value="CASHIER_TYPE.MINI">{{
+          $t('payment.merchant.cashier.cashier.typeMini')
+        }}</a-radio-button>
+      </a-radio-group>
+    </div>
 
-      <!-- H5 五档 / 小程序四档(含云闪付) 二级终端（移动端 chips 化换行防溢出） -->
-      <div v-if="cashierTypeRequiresClientEnv(activeType)" class="radio-chips mb-4">
-        <a-radio-group v-model:value="activeClientEnv" button-style="solid">
-          <a-radio-button v-for="sc in activeClientEnvOptions" :key="sc.clientEnv" :value="sc.clientEnv">
-            {{ clientEnvLabel(sc.clientEnv) }}
-          </a-radio-button>
-        </a-radio-group>
-      </div>
+    <!-- H5 五档 / 小程序四档(含云闪付) 二级终端（移动端 chips 化换行防溢出） -->
+    <div v-if="cashierTypeRequiresClientEnv(activeType)" class="radio-chips mb-4">
+      <a-radio-group v-model:value="activeClientEnv" button-style="solid">
+        <a-radio-button v-for="sc in activeClientEnvOptions" :key="sc.clientEnv" :value="sc.clientEnv">
+          {{ clientEnvLabel(sc.clientEnv) }}
+        </a-radio-button>
+      </a-radio-group>
+    </div>
 
-      <!-- 桌面：vxe-table -->
-      <vxe-table v-if="!isMobile" :data="tableData" :row-config="{ keyField: 'id' }" min-height="200">
-          <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
-          <vxe-column field="name" :title="$t('payment.merchant.cashier.cashier.name')" min-width="70" />
-          <vxe-column field="icon" :title="$t('payment.merchant.cashier.cashier.icon')" width="120" align="center">
-            <template #default="{ row }">
-              <div class="flex items-center justify-center gap-1">
-                <img
-                  v-if="getProviderSvgUrl(row.icon)"
-                  :src="getProviderSvgUrl(row.icon)"
-                  class="h-5 w-5 object-contain"
-                  :alt="row.icon"
-                />
-                <span>{{ iconLabel(row.icon) }}</span>
-              </div>
-            </template>
-          </vxe-column>
-          <vxe-column
-            field="recommend"
-            :title="$t('payment.merchant.cashier.cashier.recommend')"
-            width="90"
-            align="center"
-          >
-            <template #default="{ row }">
-              <a-tag v-if="row.recommend" color="green">{{
-                $t('payment.merchant.cashier.cashier.recommendYes')
-              }}</a-tag>
-              <span v-else class="text-muted-foreground">{{ $t('payment.merchant.cashier.cashier.recommendNo') }}</span>
-            </template>
-          </vxe-column>
-          <vxe-column field="sortNo" :title="$t('payment.merchant.cashier.cashier.sortNo')" width="80" align="center" />
-          <vxe-column
-            field="resolveMode"
-            :title="$t('payment.merchant.cashier.cashier.resolveMode')"
-            width="110"
-            align="center"
-          >
-            <template #default="{ row }">
-              {{ resolveModeLabel(row.resolveMode) }}
-            </template>
-          </vxe-column>
-          <vxe-column field="method" :title="$t('payment.merchant.cashier.cashier.method')" min-width="200">
-            <template #default="{ row }">
-              {{ paySummary(row) }}
-            </template>
-          </vxe-column>
-          <vxe-column fixed="right" :width="120" :show-overflow="false" :title="$t('common.operation')">
-            <template #default="{ row }">
-              <a-space v-if="canManage" :size="2">
-                <template #separator>
-                  <a-divider type="vertical" />
-                </template>
-                <a-button type="link" size="small" @click="handleEdit(row)">
-                  {{ $t('common.edit') }}
-                </a-button>
-                <a-button type="link" size="small" danger @click="handleDelete(row)">
-                  {{ $t('common.delete') }}
-                </a-button>
-              </a-space>
-            </template>
-          </vxe-column>
-          <template #empty>
-            <div class="py-8 text-center text-muted-foreground">
-              {{ $t('payment.merchant.cashier.cashier.empty') }}
-            </div>
-          </template>
-        </vxe-table>
-
-        <!-- 移动端：卡片列表 -->
-        <template v-else>
-          <div v-if="tableData.length > 0" class="flex flex-col gap-3">
-            <div
-              v-for="(row, idx) in tableData"
-              :key="row.id ?? idx"
-              class="rounded-xl border border-border bg-background p-3"
-            >
-              <!-- 卡头：序号 + 图标 + 名称 + 推荐 -->
-              <div class="flex items-center gap-2">
-                <span class="text-xs text-muted-foreground">{{ idx + 1 }}</span>
-                <img
-                  v-if="getProviderSvgUrl(row.icon || '')"
-                  :src="getProviderSvgUrl(row.icon || '')"
-                  class="h-5 w-5 shrink-0 object-contain"
-                  :alt="row.icon"
-                />
-                <span class="min-w-0 flex-1 truncate text-sm font-medium">{{ row.name }}</span>
-                <a-tag v-if="row.recommend" color="green" class="!m-0">
-                  {{ $t('payment.merchant.cashier.cashier.recommendYes') }}
-                </a-tag>
-              </div>
-              <!-- 属性行：字段名内联 -->
-              <div class="mt-2 flex flex-col gap-1 text-sm">
-                <div>
-                  <span class="text-muted-foreground">{{ $t('payment.merchant.cashier.cashier.resolveMode') }}: </span>
-                  {{ resolveModeLabel(row.resolveMode) }}
-                </div>
-                <div class="min-w-0 break-all">
-                  <span class="text-muted-foreground">{{ $t('payment.merchant.cashier.cashier.method') }}: </span>
-                  {{ paySummary(row) }}
-                </div>
-                <div>
-                  <span class="text-muted-foreground">{{ $t('payment.merchant.cashier.cashier.sortNo') }}: </span>
-                  {{ row.sortNo }}
-                </div>
-              </div>
-              <!-- 操作 -->
-              <div v-if="canManage" class="mt-2 flex justify-end">
-                <a-space :size="2">
-                  <template #separator>
-                    <a-divider type="vertical" />
-                  </template>
-                  <a-button type="link" size="small" @click="handleEdit(row)">
-                    {{ $t('common.edit') }}
-                  </a-button>
-                  <a-button type="link" size="small" danger @click="handleDelete(row)">
-                    {{ $t('common.delete') }}
-                  </a-button>
-                </a-space>
-              </div>
-            </div>
+    <!-- 桌面：vxe-table -->
+    <vxe-table v-if="!isMobile" :data="tableData" :row-config="{ keyField: 'id' }" min-height="200">
+      <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
+      <vxe-column field="name" :title="$t('payment.merchant.cashier.cashier.name')" min-width="70" />
+      <vxe-column field="icon" :title="$t('payment.merchant.cashier.cashier.icon')" width="120" align="center">
+        <template #default="{ row }">
+          <div class="flex items-center justify-center gap-1">
+            <img
+              v-if="getProviderSvgUrl(row.icon)"
+              :src="getProviderSvgUrl(row.icon)"
+              class="h-5 w-5 object-contain"
+              :alt="row.icon"
+            />
+            <span>{{ iconLabel(row.icon) }}</span>
           </div>
-          <div v-else class="py-8 text-center text-muted-foreground">
-            {{ $t('payment.merchant.cashier.cashier.empty') }}
-          </div>
+        </template>
+      </vxe-column>
+      <vxe-column field="recommend" :title="$t('payment.merchant.cashier.cashier.recommend')" width="90" align="center">
+        <template #default="{ row }">
+          <a-tag v-if="row.recommend" color="green">{{ $t('payment.merchant.cashier.cashier.recommendYes') }}</a-tag>
+          <span v-else class="text-muted-foreground">{{ $t('payment.merchant.cashier.cashier.recommendNo') }}</span>
+        </template>
+      </vxe-column>
+      <vxe-column field="sortNo" :title="$t('payment.merchant.cashier.cashier.sortNo')" width="80" align="center" />
+      <vxe-column
+        field="resolveMode"
+        :title="$t('payment.merchant.cashier.cashier.resolveMode')"
+        width="110"
+        align="center"
+      >
+        <template #default="{ row }">
+          {{ resolveModeLabel(row.resolveMode) }}
+        </template>
+      </vxe-column>
+      <vxe-column field="method" :title="$t('payment.merchant.cashier.cashier.method')" min-width="200">
+        <template #default="{ row }">
+          {{ paySummary(row) }}
+        </template>
+      </vxe-column>
+      <vxe-column fixed="right" :width="120" :show-overflow="false" :title="$t('common.operation')">
+        <template #default="{ row }">
+          <a-space v-if="canManage" :size="2">
+            <template #separator>
+              <a-divider type="vertical" />
+            </template>
+            <a-button type="link" size="small" @click="handleEdit(row)">
+              {{ $t('common.edit') }}
+            </a-button>
+            <a-button type="link" size="small" danger @click="handleDelete(row)">
+              {{ $t('common.delete') }}
+            </a-button>
+          </a-space>
+        </template>
+      </vxe-column>
+      <template #empty>
+        <div class="py-8 text-center text-muted-foreground">
+          {{ $t('payment.merchant.cashier.cashier.empty') }}
+        </div>
       </template>
+    </vxe-table>
+
+    <!-- 移动端：卡片列表 -->
+    <template v-else>
+      <div v-if="tableData.length > 0" class="flex flex-col gap-3">
+        <div
+          v-for="(row, idx) in tableData"
+          :key="row.id ?? idx"
+          class="rounded-xl border border-border bg-background p-3"
+        >
+          <!-- 卡头：序号 + 图标 + 名称 + 推荐 -->
+          <div class="flex items-center gap-2">
+            <span class="text-xs text-muted-foreground">{{ idx + 1 }}</span>
+            <img
+              v-if="getProviderSvgUrl(row.icon || '')"
+              :src="getProviderSvgUrl(row.icon || '')"
+              class="h-5 w-5 shrink-0 object-contain"
+              :alt="row.icon"
+            />
+            <span class="min-w-0 flex-1 truncate text-sm font-medium">{{ row.name }}</span>
+            <a-tag v-if="row.recommend" color="green" class="!m-0">
+              {{ $t('payment.merchant.cashier.cashier.recommendYes') }}
+            </a-tag>
+          </div>
+          <!-- 属性行：字段名内联 -->
+          <div class="mt-2 flex flex-col gap-1 text-sm">
+            <div>
+              <span class="text-muted-foreground">{{ $t('payment.merchant.cashier.cashier.resolveMode') }}: </span>
+              {{ resolveModeLabel(row.resolveMode) }}
+            </div>
+            <div class="min-w-0 break-all">
+              <span class="text-muted-foreground">{{ $t('payment.merchant.cashier.cashier.method') }}: </span>
+              {{ paySummary(row) }}
+            </div>
+            <div>
+              <span class="text-muted-foreground">{{ $t('payment.merchant.cashier.cashier.sortNo') }}: </span>
+              {{ row.sortNo }}
+            </div>
+          </div>
+          <!-- 操作 -->
+          <div v-if="canManage" class="mt-2 flex justify-end">
+            <a-space :size="2">
+              <template #separator>
+                <a-divider type="vertical" />
+              </template>
+              <a-button type="link" size="small" @click="handleEdit(row)">
+                {{ $t('common.edit') }}
+              </a-button>
+              <a-button type="link" size="small" danger @click="handleDelete(row)">
+                {{ $t('common.delete') }}
+              </a-button>
+            </a-space>
+          </div>
+        </div>
+      </div>
+      <div v-else class="py-8 text-center text-muted-foreground">
+        {{ $t('payment.merchant.cashier.cashier.empty') }}
+      </div>
+    </template>
     <!-- 档位编辑抽屉；必须留在 PageShell 内: 页面模板多根节点会让布局层 Transition 丢掉离场动画 -->
     <CashierItemEdit ref="itemEditRef" @ok="loadList" />
   </PageShell>

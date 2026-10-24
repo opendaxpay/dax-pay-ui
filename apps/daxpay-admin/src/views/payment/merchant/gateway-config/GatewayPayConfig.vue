@@ -10,6 +10,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { PageShell } from '@daxpay/ui-biz/components/page-shell';
+  import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
 
   import {
     type GatewayPayClientEnvParam,
@@ -68,6 +69,7 @@
   const loading = ref(false);
   const editing = ref(false);
   const appInfo = ref<MchAppInfoResult>({});
+  const { setTabObjectTitle } = useDynamicTabTitle($t('payment.merchant.gatewayConfig.gatewayConfig.title'));
   const config = ref<GatewayPayConfigResult>({});
 
   const editLevel = ref<GwLevel>(GW_LEVEL.AUTO);
@@ -337,6 +339,8 @@
     const { data } = await MchAppInfoApi.page({ mchNo: mchNo.value, current: 1, size: 200 });
     const app = data?.records?.find((a) => a.appId === appId.value);
     appInfo.value = app || {};
+    // 页签标题动态化为「{应用名} · 功能名」
+    setTabObjectTitle(app?.appName || '');
   }
 
   async function loadConfig() {
@@ -516,272 +520,270 @@
     </template>
 
     <!-- 配置模式切换：移动端纵向堆叠，桌面横排 -->
-        <div class="mb-5 flex flex-col items-start gap-3 md:flex-row md:flex-wrap md:items-center">
-          <span class="text-sm font-medium">{{
-            $t('payment.merchant.gatewayConfig.gatewayConfig.editModeLabel')
-          }}</span>
-          <a-radio-group v-model:value="editLevel" button-style="solid" :disabled="!editing">
-            <a-radio-button :value="GW_LEVEL.AUTO">
-              {{ $t('payment.merchant.gatewayConfig.gatewayConfig.modeAuto') }}
-            </a-radio-button>
-            <a-radio-button :value="GW_LEVEL.METHOD">
-              {{ $t('payment.merchant.gatewayConfig.gatewayConfig.modeMethod') }}
-            </a-radio-button>
-            <a-radio-button :value="GW_LEVEL.DIRECT">
-              {{ $t('payment.merchant.gatewayConfig.gatewayConfig.modeDirect') }}
-            </a-radio-button>
-          </a-radio-group>
-          <a-tag v-if="isLevelActive && !editing" color="green">
-            {{ $t('payment.merchant.gatewayConfig.gatewayConfig.levelActive') }}
-          </a-tag>
+    <div class="mb-5 flex flex-col items-start gap-3 md:flex-row md:flex-wrap md:items-center">
+      <span class="text-sm font-medium">{{ $t('payment.merchant.gatewayConfig.gatewayConfig.editModeLabel') }}</span>
+      <a-radio-group v-model:value="editLevel" button-style="solid" :disabled="!editing">
+        <a-radio-button :value="GW_LEVEL.AUTO">
+          {{ $t('payment.merchant.gatewayConfig.gatewayConfig.modeAuto') }}
+        </a-radio-button>
+        <a-radio-button :value="GW_LEVEL.METHOD">
+          {{ $t('payment.merchant.gatewayConfig.gatewayConfig.modeMethod') }}
+        </a-radio-button>
+        <a-radio-button :value="GW_LEVEL.DIRECT">
+          {{ $t('payment.merchant.gatewayConfig.gatewayConfig.modeDirect') }}
+        </a-radio-button>
+      </a-radio-group>
+      <a-tag v-if="isLevelActive && !editing" color="green">
+        {{ $t('payment.merchant.gatewayConfig.gatewayConfig.levelActive') }}
+      </a-tag>
+    </div>
+
+    <div class="mb-4">
+      <a-alert :message="modeHint" type="info" show-icon />
+    </div>
+
+    <!-- 路由模式与覆盖摘要：移动端纵向堆叠（缺口列表独占行可换行），桌面横排 -->
+    <div
+      v-if="showRoutePreview"
+      class="mb-5 flex flex-col items-start gap-1.5 text-sm md:flex-row md:flex-wrap md:items-center md:gap-3"
+    >
+      <span class="text-muted-foreground"
+        >{{ $t('payment.merchant.gatewayConfig.gatewayConfig.currentRouteMode') }}:</span
+      >
+      <a-tag color="blue">{{ routeModeLabel }}</a-tag>
+      <template v-if="routeCoverage">
+        <span class="text-muted-foreground">
+          {{
+            $t('payment.merchant.gatewayConfig.gatewayConfig.routeCoverage', {
+              ok: routeCoverage.ok,
+              total: routeCoverage.total,
+            })
+          }}
+        </span>
+        <span v-if="routeCoverage.gapLabels.length > 0" class="w-full text-xs text-orange-500 md:w-auto">
+          {{ $t('payment.merchant.gatewayConfig.gatewayConfig.routeGaps') }}:
+          {{ routeCoverage.gapLabels.join(' · ') }}
+        </span>
+      </template>
+      <a-button type="link" size="small" class="!px-1" @click="goPayRoute">
+        {{ $t('payment.merchant.gatewayConfig.gatewayConfig.goPayRoute') }}
+        <IconifyIcon icon="ant-design:right-outlined" class="inline" />
+      </a-button>
+    </div>
+
+    <!-- 按打开环境分块；块内 H5/小程序单行；AUTO 同 method 合并 -->
+    <!-- 桌面：多列 grid 矩阵 -->
+    <div v-if="!isMobile" class="env-blocks">
+      <div v-for="sc in GW_CLIENT_ENVS" :key="sc.clientEnv" class="env-block">
+        <div class="env-block-title">{{ clientEnvLabel(sc.clientEnv) }}</div>
+
+        <div class="env-table" :class="showRoutePreview ? 'cols-route' : 'cols-direct'">
+          <div class="env-grid-header">
+            <div>{{ $t('payment.merchant.gatewayConfig.gatewayConfig.payForm') }}</div>
+            <div v-if="showRoutePreview">{{ $t('payment.merchant.gatewayConfig.gatewayConfig.method') }}</div>
+            <div>{{ $t('payment.merchant.route.route.channelMerchant') }}</div>
+            <div>{{ $t('payment.merchant.route.route.payCapability') }}</div>
+          </div>
+
+          <div v-for="drow in displayFormRows(sc.clientEnv)" :key="drow.key" class="env-grid-row">
+            <!-- 形态：合并时展示 H5 + 小程序 -->
+            <div class="form-tags">
+              <template v-if="drow.merged">
+                <a-tag color="blue" class="!m-0">{{ payFormLabel(GW_PAY_FORM.H5) }}</a-tag>
+                <span class="text-muted-foreground text-xs">/</span>
+                <a-tag color="purple" class="!m-0">{{ payFormLabel(GW_PAY_FORM.MINI) }}</a-tag>
+              </template>
+              <a-tag v-else :color="drow.primaryForm === GW_PAY_FORM.MINI ? 'purple' : 'blue'" class="!m-0">
+                {{ payFormLabel(drow.primaryForm) }}
+              </a-tag>
+            </div>
+
+            <!-- AUTO -->
+            <template v-if="editLevel === GW_LEVEL.AUTO">
+              <div
+                class="cell-text"
+                :title="findMethodLabel(sc.provider, defaultMethodFor(sc.clientEnv, drow.primaryForm))"
+              >
+                {{ findMethodLabel(sc.provider, defaultMethodFor(sc.clientEnv, drow.primaryForm)) }}
+              </div>
+              <RouteHitPreviewBlock
+                :hit="previewRouteHit(sc.provider, defaultMethodFor(sc.clientEnv, drow.primaryForm))"
+                :empty-tone="emptyToneFor(sc.provider, sc.clientEnv, drow.primaryForm)"
+                i18n-prefix="payment.merchant.gatewayConfig.gatewayConfig"
+              />
+            </template>
+
+            <!-- METHOD：始终按 primaryForm 单行（未合并） -->
+            <template v-else-if="editLevel === GW_LEVEL.METHOD">
+              <div>
+                <a-select
+                  :value="getRow(sc.clientEnv, drow.primaryForm).method"
+                  :options="methodOptions(sc.provider)"
+                  :placeholder="$t('payment.merchant.gatewayConfig.gatewayConfig.methodPlaceholder')"
+                  :disabled="!editing"
+                  allow-clear
+                  class="w-full min-w-[160px]"
+                  @change="(val: any) => (getRow(sc.clientEnv, drow.primaryForm).method = val || '')"
+                />
+              </div>
+              <RouteHitPreviewBlock
+                :hit="previewRouteHit(sc.provider, resolveMethodForRow(sc.clientEnv, drow.primaryForm))"
+                :empty-tone="emptyToneFor(sc.provider, sc.clientEnv, drow.primaryForm)"
+                i18n-prefix="payment.merchant.gatewayConfig.gatewayConfig"
+              />
+            </template>
+
+            <!-- DIRECT -->
+            <template v-else>
+              <div>
+                <ChannelMerchantSelect
+                  :value="getRow(sc.clientEnv, drow.primaryForm).channelMchNo"
+                  :options="channelMchOptions(sc.clientEnv, drow.primaryForm)"
+                  :placeholder="$t('payment.merchant.gatewayConfig.gatewayConfig.channelMerchantPlaceholder')"
+                  :disabled="!editing"
+                  root-class-name="w-full min-w-[160px]"
+                  @change="(val: any) => onChannelMchChange(sc.clientEnv, drow.primaryForm, val)"
+                />
+              </div>
+              <div>
+                <a-select
+                  :value="getRow(sc.clientEnv, drow.primaryForm).capability"
+                  :options="capabilityOptions(sc.clientEnv, drow.primaryForm)"
+                  :placeholder="$t('payment.merchant.gatewayConfig.gatewayConfig.capabilityPlaceholder')"
+                  :disabled="!editing || !getRow(sc.clientEnv, drow.primaryForm).channelMchNo"
+                  allow-clear
+                  class="w-full min-w-[160px]"
+                  @change="(val: any) => (getRow(sc.clientEnv, drow.primaryForm).capability = val)"
+                />
+              </div>
+            </template>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <div class="mb-4">
-          <a-alert :message="modeHint" type="info" show-icon />
-        </div>
-
-        <!-- 路由模式与覆盖摘要：移动端纵向堆叠（缺口列表独占行可换行），桌面横排 -->
-        <div
-          v-if="showRoutePreview"
-          class="mb-5 flex flex-col items-start gap-1.5 text-sm md:flex-row md:flex-wrap md:items-center md:gap-3"
-        >
-          <span class="text-muted-foreground"
-            >{{ $t('payment.merchant.gatewayConfig.gatewayConfig.currentRouteMode') }}:</span
-          >
-          <a-tag color="blue">{{ routeModeLabel }}</a-tag>
-          <template v-if="routeCoverage">
-            <span class="text-muted-foreground">
-              {{
-                $t('payment.merchant.gatewayConfig.gatewayConfig.routeCoverage', {
-                  ok: routeCoverage.ok,
-                  total: routeCoverage.total,
-                })
-              }}
-            </span>
-            <span v-if="routeCoverage.gapLabels.length > 0" class="w-full text-xs text-orange-500 md:w-auto">
-              {{ $t('payment.merchant.gatewayConfig.gatewayConfig.routeGaps') }}:
-              {{ routeCoverage.gapLabels.join(' · ') }}
-            </span>
-          </template>
-          <a-button type="link" size="small" class="!px-1" @click="goPayRoute">
-            {{ $t('payment.merchant.gatewayConfig.gatewayConfig.goPayRoute') }}
-            <IconifyIcon icon="ant-design:right-outlined" class="inline" />
-          </a-button>
-        </div>
-
-        <!-- 按打开环境分块；块内 H5/小程序单行；AUTO 同 method 合并 -->
-        <!-- 桌面：多列 grid 矩阵 -->
-        <div v-if="!isMobile" class="env-blocks">
-          <div v-for="sc in GW_CLIENT_ENVS" :key="sc.clientEnv" class="env-block">
-            <div class="env-block-title">{{ clientEnvLabel(sc.clientEnv) }}</div>
-
-            <div class="env-table" :class="showRoutePreview ? 'cols-route' : 'cols-direct'">
-              <div class="env-grid-header">
-                <div>{{ $t('payment.merchant.gatewayConfig.gatewayConfig.payForm') }}</div>
-                <div v-if="showRoutePreview">{{ $t('payment.merchant.gatewayConfig.gatewayConfig.method') }}</div>
-                <div>{{ $t('payment.merchant.route.route.channelMerchant') }}</div>
-                <div>{{ $t('payment.merchant.route.route.payCapability') }}</div>
+    <!-- 移动端：AUTO 按环境折叠收纳，METHOD/DIRECT 平铺环境块，行改纵向堆叠卡片 -->
+    <div v-else class="flex flex-col gap-3">
+      <a-collapse v-if="editLevel === GW_LEVEL.AUTO" v-model:active-key="mobileAutoActiveKeys">
+        <a-collapse-panel v-for="sc in GW_CLIENT_ENVS" :key="sc.clientEnv" :header="clientEnvLabel(sc.clientEnv)">
+          <div class="flex flex-col gap-2">
+            <div
+              v-for="drow in displayFormRows(sc.clientEnv)"
+              :key="drow.key"
+              class="flex flex-col gap-2 rounded-lg border border-border bg-background p-3"
+            >
+              <!-- 形态：合并时展示 H5 + 小程序 -->
+              <div class="form-tags">
+                <template v-if="drow.merged">
+                  <a-tag color="blue" class="!m-0">{{ payFormLabel(GW_PAY_FORM.H5) }}</a-tag>
+                  <span class="text-muted-foreground text-xs">/</span>
+                  <a-tag color="purple" class="!m-0">{{ payFormLabel(GW_PAY_FORM.MINI) }}</a-tag>
+                </template>
+                <a-tag v-else :color="drow.primaryForm === GW_PAY_FORM.MINI ? 'purple' : 'blue'" class="!m-0">
+                  {{ payFormLabel(drow.primaryForm) }}
+                </a-tag>
               </div>
 
-              <div v-for="drow in displayFormRows(sc.clientEnv)" :key="drow.key" class="env-grid-row">
-                <!-- 形态：合并时展示 H5 + 小程序 -->
-                <div class="form-tags">
-                  <template v-if="drow.merged">
-                    <a-tag color="blue" class="!m-0">{{ payFormLabel(GW_PAY_FORM.H5) }}</a-tag>
-                    <span class="text-muted-foreground text-xs">/</span>
-                    <a-tag color="purple" class="!m-0">{{ payFormLabel(GW_PAY_FORM.MINI) }}</a-tag>
-                  </template>
-                  <a-tag v-else :color="drow.primaryForm === GW_PAY_FORM.MINI ? 'purple' : 'blue'" class="!m-0">
-                    {{ payFormLabel(drow.primaryForm) }}
-                  </a-tag>
+              <!-- AUTO：默认支付方式 + 路由命中预览 -->
+              <div>
+                <div class="mb-1 text-xs text-muted-foreground">
+                  {{ $t('payment.merchant.gatewayConfig.gatewayConfig.method') }}
                 </div>
-
-                <!-- AUTO -->
-                <template v-if="editLevel === GW_LEVEL.AUTO">
-                  <div
-                    class="cell-text"
-                    :title="findMethodLabel(sc.provider, defaultMethodFor(sc.clientEnv, drow.primaryForm))"
-                  >
-                    {{ findMethodLabel(sc.provider, defaultMethodFor(sc.clientEnv, drow.primaryForm)) }}
-                  </div>
-                  <RouteHitPreviewBlock
-                    :hit="previewRouteHit(sc.provider, defaultMethodFor(sc.clientEnv, drow.primaryForm))"
-                    :empty-tone="emptyToneFor(sc.provider, sc.clientEnv, drow.primaryForm)"
-                    i18n-prefix="payment.merchant.gatewayConfig.gatewayConfig"
-                  />
-                </template>
-
-                <!-- METHOD：始终按 primaryForm 单行（未合并） -->
-                <template v-else-if="editLevel === GW_LEVEL.METHOD">
-                  <div>
-                    <a-select
-                      :value="getRow(sc.clientEnv, drow.primaryForm).method"
-                      :options="methodOptions(sc.provider)"
-                      :placeholder="$t('payment.merchant.gatewayConfig.gatewayConfig.methodPlaceholder')"
-                      :disabled="!editing"
-                      allow-clear
-                      class="w-full min-w-[160px]"
-                      @change="(val: any) => (getRow(sc.clientEnv, drow.primaryForm).method = val || '')"
-                    />
-                  </div>
-                  <RouteHitPreviewBlock
-                    :hit="previewRouteHit(sc.provider, resolveMethodForRow(sc.clientEnv, drow.primaryForm))"
-                    :empty-tone="emptyToneFor(sc.provider, sc.clientEnv, drow.primaryForm)"
-                    i18n-prefix="payment.merchant.gatewayConfig.gatewayConfig"
-                  />
-                </template>
-
-                <!-- DIRECT -->
-                <template v-else>
-                  <div>
-                    <ChannelMerchantSelect
-                      :value="getRow(sc.clientEnv, drow.primaryForm).channelMchNo"
-                      :options="channelMchOptions(sc.clientEnv, drow.primaryForm)"
-                      :placeholder="$t('payment.merchant.gatewayConfig.gatewayConfig.channelMerchantPlaceholder')"
-                      :disabled="!editing"
-                      root-class-name="w-full min-w-[160px]"
-                      @change="(val: any) => onChannelMchChange(sc.clientEnv, drow.primaryForm, val)"
-                    />
-                  </div>
-                  <div>
-                    <a-select
-                      :value="getRow(sc.clientEnv, drow.primaryForm).capability"
-                      :options="capabilityOptions(sc.clientEnv, drow.primaryForm)"
-                      :placeholder="$t('payment.merchant.gatewayConfig.gatewayConfig.capabilityPlaceholder')"
-                      :disabled="!editing || !getRow(sc.clientEnv, drow.primaryForm).channelMchNo"
-                      allow-clear
-                      class="w-full min-w-[160px]"
-                      @change="(val: any) => (getRow(sc.clientEnv, drow.primaryForm).capability = val)"
-                    />
-                  </div>
-                </template>
+                <div class="text-sm break-all">
+                  {{ findMethodLabel(sc.provider, defaultMethodFor(sc.clientEnv, drow.primaryForm)) }}
+                </div>
               </div>
+              <RouteHitPreviewBlock
+                :hit="previewRouteHit(sc.provider, defaultMethodFor(sc.clientEnv, drow.primaryForm))"
+                :empty-tone="emptyToneFor(sc.provider, sc.clientEnv, drow.primaryForm)"
+                i18n-prefix="payment.merchant.gatewayConfig.gatewayConfig"
+                :mobile-labels="routePreviewMobileLabels"
+              />
+            </div>
+          </div>
+        </a-collapse-panel>
+      </a-collapse>
+
+      <template v-else>
+        <div v-for="sc in GW_CLIENT_ENVS" :key="sc.clientEnv" class="env-block">
+          <div class="env-block-title">{{ clientEnvLabel(sc.clientEnv) }}</div>
+          <div class="flex flex-col gap-2">
+            <div
+              v-for="drow in displayFormRows(sc.clientEnv)"
+              :key="drow.key"
+              class="flex flex-col gap-2 rounded-lg border border-border bg-background p-3"
+            >
+              <!-- 形态：合并时展示 H5 + 小程序 -->
+              <div class="form-tags">
+                <template v-if="drow.merged">
+                  <a-tag color="blue" class="!m-0">{{ payFormLabel(GW_PAY_FORM.H5) }}</a-tag>
+                  <span class="text-muted-foreground text-xs">/</span>
+                  <a-tag color="purple" class="!m-0">{{ payFormLabel(GW_PAY_FORM.MINI) }}</a-tag>
+                </template>
+                <a-tag v-else :color="drow.primaryForm === GW_PAY_FORM.MINI ? 'purple' : 'blue'" class="!m-0">
+                  {{ payFormLabel(drow.primaryForm) }}
+                </a-tag>
+              </div>
+
+              <!-- METHOD -->
+              <template v-if="editLevel === GW_LEVEL.METHOD">
+                <div>
+                  <div class="mb-1 text-xs text-muted-foreground">
+                    {{ $t('payment.merchant.gatewayConfig.gatewayConfig.method') }}
+                  </div>
+                  <a-select
+                    :value="getRow(sc.clientEnv, drow.primaryForm).method"
+                    :options="methodOptions(sc.provider)"
+                    :placeholder="$t('payment.merchant.gatewayConfig.gatewayConfig.methodPlaceholder')"
+                    :disabled="!editing"
+                    allow-clear
+                    class="w-full"
+                    @change="(val: any) => (getRow(sc.clientEnv, drow.primaryForm).method = val || '')"
+                  />
+                </div>
+                <RouteHitPreviewBlock
+                  :hit="previewRouteHit(sc.provider, resolveMethodForRow(sc.clientEnv, drow.primaryForm))"
+                  :empty-tone="emptyToneFor(sc.provider, sc.clientEnv, drow.primaryForm)"
+                  i18n-prefix="payment.merchant.gatewayConfig.gatewayConfig"
+                  :mobile-labels="routePreviewMobileLabels"
+                />
+              </template>
+
+              <!-- DIRECT -->
+              <template v-else>
+                <div>
+                  <div class="mb-1 text-xs text-muted-foreground">
+                    {{ $t('payment.merchant.route.route.channelMerchant') }}
+                  </div>
+                  <ChannelMerchantSelect
+                    :value="getRow(sc.clientEnv, drow.primaryForm).channelMchNo"
+                    :options="channelMchOptions(sc.clientEnv, drow.primaryForm)"
+                    :placeholder="$t('payment.merchant.gatewayConfig.gatewayConfig.channelMerchantPlaceholder')"
+                    :disabled="!editing"
+                    root-class-name="w-full"
+                    @change="(val: any) => onChannelMchChange(sc.clientEnv, drow.primaryForm, val)"
+                  />
+                </div>
+                <div>
+                  <div class="mb-1 text-xs text-muted-foreground">
+                    {{ $t('payment.merchant.route.route.payCapability') }}
+                  </div>
+                  <a-select
+                    :value="getRow(sc.clientEnv, drow.primaryForm).capability"
+                    :options="capabilityOptions(sc.clientEnv, drow.primaryForm)"
+                    :placeholder="$t('payment.merchant.gatewayConfig.gatewayConfig.capabilityPlaceholder')"
+                    :disabled="!editing || !getRow(sc.clientEnv, drow.primaryForm).channelMchNo"
+                    allow-clear
+                    class="w-full"
+                    @change="(val: any) => (getRow(sc.clientEnv, drow.primaryForm).capability = val)"
+                  />
+                </div>
+              </template>
             </div>
           </div>
         </div>
-
-        <!-- 移动端：AUTO 按环境折叠收纳，METHOD/DIRECT 平铺环境块，行改纵向堆叠卡片 -->
-        <div v-else class="flex flex-col gap-3">
-          <a-collapse v-if="editLevel === GW_LEVEL.AUTO" v-model:active-key="mobileAutoActiveKeys">
-            <a-collapse-panel v-for="sc in GW_CLIENT_ENVS" :key="sc.clientEnv" :header="clientEnvLabel(sc.clientEnv)">
-              <div class="flex flex-col gap-2">
-                <div
-                  v-for="drow in displayFormRows(sc.clientEnv)"
-                  :key="drow.key"
-                  class="flex flex-col gap-2 rounded-lg border border-border bg-background p-3"
-                >
-                  <!-- 形态：合并时展示 H5 + 小程序 -->
-                  <div class="form-tags">
-                    <template v-if="drow.merged">
-                      <a-tag color="blue" class="!m-0">{{ payFormLabel(GW_PAY_FORM.H5) }}</a-tag>
-                      <span class="text-muted-foreground text-xs">/</span>
-                      <a-tag color="purple" class="!m-0">{{ payFormLabel(GW_PAY_FORM.MINI) }}</a-tag>
-                    </template>
-                    <a-tag v-else :color="drow.primaryForm === GW_PAY_FORM.MINI ? 'purple' : 'blue'" class="!m-0">
-                      {{ payFormLabel(drow.primaryForm) }}
-                    </a-tag>
-                  </div>
-
-                  <!-- AUTO：默认支付方式 + 路由命中预览 -->
-                  <div>
-                    <div class="mb-1 text-xs text-muted-foreground">
-                      {{ $t('payment.merchant.gatewayConfig.gatewayConfig.method') }}
-                    </div>
-                    <div class="text-sm break-all">
-                      {{ findMethodLabel(sc.provider, defaultMethodFor(sc.clientEnv, drow.primaryForm)) }}
-                    </div>
-                  </div>
-                  <RouteHitPreviewBlock
-                    :hit="previewRouteHit(sc.provider, defaultMethodFor(sc.clientEnv, drow.primaryForm))"
-                    :empty-tone="emptyToneFor(sc.provider, sc.clientEnv, drow.primaryForm)"
-                    i18n-prefix="payment.merchant.gatewayConfig.gatewayConfig"
-                    :mobile-labels="routePreviewMobileLabels"
-                  />
-                </div>
-              </div>
-            </a-collapse-panel>
-          </a-collapse>
-
-          <template v-else>
-            <div v-for="sc in GW_CLIENT_ENVS" :key="sc.clientEnv" class="env-block">
-              <div class="env-block-title">{{ clientEnvLabel(sc.clientEnv) }}</div>
-              <div class="flex flex-col gap-2">
-                <div
-                  v-for="drow in displayFormRows(sc.clientEnv)"
-                  :key="drow.key"
-                  class="flex flex-col gap-2 rounded-lg border border-border bg-background p-3"
-                >
-                  <!-- 形态：合并时展示 H5 + 小程序 -->
-                  <div class="form-tags">
-                    <template v-if="drow.merged">
-                      <a-tag color="blue" class="!m-0">{{ payFormLabel(GW_PAY_FORM.H5) }}</a-tag>
-                      <span class="text-muted-foreground text-xs">/</span>
-                      <a-tag color="purple" class="!m-0">{{ payFormLabel(GW_PAY_FORM.MINI) }}</a-tag>
-                    </template>
-                    <a-tag v-else :color="drow.primaryForm === GW_PAY_FORM.MINI ? 'purple' : 'blue'" class="!m-0">
-                      {{ payFormLabel(drow.primaryForm) }}
-                    </a-tag>
-                  </div>
-
-                  <!-- METHOD -->
-                  <template v-if="editLevel === GW_LEVEL.METHOD">
-                    <div>
-                      <div class="mb-1 text-xs text-muted-foreground">
-                        {{ $t('payment.merchant.gatewayConfig.gatewayConfig.method') }}
-                      </div>
-                      <a-select
-                        :value="getRow(sc.clientEnv, drow.primaryForm).method"
-                        :options="methodOptions(sc.provider)"
-                        :placeholder="$t('payment.merchant.gatewayConfig.gatewayConfig.methodPlaceholder')"
-                        :disabled="!editing"
-                        allow-clear
-                        class="w-full"
-                        @change="(val: any) => (getRow(sc.clientEnv, drow.primaryForm).method = val || '')"
-                      />
-                    </div>
-                    <RouteHitPreviewBlock
-                      :hit="previewRouteHit(sc.provider, resolveMethodForRow(sc.clientEnv, drow.primaryForm))"
-                      :empty-tone="emptyToneFor(sc.provider, sc.clientEnv, drow.primaryForm)"
-                      i18n-prefix="payment.merchant.gatewayConfig.gatewayConfig"
-                      :mobile-labels="routePreviewMobileLabels"
-                    />
-                  </template>
-
-                  <!-- DIRECT -->
-                  <template v-else>
-                    <div>
-                      <div class="mb-1 text-xs text-muted-foreground">
-                        {{ $t('payment.merchant.route.route.channelMerchant') }}
-                      </div>
-                      <ChannelMerchantSelect
-                        :value="getRow(sc.clientEnv, drow.primaryForm).channelMchNo"
-                        :options="channelMchOptions(sc.clientEnv, drow.primaryForm)"
-                        :placeholder="$t('payment.merchant.gatewayConfig.gatewayConfig.channelMerchantPlaceholder')"
-                        :disabled="!editing"
-                        root-class-name="w-full"
-                        @change="(val: any) => onChannelMchChange(sc.clientEnv, drow.primaryForm, val)"
-                      />
-                    </div>
-                    <div>
-                      <div class="mb-1 text-xs text-muted-foreground">
-                        {{ $t('payment.merchant.route.route.payCapability') }}
-                      </div>
-                      <a-select
-                        :value="getRow(sc.clientEnv, drow.primaryForm).capability"
-                        :options="capabilityOptions(sc.clientEnv, drow.primaryForm)"
-                        :placeholder="$t('payment.merchant.gatewayConfig.gatewayConfig.capabilityPlaceholder')"
-                        :disabled="!editing || !getRow(sc.clientEnv, drow.primaryForm).channelMchNo"
-                        allow-clear
-                        class="w-full"
-                        @change="(val: any) => (getRow(sc.clientEnv, drow.primaryForm).capability = val)"
-                      />
-                    </div>
-                  </template>
-                </div>
-              </div>
-            </div>
-          </template>
-        </div>
+      </template>
+    </div>
     <!-- 移动端编辑态底部占位，防止内容被固定操作栏遮挡 -->
     <div v-if="isMobile && editing" class="h-20"></div>
 

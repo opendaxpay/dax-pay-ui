@@ -6,6 +6,7 @@
   import { $t } from '@vben/locales';
 
   import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+  import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
 
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import { PayRouteApi, type PayRouteStrategyResult } from '#/api/payment/route/pay-route.api';
@@ -49,6 +50,7 @@
   const mchNo = computed(() => routeContext.query.value.mchNo);
   const appId = computed(() => routeContext.query.value.appId);
   const appInfo = ref<MchAppInfoResult>({});
+  const { setTabObjectTitle } = useDynamicTabTitle($t('payment.merchant.route.route.title'));
   const strategy = ref<PayRouteStrategyResult>({});
   const loading = ref(false);
   const editMode = ref<PayRouteMode>(PAY_ROUTE_MODE.BASIC);
@@ -90,6 +92,8 @@
     const { data } = await MchAppInfoApi.page({ mchNo: mchNo.value, current: 1, size: 200 });
     const app = data?.records?.find((a) => a.appId === appId.value);
     appInfo.value = app || {};
+    // 页签标题动态化为「{应用名} · 功能名」
+    setTabObjectTitle(app?.appName || '');
   }
 
   async function loadStrategy() {
