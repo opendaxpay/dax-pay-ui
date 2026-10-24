@@ -5,6 +5,7 @@
   import { $t } from '@vben/locales';
 
   import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+  import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
 
   import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
@@ -34,6 +35,7 @@
 
   // 从路由参数获取mchNo
   const mchNo = computed(() => routeContext.query.value.mchNo);
+  const { setTabObjectTitle } = useDynamicTabTitle($t('payment.merchant.form.manage.info.title'));
 
   // 表单数据
   const form = ref<MerchantInfo>({
@@ -79,6 +81,8 @@
       .then(({ data }) => {
         if (data) {
           form.value = { ...data };
+          // 页签标题动态化为「{商户名} · 商户资料」
+          setTabObjectTitle(data.mchName || '');
         }
       })
       .finally(() => {
@@ -123,25 +127,28 @@
    * 保存
    */
   function handleSave() {
-    formRef.value?.validate().then(() => {
-      confirm({
-        title: $t('common.confirm'),
-        content: $t('common.confirmSaveContent'),
-        okText: $t('common.okText'),
-        cancelText: $t('common.cancelText'),
-        onOk: async () => {
-          confirmLoading.value = true;
-          try {
-            await MerchantApi.update(form.value);
-            message.success($t('common.saveSuccess'));
-            isEditing.value = false;
-            await loadDetail();
-          } finally {
-            confirmLoading.value = false;
-          }
-        },
-      });
-    }).catch(() => {});
+    formRef.value
+      ?.validate()
+      .then(() => {
+        confirm({
+          title: $t('common.confirm'),
+          content: $t('common.confirmSaveContent'),
+          okText: $t('common.okText'),
+          cancelText: $t('common.cancelText'),
+          onOk: async () => {
+            confirmLoading.value = true;
+            try {
+              await MerchantApi.update(form.value);
+              message.success($t('common.saveSuccess'));
+              isEditing.value = false;
+              await loadDetail();
+            } finally {
+              confirmLoading.value = false;
+            }
+          },
+        });
+      })
+      .catch(() => {});
   }
 </script>
 
@@ -165,14 +172,21 @@
       </template>
       <template #extra>
         <a-space>
-          <a-button v-if="!isEditing && hasPermission(PermCodes.Merchant.Info.MANAGE)" type="primary" @click="handleEdit">{{
-            $t('common.edit')
-          }}</a-button>
+          <a-button
+            v-if="!isEditing && hasPermission(PermCodes.Merchant.Info.MANAGE)"
+            type="primary"
+            @click="handleEdit"
+            >{{ $t('common.edit') }}</a-button
+          >
           <template v-else>
             <a-button @click="handleCancel">{{ $t('common.cancelText') }}</a-button>
-            <a-button v-if="hasPermission(PermCodes.Merchant.Info.MANAGE)" type="primary" :loading="confirmLoading" @click="handleSave">{{
-              $t('common.save')
-            }}</a-button>
+            <a-button
+              v-if="hasPermission(PermCodes.Merchant.Info.MANAGE)"
+              type="primary"
+              :loading="confirmLoading"
+              @click="handleSave"
+              >{{ $t('common.save') }}</a-button
+            >
           </template>
         </a-space>
       </template>

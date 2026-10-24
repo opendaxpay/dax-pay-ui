@@ -9,6 +9,7 @@
   import { $t } from '@vben/locales';
 
   import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+  import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
 
   import { ChinaRegionApi } from '#/api/core/region.api';
   import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
@@ -36,6 +37,7 @@
   const { hasPermission } = usePermission();
 
   const mchNo = computed(() => routeContext.query.value.mchNo);
+  const { setTabObjectTitle } = useDynamicTabTitle($t('payment.merchant.store.store.title'));
   // 商户信息（用于标题展示商户名称）
   const merchantInfo = ref<MerchantInfo>({});
 
@@ -195,6 +197,8 @@
     MerchantApi.findByMchNo(mchNo.value).then(({ data }) => {
       if (data) {
         merchantInfo.value = data;
+        // 页签标题动态化为「{商户名} · 门店管理」
+        setTabObjectTitle(data.mchName || '');
       }
     });
   }

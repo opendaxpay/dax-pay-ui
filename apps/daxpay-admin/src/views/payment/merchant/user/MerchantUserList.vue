@@ -10,6 +10,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+  import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
 
   import { MerchantUserApi, type MerchantUserResult } from '#/api/payment/merchant/merchant-user.api';
   import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
@@ -37,6 +38,7 @@
 
   // 从路由参数获取商户号
   const mchNo = computed(() => routeContext.query.value.mchNo);
+  const { setTabObjectTitle } = useDynamicTabTitle($t('payment.merchant.user.title'));
 
   // 表格引用
   const xTable = ref<VxeTableInstance>();
@@ -105,6 +107,8 @@
     MerchantApi.findByMchNo(mchNo.value).then(({ data }) => {
       if (data) {
         merchantInfo.value = data;
+        // 页签标题动态化为「{商户名} · 商户用户」
+        setTabObjectTitle(data.mchName || '');
       }
     });
   }
@@ -425,7 +429,12 @@
           <vxe-column type="checkbox" width="60" />
           <vxe-column field="name" :title="$t('iam.user.field.name')" min-width="120" />
           <!-- 身份(主管理员金色标签; 普通用户蓝色角色标签) -->
-          <vxe-column field="administrator" :title="$t('payment.merchant.user.field.identity')" width="110" align="center">
+          <vxe-column
+            field="administrator"
+            :title="$t('payment.merchant.user.field.identity')"
+            width="110"
+            align="center"
+          >
             <template #default="{ row }">
               <a-tag v-if="row.administrator" color="gold">{{ $t('iam.user.field.administrator') }}</a-tag>
               <a-tag v-else-if="row.roleName" color="blue">{{ getRoleDisplay(row) }}</a-tag>

@@ -9,6 +9,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+  import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
 
   import {
     ChannelMerchantApi,
@@ -50,6 +51,7 @@
 
   // 从路由参数获取mchNo
   const mchNo = ref('');
+  const { setTabObjectTitle } = useDynamicTabTitle($t('payment.merchant.channelMerchant.title'));
 
   // 商户信息
   const merchantInfo = ref<MerchantInfo>({});
@@ -117,6 +119,8 @@
       .then(({ data }) => {
         if (data) {
           merchantInfo.value = data;
+          // 页签标题动态化为「{商户名} · 通道商户」
+          setTabObjectTitle(data.mchName || '');
           if (!mchNo.value) {
             mchNo.value = data.mchNo || '';
           }

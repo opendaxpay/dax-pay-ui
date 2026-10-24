@@ -7,10 +7,13 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { PageShell } from '@daxpay/ui-biz/components/page-shell';
+  import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
   import { useClipboard } from '@vueuse/core';
 
   import {
-    MerchantCredentialApi, type MerchantCredentialParam, type MerchantCredentialResult,
+    MerchantCredentialApi,
+    type MerchantCredentialParam,
+    type MerchantCredentialResult,
   } from '#/api/payment/merchant/credential.api';
   import { KeyGenApi } from '#/api/payment/merchant/key-gen.api';
   import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
@@ -40,6 +43,7 @@
   // 编辑模式
   const isEditing = ref(false);
   const mchNo = computed(() => routeContext.query.value.mchNo);
+  const { setTabObjectTitle } = useDynamicTabTitle($t('payment.merchant.credential.credential.title'));
   const merchantInfo = ref<MerchantInfo>({});
   // 表单数据
   const formState = ref<MerchantCredentialResult>({});
@@ -56,6 +60,8 @@
     if (!mchNo.value) return;
     const { data } = await MerchantApi.findByMchNo(mchNo.value);
     merchantInfo.value = data || {};
+    // 页签标题动态化为「{商户名} · 对接配置」
+    setTabObjectTitle(data?.mchName || '');
   }
 
   /**
@@ -247,89 +253,89 @@
       </template>
     </template>
 
-        <div class="credential-form-container max-w-4xl px-4 py-2">
-          <!-- 信息提示 -->
-          <div class="info-banner">
-            <IconifyIcon icon="ant-design:info-circle-filled" />
-            <!-- 国际化：商户 API 配置用于接口调用时的身份验证与数据加解密，请妥善保管密钥信息 -->
-            <span>{{ $t('payment.merchant.credential.credential.infoBanner') }}</span>
+    <div class="credential-form-container max-w-4xl px-4 py-2">
+      <!-- 信息提示 -->
+      <div class="info-banner">
+        <IconifyIcon icon="ant-design:info-circle-filled" />
+        <!-- 国际化：商户 API 配置用于接口调用时的身份验证与数据加解密，请妥善保管密钥信息 -->
+        <span>{{ $t('payment.merchant.credential.credential.infoBanner') }}</span>
+      </div>
+
+      <a-form layout="vertical" class="module-form">
+        <!-- 平台公钥（只读） -->
+        <!-- 国际化：平台公钥 -->
+        <a-form-item
+          :label="$t('payment.merchant.credential.credential.platformPublicKey')"
+          :tooltip="$t('payment.merchant.credential.credential.platformPublicKeyTooltip')"
+        >
+          <div class="textarea-wrapper">
+            <a-textarea
+              :value="formState.platformPublicKey"
+              :placeholder="$t('payment.merchant.credential.credential.platformPublicKeyPlaceholder')"
+              :rows="6"
+              readonly
+              class="readonly-textarea"
+            />
+            <div class="textarea-actions">
+              <a-button type="link" size="small" @click="handleCopy(formState.platformPublicKey || '')">
+                <template #icon>
+                  <IconifyIcon icon="ant-design:copy-outlined" />
+                </template>
+                <!-- 国际化：复制 -->
+                {{ $t('payment.merchant.credential.credential.copy') }}
+              </a-button>
+            </div>
           </div>
+        </a-form-item>
 
-          <a-form layout="vertical" class="module-form">
-            <!-- 平台公钥（只读） -->
-            <!-- 国际化：平台公钥 -->
-            <a-form-item
-              :label="$t('payment.merchant.credential.credential.platformPublicKey')"
-              :tooltip="$t('payment.merchant.credential.credential.platformPublicKeyTooltip')"
-            >
-              <div class="textarea-wrapper">
-                <a-textarea
-                  :value="formState.platformPublicKey"
-                  :placeholder="$t('payment.merchant.credential.credential.platformPublicKeyPlaceholder')"
-                  :rows="6"
-                  readonly
-                  class="readonly-textarea"
-                />
-                <div class="textarea-actions">
-                  <a-button type="link" size="small" @click="handleCopy(formState.platformPublicKey || '')">
-                    <template #icon>
-                      <IconifyIcon icon="ant-design:copy-outlined" />
-                    </template>
-                    <!-- 国际化：复制 -->
-                    {{ $t('payment.merchant.credential.credential.copy') }}
-                  </a-button>
-                </div>
-              </div>
-            </a-form-item>
+        <!-- 商户公钥 -->
+        <!-- 国际化：商户公钥 -->
+        <a-form-item
+          :label="$t('payment.merchant.credential.credential.publicKey')"
+          :tooltip="$t('payment.merchant.credential.credential.publicKeyTooltip')"
+        >
+          <div class="textarea-wrapper">
+            <a-textarea
+              v-model:value="formState.publicKey"
+              :placeholder="$t('payment.merchant.credential.credential.publicKeyPlaceholder')"
+              :rows="6"
+              :disabled="!isEditing"
+              allow-clear
+            />
+            <div class="textarea-actions">
+              <a-button type="link" size="small" :disabled="!isEditing" @click="handleGenRsaKeyPair">
+                <template #icon>
+                  <IconifyIcon icon="ant-design:key-outlined" />
+                </template>
+                <!-- 国际化：生成密钥对 -->
+                {{ $t('payment.merchant.credential.credential.genRsaKeyPair') }}
+              </a-button>
+            </div>
+          </div>
+        </a-form-item>
 
-            <!-- 商户公钥 -->
-            <!-- 国际化：商户公钥 -->
-            <a-form-item
-              :label="$t('payment.merchant.credential.credential.publicKey')"
-              :tooltip="$t('payment.merchant.credential.credential.publicKeyTooltip')"
-            >
-              <div class="textarea-wrapper">
-                <a-textarea
-                  v-model:value="formState.publicKey"
-                  :placeholder="$t('payment.merchant.credential.credential.publicKeyPlaceholder')"
-                  :rows="6"
-                  :disabled="!isEditing"
-                  allow-clear
-                />
-                <div class="textarea-actions">
-                  <a-button type="link" size="small" :disabled="!isEditing" @click="handleGenRsaKeyPair">
-                    <template #icon>
-                      <IconifyIcon icon="ant-design:key-outlined" />
-                    </template>
-                    <!-- 国际化：生成密钥对 -->
-                    {{ $t('payment.merchant.credential.credential.genRsaKeyPair') }}
-                  </a-button>
-                </div>
-              </div>
-            </a-form-item>
-
-            <!-- 通信密钥 -->
-            <!-- 国际化：通信密钥 -->
-            <a-form-item
-              :label="$t('payment.merchant.credential.credential.secretKey')"
-              :tooltip="$t('payment.merchant.credential.credential.secretKeyTooltip')"
-            >
-              <div class="flex gap-2">
-                <a-input
-                  v-model:value="formState.secretKey"
-                  :placeholder="$t('payment.merchant.credential.credential.secretKeyPlaceholder')"
-                  :disabled="!isEditing"
-                  class="flex-1"
-                  allow-clear
-                />
-                <a-button type="primary" ghost :disabled="!isEditing" @click="handleGenAesSecretKey">
-                  <!-- 国际化：生成密钥 -->
-                  {{ $t('payment.merchant.credential.credential.genAesSecretKey') }}
-                </a-button>
-              </div>
-            </a-form-item>
-          </a-form>
-        </div>
+        <!-- 通信密钥 -->
+        <!-- 国际化：通信密钥 -->
+        <a-form-item
+          :label="$t('payment.merchant.credential.credential.secretKey')"
+          :tooltip="$t('payment.merchant.credential.credential.secretKeyTooltip')"
+        >
+          <div class="flex gap-2">
+            <a-input
+              v-model:value="formState.secretKey"
+              :placeholder="$t('payment.merchant.credential.credential.secretKeyPlaceholder')"
+              :disabled="!isEditing"
+              class="flex-1"
+              allow-clear
+            />
+            <a-button type="primary" ghost :disabled="!isEditing" @click="handleGenAesSecretKey">
+              <!-- 国际化：生成密钥 -->
+              {{ $t('payment.merchant.credential.credential.genAesSecretKey') }}
+            </a-button>
+          </div>
+        </a-form-item>
+      </a-form>
+    </div>
 
     <!-- RSA密钥对弹窗 -->
     <!-- 国际化：RSA密钥对 -->
@@ -349,7 +355,9 @@
         <div>
           <div class="mb-2 flex items-center justify-between">
             <!-- 国际化：私钥 -->
-            <span class="font-medium text-foreground">{{ $t('payment.merchant.credential.credential.privateKey') }}</span>
+            <span class="font-medium text-foreground">{{
+              $t('payment.merchant.credential.credential.privateKey')
+            }}</span>
             <a-button size="small" type="primary" ghost @click="handleCopy(privateKeyContent)">
               <template #icon>
                 <IconifyIcon icon="ant-design:copy-outlined" />

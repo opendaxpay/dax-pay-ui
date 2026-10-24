@@ -7,6 +7,7 @@
   import { $t } from '@vben/locales';
 
   import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+  import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
 
   import { TerminalDeviceApi, type TerminalDeviceResult } from '#/api/payment/device/terminal.api';
   import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
@@ -34,6 +35,7 @@
   const { hasPermission } = usePermission();
 
   const mchNo = computed(() => routeContext.query.value.mchNo);
+  const { setTabObjectTitle } = useDynamicTabTitle($t('payment.device.terminal.systemTitle'));
   // 商户信息（用于标题展示商户名称）
   const merchantInfo = ref<MerchantInfo>({});
 
@@ -181,6 +183,8 @@
     MerchantApi.findByMchNo(mchNo.value).then(({ data }) => {
       if (data) {
         merchantInfo.value = data;
+        // 页签标题动态化为「{商户名} · 系统终端」
+        setTabObjectTitle(data.mchName || '');
       }
     });
   }
@@ -219,7 +223,12 @@
         <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
           <vxe-column field="terminalNo" :title="$t('payment.device.terminal.field.terminalNo')" :min-width="200" />
           <vxe-column field="name" :title="$t('payment.device.terminal.field.name')" :min-width="140" />
-          <vxe-column field="storeName" :title="$t('payment.device.terminal.field.store')" :min-width="160" :show-overflow="false">
+          <vxe-column
+            field="storeName"
+            :title="$t('payment.device.terminal.field.store')"
+            :min-width="160"
+            :show-overflow="false"
+          >
             <template #default="{ row }">
               <div v-if="row.storeNo" class="flex flex-col gap-y-1">
                 <span>{{ row.storeName || '-' }}</span>

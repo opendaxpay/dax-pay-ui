@@ -7,6 +7,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+  import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
 
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
@@ -31,6 +32,7 @@
   const { hasPermission } = usePermission();
 
   const mchNo = computed(() => routeContext.query.value.mchNo);
+  const { setTabObjectTitle } = useDynamicTabTitle($t('payment.merchant.app.app.myApps'));
   const merchantInfo = ref<MerchantInfo>({});
   const appEditRef = ref<InstanceType<typeof MchAppInfoEdit>>();
 
@@ -109,6 +111,8 @@
     MerchantApi.findByMchNo(mchNo.value).then(({ data }) => {
       if (data) {
         merchantInfo.value = data;
+        // 页签标题动态化为「{商户名} · 应用管理」
+        setTabObjectTitle(data.mchName || '');
       }
     });
   }

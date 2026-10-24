@@ -4,6 +4,10 @@
 
   import { $t } from '@vben/locales';
 
+  import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
+
+  import { MerchantApi } from '#/api/payment/merchant/merchant.api';
+
   import MchAppPanel from './mch/DyMchAppPanel.vue';
   import DyPlatformAppPanel from './platform/DyPlatformAppPanel.vue';
 
@@ -52,6 +56,25 @@
     const raw = route.query.mchNo;
     return typeof raw === 'string' ? raw : Array.isArray(raw) ? (raw[0] ?? '') : '';
   });
+
+  // 商户工作台带 mchNo 进入时页签动态化为「{商户名} · 支付应用」; 本菜单开启 query_sync 单页签复用,
+  // 参数移除后(切 Tab/菜单直连)须恢复菜单标题, 并对异步返回做竞态守卫
+  const { setTabObjectTitle, resetTabTitle } = useDynamicTabTitle($t('payment.merchant.workbench.workbench.cardDyApp'));
+  watch(
+    initialMchNo,
+    (mchNo) => {
+      if (!mchNo) {
+        resetTabTitle();
+        return;
+      }
+      MerchantApi.findByMchNo(mchNo).then(({ data }) => {
+        if (initialMchNo.value === mchNo && data?.mchName) {
+          setTabObjectTitle(data.mchName);
+        }
+      });
+    },
+    { immediate: true },
+  );
 </script>
 
 <template>

@@ -23,5 +23,15 @@ export function useDynamicTabTitle(suffix: string) {
     setTabTitle(`${name} · ${suffix}`);
   }
 
-  return { setTabObjectTitle };
+  /**
+   * 恢复页签标题为功能名
+   *
+   * 供开了 query_sync 的单页签 Hub 类页面使用: 携对象参数进入时动态化,
+   * 参数移除后(切 Tab/菜单直连复用同一页签)须恢复菜单标题, 防止动态标题残留
+   */
+  function resetTabTitle() {
+    setTabTitle(suffix);
+  }
+
+  return { setTabObjectTitle, resetTabTitle };
 }

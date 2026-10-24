@@ -9,6 +9,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+  import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
 
   import {
     MchWxDomainVerifyApi,
@@ -39,6 +40,7 @@
     fallbackPath: '/payment/merchant',
   });
   const mchNo = computed(() => routeContext.query.value.mchNo);
+  const { setTabObjectTitle } = useDynamicTabTitle($t('payment.wxVerify.title'));
 
   const loading = ref(false);
   const xTable = ref<VxeTableInstance>();
@@ -83,6 +85,8 @@
     if (!mchNo.value) return;
     const { data } = await MerchantApi.findByMchNo(mchNo.value);
     merchantInfo.value = data || {};
+    // 页签标题动态化为「{商户名} · 域名校验文件」
+    setTabObjectTitle(data?.mchName || '');
   }
 
   /**
@@ -238,12 +242,7 @@
             show-overflow
           />
           <!-- 国际化：备注 -->
-          <vxe-column
-            field="remark"
-            :title="$t('payment.wxVerify.field.remark')"
-            :min-width="160"
-            show-overflow
-          />
+          <vxe-column field="remark" :title="$t('payment.wxVerify.field.remark')" :min-width="160" show-overflow />
           <!-- 国际化：创建时间 -->
           <vxe-column
             field="createTime"
