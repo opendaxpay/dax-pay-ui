@@ -196,10 +196,17 @@
   }
 
   /**
-   * 危险操作卡：删除、取消默认用红色样式
+   * 危险操作卡：仅删除用红色样式
    */
   function isDangerCard(card: WorkbenchCard) {
-    return card.action === 'delete' || card.action === 'cancelDefault';
+    return card.action === 'delete';
+  }
+
+  /**
+   * 当前生效态卡：已设为默认应用(取消默认)用主色强调, 与危险态区分
+   */
+  function isActiveCard(card: WorkbenchCard) {
+    return card.action === 'cancelDefault';
   }
 
   /**
@@ -408,14 +415,26 @@
                 <div class="flex flex-col items-center text-center">
                   <div
                     class="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:shadow-md"
-                    :class="isDangerCard(card) ? 'bg-destructive/10 text-destructive' : getIconBgClass(group.color)"
+                    :class="
+                      isDangerCard(card)
+                        ? 'bg-destructive/10 text-destructive'
+                        : isActiveCard(card)
+                          ? 'bg-primary/10 text-primary'
+                          : getIconBgClass(group.color)
+                    "
                   >
                     <IconifyIcon :icon="card.icon" class="h-7 w-7" />
                   </div>
 
                   <div
                     class="mb-1.5 text-base font-bold transition-colors duration-300"
-                    :class="isDangerCard(card) ? 'text-destructive' : 'text-foreground group-hover:text-primary'"
+                    :class="
+                      isDangerCard(card)
+                        ? 'text-destructive'
+                        : isActiveCard(card)
+                          ? 'text-primary'
+                          : 'text-foreground group-hover:text-primary'
+                    "
                   >
                     {{ card.title }}
                   </div>
@@ -425,7 +444,9 @@
                       :class="
                         isDangerCard(card)
                           ? 'text-destructive/80 group-hover:text-destructive'
-                          : 'text-muted-foreground group-hover:text-foreground'
+                          : isActiveCard(card)
+                            ? 'text-primary/80 group-hover:text-primary'
+                            : 'text-muted-foreground group-hover:text-foreground'
                       "
                     >
                       {{ card.description }}
@@ -434,8 +455,14 @@
                 </div>
 
                 <div
-                  class="absolute bottom-0 left-0 h-1.5 w-0 transition-all duration-300 group-hover:w-full"
-                  :class="isDangerCard(card) ? 'bg-destructive' : getGroupColorClass(group.color)"
+                  class="absolute bottom-0 left-0 h-1.5 transition-all duration-300"
+                  :class="
+                    isDangerCard(card)
+                      ? 'w-0 bg-destructive group-hover:w-full'
+                      : isActiveCard(card)
+                        ? 'w-full bg-primary'
+                        : ['w-0 group-hover:w-full', getGroupColorClass(group.color)]
+                  "
                 />
               </a-card>
             </div>
