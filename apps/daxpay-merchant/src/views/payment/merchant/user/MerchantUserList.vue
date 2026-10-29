@@ -105,6 +105,9 @@
       .then((res) => {
         tableData.value = res.data?.records || [];
         pageConfig.value.total = Number(res.data?.total) || 0;
+        // 翻页/重查后清空勾选: 批量动作只作用于当前页勾选
+        xTable.value?.clearCheckboxRow();
+        selectedRows.value = [];
       })
       .finally(() => {
         loading.value = false;
@@ -391,7 +394,6 @@
         <vxe-table
           ref="xTable"
           :row-config="{ keyField: 'id' }"
-          :checkbox-config="{ reserve: true }"
           :data="tableData"
           :loading="loading"
           @checkbox-change="handleCheckboxChange"

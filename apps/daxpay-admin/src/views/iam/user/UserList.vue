@@ -112,6 +112,9 @@
       ...queryForm.value,
     });
     pageQueryResHandle(data);
+    // 翻页/重查后清空勾选: 批量动作只作用于当前页勾选
+    xTable.value?.clearCheckboxRow();
+    selectedRows.value = [];
   }
 
   const { loading, pages, pagination, pageQueryResHandle, handleTableChange } = useTablePage<User>(queryPage);
@@ -456,7 +459,6 @@
         <vxe-table
           ref="xTable"
           :row-config="{ keyField: 'id' }"
-          :checkbox-config="{ reserve: true }"
           :data="pagination.records"
           :loading="loading"
           @checkbox-change="handleCheckboxChange"
