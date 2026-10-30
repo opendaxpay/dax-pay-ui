@@ -166,6 +166,7 @@
     "closeConfirmContent": "The order cannot be paid after closing, continue?",
     "refundConfirmTitle": "Confirm Refund",
     "refundConfirmContent": "Will refund {amount} from the original order, continue?",
+    "refundTradeAmountLabel": "Transaction Amount",
     "refundableBalanceLabel": "Refundable Amount",
     "cents": "cents",
     "refundAmountLabel": "Refund Amount(Yuan)",

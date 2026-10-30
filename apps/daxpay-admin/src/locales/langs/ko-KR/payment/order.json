@@ -158,6 +158,7 @@
     "closeConfirmContent": "종료 후 주문을 결제할 수 없습니다. 계속하시겠습니까?",
     "refundConfirmTitle": "환불 확인",
     "refundConfirmContent": "원래 주문에서 {amount}을(를) 환불하시겠습니까? 계속하시겠습니까?",
+    "refundTradeAmountLabel": "거래 금액",
     "refundableBalanceLabel": "환불 가능 금액",
     "cents": "센트",
     "refundAmountLabel": "환불금액(위안)",

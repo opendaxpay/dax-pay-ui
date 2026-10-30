@@ -158,6 +158,7 @@
     "closeConfirmContent": "Pesanan tidak boleh dibayar selepas ditutup, teruskan?",
     "refundConfirmTitle": "Sahkan Bayaran Balik",
     "refundConfirmContent": "Adakah akan membayar balik {amount} daripada pesanan asal, diteruskan?",
+    "refundTradeAmountLabel": "Jumlah Transaksi",
     "refundableBalanceLabel": "Amaun Boleh Dipulangkan",
     "cents": "sen",
     "refundAmountLabel": "Amaun Bayaran Balik(Yuan)",

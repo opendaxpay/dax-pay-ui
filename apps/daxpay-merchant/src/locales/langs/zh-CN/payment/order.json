@@ -174,6 +174,7 @@
     "closeConfirmContent": "关闭后订单将不可继续支付,是否继续?",
     "refundConfirmTitle": "确认发起退款",
     "refundConfirmContent": "退款将从原支付订单扣除 {amount} 元,是否继续?",
+    "refundTradeAmountLabel": "交易金额",
     "refundableBalanceLabel": "可退金额",
     "cents": "分",
     "refundAmountLabel": "退款金额(元)",

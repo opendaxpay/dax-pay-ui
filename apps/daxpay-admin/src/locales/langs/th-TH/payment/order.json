@@ -158,6 +158,7 @@
     "closeConfirmContent": "ไม่สามารถชำระเงินตามคำสั่งซื้อได้หลังจากปิดดำเนินการ ดำเนินการต่อหรือไม่",
     "refundConfirmTitle": "ยืนยันการคืนเงิน",
     "refundConfirmContent": "จะคืนเงิน {amount} จากคำสั่งซื้อเดิม ดำเนินการต่อหรือไม่",
+    "refundTradeAmountLabel": "จำนวนเงินทำธุรกรรม",
     "refundableBalanceLabel": "จำนวนเงินที่สามารถขอคืนได้",
     "cents": "เซนต์",
     "refundAmountLabel": "จำนวนเงินคืน (หยวน)",

@@ -158,6 +158,7 @@
     "closeConfirmContent": "Đơn hàng không thể được thanh toán sau khi đóng, tiếp tục?",
     "refundConfirmTitle": "Xác nhận hoàn tiền",
     "refundConfirmContent": "Sẽ hoàn lại {amount} từ đơn đặt hàng ban đầu, tiếp tục chứ?",
+    "refundTradeAmountLabel": "Số tiền giao dịch",
     "refundableBalanceLabel": "Số tiền có thể hoàn lại",
     "cents": "xu",
     "refundAmountLabel": "Số tiền hoàn lại(Nhân dân tệ)",

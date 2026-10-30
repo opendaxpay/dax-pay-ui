@@ -158,6 +158,7 @@
     "closeConfirmContent": "Pesanan tidak bisa dibayar setelah ditutup, lanjutkan?",
     "refundConfirmTitle": "Konfirmasi Pengembalian Dana",
     "refundConfirmContent": "Akankah pengembalian dana {amount} dari pesanan awal, lanjutkan?",
+    "refundTradeAmountLabel": "Jumlah Transaksi",
     "refundableBalanceLabel": "Jumlah yang Dapat Dikembalikan",
     "cents": "sen",
     "refundAmountLabel": "Jumlah Pengembalian Dana (Yuan)",

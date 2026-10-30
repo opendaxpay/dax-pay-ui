@@ -158,6 +158,7 @@
     "closeConfirmContent": "注文を閉じた後は支払いができません。続行しますか?",
     "refundConfirmTitle": "返金の確認",
     "refundConfirmContent": "元の注文から {amount} を返金しますか?続行しますか?",
+    "refundTradeAmountLabel": "取引金額",
     "refundableBalanceLabel": "返還可能金額",
     "cents": "セント",
     "refundAmountLabel": "返金金額(元)",

@@ -158,6 +158,7 @@
     "closeConfirmContent": "關閉後訂單將不可繼續支付,是否繼續?",
     "refundConfirmTitle": "確認發起退款",
     "refundConfirmContent": "退款將從原支付訂單扣除 {amount} 元,是否繼續?",
+    "refundTradeAmountLabel": "交易金額",
     "refundableBalanceLabel": "可退金額",
     "cents": "分",
     "refundAmountLabel": "退款金額(元)",
