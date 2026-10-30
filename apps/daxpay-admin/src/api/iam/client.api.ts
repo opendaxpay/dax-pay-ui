@@ -20,6 +20,7 @@ export const ClientApi = {
    * 查询全部登录终端(需登录)
    */
   findAll(): Promise<Result<ClientItem[]>> {
-    return defHttp.get({ url: '/client/find-all' });
+    // 前缀归 IAM 域: /client/** 已保留为对外开放命名空间(仅外部客户端的匿名端点)
+    return defHttp.get({ url: '/iam/client/find-all' });
   },
 };
