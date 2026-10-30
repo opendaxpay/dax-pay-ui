@@ -1,0 +1,33 @@
+{
+  "title": {
+    "announce": "试播",
+    "print": "试打"
+  },
+  "amount": "金额(元)",
+  "channel": "收款方式",
+  "speechLabel": "预计播报",
+  "speechEmpty": "点击「下发试播」后显示",
+  "speechHint": "按设备端同一套词元规则合成, 与实际播报一致",
+  "printModeLabel": "输出模式",
+  "printMode": {
+    "both": "播报 + 打印",
+    "only": "仅打印(不播报)"
+  },
+  "outBizNo": "商户单号(可选)",
+  "outBizNoPlaceholder": "票面变量 outBizNo, 留空则不展示该行",
+  "outBizNoGen": "生成",
+  "templateLabel": "打印版式",
+  "template": {
+    "standard": "标准小票"
+  },
+  "templateHint": "内置版式, 首期仅标准小票(58/80mm 双纸宽渲染)",
+  "close": "关闭",
+  "send": {
+    "announce": "下发试播",
+    "print": "下发打印"
+  },
+  "amountRangeWarning": "金额须在 0.01~999999.99 元之间",
+  "announceSent": "试播指令已下发, 设备将按所选金额与方式播报",
+  "announcePreviewed": "已生成预计播报文案(运营端仅预览, 不下发设备)",
+  "printSent": "试打指令已下发, 请查看打印机"
+}

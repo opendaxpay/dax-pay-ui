@@ -226,5 +226,21 @@
     "confirmSaveContent": "Save the mail sender configuration?",
     "testSend": "Send Test Email",
     "testSendSuccess": "Test email sent, please check the inbox"
+  },
+  "mqtt": {
+    "title": "MQTT Access",
+    "description": "Access configuration for the device broadcast pipeline",
+    "headerDescription": "This address is delivered to the APP upon device activation; incorrect configuration will prevent devices from receiving broadcasts",
+    "brokerWssUrl": "MQTT Access URL",
+    "brokerWssUrlDesc": "Full MQTT over WebSocket address for devices, e.g. wss://mqtt.example.com; TLS is terminated at the gateway",
+    "inputBrokerWssUrl": "Enter the MQTT access URL, e.g. wss://mqtt.example.com",
+    "urlPatternWarning": "The access URL must start with ws:// or wss:// and contain no spaces",
+    "username": "Access Username",
+    "usernameDesc": "Static device account on the broker (default app-device), with subscribe-only permission on device topics",
+    "inputUsername": "Enter the MQTT access username",
+    "password": "Access Password",
+    "passwordDesc": "Stored and echoed in plain text for comparison with the broker side; must match the broker app-device account. After changing it, sync the broker side as well, otherwise devices cannot connect",
+    "inputPassword": "Enter the MQTT access password",
+    "confirmSaveContent": "Save the MQTT access configuration?"
   }
 }

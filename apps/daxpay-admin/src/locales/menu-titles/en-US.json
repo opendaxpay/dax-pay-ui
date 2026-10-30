@@ -114,5 +114,7 @@
   "menu.system.notify.mailRecord": "Mail Send Records",
   "menu.trade.abnormalOrder": "Abnormal Orders",
   "menu.trade.fundFlow": "Fund Flows",
-  "menu.system.notify.mailTemplate": "Mail Templates"
+  "menu.system.notify.mailTemplate": "Mail Templates",
+  "menu.payment.device.virtual": "Virtual Devices",
+  "menu.payment.device.virtual.list": "Device Management"
 }

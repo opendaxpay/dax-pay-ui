@@ -1,0 +1,51 @@
+{
+  "field": {
+    "deviceNo": "设备号",
+    "appId": "应用",
+    "storeNo": "门店",
+    "enable": "状态"
+  },
+  "column": {
+    "device": "设备",
+    "app": "应用",
+    "store": "门店",
+    "enable": "启用",
+    "runStatus": "运行状态"
+  },
+  "allApps": "全部应用",
+  "unassigned": "未分配",
+  "runStatus": {
+    "notActivated": "未激活",
+    "online": "在线",
+    "offline": "离线"
+  },
+  "action": {
+    "config": "配置",
+    "testBroadcast": "试播",
+    "testPrint": "试打",
+    "qrCode": "激活二维码"
+  },
+  "confirmEnable": "确定启用设备「{name}」吗？启用后将恢复播报与打印。",
+  "confirmDisable": "确定停用设备「{name}」吗？停用后该设备将不再播报和打印。",
+  "config": {
+    "title": "设备配置",
+    "appHint": "留空表示全部应用",
+    "storeHint": "未分配将不参与播报/打印"
+  },
+  "qr": {
+    "title": "激活二维码",
+    "tip": "商户手机装 APP 后扫码即完成服务器配置与设备激活",
+    "copy": "复制内容"
+  },
+  "appConfig": {
+    "title": "收款播报",
+    "broadcast": "语音播报",
+    "broadcastHint": "收款到账后, 店内音箱播报到账金额",
+    "print": "小票打印",
+    "printHint": "收款到账后, 打印机自动打印小票",
+    "storeStrict": "门店订单严格匹配",
+    "storeStrictHint": "开启后, 门店订单仅推送给绑定了该门店的设备, 未绑定门店的设备不再参与; 关闭则未绑门店的设备视为商户通用, 所有门店订单都会推送。",
+    "template": "小票版式",
+    "templateStandard": "标准小票"
+  }
+}

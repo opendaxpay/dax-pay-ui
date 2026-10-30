@@ -115,5 +115,7 @@
   "menu.system.notify.mailRecord": "邮件发送记录",
   "menu.trade.abnormalOrder": "异常订单",
   "menu.trade.fundFlow": "资金流水",
-  "menu.system.notify.mailTemplate": "邮件模板"
+  "menu.system.notify.mailTemplate": "邮件模板",
+  "menu.payment.device.virtual": "虚拟设备",
+  "menu.payment.device.virtual.list": "设备管理"
 }

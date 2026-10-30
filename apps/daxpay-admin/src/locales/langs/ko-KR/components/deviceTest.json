@@ -1,0 +1,33 @@
+{
+  "title": {
+    "announce": "음성 테스트",
+    "print": "인쇄 테스트"
+  },
+  "amount": "금액(위안)",
+  "channel": "결제 수단",
+  "speechLabel": "예상 안내 방송",
+  "speechEmpty": "「음성 테스트 전송」을 클릭하면 표시됩니다",
+  "speechHint": "디바이스와 동일한 토큰 규칙으로 합성되며 실제 안내 방송과 일치합니다",
+  "printModeLabel": "출력 모드",
+  "printMode": {
+    "both": "안내 방송 + 인쇄",
+    "only": "인쇄만(안내 방송 없음)"
+  },
+  "outBizNo": "판매자 주문 번호(선택)",
+  "outBizNoPlaceholder": "영수증 변수 outBizNo, 비워 두면 해당 행을 표시하지 않습니다",
+  "outBizNoGen": "생성",
+  "templateLabel": "인쇄 템플릿",
+  "template": {
+    "standard": "표준 영수증"
+  },
+  "templateHint": "내장 템플릿, 현재 표준 영수증만 지원(58/80mm 이중 용지 폭)",
+  "close": "닫기",
+  "send": {
+    "announce": "음성 테스트 전송",
+    "print": "인쇄 테스트 전송"
+  },
+  "amountRangeWarning": "금액은 0.01~999999.99 위안 사이여야 합니다",
+  "announceSent": "음성 테스트 명령이 전송되었습니다. 디바이스가 선택한 금액과 방식으로 안내 방송합니다",
+  "announcePreviewed": "예상 안내 문구가 생성되었습니다(미리보기 전용, 기기로 전송되지 않음)",
+  "printSent": "인쇄 테스트 명령이 전송되었습니다. 프린터를 확인하세요"
+}

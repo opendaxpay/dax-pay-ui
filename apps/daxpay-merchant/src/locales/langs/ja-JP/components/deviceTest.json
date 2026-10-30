@@ -1,0 +1,33 @@
+{
+  "title": {
+    "announce": "音声テスト",
+    "print": "印刷テスト"
+  },
+  "amount": "金額(元)",
+  "channel": "支払い方法",
+  "speechLabel": "予想される読み上げ",
+  "speechEmpty": "「音声テストを送信」をクリックすると表示されます",
+  "speechHint": "デバイスと同じトークン規則で合成され、実際の読み上げと一致します",
+  "printModeLabel": "出力モード",
+  "printMode": {
+    "both": "読み上げ + 印刷",
+    "only": "印刷のみ(読み上げなし)"
+  },
+  "outBizNo": "販売者注文番号(任意)",
+  "outBizNoPlaceholder": "レシート変数 outBizNo。空欄の場合はこの行を表示しません",
+  "outBizNoGen": "生成",
+  "templateLabel": "印刷テンプレート",
+  "template": {
+    "standard": "標準レシート"
+  },
+  "templateHint": "内蔵テンプレート。現在は標準レシートのみ(58/80mm 両紙幅対応)",
+  "close": "閉じる",
+  "send": {
+    "announce": "音声テストを送信",
+    "print": "印刷テストを送信"
+  },
+  "amountRangeWarning": "金額は 0.01~999999.99 元の範囲で指定してください",
+  "announceSent": "音声テスト指示を送信しました。デバイスが選択した金額と方法で読み上げます",
+  "announcePreviewed": "放送予定テキストを生成しました(プレビューのみ、端末には送信されません)",
+  "printSent": "印刷テスト指示を送信しました。プリンターをご確認ください"
+}

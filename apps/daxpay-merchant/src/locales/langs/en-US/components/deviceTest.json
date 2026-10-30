@@ -1,0 +1,33 @@
+{
+  "title": {
+    "announce": "Test Speech",
+    "print": "Test Print"
+  },
+  "amount": "Amount (CNY)",
+  "channel": "Payment Method",
+  "speechLabel": "Expected Announcement",
+  "speechEmpty": "Displayed after clicking Test Speech",
+  "speechHint": "Composed with the same token rules as the device, consistent with the actual announcement",
+  "printModeLabel": "Output Mode",
+  "printMode": {
+    "both": "Speech + Print",
+    "only": "Print Only (no speech)"
+  },
+  "outBizNo": "Merchant Order No. (optional)",
+  "outBizNoPlaceholder": "Receipt variable outBizNo, left empty to hide the line",
+  "outBizNoGen": "Generate",
+  "templateLabel": "Print Template",
+  "template": {
+    "standard": "Standard Receipt"
+  },
+  "templateHint": "Built-in template, currently only the standard receipt (58/80mm dual paper width)",
+  "close": "Close",
+  "send": {
+    "announce": "Send Test Speech",
+    "print": "Send Test Print"
+  },
+  "amountRangeWarning": "Amount must be between 0.01 and 999999.99",
+  "announceSent": "Test speech command sent, the device will announce with the selected amount and method",
+  "announcePreviewed": "Preview text generated (preview only, not sent to device)",
+  "printSent": "Test print command sent, please check the printer"
+}

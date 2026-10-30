@@ -86,5 +86,15 @@
     "genKeyPairTitle": "RSA密钥对",
     "privateKey": "私钥",
     "privateKeyWarning": "私钥仅在此处展示一次，请务必妥善保管，丢失无法找回"
+  },
+  "deviceConfig": {
+    "title": "收款播报",
+    "titleDesc": "收款成功后虚拟设备 APP 的语音播报与小票打印配置",
+    "broadcastEnable": "语音播报",
+    "printEnable": "小票打印",
+    "storeStrict": "门店订单严格匹配",
+    "storeStrictHint": "开启后, 门店订单仅推送给绑定了该门店的设备, 未绑定门店的设备不再参与; 关闭则未绑门店的设备视为商户通用, 所有门店订单都会推送。",
+    "templateCode": "打印版式",
+    "templateStandard": "标准小票"
   }
 }

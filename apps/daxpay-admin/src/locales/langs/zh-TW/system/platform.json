@@ -226,5 +226,21 @@
     "confirmSaveContent": "確定要儲存郵件寄件設定嗎？",
     "testSend": "發送測試郵件",
     "testSendSuccess": "測試郵件已發送, 請注意查收"
+  },
+  "mqtt": {
+    "title": "MQTT 接入",
+    "description": "設備端播報管道接入配置",
+    "headerDescription": "該地址隨設備激活下發到 APP, 配置錯誤設備將無法接收播報",
+    "brokerWssUrl": "MQTT 接入地址",
+    "brokerWssUrlDesc": "設備端 MQTT over WebSocket 完整地址, 如 wss://mqtt.example.com; TLS 在閘道層終結",
+    "inputBrokerWssUrl": "請輸入 MQTT 接入地址, 如 wss://mqtt.example.com",
+    "urlPatternWarning": "接入地址須以 ws:// 或 wss:// 開頭, 且不含空格",
+    "username": "接入帳號",
+    "usernameDesc": "broker 靜態設備帳號(預設 app-device), 對設備訊息主題僅有訂閱權限, 不能發佈",
+    "inputUsername": "請輸入 MQTT 接入帳號",
+    "password": "接入密碼",
+    "passwordDesc": "明文保存並回顯, 便於與 broker 側帳號對照; 須與 broker 的 app-device 帳號一致, 修改後需在 broker 側同步, 否則設備無法連線",
+    "inputPassword": "請輸入 MQTT 接入密碼",
+    "confirmSaveContent": "確定要保存 MQTT 接入配置嗎？"
   }
 }

@@ -1,0 +1,51 @@
+{
+  "field": {
+    "deviceNo": "Device No.",
+    "appId": "App",
+    "storeNo": "Store",
+    "enable": "Status"
+  },
+  "column": {
+    "device": "Device",
+    "app": "App",
+    "store": "Store",
+    "enable": "Enabled",
+    "runStatus": "Run Status"
+  },
+  "allApps": "All Apps",
+  "unassigned": "Unassigned",
+  "runStatus": {
+    "notActivated": "Not Activated",
+    "online": "Online",
+    "offline": "Offline"
+  },
+  "action": {
+    "config": "Config",
+    "testBroadcast": "Test Broadcast",
+    "testPrint": "Test Print",
+    "qrCode": "Activation QR Code"
+  },
+  "confirmEnable": "Enable device \"{name}\"? Broadcast and printing will resume after enabling.",
+  "confirmDisable": "Disable device \"{name}\"? The device will no longer broadcast or print.",
+  "config": {
+    "title": "Device Config",
+    "appHint": "Leave empty for all apps",
+    "storeHint": "Unassigned devices will not broadcast or print"
+  },
+  "qr": {
+    "title": "Activation QR Code",
+    "tip": "Install the merchant app on your phone and scan to complete server setup and device activation",
+    "copy": "Copy Content"
+  },
+  "appConfig": {
+    "title": "Payment Broadcast",
+    "broadcast": "Voice Broadcast",
+    "broadcastHint": "Broadcast the received amount on the store speaker after payment",
+    "print": "Receipt Printing",
+    "printHint": "Print a receipt automatically after payment",
+    "storeStrict": "Strict store order matching",
+    "storeStrictHint": "When enabled, store orders are pushed only to devices bound to that store; devices without a bound store no longer participate. When disabled, devices without a bound store are treated as merchant-wide and receive all store orders.",
+    "template": "Receipt Template",
+    "templateStandard": "Standard Receipt"
+  }
+}

@@ -226,5 +226,21 @@
     "confirmSaveContent": "メール送信元設定を保存しますか？",
     "testSend": "テストメールを送信",
     "testSendSuccess": "テストメールを送信しました。受信をご確認ください"
+  },
+  "mqtt": {
+    "title": "MQTT アクセス",
+    "description": "デバイス向け読み上げパイプラインのアクセス設定",
+    "headerDescription": "このアドレスはデバイスのアクティベート時にアプリへ配信されます。設定が誤るとデバイスは読み上げを受信できません",
+    "brokerWssUrl": "MQTT アクセスアドレス",
+    "brokerWssUrlDesc": "デバイス向け MQTT over WebSocket の完全なアドレス。例: wss://mqtt.example.com。TLS はゲートウェイ層で終端されます",
+    "inputBrokerWssUrl": "MQTT アクセスアドレスを入力してください。例: wss://mqtt.example.com",
+    "urlPatternWarning": "アクセスアドレスは ws:// または wss:// で始まり、スペースを含まない必要があります",
+    "username": "アクセスユーザー名",
+    "usernameDesc": "broker の静的デバイスアカウント(デフォルト app-device)。デバイストピックに対して購読権限のみを持ち、発行はできません",
+    "inputUsername": "MQTT アクセスユーザー名を入力してください",
+    "password": "アクセスパスワード",
+    "passwordDesc": "broker 側のアカウントと照合できるよう平文で保存・表示されます。broker の app-device アカウントと一致させる必要があります。変更後は broker 側も同期してください。そうでない場合デバイスは接続できません",
+    "inputPassword": "MQTT アクセスパスワードを入力してください",
+    "confirmSaveContent": "MQTT アクセス設定を保存しますか？"
   }
 }

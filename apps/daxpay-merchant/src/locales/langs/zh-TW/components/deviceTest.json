@@ -1,0 +1,33 @@
+{
+  "title": {
+    "announce": "試播",
+    "print": "試打"
+  },
+  "amount": "金額(元)",
+  "channel": "收款方式",
+  "speechLabel": "預計播報",
+  "speechEmpty": "點擊「下發試播」後顯示",
+  "speechHint": "按設備端同一套詞元規則合成, 與實際播報一致",
+  "printModeLabel": "輸出模式",
+  "printMode": {
+    "both": "播報 + 列印",
+    "only": "僅列印(不播報)"
+  },
+  "outBizNo": "商戶單號(可選)",
+  "outBizNoPlaceholder": "票面變數 outBizNo, 留空則不展示該行",
+  "outBizNoGen": "生成",
+  "templateLabel": "列印版式",
+  "template": {
+    "standard": "標準小票"
+  },
+  "templateHint": "內建版式, 首期僅標準小票(58/80mm 雙紙寬渲染)",
+  "close": "關閉",
+  "send": {
+    "announce": "下發試播",
+    "print": "下發列印"
+  },
+  "amountRangeWarning": "金額須在 0.01~999999.99 元之間",
+  "announceSent": "試播指令已下發, 設備將按所選金額與方式播報",
+  "announcePreviewed": "已產生預計播報文案(營運端僅預覽, 不下發設備)",
+  "printSent": "試打指令已下發, 請查看印表機"
+}

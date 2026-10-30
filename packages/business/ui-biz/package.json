@@ -240,6 +240,10 @@
     "./components/name-no-cell": {
       "types": "./src/components/name-no-cell/index.ts",
       "default": "./src/components/name-no-cell/index.ts"
+    },
+    "./components/device-test": {
+      "types": "./src/components/device-test/index.ts",
+      "default": "./src/components/device-test/index.ts"
     }
   },
   "dependencies": {

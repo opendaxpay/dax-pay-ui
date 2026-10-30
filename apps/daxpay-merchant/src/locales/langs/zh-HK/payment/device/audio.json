@@ -1,0 +1,51 @@
+{
+  "field": {
+    "deviceNo": "設備號",
+    "appId": "應用",
+    "storeNo": "門市",
+    "enable": "狀態"
+  },
+  "column": {
+    "device": "設備",
+    "app": "應用",
+    "store": "門市",
+    "enable": "啟用",
+    "runStatus": "運行狀態"
+  },
+  "allApps": "全部應用",
+  "unassigned": "未分配",
+  "runStatus": {
+    "notActivated": "未激活",
+    "online": "在線",
+    "offline": "離線"
+  },
+  "action": {
+    "config": "配置",
+    "testBroadcast": "試播",
+    "testPrint": "試打",
+    "qrCode": "激活二維碼"
+  },
+  "confirmEnable": "確定啟用設備「{name}」嗎？啟用後將恢復播報及打印。",
+  "confirmDisable": "確定停用設備「{name}」嗎？停用後該設備將不再播報及打印。",
+  "config": {
+    "title": "設備配置",
+    "appHint": "留空表示全部應用",
+    "storeHint": "未分配將不參與播報/打印"
+  },
+  "qr": {
+    "title": "激活二維碼",
+    "tip": "商戶手機安裝 APP 後掃碼即完成伺服器配置及設備激活",
+    "copy": "複製內容"
+  },
+  "appConfig": {
+    "title": "收款播報",
+    "broadcast": "語音播報",
+    "broadcastHint": "收款到賬後, 店內音箱播报到賬金額",
+    "print": "小票打印",
+    "printHint": "收款到賬後, 打印機自動打印小票",
+    "storeStrict": "門店訂單嚴格匹配",
+    "storeStrictHint": "開啟後, 門店訂單僅推送給綁定了該門店的設備, 未綁定門店的設備不再參與; 關閉則未綁門店的設備視為商戶通用, 所有門店訂單都會推送。",
+    "template": "小票版式",
+    "templateStandard": "標準小票"
+  }
+}

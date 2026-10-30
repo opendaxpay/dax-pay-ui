@@ -58,5 +58,6 @@
   "menu.trade.fundFlow": "Dòng tiền",
 
   "menu.trade.unipayLog": "Nhật ký API thanh toán",
-  "menu.payment.merchant.qrcode": "Quản lý mã QR"
+  "menu.payment.merchant.qrcode": "Quản lý mã QR",
+  "menu.payment.merchant.audioDevice": "Thiết bị thanh toán"
 }

@@ -86,5 +86,15 @@
     "genKeyPairTitle": "RSA Key Pair",
     "privateKey": "Private Key",
     "privateKeyWarning": "The private key is shown only once. Keep it safe — it cannot be recovered if lost."
+  },
+  "deviceConfig": {
+    "title": "Payment Broadcast",
+    "titleDesc": "Voice announcement and receipt printing on the virtual device APP after a successful payment",
+    "broadcastEnable": "Voice Announcement",
+    "printEnable": "Receipt Printing",
+    "storeStrict": "Strict store order matching",
+    "storeStrictHint": "When enabled, store orders are pushed only to devices bound to that store; devices without a bound store no longer participate. When disabled, devices without a bound store are treated as merchant-wide and receive all store orders.",
+    "templateCode": "Print Template",
+    "templateStandard": "Standard Receipt"
   }
 }

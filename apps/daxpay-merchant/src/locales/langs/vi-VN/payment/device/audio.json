@@ -1,0 +1,51 @@
+{
+  "field": {
+    "deviceNo": "Số thiết bị",
+    "appId": "Ứng dụng",
+    "storeNo": "Cửa hàng",
+    "enable": "Trạng thái"
+  },
+  "column": {
+    "device": "Thiết bị",
+    "app": "Ứng dụng",
+    "store": "Cửa hàng",
+    "enable": "Bật",
+    "runStatus": "Trạng thái chạy"
+  },
+  "allApps": "Tất cả ứng dụng",
+  "unassigned": "Chưa gán",
+  "runStatus": {
+    "notActivated": "Chưa kích hoạt",
+    "online": "Trực tuyến",
+    "offline": "Ngoại tuyến"
+  },
+  "action": {
+    "config": "Cấu hình",
+    "testBroadcast": "Phát thử",
+    "testPrint": "In thử",
+    "qrCode": "Mã QR kích hoạt"
+  },
+  "confirmEnable": "Bật thiết bị \"{name}\"? Phát thông báo và in sẽ được khôi phục sau khi bật.",
+  "confirmDisable": "Tắt thiết bị \"{name}\"? Thiết bị sẽ không còn phát thông báo và in nữa.",
+  "config": {
+    "title": "Cấu hình thiết bị",
+    "appHint": "Để trống cho tất cả ứng dụng",
+    "storeHint": "Thiết bị chưa gán sẽ không phát thông báo/in"
+  },
+  "qr": {
+    "title": "Mã QR kích hoạt",
+    "tip": "Cài ứng dụng trên điện thoại rồi quét để hoàn tất cấu hình máy chủ và kích hoạt thiết bị",
+    "copy": "Sao chép nội dung"
+  },
+  "appConfig": {
+    "title": "Phát thông báo thu tiền",
+    "broadcast": "Phát thông báo giọng nói",
+    "broadcastHint": "Phát số tiền nhận được qua loa cửa hàng sau khi thanh toán",
+    "print": "In hóa đơn",
+    "printHint": "Tự động in hóa đơn sau khi thanh toán",
+    "storeStrict": "Khớp nghiêm ngặt đơn hàng cửa hàng",
+    "storeStrictHint": "Khi bật, đơn hàng của cửa hàng chỉ được đẩy tới thiết bị đã liên kết với cửa hàng đó; thiết bị chưa liên kết cửa hàng sẽ không tham gia. Khi tắt, thiết bị chưa liên kết cửa hàng được coi là dùng chung cho toàn bộ merchant và nhận tất cả đơn hàng cửa hàng.",
+    "template": "Mẫu hóa đơn",
+    "templateStandard": "Hóa đơn tiêu chuẩn"
+  }
+}

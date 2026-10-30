@@ -10,6 +10,7 @@
   import { $t } from '#/locales';
 
   import MailConfigForm from './mail/MailConfigForm.vue';
+  import MqttConfigForm from './mqtt/MqttConfigForm.vue';
   import OssConfigForm from './oss/OssConfigForm.vue';
   import SensitiveWordConfigForm from './sensitive-word/SensitiveWordConfigForm.vue';
   import UrlConfigForm from './url/UrlConfigForm.vue';
@@ -68,6 +69,15 @@
       label: $t('system.sensitiveWord.config.title'),
       // 敏感词策略描述
       description: $t('system.sensitiveWord.config.description'),
+    },
+    {
+      key: 'mqtt',
+      // MQTT 接入配置标题
+      label: $t('system.platform.mqtt.title'),
+      // MQTT 接入配置描述
+      description: $t('system.platform.mqtt.description'),
+      // 头部长说明(地址随设备激活下发到 APP)
+      headerDescription: $t('system.platform.mqtt.headerDescription'),
     },
   ];
 
@@ -142,5 +152,6 @@
     <OssConfigForm v-if="activeKey === 'oss'" ref="subForm" />
     <MailConfigForm v-if="activeKey === 'mail'" ref="subForm" />
     <SensitiveWordConfigForm v-if="activeKey === 'sensitive-word'" ref="subForm" />
+    <MqttConfigForm v-if="activeKey === 'mqtt'" ref="subForm" />
   </PageShell>
 </template>

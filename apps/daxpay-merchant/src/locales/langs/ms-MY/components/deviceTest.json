@@ -1,0 +1,33 @@
+{
+  "title": {
+    "announce": "Uji Siaran Suara",
+    "print": "Uji Cetak"
+  },
+  "amount": "Jumlah (CNY)",
+  "channel": "Kaedah Pembayaran",
+  "speechLabel": "Pengumuman Dijangka",
+  "speechEmpty": "Dipaparkan selepas menghantar uji siaran",
+  "speechHint": "Disusun dengan set peraturan token yang sama seperti peranti, konsisten dengan pengumuman sebenar",
+  "printModeLabel": "Mod Output",
+  "printMode": {
+    "both": "Siaran + Cetak",
+    "only": "Cetak Sahaja (tanpa siaran)"
+  },
+  "outBizNo": "No. Pesanan Peniaga (pilihan)",
+  "outBizNoPlaceholder": "Pembolehubah resit outBizNo, biarkan kosong untuk menyembunyikan baris ini",
+  "outBizNoGen": "Jana",
+  "templateLabel": "Templat Cetak",
+  "template": {
+    "standard": "Resit Standard"
+  },
+  "templateHint": "Templat terbina dalam, buat masa ini hanya resit standard (dua lebar kertas 58/80mm)",
+  "close": "Tutup",
+  "send": {
+    "announce": "Hantar Uji Siaran",
+    "print": "Hantar Uji Cetak"
+  },
+  "amountRangeWarning": "Jumlah mesti antara 0.01 hingga 999999.99",
+  "announceSent": "Arahan uji siaran telah dihantar, peranti akan mengumumkan mengikut jumlah dan kaedah yang dipilih",
+  "announcePreviewed": "Teks pengumuman pratonton telah dijana (pratonton sahaja, tidak dihantar ke peranti)",
+  "printSent": "Arahan uji cetak telah dihantar, sila semak pencetak"
+}

@@ -114,5 +114,7 @@
   "menu.system.notify.mailRecord": "메일 발송 기록",
   "menu.trade.abnormalOrder": "비정상 주문",
   "menu.trade.fundFlow": "자금 흐름",
-  "menu.system.notify.mailTemplate": "메일 템플릿"
+  "menu.system.notify.mailTemplate": "메일 템플릿",
+  "menu.payment.device.virtual": "가상 디바이스",
+  "menu.payment.device.virtual.list": "디바이스 관리"
 }

@@ -226,5 +226,21 @@
     "confirmSaveContent": "Lưu cấu hình người gửi email?",
     "testSend": "Gửi email kiểm tra",
     "testSendSuccess": "Email kiểm tra đã được gửi, vui lòng kiểm tra hộp thư"
+  },
+  "mqtt": {
+    "title": "Truy cập MQTT",
+    "description": "Cấu hình truy cập đường dẫn phát thanh thiết bị",
+    "headerDescription": "Địa chỉ này được gửi tới APP khi thiết bị kích hoạt; cấu hình sai sẽ khiến thiết bị không nhận được thông báo",
+    "brokerWssUrl": "Địa chỉ truy cập MQTT",
+    "brokerWssUrlDesc": "Địa chỉ MQTT over WebSocket đầy đủ cho thiết bị, vd. wss://mqtt.example.com; TLS kết thúc ở cổng gateway",
+    "inputBrokerWssUrl": "Nhập địa chỉ truy cập MQTT, vd. wss://mqtt.example.com",
+    "urlPatternWarning": "Địa chỉ truy cập phải bắt đầu bằng ws:// hoặc wss:// và không chứa khoảng trắng",
+    "username": "Tài khoản truy cập",
+    "usernameDesc": "Tài khoản thiết bị tĩnh trên broker (mặc định app-device), chỉ có quyền đăng ký chủ đề thiết bị",
+    "inputUsername": "Nhập tài khoản truy cập MQTT",
+    "password": "Mật khẩu truy cập",
+    "passwordDesc": "Lưu và hiển thị dạng văn bản thuần để đối chiếu với phía broker; phải khớp tài khoản app-device của broker. Sau khi thay đổi cần đồng bộ phía broker, nếu không thiết bị không thể kết nối",
+    "inputPassword": "Nhập mật khẩu truy cập MQTT",
+    "confirmSaveContent": "Lưu cấu hình truy cập MQTT?"
   }
 }

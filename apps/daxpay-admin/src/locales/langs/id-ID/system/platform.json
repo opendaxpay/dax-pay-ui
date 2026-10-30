@@ -226,5 +226,21 @@
     "confirmSaveContent": "Simpan konfigurasi pengirim email?",
     "testSend": "Kirim Email Uji",
     "testSendSuccess": "Email uji terkirim, silakan periksa kotak masuk"
+  },
+  "mqtt": {
+    "title": "Akses MQTT",
+    "description": "Konfigurasi akses pipeline pengumuman perangkat",
+    "headerDescription": "Alamat ini dikirim ke APP saat perangkat diaktivasi; konfigurasi salah akan membuat perangkat tidak dapat menerima pengumuman",
+    "brokerWssUrl": "Alamat Akses MQTT",
+    "brokerWssUrlDesc": "Alamat lengkap MQTT over WebSocket untuk perangkat, mis. wss://mqtt.example.com; TLS diakhiri di gateway",
+    "inputBrokerWssUrl": "Masukkan alamat akses MQTT, mis. wss://mqtt.example.com",
+    "urlPatternWarning": "Alamat akses harus diawali ws:// atau wss:// dan tanpa spasi",
+    "username": "Nama Akun Akses",
+    "usernameDesc": "Akun perangkat statis broker (default app-device), hanya memiliki izin berlangganan topik perangkat",
+    "inputUsername": "Masukkan nama akun akses MQTT",
+    "password": "Kata Sandi Akses",
+    "passwordDesc": "Disimpan dan ditampilkan sebagai teks biasa untuk perbandingan dengan sisi broker; harus cocok dengan akun app-device broker. Setelah diubah, sinkronkan juga sisi broker, jika tidak perangkat tidak dapat terhubung",
+    "inputPassword": "Masukkan kata sandi akses MQTT",
+    "confirmSaveContent": "Simpan konfigurasi akses MQTT?"
   }
 }

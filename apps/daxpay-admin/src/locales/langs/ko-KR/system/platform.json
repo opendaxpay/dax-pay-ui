@@ -226,5 +226,21 @@
     "confirmSaveContent": "메일 발신자 설정을 저장하시겠습니까?",
     "testSend": "테스트 메일 발송",
     "testSendSuccess": "테스트 메일이 발송되었습니다. 수신함을 확인하세요"
+  },
+  "mqtt": {
+    "title": "MQTT 액세스",
+    "description": "디바이스 안내 방송 파이프라인 액세스 설정",
+    "headerDescription": "이 주소는 디바이스 활성화 시 앱으로 전달됩니다. 잘못 설정하면 디바이스가 안내 방송을 수신할 수 없습니다",
+    "brokerWssUrl": "MQTT 액세스 주소",
+    "brokerWssUrlDesc": "디바이스용 MQTT over WebSocket 전체 주소. 예: wss://mqtt.example.com. TLS는 게이트웨이에서 종료됩니다",
+    "inputBrokerWssUrl": "MQTT 액세스 주소를 입력하세요. 예: wss://mqtt.example.com",
+    "urlPatternWarning": "액세스 주소는 ws:// 또는 wss://로 시작해야 하며 공백을 포함할 수 없습니다",
+    "username": "액세스 계정",
+    "usernameDesc": "broker의 정적 디바이스 계정(기본 app-device). 디바이스 토픽에 대해 구독 권한만 있으며 게시할 수 없습니다",
+    "inputUsername": "MQTT 액세스 계정을 입력하세요",
+    "password": "액세스 비밀번호",
+    "passwordDesc": "broker 측 계정과 대조할 수 있도록 평문으로 저장 및 표시됩니다. broker의 app-device 계정과 일치해야 하며, 변경 후 broker 측에도 동기화해야 합니다. 그렇지 않으면 디바이스가 연결할 수 없습니다",
+    "inputPassword": "MQTT 액세스 비밀번호를 입력하세요",
+    "confirmSaveContent": "MQTT 액세스 설정을 저장하시겠습니까?"
   }
 }

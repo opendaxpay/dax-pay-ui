@@ -1,0 +1,51 @@
+{
+  "field": {
+    "deviceNo": "No. Peranti",
+    "appId": "Aplikasi",
+    "storeNo": "Kedai",
+    "enable": "Status"
+  },
+  "column": {
+    "device": "Peranti",
+    "app": "Aplikasi",
+    "store": "Kedai",
+    "enable": "Aktif",
+    "runStatus": "Status Operasi"
+  },
+  "allApps": "Semua Aplikasi",
+  "unassigned": "Belum Ditetapkan",
+  "runStatus": {
+    "notActivated": "Belum Diaktifkan",
+    "online": "Atas Talian",
+    "offline": "Luar Talian"
+  },
+  "action": {
+    "config": "Konfigurasi",
+    "testBroadcast": "Uji Siaran",
+    "testPrint": "Uji Cetak",
+    "qrCode": "Kod QR Pengaktifan"
+  },
+  "confirmEnable": "Aktifkan peranti \"{name}\"? Siaran dan cetakan akan disambung semula selepas diaktifkan.",
+  "confirmDisable": "Nyahaktifkan peranti \"{name}\"? Peranti tidak lagi menyiarkan atau mencetak.",
+  "config": {
+    "title": "Konfigurasi Peranti",
+    "appHint": "Kosongkan untuk semua aplikasi",
+    "storeHint": "Peranti yang belum ditetapkan tidak melakukan siaran/cetakan"
+  },
+  "qr": {
+    "title": "Kod QR Pengaktifan",
+    "tip": "Pasang aplikasi pada telefon dan imbas untuk melengkapkan tetapan pelayan dan pengaktifan peranti",
+    "copy": "Salin Kandungan"
+  },
+  "appConfig": {
+    "title": "Siaran Pembayaran",
+    "broadcast": "Siaran Suara",
+    "broadcastHint": "Siarkan jumlah diterima melalui pembesar suara kedai selepas pembayaran",
+    "print": "Cetakan Resit",
+    "printHint": "Cetak resit secara automatik selepas pembayaran",
+    "storeStrict": "Padanan ketat pesanan cawangan",
+    "storeStrictHint": "Apabila dihidupkan, pesanan cawangan hanya dihantar kepada peranti yang terikat pada cawangan tersebut; peranti tanpa cawangan terikat tidak lagi terlibat. Apabila dimatikan, peranti tanpa cawangan terikat dianggap umum untuk pedagang dan menerima semua pesanan cawangan.",
+    "template": "Templat Resit",
+    "templateStandard": "Resit Standard"
+  }
+}

@@ -58,5 +58,6 @@
   "menu.trade.fundFlow": "Arus Dana",
 
   "menu.trade.unipayLog": "Log API Pembayaran",
-  "menu.payment.merchant.qrcode": "Manajemen Kode QR"
+  "menu.payment.merchant.qrcode": "Manajemen Kode QR",
+  "menu.payment.merchant.audioDevice": "Perangkat Pembayaran"
 }

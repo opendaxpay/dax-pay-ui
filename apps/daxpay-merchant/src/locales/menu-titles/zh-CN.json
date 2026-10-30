@@ -58,5 +58,6 @@
   "menu.trade.fundFlow": "资金流水",
 
   "menu.trade.unipayLog": "支付接口日志",
-  "menu.payment.merchant.qrcode": "码牌管理"
+  "menu.payment.merchant.qrcode": "码牌管理",
+  "menu.payment.merchant.audioDevice": "收款设备"
 }

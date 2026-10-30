@@ -114,5 +114,7 @@
   "menu.system.notify.mailRecord": "メール送信記録",
   "menu.trade.abnormalOrder": "異常注文",
   "menu.trade.fundFlow": "資金フロー",
-  "menu.system.notify.mailTemplate": "メールテンプレート"
+  "menu.system.notify.mailTemplate": "メールテンプレート",
+  "menu.payment.device.virtual": "仮想デバイス",
+  "menu.payment.device.virtual.list": "デバイス管理"
 }

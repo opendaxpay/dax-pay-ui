@@ -3,6 +3,7 @@
 
   import { $t } from '@vben/locales';
 
+  import { AppDeviceConfigApi, type AppDeviceConfigParam } from '#/api/payment/device/app-device-config.api';
   import { MchAppInfoApi, type MchAppInfoParam, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import { FormEditType } from '#/enums/formEditType';
   import { useFormEdit } from '#/hooks/useFormEdit';
@@ -15,8 +16,7 @@
   const formRef = ref();
   const mchNo = ref('');
 
-  const { visible, confirmLoading, title, editable, initFormEditType, handleCancel, formEditType } =
-    useFormEdit();
+  const { visible, confirmLoading, title, editable, initFormEditType, handleCancel, formEditType } = useFormEdit();
 
   const formState = ref<MchAppInfoParam>({
     mchNo: '',
@@ -27,6 +27,39 @@
 
   // 编辑场景下记录原始状态, 用于检测"默认应用从启用变为停用"以触发二次确认
   const originalStatus = ref<string>('enable');
+
+  // ===== 收款播报配置(应用级开关, 仅编辑已有应用时展示与保存) =====
+  // 当前编辑应用的应用号(设备配置按 appId 读写)
+  const currentAppId = ref('');
+  const deviceConfig = ref<AppDeviceConfigParam>({
+    appId: '',
+    broadcastEnable: false,
+    printEnable: false,
+    templateCode: 'standard',
+    storeStrictMatch: false,
+  });
+  // 设备配置是否已加载(未加载成功时不随主表单保存, 避免用默认值覆盖服务端配置)
+  const deviceConfigLoaded = ref(false);
+
+  // 打印版式下拉(内置版式, 首期仅 standard 标准小票, 枚举扩展位)
+  const templateOptions = computed(() => [
+    { label: $t('payment.device.audio.appConfig.templateStandard'), value: 'standard' },
+  ]);
+
+  /**
+   * 加载应用收款播报配置(编辑时回显)
+   */
+  async function loadDeviceConfig(appId: string) {
+    const { data } = await AppDeviceConfigApi.simpleGet(appId);
+    deviceConfig.value = {
+      appId,
+      broadcastEnable: data?.broadcastEnable ?? false,
+      printEnable: data?.printEnable ?? false,
+      templateCode: data?.templateCode || 'standard',
+      storeStrictMatch: data?.storeStrictMatch ?? false,
+    };
+    deviceConfigLoaded.value = true;
+  }
 
   const statusOptions = computed(() => [
     { label: $t('payment.merchant.app.app.statusEnable'), value: 'enable' },
@@ -68,6 +101,8 @@
     initFormEditType(FormEditType.Edit);
     resetForm();
     confirmLoading.value = true;
+    // 复位设备配置加载标志(上一次编辑会话的痕迹不带入)
+    deviceConfigLoaded.value = false;
     try {
       const { data } = await MchAppInfoApi.get(record.id!);
       const row = data || record;
@@ -80,6 +115,15 @@
       };
       // 记录原始状态, 用于 handleOk 检测停用默认应用
       originalStatus.value = row.status || 'enable';
+      // 回显收款播报配置(仅编辑模式; 失败不阻断应用编辑, 保持未加载态不随保存覆盖)
+      currentAppId.value = row.appId || record.appId || '';
+      if (currentAppId.value) {
+        try {
+          await loadDeviceConfig(currentAppId.value);
+        } catch {
+          deviceConfigLoaded.value = false;
+        }
+      }
     } finally {
       confirmLoading.value = false;
     }
@@ -125,6 +169,10 @@
       if (formEditType.value === FormEditType.Edit) {
         // 默认应用开关变更由后端 update 处理：true 调 setDefault，false 调 clearDefault
         await MchAppInfoApi.update(payload);
+        // 收款播报配置随主表单一并保存(加载成功才提交, 避免默认值覆盖服务端配置)
+        if (deviceConfigLoaded.value && currentAppId.value) {
+          await AppDeviceConfigApi.simpleSave({ ...deviceConfig.value, appId: currentAppId.value });
+        }
       } else {
         payload.defaultApp = false;
         await MchAppInfoApi.add(payload);
@@ -172,6 +220,40 @@
         <a-form-item v-if="editable" :label="$t('payment.merchant.app.app.defaultApp')">
           <a-switch v-model:checked="formState.defaultApp" />
         </a-form-item>
+        <!-- 收款播报配置区块（仅编辑已有应用时展示; 应用创建后再配置, 新增态无 appId） -->
+        <template v-if="editable">
+          <a-divider>{{ $t('payment.device.audio.appConfig.title') }}</a-divider>
+          <a-form-item :label="$t('payment.device.audio.appConfig.broadcast')">
+            <div class="flex items-center gap-2">
+              <a-switch v-model:checked="deviceConfig.broadcastEnable" />
+              <!-- 播报开关说明 -->
+              <span class="text-xs text-muted-foreground">
+                {{ $t('payment.device.audio.appConfig.broadcastHint') }}
+              </span>
+            </div>
+          </a-form-item>
+          <a-form-item :label="$t('payment.device.audio.appConfig.print')">
+            <div class="flex items-center gap-2">
+              <a-switch v-model:checked="deviceConfig.printEnable" />
+              <!-- 打印开关说明 -->
+              <span class="text-xs text-muted-foreground">
+                {{ $t('payment.device.audio.appConfig.printHint') }}
+              </span>
+            </div>
+          </a-form-item>
+          <a-form-item :label="$t('payment.device.audio.appConfig.storeStrict')">
+            <div class="flex items-center gap-2">
+              <a-switch v-model:checked="deviceConfig.storeStrictMatch" />
+              <!-- 门店订单严格匹配开关说明 -->
+              <span class="text-xs text-muted-foreground">
+                {{ $t('payment.device.audio.appConfig.storeStrictHint') }}
+              </span>
+            </div>
+          </a-form-item>
+          <a-form-item :label="$t('payment.device.audio.appConfig.template')">
+            <a-select v-model:value="deviceConfig.templateCode" :options="templateOptions" />
+          </a-form-item>
+        </template>
       </a-form>
     </a-spin>
   </a-modal>

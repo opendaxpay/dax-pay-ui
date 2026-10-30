@@ -58,5 +58,6 @@
   "menu.trade.fundFlow": "資金フロー",
 
   "menu.trade.unipayLog": "決済APIログ",
-  "menu.payment.merchant.qrcode": "QRコード管理"
+  "menu.payment.merchant.qrcode": "QRコード管理",
+  "menu.payment.merchant.audioDevice": "決済デバイス"
 }

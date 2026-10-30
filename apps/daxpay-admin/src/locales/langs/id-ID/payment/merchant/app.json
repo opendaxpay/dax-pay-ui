@@ -86,5 +86,15 @@
     "genKeyPairTitle": "Pasangan Kunci RSA",
     "privateKey": "Kunci Privat",
     "privateKeyWarning": "Kunci privat hanya ditampilkan sekali di sini. Simpan dengan aman — tidak dapat dipulihkan jika hilang."
+  },
+  "deviceConfig": {
+    "title": "Pengumuman Pembayaran",
+    "titleDesc": "Konfigurasi pengumuman suara dan cetak struk pada APP perangkat virtual setelah pembayaran berhasil",
+    "broadcastEnable": "Pengumuman Suara",
+    "printEnable": "Cetak Struk",
+    "storeStrict": "Pencocokan ketat pesanan toko",
+    "storeStrictHint": "Saat diaktifkan, pesanan toko hanya dikirim ke perangkat yang terikat ke toko tersebut; perangkat tanpa toko terikat tidak lagi ikut serta. Saat dinonaktifkan, perangkat tanpa toko terikat dianggap umum untuk merchant dan menerima semua pesanan toko.",
+    "templateCode": "Templat Cetak",
+    "templateStandard": "Struk Standar"
   }
 }

@@ -86,5 +86,15 @@
     "genKeyPairTitle": "RSA 키 쌍",
     "privateKey": "개인 키",
     "privateKeyWarning": "개인 키는 여기에 한 번만 표시됩니다. 안전하게 보관하세요. 분실 시 복구할 수 없습니다."
+  },
+  "deviceConfig": {
+    "title": "결제 안내 방송",
+    "titleDesc": "결제 성공 후 가상 디바이스 앱의 음성 안내 방송 및 영수증 인쇄 설정",
+    "broadcastEnable": "음성 안내 방송",
+    "printEnable": "영수증 인쇄",
+    "storeStrict": "매장 주문 엄격 매칭",
+    "storeStrictHint": "사용하면 매장 주문은 해당 매장에 바인딩된 기기로만 전송되며, 매장 미바인딩 기기는 제외됩니다. 사용하지 않으면 매장 미바인딩 기기는 매장 공용으로 간주되어 모든 매장 주문이 전송됩니다.",
+    "templateCode": "인쇄 템플릿",
+    "templateStandard": "표준 영수증"
   }
 }

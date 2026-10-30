@@ -9,6 +9,7 @@ import mCoreAuthentication from './_core/authentication.json';
 import mCoreFallback from './_core/fallback.json';
 import mCommon from './common.json';
 import mComponentsDeleteConfirm from './components/deleteConfirm.json';
+import mComponentsDeviceTest from './components/deviceTest.json';
 import mComponentsIconPicker from './components/icon-picker.json';
 import mComponentsQuery from './components/query.json';
 import mComponentsUpload from './components/upload.json';
@@ -71,6 +72,7 @@ import mPaymentConstantProvider from './payment/constant/provider.json';
 import mPaymentDevelop from './payment/develop.json';
 import mPaymentDeviceQrcode from './payment/device/qrcode.json';
 import mPaymentDeviceTerminal from './payment/device/terminal.json';
+import mPaymentDeviceVirtual from './payment/device/virtual.json';
 import mPaymentDouyinApp from './payment/douyin/app.json';
 import mPaymentMerchantAggregate from './payment/merchant/aggregate.json';
 import mPaymentMerchantApp from './payment/merchant/app.json';
@@ -140,6 +142,7 @@ const entries: LocaleEntry[] = [
   [['_core', 'fallback'], mCoreFallback],
   [['common'], mCommon],
   [['components', 'deleteConfirm'], mComponentsDeleteConfirm],
+  [['components', 'deviceTest'], mComponentsDeviceTest],
   [['components', 'icon-picker'], mComponentsIconPicker],
   [['components', 'query'], mComponentsQuery],
   [['components', 'upload'], mComponentsUpload],
@@ -173,8 +176,8 @@ const entries: LocaleEntry[] = [
   [['payment', 'channel', 'douyinManage'], mPaymentChannelDouyinManage],
   [['payment', 'channel', 'douyinMchApp'], mPaymentChannelDouyinMchApp],
   [['payment', 'channel', 'easypay'], mPaymentChannelEasypay],
-  [['payment', 'channel', 'fuyouIsv'], mPaymentChannelFuyouIsv],
   [['payment', 'channel', 'fuyouDirect'], mPaymentChannelFuyouDirect],
+  [['payment', 'channel', 'fuyouIsv'], mPaymentChannelFuyouIsv],
   [['payment', 'channel', 'hkrtIsv'], mPaymentChannelHkrtIsv],
   [['payment', 'channel', 'hmpayIsv'], mPaymentChannelHmpayIsv],
   [['payment', 'channel', 'lakalaIsv'], mPaymentChannelLakalaIsv],
@@ -202,6 +205,7 @@ const entries: LocaleEntry[] = [
   [['payment', 'develop'], mPaymentDevelop],
   [['payment', 'device', 'qrcode'], mPaymentDeviceQrcode],
   [['payment', 'device', 'terminal'], mPaymentDeviceTerminal],
+  [['payment', 'device', 'virtual'], mPaymentDeviceVirtual],
   [['payment', 'douyin', 'app'], mPaymentDouyinApp],
   [['payment', 'merchant', 'aggregate'], mPaymentMerchantAggregate],
   [['payment', 'merchant', 'app'], mPaymentMerchantApp],

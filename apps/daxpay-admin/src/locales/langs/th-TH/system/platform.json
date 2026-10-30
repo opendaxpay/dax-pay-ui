@@ -226,5 +226,21 @@
     "confirmSaveContent": "บันทึกการตั้งค่าผู้ส่งอีเมล?",
     "testSend": "ส่งอีเมลทดสอบ",
     "testSendSuccess": "ส่งอีเมลทดสอบแล้ว โปรดตรวจสอบกล่องจดหมาย"
+  },
+  "mqtt": {
+    "title": "การเข้าถึง MQTT",
+    "description": "การตั้งค่าการเข้าถึงไปป์ไลน์ประกาศอุปกรณ์",
+    "headerDescription": "ที่อยู่นี้จะถูกส่งไปยังแอปเมื่ออุปกรณ์เปิดใช้งาน; หากตั้งค่าผิดอุปกรณ์จะรับการประกาศไม่ได้",
+    "brokerWssUrl": "ที่อยู่เข้าถึง MQTT",
+    "brokerWssUrlDesc": "ที่อยู่ MQTT over WebSocket แบบเต็มของอุปกรณ์ เช่น wss://mqtt.example.com; TLS สิ้นสุดที่เกตเวย์",
+    "inputBrokerWssUrl": "กรอกที่อยู่เข้าถึง MQTT เช่น wss://mqtt.example.com",
+    "urlPatternWarning": "ที่อยู่เข้าถึงต้องขึ้นต้นด้วย ws:// หรือ wss:// และไม่มีช่องว่าง",
+    "username": "บัญชีเข้าถึง",
+    "usernameDesc": "บัญชีอุปกรณ์แบบคงที่ของ broker (ค่าเริ่มต้น app-device) มีสิทธิ์เฉพาะการสมัครรับหัวข้ออุปกรณ์",
+    "inputUsername": "กรอกบัญชีเข้าถึง MQTT",
+    "password": "รหัสผ่านเข้าถึง",
+    "passwordDesc": "บันทึกและแสดงเป็นข้อความธรรมดาเพื่อเทียบกับฝั่ง broker; ต้องตรงกับบัญชี app-device ของ broker หลังแก้ไขต้องซิงก์ฝั่ง broker ด้วย มิฉะนั้นอุปกรณ์จะเชื่อมต่อไม่ได้",
+    "inputPassword": "กรอกรหัสผ่านเข้าถึง MQTT",
+    "confirmSaveContent": "บันทึกการตั้งค่าการเข้าถึง MQTT หรือไม่?"
   }
 }

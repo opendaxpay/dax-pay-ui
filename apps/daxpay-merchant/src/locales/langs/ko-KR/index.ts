@@ -9,6 +9,7 @@ import mCoreAuthentication from './_core/authentication.json';
 import mCoreFallback from './_core/fallback.json';
 import mCommon from './common.json';
 import mComponentsDeleteConfirm from './components/deleteConfirm.json';
+import mComponentsDeviceTest from './components/deviceTest.json';
 import mComponentsIconPicker from './components/icon-picker.json';
 import mComponentsQuery from './components/query.json';
 import mComponentsUpload from './components/upload.json';
@@ -31,6 +32,7 @@ import mPaymentChannelDouyinMchApp from './payment/channel/douyinMchApp.json';
 import mPaymentCommonApp from './payment/common/app.json';
 import mPaymentCommonRoute from './payment/common/route.json';
 import mPaymentDevelop from './payment/develop.json';
+import mPaymentDeviceAudio from './payment/device/audio.json';
 import mPaymentDeviceQrcode from './payment/device/qrcode.json';
 import mPaymentDeviceTerminal from './payment/device/terminal.json';
 import mPaymentDouyinApp from './payment/douyin/app.json';
@@ -65,6 +67,7 @@ import mPerm from './perm.json';
 import mPluginEasypayOrder from './plugin/easypay/order.json';
 import mPluginEasypayRefund from './plugin/easypay/refund.json';
 import mProfile from './profile.json';
+import mRole from './role.json';
 import mSystemNotify from './system/notify.json';
 import mSystemPlatform from './system/platform.json';
 import mSystemRegion from './system/region.json';
@@ -77,6 +80,7 @@ const entries: LocaleEntry[] = [
   [['_core', 'fallback'], mCoreFallback],
   [['common'], mCommon],
   [['components', 'deleteConfirm'], mComponentsDeleteConfirm],
+  [['components', 'deviceTest'], mComponentsDeviceTest],
   [['components', 'icon-picker'], mComponentsIconPicker],
   [['components', 'query'], mComponentsQuery],
   [['components', 'upload'], mComponentsUpload],
@@ -99,6 +103,7 @@ const entries: LocaleEntry[] = [
   [['payment', 'common', 'app'], mPaymentCommonApp],
   [['payment', 'common', 'route'], mPaymentCommonRoute],
   [['payment', 'develop'], mPaymentDevelop],
+  [['payment', 'device', 'audio'], mPaymentDeviceAudio],
   [['payment', 'device', 'qrcode'], mPaymentDeviceQrcode],
   [['payment', 'device', 'terminal'], mPaymentDeviceTerminal],
   [['payment', 'douyin', 'app'], mPaymentDouyinApp],
@@ -133,6 +138,7 @@ const entries: LocaleEntry[] = [
   [['plugin', 'easypay', 'order'], mPluginEasypayOrder],
   [['plugin', 'easypay', 'refund'], mPluginEasypayRefund],
   [['profile'], mProfile],
+  [['role'], mRole],
   [['system', 'notify'], mSystemNotify],
   [['system', 'platform'], mSystemPlatform],
   [['system', 'region'], mSystemRegion],

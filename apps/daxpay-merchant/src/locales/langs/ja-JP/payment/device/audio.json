@@ -1,0 +1,51 @@
+{
+  "field": {
+    "deviceNo": "デバイス番号",
+    "appId": "アプリ",
+    "storeNo": "店舗",
+    "enable": "ステータス"
+  },
+  "column": {
+    "device": "デバイス",
+    "app": "アプリ",
+    "store": "店舗",
+    "enable": "有効",
+    "runStatus": "稼働状態"
+  },
+  "allApps": "すべてのアプリ",
+  "unassigned": "未割り当て",
+  "runStatus": {
+    "notActivated": "未アクティブ",
+    "online": "オンライン",
+    "offline": "オフライン"
+  },
+  "action": {
+    "config": "設定",
+    "testBroadcast": "テスト読み上げ",
+    "testPrint": "テスト印刷",
+    "qrCode": "アクティベートQRコード"
+  },
+  "confirmEnable": "デバイス「{name}」を有効化しますか？有効化すると読み上げと印刷が再開されます。",
+  "confirmDisable": "デバイス「{name}」を無効化しますか？このデバイスは読み上げも印刷も行われなくなります。",
+  "config": {
+    "title": "デバイス設定",
+    "appHint": "空欄はすべてのアプリが対象です",
+    "storeHint": "未割り当ての場合は読み上げ・印刷の対象外です"
+  },
+  "qr": {
+    "title": "アクティベートQRコード",
+    "tip": "スマートフォンにアプリをインストールしてスキャンすると、サーバー設定とデバイスのアクティベーションが完了します",
+    "copy": "内容をコピー"
+  },
+  "appConfig": {
+    "title": "入金アナウンス",
+    "broadcast": "音声アナウンス",
+    "broadcastHint": "入金後、店内スピーカーで入金額を読み上げます",
+    "print": "レシート印刷",
+    "printHint": "入金後、プリンターが自動でレシートを印刷します",
+    "storeStrict": "店舗注文の厳格一致",
+    "storeStrictHint": "有効にすると、店舗注文はその店舗に紐付いたデバイスにのみ配信され、店舗未紐付けのデバイスは対象外になります。無効にすると、店舗未紐付けのデバイスは店舗共通として扱われ、すべての店舗注文が配信されます。",
+    "template": "レシートフォーマット",
+    "templateStandard": "標準レシート"
+  }
+}

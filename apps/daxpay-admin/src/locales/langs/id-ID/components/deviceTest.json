@@ -1,0 +1,33 @@
+{
+  "title": {
+    "announce": "Uji Suara",
+    "print": "Uji Cetak"
+  },
+  "amount": "Jumlah (CNY)",
+  "channel": "Metode Pembayaran",
+  "speechLabel": "Perkiraan Pengumuman",
+  "speechEmpty": "Ditampilkan setelah mengklik Kirim Uji Suara",
+  "speechHint": "Disusun dengan aturan token yang sama dengan perangkat, konsisten dengan pengumuman aktual",
+  "printModeLabel": "Mode Output",
+  "printMode": {
+    "both": "Suara + Cetak",
+    "only": "Cetak Saja (tanpa suara)"
+  },
+  "outBizNo": "No. Pesanan Merchant (opsional)",
+  "outBizNoPlaceholder": "Variabel struk outBizNo, kosongkan untuk menyembunyikan baris",
+  "outBizNoGen": "Buat",
+  "templateLabel": "Templat Cetak",
+  "template": {
+    "standard": "Struk Standar"
+  },
+  "templateHint": "Templat bawaan, saat ini hanya struk standar (lebar kertas ganda 58/80mm)",
+  "close": "Tutup",
+  "send": {
+    "announce": "Kirim Uji Suara",
+    "print": "Kirim Uji Cetak"
+  },
+  "amountRangeWarning": "Jumlah harus antara 0.01~999999.99",
+  "announceSent": "Perintah uji suara terkirim, perangkat akan mengumumkan sesuai jumlah dan metode terpilih",
+  "announcePreviewed": "Teks pengumuman pratinjau telah dibuat (hanya pratinjau, tidak dikirim ke perangkat)",
+  "printSent": "Perintah uji cetak terkirim, periksa printer"
+}

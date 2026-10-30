@@ -114,5 +114,7 @@
   "menu.system.notify.mailRecord": "Catatan Kirim Email",
   "menu.trade.abnormalOrder": "Pesanan Abnormal",
   "menu.trade.fundFlow": "Arus Dana",
-  "menu.system.notify.mailTemplate": "Templat Email"
+  "menu.system.notify.mailTemplate": "Templat Email",
+  "menu.payment.device.virtual": "Perangkat Virtual",
+  "menu.payment.device.virtual.list": "Manajemen Perangkat"
 }

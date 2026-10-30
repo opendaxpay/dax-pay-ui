@@ -226,5 +226,21 @@
     "confirmSaveContent": "Simpan konfigurasi penghantar e-mel?",
     "testSend": "Hantar E-mel Ujian",
     "testSendSuccess": "E-mel ujian telah dihantar, sila semak kotak masuk"
+  },
+  "mqtt": {
+    "title": "Akses MQTT",
+    "description": "Konfigurasi akses talian paip pengumuman peranti",
+    "headerDescription": "Alamat ini dihantar ke APP semasa peranti diaktifkan; konfigurasi salah akan menyebabkan peranti tidak dapat menerima pengumuman",
+    "brokerWssUrl": "Alamat Akses MQTT",
+    "brokerWssUrlDesc": "Alamat penuh MQTT over WebSocket untuk peranti, cth. wss://mqtt.example.com; TLS ditamatkan di gerbang",
+    "inputBrokerWssUrl": "Masukkan alamat akses MQTT, cth. wss://mqtt.example.com",
+    "urlPatternWarning": "Alamat akses mesti bermula dengan ws:// atau wss:// dan tiada ruang kosong",
+    "username": "Nama Akaun Akses",
+    "usernameDesc": "Akaun peranti statik broker (lalai app-device), hanya mempunyai kebenaran melanggan topik peranti",
+    "inputUsername": "Masukkan nama akaun akses MQTT",
+    "password": "Kata Laluan Akses",
+    "passwordDesc": "Disimpan dan dipaparkan sebagai teks biasa untuk perbandingan dengan pihak broker; mesti sepadan dengan akaun app-device broker. Selepas diubah, segerakkan pihak broker juga, jika tidak peranti tidak boleh disambungkan",
+    "inputPassword": "Masukkan kata laluan akses MQTT",
+    "confirmSaveContent": "Simpan konfigurasi akses MQTT?"
   }
 }

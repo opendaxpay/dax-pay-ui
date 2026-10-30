@@ -1,0 +1,51 @@
+{
+  "field": {
+    "deviceNo": "디바이스 번호",
+    "appId": "앱",
+    "storeNo": "매장",
+    "enable": "상태"
+  },
+  "column": {
+    "device": "디바이스",
+    "app": "앱",
+    "store": "매장",
+    "enable": "활성화",
+    "runStatus": "실행 상태"
+  },
+  "allApps": "전체 앱",
+  "unassigned": "미할당",
+  "runStatus": {
+    "notActivated": "미활성화",
+    "online": "온라인",
+    "offline": "오프라인"
+  },
+  "action": {
+    "config": "설정",
+    "testBroadcast": "테스트 방송",
+    "testPrint": "테스트 인쇄",
+    "qrCode": "활성화 QR코드"
+  },
+  "confirmEnable": "디바이스 \"{name}\"을(를) 활성화하시겠습니까? 활성화하면 방송과 인쇄가 다시 시작됩니다.",
+  "confirmDisable": "디바이스 \"{name}\"을(를) 비활성화하시겠습니까? 이 디바이스는 더 이상 방송 및 인쇄를 수행하지 않습니다.",
+  "config": {
+    "title": "디바이스 설정",
+    "appHint": "비워 두면 전체 앱이 적용됩니다",
+    "storeHint": "미할당 시 방송/인쇄 대상에서 제외됩니다"
+  },
+  "qr": {
+    "title": "활성화 QR코드",
+    "tip": "휴대폰에 앱을 설치하고 스캔하면 서버 설정과 디바이스 활성화가 완료됩니다",
+    "copy": "내용 복사"
+  },
+  "appConfig": {
+    "title": "결제 음성방송",
+    "broadcast": "음성 방송",
+    "broadcastHint": "결제 완료 후 매장 스피커로 수령 금액을 안내합니다",
+    "print": "영수증 인쇄",
+    "printHint": "결제 완료 후 프린터가 자동으로 영수증을 인쇄합니다",
+    "storeStrict": "매장 주문 엄격 매칭",
+    "storeStrictHint": "사용하면 매장 주문은 해당 매장에 바인딩된 기기로만 전송되며, 매장 미바인딩 기기는 제외됩니다. 사용하지 않으면 매장 미바인딩 기기는 매장 공용으로 간주되어 모든 매장 주문이 전송됩니다.",
+    "template": "영수증 서식",
+    "templateStandard": "표준 영수증"
+  }
+}

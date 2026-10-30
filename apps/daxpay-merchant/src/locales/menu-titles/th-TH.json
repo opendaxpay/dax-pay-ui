@@ -58,5 +58,6 @@
   "menu.trade.fundFlow": "กระแสเงินสด",
 
   "menu.trade.unipayLog": "ล็อก API ชำระเงิน",
-  "menu.payment.merchant.qrcode": "การจัดการรหัส QR"
+  "menu.payment.merchant.qrcode": "การจัดการรหัส QR",
+  "menu.payment.merchant.audioDevice": "อุปกรณ์รับชำระเงิน"
 }

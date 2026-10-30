@@ -278,6 +278,11 @@ export const PermCodes = {
       VIEW: 'device:qrcode:view',
       MANAGE: 'device:qrcode:manage',
     },
+    // 虚拟设备(手机 APP 变云音箱/云打印, 收款播报+小票打印)
+    Virtual: {
+      VIEW: 'device:virtual:view',
+      MANAGE: 'device:virtual:manage',
+    },
   },
 
   System: {
