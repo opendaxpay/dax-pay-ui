@@ -15,6 +15,10 @@
     "title": "소셜 로그인",
     "description": "활성화된 소셜 로그인 플랫폼 중 매개변수 설정이 완료되지 않은 곳이 있습니다"
   },
+  "platformMqtt": {
+    "title": "MQTT 접속",
+    "description": "기기 MQTT 접속 주소 또는 비밀번호가 설정되지 않아 기기가 방송을 수신할 수 없습니다"
+  },
   "mchApp": {
     "title": "가맹점 앱",
     "description": "생성되거나 활성화된 가맹점 앱이 없습니다"

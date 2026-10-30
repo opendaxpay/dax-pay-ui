@@ -46,6 +46,7 @@
     platformUrl: 'lucide:link',
     platformOss: 'lucide:hard-drive',
     socialLogin: 'lucide:log-in',
+    platformMqtt: 'lucide:radio-tower',
     mchApp: 'lucide:app-window',
     mchCredential: 'lucide:key-round',
     channelMerchant: 'lucide:store',

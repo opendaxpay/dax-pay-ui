@@ -15,6 +15,10 @@
     "title": "Đăng Nhập Mạng Xã Hội",
     "description": "Một số nền tảng đăng nhập mạng xã hội đã kích hoạt chưa hoàn tất cấu hình tham số"
   },
+  "platformMqtt": {
+    "title": "Kết Nối MQTT",
+    "description": "Địa chỉ hoặc mật khẩu kết nối MQTT của thiết bị chưa được cấu hình, thiết bị không thể nhận thông báo"
+  },
   "mchApp": {
     "title": "Ứng Dụng Merchant",
     "description": "Chưa có ứng dụng merchant nào được tạo hoặc kích hoạt"

@@ -15,6 +15,10 @@
     "title": "社交登录",
     "description": "有已启用的社交登录平台未完成参数配置"
   },
+  "platformMqtt": {
+    "title": "MQTT 接入",
+    "description": "设备 MQTT 接入地址或密码未配置, 设备无法接收播报"
+  },
   "mchApp": {
     "title": "商户应用",
     "description": "尚未创建或启用任何商户应用"

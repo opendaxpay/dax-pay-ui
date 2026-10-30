@@ -15,6 +15,10 @@
     "title": "Social Login",
     "description": "Some enabled social login platforms have not completed parameter configuration"
   },
+  "platformMqtt": {
+    "title": "MQTT Access",
+    "description": "Device MQTT broker URL or password is not configured; devices cannot receive broadcasts"
+  },
   "mchApp": {
     "title": "Merchant App",
     "description": "No merchant app has been created or enabled"

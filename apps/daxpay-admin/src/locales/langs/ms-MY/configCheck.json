@@ -15,6 +15,10 @@
     "title": "Log Masuk Sosial",
     "description": "Sesetengah platform log masuk sosial yang diaktifkan belum melengkapkan konfigurasi parameter"
   },
+  "platformMqtt": {
+    "title": "Akses MQTT",
+    "description": "URL atau kata laluan sambungan MQTT peranti belum dikonfigurasi, peranti tidak dapat menerima siaran"
+  },
   "mchApp": {
     "title": "Aplikasi Pedagang",
     "description": "Tiada aplikasi pedagang telah dicipta atau diaktifkan"
