@@ -89,6 +89,8 @@ export interface AlipayDirectAppKeyConfigResult {
   alipayCert?: string;
   alipayRootCert?: string;
   secretKey?: string;
+  /** 网关地址(留空使用官方网关) */
+  serverUrl?: string;
   sandbox?: boolean;
 }
 
@@ -103,5 +105,7 @@ export interface AlipayDirectAppKeyConfigParam {
   alipayCert?: string;
   alipayRootCert?: string;
   secretKey?: string;
+  /** 网关地址(留空使用官方网关) */
+  serverUrl?: string;
   sandbox: boolean;
 }

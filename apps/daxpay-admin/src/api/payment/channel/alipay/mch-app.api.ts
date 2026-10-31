@@ -95,6 +95,8 @@ export interface AlipayMchAppKeyConfig {
   alipayRootCert?: string;
   /** AES 通信密钥 */
   secretKey?: string;
+  /** 网关地址(留空使用官方网关) */
+  serverUrl?: string;
   /** 是否沙箱环境 */
   sandbox?: boolean;
 }

@@ -128,6 +128,8 @@
           'alipayCert',
           'alipayRootCert',
           'secretKey',
+          // 非敏感字段, 未修改不提交(后端空值不覆盖), 清空提交空串恢复官方网关
+          'serverUrl',
         );
         const submitData: AlipayDirectAppKeyConfigParam = {
           alipayDirectAppId: props.alipayDirectAppId!,
@@ -371,6 +373,16 @@
             <a-input
               v-model:value="formState.secretKey"
               :placeholder="$t('payment.merchant.alipayDirectApp.secretKeyPlaceholder')"
+              :disabled="!isEditing"
+              allow-clear
+            />
+          </a-form-item>
+
+          <!-- 网关地址(留空走官方网关) -->
+          <a-form-item :label="$t('payment.merchant.alipayDirectApp.serverUrl')">
+            <a-input
+              v-model:value="formState.serverUrl"
+              :placeholder="$t('payment.merchant.alipayDirectApp.serverUrlPlaceholder')"
               :disabled="!isEditing"
               allow-clear
             />

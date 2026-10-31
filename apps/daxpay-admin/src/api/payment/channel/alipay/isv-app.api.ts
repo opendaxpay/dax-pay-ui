@@ -97,4 +97,6 @@ export interface AlipayIsvAppKeyConfig {
   alipayRootCert?: string;
   /** AES通信密钥 */
   secretKey?: string;
+  /** 网关地址(留空使用官方网关) */
+  serverUrl?: string;
 }

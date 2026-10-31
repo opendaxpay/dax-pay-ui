@@ -246,6 +246,16 @@
             :placeholder="$t('payment.channel.wechatIsv.publicKeyIdPlaceholder')"
           />
         </a-form-item>
+
+        <!-- API域名(留空走官方域名) -->
+        <a-form-item :label="$t('payment.channel.wechatIsv.apiHostUrl')" name="apiHostUrl">
+          <a-input
+            v-model:value="form.apiHostUrl"
+            :disabled="!canEdit"
+            :placeholder="$t('payment.channel.wechatIsv.apiHostUrlPlaceholder')"
+            allow-clear
+          />
+        </a-form-item>
       </a-form>
     </a-spin>
 

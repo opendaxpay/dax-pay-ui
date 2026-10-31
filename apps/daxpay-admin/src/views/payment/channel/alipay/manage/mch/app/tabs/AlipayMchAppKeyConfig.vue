@@ -387,6 +387,16 @@
               allow-clear
             />
           </a-form-item>
+
+          <!-- 网关地址(留空走官方网关) -->
+          <a-form-item :label="$t('payment.channel.alipayIsv.serverUrl')">
+            <a-input
+              v-model:value="formState.serverUrl"
+              :placeholder="$t('payment.channel.alipayIsv.serverUrlPlaceholder')"
+              :disabled="!isEditing"
+              allow-clear
+            />
+          </a-form-item>
         </a-form>
       </a-spin>
     </a-card>

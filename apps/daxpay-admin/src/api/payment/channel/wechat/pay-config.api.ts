@@ -39,6 +39,8 @@ export interface WechatIsvKeyConfig {
   privateCert?: string;
   /** 证书序列号 */
   certSerialNo?: string;
+  /** API域名(留空使用官方 api.mch.weixin.qq.com) */
+  apiHostUrl?: string;
   /** 产品类型 */
   product?: string;
 }
