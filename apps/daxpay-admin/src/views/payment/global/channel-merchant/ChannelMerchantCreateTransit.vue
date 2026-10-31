@@ -80,6 +80,13 @@
     [ProductEnum.YEE_PAY]: defineAsyncComponent(
       () => import('#/views/payment/channel/yeepay/config/YeepayMchCreateConfig.vue'),
     ),
+    // 模拟通道: 直连(mock_pay)与服务商(mock_isv)同为 mock 通道, 建档表单按产品区分
+    [ProductEnum.MOCK_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/mock/config/MockMchCreateConfig.vue'),
+    ),
+    [ProductEnum.MOCK_ISV]: defineAsyncComponent(
+      () => import('#/views/payment/channel/mock/config/MockIsvMchCreateConfig.vue'),
+    ),
     // 银联商务家族: 6 个产品共用同一组件
     [ProductEnum.UMS_QRCODE]: UmsMchCreateConfig,
     [ProductEnum.UMS_JSAPI]: UmsMchCreateConfig,

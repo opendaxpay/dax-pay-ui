@@ -116,5 +116,7 @@
   "menu.trade.fundFlow": "Aliran Dana",
   "menu.system.notify.mailTemplate": "Templat E-mel",
   "menu.payment.device.virtual": "Peranti Maya",
-  "menu.payment.device.virtual.list": "Pengurusan Peranti"
+  "menu.payment.device.virtual.list": "Pengurusan Peranti",
+  "menu.payment.mock.isv": "Pengurusan Penyedia Perkhidmatan Mock",
+  "menu.payment.mock.isvWorkbench": "Ruang Kerja Penyedia Perkhidmatan Mock"
 }

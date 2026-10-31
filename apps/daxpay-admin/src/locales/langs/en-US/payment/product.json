@@ -83,7 +83,9 @@
     "yishengPay": "Yisheng Pay",
     "worldfirst": "WorldFirst",
     "lianlianGlobal": "LianLian Global",
-    "pingpong": "PingPong"
+    "pingpong": "PingPong",
+    "mockPay": "Mock Payment",
+    "mockIsv": "Mock Payment (ISV)"
   },
   "placeholder": {
     "name": "Enter product name",

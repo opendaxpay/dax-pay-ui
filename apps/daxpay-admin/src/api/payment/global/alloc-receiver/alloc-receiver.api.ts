@@ -11,6 +11,7 @@ import { defHttp } from '#/api/request';
  * - 支付宝直连 /admin/alipay/direct-alloc-receiver
  * - 支付宝服务商 /admin/alipay/isv-alloc-receiver
  * - 抖音直连 /admin/douyin/direct-alloc-receiver
+ * - 模拟通道(直连/服务商共用) /admin/mock/alloc-receiver
  */
 
 /** 接收方 API 工厂(五组端点契约同构) */
@@ -53,6 +54,12 @@ export const AlipayDirectAllocReceiverApi = receiverApi('/admin/alipay/direct-al
 export const AlipayIsvAllocReceiverApi = receiverApi('/admin/alipay/isv-alloc-receiver');
 /** 抖音直连分账接收方 */
 export const DouyinDirectAllocReceiverApi = receiverApi('/admin/douyin/direct-alloc-receiver');
+/**
+ * 模拟通道分账接收方(直连/服务商共用一套端点)
+ *
+ * mock 零资料接入无应用维度, 产品由后端按通道商户反解, 前端不需要传 product。
+ */
+export const MockAllocReceiverApi = receiverApi('/admin/mock/alloc-receiver');
 
 /**
  * 分账接收方扫码授权 API(跨通道统一接口, 复用认证域 OAuth + queryCode 轮询机制)

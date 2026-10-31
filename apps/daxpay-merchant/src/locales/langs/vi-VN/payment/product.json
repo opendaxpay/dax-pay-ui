@@ -35,6 +35,8 @@
     "allinCashier": "Cashier",
     "allinPayfund": "Payfund",
     "allinDirect": "Direct",
-    "shouqianba": "Shouqianba"
+    "shouqianba": "Shouqianba",
+    "mockPay": "Thanh toán mô phỏng",
+    "mockIsv": "Thanh toán mô phỏng (Nhà cung cấp dịch vụ)"
   }
 }

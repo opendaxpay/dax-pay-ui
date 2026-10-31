@@ -82,6 +82,8 @@ export enum ChannelEnum {
   WORLDFIRST = 'worldfirst',
   /** 连连国际(国际跨境收款通道, 占位未对接; 与境内连连支付 llianpay 为两条独立通道) */
   LIANLIAN_GLOBAL = 'lianlian_global',
+  /** 模拟通道(独立 mock 子应用扮演三方, 仅 DEV 装配, 联调/演示用) */
+  MOCK = 'mock',
   /** PingPong(国际跨境收款通道, 占位未对接) */
   PINGPONG = 'pingpong',
 }
@@ -154,6 +156,8 @@ export const channelI18nMap: Record<string, string> = {
   [ChannelEnum.LIANLIAN_GLOBAL]: 'payment.channel.common.lianlianGlobal',
   // PingPong(国际跨境收款通道, 占位未对接)
   [ChannelEnum.PINGPONG]: 'payment.channel.common.pingpong',
+  // 模拟通道(联调/演示用)
+  [ChannelEnum.MOCK]: 'payment.channel.common.mock',
 };
 
 /**
@@ -224,6 +228,8 @@ export const channelNameMap: Record<string, string> = {
   [ChannelEnum.LIANLIAN_GLOBAL]: '连连国际',
   // PingPong(国际跨境收款通道, 占位未对接)
   [ChannelEnum.PINGPONG]: 'PingPong',
+  // 模拟通道(联调/演示用)
+  [ChannelEnum.MOCK]: '模拟通道',
 };
 
 /**
@@ -297,4 +303,6 @@ export const channelLogoMap: Record<string, string> = {
   [ChannelEnum.LIANLIAN_GLOBAL]: 'lianlian_global',
   // PingPong(国际跨境收款通道, 占位未对接)
   [ChannelEnum.PINGPONG]: 'pingpong',
+  // 模拟通道(mock.svg 已存在, 直接登记)
+  [ChannelEnum.MOCK]: 'mock',
 };

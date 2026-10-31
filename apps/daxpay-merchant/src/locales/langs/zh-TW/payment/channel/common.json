@@ -25,5 +25,6 @@
   "xingyiPay": "星驛付",
   "longPay": "建行龍支付",
   "allinPay": "通聯支付",
-  "shouqianba": "收錢吧"
+  "shouqianba": "收錢吧",
+  "mock": "模擬通道"
 }

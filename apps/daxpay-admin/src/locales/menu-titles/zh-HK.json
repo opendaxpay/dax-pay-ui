@@ -116,5 +116,7 @@
   "menu.trade.fundFlow": "資金流水",
   "menu.system.notify.mailTemplate": "郵件模板",
   "menu.payment.device.virtual": "虛擬設備",
-  "menu.payment.device.virtual.list": "設備管理"
+  "menu.payment.device.virtual.list": "設備管理",
+  "menu.payment.mock.isv": "模擬服務商管理",
+  "menu.payment.mock.isvWorkbench": "模擬服務商工作台"
 }

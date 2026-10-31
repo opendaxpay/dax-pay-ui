@@ -12,7 +12,7 @@
 
   import { useMessage } from '#/hooks/useMessage';
 
-  import { PRODUCT_CONFIG, STATUS_COLOR } from './alloc-receiver/constants';
+  import { PRODUCT_CONFIG, receiverTypeI18nKey, STATUS_COLOR } from './alloc-receiver/constants';
   import ReceiverAliasModal from './alloc-receiver/ReceiverAliasModal.vue';
   import ReceiverBindModal from './alloc-receiver/ReceiverBindModal.vue';
   import ReceiverCreateModal from './alloc-receiver/ReceiverCreateModal.vue';
@@ -262,7 +262,7 @@
       >
         <template #bodyCell="{ column, record }">
           <template v-if="column.dataIndex === 'receiverType'">
-            <span>{{ $t(`payment.channel.allocReceiver.type.${record.receiverType}`) }}</span>
+            <span>{{ $t(receiverTypeI18nKey(product, record.receiverType)) }}</span>
           </template>
           <!-- 账号较长被截断, 悬浮显示完整内容 -->
           <template v-else-if="column.dataIndex === 'receiverAccount'">
@@ -351,6 +351,7 @@
       :open="viewVisible"
       :row="viewRow"
       :config="config"
+      :product="product"
       :app-options="appOptions"
       @close="viewVisible = false"
     />

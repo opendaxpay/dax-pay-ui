@@ -14,7 +14,7 @@
 
   import { useMessage } from '#/hooks/useMessage';
 
-  import { PRODUCT_CONFIG, RELATION_TYPES } from './constants';
+  import { PRODUCT_CONFIG, receiverTypeI18nKey, RELATION_TYPES } from './constants';
   import ReceiverScanModal from './ReceiverScanModal.vue';
   import { useReceiverAppOptions } from './useReceiverAppOptions';
   import { useReceiverScanAuth } from './useReceiverScanAuth';
@@ -63,7 +63,7 @@
   const receiverTypeOptions = computed(() =>
     (config.value?.receiverTypes ?? []).map((v) => ({
       value: v,
-      label: $t(`payment.channel.allocReceiver.type.${v}`),
+      label: $t(receiverTypeI18nKey(product.value, v)),
     })),
   );
 
@@ -117,9 +117,11 @@
     };
   });
 
-  /** 新增表单当前类型是否支持扫码获取(openid/userId 类型; 商户号/登录账号不支持) */
-  const canScanAccount = computed(() =>
-    ['PERSONAL_OPENID', 'PERSONAL_SUB_OPENID', 'USER_ID'].includes(formData.receiverType),
+  /** 新增表单当前类型是否支持扫码获取(openid/userId 类型; 商户号/登录账号不支持; 模拟通道无 OAuth 拟真不做扫码) */
+  const canScanAccount = computed(
+    () =>
+      !product.value.startsWith('mock') &&
+      ['PERSONAL_OPENID', 'PERSONAL_SUB_OPENID', 'USER_ID'].includes(formData.receiverType),
   );
 
   /** 扫码授权通道(按产品推导, 决定弹窗提示文案与账号回填来源) */

@@ -22,3 +22,6 @@ export type {
   ChannelMerchantQueryParam,
   ChannelMerchantResult,
 } from '../global/channel-merchant/channel-merchant.api';
+
+// 模拟通道（mock 直连/服务商建档与接入配置）
+export * as MockChannel from './mock';

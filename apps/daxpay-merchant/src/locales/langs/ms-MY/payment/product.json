@@ -35,6 +35,8 @@
     "allinCashier": "Cashier",
     "allinPayfund": "Payfund",
     "allinDirect": "Direct",
-    "shouqianba": "Shouqianba"
+    "shouqianba": "Shouqianba",
+    "mockPay": "Pembayaran Mock",
+    "mockIsv": "Pembayaran Mock (Penyedia Perkhidmatan)"
   }
 }

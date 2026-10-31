@@ -35,6 +35,8 @@
     "allinCashier": "서우인바오(캐셔)",
     "allinPayfund": "서우푸퉁(페이펀드)",
     "allinDirect": "진푸바오(다이렉트)",
-    "shouqianba": "Shouqianba(서우첸바)"
+    "shouqianba": "Shouqianba(서우첸바)",
+    "mockPay": "모의 결제",
+    "mockIsv": "모의 결제(서비스 제공자)"
   }
 }

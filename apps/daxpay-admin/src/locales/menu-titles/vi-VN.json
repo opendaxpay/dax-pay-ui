@@ -116,5 +116,7 @@
   "menu.trade.fundFlow": "Dòng tiền",
   "menu.system.notify.mailTemplate": "Mẫu email",
   "menu.payment.device.virtual": "Thiết bị ảo",
-  "menu.payment.device.virtual.list": "Quản lý thiết bị"
+  "menu.payment.device.virtual.list": "Quản lý thiết bị",
+  "menu.payment.mock.isv": "Quản lý nhà cung cấp dịch vụ mô phỏng",
+  "menu.payment.mock.isvWorkbench": "Workbench nhà cung cấp dịch vụ mô phỏng"
 }

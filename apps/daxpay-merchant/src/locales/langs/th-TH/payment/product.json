@@ -35,6 +35,8 @@
     "allinCashier": "Cashier",
     "allinPayfund": "Payfund",
     "allinDirect": "Direct",
-    "shouqianba": "Shouqianba"
+    "shouqianba": "Shouqianba",
+    "mockPay": "การชำระเงินจำลอง",
+    "mockIsv": "การชำระเงินจำลอง (ผู้ให้บริการ)"
   }
 }

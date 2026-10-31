@@ -116,5 +116,7 @@
   "menu.trade.fundFlow": "กระแสเงินสด",
   "menu.system.notify.mailTemplate": "เทมเพลตอีเมล",
   "menu.payment.device.virtual": "อุปกรณ์เสมือน",
-  "menu.payment.device.virtual.list": "จัดการอุปกรณ์"
+  "menu.payment.device.virtual.list": "จัดการอุปกรณ์",
+  "menu.payment.mock.isv": "การจัดการผู้ให้บริการจำลอง",
+  "menu.payment.mock.isvWorkbench": "เวิร์กเบนช์ผู้ให้บริการจำลอง"
 }

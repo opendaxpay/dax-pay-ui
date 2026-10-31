@@ -28,6 +28,9 @@
     () => import('#/views/payment/channel/ums/manage/UmsDirectMchManage.vue'),
   );
 
+  /** 模拟通道直连/服务商共用同一工作台组件(mock_pay / mock_isv) */
+  const MockMchManage = defineAsyncComponent(() => import('#/views/payment/channel/mock/manage/MockMchManage.vue'));
+
   /**
    * 支付产品 → 通道商户管理组件映射表(懒加载, 按需分包)
    * 单一事实源: 新增/删除通道仅需在此增删一行
@@ -100,6 +103,9 @@
     [ProductEnum.UMS_MINI]: UmsDirectMchManage,
     [ProductEnum.UMS_H5]: UmsDirectMchManage,
     [ProductEnum.UMS_BARCODE]: UmsDirectMchManage,
+    // 模拟通道: 直连/服务商共用同一工作台
+    [ProductEnum.MOCK_PAY]: MockMchManage,
+    [ProductEnum.MOCK_ISV]: MockMchManage,
   };
 
   /** 银联商务系列产品的页头标题 key */
@@ -139,6 +145,9 @@
     [ProductEnum.UMS_MINI]: UMS_MANAGE_TITLE_KEY,
     [ProductEnum.UMS_H5]: UMS_MANAGE_TITLE_KEY,
     [ProductEnum.UMS_BARCODE]: UMS_MANAGE_TITLE_KEY,
+    // 模拟通道: 直连/服务商分别用各自的页头标题
+    [ProductEnum.MOCK_PAY]: 'payment.channel.mock.manageTitle',
+    [ProductEnum.MOCK_ISV]: 'payment.channel.mock.manageTitleIsv',
   };
 
   /** 标题回退 key */

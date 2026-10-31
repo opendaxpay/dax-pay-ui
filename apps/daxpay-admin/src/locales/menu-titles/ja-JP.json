@@ -116,5 +116,7 @@
   "menu.trade.fundFlow": "資金フロー",
   "menu.system.notify.mailTemplate": "メールテンプレート",
   "menu.payment.device.virtual": "仮想デバイス",
-  "menu.payment.device.virtual.list": "デバイス管理"
+  "menu.payment.device.virtual.list": "デバイス管理",
+  "menu.payment.mock.isv": "モックサービスプロバイダー管理",
+  "menu.payment.mock.isvWorkbench": "モックサービスプロバイダーワークベンチ"
 }

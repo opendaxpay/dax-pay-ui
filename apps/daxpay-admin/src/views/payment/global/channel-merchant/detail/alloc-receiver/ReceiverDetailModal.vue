@@ -7,7 +7,7 @@
   import { $t } from '@vben/locales';
   import { formatDateTime } from '@vben/utils';
 
-  import { type ProductConfig, STATUS_COLOR } from './constants';
+  import { type ProductConfig, receiverTypeI18nKey, STATUS_COLOR } from './constants';
 
   /**
    * 分账接收方详情弹窗(完整账号/应用/失败原因, 补偿列表列宽截断)
@@ -19,6 +19,8 @@
     config?: ProductConfig;
     /** 弹窗开关 */
     open: boolean;
+    /** 支付产品编码(mock 的 USER_ID 文案按产品覆盖) */
+    product: string;
     /** 当前行 */
     row?: AllocReceiverResult;
   }>();
@@ -65,7 +67,7 @@
   >
     <a-descriptions v-if="row" :column="2" size="small" bordered class="mt-2">
       <a-descriptions-item :label="$t('payment.channel.allocReceiver.typeLabel')">
-        {{ $t(`payment.channel.allocReceiver.type.${row.receiverType ?? ''}`) }}
+        {{ $t(receiverTypeI18nKey(props.product, row.receiverType)) }}
       </a-descriptions-item>
       <a-descriptions-item :label="$t('payment.channel.allocReceiver.statusLabel')">
         <a-tag :color="STATUS_COLOR[row.status ?? ''] ?? 'default'">

@@ -124,6 +124,10 @@ export enum ProductEnum {
   WORLDFIRST = 'worldfirst',
   /** 连连国际跨境收款(国际, 占位未对接; 与境内连连支付 llian_pay 为两个独立产品) */
   LIANLIAN_GLOBAL = 'lianlian_global',
+  /** 模拟支付(服务商) */
+  MOCK_ISV = 'mock_isv',
+  /** 模拟支付(直连) */
+  MOCK_PAY = 'mock_pay',
   /** PingPong 跨境收款(国际, 占位未对接) */
   PINGPONG = 'pingpong',
 }
@@ -223,6 +227,10 @@ export const productI18nMap: Record<string, string> = {
   [ProductEnum.LIANLIAN_GLOBAL]: 'payment.product.enum.lianlianGlobal',
   // PingPong 跨境收款(国际, 占位未对接)
   [ProductEnum.PINGPONG]: 'payment.product.enum.pingpong',
+  // 模拟支付(直连)
+  [ProductEnum.MOCK_PAY]: 'payment.product.enum.mockPay',
+  // 模拟支付(服务商)
+  [ProductEnum.MOCK_ISV]: 'payment.product.enum.mockIsv',
 };
 
 /**
@@ -334,6 +342,10 @@ export const productNameMap: Record<string, string> = {
   [ProductEnum.LIANLIAN_GLOBAL]: '连连国际',
   // PingPong 跨境收款(国际, 占位未对接)
   [ProductEnum.PINGPONG]: 'PingPong',
+  // 模拟支付(联调/演示用)
+  [ProductEnum.MOCK_PAY]: '模拟支付',
+  // 模拟支付(服务商, 联调/演示用)
+  [ProductEnum.MOCK_ISV]: '模拟支付(服务商)',
 };
 
 /**
@@ -440,6 +452,9 @@ export const productChannelMap: Record<string, string> = {
   [ProductEnum.LIANLIAN_GLOBAL]: ChannelEnum.LIANLIAN_GLOBAL,
   // PingPong 跨境收款(国际, 占位未对接)
   [ProductEnum.PINGPONG]: ChannelEnum.PINGPONG,
+  // 模拟支付(直连/服务商共用 mock 通道)
+  [ProductEnum.MOCK_PAY]: ChannelEnum.MOCK,
+  [ProductEnum.MOCK_ISV]: ChannelEnum.MOCK,
 };
 
 /**
@@ -492,4 +507,7 @@ export const productLogoMap: Record<string, string> = {
   [ProductEnum.ALLIN_DIRECT]: 'allin_pay',
   // 收钱吧
   [ProductEnum.SHOUQIANBA]: 'shouqianba',
+  // 模拟支付(直连/服务商共用通道 Logo mock.svg)
+  [ProductEnum.MOCK_PAY]: 'mock',
+  [ProductEnum.MOCK_ISV]: 'mock',
 };

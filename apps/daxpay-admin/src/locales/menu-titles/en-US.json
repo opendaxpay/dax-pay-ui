@@ -116,5 +116,7 @@
   "menu.trade.fundFlow": "Fund Flows",
   "menu.system.notify.mailTemplate": "Mail Templates",
   "menu.payment.device.virtual": "Virtual Devices",
-  "menu.payment.device.virtual.list": "Device Management"
+  "menu.payment.device.virtual.list": "Device Management",
+  "menu.payment.mock.isv": "Mock Service Provider",
+  "menu.payment.mock.isvWorkbench": "Mock Service Provider Workbench"
 }

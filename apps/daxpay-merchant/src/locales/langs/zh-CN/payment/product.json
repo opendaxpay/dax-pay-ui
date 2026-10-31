@@ -35,6 +35,8 @@
     "allinCashier": "收银宝",
     "allinPayfund": "收付通",
     "allinDirect": "金服宝",
-    "shouqianba": "收钱吧"
+    "shouqianba": "收钱吧",
+    "mockPay": "模拟支付",
+    "mockIsv": "模拟支付(服务商)"
   }
 }

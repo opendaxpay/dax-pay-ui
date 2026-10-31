@@ -49,6 +49,7 @@ import mPaymentChannelHkrtIsv from './payment/channel/hkrtIsv.json';
 import mPaymentChannelHmpayIsv from './payment/channel/hmpayIsv.json';
 import mPaymentChannelLakalaIsv from './payment/channel/lakalaIsv.json';
 import mPaymentChannelLeshuaIsv from './payment/channel/leshuaIsv.json';
+import mPaymentChannelMock from './payment/channel/mock.json';
 import mPaymentChannelShengIsv from './payment/channel/shengIsv.json';
 import mPaymentChannelStripe from './payment/channel/stripe.json';
 import mPaymentChannelStripeManage from './payment/channel/stripeManage.json';
@@ -182,6 +183,7 @@ const entries: LocaleEntry[] = [
   [['payment', 'channel', 'hmpayIsv'], mPaymentChannelHmpayIsv],
   [['payment', 'channel', 'lakalaIsv'], mPaymentChannelLakalaIsv],
   [['payment', 'channel', 'leshuaIsv'], mPaymentChannelLeshuaIsv],
+  [['payment', 'channel', 'mock'], mPaymentChannelMock],
   [['payment', 'channel', 'shengIsv'], mPaymentChannelShengIsv],
   [['payment', 'channel', 'stripe'], mPaymentChannelStripe],
   [['payment', 'channel', 'stripeManage'], mPaymentChannelStripeManage],

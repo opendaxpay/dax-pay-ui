@@ -9,6 +9,7 @@ import {
   AlipayDirectAllocReceiverApi,
   AlipayIsvAllocReceiverApi,
   DouyinDirectAllocReceiverApi,
+  MockAllocReceiverApi,
   WechatDirectAllocReceiverApi,
   WechatIsvAllocReceiverApi,
 } from '#/api/payment/global/alloc-receiver/alloc-receiver.api';
@@ -57,6 +58,20 @@ export const PRODUCT_CONFIG: Record<string, ProductConfig> = {
     hasRelation: true,
     receiverTypes: ['MERCHANT_ID', 'PERSONAL_OPENID'],
   },
+  // 模拟通道(直连/服务商共用): 零资料接入, 无应用维度、无分账关系语义,
+  // 类型只开商户号与用户ID; 两端点同前缀, 产品由后端按通道商户反解
+  mock_isv: {
+    api: MockAllocReceiverApi,
+    appMode: 'none',
+    hasRelation: false,
+    receiverTypes: ['MERCHANT_ID', 'USER_ID'],
+  },
+  mock_pay: {
+    api: MockAllocReceiverApi,
+    appMode: 'none',
+    hasRelation: false,
+    receiverTypes: ['MERCHANT_ID', 'USER_ID'],
+  },
   wechat_isv: {
     api: WechatIsvAllocReceiverApi,
     appMode: 'wechat-isv',
@@ -91,3 +106,15 @@ export const STATUS_COLOR: Record<string, string> = {
   fail: 'error',
   unbound: 'default',
 };
+
+/**
+ * 接收方类型文案的 i18n key(产品级覆盖)
+ *
+ * mock 的 USER_ID 是模拟通道内的用户标识, 不是支付宝账号, 沿用「支付宝用户ID」文案会误导运营。
+ */
+export function receiverTypeI18nKey(product: string, code?: string): string {
+  if (product?.startsWith('mock') && code === 'USER_ID') {
+    return 'payment.channel.mock.type.userId';
+  }
+  return `payment.channel.allocReceiver.type.${code ?? ''}`;
+}

@@ -83,7 +83,9 @@
     "yishengPay": "易生支付",
     "worldfirst": "WorldFirst",
     "lianlianGlobal": "連連國際(LianLian Global)",
-    "pingpong": "PingPong"
+    "pingpong": "PingPong",
+    "mockPay": "模擬支付",
+    "mockIsv": "模擬支付(服務商)"
   },
   "placeholder": {
     "name": "請輸入產品名稱",
