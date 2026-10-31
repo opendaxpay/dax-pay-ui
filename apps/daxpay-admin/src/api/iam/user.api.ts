@@ -100,6 +100,14 @@ export const UserApi = {
   existsEmailByClient(email: string, clientCode: string): Promise<Result<boolean>> {
     return defHttp.get({ url: '/user/check/exists-email-by-client', params: { email, clientCode } });
   },
+  /**
+   * 删除用户(注销, 不可恢复)
+   * 仅无主体挂靠的游离用户可删; 挂靠商户的用户会被拒绝, 须去对应商户的用户管理删除;
+   * 内置超管不可删
+   */
+  delete(id: string): Promise<Result<void>> {
+    return defHttp.post({ url: '/user/admin/delete', params: { userId: id } });
+  },
 };
 
 /**

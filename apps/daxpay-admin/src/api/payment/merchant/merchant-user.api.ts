@@ -191,6 +191,14 @@ export const MerchantUserApi = {
   restartPasswordBatch(userIds: string[]): Promise<Result<UserPasswordResult[]>> {
     return defHttp.post({ url: '/admin/merchant/user/restart-password-batch', data: { userIds } });
   },
+
+  /**
+   * 删除商户用户(注销, 不可恢复)
+   * 级联清理 iam 侧角色/社交绑定/密码记录等并脱敏, 名下最后一名管理员被拒
+   */
+  delete(userId: string): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/merchant/user/delete', params: { userId } });
+  },
 };
 
 /**

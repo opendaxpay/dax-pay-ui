@@ -206,6 +206,14 @@
           // 后端 unlock 无条件置为 NORMAL，对 lock/ban 均生效
           disabled: row.status === 'normal',
         },
+        { type: 'divider' },
+        {
+          key: 'delete',
+          // 删除(注销式, 不可恢复); 后端最后管理员护栏拦截, 管理员行前置禁用防呆
+          label: $t('common.delete'),
+          danger: true,
+          disabled: row.administrator,
+        },
       );
     }
     return {
@@ -218,6 +226,10 @@
           }
           case 'ban': {
             handleBan([row.id!]);
+            break;
+          }
+          case 'delete': {
+            handleDelete(row);
             break;
           }
           case 'resetPassword': {
@@ -333,6 +345,37 @@
    */
   function handleResetPassword(userIds: string[]) {
     userResetPasswordRef.value?.show(userIds);
+  }
+
+  // 删除确认弹窗(输入用户姓名确认, 与运营端删除用户同款强确认强度)
+  const deleteTarget = ref<MerchantUserResult>({});
+  const deleteOpen = ref(false);
+  const deleteConfirmName = ref('');
+  const deleteSubmitting = ref(false);
+
+  /**
+   * 打开删除确认弹窗(注销式删除, 输入姓名一致才可执行)
+   */
+  function handleDelete(row: MerchantUserResult) {
+    deleteTarget.value = row;
+    deleteConfirmName.value = '';
+    deleteOpen.value = true;
+  }
+
+  /**
+   * 提交删除商户用户(注销+脱敏+踢线, 成功后刷新列表)
+   */
+  function handleDeleteSubmit() {
+    deleteSubmitting.value = true;
+    MerchantUserApi.delete(deleteTarget.value.id!)
+      .then(() => {
+        message.success($t('common.deleteSuccess'));
+        deleteOpen.value = false;
+        queryPage();
+      })
+      .finally(() => {
+        deleteSubmitting.value = false;
+      });
   }
 
   /**
@@ -480,5 +523,35 @@
       @ok="queryPage"
     />
     <MerchantUserRoleAssign ref="userRoleAssignRef" @ok="queryPage" />
+
+    <!-- 删除确认: 输入用户姓名才可执行(强确认, 与运营端同款范式) -->
+    <a-modal
+      v-model:open="deleteOpen"
+      :title="$t('payment.merchant.user.deleteModal.title')"
+      :confirm-loading="deleteSubmitting"
+      :ok-text="$t('payment.merchant.user.deleteModal.okText')"
+      :cancel-text="$t('common.cancelText')"
+      :ok-button-props="{ danger: true, disabled: deleteConfirmName !== deleteTarget.name }"
+      @cancel="deleteOpen = false"
+      @ok="handleDeleteSubmit"
+    >
+      <div class="space-y-3">
+        <a-alert
+          type="error"
+          show-icon
+          :message="$t('payment.merchant.user.deleteModal.alertTitle')"
+          :description="$t('payment.merchant.user.deleteModal.alertDesc')"
+        />
+        <div>
+          {{ $t('payment.merchant.user.deleteModal.inputTip', { name: deleteTarget.name }) }}
+        </div>
+        <a-input
+          v-model:value="deleteConfirmName"
+          :placeholder="$t('payment.merchant.user.deleteModal.placeholder')"
+          allow-clear
+          @press-enter="deleteConfirmName === deleteTarget.name && !deleteSubmitting && handleDeleteSubmit()"
+        />
+      </div>
+    </a-modal>
   </div>
 </template>

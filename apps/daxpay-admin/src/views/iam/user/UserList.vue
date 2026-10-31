@@ -226,6 +226,15 @@
           label: $t('iam.user.action.unlock'),
           disabled: !hasPermission(PermCodes.Iam.User.STATUS) || row.status === 'normal',
         },
+        { type: 'divider' },
+        // 删除(注销式, 不可恢复); 挂靠商户的用户由后端拒绝并引导去商户侧,
+        // 前端不做条件隐藏, 内置超管后端同拦、行级禁用防呆
+        {
+          key: 'delete',
+          label: $t('common.delete'),
+          danger: true,
+          disabled: !hasPermission(PermCodes.Iam.User.MANAGE) || !!row.administrator,
+        },
       ],
       onClick: ({ key }: { key: string }) => {
         switch (key) {
@@ -236,6 +245,11 @@
           }
           case 'ban': {
             handleBan([row.id]);
+
+            break;
+          }
+          case 'delete': {
+            handleDelete(row);
 
             break;
           }
@@ -384,6 +398,40 @@
    */
   function handleResetPassword(userIds: string[]) {
     userResetPasswordRef.value?.show(userIds);
+  }
+
+  // 删除确认弹窗(输入用户姓名确认, 与主体侧删除用户同款强确认强度)
+  const deleteTarget = ref<any>({});
+  const deleteOpen = ref(false);
+  const deleteConfirmName = ref('');
+  const deleteSubmitting = ref(false);
+
+  /**
+   * 打开删除确认弹窗(注销式删除, 输入姓名一致才可执行)
+   *
+   * 通用入口仅可删无主体挂靠的游离用户; 挂靠商户的用户由后端拒绝,
+   * 接口报错文案会引导去对应商户的用户管理操作。
+   */
+  function handleDelete(row: any) {
+    deleteTarget.value = row;
+    deleteConfirmName.value = '';
+    deleteOpen.value = true;
+  }
+
+  /**
+   * 提交删除用户(注销+脱敏+踢线, 成功后刷新列表)
+   */
+  function handleDeleteSubmit() {
+    deleteSubmitting.value = true;
+    UserApi.delete(deleteTarget.value.id)
+      .then(() => {
+        message.success($t('common.deleteSuccess'));
+        deleteOpen.value = false;
+        queryPage();
+      })
+      .finally(() => {
+        deleteSubmitting.value = false;
+      });
   }
 
   /**
@@ -581,6 +629,36 @@
     />
     <UserRoleAssign ref="userRoleAssignRef" @ok="queryPage" />
     <UserSocialBind ref="userSocialBindRef" />
+
+    <!-- 删除确认: 输入用户姓名才可执行(强确认, 与主体侧删除用户同款范式) -->
+    <a-modal
+      v-model:open="deleteOpen"
+      :title="$t('iam.user.deleteModal.title')"
+      :confirm-loading="deleteSubmitting"
+      :ok-text="$t('iam.user.deleteModal.okText')"
+      :cancel-text="$t('common.cancelText')"
+      :ok-button-props="{ danger: true, disabled: deleteConfirmName !== deleteTarget.name }"
+      @cancel="deleteOpen = false"
+      @ok="handleDeleteSubmit"
+    >
+      <div class="space-y-3">
+        <a-alert
+          type="error"
+          show-icon
+          :message="$t('iam.user.deleteModal.alertTitle')"
+          :description="$t('iam.user.deleteModal.alertDesc')"
+        />
+        <div>
+          {{ $t('iam.user.deleteModal.inputTip', { name: deleteTarget.name }) }}
+        </div>
+        <a-input
+          v-model:value="deleteConfirmName"
+          :placeholder="$t('iam.user.deleteModal.placeholder')"
+          allow-clear
+          @press-enter="deleteConfirmName === deleteTarget.name && !deleteSubmitting && handleDeleteSubmit()"
+        />
+      </div>
+    </a-modal>
   </div>
 </template>
 
