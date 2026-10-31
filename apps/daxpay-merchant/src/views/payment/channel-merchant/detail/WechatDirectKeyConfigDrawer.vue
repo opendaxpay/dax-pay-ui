@@ -77,6 +77,8 @@
             'publicKey',
             'publicKeyId',
             'certSerialNo',
+            // 非敏感字段, 未修改不提交(后端空值不覆盖), 清空提交空串恢复官方域名
+            'apiHostUrl',
           ),
           channelMchNo: props.channelMchNo,
         };
@@ -229,6 +231,15 @@
           <a-input
             v-model:value="form.publicKeyId"
             :placeholder="$t('payment.merchant.channelMerchant.publicKeyIdPlaceholder')"
+          />
+        </a-form-item>
+
+        <!-- API域名(留空走官方域名) -->
+        <a-form-item :label="$t('payment.merchant.channelMerchant.apiHostUrl')" name="apiHostUrl">
+          <a-input
+            v-model:value="form.apiHostUrl"
+            :placeholder="$t('payment.merchant.channelMerchant.apiHostUrlPlaceholder')"
+            allow-clear
           />
         </a-form-item>
       </a-form>

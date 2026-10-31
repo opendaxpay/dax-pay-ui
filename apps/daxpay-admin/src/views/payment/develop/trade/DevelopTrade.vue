@@ -35,11 +35,17 @@
   // 支付模式: route=路由模式(商户+方式+应用动态匹配) direct=直接指定(通道商户+能力直接决定)
   const routeMode = ref<'direct' | 'route'>('route');
 
-  // 私钥独立存储(标签+弹窗交互, 校验通过 form 自定义规则挂接)
+  // 私钥独立存储(卡头状态+弹窗交互, 提交前手工校验)
   const privateKey = ref('');
   const privateKeyVisible = ref(false);
   const privateKeyInput = ref('');
   const loading = ref(false);
+
+  // 高级参数折叠(默认收起, 低频长尾参数)
+  const advancedOpen = ref(false);
+
+  // 完整响应展开态(默认截断, 展开后随面板统一滚动)
+  const jsonExpanded = ref(false);
 
   // ===== 表单校验规则(按模式动态生成) =====
   const formRules = computed<Record<string, any[]>>(() => {
@@ -62,16 +68,6 @@
             }
           },
           trigger: 'blur',
-        },
-      ],
-      // 私钥存独立 ref, 用自定义校验挂到 form 上
-      privateKey: [
-        {
-          validator: async () => {
-            if (!privateKey.value) {
-              throw new Error($t('payment.develop.trade.msg.inputPrivateKey'));
-            }
-          },
         },
       ],
     };
@@ -125,17 +121,21 @@
   const channelMchNoOptions = ref<ChannelMchOption[]>([]);
   const capabilityOptions = ref<LabelValue[]>([]);
 
-  // ===== 调试结果(完整 unipay DaxResult) =====
-  const resultVisible = ref(false);
+  // ===== 调试结果(常驻右侧结果面板, 替代原弹窗) =====
   const resultData = ref<DaxResult<PayResult>>({ code: 0 });
-  // 业务失败(code≠0)时仍弹窗看完整响应, 用失败标题/Alert 区分成功态
+  // 是否已有结果(区分面板空态)
+  const hasResult = ref(false);
+  // 业务失败(code≠0)时用失败样式展示完整响应
   const resultSuccess = computed(() => resultData.value?.code === 0);
-  // 结果弹窗标题: 成功「支付结果」/ 失败「支付失败」
-  const resultModalTitle = computed(() =>
-    resultSuccess.value
-      ? $t('payment.develop.trade.result.modalTitle')
-      : $t('payment.develop.trade.result.failModalTitle'),
-  );
+  // 失败文案: 成功体用 msg, 异常体(RestExceptionHandler)用 message, 双字段兜底
+  const resultMessage = computed(() => {
+    const raw = resultData.value as Record<string, any>;
+    return raw?.msg || raw?.message || $t('payment.develop.trade.msg.payFail');
+  });
+  // 本次请求摘要(提交时快照, 便于结果与参数逐次对照)
+  const lastRequest = ref<null | { amount: number; channelDesc: string; mchNoDesc: string; reqTime: string }>(null);
+  // 请求耗时(毫秒, 提交到响应返回)
+  const elapsedMs = ref<null | number>(null);
 
   // 完整 DaxResult(展示用): resTime 由平台下发北京时间 (如 2026-07-19 21:34:58)
   // 与展示格式一致, 此处格式化仅为兜底(兼容历史 ISO 报文); 格式化失败保留原值
@@ -265,8 +265,7 @@
       secureStorage.removeItem(PRIVATE_KEY_STORAGE_KEY);
     }
     privateKeyVisible.value = false;
-    // 清除私钥字段校验态
-    formRef.value?.clearValidate?.(['privateKey']);
+    // 私钥保存成功
     message.success($t('payment.develop.trade.privateKey.savedTip'));
   }
 
@@ -278,7 +277,7 @@
       onOk() {
         privateKey.value = '';
         secureStorage.removeItem(PRIVATE_KEY_STORAGE_KEY);
-        formRef.value?.clearValidate?.(['privateKey']);
+        // 私钥已清除
         message.success($t('payment.develop.trade.privateKey.clearedTip'));
       },
     });
@@ -355,12 +354,40 @@
     return cleanPayload(payload);
   }
 
+  /**
+   * 生成本次请求摘要(商户/方式或能力/金额/请求时间), 展示在结果面板顶部便于逐次对照
+   */
+  function buildRequestSummary(payload: PayParam) {
+    const mchDesc = mchNoOptions.value.find((item) => item.value === payload.mchNo)?.label ?? (payload.mchNo || '-');
+    const channelDesc =
+      routeMode.value === 'route'
+        ? (methodOptions.value.find((item) => item.value === payload.method)?.label ?? (payload.method || '-'))
+        : (capabilityOptions.value.find((item) => item.value === payload.capability)?.label ??
+          (payload.capability || '-'));
+    return {
+      mchNoDesc: mchDesc,
+      channelDesc,
+      amount: payload.amount ?? 0,
+      reqTime: payload.reqTime ?? '',
+    };
+  }
+
+  /**
+   * 提取请求异常的原始信息(HTTP 状态/网络错误), 便于联调定位
+   */
+  function formatRequestError(error: unknown): string {
+    if (typeof error === 'string' && error) return error;
+    const raw = error as Record<string, any>;
+    return raw?.msg || raw?.message || $t('payment.develop.trade.msg.payFail');
+  }
+
   /** 复制文本到剪贴板 */
-  async function copyText(text: string, successKey = 'payment.develop.trade.msg.copySuccess') {
+  async function copyText(text: string) {
     if (!text) return;
     try {
       await navigator.clipboard.writeText(text);
-      message.success($t(successKey));
+      // 复制成功
+      message.success($t('payment.develop.trade.msg.copySuccess'));
     } catch {
       // 忽略
     }
@@ -370,16 +397,25 @@
   /**
    * 模拟商户调用 unipay 发起支付
    * 1. admin 仅签名  2. 浏览器 POST /unipay/pay
+   * 结果落右侧常驻面板(不弹窗), 可改参重发反复对照
    */
   async function handlePay() {
-    // 表单字段校验(含私钥自定义规则)
+    // 表单字段校验
     try {
       await formRef.value?.validate();
     } catch {
       // 校验未通过,字段错误已由表单自动展示
       return;
     }
+    // 私钥不挂在表单上(收进卡头), 提交前手工校验
+    if (!privateKey.value) {
+      // 请先设置商户私钥
+      message.warning($t('payment.develop.trade.msg.inputPrivateKey'));
+      return;
+    }
     loading.value = true;
+    // 新一轮请求: 完整响应回到截断态, 避免上一轮展开态残留
+    jsonExpanded.value = false;
     try {
       // 组参(含 reqTime/nonceStr)
       const payload = buildPayload();
@@ -392,18 +428,28 @@
 
       // 直调统一支付(无 Accesstoken, 完整商户契约)
       // unipayPost 已将业务失败(code!=0)转为返回值, 仅网络层异常会 throw
+      const startedAt = performance.now();
       try {
         const dax = await uniPay(payload);
+        elapsedMs.value = Math.round(performance.now() - startedAt);
+        lastRequest.value = buildRequestSummary(payload);
         resultData.value = dax ?? { code: -1 };
-        resultVisible.value = true;
+        hasResult.value = true;
         if (dax?.code === 0) {
+          // 支付请求成功
           message.success($t('payment.develop.trade.msg.paySuccess'));
         } else {
           // 业务失败仍展示完整 DaxResult, 便于联调
-          message.warning(dax?.msg || $t('payment.develop.trade.msg.payFail'));
+          message.warning(resultMessage.value);
         }
-      } catch {
-        // unipay 网络/非业务异常
+      } catch (error) {
+        // unipay 网络/非业务异常: 同样落面板, 保留耗时与请求摘要便于排查
+        elapsedMs.value = Math.round(performance.now() - startedAt);
+        lastRequest.value = buildRequestSummary(payload);
+        // 尽量暴露原始异常信息(HTTP 状态/网络错误), 便于联调定位
+        resultData.value = { code: -1, msg: formatRequestError(error) };
+        hasResult.value = true;
+        // 支付请求失败
         message.error($t('payment.develop.trade.msg.payFail'));
       }
     } finally {
@@ -411,7 +457,7 @@
     }
   }
 
-  /** 重置表单 */
+  /** 重置表单(保留结果面板, 便于对照上一单) */
   function handleReset() {
     Object.assign(form, {
       mchNo: '',
@@ -459,8 +505,8 @@
     }
   });
 
-  /** 结果弹窗是否展示支付参数体 */
-  const hasPayBody = computed(() => !!payBody.value);
+  /** 结果面板是否展示支付参数体(失败结果只展示完整响应) */
+  const hasPayBody = computed(() => !!payBody.value && resultSuccess.value);
 
   /** 复制支付参数体 */
   function copyResultData() {
@@ -482,275 +528,280 @@
 </script>
 
 <template>
-  <div class="develop-trade p-4 pb-28">
+  <div class="develop-trade p-4">
     <a-spin :spinning="loading">
       <a-form ref="formRef" layout="vertical" :model="form" :rules="formRules">
-        <a-row :gutter="16">
-          <!-- ============ 左列 ============ -->
-          <a-col :lg="12" :xs="24">
-            <div class="flex flex-col gap-4">
-              <!-- 卡1: 商户与应用 -->
-              <a-card class="rounded-xl shadow-sm">
-                <template #title>
-                  <div class="flex items-center gap-2">
-                    <IconifyIcon icon="ant-design:shop-outlined" class="text-blue-500" />
-                    <span class="font-semibold">{{ $t('payment.develop.trade.card.mchApp') }}</span>
-                  </div>
-                </template>
-
-                <!-- 私钥状态行(校验挂 form.privateKey 自定义规则, 实际值在 privateKey ref) -->
-                <a-form-item :label="$t('payment.develop.trade.field.privateKey')" name="privateKey">
-                  <div class="flex items-center gap-2">
-                    <a-tag v-if="privateKey" color="success">
-                      <IconifyIcon icon="ant-design:check-circle-outlined" class="mr-0.5" />
-                      {{ $t('payment.develop.trade.privateKey.setTag') }}
-                    </a-tag>
-                    <a-tag v-else color="default">{{ $t('payment.develop.trade.privateKey.unsetTag') }}</a-tag>
-                    <span v-if="privateKey" class="text-xs text-muted-foreground">{{
-                      $t('payment.develop.trade.privateKey.setLabel')
-                    }}</span>
-                    <div class="flex shrink-0 gap-1">
-                      <a-button size="small" type="primary" @click="showPrivateKeyModal">
-                        <template #icon><IconifyIcon icon="ant-design:key-outlined" /></template>
-                        {{ $t('payment.develop.trade.btn.setPrivateKey') }}
-                      </a-button>
-                      <a-button v-if="privateKey" danger size="small" @click="clearPrivateKey">
-                        <template #icon><IconifyIcon icon="ant-design:delete-outlined" /></template>
-                      </a-button>
-                    </div>
-                  </div>
-                </a-form-item>
-
-                <!-- 支付模式切换 -->
-                <a-form-item :label="$t('payment.develop.trade.mode.label')" name="routeMode">
-                  <a-radio-group v-model:value="routeMode" button-style="solid" @change="modeChange">
-                    <a-radio-button value="route">{{ $t('payment.develop.trade.mode.route') }}</a-radio-button>
-                    <a-radio-button value="direct">{{ $t('payment.develop.trade.mode.direct') }}</a-radio-button>
-                  </a-radio-group>
-                  <div class="mt-1 text-xs text-muted-foreground">
+        <div class="dev-grid">
+          <!-- ============ 左列: 表单(单列纵排, 按填写动线) ============ -->
+          <div class="flex min-w-0 flex-col gap-4">
+            <!-- 卡1: 商户与模式(私钥状态收进卡头) -->
+            <a-card class="rounded-xl shadow-sm">
+              <template #title>
+                <div class="flex items-center gap-2">
+                  <IconifyIcon icon="ant-design:shop-outlined" class="text-blue-500" />
+                  <span class="font-semibold">{{ $t('payment.develop.trade.card.mchMode') }}</span>
+                </div>
+              </template>
+              <template #extra>
+                <div class="flex items-center gap-2">
+                  <!-- Tag 只渲染默认插槽首个子节点, 图标必须走 #icon 插槽, 否则文字被丢弃 -->
+                  <a-tag v-if="privateKey" color="success">
+                    <template #icon>
+                      <IconifyIcon icon="ant-design:check-circle-outlined" />
+                    </template>
+                    <!-- 私钥已设置 -->
+                    {{ $t('payment.develop.trade.privateKey.setTag') }}
+                  </a-tag>
+                  <!-- 私钥未设置 -->
+                  <a-tag v-else>{{ $t('payment.develop.trade.privateKey.unsetTag') }}</a-tag>
+                  <a-button size="small" type="primary" @click="showPrivateKeyModal">
+                    <template #icon><IconifyIcon icon="ant-design:key-outlined" /></template>
+                    <!-- 已设置时按钮显示「更换」 -->
                     {{
-                      routeMode === 'route'
-                        ? $t('payment.develop.trade.mode.routeDesc')
-                        : $t('payment.develop.trade.mode.directDesc')
+                      privateKey
+                        ? $t('payment.develop.trade.btn.replaceKey')
+                        : $t('payment.develop.trade.btn.setPrivateKey')
                     }}
-                  </div>
-                </a-form-item>
+                  </a-button>
+                  <a-button v-if="privateKey" danger size="small" @click="clearPrivateKey">
+                    <template #icon><IconifyIcon icon="ant-design:delete-outlined" /></template>
+                  </a-button>
+                </div>
+              </template>
 
-                <a-row :gutter="16">
-                  <a-col :span="8">
-                    <a-form-item :label="$t('payment.develop.trade.field.mchNo')" name="mchNo">
-                      <a-select
-                        v-model:value="form.mchNo"
-                        show-search
-                        :options="mchNoOptions"
-                        :placeholder="$t('payment.develop.trade.field.mchNo')"
-                        :filter-option="filterOption"
-                        allow-clear
-                        @change="merchantChange"
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <!-- 路由模式: 应用(可选, 决定使用哪个应用的路由策略) -->
-                  <a-col v-if="routeMode === 'route'" :span="8">
-                    <a-form-item :label="$t('payment.develop.trade.field.appId')" name="appId">
-                      <a-select
-                        v-model:value="form.appId"
-                        show-search
-                        :options="mchAppOptions"
-                        :placeholder="$t('payment.develop.trade.field.appId')"
-                        :filter-option="filterOption"
-                        allow-clear
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <!-- 路由模式: 支付方式(一般必填, 经路由引擎匹配; 被扫场景填了付款码可留空) -->
-                  <a-col v-if="routeMode === 'route'" :span="8">
-                    <a-form-item
-                      :label="$t('payment.develop.trade.field.method')"
-                      name="method"
-                      :tooltip="$t('payment.develop.trade.methodOptionalTip')"
-                    >
-                      <a-select
-                        v-model:value="form.method"
-                        show-search
-                        :options="methodOptions"
-                        :placeholder="$t('payment.develop.trade.placeholder.method')"
-                        :filter-option="filterOption"
-                        allow-clear
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <!-- 直接指定: 通道商户(必填) -->
-                  <a-col v-if="routeMode === 'direct'" :span="8">
-                    <a-form-item :label="$t('payment.develop.trade.field.channelMchNo')" name="channelMchNo">
-                      <ChannelMerchantSelect
-                        v-model:value="form.channelMchNo"
-                        :options="channelMchNoOptions"
-                        :placeholder="$t('payment.develop.trade.field.channelMchNo')"
-                        @change="channelMchNoChange"
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <!-- 直接指定: 支付能力(必填, 由通道商户+能力直接决定支付实现) -->
-                  <a-col v-if="routeMode === 'direct'" :span="8">
-                    <a-form-item :label="$t('payment.develop.trade.field.capability')" name="capability">
-                      <a-select
-                        v-model:value="form.capability"
-                        show-search
-                        :options="capabilityOptions"
-                        :placeholder="$t('payment.develop.trade.placeholder.capability')"
-                        :filter-option="filterOption"
-                        allow-clear
-                      />
-                    </a-form-item>
-                  </a-col>
-                </a-row>
-              </a-card>
+              <!-- 支付模式切换 -->
+              <a-form-item :label="$t('payment.develop.trade.mode.label')" name="routeMode">
+                <a-radio-group v-model:value="routeMode" button-style="solid" @change="modeChange">
+                  <a-radio-button value="route">{{ $t('payment.develop.trade.mode.route') }}</a-radio-button>
+                  <a-radio-button value="direct">{{ $t('payment.develop.trade.mode.direct') }}</a-radio-button>
+                </a-radio-group>
+                <div class="mt-1 text-xs text-muted-foreground">
+                  {{
+                    routeMode === 'route'
+                      ? $t('payment.develop.trade.mode.routeDesc')
+                      : $t('payment.develop.trade.mode.directDesc')
+                  }}
+                </div>
+              </a-form-item>
 
-              <!-- 卡2: 支付参数 -->
-              <a-card class="rounded-xl shadow-sm">
-                <template #title>
-                  <div class="flex items-center gap-2">
-                    <IconifyIcon icon="ant-design:setting-outlined" class="text-purple-500" />
-                    <span class="font-semibold">{{ $t('payment.develop.trade.card.param') }}</span>
-                  </div>
-                </template>
-                <a-row :gutter="16">
-                  <a-col :span="12">
-                    <a-form-item :label="$t('payment.develop.trade.field.openId')" name="openId">
-                      <a-input
-                        v-model:value="form.openId"
-                        :placeholder="$t('payment.develop.trade.placeholder.openId')"
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <!-- 通道应用AppId(微信 JSAPI/小程序支付指定应用, 非空强制使用) -->
-                  <a-col :span="12">
-                    <a-form-item :label="$t('payment.develop.trade.field.channelAppId')" name="channelAppId">
-                      <a-input
-                        v-model:value="form.channelAppId"
-                        :placeholder="$t('payment.develop.trade.placeholder.channelAppId')"
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="12">
-                    <a-form-item :label="$t('payment.develop.trade.field.authCode')" name="authCode">
-                      <a-input
-                        v-model:value="form.authCode"
-                        :placeholder="$t('payment.develop.trade.placeholder.authCode')"
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="24">
-                    <a-form-item :label="$t('payment.develop.trade.field.notifyUrl')" name="notifyUrl">
-                      <a-input
-                        v-model:value="form.notifyUrl"
-                        :placeholder="$t('payment.develop.trade.placeholder.notifyUrl')"
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="24">
-                    <a-form-item :label="$t('payment.develop.trade.field.expiredTime')" name="expiredTime">
-                      <a-date-picker
-                        v-model:value="form.expiredTime"
-                        show-time
-                        value-format="YYYY-MM-DD HH:mm:ss"
-                        style="width: 100%"
-                        :placeholder="$t('payment.develop.trade.placeholder.expiredTime')"
-                      />
-                    </a-form-item>
-                  </a-col>
-                </a-row>
-              </a-card>
-            </div>
-          </a-col>
+              <a-row :gutter="16">
+                <a-col :span="8">
+                  <a-form-item :label="$t('payment.develop.trade.field.mchNo')" name="mchNo">
+                    <a-select
+                      v-model:value="form.mchNo"
+                      show-search
+                      :options="mchNoOptions"
+                      :placeholder="$t('payment.develop.trade.field.mchNo')"
+                      :filter-option="filterOption"
+                      allow-clear
+                      @change="merchantChange"
+                    />
+                  </a-form-item>
+                </a-col>
+                <!-- 路由模式: 应用(可选, 决定使用哪个应用的路由策略) -->
+                <a-col v-if="routeMode === 'route'" :span="8">
+                  <a-form-item :label="$t('payment.develop.trade.field.appId')" name="appId">
+                    <a-select
+                      v-model:value="form.appId"
+                      show-search
+                      :options="mchAppOptions"
+                      :placeholder="$t('payment.develop.trade.field.appId')"
+                      :filter-option="filterOption"
+                      allow-clear
+                    />
+                  </a-form-item>
+                </a-col>
+                <!-- 路由模式: 支付方式(一般必填, 经路由引擎匹配; 被扫场景填了付款码可留空) -->
+                <a-col v-if="routeMode === 'route'" :span="8">
+                  <a-form-item
+                    :label="$t('payment.develop.trade.field.method')"
+                    name="method"
+                    :tooltip="$t('payment.develop.trade.methodOptionalTip')"
+                  >
+                    <a-select
+                      v-model:value="form.method"
+                      show-search
+                      :options="methodOptions"
+                      :placeholder="$t('payment.develop.trade.placeholder.method')"
+                      :filter-option="filterOption"
+                      allow-clear
+                    />
+                  </a-form-item>
+                </a-col>
+                <!-- 直接指定: 通道商户(必填) -->
+                <a-col v-if="routeMode === 'direct'" :span="8">
+                  <a-form-item :label="$t('payment.develop.trade.field.channelMchNo')" name="channelMchNo">
+                    <ChannelMerchantSelect
+                      v-model:value="form.channelMchNo"
+                      :options="channelMchNoOptions"
+                      :placeholder="$t('payment.develop.trade.field.channelMchNo')"
+                      @change="channelMchNoChange"
+                    />
+                  </a-form-item>
+                </a-col>
+                <!-- 直接指定: 支付能力(必填, 由通道商户+能力直接决定支付实现) -->
+                <a-col v-if="routeMode === 'direct'" :span="8">
+                  <a-form-item :label="$t('payment.develop.trade.field.capability')" name="capability">
+                    <a-select
+                      v-model:value="form.capability"
+                      show-search
+                      :options="capabilityOptions"
+                      :placeholder="$t('payment.develop.trade.placeholder.capability')"
+                      :filter-option="filterOption"
+                      allow-clear
+                    />
+                  </a-form-item>
+                </a-col>
+              </a-row>
+            </a-card>
 
-          <!-- ============ 右列 ============ -->
-          <a-col :lg="12" :xs="24">
-            <div class="flex flex-col gap-4">
-              <!-- 卡3: 订单信息 -->
-              <a-card class="rounded-xl shadow-sm">
-                <template #title>
-                  <div class="flex items-center gap-2">
-                    <IconifyIcon icon="ant-design:file-text-outlined" class="text-cyan-500" />
-                    <span class="font-semibold">{{ $t('payment.develop.trade.card.order') }}</span>
-                  </div>
-                </template>
-                <a-row :gutter="16">
-                  <a-col :span="24">
-                    <a-form-item :label="$t('payment.develop.trade.field.bizOrderNo')" name="bizOrderNo">
-                      <a-input v-model:value="form.bizOrderNo">
-                        <template #suffix>
-                          <a-button size="small" type="link" @click="genBizOrderNo">
-                            <template #icon><IconifyIcon icon="ant-design:reload-outlined" /></template>
-                            {{ $t('payment.develop.trade.btn.genOrderNo') }}
-                          </a-button>
-                        </template>
-                      </a-input>
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="12">
-                    <a-form-item :label="$t('payment.develop.trade.field.amount')" name="amount">
-                      <a-input-number
-                        v-model:value="form.amount"
-                        :min="1"
-                        :precision="0"
-                        :step="1"
-                        style="width: 100%"
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="12">
-                    <a-form-item :label="$t('payment.develop.trade.field.title')" name="title">
-                      <a-input v-model:value="form.title" :placeholder="$t('payment.develop.trade.placeholder.title')">
-                        <template #suffix>
-                          <a-button size="small" type="link" @click="form.title = genDefaultTitle()">
-                            <template #icon><IconifyIcon icon="ant-design:reload-outlined" /></template>
-                            {{ $t('payment.develop.trade.btn.genOrderNo') }}
-                          </a-button>
-                        </template>
-                      </a-input>
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="24">
-                    <a-form-item :label="$t('payment.develop.trade.field.description')" name="description">
-                      <a-textarea
-                        v-model:value="form.description"
-                        :rows="3"
-                        :placeholder="$t('payment.develop.trade.placeholder.description')"
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <!-- 是否分账订单(资金冻结, 需发起分账拆分) -->
-                  <a-col :span="24">
-                    <a-form-item :label="$t('payment.develop.trade.field.allocation')" name="allocation">
-                      <div class="flex items-center gap-2">
-                        <a-switch v-model:checked="form.allocation" />
-                        <span class="text-xs text-muted-foreground">{{ $t('payment.develop.trade.allocationTip') }}</span>
-                      </div>
-                    </a-form-item>
-                  </a-col>
-                </a-row>
-              </a-card>
+            <!-- 卡2: 订单信息 -->
+            <a-card class="rounded-xl shadow-sm">
+              <template #title>
+                <div class="flex items-center gap-2">
+                  <IconifyIcon icon="ant-design:file-text-outlined" class="text-cyan-500" />
+                  <span class="font-semibold">{{ $t('payment.develop.trade.card.order') }}</span>
+                </div>
+              </template>
+              <a-row :gutter="16">
+                <a-col :span="24">
+                  <a-form-item :label="$t('payment.develop.trade.field.bizOrderNo')" name="bizOrderNo">
+                    <a-input v-model:value="form.bizOrderNo">
+                      <template #suffix>
+                        <a-button size="small" type="link" @click="genBizOrderNo">
+                          <template #icon><IconifyIcon icon="ant-design:reload-outlined" /></template>
+                          {{ $t('payment.develop.trade.btn.genOrderNo') }}
+                        </a-button>
+                      </template>
+                    </a-input>
+                  </a-form-item>
+                </a-col>
+                <a-col :span="12">
+                  <a-form-item :label="$t('payment.develop.trade.field.amount')" name="amount">
+                    <a-input-number v-model:value="form.amount" :min="1" :precision="0" :step="1" style="width: 100%" />
+                  </a-form-item>
+                </a-col>
+                <a-col :span="12">
+                  <a-form-item :label="$t('payment.develop.trade.field.title')" name="title">
+                    <a-input v-model:value="form.title" :placeholder="$t('payment.develop.trade.placeholder.title')">
+                      <template #suffix>
+                        <a-button size="small" type="link" @click="form.title = genDefaultTitle()">
+                          <template #icon><IconifyIcon icon="ant-design:reload-outlined" /></template>
+                          {{ $t('payment.develop.trade.btn.genOrderNo') }}
+                        </a-button>
+                      </template>
+                    </a-input>
+                  </a-form-item>
+                </a-col>
+                <a-col :span="24">
+                  <a-form-item :label="$t('payment.develop.trade.field.description')" name="description">
+                    <a-textarea
+                      v-model:value="form.description"
+                      :rows="2"
+                      :placeholder="$t('payment.develop.trade.placeholder.description')"
+                    />
+                  </a-form-item>
+                </a-col>
+                <!-- 是否分账订单(资金冻结, 需发起分账拆分) -->
+                <a-col :span="24">
+                  <a-form-item :label="$t('payment.develop.trade.field.allocation')" name="allocation">
+                    <div class="flex items-center gap-2">
+                      <a-switch v-model:checked="form.allocation" />
+                      <span class="text-xs text-muted-foreground">{{ $t('payment.develop.trade.allocationTip') }}</span>
+                    </div>
+                  </a-form-item>
+                </a-col>
+              </a-row>
+            </a-card>
 
-              <!-- 卡4: 高级参数 -->
-              <a-card class="rounded-xl shadow-sm">
-                <template #title>
-                  <div class="flex items-center gap-2">
-                    <IconifyIcon icon="ant-design:setting-outlined" class="text-amber-500" />
-                    <span class="font-semibold">{{ $t('payment.develop.trade.card.advanced') }}</span>
-                  </div>
-                </template>
+            <!-- 卡3: 支付参数 -->
+            <a-card class="rounded-xl shadow-sm">
+              <template #title>
+                <div class="flex items-center gap-2">
+                  <IconifyIcon icon="ant-design:control-outlined" class="text-purple-500" />
+                  <span class="font-semibold">{{ $t('payment.develop.trade.card.param') }}</span>
+                </div>
+              </template>
+              <a-row :gutter="16">
+                <a-col :span="12">
+                  <a-form-item :label="$t('payment.develop.trade.field.openId')" name="openId">
+                    <a-input
+                      v-model:value="form.openId"
+                      :placeholder="$t('payment.develop.trade.placeholder.openId')"
+                    />
+                  </a-form-item>
+                </a-col>
+                <!-- 通道应用AppId(微信 JSAPI/小程序支付指定应用, 非空强制使用) -->
+                <a-col :span="12">
+                  <a-form-item :label="$t('payment.develop.trade.field.channelAppId')" name="channelAppId">
+                    <a-input
+                      v-model:value="form.channelAppId"
+                      :placeholder="$t('payment.develop.trade.placeholder.channelAppId')"
+                    />
+                  </a-form-item>
+                </a-col>
+                <!-- 付款码: 被扫主输入, 独占一行便于扫码枪录入与核对 -->
+                <a-col :span="24">
+                  <a-form-item :label="$t('payment.develop.trade.field.authCode')" name="authCode">
+                    <a-input
+                      v-model:value="form.authCode"
+                      :placeholder="$t('payment.develop.trade.placeholder.authCode')"
+                    />
+                  </a-form-item>
+                </a-col>
+                <a-col :span="12">
+                  <a-form-item :label="$t('payment.develop.trade.field.notifyUrl')" name="notifyUrl">
+                    <a-input
+                      v-model:value="form.notifyUrl"
+                      :placeholder="$t('payment.develop.trade.placeholder.notifyUrl')"
+                    />
+                  </a-form-item>
+                </a-col>
+                <a-col :span="12">
+                  <a-form-item :label="$t('payment.develop.trade.field.returnUrl')" name="returnUrl">
+                    <a-input
+                      v-model:value="form.returnUrl"
+                      :placeholder="$t('payment.develop.trade.placeholder.returnUrl')"
+                    />
+                  </a-form-item>
+                </a-col>
+                <a-col :span="12">
+                  <a-form-item :label="$t('payment.develop.trade.field.expiredTime')" name="expiredTime">
+                    <a-date-picker
+                      v-model:value="form.expiredTime"
+                      show-time
+                      value-format="YYYY-MM-DD HH:mm:ss"
+                      style="width: 100%"
+                      :placeholder="$t('payment.develop.trade.placeholder.expiredTime')"
+                    />
+                  </a-form-item>
+                </a-col>
+              </a-row>
+            </a-card>
+
+            <!-- 卡4: 高级参数(默认折叠, 低频长尾) -->
+            <div class="fold-card">
+              <button class="fold-head" type="button" @click="advancedOpen = !advancedOpen">
+                <IconifyIcon icon="ant-design:tool-outlined" class="text-amber-500" />
+                <span class="font-semibold">{{ $t('payment.develop.trade.card.advanced') }}</span>
+                <span class="fold-hint">{{ $t('payment.develop.trade.advanced.hint') }}</span>
+                <span class="ml-auto shrink-0 text-xs text-muted-foreground">
+                  <!-- 展开/收起 -->
+                  {{
+                    advancedOpen
+                      ? $t('payment.develop.trade.advanced.collapse')
+                      : $t('payment.develop.trade.advanced.expand')
+                  }}
+                </span>
+                <IconifyIcon
+                  icon="ant-design:down-outlined"
+                  class="fold-chevron"
+                  :class="{ 'is-open': advancedOpen }"
+                />
+              </button>
+              <div v-show="advancedOpen" class="fold-body">
                 <a-row :gutter="16">
-                  <a-col :span="12">
-                    <a-form-item :label="$t('payment.develop.trade.field.returnUrl')" name="returnUrl">
-                      <a-input
-                        v-model:value="form.returnUrl"
-                        :placeholder="$t('payment.develop.trade.placeholder.returnUrl')"
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="12">
+                  <a-col :span="24">
                     <a-form-item :label="$t('payment.develop.trade.field.attach')" name="attach">
                       <a-input
                         v-model:value="form.attach"
@@ -778,22 +829,168 @@
                     </a-form-item>
                   </a-col>
                 </a-row>
-              </a-card>
+              </div>
             </div>
-          </a-col>
-        </a-row>
 
-        <!-- ============ 底部悬浮操作栏 ============ -->
-        <div class="action-bar">
-          <div class="flex justify-center gap-4">
-            <a-button class="action-btn" size="large" @click="handleReset">
-              <template #icon><IconifyIcon icon="ant-design:undo-outlined" /></template>
-              {{ $t('payment.develop.trade.btn.reset') }}
-            </a-button>
-            <a-button class="action-btn" danger size="large" type="primary" :loading="loading" @click="handlePay">
-              <template #icon><IconifyIcon icon="ant-design:rocket-outlined" /></template>
-              {{ $t('payment.develop.trade.btn.submit') }}
-            </a-button>
+            <!-- 操作胶囊: 吸底常驻(滚动时钉在视口底部, 到表单尾自然落位) -->
+            <div class="action-capsule">
+              <a-button size="large" @click="handleReset">
+                <template #icon><IconifyIcon icon="ant-design:undo-outlined" /></template>
+                {{ $t('payment.develop.trade.btn.reset') }}
+              </a-button>
+              <!-- 同订单号重复提交按幂等回放(提示挂在主按钮上, 避免结果面板再放一个重复入口) -->
+              <a-tooltip :title="$t('payment.develop.trade.tip.idempotent')">
+                <a-button danger size="large" type="primary" :loading="loading" @click="handlePay">
+                  <template #icon><IconifyIcon icon="ant-design:rocket-outlined" /></template>
+                  {{ $t('payment.develop.trade.btn.submit') }}
+                </a-button>
+              </a-tooltip>
+            </div>
+          </div>
+
+          <!-- ============ 右列: 调试结果(吸顶常驻, 替代原弹窗) ============ -->
+          <div class="result-panel rounded-xl border border-border bg-card shadow-sm">
+            <div class="result-hd">
+              <IconifyIcon icon="ant-design:thunderbolt-outlined" class="text-cyan-500" />
+              <span class="font-semibold">{{ $t('payment.develop.trade.result.panelTitle') }}</span>
+              <div class="ml-auto flex items-center gap-2">
+                <!-- 待发起/支付成功/支付失败 -->
+                <a-tag v-if="!hasResult">{{ $t('payment.develop.trade.result.pendingTag') }}</a-tag>
+                <a-tag v-else-if="resultSuccess" color="success">
+                  {{ $t('payment.develop.trade.result.successTag') }}
+                </a-tag>
+                <a-tag v-else color="error">{{ $t('payment.develop.trade.result.failTag') }}</a-tag>
+                <span v-if="elapsedMs !== null" class="text-xs text-muted-foreground">{{ elapsedMs }} ms</span>
+              </div>
+            </div>
+            <div class="result-bd">
+              <!-- 空态 -->
+              <div v-if="!hasResult" class="empty-box">
+                <IconifyIcon icon="ant-design:inbox-outlined" class="text-2xl text-muted-foreground" />
+                <div class="text-sm text-muted-foreground">{{ $t('payment.develop.trade.result.emptyTitle') }}</div>
+                <div class="text-xs text-muted-foreground">
+                  {{ $t('payment.develop.trade.result.emptyDesc') }}
+                </div>
+              </div>
+
+              <template v-else>
+                <!-- 本次请求摘要(便于逐次对照) -->
+                <div v-if="lastRequest" class="req-summary">
+                  {{ $t('payment.develop.trade.result.thisRequest') }} · {{ lastRequest.mchNoDesc }} ·
+                  {{ lastRequest.channelDesc }} · {{ lastRequest.amount }}
+                  {{ $t('payment.develop.trade.result.centUnit') }} · {{ lastRequest.reqTime }}
+                </div>
+
+                <!-- 业务失败: 顶部错误提示(msg/message 双字段兜底, 兼容成功体与异常体) -->
+                <a-alert v-if="!resultSuccess" type="error" show-icon :message="resultMessage" />
+
+                <!-- 支付参数体: 扫码/链接渲染二维码 -->
+                <template v-if="hasPayBody">
+                  <template v-if="['link', 'qr_code'].includes(payBodyType)">
+                    <div class="flex flex-col items-center">
+                      <div class="mb-2 rounded-lg border border-border bg-card p-1 shadow-sm">
+                        <QrCode :value="payBody" :width="200" />
+                      </div>
+                    </div>
+                    <div>
+                      <div class="mb-1 text-xs font-medium text-muted-foreground">
+                        <!-- 支付链接 -->
+                        {{ $t('payment.develop.trade.result.payLink') }}
+                      </div>
+                      <div class="code-box break-all rounded-lg border border-border bg-muted/40 p-3 text-xs">
+                        {{ payBody }}
+                      </div>
+                    </div>
+                  </template>
+
+                  <!-- JSON/JSAPI: jsapi + json 用 JsonViewer 展示 -->
+                  <template v-else-if="['jsapi', 'json'].includes(payBodyType)">
+                    <div>
+                      <div class="mb-1 text-xs font-medium text-muted-foreground">
+                        <!-- JSAPI 参数 -->
+                        {{ $t('payment.develop.trade.result.jsapiParam') }}
+                      </div>
+                      <JsonViewer :value="jsapiObject" :expand-depth="3" boxed copyable />
+                    </div>
+                  </template>
+
+                  <!-- 表单数据: from -->
+                  <template v-else-if="payBodyType === 'from'">
+                    <div>
+                      <div class="mb-1 text-xs font-medium text-muted-foreground">
+                        <!-- 表单数据 -->
+                        {{ $t('payment.develop.trade.result.formData') }}
+                      </div>
+                      <div class="code-box break-all rounded-lg border border-border bg-muted/40 p-3 text-xs">
+                        {{ payBody }}
+                      </div>
+                    </div>
+                  </template>
+
+                  <!-- 标识码及其他: identifier / 兜底(标题行右侧常驻复制, 便于 MOCK 标识码联调) -->
+                  <template v-else>
+                    <div>
+                      <div class="mb-1 flex items-center justify-between">
+                        <span class="text-xs font-medium text-muted-foreground">
+                          {{ payBodyType === 'identifier' ? $t('payment.develop.trade.result.markCode') : payBodyType }}
+                        </span>
+                        <a-button size="small" type="link" @click="copyText(payBody)">
+                          <!-- 复制 -->
+                          {{ $t('payment.develop.trade.result.copy') }}
+                        </a-button>
+                      </div>
+                      <div class="code-box break-all rounded-lg border border-border bg-muted/40 p-3 text-xs">
+                        {{ payBody }}
+                      </div>
+                    </div>
+                  </template>
+                </template>
+
+                <!-- 完整 DaxResult(联调对照文档): 默认截断, 展开后随面板统一滚动(内层不再出滚动条) -->
+                <div>
+                  <div class="mb-1 flex items-center justify-between">
+                    <span class="text-xs font-medium text-muted-foreground">
+                      <!-- 完整 DaxResult 响应 -->
+                      {{ $t('payment.develop.trade.result.rawResponse') }}
+                    </span>
+                    <a-button v-if="jsonExpanded" size="small" type="link" @click="jsonExpanded = false">
+                      {{ $t('payment.develop.trade.result.collapse') }}
+                    </a-button>
+                  </div>
+                  <div class="json-fold" :class="{ 'is-open': jsonExpanded }">
+                    <!-- 默认展开两层, 否则根节点折叠成 {...}, 截断/展开没有可视意义 -->
+                    <JsonViewer :value="displayResultData" :expand-depth="2" boxed copyable />
+                    <div v-if="!jsonExpanded" class="json-fade"></div>
+                  </div>
+                  <a-button
+                    v-if="!jsonExpanded"
+                    block
+                    class="json-more"
+                    size="small"
+                    type="dashed"
+                    @click="jsonExpanded = true"
+                  >
+                    <template #icon><IconifyIcon icon="ant-design:down-outlined" /></template>
+                    <!-- 展开全部响应 -->
+                    {{ $t('payment.develop.trade.result.expandAll') }}
+                  </a-button>
+                </div>
+              </template>
+            </div>
+
+            <!-- 复制操作常驻面板底部(始终可见, 不随响应内容滚动) -->
+            <div v-if="hasResult" class="result-ft">
+              <a-button v-if="hasPayBody" block type="primary" @click="copyResultData">
+                <template #icon><IconifyIcon icon="ant-design:copy-outlined" /></template>
+                <!-- 复制支付参数 -->
+                {{ $t('payment.develop.trade.result.copyData') }}
+              </a-button>
+              <a-button block @click="copyFullResult">
+                <template #icon><IconifyIcon icon="ant-design:copy-outlined" /></template>
+                <!-- 复制完整响应 -->
+                {{ $t('payment.develop.trade.result.copyFull') }}
+              </a-button>
+            </div>
           </div>
         </div>
       </a-form>
@@ -818,98 +1015,172 @@
         :placeholder="$t('payment.develop.trade.privateKey.placeholder')"
       />
     </a-modal>
-
-    <!-- 调试结果弹窗(完整 unipay DaxResult; 失败也弹窗便于联调) -->
-    <a-modal
-      v-model:open="resultVisible"
-      :title="resultModalTitle"
-      :footer="null"
-      :width="640"
-      destroy-on-hidden
-    >
-      <!-- 业务失败: 顶部错误提示(文案取 DaxResult.msg) -->
-      <div v-if="!resultSuccess" class="mb-3">
-        <a-alert
-          type="error"
-          show-icon
-          :message="resultData.msg || $t('payment.develop.trade.msg.payFail')"
-        />
-      </div>
-      <template v-if="hasPayBody">
-        <div class="flex flex-col items-center">
-          <!-- 扫码支付/支付链接: qr_code + link 渲染二维码 -->
-          <template v-if="['link', 'qr_code'].includes(payBodyType)">
-            <div class="mb-3 rounded-lg border border-border bg-card p-1 shadow-sm">
-              <QrCode :value="payBody" :width="240" />
-            </div>
-            <div class="w-full">
-              <div class="mb-1 text-xs font-medium text-muted-foreground">
-                {{ $t('payment.develop.trade.result.payLink') }}
-              </div>
-              <div class="code-box mb-3 break-all rounded-lg border border-border bg-muted/40 p-3 text-xs">
-                {{ payBody }}
-              </div>
-            </div>
-          </template>
-
-          <!-- JSON/JSAPI: jsapi + json 用 JsonViewer 展示 -->
-          <template v-else-if="['jsapi', 'json'].includes(payBodyType)">
-            <div class="w-full">
-              <div class="mb-1 text-xs font-medium text-muted-foreground">
-                {{ $t('payment.develop.trade.result.jsapiParam') }}
-              </div>
-              <JsonViewer class="json-viewer-box mb-3" :value="jsapiObject" :expand-depth="3" boxed copyable />
-            </div>
-          </template>
-
-          <!-- 表单数据: from -->
-          <template v-else-if="payBodyType === 'from'">
-            <div class="w-full">
-              <div class="mb-1 text-xs font-medium text-muted-foreground">
-                {{ $t('payment.develop.trade.result.formData') }}
-              </div>
-              <div class="code-box mb-3 break-all rounded-lg border border-border bg-muted/40 p-3 text-xs">
-                {{ payBody }}
-              </div>
-            </div>
-          </template>
-
-          <!-- 标识码及其他: identifier / 兜底 -->
-          <template v-else>
-            <div class="w-full">
-              <div class="mb-1 text-xs font-medium text-muted-foreground">
-                {{ payBodyType === 'identifier' ? $t('payment.develop.trade.result.markCode') : payBodyType }}
-              </div>
-              <div class="code-box mb-3 break-all rounded-lg border border-border bg-muted/40 p-3 text-xs">
-                {{ payBody }}
-              </div>
-            </div>
-          </template>
-        </div>
-      </template>
-
-      <!-- 完整 DaxResult(联调对照文档) -->
-      <div class="mb-1 mt-2 text-xs font-medium text-muted-foreground">
-        {{ $t('payment.develop.trade.result.rawResponse') }}
-      </div>
-      <JsonViewer class="json-viewer-box mb-3" :value="displayResultData" :expand-depth="0" boxed copyable />
-
-      <div class="flex gap-2">
-        <a-button v-if="hasPayBody" block type="primary" @click="copyResultData">
-          <template #icon><IconifyIcon icon="ant-design:copy-outlined" /></template>
-          {{ $t('payment.develop.trade.result.copyData') }}
-        </a-button>
-        <a-button block @click="copyFullResult">
-          <template #icon><IconifyIcon icon="ant-design:copy-outlined" /></template>
-          {{ $t('payment.develop.trade.result.copyFull') }}
-        </a-button>
-      </div>
-    </a-modal>
   </div>
 </template>
 
 <style scoped lang="less">
+  // 细滚动条(Chromium): 8px 轨道内 4px 半透明滑块, hover 才加深
+  .thin-scrollbar() {
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: hsl(var(--foreground) / 0.16);
+      background-clip: content-box;
+      border: 2px solid transparent;
+      border-radius: 999px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: hsl(var(--foreground) / 0.32);
+    }
+  }
+
   .develop-trade {
+    // 页面自身做滚动容器: Vben 布局层祖先带 overflow:hidden, 若用 document 滚动
+    // 吸顶/吸底的 sticky 参照会失效, 故用内容区可视高度做内滚动
+    height: var(--vben-content-height, calc(100vh - 88px));
+    overflow-y: auto;
+    .thin-scrollbar();
+
+    // 页面滚动条常驻占位, 内容变长/变短时不产生横向抖动
+    scrollbar-gutter: stable;
+
+    // 左填右看: 左列表单(单列动线) + 右列结果面板(吸顶)
+    .dev-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 29fr) minmax(0, 21fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .result-panel {
+      position: sticky;
+      top: 12px;
+      display: flex;
+      max-height: calc(var(--vben-content-height, calc(100vh - 88px)) - 24px);
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .result-hd {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border-bottom: 1px solid hsl(var(--border));
+    }
+
+    .result-bd {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 14px 16px 16px;
+      overflow-y: auto;
+      .thin-scrollbar();
+    }
+
+    // 复制操作固定在面板底部: 与 body 同级, 不随响应内容滚走
+    .result-ft {
+      display: flex;
+      flex: 0 0 auto;
+      gap: 8px;
+      padding: 10px 16px;
+      background-color: hsl(var(--card));
+      border-top: 1px solid hsl(var(--border));
+    }
+
+    .empty-box {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+      padding: 40px 16px;
+      text-align: center;
+      border: 1px dashed hsl(var(--border));
+      border-radius: 10px;
+    }
+
+    .req-summary {
+      padding-bottom: 8px;
+      font-size: 12px;
+      color: hsl(var(--muted-foreground));
+      border-bottom: 1px dashed hsl(var(--border));
+    }
+
+    // 操作胶囊: 吸底常驻, 紧贴按钮居中(沿用原胶囊形态)
+    .action-capsule {
+      position: sticky;
+      bottom: 12px;
+      z-index: 20;
+      display: flex;
+      align-self: center;
+      gap: 12px;
+      padding: 8px 16px;
+      background-color: hsl(var(--card) / 0.92);
+      border: 1px solid hsl(var(--border));
+      border-radius: 9999px;
+      box-shadow: 0 8px 24px hsl(var(--foreground) / 0.12);
+      backdrop-filter: blur(8px);
+
+      :deep(.ant-btn) {
+        min-width: 132px;
+      }
+    }
+
+    // 高级参数折叠条(默认收起)
+    .fold-card {
+      overflow: hidden;
+      background-color: hsl(var(--card));
+      border: 1px solid hsl(var(--border));
+      border-radius: 12px;
+      box-shadow: 0 1px 2px hsl(var(--foreground) / 0.04);
+    }
+
+    .fold-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px 16px;
+      font-family: inherit;
+      font-size: 13.5px;
+      color: inherit;
+      text-align: left;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+    }
+
+    .fold-hint {
+      overflow: hidden;
+      font-size: 12px;
+      color: hsl(var(--muted-foreground));
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .fold-chevron {
+      flex: 0 0 auto;
+      transition: transform 0.2s;
+      transform: rotate(-90deg);
+
+      &.is-open {
+        transform: rotate(0deg);
+      }
+    }
+
+    .fold-body {
+      padding: 0 16px 16px;
+    }
+
     .code-textarea {
       width: 100%;
       padding: 8px 11px;
@@ -926,8 +1197,6 @@
     }
 
     .code-box {
-      max-height: 240px;
-      overflow-y: auto;
       font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
       font-size: 12.5px;
       line-height: 1.6;
@@ -936,27 +1205,53 @@
       color: hsl(var(--foreground));
     }
 
+    // 完整响应默认截断(不产生内层滚动条), 展开后不限高, 由面板统一滚动
+    .json-fold {
+      position: relative;
+      max-height: 220px;
+      overflow: hidden;
+
+      &.is-open {
+        max-height: none;
+        overflow: visible;
+      }
+    }
+
+    // 截断处渐变淡出, 暗示下方还有内容
+    .json-fade {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 56px;
+      pointer-events: none;
+      background: linear-gradient(to bottom, transparent, hsl(var(--background)));
+    }
+
+    .json-more {
+      margin-top: 8px;
+    }
+
     .monospace {
       font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
     }
+  }
 
-    // 底部悬浮居中胶囊栏: 固定在视口底部, 始终可点
-    .action-bar {
-      position: fixed;
-      bottom: 16px;
-      left: 50%;
-      z-index: 30;
-      padding: 10px 24px;
-      background-color: hsl(var(--card) / 0.9);
-      border: 1px solid hsl(var(--border));
-      border-radius: 9999px;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 8px 24px hsl(var(--foreground) / 0.12%);
-      transform: translateX(-50%);
+  // 窄屏(内容区装不下双列): 堆叠为单列, 取消吸顶
+  @media (max-width: 1200px) {
+    .develop-trade {
+      .dev-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
 
-      .action-btn {
-        min-width: 140px;
-        box-shadow: 0 4px 12px hsl(var(--primary) / 0.15);
+      .result-panel {
+        position: static;
+        max-height: none;
+      }
+
+      // 单列时不再有面板内滚动, 唯一滚动层是页面
+      .result-bd {
+        overflow: visible;
       }
     }
   }

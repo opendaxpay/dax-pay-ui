@@ -244,6 +244,10 @@
     "./components/device-test": {
       "types": "./src/components/device-test/index.ts",
       "default": "./src/components/device-test/index.ts"
+    },
+    "./components/workbench-tile": {
+      "types": "./src/components/workbench-tile/index.ts",
+      "default": "./src/components/workbench-tile/index.ts"
     }
   },
   "dependencies": {

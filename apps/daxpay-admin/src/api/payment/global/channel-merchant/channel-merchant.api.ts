@@ -42,6 +42,12 @@ export const ChannelMerchantApi = {
   delete(id: string): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/merchant/channel-merchant/delete', params: { id } });
   },
+  /**
+   * 引用明细查询（按应用分组，停用影响面提示用）
+   */
+  referenceDetail(channelMchNo: string): Promise<Result<ChannelMerchantReferenceResult>> {
+    return defHttp.get({ url: '/admin/merchant/channel-merchant/reference-detail', params: { channelMchNo } });
+  },
 };
 
 /**
@@ -124,4 +130,42 @@ export interface ChannelMerchantBaseCreateParam {
   product: string;
   /** 所属通道 */
   channel: string;
+}
+
+/**
+ * 通道商户引用明细（单条）
+ */
+export interface ChannelMerchantReferenceItemResult {
+  /** 引用类型(route_scene/route_basic/gateway_env/cashier_item) */
+  type?: string;
+  /** 引用类型中文名 */
+  typeName?: string;
+  /** 引用内容人读摘要 */
+  detail?: string;
+}
+
+/**
+ * 通道商户引用明细·按应用分组
+ */
+export interface ChannelMerchantReferenceAppResult {
+  /** 应用号 */
+  appId?: string;
+  /** 应用名称 */
+  appName?: string;
+  /** 商户号 */
+  mchNo?: string;
+  /** 该应用下的引用明细列表 */
+  refs?: ChannelMerchantReferenceItemResult[];
+}
+
+/**
+ * 通道商户引用明细
+ */
+export interface ChannelMerchantReferenceResult {
+  /** 通道商户号 */
+  channelMchNo?: string;
+  /** 总引用处数 */
+  total?: number;
+  /** 按应用分组的引用明细 */
+  apps?: ChannelMerchantReferenceAppResult[];
 }

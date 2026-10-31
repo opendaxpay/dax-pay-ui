@@ -1,14 +1,16 @@
 <script lang="ts" setup>
+  import type { WorkbenchTile, WorkbenchTileGroup } from '@daxpay/ui-biz/components/workbench-tile';
+
   import { computed, onMounted, ref } from 'vue';
   import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
-  import { IconifyIcon } from '@vben-core/icons';
-
   import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
+  import { WorkbenchTileGrid } from '@daxpay/ui-biz/components/workbench-tile';
   import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
 
+  import { DashboardDeviceApi, type MchDeviceCountResult } from '#/api/payment/dashboard/device-dashboard.api';
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { NOTIFY_CONFIG_BUILDING } from '#/constants/feature-flags';
@@ -22,24 +24,6 @@
   import MchAppNotifyConfig from './MchAppNotifyConfig.vue';
 
   defineOptions({ name: 'MchAppWorkbench' });
-
-  type GroupColor = 'blue' | 'green' | 'purple';
-
-  type WorkbenchCard = {
-    action?: 'cancelDefault' | 'delete' | 'edit' | 'notify' | 'setDefault';
-    description: string;
-    icon: string;
-    key: string;
-    /** 有 route 则跳转；否则走 action */
-    route?: string;
-    title: string;
-  };
-
-  type WorkbenchGroup = {
-    cards: WorkbenchCard[];
-    color: GroupColor;
-    group: string;
-  };
 
   const router = useRouter();
   const { confirm, message } = useMessage();
@@ -57,6 +41,8 @@
 
   const loading = ref(false);
   const appInfo = ref<MchAppInfoResult>({});
+  // 设备与应用计数(仅取虚拟设备台数用于「收款设备」磁贴, 加载失败时缺省不展示)
+  const deviceCounts = ref<MchDeviceCountResult>({});
   const appEditRef = ref<InstanceType<typeof MchAppInfoEdit>>();
   const notifyDrawerVisible = ref(false);
   // 页签标题动态化为「{应用名} · 应用配置」
@@ -67,18 +53,19 @@
 
   /**
    * 功能卡片（权限过滤后展示），视觉对齐运营端应用工作台
+   * 危险操作卡（删除/取消默认）在数据侧直接标记 danger/active
    */
-  const functionCards = computed((): WorkbenchGroup[] => {
-    const groups: WorkbenchGroup[] = [];
+  const functionCards = computed((): WorkbenchTileGroup[] => {
+    const groups: WorkbenchTileGroup[] = [];
 
-    const paymentCards: WorkbenchCard[] = [];
+    // 支付配置: 收款链路本身——走哪个通道商户、网关与码牌路由、收银台展示、对外协议接入
+    const paymentCards: WorkbenchTile[] = [];
     if (hasPermission(PermCodes.Merchant.AppRoute.VIEW)) {
       paymentCards.push({
         key: 'payRoute',
         title: $t('payment.merchant.app.app.payRoute'),
         icon: 'ant-design:node-index-outlined',
         description: $t('payment.merchant.app.app.payRouteDesc'),
-        route: '/mch/route',
       });
     }
     if (hasPermission(PermCodes.Merchant.GatewayPayConfig.VIEW)) {
@@ -87,7 +74,6 @@
         title: $t('payment.merchant.app.app.gatewayPayConfig'),
         icon: 'ant-design:qrcode-outlined',
         description: $t('payment.merchant.app.app.gatewayPayConfigDesc'),
-        route: '/mch/gateway-config',
       });
     }
     if (hasPermission(PermCodes.Merchant.GatewayCashier.VIEW)) {
@@ -96,16 +82,6 @@
         title: $t('payment.merchant.app.app.cashierConfig'),
         icon: 'ant-design:desktop-outlined',
         description: $t('payment.merchant.app.app.cashierConfigDesc'),
-        route: '/mch/cashier',
-      });
-    }
-    if (hasPermission(PermCodes.Merchant.NotifyConfig.VIEW)) {
-      paymentCards.push({
-        key: 'notify',
-        title: $t('payment.merchant.app.app.notifyConfig'),
-        icon: 'ant-design:notification-outlined',
-        description: $t('payment.merchant.app.app.notifyConfigDesc'),
-        action: 'notify',
       });
     }
     if (hasPermission(PermCodes.Merchant.EasyPay.VIEW)) {
@@ -115,7 +91,6 @@
         title: $t('menu.payment.merchant.easypay'),
         icon: 'ant-design:api-outlined',
         description: $t('payment.merchant.app.easypay.desc'),
-        route: '/mch/easypay',
       });
     }
     if (paymentCards.length > 0) {
@@ -126,14 +101,45 @@
       });
     }
 
-    const manageCards: WorkbenchCard[] = [];
+    // 通知与设备: 收款之后的联动——业务事件回调 + 本商户收款设备
+    const notifyCards: WorkbenchTile[] = [];
+    if (hasPermission(PermCodes.Merchant.NotifyConfig.VIEW)) {
+      notifyCards.push({
+        key: 'notify',
+        title: $t('payment.merchant.app.app.notifyConfig'),
+        icon: 'ant-design:notification-outlined',
+        description: $t('payment.merchant.app.app.notifyConfigDesc'),
+        // 异步通知配置功能未开放, 入口保留并加建设中角标, 点入显示占位
+        building: NOTIFY_CONFIG_BUILDING,
+      });
+    }
+    if (hasPermission(PermCodes.Device.Audio.VIEW)) {
+      notifyCards.push({
+        key: 'audioDevice',
+        // 收款设备 — 标题与菜单 i18n_key 一致
+        title: $t('menu.payment.merchant.audioDevice'),
+        icon: 'ant-design:sound-outlined',
+        description: $t('payment.merchant.app.app.cardAudioDeviceDesc'),
+        // 台数角标(存量总数)
+        count: deviceCounts.value.virtualDeviceCount,
+        countUnit: $t('payment.merchant.app.app.unitDevice'),
+      });
+    }
+    if (notifyCards.length > 0) {
+      groups.push({
+        group: $t('payment.merchant.app.app.groupNotifyDevice'),
+        color: 'purple',
+        cards: notifyCards,
+      });
+    }
+
+    const manageCards: WorkbenchTile[] = [];
     if (hasPermission(PermCodes.Merchant.App.MANAGE)) {
       manageCards.push({
         key: 'edit',
         title: $t('payment.merchant.app.app.edit'),
         icon: 'ant-design:edit-outlined',
         description: $t('payment.merchant.app.app.editDesc'),
-        action: 'edit',
       });
       if (appInfo.value.defaultApp) {
         manageCards.push({
@@ -141,7 +147,8 @@
           title: $t('payment.merchant.app.app.cancelDefault'),
           icon: 'ant-design:star-filled',
           description: $t('payment.merchant.app.app.cancelDefaultDesc'),
-          action: 'cancelDefault',
+          // 已默认=当前生效态, 主色强调; 红色只留给删除
+          active: true,
         });
       } else {
         manageCards.push({
@@ -149,7 +156,6 @@
           title: $t('payment.merchant.app.app.setDefault'),
           icon: 'ant-design:star-outlined',
           description: $t('payment.merchant.app.app.setDefaultDesc'),
-          action: 'setDefault',
         });
       }
       manageCards.push({
@@ -157,7 +163,7 @@
         title: $t('payment.merchant.app.app.delete'),
         icon: 'ant-design:delete-outlined',
         description: $t('payment.merchant.app.app.deleteDesc'),
-        action: 'delete',
+        danger: true,
       });
     }
     if (manageCards.length > 0) {
@@ -170,51 +176,6 @@
 
     return groups;
   });
-
-  /**
-   * 组标题竖条颜色
-   */
-  function getGroupColorClass(color: GroupColor) {
-    const map: Record<GroupColor, string> = {
-      blue: 'bg-blue-500',
-      green: 'bg-emerald-500',
-      purple: 'bg-purple-500',
-    };
-    return map[color];
-  }
-
-  /**
-   * 图标背景色
-   */
-  function getIconBgClass(color: GroupColor) {
-    const map: Record<GroupColor, string> = {
-      blue: 'bg-primary/10 text-primary',
-      green: 'bg-success/10 text-success',
-      purple: 'bg-purple-500/10 text-purple-500',
-    };
-    return map[color];
-  }
-
-  /**
-   * 危险操作卡：仅删除用红色样式
-   */
-  function isDangerCard(card: WorkbenchCard) {
-    return card.action === 'delete';
-  }
-
-  /**
-   * 当前生效态卡：已设为默认应用(取消默认)用主色强调, 与危险态区分
-   */
-  function isActiveCard(card: WorkbenchCard) {
-    return card.action === 'cancelDefault';
-  }
-
-  /**
-   * 建设中卡片：异步通知配置功能未开放，入口保留并加建设中角标，点入显示占位
-   */
-  function isBuildingCard(card: WorkbenchCard) {
-    return NOTIFY_CONFIG_BUILDING && card.key === 'notify';
-  }
 
   /**
    * 加载当前应用信息（后端按登录态商户上下文隔离，仅需 appId）
@@ -241,43 +202,74 @@
   }
 
   /**
+   * 加载设备计数(「收款设备」磁贴数量标签, 失败静默不显示数量)
+   */
+  function loadDeviceCounts() {
+    DashboardDeviceApi.deviceCounts()
+      .then(({ data }) => {
+        deviceCounts.value = data || {};
+      })
+      .catch(() => {
+        // 角标为辅助信息, 拉取失败保持缺省不展示
+        deviceCounts.value = {};
+      });
+  }
+
+  /**
    * 返回应用列表
    */
   function handleBack() {
     router.push('/mch/app');
   }
 
+  /** 携 appId 跳转商户端配置页（各配置页用 useRequiredRouteQuery 校验 appId，仅传 appId） */
+  function pushAppRoute(path: string) {
+    router.push({
+      path,
+      query: { appId: appId.value },
+    });
+  }
+
   /**
-   * 功能卡点击
+   * 功能卡点击（磁贴 select 事件按 key 分发，原路由/动作元数据收敛到分发处）
    */
-  function handleCardClick(card: WorkbenchCard) {
-    // 建设中入口不可点
-    if (isBuildingCard(card)) {
-      return;
-    }
-    if (card.route) {
-      // 商户端配置页用 useRequiredRouteQuery 校验 appId，仅传 appId
-      router.push({
-        path: card.route,
-        query: { appId: appId.value },
-      });
-      return;
-    }
-    switch (card.action) {
+  function handleCardSelect(key: string) {
+    switch (key) {
+      case 'audioDevice': {
+        // 收款设备页(商户登录态隔离, 无需携带参数)
+        router.push('/mch/device/audio');
+        break;
+      }
       case 'cancelDefault': {
         handleCancelDefault();
+        break;
+      }
+      case 'cashier': {
+        pushAppRoute('/mch/cashier');
         break;
       }
       case 'delete': {
         handleDelete();
         break;
       }
+      case 'easypay': {
+        pushAppRoute('/mch/easypay');
+        break;
+      }
       case 'edit': {
         appEditRef.value?.showEdit(mchNo.value, appInfo.value);
         break;
       }
+      case 'gatewayPayConfig': {
+        pushAppRoute('/mch/gateway-config');
+        break;
+      }
       case 'notify': {
         notifyDrawerVisible.value = true;
+        break;
+      }
+      case 'payRoute': {
+        pushAppRoute('/mch/route');
         break;
       }
       case 'setDefault': {
@@ -351,6 +343,7 @@
       return;
     }
     loadAppInfo();
+    loadDeviceCounts();
   });
 </script>
 
@@ -382,96 +375,7 @@
         </template>
 
         <!-- 功能分组磁贴 -->
-        <div class="space-y-10 py-2">
-          <div v-for="group in functionCards" :key="group.group">
-            <div class="mb-5 flex items-center gap-3 px-2">
-              <div class="h-5 w-1.5 rounded-full shadow-sm" :class="getGroupColorClass(group.color)" />
-              <span class="text-lg font-extrabold tracking-tight text-foreground">{{ group.group }}</span>
-            </div>
-
-            <div class="card-grid">
-              <a-card
-                v-for="card in group.cards"
-                :key="card.key"
-                :hoverable="!isBuildingCard(card)"
-                class="mch-card relative overflow-hidden rounded-2xl border-none bg-card shadow-md transition-all duration-300"
-                :class="{
-                  'mch-card--danger': isDangerCard(card),
-                  'mch-card--building': isBuildingCard(card),
-                  // 建设中卡禁用交互与 hover 动效(group 驱动的图标/标题/底条效果随之失效)
-                  'group hover:-translate-y-1.5 hover:shadow-xl': !isBuildingCard(card),
-                }"
-                :styles="{ body: { padding: '16px' } }"
-                @click="handleCardClick(card)"
-              >
-                <!-- 建设中角标 -->
-                <div
-                  v-if="isBuildingCard(card)"
-                  class="absolute right-2 top-2 z-10 rounded-full bg-muted-foreground/15 px-2 py-0.5 text-[10px] font-medium text-muted-foreground"
-                >
-                  <!-- 国际化：建设中 -->
-                  {{ $t('payment.merchant.notifyConfig.notifyConfig.buildingBadge') }}
-                </div>
-                <div class="flex flex-col items-center text-center">
-                  <div
-                    class="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:shadow-md"
-                    :class="
-                      isDangerCard(card)
-                        ? 'bg-destructive/10 text-destructive'
-                        : isActiveCard(card)
-                          ? 'bg-primary/10 text-primary'
-                          : getIconBgClass(group.color)
-                    "
-                  >
-                    <IconifyIcon :icon="card.icon" class="h-7 w-7" />
-                  </div>
-
-                  <div
-                    class="mb-1.5 text-base font-bold transition-colors duration-300"
-                    :class="
-                      isDangerCard(card)
-                        ? 'text-destructive'
-                        : isActiveCard(card)
-                          ? 'text-primary'
-                          : 'text-foreground group-hover:text-primary'
-                    "
-                  >
-                    {{ card.title }}
-                  </div>
-                  <a-tooltip :title="card.description" placement="bottom">
-                    <div
-                      class="card-desc line-clamp-1 text-xs leading-relaxed transition-colors duration-300"
-                      :class="
-                        isDangerCard(card)
-                          ? 'text-destructive/80 group-hover:text-destructive'
-                          : isActiveCard(card)
-                            ? 'text-primary/80 group-hover:text-primary'
-                            : 'text-muted-foreground group-hover:text-foreground'
-                      "
-                    >
-                      {{ card.description }}
-                    </div>
-                  </a-tooltip>
-                </div>
-
-                <div
-                  class="absolute bottom-0 left-0 h-1.5 transition-all duration-300"
-                  :class="
-                    isDangerCard(card)
-                      ? 'w-0 bg-destructive group-hover:w-full'
-                      : isActiveCard(card)
-                        ? 'w-full bg-primary'
-                        : ['w-0 group-hover:w-full', getGroupColorClass(group.color)]
-                  "
-                />
-              </a-card>
-            </div>
-          </div>
-
-          <div v-if="functionCards.length === 0" class="py-16 text-center text-sm text-muted-foreground">
-            {{ $t('payment.merchant.app.app.noActions') }}
-          </div>
-        </div>
+        <WorkbenchTileGrid :groups="functionCards" @select="handleCardSelect" />
       </a-card>
     </a-spin>
 
@@ -480,30 +384,3 @@
     <MchAppNotifyConfig v-model:visible="notifyDrawerVisible" :app-id="appInfo.appId" :app-name="appInfo.appName" />
   </div>
 </template>
-
-<style scoped>
-  .mch-card {
-    max-height: 200px;
-  }
-
-  /* 建设中卡片: 整卡降透明弱化, 禁止点击 */
-  .mch-card--building {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-
-  .card-desc {
-    display: -webkit-box;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-  }
-
-  .line-clamp-1 {
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-  }
-</style>

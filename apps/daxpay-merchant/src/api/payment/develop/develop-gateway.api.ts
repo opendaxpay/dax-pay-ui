@@ -54,6 +54,8 @@ export interface GatewayPrePayParam {
   returnUrl?: string;
   /** 商户附加参数 */
   attach?: string;
+  /** 是否分账订单(开启后资金冻结,需发起分账拆分) */
+  allocation?: boolean;
   /** 支付扩展参数(JSON) */
   extraParam?: string;
   /** 过期时间(北京时间 yyyy-MM-dd HH:mm:ss) */

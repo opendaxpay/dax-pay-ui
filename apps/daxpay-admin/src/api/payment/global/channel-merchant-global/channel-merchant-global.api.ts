@@ -1,12 +1,13 @@
-import type { PageResult, Result } from '#/types/web';
-
-import { defHttp } from '#/api/request';
-
 import type {
   ChannelMerchantEditParam,
   ChannelMerchantQueryParam,
+  ChannelMerchantReferenceResult,
   ChannelMerchantResult,
 } from '../channel-merchant/channel-merchant.api';
+
+import type { PageResult, Result } from '#/types/web';
+
+import { defHttp } from '#/api/request';
 
 /**
  * 通道商户全局管理 API（运营平台-综合管理）
@@ -36,5 +37,11 @@ export const ChannelMerchantGlobalApi = {
    */
   update(data: ChannelMerchantEditParam): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/channel/merchant/update', data });
+  },
+  /**
+   * 引用明细查询（按应用分组，停用影响面提示用）
+   */
+  referenceDetail(channelMchNo: string): Promise<Result<ChannelMerchantReferenceResult>> {
+    return defHttp.get({ url: '/admin/channel/merchant/reference-detail', params: { channelMchNo } });
   },
 };

@@ -10,6 +10,7 @@
   import { JsonViewer } from '@vben/common-ui';
   import { $t } from '@vben/locales';
   import { secureStorage } from '@vben/stores';
+  import { formatDateTime } from '@vben/utils';
 
   import { IconifyIcon } from '@vben-core/icons';
 
@@ -30,15 +31,23 @@
   // 私钥在加密存储中的键名(与交易调试独立, 避免互相覆盖; 密文落 localStorage, 防明文泄露)
   const PRIVATE_KEY_STORAGE_KEY = 'daxpay_dev_gateway_private_key';
 
-  // 私钥独立存储(标签+弹窗交互, 校验通过 form 自定义规则挂接)
+  // 私钥独立存储(卡头状态+弹窗交互, 提交前手工校验)
   const privateKey = ref('');
   const privateKeyVisible = ref(false);
   const privateKeyInput = ref('');
   const loading = ref(false);
 
-  // ===== 表单校验规则(商户端 mchNo 由登录态绑定, 不校验) =====
+  // 高级参数折叠(默认收起, 低频长尾参数)
+  const advancedOpen = ref(false);
+
+  // 完整响应展开态(默认截断, 展开后随面板统一滚动)
+  const jsonExpanded = ref(false);
+
+  // ===== 表单校验规则 =====
   const formRules = computed<Record<string, any[]>>(() => {
     return {
+      // 商户端 mchNo 由登录态绑定, 未加载时提示刷新
+      mchNo: [{ required: true, message: $t('payment.develop.gateway.rule.mchNoNotLoaded') }],
       bizOrderNo: [{ required: true, message: $t('payment.develop.gateway.rule.bizOrderNo') }],
       amount: [{ required: true, message: $t('payment.develop.gateway.rule.amount') }],
       title: [{ required: true, message: $t('payment.develop.gateway.rule.title') }],
@@ -58,16 +67,6 @@
           trigger: 'blur',
         },
       ],
-      // 私钥存独立 ref, 用自定义校验挂到 form 上
-      privateKey: [
-        {
-          validator: async () => {
-            if (!privateKey.value) {
-              throw new Error($t('payment.develop.gateway.msg.inputPrivateKey'));
-            }
-          },
-        },
-      ],
     };
   });
 
@@ -80,40 +79,46 @@
     amount: 1,
     gatewayPayType: 'cashier',
     description: '',
+    // 是否分账订单(订单信息卡开关, 默认关闭)
+    allocation: false,
     // 高级参数(折叠面板中编辑, 默认空)
     attach: '',
     extraParam: '',
   });
 
-  // 当前商户名(只读展示, 商户端登录态绑定不可选择)
-  const mchNameDisplay = ref('');
-
   // ===== 下拉选项 =====
+  // 商户端登录态绑定商户, 只读展示(无商户选择)
+  const mchNameDisplay = ref('');
   const mchAppOptions = ref<LabelValue[]>([]);
 
-  // ===== 调试结果(完整 unipay DaxResult) =====
-  const resultVisible = ref(false);
+  // ===== 调试结果(常驻右侧结果面板, 替代原弹窗) =====
   const resultData = ref<DaxResult<GatewayPrePayResult>>({ code: 0 });
-  // 下单类型快照(提交时记录, 失败弹窗无 data 时兜底展示)
-  const submitGatewayPayType = ref('cashier');
-  // 展示类型: 优先后端返回的实际生效类型, 失败场景回退本次请求类型
-  const displayGatewayPayType = computed(() => prePayResult.value?.gatewayType ?? submitGatewayPayType.value);
-  // 是否聚合扫码下单
-  const isAggregateOrder = computed(() => displayGatewayPayType.value === 'aggregate');
-  // 下单类型名称
-  const gatewayTypeLabel = computed(() =>
-    isAggregateOrder.value
-      ? $t('payment.develop.gateway.gatewayType.aggregate')
-      : $t('payment.develop.gateway.gatewayType.cashier'),
-  );
-  // 业务失败(code≠0)时仍弹窗看完整响应, 用失败标题/Alert 区分成功态
+  // 是否已有结果(区分面板空态)
+  const hasResult = ref(false);
+  // 业务失败(code≠0)时仍展示完整响应, 用失败样式区分成功态
   const resultSuccess = computed(() => resultData.value?.code === 0);
-  // 结果弹窗标题: 成功「预下单结果」/ 失败「预下单失败」
-  const resultModalTitle = computed(() =>
-    resultSuccess.value
-      ? $t('payment.develop.gateway.result.modalTitle')
-      : $t('payment.develop.gateway.result.failModalTitle'),
-  );
+  // 失败文案: 成功体用 msg, 异常体(RestExceptionHandler)用 message, 双字段兜底
+  const resultMessage = computed(() => {
+    const raw = resultData.value as Record<string, any>;
+    return raw?.msg || raw?.message || $t('payment.develop.gateway.msg.prePayFail');
+  });
+  // 本次请求摘要(提交时快照, 便于结果与参数逐次对照)
+  const lastRequest = ref<null | { amount: number; gatewayDesc: string; mchNoDesc: string; reqTime: string }>(null);
+  // 请求耗时(毫秒, 提交到响应返回)
+  const elapsedMs = ref<null | number>(null);
+  // 二维码切换: h5=网关落地页 / mini=小程序码(仅两者都存在时出现切换)
+  const qrTab = ref<'h5' | 'mini'>('h5');
+
+  // 完整 DaxResult(展示用): 把 resTime 从 ISO 8601 (如 2026-07-19T13:34:58.8753181Z)
+  // 格式化为本地 yyyy-MM-dd HH:mm:ss, 便于联调阅读; 格式化失败保留原值
+  const displayResultData = computed<DaxResult<GatewayPrePayResult>>(() => {
+    const raw = resultData.value;
+    if (!raw?.resTime) {
+      return raw;
+    }
+    const formatted = formatDateTime(raw.resTime);
+    return { ...raw, resTime: formatted || raw.resTime };
+  });
 
   /**
    * 生成商户订单号(时间戳 + 随机串)
@@ -137,23 +142,24 @@
     return `${$t('payment.develop.gateway.default.titlePrefix')}-${ts}`;
   }
 
-  /** 初始化下拉与默认值 */
+  /** 初始化下拉与默认值(商户端: 商户由登录态绑定, 就绪后加载自身应用) */
   async function initData() {
-    // 商户端: 当前登录商户固定, 不可选择
     MerchantApi.get().then(({ data }) => {
       form.mchNo = data?.mchNo ?? '';
       mchNameDisplay.value = data?.mchName || data?.mchNo || '';
-      loadAppOptions();
+      loadMerchantScope();
     });
     if (!form.bizOrderNo) {
       genBizOrderNo();
     }
   }
 
-  /** 加载当前商户启用应用列表(商户端无需传 mchNo, 后端按登录态过滤) */
-  function loadAppOptions() {
+  /** 商户就绪: 加载自身应用列表 */
+  function loadMerchantScope() {
     form.appId = '';
     mchAppOptions.value = [];
+    if (!form.mchNo) return;
+    // 应用列表(仅启用状态; 商户端按登录态过滤, 不传商户号)
     MchAppInfoApi.enableList().then(({ data }) => {
       mchAppOptions.value =
         data?.map((item) => ({
@@ -184,8 +190,7 @@
       secureStorage.removeItem(PRIVATE_KEY_STORAGE_KEY);
     }
     privateKeyVisible.value = false;
-    // 清除私钥字段校验态
-    formRef.value?.clearValidate?.(['privateKey']);
+    // 私钥保存成功
     message.success($t('payment.develop.gateway.privateKey.savedTip'));
   }
 
@@ -197,7 +202,7 @@
       onOk() {
         privateKey.value = '';
         secureStorage.removeItem(PRIVATE_KEY_STORAGE_KEY);
-        formRef.value?.clearValidate?.(['privateKey']);
+        // 私钥已清除
         message.success($t('payment.develop.gateway.privateKey.clearedTip'));
       },
     });
@@ -257,15 +262,48 @@
       // 签名由后续步骤写入, 预览阶段不带旧 sign
       sign: undefined,
     };
+    // 分账开关: 仅开启时透传 true, 关闭时不传(贴近真实商户 SDK)
+    if (!payload.allocation) {
+      payload.allocation = undefined;
+    }
     return cleanPayload(payload);
   }
 
+  /**
+   * 生成本次请求摘要(商户/网关类型/金额/请求时间), 展示在结果面板顶部便于逐次对照
+   */
+  function buildRequestSummary(payload: GatewayPrePayParam) {
+    // 商户端无商户下拉, 直接用登录态商户名
+    const mchDesc = mchNameDisplay.value || payload.mchNo || '-';
+    // 网关类型文案: 聚合扫码/统一收银台
+    const gatewayDesc =
+      (payload.gatewayPayType || 'cashier') === 'aggregate'
+        ? $t('payment.develop.gateway.gatewayType.aggregate')
+        : $t('payment.develop.gateway.gatewayType.cashier');
+    return {
+      mchNoDesc: mchDesc,
+      gatewayDesc,
+      amount: payload.amount ?? 0,
+      reqTime: payload.reqTime ?? '',
+    };
+  }
+
+  /**
+   * 提取请求异常的原始信息(HTTP 状态/网络错误), 便于联调定位
+   */
+  function formatRequestError(error: unknown): string {
+    if (typeof error === 'string' && error) return error;
+    const raw = error as Record<string, any>;
+    return raw?.msg || raw?.message || $t('payment.develop.gateway.msg.prePayFail');
+  }
+
   /** 复制文本到剪贴板 */
-  async function copyText(text: string, successKey = 'payment.develop.gateway.msg.copySuccess') {
+  async function copyText(text: string) {
     if (!text) return;
     try {
       await navigator.clipboard.writeText(text);
-      message.success($t(successKey));
+      // 复制成功
+      message.success($t('payment.develop.gateway.msg.copySuccess'));
     } catch {
       // 忽略
     }
@@ -275,6 +313,7 @@
   /**
    * 模拟商户调用 unipay 发起网关预下单
    * 1. 商户端仅签名  2. 浏览器 POST /unipay/gateway/pre-pay
+   * 结果落右侧常驻面板(不弹窗), 可改参重发反复对照
    */
   async function handlePrePay() {
     // 重入守卫: :loading DOM 更新有 nextTick 延迟, 连点会绕过按钮 disabled,
@@ -282,19 +321,26 @@
     if (loading.value) {
       return;
     }
-    // 表单字段校验(含私钥自定义规则)
+    // 表单字段校验
     try {
       await formRef.value?.validate();
     } catch {
       // 校验未通过,字段错误已由表单自动展示
       return;
     }
+    // 私钥不挂在表单上(收进卡头), 提交前手工校验
+    if (!privateKey.value) {
+      // 请先设置商户私钥
+      message.warning($t('payment.develop.gateway.msg.inputPrivateKey'));
+      return;
+    }
     loading.value = true;
+    // 新一轮请求: 完整响应回到截断态、二维码回到 H5 页签, 避免上一轮状态残留
+    jsonExpanded.value = false;
+    qrTab.value = 'h5';
     try {
       // 组参(含 reqTime/nonceStr)
       const payload = buildPayload();
-      // 快照下单类型, 结果弹窗据此展示(表单可能随后被改动)
-      submitGatewayPayType.value = payload.gatewayPayType || 'cashier';
       // 商户端签名(与 Java PaySignUtil 一致; 失败由 defHttp toast 并 throw)
       const { data: signRes } = await DevelopGatewayApi.sign({
         param: payload,
@@ -302,24 +348,36 @@
       });
       // 防御性校验: 签名接口异常/返回空时, 不允许带空 sign 撞预下单(否则后端必抛验签失败)
       if (!signRes?.sign) {
+        // 签名生成失败,请重试
         message.error($t('payment.develop.gateway.msg.signFail'));
         return;
       }
-      payload.sign = signRes?.sign;
+      payload.sign = signRes.sign;
 
       // 直调网关预下单(无 Accesstoken, 完整商户契约)
+      // 业务失败(code!=0)以返回值返回, 仅网络层异常会 throw
+      const startedAt = performance.now();
       try {
         const dax = await uniGatewayPrePay(payload);
+        elapsedMs.value = Math.round(performance.now() - startedAt);
+        lastRequest.value = buildRequestSummary(payload);
         resultData.value = dax ?? { code: -1 };
-        resultVisible.value = true;
+        hasResult.value = true;
         if (dax?.code === 0) {
+          // 预下单请求成功
           message.success($t('payment.develop.gateway.msg.prePaySuccess'));
         } else {
           // 业务失败仍展示完整 DaxResult, 便于联调
-          message.warning(dax?.msg || $t('payment.develop.gateway.msg.prePayFail'));
+          message.warning(resultMessage.value);
         }
-      } catch {
-        // unipay 网络/非业务异常
+      } catch (error) {
+        // unipay 网络/非业务异常: 同样落面板, 保留耗时与请求摘要便于排查
+        elapsedMs.value = Math.round(performance.now() - startedAt);
+        lastRequest.value = buildRequestSummary(payload);
+        // 尽量暴露原始异常信息(HTTP 状态/网络错误), 便于联调定位
+        resultData.value = { code: -1, msg: formatRequestError(error) };
+        hasResult.value = true;
+        // 预下单请求失败
         message.error($t('payment.develop.gateway.msg.prePayFail'));
       }
     } finally {
@@ -327,15 +385,17 @@
     }
   }
 
-  /** 重置表单(mchNo 为登录商户, 保留不清空) */
+  /** 重置表单(保留结果面板, 便于对照上一单) */
   function handleReset() {
     Object.assign(form, {
+      // 商户由登录态绑定, 重置不清空
       appId: '',
       bizOrderNo: '',
       title: genDefaultTitle(),
       amount: 1,
       gatewayPayType: 'cashier',
       description: '',
+      allocation: false,
       notifyUrl: undefined,
       returnUrl: undefined,
       attach: undefined,
@@ -344,6 +404,7 @@
       storeNo: undefined,
     });
     mchAppOptions.value = [];
+    qrTab.value = 'h5';
     genBizOrderNo();
   }
 
@@ -354,8 +415,14 @@
   const h5Url = computed(() => prePayResult.value?.h5Url ?? '');
   /** 结果中的小程序映射 URL */
   const miniUrl = computed(() => prePayResult.value?.miniUrl ?? '');
+  /** H5 与小程序链接是否都存在(都存在才需要切码) */
+  const hasBothQr = computed(() => !!h5Url.value && !!miniUrl.value);
+  /** 当前展示的是否为小程序码(两者都存在时按切换 tab, 仅其一时直接定位) */
+  const qrIsMini = computed(() => !!miniUrl.value && (!h5Url.value || qrTab.value === 'mini'));
+  /** 当前展示的二维码地址 */
+  const activeQrUrl = computed(() => (qrIsMini.value ? miniUrl.value : h5Url.value));
 
-  /** 业务状态中文文案(未知码兜底原文) */
+  /** 业务状态文案(未知码兜底原文) */
   const statusText = computed(() => {
     const status = prePayResult.value?.status;
     if (!status) {
@@ -375,6 +442,20 @@
     const key = `payment.develop.gateway.result.statusColor.${status}`;
     const color = $t(key);
     return color && color !== key ? color : 'default';
+  });
+
+  /**
+   * 后端实际生效的下单类型(幂等命中时可能与本轮请求类型不同)
+   * 与请求摘要里的「本次请求类型」并列展示, 便于联调对照
+   */
+  const resultGatewayTypeLabel = computed(() => {
+    const type = prePayResult.value?.gatewayType;
+    if (!type) {
+      return '';
+    }
+    return type === 'aggregate'
+      ? $t('payment.develop.gateway.gatewayType.aggregate')
+      : $t('payment.develop.gateway.gatewayType.cashier');
   });
 
   /** 在新窗口打开指定链接 */
@@ -399,199 +480,211 @@
 </script>
 
 <template>
-  <div class="develop-gateway p-4 pb-28">
+  <div class="develop-gateway p-4">
     <a-spin :spinning="loading">
       <a-form ref="formRef" layout="vertical" :model="form" :rules="formRules">
-        <a-row :gutter="16">
-          <!-- ============ 左列 ============ -->
-          <a-col :lg="12" :xs="24">
-            <div class="flex flex-col gap-4">
-              <!-- 卡1: 商户与网关类型 -->
-              <a-card class="rounded-xl shadow-sm">
-                <template #title>
-                  <div class="flex items-center gap-2">
-                    <IconifyIcon icon="ant-design:shop-outlined" class="text-blue-500" />
-                    <span class="font-semibold">{{ $t('payment.develop.gateway.card.mchApp') }}</span>
-                  </div>
-                </template>
-
-                <!-- 私钥状态行 -->
-                <a-form-item :label="$t('payment.develop.gateway.field.privateKey')" name="privateKey">
-                  <div class="flex items-center gap-2">
-                    <a-tag v-if="privateKey" color="success">
-                      <IconifyIcon icon="ant-design:check-circle-outlined" class="mr-0.5" />
-                      {{ $t('payment.develop.gateway.privateKey.setTag') }}
-                    </a-tag>
-                    <a-tag v-else color="default">{{ $t('payment.develop.gateway.privateKey.unsetTag') }}</a-tag>
-                    <span v-if="privateKey" class="text-xs text-muted-foreground">{{
-                      $t('payment.develop.gateway.privateKey.setLabel')
-                    }}</span>
-                    <div class="flex shrink-0 gap-1">
-                      <a-button size="small" type="primary" @click="showPrivateKeyModal">
-                        <template #icon><IconifyIcon icon="ant-design:key-outlined" /></template>
-                        {{ $t('payment.develop.gateway.btn.setPrivateKey') }}
-                      </a-button>
-                      <a-button v-if="privateKey" danger size="small" @click="clearPrivateKey">
-                        <template #icon><IconifyIcon icon="ant-design:delete-outlined" /></template>
-                      </a-button>
-                    </div>
-                  </div>
-                </a-form-item>
-
-                <!-- 网关支付类型 -->
-                <a-form-item :label="$t('payment.develop.gateway.gatewayType.label')" name="gatewayPayType">
-                  <a-radio-group v-model:value="form.gatewayPayType" button-style="solid">
-                    <a-radio-button value="cashier">{{
-                      $t('payment.develop.gateway.gatewayType.cashier')
-                    }}</a-radio-button>
-                    <a-radio-button value="aggregate">{{
-                      $t('payment.develop.gateway.gatewayType.aggregate')
-                    }}</a-radio-button>
-                  </a-radio-group>
-                  <div class="mt-1 text-xs text-muted-foreground">
+        <div class="dev-grid">
+          <!-- ============ 左列: 表单(单列纵排, 按填写动线) ============ -->
+          <div class="flex min-w-0 flex-col gap-4">
+            <!-- 卡1: 商户与网关类型(私钥状态收进卡头) -->
+            <a-card class="rounded-xl shadow-sm">
+              <template #title>
+                <div class="flex items-center gap-2">
+                  <IconifyIcon icon="ant-design:shop-outlined" class="text-blue-500" />
+                  <span class="font-semibold">{{ $t('payment.develop.gateway.card.mchType') }}</span>
+                </div>
+              </template>
+              <template #extra>
+                <div class="flex items-center gap-2">
+                  <!-- Tag 只渲染默认插槽首个子节点, 图标必须走 #icon 插槽, 否则文字被丢弃 -->
+                  <a-tag v-if="privateKey" color="success">
+                    <template #icon>
+                      <IconifyIcon icon="ant-design:check-circle-outlined" />
+                    </template>
+                    <!-- 私钥已设置 -->
+                    {{ $t('payment.develop.gateway.privateKey.setTag') }}
+                  </a-tag>
+                  <!-- 私钥未设置 -->
+                  <a-tag v-else>{{ $t('payment.develop.gateway.privateKey.unsetTag') }}</a-tag>
+                  <a-button size="small" type="primary" @click="showPrivateKeyModal">
+                    <template #icon><IconifyIcon icon="ant-design:key-outlined" /></template>
+                    <!-- 已设置时按钮显示「更换私钥」 -->
                     {{
-                      form.gatewayPayType === 'cashier'
-                        ? $t('payment.develop.gateway.gatewayType.cashierDesc')
-                        : $t('payment.develop.gateway.gatewayType.aggregateDesc')
+                      privateKey
+                        ? $t('payment.develop.gateway.btn.replaceKey')
+                        : $t('payment.develop.gateway.btn.setPrivateKey')
                     }}
-                  </div>
-                </a-form-item>
+                  </a-button>
+                  <a-button v-if="privateKey" danger size="small" @click="clearPrivateKey">
+                    <template #icon><IconifyIcon icon="ant-design:delete-outlined" /></template>
+                  </a-button>
+                </div>
+              </template>
 
-                <a-row :gutter="16">
-                  <!-- 商户号(商户端登录态绑定, 只读展示) -->
-                  <a-col :span="12">
-                    <a-form-item :label="$t('payment.develop.gateway.field.mchNo')" name="mchNo">
-                      <a-input :value="mchNameDisplay" disabled />
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="12">
-                    <a-form-item :label="$t('payment.develop.gateway.field.appId')" name="appId">
-                      <a-select
-                        v-model:value="form.appId"
-                        show-search
-                        :options="mchAppOptions"
-                        :placeholder="$t('payment.develop.gateway.field.appId')"
-                        :filter-option="filterOption"
-                        allow-clear
-                      />
-                    </a-form-item>
-                  </a-col>
-                </a-row>
-              </a-card>
+              <!-- 网关支付类型 -->
+              <a-form-item :label="$t('payment.develop.gateway.gatewayType.label')" name="gatewayPayType">
+                <a-radio-group v-model:value="form.gatewayPayType" button-style="solid">
+                  <a-radio-button value="cashier">{{
+                    $t('payment.develop.gateway.gatewayType.cashier')
+                  }}</a-radio-button>
+                  <a-radio-button value="aggregate">{{
+                    $t('payment.develop.gateway.gatewayType.aggregate')
+                  }}</a-radio-button>
+                </a-radio-group>
+                <div class="mt-1 text-xs text-muted-foreground">
+                  {{
+                    form.gatewayPayType === 'cashier'
+                      ? $t('payment.develop.gateway.gatewayType.cashierDesc')
+                      : $t('payment.develop.gateway.gatewayType.aggregateDesc')
+                  }}
+                </div>
+              </a-form-item>
 
-              <!-- 卡2: 扩展参数 -->
-              <a-card class="rounded-xl shadow-sm">
-                <template #title>
-                  <div class="flex items-center gap-2">
-                    <IconifyIcon icon="ant-design:setting-outlined" class="text-purple-500" />
-                    <span class="font-semibold">{{ $t('payment.develop.gateway.card.param') }}</span>
-                  </div>
-                </template>
-                <a-row :gutter="16">
-                  <a-col :span="24">
-                    <a-form-item :label="$t('payment.develop.gateway.field.notifyUrl')" name="notifyUrl">
-                      <a-input
-                        v-model:value="form.notifyUrl"
-                        :placeholder="$t('payment.develop.gateway.placeholder.notifyUrl')"
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="12">
-                    <a-form-item :label="$t('payment.develop.gateway.field.expiredTime')" name="expiredTime">
-                      <a-date-picker
-                        v-model:value="form.expiredTime"
-                        show-time
-                        value-format="YYYY-MM-DD HH:mm:ss"
-                        style="width: 100%"
-                        :placeholder="$t('payment.develop.gateway.placeholder.expiredTime')"
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="12">
-                    <a-form-item :label="$t('payment.develop.gateway.field.storeNo')" name="storeNo">
-                      <a-input
-                        v-model:value="form.storeNo"
-                        :placeholder="$t('payment.develop.gateway.placeholder.storeNo')"
-                      />
-                    </a-form-item>
-                  </a-col>
-                </a-row>
-              </a-card>
-            </div>
-          </a-col>
+              <a-row :gutter="16">
+                <a-col :span="12">
+                  <a-form-item :label="$t('payment.develop.gateway.field.mchNo')" name="mchNo">
+                    <!-- 商户端登录态绑定商户, 只读展示 -->
+                    <a-input :value="mchNameDisplay" disabled />
+                  </a-form-item>
+                </a-col>
+                <a-col :span="12">
+                  <a-form-item :label="$t('payment.develop.gateway.field.appId')" name="appId">
+                    <a-select
+                      v-model:value="form.appId"
+                      show-search
+                      :options="mchAppOptions"
+                      :placeholder="$t('payment.develop.gateway.field.appId')"
+                      :filter-option="filterOption"
+                      allow-clear
+                    />
+                  </a-form-item>
+                </a-col>
+              </a-row>
+            </a-card>
 
-          <!-- ============ 右列 ============ -->
-          <a-col :lg="12" :xs="24">
-            <div class="flex flex-col gap-4">
-              <!-- 卡3: 订单信息 -->
-              <a-card class="rounded-xl shadow-sm">
-                <template #title>
-                  <div class="flex items-center gap-2">
-                    <IconifyIcon icon="ant-design:file-text-outlined" class="text-cyan-500" />
-                    <span class="font-semibold">{{ $t('payment.develop.gateway.card.order') }}</span>
-                  </div>
-                </template>
-                <a-row :gutter="16">
-                  <a-col :span="24">
-                    <a-form-item :label="$t('payment.develop.gateway.field.bizOrderNo')" name="bizOrderNo">
-                      <a-input v-model:value="form.bizOrderNo">
-                        <template #suffix>
-                          <a-button size="small" type="link" @click="genBizOrderNo">
-                            <template #icon><IconifyIcon icon="ant-design:reload-outlined" /></template>
-                            {{ $t('payment.develop.gateway.btn.genOrderNo') }}
-                          </a-button>
-                        </template>
-                      </a-input>
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="12">
-                    <a-form-item :label="$t('payment.develop.gateway.field.amount')" name="amount">
-                      <a-input-number
-                        v-model:value="form.amount"
-                        :min="1"
-                        :precision="0"
-                        :step="1"
-                        style="width: 100%"
-                      />
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="12">
-                    <a-form-item :label="$t('payment.develop.gateway.field.title')" name="title">
-                      <a-input
-                        v-model:value="form.title"
-                        :placeholder="$t('payment.develop.gateway.placeholder.title')"
-                      >
-                        <template #suffix>
-                          <a-button size="small" type="link" @click="form.title = genDefaultTitle()">
-                            <template #icon><IconifyIcon icon="ant-design:reload-outlined" /></template>
-                            {{ $t('payment.develop.gateway.btn.genOrderNo') }}
-                          </a-button>
-                        </template>
-                      </a-input>
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="24">
-                    <a-form-item :label="$t('payment.develop.gateway.field.description')" name="description">
-                      <a-textarea
-                        v-model:value="form.description"
-                        :rows="3"
-                        :placeholder="$t('payment.develop.gateway.placeholder.description')"
-                      />
-                    </a-form-item>
-                  </a-col>
-                </a-row>
-              </a-card>
+            <!-- 卡2: 订单信息 -->
+            <a-card class="rounded-xl shadow-sm">
+              <template #title>
+                <div class="flex items-center gap-2">
+                  <IconifyIcon icon="ant-design:file-text-outlined" class="text-cyan-500" />
+                  <span class="font-semibold">{{ $t('payment.develop.gateway.card.order') }}</span>
+                </div>
+              </template>
+              <a-row :gutter="16">
+                <a-col :span="24">
+                  <a-form-item :label="$t('payment.develop.gateway.field.bizOrderNo')" name="bizOrderNo">
+                    <a-input v-model:value="form.bizOrderNo">
+                      <template #suffix>
+                        <a-button size="small" type="link" @click="genBizOrderNo">
+                          <template #icon><IconifyIcon icon="ant-design:reload-outlined" /></template>
+                          {{ $t('payment.develop.gateway.btn.genOrderNo') }}
+                        </a-button>
+                      </template>
+                    </a-input>
+                  </a-form-item>
+                </a-col>
+                <a-col :span="12">
+                  <a-form-item :label="$t('payment.develop.gateway.field.amount')" name="amount">
+                    <a-input-number v-model:value="form.amount" :min="1" :precision="0" :step="1" style="width: 100%" />
+                  </a-form-item>
+                </a-col>
+                <a-col :span="12">
+                  <a-form-item :label="$t('payment.develop.gateway.field.title')" name="title">
+                    <a-input v-model:value="form.title" :placeholder="$t('payment.develop.gateway.placeholder.title')">
+                      <template #suffix>
+                        <a-button size="small" type="link" @click="form.title = genDefaultTitle()">
+                          <template #icon><IconifyIcon icon="ant-design:reload-outlined" /></template>
+                          {{ $t('payment.develop.gateway.btn.genOrderNo') }}
+                        </a-button>
+                      </template>
+                    </a-input>
+                  </a-form-item>
+                </a-col>
+                <a-col :span="24">
+                  <a-form-item :label="$t('payment.develop.gateway.field.description')" name="description">
+                    <a-textarea
+                      v-model:value="form.description"
+                      :rows="3"
+                      :placeholder="$t('payment.develop.gateway.placeholder.description')"
+                    />
+                  </a-form-item>
+                </a-col>
+                <!-- 是否分账订单(资金冻结, 需发起分账拆分) -->
+                <a-col :span="24">
+                  <a-form-item :label="$t('payment.develop.gateway.field.allocation')" name="allocation">
+                    <div class="flex items-center gap-2">
+                      <a-switch v-model:checked="form.allocation" />
+                      <span class="text-xs text-muted-foreground">
+                        {{ $t('payment.develop.gateway.allocationTip') }}
+                      </span>
+                    </div>
+                  </a-form-item>
+                </a-col>
+              </a-row>
+            </a-card>
 
-              <!-- 卡4: 高级参数 -->
-              <a-card class="rounded-xl shadow-sm">
-                <template #title>
-                  <div class="flex items-center gap-2">
-                    <IconifyIcon icon="ant-design:setting-outlined" class="text-amber-500" />
-                    <span class="font-semibold">{{ $t('payment.develop.gateway.card.advanced') }}</span>
-                  </div>
-                </template>
+            <!-- 卡3: 支付参数(原「扩展参数」卡, 按语义并入通知/超时/门店) -->
+            <a-card class="rounded-xl shadow-sm">
+              <template #title>
+                <div class="flex items-center gap-2">
+                  <IconifyIcon icon="ant-design:control-outlined" class="text-purple-500" />
+                  <span class="font-semibold">{{ $t('payment.develop.gateway.card.param') }}</span>
+                </div>
+              </template>
+              <a-row :gutter="16">
+                <a-col :span="24">
+                  <a-form-item :label="$t('payment.develop.gateway.field.notifyUrl')" name="notifyUrl">
+                    <a-input
+                      v-model:value="form.notifyUrl"
+                      :placeholder="$t('payment.develop.gateway.placeholder.notifyUrl')"
+                    />
+                  </a-form-item>
+                </a-col>
+                <a-col :span="12">
+                  <a-form-item :label="$t('payment.develop.gateway.field.expiredTime')" name="expiredTime">
+                    <a-date-picker
+                      v-model:value="form.expiredTime"
+                      show-time
+                      value-format="YYYY-MM-DD HH:mm:ss"
+                      style="width: 100%"
+                      :placeholder="$t('payment.develop.gateway.placeholder.expiredTime')"
+                    />
+                  </a-form-item>
+                </a-col>
+                <a-col :span="12">
+                  <a-form-item :label="$t('payment.develop.gateway.field.storeNo')" name="storeNo">
+                    <a-input
+                      v-model:value="form.storeNo"
+                      :placeholder="$t('payment.develop.gateway.placeholder.storeNo')"
+                    />
+                  </a-form-item>
+                </a-col>
+              </a-row>
+            </a-card>
+
+            <!-- 卡4: 高级参数(默认折叠, 低频长尾) -->
+            <div class="fold-card">
+              <button class="fold-head" type="button" @click="advancedOpen = !advancedOpen">
+                <IconifyIcon icon="ant-design:tool-outlined" class="text-amber-500" />
+                <span class="font-semibold">{{ $t('payment.develop.gateway.card.advanced') }}</span>
+                <span class="fold-hint">{{ $t('payment.develop.gateway.advanced.hint') }}</span>
+                <span class="ml-auto shrink-0 text-xs text-muted-foreground">
+                  <!-- 展开/收起 -->
+                  {{
+                    advancedOpen
+                      ? $t('payment.develop.gateway.advanced.collapse')
+                      : $t('payment.develop.gateway.advanced.expand')
+                  }}
+                </span>
+                <IconifyIcon
+                  icon="ant-design:down-outlined"
+                  class="fold-chevron"
+                  :class="{ 'is-open': advancedOpen }"
+                />
+              </button>
+              <div v-show="advancedOpen" class="fold-body">
                 <a-row :gutter="16">
-                  <a-col :span="24">
+                  <a-col :span="12">
                     <a-form-item :label="$t('payment.develop.gateway.field.returnUrl')" name="returnUrl">
                       <a-input
                         v-model:value="form.returnUrl"
@@ -599,7 +692,7 @@
                       />
                     </a-form-item>
                   </a-col>
-                  <a-col :span="24">
+                  <a-col :span="12">
                     <a-form-item :label="$t('payment.develop.gateway.field.attach')" name="attach">
                       <a-input
                         v-model:value="form.attach"
@@ -617,30 +710,189 @@
                     </a-form-item>
                   </a-col>
                 </a-row>
-              </a-card>
+              </div>
             </div>
-          </a-col>
-        </a-row>
 
-        <!-- ============ 底部悬浮操作栏 ============ -->
-        <div class="action-bar">
-          <div class="flex justify-center gap-4">
-            <a-button class="action-btn" size="large" @click="handleReset">
-              <template #icon><IconifyIcon icon="ant-design:undo-outlined" /></template>
-              {{ $t('payment.develop.gateway.btn.reset') }}
-            </a-button>
-            <a-button
-              class="action-btn"
-              danger
-              size="large"
-              type="primary"
-              :loading="loading"
-              :disabled="loading"
-              @click="handlePrePay"
-            >
-              <template #icon><IconifyIcon icon="ant-design:rocket-outlined" /></template>
-              {{ $t('payment.develop.gateway.btn.submit') }}
-            </a-button>
+            <!-- 操作胶囊: 吸底常驻(滚动时钉在视口底部, 到表单尾自然落位) -->
+            <div class="action-capsule">
+              <a-button size="large" @click="handleReset">
+                <template #icon><IconifyIcon icon="ant-design:undo-outlined" /></template>
+                {{ $t('payment.develop.gateway.btn.reset') }}
+              </a-button>
+              <!-- 同订单号重复提交按幂等回放(提示挂在主按钮上, 避免结果面板再放一个重复入口) -->
+              <a-tooltip :title="$t('payment.develop.gateway.tip.idempotent')">
+                <a-button
+                  danger
+                  size="large"
+                  type="primary"
+                  :loading="loading"
+                  :disabled="loading"
+                  @click="handlePrePay"
+                >
+                  <template #icon><IconifyIcon icon="ant-design:rocket-outlined" /></template>
+                  {{ $t('payment.develop.gateway.btn.submit') }}
+                </a-button>
+              </a-tooltip>
+            </div>
+          </div>
+
+          <!-- ============ 右列: 调试结果(吸顶常驻, 替代原弹窗) ============ -->
+          <div class="result-panel rounded-xl border border-border bg-card shadow-sm">
+            <div class="result-hd">
+              <IconifyIcon icon="ant-design:thunderbolt-outlined" class="text-cyan-500" />
+              <span class="font-semibold">{{ $t('payment.develop.gateway.result.panelTitle') }}</span>
+              <div class="ml-auto flex items-center gap-2">
+                <!-- 待发起/预下单成功/预下单失败 -->
+                <a-tag v-if="!hasResult">{{ $t('payment.develop.gateway.result.pendingTag') }}</a-tag>
+                <a-tag v-else-if="resultSuccess" color="success">
+                  {{ $t('payment.develop.gateway.result.successTag') }}
+                </a-tag>
+                <a-tag v-else color="error">{{ $t('payment.develop.gateway.result.failTag') }}</a-tag>
+                <span v-if="elapsedMs !== null" class="text-xs text-muted-foreground">{{ elapsedMs }} ms</span>
+              </div>
+            </div>
+            <div class="result-bd">
+              <!-- 空态 -->
+              <div v-if="!hasResult" class="empty-box">
+                <IconifyIcon icon="ant-design:inbox-outlined" class="text-2xl text-muted-foreground" />
+                <div class="text-sm text-muted-foreground">
+                  {{ $t('payment.develop.gateway.result.emptyTitle') }}
+                </div>
+                <div class="text-xs text-muted-foreground">
+                  {{ $t('payment.develop.gateway.result.emptyDesc') }}
+                </div>
+              </div>
+
+              <template v-else>
+                <!-- 本次请求摘要(便于逐次对照) -->
+                <div v-if="lastRequest" class="req-summary">
+                  {{ $t('payment.develop.gateway.result.thisRequest') }} · {{ lastRequest.mchNoDesc }} ·
+                  {{ lastRequest.gatewayDesc }} · {{ lastRequest.amount }}
+                  {{ $t('payment.develop.gateway.result.centUnit') }} · {{ lastRequest.reqTime }}
+                </div>
+
+                <!-- 业务失败: 顶部错误提示(msg/message 双字段兜底, 兼容成功体与异常体) -->
+                <a-alert v-if="!resultSuccess" type="error" show-icon :message="resultMessage" />
+
+                <!-- 成功: 关键单号与状态 -->
+                <template v-if="resultSuccess && prePayResult">
+                  <div class="flex flex-col gap-1.5">
+                    <div class="flex items-center gap-2">
+                      <!-- 平台网关单号 -->
+                      <span class="w-24 shrink-0 text-xs text-muted-foreground">
+                        {{ $t('payment.develop.gateway.result.orderNo') }}
+                      </span>
+                      <span class="monospace min-w-0 truncate text-xs">{{ prePayResult.orderNo || '-' }}</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <!-- 业务状态 -->
+                      <span class="w-24 shrink-0 text-xs text-muted-foreground">
+                        {{ $t('payment.develop.gateway.result.status') }}
+                      </span>
+                      <a-tag :color="statusColor">{{ statusText }}</a-tag>
+                    </div>
+                    <!-- 后半段为后端实际生效类型(幂等命中时可能是已有订单的类型) -->
+                    <div v-if="resultGatewayTypeLabel" class="flex items-center gap-2">
+                      <!-- 下单类型 -->
+                      <span class="w-24 shrink-0 text-xs text-muted-foreground">
+                        {{ $t('payment.develop.gateway.result.gatewayType') }}
+                      </span>
+                      <a-tag :color="prePayResult?.gatewayType === 'aggregate' ? 'processing' : 'success'">
+                        {{ resultGatewayTypeLabel }}
+                      </a-tag>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <!-- 过期时间 -->
+                      <span class="w-24 shrink-0 text-xs text-muted-foreground">
+                        {{ $t('payment.develop.gateway.result.expiredTime') }}
+                      </span>
+                      <span class="text-xs">{{ prePayResult.expiredTime || '-' }}</span>
+                    </div>
+                  </div>
+
+                  <!-- 二维码: 单码切换(H5 落地页 / 小程序码), 仅两者都存在时出现切换 -->
+                  <template v-if="activeQrUrl">
+                    <div class="flex flex-col items-center">
+                      <div v-if="hasBothQr" class="mb-2">
+                        <a-radio-group v-model:value="qrTab" size="small" button-style="solid">
+                          <a-radio-button value="h5">{{ $t('payment.develop.gateway.result.qrH5') }}</a-radio-button>
+                          <a-radio-button value="mini">{{
+                            $t('payment.develop.gateway.result.qrMini')
+                          }}</a-radio-button>
+                        </a-radio-group>
+                      </div>
+                      <div class="mb-2 rounded-lg border border-border bg-card p-1 shadow-sm">
+                        <QrCode :value="activeQrUrl" :width="200" />
+                      </div>
+                    </div>
+                    <div>
+                      <div class="mb-1 flex items-center justify-between">
+                        <span class="text-xs font-medium text-muted-foreground">
+                          <!-- 小程序映射链接 / 网关落地页 URL -->
+                          {{
+                            qrIsMini
+                              ? $t('payment.develop.gateway.result.miniUrl')
+                              : $t('payment.develop.gateway.result.h5Url')
+                          }}
+                        </span>
+                        <div class="flex gap-1">
+                          <a-button size="small" type="link" @click="copyText(activeQrUrl)">
+                            <!-- 复制链接 -->
+                            {{ $t('payment.develop.gateway.result.copyUrl') }}
+                          </a-button>
+                          <a-button size="small" type="link" @click="openGatewayUrl(activeQrUrl)">
+                            <!-- 打开 -->
+                            {{ $t('payment.develop.gateway.result.openUrl') }}
+                          </a-button>
+                        </div>
+                      </div>
+                      <div class="code-box break-all rounded-lg border border-border bg-muted/40 p-3 text-xs">
+                        {{ activeQrUrl }}
+                      </div>
+                    </div>
+                  </template>
+                </template>
+
+                <!-- 完整 DaxResult(联调对照文档): 默认截断, 展开后随面板统一滚动(内层不再出滚动条) -->
+                <div>
+                  <div class="mb-1 flex items-center justify-between">
+                    <span class="text-xs font-medium text-muted-foreground">
+                      <!-- 完整 DaxResult 响应 -->
+                      {{ $t('payment.develop.gateway.result.rawResponse') }}
+                    </span>
+                    <a-button v-if="jsonExpanded" size="small" type="link" @click="jsonExpanded = false">
+                      {{ $t('payment.develop.gateway.result.collapse') }}
+                    </a-button>
+                  </div>
+                  <div class="json-fold" :class="{ 'is-open': jsonExpanded }">
+                    <!-- 默认展开两层, 否则根节点折叠成 {...}, 截断/展开没有可视意义 -->
+                    <JsonViewer :value="displayResultData" :expand-depth="2" boxed copyable />
+                    <div v-if="!jsonExpanded" class="json-fade"></div>
+                  </div>
+                  <a-button
+                    v-if="!jsonExpanded"
+                    block
+                    class="json-more"
+                    size="small"
+                    type="dashed"
+                    @click="jsonExpanded = true"
+                  >
+                    <template #icon><IconifyIcon icon="ant-design:down-outlined" /></template>
+                    <!-- 展开全部响应 -->
+                    {{ $t('payment.develop.gateway.result.expandAll') }}
+                  </a-button>
+                </div>
+              </template>
+            </div>
+
+            <!-- 复制操作常驻面板底部(始终可见, 不随响应内容滚动) -->
+            <div v-if="hasResult" class="result-ft">
+              <a-button block @click="copyFullResult">
+                <template #icon><IconifyIcon icon="ant-design:copy-outlined" /></template>
+                <!-- 复制完整响应 -->
+                {{ $t('payment.develop.gateway.result.copyFull') }}
+              </a-button>
+            </div>
           </div>
         </div>
       </a-form>
@@ -665,124 +917,172 @@
         :placeholder="$t('payment.develop.gateway.privateKey.placeholder')"
       />
     </a-modal>
-
-    <!-- 调试结果弹窗(完整 unipay DaxResult; 失败也弹窗便于联调) -->
-    <a-modal v-model:open="resultVisible" :title="resultModalTitle" :footer="null" :width="900" destroy-on-hidden>
-      <!-- 业务失败: 顶部错误提示(文案取 DaxResult.msg) -->
-      <div v-if="!resultSuccess" class="mb-3">
-        <a-alert type="error" show-icon :message="resultData.msg || $t('payment.develop.gateway.msg.prePayFail')" />
-      </div>
-      <!-- 下单类型(快照自提交参数, 区分统一收银台/聚合扫码) -->
-      <div class="mb-3 flex items-center gap-2">
-        <span class="text-sm text-muted-foreground">
-          {{ $t('payment.develop.gateway.result.gatewayType') }}
-        </span>
-        <a-tag :color="isAggregateOrder ? 'processing' : 'success'">
-          {{ gatewayTypeLabel }}
-        </a-tag>
-      </div>
-      <div v-if="h5Url || miniUrl" class="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
-        <!-- H5 落地页 URL 二维码(扫码进入收银台/聚合页测试) -->
-        <div v-if="h5Url" class="min-w-0">
-          <div class="mb-3 flex justify-center">
-            <div class="rounded-lg border border-border bg-card p-1 shadow-sm">
-              <QrCode :value="h5Url" :width="220" />
-            </div>
-          </div>
-          <div class="mb-3 w-full">
-            <div class="mb-1 flex items-center justify-between">
-              <span class="flex items-center gap-1.5">
-                <span class="text-xs font-medium text-muted-foreground">
-                  <!-- H5 链接 -->
-                  {{ $t('payment.develop.gateway.result.h5Url') }}
-                </span>
-                <a-tag size="small" :color="isAggregateOrder ? 'processing' : 'success'">
-                  {{ gatewayTypeLabel }}
-                </a-tag>
-              </span>
-              <div class="flex gap-1">
-                <a-button size="small" type="link" @click="copyText(h5Url)">
-                  <IconifyIcon icon="ant-design:copy-outlined" />
-                  {{ $t('payment.develop.gateway.result.copyUrl') }}
-                </a-button>
-                <a-button size="small" type="link" @click="openGatewayUrl(h5Url)">
-                  <IconifyIcon icon="ant-design:export-outlined" />
-                  {{ $t('payment.develop.gateway.result.openUrl') }}
-                </a-button>
-              </div>
-            </div>
-            <div class="code-box break-all rounded-lg border border-border bg-muted/40 p-3 text-xs">
-              {{ h5Url }}
-            </div>
-          </div>
-        </div>
-
-        <!-- 小程序映射 URL 二维码(扫码拉起对应小程序) -->
-        <div v-if="miniUrl" class="min-w-0">
-          <div class="mb-3 flex justify-center">
-            <div class="rounded-lg border border-border bg-card p-1 shadow-sm">
-              <QrCode :value="miniUrl" :width="220" />
-            </div>
-          </div>
-          <div class="mb-3 w-full">
-            <div class="mb-1 flex items-center justify-between">
-              <span class="flex items-center gap-1.5">
-                <span class="text-xs font-medium text-muted-foreground">
-                  <!-- 小程序映射链接 -->
-                  {{ $t('payment.develop.gateway.result.miniUrl') }}
-                </span>
-                <a-tag size="small" :color="isAggregateOrder ? 'processing' : 'success'">
-                  {{ gatewayTypeLabel }}
-                </a-tag>
-              </span>
-              <div class="flex gap-1">
-                <a-button size="small" type="link" @click="copyText(miniUrl)">
-                  <IconifyIcon icon="ant-design:copy-outlined" />
-                  {{ $t('payment.develop.gateway.result.copyUrl') }}
-                </a-button>
-                <a-button size="small" type="link" @click="openGatewayUrl(miniUrl)">
-                  <IconifyIcon icon="ant-design:export-outlined" />
-                  {{ $t('payment.develop.gateway.result.openUrl') }}
-                </a-button>
-              </div>
-            </div>
-            <div class="code-box break-all rounded-lg border border-border bg-muted/40 p-3 text-xs">
-              {{ miniUrl }}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 订单号与状态 -->
-      <div v-if="prePayResult" class="mt-3 w-full">
-        <a-descriptions size="small" :column="2" bordered>
-          <a-descriptions-item :label="$t('payment.develop.gateway.result.orderNo')">
-            {{ prePayResult.orderNo }}
-          </a-descriptions-item>
-          <a-descriptions-item :label="$t('payment.develop.gateway.result.status')">
-            <a-tag :color="statusColor">{{ statusText }}</a-tag>
-          </a-descriptions-item>
-        </a-descriptions>
-      </div>
-
-      <!-- 完整 DaxResult(联调对照文档) -->
-      <div class="mb-1 mt-2 text-xs font-medium text-muted-foreground">
-        {{ $t('payment.develop.gateway.result.rawResponse') }}
-      </div>
-      <JsonViewer class="json-viewer-box mb-3" :value="resultData" :expand-depth="0" boxed copyable />
-
-      <div class="flex gap-2">
-        <a-button block @click="copyFullResult">
-          <template #icon><IconifyIcon icon="ant-design:copy-outlined" /></template>
-          {{ $t('payment.develop.gateway.result.copyFull') }}
-        </a-button>
-      </div>
-    </a-modal>
   </div>
 </template>
 
 <style scoped lang="less">
+  // 细滚动条(Chromium): 8px 轨道内 4px 半透明滑块, hover 才加深
+  .thin-scrollbar() {
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: hsl(var(--foreground) / 0.16);
+      background-clip: content-box;
+      border: 2px solid transparent;
+      border-radius: 999px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: hsl(var(--foreground) / 0.32);
+    }
+  }
+
   .develop-gateway {
+    // 页面自身做滚动容器: Vben 布局层祖先带 overflow:hidden, 若用 document 滚动
+    // 吸顶/吸底的 sticky 参照会失效, 故用内容区可视高度做内滚动
+    height: var(--vben-content-height, calc(100vh - 88px));
+    overflow-y: auto;
+    .thin-scrollbar();
+
+    // 页面滚动条常驻占位, 内容变长/变短时不产生横向抖动
+    scrollbar-gutter: stable;
+
+    // 左填右看: 左列表单(单列动线) + 右列结果面板(吸顶)
+    .dev-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 29fr) minmax(0, 21fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .result-panel {
+      position: sticky;
+      top: 12px;
+      display: flex;
+      max-height: calc(var(--vben-content-height, calc(100vh - 88px)) - 24px);
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .result-hd {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border-bottom: 1px solid hsl(var(--border));
+    }
+
+    .result-bd {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 14px 16px 16px;
+      overflow-y: auto;
+      .thin-scrollbar();
+    }
+
+    // 复制操作固定在面板底部: 与 body 同级, 不随响应内容滚走
+    .result-ft {
+      display: flex;
+      flex: 0 0 auto;
+      gap: 8px;
+      padding: 10px 16px;
+      background-color: hsl(var(--card));
+      border-top: 1px solid hsl(var(--border));
+    }
+
+    .empty-box {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+      padding: 40px 16px;
+      text-align: center;
+      border: 1px dashed hsl(var(--border));
+      border-radius: 10px;
+    }
+
+    .req-summary {
+      padding-bottom: 8px;
+      font-size: 12px;
+      color: hsl(var(--muted-foreground));
+      border-bottom: 1px dashed hsl(var(--border));
+    }
+
+    // 操作胶囊: 吸底常驻, 紧贴按钮居中(沿用原胶囊形态)
+    .action-capsule {
+      position: sticky;
+      bottom: 12px;
+      z-index: 20;
+      display: flex;
+      align-self: center;
+      gap: 12px;
+      padding: 8px 16px;
+      background-color: hsl(var(--card) / 0.92);
+      border: 1px solid hsl(var(--border));
+      border-radius: 9999px;
+      box-shadow: 0 8px 24px hsl(var(--foreground) / 0.12);
+      backdrop-filter: blur(8px);
+
+      :deep(.ant-btn) {
+        min-width: 132px;
+      }
+    }
+
+    // 高级参数折叠条(默认收起)
+    .fold-card {
+      overflow: hidden;
+      background-color: hsl(var(--card));
+      border: 1px solid hsl(var(--border));
+      border-radius: 12px;
+      box-shadow: 0 1px 2px hsl(var(--foreground) / 0.04);
+    }
+
+    .fold-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px 16px;
+      font-family: inherit;
+      font-size: 13.5px;
+      color: inherit;
+      text-align: left;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+    }
+
+    .fold-hint {
+      overflow: hidden;
+      font-size: 12px;
+      color: hsl(var(--muted-foreground));
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .fold-chevron {
+      flex: 0 0 auto;
+      transition: transform 0.2s;
+      transform: rotate(-90deg);
+
+      &.is-open {
+        transform: rotate(0deg);
+      }
+    }
+
+    .fold-body {
+      padding: 0 16px 16px;
+    }
+
     .code-textarea {
       width: 100%;
       padding: 8px 11px;
@@ -799,8 +1099,6 @@
     }
 
     .code-box {
-      max-height: 240px;
-      overflow-y: auto;
       font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
       font-size: 12.5px;
       line-height: 1.6;
@@ -809,27 +1107,53 @@
       color: hsl(var(--foreground));
     }
 
+    // 完整响应默认截断(不产生内层滚动条), 展开后不限高, 由面板统一滚动
+    .json-fold {
+      position: relative;
+      max-height: 220px;
+      overflow: hidden;
+
+      &.is-open {
+        max-height: none;
+        overflow: visible;
+      }
+    }
+
+    // 截断处渐变淡出, 暗示下方还有内容
+    .json-fade {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 56px;
+      pointer-events: none;
+      background: linear-gradient(to bottom, transparent, hsl(var(--background)));
+    }
+
+    .json-more {
+      margin-top: 8px;
+    }
+
     .monospace {
       font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
     }
+  }
 
-    // 底部悬浮居中胶囊栏: 固定在视口底部, 始终可点
-    .action-bar {
-      position: fixed;
-      bottom: 16px;
-      left: 50%;
-      z-index: 30;
-      padding: 10px 24px;
-      background-color: hsl(var(--card) / 0.9);
-      border: 1px solid hsl(var(--border));
-      border-radius: 9999px;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 8px 24px hsl(var(--foreground) / 0.12%);
-      transform: translateX(-50%);
+  // 窄屏(内容区装不下双列): 堆叠为单列, 取消吸顶
+  @media (max-width: 1200px) {
+    .develop-gateway {
+      .dev-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
 
-      .action-btn {
-        min-width: 140px;
-        box-shadow: 0 4px 12px hsl(var(--primary) / 0.15);
+      .result-panel {
+        position: static;
+        max-height: none;
+      }
+
+      // 单列时不再有面板内滚动, 唯一滚动层是页面
+      .result-bd {
+        overflow: visible;
       }
     }
   }
