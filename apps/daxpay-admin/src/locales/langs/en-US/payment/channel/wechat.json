@@ -8,6 +8,8 @@
   "privateKey": "API Certificate Private Key",
   "privateCert": "API Certificate",
   "certSerialNo": "Certificate Serial No",
+  "apiHostUrl": "API Domain",
+  "apiHostUrlPlaceholder": "Leave blank to use the official api.mch.weixin.qq.com",
   "wxAppSecret": "WeChat App Secret",
   "wxAuthUrl": "WeChat Auth URL",
   "validation": {

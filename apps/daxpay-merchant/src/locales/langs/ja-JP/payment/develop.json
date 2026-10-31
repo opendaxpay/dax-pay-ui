@@ -57,10 +57,10 @@
     },
     "card": {
       "basic": "基本情報",
-      "mchApp": "販売者情報",
       "param": "支払いパラメータ",
       "order": "注文情報",
-      "advanced": "高度パラメータ"
+      "advanced": "高度パラメータ",
+      "mchMode": "販売者とモード"
     },
     "mode": {
       "label": "ペイモード",
@@ -70,7 +70,6 @@
       "directDesc": "チャネル販売業者と能力によって決定されます。チャンネルルーティングをスキップする"
     },
     "field": {
-      "privateKey": "販売者の秘密鍵",
       "mchNo": "商人",
       "appId": "応用",
       "channelMchNo": "チャネルマーチャント",
@@ -89,7 +88,8 @@
       "returnUrl": "同期リダイレクトURL",
       "attach": "マーチャント添付パラメータ",
       "extraParam": "拡張パラメータ",
-      "limitPay": "支払制限タイプ"
+      "limitPay": "支払制限タイプ",
+      "allocation": "分割決済注文"
     },
     "placeholder": {
       "method": "支払い方法を選択してください",
@@ -114,7 +114,8 @@
       "clearPrivateKey": "クリアキー",
       "genOrderNo": "生成する",
       "reset": "リセット",
-      "submit": "提出する"
+      "submit": "提出する",
+      "replaceKey": "変更"
     },
     "privateKey": {
       "modalTitle": "販売者の秘密キーを設定する",
@@ -122,15 +123,12 @@
       "placeholder": "販売者の秘密キーを入力してください",
       "savedTip": "秘密キーが保存されました",
       "clearedTip": "秘密キーがクリアされました",
-      "setTag": "セット",
-      "setLabel": "販売者の秘密鍵セット",
-      "unsetTag": "未設定",
+      "setTag": "秘密キー設定済み",
+      "unsetTag": "秘密キー未設定",
       "clearConfirmTitle": "クリアの確認",
       "clearConfirmContent": "販売者の秘密キーをクリアしてもよろしいですか?再入力する必要があります。"
     },
     "result": {
-      "modalTitle": "支払結果（unipay）",
-      "failModalTitle": "支払失敗（unipay）",
       "payLink": "支払いリンク",
       "jsapiParam": "JSAPIパラメータ",
       "formData": "フォームデータ",
@@ -141,7 +139,18 @@
       "empty": "データなし",
       "field": {
         "orderNo": "システム注文番号"
-      }
+      },
+      "panelTitle": "デバッグ結果",
+      "pendingTag": "未実行",
+      "successTag": "支払成功",
+      "failTag": "支払失敗",
+      "emptyTitle": "送信後の結果はここに表示されます",
+      "emptyDesc": "QRコード / 支払いパラメータ / 完全な応答が常駐し、繰り返し閲覧・コピーできます",
+      "thisRequest": "本リクエスト",
+      "centUnit": "分",
+      "expandAll": "応答をすべて展開",
+      "collapse": "折りたたむ",
+      "copy": "コピー"
     },
     "rule": {
       "mchNo": "販売者を選択してください",
@@ -151,7 +160,8 @@
       "method": "お支払い方法を選択してください",
       "channelMchNo": "チャネル販売者を選択してください",
       "capability": "機能を選択してください",
-      "extraParam": "拡張パラメータは有効なJSON形式である必要があります"
+      "extraParam": "拡張パラメータは有効なJSON形式である必要があります",
+      "mchNoNotLoaded": "販売者情報が読み込まれていません。ページを再読み込みして再試行してください"
     },
     "msg": {
       "signSuccess": "署名は正常に生成されました",
@@ -163,7 +173,16 @@
     "limitPayOption": {
       "no_credit": "クレジットカード決済"
     },
-    "methodOptionalTip": "バーコード決済(被読取)では空欄可: 支払コードの接頭辞からWeChat/Alipay/UnionPayを自動判別し、支払方法を補完します"
+    "methodOptionalTip": "バーコード決済(被読取)では空欄可: 支払コードの接頭辞からWeChat/Alipay/UnionPayを自動判別し、支払方法を補完します",
+    "advanced": {
+      "hint": "マーチャント付加パラメータ · 支払制限タイプ · 支払拡張パラメータ",
+      "expand": "展開",
+      "collapse": "折りたたむ"
+    },
+    "tip": {
+      "idempotent": "同じ注文番号の再送信は冪等リプレイされます。新規注文は注文番号の「生成」を先にクリックしてください"
+    },
+    "allocationTip": "有効にすると注文資金が凍結され、分割決済の発起によってのみ分割できます"
   },
   "auth": {
     "title": "認証開発",
@@ -239,10 +258,10 @@
       "warning": "このページはパラメータの組み立てと署名のみ行います。送信後、/unipay/gateway/pre-pay を呼び出してレジ/集合QRランディングページを生成します（管理特権チャネルではありません）。パラメータをご確認ください。"
     },
     "card": {
-      "mchApp": "マーチャント情報",
       "order": "注文情報",
-      "param": "拡張パラメータ",
-      "advanced": "高度パラメータ"
+      "param": "支払いパラメータ",
+      "advanced": "高度パラメータ",
+      "mchType": "販売者とゲートウェイ種別"
     },
     "gatewayType": {
       "label": "ゲートウェイ種別",
@@ -252,7 +271,6 @@
       "aggregateDesc": "集合QRリンクを生成し、一つのコードで複数支払いを自動識別"
     },
     "field": {
-      "privateKey": "マーチャント秘密鍵",
       "mchNo": "マーチャント",
       "appId": "アプリ",
       "bizOrderNo": "注文番号",
@@ -264,7 +282,8 @@
       "expiredTime": "有効期限",
       "storeNo": "店舗番号",
       "attach": "マーチャント添付パラメータ",
-      "extraParam": "拡張パラメータ"
+      "extraParam": "拡張パラメータ",
+      "allocation": "分割決済注文"
     },
     "placeholder": {
       "notifyUrl": "https://...",
@@ -283,7 +302,8 @@
       "setPrivateKey": "秘密鍵設定",
       "genOrderNo": "生成",
       "reset": "リセット",
-      "submit": "事前注文送信"
+      "submit": "事前注文送信",
+      "replaceKey": "キーを変更"
     },
     "privateKey": {
       "modalTitle": "マーチャント秘密鍵設定",
@@ -291,15 +311,12 @@
       "placeholder": "マーチャント秘密鍵を入力",
       "savedTip": "秘密鍵を保存しました",
       "clearedTip": "秘密鍵をクリアしました",
-      "setTag": "設定済み",
-      "setLabel": "マーチャント秘密鍵設定済み",
-      "unsetTag": "未設定",
+      "setTag": "秘密キー設定済み",
+      "unsetTag": "秘密キー未設定",
       "clearConfirmTitle": "クリア確認",
       "clearConfirmContent": "マーチャント秘密鍵をクリアしてよろしいですか？再入力が必要になります。"
     },
     "result": {
-      "modalTitle": "事前注文結果 (unipay)",
-      "failModalTitle": "事前注文失敗 (unipay)",
       "url": "ゲートウェイランディングURL",
       "h5Url": "ゲートウェイランディングURL",
       "miniUrl": "ミニプログラム連携URL",
@@ -325,7 +342,20 @@
       },
       "rawResponse": "完全なDaxResultレスポンス",
       "copyFull": "完全なレスポンスをコピー",
-      "gatewayType": "注文タイプ"
+      "gatewayType": "注文タイプ",
+      "panelTitle": "デバッグ結果",
+      "pendingTag": "未実行",
+      "successTag": "事前決済成功",
+      "failTag": "事前決済失敗",
+      "emptyTitle": "送信後の結果はここに表示されます",
+      "emptyDesc": "QRコード / ランディングページURL / 完全な応答が常駐し、繰り返し閲覧・コピーできます",
+      "thisRequest": "本リクエスト",
+      "centUnit": "分",
+      "expandAll": "応答をすべて展開",
+      "collapse": "折りたたむ",
+      "qrH5": "H5 ランディングページ",
+      "qrMini": "ミニプログラムコード",
+      "expiredTime": "有効期限"
     },
     "rule": {
       "mchNo": "マーチャントを選択してください",
@@ -333,7 +363,8 @@
       "title": "支払タイトルを入力してください",
       "amount": "支払金額を入力してください",
       "gatewayPayType": "ゲートウェイ種別を選択してください",
-      "extraParam": "拡張パラメータは有効なJSON形式である必要があります"
+      "extraParam": "拡張パラメータは有効なJSON形式である必要があります",
+      "mchNoNotLoaded": "販売者情報が読み込まれていません。ページを再読み込みして再試行してください"
     },
     "msg": {
       "signSuccess": "署名を生成しました",
@@ -342,6 +373,15 @@
       "prePayFail": "事前注文リクエスト失敗",
       "inputPrivateKey": "先にマーチャント秘密鍵を設定してください",
       "copySuccess": "コピーしました"
-    }
+    },
+    "advanced": {
+      "hint": "同期リダイレクト · マーチャント付加パラメータ · 支払拡張パラメータ",
+      "expand": "展開",
+      "collapse": "折りたたむ"
+    },
+    "tip": {
+      "idempotent": "同じ注文番号の再送信は冪等リプレイされます。新規注文は注文番号の「生成」を先にクリックしてください"
+    },
+    "allocationTip": "有効にすると注文資金が凍結され、分割決済の発起によってのみ分割できます"
   }
 }

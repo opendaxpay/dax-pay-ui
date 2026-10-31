@@ -30,6 +30,8 @@
   "certPlaceholder": "Tempel konten sertifikat",
   "secretKey": "Kunci Komunikasi AES",
   "secretKeyPlaceholder": "Masukkan kunci komunikasi AES (opsional)",
+  "serverUrl": "URL Gateway",
+  "serverUrlPlaceholder": "Kosongkan untuk menggunakan gateway resmi",
   "addApp": "Tambah Aplikasi",
   "config": "Konfigurasi",
   "confirmDelete": "Konfirmasi hapus aplikasi ini?",

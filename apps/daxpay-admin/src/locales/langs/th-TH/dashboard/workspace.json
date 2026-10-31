@@ -63,7 +63,18 @@
     "selected": "เลือกแล้ว (ลากเพื่อจัดเรียง)",
     "available": "มีอยู่",
     "allAdded": "เพิ่มทั้งหมดแล้ว",
-    "wxApp": "แอปชำระเงิน (WeChat)"
+    "wxApp": "แอปชำระเงิน (WeChat)",
+    "virtualDevice": "อุปกรณ์เสมือน",
+    "gatewayOrder": "คำสั่งซื้อ Gateway",
+    "fundFlow": "กระแสเงินสด",
+    "allocOrder": "คำสั่งแบ่งเงิน",
+    "abnormalOrder": "คำสั่งซื้อผิดปกติ",
+    "mchNotice": "ส่ง Callback ร้านค้า",
+    "callbackRecord": "บันทึก Callback ช่องทาง",
+    "riskStrategy": "กลยุทธ์ความเสี่ยง",
+    "riskBlacklist": "Blacklist",
+    "riskHit": "Risk Hits",
+    "qrCodeList": "การจัดการรหัส QR"
   },
   "notice": {
     "important": "สำคัญ",

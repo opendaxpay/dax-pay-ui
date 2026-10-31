@@ -47,7 +47,8 @@
     "deleteDesc": "Hal ini tidak dapat dibatalkan. Lanjutkan dengan hati-hati",
     "noActions": "Tidak ada tindakan yang tersedia",
     "openActionAria": "Buka konfigurasi aplikasi",
-    "confirmDisableDefault": "Ini adalah aplikasi default. Menonaktifkannya akan membuat pesanan tanpa appId gagal sebagai cadangan. Lanjutkan?"
+    "confirmDisableDefault": "Ini adalah aplikasi default. Menonaktifkannya akan membuat pesanan tanpa appId gagal sebagai cadangan. Lanjutkan?",
+    "groupNotifyDevice": "Notifikasi & Perangkat"
   },
   "easypay": {
     "v1Hint": "V1 memiliki keamanan lemah; aktifkan hanya untuk klien lama",

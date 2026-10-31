@@ -57,10 +57,10 @@
     },
     "card": {
       "basic": "Info Dasar",
-      "mchApp": "Info Pedagang",
       "param": "Parameter Pembayaran",
       "order": "Info Pemesanan",
-      "advanced": "Parameter Lanjutan"
+      "advanced": "Parameter Lanjutan",
+      "mchMode": "Pedagang & Mode"
     },
     "mode": {
       "label": "Modus Bayar",
@@ -70,7 +70,6 @@
       "directDesc": "Diputuskan oleh pedagang saluran + kemampuan; lewati perutean saluran"
     },
     "field": {
-      "privateKey": "Kunci Pribadi Pedagang",
       "mchNo": "Pedagang",
       "appId": "Aplikasi",
       "channelMchNo": "Pedagang Saluran",
@@ -115,7 +114,8 @@
       "clearPrivateKey": "Hapus Kunci",
       "genOrderNo": "Menghasilkan",
       "reset": "Mengatur ulang",
-      "submit": "Kirim"
+      "submit": "Kirim",
+      "replaceKey": "Ganti"
     },
     "privateKey": {
       "modalTitle": "Tetapkan Kunci Pribadi Pedagang",
@@ -123,15 +123,12 @@
       "placeholder": "Masukkan kunci pribadi pedagang",
       "savedTip": "Kunci pribadi disimpan",
       "clearedTip": "Kunci pribadi dihapus",
-      "setTag": "Mengatur",
-      "setLabel": "Kumpulan kunci pribadi pedagang",
-      "unsetTag": "Tidak Ditetapkan",
+      "setTag": "Kunci Ditetapkan",
+      "unsetTag": "Kunci Belum Ditetapkan",
       "clearConfirmTitle": "Konfirmasi Hapus",
       "clearConfirmContent": "Apakah Anda yakin ingin menghapus kunci pribadi pedagang? Itu perlu dimasukkan kembali."
     },
     "result": {
-      "modalTitle": "Hasil Pembayaran (unipay)",
-      "failModalTitle": "Pembayaran Gagal (unipay)",
       "payLink": "Tautan Pembayaran",
       "jsapiParam": "Param JSAPI",
       "formData": "Data Formulir",
@@ -142,7 +139,18 @@
       "empty": "Tidak ada data",
       "field": {
         "orderNo": "Nomor Pesanan Sistem."
-      }
+      },
+      "panelTitle": "Hasil Debug",
+      "pendingTag": "Menunggu",
+      "successTag": "Pembayaran Berhasil",
+      "failTag": "Pembayaran Gagal",
+      "emptyTitle": "Hasil akan muncul di sini setelah dikirim",
+      "emptyDesc": "Kode QR / parameter pembayaran / respon lengkap selalu tampil untuk dilihat dan disalin berulang",
+      "thisRequest": "Permintaan Ini",
+      "centUnit": "sen",
+      "expandAll": "Perluas Respon Penuh",
+      "collapse": "Lipat",
+      "copy": "Salin"
     },
     "rule": {
       "mchNo": "Silakan pilih pedagang",
@@ -165,7 +173,15 @@
       "no_credit": "Pembayaran Kartu Kredit"
     },
     "allocationTip": "Saat diaktifkan, dana pesanan akan dibekukan dan hanya dapat dipisah melalui alokasi.",
-    "methodOptionalTip": "Boleh dikosongkan untuk pembayaran barcode: platform mengenali WeChat/Alipay/UnionPay dari prefiks kode dan mengisi metode pembayaran"
+    "methodOptionalTip": "Boleh dikosongkan untuk pembayaran barcode: platform mengenali WeChat/Alipay/UnionPay dari prefiks kode dan mengisi metode pembayaran",
+    "advanced": {
+      "hint": "Param Tambahan · Tipe Batas Bayar · Param Ekstra",
+      "expand": "Perluas",
+      "collapse": "Lipat"
+    },
+    "tip": {
+      "idempotent": "Pengiriman ulang dengan nomor pesanan yang sama diputar ulang secara idempoten; klik \"Menghasilkan\" pada nomor pesanan untuk yang baru"
+    }
   },
   "auth": {
     "title": "Auth Kembangkan",
@@ -241,10 +257,10 @@
       "warning": "Halaman ini hanya merakit parameter dan menandatangani. Saat dikirim, akan mensimulasikan panggilan merchant ke /unipay/gateway/pre-pay untuk membuat halaman kasir/QR agregat (bukan kanal privilese admin). Harap verifikasi parameter."
     },
     "card": {
-      "mchApp": "Info Merchant",
       "order": "Info Pesanan",
-      "param": "Parameter Tambahan",
-      "advanced": "Parameter Lanjutan"
+      "param": "Parameter Pembayaran",
+      "advanced": "Parameter Lanjutan",
+      "mchType": "Pedagang & Tipe Gateway"
     },
     "gatewayType": {
       "label": "Tipe Gateway",
@@ -254,7 +270,6 @@
       "aggregateDesc": "Buat tautan QR agregat, satu kode untuk banyak pembayaran"
     },
     "field": {
-      "privateKey": "Kunci Pribadi Merchant",
       "mchNo": "Merchant",
       "appId": "Aplikasi",
       "bizOrderNo": "No. Pesanan",
@@ -286,7 +301,8 @@
       "setPrivateKey": "Atur Kunci",
       "genOrderNo": "Buat",
       "reset": "Reset",
-      "submit": "Kirim Pre-pay"
+      "submit": "Kirim Pre-pay",
+      "replaceKey": "Ganti Kunci"
     },
     "privateKey": {
       "modalTitle": "Atur Kunci Pribadi Merchant",
@@ -294,15 +310,12 @@
       "placeholder": "Masukkan kunci pribadi merchant",
       "savedTip": "Kunci pribadi disimpan",
       "clearedTip": "Kunci pribadi dihapus",
-      "setTag": "Diatur",
-      "setLabel": "Kunci pribadi merchant diatur",
-      "unsetTag": "Belum diatur",
+      "setTag": "Kunci Ditetapkan",
+      "unsetTag": "Kunci Belum Ditetapkan",
       "clearConfirmTitle": "Konfirmasi Hapus",
       "clearConfirmContent": "Yakin ingin menghapus kunci pribadi merchant? Anda perlu memasukkannya kembali."
     },
     "result": {
-      "modalTitle": "Hasil Pre-pay (unipay)",
-      "failModalTitle": "Pre-pay Gagal (unipay)",
       "url": "URL Halaman Gateway",
       "h5Url": "URL Halaman Gateway",
       "miniUrl": "URL Pemetaan Mini-program",
@@ -328,7 +341,20 @@
       },
       "rawResponse": "Respons DaxResult Lengkap",
       "copyFull": "Salin Respons Lengkap",
-      "gatewayType": "Jenis Pesanan"
+      "gatewayType": "Jenis Pesanan",
+      "panelTitle": "Hasil Debug",
+      "pendingTag": "Menunggu",
+      "successTag": "Pra-pesanan Berhasil",
+      "failTag": "Pra-pesanan Gagal",
+      "emptyTitle": "Hasil akan muncul di sini setelah dikirim",
+      "emptyDesc": "Kode QR / URL halaman landas / respon lengkap selalu tampil untuk dilihat dan disalin berulang",
+      "thisRequest": "Permintaan Ini",
+      "centUnit": "sen",
+      "expandAll": "Perluas Respon Penuh",
+      "collapse": "Lipat",
+      "qrH5": "Halaman Landas H5",
+      "qrMini": "Kode Mini Program",
+      "expiredTime": "Waktu Kedaluwarsa"
     },
     "rule": {
       "mchNo": "Silakan pilih merchant",
@@ -346,6 +372,14 @@
       "inputPrivateKey": "Silakan atur kunci pribadi merchant terlebih dahulu",
       "copySuccess": "Disalin"
     },
-    "allocationTip": "Saat diaktifkan, dana pesanan akan dibekukan dan hanya dapat dipisah melalui alokasi."
+    "allocationTip": "Saat diaktifkan, dana pesanan akan dibekukan dan hanya dapat dipisah melalui alokasi.",
+    "advanced": {
+      "hint": "URL Kembali · Param Tambahan · Param Ekstra",
+      "expand": "Perluas",
+      "collapse": "Lipat"
+    },
+    "tip": {
+      "idempotent": "Pengiriman ulang dengan nomor pesanan yang sama diputar ulang secara idempoten; klik \"Menghasilkan\" pada nomor pesanan untuk yang baru"
+    }
   }
 }

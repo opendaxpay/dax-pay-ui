@@ -6,6 +6,7 @@
   import type { VirtualDeviceResult } from '#/api/payment/device/virtual.api';
 
   import { computed, onMounted, ref } from 'vue';
+  import { useRoute } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
@@ -18,6 +19,7 @@
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
+  import { normalizeRouteQueryValue } from '#/hooks/useRequiredRouteQuery';
 
   import ActivationQrModal from './components/ActivationQrModal.vue';
   import DeviceBindMerchantModal from './DeviceBindMerchantModal.vue';
@@ -34,6 +36,7 @@
    */
   defineOptions({ name: 'VirtualDeviceList' });
 
+  const route = useRoute();
   const { confirm, message } = useMessage();
   const { hasPermission } = usePermission();
 
@@ -72,6 +75,13 @@
       field: 'mchNo',
       // 商户号
       name: $t('payment.device.virtual.field.mchNo'),
+      placeholder: $t('common.pleaseInput'),
+    },
+    {
+      type: 'string',
+      field: 'storeNo',
+      // 门店号
+      name: $t('payment.device.virtual.field.storeNo'),
       placeholder: $t('common.pleaseInput'),
     },
     {
@@ -129,6 +139,15 @@
 
   onMounted(() => {
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
+    // 商户工作台/门店工作台跳转入口带 mchNo/storeNo 时预置筛选(直达菜单访问则不带, 展示全量)
+    const presetMchNo = normalizeRouteQueryValue(route.query.mchNo);
+    if (presetMchNo) {
+      queryForm.value.mchNo = presetMchNo;
+    }
+    const presetStoreNo = normalizeRouteQueryValue(route.query.storeNo);
+    if (presetStoreNo) {
+      queryForm.value.storeNo = presetStoreNo;
+    }
     queryPage();
   });
 

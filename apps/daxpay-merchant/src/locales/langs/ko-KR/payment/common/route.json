@@ -3,5 +3,6 @@
   "productDetail": {
     "notSupported": "제품 세부정보 구성은 아직 지원되지 않습니다.",
     "notSupportedDesc": "\"{product}\"에 대한 세부 구성이 아직 구현되지 않았습니다."
-  }
+  },
+  "missingStoreContext": "매장 파라미터가 없습니다. 매장 관리에서 진입해 주세요"
 }

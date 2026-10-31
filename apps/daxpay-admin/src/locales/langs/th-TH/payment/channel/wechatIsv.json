@@ -28,6 +28,8 @@
   "uploadPublicKey": "อัปโหลดคีย์สาธารณะ",
   "publicKeyId": "รหัสกุญแจสาธารณะ",
   "publicKeyIdPlaceholder": "กรุณากรอกรหัสกุญแจสาธารณะ",
+  "apiHostUrl": "โดเมน API",
+  "apiHostUrlPlaceholder": "เว้นว่างเพื่อใช้ api.mch.weixin.qq.com ทางการ",
   "validation": {
     "enable": "โปรดเลือกเปิดใช้งานสถานะ",
     "wxMchId": "กรุณากรอกรหัสผู้ขาย WeChat",

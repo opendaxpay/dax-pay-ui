@@ -63,7 +63,18 @@
     "selected": "선택됨(정렬하려면 드래그하세요)",
     "available": "사용 가능",
     "allAdded": "모두 추가됨",
-    "wxApp": "결제 앱(위챗)"
+    "wxApp": "결제 앱(위챗)",
+    "virtualDevice": "가상 디바이스",
+    "gatewayOrder": "게이트웨이 주문",
+    "fundFlow": "자금 흐름",
+    "allocOrder": "정산 주문",
+    "abnormalOrder": "비정상 주문",
+    "mchNotice": "가맹점 콜백 푸시",
+    "callbackRecord": "채널 콜백 기록",
+    "riskStrategy": "리스크 전략",
+    "riskBlacklist": "블랙리스트",
+    "riskHit": "리스크 적중",
+    "qrCodeList": "QR 코드 관리"
   },
   "notice": {
     "important": "중요한",

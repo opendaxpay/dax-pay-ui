@@ -8,6 +8,8 @@
   "privateKey": "Khóa riêng của chứng chỉ API",
   "privateCert": "Chứng chỉ API",
   "certSerialNo": "Số sê-ri chứng chỉ",
+  "apiHostUrl": "Tên miền API",
+  "apiHostUrlPlaceholder": "Để trống để dùng api.mch.weixin.qq.com chính thức",
   "wxAppSecret": "Bí mật ứng dụng WeChat",
   "wxAuthUrl": "URL xác thực WeChat",
   "validation": {

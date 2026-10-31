@@ -5,7 +5,6 @@
     "developing": "Ciri dalam pembangunan, nantikan...",
     "groupBasic": "Pengurusan Asas",
     "groupPayment": "Konfigurasi Pembayaran",
-    "groupBusiness": "Konfigurasi Perniagaan",
     "cardMchInfo": "Profil Pedagang",
     "cardMchInfoDesc": "No. Pedagang, nama, status dan maklumat asas lain",
     "cardSecurity": "Konfigurasi Keselamatan",
@@ -32,6 +31,11 @@
     "cardDyAppDesc": "Urus mini program, apl mudah alih, apl web Douyin dan apl terbuka lain untuk peniaga ini",
     "groupDanger": "Zon Berbahaya",
     "cardDeleteMerchant": "Padam Peniaga",
-    "cardDeleteMerchantDesc": "Padam peniaga ini berserta semua konfigurasi berkaitan. Tidak boleh dibatalkan."
+    "cardDeleteMerchantDesc": "Batalkan pendaftaran merchant (sanitasi + padam berantai konfigurasi dan akaun pengguna), perlu taip nama untuk sahkan",
+    "groupDeviceCashier": "Kasir & Peranti",
+    "groupAccess": "Konfigurasi Integrasi",
+    "cardVirtualDeviceDesc": "Lejar dan penyenggaraan peranti maya (aplikasi pengumuman bayaran) milik merchant ini",
+    "unitPiece": "",
+    "unitDevice": ""
   }
 }

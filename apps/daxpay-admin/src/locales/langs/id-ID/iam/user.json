@@ -85,5 +85,13 @@
     "hintDigit": "Setidaknya satu digit",
     "hintSpecialChar": "Setidaknya satu karakter khusus ({chars})",
     "notMeetRequirements": "Kata sandi tidak memenuhi persyaratan"
+  },
+  "deleteModal": {
+    "title": "Hapus Pengguna",
+    "alertTitle": "Penghapusan berarti pembatalan pendaftaran dan tidak dapat dibatalkan",
+    "alertDesc": "Semua data terkait pengguna ini akan dihapus (ikatan peran, akun sosial, riwayat kata sandi, dll., informasi sensitif disanitasi) dan semua sesi akan dipaksa keluar; pengguna yang berafiliasi dengan merchant tidak dapat dihapus di sini, silakan ke manajemen pengguna merchant terkait.",
+    "inputTip": "Ketik nama pengguna \"{name}\" untuk mengonfirmasi penghapusan:",
+    "placeholder": "Masukkan nama pengguna",
+    "okText": "Konfirmasi Hapus"
   }
 }

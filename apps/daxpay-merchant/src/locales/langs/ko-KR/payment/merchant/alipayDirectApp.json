@@ -30,6 +30,8 @@
   "certPlaceholder": "인증서 내용 붙여넣기",
   "secretKey": "AES 통신 키",
   "secretKeyPlaceholder": "AES 통신 키 입력(선택)",
+  "serverUrl": "게이트웨이 주소",
+  "serverUrlPlaceholder": "비워두면 공식 게이트웨이 사용",
   "addApp": "앱 추가",
   "config": "설정",
   "confirmDelete": "이 앱을 삭제하시겠습니까?",

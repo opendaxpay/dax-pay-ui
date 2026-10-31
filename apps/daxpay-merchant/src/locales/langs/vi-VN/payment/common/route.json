@@ -3,5 +3,6 @@
   "productDetail": {
     "notSupported": "Cấu hình chi tiết sản phẩm chưa được hỗ trợ",
     "notSupportedDesc": "Cấu hình chi tiết cho \"{product}\" chưa được triển khai"
-  }
+  },
+  "missingStoreContext": "Thiếu tham số cửa hàng. Vui lòng vào từ quản lý cửa hàng"
 }

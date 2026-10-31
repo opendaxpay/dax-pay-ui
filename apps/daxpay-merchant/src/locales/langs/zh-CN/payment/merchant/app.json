@@ -51,7 +51,10 @@
     "currentApp": "当前应用",
     "selectApp": "请选择应用",
     "emptyApps": "暂无应用，请先在应用管理中创建",
-    "noAppSelected": "请先选择应用"
+    "noAppSelected": "请先选择应用",
+    "groupNotifyDevice": "通知与设备",
+    "cardAudioDeviceDesc": "查看与配置本商户的收款播报 / 打印设备",
+    "unitDevice": "台"
   },
   "easypay": {
     "v1Hint": "V1 安全性较弱，仅兼容旧系统时开启",

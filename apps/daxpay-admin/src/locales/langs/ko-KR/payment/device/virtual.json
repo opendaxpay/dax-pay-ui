@@ -6,7 +6,8 @@
     "mchNo": "판매자 번호",
     "enable": "상태",
     "appName": "앱",
-    "storeName": "매장"
+    "storeName": "매장",
+    "storeNo": "매장 번호"
   },
   "enableTitle": "사용",
   "enabled": "사용",

@@ -146,5 +146,19 @@
   "transferSceneDefaultTip": "Mỗi merchant kênh chỉ có thể có một kịch bản mặc định",
   "groupDanger": "Vùng nguy hiểm",
   "cardDelete": "Xóa thương nhân kênh",
-  "cardDeleteDesc": "Sau khi xóa, thương nhân kênh này cùng toàn bộ cấu hình sẽ không thể sử dụng. Không thể hoàn tác."
+  "cardDeleteDesc": "Sau khi xóa, thương nhân kênh này cùng toàn bộ cấu hình sẽ không thể sử dụng. Không thể hoàn tác.",
+  "reference": "Tham chiếu",
+  "confirmDisableImpactTitle": "Dừng merchant kênh",
+  "confirmDisableImpactOk": "Dừng",
+  "disableImpactApps": "Merchant kênh này đang được tham chiếu bởi các ứng dụng sau:",
+  "disableImpactAppLine": "{name} ({count} tham chiếu)",
+  "disableImpactRestApps": "{count} ứng dụng",
+  "disableImpactWarn": "Thanh toán của các ứng dụng trên sẽ thất bại ngay sau khi dừng",
+  "viewFullDetail": "Xem chi tiết đầy đủ",
+  "disableUncheckedDesc": "Truy vấn phạm vi ảnh hưởng tham chiếu thất bại, tạm thời không thể xác nhận merchant kênh này có được tham chiếu bởi cấu hình hay không. Dừng vẫn có thể khiến thanh toán của một số ứng dụng thất bại.",
+  "referenceDrawerTitle": "Chi tiết tham chiếu",
+  "referenceDrawerTitleWithName": "Chi tiết tham chiếu - {name}",
+  "referenceTotalLabel": "Tổng số tham chiếu",
+  "referenceEmpty": "Không được tham chiếu bởi cấu hình nào",
+  "referenceAppRefs": "{count} tham chiếu"
 }

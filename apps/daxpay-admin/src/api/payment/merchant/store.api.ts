@@ -16,6 +16,13 @@ export const MchStoreInfoApi = {
   },
 
   /**
+   * 按商户号查询全部门店(门店管理卡片墙, 不分页)
+   */
+  listAllByMch(mchNo: string): Promise<Result<MchStoreInfoResult[]>> {
+    return defHttp.get({ url: '/admin/merchant/store/list-all', params: { mchNo } });
+  },
+
+  /**
    * 根据 id 查询门店
    */
   get(id: string): Promise<Result<MchStoreInfoResult>> {
@@ -56,6 +63,20 @@ export const MchStoreInfoApi = {
   clearDefault(id: string): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/merchant/store/clear-default', params: { id } });
   },
+
+  /**
+   * 门店概况聚合(门店详情工作台: 默认应用/商户默认应用 + 码牌绑定计数)
+   */
+  overview(id: string): Promise<Result<StoreOverviewResult>> {
+    return defHttp.get({ url: '/admin/merchant/store/overview', params: { id } });
+  },
+
+  /**
+   * 设置/清空门店默认应用(appId 传空串表示清空, 跟随商户默认应用)
+   */
+  setApp(id: string, appId: string): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/merchant/store/set-app', params: { id, appId } });
+  },
 };
 
 /** 门店查询参数 */
@@ -78,6 +99,8 @@ export interface MchStoreInfoParam {
   id?: string;
   /** 商户号 */
   mchNo?: string;
+  /** 门店默认支付应用号(空则使用商户默认应用; 更新时空串=清空) */
+  appId?: string;
   /** 门店名称 */
   storeName?: string;
   /** 联系人电话 */
@@ -110,6 +133,10 @@ export interface MchStoreInfoResult extends BaseEntity {
   mchNo?: string;
   /** 门店号 */
   storeNo?: string;
+  /** 门店默认支付应用号(空则使用商户默认应用) */
+  appId?: string;
+  /** 门店默认支付应用名称(只读展示字段) */
+  appName?: string;
   /** 门店名称 */
   storeName?: string;
   /** 联系人电话 */
@@ -134,4 +161,18 @@ export interface MchStoreInfoResult extends BaseEntity {
   defaultStore?: boolean;
   /** 备注 */
   remark?: string;
+}
+
+/** 门店概况聚合结果(门店详情工作台) */
+export interface StoreOverviewResult {
+  /** 门店配置的默认应用号(未配置为 null) */
+  storeAppId?: null | string;
+  /** 门店配置的默认应用名(未配置为 null) */
+  storeAppName?: null | string;
+  /** 商户默认应用号 */
+  mchDefaultAppId?: null | string;
+  /** 商户默认应用名 */
+  mchDefaultAppName?: null | string;
+  /** 绑定本店的码牌数 */
+  qrCodeCount?: number;
 }

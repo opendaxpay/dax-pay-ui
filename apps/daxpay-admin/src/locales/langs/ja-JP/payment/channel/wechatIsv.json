@@ -28,6 +28,8 @@
   "uploadPublicKey": "公開キーをアップロードする",
   "publicKeyId": "公開鍵ID",
   "publicKeyIdPlaceholder": "公開キーIDを入力してください",
+  "apiHostUrl": "APIドメイン",
+  "apiHostUrlPlaceholder": "空欄の場合は公式 api.mch.weixin.qq.com を使用",
   "validation": {
     "enable": "有効ステータスを選択してください",
     "wxMchId": "WeChat 販売者 ID を入力してください",

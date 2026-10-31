@@ -63,7 +63,18 @@
     "selected": "已选（拖拽排序）",
     "available": "可选入口",
     "allAdded": "已全部添加",
-    "wxApp": "支付应用(微信)"
+    "wxApp": "支付应用(微信)",
+    "virtualDevice": "虚拟设备",
+    "gatewayOrder": "网关订单",
+    "fundFlow": "资金流水",
+    "allocOrder": "分账订单",
+    "abnormalOrder": "异常订单",
+    "mchNotice": "商户回调推送",
+    "callbackRecord": "通道回调记录",
+    "riskStrategy": "风控策略",
+    "riskBlacklist": "黑名单管理",
+    "riskHit": "风险命中记录",
+    "qrCodeList": "码牌管理"
   },
   "notice": {
     "important": "重要",

@@ -28,6 +28,8 @@
   "uploadPublicKey": "Muat naik Kunci Awam",
   "publicKeyId": "ID Kunci Awam",
   "publicKeyIdPlaceholder": "Sila masukkan ID kunci awam",
+  "apiHostUrl": "Domain API",
+  "apiHostUrlPlaceholder": "Kosongkan untuk menggunakan api.mch.weixin.qq.com rasmi",
   "validation": {
     "enable": "Sila pilih dayakan status",
     "wxMchId": "Sila masukkan ID pedagang WeChat",

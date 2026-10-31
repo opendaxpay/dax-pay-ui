@@ -28,6 +28,8 @@
   "uploadPublicKey": "Upload Public Key",
   "publicKeyId": "Public Key ID",
   "publicKeyIdPlaceholder": "Please enter public key ID",
+  "apiHostUrl": "API Domain",
+  "apiHostUrlPlaceholder": "Leave blank to use the official api.mch.weixin.qq.com",
   "validation": {
     "enable": "Please select enable status",
     "wxMchId": "Please enter WeChat merchant ID",

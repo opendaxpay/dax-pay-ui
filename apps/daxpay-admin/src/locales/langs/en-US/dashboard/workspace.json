@@ -63,7 +63,18 @@
     "selected": "Selected (drag to sort)",
     "available": "Available",
     "allAdded": "All added",
-    "wxApp": "Payment Apps (WeChat)"
+    "wxApp": "Payment Apps (WeChat)",
+    "virtualDevice": "Virtual Devices",
+    "gatewayOrder": "Gateway Orders",
+    "fundFlow": "Fund Flows",
+    "allocOrder": "Allocation Orders",
+    "abnormalOrder": "Abnormal Orders",
+    "mchNotice": "Merchant Callback Push",
+    "callbackRecord": "Channel Callback Records",
+    "riskStrategy": "Risk Strategy",
+    "riskBlacklist": "Blacklist",
+    "riskHit": "Risk Hits",
+    "qrCodeList": "QR Code Management"
   },
   "notice": {
     "important": "Important",

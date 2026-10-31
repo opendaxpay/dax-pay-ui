@@ -14,7 +14,8 @@
       "latitude": "緯度",
       "status": "状態",
       "remark": "述べる",
-      "createTime": "時間を作る"
+      "createTime": "時間を作る",
+      "defaultApp": "デフォルト決済アプリ"
     },
     "status": {
       "enable": "有効",
@@ -32,6 +33,69 @@
     "validationDefaultStore": "デフォルト店舗にするか選択してください",
     "deleteDefaultBlocked": "デフォルトストアは削除できません。先に別のストアをデフォルトに設定してください",
     "noDefaultStoreTip": "デフォルトストアが設定されていません。いずれかのストアをデフォルトに設定してください",
-    "confirmDisableDefault": "このストアはデフォルトストアです。無効化すると storeNo 未指定の注文のフォールバックが失敗します。無効化しますか？"
+    "confirmDisableDefault": "このストアはデフォルトストアです。無効化すると storeNo 未指定の注文のフォールバックが失敗します。無効化しますか？",
+    "defaultAppPlaceholder": "選択しない場合は加盟店のデフォルトアプリに従う",
+    "defaultAppTip": "コード決済など店舗単位の決済入口で使用されます。空の場合は加盟店のデフォルトアプリを使用します",
+    "card": {
+      "storeNoPrefix": "店舗番号：{storeNo}",
+      "defaultAppLine": "デフォルトアプリ：{app}",
+      "defaultAppFollow": "デフォルトアプリ：加盟商のデフォルトに従う",
+      "enterWorkbench": "ワークベンチへ"
+    },
+    "list": {
+      "filterPlaceholder": "店舗名または店舗番号で絞り込み",
+      "statusAll": "すべての状態",
+      "empty": "店舗はありません",
+      "addCard": "店舗を追加"
+    },
+    "workbench": {
+      "title": "店舗ワークベンチ",
+      "backToList": "店舗リストに戻る",
+      "groupCashier": "レジとデバイス",
+      "groupBind": "クイックバインド",
+      "groupDefault": "デフォルト設定",
+      "groupManage": "店舗管理",
+      "tileDevice": "決済デバイス",
+      "tileDeviceDesc": "この店舗に紐づく決済デバイスの台帳と運用",
+      "tileQrcode": "QRコード一覧",
+      "tileQrcodeDesc": "この店舗に紐づくQRコード一覧と設定",
+      "tileBindDevice": "決済デバイスをこの店舗にバインド",
+      "tileBindDeviceDesc": "店舗未割り当ての決済デバイスを選択",
+      "tileBindQrcode": "QRコードをこの店舗にバインド",
+      "tileBindQrcodeDesc": "店舗未紐付けのQRコードを選択",
+      "tileDefaultApp": "デフォルトアプリ",
+      "tileDefaultAppStore": "この店舗指定：{name}",
+      "tileDefaultAppFollow": "加盟商デフォルトに従う：{name}",
+      "tileDefaultAppNone": "デフォルトアプリ未設定、クリックして設定",
+      "tileStoreInfo": "店舗情報",
+      "tileStoreInfoDesc": "店舗名・住所・電話などの基本情報を管理",
+      "tileDefaultStoreActiveDesc": "現在デフォルト店舗です、クリックで解除",
+      "tileDefaultStoreDesc": "クリックでこの加盟商のデフォルト店舗に設定",
+      "tileDeleteStore": "店舗を削除",
+      "tileDeleteStoreDesc": "デフォルト店舗は削除不可、先にデフォルトを移転してください",
+      "noActions": "利用可能な操作はありません",
+      "countUnitDevice": "台",
+      "countUnitQrcode": "枚",
+      "setAppTitle": "デフォルト決済アプリを設定",
+      "confirmClearAppNoMchDefault": "この加盟商はデフォルトアプリ未設定です。クリアするとQRコードなど店舗単位の決済入口に利用可能なアプリがなくなります。クリアしますか？",
+      "confirmClearDefaultStore": "解除すると店舗未指定の取引はデフォルト店舗へフォールバックできず、決済が失敗する可能性があります。解除しますか？",
+      "setDefaultOk": "デフォルト店舗に設定しました",
+      "clearDefaultOk": "デフォルト店舗を解除しました"
+    },
+    "bind": {
+      "kindQrcode": "QRコード",
+      "alertTemplate": "店舗未割り当ての{kind}のみ表示します。チェックしてこの店舗にバインドしてください",
+      "columnCode": "QRコード番号",
+      "columnDeviceNo": "デバイス番号",
+      "columnName": "名称",
+      "columnApp": "紐づくアプリ",
+      "allApps": "すべてのアプリ",
+      "ok": "バインド",
+      "okWithCount": "バインド({count})",
+      "selectFirstDevice": "先にデバイスを選択してください",
+      "selectFirstQrcode": "先にQRコードを選択してください",
+      "successDevice": "{count} 台の決済デバイスを店舗「{store}」にバインドしました",
+      "successQrcode": "{count} 枚のQRコードを店舗「{store}」にバインドしました"
+    }
   }
 }

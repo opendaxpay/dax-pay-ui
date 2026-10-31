@@ -5,7 +5,6 @@
     "developing": "功能開發中，敬請期待...",
     "groupBasic": "基礎管理",
     "groupPayment": "支付配置",
-    "groupBusiness": "業務配置",
     "cardMchInfo": "商戶資料",
     "cardMchInfoDesc": "商戶號、名稱、狀態等基本資訊",
     "cardSecurity": "安全配置",
@@ -32,6 +31,11 @@
     "cardDyAppDesc": "管理該商戶的抖音小程式、行動應用、網頁應用等開放應用",
     "groupDanger": "危險操作",
     "cardDeleteMerchant": "刪除商戶",
-    "cardDeleteMerchantDesc": "刪除商戶及其全部關聯配置，操作不可撤銷"
+    "cardDeleteMerchantDesc": "註銷商戶(脫敏+級聯刪除配置與用戶賬號), 需輸入名稱確認",
+    "groupDeviceCashier": "收銀與設備",
+    "groupAccess": "接入設定",
+    "cardVirtualDeviceDesc": "該商戶名下綁定虛擬設備（收款播報 APP）的台帳與運維",
+    "unitPiece": "個",
+    "unitDevice": "台"
   }
 }

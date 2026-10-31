@@ -47,7 +47,8 @@
     "deleteDesc": "This cannot be undone. Proceed with caution",
     "noActions": "No actions available",
     "openActionAria": "Open app configuration",
-    "confirmDisableDefault": "This is the default app. Disabling it will break fallback for orders without appId. Continue?"
+    "confirmDisableDefault": "This is the default app. Disabling it will break fallback for orders without appId. Continue?",
+    "groupNotifyDevice": "Notifications & Devices"
   },
   "easypay": {
     "v1Hint": "V1 is weakly secured; enable only for legacy clients",

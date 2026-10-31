@@ -38,5 +38,13 @@
     "normal": "Biasalah",
     "lock": "Terkunci",
     "ban": "Diharamkan"
+  },
+  "deleteModal": {
+    "title": "Padam Pengguna Merchant",
+    "alertTitle": "Pemadaman bermaksud pembatalan pendaftaran dan tidak boleh dikembalikan",
+    "alertDesc": "Semua data berkaitan pengguna ini akan dipadam (ikat peranan, akaun sosial, rekod kata laluan, dll., maklumat sensitif dibersihkan) dan semua sesi akan dilog keluar secara paksa; akan ditolak jika ini merupakan pentadbir terakhir merchant.",
+    "inputTip": "Taip nama pengguna \"{name}\" untuk mengesahkan pemadaman:",
+    "placeholder": "Masukkan nama pengguna",
+    "okText": "Sahkan Padam"
   }
 }

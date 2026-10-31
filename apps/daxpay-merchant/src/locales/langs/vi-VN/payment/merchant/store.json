@@ -14,7 +14,8 @@
       "latitude": "Vĩ độ",
       "status": "Trạng thái",
       "remark": "Nhận xét",
-      "createTime": "Tạo thời gian"
+      "createTime": "Tạo thời gian",
+      "defaultApp": "Ứng dụng thanh toán mặc định"
     },
     "status": {
       "enable": "Đã bật",
@@ -32,6 +33,69 @@
     "validationDefaultStore": "Vui lòng chọn có phải cửa hàng mặc định",
     "deleteDefaultBlocked": "Không thể xóa cửa hàng mặc định. Hãy hủy mặc định trước.",
     "noDefaultStoreTip": "Chưa có cửa hàng mặc định",
-    "confirmDisableDefault": "Hủy trạng thái cửa hàng mặc định?"
+    "confirmDisableDefault": "Hủy trạng thái cửa hàng mặc định?",
+    "defaultAppPlaceholder": "Bỏ trống để dùng ứng dụng mặc định của merchant",
+    "defaultAppTip": "Được dùng cho các đầu vào thanh toán theo cửa hàng như mã QR; bỏ trống sẽ dùng ứng dụng mặc định của merchant",
+    "card": {
+      "storeNoPrefix": "Số cửa hàng: {storeNo}",
+      "defaultAppLine": "Ứng dụng mặc định: {app}",
+      "defaultAppFollow": "Ứng dụng mặc định: theo mặc định của merchant",
+      "enterWorkbench": "Mở bàn làm việc"
+    },
+    "list": {
+      "filterPlaceholder": "Lọc theo tên hoặc số cửa hàng",
+      "statusAll": "Tất cả trạng thái",
+      "empty": "Chưa có cửa hàng",
+      "addCard": "Thêm cửa hàng"
+    },
+    "workbench": {
+      "title": "Bàn làm việc cửa hàng",
+      "backToList": "Quay lại danh sách cửa hàng",
+      "groupCashier": "Thu ngân & Thiết bị",
+      "groupBind": "Gán nhanh",
+      "groupDefault": "Cài đặt mặc định",
+      "groupManage": "Quản lý cửa hàng",
+      "tileDevice": "Thiết bị thanh toán",
+      "tileDeviceDesc": "Sổ theo dõi và vận hành thiết bị thanh toán gán với cửa hàng này",
+      "tileQrcode": "Danh sách mã QR",
+      "tileQrcodeDesc": "Mã QR gán với cửa hàng này và cấu hình",
+      "tileBindDevice": "Gán thiết bị thanh toán vào cửa hàng này",
+      "tileBindDeviceDesc": "Chọn thiết bị thanh toán của merchant chưa gán cửa hàng",
+      "tileBindQrcode": "Gán mã QR vào cửa hàng này",
+      "tileBindQrcodeDesc": "Chọn mã QR của merchant chưa gán cửa hàng",
+      "tileDefaultApp": "Ứng dụng mặc định",
+      "tileDefaultAppStore": "Cửa hàng này: {name}",
+      "tileDefaultAppFollow": "Theo mặc định merchant: {name}",
+      "tileDefaultAppNone": "Chưa cấu hình ứng dụng mặc định, bấm để cài đặt",
+      "tileStoreInfo": "Thông tin cửa hàng",
+      "tileStoreInfoDesc": "Quản lý tên, địa chỉ, điện thoại cửa hàng và thông tin cơ bản khác",
+      "tileDefaultStoreActiveDesc": "Đây là cửa hàng mặc định, bấm để bỏ",
+      "tileDefaultStoreDesc": "Bấm để đặt làm cửa hàng mặc định của merchant này",
+      "tileDeleteStore": "Xóa cửa hàng",
+      "tileDeleteStoreDesc": "Cửa hàng mặc định không thể xóa; hãy chuyển mặc định trước",
+      "noActions": "Không có thao tác khả dụng",
+      "countUnitDevice": "",
+      "countUnitQrcode": "",
+      "setAppTitle": "Cài đặt ứng dụng thanh toán mặc định",
+      "confirmClearAppNoMchDefault": "Merchant chưa cấu hình ứng dụng mặc định; nếu bỏ trống, lối thanh toán theo cửa hàng (mã QR, ...) sẽ không còn ứng dụng dùng được. Bỏ trống?",
+      "confirmClearDefaultStore": "Sau khi bỏ, giao dịch không chỉ định cửa hàng sẽ không thể về cửa hàng mặc định và có thể thất bại. Bỏ?",
+      "setDefaultOk": "Đã đặt làm cửa hàng mặc định",
+      "clearDefaultOk": "Đã bỏ cửa hàng mặc định"
+    },
+    "bind": {
+      "kindQrcode": "mã QR",
+      "alertTemplate": "Chỉ liệt kê {kind} của merchant chưa gán cửa hàng; chọn rồi gán vào cửa hàng này",
+      "columnCode": "Mã QR",
+      "columnDeviceNo": "Số thiết bị",
+      "columnName": "Tên",
+      "columnApp": "Ứng dụng liên quan",
+      "allApps": "Tất cả ứng dụng",
+      "ok": "Gán",
+      "okWithCount": "Gán ({count})",
+      "selectFirstDevice": "Vui lòng chọn thiết bị trước",
+      "selectFirstQrcode": "Vui lòng chọn mã QR trước",
+      "successDevice": "Đã gán {count} thiết bị thanh toán vào cửa hàng '{store}'",
+      "successQrcode": "Đã gán {count} mã QR vào cửa hàng '{store}'"
+    }
   }
 }

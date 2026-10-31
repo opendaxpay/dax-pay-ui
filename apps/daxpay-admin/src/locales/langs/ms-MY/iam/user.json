@@ -85,5 +85,13 @@
     "hintDigit": "Sekurang-kurangnya satu digit",
     "hintSpecialChar": "Sekurang-kurangnya satu watak istimewa ({chars})",
     "notMeetRequirements": "Kata laluan tidak memenuhi keperluan"
+  },
+  "deleteModal": {
+    "title": "Padam Pengguna",
+    "alertTitle": "Pemadaman bermaksud pembatalan pendaftaran dan tidak boleh dikembalikan",
+    "alertDesc": "Semua data berkaitan pengguna ini akan dipadam (ikat peranan, akaun sosial, rekod kata laluan, dll., maklumat sensitif dibersihkan) dan semua sesi akan dilog keluar secara paksa; pengguna yang berafiliasi dengan merchant tidak boleh dipadam di sini, silakan ke pengurusan pengguna merchant berkenaan.",
+    "inputTip": "Taip nama pengguna \"{name}\" untuk mengesahkan pemadaman:",
+    "placeholder": "Masukkan nama pengguna",
+    "okText": "Sahkan Padam"
   }
 }

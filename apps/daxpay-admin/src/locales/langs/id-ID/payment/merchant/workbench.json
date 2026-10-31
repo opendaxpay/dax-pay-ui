@@ -5,7 +5,6 @@
     "developing": "Fitur sedang dikembangkan, pantau terus...",
     "groupBasic": "Manajemen Dasar",
     "groupPayment": "Konfigurasi Pembayaran",
-    "groupBusiness": "Konfigurasi Bisnis",
     "cardMchInfo": "Profil Pedagang",
     "cardMchInfoDesc": "Merchant No., nama, status dan info dasar lainnya",
     "cardSecurity": "Konfigurasi Keamanan",
@@ -32,6 +31,11 @@
     "cardDyAppDesc": "Kelola mini program, aplikasi mobile, aplikasi web Douyin, dan aplikasi terbuka lain untuk merchant ini",
     "groupDanger": "Zona Berbahaya",
     "cardDeleteMerchant": "Hapus Merchant",
-    "cardDeleteMerchantDesc": "Hapus merchant ini beserta seluruh konfigurasinya. Tidak dapat dibatalkan."
+    "cardDeleteMerchantDesc": "Batalkan pendaftaran merchant (sanitasi + hapus berantai konfigurasi dan akun pengguna), konfirmasi dengan mengetik nama",
+    "groupDeviceCashier": "Kasir & Perangkat",
+    "groupAccess": "Konfigurasi Integrasi",
+    "cardVirtualDeviceDesc": "Buku kas dan pemeliharaan perangkat virtual (aplikasi pengumuman pembayaran) milik merchant ini",
+    "unitPiece": "",
+    "unitDevice": ""
   }
 }

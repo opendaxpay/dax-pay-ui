@@ -30,6 +30,8 @@
   "certPlaceholder": "粘贴证书内容",
   "secretKey": "AES通信密钥",
   "secretKeyPlaceholder": "请输入AES通信密钥（可选）",
+  "serverUrl": "网关地址",
+  "serverUrlPlaceholder": "留空使用官方网关",
   "addApp": "新增应用",
   "config": "配置",
   "confirmDelete": "确认删除该应用？",

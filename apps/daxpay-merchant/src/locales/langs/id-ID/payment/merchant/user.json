@@ -38,5 +38,13 @@
     "normal": "Normal",
     "lock": "Terkunci",
     "ban": "Dilarang"
+  },
+  "deleteModal": {
+    "title": "Hapus Pengguna Merchant",
+    "alertTitle": "Penghapusan berarti pembatalan pendaftaran dan tidak dapat dibatalkan",
+    "alertDesc": "Semua data terkait pengguna ini akan dihapus (ikatan peran, akun sosial, riwayat kata sandi, dll., informasi sensitif disanitasi) dan semua sesi akan dipaksa keluar; ditolak jika ini adalah satu-satunya administrator merchant.",
+    "inputTip": "Ketik nama pengguna \"{name}\" untuk mengonfirmasi penghapusan:",
+    "placeholder": "Masukkan nama pengguna",
+    "okText": "Konfirmasi Hapus"
   }
 }

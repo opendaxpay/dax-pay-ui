@@ -47,7 +47,8 @@
     "deleteDesc": "刪除後不可恢復，請謹慎操作",
     "noActions": "暫無可用操作",
     "openActionAria": "進入應用配置",
-    "confirmDisableDefault": "該應用是預設應用，停用後將無法作為回落，未指定 appId 的下單會失敗，確認停用？"
+    "confirmDisableDefault": "該應用是預設應用，停用後將無法作為回落，未指定 appId 的下單會失敗，確認停用？",
+    "groupNotifyDevice": "通知與設備"
   },
   "easypay": {
     "v1Hint": "V1 安全性較弱，僅兼容舊系統時開啟",

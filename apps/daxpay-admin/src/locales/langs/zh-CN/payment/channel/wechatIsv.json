@@ -28,6 +28,8 @@
   "uploadPublicKey": "上传支付公钥",
   "publicKeyId": "支付公钥ID",
   "publicKeyIdPlaceholder": "请输入公钥编号",
+  "apiHostUrl": "API域名",
+  "apiHostUrlPlaceholder": "留空使用官方 api.mch.weixin.qq.com",
   "validation": {
     "enable": "请选择是否启用",
     "wxMchId": "请输入微信商户号",

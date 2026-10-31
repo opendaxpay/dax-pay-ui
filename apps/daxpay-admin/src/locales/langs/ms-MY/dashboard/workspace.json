@@ -63,7 +63,18 @@
     "selected": "Dipilih (seret untuk mengisih)",
     "available": "Tersedia",
     "allAdded": "Semua ditambah",
-    "wxApp": "Apl Pembayaran (WeChat)"
+    "wxApp": "Apl Pembayaran (WeChat)",
+    "virtualDevice": "Peranti Maya",
+    "gatewayOrder": "Pesanan Gateway",
+    "fundFlow": "Aliran Dana",
+    "allocOrder": "Pesanan Pengasingan",
+    "abnormalOrder": "Pesanan Tidak Normal",
+    "mchNotice": "Tolak Callback Merchant",
+    "callbackRecord": "Rekod Callback Saluran",
+    "riskStrategy": "Strategi Risiko",
+    "riskBlacklist": "Blacklist",
+    "riskHit": "Risk Hits",
+    "qrCodeList": "Pengurusan Kod QR"
   },
   "notice": {
     "important": "penting",

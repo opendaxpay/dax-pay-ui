@@ -4,5 +4,6 @@
   "productDetail": {
     "notSupported": "Produk ini tidak memiliki item konfigurasi sisi platform",
     "notSupportedDesc": "Parameter channel dikelola di konfigurasi masing-masing merchant channel"
-  }
+  },
+  "missingStoreContext": "Parameter toko tidak ada. Masuk dari daftar toko"
 }

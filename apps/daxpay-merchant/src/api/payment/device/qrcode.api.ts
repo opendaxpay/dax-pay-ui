@@ -98,6 +98,8 @@ export interface DeviceQrCodeQuery {
   batchNo?: string;
   /** 绑定门店号 */
   storeNo?: string;
+  /** 是否未分配门店(true=仅查门店为空, 门店工作台快捷绑定候选过滤用) */
+  storeUnassigned?: boolean;
   /** 落地程序类型 h5/mini_app */
   programType?: string;
   /** 金额类型 random/fixed */

@@ -57,10 +57,10 @@
     },
     "card": {
       "basic": "Basic Info",
-      "mchApp": "Merchant Info",
       "param": "Payment Params",
       "order": "Order Info",
-      "advanced": "Advanced Params"
+      "advanced": "Advanced Params",
+      "mchMode": "Merchant & Mode"
     },
     "mode": {
       "label": "Pay Mode",
@@ -70,7 +70,6 @@
       "directDesc": "Directly specify channel merchant + capability; skip channel routing"
     },
     "field": {
-      "privateKey": "Merchant Private Key",
       "mchNo": "Merchant",
       "appId": "Application",
       "channelMchNo": "Channel Merchant",
@@ -115,7 +114,8 @@
       "clearPrivateKey": "Clear Key",
       "genOrderNo": "Generate",
       "reset": "Reset",
-      "submit": "Submit"
+      "submit": "Submit",
+      "replaceKey": "Replace"
     },
     "privateKey": {
       "modalTitle": "Set Merchant Private Key",
@@ -123,15 +123,12 @@
       "placeholder": "Enter the merchant private key",
       "savedTip": "Private key saved",
       "clearedTip": "Private key cleared",
-      "setTag": "Set",
-      "setLabel": "Merchant private key set",
-      "unsetTag": "Not Set",
+      "setTag": "Key Set",
+      "unsetTag": "Key Not Set",
       "clearConfirmTitle": "Confirm Clear",
       "clearConfirmContent": "Are you sure you want to clear the merchant private key? It will need to be re-entered."
     },
     "result": {
-      "modalTitle": "Payment Result (unipay)",
-      "failModalTitle": "Payment Failed (unipay)",
       "payLink": "Payment Link",
       "jsapiParam": "JSAPI Params",
       "formData": "Form Data",
@@ -142,7 +139,18 @@
       "empty": "No data",
       "field": {
         "orderNo": "System Order No."
-      }
+      },
+      "panelTitle": "Debug Result",
+      "pendingTag": "Pending",
+      "successTag": "Payment Successful",
+      "failTag": "Payment Failed",
+      "emptyTitle": "Results will appear here after submission",
+      "emptyDesc": "QR code / pay params / full response stay visible for repeated viewing and copying",
+      "thisRequest": "This Request",
+      "centUnit": "cents",
+      "expandAll": "Expand Full Response",
+      "collapse": "Collapse",
+      "copy": "Copy"
     },
     "rule": {
       "mchNo": "Please select a merchant",
@@ -165,7 +173,15 @@
       "no_credit": "Credit Card Payment"
     },
     "allocationTip": "When enabled, the order funds will be frozen and can only be split by initiating an allocation.",
-    "methodOptionalTip": "Can be left empty for barcode (merchant-scanned) payments: the platform detects WeChat/Alipay/UnionPay from the code prefix and fills in the method"
+    "methodOptionalTip": "Can be left empty for barcode (merchant-scanned) payments: the platform detects WeChat/Alipay/UnionPay from the code prefix and fills in the method",
+    "advanced": {
+      "hint": "Attach · Limit Pay Types · Extra Params",
+      "expand": "Expand",
+      "collapse": "Collapse"
+    },
+    "tip": {
+      "idempotent": "Repeated submissions with the same order no. are idempotently replayed; click \"Generate\" on the order no. for a new one"
+    }
   },
   "auth": {
     "title": "Auth Develop",
@@ -241,10 +257,10 @@
       "warning": "This page only assembles parameters and signs. On submit it simulates a merchant call to /unipay/gateway/pre-pay to generate a cashier/aggregate landing page (not an admin privileged channel). Please verify parameters."
     },
     "card": {
-      "mchApp": "Merchant",
       "order": "Order",
-      "param": "Extra Parameters",
-      "advanced": "Advanced Params"
+      "param": "Payment Params",
+      "advanced": "Advanced Params",
+      "mchType": "Merchant & Gateway Type"
     },
     "gatewayType": {
       "label": "Gateway Type",
@@ -254,7 +270,6 @@
       "aggregateDesc": "Generate an aggregate QR link, one code for multiple payment methods"
     },
     "field": {
-      "privateKey": "Merchant Private Key",
       "mchNo": "Merchant",
       "appId": "App",
       "bizOrderNo": "Order No.",
@@ -286,7 +301,8 @@
       "setPrivateKey": "Set Key",
       "genOrderNo": "Generate",
       "reset": "Reset",
-      "submit": "Submit Pre-pay"
+      "submit": "Submit Pre-pay",
+      "replaceKey": "Replace Key"
     },
     "privateKey": {
       "modalTitle": "Set Merchant Private Key",
@@ -294,15 +310,12 @@
       "placeholder": "Enter merchant private key",
       "savedTip": "Private key saved",
       "clearedTip": "Private key cleared",
-      "setTag": "Set",
-      "setLabel": "Merchant private key set",
-      "unsetTag": "Not set",
+      "setTag": "Key Set",
+      "unsetTag": "Key Not Set",
       "clearConfirmTitle": "Confirm Clear",
       "clearConfirmContent": "Are you sure to clear the merchant private key? You will need to re-enter it."
     },
     "result": {
-      "modalTitle": "Pre-pay Result (unipay)",
-      "failModalTitle": "Pre-pay Failed (unipay)",
       "url": "Gateway Landing Page URL",
       "h5Url": "Gateway Landing Page URL",
       "miniUrl": "Mini-program Mapping URL",
@@ -328,7 +341,20 @@
       },
       "rawResponse": "Full DaxResult Response",
       "copyFull": "Copy Full Response",
-      "gatewayType": "Order Type"
+      "gatewayType": "Order Type",
+      "panelTitle": "Debug Result",
+      "pendingTag": "Pending",
+      "successTag": "Pre-pay Successful",
+      "failTag": "Pre-pay Failed",
+      "emptyTitle": "Results will appear here after submission",
+      "emptyDesc": "QR code / landing page URL / full response stay visible for repeated viewing and copying",
+      "thisRequest": "This Request",
+      "centUnit": "cents",
+      "expandAll": "Expand Full Response",
+      "collapse": "Collapse",
+      "qrH5": "H5 Landing Page",
+      "qrMini": "Mini Program Code",
+      "expiredTime": "Expiry Time"
     },
     "rule": {
       "mchNo": "Please select a merchant",
@@ -346,6 +372,14 @@
       "inputPrivateKey": "Please set merchant private key first",
       "copySuccess": "Copied"
     },
-    "allocationTip": "When enabled, the order funds will be frozen and can only be split by initiating an allocation."
+    "allocationTip": "When enabled, the order funds will be frozen and can only be split by initiating an allocation.",
+    "advanced": {
+      "hint": "Return URL · Attach · Extra Params",
+      "expand": "Expand",
+      "collapse": "Collapse"
+    },
+    "tip": {
+      "idempotent": "Repeated submissions with the same order no. are idempotently replayed; click \"Generate\" on the order no. for a new one"
+    }
   }
 }

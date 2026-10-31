@@ -51,7 +51,10 @@
     "currentApp": "現在のアプリ",
     "selectApp": "アプリを選択",
     "emptyApps": "アプリがありません。先にアプリ管理で作成してください。",
-    "noAppSelected": "アプリを選択してください"
+    "noAppSelected": "アプリを選択してください",
+    "groupNotifyDevice": "通知とデバイス",
+    "cardAudioDeviceDesc": "この加盟店の入金アナウンス・印刷デバイスの確認と設定",
+    "unitDevice": ""
   },
   "easypay": {
     "v1Hint": "V1 は安全性が低いため、旧システム互換時のみ有効にしてください",

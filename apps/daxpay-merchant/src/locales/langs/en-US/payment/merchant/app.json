@@ -51,7 +51,10 @@
     "currentApp": "Current App",
     "selectApp": "Select an app",
     "emptyApps": "No apps yet. Create one in App Management first.",
-    "noAppSelected": "Please select an app"
+    "noAppSelected": "Please select an app",
+    "groupNotifyDevice": "Notifications & Devices",
+    "cardAudioDeviceDesc": "View and configure this merchant's payment announcement / printing devices",
+    "unitDevice": ""
   },
   "easypay": {
     "v1Hint": "V1 is weakly secured; enable only for legacy clients",

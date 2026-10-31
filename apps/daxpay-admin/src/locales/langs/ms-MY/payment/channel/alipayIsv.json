@@ -24,6 +24,8 @@
   "communicateKeyConfig": "Kunci Komunikasi",
   "secretKey": "Kunci Komunikasi",
   "secretKeyPlaceholder": "Masukkan kunci daripada konsol Platform Terbuka Alipay",
+  "serverUrl": "Alamat gateway",
+  "serverUrlPlaceholder": "Kosongkan untuk menggunakan gateway rasmi",
   "validation": {
     "authType": "Sila pilih jenis pengesahan",
     "alipayPublicKey": "Sila masukkan kunci awam Alipay",

@@ -1,0 +1,306 @@
+<script lang="ts" setup>
+  import type { VxeTableInstance } from 'vxe-table';
+
+  import { computed, nextTick, ref } from 'vue';
+
+  import { $t } from '@vben/locales';
+
+  import { AudioDeviceApi } from '#/api/payment/device/audio.api';
+  import { DeviceQrCodeApi } from '#/api/payment/device/qrcode.api';
+  import { useMessage } from '#/hooks/useMessage';
+
+  /**
+   * 门店快捷绑定弹窗(门店工作台「快捷绑定」组, 商户端)
+   *
+   * 弹窗内列出「本商户未分配门店」的候选对象:
+   * 码牌走服务端过滤(查询条件 storeUnassigned=true 由后端转 store_no IS NULL, 服务端分页);
+   * 收款设备(虚拟设备)查询接口无未分配过滤参数, 拉当前商户全量后客户端过滤未分配再前端分页。
+   * 勾选只作用于当前页(翻页/重查即清空), 确认后按类别绑定:
+   * 码牌走既有 bind-store(ids 批量); 收款设备接口为单台绑定, 逐台并发调用 bind-store;
+   * 解绑不在本弹窗做(收款设备/码牌列表页已有解绑入口)。
+   * 开源版裁剪: 无系统终端类别(无终端报备域)。
+   */
+  defineOptions({ name: 'StoreBindModal' });
+
+  const emit = defineEmits(['ok']);
+
+  const { message } = useMessage();
+
+  /** 绑定对象类别(收款设备=虚拟设备) */
+  type BindKind = 'qrcode' | 'virtual';
+
+  /** 打开模式: device=收款设备 / qrcode=码牌 */
+  type BindMode = 'device' | 'qrcode';
+
+  const visible = ref(false);
+  const loading = ref(false);
+  const confirmLoading = ref(false);
+  const xTable = ref<VxeTableInstance>();
+
+  // 绑定上下文(目标门店)
+  const storeNo = ref('');
+  const storeName = ref('');
+  // 当前模式与绑定类别
+  const mode = ref<BindMode>('device');
+  const kind = computed<BindKind>(() => (mode.value === 'qrcode' ? 'qrcode' : 'virtual'));
+
+  // 候选列表(当前页)
+  const candidates = ref<BindCandidate[]>([]);
+  const pageConfig = ref({
+    currentPage: 1,
+    pageSize: 10,
+    total: 0,
+  });
+
+  // 收款设备全量候选(未分配门店, 客户端分页)
+  let virtualCandidates: BindCandidate[] = [];
+
+  // 当前页勾选结果(提交时以表格实例为准)
+  const selectedRows = ref<BindCandidate[]>([]);
+
+  /** 候选行(收款设备/码牌统一展示形状) */
+  interface BindCandidate {
+    /** 主键 */
+    id: string;
+    /** 设备号(收款设备) */
+    deviceNo?: string;
+    /** 码牌编码(码牌) */
+    code?: string;
+    /** 名称 */
+    name?: string;
+    /** 应用名称 */
+    appName?: string;
+  }
+
+  /** 类别展示名(提示文案用) */
+  const kindLabel = computed(() =>
+    kind.value === 'qrcode'
+      ? $t('payment.merchant.store.bind.kindQrcode')
+      : $t('payment.merchant.store.workbench.tileDevice'),
+  );
+
+  /** 弹窗标题 */
+  const modalTitle = computed(() =>
+    kind.value === 'qrcode'
+      ? $t('payment.merchant.store.workbench.tileBindQrcode')
+      : $t('payment.merchant.store.workbench.tileBindDevice'),
+  );
+
+  /** 确认按钮带当前页勾选数量 */
+  const okText = computed(() =>
+    selectedRows.value.length > 0
+      ? $t('payment.merchant.store.bind.okWithCount', { count: selectedRows.value.length })
+      : $t('payment.merchant.store.bind.ok'),
+  );
+
+  /** 分页行 -> 候选行 */
+  function toCandidate(row: any): BindCandidate {
+    return {
+      id: String(row.id),
+      deviceNo: row.deviceNo,
+      code: row.code,
+      name: row.name,
+      appName: row.appName,
+    };
+  }
+
+  /**
+   * 收集勾选结果(仅当前页)
+   *
+   * 多选统一口径: 批量动作只作用于当前页勾选, 翻页/重查后表格勾选即清空。
+   */
+  function collectChecked(): BindCandidate[] {
+    return (xTable.value?.getCheckboxRecords() || []) as BindCandidate[];
+  }
+
+  /** 同步当前页勾选结果 */
+  function syncSelectedRows() {
+    selectedRows.value = collectChecked();
+  }
+
+  /**
+   * 加载当前页(码牌服务端过滤未分配门店; 收款设备客户端过滤后前端分页)
+   */
+  async function queryPage() {
+    loading.value = true;
+    try {
+      const { currentPage, pageSize } = pageConfig.value;
+      if (kind.value === 'qrcode') {
+        const { data } = await DeviceQrCodeApi.page({
+          current: currentPage,
+          size: pageSize,
+          storeUnassigned: true,
+        });
+        const records = ((data as any)?.records || []) as any[];
+        candidates.value = records.map((row) => toCandidate(row));
+        pageConfig.value.total = Number((data as any)?.total) || 0;
+      } else {
+        // 首页拉全量并过滤未分配(商户设备量级小), 其后页直接切片
+        if (currentPage === 1 || virtualCandidates.length === 0) {
+          const { data } = await AudioDeviceApi.page({ current: 1, size: 500 });
+          virtualCandidates = ((data as any)?.records || [])
+            .filter((row: any) => !row.storeNo)
+            .map((row: any) => toCandidate(row));
+        }
+        const start = (currentPage - 1) * pageSize;
+        candidates.value = virtualCandidates.slice(start, start + pageSize);
+        pageConfig.value.total = virtualCandidates.length;
+      }
+      // 等表格换页渲染完成再回读, 否则读到的是上一页的勾选
+      await nextTick();
+      syncSelectedRows();
+    } finally {
+      loading.value = false;
+    }
+  }
+
+  /**
+   * 打开弹窗
+   *
+   * @param bindMode device=收款设备 / qrcode=码牌
+   * @param ctx 目标门店上下文(storeNo + storeName)
+   */
+  function show(bindMode: BindMode, ctx: { storeName?: string; storeNo: string }) {
+    mode.value = bindMode;
+    storeNo.value = ctx.storeNo;
+    storeName.value = ctx.storeName || '';
+    pageConfig.value.currentPage = 1;
+    pageConfig.value.total = 0;
+    virtualCandidates = [];
+    candidates.value = [];
+    selectedRows.value = [];
+    visible.value = true;
+    queryPage();
+  }
+
+  /** 翻页(重查后勾选清空, 只处理当前页) */
+  function handlePageChange({ currentPage, pageSize }: any) {
+    pageConfig.value.currentPage = currentPage;
+    pageConfig.value.pageSize = pageSize;
+    queryPage();
+  }
+
+  /** 勾选变化 */
+  function handleCheckboxChange() {
+    syncSelectedRows();
+  }
+
+  function handleCancel() {
+    visible.value = false;
+  }
+
+  /**
+   * 确认绑定: 码牌一次批量提交; 收款设备接口为单台绑定, 逐台并发调用
+   */
+  async function handleOk() {
+    const checked = collectChecked();
+    if (checked.length === 0) {
+      // 未勾选提示(区分设备/码牌)
+      message.warning(
+        kind.value === 'qrcode'
+          ? $t('payment.merchant.store.bind.selectFirstQrcode')
+          : $t('payment.merchant.store.bind.selectFirstDevice'),
+      );
+      return;
+    }
+    const ids = checked.map((row) => row.id);
+    confirmLoading.value = true;
+    try {
+      await (kind.value === 'qrcode'
+        ? DeviceQrCodeApi.bindStore({ ids, storeNo: storeNo.value })
+        : Promise.all(ids.map((id) => AudioDeviceApi.bindStore({ id, storeNo: storeNo.value }))));
+      // 绑定成功提示(带数量与门店名)
+      message.success(
+        kind.value === 'qrcode'
+          ? $t('payment.merchant.store.bind.successQrcode', {
+              count: ids.length,
+              store: storeName.value || storeNo.value,
+            })
+          : $t('payment.merchant.store.bind.successDevice', {
+              count: ids.length,
+              store: storeName.value || storeNo.value,
+            }),
+      );
+      visible.value = false;
+      emit('ok');
+    } finally {
+      confirmLoading.value = false;
+    }
+  }
+
+  defineExpose({ show });
+</script>
+
+<template>
+  <a-modal
+    v-model:open="visible"
+    :title="modalTitle"
+    :width="720"
+    :confirm-loading="confirmLoading"
+    :destroy-on-hidden="true"
+    :mask-closable="false"
+    :ok-text="okText"
+    @ok="handleOk"
+    @cancel="handleCancel"
+  >
+    <a-spin :spinning="loading">
+      <div class="flex flex-col gap-3">
+        <!-- 候选范围说明 -->
+        <a-alert
+          type="info"
+          show-icon
+          :message="$t('payment.merchant.store.bind.alertTemplate', { kind: kindLabel })"
+        />
+        <div class="flex flex-col gap-2">
+          <vxe-table
+            ref="xTable"
+            :row-config="{ keyField: 'id' }"
+            :data="candidates"
+            :loading="loading"
+            min-height="120"
+            max-height="360"
+            @checkbox-all="handleCheckboxChange"
+            @checkbox-change="handleCheckboxChange"
+          >
+            <vxe-column type="checkbox" width="50" />
+            <vxe-column
+              v-if="kind === 'qrcode'"
+              field="code"
+              :title="$t('payment.merchant.store.bind.columnCode')"
+              :min-width="180"
+            />
+            <vxe-column
+              v-else
+              field="deviceNo"
+              :title="$t('payment.merchant.store.bind.columnDeviceNo')"
+              :min-width="180"
+            />
+            <vxe-column field="name" :title="$t('payment.merchant.store.bind.columnName')" :min-width="140">
+              <template #default="{ row }">
+                <span>{{ row.name || '-' }}</span>
+              </template>
+            </vxe-column>
+            <vxe-column
+              field="appName"
+              :title="$t('payment.merchant.store.bind.columnApp')"
+              :min-width="140"
+              show-overflow
+            >
+              <template #default="{ row }">
+                <span>{{ row.appName || $t('payment.merchant.store.bind.allApps') }}</span>
+              </template>
+            </vxe-column>
+          </vxe-table>
+          <vxe-pager
+            size="small"
+            :current-page="pageConfig.currentPage"
+            :page-size="pageConfig.pageSize"
+            :page-sizes="[10, 20, 50]"
+            :total="pageConfig.total"
+            @page-change="handlePageChange"
+          />
+        </div>
+      </div>
+    </a-spin>
+  </a-modal>
+</template>

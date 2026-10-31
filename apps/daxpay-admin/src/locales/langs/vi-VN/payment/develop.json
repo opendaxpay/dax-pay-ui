@@ -57,10 +57,10 @@
     },
     "card": {
       "basic": "Thông tin cơ bản",
-      "mchApp": "Thông tin người bán",
       "param": "Thông số thanh toán",
       "order": "Thông tin đặt hàng",
-      "advanced": "Tham số nâng cao"
+      "advanced": "Tham số nâng cao",
+      "mchMode": "Người bán & Chế độ"
     },
     "mode": {
       "label": "Chế độ thanh toán",
@@ -70,7 +70,6 @@
       "directDesc": "Quyết định bởi người bán kênh + khả năng; bỏ qua định tuyến kênh"
     },
     "field": {
-      "privateKey": "Khóa riêng của người bán",
       "mchNo": "Thương gia",
       "appId": "Ứng dụng",
       "channelMchNo": "Người bán kênh",
@@ -115,7 +114,8 @@
       "clearPrivateKey": "Xóa khóa",
       "genOrderNo": "Phát ra",
       "reset": "Cài lại",
-      "submit": "Nộp"
+      "submit": "Nộp",
+      "replaceKey": "Thay đổi"
     },
     "privateKey": {
       "modalTitle": "Đặt khóa riêng của người bán",
@@ -123,15 +123,12 @@
       "placeholder": "Nhập khóa riêng của người bán",
       "savedTip": "Đã lưu khóa riêng",
       "clearedTip": "Đã xóa khóa riêng",
-      "setTag": "Bộ",
-      "setLabel": "Bộ khóa riêng của người bán",
-      "unsetTag": "Chưa đặt",
+      "setTag": "Đã đặt khóa",
+      "unsetTag": "Chưa đặt khóa",
       "clearConfirmTitle": "Xác nhận Xóa",
       "clearConfirmContent": "Bạn có chắc chắn muốn xóa khóa riêng của người bán không? Nó sẽ cần phải được nhập lại."
     },
     "result": {
-      "modalTitle": "Kết quả thanh toán (unipay)",
-      "failModalTitle": "Thanh toán thất bại (unipay)",
       "payLink": "Liên kết thanh toán",
       "jsapiParam": "Thông số JSAPI",
       "formData": "Dữ liệu biểu mẫu",
@@ -142,7 +139,18 @@
       "empty": "Không có dữ liệu",
       "field": {
         "orderNo": "Số thứ tự hệ thống"
-      }
+      },
+      "panelTitle": "Kết quả gỡ lỗi",
+      "pendingTag": "Chưa gửi",
+      "successTag": "Thanh toán thành công",
+      "failTag": "Thanh toán thất bại",
+      "emptyTitle": "Kết quả sẽ hiển thị ở đây sau khi gửi",
+      "emptyDesc": "Mã QR / tham số thanh toán / phản hồi đầy đủ luôn hiển thị để xem và sao chép lại",
+      "thisRequest": "Yêu cầu này",
+      "centUnit": "xu",
+      "expandAll": "Mở rộng toàn bộ phản hồi",
+      "collapse": "Thu gọn",
+      "copy": "Sao chép"
     },
     "rule": {
       "mchNo": "Vui lòng chọn một người bán",
@@ -165,7 +173,15 @@
       "no_credit": "Thanh toán bằng thẻ tín dụng"
     },
     "allocationTip": "Khi bật, tiền đơn hàng sẽ bị đóng băng và chỉ có thể chia nhỏ qua phân toán.",
-    "methodOptionalTip": "Có thể để trống khi thanh toán mã vạch: nền tảng nhận diện WeChat/Alipay/UnionPay theo tiền tố mã và tự điền phương thức"
+    "methodOptionalTip": "Có thể để trống khi thanh toán mã vạch: nền tảng nhận diện WeChat/Alipay/UnionPay theo tiền tố mã và tự điền phương thức",
+    "advanced": {
+      "hint": "Tham số đính kèm · Loại hạn chế thanh toán · Tham số mở rộng",
+      "expand": "Mở rộng",
+      "collapse": "Thu gọn"
+    },
+    "tip": {
+      "idempotent": "Gửi lại với cùng số đơn hàng sẽ được phát lại theo idempotent; nhấn \"Phát ra\" ở số đơn hàng để tạo đơn mới"
+    }
   },
   "auth": {
     "title": "Xác thực phát triển",
@@ -241,10 +257,10 @@
       "warning": "Trang này chỉ lắp ráp tham số và ký. Khi gửi, sẽ mô phỏng lệnh gọi merchant đến /unipay/gateway/pre-pay để tạo trang đích quầy thu ngân/QR tổng hợp (không phải kênh đặc quyền quản trị). Vui lòng xác minh tham số."
     },
     "card": {
-      "mchApp": "Thông tin merchant",
       "order": "Thông tin đơn hàng",
-      "param": "Tham số mở rộng",
-      "advanced": "Tham số nâng cao"
+      "param": "Thông số thanh toán",
+      "advanced": "Tham số nâng cao",
+      "mchType": "Người bán & Loại cổng"
     },
     "gatewayType": {
       "label": "Loại cổng",
@@ -254,7 +270,6 @@
       "aggregateDesc": "Tạo liên kết QR tổng hợp, một mã cho nhiều phương thức thanh toán"
     },
     "field": {
-      "privateKey": "Khóa riêng merchant",
       "mchNo": "Merchant",
       "appId": "Ứng dụng",
       "bizOrderNo": "Số đơn hàng",
@@ -286,7 +301,8 @@
       "setPrivateKey": "Thiết lập khóa",
       "genOrderNo": "Tạo",
       "reset": "Đặt lại",
-      "submit": "Gửi đặt trước"
+      "submit": "Gửi đặt trước",
+      "replaceKey": "Thay khóa"
     },
     "privateKey": {
       "modalTitle": "Thiết lập khóa riêng merchant",
@@ -294,15 +310,12 @@
       "placeholder": "Nhập khóa riêng merchant",
       "savedTip": "Đã lưu khóa riêng",
       "clearedTip": "Đã xóa khóa riêng",
-      "setTag": "Đã thiết lập",
-      "setLabel": "Đã thiết lập khóa riêng merchant",
-      "unsetTag": "Chưa thiết lập",
+      "setTag": "Đã đặt khóa",
+      "unsetTag": "Chưa đặt khóa",
       "clearConfirmTitle": "Xác nhận xóa",
       "clearConfirmContent": "Bạn có chắc muốn xóa khóa riêng merchant? Bạn sẽ cần nhập lại."
     },
     "result": {
-      "modalTitle": "Kết quả đặt trước (unipay)",
-      "failModalTitle": "Đặt trước thất bại (unipay)",
       "url": "URL trang đích cổng",
       "h5Url": "URL trang đích cổng",
       "miniUrl": "URL liên kết mini-program",
@@ -328,7 +341,20 @@
       },
       "rawResponse": "Phản hồi DaxResult đầy đủ",
       "copyFull": "Sao chép phản hồi đầy đủ",
-      "gatewayType": "Loại Đơn Hàng"
+      "gatewayType": "Loại Đơn Hàng",
+      "panelTitle": "Kết quả gỡ lỗi",
+      "pendingTag": "Chưa gửi",
+      "successTag": "Đặt trước thành công",
+      "failTag": "Đặt trước thất bại",
+      "emptyTitle": "Kết quả sẽ hiển thị ở đây sau khi gửi",
+      "emptyDesc": "Mã QR / liên kết trang đích / phản hồi đầy đủ luôn hiển thị để xem và sao chép lại",
+      "thisRequest": "Yêu cầu này",
+      "centUnit": "xu",
+      "expandAll": "Mở rộng toàn bộ phản hồi",
+      "collapse": "Thu gọn",
+      "qrH5": "Trang đích H5",
+      "qrMini": "Mã Mini Program",
+      "expiredTime": "Thời gian hết hạn"
     },
     "rule": {
       "mchNo": "Vui lòng chọn merchant",
@@ -346,6 +372,14 @@
       "inputPrivateKey": "Vui lòng thiết lập khóa riêng merchant trước",
       "copySuccess": "Đã sao chép"
     },
-    "allocationTip": "Khi bật, tiền đơn hàng sẽ bị đóng băng và chỉ có thể chia nhỏ qua phân toán."
+    "allocationTip": "Khi bật, tiền đơn hàng sẽ bị đóng băng và chỉ có thể chia nhỏ qua phân toán.",
+    "advanced": {
+      "hint": "Điều hướng đồng bộ · Tham số đính kèm · Tham số mở rộng",
+      "expand": "Mở rộng",
+      "collapse": "Thu gọn"
+    },
+    "tip": {
+      "idempotent": "Gửi lại với cùng số đơn hàng sẽ được phát lại theo idempotent; nhấn \"Phát ra\" ở số đơn hàng để tạo đơn mới"
+    }
   }
 }

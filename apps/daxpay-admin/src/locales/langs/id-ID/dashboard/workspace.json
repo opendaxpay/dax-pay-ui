@@ -63,7 +63,18 @@
     "selected": "Dipilih (seret untuk mengurutkan)",
     "available": "Tersedia",
     "allAdded": "Semua ditambahkan",
-    "wxApp": "Aplikasi Pembayaran (WeChat)"
+    "wxApp": "Aplikasi Pembayaran (WeChat)",
+    "virtualDevice": "Perangkat Virtual",
+    "gatewayOrder": "Pesanan Gateway",
+    "fundFlow": "Arus Dana",
+    "allocOrder": "Pesanan Alokasi",
+    "abnormalOrder": "Pesanan Abnormal",
+    "mchNotice": "Push Callback Merchant",
+    "callbackRecord": "Catatan Callback Channel",
+    "riskStrategy": "Strategi Risiko",
+    "riskBlacklist": "Blacklist",
+    "riskHit": "Risk Hits",
+    "qrCodeList": "Manajemen Kode QR"
   },
   "notice": {
     "important": "Penting",

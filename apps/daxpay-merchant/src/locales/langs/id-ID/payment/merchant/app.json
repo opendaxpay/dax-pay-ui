@@ -51,7 +51,10 @@
     "selectApp": "Pilih aplikasi",
     "emptyApps": "Belum ada aplikasi. Buat di Manajemen Aplikasi terlebih dahulu.",
     "noAppSelected": "Silakan pilih aplikasi",
-    "confirmDisableDefault": "Batalkan status aplikasi default?"
+    "confirmDisableDefault": "Batalkan status aplikasi default?",
+    "groupNotifyDevice": "Notifikasi & Perangkat",
+    "cardAudioDeviceDesc": "Lihat dan konfigurasi perangkat pengumuman / pencetakan pembayaran milik merchant ini",
+    "unitDevice": ""
   },
   "easypay": {
     "v1Hint": "V1 memiliki keamanan lemah; aktifkan hanya untuk klien lama",

@@ -6,7 +6,8 @@
     "mchNo": "Số merchant",
     "enable": "Trạng thái",
     "appName": "Ứng dụng",
-    "storeName": "Cửa hàng"
+    "storeName": "Cửa hàng",
+    "storeNo": "Số cửa hàng"
   },
   "enableTitle": "Bật",
   "enabled": "Bật",

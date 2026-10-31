@@ -30,6 +30,8 @@
   "certPlaceholder": "วางเนื้อหาใบรับรอง",
   "secretKey": "คีย์สื่อสาร AES",
   "secretKeyPlaceholder": "กรอกคีย์สื่อสาร AES (ไม่บังคับ)",
+  "serverUrl": "ที่อยู่เกตเวย์",
+  "serverUrlPlaceholder": "เว้นว่างเพื่อใช้เกตเวย์ทางการ",
   "addApp": "เพิ่มแอป",
   "config": "กำหนดค่า",
   "confirmDelete": "ยืนยันลบแอปนี้?",

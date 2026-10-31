@@ -146,5 +146,19 @@
   "transferAppNotConfigured": "No transfer app bound yet, click 'Edit' to select one",
   "groupDanger": "Danger Zone",
   "cardDelete": "Delete Channel Merchant",
-  "cardDeleteDesc": "Once deleted, this channel merchant and all its configurations become unusable. This cannot be undone."
+  "cardDeleteDesc": "Once deleted, this channel merchant and all its configurations become unusable. This cannot be undone.",
+  "reference": "Refs",
+  "confirmDisableImpactTitle": "Disable Channel Merchant",
+  "confirmDisableImpactOk": "Disable",
+  "disableImpactApps": "This channel merchant is referenced by the following apps:",
+  "disableImpactAppLine": "{name} ({count} refs)",
+  "disableImpactRestApps": "{count} apps in total",
+  "disableImpactWarn": "Payments of the apps above will fail immediately after disabling",
+  "viewFullDetail": "View full details",
+  "disableUncheckedDesc": "Failed to query the reference impact. It is temporarily unknown whether this channel merchant is referenced by any configuration. Disabling it may still cause payment failures for some apps.",
+  "referenceDrawerTitle": "Reference Details",
+  "referenceDrawerTitleWithName": "Reference Details - {name}",
+  "referenceTotalLabel": "Total references",
+  "referenceEmpty": "Not referenced by any configuration",
+  "referenceAppRefs": "{count} refs"
 }

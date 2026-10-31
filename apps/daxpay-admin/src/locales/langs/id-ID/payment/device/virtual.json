@@ -6,7 +6,8 @@
     "mchNo": "No. Merchant",
     "enable": "Status",
     "appName": "Aplikasi",
-    "storeName": "Toko"
+    "storeName": "Toko",
+    "storeNo": "No. Toko"
   },
   "enableTitle": "Aktif",
   "enabled": "Aktif",

@@ -5,7 +5,6 @@
     "developing": "Tính năng đang được phát triển, hãy theo dõi...",
     "groupBasic": "Quản lý cơ bản",
     "groupPayment": "Cấu hình thanh toán",
-    "groupBusiness": "Cấu hình doanh nghiệp",
     "cardMchInfo": "Hồ sơ người bán",
     "cardMchInfoDesc": "Số người bán, tên, trạng thái và thông tin cơ bản khác",
     "cardSecurity": "Cấu hình bảo mật",
@@ -32,6 +31,11 @@
     "cardDyAppDesc": "Quản lý mini program, ứng dụng mobile, ứng dụng web Douyin và ứng dụng mở khác của thương nhân này",
     "groupDanger": "Vùng nguy hiểm",
     "cardDeleteMerchant": "Xóa thương nhân",
-    "cardDeleteMerchantDesc": "Xóa thương nhân này cùng toàn bộ cấu hình liên quan. Không thể hoàn tác."
+    "cardDeleteMerchantDesc": "Hủy đăng ký merchant (làm sạch + xóa dây chuyền cấu hình và tài khoản người dùng), cần nhập tên để xác nhận",
+    "groupDeviceCashier": "Thu ngân & Thiết bị",
+    "groupAccess": "Cấu hình tích hợp",
+    "cardVirtualDeviceDesc": "Nhật ký và vận hành các thiết bị ảo (ứng dụng thông báo thanh toán) thuộc merchant này",
+    "unitPiece": "",
+    "unitDevice": ""
   }
 }

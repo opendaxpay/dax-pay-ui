@@ -202,4 +202,25 @@ const notifyCenterRoute: RouteRecordRaw = {
   },
 };
 
-export { coreRoutes, fallbackNotFoundRoute, notifyCenterRoute, profileRoute, socialBindCallbackRoute };
+/** 门店工作台路由（需要登录，从门店管理卡片墙「进入工作台」进入，无菜单种子，前端静态注册） */
+const storeWorkbenchRoute: RouteRecordRaw = {
+  name: 'MchStoreWorkbench',
+  path: 'mch/store/manage',
+  component: () => import('#/views/payment/merchant/store/workbench/StoreWorkbench.vue'),
+  meta: {
+    // 门店工作台(隐藏子页, 侧栏高亮回落到门店管理, 与门店卡片墙同高亮链)
+    title: 'payment.merchant.store.workbench.title',
+    hideInMenu: true,
+    hideInBreadcrumb: true,
+    activePath: '/mch/store',
+  },
+};
+
+export {
+  coreRoutes,
+  fallbackNotFoundRoute,
+  notifyCenterRoute,
+  profileRoute,
+  socialBindCallbackRoute,
+  storeWorkbenchRoute,
+};

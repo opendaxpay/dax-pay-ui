@@ -51,7 +51,10 @@
     "selectApp": "Chọn ứng dụng",
     "emptyApps": "Chưa có ứng dụng. Hãy tạo trong Quản lý ứng dụng trước.",
     "noAppSelected": "Vui lòng chọn ứng dụng",
-    "confirmDisableDefault": "Hủy trạng thái ứng dụng mặc định?"
+    "confirmDisableDefault": "Hủy trạng thái ứng dụng mặc định?",
+    "groupNotifyDevice": "Thông báo & Thiết bị",
+    "cardAudioDeviceDesc": "Xem và cấu hình thiết bị thông báo / in thanh toán của merchant này",
+    "unitDevice": ""
   },
   "easypay": {
     "v1Hint": "V1 có bảo mật yếu; chỉ bật cho khách hàng cũ",

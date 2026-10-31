@@ -21,7 +21,8 @@
   "action": {
     "confirmEnableContent": "Adakah anda pasti mahu mendayakan pedagang ini?",
     "confirmDisableContent": "Adakah anda pasti mahu melumpuhkan pedagang ini? Selepas melumpuhkan, akaun pedagang tidak akan dapat log masuk.",
-    "delete": "Padam Peniaga"
+    "delete": "Padam Peniaga",
+    "deleteDeregisterDesc": "Pasti mahu memadam \"{name}\"? Tindakan ini tidak boleh dikembalikan: semua akaun pengguna di bawah merchant ini akan turut dipadam dan maklumat sensitif akan dibersihkan. Sila berhati-hati."
   },
   "validation": {
     "pleaseInputMchName": "Sila masukkan nama pedagang",

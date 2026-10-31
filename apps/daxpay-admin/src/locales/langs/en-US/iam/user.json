@@ -85,5 +85,13 @@
     "hintDigit": "At least one digit",
     "hintSpecialChar": "At least one special character ({chars})",
     "notMeetRequirements": "Password does not meet requirements"
+  },
+  "deleteModal": {
+    "title": "Delete User",
+    "alertTitle": "Deletion means deregistration and cannot be undone",
+    "alertDesc": "All related data of this user will be deleted (role bindings, social accounts, password records, etc., sensitive information sanitized) and all sessions will be forced offline; users affiliated with a merchant cannot be deleted here, please go to the user management of that merchant.",
+    "inputTip": "Type the user name \"{name}\" to confirm deletion:",
+    "placeholder": "Enter the user name",
+    "okText": "Confirm Delete"
   }
 }

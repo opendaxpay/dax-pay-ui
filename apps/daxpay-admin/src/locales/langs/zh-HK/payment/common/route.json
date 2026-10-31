@@ -4,5 +4,6 @@
   "productDetail": {
     "notSupported": "該產品無平台側配置項",
     "notSupportedDesc": "通道參數在各通道商戶配置中維護"
-  }
+  },
+  "missingStoreContext": "缺少門店參數，請從門店列表進入"
 }

@@ -8,6 +8,8 @@
   "privateKey": "Kunci Peribadi Sijil API",
   "privateCert": "Sijil API",
   "certSerialNo": "No Siri Sijil",
+  "apiHostUrl": "Domain API",
+  "apiHostUrlPlaceholder": "Kosongkan untuk menggunakan api.mch.weixin.qq.com rasmi",
   "wxAppSecret": "Rahsia Aplikasi WeChat",
   "wxAuthUrl": "URL Pengesahan WeChat",
   "validation": {

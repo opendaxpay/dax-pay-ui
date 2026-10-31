@@ -4,5 +4,6 @@
   "productDetail": {
     "notSupported": "이 상품에는 플랫폼 측 구성 항목이 없습니다",
     "notSupportedDesc": "채널 파라미터는 각 채널 가맹점 설정에서 관리됩니다"
-  }
+  },
+  "missingStoreContext": "매장 파라미터가 없습니다. 매장 목록에서 진입해 주세요"
 }

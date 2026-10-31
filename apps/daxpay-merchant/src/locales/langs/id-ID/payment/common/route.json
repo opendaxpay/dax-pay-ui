@@ -3,5 +3,6 @@
   "productDetail": {
     "notSupported": "Konfigurasi detail produk belum didukung",
     "notSupportedDesc": "Konfigurasi detail untuk \"{product}\" belum diterapkan"
-  }
+  },
+  "missingStoreContext": "Parameter toko tidak ada. Masuk dari manajemen toko"
 }

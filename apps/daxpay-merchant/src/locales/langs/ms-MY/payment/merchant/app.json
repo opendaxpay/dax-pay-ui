@@ -51,7 +51,10 @@
     "selectApp": "Pilih apl",
     "emptyApps": "Tiada apl lagi. Cipta dalam Pengurusan Apl dahulu.",
     "noAppSelected": "Sila pilih apl",
-    "confirmDisableDefault": "Batalkan status aplikasi lalai?"
+    "confirmDisableDefault": "Batalkan status aplikasi lalai?",
+    "groupNotifyDevice": "Notifikasi & Peranti",
+    "cardAudioDeviceDesc": "Lihat dan konfigurasi peranti pengumuman / cetakan bayaran merchant ini",
+    "unitDevice": ""
   },
   "easypay": {
     "v1Hint": "V1 mempunyai keselamatan yang lemah; aktifkan hanya untuk klien lama",

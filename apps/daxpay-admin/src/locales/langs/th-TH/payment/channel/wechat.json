@@ -8,6 +8,8 @@
   "privateKey": "คีย์ส่วนตัวของใบรับรอง API",
   "privateCert": "ใบรับรองเอพีไอ",
   "certSerialNo": "ใบรับรองเลขที่ประจำเครื่อง",
+  "apiHostUrl": "โดเมน API",
+  "apiHostUrlPlaceholder": "เว้นว่างเพื่อใช้ api.mch.weixin.qq.com ทางการ",
   "wxAppSecret": "ความลับของแอป WeChat",
   "wxAuthUrl": "URL การรับรองความถูกต้องของ WeChat",
   "validation": {

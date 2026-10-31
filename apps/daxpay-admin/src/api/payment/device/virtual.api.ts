@@ -96,6 +96,8 @@ export interface VirtualDeviceQuery {
   mchNo?: string;
   /** 关联应用号(空=全部应用) */
   appId?: string;
+  /** 使用门店号(门店工作台跳转预置筛选用) */
+  storeNo?: string;
   /** 是否启用 */
   enable?: boolean;
 }

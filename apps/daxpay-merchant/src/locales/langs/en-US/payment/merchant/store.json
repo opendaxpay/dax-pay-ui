@@ -14,7 +14,8 @@
       "latitude": "Latitude",
       "status": "Status",
       "remark": "Remark",
-      "createTime": "Create Time"
+      "createTime": "Create Time",
+      "defaultApp": "Default Pay App"
     },
     "status": {
       "enable": "Enabled",
@@ -32,6 +33,69 @@
     "validationDefaultStore": "Please select whether it is the default store",
     "deleteDefaultBlocked": "Default store cannot be deleted. Please set another store as default first",
     "noDefaultStoreTip": "You haven't set a default store yet. Please select a store as default",
-    "confirmDisableDefault": "This is the default store. Disabling it will break fallback for orders without storeNo. Continue?"
+    "confirmDisableDefault": "This is the default store. Disabling it will break fallback for orders without storeNo. Continue?",
+    "defaultAppPlaceholder": "Leave empty to follow the merchant default app",
+    "defaultAppTip": "Used by store-based payment entries such as QR codes; leave empty to use the merchant default app",
+    "card": {
+      "storeNoPrefix": "Store No.: {storeNo}",
+      "defaultAppLine": "Default app: {app}",
+      "defaultAppFollow": "Default app: follow merchant default",
+      "enterWorkbench": "Open workbench"
+    },
+    "list": {
+      "filterPlaceholder": "Filter by store name or store no.",
+      "statusAll": "All statuses",
+      "empty": "No stores yet",
+      "addCard": "Add Store"
+    },
+    "workbench": {
+      "title": "Store Workbench",
+      "backToList": "Back to store list",
+      "groupCashier": "Checkout & Devices",
+      "groupBind": "Quick Binding",
+      "groupDefault": "Default Settings",
+      "groupManage": "Store Management",
+      "tileDevice": "Payment Device",
+      "tileDeviceDesc": "Ledger and operations of payment devices bound to this store",
+      "tileQrcode": "QR Code List",
+      "tileQrcodeDesc": "QR codes bound to this store and their configuration",
+      "tileBindDevice": "Bind Payment Device to This Store",
+      "tileBindDeviceDesc": "Select payment devices of this merchant not yet assigned to a store",
+      "tileBindQrcode": "Bind QR Code to This Store",
+      "tileBindQrcodeDesc": "Select QR codes of this merchant not yet bound to a store",
+      "tileDefaultApp": "Default App",
+      "tileDefaultAppStore": "This store: {name}",
+      "tileDefaultAppFollow": "Follow merchant default: {name}",
+      "tileDefaultAppNone": "No default app configured, click to set",
+      "tileStoreInfo": "Store Info",
+      "tileStoreInfoDesc": "Maintain store name, address, contact phone and other basics",
+      "tileDefaultStoreActiveDesc": "This is the default store, click to unset",
+      "tileDefaultStoreDesc": "Click to set as the default store of this merchant",
+      "tileDeleteStore": "Delete Store",
+      "tileDeleteStoreDesc": "The default store cannot be deleted; transfer the default first",
+      "noActions": "No actions available",
+      "countUnitDevice": "",
+      "countUnitQrcode": "",
+      "setAppTitle": "Set Default Payment App",
+      "confirmClearAppNoMchDefault": "This merchant has no default app. After clearing, store-based payment entries such as QR codes will have no usable app. Clear anyway?",
+      "confirmClearDefaultStore": "After unsetting, transactions without a store can no longer fall back to the default store and may fail. Unset anyway?",
+      "setDefaultOk": "Set as default store",
+      "clearDefaultOk": "Default store unset"
+    },
+    "bind": {
+      "kindQrcode": "QR code",
+      "alertTemplate": "Only {kind} of this merchant not yet assigned to a store are listed; check items to bind them to this store",
+      "columnCode": "QR Code",
+      "columnDeviceNo": "Device No.",
+      "columnName": "Name",
+      "columnApp": "App",
+      "allApps": "All apps",
+      "ok": "Bind",
+      "okWithCount": "Bind ({count})",
+      "selectFirstDevice": "Please select devices first",
+      "selectFirstQrcode": "Please select QR codes first",
+      "successDevice": "Bound {count} payment device(s) to store \"{store}\"",
+      "successQrcode": "Bound {count} QR code(s) to store \"{store}\""
+    }
   }
 }

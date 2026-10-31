@@ -5,7 +5,6 @@
     "developing": "Feature under development, stay tuned...",
     "groupBasic": "Basic Management",
     "groupPayment": "Payment Config",
-    "groupBusiness": "Business Config",
     "cardMchInfo": "Merchant Profile",
     "cardMchInfoDesc": "Merchant No., name, status and other basic info",
     "cardSecurity": "Security Config",
@@ -32,6 +31,11 @@
     "cardDyAppDesc": "Manage Douyin mini programs, mobile apps, web apps, and other open apps for this merchant",
     "groupDanger": "Danger Zone",
     "cardDeleteMerchant": "Delete Merchant",
-    "cardDeleteMerchantDesc": "Delete this merchant and all its associated configurations. This cannot be undone."
+    "cardDeleteMerchantDesc": "Deregister merchant (sanitize + cascade delete configs and user accounts), name input required",
+    "groupDeviceCashier": "Cashier & Devices",
+    "groupAccess": "Integration Config",
+    "cardVirtualDeviceDesc": "Ledger and maintenance of virtual devices (payment announcement APP) bound to this merchant",
+    "unitPiece": "",
+    "unitDevice": ""
   }
 }

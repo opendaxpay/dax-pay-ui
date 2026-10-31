@@ -6,7 +6,8 @@
     "mchNo": "No. Pedagang",
     "enable": "Status",
     "appName": "Aplikasi",
-    "storeName": "Kedai"
+    "storeName": "Kedai",
+    "storeNo": "No. Kedai"
   },
   "enableTitle": "Aktif",
   "enabled": "Aktif",

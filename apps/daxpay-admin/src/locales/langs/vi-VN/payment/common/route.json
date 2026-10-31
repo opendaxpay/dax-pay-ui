@@ -4,5 +4,6 @@
   "productDetail": {
     "notSupported": "Sản phẩm này không có mục cấu hình phía nền tảng",
     "notSupportedDesc": "Tham số kênh được quản lý trong cấu hình merchant kênh tương ứng"
-  }
+  },
+  "missingStoreContext": "Thiếu tham số cửa hàng. Vui lòng vào từ danh sách cửa hàng"
 }

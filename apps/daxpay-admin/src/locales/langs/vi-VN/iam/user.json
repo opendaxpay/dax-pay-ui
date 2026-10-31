@@ -85,5 +85,13 @@
     "hintDigit": "Ít nhất một chữ số",
     "hintSpecialChar": "Ít nhất một ký tự đặc biệt ({chars})",
     "notMeetRequirements": "Mật khẩu không đáp ứng yêu cầu"
+  },
+  "deleteModal": {
+    "title": "Xóa người dùng",
+    "alertTitle": "Xóa tức là hủy đăng ký vĩnh viễn, không thể khôi phục",
+    "alertDesc": "Toàn bộ dữ liệu liên quan của người dùng này sẽ bị xóa (gán vai trò, tài khoản mạng xã hội, lịch sử mật khẩu, v.v., thông tin nhạy cảm được làm sạch) và buộc đăng xuất toàn bộ phiên; người dùng liên thuộc merchant không thể xóa tại đây, vui lòng thao tác trong quản lý người dùng của merchant tương ứng.",
+    "inputTip": "Nhập tên người dùng \"{name}\" để xác nhận xóa:",
+    "placeholder": "Nhập tên người dùng",
+    "okText": "Xác nhận xóa"
   }
 }

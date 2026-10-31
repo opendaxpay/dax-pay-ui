@@ -8,6 +8,8 @@
   "privateKey": "Kunci Pribadi Sertifikat API",
   "privateCert": "Sertifikat API",
   "certSerialNo": "Nomor Seri Sertifikat",
+  "apiHostUrl": "Domain API",
+  "apiHostUrlPlaceholder": "Kosongkan untuk menggunakan api.mch.weixin.qq.com resmi",
   "wxAppSecret": "Rahasia Aplikasi WeChat",
   "wxAuthUrl": "URL Otentikasi WeChat",
   "validation": {

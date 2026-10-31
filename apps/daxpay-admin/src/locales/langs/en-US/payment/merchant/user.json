@@ -38,5 +38,13 @@
     "normal": "Normal",
     "lock": "Locked",
     "ban": "Banned"
+  },
+  "deleteModal": {
+    "title": "Delete Merchant User",
+    "alertTitle": "Deletion means deregistration and cannot be undone",
+    "alertDesc": "All related data of this user will be deleted (role bindings, social accounts, password records, etc., sensitive information sanitized) and all sessions will be forced offline; rejected if this is the last administrator of the merchant.",
+    "inputTip": "Type the user name \"{name}\" to confirm deletion:",
+    "placeholder": "Enter the user name",
+    "okText": "Confirm Delete"
   }
 }

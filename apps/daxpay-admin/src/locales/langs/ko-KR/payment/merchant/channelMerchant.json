@@ -146,5 +146,19 @@
   "transferAppNotConfigured": "이체 앱이 아직 바인딩되지 않았습니다. '편집'을 클릭하여 선택하세요",
   "groupDanger": "위험 작업",
   "cardDelete": "채널 가맹점 삭제",
-  "cardDeleteDesc": "삭제 후 해당 채널 가맹점과 모든 설정을 사용할 수 없습니다. 되돌릴 수 없습니다."
+  "cardDeleteDesc": "삭제 후 해당 채널 가맹점과 모든 설정을 사용할 수 없습니다. 되돌릴 수 없습니다.",
+  "reference": "참조",
+  "confirmDisableImpactTitle": "채널 가맹점 비활성화",
+  "confirmDisableImpactOk": "비활성화",
+  "disableImpactApps": "이 채널 가맹점은 다음 앱에서 참조되고 있습니다:",
+  "disableImpactAppLine": "{name}({count}건 참조)",
+  "disableImpactRestApps": "총 {count}개 앱",
+  "disableImpactWarn": "비활성화 후 위 앱의 결제는 즉시 실패합니다",
+  "viewFullDetail": "전체 상세 보기",
+  "disableUncheckedDesc": "참조 영향 조회에 실패하여 이 채널 가맹점이 설정에서 참조되는지 확인할 수 없습니다. 비활성화하면 일부 앱의 결제가 실패할 수 있습니다.",
+  "referenceDrawerTitle": "참조 상세",
+  "referenceDrawerTitleWithName": "참조 상세 - {name}",
+  "referenceTotalLabel": "총 참조 수",
+  "referenceEmpty": "참조된 설정이 없습니다",
+  "referenceAppRefs": "{count}건 참조"
 }

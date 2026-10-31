@@ -63,7 +63,18 @@
     "selected": "Đã chọn (kéo để sắp xếp)",
     "available": "Có sẵn",
     "allAdded": "Tất cả đã thêm",
-    "wxApp": "Ứng dụng thanh toán (WeChat)"
+    "wxApp": "Ứng dụng thanh toán (WeChat)",
+    "virtualDevice": "Thiết bị ảo",
+    "gatewayOrder": "Lệnh Gateway",
+    "fundFlow": "Dòng tiền",
+    "allocOrder": "Đơn Phân Toán",
+    "abnormalOrder": "Đơn hàng bất thường",
+    "mchNotice": "Đẩy Callback Merchant",
+    "callbackRecord": "Nhật ký Callback Channel",
+    "riskStrategy": "Chiến lược rủi ro",
+    "riskBlacklist": "Blacklist",
+    "riskHit": "Risk Hits",
+    "qrCodeList": "Quản lý mã QR"
   },
   "notice": {
     "important": "Quan trọng",

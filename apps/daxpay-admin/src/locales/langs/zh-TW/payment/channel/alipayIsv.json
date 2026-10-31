@@ -24,6 +24,8 @@
   "communicateKeyConfig": "通訊金鑰",
   "secretKey": "通訊金鑰",
   "secretKeyPlaceholder": "請從支付寶開放平臺控制台獲取並填寫",
+  "serverUrl": "網關地址",
+  "serverUrlPlaceholder": "留空使用官方網關",
   "validation": {
     "authType": "請選擇認證方式",
     "alipayPublicKey": "請輸入支付寶公鑰",

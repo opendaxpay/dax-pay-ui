@@ -47,7 +47,8 @@
     "deleteDesc": "Ini tidak boleh dibuat asal. Teruskan dengan berhati-hati",
     "noActions": "Tiada tindakan tersedia",
     "openActionAria": "Buka konfigurasi apl",
-    "confirmDisableDefault": "Ini ialah aplikasi lalai. Menyahaktifkannya akan menyebabkan pesanan tanpa appId gagal sebagai sandaran. Teruskan?"
+    "confirmDisableDefault": "Ini ialah aplikasi lalai. Menyahaktifkannya akan menyebabkan pesanan tanpa appId gagal sebagai sandaran. Teruskan?",
+    "groupNotifyDevice": "Notifikasi & Peranti"
   },
   "easypay": {
     "v1Hint": "V1 mempunyai keselamatan yang lemah; aktifkan hanya untuk klien lama",

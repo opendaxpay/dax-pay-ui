@@ -28,6 +28,8 @@
   "uploadPublicKey": "공개 키 업로드",
   "publicKeyId": "공개키 ID",
   "publicKeyIdPlaceholder": "공개키 ID를 입력해주세요",
+  "apiHostUrl": "API 도메인",
+  "apiHostUrlPlaceholder": "비워두면 공식 api.mch.weixin.qq.com 사용",
   "validation": {
     "enable": "활성화 상태를 선택하세요.",
     "wxMchId": "WeChat 판매자 ID를 입력하세요.",

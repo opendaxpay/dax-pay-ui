@@ -4,5 +4,6 @@
   "productDetail": {
     "notSupported": "この製品にはプラットフォーム側の設定項目がありません",
     "notSupportedDesc": "チャネルパラメータは各チャネル加盟店の設定で管理されます"
-  }
+  },
+  "missingStoreContext": "店舗パラメータが不足しています。店舗リストから入ってください"
 }

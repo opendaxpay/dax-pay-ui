@@ -4,5 +4,6 @@
   "productDetail": {
     "notSupported": "This product has no platform-side configuration item",
     "notSupportedDesc": "Channel parameters are maintained in each channel merchant configuration"
-  }
+  },
+  "missingStoreContext": "Missing store parameter. Please enter from the store list"
 }

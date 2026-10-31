@@ -146,5 +146,19 @@
   "transferAppNotConfigured": "尚未綁定轉帳應用, 點擊「編輯」選擇轉出應用",
   "groupDanger": "危險操作",
   "cardDelete": "刪除通道商戶",
-  "cardDeleteDesc": "刪除後該通道商戶及其所有配置將不可使用，操作不可撤銷"
+  "cardDeleteDesc": "刪除後該通道商戶及其所有配置將不可使用，操作不可撤銷",
+  "reference": "引用",
+  "confirmDisableImpactTitle": "停用通道商戶",
+  "confirmDisableImpactOk": "確認停用",
+  "disableImpactApps": "該通道商戶正被以下應用引用：",
+  "disableImpactAppLine": "{name}（{count} 處引用）",
+  "disableImpactRestApps": "等 {count} 個應用",
+  "disableImpactWarn": "停用後以上應用的支付將立即失敗",
+  "viewFullDetail": "查看完整明細",
+  "disableUncheckedDesc": "引用影響面查詢失敗，暫時無法確認該通道商戶是否被配置引用。停用仍可能導致部分應用的支付失敗。",
+  "referenceDrawerTitle": "引用明細",
+  "referenceDrawerTitleWithName": "引用明細 - {name}",
+  "referenceTotalLabel": "總引用處數",
+  "referenceEmpty": "未被任何配置引用",
+  "referenceAppRefs": "{count} 處引用"
 }

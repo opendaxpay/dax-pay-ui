@@ -30,6 +30,8 @@
   "certPlaceholder": "Paste certificate content",
   "secretKey": "AES Secret Key",
   "secretKeyPlaceholder": "Enter AES secret key (optional)",
+  "serverUrl": "Gateway URL",
+  "serverUrlPlaceholder": "Leave blank to use the official gateway",
   "addApp": "Add App",
   "config": "Configure",
   "confirmDelete": "Confirm delete this app?",

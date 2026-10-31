@@ -21,7 +21,8 @@
   "action": {
     "confirmEnableContent": "이 판매자를 활성화하시겠습니까?",
     "confirmDisableContent": "이 판매자를 비활성화하시겠습니까? 비활성화한 후에는 판매자 계정에 로그인할 수 없습니다.",
-    "delete": "가맹점 삭제"
+    "delete": "가맹점 삭제",
+    "deleteDeregisterDesc": "\"{name}\"을(를) 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다: 해당 머천트의 모든 사용자 계정이 함께 삭제되고 민감 정보도 삭제됩니다. 신중하게 진행하세요."
   },
   "validation": {
     "pleaseInputMchName": "판매자 이름을 입력하세요.",

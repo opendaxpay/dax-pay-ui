@@ -63,7 +63,18 @@
     "selected": "選択済み (ドラッグして並べ替え)",
     "available": "利用可能",
     "allAdded": "すべて追加されました",
-    "wxApp": "決済アプリ(WeChat)"
+    "wxApp": "決済アプリ(WeChat)",
+    "virtualDevice": "仮想デバイス",
+    "gatewayOrder": "ゲートウェイ注文",
+    "fundFlow": "資金フロー",
+    "allocOrder": "精算注文",
+    "abnormalOrder": "異常注文",
+    "mchNotice": "加盟店コールバックプッシュ",
+    "callbackRecord": "チャネルコールバック記録",
+    "riskStrategy": "リスク戦略",
+    "riskBlacklist": "ブラックリスト",
+    "riskHit": "リスクヒット",
+    "qrCodeList": "QRコード管理"
   },
   "notice": {
     "important": "重要",

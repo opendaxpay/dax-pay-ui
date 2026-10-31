@@ -6,7 +6,8 @@
     "mchNo": "商户号",
     "enable": "状态",
     "appName": "应用",
-    "storeName": "门店"
+    "storeName": "门店",
+    "storeNo": "门店号"
   },
   "enableTitle": "启用",
   "enabled": "启用",

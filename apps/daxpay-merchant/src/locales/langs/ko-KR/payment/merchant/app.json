@@ -51,7 +51,10 @@
     "currentApp": "현재 앱",
     "selectApp": "앱 선택",
     "emptyApps": "앱이 없습니다. 먼저 앱 관리에서 생성하세요.",
-    "noAppSelected": "앱을 선택하세요"
+    "noAppSelected": "앱을 선택하세요",
+    "groupNotifyDevice": "알림과 기기",
+    "cardAudioDeviceDesc": "이 가맹점의 수금 알림/인쇄 기기 조회 및 설정",
+    "unitDevice": ""
   },
   "easypay": {
     "v1Hint": "V1은 보안이 약하므로 레거시 호환 시에만 활성화하세요",

@@ -6,7 +6,8 @@
     "mchNo": "Merchant No.",
     "enable": "Status",
     "appName": "App",
-    "storeName": "Store"
+    "storeName": "Store",
+    "storeNo": "Store No."
   },
   "enableTitle": "Enabled",
   "enabled": "Enabled",

@@ -3,5 +3,6 @@
   "productDetail": {
     "notSupported": "该产品类型暂不支持详情配置",
     "notSupportedDesc": "产品「{product}」的详情配置功能尚未实现"
-  }
+  },
+  "missingStoreContext": "缺少门店参数，请从门店管理进入"
 }

@@ -3,10 +3,13 @@
   import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
 
   import { computed, onMounted, ref } from 'vue';
+  import { useRoute } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
   import { IconifyIcon } from '@vben-core/icons';
+
+  import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
   import { DeviceQrCodeApi, type DeviceQrCodeResult } from '#/api/payment/device/qrcode.api';
   import { QrCode } from '#/components/qrcode';
@@ -18,12 +21,12 @@
   import DeviceQrCodeBatchCreate from './DeviceQrCodeBatchCreate.vue';
   import DeviceQrCodeBindMerchant from './DeviceQrCodeBindMerchant.vue';
   import DeviceQrCodeEdit from './DeviceQrCodeEdit.vue';
-import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
   defineOptions({ name: 'DeviceQrCode' });
 
   const { confirm, message } = useMessage();
   const { hasPermission } = usePermission();
+  const route = useRoute();
 
   const loading = ref(false);
   const xTable = ref<VxeTableInstance>();
@@ -156,6 +159,13 @@ import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
   onMounted(() => {
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
+    // URL 携带 mchNo/storeNo 时预置筛选(门店工作台跳转带入)
+    if (route.query.mchNo) {
+      queryForm.value.mchNo = String(route.query.mchNo);
+    }
+    if (route.query.storeNo) {
+      queryForm.value.storeNo = String(route.query.storeNo);
+    }
     queryPage();
   });
 

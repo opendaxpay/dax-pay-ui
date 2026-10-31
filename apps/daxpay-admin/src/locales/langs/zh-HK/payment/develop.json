@@ -57,10 +57,10 @@
     },
     "card": {
       "basic": "基礎信息",
-      "mchApp": "商户信息",
       "param": "支付參數",
       "order": "訂單信息",
-      "advanced": "進階參數"
+      "advanced": "進階參數",
+      "mchMode": "商戶與模式"
     },
     "mode": {
       "label": "支付模式",
@@ -70,7 +70,6 @@
       "directDesc": "由通道商户+支付能力直接決定支付實現，跳過通道路由"
     },
     "field": {
-      "privateKey": "商户私鑰",
       "mchNo": "商户",
       "appId": "應用",
       "channelMchNo": "通道商户",
@@ -115,7 +114,8 @@
       "clearPrivateKey": "清除私鑰",
       "genOrderNo": "生成",
       "reset": "重置表單",
-      "submit": "提交支付"
+      "submit": "提交支付",
+      "replaceKey": "更換"
     },
     "privateKey": {
       "modalTitle": "設置商户私鑰",
@@ -123,15 +123,12 @@
       "placeholder": "請輸入商户私鑰",
       "savedTip": "私鑰保存成功",
       "clearedTip": "私鑰已清除",
-      "setTag": "已設置",
-      "setLabel": "已設置商户私鑰",
-      "unsetTag": "未設置",
+      "setTag": "私鑰已設置",
+      "unsetTag": "私鑰未設置",
       "clearConfirmTitle": "確認清除",
       "clearConfirmContent": "確定要清除已設置的商户私鑰嗎？清除後需重新輸入。"
     },
     "result": {
-      "modalTitle": "支付結果 (unipay)",
-      "failModalTitle": "支付失敗 (unipay)",
       "payLink": "支付鏈接",
       "jsapiParam": "JSAPI 參數",
       "formData": "表單數據",
@@ -142,7 +139,18 @@
       "empty": "暫無數據",
       "field": {
         "orderNo": "系統訂單號"
-      }
+      },
+      "panelTitle": "除錯結果",
+      "pendingTag": "待發起",
+      "successTag": "支付成功",
+      "failTag": "支付失敗",
+      "emptyTitle": "提交後結果在這裡",
+      "emptyDesc": "二維碼 / 支付參數 / 完整響應常駐, 可反覆查看與複製",
+      "thisRequest": "本次請求",
+      "centUnit": "分",
+      "expandAll": "展開全部響應",
+      "collapse": "收起",
+      "copy": "複製"
     },
     "rule": {
       "mchNo": "請選擇商户",
@@ -165,7 +173,15 @@
       "no_credit": "信用卡支付"
     },
     "allocationTip": "開啟後訂單資金將被凍結,僅可透過發起分帳進行拆分",
-    "methodOptionalTip": "被掃場景可留空: 已填付款碼時, 平台按前綴自動識別微信/支付寶/銀聯並回填支付方式"
+    "methodOptionalTip": "被掃場景可留空: 已填付款碼時, 平台按前綴自動識別微信/支付寶/銀聯並回填支付方式",
+    "advanced": {
+      "hint": "商戶附加參數 · 限制支付類型 · 支付擴展參數",
+      "expand": "展開",
+      "collapse": "收起"
+    },
+    "tip": {
+      "idempotent": "同訂單號重複提交按冪等回放, 需新單請先點訂單號「生成」"
+    }
   },
   "auth": {
     "title": "認證調試",
@@ -241,10 +257,10 @@
       "warning": "本頁僅組裝參數並簽名，提交後將模擬商戶調用 /unipay/gateway/pre-pay 生成收銀台/聚合掃碼落地頁（非管理端特權通道），請確認參數無誤。"
     },
     "card": {
-      "mchApp": "商戶資訊",
       "order": "訂單資訊",
-      "param": "擴展參數",
-      "advanced": "進階參數"
+      "param": "支付參數",
+      "advanced": "進階參數",
+      "mchType": "商戶與網關類型"
     },
     "gatewayType": {
       "label": "網關支付類型",
@@ -254,7 +270,6 @@
       "aggregateDesc": "生成聚合掃碼連結，一碼多付自動識別"
     },
     "field": {
-      "privateKey": "商戶私鑰",
       "mchNo": "商戶",
       "appId": "應用",
       "bizOrderNo": "訂單號",
@@ -286,7 +301,8 @@
       "setPrivateKey": "設定私鑰",
       "genOrderNo": "生成",
       "reset": "重置表單",
-      "submit": "提交預下單"
+      "submit": "提交預下單",
+      "replaceKey": "更換私鑰"
     },
     "privateKey": {
       "modalTitle": "設定商戶私鑰",
@@ -294,15 +310,12 @@
       "placeholder": "請輸入商戶私鑰",
       "savedTip": "私鑰保存成功",
       "clearedTip": "私鑰已清除",
-      "setTag": "已設定",
-      "setLabel": "已設定商戶私鑰",
-      "unsetTag": "未設定",
+      "setTag": "私鑰已設置",
+      "unsetTag": "私鑰未設置",
       "clearConfirmTitle": "確認清除",
       "clearConfirmContent": "確定要清除已設定嘅商戶私鑰嗎？清除後需重新輸入。"
     },
     "result": {
-      "modalTitle": "預下單結果 (unipay)",
-      "failModalTitle": "預下單失敗 (unipay)",
       "url": "網關落地頁 URL",
       "h5Url": "網關落地頁 URL",
       "miniUrl": "小程序映射連結",
@@ -328,7 +341,20 @@
       },
       "rawResponse": "完整 DaxResult 響應",
       "copyFull": "複製完整響應",
-      "gatewayType": "下單類型"
+      "gatewayType": "下單類型",
+      "panelTitle": "除錯結果",
+      "pendingTag": "待發起",
+      "successTag": "預下單成功",
+      "failTag": "預下單失敗",
+      "emptyTitle": "提交後結果在這裡",
+      "emptyDesc": "二維碼 / 落地頁連結 / 完整響應常駐，可反覆查看與複製",
+      "thisRequest": "本次請求",
+      "centUnit": "分",
+      "expandAll": "展開全部響應",
+      "collapse": "收起",
+      "qrH5": "H5 落地頁",
+      "qrMini": "小程序碼",
+      "expiredTime": "過期時間"
     },
     "rule": {
       "mchNo": "請選擇商戶",
@@ -346,6 +372,14 @@
       "inputPrivateKey": "請先設定商戶私鑰",
       "copySuccess": "複製成功"
     },
-    "allocationTip": "開啟後訂單資金將被凍結,僅可透過發起分帳進行拆分"
+    "allocationTip": "開啟後訂單資金將被凍結,僅可透過發起分帳進行拆分",
+    "advanced": {
+      "hint": "同步跳轉 · 商戶附加參數 · 支付擴展參數",
+      "expand": "展開",
+      "collapse": "收起"
+    },
+    "tip": {
+      "idempotent": "同訂單號重複提交按冪等回放, 需新單請先點訂單號「生成」"
+    }
   }
 }

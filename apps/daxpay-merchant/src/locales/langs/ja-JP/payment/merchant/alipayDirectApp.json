@@ -30,6 +30,8 @@
   "certPlaceholder": "証明書の内容を貼り付け",
   "secretKey": "AES通信キー",
   "secretKeyPlaceholder": "AES通信キーを入力（任意）",
+  "serverUrl": "ゲートウェイURL",
+  "serverUrlPlaceholder": "空欄の場合は公式ゲートウェイを使用",
   "addApp": "アプリ追加",
   "config": "設定",
   "confirmDelete": "このアプリを削除しますか？",

@@ -47,7 +47,8 @@
     "deleteDesc": "これを元に戻すことはできません。慎重に進めてください",
     "noActions": "利用可能なアクションはありません",
     "openActionAria": "アプリ設定を開く",
-    "confirmDisableDefault": "このアプリはデフォルトアプリです。無効化すると appId 未指定の注文のフォールバックが失敗します。無効化しますか？"
+    "confirmDisableDefault": "このアプリはデフォルトアプリです。無効化すると appId 未指定の注文のフォールバックが失敗します。無効化しますか？",
+    "groupNotifyDevice": "通知とデバイス"
   },
   "easypay": {
     "v1Hint": "V1 は安全性が低いため、旧システム互換時のみ有効にしてください",

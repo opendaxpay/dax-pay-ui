@@ -24,6 +24,8 @@
   "communicateKeyConfig": "Khóa giao tiếp",
   "secretKey": "Khóa giao tiếp",
   "secretKeyPlaceholder": "Nhập khóa từ bảng điều khiển Nền tảng mở Alipay",
+  "serverUrl": "Địa chỉ cổng",
+  "serverUrlPlaceholder": "Để trống để dùng cổng chính thức",
   "validation": {
     "authType": "Vui lòng chọn loại xác thực",
     "alipayPublicKey": "Vui lòng nhập khóa công khai Alipay",

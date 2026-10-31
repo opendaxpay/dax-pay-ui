@@ -146,5 +146,19 @@
   "transferSceneDefaultTip": "Satu peniaga saluran hanya boleh mempunyai satu senario lalai",
   "groupDanger": "Zon Berbahaya",
   "cardDelete": "Padam Peniaga Saluran",
-  "cardDeleteDesc": "Selepas dipadam, peniaga saluran ini berserta semua konfigurasinya tidak boleh digunakan lagi. Tidak boleh dibatalkan."
+  "cardDeleteDesc": "Selepas dipadam, peniaga saluran ini berserta semua konfigurasinya tidak boleh digunakan lagi. Tidak boleh dibatalkan.",
+  "reference": "Rujukan",
+  "confirmDisableImpactTitle": "Nyahaktifkan Merchant Saluran",
+  "confirmDisableImpactOk": "Nyahaktifkan",
+  "disableImpactApps": "Merchant saluran ini dirujuk oleh aplikasi berikut:",
+  "disableImpactAppLine": "{name} ({count} rujukan)",
+  "disableImpactRestApps": "{count} aplikasi",
+  "disableImpactWarn": "Pembayaran aplikasi di atas akan gagal serta-merta selepas dinyahaktifkan",
+  "viewFullDetail": "Lihat butiran penuh",
+  "disableUncheckedDesc": "Pertanyaan kesan rujukan gagal, buat sementara tidak dapat mengesahkan sama ada merchant saluran ini dirujuk oleh konfigurasi. Nyahaktifkan masih boleh menyebabkan kegagalan pembayaran bagi sesetengah aplikasi.",
+  "referenceDrawerTitle": "Butiran Rujukan",
+  "referenceDrawerTitleWithName": "Butiran Rujukan - {name}",
+  "referenceTotalLabel": "Jumlah rujukan",
+  "referenceEmpty": "Tidak dirujuk oleh sebarang konfigurasi",
+  "referenceAppRefs": "{count} rujukan"
 }

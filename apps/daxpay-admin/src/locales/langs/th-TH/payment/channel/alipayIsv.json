@@ -24,6 +24,8 @@
   "communicateKeyConfig": "คีย์การสื่อสาร",
   "secretKey": "คีย์การสื่อสาร",
   "secretKeyPlaceholder": "ป้อนรหัสจากคอนโซลแพลตฟอร์มเปิดของ Alipay",
+  "serverUrl": "ที่อยู่เกตเวย์",
+  "serverUrlPlaceholder": "เว้นว่างเพื่อใช้เกตเวย์ทางการ",
   "validation": {
     "authType": "โปรดเลือกประเภทการรับรองความถูกต้อง",
     "alipayPublicKey": "กรุณากรอกรหัสสาธารณะ Alipay",

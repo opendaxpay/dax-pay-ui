@@ -6,7 +6,8 @@
     "mchNo": "販売者番号",
     "enable": "状態",
     "appName": "アプリ",
-    "storeName": "店舗"
+    "storeName": "店舗",
+    "storeNo": "店舗番号"
   },
   "enableTitle": "有効",
   "enabled": "有効",

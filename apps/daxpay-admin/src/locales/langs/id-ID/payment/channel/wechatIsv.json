@@ -28,6 +28,8 @@
   "uploadPublicKey": "Unggah Kunci Publik",
   "publicKeyId": "ID Kunci Publik",
   "publicKeyIdPlaceholder": "Silakan masukkan ID kunci publik",
+  "apiHostUrl": "Domain API",
+  "apiHostUrlPlaceholder": "Kosongkan untuk menggunakan api.mch.weixin.qq.com resmi",
   "validation": {
     "enable": "Silakan pilih aktifkan status",
     "wxMchId": "Silakan masukkan ID pedagang WeChat",

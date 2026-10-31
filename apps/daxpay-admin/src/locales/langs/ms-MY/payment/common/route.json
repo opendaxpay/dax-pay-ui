@@ -4,5 +4,6 @@
   "productDetail": {
     "notSupported": "Produk ini tiada item konfigurasi sebelah platform",
     "notSupportedDesc": "Parameter saluran diurus dalam konfigurasi setiap merchant saluran"
-  }
+  },
+  "missingStoreContext": "Parameter kedai tidak ada. Masuk dari senarai kedai"
 }

@@ -5,7 +5,6 @@
     "developing": "기능은 개발 중입니다. 계속 지켜봐 주시기 바랍니다...",
     "groupBasic": "기본관리",
     "groupPayment": "결제 구성",
-    "groupBusiness": "비즈니스 구성",
     "cardMchInfo": "판매자 프로필",
     "cardMchInfoDesc": "판매자 번호, 이름, 상태 및 기타 기본 정보",
     "cardSecurity": "보안 구성",
@@ -32,6 +31,11 @@
     "cardDyAppDesc": "해당 가맹점의 두인 미니프로그램·모바일 앱·웹 앱 등 오픈 앱 관리",
     "groupDanger": "위험 작업",
     "cardDeleteMerchant": "가맹점 삭제",
-    "cardDeleteMerchantDesc": "가맹점과 모든 관련 설정을 삭제합니다. 되돌릴 수 없습니다."
+    "cardDeleteMerchantDesc": "머천트 탈퇴(마스킹 + 구성 및 사용자 계정 연쇄 삭제), 이름 입력 확인 필요",
+    "groupDeviceCashier": "캐시어와 기기",
+    "groupAccess": "연동 설정",
+    "cardVirtualDeviceDesc": "이 가맹점에 귀속된 가상 기기(수금 알림 앱)의 대장 및 운영 관리",
+    "unitPiece": "",
+    "unitDevice": ""
   }
 }

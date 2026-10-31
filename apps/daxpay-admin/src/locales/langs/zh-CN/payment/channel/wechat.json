@@ -8,6 +8,8 @@
   "privateKey": "API证书私钥",
   "privateCert": "API证书",
   "certSerialNo": "证书序列号",
+  "apiHostUrl": "API域名",
+  "apiHostUrlPlaceholder": "留空使用官方 api.mch.weixin.qq.com",
   "wxAppSecret": "微信密钥",
   "wxAuthUrl": "微信授权认证地址",
   "validation": {

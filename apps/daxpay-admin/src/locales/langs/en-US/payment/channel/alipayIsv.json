@@ -24,6 +24,8 @@
   "communicateKeyConfig": "Communication Key",
   "secretKey": "Communication Key",
   "secretKeyPlaceholder": "Enter the key from Alipay Open Platform console",
+  "serverUrl": "Gateway URL",
+  "serverUrlPlaceholder": "Leave blank to use the official gateway",
   "validation": {
     "authType": "Please select auth type",
     "alipayPublicKey": "Please enter Alipay public key",

@@ -5,7 +5,6 @@
     "developing": "機能は開発中ですので、しばらくお待ちください...",
     "groupBasic": "基本的な管理",
     "groupPayment": "支払い設定",
-    "groupBusiness": "ビジネス構成",
     "cardMchInfo": "販売者のプロフィール",
     "cardMchInfoDesc": "加盟店番号、名前、ステータス、その他の基本情報",
     "cardSecurity": "セキュリティ構成",
@@ -32,6 +31,11 @@
     "cardDyAppDesc": "当該加盟店のDouyinミニプログラム・モバイルアプリ・ウェブアプリ等の開放アプリを管理",
     "groupDanger": "危険操作",
     "cardDeleteMerchant": "加盟店を削除",
-    "cardDeleteMerchantDesc": "加盟店と関連する全設定を削除します。取り消せません。"
+    "cardDeleteMerchantDesc": "マーチャント退会(サニタイズ+設定とユーザーアカウントのカスケード削除)、名称入力で確認",
+    "groupDeviceCashier": "レジとデバイス",
+    "groupAccess": "接続設定",
+    "cardVirtualDeviceDesc": "この加盟店に紐づく仮想デバイス（入金アナウンスアプリ）の台帳と運用管理",
+    "unitPiece": "",
+    "unitDevice": ""
   }
 }

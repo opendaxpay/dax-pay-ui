@@ -146,5 +146,19 @@
   "transferSceneDefaultTip": "Satu merchant saluran hanya dapat memiliki satu skenario default",
   "groupDanger": "Zona Berbahaya",
   "cardDelete": "Hapus Merchant Saluran",
-  "cardDeleteDesc": "Setelah dihapus, merchant saluran ini beserta seluruh konfigurasinya tidak dapat digunakan lagi. Tidak dapat dibatalkan."
+  "cardDeleteDesc": "Setelah dihapus, merchant saluran ini beserta seluruh konfigurasinya tidak dapat digunakan lagi. Tidak dapat dibatalkan.",
+  "reference": "Ref",
+  "confirmDisableImpactTitle": "Nonaktifkan Merchant Kanal",
+  "confirmDisableImpactOk": "Nonaktifkan",
+  "disableImpactApps": "Merchant kanal ini direferensikan oleh aplikasi berikut:",
+  "disableImpactAppLine": "{name} ({count} referensi)",
+  "disableImpactRestApps": "{count} aplikasi",
+  "disableImpactWarn": "Pembayaran aplikasi di atas akan langsung gagal setelah dinonaktifkan",
+  "viewFullDetail": "Lihat detail lengkap",
+  "disableUncheckedDesc": "Gagal mengquery dampak referensi. Belum dapat dipastikan apakah merchant kanal ini direferensikan oleh konfigurasi. Menonaktifkannya tetap dapat menyebabkan kegagalan pembayaran pada beberapa aplikasi.",
+  "referenceDrawerTitle": "Detail Referensi",
+  "referenceDrawerTitleWithName": "Detail Referensi - {name}",
+  "referenceTotalLabel": "Total referensi",
+  "referenceEmpty": "Tidak direferensikan oleh konfigurasi apa pun",
+  "referenceAppRefs": "{count} referensi"
 }

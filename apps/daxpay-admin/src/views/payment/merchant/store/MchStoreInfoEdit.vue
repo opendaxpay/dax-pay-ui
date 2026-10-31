@@ -3,6 +3,7 @@
 
   import { $t } from '@vben/locales';
 
+  import { MchAppInfoApi } from '#/api/payment/merchant/mch-app-info.api';
   import { MchStoreInfoApi, type MchStoreInfoParam, type MchStoreInfoResult } from '#/api/payment/merchant/store.api';
   import { RegionCascader } from '#/components/region';
   import { FormEditType } from '#/enums/formEditType';
@@ -28,6 +29,9 @@
   // 编辑场景下记录原始状态, 用于检测"默认门店从启用变为停用"以触发二次确认
   const originalStatus = ref<string>('enable');
 
+  // 默认支付应用下拉(指定商户的启用应用)
+  const appOptions = ref<{ label: string; value: string }[]>([]);
+
   const statusOptions = computed(() => [
     { label: $t('payment.merchant.store.store.status.enable'), value: 'enable' },
     { label: $t('payment.merchant.store.store.status.disabled'), value: 'disabled' },
@@ -41,7 +45,23 @@
   }));
 
   /**
+   * 加载应用下拉(指定商户的启用应用)
+   */
+  function loadAppOptions() {
+    MchAppInfoApi.enableList(mchNo.value, true).then(({ data }) => {
+      appOptions.value = (data || [])
+        .filter((item) => !!item.appId)
+        .map((item) => ({
+          label: item.appName || item.appId!,
+          value: item.appId!,
+        }));
+    });
+  }
+
+  /**
    * 重置表单
+   *
+   * 顺带刷新应用下拉, 保证新增/编辑/查看三种打开方式都有可选项。
    */
   function resetForm() {
     formState.value = {
@@ -49,8 +69,10 @@
       storeName: '',
       status: 'enable',
       defaultStore: false,
+      appId: undefined,
     };
     formRef.value?.resetFields();
+    loadAppOptions();
   }
 
   /**
@@ -84,6 +106,7 @@
         latitude: row.latitude,
         status: row.status || 'enable',
         defaultStore: !!row.defaultStore,
+        appId: row.appId,
         remark: row.remark,
       };
       // 记录原始状态, 用于 handleOk 检测停用默认门店
@@ -149,6 +172,8 @@
       const payload: MchStoreInfoParam = {
         ...formState.value,
         mchNo: mchNo.value,
+        // 清空后提交空串表示清空门店默认应用(字段不传则保持原值, 避免误清)
+        appId: formState.value.appId ?? '',
       };
       await (formEditType.value === FormEditType.Edit ? MchStoreInfoApi.update(payload) : MchStoreInfoApi.add(payload));
       message.success($t('common.operationSuccess'));
@@ -189,12 +214,33 @@
         <a-form-item :label="$t('payment.merchant.store.store.field.status')" name="status">
           <a-select v-model:value="formState.status" :disabled="showable" :options="statusOptions" />
         </a-form-item>
-        <!-- 默认门店(必选) -->
-        <a-form-item :label="$t('payment.merchant.store.store.defaultStore')" name="defaultStore">
+        <!-- 默认门店(必选; 仅新增时显示, 编辑/查看走门店工作台「默认门店」卡) -->
+        <a-form-item
+          v-if="formEditType === FormEditType.Add"
+          :label="$t('payment.merchant.store.store.defaultStore')"
+          name="defaultStore"
+        >
           <a-radio-group v-model:value="formState.defaultStore" button-style="solid" :disabled="showable">
             <a-radio-button :value="true">{{ $t('common.yes') }}</a-radio-button>
             <a-radio-button :value="false">{{ $t('common.no') }}</a-radio-button>
           </a-radio-group>
+        </a-form-item>
+        <!-- 默认支付应用(可空, 留空跟随商户默认应用; 仅新增时显示, 编辑/查看走门店工作台「默认应用」卡) -->
+        <a-form-item
+          v-if="formEditType === FormEditType.Add"
+          :label="$t('payment.merchant.store.store.field.defaultApp')"
+        >
+          <a-select
+            v-model:value="formState.appId"
+            :options="appOptions"
+            :disabled="showable"
+            allow-clear
+            :placeholder="$t('payment.merchant.store.store.defaultAppPlaceholder')"
+            style="width: 100%"
+          />
+          <div class="mt-1 text-xs text-muted-foreground">
+            {{ $t('payment.merchant.store.store.defaultAppTip') }}
+          </div>
         </a-form-item>
         <!-- 联系人电话 -->
         <a-form-item :label="$t('payment.merchant.store.store.field.contactPhone')">

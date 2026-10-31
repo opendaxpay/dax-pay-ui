@@ -30,6 +30,8 @@
   "certPlaceholder": "Tampal kandungan sijil",
   "secretKey": "Kunci Komunikasi AES",
   "secretKeyPlaceholder": "Masukkan kunci komunikasi AES (pilihan)",
+  "serverUrl": "Alamat gateway",
+  "serverUrlPlaceholder": "Kosongkan untuk menggunakan gateway rasmi",
   "addApp": "Tambah Aplikasi",
   "config": "Konfigurasi",
   "confirmDelete": "Sahkan padam aplikasi ini?",

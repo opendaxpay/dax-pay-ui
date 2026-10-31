@@ -30,6 +30,8 @@
   "certPlaceholder": "貼上憑證內容",
   "secretKey": "AES通訊金鑰",
   "secretKeyPlaceholder": "請輸入AES通訊金鑰（可選）",
+  "serverUrl": "網關地址",
+  "serverUrlPlaceholder": "留空使用官方網關",
   "addApp": "新增應用",
   "config": "設定",
   "confirmDelete": "確認刪除該應用？",

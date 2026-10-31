@@ -30,6 +30,8 @@
   "certPlaceholder": "Dán nội dung chứng chỉ",
   "secretKey": "Khóa giao tiếp AES",
   "secretKeyPlaceholder": "Nhập khóa giao tiếp AES (tùy chọn)",
+  "serverUrl": "Địa chỉ cổng",
+  "serverUrlPlaceholder": "Để trống để dùng cổng chính thức",
   "addApp": "Thêm ứng dụng",
   "config": "Cấu hình",
   "confirmDelete": "Xác nhận xóa ứng dụng này?",

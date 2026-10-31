@@ -47,7 +47,8 @@
     "deleteDesc": "Điều này không thể hoàn tác được. Tiến hành thận trọng",
     "noActions": "Không có hành động nào",
     "openActionAria": "Mở cấu hình ứng dụng",
-    "confirmDisableDefault": "Đây là ứng dụng mặc định. Tắt nó sẽ làm đơn không có appId mất phương án dự phòng. Tiếp tục?"
+    "confirmDisableDefault": "Đây là ứng dụng mặc định. Tắt nó sẽ làm đơn không có appId mất phương án dự phòng. Tiếp tục?",
+    "groupNotifyDevice": "Thông báo & Thiết bị"
   },
   "easypay": {
     "v1Hint": "V1 có bảo mật yếu; chỉ bật cho khách hàng cũ",

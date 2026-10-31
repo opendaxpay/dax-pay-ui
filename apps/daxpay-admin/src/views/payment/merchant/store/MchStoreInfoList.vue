@@ -1,28 +1,30 @@
 <script lang="ts" setup>
-  import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
-
-  import type { Region } from '#/api/core/region.api';
-
   import { computed, onMounted, ref } from 'vue';
   import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
+  import { IconifyIcon } from '@vben-core/icons';
+
   import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
   import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
 
-  import { ChinaRegionApi } from '#/api/core/region.api';
   import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import { MchStoreInfoApi, type MchStoreInfoResult } from '#/api/payment/merchant/store.api';
-  import { BQuery, type QueryField } from '#/components/query';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
-  import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
   import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
 
+  import MchStoreInfoCard from './MchStoreInfoCard.vue';
   import MchStoreInfoEdit from './MchStoreInfoEdit.vue';
 
+  /**
+   * 门店管理卡片墙(运营端, 商户工作台「门店管理」子页)
+   *
+   * 按商户号全量加载 + 客户端关键词/状态双条件过滤 + 新增门店召唤卡 + 未设默认告警条;
+   * 整卡点击进入门店详情工作台(无 VIEW 权限整卡不响应)。
+   */
   defineOptions({ name: 'MchStoreInfoList' });
 
   const router = useRouter();
@@ -33,150 +35,81 @@
     messageKey: 'payment.common.route.missingMchNo',
     fallbackPath: '/payment/merchant',
   });
-  const { confirm, message } = useMessage();
   const { hasPermission } = usePermission();
 
   const mchNo = computed(() => routeContext.query.value.mchNo);
-  const { setTabObjectTitle } = useDynamicTabTitle($t('payment.merchant.store.store.title'));
   // 商户信息（用于标题展示商户名称）
   const merchantInfo = ref<MerchantInfo>({});
+  // 页签标题动态化为「{商户名} · 门店管理」
+  const { setTabObjectTitle } = useDynamicTabTitle($t('payment.merchant.store.store.title'));
 
   const loading = ref(false);
-  const xTable = ref<VxeTableInstance>();
-  const xToolbar = ref<VxeToolbarInstance>();
+  // 过滤关键字(前端按门店名称/门店号过滤)
+  const filterText = ref('');
+  // 状态过滤(空串表示全部状态, 前端客户端过滤)
+  const statusFilter = ref('');
+  const storeList = ref<MchStoreInfoResult[]>([]);
   const storeEditRef = ref<InstanceType<typeof MchStoreInfoEdit>>();
 
-  const queryForm = ref<Record<string, any>>({});
+  /** 状态过滤选项(空串作为「全部状态」占位, 不使用 allow-clear) */
+  const statusFilterOptions: { label: string; value: string }[] = [
+    // 全部状态
+    { label: $t('payment.merchant.store.list.statusAll'), value: '' },
+    // 启用
+    { label: $t('payment.merchant.store.store.status.enable'), value: 'enable' },
+    // 停用
+    { label: $t('payment.merchant.store.store.status.disabled'), value: 'disabled' },
+  ];
 
-  const queryFields = computed<QueryField[]>(() => [
-    {
-      type: 'string',
-      field: 'storeName',
-      name: $t('payment.merchant.store.store.field.storeName'),
-      placeholder: $t('common.pleaseInput'),
-    },
-    {
-      type: 'string',
-      field: 'storeNo',
-      name: $t('payment.merchant.store.store.field.storeNo'),
-      placeholder: $t('common.pleaseInput'),
-    },
-    {
-      type: 'list',
-      field: 'status',
-      name: $t('payment.merchant.store.store.field.status'),
-      placeholder: $t('common.pleaseSelect'),
-      selectList: [
-        { label: $t('payment.merchant.store.store.status.enable'), value: 'enable' },
-        { label: $t('payment.merchant.store.store.status.disabled'), value: 'disabled' },
-      ],
-    },
-  ]);
+  /** 是否有门店管理权限(召唤卡与新增入口同条件) */
+  const canAdd = computed(() => hasPermission(PermCodes.Merchant.Store.MANAGE));
 
-  const pageConfig = ref({
-    currentPage: 1,
-    pageSize: 10,
-    total: 0,
+  /** 本地过滤后的门店列表(门店名称/门店号 + 状态, 不分页) */
+  const filteredStoreList = computed(() => {
+    const keyword = filterText.value.trim().toLowerCase();
+    return storeList.value.filter((store) => {
+      if (statusFilter.value && store.status !== statusFilter.value) {
+        return false;
+      }
+      if (!keyword) {
+        return true;
+      }
+      const name = (store.storeName || '').toLowerCase();
+      const storeNo = (store.storeNo || '').toLowerCase();
+      return name.includes(keyword) || storeNo.includes(keyword);
+    });
   });
-
-  const tableData = ref<MchStoreInfoResult[]>([]);
 
   // 是否有门店但没有默认门店(用于告警横幅)
   const hasStoreWithoutDefault = computed(() => {
-    return tableData.value.length > 0 && !tableData.value.some((s) => s.defaultStore);
+    return storeList.value.length > 0 && !storeList.value.some((s) => s.defaultStore);
   });
 
-  // 行政区划 code -> name 映射, 用于列表反查省市区
-  const regionMap = ref<Map<string, string>>(new Map());
-
   /**
-   * 递归展平区划树为 code -> name 映射
+   * 加载商户名下全部门店(卡片墙, 不分页)
    */
-  function flattenRegion(list: Region[], map: Map<string, string>) {
-    for (const r of list) {
-      map.set(r.code, r.name);
-      if (r.children?.length) {
-        flattenRegion(r.children, map);
-      }
-    }
-  }
-
-  /**
-   * 加载行政区划数据构建映射
-   */
-  async function loadRegionMap() {
-    const { data } = await ChinaRegionApi.findAllProvinceAndCityAndArea();
-    const map = new Map<string, string>();
-    flattenRegion(data, map);
-    regionMap.value = map;
-  }
-
-  /**
-   * 根据区划代码还原省市区文本(6位代码包含省2/市4/区6层级)
-   */
-  function regionCodeToText(code?: string): string {
-    if (!code || code.length < 2) return '';
-    const parts: string[] = [];
-    if (code.length >= 2) parts.push(regionMap.value.get(code.slice(0, 2)) || '');
-    if (code.length >= 4) parts.push(regionMap.value.get(code.slice(0, 4)) || '');
-    if (code.length >= 6) parts.push(regionMap.value.get(code.slice(0, 6)) || '');
-    return parts.filter(Boolean).join('');
-  }
-
-  /**
-   * 拼接完整地址(省市区 + 详细地址)
-   */
-  function fullAddress(row: MchStoreInfoResult): string {
-    return regionCodeToText(row.regionCode) + (row.address || '');
-  }
-
-  /**
-   * 分页查询门店列表
-   */
-  function queryPage() {
+  function loadStoreList() {
     if (!mchNo.value) {
       loading.value = false;
       return;
     }
     loading.value = true;
-    MchStoreInfoApi.page({
-      current: pageConfig.value.currentPage,
-      size: pageConfig.value.pageSize,
-      mchNo: mchNo.value,
-      ...queryForm.value,
-    })
-      .then((res) => {
-        tableData.value = res.data.records || [];
-        pageConfig.value.total = Number(res.data.total) || 0;
-        loading.value = false;
+    MchStoreInfoApi.listAllByMch(mchNo.value)
+      .then(({ data }) => {
+        storeList.value = data || [];
       })
-      .catch(() => {
+      .finally(() => {
         loading.value = false;
       });
-    return Promise.resolve();
-  }
-
-  function resetQuery() {
-    queryForm.value = {};
-    pageConfig.value.currentPage = 1;
-    queryPage();
-  }
-
-  function handlePageChange({ currentPage, pageSize }: any) {
-    pageConfig.value.currentPage = currentPage;
-    pageConfig.value.pageSize = pageSize;
-    queryPage();
   }
 
   onMounted(() => {
     if (!routeContext.isValid.value) {
       return;
     }
-    xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
-    loadRegionMap();
     // 加载商户信息用于标题展示
     loadMerchantInfo();
-    queryPage();
+    loadStoreList();
   });
 
   /**
@@ -207,66 +140,13 @@
     storeEditRef.value?.show(mchNo.value!);
   }
 
-  function handleEdit(row: MchStoreInfoResult) {
-    storeEditRef.value?.showEdit(mchNo.value!, row);
-  }
-
   /**
-   * 查看门店
+   * 进入门店详情工作台(携带门店 id/storeNo + 商户号)
    */
-  function handleView(row: MchStoreInfoResult) {
-    storeEditRef.value?.showView(mchNo.value!, row);
-  }
-
-  /**
-   * 删除门店
-   *
-   * 默认门店禁止删除(与 MchStoreInfoService.delete 后端校验对齐),
-   * 需先把其他门店设为默认, 再删除当前门店。
-   */
-  function handleDelete(row: MchStoreInfoResult) {
-    if (row.defaultStore) {
-      message.warning($t('payment.merchant.store.store.deleteDefaultBlocked'));
-      return;
-    }
-    confirm({
-      content: $t('payment.merchant.store.store.confirmDelete'),
-      onOk() {
-        return MchStoreInfoApi.delete(row.id!).then(() => {
-          message.success($t('common.operationSuccess'));
-          queryPage();
-        });
-      },
-    });
-  }
-
-  /**
-   * 设为默认门店
-   */
-  function handleSetDefault(row: MchStoreInfoResult) {
-    confirm({
-      content: $t('payment.merchant.store.store.confirmSetDefault'),
-      onOk() {
-        return MchStoreInfoApi.setDefault(row.id!).then(() => {
-          message.success($t('common.operationSuccess'));
-          queryPage();
-        });
-      },
-    });
-  }
-
-  /**
-   * 取消默认门店
-   */
-  function handleClearDefault(row: MchStoreInfoResult) {
-    confirm({
-      content: $t('payment.merchant.store.store.confirmClearDefault'),
-      onOk() {
-        return MchStoreInfoApi.clearDefault(row.id!).then(() => {
-          message.success($t('common.operationSuccess'));
-          queryPage();
-        });
-      },
+  function handleWorkbench(row: MchStoreInfoResult) {
+    router.push({
+      path: '/payment/merchant/store/workbench',
+      query: { id: row.id, storeNo: row.storeNo, mchNo: mchNo.value },
     });
   }
 </script>
@@ -278,10 +158,10 @@
     :back-text="$t('payment.merchant.workbench.workbench.backToList')"
     @back="routeContext.goFallback"
   />
-  <div v-else class="m-3 p-3 bg-background rounded-lg list-page-compact">
-    <a-card>
+  <div v-else class="m-3">
+    <a-card variant="borderless" class="rounded-xl shadow-sm">
       <template #title>
-        <!-- 国际化：门店管理 -->
+        <!-- 标题栏: 返回 + 功能名 +（商户名）, 与工作台子页统一形态 -->
         <PageTitleBar
           back
           :title="$t('payment.merchant.store.store.title')"
@@ -289,130 +169,61 @@
           @back="handleBack"
         />
       </template>
-      <BQuery :fields="queryFields" :query-params="queryForm" @query="queryPage" @reset="resetQuery" />
+      <template #extra>
+        <div class="flex items-center gap-2">
+          <a-input
+            v-model:value="filterText"
+            allow-clear
+            class="w-56"
+            :placeholder="$t('payment.merchant.store.list.filterPlaceholder')"
+          />
+          <a-select v-model:value="statusFilter" :options="statusFilterOptions" class="w-32" />
+        </div>
+      </template>
+
+      <a-spin :spinning="loading">
+        <!-- 有门店但未设置默认门店时提示(间距放 wrapper, 避免 antd 覆盖 Tailwind) -->
+        <div v-if="hasStoreWithoutDefault && !loading" class="mb-4">
+          <a-alert :message="$t('payment.merchant.store.store.noDefaultStoreTip')" type="warning" show-icon />
+        </div>
+
+        <!-- 空态: 无门店且无新增权限时展示 -->
+        <div v-if="!loading && filteredStoreList.length === 0 && !canAdd" class="py-12">
+          <a-empty :description="$t('payment.merchant.store.list.empty')" />
+        </div>
+        <div v-else class="store-card-grid">
+          <MchStoreInfoCard
+            v-for="store in filteredStoreList"
+            :key="store.id ?? store.storeNo"
+            :record="store"
+            @open="handleWorkbench(store)"
+          />
+
+          <!-- 召唤卡: 权限与新增入口同条件, 点击打开新增门店抽屉 -->
+          <div
+            v-if="canAdd"
+            class="flex h-full min-h-[126px] cursor-pointer flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-border bg-card/60 text-muted-foreground shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:bg-primary/5 hover:text-primary hover:shadow-md"
+            @click="handleAdd"
+          >
+            <div
+              class="flex h-[42px] w-[42px] items-center justify-center rounded-lg bg-muted transition-all duration-300 group-hover:scale-110"
+            >
+              <IconifyIcon icon="ant-design:plus-outlined" class="text-xl" />
+            </div>
+            <span class="text-sm font-bold">{{ $t('payment.merchant.store.list.addCard') }}</span>
+          </div>
+        </div>
+      </a-spin>
     </a-card>
 
-    <!-- 国际化：有门店但未设置默认门店时提示 -->
-    <div v-if="hasStoreWithoutDefault && !loading" class="mt-4">
-      <a-alert :message="$t('payment.merchant.store.store.noDefaultStoreTip')" type="warning" show-icon />
-    </div>
-
-    <div class="mt-4">
-      <a-card>
-        <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
-          <template #buttons>
-            <a-space>
-              <a-button v-if="hasPermission(PermCodes.Merchant.Store.MANAGE)" type="primary" @click="handleAdd">{{
-                $t('common.add')
-              }}</a-button>
-            </a-space>
-          </template>
-        </vxe-toolbar>
-        <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
-          <vxe-column type="seq" :title="$t('common.seq')" width="60" align="center" />
-          <vxe-column field="storeNo" :title="$t('payment.merchant.store.store.field.storeNo')" :min-width="180">
-            <template #default="{ row }">
-              <a
-                v-if="hasPermission(PermCodes.Merchant.Store.VIEW)"
-                href="javascript:"
-                class="vben-link"
-                @click="handleView(row)"
-                >{{ row.storeNo }}</a
-              >
-              <span v-else>{{ row.storeNo }}</span>
-            </template>
-          </vxe-column>
-          <vxe-column field="storeName" :title="$t('payment.merchant.store.store.field.storeName')" :min-width="160">
-            <template #default="{ row }">
-              <span>{{ row.storeName }}</span>
-            </template>
-          </vxe-column>
-          <!-- 默认门店: 独立成列, 不与名称挤在一起 -->
-          <vxe-column
-            field="defaultStore"
-            :title="$t('payment.merchant.store.store.defaultStore')"
-            :width="100"
-            align="center"
-          >
-            <template #default="{ row }">
-              <a-tag v-if="row.defaultStore" color="processing">{{ $t('common.yes') }}</a-tag>
-              <span v-else class="text-muted-foreground">{{ $t('common.no') }}</span>
-            </template>
-          </vxe-column>
-          <vxe-column field="address" :title="$t('payment.merchant.store.store.field.address')" :min-width="240">
-            <template #default="{ row }">
-              <span>{{ fullAddress(row) }}</span>
-            </template>
-          </vxe-column>
-          <vxe-column
-            field="status"
-            :title="$t('payment.merchant.store.store.field.status')"
-            :min-width="100"
-            align="center"
-          >
-            <template #default="{ row }">
-              <a-tag v-if="row.status === 'enable'" color="green">{{
-                $t('payment.merchant.store.store.status.enable')
-              }}</a-tag>
-              <a-tag v-else color="red">{{ $t('payment.merchant.store.store.status.disabled') }}</a-tag>
-            </template>
-          </vxe-column>
-          <vxe-column
-            field="createTime"
-            :title="$t('payment.merchant.store.store.field.createTime')"
-            :min-width="180"
-            formatter="formatDateTime"
-          />
-          <vxe-column fixed="right" width="220" :show-overflow="false" :title="$t('common.operation')">
-            <template #default="{ row }">
-              <a-space :size="2">
-                <template #separator>
-                  <a-divider type="vertical" />
-                </template>
-                <a-button
-                  v-if="hasPermission(PermCodes.Merchant.Store.MANAGE)"
-                  type="link"
-                  size="small"
-                  @click="handleEdit(row)"
-                  >{{ $t('common.edit') }}</a-button
-                >
-                <a-button
-                  v-if="hasPermission(PermCodes.Merchant.Store.MANAGE) && !row.defaultStore"
-                  type="link"
-                  size="small"
-                  @click="handleSetDefault(row)"
-                  >{{ $t('payment.merchant.store.store.setDefault') }}</a-button
-                >
-                <a-button
-                  v-if="hasPermission(PermCodes.Merchant.Store.MANAGE) && row.defaultStore"
-                  type="link"
-                  size="small"
-                  @click="handleClearDefault(row)"
-                  >{{ $t('payment.merchant.store.store.clearDefault') }}</a-button
-                >
-                <a-button
-                  v-if="hasPermission(PermCodes.Merchant.Store.MANAGE)"
-                  type="link"
-                  size="small"
-                  danger
-                  @click="handleDelete(row)"
-                  >{{ $t('common.delete') }}</a-button
-                >
-              </a-space>
-            </template>
-          </vxe-column>
-        </vxe-table>
-        <vxe-pager
-          size="medium"
-          :loading="loading"
-          :current-page="pageConfig.currentPage"
-          :page-size="pageConfig.pageSize"
-          :total="pageConfig.total"
-          @page-change="handlePageChange"
-        />
-      </a-card>
-    </div>
-
-    <MchStoreInfoEdit ref="storeEditRef" @ok="queryPage" />
+    <MchStoreInfoEdit ref="storeEditRef" @ok="loadStoreList" />
   </div>
 </template>
+
+<style scoped>
+  .store-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+</style>

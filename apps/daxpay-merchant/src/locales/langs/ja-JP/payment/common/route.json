@@ -3,5 +3,6 @@
   "productDetail": {
     "notSupported": "製品詳細の構成はまだサポートされていません",
     "notSupportedDesc": "「{product}」の詳細設定はまだ実装されていません"
-  }
+  },
+  "missingStoreContext": "店舗パラメータが不足しています。店舗管理から入ってください"
 }

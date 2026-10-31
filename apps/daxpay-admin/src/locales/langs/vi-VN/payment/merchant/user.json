@@ -38,5 +38,13 @@
     "normal": "Bình thường",
     "lock": "Đã khóa",
     "ban": "Bị cấm"
+  },
+  "deleteModal": {
+    "title": "Xóa người dùng merchant",
+    "alertTitle": "Xóa tức là hủy đăng ký vĩnh viễn, không thể khôi phục",
+    "alertDesc": "Toàn bộ dữ liệu liên quan của người dùng này sẽ bị xóa (gán vai trò, tài khoản mạng xã hội, lịch sử mật khẩu, v.v., thông tin nhạy cảm được làm sạch) và buộc đăng xuất toàn bộ phiên; bị từ chối nếu đây là quản trị viên cuối cùng của merchant.",
+    "inputTip": "Nhập tên người dùng \"{name}\" để xác nhận xóa:",
+    "placeholder": "Nhập tên người dùng",
+    "okText": "Xác nhận xóa"
   }
 }

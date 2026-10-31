@@ -2,6 +2,7 @@
   import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
 
   import { computed, onMounted, ref } from 'vue';
+  import { useRoute } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
@@ -18,6 +19,7 @@
 
   const { confirm, message } = useMessage();
   const { hasPermission } = usePermission();
+  const route = useRoute();
 
   const loading = ref(false);
   const xTable = ref<VxeTableInstance>();
@@ -136,6 +138,10 @@
 
   onMounted(() => {
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
+    // URL 携带 storeNo 时预置门店筛选(门店工作台跳转带入)
+    if (route.query.storeNo) {
+      queryForm.value.storeNo = String(route.query.storeNo);
+    }
     queryPage();
   });
 

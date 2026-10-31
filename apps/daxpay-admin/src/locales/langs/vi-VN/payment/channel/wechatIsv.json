@@ -28,6 +28,8 @@
   "uploadPublicKey": "Tải khóa công khai lên",
   "publicKeyId": "ID khóa công khai",
   "publicKeyIdPlaceholder": "Vui lòng nhập ID khóa công khai",
+  "apiHostUrl": "Tên miền API",
+  "apiHostUrlPlaceholder": "Để trống để dùng api.mch.weixin.qq.com chính thức",
   "validation": {
     "enable": "Vui lòng chọn trạng thái bật",
     "wxMchId": "Vui lòng nhập ID người bán WeChat",

@@ -8,6 +8,8 @@
   "privateKey": "API 인증서 개인 키",
   "privateCert": "API 인증서",
   "certSerialNo": "인증서 일련번호",
+  "apiHostUrl": "API 도메인",
+  "apiHostUrlPlaceholder": "비워두면 공식 api.mch.weixin.qq.com 사용",
   "wxAppSecret": "위챗 앱 비밀",
   "wxAuthUrl": "위챗 인증 URL",
   "validation": {

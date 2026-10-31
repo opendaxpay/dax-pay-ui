@@ -85,5 +85,13 @@
     "hintDigit": "至少包含一個數字",
     "hintSpecialChar": "至少包含一個特殊字符（{chars}）",
     "notMeetRequirements": "密碼不符合要求"
+  },
+  "deleteModal": {
+    "title": "刪除用戶",
+    "alertTitle": "刪除即註銷, 不可恢復",
+    "alertDesc": "將刪除該用戶的全部關聯數據(角色綁定/社交賬號/密碼記錄等, 敏感信息脫敏清除)並強制下線; 掛靠商戶的用戶將無法在此刪除, 請前往對應商戶的用戶管理操作。",
+    "inputTip": "請輸入用戶姓名「{name}」以確認刪除:",
+    "placeholder": "請輸入用戶姓名",
+    "okText": "確認刪除"
   }
 }

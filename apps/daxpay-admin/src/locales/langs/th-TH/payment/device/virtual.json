@@ -6,7 +6,8 @@
     "mchNo": "หมายเลขร้านค้า",
     "enable": "สถานะ",
     "appName": "แอป",
-    "storeName": "สาขา"
+    "storeName": "สาขา",
+    "storeNo": "รหัสสาขา"
   },
   "enableTitle": "เปิดใช้",
   "enabled": "เปิดใช้",
