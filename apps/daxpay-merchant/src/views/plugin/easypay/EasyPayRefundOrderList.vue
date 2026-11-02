@@ -133,11 +133,11 @@
   }
 
   /**
-   * 金额格式化(后端为元, 直接保留两位小数)
+   * 金额格式化(后端金额为分, 转为元并保留两位小数)
    */
   function formatMoney(money?: number): string {
     if (money === null || money === undefined) return '-';
-    return Number(money).toFixed(2);
+    return (Number(money) / 100).toFixed(2);
   }
 
   /**

@@ -134,11 +134,11 @@ import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
   }
 
   /**
-   * 金额格式化(后端已是元, 直接保留两位小数)
+   * 金额格式化(后端金额为分, 转为元并保留两位小数)
    */
   function formatMoney(amount?: number): string {
     if (amount === null || amount === undefined) return '-';
-    return Number(amount).toFixed(2);
+    return (Number(amount) / 100).toFixed(2);
   }
 
   /**
