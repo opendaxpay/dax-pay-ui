@@ -1,8 +1,6 @@
 {
-  "title": "サードパーティプラットフォームへのログイン",
   "emptyDesc": "プラットフォーム構成データがありません",
   "clientCode": {
-    "label": "クライアント",
     "admin": "管理者",
     "merchant": "商人"
   },
@@ -29,19 +27,10 @@
   },
   "action": {
     "config": "構成",
-    "gotoConfig": "設定に移動",
     "gotoCredential": "資格情報の構成",
-    "edit": "編集",
-    "enable": "有効にする",
-    "disable": "無効にする",
-    "delete": "消去",
-    "add": "プラットフォーム構成の追加",
-    "search": "検索",
-    "reset": "リセット",
     "copy": "コピー"
   },
   "form": {
-    "source": "プラットフォーム",
     "clientId": "クライアントID",
     "clientIdPlaceholder": "クライアントID（AppId）を入力してください",
     "clientIdHelp": "通常は、実際のプラットフォーム名に応じて AppId または ClientID になります。",
@@ -55,7 +44,6 @@
     "enabledRequired": "有効ステータスを選択してください",
     "callbackUrl": "コールバック URL",
     "callbackUrlHelp": "これらの URL をサードパーティの OAuth コンソールに登録します。管理者と販売者にはそれぞれフルセットが必要です",
-    "callbackUrlEmpty": "最初にエンドポイント構成で管理者アクセス URL を設定してください",
     "callbackUrlEmptyAdmin": "最初にエンドポイント構成で管理ベース URL を設定してください",
     "callbackUrlEmptyMerchant": "エンドポイント構成でマーチャントベース URL (merchantBaseUrl) を設定してください。販売者のソーシャルログインに必要",
     "loginCallback": "ログインコールバック",
@@ -67,18 +55,10 @@
     "gatewayRegisterHelp": "リダイレクト型プラットフォーム(Alipay/公式アカウント)のログイン・バインドコールバックはゲートウェイドメイン経由で転送されます。オープンプラットフォームにはゲートウェイドメインのみ登録が必要です",
     "gatewayRegister": "オープンプラットフォーム登録ガイド"
   },
-  "confirm": {
-    "delete": "{name} 構成を削除してもよろしいですか?"
-  },
   "tip": {
-    "addSuccess": "正常に追加されました",
     "configSuccess": "正常に構成されました",
     "editSuccess": "正常に更新されました",
-    "enableSuccess": "正常に有効になりました",
-    "disableSuccess": "正常に無効になりました",
-    "deleteSuccess": "正常に削除されました",
     "copySuccess": "クリップボードにコピーされました",
-    "platformCredentialRequired": "ログインを有効にする前に、プラットフォーム レベルの認証情報を完了してください。",
     "platformCredentialHint": {
       "alipay": "AppId/キーは「Alipay アプリ設定」で管理します。ここはログイン開放の切替のみです",
       "weChat": "AppId/キーは「WeChat公式アカウント設定」で管理します。ここはログイン開放の切替のみです"

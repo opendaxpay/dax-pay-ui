@@ -55,14 +55,11 @@
     "relationOrderNo": "Channel Relation No.",
     "postedAmount": "입금금액(위안)",
     "refundableBalance": "환불가능(위안)",
-    "payBody": "페이 바디",
-    "payBodyType": "급여 신체 유형",
     "buyerId": "구매자 ID",
     "openid": "오픈아이디",
     "tradeProduct": "채널 제품",
     "tradeWay": "채널 무역 방식",
     "bankType": "은행 카드 유형",
-    "promotionType": "프로모션 유형",
     "errorMsg": "오류",
     "notifyUrl": "알림 URL",
     "returnUrl": "반환 URL",
@@ -75,10 +72,8 @@
     "channelAppId": "채널 앱",
     "clientIp": "클라이언트 IP",
     "terminalNo": "터미널 번호",
-    "containerId": "컨테이너 ID",
     "containerStatus": "컨테이너 상태",
     "source": "원천",
-    "limitPay": "급여 한도",
     "mchNo": "판매자 번호",
     "appId": "가맹점 앱",
     "createTime": "시간 만들기",
@@ -89,7 +84,6 @@
     "finishTime": "종료 시간",
     "orderAmount": "주문금액",
     "orderNo": "Platform Order No.",
-    "authCode": "결제 코드",
     "merchant": "가맹점",
     "storeNo": "매장 번호",
     "gatewayType": "게이트웨이 유형",
@@ -141,7 +135,6 @@
     "amountMin": "최소금액",
     "amountMax": "최대금액",
     "refundNo": "환불번호를 입력하세요.",
-    "bizRefundNo": "비즈니스 환불 번호를 입력하세요.",
     "orderNo": "원래 주문번호를 입력하세요.",
     "allocNo": "분할 번호 입력",
     "bizAllocNo": "머천트 분할 번호 입력"
@@ -161,7 +154,6 @@
     "refundConfirmContent": "원래 주문에서 {amount}을(를) 환불하시겠습니까? 계속하시겠습니까?",
     "refundTradeAmountLabel": "거래 금액",
     "refundableBalanceLabel": "환불 가능 금액",
-    "cents": "센트",
     "refundAmountLabel": "환불금액(위안)",
     "refundReasonLabel": "환불 사유",
     "refundAmountPlaceholder": "환불 금액 입력",
@@ -192,7 +184,6 @@
     "allocAmountLabel": "분담 금액(위안)",
     "allocTotalLabel": "합계",
     "allocTotalExceed": "분담 총액은 주문 금액을 초과할 수 없습니다",
-    "allocReceiverRequired": "최소 한 명의 분담 수취인을 추가하세요",
     "allocValidateType": "수취인 유형을 선택하세요",
     "allocValidateAccount": "수취인 계정을 입력하세요",
     "allocValidateAmount": "분담 금액은 0.01 이상이어야 합니다",
@@ -214,14 +205,6 @@
     "exportFailed": "내보내기에 실패했습니다. 잠시 후 다시 시도해 주세요",
     "orderDetail": "주문 상세"
   },
-  "method": {
-    "jsapi": "JSAPI",
-    "qrcode": "QR 스캔",
-    "h5": "H5",
-    "app": "APP",
-    "barcode": "바코드",
-    "wap": "WAP"
-  },
   "tradeType": {
     "normal": "일반 결제",
     "gateway": "게이트웨이"
@@ -231,7 +214,6 @@
     "aggregate": "Aggregate"
   },
   "alloc": {
-    "title": "분할 주문",
     "detail": "분할 주문 상세",
     "statusLabel": "분할 상태",
     "detailResultLabel": "상세 결과",

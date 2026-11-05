@@ -1,5 +1,4 @@
 {
-  "title": "การกำหนดค่า Yepay",
   "manageTitle": "การจัดการผู้ค้า Yeepay",
   "basicConfig": "การกำหนดค่าพื้นฐาน",
   "keyConfig": "การกำหนดค่าที่สำคัญ",
@@ -23,7 +22,6 @@
   "wxAppIdPlaceholder": "สำหรับ WeChat H5/JSAPI ไม่จำเป็น",
   "wxAppSecret": "ความลับของแอป WeChat",
   "keyConfigured": "กำหนดค่าแล้ว",
-  "keyNotConfigured": "ไม่ได้กำหนดค่า",
   "saveSuccess": "บันทึกการกำหนดค่าคีย์ Yeepay เรียบร้อยแล้ว",
   "createSuccess": "สร้างร้านค้าช่องทาง Yeepay สำเร็จแล้ว",
   "validation": {

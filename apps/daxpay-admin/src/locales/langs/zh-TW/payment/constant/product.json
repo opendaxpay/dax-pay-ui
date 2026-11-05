@@ -6,14 +6,10 @@
     "description": "產品介紹",
     "icon": "圖示",
     "remark": "備註",
-    "channelName": "通道名稱",
     "isv": "服務商",
     "terminal": "終端報備",
     "sandbox": "沙箱",
-    "apiCallMode": "API呼叫模式",
-    "payIdType": "支付標識型別",
-    "capabilities": "支付能力",
-    "features": "產品特性"
+    "capabilities": "支付能力"
   },
   "features": "產品特性",
   "detail": "產品詳情",

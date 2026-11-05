@@ -11,7 +11,6 @@
   "loginType": "登录方式",
   "loginLocation": "登录地点",
   "inputAccount": "请输入用户账号",
-  "selectStatus": "请选择登录状态",
   "detailTitle": "登录日志详情",
   "selectCleanDay": "清除多久前的日志",
   "cleanWarning": "警告",

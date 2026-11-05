@@ -55,14 +55,11 @@
     "relationOrderNo": "Channel Relation No.",
     "postedAmount": "Số đã ghi sổ(Nhân dân tệ)",
     "refundableBalance": "Có thể hoàn lại(Nhân dân tệ)",
-    "payBody": "Cơ quan thanh toán",
-    "payBodyType": "Loại nội dung thanh toán",
     "buyerId": "ID người mua",
     "openid": "ID mở",
     "tradeProduct": "Sản phẩm kênh",
     "tradeWay": "Cách giao dịch kênh",
     "bankType": "Loại thẻ ngân hàng",
-    "promotionType": "Loại khuyến mãi",
     "errorMsg": "Lỗi",
     "notifyUrl": "URL thông báo",
     "returnUrl": "URL trả về",
@@ -75,10 +72,8 @@
     "channelAppId": "Ứng dụng kênh",
     "clientIp": "IP khách hàng",
     "terminalNo": "Số thiết bị đầu cuối",
-    "containerId": "ID vùng chứa",
     "containerStatus": "Trạng thái vùng chứa",
     "source": "Nguồn",
-    "limitPay": "Giới hạn thanh toán",
     "mchNo": "Số thương gia",
     "appId": "Ứng Dụng Merchant",
     "createTime": "Tạo thời gian",
@@ -89,7 +84,6 @@
     "finishTime": "Thời gian kết thúc",
     "orderAmount": "Số tiền đặt hàng",
     "orderNo": "Platform Order No.",
-    "authCode": "Mã thanh toán",
     "merchant": "Thương nhân",
     "gatewayType": "Loại cổng",
     "storeNo": "Mã cửa hàng",
@@ -141,7 +135,6 @@
     "amountMin": "Số tiền tối thiểu",
     "amountMax": "Số tiền tối đa",
     "refundNo": "Nhập số hoàn tiền",
-    "bizRefundNo": "Nhập số tiền hoàn lại biz.",
     "orderNo": "Nhập số thứ tự ban đầu",
     "allocNo": "Nhập mã phân bổ",
     "bizAllocNo": "Nhập mã phân bổ merchant"
@@ -161,7 +154,6 @@
     "refundConfirmContent": "Sẽ hoàn lại {amount} từ đơn đặt hàng ban đầu, tiếp tục chứ?",
     "refundTradeAmountLabel": "Số tiền giao dịch",
     "refundableBalanceLabel": "Số tiền có thể hoàn lại",
-    "cents": "xu",
     "refundAmountLabel": "Số tiền hoàn lại(Nhân dân tệ)",
     "refundReasonLabel": "Lý do hoàn tiền",
     "refundAmountPlaceholder": "Nhập số tiền hoàn lại",
@@ -192,7 +184,6 @@
     "allocAmountLabel": "Số tiền phân chia (CNY)",
     "allocTotalLabel": "Tổng cộng",
     "allocTotalExceed": "Tổng số tiền phân chia không được vượt quá số tiền đơn hàng",
-    "allocReceiverRequired": "Phải thêm ít nhất một bên nhận phân chia",
     "allocValidateType": "Vui lòng chọn loại bên nhận",
     "allocValidateAccount": "Vui lòng nhập tài khoản bên nhận",
     "allocValidateAmount": "Số tiền phân chia phải không nhỏ hơn 0,01 CNY",
@@ -214,14 +205,6 @@
     "exportFailed": "Xuất thất bại. Vui lòng thử lại sau.",
     "orderDetail": "Chi tiết đơn hàng"
   },
-  "method": {
-    "jsapi": "JSAPI",
-    "qrcode": "Quét mã",
-    "h5": "H5",
-    "app": "APP",
-    "barcode": "Mã vạch",
-    "wap": "WAP"
-  },
   "tradeType": {
     "normal": "Normal Pay",
     "gateway": "Gateway Pay"
@@ -231,7 +214,6 @@
     "aggregate": "Aggregate"
   },
   "alloc": {
-    "title": "Đơn Phân Bổ",
     "detail": "Chi Tiết Đơn Phân Bổ",
     "statusLabel": "Trạng Thái Phân Bổ",
     "detailResultLabel": "Kết Quả Chi Tiết",

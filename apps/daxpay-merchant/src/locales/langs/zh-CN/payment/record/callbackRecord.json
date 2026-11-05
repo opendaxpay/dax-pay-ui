@@ -1,11 +1,9 @@
 {
-  "title": "回调记录",
   "tradeNo": "交易号",
   "outTradeNo": "通道交易号",
   "callbackType": "回调类型",
   "status": "处理状态",
   "errorMsg": "错误信息",
-  "notifyInfo": "通知报文",
   "createTime": "通知时间",
   "placeholderTradeNo": "请输入交易号",
   "placeholderOutTradeNo": "请输入通道交易号",

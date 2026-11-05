@@ -1,5 +1,4 @@
 {
-  "title": "EasyPay Refund Order",
   "detail": "EasyPay Refund Order Detail",
   "field": {
     "refundId": "Refund ID",
@@ -25,14 +24,8 @@
     "tradeNo": "Enter platform trade no."
   },
   "status": {
-    "0": "Processing/Failed",
-    "1": "Refund Success",
     "success": "Refund Success",
     "progress": "Processing/Failed"
-  },
-  "statusColor": {
-    "0": "orange",
-    "1": "green"
   },
   "action": {
     "sync": "Sync Status",
@@ -41,7 +34,6 @@
     "syncConfirmContent": "This will query the latest refund status from the payment channel. Continue?"
   },
   "section": {
-    "basic": "Refund Info",
     "time": "Time Info",
     "refund": "Refund Info",
     "app": "App & Protocol"

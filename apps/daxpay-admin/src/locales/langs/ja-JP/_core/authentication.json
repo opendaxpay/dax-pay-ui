@@ -1,7 +1,5 @@
 {
   "login": "ログイン",
-  "qrcodeLogin": "QRコードログイン",
-  "profile": "プロフィール",
   "pageTitle": "{name} 決済運用プラットフォーム",
   "pageDesc": "安全、安定、効率的な決済業務ソリューション",
   "oauthLoginSuccess": "ログイン成功",
@@ -14,8 +12,6 @@
   "oauthProcessingWith": "{platform} 認証が進行中です...",
   "oauthFailedWith": "{platform} 認証に失敗しました",
   "oauthLoginSuccessWith": "{platform} ログインに成功しました",
-  "oauthUnknownPlatform": "不明なプラットフォーム",
-  "passwordResetPending": "パスワードのリセットはまだ利用できません",
   "passwordExpiringSoon": "パスワードは {days} 日後に期限切れになります。早めに変更してください",
   "qrcodeRefreshPending": "QR コードの更新はまだ利用できません",
   "qrcodeLoadFailed": "QRコードの読み込みに失敗しました",

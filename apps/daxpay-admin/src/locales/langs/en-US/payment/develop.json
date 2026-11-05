@@ -42,7 +42,6 @@
     },
     "msg": {
       "genSuccess": "Sign generated successfully",
-      "verifyDone": "Verification completed",
       "verifyPass": "Verification passed",
       "verifyNotPass": "Verification not passed",
       "copySuccess": "Copied",
@@ -50,13 +49,7 @@
     }
   },
   "trade": {
-    "page": {
-      "title": "Payment Develop",
-      "tag": "Simulated Merchant API",
-      "warning": "This page only builds params and signs them. Submit simulates a merchant call to /unipay/pay (not an admin privilege path). Confirm params carefully."
-    },
     "card": {
-      "basic": "Basic Info",
       "param": "Payment Params",
       "order": "Order Info",
       "advanced": "Advanced Params",
@@ -73,7 +66,6 @@
       "mchNo": "Merchant",
       "appId": "Application",
       "channelMchNo": "Channel Merchant",
-      "product": "Payment Product",
       "method": "Payment Method",
       "capability": "Capability",
       "openId": "OpenID",
@@ -111,7 +103,6 @@
     },
     "btn": {
       "setPrivateKey": "Set Key",
-      "clearPrivateKey": "Clear Key",
       "genOrderNo": "Generate",
       "reset": "Reset",
       "submit": "Submit",
@@ -136,10 +127,6 @@
       "copyData": "Copy Pay Body",
       "copyFull": "Copy Full Response",
       "rawResponse": "Full DaxResult Response",
-      "empty": "No data",
-      "field": {
-        "orderNo": "System Order No."
-      },
       "panelTitle": "Debug Result",
       "pendingTag": "Pending",
       "successTag": "Payment Successful",
@@ -163,7 +150,6 @@
       "extraParam": "Extra params must be valid JSON"
     },
     "msg": {
-      "signSuccess": "Sign generated successfully",
       "paySuccess": "Payment request succeeded",
       "payFail": "Payment request failed",
       "inputPrivateKey": "Please set the merchant private key first",
@@ -203,7 +189,6 @@
       "title": "How to use",
       "desc": "Generate an auth link and scan with Alipay app. Results appear automatically (requires Alipay config in Third-party Platform Management, and payment gateway base URL in Platform Config).",
       "descWechatMp": "Generate an auth link and scan with WeChat to complete web authorization. Results appear automatically (requires WeChat Official Account config in Third-party Platform Management, and payment gateway base URL in Platform Config).",
-      "descWechatChannel": "Select merchant/channel merchant/capability, then generate an auth link and scan with WeChat. Used to verify WeChat Pay (direct/ISV) configuration; the payment product is auto-detected from the channel merchant.",
       "descWechatChannelDirect": "Select a WeChat app directly to generate the auth URL, for verifying that app's OAuth configuration.",
       "descDouyin": "Generate an auth link and scan with the Douyin app to complete silent authorization. Results appear automatically (requires Douyin H5 app config in Third-party Platform Management, and payment gateway base URL in Platform Config).",
       "descDouyinChannel": "Select a merchant and a Douyin web app to generate the auth link, then scan with the Douyin app to complete silent authorization. Used to verify the OAuth configuration of the Douyin Pay (direct/ISV) web app."
@@ -221,12 +206,8 @@
     },
     "form": {
       "mchNo": "Merchant",
-      "channelMchNo": "Channel Merchant",
-      "capability": "Pay Capability",
       "rule": {
         "mchNo": "Please select a merchant",
-        "channelMchNo": "Please select a channel merchant",
-        "capability": "Please select a pay capability",
         "wxApp": "Please select a WeChat app",
         "dyApp": "Please select a Douyin app"
       },
@@ -244,18 +225,9 @@
       "notExist": "Auth result not found or expired",
       "copySuccess": "Copied",
       "copyFail": "Copy failed"
-    },
-    "mode": {
-      "infer": "Infer by Channel Merchant",
-      "direct": "Select App Directly"
     }
   },
   "gateway": {
-    "page": {
-      "title": "Gateway Pay Debug",
-      "tag": "Simulate Merchant API",
-      "warning": "This page only assembles parameters and signs. On submit it simulates a merchant call to /unipay/gateway/pre-pay to generate a cashier/aggregate landing page (not an admin privileged channel). Please verify parameters."
-    },
     "card": {
       "order": "Order",
       "param": "Payment Params",
@@ -316,7 +288,6 @@
       "clearConfirmContent": "Are you sure to clear the merchant private key? You will need to re-enter it."
     },
     "result": {
-      "url": "Gateway Landing Page URL",
       "h5Url": "Gateway Landing Page URL",
       "miniUrl": "Mini-program Mapping URL",
       "copyUrl": "Copy URL",
@@ -365,7 +336,6 @@
       "extraParam": "Extra params must be valid JSON"
     },
     "msg": {
-      "signSuccess": "Sign generated",
       "signFail": "Sign generation failed, please retry",
       "prePaySuccess": "Pre-pay request succeeded",
       "prePayFail": "Pre-pay request failed",

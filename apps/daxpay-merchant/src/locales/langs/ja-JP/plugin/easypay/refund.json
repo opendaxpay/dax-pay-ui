@@ -1,5 +1,4 @@
 {
-  "title": "EasyPay返金注文",
   "detail": "EasyPay返金注文詳細",
   "field": {
     "refundId": "関連返金ID",
@@ -14,9 +13,7 @@
     "apiVersion": "APIバージョン",
     "addTime": "返金発起時間",
     "endTime": "返金完了時間",
-    "createTime": "作成時間",
-    "merchant": "マーチャント",
-    "appId": "アプリID"
+    "createTime": "作成時間"
   },
   "placeholder": {
     "refundNo": "プラットフォーム返金番号を入力",
@@ -42,8 +39,6 @@
   },
   "section": {
     "basic": "返金情報",
-    "time": "時間情報",
-    "refund": "返金情報",
-    "app": "アプリ・プロトコル"
+    "time": "時間情報"
   }
 }

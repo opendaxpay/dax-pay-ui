@@ -1,7 +1,4 @@
 {
-  "title": "Cấu hình Stripe",
-  "keyConfig": "Cấu hình khóa",
-  "enable": "Kích hoạt",
   "accountId": "ID tài khoản Stripe",
   "accountIdPlaceholder": "Nhập ID tài khoản Stripe (acct_xxx)",
   "secretKey": "Secret Key",

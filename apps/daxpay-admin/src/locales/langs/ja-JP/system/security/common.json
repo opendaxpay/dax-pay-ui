@@ -13,12 +13,9 @@
     "hour": "時間",
     "session": "セッション",
     "second": "秒",
-    "window": "窓",
-    "count": "カウント",
-    "score": "ポイント"
+    "count": "カウント"
   },
   "group": {
-    "access": "アクセスセキュリティ",
-    "openApi": "オープンAPIセキュリティ"
+    "access": "アクセスセキュリティ"
   }
 }

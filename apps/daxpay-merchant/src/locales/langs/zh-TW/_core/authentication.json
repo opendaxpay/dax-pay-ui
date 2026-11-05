@@ -1,7 +1,5 @@
 {
   "login": "登入",
-  "qrcodeLogin": "二維碼登入",
-  "profile": "個人中心",
   "pageTitle": "{name} 商戶服務平台",
   "pageDesc": "一站式收款、對帳與經營管理",
   "oauthLoginSuccess": "登入成功",
@@ -14,8 +12,6 @@
   "oauthProcessingWith": "{platform} 授權處理中...",
   "oauthFailedWith": "{platform} 授權登入失敗",
   "oauthLoginSuccessWith": "{platform} 登入成功",
-  "oauthUnknownPlatform": "未知平臺",
-  "passwordResetPending": "密碼重置功能待接入",
   "passwordExpiringSoon": "密碼將於 {days} 天後到期，請儘快修改",
   "qrcodeRefreshPending": "二維碼重新整理功能待接入",
   "qrcodeLoadFailed": "二維碼載入失敗",

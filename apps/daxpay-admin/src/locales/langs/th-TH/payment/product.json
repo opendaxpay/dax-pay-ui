@@ -1,30 +1,7 @@
 {
-  "field": {
-    "code": "รหัสสินค้า",
-    "name": "ชื่อสินค้า",
-    "channel": "ช่อง",
-    "description": "คำอธิบาย",
-    "icon": "ไอคอน",
-    "sortNo": "เรียงลำดับ",
-    "remark": "หมายเหตุ",
-    "channelName": "ชื่อช่อง",
-    "isv": "ไอเอสวี",
-    "terminal": "เทอร์มินัล",
-    "sandbox": "แซนด์บ็อกซ์",
-    "apiCallMode": "โหมดการเรียก API",
-    "payIdType": "ประเภทบัตรประจำตัวผู้ชำระเงิน",
-    "capabilities": "ความสามารถในการจ่าย",
-    "features": "คุณสมบัติผลิตภัณฑ์"
-  },
-  "features": "คุณสมบัติผลิตภัณฑ์",
-  "detail": "รายละเอียดสินค้า",
-  "editCapabilities": "กำหนดค่าความสามารถในการชำระเงิน",
-  "sandboxSupported": "รองรับ",
-  "sandboxNotSupported": "ไม่รองรับ",
   "enum": {
     "alipayIsv": "อาลีเพย์ (ISV)",
     "alipay": "อาลีเพย์ (โดยตรง)",
-    "wechat": "WeChat Pay (โดยตรง)",
     "wechatPay": "WeChat Pay (โดยตรง)",
     "wechatIsv": "วีแชทเพย์ (ISV)",
     "douyinPay": "Douyin Pay (โดยตรง)",
@@ -86,9 +63,5 @@
     "pingpong": "PingPong",
     "mockPay": "การชำระเงินจำลอง",
     "mockIsv": "การชำระเงินจำลอง (ผู้ให้บริการ)"
-  },
-  "placeholder": {
-    "name": "ป้อนชื่อผลิตภัณฑ์",
-    "channel": "เลือกช่อง"
   }
 }

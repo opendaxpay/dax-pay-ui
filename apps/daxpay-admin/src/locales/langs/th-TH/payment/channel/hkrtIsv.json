@@ -1,5 +1,4 @@
 {
-  "title": "การกำหนดค่า HKRT ISV",
   "groupConfig": "การกำหนดค่า",
   "configTitle": "การกำหนดค่าคีย์ HKRT ISV",
   "manageTitle": "การจัดการผู้ค้า HKRT",
@@ -13,7 +12,6 @@
   "accessIdPlaceholder": "กรุณากรอก ID สถาบันการเข้าถึง",
   "accessKey": "คีย์ลายเซ็น",
   "accessKeyPlaceholder": "กรุณากรอกรหัสลายเซ็น",
-  "groupMchConfig": "การกำหนดค่าผู้ขาย",
   "cardMchConfig": "การกำหนดค่าผู้ขาย",
   "cardMchConfigDesc": "กำหนดค่าหมายเลขเทอร์มินัล SAAS สำหรับผู้ค้าช่องทาง",
   "cardCapabilityBinding": "ผูกแอป WeChat",

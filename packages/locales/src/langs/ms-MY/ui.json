@@ -2,27 +2,8 @@
   "formRules": {
     "required": "Sila masukkan {0}",
     "selectRequired": "Sila pilih {0}",
-    "minLength": "{0} mestilah sekurang-kurangnya {1} aksara",
-    "maxLength": "{0} boleh mengandungi paling banyak {1} aksara",
-    "length": "{0} mestilah {1} aksara panjang",
-    "alreadyExists": "{0} `{1}` sudah wujud",
-    "startWith": "{0} mesti bermula dengan `{1}`",
-    "invalidURL": "Sila masukkan URL yang sah",
     "sizeLimit": "Saiz fail tidak boleh melebihi {0}MB",
     "previewWarning": "Tidak dapat membuka fail, tiada URL atau alamat pratonton tersedia"
-  },
-  "actionTitle": {
-    "edit": "Ubah suai {0}",
-    "create": "Buat {0}",
-    "delete": "Padamkan {0}",
-    "view": "Lihat {0}"
-  },
-  "actionMessage": {
-    "deleteConfirm": "Adakah anda pasti akan memadamkan {0}?",
-    "deleting": "Memadamkan {0} ...",
-    "deleteSuccess": "{0} berjaya dipadamkan",
-    "operationSuccess": "Operasi berjaya",
-    "operationFailed": "Operasi gagal"
   },
   "placeholder": {
     "input": "Sila masukkan",
@@ -58,7 +39,6 @@
     "title": "Pemotongan Imej",
     "titleTip": "Nisbah Tanaman {0}",
     "confirm": "tanaman",
-    "cancel": "Batalkan pemangkasan",
     "errorTip": "Ralat pemangkasan"
   },
   "fallback": {
@@ -68,7 +48,6 @@
     "forbiddenDesc": "Maaf, tetapi anda tiada kebenaran untuk mengakses halaman ini.",
     "internalError": "Aduh! Sesuatu yang tidak kena",
     "internalErrorDesc": "Maaf, tetapi pelayan mengalami ralat.",
-    "offline": "Halaman Luar Talian",
     "offlineError": "Aduh! Ralat Rangkaian",
     "offlineErrorDesc": "Maaf, tidak dapat menyambung ke Internet. Semak sambungan anda.",
     "comingSoon": "Akan Datang",
@@ -84,12 +63,10 @@
   },
   "widgets": {
     "document": "Dokumentasi",
-    "setting": "tetapan",
     "logoutTip": "Adakah anda mahu log keluar?",
     "viewAll": "Lihat Semua Mesej",
     "notifications": "Pemberitahuan",
     "markAllAsRead": "Jadikan Semua sebagai Dibaca",
-    "clearNotifications": "Jelas",
     "checkUpdatesTitle": "Versi Baharu Tersedia",
     "checkUpdatesDescription": "Klik untuk memuat semula dan mendapatkan versi terkini",
     "search": {
@@ -105,10 +82,8 @@
     "lockScreen": {
       "title": "Kunci Skrin",
       "screenButton": "Mengunci",
-      "password": "Kata laluan",
       "placeholder": "Sila masukkan kata laluan",
       "unlock": "Klik untuk membuka kunci",
-      "errorPasswordTip": "Ralat kata laluan, sila masukkan semula",
       "backToLogin": "Kembali ke log masuk",
       "entry": "Masukkan sistem",
       "greeting": {
@@ -122,8 +97,7 @@
       "guest": "tetamu"
     },
     "timezone": {
-      "setTimezone": "Tetapkan Zon Waktu",
-      "setSuccess": "Zon waktu berjaya ditetapkan"
+      "setTimezone": "Tetapkan Zon Waktu"
     }
   }
 }

@@ -1,6 +1,5 @@
 {
   "blacklist": {
-    "title": "บัญชีดำ",
     "add": "เพิ่มบัญชีดำ",
     "editTitle": "แก้ไขบัญชีดำ",
     "viewTitle": "ดูบัญชีดำ",
@@ -35,22 +34,12 @@
     }
   },
   "hit": {
-    "title": "การตรวจจับความเสี่ยง",
     "field": {
       "phase": "ช่วง",
       "hitType": "ประเภทการตรวจจับ",
       "hitValue": "ค่าที่ตรวจจับ",
       "mchNo": "รหัสร้านค้า",
-      "appId": "App ID",
       "tradeNo": "เลขธุรกรรม",
-      "orderNo": "เลขออเดอร์",
-      "bizOrderNo": "เลขออเดอร์ธุรกิจ",
-      "method": "วิธีชำระ",
-      "channel": "ช่องทาง",
-      "clientIp": "IP ลูกค้า",
-      "openid": "OpenId",
-      "buyerId": "BuyerId",
-      "scene": "ฉาก",
       "createTime": "สร้างเมื่อ",
       "merchant": "ร้านค้า",
       "clientCity": "เมือง IP"
@@ -58,13 +47,6 @@
     "phase": {
       "before_pay": "ก่อนชำระ",
       "after_pay": "หลังชำระ"
-    },
-    "scene": {
-      "api": "API",
-      "gateway": "Gateway",
-      "code": "คิวอาร์โค้ด",
-      "manual": "ด้วยตนเอง",
-      "unknown": "ไม่ทราบ"
     },
     "hitType": {
       "ip": "IP",

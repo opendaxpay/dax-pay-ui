@@ -18,9 +18,7 @@
     "sceneChannelMchCapabilityPairHint": "Chọn cả người bán kênh và khả năng hoặc để trống cả hai; lựa chọn một phần không được phép",
     "basicSaveConfirm": "Lưu theo thương hiệu Định tuyến mặc định? Điều này sẽ ghi đè kênh mặc định của người bán trên mỗi nhà cung cấp dịch vụ thanh toán.",
     "sceneRouteNotSelected": "Không được chọn",
-    "configTab": "Lộ trình",
     "method": "Phương thức thanh toán",
-    "missingAppContext": "Định tuyến kênh mở từ Quản lý ứng dụng",
     "providers": {
       "aggregate_pay": "Tổng lương",
       "wechat": "WeChat trả tiền",

@@ -1,5 +1,4 @@
 {
-  "title": "Konfigurasi VBill ISV",
   "groupConfig": "Konfigurasi",
   "configTitle": "Konfigurasi Kunci VBill ISV",
   "manageTitle": "Manajemen Pedagang VBill",
@@ -13,11 +12,6 @@
   "publicKeyTooltip": "Kunci publik Tianque RSA (X509 Base64), untuk verifikasi tanda tangan respons/panggilan balik",
   "privateKey": "Kunci Pribadi RSA Pedagang",
   "privateKeyTooltip": "Kunci pribadi Merchant RSA (PKCS8 Base64), penandatanganan SHA1withRSA",
-  "sandbox": "Bak pasir",
-  "groupMchConfig": "Konfigurasi Pedagang",
-  "cardMchConfig": "Konfigurasi Pedagang",
-  "cardMchConfigDesc": "Lihat nomor pedagang Tianque",
-  "mchConfigTitle": "Konfigurasi Pedagang",
   "vbillMchNo": "Pedagang Tianque No",
   "vbillMchNoPlaceholder": "Silakan masukkan No pedagang Tianque (mno)",
   "cardCapabilityBinding": "Ikatan Aplikasi WeChat",

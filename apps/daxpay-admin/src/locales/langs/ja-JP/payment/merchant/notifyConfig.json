@@ -6,7 +6,6 @@
     "notifyUrlTooltip": "イベント通知は HTTP POST 経由でこの URL にプッシュされます。http/https プロトコルに対応しています",
     "notifyUrlPlaceholder": "http(s)://あなたのコールバック受信者のURL",
     "notifyWay": "通知方法",
-    "notifyWayHint": "通知の受信方法を選択(HTTPコールバックまたはMQプッシュ)",
     "subscribedEvents": "サブスクライブされたイベント",
     "subscribedEventsTooltip": "受信したいビジネス イベントの種類を選択してください",
     "eventGroupPay": "支払いイベント",

@@ -6,7 +6,6 @@
     "status": "狀態",
     "subjectType": "主體型別",
     "createTime": "建立時間",
-    "id": "主鍵",
     "adminName": "名稱"
   },
   "status": {
@@ -19,16 +18,12 @@
     "enterprise": "企業"
   },
   "action": {
-    "confirmEnableContent": "確定要啟用該商戶嗎？",
-    "confirmDisableContent": "確定要停用該商戶嗎？停用後商戶賬號將無法登入。",
     "delete": "刪除商戶",
     "deleteDeregisterDesc": "確定要刪除「{name}」嗎？該操作不可恢復：將同時刪除該商戶名下全部用戶賬號並清除敏感信息，請謹慎操作。"
   },
   "validation": {
     "pleaseInputMchName": "請輸入商戶名稱",
     "pleaseInputMchShortName": "請輸入商戶簡稱",
-    "pleaseInputAccount": "請輸入管理員賬號",
-    "pleaseConfirmPassword": "請確認密碼",
     "pleaseSelectSubjectType": "請選擇主體型別",
     "pleaseSelectStatus": "請選擇狀態",
     "pleaseInputAdminName": "請輸入名稱"

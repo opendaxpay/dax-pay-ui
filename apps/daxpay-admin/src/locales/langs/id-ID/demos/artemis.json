@@ -16,9 +16,7 @@
     }
   },
   "form": {
-    "content": "Isi Pesan",
     "contentPlaceholder": "Silakan masukkan isi pesan",
-    "delaySeconds": "Detik Tunda",
     "send": "Mengirim",
     "broadcast": "Siaran"
   },

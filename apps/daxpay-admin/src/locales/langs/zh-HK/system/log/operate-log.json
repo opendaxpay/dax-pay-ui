@@ -17,7 +17,6 @@
   "os": "操作系統",
   "inputTitle": "請輸入操作模塊",
   "inputAccount": "請輸入操作賬號",
-  "selectStatus": "請選擇操作狀態",
   "detailTitle": "操作日誌詳情",
   "selectCleanDay": "清除多久前的日誌",
   "cleanWarning": "警告",

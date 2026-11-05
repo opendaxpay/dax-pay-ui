@@ -1,35 +1,5 @@
 {
-  "wechatIsv": {
-    "mchId": {
-      "title": "サービスプロバイダー加盟店ID",
-      "description": "WeChatサービスプロバイダー加盟店ID（sp_mchid）を設定"
-    },
-    "apiKeyV3": {
-      "title": "API V3 キー",
-      "description": "WeChat Pay API V3キーを設定"
-    },
-    "cert": {
-      "title": "API 証明書",
-      "description": "加盟店秘密鍵（apiclient_key）をアップロードし、証明書シリアル番号を入力"
-    },
-    "defaultApp": {
-      "title": "デフォルト決済アプリ",
-      "description": "本商品のデフォルトWeChatアプリを指定（チャネル加盟店の個別設定がない場合に使用）"
-    }
-  },
-  "alipayIsv": {
-    "app": {
-      "title": "サービスプロバイダーアプリ",
-      "description": "Alipayサービスプロバイダーアプリを少なくとも1つ設定"
-    },
-    "appKey": {
-      "title": "アプリキー設定",
-      "description": "少なくとも1つのアプリでキー設定が完了していること(公開鍵モードまたは証明書モード)"
-    }
-  },
   "summary": {
-    "title": "設定進捗",
-    "completed": "{configured}/{total} 件完了",
     "allDone": "すべての設定が完了しました",
     "pending": "設定が未完了です"
   }

@@ -14,7 +14,6 @@
     "workbenchHeader": "工作臺",
     "quickEntry": "快捷入口",
     "tradeOverview": "交易概覽",
-    "payOrder": "支付訂單",
     "payTrade": "資金交易",
     "tradeTrend": "交易趨勢",
     "providerDist": "支付渠道分佈",
@@ -36,25 +35,10 @@
   "quickEntry": {
     "merchant": "商戶資料",
     "app": "應用管理",
-    "channelMerchant": "通道商戶",
     "notify": "通知中心",
-    "user": "使用者管理",
-    "dict": "字典管理",
-    "loginLog": "登入日誌",
-    "security": "安全管理",
-    "payOrder": "支付訂單",
-    "refundOrder": "退款訂單",
     "payTrade": "支付交易",
-    "role": "角色管理",
-    "menu": "選單管理",
-    "operateLog": "操作日誌",
-    "notice": "通知公告",
-    "productConfig": "支付產品配置",
-    "platformConfig": "平臺配置",
-    "onlineUser": "線上使用者",
     "analytics": "分析頁",
     "developTrade": "支付除錯",
-    "socialLogin": "三方平臺登入",
     "empty": "暫無可訪問的快捷入口",
     "edit": "編輯",
     "editTitle": "編輯快捷入口",
@@ -73,8 +57,6 @@
   },
   "configAlert": {
     "bannerTitle": "您有 {n} 項配置待完成",
-    "viewDetail": "查看詳情",
-    "allComplete": "配置已完善"
-  },
-  "scaffoldTitle": "工作台"
+    "viewDetail": "查看詳情"
+  }
 }

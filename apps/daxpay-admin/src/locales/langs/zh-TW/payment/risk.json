@@ -1,6 +1,5 @@
 {
   "blacklist": {
-    "title": "黑名单管理",
     "add": "新增黑名单",
     "editTitle": "编辑黑名单",
     "viewTitle": "查看黑名单",
@@ -35,22 +34,12 @@
     }
   },
   "hit": {
-    "title": "风险命中记录",
     "field": {
       "phase": "阶段",
       "hitType": "命中类型",
       "hitValue": "命中值",
       "mchNo": "商户号",
-      "appId": "应用号",
       "tradeNo": "交易号",
-      "orderNo": "订单号",
-      "bizOrderNo": "业务单号",
-      "method": "支付方式",
-      "channel": "通道",
-      "clientIp": "客户端IP",
-      "openid": "OpenId",
-      "buyerId": "BuyerId",
-      "scene": "来源场景",
       "createTime": "创建时间",
       "merchant": "商戶",
       "clientCity": "IP城市"
@@ -58,13 +47,6 @@
     "phase": {
       "before_pay": "事前拦截",
       "after_pay": "事后命中"
-    },
-    "scene": {
-      "api": "API",
-      "gateway": "网关",
-      "code": "码牌",
-      "manual": "手工",
-      "unknown": "未知"
     },
     "hitType": {
       "ip": "IP",

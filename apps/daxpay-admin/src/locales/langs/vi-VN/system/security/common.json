@@ -13,12 +13,9 @@
     "hour": "giờ",
     "session": "phiên",
     "second": "giây",
-    "window": "các cửa sổ",
-    "count": "đếm",
-    "score": "điểm"
+    "count": "đếm"
   },
   "group": {
-    "access": "Bảo mật truy cập",
-    "openApi": "Bảo mật API mở"
+    "access": "Bảo mật truy cập"
   }
 }

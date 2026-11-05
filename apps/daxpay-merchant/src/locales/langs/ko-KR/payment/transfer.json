@@ -51,10 +51,8 @@
     "advanced": "고급 옵션"
   },
   "action": {
-    "create": "송금",
     "sync": "동기화",
     "close": "닫기",
-    "retry": "재시도",
     "reset": "재설정"
   },
   "createTitle": "송금 발신",
@@ -69,24 +67,19 @@
   "closeSuccess": "송금이 닫혔습니다",
   "detail": "송금 상세",
   "placeholder": {
-    "bizTransferNo": "상점 측에서 고유, 멱등용",
     "openid": "수취인 위챗 openid",
     "payeeNameTip": "0.3원 미만 입력 불가, 2000원 이상 필수",
     "notifyUrl": "플랫폼→상점 비동기 알림 URL",
-    "targetMch": "대상 가맹점을 선택해 주세요",
     "channelMch": "채널 가맹점을 선택해 주세요",
     "douyinOpenid": "수취인 더우인 openid",
     "payeeNameTipDouyin": "2000위안 이상 필수",
     "payeeUserId": "수취인 Alipay 사용자 ID(2088로 시작)",
-    "payeeOpenId": "수취인 Alipay OpenID",
     "payeeLoginName": "수취인 Alipay 로그인 계정(이메일/전화번호)",
     "bizTransferNoAuto": "비우면 자동 생성",
-    "reportInfoContent": "비워두면 기본값 - 사용",
     "payeePhone": "수취인 더우인 전화번호(더우인페이 실명과 일치해야 함)",
     "payeeNameTipAlipayUserId": "선택 사항입니다. 입력하면 수취인 계정과 이름 일치를 검증합니다",
     "payeeNameTipAlipayLoginName": "로그인 ID 수취 시 필수. 이름과 계정 일치를 검증합니다"
   },
-  "targetMch": "대상 가맹점",
   "channelMch": "채널 가맹점",
   "amountUnit": "위안",
   "payeeTypeUserId": "사용자 ID",
@@ -107,7 +100,6 @@
     "reportInfoRequired": "이체 시나리오 보고 항목을 모두 입력해 주세요"
   },
   "confirmUrlCopied": "링크 복사됨",
-  "confirmUrlCopyFailed": "복사 실패",
   "confirmUrlExpireTip": "링크는 24시간 유효합니다. 빨리 보내주세요",
   "confirmUrlTip": "확인 링크를 수취인에게 보내주세요. WeChat에서 열어야 합니다",
   "payeeTypePhone": "전화번호",

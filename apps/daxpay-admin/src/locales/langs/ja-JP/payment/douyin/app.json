@@ -1,5 +1,4 @@
 {
-  "title": "決済アプリ(Douyin)",
   "tabPlatform": "プラットフォームアプリ",
   "tabMerchant": "加盟店アプリ",
   "platformSubtitle": "プラットフォーム / ISV 識別子（チャネル間で共有）",
@@ -28,18 +27,13 @@
   "appSecretTooltipMiniProgram": "ミニプログラム AppSecret（code2session）",
   "appSecretTooltipMobileApp": "モバイルアプリ AppSecret（OAuth）",
   "appSecretTooltipWebApp": "ウェブアプリ AppSecret（OAuth OpenId）",
-  "capabilityBtn": "能力バインド",
-  "capabilityTitle": "能力ごとのアプリ設定",
   "capabilitySelectPlaceholder": "アプリを選択",
   "capabilityNoApp": "アプリがありません。先に作成してください。",
   "capabilitySaveSuccess": "保存しました",
   "selectMerchant": "先に加盟店を選択",
   "selectMerchantPlaceholder": "加盟店を選択",
   "filterPlaceholder": "名前または AppId で絞り込み",
-  "scopePlatform": "プラットフォームアプリ",
-  "scopeMerchant": "加盟店アプリ",
   "channelCapabilityTitle": "支払いアプリ設定",
-  "channelCapabilityDesc": "各能力に加盟店またはプラットフォームアプリをバインド。空欄はフォールバック。",
   "validation": {
     "appSecret": "AppSecret を入力"
   },
@@ -50,6 +44,5 @@
   "appTypeCapabilityCleared": "決済方式と一致しないアプリ選択を解除しました",
   "channelCapabilityDescDirect": "各決済能力に加盟店 Douyin アプリを指定。",
   "channelCapabilityDescIsv": "加盟店アプリかサービス事業者既定を選択。既定は製品レベルの既定決済アプリにフォールバック。",
-  "capabilityIspDefault": "サービス事業者既定",
-  "capabilityIspNotConfigured": "未設定"
+  "capabilityIspDefault": "サービス事業者既定"
 }

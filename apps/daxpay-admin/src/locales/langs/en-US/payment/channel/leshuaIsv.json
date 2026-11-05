@@ -1,10 +1,8 @@
 {
-  "title": "Leshua ISV Configuration",
   "groupConfig": "Configuration Management",
   "configTitle": "Leshua ISV Key Configuration",
   "manageTitle": "Leshua Merchant Management",
   "keyConfig": "Key Configuration",
-  "enable": "Enable",
   "lsMchNo": "Leshua Merchant ID",
   "lsMchNoPlaceholder": "Enter Leshua merchant ID (merchant_id)",
   "tradeKey": "Trade Key",
@@ -16,7 +14,6 @@
   "notifyKeyKeepPlaceholder": "Configured. Leave blank to keep the existing key",
   "notifyKeyTooltip": "Leshua notify verification key; used to verify async callback notifications",
   "signType": "Sign Type",
-  "signTypePlaceholder": "Select sign type",
   "lsIsvNo": "Leshua ISV No",
   "lsIsvNoPlaceholder": "Enter Leshua ISV number",
   "lsIsvNoTooltip": "The ISV number assigned by Leshua; required for onboarding and other API scenarios",
@@ -29,9 +26,6 @@
     "notifyKey": "Please enter notify key",
     "signType": "Please select sign type"
   },
-  "groupMchConfig": "Merchant Configuration",
-  "cardMchConfig": "Merchant Configuration",
-  "cardMchConfigDesc": "Configure channel merchant Leshua merchant ID",
   "cardCapabilityBinding": "Payment App Setup",
   "cardCapabilityBindingDesc": "Decide which WeChat app each payment capability uses to initiate payment"
 }

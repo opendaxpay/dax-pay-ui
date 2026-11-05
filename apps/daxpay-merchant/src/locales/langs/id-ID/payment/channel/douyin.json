@@ -1,14 +1,6 @@
 {
   "douyinMchId": "ID Pedagang Douyin",
-  "douyinMchIdPlaceholder": "Masukkan ID pedagang Douyin Pay",
-  "dyAppId": "ID Aplikasi Douyin",
-  "dyAppIdPlaceholder": "Masukkan ID aplikasi Douyin",
-  "appSecret": "Rahasia Aplikasi",
-  "appSecretPlaceholder": "Masukkan rahasia aplikasi Douyin",
   "validation": {
-    "douyinMchIdRequired": "ID pedagang Douyin diperlukan",
-    "dyAppIdRequired": "ID aplikasi Douyin diperlukan",
-    "appSecretRequired": "Rahasia aplikasi diperlukan",
     "merchantPrivateKeyRequired": "Kunci pribadi pedagang diperlukan",
     "merchantSerialNumberRequired": "Nomor seri sertifikat pedagang diperlukan",
     "encryptKeyRequired": "Kunci enkripsi diperlukan"

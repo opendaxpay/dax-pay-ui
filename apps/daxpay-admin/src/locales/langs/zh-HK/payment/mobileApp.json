@@ -24,13 +24,9 @@
     "ios": "iOS APP"
   },
   "fields": {
-    "appId": "AppId",
-    "appIdPlaceholder": "請輸入 AppId",
     "appIdRequired": "請輸入 AppId",
     "wxAppId": "小程序 AppId",
     "wxAppIdPlaceholder": "請輸入微信小程序 AppId",
-    "appSecret": "AppSecret",
-    "appSecretPlaceholder": "請輸入 AppSecret",
     "appSecretRequired": "請輸入 AppSecret",
     "wxAppSecret": "小程序 AppSecret",
     "wxAppSecretPlaceholder": "請輸入微信小程序 AppSecret",
@@ -63,19 +59,8 @@
     "dyAppSecretPlaceholder": "請輸入抖音小程序 AppSecret"
   },
   "detail": {
-    "back": "返回",
-    "appConfig": "平台密鑰配置",
-    "appConfigPlaceholder": "請輸入 JSON 格式的平台密鑰配置",
-    "notifyConfig": "消息通知配置",
-    "notifyConfigPlaceholder": "請輸入 JSON 格式的消息通知配置",
-    "bindingEnabled": "啓用第三方賬號用户綁定",
-    "enabled": "是否啓用",
-    "remark": "備註",
-    "remarkPlaceholder": "請輸入備註",
-    "save": "保存",
     "saveSuccess": "保存成功",
     "notSupportedAppType": "不支持的端類型",
-    "emptyPlatformConfig": "暫無平台配置，填寫後保存即可創建",
     "platformComingSoon": "該平台配置暫未開放，後續 APP 完善時再處理",
     "cashierLimitTitle": "平台唯一收銀台小程序",
     "cashierLimitDesc": "全平台共用一套微信/支付寶收銀台小程序憑證。支付時 openId 與 channelAppId 須同源；平台小程序 AppId 需在所用支付通道側綁定或報備為收款 AppId（官方服務商常見為服務商小程序，第三方通道一般為 sub_appid）。並非所有通道開箱即用。"

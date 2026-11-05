@@ -24,13 +24,9 @@
     "ios": "Ứng dụng iOS"
   },
   "fields": {
-    "appId": "Id ứng dụng",
-    "appIdPlaceholder": "Nhập ID ứng dụng",
     "appIdRequired": "Vui lòng nhập AppId",
     "wxAppId": "Id ứng dụng chương trình nhỏ",
     "wxAppIdPlaceholder": "Nhập AppId của chương trình WeChat Mini",
-    "appSecret": "Ứng dụng bí mật",
-    "appSecretPlaceholder": "Nhập bí mật ứng dụng",
     "appSecretRequired": "Vui lòng nhập AppSecret",
     "wxAppSecret": "Chương trình nhỏ AppSecret",
     "wxAppSecretPlaceholder": "Nhập ứng dụng WeChat Mini Program AppSecret",
@@ -63,19 +59,8 @@
     "dyAppSecretPlaceholder": "Nhập Douyin Mini Program AppSecret"
   },
   "detail": {
-    "back": "Mặt sau",
-    "appConfig": "Cấu hình khóa nền tảng",
-    "appConfigPlaceholder": "Nhập cấu hình khóa nền tảng ở định dạng JSON",
-    "notifyConfig": "Cấu hình thông báo",
-    "notifyConfigPlaceholder": "Nhập cấu hình thông báo ở định dạng JSON",
-    "bindingEnabled": "Kích hoạt tính năng ràng buộc tài khoản của bên thứ ba",
-    "enabled": "Đã bật",
-    "remark": "Nhận xét",
-    "remarkPlaceholder": "Nhập nhận xét",
-    "save": "Cứu",
     "saveSuccess": "Đã lưu thành công",
     "notSupportedAppType": "Loại ứng dụng không được hỗ trợ",
-    "emptyPlatformConfig": "Chưa có cấu hình nền tảng nào, hãy điền và lưu để tạo",
     "platformComingSoon": "Nền tảng này chưa có sẵn; sẽ được xử lý khi APP sẵn sàng",
     "cashierLimitTitle": "Chương trình thu ngân mini nền tảng đơn",
     "cashierLimitDesc": "Toàn bộ nền tảng chia sẻ một chương trình nhỏ thu ngân WeChat và một chương trình thu ngân Alipay. openId và channelAppId phải sử dụng cùng một AppId tại thời điểm trả lương. Đăng ký hoặc liên kết AppId này với mỗi kênh thanh toán dưới dạng AppId trả phí (thường là chương trình nhỏ của nhà cung cấp dịch vụ cho ISV WeChat chính thức hoặc sub_appid cho các kênh của bên thứ ba). Không phải mọi kênh đều hoạt động tốt."

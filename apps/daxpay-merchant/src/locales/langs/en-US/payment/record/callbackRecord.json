@@ -1,11 +1,9 @@
 {
-  "title": "Callback Records",
   "tradeNo": "Trade No.",
   "outTradeNo": "Channel Trade No.",
   "callbackType": "Callback Type",
   "status": "Status",
   "errorMsg": "Error",
-  "notifyInfo": "Notify Payload",
   "createTime": "Notify Time",
   "placeholderTradeNo": "Enter trade no.",
   "placeholderOutTradeNo": "Enter channel trade no.",

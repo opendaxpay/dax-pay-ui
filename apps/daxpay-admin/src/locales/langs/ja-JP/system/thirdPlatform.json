@@ -11,8 +11,6 @@
     "tabTitle": "Alipay アプリ構成",
     "tabDescription": "認証ログインおよび支払いチャネル認証用の Alipay OAuth 認証情報",
     "headerDescription": "Alipay OAuth資格情報。ログイン認可と支払いチャネル認証に使用します。自社利用型のウェブアプリケーションを使用してください",
-    "title": "Alipay アプリの認証構成",
-    "description": "ユーザー識別子 (userId) と支払いチャネル認証を取得するための認証ログイン用の Alipay OAuth 資格情報 (appId/秘密キー/証明書) を管理します。",
     "usageTip": "この構成は、次の両方に役立ちます。 1) サードパーティ ログインでの Alipay 認証ログイン。 2) 支払いシナリオでのチャネル認証 (支払い用のユーザー ID を取得)。",
     "confirmSaveContent": "Alipay アプリの設定を保存してもよろしいですか?",
     "section": {
@@ -54,8 +52,6 @@
   "wechatMp": {
     "tabTitle": "WeChat公式アカウントの設定",
     "tabDescription": "ログインおよびテンプレート通知用の WeChat MP 認証情報",
-    "title": "WeChat公式アカウントの認証構成",
-    "description": "H5 OAuth openId および通知センター テンプレート メッセージの WeChat MP 資格情報 (appId/appSecret) を管理します。",
     "usageTip": "この構成は次の機能を果たします。 1) WeChat MP H5 OAuth ログイン。 2) 通知センターのテンプレート メッセージの送信。",
     "confirmSaveContent": "WeChat 公式アカウントの設定を保存してもよろしいですか?",
     "section": {
@@ -75,8 +71,6 @@
   "douyinH5": {
     "tabTitle": "Douyin H5 アプリ",
     "tabDescription": "H5 認証用の Douyin オープン プラットフォーム H5 認証情報",
-    "title": "Douyin H5 アプリ認証構成",
-    "description": "H5 認証シナリオの Douyin オープン プラットフォーム H5 アプリの資格情報 (クライアント キー / クライアント シークレット) を管理します。",
     "usageTip": "この設定は、サードパーティのログイン設定の Douyin ログインとは独立しています。 Open Platform H5 クライアント キー/クライアント シークレットのみを管理します。",
     "confirmSaveContent": "Douyin H5 アプリの設定を保存してもよろしいですか?",
     "section": {
@@ -96,8 +90,6 @@
   "autoLogin": {
     "tabTitle": "アプリ内自動ログイン",
     "tabDescription": "Feishu/WeCom/DingTalk 内で自動 OAuth ログイン",
-    "title": "アプリ内自動ログイン",
-    "description": "管理/加盟店ごとに設定：Feishu/WeCom/DingTalk 内ブラウザで開いたとき、UA で選択済みプラットフォームの1つに自動マッチして認可します。",
     "usageTip": "Feishu・企業WeChat・DingTalkを複数選択可。先に「外部ログイン設定」で有効化してください。DingTalkは初回認可のみ確認があり、以降は確認不要です。WeChatはアプリ内自動ログイン対象外です。未連携はパスワードログインに静かに戻ります。",
     "confirmSaveContent": "アプリ内自動ログイン設定を保存しますか？",
     "section": {

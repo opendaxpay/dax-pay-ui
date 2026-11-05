@@ -1,5 +1,4 @@
 {
-  "title": "海科融通服务商配置",
   "groupConfig": "配置管理",
   "configTitle": "海科融通服务商密钥配置",
   "manageTitle": "海科融通商户管理",
@@ -13,7 +12,6 @@
   "accessIdPlaceholder": "请输入接入机构标识",
   "accessKey": "签名密钥",
   "accessKeyPlaceholder": "请输入签名密钥",
-  "groupMchConfig": "商户配置",
   "cardMchConfig": "商户配置",
   "cardMchConfigDesc": "配置通道商户SAAS终端号",
   "cardCapabilityBinding": "微信应用绑定",

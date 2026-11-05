@@ -1,5 +1,4 @@
 {
-  "title": "Pesanan Pengembalian Dana EasyPay",
   "detail": "Detail Pesanan Pengembalian Dana EasyPay",
   "field": {
     "refundId": "ID Pengembalian Dana Terkait",
@@ -14,9 +13,7 @@
     "apiVersion": "Versi API",
     "addTime": "Waktu Pengajuan Pengembalian Dana",
     "endTime": "Waktu Penyelesaian Pengembalian Dana",
-    "createTime": "Waktu Dibuat",
-    "merchant": "Merchant",
-    "appId": "ID Aplikasi"
+    "createTime": "Waktu Dibuat"
   },
   "placeholder": {
     "refundNo": "Masukkan nomor pengembalian dana platform",
@@ -42,8 +39,6 @@
   },
   "section": {
     "basic": "Informasi Pengembalian Dana",
-    "time": "Informasi Waktu",
-    "refund": "Informasi Pengembalian Dana",
-    "app": "Aplikasi & Protokol"
+    "time": "Informasi Waktu"
   }
 }

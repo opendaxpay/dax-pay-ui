@@ -55,14 +55,11 @@
     "relationOrderNo": "Channel Relation No.",
     "postedAmount": "計上金額(元)",
     "refundableBalance": "返金可能(元)",
-    "payBody": "本体を支払う",
-    "payBodyType": "給与体型",
     "buyerId": "購入者ID",
     "openid": "OpenID",
     "tradeProduct": "チャネル製品",
     "tradeWay": "チャネルトレードウェイ",
     "bankType": "銀行カードの種類",
-    "promotionType": "プロモーションの種類",
     "errorMsg": "エラー",
     "notifyUrl": "通知URL",
     "returnUrl": "戻り先URL",
@@ -75,11 +72,8 @@
     "channelAppId": "チャネルアプリ",
     "clientIp": "クライアントIP",
     "terminalNo": "端子番号",
-    "containerId": "コンテナID",
     "containerStatus": "コンテナのステータス",
     "source": "ソース",
-    "limitPay": "限度額支払い",
-    "mchNo": "販売者番号",
     "appId": "マーチャントアプリ",
     "createTime": "時間を作る",
     "refundNo": "返金番号",
@@ -89,8 +83,6 @@
     "finishTime": "終了時間",
     "orderAmount": "注文金額",
     "orderNo": "Platform Order No.",
-    "authCode": "支払いコード",
-    "merchant": "加盟店",
     "storeNo": "ストア番号",
     "gatewayType": "ゲートウェイ種別",
     "allocNo": "精算番号",
@@ -141,7 +133,6 @@
     "amountMin": "最小金額",
     "amountMax": "最大金額",
     "refundNo": "返金番号を入力してください。",
-    "bizRefundNo": "ビジネス返金番号を入力してください。",
     "orderNo": "元の注文番号を入力してください。",
     "allocNo": "精算番号を入力",
     "bizAllocNo": "マーチャント精算番号を入力"
@@ -161,7 +152,6 @@
     "refundConfirmContent": "元の注文から {amount} を返金しますか?続行しますか?",
     "refundTradeAmountLabel": "取引金額",
     "refundableBalanceLabel": "返還可能金額",
-    "cents": "セント",
     "refundAmountLabel": "返金金額(元)",
     "refundReasonLabel": "返金理由",
     "refundAmountPlaceholder": "返金額を入力してください",
@@ -213,14 +203,6 @@
     "export": "エクスポート",
     "exportFailed": "エクスポートに失敗しました。しばらくしてから再試行してください"
   },
-  "method": {
-    "jsapi": "JSAPI",
-    "qrcode": "QRコード",
-    "h5": "H5",
-    "app": "APP",
-    "barcode": "バーコード",
-    "wap": "WAP"
-  },
   "tradeType": {
     "normal": "通常支払い",
     "gateway": "ゲートウェイ"
@@ -230,7 +212,6 @@
     "aggregate": "Aggregate"
   },
   "alloc": {
-    "title": "精算注文",
     "detail": "精算注文詳細",
     "statusLabel": "精算状態",
     "detailResultLabel": "明細結果",

@@ -16,9 +16,7 @@
     }
   },
   "form": {
-    "content": "메시지 내용",
     "contentPlaceholder": "메시지 내용을 입력해주세요",
-    "delaySeconds": "지연 초",
     "send": "보내다",
     "broadcast": "방송"
   },

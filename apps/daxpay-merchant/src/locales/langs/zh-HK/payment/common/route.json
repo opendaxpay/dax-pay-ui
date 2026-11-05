@@ -1,8 +1,4 @@
 {
   "missingAppContext": "請從應用管理進入通道路由配置",
-  "productDetail": {
-    "notSupported": "該產品類型暫不支持詳情配置",
-    "notSupportedDesc": "產品「{product}」的詳情配置功能尚未實現"
-  },
   "missingStoreContext": "缺少門店參數，請從門店管理進入"
 }

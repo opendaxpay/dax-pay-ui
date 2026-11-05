@@ -1,5 +1,4 @@
 {
-  "title": "Pengurusan Kod QR",
   "field": {
     "code": "Kod",
     "name": "Nama",
@@ -17,7 +16,6 @@
     "programType": "Jenis kod",
     "storeNo": "No. Kedai",
     "store": "Kedai",
-    "storeName": "Nama Kedai",
     "allocation": "Peruntukan"
   },
   "status": {
@@ -30,7 +28,6 @@
   },
   "defaultApp": "Aplikasi lalai",
   "unbound": "Tidak terikat",
-  "mchNoTooltip": "No. Pedagang: {mchNo}",
   "batchCreate": "Buat Kelompok",
   "bindMerchant": "Ikatan Saudagar",
   "unbindMerchant": "Lepaskan Peniaga",
@@ -54,30 +51,17 @@
   "confirmEnable": "Adakah anda pasti mendayakan papan kod QR ini?",
   "confirmDisable": "Adakah anda pasti untuk melumpuhkan papan kod QR ini? Pembayaran melalui imbasan tidak akan tersedia.",
   "confirmUnbind": "Tanggalkan ikatan papan yang dipilih daripada pedagang? Mereka akan kembali ke inventori kosong.",
-  "viewCode": "Lihat Kod",
   "qrCodeTitle": "Kod QR",
   "qrCodeTip": "Imbas untuk masuk ke halaman pembayaran",
   "copyLink": "Salin Pautan",
-  "download": "Muat turun Kod QR",
   "amountLabel": "Jumlah",
   "programType": {
     "h5": "H5",
     "mini_app": "Program mini"
   },
   "validateProgramType": "Sila pilih jenis kod",
-  "bindStore": "Ikat Kedai",
-  "unbindStore": "Nyahikat Kedai",
-  "confirmUnbindStore": "Nyahikat kedai dari papan terpilih? Selepas itu tidak lagi dikaitkan dengan kedai.",
   "pleaseSelectStore": "Sila pilih kedai",
-  "validateStoreNo": "Sila pilih kedai",
-  "storeBindNeedSameMch": "Apabila mengikat kedai secara kelompok, pilih papan di bawah peniaga yang sama",
-  "storeBindNeedMerchant": "Ikat peniaga dahulu sebelum mengikat kedai",
   "batchActions": "Tindakan Pukal",
-  "bindApp": "Ikat Aplikasi",
-  "unbindApp": "Nyahikat Aplikasi",
-  "confirmUnbindApp": "Nyahikat aplikasi dari papan terpilih? Bayaran akan guna aplikasi lalai peniaga.",
-  "validateAppId": "Sila pilih aplikasi",
-  "defaultStoreHint": "Kedai lalai (jika dikonfigurasi)",
   "allocationTip": "Apabila diaktifkan, pembayaran kod akan meminta saluran membekukan dana untuk peruntukan",
   "allocationOn": "Peruntukan",
   "allocWarningTitle": "Amaran Keupayaan Peruntukan",

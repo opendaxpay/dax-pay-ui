@@ -51,10 +51,8 @@
     "advanced": "Tùy chọn Nâng cao"
   },
   "action": {
-    "create": "Chuyển khoản",
     "sync": "Đồng bộ",
     "close": "Đóng",
-    "retry": "Thử lại",
     "reset": "Đặt Lại"
   },
   "createTitle": "Tạo chuyển khoản",
@@ -69,24 +67,19 @@
   "closeSuccess": "Đã đóng chuyển khoản",
   "detail": "Chi tiết chuyển khoản",
   "placeholder": {
-    "bizTransferNo": "Duy nhất mỗi thương gia, dùng cho idempotency",
     "openid": "OpenID WeChat người nhận",
     "payeeNameTip": "Không được dưới 0.3 CNY, bắt buộc từ 2000 CNY",
     "notifyUrl": "URL thông báo bất đồng bộ nền tảng→thương gia",
-    "targetMch": "Vui lòng chọn đối tác nhận",
     "channelMch": "Vui lòng chọn đối tác kênh",
     "douyinOpenid": "openid Douyin người nhận",
     "payeeNameTipDouyin": "Bắt buộc từ 2000 CNY trở lên",
     "payeeUserId": "ID người dùng Alipay người nhận (bắt đầu 2088)",
-    "payeeOpenId": "OpenID Alipay người nhận",
     "payeeLoginName": "Tên đăng nhập Alipay người nhận (email/SĐT)",
     "bizTransferNoAuto": "Để trống để tự tạo",
-    "reportInfoContent": "Để trống dùng mặc định -",
     "payeePhone": "Số điện thoại Douyin người nhận (phải khớp định danh Douyin Pay)",
     "payeeNameTipAlipayUserId": "Không bắt buộc; nếu nhập, tên sẽ được xác minh với tài khoản người nhận",
     "payeeNameTipAlipayLoginName": "Bắt buộc khi người nhận dùng login ID; tên sẽ được xác minh với tài khoản"
   },
-  "targetMch": "Đối tác nhận",
   "channelMch": "Đối tác kênh",
   "amountUnit": "CNY",
   "payeeTypeUserId": "ID Người dùng",
@@ -107,7 +100,6 @@
     "reportInfoRequired": "Vui lòng điền đầy đủ các trường báo cáo kịch bản chuyển khoản"
   },
   "confirmUrlCopied": "Đã sao chép liên kết",
-  "confirmUrlCopyFailed": "Sao chép thất bại",
   "confirmUrlExpireTip": "Liên kết có hiệu lực 24 giờ, hãy gửi nhanh",
   "confirmUrlTip": "Gửi liên kết xác nhận cho người nhận, cần mở trong WeChat",
   "payeeTypePhone": "Số điện thoại",

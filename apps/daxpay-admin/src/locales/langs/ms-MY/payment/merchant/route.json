@@ -18,9 +18,7 @@
     "sceneChannelMchCapabilityPairHint": "Pilih kedua-dua pedagang saluran dan keupayaan, atau biarkan kedua-duanya kosong; pemilihan separa tidak dibenarkan",
     "basicSaveConfirm": "Simpan Mengikut penghalaan Lalai Jenama? Ini akan menimpa pedagang saluran lalai bagi setiap pembekal bayaran.",
     "sceneRouteNotSelected": "Tidak dipilih",
-    "configTab": "Penghalaan",
     "method": "Kaedah Bayar",
-    "missingAppContext": "Buka penghalaan saluran daripada Pengurusan Apl",
     "providers": {
       "aggregate_pay": "Bayaran Agregat",
       "wechat": "WeChat Pay",

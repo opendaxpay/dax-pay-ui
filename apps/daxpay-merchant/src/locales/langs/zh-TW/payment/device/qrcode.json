@@ -1,5 +1,4 @@
 {
-  "title": "碼牌管理",
   "field": {
     "code": "碼牌編碼",
     "name": "碼牌名稱",
@@ -23,7 +22,6 @@
     "random": "自定義金額",
     "fixed": "固定金額"
   },
-  "defaultApp": "預設應用",
   "validateName": "請輸入碼牌名稱",
   "validateAmountType": "請選擇金額型別",
   "validateFixedAmount": "請輸入固定金額",
@@ -32,7 +30,6 @@
   "disable": "停用",
   "confirmEnable": "確定要啟用該碼牌嗎？",
   "confirmDisable": "確定要停用該碼牌嗎？掃碼將無法支付。",
-  "viewCode": "檢視碼牌",
   "qrCodeTitle": "碼牌二維碼",
   "qrCodeTip": "掃碼即可進入支付頁面",
   "copyLink": "複製連結",
@@ -42,7 +39,6 @@
     "mini_app": "小程序"
   },
   "pleaseSelectStore": "請選擇門店",
-  "defaultStoreHint": "預設門店(若已配置)",
   "allocationTip": "開啟後掃碼支付將請求通道凍結資金用於分帳",
   "allocationOn": "分帳",
   "allocWarningTitle": "分帳能力預警",

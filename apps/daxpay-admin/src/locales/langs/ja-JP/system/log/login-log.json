@@ -11,7 +11,6 @@
   "loginType": "ログインタイプ",
   "loginLocation": "位置",
   "inputAccount": "アカウントを入力してください",
-  "selectStatus": "ステータスを選択してください",
   "detailTitle": "ログインログの詳細",
   "selectCleanDay": "事前にログをクリーンアップしてください",
   "cleanWarning": "警告",

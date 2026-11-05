@@ -26,7 +26,6 @@
     "channelMerchantPlaceholder": "เลือกช่องทางร้านค้า",
     "capability": "ความสามารถ",
     "capabilityPlaceholder": "เลือกความสามารถ",
-    "methodFilterHint": "ใช้เพื่อโหลดผู้สมัครผู้ค้าช่องทาง ไม่ได้จัดเก็บไว้ในโหมด DIRECT",
     "validationName": "กรุณากรอกชื่อ",
     "validationIcon": "โปรดเลือกไอคอน",
     "validationResolveMode": "โปรดเลือกโหมดการแก้ปัญหา",

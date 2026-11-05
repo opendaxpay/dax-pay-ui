@@ -17,7 +17,6 @@
   "os": "OS",
   "inputTitle": "Please enter module name",
   "inputAccount": "Please enter account",
-  "selectStatus": "Please select status",
   "detailTitle": "Operation Log Detail",
   "selectCleanDay": "Clean logs before",
   "cleanWarning": "Warning",

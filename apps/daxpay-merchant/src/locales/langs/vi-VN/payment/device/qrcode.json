@@ -1,5 +1,4 @@
 {
-  "title": "Quản lý mã QR",
   "field": {
     "code": "Mã số",
     "name": "Tên",
@@ -23,7 +22,6 @@
     "random": "Số tiền tùy chỉnh",
     "fixed": "Số tiền cố định"
   },
-  "defaultApp": "Ứng dụng mặc định",
   "validateName": "Vui lòng nhập tên",
   "validateAmountType": "Vui lòng chọn loại số tiền",
   "validateFixedAmount": "Vui lòng nhập số tiền cố định",
@@ -32,7 +30,6 @@
   "disable": "Vô hiệu hóa",
   "confirmEnable": "Bạn có chắc chắn bật bảng mã QR này không?",
   "confirmDisable": "Bạn có chắc chắn tắt bảng mã QR này không? Thanh toán qua quét sẽ không có sẵn.",
-  "viewCode": "Xem mã",
   "qrCodeTitle": "Mã QR",
   "qrCodeTip": "Quét để vào trang thanh toán",
   "copyLink": "Sao chép liên kết",
@@ -42,7 +39,6 @@
     "mini_app": "Mini program"
   },
   "pleaseSelectStore": "Vui lòng chọn cửa hàng",
-  "defaultStoreHint": "Cửa hàng mặc định (nếu có)",
   "allocationTip": "Khi bật, thanh toán qua mã sẽ yêu cầu kênh đóng băng tiền để phân bổ",
   "allocationOn": "Phân bổ",
   "allocWarningTitle": "Cảnh báo khả năng phân bổ",

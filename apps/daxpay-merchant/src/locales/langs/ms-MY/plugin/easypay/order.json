@@ -1,5 +1,4 @@
 {
-  "title": "Pesanan EasyPay",
   "detail": "Butiran Pesanan EasyPay",
   "field": {
     "orderId": "ID Bekas Berkaitan",
@@ -23,9 +22,7 @@
     "pcCallType": "Kaedah Panggilan PC",
     "payUrl": "Pautan Bayaran",
     "payBody": "Isi Parameter Bayaran",
-    "createTime": "Waktu Dicipta",
-    "merchant": "Pedagang",
-    "appId": "ID Aplikasi"
+    "createTime": "Waktu Dicipta"
   },
   "placeholder": {
     "outTradeNo": "Sila masukkan no. pesanan pedagang",
@@ -60,9 +57,6 @@
   "section": {
     "basic": "Maklumat Pesanan",
     "time": "Maklumat Masa",
-    "extra": "Bayaran & Lanjutan",
-    "order": "Maklumat Pesanan",
-    "app": "Aplikasi & Protokol",
-    "pay": "Bayaran & Panggil Balik"
+    "extra": "Bayaran & Lanjutan"
   }
 }

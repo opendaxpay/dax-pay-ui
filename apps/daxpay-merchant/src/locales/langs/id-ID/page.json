@@ -4,21 +4,5 @@
     "login": "Login",
     "qrcodeLogin": "Masuk Kode QR",
     "oauthCallback": "Panggilan Balik OAuth"
-  },
-  "dashboard": {
-    "title": "Dasbor",
-    "analytics": "Analisis",
-    "workspace": "Ruang kerja"
-  },
-  "payment": {
-    "title": "Manajemen Pembayaran",
-    "platform": "Manajemen Pembayaran",
-    "merchantList": "Daftar Pedagang",
-    "merchantManage": "Manajemen Pedagang",
-    "merchantChannelMerchant": "Pedagang Saluran Pedagang",
-    "channelMerchantManage": "Pedagang Saluran",
-    "channelMerchantList": "Pedagang Saluran",
-    "channelMerchantDetail": "Detail Pedagang Saluran",
-    "productList": "Produk Pembayaran"
   }
 }

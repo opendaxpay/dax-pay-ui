@@ -1,5 +1,4 @@
 {
-  "title": "用户协议",
   "name": "名称",
   "showName": "显示名称",
   "type": "协议类型",
@@ -21,7 +20,6 @@
   "copyToClient": "复制到其他端",
   "copyToClientTitle": "复制协议到其他端",
   "selectClientType": "请选择目标端类型",
-  "copyConfirm": "确认将该协议（含各语言当前生效版本）复制到所选端吗？",
   "versionManage": "版本管理",
   "delete": "删除协议",
   "confirmDelete": "确认删除该协议吗？关联的版本将一并删除。",
@@ -32,7 +30,6 @@
     "versionLabel": "版本标签",
     "titleField": "标题",
     "content": "协议内容",
-    "contentFormat": "内容格式",
     "status": "状态",
     "effectiveTime": "生效时间",
     "summary": "变更说明",

@@ -13,12 +13,9 @@
     "hour": "시간",
     "session": "세션",
     "second": "초",
-    "window": "창문들",
-    "count": "세다",
-    "score": "전철기"
+    "count": "세다"
   },
   "group": {
-    "access": "접근 보안",
-    "openApi": "오픈 API 보안"
+    "access": "접근 보안"
   }
 }

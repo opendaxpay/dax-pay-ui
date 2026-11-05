@@ -1,8 +1,4 @@
 {
-  "title": "Ứng dụng Douyin",
-  "tabPlatform": "Platform Apps",
-  "tabMerchant": "Merchant Apps",
-  "platformSubtitle": "Platform / ISV identity, shared across channels",
   "addApp": "Add App",
   "emptyAppList": "No apps yet",
   "edit": "Edit",
@@ -28,28 +24,18 @@
   "appSecretTooltipMiniProgram": "Mini Program AppSecret for code2session",
   "appSecretTooltipMobileApp": "Mobile App AppSecret for OAuth",
   "appSecretTooltipWebApp": "Web App AppSecret for OAuth OpenId",
-  "capabilityBtn": "Capability Binding",
-  "capabilityTitle": "Bind apps to capabilities",
   "capabilitySelectPlaceholder": "Chọn ứng dụng",
   "capabilityNoApp": "No apps yet. Create an app first.",
   "capabilitySaveSuccess": "Saved",
-  "selectMerchant": "Select a merchant first",
-  "selectMerchantPlaceholder": "Select merchant",
   "filterPlaceholder": "Filter by name or AppId",
-  "scopePlatform": "Platform App",
-  "scopeMerchant": "Merchant App",
   "channelCapabilityTitle": "Thiết lập ứng dụng thanh toán",
-  "channelCapabilityDesc": "Bind a merchant or platform app for each capability. Leave empty to fall back.",
   "validation": {
     "appSecret": "Enter AppSecret"
   },
-  "productCapabilityTitle": "Ứng dụng thanh toán mặc định",
-  "productCapabilityDesc": "Chỉ định ứng dụng Douyin mặc định theo từng phương thức cho sản phẩm này. Dùng khi thương nhân kênh chưa cấu hình riêng.",
   "capabilityNoCompatibleApp": "Chưa có ứng dụng đúng loại. Hãy tạo trong Ứng dụng Douyin.",
   "capabilityRequiredAppType": "Cần {type}",
   "appTypeCapabilityCleared": "Đã xóa lựa chọn ứng dụng không khớp với phương thức thanh toán",
   "channelCapabilityDescDirect": "Chỉ định ứng dụng Douyin của thương nhân cho từng khả năng.",
   "channelCapabilityDescIsv": "Chọn ứng dụng thương nhân hoặc mặc định nhà cung cấp dịch vụ. Mặc định quay về ứng dụng thanh toán mặc định cấp sản phẩm.",
-  "capabilityIspDefault": "Mặc định nhà cung cấp",
-  "capabilityIspNotConfigured": "Chưa cấu hình"
+  "capabilityIspDefault": "Mặc định nhà cung cấp"
 }

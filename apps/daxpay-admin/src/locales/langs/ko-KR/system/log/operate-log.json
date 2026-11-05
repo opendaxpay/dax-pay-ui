@@ -17,7 +17,6 @@
   "os": "OS",
   "inputTitle": "모듈 이름을 입력하세요.",
   "inputAccount": "계좌를 입력해주세요",
-  "selectStatus": "상태를 선택해주세요",
   "detailTitle": "작업 로그 세부 정보",
   "selectCleanDay": "이전에 로그 정리",
   "cleanWarning": "경고",

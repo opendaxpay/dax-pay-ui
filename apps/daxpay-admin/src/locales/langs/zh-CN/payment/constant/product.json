@@ -6,14 +6,10 @@
     "description": "产品介绍",
     "icon": "图标",
     "remark": "备注",
-    "channelName": "通道名称",
     "isv": "服务商",
     "terminal": "终端报备",
     "sandbox": "沙箱",
-    "apiCallMode": "API调用模式",
-    "payIdType": "支付标识类型",
-    "capabilities": "支付能力",
-    "features": "产品特性"
+    "capabilities": "支付能力"
   },
   "features": "产品特性",
   "detail": "产品详情",
@@ -41,7 +37,8 @@
     "noMatchDesc": "未找到匹配的支付产品",
     "modeAll": "全部",
     "modeIsv": "服务商",
-    "modeDirect": "直连"  },
+    "modeDirect": "直连"
+  },
   "placeholder": {
     "name": "请输入产品名称",
     "code": "请输入产品编码"

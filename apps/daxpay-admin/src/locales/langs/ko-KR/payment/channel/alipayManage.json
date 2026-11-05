@@ -1,5 +1,4 @@
 {
-  "title": "알리페이 ISV 관리",
   "groupApp": "앱 관리",
   "cardIsvApp": "알리페이 ISV 애플리케이션",
   "cardIsvAppDesc": "Alipay ISV 애플리케이션 관리",
@@ -11,7 +10,6 @@
   "actionMore": "추가 작업",
   "saveSuccess": "성공적으로 저장되었습니다",
   "deleteSuccess": "삭제되었습니다.",
-  "deleteConfirmContent": "\"{name}\" 애플리케이션을 삭제하시겠습니까? 이 작업은 취소할 수 없습니다.",
   "appName": "애플리케이션 이름",
   "appNamePlaceholder": "애플리케이션 이름을 입력하세요.",
   "appNameRequired": "애플리케이션 이름을 입력하세요.",

@@ -6,14 +6,10 @@
     "description": "Keterangan",
     "icon": "Ikon",
     "remark": "Komentar",
-    "channelName": "Nama Saluran",
     "isv": "ISV",
     "terminal": "Laporan Terminal",
     "sandbox": "Bak pasir",
-    "apiCallMode": "Mode Panggilan API",
-    "payIdType": "Jenis ID Bayar",
-    "capabilities": "Kemampuan Pembayaran",
-    "features": "Fitur Produk"
+    "capabilities": "Kemampuan Pembayaran"
   },
   "features": "Fitur Produk",
   "detail": "Detil Produk",

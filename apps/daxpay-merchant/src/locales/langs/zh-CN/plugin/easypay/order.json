@@ -1,5 +1,4 @@
 {
-  "title": "易支付订单",
   "detail": "易支付订单详情",
   "field": {
     "orderId": "关联容器ID",
@@ -23,9 +22,7 @@
     "pcCallType": "PC调用方式",
     "payUrl": "支付链接",
     "payBody": "支付参数体",
-    "createTime": "创建时间",
-    "merchant": "商户",
-    "appId": "应用ID"
+    "createTime": "创建时间"
   },
   "placeholder": {
     "outTradeNo": "请输入商户订单号",
@@ -60,9 +57,6 @@
   "section": {
     "basic": "订单信息",
     "time": "时间信息",
-    "extra": "支付与扩展",
-    "order": "订单信息",
-    "app": "应用与协议",
-    "pay": "支付与回调"
+    "extra": "支付与扩展"
   }
 }

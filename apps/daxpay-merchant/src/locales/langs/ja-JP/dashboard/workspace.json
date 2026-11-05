@@ -14,7 +14,6 @@
     "workbenchHeader": "ワークスペース",
     "quickEntry": "クイックエントリー",
     "tradeOverview": "貿易概要",
-    "payOrder": "支払い命令",
     "payTrade": "ファンド取引",
     "tradeTrend": "貿易動向",
     "providerDist": "決済方法分布",
@@ -36,25 +35,10 @@
   "quickEntry": {
     "merchant": "加盟店情報",
     "app": "アプリケーション",
-    "channelMerchant": "チャネル販売者",
     "notify": "通知センター",
-    "user": "ユーザー",
-    "dict": "辞書",
-    "loginLog": "ログインログ",
-    "security": "セキュリティ管理",
-    "payOrder": "支払い命令",
-    "refundOrder": "返金注文",
     "payTrade": "支払取引",
-    "role": "役割",
-    "menu": "メニュー",
-    "operateLog": "操作ログ",
-    "notice": "お知らせ",
-    "productConfig": "決済商品構成",
-    "platformConfig": "プラットフォーム構成",
-    "onlineUser": "オンラインユーザー",
     "analytics": "分析",
     "developTrade": "決済開発",
-    "socialLogin": "サードパーティプラットフォームへのログイン",
     "empty": "アクセス可能なクイックエントリはありません",
     "edit": "編集",
     "editTitle": "クイックエントリーの編集",
@@ -73,8 +57,6 @@
   },
   "configAlert": {
     "bannerTitle": "{n} 件の設定が未完了です",
-    "viewDetail": "詳細を表示",
-    "allComplete": "すべての設定が完了しています"
-  },
-  "scaffoldTitle": "ワークスペース"
+    "viewDetail": "詳細を表示"
+  }
 }

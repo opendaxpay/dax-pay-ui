@@ -1,5 +1,4 @@
 {
-  "title": "EasyPay注文",
   "detail": "EasyPay注文詳細",
   "field": {
     "orderId": "関連コンテナID",
@@ -33,19 +32,8 @@
     "name": "商品名を入力"
   },
   "status": {
-    "0": "未支払い",
-    "1": "支払済",
     "success": "支払済",
     "pending": "未支払い"
-  },
-  "statusColor": {
-    "0": "orange",
-    "1": "green"
-  },
-  "type": {
-    "alipay": "Alipay",
-    "wxpay": "WeChat Pay",
-    "aggregate": "統合支払い"
   },
   "action": {
     "sync": "ステータス同期",
@@ -58,9 +46,7 @@
     "closeConfirmContent": "閉じた後は注文を支払えません。続行しますか?"
   },
   "section": {
-    "basic": "注文情報",
     "time": "時間情報",
-    "extra": "支払いと拡張",
     "order": "注文情報",
     "app": "アプリ・プロトコル",
     "pay": "決済・コールバック"

@@ -1,5 +1,4 @@
 {
-  "title": "Pesanan Bayaran Semula EasyPay",
   "detail": "Butiran Pesanan Bayaran Semula EasyPay",
   "field": {
     "refundId": "ID Bayaran Semula Berkaitan",
@@ -14,9 +13,7 @@
     "apiVersion": "Versi API",
     "addTime": "Waktu Mula Bayaran Semula",
     "endTime": "Waktu Siap Bayaran Semula",
-    "createTime": "Waktu Dicipta",
-    "merchant": "Pedagang",
-    "appId": "ID Aplikasi"
+    "createTime": "Waktu Dicipta"
   },
   "placeholder": {
     "refundNo": "Sila masukkan no. bayaran semula platform",
@@ -42,8 +39,6 @@
   },
   "section": {
     "basic": "Maklumat Bayaran Semula",
-    "time": "Maklumat Masa",
-    "refund": "Maklumat Bayaran Semula",
-    "app": "Aplikasi & Protokol"
+    "time": "Maklumat Masa"
   }
 }

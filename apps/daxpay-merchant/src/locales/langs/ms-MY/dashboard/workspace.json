@@ -14,7 +14,6 @@
     "workbenchHeader": "Ruang kerja",
     "quickEntry": "Kemasukan Cepat",
     "tradeOverview": "Tinjauan Perdagangan",
-    "payOrder": "Pesanan Pembayaran",
     "payTrade": "Dagangan Dana",
     "tradeTrend": "Trend Perdagangan",
     "providerDist": "Agihan Kaedah Pembayaran",
@@ -36,25 +35,10 @@
   "quickEntry": {
     "merchant": "Profil Pedagang",
     "app": "Aplikasi",
-    "channelMerchant": "Peniaga Saluran",
     "notify": "Pusat Pemberitahuan",
-    "user": "Pengguna",
-    "dict": "Kamus",
-    "loginLog": "Log Masuk",
-    "security": "Pengurusan Keselamatan",
-    "payOrder": "Pesanan Pembayaran",
-    "refundOrder": "Bayaran Balik Pesanan",
     "payTrade": "Dagangan Bayaran",
-    "role": "Peranan",
-    "menu": "Menu",
-    "operateLog": "Mengendalikan Log",
-    "notice": "Notis",
-    "productConfig": "Konfigurasi Produk Pembayaran",
-    "platformConfig": "Konfigurasi Platform",
-    "onlineUser": "Pengguna Dalam Talian",
     "analytics": "Analitik",
     "developTrade": "Membangunkan Pembayaran",
-    "socialLogin": "Log Masuk Platform Pihak Ketiga",
     "empty": "Tiada entri pantas yang boleh diakses",
     "edit": "Sunting",
     "editTitle": "Edit Entri Pantas",
@@ -73,8 +57,6 @@
   },
   "configAlert": {
     "bannerTitle": "{n} konfigurasi tertunggak",
-    "viewDetail": "Lihat Butiran",
-    "allComplete": "Semua konfigurasi selesai"
-  },
-  "scaffoldTitle": "Ruang Kerja"
+    "viewDetail": "Lihat Butiran"
+  }
 }

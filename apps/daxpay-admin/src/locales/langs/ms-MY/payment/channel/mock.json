@@ -109,15 +109,9 @@
     "replacePrivateKeyTitle": "Pengesahan Penggantian Kunci Peribadi",
     "replacePrivateKeyContent": "Apabila menggantikan kunci peribadi pedagang sahaja, pastikan ia sepadan dengan kunci yang sedang digunakan oleh gerbang mock; jika tidak, permintaan subjek ini akan gagal pengesahan.",
     "continueSave": "Teruskan Simpan",
-    "save": "Simpan",
-    "keepBlank": "Biarkan kosong untuk kekalkan",
-    "keepBlankTip": "Medan sensitif yang dikosongkan dianggap tidak diubah; hanya item yang berubah dihantar",
-    "configured": "Dikonfigurasi",
-    "notConfigured": "Belum Dikonfigurasi",
     "saveSuccess": "Konfigurasi akses berjaya disimpan"
   },
   "manage": {
-    "channelMchNo": "No. Pedagang Saluran",
     "groupBasic": "Pengurusan Asas",
     "groupTrade": "Konfigurasi Transaksi",
     "cardBasicInfo": "Maklumat Asas",

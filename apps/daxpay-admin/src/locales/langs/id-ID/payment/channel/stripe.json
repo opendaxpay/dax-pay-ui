@@ -1,7 +1,4 @@
 {
-  "title": "Konfigurasi Stripe",
-  "keyConfig": "Konfigurasi Kunci",
-  "enable": "Aktifkan",
   "accountId": "ID Akun Stripe",
   "accountIdPlaceholder": "Masukkan ID akun Stripe (acct_xxx)",
   "secretKey": "Secret Key",

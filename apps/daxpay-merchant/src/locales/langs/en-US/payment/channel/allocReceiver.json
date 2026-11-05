@@ -48,7 +48,6 @@
   "validateType": "Please select receiver type",
   "validateAccount": "Please enter receiver account",
   "validateApp": "Please select bound app",
-  "validateSpApp": "Please select service provider app",
   "validateSubApp": "Sub-merchant app is required for PERSONAL_SUB_OPENID",
   "validateRelation": "Please select relation type",
   "validateCustomRelation": "Please enter custom relation name",

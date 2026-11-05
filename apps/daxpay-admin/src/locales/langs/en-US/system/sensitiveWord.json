@@ -2,8 +2,6 @@
   "tip": "Prefer Simplified Chinese words. Matching applies traditional-to-simplified and full-width normalization.",
   "word": {
     "add": "Add word",
-    "edit": "Edit word",
-    "view": "View word",
     "confirmDelete": "Delete this sensitive word?",
     "field": {
       "word": "Word",
@@ -34,7 +32,6 @@
       "disable": "Disabled"
     },
     "check": {
-      "title": "Check text",
       "placeholder": "Enter text to check",
       "button": "Check",
       "hit": "Hit: {0}",

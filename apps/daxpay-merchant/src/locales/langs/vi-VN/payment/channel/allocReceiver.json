@@ -48,7 +48,6 @@
   "validateType": "Vui lòng chọn loại người nhận",
   "validateAccount": "Vui lòng nhập tài khoản người nhận",
   "validateApp": "Vui lòng chọn ứng dụng liên kết",
-  "validateSpApp": "Vui lòng chọn ứng dụng nhà cung cấp",
   "validateSubApp": "Ứng dụng merchant con bắt buộc cho PERSONAL_SUB_OPENID",
   "validateRelation": "Vui lòng chọn loại quan hệ",
   "validateCustomRelation": "Vui lòng nhập tên quan hệ tùy chỉnh",

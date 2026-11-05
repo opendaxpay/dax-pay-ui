@@ -1,5 +1,4 @@
 {
-  "title": "Giao thức người dùng",
   "name": "Tên",
   "showName": "Tên hiển thị",
   "type": "Kiểu",
@@ -21,7 +20,6 @@
   "copyToClient": "Sao chép sang ứng dụng khách khác",
   "copyToClientTitle": "Sao chép giao thức sang máy khách khác",
   "selectClientType": "Vui lòng chọn loại khách hàng mục tiêu",
-  "copyConfirm": "Sao chép giao thức này (với các phiên bản được xuất bản hiện tại của từng ngôn ngữ) sang máy khách đã chọn?",
   "versionManage": "Phiên bản",
   "delete": "Xóa giao thức",
   "confirmDelete": "Bạn có chắc chắn xóa giao thức này không? Tất cả các phiên bản sẽ bị xóa cùng nhau.",
@@ -32,7 +30,6 @@
     "versionLabel": "Nhãn phiên bản",
     "titleField": "Tiêu đề",
     "content": "Nội dung",
-    "contentFormat": "Định dạng nội dung",
     "status": "Trạng thái",
     "effectiveTime": "Thời gian có hiệu lực",
     "summary": "Bản tóm tắt",

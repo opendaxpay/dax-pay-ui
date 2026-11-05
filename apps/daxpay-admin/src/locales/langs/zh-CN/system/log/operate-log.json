@@ -17,7 +17,6 @@
   "os": "操作系统",
   "inputTitle": "请输入操作模块",
   "inputAccount": "请输入操作账号",
-  "selectStatus": "请选择操作状态",
   "detailTitle": "操作日志详情",
   "selectCleanDay": "清除多久前的日志",
   "cleanWarning": "警告",

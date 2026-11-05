@@ -1,5 +1,4 @@
 {
-  "title": "Pesanan Bayaran Semula EasyPay",
   "detail": "Butiran Pesanan Bayaran Semula EasyPay",
   "field": {
     "refundId": "ID Bayaran Semula",
@@ -25,14 +24,8 @@
     "tradeNo": "Masukkan nombor transaksi platform"
   },
   "status": {
-    "0": "Sedang Diproses/Gagal",
-    "1": "Bayaran Semula Berjaya",
     "success": "Bayaran Semula Berjaya",
     "progress": "Sedang Diproses/Gagal"
-  },
-  "statusColor": {
-    "0": "orange",
-    "1": "green"
   },
   "action": {
     "sync": "Segerakkan Status",
@@ -41,7 +34,6 @@
     "syncConfirmContent": "Sistem akan bertanya status terkini pesanan bayaran semula ini daripada saluran bayaran secara aktif, teruskan?"
   },
   "section": {
-    "basic": "Maklumat Bayaran Semula",
     "time": "Maklumat Masa",
     "refund": "Maklumat Bayaran Semula",
     "app": "Aplikasi & Protokol"

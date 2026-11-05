@@ -1,10 +1,8 @@
 {
-  "title": "乐刷服务商配置",
   "groupConfig": "配置管理",
   "configTitle": "乐刷服务商密钥配置",
   "manageTitle": "乐刷商户管理",
   "keyConfig": "密钥配置",
-  "enable": "是否启用",
   "lsMchNo": "乐刷商户号",
   "lsMchNoPlaceholder": "请输入乐刷商户号(merchant_id)",
   "tradeKey": "交易密钥",
@@ -16,7 +14,6 @@
   "notifyKeyKeepPlaceholder": "已配置, 留空则保留原值",
   "notifyKeyTooltip": "乐刷异步通知验签密钥, 用于回调通知验签",
   "signType": "签名类型",
-  "signTypePlaceholder": "请选择签名类型",
   "lsIsvNo": "乐刷服务商号",
   "lsIsvNoPlaceholder": "请输入乐刷服务商号",
   "lsIsvNoTooltip": "乐刷分配给服务商的唯一编号, 进件等接口场景必传",
@@ -29,9 +26,6 @@
     "notifyKey": "请输入异步通知密钥",
     "signType": "请选择签名类型"
   },
-  "groupMchConfig": "商户配置",
-  "cardMchConfig": "商户配置",
-  "cardMchConfigDesc": "配置通道商户乐刷商户号",
   "cardCapabilityBinding": "支付应用配置",
   "cardCapabilityBindingDesc": "决定每种支付能力用哪个微信应用发起支付"
 }

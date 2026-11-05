@@ -8,15 +8,12 @@
   "stat": {
     "merchantCount": "상인",
     "channelMerchantCount": "채널 판매자",
-    "userCount": "사용자",
-    "todayLogin": "오늘 로그인",
-    "onlineUser": "온라인 사용자"
+    "userCount": "사용자"
   },
   "widget": {
     "workbenchHeader": "작업공간",
     "quickEntry": "빠른 입장",
     "tradeOverview": "무역개요",
-    "payOrder": "지불 주문",
     "payTrade": "펀드거래",
     "tradeTrend": "무역동향",
     "providerDist": "결제 수단 분포",
@@ -37,7 +34,6 @@
   },
   "quickEntry": {
     "merchant": "상인",
-    "app": "응용",
     "channelMerchant": "채널 판매자",
     "notify": "알림",
     "user": "사용자",
@@ -63,7 +59,6 @@
     "selected": "선택됨(정렬하려면 드래그하세요)",
     "available": "사용 가능",
     "allAdded": "모두 추가됨",
-    "wxApp": "결제 앱(위챗)",
     "virtualDevice": "가상 디바이스",
     "gatewayOrder": "게이트웨이 주문",
     "fundFlow": "자금 흐름",
@@ -83,7 +78,6 @@
   },
   "configAlert": {
     "bannerTitle": "{n}개의 설정이 미완료입니다",
-    "viewDetail": "상세 보기",
-    "allComplete": "모든 설정이 완료되었습니다"
+    "viewDetail": "상세 보기"
   }
 }

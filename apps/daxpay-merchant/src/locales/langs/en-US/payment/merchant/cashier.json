@@ -26,7 +26,6 @@
     "channelMerchantPlaceholder": "Select channel merchant",
     "capability": "Capability",
     "capabilityPlaceholder": "Select capability",
-    "methodFilterHint": "Used to load channel merchant candidates; not stored in DIRECT mode",
     "validationName": "Please enter name",
     "validationIcon": "Please select an icon",
     "validationResolveMode": "Please select resolve mode",

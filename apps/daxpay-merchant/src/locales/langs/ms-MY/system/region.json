@@ -1,9 +1,3 @@
 {
-  "placeholder": "Sila pilih wilayah pentadbiran",
-  "level": {
-    "province": "Wilayah",
-    "city": "Bandar",
-    "area": "Daerah/Daerah",
-    "street": "Jalan/Pekan"
-  }
+  "placeholder": "Sila pilih wilayah pentadbiran"
 }

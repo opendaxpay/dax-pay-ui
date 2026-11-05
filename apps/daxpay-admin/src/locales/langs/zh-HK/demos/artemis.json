@@ -16,9 +16,7 @@
     }
   },
   "form": {
-    "content": "消息內容",
     "contentPlaceholder": "請輸入消息內容",
-    "delaySeconds": "延時秒數",
     "send": "發送",
     "broadcast": "廣播"
   },

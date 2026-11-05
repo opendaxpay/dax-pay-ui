@@ -55,14 +55,11 @@
     "relationOrderNo": "Channel Relation No.",
     "postedAmount": "Amaun diakaun(Yuan)",
     "refundableBalance": "Boleh dipulangkan(Yuan)",
-    "payBody": "Badan Bayar",
-    "payBodyType": "Jenis Badan Bayar",
     "buyerId": "ID Pembeli",
     "openid": "OpenID",
     "tradeProduct": "Produk Saluran",
     "tradeWay": "Cara Perdagangan Saluran",
     "bankType": "Jenis Kad Bank",
-    "promotionType": "Jenis Promosi",
     "errorMsg": "ralat",
     "notifyUrl": "Beritahu URL",
     "returnUrl": "Kembalikan URL",
@@ -75,10 +72,8 @@
     "channelAppId": "Aplikasi Saluran",
     "clientIp": "IP pelanggan",
     "terminalNo": "Terminal No.",
-    "containerId": "ID kontena",
     "containerStatus": "Status Kontena",
     "source": "Sumber",
-    "limitPay": "Had Gaji",
     "mchNo": "Peniaga No.",
     "appId": "Aplikasi Pedagang",
     "createTime": "Cipta Masa",
@@ -89,7 +84,6 @@
     "finishTime": "Tamat Masa",
     "orderAmount": "Jumlah Pesanan",
     "orderNo": "Platform Order No.",
-    "authCode": "Kod pembayaran",
     "merchant": "Peniaga",
     "gatewayType": "Jenis Gateway",
     "storeNo": "No. Kedai",
@@ -141,7 +135,6 @@
     "amountMin": "Jumlah min",
     "amountMax": "Jumlah maksimum",
     "refundNo": "Masukkan no bayaran balik.",
-    "bizRefundNo": "Masukkan no biz refund.",
     "orderNo": "Masukkan no pesanan asal.",
     "allocNo": "Masukkan no. peruntukan",
     "bizAllocNo": "Masukkan no. peruntukan merchant"
@@ -161,7 +154,6 @@
     "refundConfirmContent": "Adakah akan membayar balik {amount} daripada pesanan asal, diteruskan?",
     "refundTradeAmountLabel": "Jumlah Transaksi",
     "refundableBalanceLabel": "Amaun Boleh Dipulangkan",
-    "cents": "sen",
     "refundAmountLabel": "Amaun Bayaran Balik(Yuan)",
     "refundReasonLabel": "Sebab Bayaran Balik",
     "refundAmountPlaceholder": "Masukkan jumlah bayaran balik",
@@ -192,7 +184,6 @@
     "allocAmountLabel": "Jumlah Pengagihan (CNY)",
     "allocTotalLabel": "Jumlah Keseluruhan",
     "allocTotalExceed": "Jumlah pengagihan tidak boleh melebihi jumlah pesanan",
-    "allocReceiverRequired": "Tambahkan sekurang-kurangnya satu penerima pengagihan",
     "allocValidateType": "Sila pilih jenis penerima",
     "allocValidateAccount": "Masukkan akaun penerima",
     "allocValidateAmount": "Jumlah pengagihan mestilah tidak kurang daripada 0.01 CNY",
@@ -214,14 +205,6 @@
     "exportFailed": "Eksport gagal. Silakan cuba lagi kemudian.",
     "orderDetail": "Butiran Pesanan"
   },
-  "method": {
-    "jsapi": "JSAPI",
-    "qrcode": "Kod QR",
-    "h5": "H5",
-    "app": "APP",
-    "barcode": "Kod Bar",
-    "wap": "WAP"
-  },
   "tradeType": {
     "normal": "Normal Pay",
     "gateway": "Gateway Pay"
@@ -231,7 +214,6 @@
     "aggregate": "Aggregate"
   },
   "alloc": {
-    "title": "Pesanan Peruntukan",
     "detail": "Butiran Pesanan Peruntukan",
     "statusLabel": "Status Peruntukan",
     "detailResultLabel": "Hasil Butiran",

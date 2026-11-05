@@ -1,8 +1,6 @@
 {
-  "title": "Đăng nhập nền tảng của bên thứ ba",
   "emptyDesc": "Không có dữ liệu cấu hình nền tảng",
   "clientCode": {
-    "label": "Khách hàng",
     "admin": "Quản trị viên",
     "merchant": "Thương gia"
   },
@@ -29,19 +27,10 @@
   },
   "action": {
     "config": "Cấu hình",
-    "gotoConfig": "Đi đến cấu hình",
     "gotoCredential": "Định cấu hình thông tin xác thực",
-    "edit": "Biên tập",
-    "enable": "Cho phép",
-    "disable": "Vô hiệu hóa",
-    "delete": "Xóa bỏ",
-    "add": "Thêm cấu hình nền tảng",
-    "search": "Tìm kiếm",
-    "reset": "Cài lại",
     "copy": "Sao chép"
   },
   "form": {
-    "source": "Nền tảng",
     "clientId": "ID khách hàng",
     "clientIdPlaceholder": "Nhập ID khách hàng (AppId)",
     "clientIdHelp": "Thường là AppId hoặc ClientID, tùy thuộc vào tên nền tảng thực tế",
@@ -55,7 +44,6 @@
     "enabledRequired": "Vui lòng chọn trạng thái bật",
     "callbackUrl": "URL gọi lại",
     "callbackUrlHelp": "Đăng ký các URL này trong bảng điều khiển OAuth của bên thứ ba; quản trị viên và người bán mỗi người cần một bộ đầy đủ",
-    "callbackUrlEmpty": "Trước tiên hãy đặt URL truy cập quản trị viên trong cấu hình điểm cuối",
     "callbackUrlEmptyAdmin": "Trước tiên, vui lòng đặt URL cơ sở quản trị trong cấu hình điểm cuối",
     "callbackUrlEmptyMerchant": "Vui lòng đặt URL cơ sở người bán (merchantBaseUrl) trong cấu hình điểm cuối; cần thiết để đăng nhập vào mạng xã hội của người bán",
     "loginCallback": "Đăng nhập Gọi lại",
@@ -67,18 +55,10 @@
     "gatewayRegisterHelp": "Callback đăng nhập và liên kết của nền tảng dạng redirect (Alipay/Tài khoản chính thức) được chuyển tiếp qua tên miền gateway; chỉ cần đăng ký tên miền gateway trên nền tảng mở",
     "gatewayRegister": "Hướng dẫn đăng ký nền tảng mở"
   },
-  "confirm": {
-    "delete": "Bạn có chắc chắn xóa cấu hình {name} không?"
-  },
   "tip": {
-    "addSuccess": "Đã thêm thành công",
     "configSuccess": "Đã cấu hình thành công",
     "editSuccess": "Đã cập nhật thành công",
-    "enableSuccess": "Đã bật thành công",
-    "disableSuccess": "Đã tắt thành công",
-    "deleteSuccess": "Đã xóa thành công",
     "copySuccess": "Đã sao chép vào bảng nhớ tạm",
-    "platformCredentialRequired": "Vui lòng hoàn thành thông tin xác thực cấp nền tảng trước khi cho phép đăng nhập",
     "platformCredentialHint": {
       "alipay": "Quản lý AppId/khóa trong Cấu hình ứng dụng Alipay; công tắc này chỉ kiểm soát xem có đăng nhập Alipay hay không",
       "weChat": "Quản lý AppId/khóa trong Cấu hình tài khoản chính thức WeChat; công tắc này chỉ kiểm soát xem có đăng nhập WeChat hay không"

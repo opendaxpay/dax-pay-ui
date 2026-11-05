@@ -8,15 +8,12 @@
   "stat": {
     "merchantCount": "Pedagang",
     "channelMerchantCount": "Pedagang Saluran",
-    "userCount": "Pengguna",
-    "todayLogin": "Login Hari Ini",
-    "onlineUser": "Pengguna Daring"
+    "userCount": "Pengguna"
   },
   "widget": {
     "workbenchHeader": "Ruang kerja",
     "quickEntry": "Entri Cepat",
     "tradeOverview": "Ikhtisar Perdagangan",
-    "payOrder": "Perintah Pembayaran",
     "payTrade": "Perdagangan Dana",
     "tradeTrend": "Tren Perdagangan",
     "providerDist": "Distribusi Metode Pembayaran",
@@ -37,7 +34,6 @@
   },
   "quickEntry": {
     "merchant": "Pedagang",
-    "app": "Aplikasi",
     "channelMerchant": "Pedagang Saluran",
     "notify": "Pemberitahuan",
     "user": "Pengguna",
@@ -63,7 +59,6 @@
     "selected": "Dipilih (seret untuk mengurutkan)",
     "available": "Tersedia",
     "allAdded": "Semua ditambahkan",
-    "wxApp": "Aplikasi Pembayaran (WeChat)",
     "virtualDevice": "Perangkat Virtual",
     "gatewayOrder": "Pesanan Gateway",
     "fundFlow": "Arus Dana",
@@ -83,7 +78,6 @@
   },
   "configAlert": {
     "bannerTitle": "{n} konfigurasi tertunda",
-    "viewDetail": "Lihat Detail",
-    "allComplete": "Semua konfigurasi selesai"
+    "viewDetail": "Lihat Detail"
   }
 }

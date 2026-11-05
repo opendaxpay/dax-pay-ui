@@ -1,6 +1,5 @@
 {
   "platform": {
-    "title": "存储文件",
     "detailTitle": "存储文件详情",
     "field": {
       "filename": "文件名称",
@@ -19,14 +18,7 @@
     "placeholder": {
       "filename": "请输入文件名称",
       "originalFilename": "请输入原始文件名",
-      "size": "请输入文件大小",
-      "ext": "请输入文件扩展名",
-      "contentType": "请输入MIME类型",
-      "url": "请输入文件访问地址",
-      "basePath": "请输入基础存储路径",
-      "path": "请输入存储路径",
-      "bizType": "请输入业务分类",
-      "remark": "请输入备注"
+      "bizType": "请输入业务分类"
     },
     "accessType": {
       "public": "公开文件",
@@ -34,14 +26,7 @@
     },
     "action": {
       "preview": "预览",
-      "download": "下载",
-      "confirmDelete": "删除确认",
-      "confirmDeleteContent": "确定要删除该文件记录吗？",
-      "deleteSuccess": "删除成功"
-    },
-    "validate": {
-      "urlRequired": "请输入文件访问地址",
-      "filenameRequired": "请输入文件名称"
+      "download": "下载"
     }
   }
 }

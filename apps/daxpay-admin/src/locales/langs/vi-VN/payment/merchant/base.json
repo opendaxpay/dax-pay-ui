@@ -6,7 +6,6 @@
     "status": "Trạng thái",
     "subjectType": "Loại chủ đề",
     "createTime": "Tạo thời gian",
-    "id": "NHẬN DẠNG",
     "adminName": "Tên"
   },
   "status": {
@@ -19,16 +18,12 @@
     "enterprise": "Doanh nghiệp"
   },
   "action": {
-    "confirmEnableContent": "Bạn có chắc chắn muốn kích hoạt người bán này không?",
-    "confirmDisableContent": "Bạn có chắc chắn muốn vô hiệu hóa người bán này không? Sau khi vô hiệu hóa, tài khoản người bán sẽ không thể đăng nhập.",
     "delete": "Xóa thương gia",
     "deleteDeregisterDesc": "Chắc chắn xóa \"{name}\"? Thao tác này không thể khôi phục: toàn bộ tài khoản người dùng thuộc merchant này sẽ bị xóa đồng thời và thông tin nhạy cảm sẽ được làm sạch. Vui lòng cẩn trọng."
   },
   "validation": {
     "pleaseInputMchName": "Vui lòng nhập tên người bán",
     "pleaseInputMchShortName": "Vui lòng nhập tên viết tắt của người bán",
-    "pleaseInputAccount": "Vui lòng nhập tài khoản quản trị viên",
-    "pleaseConfirmPassword": "Vui lòng xác nhận mật khẩu",
     "pleaseSelectSubjectType": "Vui lòng chọn loại chủ đề",
     "pleaseSelectStatus": "Vui lòng chọn trạng thái",
     "pleaseInputAdminName": "Vui lòng nhập tên"

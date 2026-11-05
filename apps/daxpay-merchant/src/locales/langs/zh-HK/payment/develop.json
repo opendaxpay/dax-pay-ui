@@ -42,7 +42,6 @@
     },
     "msg": {
       "genSuccess": "簽名生成成功",
-      "verifyDone": "驗簽完成",
       "verifyPass": "驗籤通過",
       "verifyNotPass": "驗籤不通過",
       "copySuccess": "複製成功",
@@ -50,13 +49,7 @@
     }
   },
   "trade": {
-    "page": {
-      "title": "支付調試",
-      "tag": "模擬商户 API",
-      "warning": "本頁僅組裝參數並簽名，提交後將模擬商户調用 /unipay/pay 發起真實交易（非管理端特權通道），請確認參數無誤。"
-    },
     "card": {
-      "basic": "基礎信息",
       "param": "支付參數",
       "order": "訂單信息",
       "advanced": "進階參數",
@@ -73,7 +66,6 @@
       "mchNo": "商户",
       "appId": "應用",
       "channelMchNo": "通道商户",
-      "product": "支付產品",
       "method": "支付方式",
       "capability": "支付能力",
       "openId": "OpenID",
@@ -111,7 +103,6 @@
     },
     "btn": {
       "setPrivateKey": "設置私鑰",
-      "clearPrivateKey": "清除私鑰",
       "genOrderNo": "生成",
       "reset": "重置表單",
       "submit": "提交支付",
@@ -136,10 +127,6 @@
       "copyData": "複製支付參數",
       "copyFull": "複製完整響應",
       "rawResponse": "完整 DaxResult 響應",
-      "empty": "暫無數據",
-      "field": {
-        "orderNo": "系統訂單號"
-      },
       "panelTitle": "除錯結果",
       "pendingTag": "待發起",
       "successTag": "支付成功",
@@ -153,7 +140,6 @@
       "copy": "複製"
     },
     "rule": {
-      "mchNo": "請選擇商户",
       "bizOrderNo": "請輸入訂單號",
       "title": "請輸入支付標題",
       "amount": "請輸入支付金額",
@@ -164,7 +150,6 @@
       "mchNoNotLoaded": "商戶信息未加載, 請刷新頁面後重試"
     },
     "msg": {
-      "signSuccess": "簽名生成成功",
       "paySuccess": "支付請求成功",
       "payFail": "支付請求失敗",
       "inputPrivateKey": "請先設置商户私鑰",
@@ -204,7 +189,6 @@
       "title": "使用説明",
       "desc": "點擊生成授權鏈接後，使用支付寶 App 掃碼完成授權。結果將自動回顯（依賴「三方平台管理」中的平台支付寶配置，以及「平台配置」中的支付網關前端地址）。",
       "descWechatMp": "點擊生成授權鏈接後，使用微信掃碼完成網頁授權。結果將自動回顯（依賴「三方平台管理」中的微信公眾號配置，以及「平台配置」中的支付網關前端地址）。",
-      "descWechatChannel": "選擇商户/通道商户/支付能力後生成授權鏈接，使用微信掃碼完成網頁授權。用於驗證微信支付（直連/服務商）配置是否正確，支付產品由通道商户自動識別。",
       "descWechatChannelDirect": "直接選擇微信應用產生授權連結，用於驗證該應用的 OAuth 設定是否正確。",
       "descDouyin": "點擊生成授權鏈接後，使用抖音 App 掃碼完成靜默授權。結果將自動回顯（依賴「三方平台管理」中的抖音 H5 應用配置，以及「平台配置」中的支付網關前端地址）。",
       "descDouyinChannel": "選擇商戶與抖音網站應用後產生授權連結，使用抖音 App 掃碼完成靜默授權。用於驗證抖音支付（直連/服務商）的網站應用 OAuth 設定是否正確。"
@@ -222,12 +206,7 @@
     },
     "form": {
       "mchNo": "商户",
-      "channelMchNo": "通道商户",
-      "capability": "支付能力",
       "rule": {
-        "mchNo": "請選擇商户",
-        "channelMchNo": "請選擇通道商户",
-        "capability": "請選擇支付能力",
         "wxApp": "請選擇微信應用",
         "dyApp": "請選擇抖音應用"
       },
@@ -245,18 +224,9 @@
       "notExist": "獲取授權結果失敗（查詢碼不存在或已過期）",
       "copySuccess": "複製成功",
       "copyFail": "複製失敗"
-    },
-    "mode": {
-      "infer": "通道商戶推斷",
-      "direct": "直接選擇應用"
     }
   },
   "gateway": {
-    "page": {
-      "title": "網關支付調試",
-      "tag": "模擬商戶 API",
-      "warning": "本頁僅組裝參數並簽名，提交後將模擬商戶調用 /unipay/gateway/pre-pay 生成收銀台/聚合掃碼落地頁（非管理端特權通道），請確認參數無誤。"
-    },
     "card": {
       "order": "訂單資訊",
       "param": "支付參數",
@@ -317,7 +287,6 @@
       "clearConfirmContent": "確定要清除已設定嘅商戶私鑰嗎？清除後需重新輸入。"
     },
     "result": {
-      "url": "網關落地頁 URL",
       "h5Url": "網關落地頁 URL",
       "miniUrl": "小程序映射連結",
       "copyUrl": "複製連結",
@@ -358,7 +327,6 @@
       "expiredTime": "過期時間"
     },
     "rule": {
-      "mchNo": "請選擇商戶",
       "bizOrderNo": "請輸入訂單號",
       "title": "請輸入支付標題",
       "amount": "請輸入支付金額",
@@ -367,7 +335,6 @@
       "mchNoNotLoaded": "商戶信息未加載, 請刷新頁面後重試"
     },
     "msg": {
-      "signSuccess": "簽名生成成功",
       "signFail": "簽名生成失敗,請重試",
       "prePaySuccess": "預下單請求成功",
       "prePayFail": "預下單請求失敗",

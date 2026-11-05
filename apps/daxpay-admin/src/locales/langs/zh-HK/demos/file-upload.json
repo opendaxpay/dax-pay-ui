@@ -10,12 +10,10 @@
     "description": "文件需要預簽名URL才能訪問，適合敏感文件、合同等"
   },
   "upload": "上傳",
-  "delete": "刪除",
   "uploadSuccess": "上傳成功",
   "deleteSuccess": "刪除成功",
   "deleteConfirm": "確定要刪除該文件嗎？",
   "fileTooLarge": "文件大小超出限制，最大10MB",
-  "invalidFileType": "僅支持圖片文件",
   "uploading": "上傳中...",
   "accessUrl": "訪問地址"
 }

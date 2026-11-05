@@ -11,7 +11,6 @@
   "loginType": "登錄方式",
   "loginLocation": "登錄地點",
   "inputAccount": "請輸入用户賬號",
-  "selectStatus": "請選擇登錄狀態",
   "detailTitle": "登錄日誌詳情",
   "selectCleanDay": "清除多久前的日誌",
   "cleanWarning": "警告",

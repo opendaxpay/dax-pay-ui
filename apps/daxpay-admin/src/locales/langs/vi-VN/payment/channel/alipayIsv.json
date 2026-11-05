@@ -7,8 +7,6 @@
   "keyConfig": "Cấu hình khóa",
   "certConfig": "Chế độ chứng chỉ",
   "aliAppId": "ID ứng dụng",
-  "alipayUserId": "PID thương gia",
-  "alipayUserIdPlaceholder": "Vui lòng nhập PID của người bán",
   "authType": "Loại xác thực",
   "authTypePlaceholder": "Vui lòng chọn loại xác thực",
   "alipayPublicKey": "Khóa công khai Alipay",

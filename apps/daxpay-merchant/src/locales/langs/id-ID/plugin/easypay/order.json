@@ -1,5 +1,4 @@
 {
-  "title": "Pesanan EasyPay",
   "detail": "Detail Pesanan EasyPay",
   "field": {
     "orderId": "ID Kontainer Terkait",
@@ -23,9 +22,7 @@
     "pcCallType": "Metode Panggilan PC",
     "payUrl": "Tautan Pembayaran",
     "payBody": "Isi Parameter Pembayaran",
-    "createTime": "Waktu Dibuat",
-    "merchant": "Merchant",
-    "appId": "ID Aplikasi"
+    "createTime": "Waktu Dibuat"
   },
   "placeholder": {
     "outTradeNo": "Masukkan nomor pesanan merchant",
@@ -60,9 +57,6 @@
   "section": {
     "basic": "Informasi Pesanan",
     "time": "Informasi Waktu",
-    "extra": "Pembayaran & Ekstensi",
-    "order": "Informasi Pesanan",
-    "app": "Aplikasi & Protokol",
-    "pay": "Pembayaran & Callback"
+    "extra": "Pembayaran & Ekstensi"
   }
 }

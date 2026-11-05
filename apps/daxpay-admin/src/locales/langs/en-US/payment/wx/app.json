@@ -1,5 +1,4 @@
 {
-  "title": "Payment Apps (WeChat)",
   "tabPlatform": "Platform Apps",
   "tabMerchant": "Merchant Apps",
   "platformSubtitle": "Platform / ISV identity, shared across channels",
@@ -28,8 +27,6 @@
   "appSecretTooltipOfficialAccount": "Official Account AppSecret for OAuth OpenId",
   "appSecretTooltipMiniProgram": "Mini Program AppSecret for code2session",
   "appSecretTooltipMobileApp": "Mobile App AppSecret for OAuth",
-  "capabilityBtn": "Capability Binding",
-  "capabilityTitle": "Bind apps to capabilities",
   "capabilitySelectPlaceholder": "Select an app",
   "capabilityNoApp": "No apps yet. Create an app first.",
   "capabilitySaveSuccess": "Saved",
@@ -39,7 +36,6 @@
   "scopePlatform": "Platform App",
   "scopeMerchant": "Merchant App",
   "channelCapabilityTitle": "Payment App Setup",
-  "channelCapabilityDesc": "Bind a merchant or platform app for each capability. Leave empty to fall back.",
   "validation": {
     "appSecret": "Enter AppSecret"
   },
@@ -53,6 +49,5 @@
   "channelCapabilityDescIsv": "Choose a merchant app or the service-provider default for each capability. Default falls back to the product-level default payment apps.",
   "channelCapabilityDescLeshua": "Only needed for WeChat JSAPI / mini-program payments.",
   "capabilityIspDefault": "Service provider default",
-  "capabilityIspNotConfigured": "Not configured",
   "isvAppEntryDesc": "Manage WeChat service-provider apps (official account, mini program)"
 }

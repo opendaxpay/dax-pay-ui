@@ -1,10 +1,8 @@
 {
-  "title": "Konfigurasi Leshua ISV",
   "groupConfig": "Manajemen Konfigurasi",
   "configTitle": "Konfigurasi Kunci Leshua ISV",
   "manageTitle": "Manajemen Pedagang Leshua",
   "keyConfig": "Konfigurasi Kunci",
-  "enable": "Memungkinkan",
   "lsMchNo": "ID Pedagang Leshua",
   "lsMchNoPlaceholder": "Masukkan ID pedagang Leshua (merchant_id)",
   "tradeKey": "Kunci Perdagangan",
@@ -16,7 +14,6 @@
   "notifyKeyKeepPlaceholder": "Sudah dikonfigurasi. Biarkan kosong untuk mempertahankan nilai yang ada",
   "notifyKeyTooltip": "Kunci verifikasi notifikasi asinkron Leshua; digunakan untuk memverifikasi notifikasi callback",
   "signType": "Jenis Tanda",
-  "signTypePlaceholder": "Pilih jenis tanda",
   "lsIsvNo": "Leshua ISV No",
   "lsIsvNoPlaceholder": "Masukkan nomor Leshua ISV",
   "lsIsvNoTooltip": "Nomor unik yang diberikan Leshua kepada penyedia layanan; wajib untuk onboarding dan skenario API lainnya",
@@ -29,9 +26,6 @@
     "notifyKey": "Silakan masukkan kunci notifikasi",
     "signType": "Silakan pilih jenis tanda"
   },
-  "groupMchConfig": "Konfigurasi Pedagang",
-  "cardMchConfig": "Konfigurasi Pedagang",
-  "cardMchConfigDesc": "Konfigurasikan ID pedagang saluran Leshua",
   "cardCapabilityBinding": "Pengaturan Aplikasi Pembayaran",
   "cardCapabilityBindingDesc": "Tentukan aplikasi WeChat untuk setiap kemampuan pembayaran"
 }

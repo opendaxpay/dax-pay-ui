@@ -24,13 +24,9 @@
     "ios": "แอพ iOS"
   },
   "fields": {
-    "appId": "รหัสแอป",
-    "appIdPlaceholder": "ป้อนรหัสแอป",
     "appIdRequired": "กรุณากรอกรหัสแอป",
     "wxAppId": "รหัสแอปมินิโปรแกรม",
     "wxAppIdPlaceholder": "เข้าสู่ AppId โปรแกรม WeChat Mini",
-    "appSecret": "AppSecret",
-    "appSecretPlaceholder": "เข้าสู่ AppSecret",
     "appSecretRequired": "กรุณากรอก AppSecret",
     "wxAppSecret": "มินิโปรแกรม AppSecret",
     "wxAppSecretPlaceholder": "เข้าสู่ AppSecret โปรแกรม WeChat Mini",
@@ -63,19 +59,8 @@
     "dyAppSecretPlaceholder": "เข้าสู่ Douyin Mini Program AppSecret"
   },
   "detail": {
-    "back": "กลับ",
-    "appConfig": "การกำหนดค่าคีย์แพลตฟอร์ม",
-    "appConfigPlaceholder": "ป้อนการกำหนดค่าคีย์แพลตฟอร์มในรูปแบบ JSON",
-    "notifyConfig": "การกำหนดค่าการแจ้งเตือน",
-    "notifyConfigPlaceholder": "ป้อนการกำหนดค่าการแจ้งเตือนในรูปแบบ JSON",
-    "bindingEnabled": "เปิดใช้งานการผูกบัญชีบุคคลที่สาม",
-    "enabled": "เปิดใช้งานแล้ว",
-    "remark": "หมายเหตุ",
-    "remarkPlaceholder": "ใส่หมายเหตุ",
-    "save": "บันทึก",
     "saveSuccess": "บันทึกเรียบร้อยแล้ว",
     "notSupportedAppType": "ประเภทแอปที่ไม่รองรับ",
-    "emptyPlatformConfig": "ยังไม่มีการกำหนดค่าแพลตฟอร์ม กรอกและบันทึกเพื่อสร้าง",
     "platformComingSoon": "แพลตฟอร์มนี้ยังไม่พร้อมใช้งาน จะได้รับการจัดการเมื่อแอปพร้อม",
     "cashierLimitTitle": "มินิโปรแกรมแคชเชียร์แพลตฟอร์มเดียว",
     "cashierLimitDesc": "แพลตฟอร์มทั้งหมดแชร์ WeChat หนึ่งรายการและมินิโปรแกรมแคชเชียร์ Alipay หนึ่งรายการ openId และ channelAppId ต้องใช้ AppId เดียวกันในเวลาชำระเงิน ลงทะเบียนหรือผูก AppId นี้กับช่องทางการชำระเงินแต่ละช่องทางเป็น Pay AppId (มักจะเป็นโปรแกรมขนาดเล็กของผู้ให้บริการสำหรับ WeChat ISV อย่างเป็นทางการ หรือ sub_appid สำหรับช่องทางบุคคลที่สาม) ไม่ใช่ทุกช่องจะทำงานนอกกรอบ"

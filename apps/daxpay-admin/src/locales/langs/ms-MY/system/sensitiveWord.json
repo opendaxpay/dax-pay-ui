@@ -2,8 +2,6 @@
   "tip": "Disyorkan daftar perkataan dalam Cina ringkas; sistem menormalkan ke ringkas dan separuh lebar sebelum padanan.",
   "word": {
     "add": "Tambah perkataan sensitif",
-    "edit": "Edit perkataan sensitif",
-    "view": "Lihat perkataan sensitif",
     "confirmDelete": "Padam perkataan sensitif ini?",
     "field": {
       "word": "Perkataan",
@@ -34,7 +32,6 @@
       "disable": "Nyahaktif"
     },
     "check": {
-      "title": "Uji teks",
       "placeholder": "Masukkan teks untuk diperiksa",
       "button": "Periksa",
       "hit": "Dikesan: {0}",

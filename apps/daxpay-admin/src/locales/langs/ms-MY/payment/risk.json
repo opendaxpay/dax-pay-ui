@@ -1,6 +1,5 @@
 {
   "blacklist": {
-    "title": "Senarai hitam",
     "add": "Tambah senarai hitam",
     "editTitle": "Edit senarai hitam",
     "viewTitle": "Lihat senarai hitam",
@@ -35,22 +34,12 @@
     }
   },
   "hit": {
-    "title": "Hit risiko",
     "field": {
       "phase": "Fasa",
       "hitType": "Jenis hit",
       "hitValue": "Nilai hit",
       "mchNo": "No. peniaga",
-      "appId": "App ID",
       "tradeNo": "No. dagangan",
-      "orderNo": "No. pesanan",
-      "bizOrderNo": "No. pesanan perniagaan",
-      "method": "Kaedah",
-      "channel": "Saluran",
-      "clientIp": "IP klien",
-      "openid": "OpenId",
-      "buyerId": "BuyerId",
-      "scene": "Senario",
       "createTime": "Dicipta pada",
       "merchant": "Peniaga",
       "clientCity": "Bandar IP"
@@ -58,13 +47,6 @@
     "phase": {
       "before_pay": "Sebelum bayar",
       "after_pay": "Selepas bayar"
-    },
-    "scene": {
-      "api": "API",
-      "gateway": "Gateway",
-      "code": "Kod QR",
-      "manual": "Manual",
-      "unknown": "Tidak diketahui"
     },
     "hitType": {
       "ip": "IP",

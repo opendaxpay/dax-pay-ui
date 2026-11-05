@@ -4,16 +4,11 @@
     "mchInfo": "ข้อมูลร้านค้า",
     "mchNamePlaceholder": "กรุณากรอกชื่อร้านค้า",
     "mchShortNamePlaceholder": "กรุณากรอกชื่อย่อของผู้ขาย",
-    "subjectTypePlaceholder": "กรุณาเลือกประเภทร้านค้า",
     "adminNamePlaceholder": "กรุณากรอกชื่อ"
   },
   "manage": {
     "info": {
-      "title": "โปรไฟล์ผู้ขาย",
-      "backToWorkbench": "กลับไปที่การจัดการ"
-    },
-    "manage": {
-      "title": "จัดการ"
+      "title": "โปรไฟล์ผู้ขาย"
     }
   }
 }

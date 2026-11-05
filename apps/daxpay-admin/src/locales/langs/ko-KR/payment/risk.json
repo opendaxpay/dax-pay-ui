@@ -1,6 +1,5 @@
 {
   "blacklist": {
-    "title": "Blacklist",
     "add": "Add blacklist",
     "editTitle": "Edit blacklist",
     "viewTitle": "View blacklist",
@@ -35,22 +34,12 @@
     }
   },
   "hit": {
-    "title": "Risk hits",
     "field": {
       "phase": "Phase",
       "hitType": "Hit type",
       "hitValue": "Hit value",
       "mchNo": "Merchant No",
-      "appId": "App ID",
       "tradeNo": "Trade No",
-      "orderNo": "Order No",
-      "bizOrderNo": "Biz order No",
-      "method": "Method",
-      "channel": "Channel",
-      "clientIp": "Client IP",
-      "openid": "OpenId",
-      "buyerId": "BuyerId",
-      "scene": "Scene",
       "createTime": "Created at",
       "merchant": "가맹점",
       "clientCity": "IP 도시"
@@ -58,13 +47,6 @@
     "phase": {
       "before_pay": "Before pay",
       "after_pay": "After pay"
-    },
-    "scene": {
-      "api": "API",
-      "gateway": "Gateway",
-      "code": "QR Code",
-      "manual": "Manual",
-      "unknown": "Unknown"
     },
     "hitType": {
       "ip": "IP",

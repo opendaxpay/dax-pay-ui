@@ -11,8 +11,6 @@
     "tabTitle": "支付宝应用配置",
     "tabDescription": "支付宝 OAuth 凭据, 服务于授权登录与支付通道认证",
     "headerDescription": "支付宝 OAuth 凭据, 服务于授权登录与支付通道认证, 须使用网页应用(自用型)",
-    "title": "支付宝应用认证配置",
-    "description": "管理支付宝 OAuth 凭据(appId/私钥/证书), 用于授权登录获取用户标识(userId)与支付通道认证。",
     "usageTip": "本配置同时服务于: 1) 三方登录的支付宝授权登录; 2) 支付场景的通道认证(获取支付所需的用户标识)。",
     "confirmSaveContent": "确定要保存支付宝应用配置吗?",
     "section": {
@@ -54,8 +52,6 @@
   "wechatMp": {
     "tabTitle": "微信公众号配置",
     "tabDescription": "公众号凭据, 服务于微信登录与模版通知",
-    "title": "微信公众号认证配置",
-    "description": "管理微信公众号凭据(appId/appSecret), 用于公众号 H5 授权获取用户 openId, 以及通知中心模版消息发送。",
     "usageTip": "本配置同时服务于: 1) 公众号 H5 网页授权登录; 2) 通知中心模版消息发送。",
     "confirmSaveContent": "确定要保存微信公众号配置吗?",
     "section": {
@@ -75,8 +71,6 @@
   "douyinH5": {
     "tabTitle": "抖音 H5 应用",
     "tabDescription": "抖音开放平台 H5 凭据，服务于 H5 场景授权",
-    "title": "抖音 H5 应用认证配置",
-    "description": "管理抖音开放平台 H5 应用凭据(Client Key / Client Secret)，用于 H5 场景授权。",
     "usageTip": "本配置独立于「三方平台登录配置」中的抖音登录，仅管理开放平台 H5 应用 Client Key / Client Secret。",
     "confirmSaveContent": "确定要保存抖音 H5 应用配置吗?",
     "section": {
@@ -96,8 +90,6 @@
   "autoLogin": {
     "tabTitle": "应用内自动登录",
     "tabDescription": "在飞书/企微/钉钉内打开时自动 OAuth 登录",
-    "title": "应用内自动登录",
-    "description": "按运营端/商户端分别配置：在飞书/企微/钉钉内置浏览器打开登录页时，按 UA 自动匹配已选平台之一发起授权。",
     "usageTip": "可多选飞书、企业微信、钉钉。开启前请先在「三方平台登录配置」中启用对应平台。钉钉首次授权需确认一次，之后免确认；微信不参与应用内自动登录。用户须先绑定三方账号；未绑定将静默回到账密登录页。",
     "confirmSaveContent": "确定要保存应用内自动登录配置吗?",
     "section": {

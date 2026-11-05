@@ -6,7 +6,6 @@
     "notifyUrlTooltip": "Thông báo sự kiện sẽ được đẩy tới URL này qua HTTP POST, hỗ trợ giao thức http/https",
     "notifyUrlPlaceholder": "http(s)://your-callback-receiver-url",
     "notifyWay": "Phương thức thông báo",
-    "notifyWayHint": "Chọn cách nhận thông báo (callback HTTP hoặc đẩy MQ)",
     "subscribedEvents": "Sự kiện đã đăng ký",
     "subscribedEventsTooltip": "Chọn loại sự kiện kinh doanh bạn muốn nhận",
     "eventGroupPay": "Sự kiện thanh toán",

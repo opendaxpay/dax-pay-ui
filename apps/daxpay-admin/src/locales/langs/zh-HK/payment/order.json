@@ -55,14 +55,11 @@
     "relationOrderNo": "上送通道關聯號",
     "postedAmount": "入帳金額(元)",
     "refundableBalance": "可退金額(元)",
-    "payBody": "支付參數體",
-    "payBodyType": "參數體類型",
     "buyerId": "付款用户ID",
     "openid": "OpenID",
     "tradeProduct": "通道支付產品",
     "tradeWay": "通道交易方式",
     "bankType": "銀行卡類型",
-    "promotionType": "活動類型",
     "errorMsg": "錯誤信息",
     "notifyUrl": "異步通知地址",
     "returnUrl": "同步跳轉地址",
@@ -75,10 +72,8 @@
     "channelAppId": "通道應用",
     "clientIp": "客户端IP",
     "terminalNo": "終端編碼",
-    "containerId": "關聯容器ID",
     "containerStatus": "容器業務狀態",
     "source": "訂單來源",
-    "limitPay": "限制支付類型",
     "mchNo": "商户號",
     "appId": "商戶應用",
     "createTime": "創建時間",
@@ -89,7 +84,6 @@
     "finishTime": "退款完成時間",
     "orderAmount": "訂單總金額",
     "orderNo": "平台業務單號",
-    "authCode": "付款碼",
     "merchant": "商戶",
     "storeNo": "門店號",
     "gatewayType": "網關類型",
@@ -141,7 +135,6 @@
     "amountMin": "最小金額",
     "amountMax": "最大金額",
     "refundNo": "請輸入退款號",
-    "bizRefundNo": "請輸入商户退款號",
     "orderNo": "請輸入原支付訂單號",
     "allocNo": "請輸入分帳單號",
     "bizAllocNo": "請輸入商戶分帳單號"
@@ -161,7 +154,6 @@
     "refundConfirmContent": "退款將從原支付訂單扣除 {amount} 元,是否繼續?",
     "refundTradeAmountLabel": "交易金額",
     "refundableBalanceLabel": "可退金額",
-    "cents": "分",
     "refundAmountLabel": "退款金額(元)",
     "refundReasonLabel": "退款原因",
     "refundAmountPlaceholder": "請輸入退款金額",
@@ -192,7 +184,6 @@
     "allocAmountLabel": "分帳金額(元)",
     "allocTotalLabel": "合計",
     "allocTotalExceed": "分帳總額不能超過訂單金額",
-    "allocReceiverRequired": "至少新增一個分帳接收方",
     "allocValidateType": "請選擇接收方類型",
     "allocValidateAccount": "請輸入接收方帳號",
     "allocValidateAmount": "分帳金額需不小於 0.01 元",
@@ -214,14 +205,6 @@
     "exportFailed": "匯出失敗, 請稍後重試",
     "orderDetail": "訂單明細"
   },
-  "method": {
-    "jsapi": "JSAPI",
-    "qrcode": "掃碼",
-    "h5": "H5",
-    "app": "APP",
-    "barcode": "付款碼",
-    "wap": "WAP"
-  },
   "tradeType": {
     "normal": "普通支付",
     "gateway": "網關支付"
@@ -231,7 +214,6 @@
     "aggregate": "聚合掃碼"
   },
   "alloc": {
-    "title": "分帳訂單",
     "detail": "分帳訂單詳情",
     "statusLabel": "分帳狀態",
     "detailResultLabel": "明細結果",

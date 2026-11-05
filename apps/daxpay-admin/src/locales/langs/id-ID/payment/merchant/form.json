@@ -4,16 +4,11 @@
     "mchInfo": "Informasi Pedagang",
     "mchNamePlaceholder": "Silakan masukkan nama pedagang",
     "mchShortNamePlaceholder": "Silakan masukkan nama pendek pedagang",
-    "subjectTypePlaceholder": "Silakan pilih jenis pedagang",
     "adminNamePlaceholder": "Masukkan nama"
   },
   "manage": {
     "info": {
-      "title": "Profil Pedagang",
-      "backToWorkbench": "Kembali ke Manajemen"
-    },
-    "manage": {
-      "title": "Mengelola"
+      "title": "Profil Pedagang"
     }
   }
 }

@@ -13,12 +13,9 @@
     "hour": "hours",
     "session": "sessions",
     "second": "seconds",
-    "window": "windows",
-    "count": "count",
-    "score": "points"
+    "count": "count"
   },
   "group": {
-    "access": "Access Security",
-    "openApi": "Open API Security"
+    "access": "Access Security"
   }
 }

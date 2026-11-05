@@ -18,9 +18,7 @@
     "sceneChannelMchCapabilityPairHint": "Pilih pedagang saluran dan kemampuan, atau biarkan keduanya kosong; seleksi parsial tidak diperbolehkan",
     "basicSaveConfirm": "Simpan Berdasarkan Merek Perutean default? Tindakan ini akan menimpa pedagang saluran default per penyedia pembayaran.",
     "sceneRouteNotSelected": "Tidak dipilih",
-    "configTab": "Rute",
     "method": "Metode Pembayaran",
-    "missingAppContext": "Buka perutean saluran dari Manajemen Aplikasi",
     "providers": {
       "aggregate_pay": "Pembayaran Agregat",
       "wechat": "Pembayaran WeChat",

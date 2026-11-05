@@ -24,13 +24,9 @@
     "ios": "iOSアプリ"
   },
   "fields": {
-    "appId": "アプリID",
-    "appIdPlaceholder": "アプリIDを入力してください",
     "appIdRequired": "アプリIDを入力してください",
     "wxAppId": "ミニプログラム AppId",
     "wxAppIdPlaceholder": "WeChat ミニ プログラムの AppId を入力してください",
-    "appSecret": "アプリシークレット",
-    "appSecretPlaceholder": "AppSecretを入力してください",
     "appSecretRequired": "AppSecretを入力してください",
     "wxAppSecret": "ミニ プログラム AppSecret",
     "wxAppSecretPlaceholder": "WeChat ミニ プログラム AppSecret を入力してください",
@@ -63,19 +59,8 @@
     "dyAppSecretPlaceholder": "Douyin ミニ プログラム AppSecret に入る"
   },
   "detail": {
-    "back": "戻る",
-    "appConfig": "プラットフォームキー構成",
-    "appConfigPlaceholder": "プラットフォームキー構成をJSON形式で入力します",
-    "notifyConfig": "通知設定",
-    "notifyConfigPlaceholder": "通知設定をJSON形式で入力します",
-    "bindingEnabled": "サードパーティアカウントのバインドを有効にする",
-    "enabled": "有効",
-    "remark": "述べる",
-    "remarkPlaceholder": "備考を入力してください",
-    "save": "保存",
     "saveSuccess": "正常に保存されました",
     "notSupportedAppType": "サポートされていないアプリの種類",
-    "emptyPlatformConfig": "プラットフォーム設定がまだありません。入力して保存して作成します",
     "platformComingSoon": "このプラットフォームはまだ利用できません。 APPの準備ができたら処理されます",
     "cashierLimitTitle": "単一プラットフォームのレジミニ プログラム",
     "cashierLimitDesc": "プラットフォーム全体で 1 つの WeChat と 1 つの Alipay キャッシャー ミニ プログラムを共有します。 openId と channelAppId は、支払い時に同じ AppId を使用する必要があります。この AppId を各支払いチャネルに有料 AppId (多くの場合、公式 WeChat ISV のサービス プロバイダー ミニ プログラム、またはサードパーティ チャネルの sub_appid) として登録またはバインドします。すべてのチャンネルがそのまま使えるわけではありません。"

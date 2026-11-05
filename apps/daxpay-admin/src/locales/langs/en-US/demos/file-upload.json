@@ -10,12 +10,10 @@
     "description": "Files require presigned URL to access, suitable for sensitive files, contracts, etc."
   },
   "upload": "Upload",
-  "delete": "Delete",
   "uploadSuccess": "Upload successful",
   "deleteSuccess": "Delete successful",
   "deleteConfirm": "Are you sure you want to delete this file?",
   "fileTooLarge": "File size exceeds limit, max 10MB",
-  "invalidFileType": "Only image files are supported",
   "uploading": "Uploading...",
   "accessUrl": "Access URL"
 }

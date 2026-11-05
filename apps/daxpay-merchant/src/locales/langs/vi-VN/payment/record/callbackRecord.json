@@ -1,11 +1,9 @@
 {
-  "title": "Bản ghi callback",
   "tradeNo": "Mã giao dịch",
   "outTradeNo": "Mã giao dịch kênh",
   "callbackType": "Loại callback",
   "status": "Trạng thái",
   "errorMsg": "Lỗi",
-  "notifyInfo": "Payload thông báo",
   "createTime": "Thời gian thông báo",
   "placeholderTradeNo": "Nhập mã giao dịch",
   "placeholderOutTradeNo": "Nhập mã giao dịch kênh",

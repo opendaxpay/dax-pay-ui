@@ -1,5 +1,4 @@
 {
-  "title": "Protokol Pengguna",
   "name": "Nama",
   "showName": "Nama Tampilan",
   "type": "Jenis",
@@ -21,7 +20,6 @@
   "copyToClient": "Salin ke klien lain",
   "copyToClientTitle": "Salin protokol ke klien lain",
   "selectClientType": "Silakan pilih jenis klien target",
-  "copyConfirm": "Salin protokol ini (dengan versi terkini setiap bahasa) ke klien yang dipilih?",
   "versionManage": "Versi",
   "delete": "Hapus Protokol",
   "confirmDelete": "Apakah Anda yakin akan menghapus protokol ini? Semua versi akan dihapus bersamaan.",
@@ -32,7 +30,6 @@
     "versionLabel": "Label Versi",
     "titleField": "Judul",
     "content": "Isi",
-    "contentFormat": "Format Konten",
     "status": "Status",
     "effectiveTime": "Waktu Efektif",
     "summary": "Ringkasan",

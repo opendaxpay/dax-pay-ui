@@ -4,8 +4,6 @@
   "enableStickyPreferencesNavigationBar": "スティッキー設定ナビゲーション バーを有効にする",
   "disableStickyPreferencesNavigationBar": "スティッキー設定ナビゲーション バーを無効にする",
   "resetTip": "データが変更されました。クリックしてリセットしてください",
-  "resetTitle": "環境設定のリセット",
-  "resetSuccess": "設定が正常にリセットされました",
   "appearance": "外観",
   "layout": "レイアウト",
   "content": "コンテンツ",

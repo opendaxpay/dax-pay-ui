@@ -1,11 +1,9 @@
 {
-  "title": "Rekod Callback",
   "tradeNo": "No. Dagangan",
   "outTradeNo": "No. Dagangan Saluran",
   "callbackType": "Jenis Callback",
   "status": "Status",
   "errorMsg": "Ralat",
-  "notifyInfo": "Payload Pemberitahuan",
   "createTime": "Masa Pemberitahuan",
   "placeholderTradeNo": "Masukkan no. dagangan",
   "placeholderOutTradeNo": "Masukkan no. dagangan saluran",

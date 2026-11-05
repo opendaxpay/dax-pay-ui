@@ -10,12 +10,10 @@
     "description": "Fail memerlukan URL yang ditetapkan untuk mengakses, sesuai untuk fail sensitif, kontrak, dsb."
   },
   "upload": "Muat naik",
-  "delete": "Padam",
   "uploadSuccess": "Muat naik berjaya",
   "deleteSuccess": "Padam berjaya",
   "deleteConfirm": "Adakah anda pasti mahu memadamkan fail ini?",
   "fileTooLarge": "Saiz fail melebihi had, maks 10MB",
-  "invalidFileType": "Hanya fail imej yang disokong",
   "uploading": "Memuat naik...",
   "accessUrl": "Akses URL"
 }

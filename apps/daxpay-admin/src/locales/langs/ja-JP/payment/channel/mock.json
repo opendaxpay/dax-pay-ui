@@ -109,15 +109,9 @@
     "replacePrivateKeyTitle": "加盟店秘密鍵の差し替え確認",
     "replacePrivateKeyContent": "加盟店秘密鍵のみを差し替える場合、モックゲートウェイで現在使用中のキーと一致していることを確認してください。一致しない場合、この主体のリクエストは署名検証に失敗します。",
     "continueSave": "保存を続行",
-    "save": "保存",
-    "keepBlank": "空白時は現在値を保持",
-    "keepBlankTip": "機密項目は空白の場合変更なしとして扱い、変更が必要な項目のみ送信します",
-    "configured": "設定済み",
-    "notConfigured": "未設定",
     "saveSuccess": "接続設定を保存しました"
   },
   "manage": {
-    "channelMchNo": "チャネル加盟店番号",
     "groupBasic": "基本管理",
     "groupTrade": "取引設定",
     "cardBasicInfo": "基本情報",

@@ -18,9 +18,7 @@
     "sceneChannelMchCapabilityPairHint": "Select both channel merchant and capability, or leave both empty; partial selection is not allowed",
     "basicSaveConfirm": "Save By Brand Default routing? This will overwrite the default channel merchant per pay provider.",
     "sceneRouteNotSelected": "Not selected",
-    "configTab": "Routing",
     "method": "Pay Method",
-    "missingAppContext": "Open channel routing from App Management",
     "providers": {
       "aggregate_pay": "Aggregate Pay",
       "wechat": "WeChat Pay",

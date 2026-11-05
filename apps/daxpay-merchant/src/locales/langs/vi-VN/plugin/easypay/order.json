@@ -1,5 +1,4 @@
 {
-  "title": "Đơn hàng EasyPay",
   "detail": "Chi tiết đơn hàng EasyPay",
   "field": {
     "orderId": "ID container liên quan",
@@ -23,9 +22,7 @@
     "pcCallType": "Kiểu gọi PC",
     "payUrl": "Liên kết thanh toán",
     "payBody": "Nội dung tham số thanh toán",
-    "createTime": "Thời gian tạo",
-    "merchant": "Merchant",
-    "appId": "ID ứng dụng"
+    "createTime": "Thời gian tạo"
   },
   "placeholder": {
     "outTradeNo": "Nhập mã đơn hàng của merchant",
@@ -60,9 +57,6 @@
   "section": {
     "basic": "Thông tin đơn hàng",
     "time": "Thông tin thời gian",
-    "extra": "Thanh toán & Mở rộng",
-    "order": "Thông tin đơn hàng",
-    "app": "Ứng dụng & Giao thức",
-    "pay": "Thanh toán & Callback"
+    "extra": "Thanh toán & Mở rộng"
   }
 }

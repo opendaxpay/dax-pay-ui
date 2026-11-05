@@ -51,10 +51,8 @@
     "advanced": "進階選項"
   },
   "action": {
-    "create": "發起轉賬",
     "sync": "同步",
     "close": "關閉",
-    "retry": "重試",
     "reset": "重置"
   },
   "createTitle": "發起轉賬",
@@ -69,24 +67,19 @@
   "closeSuccess": "轉賬已關閉",
   "detail": "轉賬詳情",
   "placeholder": {
-    "bizTransferNo": "商戶側唯一，用於冪等",
     "openid": "收款人微信 openid",
     "payeeNameTip": "少於0.3元禁填，大於等於2000元必填",
     "notifyUrl": "平台→商戶異步通知地址",
-    "targetMch": "請選擇目標商戶",
     "channelMch": "請選擇通道商戶",
     "douyinOpenid": "收款人抖音 openid",
     "payeeNameTipDouyin": "大於或等於2000元必填",
     "payeeUserId": "收款人支付寶用戶ID(2088開頭)",
-    "payeeOpenId": "收款人支付寶 OpenID",
     "payeeLoginName": "收款人支付寶登入帳號(電郵/手機號)",
     "bizTransferNoAuto": "留空將自動生成",
-    "reportInfoContent": "留空使用預設值 -",
     "payeePhone": "收款人抖音手機號(需與抖音支付實名一致)",
     "payeeNameTipAlipayUserId": "選填，填寫後將校驗收款帳號姓名一致性",
     "payeeNameTipAlipayLoginName": "登入帳號收款必填，將校驗姓名與帳號一致性"
   },
-  "targetMch": "目標商戶",
   "channelMch": "通道商戶",
   "amountUnit": "元",
   "payeeTypeUserId": "用戶ID",
@@ -107,7 +100,6 @@
     "reportInfoRequired": "請填寫全部轉賬場景報備欄位"
   },
   "confirmUrlCopied": "連結已複製",
-  "confirmUrlCopyFailed": "複製失敗",
   "confirmUrlExpireTip": "連結24小時內有效，請盡快發送給收款人",
   "confirmUrlTip": "請將確認收款連結發送給收款人，收款人需在微信內開啟",
   "payeeTypePhone": "手機號",

@@ -51,10 +51,8 @@
     "advanced": "Opsi Lanjutan"
   },
   "action": {
-    "create": "Transfer",
     "sync": "Sinkron",
     "close": "Tutup",
-    "retry": "Ulangi",
     "reset": "Atur Ulang"
   },
   "createTitle": "Buat Transfer",
@@ -69,24 +67,19 @@
   "closeSuccess": "Transfer ditutup",
   "detail": "Detail Transfer",
   "placeholder": {
-    "bizTransferNo": "Unik per merchant, untuk idempotensi",
     "openid": "OpenID WeChat penerima",
     "payeeNameTip": "Tidak boleh di bawah 0.3 CNY, wajib di atas 2000 CNY",
     "notifyUrl": "URL notifikasi async platform→merchant",
-    "targetMch": "Silakan pilih merchant target",
     "channelMch": "Silakan pilih merchant saluran",
     "douyinOpenid": "openid Douyin penerima",
     "payeeNameTipDouyin": "Wajib jika 2000 CNY ke atas",
     "payeeUserId": "ID pengguna Alipay penerima (diawali 2088)",
-    "payeeOpenId": "OpenID Alipay penerima",
     "payeeLoginName": "Nama login Alipay penerima (email/nomor telepon)",
     "bizTransferNoAuto": "Kosongkan untuk dibuat otomatis",
-    "reportInfoContent": "Kosongkan untuk default -",
     "payeePhone": "Nomor telepon Douyin penerima (harus sesuai real-name Douyin Pay)",
     "payeeNameTipAlipayUserId": "Opsional; jika diisi, nama akan diverifikasi dengan akun penerima",
     "payeeNameTipAlipayLoginName": "Wajib untuk penerima login ID; nama akan diverifikasi dengan akun"
   },
-  "targetMch": "Merchant Target",
   "channelMch": "Merchant Saluran",
   "amountUnit": "CNY",
   "payeeTypeUserId": "ID Pengguna",
@@ -107,7 +100,6 @@
     "reportInfoRequired": "Silakan isi semua bidang pelaporan skema transfer"
   },
   "confirmUrlCopied": "Tautan disalin",
-  "confirmUrlCopyFailed": "Salin gagal",
   "confirmUrlExpireTip": "Tautan berlaku 24 jam, segera kirim ke penerima",
   "confirmUrlTip": "Kirim tautan konfirmasi ke penerima, harus dibuka di WeChat",
   "payeeTypePhone": "Nomor telepon",

@@ -1,5 +1,4 @@
 {
-  "title": "이지페이 주문",
   "detail": "이지페이 주문 상세",
   "field": {
     "orderId": "연결 컨테이너 ID",
@@ -33,19 +32,8 @@
     "name": "상품명 입력"
   },
   "status": {
-    "0": "미결제",
-    "1": "결제 완료",
     "success": "결제 완료",
     "pending": "미결제"
-  },
-  "statusColor": {
-    "0": "orange",
-    "1": "green"
-  },
-  "type": {
-    "alipay": "Alipay",
-    "wxpay": "WeChat Pay",
-    "aggregate": "통합 결제"
   },
   "action": {
     "sync": "상태 동기화",
@@ -58,9 +46,7 @@
     "closeConfirmContent": "닫은 후에는 주문을 결제할 수 없습니다. 계속하시겠습니까?"
   },
   "section": {
-    "basic": "주문 정보",
     "time": "시간 정보",
-    "extra": "결제 및 확장",
     "order": "주문 정보",
     "app": "앱 및 프로토콜",
     "pay": "결제 및 콜백"

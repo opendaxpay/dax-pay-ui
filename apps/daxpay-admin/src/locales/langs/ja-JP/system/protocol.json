@@ -1,5 +1,4 @@
 {
-  "title": "ユーザープロトコル",
   "name": "名前",
   "showName": "表示名",
   "type": "タイプ",
@@ -21,7 +20,6 @@
   "copyToClient": "他のクライアントにコピーする",
   "copyToClientTitle": "プロトコルを他のクライアントにコピーする",
   "selectClientType": "対象となるクライアントのタイプを選択してください",
-  "copyConfirm": "このプロトコル (各言語の現在公開されているバージョンを含む) を選択したクライアントにコピーしますか?",
   "versionManage": "バージョン",
   "delete": "プロトコルの削除",
   "confirmDelete": "このプロトコルを削除してもよろしいですか?すべてのバージョンがまとめて削除されます。",
@@ -32,7 +30,6 @@
     "versionLabel": "バージョンラベル",
     "titleField": "タイトル",
     "content": "コンテンツ",
-    "contentFormat": "コンテンツ形式",
     "status": "状態",
     "effectiveTime": "有効時間",
     "summary": "まとめ",

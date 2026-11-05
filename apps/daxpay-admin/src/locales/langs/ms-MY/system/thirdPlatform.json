@@ -11,8 +11,6 @@
     "tabTitle": "Konfigurasi Apl Alipay",
     "tabDescription": "Bukti kelayakan Alipay OAuth untuk log masuk pengesahan dan pengesahan saluran pembayaran",
     "headerDescription": "Kredensial OAuth Alipay untuk log masuk kebenaran dan pengesahan saluran pembayaran; aplikasi web jenis kegunaan sendiri diperlukan",
-    "title": "Konfigurasi Pengesahan Apl Alipay",
-    "description": "Urus bukti kelayakan Alipay OAuth (appId/kunci peribadi/sijil) untuk log masuk pengesahan untuk mendapatkan pengecam pengguna (userId) dan pengesahan saluran pembayaran.",
     "usageTip": "Konfigurasi ini berfungsi untuk kedua-duanya: 1) Log masuk pengesahan Alipay dalam log masuk pihak ketiga; 2) Pengesahan saluran dalam senario pembayaran (dapatkan pengecam pengguna untuk pembayaran).",
     "confirmSaveContent": "Adakah anda pasti menyimpan konfigurasi Apl Alipay?",
     "section": {
@@ -54,8 +52,6 @@
   "wechatMp": {
     "tabTitle": "Konfigurasi Akaun Rasmi WeChat",
     "tabDescription": "Bukti kelayakan MP WeChat untuk log masuk dan pemberitahuan templat",
-    "title": "Konfigurasi Pengesahan Akaun Rasmi WeChat",
-    "description": "Urus bukti kelayakan MP WeChat (appId/appSecret) untuk mesej templat H5 OAuth openId dan pusat pemberitahuan.",
     "usageTip": "Konfigurasi ini berfungsi: 1) Log masuk WeChat MP H5 OAuth; 2) Penghantaran mesej templat pusat pemberitahuan.",
     "confirmSaveContent": "Adakah anda pasti menyimpan konfigurasi Akaun Rasmi WeChat?",
     "section": {
@@ -75,8 +71,6 @@
   "douyinH5": {
     "tabTitle": "Apl Douyin H5",
     "tabDescription": "Bukti kelayakan Platform Terbuka Douyin H5 untuk kebenaran H5",
-    "title": "Konfigurasi Pengesahan Apl Douyin H5",
-    "description": "Urus bukti kelayakan aplikasi Douyin Open Platform H5 (Kunci Pelanggan / Rahsia Pelanggan) untuk senario kebenaran H5.",
     "usageTip": "Konfigurasi ini bebas daripada log masuk Douyin di bawah Konfigurasi Log Masuk Pihak Ketiga. Ia hanya menguruskan Kunci Pelanggan H5 Platform Terbuka / Rahsia Pelanggan.",
     "confirmSaveContent": "Adakah anda pasti menyimpan konfigurasi Apl Douyin H5?",
     "section": {
@@ -96,8 +90,6 @@
   "autoLogin": {
     "tabTitle": "Log masuk auto dalam app",
     "tabDescription": "OAuth auto dalam Feishu/WeCom/DingTalk",
-    "title": "Log Masuk Auto Dalam App",
-    "description": "Configure admin/merchant separately: when opened in Feishu/WeCom/DingTalk, match one selected platform by UA and start OAuth.",
     "usageTip": "Multi-select Feishu, WeCom, and DingTalk. Enable the platform under Third-party Login Config first. DingTalk asks for consent on first authorization and is silent afterwards; WeChat is not used for in-app auto login. Users must bind first; unbound falls back silently to password login.",
     "confirmSaveContent": "Simpan tetapan log masuk auto dalam app?",
     "section": {

@@ -109,15 +109,9 @@
     "replacePrivateKeyTitle": "Konfirmasi Penggantian Kunci Privat",
     "replacePrivateKeyContent": "Saat hanya mengganti kunci privat merchant, pastikan kunci tersebut cocok dengan kunci yang sedang digunakan gateway mock; jika tidak, permintaan dari subjek ini akan gagal verifikasi.",
     "continueSave": "Lanjutkan Simpan",
-    "save": "Simpan",
-    "keepBlank": "Kosongkan untuk mempertahankan",
-    "keepBlankTip": "Kolom sensitif yang dikosongkan dianggap tidak diubah; hanya item yang berubah yang dikirim",
-    "configured": "Terkonfigurasi",
-    "notConfigured": "Belum Terkonfigurasi",
     "saveSuccess": "Konfigurasi akses berhasil disimpan"
   },
   "manage": {
-    "channelMchNo": "No. Merchant Saluran",
     "groupBasic": "Manajemen Dasar",
     "groupTrade": "Konfigurasi Transaksi",
     "cardBasicInfo": "Informasi Dasar",

@@ -1,5 +1,4 @@
 {
-  "title": "碼牌管理",
   "field": {
     "code": "碼牌編碼",
     "name": "碼牌名稱",
@@ -17,7 +16,6 @@
     "programType": "碼牌類型",
     "storeNo": "門店號",
     "store": "門店",
-    "storeName": "門店名稱",
     "allocation": "是否分帳"
   },
   "status": {
@@ -30,7 +28,6 @@
   },
   "defaultApp": "預設應用",
   "unbound": "未繫結",
-  "mchNoTooltip": "商戶號: {mchNo}",
   "batchCreate": "批次生成",
   "bindMerchant": "繫結商戶",
   "unbindMerchant": "解綁商戶",
@@ -54,30 +51,17 @@
   "confirmEnable": "確定要啟用該碼牌嗎？",
   "confirmDisable": "確定要停用該碼牌嗎？掃碼將無法支付。",
   "confirmUnbind": "確定要解綁所選碼牌的商戶嗎？解綁後將回到空白庫存。",
-  "viewCode": "檢視碼牌",
   "qrCodeTitle": "碼牌二維碼",
   "qrCodeTip": "掃碼即可進入支付頁面",
   "copyLink": "複製連結",
-  "download": "下載二維碼",
   "amountLabel": "金額",
   "programType": {
     "h5": "H5",
     "mini_app": "小程序"
   },
   "validateProgramType": "請選擇碼牌類型",
-  "bindStore": "綁定門店",
-  "unbindStore": "解綁門店",
-  "confirmUnbindStore": "確定要解綁所選碼牌的門店嗎？解綁後碼牌將不再關聯門店。",
   "pleaseSelectStore": "請選擇門店",
-  "validateStoreNo": "請選擇門店",
-  "storeBindNeedSameMch": "批量綁定門店時須選擇同一商戶下的碼牌",
-  "storeBindNeedMerchant": "請先為碼牌綁定商戶後再綁定門店",
   "batchActions": "批量操作",
-  "bindApp": "綁定應用",
-  "unbindApp": "解綁應用",
-  "confirmUnbindApp": "確定要解綁所選碼牌的應用嗎？解綁後支付將使用商戶預設應用。",
-  "validateAppId": "請選擇應用",
-  "defaultStoreHint": "預設門店(若已配置)",
   "allocationTip": "開啟後掃碼支付將請求通道凍結資金用於分帳",
   "allocationOn": "分帳",
   "allocWarningTitle": "分帳能力預警",

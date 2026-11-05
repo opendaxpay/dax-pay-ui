@@ -2,8 +2,6 @@
   "tip": "Nên đăng ký từ bằng tiếng Trung giản thể; hệ thống chuẩn hóa phồn thể→giản thể và full-width trước khi khớp.",
   "word": {
     "add": "Thêm từ nhạy cảm",
-    "edit": "Sửa từ nhạy cảm",
-    "view": "Xem từ nhạy cảm",
     "confirmDelete": "Xóa từ nhạy cảm này?",
     "field": {
       "word": "Từ",
@@ -34,7 +32,6 @@
       "disable": "Tắt"
     },
     "check": {
-      "title": "Kiểm tra văn bản",
       "placeholder": "Nhập văn bản để kiểm tra",
       "button": "Kiểm tra",
       "hit": "Trúng: {0}",

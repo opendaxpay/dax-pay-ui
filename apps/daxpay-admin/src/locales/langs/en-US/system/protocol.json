@@ -1,5 +1,4 @@
 {
-  "title": "User Protocol",
   "name": "Name",
   "showName": "Display Name",
   "type": "Type",
@@ -21,7 +20,6 @@
   "copyToClient": "Copy to other client",
   "copyToClientTitle": "Copy protocol to other client",
   "selectClientType": "Please select target client type",
-  "copyConfirm": "Copy this protocol (with current published versions of each language) to the selected client?",
   "versionManage": "Versions",
   "delete": "Delete Protocol",
   "confirmDelete": "Are you sure to delete this protocol? All versions will be deleted together.",
@@ -32,7 +30,6 @@
     "versionLabel": "Version Label",
     "titleField": "Title",
     "content": "Content",
-    "contentFormat": "Content Format",
     "status": "Status",
     "effectiveTime": "Effective Time",
     "summary": "Summary",

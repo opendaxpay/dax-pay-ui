@@ -13,12 +13,9 @@
     "hour": "小时",
     "session": "个",
     "second": "秒",
-    "window": "个",
-    "count": "个",
-    "score": "分"
+    "count": "个"
   },
   "group": {
-    "access": "访问安全",
-    "openApi": "开放接口安全"
+    "access": "访问安全"
   }
 }

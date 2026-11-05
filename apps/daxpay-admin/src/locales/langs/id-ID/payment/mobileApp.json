@@ -24,13 +24,9 @@
     "ios": "Aplikasi iOS"
   },
   "fields": {
-    "appId": "ID Aplikasi",
-    "appIdPlaceholder": "Masukkan AppId",
     "appIdRequired": "Silakan masukkan AppId",
     "wxAppId": "ID Aplikasi Program Mini",
     "wxAppIdPlaceholder": "Masukkan ID Aplikasi Program Mini WeChat",
-    "appSecret": "Rahasia Aplikasi",
-    "appSecretPlaceholder": "Masuk ke Rahasia Aplikasi",
     "appSecretRequired": "Silakan masuk ke AppSecret",
     "wxAppSecret": "Rahasia Aplikasi Program Mini",
     "wxAppSecretPlaceholder": "Masuk ke Rahasia Aplikasi Program Mini WeChat",
@@ -63,19 +59,8 @@
     "dyAppSecretPlaceholder": "Masuk ke Rahasia Aplikasi Program Mini Douyin"
   },
   "detail": {
-    "back": "Kembali",
-    "appConfig": "Konfigurasi Kunci Platform",
-    "appConfigPlaceholder": "Masukkan konfigurasi kunci platform dalam format JSON",
-    "notifyConfig": "Konfigurasi Pemberitahuan",
-    "notifyConfigPlaceholder": "Masukkan konfigurasi notifikasi dalam format JSON",
-    "bindingEnabled": "Aktifkan pengikatan akun pihak ketiga",
-    "enabled": "Diaktifkan",
-    "remark": "Komentar",
-    "remarkPlaceholder": "Masukkan komentar",
-    "save": "Menyimpan",
     "saveSuccess": "Berhasil disimpan",
     "notSupportedAppType": "Jenis aplikasi tidak didukung",
-    "emptyPlatformConfig": "Belum ada konfigurasi platform, isi dan simpan untuk membuat",
     "platformComingSoon": "Platform ini belum tersedia; akan ditangani ketika APP siap",
     "cashierLimitTitle": "Program mini kasir platform tunggal",
     "cashierLimitDesc": "Seluruh platform berbagi satu program mini kasir WeChat dan satu Alipay. openId dan channelAppId harus menggunakan AppId yang sama pada waktu pembayaran. Daftarkan atau ikat AppId ini dengan setiap saluran pembayaran sebagai AppId berbayar (seringkali merupakan program mini penyedia layanan untuk WeChat ISV resmi, atau sub_appid untuk saluran pihak ketiga). Tidak semua saluran berfungsi dengan baik."

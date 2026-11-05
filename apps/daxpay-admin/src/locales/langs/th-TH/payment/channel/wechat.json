@@ -1,8 +1,5 @@
 {
-  "wxMchId": "รหัสผู้ขาย WeChat",
-  "wxAppId": "รหัสแอป WeChat",
   "apiKeyV3": "คีย์ API V3",
-  "appSecret": "ความลับของแอป",
   "publicKey": "กุญแจสาธารณะ",
   "publicKeyId": "รหัสกุญแจสาธารณะ",
   "privateKey": "คีย์ส่วนตัวของใบรับรอง API",
@@ -10,17 +7,11 @@
   "certSerialNo": "ใบรับรองเลขที่ประจำเครื่อง",
   "apiHostUrl": "โดเมน API",
   "apiHostUrlPlaceholder": "เว้นว่างเพื่อใช้ api.mch.weixin.qq.com ทางการ",
-  "wxAppSecret": "ความลับของแอป WeChat",
-  "wxAuthUrl": "URL การรับรองความถูกต้องของ WeChat",
   "validation": {
-    "wxMchIdRequired": "กรุณากรอกรหัสผู้ขาย WeChat",
-    "wxAppIdRequired": "กรุณากรอกรหัสแอป WeChat",
     "apiKeyV3Required": "โปรดป้อนคีย์ API V3",
-    "appSecretRequired": "กรุณาระบุความลับของแอป",
     "publicKeyRequired": "กรุณากรอกกุญแจสาธารณะ",
     "publicKeyIdRequired": "กรุณากรอกรหัสกุญแจสาธารณะ",
     "privateCertRequired": "โปรดป้อนใบรับรอง API",
-    "certSerialNoRequired": "กรุณากรอกหมายเลขซีเรียลของใบรับรอง",
-    "wxAppSecretRequired": "กรุณาระบุความลับของแอป WeChat"
+    "certSerialNoRequired": "กรุณากรอกหมายเลขซีเรียลของใบรับรอง"
   }
 }

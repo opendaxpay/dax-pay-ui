@@ -26,7 +26,6 @@
     "channelMerchantPlaceholder": "チャネル販売業者を選択してください",
     "capability": "能力",
     "capabilityPlaceholder": "機能の選択",
-    "methodFilterHint": "チャネル販売業者の候補をロードするために使用されます。 DIRECTモードでは保存されません",
     "validationName": "名前を入力してください",
     "validationIcon": "アイコンを選択してください",
     "validationResolveMode": "解決モードを選択してください",

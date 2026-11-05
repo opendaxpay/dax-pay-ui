@@ -109,15 +109,9 @@
     "replacePrivateKeyTitle": "Confirm Private Key Replacement",
     "replacePrivateKeyContent": "When replacing only the merchant private key, make sure it matches the key currently used by the mock gateway; otherwise requests from this subject will fail verification.",
     "continueSave": "Continue",
-    "save": "Save",
-    "keepBlank": "Leave blank to keep",
-    "keepBlankTip": "Leave sensitive fields blank to keep them unchanged; only changed items are submitted",
-    "configured": "Configured",
-    "notConfigured": "Not Configured",
     "saveSuccess": "Access configuration saved"
   },
   "manage": {
-    "channelMchNo": "Channel Merchant No.",
     "groupBasic": "Basic",
     "groupTrade": "Trade Configuration",
     "cardBasicInfo": "Basic Info",

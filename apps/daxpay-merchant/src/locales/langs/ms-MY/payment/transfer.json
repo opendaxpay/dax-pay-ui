@@ -51,10 +51,8 @@
     "advanced": "Pilihan Lanjutan"
   },
   "action": {
-    "create": "Pindahan",
     "sync": "Sinkron",
     "close": "Tutup",
-    "retry": "Cuba Semula",
     "reset": "Set Semula"
   },
   "createTitle": "Buat Pindahan",
@@ -69,24 +67,19 @@
   "closeSuccess": "Pindahan ditutup",
   "detail": "Butiran Pindahan",
   "placeholder": {
-    "bizTransferNo": "Unik setiap peniaga, untuk idempotency",
     "openid": "OpenID WeChat penerima",
     "payeeNameTip": "Tidak dibenarkan di bawah 0.3 CNY, wajib dari 2000 CNY",
     "notifyUrl": "URL notifikasi async platform→peniaga",
-    "targetMch": "Sila pilih merchant sasaran",
     "channelMch": "Sila pilih merchant saluran",
     "douyinOpenid": "openid Douyin penerima",
     "payeeNameTipDouyin": "Wajib jika 2000 CNY ke atas",
     "payeeUserId": "ID pengguna Alipay penerima (bermulai dengan 2088)",
-    "payeeOpenId": "OpenID Alipay penerima",
     "payeeLoginName": "Nama log masuk Alipay penerima (email/nombor telefon)",
     "bizTransferNoAuto": "Kosongkan untuk dijana automatik",
-    "reportInfoContent": "Kosongkan untuk lalai -",
     "payeePhone": "Nombor telefon Douyin penerima (mesti sepadan dengan nama sebenar Douyin Pay)",
     "payeeNameTipAlipayUserId": "Pilihan; jika diisi, nama akan disahkan dengan akaun penerima",
     "payeeNameTipAlipayLoginName": "Wajib untuk penerima ID log masuk; nama akan disahkan dengan akaun"
   },
-  "targetMch": "Merchant Sasaran",
   "channelMch": "Merchant Saluran",
   "amountUnit": "CNY",
   "payeeTypeUserId": "ID Pengguna",
@@ -107,7 +100,6 @@
     "reportInfoRequired": "Sila isi semua medan laporan senario pindah wang"
   },
   "confirmUrlCopied": "Pautan disalin",
-  "confirmUrlCopyFailed": "Salin gagal",
   "confirmUrlExpireTip": "Pautan sah 24 jam, sila hantar dengan segera",
   "confirmUrlTip": "Hantar pautan pengesahan kepada penerima, mesti dibuka dalam WeChat",
   "payeeTypePhone": "Nombor telefon",

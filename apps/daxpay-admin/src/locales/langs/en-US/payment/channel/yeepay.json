@@ -1,5 +1,4 @@
 {
-  "title": "Yeepay Configuration",
   "manageTitle": "Yeepay Merchant Management",
   "basicConfig": "Basic Configuration",
   "keyConfig": "Key Configuration",
@@ -23,7 +22,6 @@
   "wxAppIdPlaceholder": "For WeChat H5/JSAPI, optional",
   "wxAppSecret": "WeChat AppSecret",
   "keyConfigured": "Configured",
-  "keyNotConfigured": "Not Configured",
   "saveSuccess": "Yeepay key configuration saved successfully",
   "createSuccess": "Yeepay channel merchant created successfully",
   "validation": {

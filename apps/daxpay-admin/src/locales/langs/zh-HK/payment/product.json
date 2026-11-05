@@ -1,30 +1,7 @@
 {
-  "field": {
-    "code": "產品編碼",
-    "name": "產品名稱",
-    "channel": "所屬通道",
-    "description": "產品介紹",
-    "icon": "圖標",
-    "sortNo": "排序",
-    "remark": "備註",
-    "channelName": "通道名稱",
-    "isv": "服務商",
-    "terminal": "終端報備",
-    "sandbox": "沙箱",
-    "apiCallMode": "API調用模式",
-    "payIdType": "支付標識類型",
-    "capabilities": "支付能力",
-    "features": "產品特性"
-  },
-  "features": "產品特性",
-  "detail": "產品詳情",
-  "editCapabilities": "配置支付能力",
-  "sandboxSupported": "支持",
-  "sandboxNotSupported": "不支持",
   "enum": {
     "alipayIsv": "支付寶(服務商)",
     "alipay": "支付寶(直連)",
-    "wechat": "微信支付(直連)",
     "wechatPay": "微信支付(直連)",
     "wechatIsv": "微信支付(服務商)",
     "douyinPay": "抖音支付(直連)",
@@ -86,9 +63,5 @@
     "pingpong": "PingPong",
     "mockPay": "模擬支付",
     "mockIsv": "模擬支付(服務商)"
-  },
-  "placeholder": {
-    "name": "請輸入產品名稱",
-    "channel": "請選擇通道"
   }
 }

@@ -2,8 +2,6 @@
   "tip": "Disarankan mendaftarkan kata dalam bahasa Mandarin sederhana; sistem menormalisasi ke sederhana dan half-width sebelum pencocokan.",
   "word": {
     "add": "Tambah kata sensitif",
-    "edit": "Edit kata sensitif",
-    "view": "Lihat kata sensitif",
     "confirmDelete": "Hapus kata sensitif ini?",
     "field": {
       "word": "Kata",
@@ -34,7 +32,6 @@
       "disable": "Nonaktif"
     },
     "check": {
-      "title": "Uji teks",
       "placeholder": "Masukkan teks untuk diperiksa",
       "button": "Periksa",
       "hit": "Terdeteksi: {0}",

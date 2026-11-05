@@ -4,8 +4,6 @@
   "enableStickyPreferencesNavigationBar": "고정 기본 설정 탐색 모음 활성화",
   "disableStickyPreferencesNavigationBar": "고정 기본 설정 탐색 모음 비활성화",
   "resetTip": "데이터가 변경되었습니다. 재설정하려면 클릭하세요.",
-  "resetTitle": "환경설정 재설정",
-  "resetSuccess": "환경설정이 재설정되었습니다.",
   "appearance": "모습",
   "layout": "공들여 나열한 것",
   "content": "콘텐츠",

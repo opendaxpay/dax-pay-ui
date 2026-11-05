@@ -1,10 +1,7 @@
 {
-  "title": "雲閃付設定",
-  "keyConfig": "証明書設定",
   "merId": "銀聯マーチャントID",
   "merIdPlaceholder": "銀聯マーチャントIDを入力",
   "signType": "署名タイプ",
-  "certSign": "証明書署名",
   "keyPrivateCert": "秘密鍵証明書",
   "keyPrivateCertPlaceholder": "アプリケーション秘密鍵証明書(Base64 PKCS12)を入力",
   "keyPrivateCertPwd": "証明書パスワード",
@@ -14,10 +11,6 @@
   "acpRootCert": "ルート証明書",
   "acpRootCertPlaceholder": "ルート証明書(Base64)を入力",
   "validation": {
-    "merId": "銀聯マーチャントIDを入力してください",
-    "keyPrivateCert": "秘密鍵証明書を入力してください",
-    "keyPrivateCertPwd": "証明書パスワードを入力してください",
-    "acpMiddleCert": "中間証明書を入力してください",
-    "acpRootCert": "ルート証明書を入力してください"
+    "merId": "銀聯マーチャントIDを入力してください"
   }
 }

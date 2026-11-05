@@ -1,5 +1,4 @@
 {
-  "title": "Quản lý thương nhân ShengPay",
   "manageTitle": "Quản lý thương nhân ShengPay",
   "isvManageTitle": "Quản lý thương nhân nhà cung cấp dịch vụ ShengPay",
   "isvNotConnectedTip": "Kênh chế độ nhà cung cấp dịch vụ (ISV) ShengPay chưa được kết nối. Cấu hình liên quan chỉ mang tính dự phòng, chưa thể sử dụng cho giao dịch thực tế.",

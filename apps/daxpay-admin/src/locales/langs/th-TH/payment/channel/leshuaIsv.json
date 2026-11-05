@@ -1,10 +1,8 @@
 {
-  "title": "การกำหนดค่า Leshua ISV",
   "groupConfig": "การจัดการการกำหนดค่า",
   "configTitle": "การกำหนดค่าคีย์ Leshua ISV",
   "manageTitle": "การจัดการพ่อค้า Leshua",
   "keyConfig": "การกำหนดค่าที่สำคัญ",
-  "enable": "เปิดใช้งาน",
   "lsMchNo": "รหัสผู้ค้า Leshua",
   "lsMchNoPlaceholder": "ป้อนรหัสผู้ขาย Leshua (merchant_id)",
   "tradeKey": "รหัสการค้า",
@@ -16,7 +14,6 @@
   "notifyKeyKeepPlaceholder": "ตั้งค่าแล้ว เว้นว่างไว้เพื่อคงค่าเดิม",
   "notifyKeyTooltip": "คีย์ตรวจสอบการแจ้งเตือนอะซิงโครนัสของ Leshua ใช้สำหรับตรวจสอบการแจ้งเตือน callback",
   "signType": "ประเภทสัญญาณ",
-  "signTypePlaceholder": "เลือกประเภทป้าย",
   "lsIsvNo": "ISV เลชัว หมายเลข",
   "lsIsvNoPlaceholder": "ป้อนหมายเลข Leshua ISV",
   "lsIsvNoTooltip": "หมายเลขเฉพาะที่ Leshua กำหนดให้ผู้ให้บริการ จำเป็นสำหรับการเตรียมพร้อมและสถานการณ์ API อื่น ๆ",
@@ -29,9 +26,6 @@
     "notifyKey": "กรุณากรอกรหัสแจ้งเตือน",
     "signType": "กรุณาเลือกประเภทป้าย"
   },
-  "groupMchConfig": "การกำหนดค่าผู้ขาย",
-  "cardMchConfig": "การกำหนดค่าผู้ขาย",
-  "cardMchConfigDesc": "กำหนดค่า ID ผู้ค้า Leshua ของผู้ค้าช่องทาง",
   "cardCapabilityBinding": "ตั้งค่าแอปชำระเงิน",
   "cardCapabilityBindingDesc": "ระบุแอป WeChat สำหรับแต่ละความสามารถในการชำระเงิน"
 }

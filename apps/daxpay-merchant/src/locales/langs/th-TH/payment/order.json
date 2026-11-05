@@ -55,14 +55,11 @@
     "relationOrderNo": "Channel Relation No.",
     "postedAmount": "ยอดเข้าบัญชี (หยวน)",
     "refundableBalance": "สามารถขอคืนเงินได้ (หยวน)",
-    "payBody": "จ่ายร่างกาย",
-    "payBodyType": "จ่ายประเภทร่างกาย",
     "buyerId": "รหัสผู้ซื้อ",
     "openid": "OpenID",
     "tradeProduct": "สินค้าช่องทาง",
     "tradeWay": "ช่องทางการค้าทาง",
     "bankType": "ประเภทบัตรธนาคาร",
-    "promotionType": "ประเภทโปรโมชั่น",
     "errorMsg": "ข้อผิดพลาด",
     "notifyUrl": "แจ้ง URL",
     "returnUrl": "URL ส่งคืน",
@@ -75,11 +72,8 @@
     "channelAppId": "แอปช่องทาง",
     "clientIp": "ไอพีไคลเอ็นต์",
     "terminalNo": "เทอร์มินัลหมายเลข",
-    "containerId": "รหัสคอนเทนเนอร์",
     "containerStatus": "สถานะคอนเทนเนอร์",
     "source": "แหล่งที่มา",
-    "limitPay": "จำกัดการจ่าย",
-    "mchNo": "หมายเลขผู้ขาย",
     "appId": "แอปร้านค้า",
     "createTime": "สร้างเวลา",
     "refundNo": "หมายเลขการคืนเงิน",
@@ -89,8 +83,6 @@
     "finishTime": "เสร็จสิ้นเวลา",
     "orderAmount": "จำนวนการสั่งซื้อ",
     "orderNo": "Platform Order No.",
-    "authCode": "รหัสชำระเงิน",
-    "merchant": "ร้านค้า",
     "gatewayType": "ประเภทเกตเวย์",
     "storeNo": "รหัสร้าน",
     "allocNo": "เลขที่การแบ่ง",
@@ -141,7 +133,6 @@
     "amountMin": "จำนวนเงินขั้นต่ำ",
     "amountMax": "จำนวนเงินสูงสุด",
     "refundNo": "ใส่หมายเลขการคืนเงิน",
-    "bizRefundNo": "กรอกหมายเลขการคืนเงินของ Biz",
     "orderNo": "ป้อนหมายเลขคำสั่งซื้อเดิม",
     "allocNo": "ป้อนเลขที่การแบ่ง",
     "bizAllocNo": "ป้อนเลขที่การแบ่งผู้ค้า"
@@ -161,7 +152,6 @@
     "refundConfirmContent": "จะคืนเงิน {amount} จากคำสั่งซื้อเดิม ดำเนินการต่อหรือไม่",
     "refundTradeAmountLabel": "จำนวนเงินทำธุรกรรม",
     "refundableBalanceLabel": "จำนวนเงินที่สามารถขอคืนได้",
-    "cents": "เซนต์",
     "refundAmountLabel": "จำนวนเงินคืน (หยวน)",
     "refundReasonLabel": "เหตุผลในการคืนเงิน",
     "refundAmountPlaceholder": "กรอกจำนวนเงินคืน",
@@ -213,14 +203,6 @@
     "export": "ส่งออก",
     "exportFailed": "ส่งออกล้มเหลว กรุณาลองใหม่ภายหลัง"
   },
-  "method": {
-    "jsapi": "JSAPI",
-    "qrcode": "สแกนโค้ด",
-    "h5": "H5",
-    "app": "APP",
-    "barcode": "บาร์โค้ด",
-    "wap": "WAP"
-  },
   "tradeType": {
     "normal": "Normal Pay",
     "gateway": "Gateway Pay"
@@ -230,7 +212,6 @@
     "aggregate": "Aggregate"
   },
   "alloc": {
-    "title": "คำสั่งแบ่ง",
     "detail": "รายละเอียดคำสั่งแบ่ง",
     "statusLabel": "สถานะการแบ่ง",
     "detailResultLabel": "ผลลัพธ์รายละเอียด",

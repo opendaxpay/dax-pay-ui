@@ -6,7 +6,6 @@
     "status": "Status",
     "subjectType": "Subject Type",
     "createTime": "Create Time",
-    "id": "ID",
     "adminName": "Name"
   },
   "status": {
@@ -19,16 +18,12 @@
     "enterprise": "Enterprise"
   },
   "action": {
-    "confirmEnableContent": "Are you sure you want to enable this merchant?",
-    "confirmDisableContent": "Are you sure you want to disable this merchant? After disabling, the merchant account will not be able to log in.",
     "delete": "Delete Merchant",
     "deleteDeregisterDesc": "Are you sure you want to delete \"{name}\"? This cannot be undone: all user accounts under this merchant will be deleted together and sensitive information will be cleared. Please proceed with caution."
   },
   "validation": {
     "pleaseInputMchName": "Please enter merchant name",
     "pleaseInputMchShortName": "Please enter merchant short name",
-    "pleaseInputAccount": "Please enter administrator account",
-    "pleaseConfirmPassword": "Please confirm the password",
     "pleaseSelectSubjectType": "Please select subject type",
     "pleaseSelectStatus": "Please select status",
     "pleaseInputAdminName": "Please enter the name"

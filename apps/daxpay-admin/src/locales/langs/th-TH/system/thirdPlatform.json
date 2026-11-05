@@ -11,8 +11,6 @@
     "tabTitle": "การกำหนดค่าแอป Alipay",
     "tabDescription": "ข้อมูลรับรอง Alipay OAuth สำหรับการเข้าสู่ระบบการตรวจสอบสิทธิ์และการตรวจสอบช่องทางการชำระเงิน",
     "headerDescription": "ข้อมูลรับรอง OAuth ของ Alipay ใช้สำหรับการเข้าสู่ระบบโดยอนุญาตและการตรวจสอบช่องทางการชำระเงิน ต้องใช้เว็บแอปพลิเคชันแบบใช้เอง",
-    "title": "การกำหนดค่าการตรวจสอบสิทธิ์แอป Alipay",
-    "description": "จัดการข้อมูลรับรอง Alipay OAuth (appId/คีย์ส่วนตัว/ใบรับรอง) สำหรับการเข้าสู่ระบบการตรวจสอบสิทธิ์เพื่อรับตัวระบุผู้ใช้ (รหัสผู้ใช้) และการตรวจสอบช่องทางการชำระเงิน",
     "usageTip": "การกำหนดค่านี้ทำหน้าที่ทั้งสอง: 1) การเข้าสู่ระบบการตรวจสอบสิทธิ์ Alipay ในการเข้าสู่ระบบของบุคคลที่สาม; 2) การตรวจสอบช่องทางในสถานการณ์การชำระเงิน (รับตัวระบุผู้ใช้สำหรับการชำระเงิน)",
     "confirmSaveContent": "คุณแน่ใจว่าจะบันทึกการกำหนดค่าแอป Alipay หรือไม่?",
     "section": {
@@ -54,8 +52,6 @@
   "wechatMp": {
     "tabTitle": "การกำหนดค่าบัญชีอย่างเป็นทางการของ WeChat",
     "tabDescription": "ข้อมูลรับรอง WeChat MP สำหรับการเข้าสู่ระบบและการแจ้งเตือนเทมเพลต",
-    "title": "การกำหนดค่าการตรวจสอบบัญชีอย่างเป็นทางการของ WeChat",
-    "description": "จัดการข้อมูลประจำตัว WeChat MP (appId/appSecret) สำหรับ H5 OAuth openId และข้อความเทมเพลตศูนย์การแจ้งเตือน",
     "usageTip": "การกำหนดค่านี้ทำหน้าที่: 1) เข้าสู่ระบบ WeChat MP H5 OAuth; 2) การส่งข้อความเทมเพลตศูนย์การแจ้งเตือน",
     "confirmSaveContent": "คุณแน่ใจว่าจะบันทึกการกำหนดค่าบัญชีอย่างเป็นทางการของ WeChat หรือไม่",
     "section": {
@@ -75,8 +71,6 @@
   "douyinH5": {
     "tabTitle": "แอป Douyin H5",
     "tabDescription": "ข้อมูลรับรอง Douyin Open Platform H5 สำหรับการอนุญาต H5",
-    "title": "การกำหนดค่าการตรวจสอบสิทธิ์แอป Douyin H5",
-    "description": "จัดการข้อมูลรับรองแอป Douyin Open Platform H5 (คีย์ไคลเอ็นต์ / ความลับไคลเอ็นต์) สำหรับสถานการณ์การอนุญาต H5",
     "usageTip": "การกำหนดค่านี้ไม่ขึ้นอยู่กับการเข้าสู่ระบบ Douyin ภายใต้การกำหนดค่าการเข้าสู่ระบบของบุคคลที่สาม จัดการเฉพาะคีย์ไคลเอ็นต์ Open Platform H5 / ความลับไคลเอ็นต์เท่านั้น",
     "confirmSaveContent": "คุณแน่ใจว่าจะบันทึกการกำหนดค่าแอป Douyin H5 หรือไม่",
     "section": {
@@ -96,8 +90,6 @@
   "autoLogin": {
     "tabTitle": "เข้าสู่ระบบอัตโนมัติในแอป",
     "tabDescription": "OAuth อัตโนมัติใน Feishu/WeCom/DingTalk",
-    "title": "เข้าสู่ระบบอัตโนมัติในแอป",
-    "description": "Configure admin/merchant separately: when opened in Feishu/WeCom/DingTalk, match one selected platform by UA and start OAuth.",
     "usageTip": "Multi-select Feishu, WeCom, and DingTalk. Enable the platform under Third-party Login Config first. DingTalk asks for consent on first authorization and is silent afterwards; WeChat is not used for in-app auto login. Users must bind first; unbound falls back silently to password login.",
     "confirmSaveContent": "บันทึกการตั้งค่าเข้าสู่ระบบอัตโนมัติในแอปหรือไม่?",
     "section": {

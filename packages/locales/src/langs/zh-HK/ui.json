@@ -2,27 +2,8 @@
   "formRules": {
     "required": "請輸入{0}",
     "selectRequired": "請選擇{0}",
-    "minLength": "{0}至少{1}個字符",
-    "maxLength": "{0}最多{1}個字符",
-    "length": "{0}長度必須為{1}個字符",
-    "alreadyExists": "{0} `{1}` 已存在",
-    "startWith": "{0}必須以 {1} 開頭",
-    "invalidURL": "請輸入有效的鏈接",
     "sizeLimit": "文件大小不能超過 {0}MB",
     "previewWarning": "無法打開文件，沒有可用的URL或預覽地址"
-  },
-  "actionTitle": {
-    "edit": "修改{0}",
-    "create": "新增{0}",
-    "delete": "刪除{0}",
-    "view": "查看{0}"
-  },
-  "actionMessage": {
-    "deleteConfirm": "確定刪除 {0} 嗎？",
-    "deleting": "正在刪除 {0} ...",
-    "deleteSuccess": "{0} 刪除成功",
-    "operationSuccess": "操作成功",
-    "operationFailed": "操作失敗"
   },
   "placeholder": {
     "input": "請輸入",
@@ -58,7 +39,6 @@
     "title": "圖片裁剪",
     "titleTip": "裁剪比例 {0}",
     "confirm": "裁剪",
-    "cancel": "取消裁剪",
     "errorTip": "裁剪錯誤"
   },
   "fallback": {
@@ -68,7 +48,6 @@
     "forbiddenDesc": "抱歉，您沒有權限訪問此頁面。",
     "internalError": "哎呀！出錯了",
     "internalErrorDesc": "抱歉，服務器遇到錯誤。",
-    "offline": "離線頁面",
     "offlineError": "哎呀！網絡錯誤",
     "offlineErrorDesc": "抱歉，無法連接到互聯網，請檢查您的網絡連接並重試。",
     "comingSoon": "即將推出",
@@ -84,12 +63,10 @@
   },
   "widgets": {
     "document": "使用文檔",
-    "setting": "設置",
     "logoutTip": "是否退出登錄？",
     "viewAll": "查看所有消息",
     "notifications": "通知",
     "markAllAsRead": "全部標記為已讀",
-    "clearNotifications": "清空",
     "checkUpdatesTitle": "新版本可用",
     "checkUpdatesDescription": "點擊刷新以獲取最新版本",
     "search": {
@@ -105,10 +82,8 @@
     "lockScreen": {
       "title": "鎖定屏幕",
       "screenButton": "鎖定",
-      "password": "密碼",
       "placeholder": "請輸入鎖屏密碼",
       "unlock": "點擊解鎖",
-      "errorPasswordTip": "密碼錯誤，請重新輸入",
       "backToLogin": "返回登錄",
       "entry": "進入系統",
       "greeting": {
@@ -122,8 +97,7 @@
       "guest": "訪客"
     },
     "timezone": {
-      "setTimezone": "設置時區",
-      "setSuccess": "時區設置成功"
+      "setTimezone": "設置時區"
     }
   }
 }

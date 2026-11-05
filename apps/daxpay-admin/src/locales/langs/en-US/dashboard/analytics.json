@@ -1,7 +1,6 @@
 {
   "title": "Analytics",
   "subtitle": "{start} to {end} · {days} days total",
-  "customRange": "Custom Range",
   "timeRange": {
     "today": "Today",
     "yesterday": "Yesterday",
@@ -18,7 +17,6 @@
     "refundAmount": "Refund Amount",
     "refundRate": "Refund Rate",
     "chainRatio": "MoM",
-    "chainRatioNew": "New",
     "chainRatioNew": "New"
   },
   "tradeTrend": {

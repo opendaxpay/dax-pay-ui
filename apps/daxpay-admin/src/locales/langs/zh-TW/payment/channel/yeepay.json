@@ -1,5 +1,4 @@
 {
-  "title": "易寶支付配置",
   "manageTitle": "易寶商戶管理",
   "basicConfig": "基礎配置",
   "keyConfig": "金鑰配置",
@@ -23,7 +22,6 @@
   "wxAppIdPlaceholder": "微信H5/JSAPI場景用, 選填",
   "wxAppSecret": "微信AppSecret",
   "keyConfigured": "已配置",
-  "keyNotConfigured": "未配置",
   "saveSuccess": "易寶金鑰配置儲存成功",
   "createSuccess": "易寶通道商戶建立成功",
   "validation": {

@@ -1,5 +1,4 @@
 {
-  "title": "QRコード管理",
   "field": {
     "code": "コード番号",
     "name": "名称",
@@ -23,7 +22,6 @@
     "random": "カスタム金額",
     "fixed": "定額"
   },
-  "defaultApp": "デフォルトアプリ",
   "validateName": "名前を入力してください",
   "validateAmountType": "金額タイプを選択してください",
   "validateFixedAmount": "固定金額を入力してください",
@@ -32,7 +30,6 @@
   "disable": "無効にする",
   "confirmEnable": "この QR コード ボードを有効にしてもよろしいですか?",
   "confirmDisable": "この QR コード ボードを無効にしてもよろしいですか?スキャンによるお支払いはご利用いただけません。",
-  "viewCode": "コードを表示",
   "qrCodeTitle": "QRコード",
   "qrCodeTip": "スキャンして支払いページに入ります",
   "copyLink": "リンクをコピー",
@@ -42,7 +39,6 @@
     "mini_app": "ミニプログラム"
   },
   "pleaseSelectStore": "店舗を選択してください",
-  "defaultStoreHint": "デフォルト店舗(設定時)",
   "allocationTip": "有効にすると、コード決済時にチャネルへ精算用の資金凍結を要求します",
   "allocationOn": "精算",
   "allocWarningTitle": "精算能力の警告",

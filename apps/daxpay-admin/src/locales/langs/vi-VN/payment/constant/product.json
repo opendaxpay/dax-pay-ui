@@ -6,14 +6,10 @@
     "description": "Sự miêu tả",
     "icon": "Biểu tượng",
     "remark": "Nhận xét",
-    "channelName": "Tên kênh",
     "isv": "ISV",
     "terminal": "Báo cáo thiết bị đầu cuối",
     "sandbox": "Hộp cát",
-    "apiCallMode": "Chế độ gọi API",
-    "payIdType": "Loại ID thanh toán",
-    "capabilities": "Khả năng thanh toán",
-    "features": "Tính năng sản phẩm"
+    "capabilities": "Khả năng thanh toán"
   },
   "features": "Tính năng sản phẩm",
   "detail": "Chi tiết sản phẩm",

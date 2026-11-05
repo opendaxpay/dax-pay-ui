@@ -1,5 +1,4 @@
 {
-  "title": "回调记录",
   "tradeNo": "交易号",
   "outTradeNo": "通道交易号",
   "callbackType": "回调类型",

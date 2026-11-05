@@ -112,7 +112,6 @@
     "inputAccessKey": "Silakan masukkan AccessKey",
     "inputSecretKey": "Silakan masukkan SecretKey",
     "inputPathStyleAccess": "Silakan pilih akses gaya jalur",
-    "confirmSave": "Konfirmasi Simpan",
     "confirmSaveContent": "Apakah Anda yakin ingin menyimpan konfigurasi OSS?",
     "check": "Uji Koneksi",
     "checkSuccess": "Pemeriksaan konektivitas OSS berhasil",
@@ -160,11 +159,6 @@
     "unit": {
       "minutes": "menit",
       "hours": "jam"
-    },
-    "summary": {
-      "configured": "Dikonfigurasi",
-      "notConfigured": "Tidak Dikonfigurasi",
-      "bucket": "Ember: {bucket}"
     },
     "checkUsesFormValue": "Pemeriksaan menggunakan nilai formulir saat ini; berlaku setelah disimpan",
     "checkInProgress": "Sedang menguji konektivitas (akan mengunggah/membaca file uji sungguhan), biasanya membutuhkan beberapa detik…",

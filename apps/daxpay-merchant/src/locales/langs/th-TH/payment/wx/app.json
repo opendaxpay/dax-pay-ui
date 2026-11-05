@@ -1,8 +1,4 @@
 {
-  "title": "WeChat Apps",
-  "tabPlatform": "Platform Apps",
-  "tabMerchant": "Merchant Apps",
-  "platformSubtitle": "Platform / ISV identity, shared across channels",
   "addApp": "Add App",
   "emptyAppList": "No apps yet",
   "edit": "Edit",
@@ -28,29 +24,19 @@
   "appSecretTooltipOfficialAccount": "Official Account AppSecret for OAuth OpenId",
   "appSecretTooltipMiniProgram": "Mini Program AppSecret for code2session",
   "appSecretTooltipMobileApp": "Mobile App AppSecret for OAuth",
-  "capabilityBtn": "Capability Binding",
-  "capabilityTitle": "Bind apps to capabilities",
   "capabilitySelectPlaceholder": "เลือกแอป",
   "capabilityNoApp": "No apps yet. Create an app first.",
   "capabilitySaveSuccess": "Saved",
-  "selectMerchant": "Select a merchant first",
-  "selectMerchantPlaceholder": "Select merchant",
   "filterPlaceholder": "Filter by name or AppId",
-  "scopePlatform": "Platform App",
-  "scopeMerchant": "Merchant App",
   "channelCapabilityTitle": "ตั้งค่าแอปชำระเงิน",
-  "channelCapabilityDesc": "Bind a merchant or platform app for each capability. Leave empty to fall back.",
   "validation": {
     "appSecret": "Enter AppSecret"
   },
-  "productCapabilityTitle": "แอปชำระเงินเริ่มต้น",
-  "productCapabilityDesc": "กำหนดแอป WeChat เริ่มต้นตามวิธีชำระเงินสำหรับผลิตภัณฑ์นี้ ใช้เมื่อร้านค้าช่องทางยังไม่ผูกเอง",
   "capabilityNoCompatibleApp": "ยังไม่มีแอปประเภทที่ตรงกัน สร้างในแอป WeChat ก่อน",
   "capabilityRequiredAppType": "ต้องเป็น {type}",
   "appTypeCapabilityCleared": "ล้างการเลือกแอปที่ไม่ตรงกับวิธีชำระเงินแล้ว",
   "channelCapabilityDescDirect": "ระบุแอป WeChat ของร้านค้าสำหรับแต่ละความสามารถ",
   "channelCapabilityDescIsv": "เลือกแอปของร้านค้าหรือค่าเริ่มต้นของผู้ให้บริการ ค่าเริ่มต้นจะกลับไปใช้แอปชำระเงินเริ่มต้นระดับผลิตภัณฑ์",
   "channelCapabilityDescLeshua": "ระบุแอปเฉพาะการชำระเงิน WeChat JSAPI / มินิโปรแกรมเท่านั้น",
-  "capabilityIspDefault": "ค่าเริ่มต้นของผู้ให้บริการ",
-  "capabilityIspNotConfigured": "ยังไม่ได้ตั้งค่า"
+  "capabilityIspDefault": "ค่าเริ่มต้นของผู้ให้บริการ"
 }

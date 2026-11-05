@@ -1,5 +1,4 @@
 {
-  "title": "Alipay Direct Management",
   "groupApp": "App Management",
   "cardMchApp": "Alipay Channel Merchant Apps",
   "cardMchAppDesc": "Manage Alipay channel merchant applications",
@@ -7,13 +6,10 @@
   "cardCapabilityBindingDesc": "Decide which Alipay app each payment capability uses to initiate payment",
   "capabilityTitle": "Payment App Setup",
   "capabilityDesc": "Specify which Alipay app to use when initiating payment for each capability. Leave empty to auto-match by app type.",
-  "capabilityTableCapability": "Payment Capability",
-  "capabilityTableApp": "App to use",
   "capabilitySelectPlaceholder": "Auto-match by app type if empty",
   "capabilityAutoTip": "Auto",
   "capabilityNoApp": "No apps created for this channel merchant yet, please create one first",
   "capabilitySaveSuccess": "Saved successfully",
-  "capabilityClearConfirm": "Clear all app assignments?",
   "capabilityRequiredAppType": "Needs {type}",
   "appTypeCapabilityCleared": "Cleared app selections incompatible with payment methods",
   "capabilityNoCompatibleApp": "No matching app type. Create an app of the required type first"

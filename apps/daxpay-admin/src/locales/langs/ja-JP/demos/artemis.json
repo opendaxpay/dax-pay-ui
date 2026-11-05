@@ -16,9 +16,7 @@
     }
   },
   "form": {
-    "content": "メッセージの内容",
     "contentPlaceholder": "メッセージ内容を入力してください",
-    "delaySeconds": "遅延秒数",
     "send": "送信",
     "broadcast": "放送"
   },

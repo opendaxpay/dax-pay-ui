@@ -13,12 +13,9 @@
     "hour": "jam",
     "session": "sesi",
     "second": "detik",
-    "window": "jendela",
-    "count": "menghitung",
-    "score": "poin"
+    "count": "menghitung"
   },
   "group": {
-    "access": "Keamanan Akses",
-    "openApi": "Keamanan API Terbuka"
+    "access": "Keamanan Akses"
   }
 }

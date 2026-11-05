@@ -1,5 +1,4 @@
 {
-  "title": "QR 코드 관리",
   "field": {
     "code": "코드 번호",
     "name": "이름",
@@ -23,7 +22,6 @@
     "random": "맞춤 금액",
     "fixed": "정액"
   },
-  "defaultApp": "기본 앱",
   "validateName": "이름을 입력해주세요",
   "validateAmountType": "금액 유형을 선택하세요.",
   "validateFixedAmount": "정해진 금액을 입력해주세요",
@@ -32,7 +30,6 @@
   "disable": "장애를 입히다",
   "confirmEnable": "이 QR 코드 보드를 활성화하시겠습니까?",
   "confirmDisable": "이 QR 코드 보드를 비활성화하시겠습니까? 스캔을 통한 결제는 불가능합니다.",
-  "viewCode": "코드 보기",
   "qrCodeTitle": "QR코드",
   "qrCodeTip": "결제 페이지로 들어가려면 스캔하세요",
   "copyLink": "링크 복사",
@@ -42,7 +39,6 @@
     "mini_app": "미니프로그램"
   },
   "pleaseSelectStore": "매장을 선택하세요",
-  "defaultStoreHint": "기본 매장(설정된 경우)",
   "allocationTip": "활성화하면 코드 결제 시 채널에 분할용 자금 동결을 요청합니다",
   "allocationOn": "분할",
   "allocWarningTitle": "분할 기능 경고",

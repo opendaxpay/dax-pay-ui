@@ -112,7 +112,6 @@
     "inputAccessKey": "Vui lòng nhập AccessKey",
     "inputSecretKey": "Vui lòng nhập SecretKey",
     "inputPathStyleAccess": "Vui lòng chọn quyền truy cập kiểu đường dẫn",
-    "confirmSave": "Xác nhận Lưu",
     "confirmSaveContent": "Bạn có chắc chắn muốn lưu cấu hình OSS không?",
     "check": "Kiểm tra kết nối",
     "checkSuccess": "Đã vượt qua kiểm tra kết nối OSS",
@@ -160,11 +159,6 @@
     "unit": {
       "minutes": "phút",
       "hours": "giờ"
-    },
-    "summary": {
-      "configured": "Đã định cấu hình",
-      "notConfigured": "Chưa được định cấu hình",
-      "bucket": "Nhóm: {bucket}"
     },
     "checkUsesFormValue": "Kiểm tra sử dụng giá trị biểu mẫu hiện tại; chỉ có hiệu lực sau khi lưu",
     "checkInProgress": "Đang kiểm tra kết nối (sẽ thực tế tải lên/đọc tệp dò), thường mất vài giây…",

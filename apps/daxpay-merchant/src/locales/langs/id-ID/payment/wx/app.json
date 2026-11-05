@@ -1,8 +1,4 @@
 {
-  "title": "WeChat Apps",
-  "tabPlatform": "Platform Apps",
-  "tabMerchant": "Merchant Apps",
-  "platformSubtitle": "Platform / ISV identity, shared across channels",
   "addApp": "Add App",
   "emptyAppList": "No apps yet",
   "edit": "Edit",
@@ -28,29 +24,19 @@
   "appSecretTooltipOfficialAccount": "Official Account AppSecret for OAuth OpenId",
   "appSecretTooltipMiniProgram": "Mini Program AppSecret for code2session",
   "appSecretTooltipMobileApp": "Mobile App AppSecret for OAuth",
-  "capabilityBtn": "Capability Binding",
-  "capabilityTitle": "Bind apps to capabilities",
   "capabilitySelectPlaceholder": "Pilih aplikasi",
   "capabilityNoApp": "No apps yet. Create an app first.",
   "capabilitySaveSuccess": "Saved",
-  "selectMerchant": "Select a merchant first",
-  "selectMerchantPlaceholder": "Select merchant",
   "filterPlaceholder": "Filter by name or AppId",
-  "scopePlatform": "Platform App",
-  "scopeMerchant": "Merchant App",
   "channelCapabilityTitle": "Pengaturan Aplikasi Pembayaran",
-  "channelCapabilityDesc": "Bind a merchant or platform app for each capability. Leave empty to fall back.",
   "validation": {
     "appSecret": "Enter AppSecret"
   },
-  "productCapabilityTitle": "Aplikasi pembayaran default",
-  "productCapabilityDesc": "Tetapkan aplikasi WeChat default per metode pembayaran untuk produk ini. Digunakan bila merchant saluran belum mengikat sendiri.",
   "capabilityNoCompatibleApp": "Belum ada aplikasi tipe yang cocok. Buat dulu di Aplikasi WeChat.",
   "capabilityRequiredAppType": "Perlu {type}",
   "appTypeCapabilityCleared": "Pilihan aplikasi yang tidak cocok dengan metode pembayaran telah dihapus",
   "channelCapabilityDescDirect": "Tetapkan aplikasi WeChat merchant per kemampuan.",
   "channelCapabilityDescIsv": "Pilih aplikasi merchant atau default penyedia layanan. Default kembali ke aplikasi pembayaran default tingkat produk.",
   "channelCapabilityDescLeshua": "Hanya perlu menentukan aplikasi untuk pembayaran WeChat JSAPI / mini program.",
-  "capabilityIspDefault": "Default penyedia layanan",
-  "capabilityIspNotConfigured": "Belum dikonfigurasi"
+  "capabilityIspDefault": "Default penyedia layanan"
 }

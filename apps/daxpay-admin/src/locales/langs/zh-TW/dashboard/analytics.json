@@ -1,7 +1,6 @@
 {
   "title": "分析頁",
   "subtitle": "{start} 至 {end} · 共 {days} 天",
-  "customRange": "自定義範圍",
   "timeRange": {
     "today": "今天",
     "yesterday": "昨天",

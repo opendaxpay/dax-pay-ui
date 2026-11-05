@@ -109,15 +109,9 @@
     "replacePrivateKeyTitle": "Xác nhận thay khóa riêng",
     "replacePrivateKeyContent": "Khi chỉ thay khóa riêng đơn vị nhận thanh toán, hãy chắc chắn khóa khớp với khóa cổng mô phỏng đang dùng; nếu không, yêu cầu của chủ thể này sẽ không vượt qua xác minh chữ ký.",
     "continueSave": "Tiếp tục lưu",
-    "save": "Lưu",
-    "keepBlank": "Để trống để giữ nguyên",
-    "keepBlankTip": "Trường nhạy cảm để trống nghĩa là không thay đổi; chỉ gửi các mục cần thay đổi",
-    "configured": "Đã cấu hình",
-    "notConfigured": "Chưa cấu hình",
     "saveSuccess": "Lưu cấu hình truy cập thành công"
   },
   "manage": {
-    "channelMchNo": "Mã đơn vị nhận thanh toán kênh",
     "groupBasic": "Quản lý cơ bản",
     "groupTrade": "Cấu hình giao dịch",
     "cardBasicInfo": "Thông tin cơ bản",

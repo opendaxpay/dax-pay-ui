@@ -2,27 +2,8 @@
   "formRules": {
     "required": "กรุณากรอก {0}",
     "selectRequired": "โปรดเลือก {0}",
-    "minLength": "{0} ต้องมีอย่างน้อย {1} อักขระ",
-    "maxLength": "{0} สามารถมีอักขระได้สูงสุด {1} ตัว",
-    "length": "{0} ต้องมีความยาว {1} อักขระ",
-    "alreadyExists": "{0} `{1}` มีอยู่แล้ว",
-    "startWith": "{0} ต้องขึ้นต้นด้วย `{1}`",
-    "invalidURL": "กรุณาใส่ URL ที่ถูกต้อง",
     "sizeLimit": "ขนาดไฟล์ต้องไม่เกิน {0}MB",
     "previewWarning": "ไม่สามารถเปิดไฟล์ได้ เนื่องจากไม่มี URL หรือที่อยู่แสดงตัวอย่าง"
-  },
-  "actionTitle": {
-    "edit": "แก้ไข {0}",
-    "create": "สร้าง {0}",
-    "delete": "ลบ {0}",
-    "view": "ดู {0}"
-  },
-  "actionMessage": {
-    "deleteConfirm": "คุณแน่ใจที่จะลบ {0} หรือไม่",
-    "deleting": "กำลังลบ {0} ...",
-    "deleteSuccess": "{0} ลบเรียบร้อยแล้ว",
-    "operationSuccess": "การดำเนินการสำเร็จ",
-    "operationFailed": "การดำเนินการล้มเหลว"
   },
   "placeholder": {
     "input": "กรุณาเข้า",
@@ -58,7 +39,6 @@
     "title": "การครอบตัดรูปภาพ",
     "titleTip": "อัตราส่วนการครอบตัด {0}",
     "confirm": "ครอบตัด",
-    "cancel": "ยกเลิกการครอบตัด",
     "errorTip": "ข้อผิดพลาดในการครอบตัด"
   },
   "fallback": {
@@ -68,7 +48,6 @@
     "forbiddenDesc": "ขออภัย คุณไม่ได้รับอนุญาตให้เข้าถึงหน้านี้",
     "internalError": "อ๊ะ! มีบางอย่างผิดพลาด",
     "internalErrorDesc": "ขออภัย เซิร์ฟเวอร์พบข้อผิดพลาด",
-    "offline": "หน้าออฟไลน์",
     "offlineError": "อ๊ะ! ข้อผิดพลาดของเครือข่าย",
     "offlineErrorDesc": "ขออภัย ไม่สามารถเชื่อมต่ออินเทอร์เน็ตได้ ตรวจสอบการเชื่อมต่อของคุณ",
     "comingSoon": "เร็วๆ นี้",
@@ -84,12 +63,10 @@
   },
   "widgets": {
     "document": "เอกสารประกอบ",
-    "setting": "การตั้งค่า",
     "logoutTip": "คุณต้องการออกจากระบบหรือไม่?",
     "viewAll": "ดูข้อความทั้งหมด",
     "notifications": "การแจ้งเตือน",
     "markAllAsRead": "ทำให้ทั้งหมดเป็นอ่านแล้ว",
-    "clearNotifications": "ชัดเจน",
     "checkUpdatesTitle": "มีเวอร์ชันใหม่แล้ว",
     "checkUpdatesDescription": "คลิกเพื่อรีเฟรชและรับเวอร์ชันล่าสุด",
     "search": {
@@ -105,10 +82,8 @@
     "lockScreen": {
       "title": "ล็อคหน้าจอ",
       "screenButton": "การล็อค",
-      "password": "รหัสผ่าน",
       "placeholder": "กรุณากรอกรหัสผ่าน",
       "unlock": "คลิกเพื่อปลดล็อค",
-      "errorPasswordTip": "รหัสผ่านผิดพลาด กรุณากรอกใหม่",
       "backToLogin": "กลับสู่การเข้าสู่ระบบ",
       "entry": "เข้าสู่ระบบ",
       "greeting": {
@@ -122,8 +97,7 @@
       "guest": "แขก"
     },
     "timezone": {
-      "setTimezone": "ตั้งค่าเขตเวลา",
-      "setSuccess": "ตั้งค่าเขตเวลาเรียบร้อยแล้ว"
+      "setTimezone": "ตั้งค่าเขตเวลา"
     }
   }
 }

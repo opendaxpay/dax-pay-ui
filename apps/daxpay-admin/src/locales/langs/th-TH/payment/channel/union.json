@@ -1,10 +1,7 @@
 {
-  "title": "การกำหนดค่า UnionPay",
-  "keyConfig": "การกำหนดค่าใบรับรอง",
   "merId": "รหัสผู้ค้า UnionPay",
   "merIdPlaceholder": "ป้อนรหัสผู้ค้า UnionPay",
   "signType": "ประเภทลายเซ็น",
-  "certSign": "ลายเซ็นใบรับรอง",
   "keyPrivateCert": "ใบรับรองคีย์ส่วนตัว",
   "keyPrivateCertPlaceholder": "ป้อนใบรับรองคีย์ส่วนตัว (Base64 PKCS12)",
   "keyPrivateCertPwd": "รหัสผ่านใบรับรอง",
@@ -14,10 +11,6 @@
   "acpRootCert": "ใบรับรองหลัก",
   "acpRootCertPlaceholder": "ป้อนใบรับรองหลัก (Base64)",
   "validation": {
-    "merId": "กรุณากรอกรหัสผู้ค้า UnionPay",
-    "keyPrivateCert": "กรุณากรอกใบรับรองคีย์ส่วนตัว",
-    "keyPrivateCertPwd": "กรุณากรอกรหัสผ่านใบรับรอง",
-    "acpMiddleCert": "กรุณากรอกใบรับรองระดับกลาง",
-    "acpRootCert": "กรุณากรอกใบรับรองหลัก"
+    "merId": "กรุณากรอกรหัสผู้ค้า UnionPay"
   }
 }

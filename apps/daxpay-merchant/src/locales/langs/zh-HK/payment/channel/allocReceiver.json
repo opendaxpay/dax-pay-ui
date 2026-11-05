@@ -48,7 +48,6 @@
   "validateType": "請選擇接收方類型",
   "validateAccount": "請輸入接收方帳號",
   "validateApp": "請選擇綁定應用",
-  "validateSpApp": "請選擇服務商應用",
   "validateSubApp": "子商戶應用 openid 類型必須選擇子商戶應用",
   "validateRelation": "請選擇分賬關係類型",
   "validateCustomRelation": "請輸入自訂關係名",

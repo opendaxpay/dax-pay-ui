@@ -1,26 +1,19 @@
 {
-  "title": "Domain Verification Files",
-  "adminTitle": "Domain Verification Files",
   "upload": "Upload Verify File",
   "uploadTip": "Please select the WeChat domain verification file (MP_verify_*.txt)",
   "uploadSuccess": "Upload succeeded",
-  "uploadFail": "Upload failed",
   "chooseFile": "Choose File",
   "reChooseFile": "Choose Again",
   "fileNameRequired": "Please choose a verification file first",
   "fileNameInvalid": "Only MP_verify_*.txt files downloaded from WeChat are supported",
   "fileContentEmpty": "The selected file is empty. Please make sure it is the complete file downloaded from WeChat and choose again",
   "confirmDelete": "Are you sure to delete this verification file?",
-  "editTitle": "Edit Verify File",
   "field": {
     "fileName": "File Name",
-    "mchNo": "Merchant No.",
     "belong": "Belong",
     "verifyCode": "Verify Content",
     "remark": "Remark",
-    "createTime": "Create Time",
-    "fileContent": "File Content",
-    "merchant": "Merchant"
+    "createTime": "Create Time"
   },
   "belong": {
     "platform": "Platform",

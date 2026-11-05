@@ -1,11 +1,9 @@
 {
-  "title": "บันทึกการเรียกกลับ",
   "tradeNo": "หมายเลขธุรกรรม",
   "outTradeNo": "หมายเลขธุรกรรมช่องทาง",
   "callbackType": "ประเภทการเรียกกลับ",
   "status": "สถานะ",
   "errorMsg": "ข้อผิดพลาด",
-  "notifyInfo": "เพย์โหลดการแจ้งเตือน",
   "createTime": "เวลาแจ้งเตือน",
   "placeholderTradeNo": "กรอกหมายเลขธุรกรรม",
   "placeholderOutTradeNo": "กรอกหมายเลขธุรกรรมช่องทาง",

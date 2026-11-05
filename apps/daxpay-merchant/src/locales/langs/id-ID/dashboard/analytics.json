@@ -1,7 +1,6 @@
 {
   "title": "Analisis",
   "subtitle": "{start} hingga {end} · {days} hari total",
-  "customRange": "Rentang Kustom",
   "timeRange": {
     "today": "Hari ini",
     "yesterday": "Kemarin",

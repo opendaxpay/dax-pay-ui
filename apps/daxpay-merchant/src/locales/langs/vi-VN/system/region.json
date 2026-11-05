@@ -1,9 +1,3 @@
 {
-  "placeholder": "Vui lòng chọn khu vực hành chính",
-  "level": {
-    "province": "Tỉnh",
-    "city": "Thành phố",
-    "area": "Quận/Quận",
-    "street": "Đường/Thị trấn"
-  }
+  "placeholder": "Vui lòng chọn khu vực hành chính"
 }

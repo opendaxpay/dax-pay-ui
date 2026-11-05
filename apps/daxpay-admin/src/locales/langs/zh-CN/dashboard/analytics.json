@@ -1,7 +1,6 @@
 {
   "title": "分析页",
   "subtitle": "{start} 至 {end} · 共 {days} 天",
-  "customRange": "自定义范围",
   "timeRange": {
     "today": "今天",
     "yesterday": "昨天",
@@ -18,7 +17,6 @@
     "refundAmount": "退款金额",
     "refundRate": "退款率",
     "chainRatio": "环比",
-    "chainRatioNew": "新增",
     "chainRatioNew": "新增"
   },
   "tradeTrend": {

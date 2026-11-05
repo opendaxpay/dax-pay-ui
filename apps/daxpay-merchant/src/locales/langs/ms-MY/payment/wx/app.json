@@ -1,8 +1,4 @@
 {
-  "title": "WeChat Apps",
-  "tabPlatform": "Platform Apps",
-  "tabMerchant": "Merchant Apps",
-  "platformSubtitle": "Platform / ISV identity, shared across channels",
   "addApp": "Add App",
   "emptyAppList": "No apps yet",
   "edit": "Edit",
@@ -28,29 +24,19 @@
   "appSecretTooltipOfficialAccount": "Official Account AppSecret for OAuth OpenId",
   "appSecretTooltipMiniProgram": "Mini Program AppSecret for code2session",
   "appSecretTooltipMobileApp": "Mobile App AppSecret for OAuth",
-  "capabilityBtn": "Capability Binding",
-  "capabilityTitle": "Bind apps to capabilities",
   "capabilitySelectPlaceholder": "Pilih aplikasi",
   "capabilityNoApp": "No apps yet. Create an app first.",
   "capabilitySaveSuccess": "Saved",
-  "selectMerchant": "Select a merchant first",
-  "selectMerchantPlaceholder": "Select merchant",
   "filterPlaceholder": "Filter by name or AppId",
-  "scopePlatform": "Platform App",
-  "scopeMerchant": "Merchant App",
   "channelCapabilityTitle": "Persediaan Apl Pembayaran",
-  "channelCapabilityDesc": "Bind a merchant or platform app for each capability. Leave empty to fall back.",
   "validation": {
     "appSecret": "Enter AppSecret"
   },
-  "productCapabilityTitle": "Apl pembayaran lalai",
-  "productCapabilityDesc": "Tetapkan apl WeChat lalai mengikut kaedah pembayaran untuk produk ini. Digunakan apabila pedagang saluran tiada pengikatan sendiri.",
   "capabilityNoCompatibleApp": "Tiada apl jenis yang sepadan. Cipta dahulu dalam Apl WeChat.",
   "capabilityRequiredAppType": "Perlu {type}",
   "appTypeCapabilityCleared": "Pilihan apl yang tidak sepadan dengan kaedah pembayaran telah dikosongkan",
   "channelCapabilityDescDirect": "Tetapkan apl WeChat pedagang bagi setiap keupayaan.",
   "channelCapabilityDescIsv": "Pilih apl pedagang atau lalai pembekal perkhidmatan. Lalai jatuh kembali ke apl pembayaran lalai peringkat produk.",
   "channelCapabilityDescLeshua": "Hanya perlu tentukan apl untuk pembayaran WeChat JSAPI / mini program.",
-  "capabilityIspDefault": "Lalai pembekal perkhidmatan",
-  "capabilityIspNotConfigured": "Belum dikonfigurasi"
+  "capabilityIspDefault": "Lalai pembekal perkhidmatan"
 }

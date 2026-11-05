@@ -1,5 +1,4 @@
 {
-  "title": "易支付订单",
   "detail": "易支付订单详情",
   "field": {
     "orderId": "关联容器ID",
@@ -33,19 +32,8 @@
     "name": "请输入商品名称"
   },
   "status": {
-    "0": "待支付",
-    "1": "已支付",
     "success": "已支付",
     "pending": "待支付"
-  },
-  "statusColor": {
-    "0": "orange",
-    "1": "green"
-  },
-  "type": {
-    "alipay": "支付宝",
-    "wxpay": "微信支付",
-    "aggregate": "聚合支付"
   },
   "action": {
     "sync": "同步状态",
@@ -58,9 +46,7 @@
     "closeConfirmContent": "关闭后订单将不可继续支付, 是否继续?"
   },
   "section": {
-    "basic": "订单信息",
     "time": "时间信息",
-    "extra": "支付与扩展",
     "order": "订单信息",
     "app": "应用与协议",
     "pay": "支付与回调"

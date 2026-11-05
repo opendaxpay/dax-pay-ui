@@ -48,7 +48,6 @@
   "validateType": "กรุณาเลือกประเภทผู้รับ",
   "validateAccount": "กรุณากรอกบัญชีผู้รับ",
   "validateApp": "กรุณาเลือกแอปที่ผูก",
-  "validateSpApp": "กรุณาเลือกแอปผู้ให้บริการ",
   "validateSubApp": "แอปร้านค้าย่อยจำเป็นสำหรับ PERSONAL_SUB_OPENID",
   "validateRelation": "กรุณาเลือกประเภทความสัมพันธ์",
   "validateCustomRelation": "กรุณากรอกชื่อความสัมพันธ์แบบกำหนดเอง",

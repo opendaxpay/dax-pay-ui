@@ -1,5 +1,4 @@
 {
-  "title": "Protokol Pengguna",
   "name": "Nama",
   "showName": "Nama Paparan",
   "type": "taip",
@@ -21,7 +20,6 @@
   "copyToClient": "Salin kepada pelanggan lain",
   "copyToClientTitle": "Salin protokol kepada pelanggan lain",
   "selectClientType": "Sila pilih jenis pelanggan sasaran",
-  "copyConfirm": "Salin protokol ini (dengan versi terbitan semasa bagi setiap bahasa) kepada klien yang dipilih?",
   "versionManage": "Versi",
   "delete": "Padamkan Protokol",
   "confirmDelete": "Adakah anda pasti akan memadamkan protokol ini? Semua versi akan dipadamkan bersama.",
@@ -32,7 +30,6 @@
     "versionLabel": "Label Versi",
     "titleField": "Tajuk",
     "content": "kandungan",
-    "contentFormat": "Format Kandungan",
     "status": "Status",
     "effectiveTime": "Masa Berkesan",
     "summary": "Ringkasan",

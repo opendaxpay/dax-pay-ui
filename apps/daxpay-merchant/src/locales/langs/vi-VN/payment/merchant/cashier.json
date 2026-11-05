@@ -26,7 +26,6 @@
     "channelMerchantPlaceholder": "Chọn kênh người bán",
     "capability": "Khả năng",
     "capabilityPlaceholder": "Chọn khả năng",
-    "methodFilterHint": "Được sử dụng để tải các ứng cử viên thương gia kênh; không được lưu trữ ở chế độ TRỰC TIẾP",
     "validationName": "Vui lòng nhập tên",
     "validationIcon": "Vui lòng chọn một biểu tượng",
     "validationResolveMode": "Vui lòng chọn chế độ giải quyết",

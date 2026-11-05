@@ -1,5 +1,4 @@
 {
-  "title": "Manajemen Kode QR",
   "field": {
     "code": "Kode",
     "name": "Nama",
@@ -17,7 +16,6 @@
     "programType": "Tipe kode",
     "storeNo": "No. Toko",
     "store": "Toko",
-    "storeName": "Nama Toko",
     "allocation": "Alokasi"
   },
   "status": {
@@ -30,7 +28,6 @@
   },
   "defaultApp": "Aplikasi default",
   "unbound": "Tidak terikat",
-  "mchNoTooltip": "Nomor Pedagang: {mchNo}",
   "batchCreate": "Pembuatan Batch",
   "bindMerchant": "Mengikat Pedagang",
   "unbindMerchant": "Lepaskan Ikatan Pedagang",
@@ -54,30 +51,17 @@
   "confirmEnable": "Apakah Anda yakin untuk mengaktifkan papan kode QR ini?",
   "confirmDisable": "Apakah Anda yakin untuk menonaktifkan papan kode QR ini? Pembayaran melalui pemindaian tidak akan tersedia.",
   "confirmUnbind": "Lepaskan ikatan papan yang dipilih dari pedagang? Mereka akan kembali ke inventaris kosong.",
-  "viewCode": "Lihat Kode",
   "qrCodeTitle": "Kode QR",
   "qrCodeTip": "Pindai untuk masuk ke halaman pembayaran",
   "copyLink": "Salin Tautan",
-  "download": "Unduh Kode QR",
   "amountLabel": "Jumlah",
   "programType": {
     "h5": "H5",
     "mini_app": "Mini program"
   },
   "validateProgramType": "Pilih tipe kode",
-  "bindStore": "Ikat Toko",
-  "unbindStore": "Lepas Toko",
-  "confirmUnbindStore": "Lepas toko dari papan terpilih? Setelah dilepas tidak terhubung toko.",
   "pleaseSelectStore": "Pilih toko",
-  "validateStoreNo": "Pilih toko",
-  "storeBindNeedSameMch": "Saat mengikat toko batch, pilih papan dari merchant yang sama",
-  "storeBindNeedMerchant": "Ikat merchant dulu sebelum mengikat toko",
   "batchActions": "Operasi Massal",
-  "bindApp": "Ikat Aplikasi",
-  "unbindApp": "Lepas Aplikasi",
-  "confirmUnbindApp": "Lepas aplikasi dari papan terpilih? Pembayaran akan memakai aplikasi default merchant.",
-  "validateAppId": "Pilih aplikasi",
-  "defaultStoreHint": "Toko default (jika dikonfigurasi)",
   "allocationTip": "Saat diaktifkan, pembayaran kode akan meminta channel membekukan dana untuk alokasi",
   "allocationOn": "Alokasi",
   "allocWarningTitle": "Peringatan Kemampuan Alokasi",

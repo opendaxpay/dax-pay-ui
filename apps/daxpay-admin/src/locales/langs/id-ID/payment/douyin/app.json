@@ -1,5 +1,4 @@
 {
-  "title": "Aplikasi Pembayaran (Douyin)",
   "tabPlatform": "Platform Apps",
   "tabMerchant": "Merchant Apps",
   "platformSubtitle": "Platform / ISV identity, shared across channels",
@@ -28,18 +27,13 @@
   "appSecretTooltipMiniProgram": "Mini Program AppSecret for code2session",
   "appSecretTooltipMobileApp": "Mobile App AppSecret for OAuth",
   "appSecretTooltipWebApp": "Web App AppSecret for OAuth OpenId",
-  "capabilityBtn": "Capability Binding",
-  "capabilityTitle": "Bind apps to capabilities",
   "capabilitySelectPlaceholder": "Pilih aplikasi",
   "capabilityNoApp": "No apps yet. Create an app first.",
   "capabilitySaveSuccess": "Saved",
   "selectMerchant": "Select a merchant first",
   "selectMerchantPlaceholder": "Select merchant",
   "filterPlaceholder": "Filter by name or AppId",
-  "scopePlatform": "Platform App",
-  "scopeMerchant": "Merchant App",
   "channelCapabilityTitle": "Pengaturan Aplikasi Pembayaran",
-  "channelCapabilityDesc": "Bind a merchant or platform app for each capability. Leave empty to fall back.",
   "validation": {
     "appSecret": "Enter AppSecret"
   },
@@ -50,6 +44,5 @@
   "appTypeCapabilityCleared": "Pilihan aplikasi yang tidak cocok dengan metode pembayaran telah dihapus",
   "channelCapabilityDescDirect": "Tetapkan aplikasi Douyin merchant per kemampuan.",
   "channelCapabilityDescIsv": "Pilih aplikasi merchant atau default penyedia layanan. Default kembali ke aplikasi pembayaran default tingkat produk.",
-  "capabilityIspDefault": "Default penyedia layanan",
-  "capabilityIspNotConfigured": "Belum dikonfigurasi"
+  "capabilityIspDefault": "Default penyedia layanan"
 }

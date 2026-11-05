@@ -112,7 +112,6 @@
     "inputAccessKey": "請輸入訪問密鑰",
     "inputSecretKey": "請輸入私有密鑰",
     "inputPathStyleAccess": "請選擇路徑樣式訪問",
-    "confirmSave": "確認保存",
     "confirmSaveContent": "確定要保存OSS配置嗎？",
     "check": "測試連接",
     "checkSuccess": "OSS 連通性檢查通過",
@@ -160,11 +159,6 @@
     "unit": {
       "minutes": "分鐘",
       "hours": "小時"
-    },
-    "summary": {
-      "configured": "已配置",
-      "notConfigured": "未配置",
-      "bucket": "存儲桶: {bucket}"
     },
     "checkUsesFormValue": "測試使用表單現時值, 儲存後才會生效",
     "checkInProgress": "正在探測連通性(會真實上傳/讀取探測檔案), 通常需要數秒…",

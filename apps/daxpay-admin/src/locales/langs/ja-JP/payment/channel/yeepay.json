@@ -1,5 +1,4 @@
 {
-  "title": "Yeepay の構成",
   "manageTitle": "Yeepay加盟店管理",
   "basicConfig": "基本構成",
   "keyConfig": "キー構成",
@@ -23,7 +22,6 @@
   "wxAppIdPlaceholder": "WeChat H5/JSAPI の場合、オプション",
   "wxAppSecret": "WeChatアプリの秘密",
   "keyConfigured": "設定済み",
-  "keyNotConfigured": "未構成",
   "saveSuccess": "Yeepay キー設定が正常に保存されました",
   "createSuccess": "Yeepay チャネル販売者が正常に作成されました",
   "validation": {

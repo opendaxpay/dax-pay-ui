@@ -1,5 +1,4 @@
 {
-  "title": "Payment Apps (Douyin)",
   "tabPlatform": "Platform Apps",
   "tabMerchant": "Merchant Apps",
   "platformSubtitle": "Platform / ISV identity, shared across channels",
@@ -28,18 +27,13 @@
   "appSecretTooltipMiniProgram": "Mini Program AppSecret for code2session",
   "appSecretTooltipMobileApp": "Mobile App AppSecret for OAuth",
   "appSecretTooltipWebApp": "Web App AppSecret for OAuth OpenId",
-  "capabilityBtn": "Capability Binding",
-  "capabilityTitle": "Bind apps to capabilities",
   "capabilitySelectPlaceholder": "Select an app",
   "capabilityNoApp": "No apps yet. Create an app first.",
   "capabilitySaveSuccess": "Saved",
   "selectMerchant": "Select a merchant first",
   "selectMerchantPlaceholder": "Select merchant",
   "filterPlaceholder": "Filter by name or AppId",
-  "scopePlatform": "Platform App",
-  "scopeMerchant": "Merchant App",
   "channelCapabilityTitle": "Payment App Setup",
-  "channelCapabilityDesc": "Bind a merchant or platform app for each capability. Leave empty to fall back.",
   "validation": {
     "appSecret": "Enter AppSecret"
   },
@@ -50,6 +44,5 @@
   "appTypeCapabilityCleared": "Cleared app selections incompatible with the payment method",
   "channelCapabilityDescDirect": "Assign a merchant Douyin app for each payment capability.",
   "channelCapabilityDescIsv": "Choose a merchant app or the service-provider default for each capability. Default falls back to the product-level default payment apps.",
-  "capabilityIspDefault": "Service provider default",
-  "capabilityIspNotConfigured": "Not configured"
+  "capabilityIspDefault": "Service provider default"
 }

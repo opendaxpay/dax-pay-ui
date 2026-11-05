@@ -112,7 +112,6 @@
     "inputAccessKey": "Please enter AccessKey",
     "inputSecretKey": "Please enter SecretKey",
     "inputPathStyleAccess": "Please select path style access",
-    "confirmSave": "Confirm Save",
     "confirmSaveContent": "Are you sure you want to save OSS configuration?",
     "check": "Test Connection",
     "checkSuccess": "OSS connectivity check passed",
@@ -160,11 +159,6 @@
     "unit": {
       "minutes": "minutes",
       "hours": "hours"
-    },
-    "summary": {
-      "configured": "Configured",
-      "notConfigured": "Not Configured",
-      "bucket": "Bucket: {bucket}"
     },
     "checkUsesFormValue": "The check uses the current form values; they take effect only after saving",
     "checkInProgress": "Testing connectivity (uploads and reads a probe file), usually takes a few seconds…",

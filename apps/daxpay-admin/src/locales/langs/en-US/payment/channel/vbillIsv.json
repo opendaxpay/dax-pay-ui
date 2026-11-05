@@ -1,5 +1,4 @@
 {
-  "title": "VBill ISV Configuration",
   "groupConfig": "Configuration",
   "configTitle": "VBill ISV Key Configuration",
   "manageTitle": "VBill Merchant Management",
@@ -13,11 +12,6 @@
   "publicKeyTooltip": "Tianque RSA public key (X509 Base64), for response/callback signature verification",
   "privateKey": "Merchant RSA Private Key",
   "privateKeyTooltip": "Merchant RSA private key (PKCS8 Base64), SHA1withRSA signing",
-  "sandbox": "Sandbox",
-  "groupMchConfig": "Merchant Config",
-  "cardMchConfig": "Merchant Config",
-  "cardMchConfigDesc": "View Tianque merchant number",
-  "mchConfigTitle": "Merchant Config",
   "vbillMchNo": "Tianque Merchant No",
   "vbillMchNoPlaceholder": "Please enter Tianque merchant No (mno)",
   "cardCapabilityBinding": "WeChat App Binding",

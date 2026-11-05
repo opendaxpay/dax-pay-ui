@@ -8,15 +8,12 @@
   "stat": {
     "merchantCount": "商人",
     "channelMerchantCount": "チャネル販売者",
-    "userCount": "ユーザー",
-    "todayLogin": "今日のログイン",
-    "onlineUser": "オンラインユーザー"
+    "userCount": "ユーザー"
   },
   "widget": {
     "workbenchHeader": "ワークスペース",
     "quickEntry": "クイックエントリー",
     "tradeOverview": "貿易概要",
-    "payOrder": "支払い命令",
     "payTrade": "ファンド取引",
     "tradeTrend": "貿易動向",
     "providerDist": "決済方法分布",
@@ -37,7 +34,6 @@
   },
   "quickEntry": {
     "merchant": "商人",
-    "app": "アプリケーション",
     "channelMerchant": "チャネル販売者",
     "notify": "通知",
     "user": "ユーザー",
@@ -63,7 +59,6 @@
     "selected": "選択済み (ドラッグして並べ替え)",
     "available": "利用可能",
     "allAdded": "すべて追加されました",
-    "wxApp": "決済アプリ(WeChat)",
     "virtualDevice": "仮想デバイス",
     "gatewayOrder": "ゲートウェイ注文",
     "fundFlow": "資金フロー",
@@ -83,7 +78,6 @@
   },
   "configAlert": {
     "bannerTitle": "{n} 件の設定が未完了です",
-    "viewDetail": "詳細を表示",
-    "allComplete": "すべての設定が完了しています"
+    "viewDetail": "詳細を表示"
   }
 }

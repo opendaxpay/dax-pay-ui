@@ -1,7 +1,4 @@
 {
-  "title": "Stripe 構成",
-  "keyConfig": "キーコンフィグ",
-  "enable": "有効にするか",
   "accountId": "Stripe アカウント ID",
   "accountIdPlaceholder": "Stripe アカウント ID(acct_xxx)を入力してください",
   "secretKey": "Secret Key",

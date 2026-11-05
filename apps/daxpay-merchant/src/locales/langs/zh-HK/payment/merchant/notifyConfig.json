@@ -6,7 +6,6 @@
     "notifyUrlTooltip": "事件通知將以 HTTP POST 方式推送到該地址，支援 http/https 協定",
     "notifyUrlPlaceholder": "http(s)://您的回調接收地址",
     "notifyWay": "通知方式",
-    "notifyWayHint": "選擇通知接收方式(HTTP回調或MQ推送)",
     "subscribedEvents": "訂閲事件",
     "subscribedEventsTooltip": "勾選需要接收通知的業務事件類型",
     "eventGroupPay": "支付事件",

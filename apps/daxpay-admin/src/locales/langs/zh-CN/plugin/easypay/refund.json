@@ -1,5 +1,4 @@
 {
-  "title": "易支付退款订单",
   "detail": "易支付退款订单详情",
   "field": {
     "refundId": "关联退款单ID",
@@ -25,14 +24,8 @@
     "tradeNo": "请输入平台业务单号"
   },
   "status": {
-    "0": "处理中/失败",
-    "1": "退款成功",
     "success": "退款成功",
     "progress": "处理中/失败"
-  },
-  "statusColor": {
-    "0": "orange",
-    "1": "green"
   },
   "action": {
     "sync": "同步状态",
@@ -41,7 +34,6 @@
     "syncConfirmContent": "将主动向支付通道查询该退款订单的最新状态, 是否继续?"
   },
   "section": {
-    "basic": "退款信息",
     "time": "时间信息",
     "refund": "退款信息",
     "app": "应用与协议"

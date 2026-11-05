@@ -2,27 +2,8 @@
   "formRules": {
     "required": "Please enter {0}",
     "selectRequired": "Please select {0}",
-    "minLength": "{0} must be at least {1} characters",
-    "maxLength": "{0} can be at most {1} characters",
-    "length": "{0} must be {1} characters long",
-    "alreadyExists": "{0} `{1}` already exists",
-    "startWith": "{0} must start with `{1}`",
-    "invalidURL": "Please input a valid URL",
     "sizeLimit": "The file size cannot exceed {0}MB",
     "previewWarning": "Unable to open the file, there is no available URL or preview address"
-  },
-  "actionTitle": {
-    "edit": "Modify {0}",
-    "create": "Create {0}",
-    "delete": "Delete {0}",
-    "view": "View {0}"
-  },
-  "actionMessage": {
-    "deleteConfirm": "Are you sure to delete {0}?",
-    "deleting": "Deleting {0} ...",
-    "deleteSuccess": "{0} deleted successfully",
-    "operationSuccess": "Operation succeeded",
-    "operationFailed": "Operation failed"
   },
   "placeholder": {
     "input": "Please enter",
@@ -58,7 +39,6 @@
     "title": "Image Cropping",
     "titleTip": "Cropping Ratio {0}",
     "confirm": "Crop",
-    "cancel": "Cancel cropping",
     "errorTip": "Cropping error"
   },
   "fallback": {
@@ -68,7 +48,6 @@
     "forbiddenDesc": "Sorry, but you don't have permission to access this page.",
     "internalError": "Oops! Something Went Wrong",
     "internalErrorDesc": "Sorry, but the server encountered an error.",
-    "offline": "Offline Page",
     "offlineError": "Oops! Network Error",
     "offlineErrorDesc": "Sorry, can't connect to the internet. Check your connection.",
     "comingSoon": "Coming Soon",
@@ -84,12 +63,10 @@
   },
   "widgets": {
     "document": "Documentation",
-    "setting": "Settings",
     "logoutTip": "Do you want to logout?",
     "viewAll": "View All Messages",
     "notifications": "Notifications",
     "markAllAsRead": "Make All as Read",
-    "clearNotifications": "Clear",
     "checkUpdatesTitle": "New Version Available",
     "checkUpdatesDescription": "Click to refresh and get the latest version",
     "search": {
@@ -105,10 +82,8 @@
     "lockScreen": {
       "title": "Lock Screen",
       "screenButton": "Locking",
-      "password": "Password",
       "placeholder": "Please enter password",
       "unlock": "Click to unlock",
-      "errorPasswordTip": "Password error, please re-enter",
       "backToLogin": "Back to login",
       "entry": "Enter the system",
       "greeting": {
@@ -122,8 +97,7 @@
       "guest": "Guest"
     },
     "timezone": {
-      "setTimezone": "Set Timezone",
-      "setSuccess": "Timezone set successfully"
+      "setTimezone": "Set Timezone"
     }
   }
 }

@@ -109,15 +109,9 @@
     "replacePrivateKeyTitle": "가맹점 개인 키 교체 확인",
     "replacePrivateKeyContent": "가맹점 개인 키만 교체할 경우 모의 게이트웨이에서 현재 사용 중인 키와 일치하는지 확인하세요. 일치하지 않으면 해당 주체의 요청은 서명 검증에 실패합니다.",
     "continueSave": "계속 저장",
-    "save": "저장",
-    "keepBlank": "비우면 기존 값 유지",
-    "keepBlankTip": "민감 항목을 비우면 수정하지 않는 것으로 간주하며, 변경이 필요한 항목만 전송합니다",
-    "configured": "설정됨",
-    "notConfigured": "미설정",
     "saveSuccess": "접속 설정이 저장되었습니다"
   },
   "manage": {
-    "channelMchNo": "채널 가맹점 번호",
     "groupBasic": "기본 관리",
     "groupTrade": "거래 설정",
     "cardBasicInfo": "기본 정보",

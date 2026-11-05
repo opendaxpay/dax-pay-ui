@@ -1,7 +1,6 @@
 {
   "title": "分析",
   "subtitle": "合計 {start} ～ {end} · {days} 日",
-  "customRange": "カスタム範囲",
   "timeRange": {
     "today": "今日",
     "yesterday": "昨日",

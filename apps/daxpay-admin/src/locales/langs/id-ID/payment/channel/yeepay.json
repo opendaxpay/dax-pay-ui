@@ -1,5 +1,4 @@
 {
-  "title": "Konfigurasi Yeepay",
   "manageTitle": "Manajemen Pedagang Yeepay",
   "basicConfig": "Konfigurasi Dasar",
   "keyConfig": "Konfigurasi Kunci",
@@ -23,7 +22,6 @@
   "wxAppIdPlaceholder": "Untuk WeChat H5/JSAPI, opsional",
   "wxAppSecret": "Rahasia Aplikasi WeChat",
   "keyConfigured": "Dikonfigurasi",
-  "keyNotConfigured": "Tidak Dikonfigurasi",
   "saveSuccess": "Konfigurasi kunci Yeepay berhasil disimpan",
   "createSuccess": "Pedagang saluran Yeepay berhasil dibuat",
   "validation": {

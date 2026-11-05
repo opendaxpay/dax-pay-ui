@@ -1,5 +1,4 @@
 {
-  "title": "Ứng dụng thanh toán (WeChat)",
   "tabPlatform": "Platform Apps",
   "tabMerchant": "Merchant Apps",
   "platformSubtitle": "Platform / ISV identity, shared across channels",
@@ -28,8 +27,6 @@
   "appSecretTooltipOfficialAccount": "Official Account AppSecret for OAuth OpenId",
   "appSecretTooltipMiniProgram": "Mini Program AppSecret for code2session",
   "appSecretTooltipMobileApp": "Mobile App AppSecret for OAuth",
-  "capabilityBtn": "Capability Binding",
-  "capabilityTitle": "Bind apps to capabilities",
   "capabilitySelectPlaceholder": "Chọn ứng dụng",
   "capabilityNoApp": "No apps yet. Create an app first.",
   "capabilitySaveSuccess": "Saved",
@@ -39,7 +36,6 @@
   "scopePlatform": "Platform App",
   "scopeMerchant": "Merchant App",
   "channelCapabilityTitle": "Thiết lập ứng dụng thanh toán",
-  "channelCapabilityDesc": "Bind a merchant or platform app for each capability. Leave empty to fall back.",
   "validation": {
     "appSecret": "Enter AppSecret"
   },
@@ -53,6 +49,5 @@
   "channelCapabilityDescIsv": "Chọn ứng dụng thương nhân hoặc mặc định nhà cung cấp dịch vụ. Mặc định quay về ứng dụng thanh toán mặc định cấp sản phẩm.",
   "channelCapabilityDescLeshua": "Chỉ cần chỉ định ứng dụng cho thanh toán WeChat JSAPI / mini program.",
   "capabilityIspDefault": "Mặc định nhà cung cấp",
-  "capabilityIspNotConfigured": "Chưa cấu hình",
   "isvAppEntryDesc": "Quản lý ứng dụng WeChat của nhà cung cấp dịch vụ (official account, mini program)"
 }

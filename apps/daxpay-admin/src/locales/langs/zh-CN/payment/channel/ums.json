@@ -1,7 +1,4 @@
 {
-  "title": "银联商务配置",
-  "keyConfig": "密钥配置",
-  "enable": "是否启用",
   "umsAppId": "应用ID",
   "umsAppIdPlaceholder": "请输入银联商务应用ID",
   "appKey": "应用密钥",
@@ -13,7 +10,6 @@
   "secretKey": "通信密钥",
   "secretKeyPlaceholder": "请输入通信密钥(用于回调消息验签)",
   "validation": {
-    "enable": "请选择是否启用",
     "umsAppId": "请输入银联商务应用ID",
     "appKey": "请输入银联商务应用密钥",
     "merchantNo": "请输入银联商务商户号",

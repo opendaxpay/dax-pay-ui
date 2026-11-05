@@ -1,7 +1,5 @@
 {
   "login": "登录",
-  "qrcodeLogin": "二维码登录",
-  "profile": "个人中心",
   "pageTitle": "{name} 支付运营管理平台",
   "pageDesc": "安全、稳定、高效的支付运营解决方案",
   "oauthLoginSuccess": "登录成功",
@@ -14,8 +12,6 @@
   "oauthProcessingWith": "{platform} 授权处理中...",
   "oauthFailedWith": "{platform} 授权登录失败",
   "oauthLoginSuccessWith": "{platform} 登录成功",
-  "oauthUnknownPlatform": "未知平台",
-  "passwordResetPending": "密码重置功能待接入",
   "passwordExpiringSoon": "密码将在 {days} 天后过期，请尽快修改",
   "qrcodeRefreshPending": "二维码刷新功能待接入",
   "qrcodeLoadFailed": "二维码加载失败",

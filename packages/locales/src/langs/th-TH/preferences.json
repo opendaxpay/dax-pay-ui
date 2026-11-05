@@ -4,8 +4,6 @@
   "enableStickyPreferencesNavigationBar": "เปิดใช้งานแถบนำทางการตั้งค่าแบบติดหนึบ",
   "disableStickyPreferencesNavigationBar": "ปิดใช้งานแถบนำทางการตั้งค่าแบบติดหนึบ",
   "resetTip": "ข้อมูลมีการเปลี่ยนแปลง คลิกเพื่อรีเซ็ต",
-  "resetTitle": "รีเซ็ตการตั้งค่า",
-  "resetSuccess": "รีเซ็ตการตั้งค่าสำเร็จแล้ว",
   "appearance": "รูปร่าง",
   "layout": "เค้าโครง",
   "content": "เนื้อหา",

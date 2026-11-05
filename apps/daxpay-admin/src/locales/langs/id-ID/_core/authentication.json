@@ -1,7 +1,5 @@
 {
   "login": "Login",
-  "qrcodeLogin": "Masuk Kode Qr",
-  "profile": "Profil",
   "pageTitle": "Platform Operasi Pembayaran {name}",
   "pageDesc": "Solusi operasi pembayaran yang aman, stabil dan efisien",
   "oauthLoginSuccess": "Masuk berhasil",
@@ -14,8 +12,6 @@
   "oauthProcessingWith": "{platform} otorisasi sedang berlangsung...",
   "oauthFailedWith": "{platform} otorisasi gagal",
   "oauthLoginSuccessWith": "{platform} login berhasil",
-  "oauthUnknownPlatform": "Platform tidak dikenal",
-  "passwordResetPending": "Penyetelan ulang kata sandi belum tersedia",
   "passwordExpiringSoon": "Kata sandi akan kedaluwarsa dalam {days} hari. Segera ubah",
   "qrcodeRefreshPending": "Penyegaran kode QR belum tersedia",
   "qrcodeLoadFailed": "Gagal memuat kode QR",

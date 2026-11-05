@@ -24,13 +24,9 @@
     "ios": "iOS App"
   },
   "fields": {
-    "appId": "AppId",
-    "appIdPlaceholder": "Enter AppId",
     "appIdRequired": "Please enter AppId",
     "wxAppId": "Mini Program AppId",
     "wxAppIdPlaceholder": "Enter WeChat Mini Program AppId",
-    "appSecret": "AppSecret",
-    "appSecretPlaceholder": "Enter AppSecret",
     "appSecretRequired": "Please enter AppSecret",
     "wxAppSecret": "Mini Program AppSecret",
     "wxAppSecretPlaceholder": "Enter WeChat Mini Program AppSecret",
@@ -63,19 +59,8 @@
     "dyAppSecretPlaceholder": "Enter Douyin Mini Program AppSecret"
   },
   "detail": {
-    "back": "Back",
-    "appConfig": "Platform Key Config",
-    "appConfigPlaceholder": "Enter platform key config in JSON format",
-    "notifyConfig": "Notification Config",
-    "notifyConfigPlaceholder": "Enter notification config in JSON format",
-    "bindingEnabled": "Enable third-party account binding",
-    "enabled": "Enabled",
-    "remark": "Remark",
-    "remarkPlaceholder": "Enter remark",
-    "save": "Save",
     "saveSuccess": "Saved successfully",
     "notSupportedAppType": "Unsupported app type",
-    "emptyPlatformConfig": "No platform config yet, fill in and save to create",
     "platformComingSoon": "This platform is not available yet; will be handled when the APP is ready",
     "cashierLimitTitle": "Single platform cashier mini program",
     "cashierLimitDesc": "The whole platform shares one WeChat and one Alipay cashier mini program. openId and channelAppId must use the same AppId at pay time. Register or bind this AppId with each payment channel as the pay AppId (often the service-provider mini program for official WeChat ISV, or sub_appid for third-party channels). Not every channel works out of the box."

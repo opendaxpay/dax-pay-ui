@@ -1,8 +1,4 @@
 {
   "missingAppContext": "Buka penghalaan saluran daripada Pengurusan Apl",
-  "productDetail": {
-    "notSupported": "Konfigurasi butiran produk belum lagi disokong",
-    "notSupportedDesc": "Konfigurasi terperinci untuk \"{product}\" belum dilaksanakan"
-  },
   "missingStoreContext": "Parameter kedai tidak ada. Masuk dari pengurusan kedai"
 }

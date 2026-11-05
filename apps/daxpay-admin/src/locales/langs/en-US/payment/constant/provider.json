@@ -5,7 +5,6 @@
     "code": "Code",
     "icon": "Icon",
     "name": "Name",
-    "sortNo": "Sort",
     "description": "Description"
   },
   "detail": "Directory Item Detail"

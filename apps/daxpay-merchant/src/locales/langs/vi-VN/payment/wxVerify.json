@@ -1,26 +1,19 @@
 {
-  "title": "Tệp xác minh tên miền",
-  "adminTitle": "Tệp xác minh tên miền",
   "upload": "Tải lên tệp xác minh",
   "uploadTip": "Chọn tệp xác minh tên miền tải từ WeChat (MP_verify_*.txt)",
   "uploadSuccess": "Tải lên thành công",
-  "uploadFail": "Tải lên không thành công",
   "chooseFile": "Chọn tệp",
   "reChooseFile": "Chọn lại",
   "fileNameRequired": "Vui lòng chọn tệp xác minh trước",
   "fileNameInvalid": "Chỉ hỗ trợ tệp MP_verify_*.txt tải từ WeChat",
   "fileContentEmpty": "Nội dung tệp đã chọn đang trống. Vui lòng xác nhận đây là tệp đầy đủ tải từ WeChat rồi chọn lại",
   "confirmDelete": "Bạn có chắc chắn xóa tệp xác minh này không?",
-  "editTitle": "Chỉnh sửa tệp xác minh",
   "field": {
     "fileName": "Tên tệp",
-    "mchNo": "Số thương gia",
     "belong": "Thuộc về",
     "verifyCode": "Xác minh nội dung",
     "remark": "Nhận xét",
-    "createTime": "Tạo thời gian",
-    "fileContent": "Nội dung tệp",
-    "merchant": "Thương nhân"
+    "createTime": "Tạo thời gian"
   },
   "belong": {
     "platform": "Nền tảng",

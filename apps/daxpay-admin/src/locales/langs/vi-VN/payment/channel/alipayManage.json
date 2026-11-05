@@ -1,5 +1,4 @@
 {
-  "title": "Quản lý ISV của Alipay",
   "groupApp": "Quản lý ứng dụng",
   "cardIsvApp": "Ứng dụng ISV của Alipay",
   "cardIsvAppDesc": "Quản lý ứng dụng Alipay ISV",
@@ -11,7 +10,6 @@
   "actionMore": "Thêm hành động",
   "saveSuccess": "Đã lưu thành công",
   "deleteSuccess": "Đã xóa thành công",
-  "deleteConfirmContent": "Bạn có chắc chắn muốn xóa ứng dụng \"{name}\" không? Không thể hoàn tác hành động này.",
   "appName": "Tên ứng dụng",
   "appNamePlaceholder": "Nhập tên ứng dụng",
   "appNameRequired": "Vui lòng nhập tên ứng dụng",

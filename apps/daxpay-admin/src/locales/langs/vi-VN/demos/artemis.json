@@ -16,9 +16,7 @@
     }
   },
   "form": {
-    "content": "Nội dung tin nhắn",
     "contentPlaceholder": "Vui lòng nhập nội dung tin nhắn",
-    "delaySeconds": "Giây trễ",
     "send": "Gửi",
     "broadcast": "Phát tin"
   },

@@ -1,5 +1,4 @@
 {
-  "title": "Manajemen Kode QR",
   "field": {
     "code": "Kode",
     "name": "Nama",
@@ -23,7 +22,6 @@
     "random": "Jumlah Khusus",
     "fixed": "Jumlah Tetap"
   },
-  "defaultApp": "Aplikasi default",
   "validateName": "Silakan masukkan namanya",
   "validateAmountType": "Silakan pilih jenis jumlah",
   "validateFixedAmount": "Silakan masukkan jumlah tetap",
@@ -32,7 +30,6 @@
   "disable": "Cacat",
   "confirmEnable": "Apakah Anda yakin untuk mengaktifkan papan kode QR ini?",
   "confirmDisable": "Apakah Anda yakin untuk menonaktifkan papan kode QR ini? Pembayaran melalui pemindaian tidak akan tersedia.",
-  "viewCode": "Lihat Kode",
   "qrCodeTitle": "Kode QR",
   "qrCodeTip": "Pindai untuk masuk ke halaman pembayaran",
   "copyLink": "Salin Tautan",
@@ -42,7 +39,6 @@
     "mini_app": "Mini program"
   },
   "pleaseSelectStore": "Pilih toko",
-  "defaultStoreHint": "Toko default (jika dikonfigurasi)",
   "allocationTip": "Saat diaktifkan, pembayaran kode akan meminta channel membekukan dana untuk alokasi",
   "allocationOn": "Alokasi",
   "allocWarningTitle": "Peringatan Kemampuan Alokasi",

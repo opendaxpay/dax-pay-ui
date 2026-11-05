@@ -6,14 +6,10 @@
     "description": "Description",
     "icon": "Icon",
     "remark": "Remark",
-    "channelName": "Channel Name",
     "isv": "ISV",
     "terminal": "Terminal Report",
     "sandbox": "Sandbox",
-    "apiCallMode": "API Call Mode",
-    "payIdType": "Pay ID Type",
-    "capabilities": "Payment Capabilities",
-    "features": "Product Features"
+    "capabilities": "Payment Capabilities"
   },
   "features": "Product Features",
   "detail": "Product Detail",

@@ -1,5 +1,4 @@
 {
-  "title": "Yeepay 구성",
   "manageTitle": "Yeepay 판매자 관리",
   "basicConfig": "기본 구성",
   "keyConfig": "키 구성",
@@ -23,7 +22,6 @@
   "wxAppIdPlaceholder": "WeChat H5/JSAPI의 경우 선택 사항",
   "wxAppSecret": "위챗 앱비밀",
   "keyConfigured": "구성됨",
-  "keyNotConfigured": "구성되지 않음",
   "saveSuccess": "Yeepay 키 구성이 성공적으로 저장되었습니다.",
   "createSuccess": "Yeepay 채널 판매자가 성공적으로 생성되었습니다",
   "validation": {

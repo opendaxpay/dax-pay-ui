@@ -2,7 +2,6 @@
   "enum": {
     "alipayIsv": "アリペイ (ISV)",
     "alipay": "Alipay（ダイレクト）",
-    "wechat": "WeChat Pay (直接)",
     "wechatPay": "WeChat Pay (直接)",
     "wechatIsv": "WeChat Pay (ISV)",
     "douyinPay": "Douyin Pay (直接)",
@@ -25,7 +24,6 @@
     "shengPay": "盛付通(加盟店)",
     "shengIsv": "盛付通(サービスプロバイダー)",
     "ysepPay": "YSEPペイ",
-    "quickPay": "クイックペイ",
     "yeePay": "イーペイ",
     "jeePay": "ジーペイ",
     "easyPay": "イージーペイ",

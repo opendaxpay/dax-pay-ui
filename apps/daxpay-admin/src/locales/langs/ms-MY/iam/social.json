@@ -1,8 +1,6 @@
 {
-  "title": "Log Masuk Platform Pihak Ketiga",
   "emptyDesc": "Tiada data konfigurasi platform",
   "clientCode": {
-    "label": "Pelanggan",
     "admin": "Admin",
     "merchant": "saudagar"
   },
@@ -29,19 +27,10 @@
   },
   "action": {
     "config": "Konfigurasi",
-    "gotoConfig": "Pergi ke Config",
     "gotoCredential": "Konfigurasi Bukti kelayakan",
-    "edit": "Sunting",
-    "enable": "Dayakan",
-    "disable": "Lumpuhkan",
-    "delete": "Padam",
-    "add": "Tambah Konfigurasi Platform",
-    "search": "Cari",
-    "reset": "Tetapkan semula",
     "copy": "salin"
   },
   "form": {
-    "source": "Platform",
     "clientId": "ID Pelanggan",
     "clientIdPlaceholder": "Masukkan ID pelanggan (AppId)",
     "clientIdHelp": "Biasanya AppId atau ClientID, tertakluk kepada nama platform sebenar",
@@ -55,7 +44,6 @@
     "enabledRequired": "Sila pilih dayakan status",
     "callbackUrl": "URL panggilan balik",
     "callbackUrlHelp": "Daftarkan URL ini dalam konsol OAuth pihak ketiga; admin dan peniaga masing-masing memerlukan set lengkap",
-    "callbackUrlEmpty": "Sila tetapkan URL akses pentadbir dalam konfigurasi titik akhir dahulu",
     "callbackUrlEmptyAdmin": "Sila tetapkan URL Pangkalan Pentadbir dalam konfigurasi titik akhir dahulu",
     "callbackUrlEmptyMerchant": "Sila tetapkan URL Pangkalan Pedagang (merchantBaseUrl) dalam konfigurasi titik akhir; diperlukan untuk log masuk sosial pedagang",
     "loginCallback": "Log Masuk Panggilan Balik",
@@ -67,18 +55,10 @@
     "gatewayRegisterHelp": "Callback log masuk dan pengikatan platform redirect (Alipay/Akaun Rasmi) disampaikan melalui domain gateway; hanya domain gateway perlu didaftarkan di platform terbuka",
     "gatewayRegister": "Panduan Pendaftaran Platform Terbuka"
   },
-  "confirm": {
-    "delete": "Adakah anda pasti akan memadamkan konfigurasi {name}?"
-  },
   "tip": {
-    "addSuccess": "Berjaya ditambahkan",
     "configSuccess": "Berjaya dikonfigurasikan",
     "editSuccess": "Berjaya dikemas kini",
-    "enableSuccess": "Didayakan dengan jayanya",
-    "disableSuccess": "Berjaya dilumpuhkan",
-    "deleteSuccess": "Berjaya dipadamkan",
     "copySuccess": "Disalin ke papan keratan",
-    "platformCredentialRequired": "Sila lengkapkan kelayakan peringkat platform sebelum mendayakan log masuk",
     "platformCredentialHint": {
       "alipay": "Urus AppId/kunci dalam Alipay App Config; suis ini hanya mengawal sama ada log masuk Alipay tersedia",
       "weChat": "Urus AppId/kunci dalam WeChat Official Account Config; suis ini hanya mengawal sama ada log masuk WeChat tersedia"

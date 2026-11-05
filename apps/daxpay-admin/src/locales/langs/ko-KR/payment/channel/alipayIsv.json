@@ -7,8 +7,6 @@
   "keyConfig": "키 구성",
   "certConfig": "인증서 모드",
   "aliAppId": "앱 ID",
-  "alipayUserId": "판매자 PID",
-  "alipayUserIdPlaceholder": "판매자 PID를 입력하세요.",
   "authType": "인증 유형",
   "authTypePlaceholder": "인증 유형을 선택하세요.",
   "alipayPublicKey": "Alipay 공개 키",

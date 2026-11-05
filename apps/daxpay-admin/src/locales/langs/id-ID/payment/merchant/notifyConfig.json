@@ -6,7 +6,6 @@
     "notifyUrlTooltip": "Notifikasi acara akan dikirim ke URL ini melalui HTTP POST, mendukung protokol http/https",
     "notifyUrlPlaceholder": "http(s)://url-penerima-panggilan-Anda",
     "notifyWay": "Metode Beritahu",
-    "notifyWayHint": "Pilih cara menerima notifikasi (callback HTTP atau push MQ)",
     "subscribedEvents": "Acara Berlangganan",
     "subscribedEventsTooltip": "Pilih jenis acara bisnis yang ingin Anda terima",
     "eventGroupPay": "Acara Pembayaran",

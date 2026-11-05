@@ -16,9 +16,7 @@
     }
   },
   "form": {
-    "content": "Message Content",
     "contentPlaceholder": "Please enter message content",
-    "delaySeconds": "Delay Seconds",
     "send": "Send",
     "broadcast": "Broadcast"
   },

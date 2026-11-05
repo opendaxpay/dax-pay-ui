@@ -1,5 +1,4 @@
 {
-  "title": "EasyPay返金注文",
   "detail": "EasyPay返金注文詳細",
   "field": {
     "refundId": "関連返金ID",
@@ -25,14 +24,8 @@
     "tradeNo": "プラットフォーム取引番号を入力"
   },
   "status": {
-    "0": "処理中/失敗",
-    "1": "返金成功",
     "success": "返金成功",
     "progress": "処理中/失敗"
-  },
-  "statusColor": {
-    "0": "orange",
-    "1": "green"
   },
   "action": {
     "sync": "ステータス同期",
@@ -41,7 +34,6 @@
     "syncConfirmContent": "支払いチャネルに最新の返金ステータスを照会します。続行しますか?"
   },
   "section": {
-    "basic": "返金情報",
     "time": "時間情報",
     "refund": "返金情報",
     "app": "アプリ・プロトコル"

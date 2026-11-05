@@ -1,7 +1,4 @@
 {
-  "title": "銀聯商務配置",
-  "keyConfig": "金鑰配置",
-  "enable": "是否啟用",
   "umsAppId": "應用ID",
   "umsAppIdPlaceholder": "請輸入銀聯商務應用ID",
   "appKey": "應用金鑰",
@@ -13,7 +10,6 @@
   "secretKey": "通訊金鑰",
   "secretKeyPlaceholder": "請輸入通訊金鑰(用於回撥訊息驗籤)",
   "validation": {
-    "enable": "請選擇是否啟用",
     "umsAppId": "請輸入銀聯商務應用ID",
     "appKey": "請輸入銀聯商務應用金鑰",
     "merchantNo": "請輸入銀聯商務商戶號",

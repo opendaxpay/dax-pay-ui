@@ -112,7 +112,6 @@
     "inputAccessKey": "Sila masukkan AccessKey",
     "inputSecretKey": "Sila masukkan SecretKey",
     "inputPathStyleAccess": "Sila pilih akses gaya laluan",
-    "confirmSave": "Sahkan Simpan",
     "confirmSaveContent": "Adakah anda pasti mahu menyimpan konfigurasi OSS?",
     "check": "Sambungan Ujian",
     "checkSuccess": "Semakan sambungan OSS lulus",
@@ -160,11 +159,6 @@
     "unit": {
       "minutes": "minit",
       "hours": "jam"
-    },
-    "summary": {
-      "configured": "Dikonfigurasikan",
-      "notConfigured": "Tidak Dikonfigurasikan",
-      "bucket": "Baldi: {bucket}"
     },
     "checkUsesFormValue": "Semakan menggunakan nilai borang semasa; berkuat kuasa selepas disimpan",
     "checkInProgress": "Sedang menguji kesambungan (akan memuat naik/membaca fail uji sebenar), biasanya mengambil masa beberapa saat…",

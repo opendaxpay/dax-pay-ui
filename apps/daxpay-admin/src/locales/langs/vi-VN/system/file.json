@@ -1,6 +1,5 @@
 {
   "platform": {
-    "title": "Tệp lưu trữ",
     "detailTitle": "Chi tiết tệp lưu trữ",
     "field": {
       "filename": "Tên tệp",
@@ -19,14 +18,7 @@
     "placeholder": {
       "filename": "Vui lòng nhập tên tập tin",
       "originalFilename": "Vui lòng nhập tên file gốc",
-      "size": "Vui lòng nhập kích thước tập tin",
-      "ext": "Vui lòng nhập phần mở rộng tập tin",
-      "contentType": "Vui lòng nhập loại MIME",
-      "url": "Vui lòng nhập URL tệp",
-      "basePath": "Vui lòng nhập đường dẫn cơ sở",
-      "path": "Vui lòng nhập đường dẫn lưu trữ",
-      "bizType": "Vui lòng nhập loại hình kinh doanh",
-      "remark": "Vui lòng nhập nhận xét"
+      "bizType": "Vui lòng nhập loại hình kinh doanh"
     },
     "accessType": {
       "public": "Công cộng",
@@ -34,14 +26,7 @@
     },
     "action": {
       "preview": "Xem trước",
-      "download": "Tải xuống",
-      "confirmDelete": "Xóa xác nhận",
-      "confirmDeleteContent": "Bạn có chắc chắn muốn xóa bản ghi tập tin này?",
-      "deleteSuccess": "Đã xóa thành công"
-    },
-    "validate": {
-      "urlRequired": "Vui lòng nhập URL tệp",
-      "filenameRequired": "Vui lòng nhập tên tập tin"
+      "download": "Tải xuống"
     }
   }
 }

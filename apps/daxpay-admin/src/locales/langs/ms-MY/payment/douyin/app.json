@@ -1,5 +1,4 @@
 {
-  "title": "Apl Pembayaran (Douyin)",
   "tabPlatform": "Platform Apps",
   "tabMerchant": "Merchant Apps",
   "platformSubtitle": "Platform / ISV identity, shared across channels",
@@ -28,18 +27,13 @@
   "appSecretTooltipMiniProgram": "Mini Program AppSecret for code2session",
   "appSecretTooltipMobileApp": "Mobile App AppSecret for OAuth",
   "appSecretTooltipWebApp": "Web App AppSecret for OAuth OpenId",
-  "capabilityBtn": "Capability Binding",
-  "capabilityTitle": "Bind apps to capabilities",
   "capabilitySelectPlaceholder": "Pilih aplikasi",
   "capabilityNoApp": "No apps yet. Create an app first.",
   "capabilitySaveSuccess": "Saved",
   "selectMerchant": "Select a merchant first",
   "selectMerchantPlaceholder": "Select merchant",
   "filterPlaceholder": "Filter by name or AppId",
-  "scopePlatform": "Platform App",
-  "scopeMerchant": "Merchant App",
   "channelCapabilityTitle": "Persediaan Apl Pembayaran",
-  "channelCapabilityDesc": "Bind a merchant or platform app for each capability. Leave empty to fall back.",
   "validation": {
     "appSecret": "Enter AppSecret"
   },
@@ -50,6 +44,5 @@
   "appTypeCapabilityCleared": "Pilihan apl yang tidak sepadan dengan kaedah pembayaran telah dikosongkan",
   "channelCapabilityDescDirect": "Tetapkan apl Douyin pedagang bagi setiap keupayaan.",
   "channelCapabilityDescIsv": "Pilih apl pedagang atau lalai pembekal perkhidmatan. Lalai jatuh kembali ke apl pembayaran lalai peringkat produk.",
-  "capabilityIspDefault": "Lalai pembekal perkhidmatan",
-  "capabilityIspNotConfigured": "Belum dikonfigurasi"
+  "capabilityIspDefault": "Lalai pembekal perkhidmatan"
 }

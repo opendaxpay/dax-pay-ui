@@ -1,5 +1,4 @@
 {
-  "title": "Pengurusan Kod QR",
   "field": {
     "code": "Kod",
     "name": "Nama",
@@ -23,7 +22,6 @@
     "random": "Amaun Tersuai",
     "fixed": "Jumlah Tetap"
   },
-  "defaultApp": "Aplikasi lalai",
   "validateName": "Sila masukkan nama",
   "validateAmountType": "Sila pilih jenis amaun",
   "validateFixedAmount": "Sila masukkan jumlah tetap",
@@ -32,7 +30,6 @@
   "disable": "Lumpuhkan",
   "confirmEnable": "Adakah anda pasti mendayakan papan kod QR ini?",
   "confirmDisable": "Adakah anda pasti untuk melumpuhkan papan kod QR ini? Pembayaran melalui imbasan tidak akan tersedia.",
-  "viewCode": "Lihat Kod",
   "qrCodeTitle": "Kod QR",
   "qrCodeTip": "Imbas untuk masuk ke halaman pembayaran",
   "copyLink": "Salin Pautan",
@@ -42,7 +39,6 @@
     "mini_app": "Program mini"
   },
   "pleaseSelectStore": "Sila pilih kedai",
-  "defaultStoreHint": "Kedai lalai (jika dikonfigurasi)",
   "allocationTip": "Apabila diaktifkan, pembayaran kod akan meminta saluran membekukan dana untuk peruntukan",
   "allocationOn": "Peruntukan",
   "allocWarningTitle": "Amaran Keupayaan Peruntukan",

@@ -1,5 +1,4 @@
 {
-  "title": "HKRT ISV Configuration",
   "groupConfig": "Configuration",
   "configTitle": "HKRT ISV Key Configuration",
   "manageTitle": "HKRT Merchant Management",
@@ -13,7 +12,6 @@
   "accessIdPlaceholder": "Please enter access institution ID",
   "accessKey": "Signature Key",
   "accessKeyPlaceholder": "Please enter signature key",
-  "groupMchConfig": "Merchant Config",
   "cardMchConfig": "Merchant Config",
   "cardMchConfigDesc": "Configure SAAS terminal number for channel merchant",
   "cardCapabilityBinding": "WeChat App Binding",

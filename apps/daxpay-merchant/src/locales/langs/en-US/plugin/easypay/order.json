@@ -1,5 +1,4 @@
 {
-  "title": "EasyPay Order",
   "detail": "EasyPay Order Detail",
   "field": {
     "orderId": "Container ID",
@@ -23,9 +22,7 @@
     "pcCallType": "PC Call Type",
     "payUrl": "Pay URL",
     "payBody": "Pay Body",
-    "createTime": "Created Time",
-    "merchant": "Merchant",
-    "appId": "App ID"
+    "createTime": "Created Time"
   },
   "placeholder": {
     "outTradeNo": "Enter merchant order no.",
@@ -60,9 +57,6 @@
   "section": {
     "basic": "Order Info",
     "time": "Time Info",
-    "extra": "Payment & Extension",
-    "order": "Order Info",
-    "app": "App & Protocol",
-    "pay": "Payment & Callback"
+    "extra": "Payment & Extension"
   }
 }

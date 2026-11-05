@@ -6,7 +6,6 @@
     "notifyUrlTooltip": "Event notifications will be pushed to this URL via HTTP POST, supports http/https protocol",
     "notifyUrlPlaceholder": "http(s)://your-callback-receiver-url",
     "notifyWay": "Notify Method",
-    "notifyWayHint": "Choose how to receive notifications (HTTP callback or MQ push)",
     "subscribedEvents": "Subscribed Events",
     "subscribedEventsTooltip": "Select the business event types you want to receive",
     "eventGroupPay": "Payment Events",

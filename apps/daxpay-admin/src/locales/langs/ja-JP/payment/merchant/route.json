@@ -18,9 +18,7 @@
     "sceneChannelMchCapabilityPairHint": "チャネルマーチャントと機能の両方を選択するか、両方を空のままにします。部分的な選択は許可されません",
     "basicSaveConfirm": "ブランドデフォルトのルーティングで保存しますか?これにより、有料プロバイダーごとのデフォルトのチャネル販売者が上書きされます。",
     "sceneRouteNotSelected": "未選択",
-    "configTab": "ルーティング",
     "method": "支払い方法",
-    "missingAppContext": "アプリ管理からのオープンチャネルルーティング",
     "providers": {
       "aggregate_pay": "総支払額",
       "wechat": "ウィーチャットペイ",

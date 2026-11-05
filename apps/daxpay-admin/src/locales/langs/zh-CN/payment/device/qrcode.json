@@ -1,5 +1,4 @@
 {
-  "title": "码牌管理",
   "field": {
     "code": "码牌编码",
     "name": "码牌名称",
@@ -17,7 +16,6 @@
     "programType": "码牌类型",
     "storeNo": "门店号",
     "store": "门店",
-    "storeName": "门店名称",
     "allocation": "是否分账"
   },
   "status": {
@@ -30,7 +28,6 @@
   },
   "defaultApp": "默认应用",
   "unbound": "未绑定",
-  "mchNoTooltip": "商户号: {mchNo}",
   "batchCreate": "批量生成",
   "bindMerchant": "绑定商户",
   "unbindMerchant": "解绑商户",
@@ -54,30 +51,17 @@
   "confirmEnable": "确定要启用该码牌吗？",
   "confirmDisable": "确定要停用该码牌吗？扫码将无法支付。",
   "confirmUnbind": "确定要解绑所选码牌的商户吗？解绑后将回到空白库存。",
-  "viewCode": "查看码牌",
   "qrCodeTitle": "码牌二维码",
   "qrCodeTip": "扫码即可进入支付页面",
   "copyLink": "复制链接",
-  "download": "下载二维码",
   "amountLabel": "金额",
   "programType": {
     "h5": "H5",
     "mini_app": "小程序"
   },
   "validateProgramType": "请选择码牌类型",
-  "bindStore": "绑定门店",
-  "unbindStore": "解绑门店",
-  "confirmUnbindStore": "确定要解绑所选码牌的门店吗？解绑后码牌将不再关联门店。",
   "pleaseSelectStore": "请选择门店",
-  "validateStoreNo": "请选择门店",
-  "storeBindNeedSameMch": "批量绑定门店时须选择同一商户下的码牌",
-  "storeBindNeedMerchant": "请先为码牌绑定商户后再绑定门店",
   "batchActions": "批量操作",
-  "bindApp": "绑定应用",
-  "unbindApp": "解绑应用",
-  "confirmUnbindApp": "确定要解绑所选码牌的应用吗？解绑后支付将使用商户默认应用。",
-  "validateAppId": "请选择应用",
-  "defaultStoreHint": "默认门店(若已配置)",
   "allocationTip": "开启后扫码支付将请求通道冻结资金用于分账",
   "allocationOn": "分账",
   "allocWarningTitle": "分账能力预警",

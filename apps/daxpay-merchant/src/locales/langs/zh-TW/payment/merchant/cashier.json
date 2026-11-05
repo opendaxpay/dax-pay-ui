@@ -26,7 +26,6 @@
     "channelMerchantPlaceholder": "請選擇通道商戶",
     "capability": "支付能力",
     "capabilityPlaceholder": "請選擇支付能力",
-    "methodFilterHint": "用於載入通道商戶候選, 儲存時不落庫",
     "validationName": "請輸入名稱",
     "validationIcon": "請選擇圖示",
     "validationResolveMode": "請選擇解析模式",

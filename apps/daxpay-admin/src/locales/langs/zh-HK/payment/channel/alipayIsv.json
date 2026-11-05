@@ -7,8 +7,6 @@
   "keyConfig": "密鑰配置",
   "certConfig": "證書模式",
   "aliAppId": "應用ID",
-  "alipayUserId": "商户PID",
-  "alipayUserIdPlaceholder": "請輸入商户PID",
   "authType": "認證方式",
   "authTypePlaceholder": "請選擇認證方式",
   "alipayPublicKey": "支付寶公鑰",

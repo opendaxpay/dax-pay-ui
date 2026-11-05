@@ -1,5 +1,4 @@
 {
-  "title": "HKRT ISV 구성",
   "groupConfig": "구성",
   "configTitle": "HKRT ISV 키 구성",
   "manageTitle": "HKRT 판매자 관리",
@@ -13,7 +12,6 @@
   "accessIdPlaceholder": "접속 기관 ID를 입력해주세요.",
   "accessKey": "서명 키",
   "accessKeyPlaceholder": "서명 키를 입력하세요.",
-  "groupMchConfig": "판매자 구성",
   "cardMchConfig": "판매자 구성",
   "cardMchConfigDesc": "채널 판매자를 위한 SAAS 터미널 번호 구성",
   "cardCapabilityBinding": "위챗 앱 바인딩",

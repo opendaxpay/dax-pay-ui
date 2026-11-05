@@ -1,5 +1,4 @@
 {
-  "title": "VBill ISV 구성",
   "groupConfig": "구성",
   "configTitle": "VBill ISV 키 구성",
   "manageTitle": "VBill 가맹점 관리",
@@ -13,11 +12,6 @@
   "publicKeyTooltip": "Tianque RSA 공개 키(X509 Base64), 응답/콜백 서명 확인용",
   "privateKey": "판매자 RSA 개인 키",
   "privateKeyTooltip": "판매자 RSA 개인 키(PKCS8 Base64), SHA1withRSA 서명",
-  "sandbox": "모래 상자",
-  "groupMchConfig": "판매자 구성",
-  "cardMchConfig": "판매자 구성",
-  "cardMchConfigDesc": "Tianque 판매자 번호 보기",
-  "mchConfigTitle": "판매자 구성",
   "vbillMchNo": "Tianque 상인 번호",
   "vbillMchNoPlaceholder": "Tianque 판매자 번호(mno)를 입력하세요.",
   "cardCapabilityBinding": "위챗 앱 바인딩",

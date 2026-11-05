@@ -11,8 +11,6 @@
     "tabTitle": "Alipay App Config",
     "tabDescription": "Alipay OAuth credentials for auth login and payment channel authentication",
     "headerDescription": "Alipay OAuth credentials for login authorization and payment channel authentication; a self-use web application is required",
-    "title": "Alipay App Auth Configuration",
-    "description": "Manage Alipay OAuth credentials (appId/private key/certs) for auth login to get user identifier (userId) and payment channel authentication.",
     "usageTip": "This configuration serves both: 1) Alipay auth login in third-party login; 2) Channel authentication in payment scenarios (get user identifier for payment).",
     "confirmSaveContent": "Are you sure to save the Alipay App configuration?",
     "section": {
@@ -54,8 +52,6 @@
   "wechatMp": {
     "tabTitle": "WeChat Official Account Config",
     "tabDescription": "WeChat MP credentials for login and template notifications",
-    "title": "WeChat Official Account Auth Configuration",
-    "description": "Manage WeChat MP credentials (appId/appSecret) for H5 OAuth openId and notification-center template messages.",
     "usageTip": "This configuration serves: 1) WeChat MP H5 OAuth login; 2) Notification-center template message sending.",
     "confirmSaveContent": "Are you sure to save the WeChat Official Account configuration?",
     "section": {
@@ -75,8 +71,6 @@
   "douyinH5": {
     "tabTitle": "Douyin H5 App",
     "tabDescription": "Douyin Open Platform H5 credentials for H5 authorization",
-    "title": "Douyin H5 App Auth Configuration",
-    "description": "Manage Douyin Open Platform H5 app credentials (Client Key / Client Secret) for H5 authorization scenarios.",
     "usageTip": "This configuration is independent of Douyin login under Third-party Login Config. It only manages Open Platform H5 Client Key / Client Secret.",
     "confirmSaveContent": "Are you sure to save the Douyin H5 App configuration?",
     "section": {
@@ -96,8 +90,6 @@
   "autoLogin": {
     "tabTitle": "In-app auto login",
     "tabDescription": "Auto OAuth when opening in Feishu/WeCom/DingTalk",
-    "title": "In-app Auto Login",
-    "description": "Configure admin/merchant separately: when opened in Feishu/WeCom/DingTalk, match one selected platform by UA and start OAuth.",
     "usageTip": "Multi-select Feishu, WeCom, and DingTalk. Enable the platform under Third-party Login Config first. DingTalk asks for consent on first authorization and is silent afterwards; WeChat is not used for in-app auto login. Users must bind first; unbound falls back silently to password login.",
     "confirmSaveContent": "Save in-app auto login settings?",
     "section": {

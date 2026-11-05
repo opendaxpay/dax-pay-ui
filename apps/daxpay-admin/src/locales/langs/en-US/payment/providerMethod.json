@@ -1,10 +1,1 @@
-{
-  "title": "Payment Provider",
-  "field": {
-    "provider": "Payment Provider",
-    "method": "Payment Method",
-    "description": "Description",
-    "remark": "Remark"
-  },
-  "detail": "Directory Item Detail"
-}
+{}

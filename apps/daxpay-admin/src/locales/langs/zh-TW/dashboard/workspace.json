@@ -8,15 +8,12 @@
   "stat": {
     "merchantCount": "商戶總數",
     "channelMerchantCount": "通道商戶",
-    "userCount": "使用者總數",
-    "todayLogin": "今日登入",
-    "onlineUser": "線上使用者"
+    "userCount": "使用者總數"
   },
   "widget": {
     "workbenchHeader": "工作臺",
     "quickEntry": "快捷入口",
     "tradeOverview": "交易概覽",
-    "payOrder": "支付訂單",
     "payTrade": "資金交易",
     "tradeTrend": "交易趨勢",
     "providerDist": "支付渠道分佈",
@@ -37,7 +34,6 @@
   },
   "quickEntry": {
     "merchant": "商戶管理",
-    "app": "應用管理",
     "channelMerchant": "通道商戶",
     "notify": "通知中心",
     "user": "使用者管理",
@@ -63,7 +59,6 @@
     "selected": "已選（拖拽排序）",
     "available": "可選入口",
     "allAdded": "已全部新增",
-    "wxApp": "支付應用(微信)",
     "virtualDevice": "虛擬設備",
     "gatewayOrder": "網關訂單",
     "fundFlow": "資金流水",
@@ -83,7 +78,6 @@
   },
   "configAlert": {
     "bannerTitle": "您有 {n} 項配置待完成",
-    "viewDetail": "查看詳情",
-    "allComplete": "配置已完善"
+    "viewDetail": "查看詳情"
   }
 }

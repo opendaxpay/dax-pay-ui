@@ -1,5 +1,4 @@
 {
-  "title": "EasyPay Refund Order",
   "detail": "EasyPay Refund Order Detail",
   "field": {
     "refundId": "Refund ID",
@@ -14,9 +13,7 @@
     "apiVersion": "API Version",
     "addTime": "Refund Initiated Time",
     "endTime": "Refund Completed Time",
-    "createTime": "Created Time",
-    "merchant": "Merchant",
-    "appId": "App ID"
+    "createTime": "Created Time"
   },
   "placeholder": {
     "refundNo": "Enter platform refund no.",
@@ -42,8 +39,6 @@
   },
   "section": {
     "basic": "Refund Info",
-    "time": "Time Info",
-    "refund": "Refund Info",
-    "app": "App & Protocol"
+    "time": "Time Info"
   }
 }

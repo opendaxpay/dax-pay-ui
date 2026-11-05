@@ -6,7 +6,6 @@
     "notifyUrlTooltip": "Pemberitahuan acara akan ditolak ke URL ini melalui HTTP POST, menyokong protokol http/https",
     "notifyUrlPlaceholder": "http(s)://url-penerima-panggilan-balik-anda",
     "notifyWay": "Kaedah Makluman",
-    "notifyWayHint": "Pilih cara menerima pemberitahuan (callback HTTP atau push MQ)",
     "subscribedEvents": "Acara Langganan",
     "subscribedEventsTooltip": "Pilih jenis acara perniagaan yang ingin anda terima",
     "eventGroupPay": "Acara Pembayaran",

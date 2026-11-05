@@ -6,7 +6,6 @@
     "notifyUrlTooltip": "이벤트 알림은 HTTP POST를 통해 이 URL로 푸시되며 http/https 프로토콜을 지원합니다.",
     "notifyUrlPlaceholder": "http(s)://귀하의 콜백-수신자-url",
     "notifyWay": "알림 방법",
-    "notifyWayHint": "알림 수신 방식 선택(HTTP 콜백 또는 MQ 푸시)",
     "subscribedEvents": "구독한 이벤트",
     "subscribedEventsTooltip": "받고 싶은 비즈니스 이벤트 유형을 선택하세요.",
     "eventGroupPay": "결제 이벤트",

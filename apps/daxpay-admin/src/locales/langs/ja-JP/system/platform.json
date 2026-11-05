@@ -112,7 +112,6 @@
     "inputAccessKey": "アクセスキーを入力してください",
     "inputSecretKey": "シークレットキーを入力してください",
     "inputPathStyleAccess": "パス スタイル アクセスを選択してください",
-    "confirmSave": "保存の確認",
     "confirmSaveContent": "OSS 設定を保存してもよろしいですか?",
     "check": "テスト接続",
     "checkSuccess": "OSS 接続チェックに合格しました",
@@ -160,11 +159,6 @@
     "unit": {
       "minutes": "分",
       "hours": "時間"
-    },
-    "summary": {
-      "configured": "設定済み",
-      "notConfigured": "未構成",
-      "bucket": "バケット: {bucket}"
     },
     "checkUsesFormValue": "テストはフォームの現在値を使用します。保存後に反映されます",
     "checkInProgress": "接続テスト中(実際にプローブファイルのアップロード/読み取りを行います)、通常数秒かかります…",

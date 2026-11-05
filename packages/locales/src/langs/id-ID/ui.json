@@ -2,27 +2,8 @@
   "formRules": {
     "required": "Silakan masukkan {0}",
     "selectRequired": "Silakan pilih {0}",
-    "minLength": "{0} minimal harus {1} karakter",
-    "maxLength": "{0} maksimal {1} karakter",
-    "length": "{0} harus terdiri dari {1} karakter",
-    "alreadyExists": "{0} `{1}` sudah ada",
-    "startWith": "{0} harus dimulai dengan `{1}`",
-    "invalidURL": "Harap masukkan URL yang valid",
     "sizeLimit": "Ukuran file tidak boleh melebihi {0}MB",
     "previewWarning": "Tidak dapat membuka file, tidak ada URL atau alamat pratinjau yang tersedia"
-  },
-  "actionTitle": {
-    "edit": "Ubah {0}",
-    "create": "Buat {0}",
-    "delete": "Hapus {0}",
-    "view": "Lihat {0}"
-  },
-  "actionMessage": {
-    "deleteConfirm": "Apakah Anda yakin akan menghapus {0}?",
-    "deleting": "Menghapus {0} ...",
-    "deleteSuccess": "{0} berhasil dihapus",
-    "operationSuccess": "Operasi berhasil",
-    "operationFailed": "Operasi gagal"
   },
   "placeholder": {
     "input": "Silakan masuk",
@@ -58,7 +39,6 @@
     "title": "Pemangkasan Gambar",
     "titleTip": "Rasio Tanam {0}",
     "confirm": "Tanaman",
-    "cancel": "Batalkan pemangkasan",
     "errorTip": "Kesalahan pemangkasan"
   },
   "fallback": {
@@ -68,7 +48,6 @@
     "forbiddenDesc": "Maaf, tetapi Anda tidak memiliki izin untuk mengakses halaman ini.",
     "internalError": "Ups! Ada yang Salah",
     "internalErrorDesc": "Maaf, tetapi server mengalami kesalahan.",
-    "offline": "Halaman Luar Talian",
     "offlineError": "Ups! Kesalahan Jaringan",
     "offlineErrorDesc": "Maaf, tidak dapat terhubung ke internet. Periksa koneksi Anda.",
     "comingSoon": "Segera hadir",
@@ -84,12 +63,10 @@
   },
   "widgets": {
     "document": "Dokumentasi",
-    "setting": "Pengaturan",
     "logoutTip": "Apakah Anda ingin keluar?",
     "viewAll": "Lihat Semua Pesan",
     "notifications": "Pemberitahuan",
     "markAllAsRead": "Jadikan Semua sebagai Telah Dibaca",
-    "clearNotifications": "Jernih",
     "checkUpdatesTitle": "Versi Baru Tersedia",
     "checkUpdatesDescription": "Klik untuk menyegarkan dan mendapatkan versi terbaru",
     "search": {
@@ -105,10 +82,8 @@
     "lockScreen": {
       "title": "Layar Kunci",
       "screenButton": "Mengunci",
-      "password": "Kata sandi",
       "placeholder": "Silakan masukkan kata sandi",
       "unlock": "Klik untuk membuka kunci",
-      "errorPasswordTip": "Kesalahan kata sandi, silakan masukkan kembali",
       "backToLogin": "Kembali untuk masuk",
       "entry": "Masuk ke sistem",
       "greeting": {
@@ -122,8 +97,7 @@
       "guest": "Tamu"
     },
     "timezone": {
-      "setTimezone": "Tetapkan Zona Waktu",
-      "setSuccess": "Zona waktu berhasil disetel"
+      "setTimezone": "Tetapkan Zona Waktu"
     }
   }
 }

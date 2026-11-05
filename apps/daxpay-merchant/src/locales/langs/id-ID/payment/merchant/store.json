@@ -2,19 +2,14 @@
   "store": {
     "title": "Manajemen Toko",
     "field": {
-      "storeNo": "Nomor Toko.",
       "storeName": "Nama Toko",
       "contactPhone": "Hubungi Telepon",
-      "logoUrl": "Logo Toko",
-      "facadeUrl": "Foto etalase",
-      "interiorUrl": "Foto Interior",
       "region": "Wilayah",
       "address": "Alamat",
       "longitude": "Garis bujur",
       "latitude": "Lintang",
       "status": "Status",
       "remark": "Komentar",
-      "createTime": "Ciptakan Waktu",
       "defaultApp": "Aplikasi Bayaran Default"
     },
     "status": {
@@ -26,10 +21,7 @@
     "validationStoreName": "Silakan masukkan nama toko",
     "validationStatus": "Silakan pilih status",
     "defaultStore": "Toko Default",
-    "setDefault": "Jadikan Default",
-    "clearDefault": "Hapus Default",
     "confirmSetDefault": "Jadikan toko ini default? Tanda default lain di merchant akan dihapus.",
-    "confirmClearDefault": "Hapus tanda default toko ini?",
     "validationDefaultStore": "Silakan pilih apakah ini toko default",
     "deleteDefaultBlocked": "Tidak dapat menghapus toko default. Batalkan default terlebih dahulu.",
     "noDefaultStoreTip": "Belum ada toko default",

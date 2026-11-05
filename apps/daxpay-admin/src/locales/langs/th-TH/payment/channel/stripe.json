@@ -1,7 +1,4 @@
 {
-  "title": "การกำหนดค่า Stripe",
-  "keyConfig": "การกำหนดค่าคีย์",
-  "enable": "เปิดใช้งาน",
   "accountId": "ID บัญชี Stripe",
   "accountIdPlaceholder": "กรุณาป้อน ID บัญชี Stripe (acct_xxx)",
   "secretKey": "Secret Key",

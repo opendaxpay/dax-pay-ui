@@ -1,5 +1,4 @@
 {
-  "title": "Đơn hàng EasyPay",
   "detail": "Chi tiết đơn hàng EasyPay",
   "field": {
     "orderId": "ID Container",
@@ -33,19 +32,8 @@
     "name": "Nhập tên sản phẩm"
   },
   "status": {
-    "0": "Chưa thanh toán",
-    "1": "Đã thanh toán",
     "success": "Đã thanh toán",
     "pending": "Chưa thanh toán"
-  },
-  "statusColor": {
-    "0": "orange",
-    "1": "green"
-  },
-  "type": {
-    "alipay": "Alipay",
-    "wxpay": "WeChat Pay",
-    "aggregate": "Thanh toán tổng hợp"
   },
   "action": {
     "sync": "Đồng bộ trạng thái",
@@ -58,9 +46,7 @@
     "closeConfirmContent": "Sau khi đóng, đơn hàng không thể tiếp tục thanh toán, tiếp tục?"
   },
   "section": {
-    "basic": "Thông tin đơn hàng",
     "time": "Thông tin thời gian",
-    "extra": "Thanh toán & Mở rộng",
     "order": "Thông tin đơn hàng",
     "app": "Ứng dụng & Giao thức",
     "pay": "Thanh toán & Callback"

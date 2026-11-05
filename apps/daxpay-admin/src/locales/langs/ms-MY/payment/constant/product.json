@@ -6,14 +6,10 @@
     "description": "Penerangan",
     "icon": "ikon",
     "remark": "Teguran",
-    "channelName": "Nama Saluran",
     "isv": "ISV",
     "terminal": "Laporan Terminal",
     "sandbox": "Kotak pasir",
-    "apiCallMode": "Mod Panggilan API",
-    "payIdType": "Jenis ID Bayar",
-    "capabilities": "Keupayaan Pembayaran",
-    "features": "Ciri-ciri Produk"
+    "capabilities": "Keupayaan Pembayaran"
   },
   "features": "Ciri-ciri Produk",
   "detail": "Butiran Produk",

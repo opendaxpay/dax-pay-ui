@@ -42,7 +42,6 @@
     },
     "msg": {
       "genSuccess": "签名生成成功",
-      "verifyDone": "验签完成",
       "verifyPass": "验签通过",
       "verifyNotPass": "验签不通过",
       "copySuccess": "复制成功",
@@ -50,13 +49,7 @@
     }
   },
   "trade": {
-    "page": {
-      "title": "支付调试",
-      "tag": "模拟商户 API",
-      "warning": "本页仅组装参数并签名，提交后将模拟商户调用 /unipay/pay 发起真实交易（非管理端特权通道），请确认参数无误。"
-    },
     "card": {
-      "basic": "基础信息",
       "param": "支付参数",
       "order": "订单信息",
       "advanced": "高级参数",
@@ -73,7 +66,6 @@
       "mchNo": "商户",
       "appId": "应用",
       "channelMchNo": "通道商户",
-      "product": "支付产品",
       "method": "支付方式",
       "capability": "支付能力",
       "openId": "OpenID",
@@ -111,7 +103,6 @@
     },
     "btn": {
       "setPrivateKey": "设置私钥",
-      "clearPrivateKey": "清除私钥",
       "genOrderNo": "生成",
       "reset": "重置表单",
       "submit": "提交支付",
@@ -136,10 +127,6 @@
       "copyData": "复制支付参数",
       "copyFull": "复制完整响应",
       "rawResponse": "完整 DaxResult 响应",
-      "empty": "暂无数据",
-      "field": {
-        "orderNo": "系统订单号"
-      },
       "panelTitle": "调试结果",
       "pendingTag": "待发起",
       "successTag": "支付成功",
@@ -163,7 +150,6 @@
       "extraParam": "扩展参数需为合法 JSON 格式"
     },
     "msg": {
-      "signSuccess": "签名生成成功",
       "paySuccess": "支付请求成功",
       "payFail": "支付请求失败",
       "inputPrivateKey": "请先设置商户私钥",
@@ -203,7 +189,6 @@
       "title": "使用说明",
       "desc": "点击生成授权链接后，使用支付宝 App 扫码完成授权。结果将自动回显（依赖「三方平台管理」中的平台支付宝配置，以及「平台配置」中的支付网关前端地址）。",
       "descWechatMp": "点击生成授权链接后，使用微信扫码完成网页授权。结果将自动回显（依赖「三方平台管理」中的微信公众号配置，以及「平台配置」中的支付网关前端地址）。",
-      "descWechatChannel": "选择商户/通道商户/支付能力后生成授权链接，使用微信扫码完成网页授权。用于验证微信支付（直连/服务商）配置是否正确，支付产品由通道商户自动识别。",
       "descWechatChannelDirect": "直接选择微信应用生成授权链接，用于验证该应用的 OAuth 配置是否正确。",
       "descDouyin": "点击生成授权链接后，使用抖音 App 扫码完成静默授权。结果将自动回显（依赖「三方平台管理」中的抖音 H5 应用配置，以及「平台配置」中的支付网关前端地址）。",
       "descDouyinChannel": "选择商户与抖音网站应用后生成授权链接，使用抖音 App 扫码完成静默授权。用于验证抖音支付（直连/服务商）的网站应用 OAuth 配置是否正确。"
@@ -221,12 +206,8 @@
     },
     "form": {
       "mchNo": "商户",
-      "channelMchNo": "通道商户",
-      "capability": "支付能力",
       "rule": {
         "mchNo": "请选择商户",
-        "channelMchNo": "请选择通道商户",
-        "capability": "请选择支付能力",
         "wxApp": "请选择微信应用",
         "dyApp": "请选择抖音应用"
       },
@@ -244,18 +225,9 @@
       "notExist": "获取授权结果失败（查询码不存在或已过期）",
       "copySuccess": "复制成功",
       "copyFail": "复制失败"
-    },
-    "mode": {
-      "infer": "通道商户推断",
-      "direct": "直接选择应用"
     }
   },
   "gateway": {
-    "page": {
-      "title": "网关支付调试",
-      "tag": "模拟商户 API",
-      "warning": "本页仅组装参数并签名，提交后将模拟商户调用 /unipay/gateway/pre-pay 生成收银台/聚合扫码落地页（非管理端特权通道），请确认参数无误。"
-    },
     "card": {
       "order": "订单信息",
       "param": "支付参数",
@@ -316,7 +288,6 @@
       "clearConfirmContent": "确定要清除已设置的商户私钥吗？清除后需重新输入。"
     },
     "result": {
-      "url": "网关落地页 URL",
       "h5Url": "网关落地页 URL",
       "miniUrl": "小程序映射链接",
       "copyUrl": "复制链接",
@@ -365,7 +336,6 @@
       "extraParam": "扩展参数需为合法 JSON 格式"
     },
     "msg": {
-      "signSuccess": "签名生成成功",
       "signFail": "签名生成失败,请重试",
       "prePaySuccess": "预下单请求成功",
       "prePayFail": "预下单请求失败",

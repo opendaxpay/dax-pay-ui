@@ -1,7 +1,5 @@
 {
   "login": "Log masuk",
-  "qrcodeLogin": "Log Masuk Kod Qr",
-  "profile": "Profil",
   "pageTitle": "Platform Operasi Pembayaran {name}",
   "pageDesc": "Penyelesaian operasi pembayaran yang selamat, stabil dan cekap",
   "oauthLoginSuccess": "Log masuk berjaya",
@@ -14,8 +12,6 @@
   "oauthProcessingWith": "{platform} kebenaran sedang dijalankan...",
   "oauthFailedWith": "{platform} kebenaran gagal",
   "oauthLoginSuccessWith": "{platform} log masuk berjaya",
-  "oauthUnknownPlatform": "Platform tidak diketahui",
-  "passwordResetPending": "Tetapan semula kata laluan belum tersedia",
   "passwordExpiringSoon": "Kata laluan akan tamat tempoh dalam {days} hari. Sila tukar segera",
   "qrcodeRefreshPending": "Muat semula kod QR belum tersedia",
   "qrcodeLoadFailed": "Gagal memuatkan kod QR",

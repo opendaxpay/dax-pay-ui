@@ -1,5 +1,4 @@
 {
-  "title": "Apl Pembayaran (WeChat)",
   "tabPlatform": "Platform Apps",
   "tabMerchant": "Merchant Apps",
   "platformSubtitle": "Platform / ISV identity, shared across channels",
@@ -28,8 +27,6 @@
   "appSecretTooltipOfficialAccount": "Official Account AppSecret for OAuth OpenId",
   "appSecretTooltipMiniProgram": "Mini Program AppSecret for code2session",
   "appSecretTooltipMobileApp": "Mobile App AppSecret for OAuth",
-  "capabilityBtn": "Capability Binding",
-  "capabilityTitle": "Bind apps to capabilities",
   "capabilitySelectPlaceholder": "Pilih aplikasi",
   "capabilityNoApp": "No apps yet. Create an app first.",
   "capabilitySaveSuccess": "Saved",
@@ -39,7 +36,6 @@
   "scopePlatform": "Platform App",
   "scopeMerchant": "Merchant App",
   "channelCapabilityTitle": "Persediaan Apl Pembayaran",
-  "channelCapabilityDesc": "Bind a merchant or platform app for each capability. Leave empty to fall back.",
   "validation": {
     "appSecret": "Enter AppSecret"
   },
@@ -53,6 +49,5 @@
   "channelCapabilityDescIsv": "Pilih apl pedagang atau lalai pembekal perkhidmatan. Lalai jatuh kembali ke apl pembayaran lalai peringkat produk.",
   "channelCapabilityDescLeshua": "Hanya perlu tentukan apl untuk pembayaran WeChat JSAPI / mini program.",
   "capabilityIspDefault": "Lalai pembekal perkhidmatan",
-  "capabilityIspNotConfigured": "Belum dikonfigurasi",
   "isvAppEntryDesc": "Urus apl WeChat pembekal perkhidmatan (official account, mini program)"
 }

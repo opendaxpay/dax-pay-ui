@@ -6,14 +6,10 @@
     "description": "설명",
     "icon": "상",
     "remark": "주목",
-    "channelName": "채널 이름",
     "isv": "ISV",
     "terminal": "터미널 보고서",
     "sandbox": "모래 상자",
-    "apiCallMode": "API 호출 모드",
-    "payIdType": "지불 ID 유형",
-    "capabilities": "결제 기능",
-    "features": "제품특징"
+    "capabilities": "결제 기능"
   },
   "features": "제품특징",
   "detail": "제품 세부정보",

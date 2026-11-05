@@ -55,14 +55,11 @@
     "relationOrderNo": "Channel Relation No.",
     "postedAmount": "Jumlah dibukukan (Yuan)",
     "refundableBalance": "Dapat dikembalikan (Yuan)",
-    "payBody": "Badan Bayar",
-    "payBodyType": "Tipe Tubuh Bayar",
     "buyerId": "ID Pembeli",
     "openid": "ID Terbuka",
     "tradeProduct": "Produk Saluran",
     "tradeWay": "Cara Perdagangan Saluran",
     "bankType": "Jenis Kartu Bank",
-    "promotionType": "Jenis Promosi",
     "errorMsg": "Kesalahan",
     "notifyUrl": "Beritahu URL",
     "returnUrl": "URL kembali",
@@ -75,11 +72,8 @@
     "channelAppId": "Aplikasi Saluran",
     "clientIp": "IP klien",
     "terminalNo": "Nomor Terminal.",
-    "containerId": "ID Kontainer",
     "containerStatus": "Status Kontainer",
     "source": "Sumber",
-    "limitPay": "Batasi Pembayaran",
-    "mchNo": "Nomor Pedagang.",
     "appId": "Aplikasi Merchant",
     "createTime": "Ciptakan Waktu",
     "refundNo": "Nomor Pengembalian Dana.",
@@ -89,8 +83,6 @@
     "finishTime": "Waktu Selesai",
     "orderAmount": "Jumlah Pesanan",
     "orderNo": "Platform Order No.",
-    "authCode": "Kode pembayaran",
-    "merchant": "Merchant",
     "gatewayType": "Jenis Gateway",
     "storeNo": "No. Toko",
     "allocNo": "No. Alokasi",
@@ -141,7 +133,6 @@
     "amountMin": "Jumlah minimum",
     "amountMax": "Jumlah maksimum",
     "refundNo": "Masukkan no pengembalian dana.",
-    "bizRefundNo": "Masukkan no pengembalian dana bisnis.",
     "orderNo": "Masukkan nomor pesanan asli.",
     "allocNo": "Masukkan no. alokasi",
     "bizAllocNo": "Masukkan no. alokasi merchant"
@@ -161,7 +152,6 @@
     "refundConfirmContent": "Akankah pengembalian dana {amount} dari pesanan awal, lanjutkan?",
     "refundTradeAmountLabel": "Jumlah Transaksi",
     "refundableBalanceLabel": "Jumlah yang Dapat Dikembalikan",
-    "cents": "sen",
     "refundAmountLabel": "Jumlah Pengembalian Dana (Yuan)",
     "refundReasonLabel": "Alasan Pengembalian Dana",
     "refundAmountPlaceholder": "Masukkan jumlah pengembalian dana",
@@ -213,14 +203,6 @@
     "export": "Ekspor",
     "exportFailed": "Ekspor gagal. Silakan coba lagi nanti."
   },
-  "method": {
-    "jsapi": "JSAPI",
-    "qrcode": "Kode QR",
-    "h5": "H5",
-    "app": "APP",
-    "barcode": "Kode Batang",
-    "wap": "WAP"
-  },
   "tradeType": {
     "normal": "Normal Pay",
     "gateway": "Gateway Pay"
@@ -230,7 +212,6 @@
     "aggregate": "Aggregate"
   },
   "alloc": {
-    "title": "Pesanan Alokasi",
     "detail": "Detail Pesanan Alokasi",
     "statusLabel": "Status Alokasi",
     "detailResultLabel": "Hasil Detail",

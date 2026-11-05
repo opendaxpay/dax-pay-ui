@@ -1,5 +1,4 @@
 {
-  "title": "Konfigurasi HKRT ISV",
   "groupConfig": "Konfigurasi",
   "configTitle": "Konfigurasi Kunci HKRT ISV",
   "manageTitle": "Pengurusan Pedagang HKRT",
@@ -13,7 +12,6 @@
   "accessIdPlaceholder": "Sila masukkan ID institusi akses",
   "accessKey": "Kunci Tandatangan",
   "accessKeyPlaceholder": "Sila masukkan kunci tandatangan",
-  "groupMchConfig": "Konfigurasi Pedagang",
   "cardMchConfig": "Konfigurasi Pedagang",
   "cardMchConfigDesc": "Konfigurasikan nombor terminal SAAS untuk pedagang saluran",
   "cardCapabilityBinding": "Ikatan Apl WeChat",

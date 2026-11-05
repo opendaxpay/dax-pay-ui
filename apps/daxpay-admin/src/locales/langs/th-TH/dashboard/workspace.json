@@ -8,15 +8,12 @@
   "stat": {
     "merchantCount": "พ่อค้า",
     "channelMerchantCount": "พ่อค้าช่องทาง",
-    "userCount": "ผู้ใช้",
-    "todayLogin": "วันนี้เข้าสู่ระบบ",
-    "onlineUser": "ผู้ใช้ออนไลน์"
+    "userCount": "ผู้ใช้"
   },
   "widget": {
     "workbenchHeader": "พื้นที่ทำงาน",
     "quickEntry": "เข้าด่วน",
     "tradeOverview": "ภาพรวมการค้า",
-    "payOrder": "คำสั่งการชำระเงิน",
     "payTrade": "การซื้อขายกองทุน",
     "tradeTrend": "แนวโน้มการค้า",
     "providerDist": "การกระจายวิธีการชำระเงิน",
@@ -37,7 +34,6 @@
   },
   "quickEntry": {
     "merchant": "พ่อค้า",
-    "app": "การใช้งาน",
     "channelMerchant": "พ่อค้าช่องทาง",
     "notify": "การแจ้งเตือน",
     "user": "ผู้ใช้",
@@ -63,7 +59,6 @@
     "selected": "เลือกแล้ว (ลากเพื่อจัดเรียง)",
     "available": "มีอยู่",
     "allAdded": "เพิ่มทั้งหมดแล้ว",
-    "wxApp": "แอปชำระเงิน (WeChat)",
     "virtualDevice": "อุปกรณ์เสมือน",
     "gatewayOrder": "คำสั่งซื้อ Gateway",
     "fundFlow": "กระแสเงินสด",
@@ -83,7 +78,6 @@
   },
   "configAlert": {
     "bannerTitle": "มีการกำหนดค้าง {n} รายการ",
-    "viewDetail": "ดูรายละเอียด",
-    "allComplete": "การกำหนดค่าเสร็จสมบูรณ์ทั้งหมด"
+    "viewDetail": "ดูรายละเอียด"
   }
 }

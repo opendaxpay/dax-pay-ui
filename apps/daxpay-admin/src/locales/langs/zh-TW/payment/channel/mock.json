@@ -109,15 +109,9 @@
     "replacePrivateKeyTitle": "更換商戶私鑰確認",
     "replacePrivateKeyContent": "僅更換商戶私鑰時，請確認與模擬閘道目前使用的金鑰一致，否則該主體的請求將驗簽失敗。",
     "continueSave": "繼續儲存",
-    "save": "儲存",
-    "keepBlank": "留空保留原值",
-    "keepBlankTip": "敏感欄位留空表示不修改，僅提交需要變更的項目",
-    "configured": "已設定",
-    "notConfigured": "未設定",
     "saveSuccess": "接入設定儲存成功"
   },
   "manage": {
-    "channelMchNo": "通道商戶號",
     "groupBasic": "基礎管理",
     "groupTrade": "交易設定",
     "cardBasicInfo": "基本資訊",

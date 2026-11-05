@@ -1,7 +1,6 @@
 {
   "title": "การวิเคราะห์",
   "subtitle": "{start} ถึง {end} · รวม {days} วัน",
-  "customRange": "ช่วงที่กำหนดเอง",
   "timeRange": {
     "today": "วันนี้",
     "yesterday": "เมื่อวาน",

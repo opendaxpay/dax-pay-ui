@@ -18,9 +18,7 @@
     "sceneChannelMchCapabilityPairHint": "通道商户与支付能力须同时选择或同时留空，不可只填其中一项",
     "basicSaveConfirm": "确定要保存「按渠道默认」通道路由配置吗？保存后将覆盖各支付渠道对应的默认通道商户。",
     "sceneRouteNotSelected": "未选择",
-    "configTab": "路由配置",
     "method": "支付方式",
-    "missingAppContext": "请从应用管理进入通道路由配置",
     "providers": {
       "aggregate_pay": "聚合支付",
       "wechat": "微信支付",

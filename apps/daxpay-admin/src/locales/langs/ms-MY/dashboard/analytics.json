@@ -1,7 +1,6 @@
 {
   "title": "Analitis",
   "subtitle": "{start} hingga {end} · {days} hari jumlah",
-  "customRange": "Julat Tersuai",
   "timeRange": {
     "today": "Hari ini",
     "yesterday": "Semalam",

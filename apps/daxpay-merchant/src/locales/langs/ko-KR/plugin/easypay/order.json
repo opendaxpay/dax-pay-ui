@@ -1,5 +1,4 @@
 {
-  "title": "이지페이 주문",
   "detail": "이지페이 주문 상세",
   "field": {
     "orderId": "연결 컨테이너 ID",
@@ -23,9 +22,7 @@
     "pcCallType": "PC 호출 방식",
     "payUrl": "결제 링크",
     "payBody": "결제 파라미터",
-    "createTime": "생성 시간",
-    "merchant": "가맹점",
-    "appId": "앱 ID"
+    "createTime": "생성 시간"
   },
   "placeholder": {
     "outTradeNo": "가맹점 주문 번호 입력",
@@ -60,9 +57,6 @@
   "section": {
     "basic": "주문 정보",
     "time": "시간 정보",
-    "extra": "결제 및 확장",
-    "order": "주문 정보",
-    "app": "앱 및 프로토콜",
-    "pay": "결제 및 콜백"
+    "extra": "결제 및 확장"
   }
 }

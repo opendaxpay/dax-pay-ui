@@ -51,10 +51,8 @@
     "advanced": "ตัวเลือกขั้นสูง"
   },
   "action": {
-    "create": "โอนเงิน",
     "sync": "ซิงค์",
     "close": "ปิด",
-    "retry": "ลองใหม่",
     "reset": "รีเซ็ต"
   },
   "createTitle": "สร้างการโอน",
@@ -69,24 +67,19 @@
   "closeSuccess": "ปิดการโอนแล้ว",
   "detail": "รายละเอียดการโอน",
   "placeholder": {
-    "bizTransferNo": "ไม่ซ้ำกันต่อร้านค้า สำหรับ idempotency",
     "openid": "OpenID WeChat ผู้รับ",
     "payeeNameTip": "ไม่อนุญาตต่ำกว่า 0.3 หยวน บังคับตั้งแต่ 2000 หยวน",
     "notifyUrl": "URL แจ้งเตือนแบบ async แพลตฟอร์ม→ร้านค้า",
-    "targetMch": "กรุณาเลือกร้านค้าปลายทาง",
     "channelMch": "กรุณาเลือกร้านค้าช่องทาง",
     "douyinOpenid": "openid Douyin ของผู้รับเงิน",
     "payeeNameTipDouyin": "ต้องระบุเมื่อตั้งแต่ 2000 หยู่ขึ้นไป",
     "payeeUserId": "รหัสผู้ใช้ Alipay ผู้รับเงิน (ขึ้นต้นด้วย 2088)",
-    "payeeOpenId": "OpenID Alipay ของผู้รับเงิน",
     "payeeLoginName": "บัญชีล็อกอิน Alipay ผู้รับเงิน (อีเมล/เบอร์โทร)",
     "bizTransferNoAuto": "เว้นว่างเพื่อสร้างอัตโนมัติ",
-    "reportInfoContent": "เว้นว่างเพื่อใช้ค่าเริ่มต้น -",
     "payeePhone": "หมายเลขโทรศัพท์ Douyin ผู้รับ (ต้องตรงกับบัญชีจริง Douyin Pay)",
     "payeeNameTipAlipayUserId": "ไม่บังคับ; หากกรอก ระบบจะตรวจสอบชื่อกับบัญชีผู้รับ",
     "payeeNameTipAlipayLoginName": "จำเป็นสำหรับผู้รับแบบ login ID; ระบบจะตรวจสอบชื่อกับบัญชี"
   },
-  "targetMch": "ร้านค้าปลายทาง",
   "channelMch": "ร้านค้าช่องทาง",
   "amountUnit": "CNY",
   "payeeTypeUserId": "รหัสผู้ใช้",
@@ -107,7 +100,6 @@
     "reportInfoRequired": "กรุณากรอกข้อมูลรายงานสถานการณ์การโอนเงินทั้งหมด"
   },
   "confirmUrlCopied": "คัดลอกลิงก์แล้ว",
-  "confirmUrlCopyFailed": "คัดลอกล้มเหลว",
   "confirmUrlExpireTip": "ลิงก์มีอายุ 24 ชั่วโมง กรุณาส่งโดยเร็ว",
   "confirmUrlTip": "ส่งลิงก์ยืนยันให้ผู้รับ ต้องเปิดใน WeChat",
   "payeeTypePhone": "หมายเลขโทรศัพท์",

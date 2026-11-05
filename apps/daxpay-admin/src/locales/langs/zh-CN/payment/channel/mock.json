@@ -109,15 +109,9 @@
     "replacePrivateKeyTitle": "更换商户私钥确认",
     "replacePrivateKeyContent": "仅更换商户私钥时，请确认与模拟网关当前使用的密钥一致，否则该主体的请求将验签失败。",
     "continueSave": "继续保存",
-    "save": "保存",
-    "keepBlank": "留空保留原值",
-    "keepBlankTip": "敏感字段留空表示不修改，仅提交需要变更的项",
-    "configured": "已配置",
-    "notConfigured": "未配置",
     "saveSuccess": "接入配置保存成功"
   },
   "manage": {
-    "channelMchNo": "通道商户号",
     "groupBasic": "基础管理",
     "groupTrade": "交易配置",
     "cardBasicInfo": "基本信息",

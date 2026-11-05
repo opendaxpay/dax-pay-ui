@@ -1,7 +1,6 @@
 {
   "title": "Phân tích",
   "subtitle": "{start} tới {end} · tổng cộng {days} ngày",
-  "customRange": "Phạm vi tùy chỉnh",
   "timeRange": {
     "today": "Hôm nay",
     "yesterday": "Hôm qua",

@@ -1,7 +1,4 @@
 {
-  "title": "Stripe 配置",
-  "keyConfig": "金鑰配置",
-  "enable": "是否啟用",
   "accountId": "Stripe 帳戶 ID",
   "accountIdPlaceholder": "請輸入 Stripe 帳戶 ID(acct_xxx)",
   "secretKey": "Secret Key",

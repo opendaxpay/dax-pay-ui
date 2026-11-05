@@ -7,8 +7,6 @@
   "keyConfig": "Key Config",
   "certConfig": "Certificate Mode",
   "aliAppId": "App ID",
-  "alipayUserId": "Merchant PID",
-  "alipayUserIdPlaceholder": "Please enter merchant PID",
   "authType": "Auth Type",
   "authTypePlaceholder": "Please select auth type",
   "alipayPublicKey": "Alipay Public Key",

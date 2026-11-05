@@ -1,7 +1,4 @@
 {
-  "title": "Cấu hình UMS",
-  "keyConfig": "Cấu hình khóa",
-  "enable": "Cho phép",
   "umsAppId": "ID ứng dụng",
   "umsAppIdPlaceholder": "Vui lòng nhập ID ứng dụng UMS",
   "appKey": "Khóa ứng dụng",
@@ -13,7 +10,6 @@
   "secretKey": "Khóa bí mật",
   "secretKeyPlaceholder": "Vui lòng nhập khóa bí mật (để xác minh tin nhắn gọi lại)",
   "validation": {
-    "enable": "Vui lòng chọn trạng thái bật",
     "umsAppId": "Vui lòng nhập ID ứng dụng UMS",
     "appKey": "Vui lòng nhập mã ứng dụng UMS",
     "merchantNo": "Vui lòng nhập số người bán UMS",

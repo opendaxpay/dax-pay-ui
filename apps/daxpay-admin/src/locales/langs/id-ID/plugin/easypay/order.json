@@ -1,5 +1,4 @@
 {
-  "title": "Pesanan EasyPay",
   "detail": "Detail Pesanan EasyPay",
   "field": {
     "orderId": "ID Kontainer",
@@ -33,19 +32,8 @@
     "name": "Masukkan nama produk"
   },
   "status": {
-    "0": "Belum Dibayar",
-    "1": "Dibayar",
     "success": "Dibayar",
     "pending": "Belum Dibayar"
-  },
-  "statusColor": {
-    "0": "orange",
-    "1": "green"
-  },
-  "type": {
-    "alipay": "Alipay",
-    "wxpay": "WeChat Pay",
-    "aggregate": "Pembayaran Agregat"
   },
   "action": {
     "sync": "Sinkronkan Status",
@@ -58,9 +46,7 @@
     "closeConfirmContent": "Pesanan tidak dapat dibayar lagi setelah ditutup, lanjutkan?"
   },
   "section": {
-    "basic": "Info Pesanan",
     "time": "Info Waktu",
-    "extra": "Pembayaran & Ekstensi",
     "order": "Info Pesanan",
     "app": "Aplikasi & Protokol",
     "pay": "Pembayaran & Callback"

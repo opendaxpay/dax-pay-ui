@@ -13,12 +13,9 @@
     "hour": "小時",
     "session": "個",
     "second": "秒",
-    "window": "個",
-    "count": "個",
-    "score": "分"
+    "count": "個"
   },
   "group": {
-    "access": "存取安全",
-    "openApi": "開放介面安全"
+    "access": "存取安全"
   }
 }

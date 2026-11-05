@@ -7,8 +7,6 @@
   "keyConfig": "การกำหนดค่าคีย์",
   "certConfig": "โหมดใบรับรอง",
   "aliAppId": "รหัสแอป",
-  "alipayUserId": "PID ของผู้ขาย",
-  "alipayUserIdPlaceholder": "กรุณากรอก PID ของผู้ขาย",
   "authType": "ประเภทการรับรองความถูกต้อง",
   "authTypePlaceholder": "โปรดเลือกประเภทการรับรองความถูกต้อง",
   "alipayPublicKey": "คีย์สาธารณะของ Alipay",

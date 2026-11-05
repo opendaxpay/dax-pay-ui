@@ -2,27 +2,8 @@
   "formRules": {
     "required": "Vui lòng nhập {0}",
     "selectRequired": "Hãy chọn {0}",
-    "minLength": "{0} phải có ít nhất {1} ký tự",
-    "maxLength": "{0} có thể có tối đa {1} ký tự",
-    "length": "{0} phải dài {1} ký tự",
-    "alreadyExists": "{0} `{1}` đã tồn tại",
-    "startWith": "{0} phải bắt đầu bằng `{1}`",
-    "invalidURL": "Vui lòng nhập một URL hợp lệ",
     "sizeLimit": "Kích thước tệp không thể vượt quá {0}MB",
     "previewWarning": "Không thể mở tệp, không có URL hoặc địa chỉ xem trước"
-  },
-  "actionTitle": {
-    "edit": "Sửa đổi {0}",
-    "create": "Tạo {0}",
-    "delete": "Xóa {0}",
-    "view": "Xem {0}"
-  },
-  "actionMessage": {
-    "deleteConfirm": "Bạn có chắc chắn xóa {0} không?",
-    "deleting": "Đang xóa {0} ...",
-    "deleteSuccess": "{0} đã xóa thành công",
-    "operationSuccess": "Hoạt động đã thành công",
-    "operationFailed": "Thao tác không thành công"
   },
   "placeholder": {
     "input": "Vui lòng nhập",
@@ -58,7 +39,6 @@
     "title": "Cắt ảnh",
     "titleTip": "Tỷ lệ cắt xén {0}",
     "confirm": "Mùa vụ",
-    "cancel": "Hủy cắt xén",
     "errorTip": "Lỗi cắt xén"
   },
   "fallback": {
@@ -68,7 +48,6 @@
     "forbiddenDesc": "Xin lỗi, nhưng bạn không có quyền truy cập trang này.",
     "internalError": "Ối! Đã xảy ra lỗi",
     "internalErrorDesc": "Rất tiếc, nhưng máy chủ đã gặp lỗi.",
-    "offline": "Trang ngoại tuyến",
     "offlineError": "Ối! Lỗi mạng",
     "offlineErrorDesc": "Rất tiếc, không thể kết nối internet. Kiểm tra kết nối của bạn.",
     "comingSoon": "Sắp ra mắt",
@@ -84,12 +63,10 @@
   },
   "widgets": {
     "document": "Tài liệu",
-    "setting": "Cài đặt",
     "logoutTip": "Bạn có muốn đăng xuất không?",
     "viewAll": "Xem tất cả tin nhắn",
     "notifications": "Thông báo",
     "markAllAsRead": "Chuyển tất cả thành đã đọc",
-    "clearNotifications": "Thông thoáng",
     "checkUpdatesTitle": "Phiên bản mới có sẵn",
     "checkUpdatesDescription": "Nhấn vào đây để làm mới và tải phiên bản mới nhất",
     "search": {
@@ -105,10 +82,8 @@
     "lockScreen": {
       "title": "Màn hình khóa",
       "screenButton": "Khóa",
-      "password": "Mật khẩu",
       "placeholder": "Vui lòng nhập mật khẩu",
       "unlock": "Bấm để mở khóa",
-      "errorPasswordTip": "Lỗi mật khẩu, vui lòng nhập lại",
       "backToLogin": "Quay lại để đăng nhập",
       "entry": "Nhập hệ thống",
       "greeting": {
@@ -122,8 +97,7 @@
       "guest": "Khách mời"
     },
     "timezone": {
-      "setTimezone": "Đặt múi giờ",
-      "setSuccess": "Đặt múi giờ thành công"
+      "setTimezone": "Đặt múi giờ"
     }
   }
 }

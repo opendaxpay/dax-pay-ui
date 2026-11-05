@@ -1,7 +1,4 @@
 {
-  "title": "UMS Configuration",
-  "keyConfig": "Key Configuration",
-  "enable": "Enable",
   "umsAppId": "Application ID",
   "umsAppIdPlaceholder": "Please enter UMS application ID",
   "appKey": "Application Key",
@@ -13,7 +10,6 @@
   "secretKey": "Secret Key",
   "secretKeyPlaceholder": "Please enter secret key (for callback message verification)",
   "validation": {
-    "enable": "Please select enable status",
     "umsAppId": "Please enter UMS application ID",
     "appKey": "Please enter UMS application key",
     "merchantNo": "Please enter UMS merchant number",

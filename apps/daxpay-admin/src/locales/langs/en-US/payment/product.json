@@ -1,30 +1,7 @@
 {
-  "field": {
-    "code": "Product Code",
-    "name": "Product Name",
-    "channel": "Channel",
-    "description": "Description",
-    "icon": "Icon",
-    "sortNo": "Sort",
-    "remark": "Remark",
-    "channelName": "Channel Name",
-    "isv": "ISV",
-    "terminal": "Terminal",
-    "sandbox": "Sandbox",
-    "apiCallMode": "API Call Mode",
-    "payIdType": "Pay ID Type",
-    "capabilities": "Pay Capabilities",
-    "features": "Product Features"
-  },
-  "features": "Product Features",
-  "detail": "Product Detail",
-  "editCapabilities": "Configure Pay Capabilities",
-  "sandboxSupported": "Supported",
-  "sandboxNotSupported": "Not supported",
   "enum": {
     "alipayIsv": "Alipay (ISV)",
     "alipay": "Alipay (Direct)",
-    "wechat": "WeChat Pay (Direct)",
     "wechatPay": "WeChat Pay (Direct)",
     "wechatIsv": "WeChat Pay (ISV)",
     "douyinPay": "Douyin Pay (Direct)",
@@ -86,9 +63,5 @@
     "pingpong": "PingPong",
     "mockPay": "Mock Payment",
     "mockIsv": "Mock Payment (ISV)"
-  },
-  "placeholder": {
-    "name": "Enter product name",
-    "channel": "Select channel"
   }
 }

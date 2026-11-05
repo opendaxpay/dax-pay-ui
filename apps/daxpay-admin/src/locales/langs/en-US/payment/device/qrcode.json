@@ -1,5 +1,4 @@
 {
-  "title": "QR Code Management",
   "field": {
     "code": "Code",
     "name": "Name",
@@ -17,7 +16,6 @@
     "programType": "Code type",
     "storeNo": "Store No.",
     "store": "Store",
-    "storeName": "Store Name",
     "allocation": "Allocation"
   },
   "status": {
@@ -30,7 +28,6 @@
   },
   "defaultApp": "Default app",
   "unbound": "Unbound",
-  "mchNoTooltip": "Merchant No.: {mchNo}",
   "batchCreate": "Batch Create",
   "bindMerchant": "Bind Merchant",
   "unbindMerchant": "Unbind Merchant",
@@ -54,30 +51,17 @@
   "confirmEnable": "Are you sure to enable this QR code board?",
   "confirmDisable": "Are you sure to disable this QR code board? Payment via scan will be unavailable.",
   "confirmUnbind": "Unbind selected boards from merchants? They will return to blank inventory.",
-  "viewCode": "View Code",
   "qrCodeTitle": "QR Code",
   "qrCodeTip": "Scan to enter the payment page",
   "copyLink": "Copy Link",
-  "download": "Download QR Code",
   "amountLabel": "Amount",
   "programType": {
     "h5": "H5",
     "mini_app": "Mini program"
   },
   "validateProgramType": "Please select code type",
-  "bindStore": "Bind Store",
-  "unbindStore": "Unbind Store",
-  "confirmUnbindStore": "Unbind the store from selected boards? They will no longer be linked to a store.",
   "pleaseSelectStore": "Please select a store",
-  "validateStoreNo": "Please select a store",
-  "storeBindNeedSameMch": "Selected boards must belong to the same merchant when binding a store",
-  "storeBindNeedMerchant": "Please bind a merchant before binding a store",
   "batchActions": "Batch Actions",
-  "bindApp": "Bind App",
-  "unbindApp": "Unbind App",
-  "confirmUnbindApp": "Unbind app from selected boards? Payment will use the merchant default app.",
-  "validateAppId": "Please select an app",
-  "defaultStoreHint": "Default store (if configured)",
   "allocationTip": "When enabled, code payments request the channel to freeze funds for allocation",
   "allocationOn": "Alloc",
   "allocWarningTitle": "Allocation Capability Warning",

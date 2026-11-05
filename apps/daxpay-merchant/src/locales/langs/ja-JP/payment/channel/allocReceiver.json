@@ -48,7 +48,6 @@
   "validateType": "受取方タイプを選択してください",
   "validateAccount": "受取方アカウントを入力してください",
   "validateApp": "バインドアプリを選択してください",
-  "validateSpApp": "サービスプロバイダーアプリを選択してください",
   "validateSubApp": "サブマーチャントアプリopenidタイプはサブアプリを選択してください",
   "validateRelation": "分配関係タイプを選択してください",
   "validateCustomRelation": "カスタム関係名を入力してください",

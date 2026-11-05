@@ -1,10 +1,1 @@
-{
-  "title": "Pembekal Pembayaran",
-  "field": {
-    "provider": "Pembekal Pembayaran",
-    "method": "Kaedah Pembayaran",
-    "description": "Penerangan",
-    "remark": "Teguran"
-  },
-  "detail": "Butiran Item Direktori"
-}
+{}

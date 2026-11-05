@@ -1,5 +1,4 @@
 {
-  "title": "码牌管理",
   "field": {
     "code": "码牌编码",
     "name": "码牌名称",
@@ -23,7 +22,6 @@
     "random": "自定义金额",
     "fixed": "固定金额"
   },
-  "defaultApp": "默认应用",
   "validateName": "请输入码牌名称",
   "validateAmountType": "请选择金额类型",
   "validateFixedAmount": "请输入固定金额",
@@ -32,7 +30,6 @@
   "disable": "停用",
   "confirmEnable": "确定要启用该码牌吗？",
   "confirmDisable": "确定要停用该码牌吗？扫码将无法支付。",
-  "viewCode": "查看码牌",
   "qrCodeTitle": "码牌二维码",
   "qrCodeTip": "扫码即可进入支付页面",
   "copyLink": "复制链接",
@@ -42,7 +39,6 @@
     "mini_app": "小程序"
   },
   "pleaseSelectStore": "请选择门店",
-  "defaultStoreHint": "默认门店(若已配置)",
   "allocationTip": "开启后扫码支付将请求通道冻结资金用于分账",
   "allocationOn": "分账",
   "allocWarningTitle": "分账能力预警",

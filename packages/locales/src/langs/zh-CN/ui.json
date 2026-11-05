@@ -2,27 +2,8 @@
   "formRules": {
     "required": "请输入{0}",
     "selectRequired": "请选择{0}",
-    "minLength": "{0}至少{1}个字符",
-    "maxLength": "{0}最多{1}个字符",
-    "length": "{0}长度必须为{1}个字符",
-    "alreadyExists": "{0} `{1}` 已存在",
-    "startWith": "{0}必须以 {1} 开头",
-    "invalidURL": "请输入有效的链接",
     "sizeLimit": "文件大小不能超过 {0}MB",
     "previewWarning": "无法打开文件，没有可用的URL或预览地址"
-  },
-  "actionTitle": {
-    "edit": "修改{0}",
-    "create": "新增{0}",
-    "delete": "删除{0}",
-    "view": "查看{0}"
-  },
-  "actionMessage": {
-    "deleteConfirm": "确定删除 {0} 吗？",
-    "deleting": "正在删除 {0} ...",
-    "deleteSuccess": "{0} 删除成功",
-    "operationSuccess": "操作成功",
-    "operationFailed": "操作失败"
   },
   "placeholder": {
     "input": "请输入",
@@ -58,7 +39,6 @@
     "title": "图片裁剪",
     "titleTip": "裁剪比例 {0}",
     "confirm": "裁剪",
-    "cancel": "取消裁剪",
     "errorTip": "裁剪错误"
   },
   "fallback": {
@@ -68,7 +48,6 @@
     "forbiddenDesc": "抱歉，您没有权限访问此页面。",
     "internalError": "哎呀！出错了",
     "internalErrorDesc": "抱歉，服务器遇到错误。",
-    "offline": "离线页面",
     "offlineError": "哎呀！网络错误",
     "offlineErrorDesc": "抱歉，无法连接到互联网，请检查您的网络连接并重试。",
     "comingSoon": "即将推出",
@@ -84,12 +63,10 @@
   },
   "widgets": {
     "document": "使用文档",
-    "setting": "设置",
     "logoutTip": "是否退出登录？",
     "viewAll": "查看所有消息",
     "notifications": "通知",
     "markAllAsRead": "全部标记为已读",
-    "clearNotifications": "清空",
     "checkUpdatesTitle": "新版本可用",
     "checkUpdatesDescription": "点击刷新以获取最新版本",
     "search": {
@@ -105,10 +82,8 @@
     "lockScreen": {
       "title": "锁定屏幕",
       "screenButton": "锁定",
-      "password": "密码",
       "placeholder": "请输入锁屏密码",
       "unlock": "点击解锁",
-      "errorPasswordTip": "密码错误，请重新输入",
       "backToLogin": "返回登录",
       "entry": "进入系统",
       "greeting": {
@@ -122,8 +97,7 @@
       "guest": "访客"
     },
     "timezone": {
-      "setTimezone": "设置时区",
-      "setSuccess": "时区设置成功"
+      "setTimezone": "设置时区"
     }
   }
 }

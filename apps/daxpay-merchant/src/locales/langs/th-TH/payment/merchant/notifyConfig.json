@@ -6,7 +6,6 @@
     "notifyUrlTooltip": "การแจ้งเตือนกิจกรรมจะถูกส่งไปยัง URL นี้ผ่านทาง HTTP POST รองรับโปรโตคอล http/https",
     "notifyUrlPlaceholder": "http(s)://your-callback-receiver-url",
     "notifyWay": "วิธีการแจ้ง",
-    "notifyWayHint": "เลือกวิธีรับการแจ้งเตือน (HTTP callback หรือ MQ push)",
     "subscribedEvents": "กิจกรรมที่สมัครเป็นสมาชิก",
     "subscribedEventsTooltip": "เลือกประเภทกิจกรรมทางธุรกิจที่คุณต้องการรับ",
     "eventGroupPay": "กิจกรรมการชำระเงิน",

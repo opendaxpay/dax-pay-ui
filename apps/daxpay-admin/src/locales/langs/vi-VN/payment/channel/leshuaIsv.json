@@ -1,10 +1,8 @@
 {
-  "title": "Cấu hình ISV Leshua",
   "groupConfig": "Quản lý cấu hình",
   "configTitle": "Cấu hình khóa Leshua ISV",
   "manageTitle": "Quản lý thương gia Leshua",
   "keyConfig": "Cấu hình khóa",
-  "enable": "Cho phép",
   "lsMchNo": "ID thương gia Leshua",
   "lsMchNoPlaceholder": "Nhập ID người bán Leshua (merchant_id)",
   "tradeKey": "Khóa giao dịch",
@@ -16,7 +14,6 @@
   "notifyKeyKeepPlaceholder": "Đã cấu hình. Để trống sẽ giữ nguyên giá trị hiện có",
   "notifyKeyTooltip": "Khóa xác minh thông báo không đồng bộ của Leshua; dùng để xác minh thông báo callback",
   "signType": "Loại dấu hiệu",
-  "signTypePlaceholder": "Chọn loại biển báo",
   "lsIsvNo": "Leshua ISV Không",
   "lsIsvNoPlaceholder": "Nhập số ISV của Leshua",
   "lsIsvNoTooltip": "Mã số duy nhất Leshua cấp cho nhà cung cấp dịch vụ; bắt buộc khi làm hồ sơ và các tình huống API khác",
@@ -29,9 +26,6 @@
     "notifyKey": "Vui lòng nhập khóa thông báo",
     "signType": "Vui lòng chọn loại biển báo"
   },
-  "groupMchConfig": "Cấu hình người bán",
-  "cardMchConfig": "Cấu hình người bán",
-  "cardMchConfigDesc": "Định cấu hình ID người bán Leshua của kênh",
   "cardCapabilityBinding": "Thiết lập ứng dụng thanh toán",
   "cardCapabilityBindingDesc": "Chỉ định ứng dụng WeChat cho từng khả năng thanh toán"
 }

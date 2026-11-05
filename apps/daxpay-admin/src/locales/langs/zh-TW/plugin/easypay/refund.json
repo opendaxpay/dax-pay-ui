@@ -1,5 +1,4 @@
 {
-  "title": "易支付退款訂單",
   "detail": "易支付退款訂單詳情",
   "field": {
     "refundId": "關聯退款單ID",
@@ -25,14 +24,8 @@
     "tradeNo": "請輸入平台業務單號"
   },
   "status": {
-    "0": "處理中/失敗",
-    "1": "退款成功",
     "success": "退款成功",
     "progress": "處理中/失敗"
-  },
-  "statusColor": {
-    "0": "orange",
-    "1": "green"
   },
   "action": {
     "sync": "同步狀態",
@@ -41,7 +34,6 @@
     "syncConfirmContent": "將主動向支付通道查詢該退款訂單的最新狀態, 是否繼續?"
   },
   "section": {
-    "basic": "退款資訊",
     "time": "時間資訊",
     "refund": "退款資訊",
     "app": "應用與協議"

@@ -2,7 +2,6 @@
   "enum": {
     "alipayIsv": "Alipay (ISV)",
     "alipay": "Alipay (Terus)",
-    "wechat": "WeChat Pay (Terus)",
     "wechatPay": "WeChat Pay (Terus)",
     "wechatIsv": "WeChat Pay (ISV)",
     "douyinPay": "Douyin Pay (Terus)",
@@ -25,7 +24,6 @@
     "shengPay": "Sheng Pay (Pedagang)",
     "shengIsv": "Sheng Pay (Penyedia Perkhidmatan)",
     "ysepPay": "Bayar YSEP",
-    "quickPay": "Bayar Cepat",
     "yeePay": "Yee Bayar",
     "jeePay": "Jeepay",
     "easyPay": "EasyPay",

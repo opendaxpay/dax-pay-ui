@@ -1,7 +1,6 @@
 {
   "title": "해석학",
   "subtitle": "{start} ~ {end} · 총 {days}일",
-  "customRange": "맞춤 범위",
   "timeRange": {
     "today": "오늘",
     "yesterday": "어제",

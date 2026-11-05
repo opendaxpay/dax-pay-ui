@@ -24,13 +24,9 @@
     "ios": "iOS APP"
   },
   "fields": {
-    "appId": "AppId",
-    "appIdPlaceholder": "请输入 AppId",
     "appIdRequired": "请输入 AppId",
     "wxAppId": "小程序 AppId",
     "wxAppIdPlaceholder": "请输入微信小程序 AppId",
-    "appSecret": "AppSecret",
-    "appSecretPlaceholder": "请输入 AppSecret",
     "appSecretRequired": "请输入 AppSecret",
     "wxAppSecret": "小程序 AppSecret",
     "wxAppSecretPlaceholder": "请输入微信小程序 AppSecret",
@@ -63,19 +59,8 @@
     "dyAppSecretPlaceholder": "请输入抖音小程序 AppSecret"
   },
   "detail": {
-    "back": "返回",
-    "appConfig": "平台密钥配置",
-    "appConfigPlaceholder": "请输入 JSON 格式的平台密钥配置",
-    "notifyConfig": "消息通知配置",
-    "notifyConfigPlaceholder": "请输入 JSON 格式的消息通知配置",
-    "bindingEnabled": "启用第三方账号用户绑定",
-    "enabled": "是否启用",
-    "remark": "备注",
-    "remarkPlaceholder": "请输入备注",
-    "save": "保存",
     "saveSuccess": "保存成功",
     "notSupportedAppType": "不支持的端类型",
-    "emptyPlatformConfig": "暂无平台配置，填写后保存即可创建",
     "platformComingSoon": "该平台配置暂未开放，后续 APP 完善时再处理",
     "cashierLimitTitle": "平台唯一收银台小程序",
     "cashierLimitDesc": "全平台共用一套微信/支付宝收银台小程序凭证。支付时 openId 必须与通道 AppId 对应；平台小程序 AppId 需先在支付通道侧绑定或报备为收款 AppId（第三方通道一般为 sub_appid），并非所有通道都支持。"

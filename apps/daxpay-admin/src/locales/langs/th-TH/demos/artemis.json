@@ -16,9 +16,7 @@
     }
   },
   "form": {
-    "content": "เนื้อหาข้อความ",
     "contentPlaceholder": "กรุณากรอกเนื้อหาข้อความ",
-    "delaySeconds": "วินาทีล่าช้า",
     "send": "ส่ง",
     "broadcast": "ออกอากาศ"
   },

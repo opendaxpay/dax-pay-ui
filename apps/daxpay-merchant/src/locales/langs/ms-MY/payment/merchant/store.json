@@ -2,19 +2,14 @@
   "store": {
     "title": "Pengurusan Stor",
     "field": {
-      "storeNo": "Kedai No.",
       "storeName": "Nama Kedai",
       "contactPhone": "Hubungi Telefon",
-      "logoUrl": "Logo Kedai",
-      "facadeUrl": "Foto Etalase",
-      "interiorUrl": "Foto Dalaman",
       "region": "Wilayah",
       "address": "Alamat",
       "longitude": "Longitud",
       "latitude": "Latitud",
       "status": "Status",
       "remark": "Teguran",
-      "createTime": "Cipta Masa",
       "defaultApp": "Aplikasi Pembayaran Lalai"
     },
     "status": {
@@ -26,10 +21,7 @@
     "validationStoreName": "Sila masukkan nama kedai",
     "validationStatus": "Sila pilih status",
     "defaultStore": "Kedai Lalai",
-    "setDefault": "Tetapkan Lalai",
-    "clearDefault": "Nyah lalai",
     "confirmSetDefault": "Tetapkan kedai ini sebagai lalai? Tanda lalai lain peniaga akan dikosongkan.",
-    "confirmClearDefault": "Nyah tanda lalai kedai ini?",
     "validationDefaultStore": "Sila pilih sama ada kedai lalai",
     "deleteDefaultBlocked": "Tidak boleh padam kedai lalai. Batalkan lalai dahulu.",
     "noDefaultStoreTip": "Tiada kedai lalai",

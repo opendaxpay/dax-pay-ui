@@ -1,7 +1,4 @@
 {
-  "title": "Konfigurasi Adapay",
-  "keyConfig": "Konfigurasi Kunci",
-  "enable": "Memungkinkan",
   "adapayAppId": "ID Aplikasi",
   "adapayAppIdPlaceholder": "Silakan masukkan ID aplikasi Adapay",
   "apiKey": "Kunci API",
@@ -11,10 +8,8 @@
   "publicKey": "Kunci Publik Platform",
   "publicKeyPlaceholder": "Silakan masukkan kunci publik X509 Base64 (untuk verifikasi respons, biarkan kosong untuk default global)",
   "validation": {
-    "enable": "Silakan pilih aktifkan status",
     "adapayAppId": "Silakan masukkan ID aplikasi Adapay",
     "apiKey": "Silakan masukkan kunci API Adapay",
-    "privateKey": "Silakan masukkan kunci pribadi RSA pedagang",
-    "publicKey": "Silakan masukkan kunci publik platform"
+    "privateKey": "Silakan masukkan kunci pribadi RSA pedagang"
   }
 }

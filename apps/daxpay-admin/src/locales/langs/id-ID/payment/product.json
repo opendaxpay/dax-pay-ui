@@ -1,30 +1,7 @@
 {
-  "field": {
-    "code": "Kode Produk",
-    "name": "Nama Produk",
-    "channel": "Saluran",
-    "description": "Keterangan",
-    "icon": "Ikon",
-    "sortNo": "Menyortir",
-    "remark": "Komentar",
-    "channelName": "Nama Saluran",
-    "isv": "ISV",
-    "terminal": "Terminal",
-    "sandbox": "Bak pasir",
-    "apiCallMode": "Mode Panggilan API",
-    "payIdType": "Jenis ID Bayar",
-    "capabilities": "Kemampuan Membayar",
-    "features": "Fitur Produk"
-  },
-  "features": "Fitur Produk",
-  "detail": "Detil Produk",
-  "editCapabilities": "Konfigurasikan Kemampuan Pembayaran",
-  "sandboxSupported": "Didukung",
-  "sandboxNotSupported": "Tidak didukung",
   "enum": {
     "alipayIsv": "Alipay (ISV)",
     "alipay": "Alipay (Langsung)",
-    "wechat": "Pembayaran WeChat (Langsung)",
     "wechatPay": "Pembayaran WeChat (Langsung)",
     "wechatIsv": "Pembayaran WeChat (ISV)",
     "douyinPay": "Douyin Bayar (Langsung)",
@@ -86,9 +63,5 @@
     "pingpong": "PingPong",
     "mockPay": "Pembayaran Mock",
     "mockIsv": "Pembayaran Mock (Penyedia Layanan)"
-  },
-  "placeholder": {
-    "name": "Masukkan nama produk",
-    "channel": "Pilih saluran"
   }
 }

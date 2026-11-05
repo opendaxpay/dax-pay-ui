@@ -1,5 +1,4 @@
 {
-  "title": "支付應用(微信)",
   "tabPlatform": "平台應用",
   "tabMerchant": "商戶應用",
   "platformSubtitle": "平台 / 服務商身分，供各通道引用",
@@ -28,8 +27,6 @@
   "appSecretTooltipOfficialAccount": "公眾號 AppSecret，用於 OAuth 网页授权取得 OpenId",
   "appSecretTooltipMiniProgram": "小程式 AppSecret，用於 code2session 取得 OpenId",
   "appSecretTooltipMobileApp": "移動應用 AppSecret，用於 OAuth 授权",
-  "capabilityBtn": "能力綁定",
-  "capabilityTitle": "設定各能力使用的應用",
   "capabilitySelectPlaceholder": "請選擇應用",
   "capabilityNoApp": "尚未建立任何應用，請先建立應用",
   "capabilitySaveSuccess": "儲存成功",
@@ -39,7 +36,6 @@
   "scopePlatform": "平台應用",
   "scopeMerchant": "商戶應用",
   "channelCapabilityTitle": "支付應用配置",
-  "channelCapabilityDesc": "为每种支付能力綁定本商戶應用或平台應用；留空则按规则回退。",
   "validation": {
     "appSecret": "請輸入應用密鑰"
   },
@@ -53,6 +49,5 @@
   "channelCapabilityDescIsv": "為每種支付能力選擇本商戶應用，或使用服務商預設；選服務商預設則回退到產品級預設支付應用。",
   "channelCapabilityDescLeshua": "僅需為微信 JSAPI/小程式支付指定應用。",
   "capabilityIspDefault": "服務商預設",
-  "capabilityIspNotConfigured": "未配置",
   "isvAppEntryDesc": "管理公眾號、小程式等微信服務商應用"
 }

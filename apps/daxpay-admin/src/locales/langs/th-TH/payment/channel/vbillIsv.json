@@ -1,5 +1,4 @@
 {
-  "title": "การกำหนดค่า VBill ISV",
   "groupConfig": "การกำหนดค่า",
   "configTitle": "การกำหนดค่าคีย์ VBill ISV",
   "manageTitle": "การจัดการผู้ค้า VBill",
@@ -13,11 +12,6 @@
   "publicKeyTooltip": "รหัสสาธารณะ Tianque RSA (X509 Base64) สำหรับการตรวจสอบลายเซ็นตอบกลับ/โทรกลับ",
   "privateKey": "รหัสส่วนตัว RSA ของผู้ขาย",
   "privateKeyTooltip": "รหัสส่วนตัวของผู้ขาย RSA (PKCS8 Base64), การลงนาม SHA1 พร้อม RSA",
-  "sandbox": "แซนด์บ็อกซ์",
-  "groupMchConfig": "การกำหนดค่าผู้ขาย",
-  "cardMchConfig": "การกำหนดค่าผู้ขาย",
-  "cardMchConfigDesc": "ดูหมายเลขผู้ค้า Tianque",
-  "mchConfigTitle": "การกำหนดค่าผู้ขาย",
   "vbillMchNo": "พ่อค้าเทียนเกอ หมายเลข",
   "vbillMchNoPlaceholder": "กรุณากรอกหมายเลขผู้ค้า Tianque (mno)",
   "cardCapabilityBinding": "ผูกแอป WeChat",

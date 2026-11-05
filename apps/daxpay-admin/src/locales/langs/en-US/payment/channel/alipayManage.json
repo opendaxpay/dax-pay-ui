@@ -1,5 +1,4 @@
 {
-  "title": "Alipay ISV Management",
   "groupApp": "App Management",
   "cardIsvApp": "Alipay ISV Application",
   "cardIsvAppDesc": "Manage Alipay ISV applications",
@@ -11,7 +10,6 @@
   "actionMore": "More Actions",
   "saveSuccess": "Saved successfully",
   "deleteSuccess": "Deleted successfully",
-  "deleteConfirmContent": "Are you sure you want to delete application \"{name}\"? This action cannot be undone.",
   "appName": "Application Name",
   "appNamePlaceholder": "Enter application name",
   "appNameRequired": "Please enter application name",

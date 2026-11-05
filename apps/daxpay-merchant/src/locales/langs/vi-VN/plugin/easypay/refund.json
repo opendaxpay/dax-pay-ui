@@ -1,5 +1,4 @@
 {
-  "title": "Đơn hoàn tiền EasyPay",
   "detail": "Chi tiết đơn hoàn tiền EasyPay",
   "field": {
     "refundId": "ID đơn hoàn tiền liên quan",
@@ -14,9 +13,7 @@
     "apiVersion": "Phiên bản API",
     "addTime": "Thời gian khởi tạo hoàn tiền",
     "endTime": "Thời gian hoàn tất hoàn tiền",
-    "createTime": "Thời gian tạo",
-    "merchant": "Merchant",
-    "appId": "ID ứng dụng"
+    "createTime": "Thời gian tạo"
   },
   "placeholder": {
     "refundNo": "Nhập mã hoàn tiền nền tảng",
@@ -42,8 +39,6 @@
   },
   "section": {
     "basic": "Thông tin hoàn tiền",
-    "time": "Thông tin thời gian",
-    "refund": "Thông tin hoàn tiền",
-    "app": "Ứng dụng & Giao thức"
+    "time": "Thông tin thời gian"
   }
 }

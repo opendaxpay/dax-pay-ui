@@ -1,5 +1,4 @@
 {
-  "title": "이지페이 환불 주문",
   "detail": "이지페이 환불 주문 상세",
   "field": {
     "refundId": "연결 환불 ID",
@@ -14,9 +13,7 @@
     "apiVersion": "API 버전",
     "addTime": "환불 시작 시간",
     "endTime": "환불 완료 시간",
-    "createTime": "생성 시간",
-    "merchant": "가맹점",
-    "appId": "앱 ID"
+    "createTime": "생성 시간"
   },
   "placeholder": {
     "refundNo": "플랫폼 환불 번호 입력",
@@ -42,8 +39,6 @@
   },
   "section": {
     "basic": "환불 정보",
-    "time": "시간 정보",
-    "refund": "환불 정보",
-    "app": "앱 및 프로토콜"
+    "time": "시간 정보"
   }
 }

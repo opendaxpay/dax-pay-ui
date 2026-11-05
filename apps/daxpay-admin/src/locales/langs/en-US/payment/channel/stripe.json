@@ -1,7 +1,4 @@
 {
-  "title": "Stripe Configuration",
-  "keyConfig": "Key Config",
-  "enable": "Enable",
   "accountId": "Stripe Account ID",
   "accountIdPlaceholder": "Please enter Stripe account id (acct_xxx)",
   "secretKey": "Secret Key",

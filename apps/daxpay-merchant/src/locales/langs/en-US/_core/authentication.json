@@ -1,7 +1,5 @@
 {
   "login": "Login",
-  "qrcodeLogin": "Qr Code Login",
-  "profile": "Profile",
   "pageTitle": "{name} Merchant Portal",
   "pageDesc": "One-stop payment, reconciliation and business management",
   "oauthLoginSuccess": "Login successful",
@@ -14,8 +12,6 @@
   "oauthProcessingWith": "{platform} authorization in progress...",
   "oauthFailedWith": "{platform} authorization failed",
   "oauthLoginSuccessWith": "{platform} login successful",
-  "oauthUnknownPlatform": "Unknown platform",
-  "passwordResetPending": "Password reset is not yet available",
   "passwordExpiringSoon": "Your password will expire in {days} days. Please change it soon",
   "qrcodeRefreshPending": "QR code refresh is not yet available",
   "qrcodeLoadFailed": "Failed to load QR code",

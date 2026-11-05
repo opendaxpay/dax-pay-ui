@@ -6,14 +6,10 @@
     "description": "説明",
     "icon": "アイコン",
     "remark": "述べる",
-    "channelName": "チャンネル名",
     "isv": "ISV",
     "terminal": "ターミナルレポート",
     "sandbox": "サンドボックス",
-    "apiCallMode": "API呼び出しモード",
-    "payIdType": "ペイ ID タイプ",
-    "capabilities": "支払い機能",
-    "features": "製品の特徴"
+    "capabilities": "支払い機能"
   },
   "features": "製品の特徴",
   "detail": "製品詳細",

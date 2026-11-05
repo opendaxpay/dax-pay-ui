@@ -4,16 +4,11 @@
     "mchInfo": "Merchant Information",
     "mchNamePlaceholder": "Please enter merchant name",
     "mchShortNamePlaceholder": "Please enter merchant short name",
-    "subjectTypePlaceholder": "Please select merchant type",
     "adminNamePlaceholder": "Please enter the name"
   },
   "manage": {
     "info": {
-      "title": "Merchant Profile",
-      "backToWorkbench": "Back to Management"
-    },
-    "manage": {
-      "title": "Manage"
+      "title": "Merchant Profile"
     }
   }
 }

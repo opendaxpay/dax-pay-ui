@@ -26,7 +26,6 @@
     "channelMerchantPlaceholder": "Pilih pedagang saluran",
     "capability": "Keupayaan",
     "capabilityPlaceholder": "Pilih keupayaan",
-    "methodFilterHint": "Digunakan untuk memuatkan calon pedagang saluran; tidak disimpan dalam mod LANGSUNG",
     "validationName": "Sila masukkan nama",
     "validationIcon": "Sila pilih ikon",
     "validationResolveMode": "Sila pilih mod penyelesaian",

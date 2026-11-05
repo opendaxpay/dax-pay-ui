@@ -51,10 +51,8 @@
     "advanced": "Advanced Options"
   },
   "action": {
-    "create": "Transfer",
     "sync": "Sync",
     "close": "Close",
-    "retry": "Retry",
     "reset": "Reset"
   },
   "createTitle": "Create Transfer",
@@ -69,24 +67,19 @@
   "closeSuccess": "Transfer closed",
   "detail": "Transfer Detail",
   "placeholder": {
-    "bizTransferNo": "Unique per merchant, for idempotency",
     "openid": "Payee WeChat openid",
     "payeeNameTip": "Not allowed below 0.3 CNY, required at or above 2000 CNY",
     "notifyUrl": "Platform to merchant async notify URL",
-    "targetMch": "Please select a target merchant",
     "channelMch": "Please select a channel merchant",
     "douyinOpenid": "Payee Douyin openid",
     "payeeNameTipDouyin": "Required at or above 2000 CNY",
     "payeeUserId": "Payee Alipay user ID (starts with 2088)",
-    "payeeOpenId": "Payee Alipay OpenID",
     "payeeLoginName": "Payee Alipay login name (email/phone)",
     "bizTransferNoAuto": "Auto-generated if empty",
-    "reportInfoContent": "Leave blank for default -",
     "payeePhone": "Payee Douyin phone (must match Douyin Pay real-name)",
     "payeeNameTipAlipayUserId": "Optional; if filled, name will be verified against the payee account",
     "payeeNameTipAlipayLoginName": "Required for login ID payees; name will be verified against the account"
   },
-  "targetMch": "Target Merchant",
   "channelMch": "Channel Merchant",
   "amountUnit": "CNY",
   "payeeTypeUserId": "User ID",
@@ -107,7 +100,6 @@
     "reportInfoRequired": "Please fill in all transfer scene report fields"
   },
   "confirmUrlCopied": "Link copied",
-  "confirmUrlCopyFailed": "Copy failed",
   "confirmUrlExpireTip": "Link valid for 24 hours, please send to payee promptly",
   "confirmUrlTip": "Send the confirmation link to the payee, who must open it in WeChat",
   "payeeTypePhone": "Phone number",

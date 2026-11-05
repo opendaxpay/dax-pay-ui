@@ -7,8 +7,6 @@
   "keyConfig": "Konfigurasi Kekunci",
   "certConfig": "Mod Sijil",
   "aliAppId": "ID apl",
-  "alipayUserId": "PID saudagar",
-  "alipayUserIdPlaceholder": "Sila masukkan PID pedagang",
   "authType": "Jenis Pengesahan",
   "authTypePlaceholder": "Sila pilih jenis pengesahan",
   "alipayPublicKey": "Kunci Awam Alipay",

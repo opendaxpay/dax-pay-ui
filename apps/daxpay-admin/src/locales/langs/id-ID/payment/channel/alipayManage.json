@@ -1,5 +1,4 @@
 {
-  "title": "Manajemen Alipay ISV",
   "groupApp": "Manajemen Aplikasi",
   "cardIsvApp": "Aplikasi Alipay ISV",
   "cardIsvAppDesc": "Kelola aplikasi Alipay ISV",
@@ -11,7 +10,6 @@
   "actionMore": "Tindakan Lainnya",
   "saveSuccess": "Berhasil disimpan",
   "deleteSuccess": "Berhasil dihapus",
-  "deleteConfirmContent": "Apakah Anda yakin ingin menghapus aplikasi \"{name}\"? Tindakan ini tidak dapat dibatalkan.",
   "appName": "Nama Aplikasi",
   "appNamePlaceholder": "Masukkan nama aplikasi",
   "appNameRequired": "Silakan masukkan nama aplikasi",

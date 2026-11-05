@@ -1,5 +1,4 @@
 {
-  "title": "ShengPay Merchant Management",
   "manageTitle": "ShengPay Merchant Management",
   "isvManageTitle": "ShengPay Service Provider Merchant Management",
   "isvNotConnectedTip": "The channel for ShengPay service provider (ISV) mode is not yet connected. Related configurations are reserved only and cannot be used for actual transactions.",

@@ -11,7 +11,6 @@
   "loginType": "Login Type",
   "loginLocation": "Location",
   "inputAccount": "Please enter account",
-  "selectStatus": "Please select status",
   "detailTitle": "Login Log Detail",
   "selectCleanDay": "Clean logs before",
   "cleanWarning": "Warning",

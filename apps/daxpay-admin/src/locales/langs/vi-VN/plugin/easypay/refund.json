@@ -1,5 +1,4 @@
 {
-  "title": "Đơn hoàn tiền EasyPay",
   "detail": "Chi tiết đơn hoàn tiền EasyPay",
   "field": {
     "refundId": "Mã hoàn tiền",
@@ -25,14 +24,8 @@
     "tradeNo": "Nhập mã giao dịch nền tảng"
   },
   "status": {
-    "0": "Đang xử lý/Thất bại",
-    "1": "Hoàn tiền thành công",
     "success": "Hoàn tiền thành công",
     "progress": "Đang xử lý/Thất bại"
-  },
-  "statusColor": {
-    "0": "orange",
-    "1": "green"
   },
   "action": {
     "sync": "Đồng bộ trạng thái",
@@ -41,7 +34,6 @@
     "syncConfirmContent": "Hệ thống sẽ chủ động truy vấn trạng thái mới nhất của đơn hoàn tiền này từ kênh thanh toán, tiếp tục?"
   },
   "section": {
-    "basic": "Thông tin hoàn tiền",
     "time": "Thông tin thời gian",
     "refund": "Thông tin hoàn tiền",
     "app": "Ứng dụng & Giao thức"

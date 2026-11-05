@@ -8,15 +8,12 @@
   "stat": {
     "merchantCount": "Merchants",
     "channelMerchantCount": "Channel Merchants",
-    "userCount": "Users",
-    "todayLogin": "Today Logins",
-    "onlineUser": "Online Users"
+    "userCount": "Users"
   },
   "widget": {
     "workbenchHeader": "Workspace",
     "quickEntry": "Quick Entry",
     "tradeOverview": "Trade Overview",
-    "payOrder": "Payment Orders",
     "payTrade": "Fund Trades",
     "tradeTrend": "Trade Trend",
     "providerDist": "Payment Method Distribution",
@@ -37,7 +34,6 @@
   },
   "quickEntry": {
     "merchant": "Merchants",
-    "app": "Applications",
     "channelMerchant": "Channel Merchants",
     "notify": "Notifications",
     "user": "Users",
@@ -63,7 +59,6 @@
     "selected": "Selected (drag to sort)",
     "available": "Available",
     "allAdded": "All added",
-    "wxApp": "Payment Apps (WeChat)",
     "virtualDevice": "Virtual Devices",
     "gatewayOrder": "Gateway Orders",
     "fundFlow": "Fund Flows",
@@ -83,7 +78,6 @@
   },
   "configAlert": {
     "bannerTitle": "You have {n} configuration(s) pending",
-    "viewDetail": "View Details",
-    "allComplete": "All configurations complete"
+    "viewDetail": "View Details"
   }
 }

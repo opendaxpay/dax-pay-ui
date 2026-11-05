@@ -1,5 +1,4 @@
 {
-  "title": "Quản lý mã QR",
   "field": {
     "code": "Mã số",
     "name": "Tên",
@@ -17,7 +16,6 @@
     "programType": "Loại mã",
     "storeNo": "Mã cửa hàng",
     "store": "Cửa hàng",
-    "storeName": "Tên cửa hàng",
     "allocation": "Phân bổ"
   },
   "status": {
@@ -30,7 +28,6 @@
   },
   "defaultApp": "Ứng dụng mặc định",
   "unbound": "Không ràng buộc",
-  "mchNoTooltip": "Mã số người bán: {mchNo}",
   "batchCreate": "Tạo hàng loạt",
   "bindMerchant": "Người bán ràng buộc",
   "unbindMerchant": "Hủy liên kết người bán",
@@ -54,30 +51,17 @@
   "confirmEnable": "Bạn có chắc chắn bật bảng mã QR này không?",
   "confirmDisable": "Bạn có chắc chắn tắt bảng mã QR này không? Thanh toán qua quét sẽ không có sẵn.",
   "confirmUnbind": "Hủy liên kết các bảng đã chọn khỏi người bán? Họ sẽ trở lại kho trống.",
-  "viewCode": "Xem mã",
   "qrCodeTitle": "Mã QR",
   "qrCodeTip": "Quét để vào trang thanh toán",
   "copyLink": "Sao chép liên kết",
-  "download": "Tải xuống mã QR",
   "amountLabel": "Số lượng",
   "programType": {
     "h5": "H5",
     "mini_app": "Mini program"
   },
   "validateProgramType": "Vui lòng chọn loại mã",
-  "bindStore": "Gán cửa hàng",
-  "unbindStore": "Bỏ gán cửa hàng",
-  "confirmUnbindStore": "Bỏ gán cửa hàng cho mã đã chọn? Sau khi bỏ sẽ không còn liên kết cửa hàng.",
   "pleaseSelectStore": "Vui lòng chọn cửa hàng",
-  "validateStoreNo": "Vui lòng chọn cửa hàng",
-  "storeBindNeedSameMch": "Khi gán cửa hàng hàng loạt, phải chọn mã thuộc cùng thương nhân",
-  "storeBindNeedMerchant": "Hãy gán thương nhân trước khi gán cửa hàng",
   "batchActions": "Thao tác hàng loạt",
-  "bindApp": "Gán ứng dụng",
-  "unbindApp": "Bỏ gán ứng dụng",
-  "confirmUnbindApp": "Bỏ gán ứng dụng cho mã đã chọn? Thanh toán sẽ dùng ứng dụng mặc định của thương nhân.",
-  "validateAppId": "Vui lòng chọn ứng dụng",
-  "defaultStoreHint": "Cửa hàng mặc định (nếu có)",
   "allocationTip": "Khi bật, thanh toán qua mã sẽ yêu cầu kênh đóng băng tiền để phân bổ",
   "allocationOn": "Phân bổ",
   "allocWarningTitle": "Cảnh báo khả năng phân bổ",

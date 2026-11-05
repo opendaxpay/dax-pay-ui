@@ -1,5 +1,4 @@
 {
-  "title": "Pesanan Refund EasyPay",
   "detail": "Detail Pesanan Refund EasyPay",
   "field": {
     "refundId": "ID Refund",
@@ -25,14 +24,8 @@
     "tradeNo": "Masukkan nomor transaksi platform"
   },
   "status": {
-    "0": "Diproses/Gagal",
-    "1": "Refund Berhasil",
     "success": "Refund Berhasil",
     "progress": "Diproses/Gagal"
-  },
-  "statusColor": {
-    "0": "orange",
-    "1": "green"
   },
   "action": {
     "sync": "Sinkronkan Status",
@@ -41,7 +34,6 @@
     "syncConfirmContent": "Status terbaru pesanan refund ini akan ditanyakan langsung ke saluran pembayaran, lanjutkan?"
   },
   "section": {
-    "basic": "Info Refund",
     "time": "Info Waktu",
     "refund": "Info Refund",
     "app": "Aplikasi & Protokol"

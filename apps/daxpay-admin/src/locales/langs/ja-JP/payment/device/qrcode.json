@@ -1,5 +1,4 @@
 {
-  "title": "QRコード管理",
   "field": {
     "code": "コード",
     "name": "名前",
@@ -17,7 +16,6 @@
     "programType": "コード種別",
     "storeNo": "店舗番号",
     "store": "店舗",
-    "storeName": "店舗名",
     "allocation": "精算"
   },
   "status": {
@@ -30,7 +28,6 @@
   },
   "defaultApp": "デフォルトアプリ",
   "unbound": "束縛されていない",
-  "mchNoTooltip": "販売者番号: {mchNo}",
   "batchCreate": "バッチ作成",
   "bindMerchant": "バインドマーチャント",
   "unbindMerchant": "販売者のバインドを解除する",
@@ -54,30 +51,17 @@
   "confirmEnable": "この QR コード ボードを有効にしてもよろしいですか?",
   "confirmDisable": "この QR コード ボードを無効にしてもよろしいですか?スキャンによるお支払いはご利用いただけません。",
   "confirmUnbind": "選択したボードを販売者からバインド解除しますか?空白のインベントリに戻ります。",
-  "viewCode": "コードを表示",
   "qrCodeTitle": "QRコード",
   "qrCodeTip": "スキャンして支払いページに入ります",
   "copyLink": "リンクをコピー",
-  "download": "QRコードをダウンロード",
   "amountLabel": "額",
   "programType": {
     "h5": "H5",
     "mini_app": "ミニプログラム"
   },
   "validateProgramType": "コード種別を選択してください",
-  "bindStore": "店舗を紐付け",
-  "unbindStore": "店舗の紐付け解除",
-  "confirmUnbindStore": "選択したコード札の店舗紐付けを解除しますか？解除後は店舗に紐づきません。",
   "pleaseSelectStore": "店舗を選択してください",
-  "validateStoreNo": "店舗を選択してください",
-  "storeBindNeedSameMch": "店舗を一括紐付けする場合、同一加盟店のコード札を選択してください",
-  "storeBindNeedMerchant": "先に加盟店を紐付けてから店舗を紐付けてください",
   "batchActions": "一括操作",
-  "bindApp": "アプリを紐付け",
-  "unbindApp": "アプリの紐付け解除",
-  "confirmUnbindApp": "選択したコード札のアプリ紐付けを解除しますか？解除後は加盟店のデフォルトアプリを使用します。",
-  "validateAppId": "アプリを選択してください",
-  "defaultStoreHint": "デフォルト店舗(設定時)",
   "allocationTip": "有効にすると、コード決済時にチャネルへ精算用の資金凍結を要求します",
   "allocationOn": "精算",
   "allocWarningTitle": "精算能力の警告",

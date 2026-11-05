@@ -48,7 +48,6 @@
   "validateType": "Pilih tipe penerima",
   "validateAccount": "Masukkan akun penerima",
   "validateApp": "Pilih aplikasi terikat",
-  "validateSpApp": "Pilih aplikasi penyedia",
   "validateSubApp": "Aplikasi sub-merchant wajib untuk PERSONAL_SUB_OPENID",
   "validateRelation": "Pilih tipe relasi",
   "validateCustomRelation": "Masukkan nama relasi khusus",

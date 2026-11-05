@@ -17,7 +17,6 @@
   "os": "OS",
   "inputTitle": "モジュール名を入力してください",
   "inputAccount": "アカウントを入力してください",
-  "selectStatus": "ステータスを選択してください",
   "detailTitle": "操作ログ詳細",
   "selectCleanDay": "事前にログをクリーンアップしてください",
   "cleanWarning": "警告",

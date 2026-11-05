@@ -1,6 +1,5 @@
 {
   "blacklist": {
-    "title": "Danh sách đen",
     "add": "Thêm danh sách đen",
     "editTitle": "Sửa danh sách đen",
     "viewTitle": "Xem danh sách đen",
@@ -35,22 +34,12 @@
     }
   },
   "hit": {
-    "title": "Lượt chặn rủi ro",
     "field": {
       "phase": "Giai đoạn",
       "hitType": "Loại chặn",
       "hitValue": "Giá trị chặn",
       "mchNo": "Mã merchant",
-      "appId": "App ID",
       "tradeNo": "Mã giao dịch",
-      "orderNo": "Mã đơn",
-      "bizOrderNo": "Mã đơn nghiệp vụ",
-      "method": "Phương thức",
-      "channel": "Kênh",
-      "clientIp": "IP client",
-      "openid": "OpenId",
-      "buyerId": "BuyerId",
-      "scene": "Kịch bản",
       "createTime": "Thời gian tạo",
       "merchant": "Thương nhân",
       "clientCity": "Thành phố IP"
@@ -58,13 +47,6 @@
     "phase": {
       "before_pay": "Trước thanh toán",
       "after_pay": "Sau thanh toán"
-    },
-    "scene": {
-      "api": "API",
-      "gateway": "Gateway",
-      "code": "Mã QR",
-      "manual": "Thủ công",
-      "unknown": "Không rõ"
     },
     "hitType": {
       "ip": "IP",
