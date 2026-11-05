@@ -112,7 +112,11 @@
       >
         <a-divider orientation="left">{{ $t('payment.channel.dougongIsv.isvIdentity') }}</a-divider>
 
-        <a-form-item :label="$t('payment.channel.dougongIsv.sysId')" name="sysId">
+        <a-form-item
+          :label="$t('payment.channel.dougongIsv.sysId')"
+          name="sysId"
+          :tooltip="$t('payment.channel.dougongIsv.sysIdTooltip')"
+        >
           <a-input
             v-model:value="form.sysId"
             :disabled="!canEdit"
@@ -120,7 +124,11 @@
           />
         </a-form-item>
 
-        <a-form-item :label="$t('payment.channel.dougongIsv.productId')" name="productId">
+        <a-form-item
+          :label="$t('payment.channel.dougongIsv.productId')"
+          name="productId"
+          :tooltip="$t('payment.channel.dougongIsv.productIdTooltip')"
+        >
           <a-input
             v-model:value="form.productId"
             :disabled="!canEdit"

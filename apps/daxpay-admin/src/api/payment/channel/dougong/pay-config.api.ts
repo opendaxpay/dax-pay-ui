@@ -33,7 +33,7 @@ export interface DougongIsvKeyConfig {
   id?: string;
   /** 产品编码 */
   product?: string;
-  /** 服务商系统ID(sysId) */
+  /** 斗拱系统编号(sys_id) */
   sysId?: string;
   /** 产品号(productId) */
   productId?: string;
