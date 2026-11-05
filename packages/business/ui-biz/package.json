@@ -248,6 +248,10 @@
     "./components/workbench-tile": {
       "types": "./src/components/workbench-tile/index.ts",
       "default": "./src/components/workbench-tile/index.ts"
+    },
+    "./components/resource-card": {
+      "types": "./src/components/resource-card/index.ts",
+      "default": "./src/components/resource-card/index.ts"
     }
   },
   "dependencies": {
