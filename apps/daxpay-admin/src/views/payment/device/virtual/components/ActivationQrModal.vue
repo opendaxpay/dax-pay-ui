@@ -12,10 +12,10 @@
   import { useMessage } from '#/hooks/useMessage';
 
   /**
-   * 激活二维码弹窗(简版激活协议: 扫码获取后端接口地址, 无激活码体系)
+   * 激活二维码弹窗(简版激活协议, 无激活码体系)
    *
-   * 内容由后端 qr-content 端点生成(daxpay:activate:{serverBaseUrl}:{sn}), 前端只渲染:
-   * APP 扫码即完成服务器配置+设备绑定, 无需手填地址; 设备号单因子准入, 已激活设备
+   * 内容由后端 qr-content 端点生成(daxpay:activate:{sn}), 前端只渲染:
+   * 服务器地址由 APP 编译期内置, 扫码仅传入设备号; 设备号单因子准入, 已激活设备
    * 重新扫码激活会轮换密钥并踢下线旧设备。
    */
   defineOptions({ name: 'ActivationQrModal' });
@@ -24,7 +24,7 @@
 
   const visible = ref(false);
   const loading = ref(false);
-  // 二维码内容字符串(daxpay:activate:{baseUrl}:{sn})
+  // 二维码内容字符串(daxpay:activate:{sn})
   const content = ref('');
   const device = ref<VirtualDeviceResult>({});
 

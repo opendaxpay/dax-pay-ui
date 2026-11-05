@@ -109,7 +109,7 @@ export const VirtualDeviceApi = {
   },
 
   /**
-   * 激活二维码内容(扫码协议 daxpay:activate:{baseUrl}:{sn}, 前端只渲染)
+   * 激活二维码内容(扫码协议 daxpay:activate:{sn}, 服务器地址 APP 编译期内置, 前端只渲染)
    */
   qrContent(deviceNo: string): Promise<Result<string>> {
     return defHttp.get({ url: '/admin/device/virtual/qr-content', params: { deviceNo } });

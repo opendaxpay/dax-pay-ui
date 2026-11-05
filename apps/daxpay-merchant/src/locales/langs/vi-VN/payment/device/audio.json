@@ -34,7 +34,7 @@
   },
   "qr": {
     "title": "Mã QR kích hoạt",
-    "tip": "Cài ứng dụng trên điện thoại rồi quét để hoàn tất cấu hình máy chủ và kích hoạt thiết bị",
+    "tip": "Cài ứng dụng trên điện thoại rồi quét để kích hoạt thiết bị",
     "copy": "Sao chép nội dung"
   },
   "appConfig": {

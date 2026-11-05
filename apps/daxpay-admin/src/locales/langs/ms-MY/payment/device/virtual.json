@@ -71,7 +71,7 @@
     "activatedWarning": "Peranti telah diaktifkan: pengaktifan semula melalui imbasan akan memutar kunci dan memaksa peranti dalam talian semasa keluar. Berhati-hati.",
     "disabledWarning": "Peranti dinyahaktifkan: pengaktifan akan gagal. Aktifkan peranti dahulu.",
     "unboundWarning": "Peranti belum diikat kepada pedagang: pengaktifan imbasan akan gagal. Ikat pedagang dahulu.",
-    "scanTip": "Imbas dengan APP peranti maya untuk melengkapkan konfigurasi alamat pelayan dan pengikatan peranti serentak; atau salin kandungan di bawah untuk masukan manual",
+    "scanTip": "Imbas dengan APP peranti maya untuk melengkapkan pengikatan peranti; atau salin kandungan di bawah untuk masukan manual",
     "copyNo": "Salin No.",
     "copyContent": "Salin Kandungan",
     "downloadPng": "Muat Turun PNG",

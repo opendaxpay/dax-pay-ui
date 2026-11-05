@@ -34,7 +34,7 @@
   },
   "qr": {
     "title": "Kode QR Aktivasi",
-    "tip": "Instal aplikasi di ponsel lalu pindai untuk menyelesaikan pengaturan server dan aktivasi perangkat",
+    "tip": "Instal aplikasi di ponsel lalu pindai untuk mengaktifkan perangkat",
     "copy": "Salin Konten"
   },
   "appConfig": {

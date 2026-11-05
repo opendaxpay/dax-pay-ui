@@ -71,7 +71,7 @@
     "activatedWarning": "設備已激活: 重新掃碼激活會輪換密鑰, 當前線上設備會被踢下線, 請謹慎操作。",
     "disabledWarning": "設備已停用: 激活會失敗, 請先啟用設備。",
     "unboundWarning": "設備未綁定商戶: 掃碼激活會失敗, 請先綁定商戶。",
-    "scanTip": "使用虛擬設備 APP 掃碼, 一次完成伺服器地址配置與設備綁定; 也可複製下方內容手動填入",
+    "scanTip": "使用虛擬設備 APP 掃碼完成設備綁定; 也可複製下方內容手動填入",
     "copyNo": "複製編號",
     "copyContent": "複製內容",
     "downloadPng": "下載 PNG",

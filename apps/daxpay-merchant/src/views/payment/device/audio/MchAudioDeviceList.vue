@@ -25,7 +25,7 @@
    * 收款设备(虚拟设备)列表(商户端)
    *
    * 商户自查名下收款设备(手机 APP 变云音箱/云打印): 查询筛选 / 应用与门店归属调整 / 启停 /
-   * 行操作激活二维码(商户手机装 APP 后扫码即完成服务器配置与设备激活) / 试播试打。
+   * 行操作激活二维码(商户手机装 APP 后扫码即完成设备激活) / 试播试打。
    */
   defineOptions({ name: 'MchAudioDeviceList' });
 
@@ -240,7 +240,7 @@
   }
 
   /**
-   * 复制激活二维码内容(供 APP 手工填入服务器地址+设备号兜底)
+   * 复制激活二维码内容(供 APP 手工填入设备号兜底)
    */
   async function handleCopyQrContent() {
     if (!qrContentStr.value) {
@@ -534,7 +534,7 @@
       </template>
     </a-drawer>
 
-    <!-- 激活二维码弹窗: 商户手机装 APP 后扫码即完成服务器配置与设备激活 -->
+    <!-- 激活二维码弹窗: 商户手机装 APP 后扫码即完成设备激活 -->
     <a-modal
       v-model:open="qrVisible"
       :title="$t('payment.device.audio.qr.title')"

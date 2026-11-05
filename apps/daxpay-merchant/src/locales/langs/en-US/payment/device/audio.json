@@ -34,7 +34,7 @@
   },
   "qr": {
     "title": "Activation QR Code",
-    "tip": "Install the merchant app on your phone and scan to complete server setup and device activation",
+    "tip": "Install the merchant app on your phone and scan to activate the device",
     "copy": "Copy Content"
   },
   "appConfig": {

@@ -71,7 +71,7 @@
     "activatedWarning": "Perangkat sudah teraktivasi: aktivasi ulang dengan memindai akan memutar kunci dan memaksa perangkat online saat ini keluar. Berhati-hatilah.",
     "disabledWarning": "Perangkat nonaktif: aktivasi akan gagal. Aktifkan perangkat terlebih dahulu.",
     "unboundWarning": "Perangkat belum diikat ke merchant: aktivasi dengan pemindaian akan gagal. Ikat merchant terlebih dahulu.",
-    "scanTip": "Pindai dengan APP perangkat virtual untuk menyelesaikan konfigurasi alamat server dan pengikatan perangkat sekaligus; atau salin konten di bawah untuk diisi manual",
+    "scanTip": "Pindai dengan APP perangkat virtual untuk menyelesaikan pengikatan perangkat; atau salin konten di bawah untuk diisi manual",
     "copyNo": "Salin No.",
     "copyContent": "Salin Konten",
     "downloadPng": "Unduh PNG",

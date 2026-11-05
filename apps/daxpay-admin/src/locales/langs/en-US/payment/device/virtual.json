@@ -71,7 +71,7 @@
     "activatedWarning": "Device is activated: re-scanning to activate will rotate the key and force the current online device offline. Proceed with caution.",
     "disabledWarning": "Device is disabled: activation will fail. Enable the device first.",
     "unboundWarning": "Device is not bound to a merchant: scan activation will fail. Bind a merchant first.",
-    "scanTip": "Scan with the virtual device APP to complete server address configuration and device binding in one step; or copy the content below and enter it manually",
+    "scanTip": "Scan with the virtual device APP to complete device binding; or copy the content below and enter it manually",
     "copyNo": "Copy No.",
     "copyContent": "Copy Content",
     "downloadPng": "Download PNG",

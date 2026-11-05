@@ -71,7 +71,7 @@
     "activatedWarning": "Thiết bị đã kích hoạt: quét lại để kích hoạt sẽ xoay khóa và buộc thiết bị đang trực tuyến phải thoát. Hãy cẩn thận.",
     "disabledWarning": "Thiết bị đã tắt: kích hoạt sẽ thất bại. Bật thiết bị trước.",
     "unboundWarning": "Thiết bị chưa gắn merchant: quét kích hoạt sẽ thất bại. Gắn merchant trước.",
-    "scanTip": "Quét bằng APP thiết bị ảo để hoàn tất cấu hình địa chỉ máy chủ và gắn thiết bị trong một bước; hoặc sao chép nội dung bên dưới để nhập thủ công",
+    "scanTip": "Quét bằng APP thiết bị ảo để hoàn tất gắn thiết bị; hoặc sao chép nội dung bên dưới để nhập thủ công",
     "copyNo": "Sao chép số",
     "copyContent": "Sao chép nội dung",
     "downloadPng": "Tải PNG",

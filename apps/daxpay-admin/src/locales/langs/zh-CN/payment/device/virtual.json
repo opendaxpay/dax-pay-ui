@@ -71,7 +71,7 @@
     "activatedWarning": "设备已激活: 重新扫码激活会轮换密钥, 当前在线设备会被踢下线, 请谨慎操作。",
     "disabledWarning": "设备已停用: 激活会失败, 请先启用设备。",
     "unboundWarning": "设备未绑定商户: 扫码激活会失败, 请先绑定商户。",
-    "scanTip": "使用虚拟设备 APP 扫码, 一次完成服务器地址配置与设备绑定; 也可复制下方内容手动填入",
+    "scanTip": "使用虚拟设备 APP 扫码完成设备绑定; 也可复制下方内容手动填入",
     "copyNo": "复制编号",
     "copyContent": "复制内容",
     "downloadPng": "下载 PNG",
