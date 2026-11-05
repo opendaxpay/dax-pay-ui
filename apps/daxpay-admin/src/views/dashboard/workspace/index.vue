@@ -77,19 +77,20 @@
     detailModalVisible.value = true;
   }
 
-  function navTo(routeName: string) {
+  function navTo(item: ConfigCheckItem) {
     // routeName 必须等于前端菜单 path(menu.api.ts 中 route.name = menu.path)
     // 失配(后端下发 PascalCase 组件名 / 菜单未授权 / 后端未重启对齐)时静默忽略避免页面崩溃
-    if (!routeName || !router.hasRoute(routeName)) {
+    if (!item.routeName || !router.hasRoute(item.routeName)) {
       // 开发态打 warn 便于发现后端 routeName 与前端菜单 path 失配问题
       if (import.meta.env.DEV) {
         // eslint-disable-next-line no-console
-        console.warn(`[configAlert] routeName "${routeName}" 未匹配到前端路由, 请检查后端 checker 下发值是否等于菜单 path`);
+        console.warn(`[configAlert] routeName "${item.routeName}" 未匹配到前端路由, 请检查后端 checker 下发值是否等于菜单 path`);
       }
       return;
     }
     detailModalVisible.value = false;
-    router.push({ name: routeName }).catch(() => {});
+    // 页签型配置页(如平台配置页)经 routeQuery 携带 ?tab=xxx 直达对应子分组
+    router.push({ name: item.routeName, query: item.routeQuery }).catch(() => {});
   }
 
   onMounted(() => {
@@ -152,7 +153,7 @@
           v-for="item in configAlertItems"
           :key="item.itemKey"
           class="hover:bg-accent flex cursor-pointer items-center gap-3 rounded-md p-2"
-          @click="navTo(item.routeName)"
+          @click="navTo(item)"
         >
           <div
             class="flex size-8 shrink-0 items-center justify-center rounded-md bg-orange-50 text-orange-500"

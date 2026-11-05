@@ -26,6 +26,7 @@ export type ConfigCheckCategory =
   | 'mchCredential'
   | 'mchNotify'
   | 'payRoute'
+  | 'platformMqtt'
   | 'platformOss'
   | 'platformUrl'
   | 'platformWebsite'
@@ -52,6 +53,8 @@ export interface ConfigCheckItem {
   severity: ConfigCheckSeverity;
   /** 点击跳转的前端路由 name */
   routeName: string;
+  /** 跳转时附加的路由 query(页签型配置页经 ?tab=xxx 直达对应子分组) */
+  routeQuery?: Record<string, string>;
   /** 列表型告警的未配置数量(单项型可空) */
   count?: number;
 }
