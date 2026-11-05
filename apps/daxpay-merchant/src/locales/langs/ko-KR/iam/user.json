@@ -15,7 +15,10 @@
     "registerTime": "가입 시간",
     "loginCount": "로그인 횟수",
     "lastLoginIp": "최근 로그인 IP",
-    "emailNotBound": "미설정"
+    "emailNotBound": "미설정",
+    "initialPassword": "초기 비밀번호",
+    "lastChangePasswordTime": "비밀번호 변경 일시",
+    "passwordExpireTime": "비밀번호 만료 시간"
   },
   "status": {
     "normal": "정상",

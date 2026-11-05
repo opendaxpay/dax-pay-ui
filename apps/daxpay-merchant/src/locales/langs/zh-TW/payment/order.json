@@ -98,7 +98,8 @@
     "outAllocNo": "通道分帳單號",
     "receiverType": "接收方類型",
     "receiverAccount": "接收方帳號",
-    "allocStatus": "分帳狀態"
+    "allocStatus": "分帳狀態",
+    "outTerminalNo": "通道終端號"
   },
   "bizStatus": {
     "wait_pay": "待支付",

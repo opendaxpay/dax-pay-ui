@@ -98,7 +98,8 @@
     "outAllocNo": "เลขที่การแบ่งช่องทาง",
     "receiverType": "ประเภทผู้รับ",
     "receiverAccount": "บัญชีผู้รับ",
-    "allocStatus": "สถานะการแบ่ง"
+    "allocStatus": "สถานะการแบ่ง",
+    "outTerminalNo": "หมายเลขเทอร์มินัลช่องทาง"
   },
   "bizStatus": {
     "wait_pay": "ซึ่งรอคอย",

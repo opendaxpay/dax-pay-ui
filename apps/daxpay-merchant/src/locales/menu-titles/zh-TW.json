@@ -59,5 +59,6 @@
 
   "menu.trade.unipayLog": "支付介面日誌",
   "menu.payment.merchant.qrcode": "碼牌管理",
-  "menu.payment.merchant.audioDevice": "收款設備"
+  "menu.payment.merchant.audioDevice": "收款設備",
+  "menu.payment.merchant.file": "商戶檔案"
 }

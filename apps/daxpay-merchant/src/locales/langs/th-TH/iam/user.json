@@ -15,7 +15,10 @@
     "registerTime": "เวลาลงทะเบียน",
     "loginCount": "จำนวนการเข้าสู่ระบบ",
     "lastLoginIp": "IP เข้าสู่ระบบล่าสุด",
-    "emailNotBound": "ยังไม่ผูกบัญชี"
+    "emailNotBound": "ยังไม่ผูกบัญชี",
+    "initialPassword": "รหัสผ่านเริ่มต้น",
+    "lastChangePasswordTime": "เปลี่ยนรหัสผ่านล่าสุด",
+    "passwordExpireTime": "เวลาหมดอายุรหัสผ่าน"
   },
   "status": {
     "normal": "ปกติ",

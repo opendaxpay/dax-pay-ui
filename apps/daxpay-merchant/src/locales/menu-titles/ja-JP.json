@@ -59,5 +59,6 @@
 
   "menu.trade.unipayLog": "決済APIログ",
   "menu.payment.merchant.qrcode": "QRコード管理",
-  "menu.payment.merchant.audioDevice": "決済デバイス"
+  "menu.payment.merchant.audioDevice": "決済デバイス",
+  "menu.payment.merchant.file": "加盟店ファイル"
 }

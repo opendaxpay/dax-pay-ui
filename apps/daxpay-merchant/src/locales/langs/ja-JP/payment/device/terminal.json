@@ -41,5 +41,12 @@
   "boundChannel": "Bound channel terminals",
   "boundSystem": "Bound system terminals",
   "noBound": "No bindings",
-  "addBind": "Add binding"
+  "addBind": "Add binding",
+  "register": "登録",
+  "registerTitle": "端末登録",
+  "registerSuccess": "登録しました",
+  "registerTips": "チャネル側の端末番号と登録状態を手動修正します。チャネルへのリクエストは送信されません。",
+  "outTerminalNoPlaceholder": "チャネル端末番号を入力してください",
+  "validateStatus": "登録状態を選択してください",
+  "bindReadOnlyTip": "紐付けはチャネル端末の登録時に管理され、ここでは表示のみです"
 }

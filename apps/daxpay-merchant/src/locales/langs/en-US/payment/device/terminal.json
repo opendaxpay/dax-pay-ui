@@ -41,5 +41,12 @@
   "boundChannel": "Bound channel terminals",
   "boundSystem": "Bound system terminals",
   "noBound": "No bindings",
-  "addBind": "Add binding"
+  "addBind": "Add binding",
+  "register": "Register",
+  "registerTitle": "Register Terminal",
+  "registerSuccess": "Registered successfully",
+  "registerTips": "Manually correct the channel-side terminal number and register status. No request is sent to the channel.",
+  "outTerminalNoPlaceholder": "Please enter the channel terminal number",
+  "validateStatus": "Please select the register status",
+  "bindReadOnlyTip": "Bindings are maintained via channel terminal registration and shown here read-only"
 }

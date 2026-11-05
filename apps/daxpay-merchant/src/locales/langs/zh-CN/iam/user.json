@@ -15,7 +15,10 @@
     "registerTime": "注册时间",
     "loginCount": "登录次数",
     "lastLoginIp": "最后登录 IP",
-    "emailNotBound": "未绑定"
+    "emailNotBound": "未绑定",
+    "initialPassword": "初始密码",
+    "lastChangePasswordTime": "上次修改密码",
+    "passwordExpireTime": "密码到期时间"
   },
   "status": {
     "normal": "正常",

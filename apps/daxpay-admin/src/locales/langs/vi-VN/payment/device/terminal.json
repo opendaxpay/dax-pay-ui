@@ -43,5 +43,12 @@
   "noBound": "No bindings",
   "addBind": "Add binding",
   "validateSystemTerminal": "Vui lòng chọn đầu cuối hệ thống",
-  "pleaseSelectTerminalOptional": "Chọn đầu cuối hệ thống (không bắt buộc, liên kết khi lưu)"
+  "pleaseSelectTerminalOptional": "Chọn đầu cuối hệ thống (không bắt buộc, liên kết khi lưu)",
+  "register": "Đăng ký",
+  "registerTitle": "Đăng ký thiết bị đầu cuối",
+  "registerSuccess": "Đăng ký thành công",
+  "registerTips": "Sửa thủ công số thiết bị đầu cuối phía kênh và trạng thái đăng ký, không gửi yêu cầu tới kênh.",
+  "outTerminalNoPlaceholder": "Nhập số thiết bị đầu cuối kênh",
+  "validateStatus": "Vui lòng chọn trạng thái đăng ký",
+  "bindReadOnlyTip": "Liên kết được quản lý khi đăng ký thiết bị đầu cuối kênh, chỉ hiển thị tại đây"
 }

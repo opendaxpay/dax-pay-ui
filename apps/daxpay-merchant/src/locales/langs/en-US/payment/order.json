@@ -98,7 +98,8 @@
     "outAllocNo": "Channel Allocation No",
     "receiverType": "Receiver Type",
     "receiverAccount": "Receiver Account",
-    "allocStatus": "Allocation Status"
+    "allocStatus": "Allocation Status",
+    "outTerminalNo": "Channel Terminal No."
   },
   "bizStatus": {
     "wait_pay": "Waiting",

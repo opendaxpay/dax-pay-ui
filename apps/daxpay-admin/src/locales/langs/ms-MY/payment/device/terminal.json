@@ -43,5 +43,12 @@
   "noBound": "No bindings",
   "addBind": "Add binding",
   "validateSystemTerminal": "Sila pilih terminal sistem",
-  "pleaseSelectTerminalOptional": "Pilih terminal sistem (pilihan, dikaitkan semasa simpan)"
+  "pleaseSelectTerminalOptional": "Pilih terminal sistem (pilihan, dikaitkan semasa simpan)",
+  "register": "Daftar",
+  "registerTitle": "Daftarkan Terminal",
+  "registerSuccess": "Berjaya didaftarkan",
+  "registerTips": "Pembetulan manual nombor terminal sebelah saluran dan status pendaftaran. Tiada permintaan dihantar ke saluran.",
+  "outTerminalNoPlaceholder": "Masukkan nombor terminal saluran",
+  "validateStatus": "Sila pilih status pendaftaran",
+  "bindReadOnlyTip": "Pengikatan diuruskan melalui pendaftaran terminal saluran dan paparan sahaja di sini"
 }

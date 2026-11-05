@@ -98,7 +98,8 @@
     "outAllocNo": "Mã phân bổ kênh",
     "receiverType": "Loại người nhận",
     "receiverAccount": "Tài khoản người nhận",
-    "allocStatus": "Trạng thái phân bổ"
+    "allocStatus": "Trạng thái phân bổ",
+    "outTerminalNo": "Số thiết bị đầu cuối kênh"
   },
   "bizStatus": {
     "wait_pay": "Chờ",

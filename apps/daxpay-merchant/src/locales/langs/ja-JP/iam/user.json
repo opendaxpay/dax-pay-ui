@@ -15,7 +15,10 @@
     "registerTime": "登録時間",
     "loginCount": "ログイン回数",
     "lastLoginIp": "最終ログイン IP",
-    "emailNotBound": "未設定"
+    "emailNotBound": "未設定",
+    "initialPassword": "初期パスワード",
+    "lastChangePasswordTime": "パスワード更新日時",
+    "passwordExpireTime": "パスワード有効期限"
   },
   "status": {
     "normal": "普通",

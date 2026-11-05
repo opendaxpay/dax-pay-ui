@@ -43,5 +43,12 @@
   "noBound": "暂无绑定",
   "addBind": "添加绑定",
   "validateSystemTerminal": "請選擇系統終端",
-  "pleaseSelectTerminalOptional": "選擇系統終端(可選, 選擇後補充綁定)"
+  "pleaseSelectTerminalOptional": "選擇系統終端(可選, 選擇後補充綁定)",
+  "register": "登記",
+  "registerTitle": "終端登記",
+  "registerSuccess": "登記成功",
+  "registerTips": "手工訂正通道側終端號與登記狀態，不會向通道發起請求",
+  "outTerminalNoPlaceholder": "請輸入通道終端號",
+  "validateStatus": "請選擇登記狀態",
+  "bindReadOnlyTip": "綁定關係由通道終端登記維護，此處僅作展示"
 }

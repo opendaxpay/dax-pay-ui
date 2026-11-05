@@ -98,7 +98,8 @@
     "outAllocNo": "チャネル精算番号",
     "receiverType": "受取人タイプ",
     "receiverAccount": "受取人アカウント",
-    "allocStatus": "精算状態"
+    "allocStatus": "精算状態",
+    "outTerminalNo": "チャネル端末番号"
   },
   "bizStatus": {
     "wait_pay": "待っている",

@@ -59,5 +59,6 @@
 
   "menu.trade.unipayLog": "Log API Pembayaran",
   "menu.payment.merchant.qrcode": "Pengurusan Kod QR",
-  "menu.payment.merchant.audioDevice": "Peranti Pembayaran"
+  "menu.payment.merchant.audioDevice": "Peranti Pembayaran",
+  "menu.payment.merchant.file": "Fail Pedagang"
 }

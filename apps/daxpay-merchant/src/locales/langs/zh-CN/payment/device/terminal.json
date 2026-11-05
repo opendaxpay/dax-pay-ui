@@ -41,5 +41,12 @@
   "boundChannel": "已绑定通道终端",
   "boundSystem": "已绑定系统终端",
   "noBound": "暂无绑定",
-  "addBind": "添加绑定"
+  "addBind": "添加绑定",
+  "register": "登记",
+  "registerTitle": "终端登记",
+  "registerSuccess": "登记成功",
+  "registerTips": "手工订正通道侧终端号与登记状态，不会向通道发起请求",
+  "outTerminalNoPlaceholder": "请输入通道终端号",
+  "validateStatus": "请选择登记状态",
+  "bindReadOnlyTip": "绑定关系由通道终端登记维护，此处仅作展示"
 }

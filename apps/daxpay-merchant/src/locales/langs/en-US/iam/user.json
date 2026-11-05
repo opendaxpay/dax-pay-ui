@@ -15,7 +15,10 @@
     "registerTime": "Registration Time",
     "loginCount": "Login Count",
     "lastLoginIp": "Last Login IP",
-    "emailNotBound": "Not bound"
+    "emailNotBound": "Not bound",
+    "initialPassword": "Initial Password",
+    "lastChangePasswordTime": "Last Password Change",
+    "passwordExpireTime": "Password Expire Time"
   },
   "status": {
     "normal": "Normal",

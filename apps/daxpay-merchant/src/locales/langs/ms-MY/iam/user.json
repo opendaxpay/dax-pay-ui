@@ -15,7 +15,10 @@
     "registerTime": "Masa Pendaftaran",
     "loginCount": "Kiraan Log Masuk",
     "lastLoginIp": "IP Log Masuk Terakhir",
-    "emailNotBound": "Belum dikaitkan"
+    "emailNotBound": "Belum dikaitkan",
+    "initialPassword": "Kata Laluan Awal",
+    "lastChangePasswordTime": "Perubahan Kata Laluan Terakhir",
+    "passwordExpireTime": "Masa Tamat Kata Laluan"
   },
   "status": {
     "normal": "Biasalah",

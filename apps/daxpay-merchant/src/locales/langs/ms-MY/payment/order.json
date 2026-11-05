@@ -98,7 +98,8 @@
     "outAllocNo": "No. Peruntukan Saluran",
     "receiverType": "Jenis Penerima",
     "receiverAccount": "Akaun Penerima",
-    "allocStatus": "Status Peruntukan"
+    "allocStatus": "Status Peruntukan",
+    "outTerminalNo": "No. Terminal Saluran"
   },
   "bizStatus": {
     "wait_pay": "Menunggu",

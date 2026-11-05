@@ -43,5 +43,12 @@
   "noBound": "No bindings",
   "addBind": "Add binding",
   "validateSystemTerminal": "กรุณาเลือกเทอร์มินัลระบบ",
-  "pleaseSelectTerminalOptional": "เลือกเทอร์มินัลระบบ (ไม่บังคับ ผูกเมื่อบันทึก)"
+  "pleaseSelectTerminalOptional": "เลือกเทอร์มินัลระบบ (ไม่บังคับ ผูกเมื่อบันทึก)",
+  "register": "ลงทะเบียน",
+  "registerTitle": "ลงทะเบียนเทอร์มินัล",
+  "registerSuccess": "ลงทะเบียนสำเร็จ",
+  "registerTips": "แก้ไขหมายเลขเทอร์มินัลฝั่งช่องทางและสถานะการลงทะเบียนด้วยตนเอง ไม่มีการส่งคำขอไปยังช่องทาง",
+  "outTerminalNoPlaceholder": "กรุณากรอกหมายเลขเทอร์มินัลช่องทาง",
+  "validateStatus": "กรุณาเลือกสถานะการลงทะเบียน",
+  "bindReadOnlyTip": "การเชื่อมโยงจะดูแลผ่านการลงทะเบียนเทอร์มินัลช่องทาง ที่นี่แสดงเท่านั้น"
 }

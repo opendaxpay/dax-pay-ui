@@ -41,5 +41,12 @@
   "boundChannel": "Bound channel terminals",
   "boundSystem": "Bound system terminals",
   "noBound": "No bindings",
-  "addBind": "Add binding"
+  "addBind": "Add binding",
+  "register": "Daftar",
+  "registerTitle": "Daftarkan Terminal",
+  "registerSuccess": "Berhasil didaftarkan",
+  "registerTips": "Perbaiki nomor terminal sisi channel dan status pendaftaran secara manual. Tidak ada permintaan yang dikirim ke channel.",
+  "outTerminalNoPlaceholder": "Masukkan nomor terminal channel",
+  "validateStatus": "Silakan pilih status pendaftaran",
+  "bindReadOnlyTip": "Pengikatan dikelola melalui pendaftaran terminal channel dan hanya ditampilkan di sini"
 }

@@ -43,5 +43,12 @@
   "noBound": "No bindings",
   "addBind": "Add binding",
   "validateSystemTerminal": "Please select a system terminal",
-  "pleaseSelectTerminalOptional": "Select system terminal (optional, binds on save)"
+  "pleaseSelectTerminalOptional": "Select system terminal (optional, binds on save)",
+  "register": "Register",
+  "registerTitle": "Register Terminal",
+  "registerSuccess": "Registered successfully",
+  "registerTips": "Manually correct the channel-side terminal number and register status. No request is sent to the channel.",
+  "outTerminalNoPlaceholder": "Please enter the channel terminal number",
+  "validateStatus": "Please select the register status",
+  "bindReadOnlyTip": "Bindings are maintained via channel terminal registration and shown here read-only"
 }

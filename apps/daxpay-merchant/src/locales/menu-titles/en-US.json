@@ -59,5 +59,6 @@
 
   "menu.trade.unipayLog": "Payment API Log",
   "menu.payment.merchant.qrcode": "QR Code Management",
-  "menu.payment.merchant.audioDevice": "Payment Device"
+  "menu.payment.merchant.audioDevice": "Payment Device",
+  "menu.payment.merchant.file": "Merchant Files"
 }

@@ -15,7 +15,10 @@
     "registerTime": "Thời gian đăng ký",
     "loginCount": "Số lần đăng nhập",
     "lastLoginIp": "IP đăng nhập cuối",
-    "emailNotBound": "Chưa liên kết"
+    "emailNotBound": "Chưa liên kết",
+    "initialPassword": "Mật khẩu ban đầu",
+    "lastChangePasswordTime": "Lần đổi mật khẩu gần nhất",
+    "passwordExpireTime": "Thời gian hết hạn mật khẩu"
   },
   "status": {
     "normal": "Bình thường",

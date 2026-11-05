@@ -59,5 +59,6 @@
 
   "menu.trade.unipayLog": "결제 API 로그",
   "menu.payment.merchant.qrcode": "QR 코드 관리",
-  "menu.payment.merchant.audioDevice": "결제 디바이스"
+  "menu.payment.merchant.audioDevice": "결제 디바이스",
+  "menu.payment.merchant.file": "가맹점 파일"
 }

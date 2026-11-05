@@ -43,5 +43,12 @@
   "noBound": "No bindings",
   "addBind": "Add binding",
   "validateSystemTerminal": "시스템 단말을 선택해 주세요",
-  "pleaseSelectTerminalOptional": "시스템 단말 선택(선택 사항, 저장 시 추가 연동)"
+  "pleaseSelectTerminalOptional": "시스템 단말 선택(선택 사항, 저장 시 추가 연동)",
+  "register": "등록",
+  "registerTitle": "단말기 등록",
+  "registerSuccess": "등록되었습니다",
+  "registerTips": "채널 측 단말기 번호와 등록 상태를 수동으로 수정합니다. 채널로 요청을 전송하지 않습니다.",
+  "outTerminalNoPlaceholder": "채널 단말기 번호를 입력하세요",
+  "validateStatus": "등록 상태를 선택하세요",
+  "bindReadOnlyTip": "연결은 채널 단말기 등록 시 관리되며 여기서는 표시 전용입니다"
 }

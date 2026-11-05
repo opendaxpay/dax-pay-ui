@@ -98,7 +98,8 @@
     "outAllocNo": "채널 분할 번호",
     "receiverType": "수신자 유형",
     "receiverAccount": "수신자 계정",
-    "allocStatus": "분할 상태"
+    "allocStatus": "분할 상태",
+    "outTerminalNo": "채널 터미널 번호"
   },
   "bizStatus": {
     "wait_pay": "대기 중",
