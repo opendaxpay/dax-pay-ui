@@ -56,6 +56,13 @@ export const VirtualDeviceApi = {
   },
 
   /**
+   * 批量绑定门店(本商户未绑门店的设备一次性挂到目标门店, 门店工作台快捷绑定用)
+   */
+  bindStoreBatch(data: VirtualBindStoreBatchParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/device/virtual/bind-store-batch', data });
+  },
+
+  /**
    * 批量解绑商户(凭证重置, 设备端需重新激活)
    */
   unbindMerchant(ids: string[]): Promise<Result<void>> {
@@ -130,6 +137,14 @@ export interface VirtualBindMerchantParam {
   appId?: string;
   /** 绑定门店号(可空=商户通用设备) */
   storeNo?: string;
+}
+
+/** 虚拟设备批量绑定门店参数 */
+export interface VirtualBindStoreBatchParam {
+  /** 设备主键列表 */
+  deviceIds: string[];
+  /** 目标门店号 */
+  storeNo: string;
 }
 
 /** 虚拟设备结果 */

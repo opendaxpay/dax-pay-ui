@@ -122,6 +122,8 @@ export interface NormalOrderResult extends MchEntity {
   clientIp?: string;
   /** 终端设备编码 */
   terminalNo?: string;
+  /** 通道侧终端号 */
+  outTerminalNo?: string;
   /** 门店号 */
   storeNo?: string;
   // ===== 资金凭证联表字段(详情) =====

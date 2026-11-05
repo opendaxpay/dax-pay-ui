@@ -7,30 +7,32 @@
 
   import { AudioDeviceApi } from '#/api/payment/device/audio.api';
   import { DeviceQrCodeApi } from '#/api/payment/device/qrcode.api';
+  import { TerminalDeviceApi } from '#/api/payment/device/terminal.api';
   import { useMessage } from '#/hooks/useMessage';
 
   /**
    * 门店快捷绑定弹窗(门店工作台「快捷绑定」组, 商户端)
    *
    * 弹窗内列出「本商户未分配门店」的候选对象:
-   * 码牌走服务端过滤(查询条件 storeUnassigned=true 由后端转 store_no IS NULL, 服务端分页);
+   * 码牌/系统终端走服务端过滤(查询条件 storeUnassigned=true 由后端转 store_no IS NULL, 服务端分页);
    * 收款设备(虚拟设备)查询接口无未分配过滤参数, 拉当前商户全量后客户端过滤未分配再前端分页。
    * 勾选只作用于当前页(翻页/重查即清空), 确认后按类别绑定:
-   * 码牌走既有 bind-store(ids 批量); 收款设备接口为单台绑定, 逐台并发调用 bind-store;
-   * 解绑不在本弹窗做(收款设备/码牌列表页已有解绑入口)。
-   * 开源版裁剪: 无系统终端类别(无终端报备域)。
+   * 码牌走既有 bind-store(ids 批量); 系统终端走 bind-store-batch;
+   * 收款设备接口为单台绑定, 逐台并发调用 bind-store;
+   * 绑定带默认标记的终端由后端清除默认, 前端提交前二次确认;
+   * 解绑不在本弹窗做(收款设备/码牌/系统终端列表页已有解绑或换绑入口)。
    */
   defineOptions({ name: 'StoreBindModal' });
 
   const emit = defineEmits(['ok']);
 
-  const { message } = useMessage();
+  const { message, confirm } = useMessage();
 
   /** 绑定对象类别(收款设备=虚拟设备) */
-  type BindKind = 'qrcode' | 'virtual';
+  type BindKind = 'qrcode' | 'terminal' | 'virtual';
 
-  /** 打开模式: device=收款设备 / qrcode=码牌 */
-  type BindMode = 'device' | 'qrcode';
+  /** 打开模式: device=收款设备 / qrcode=码牌 / terminal=系统终端 */
+  type BindMode = 'device' | 'qrcode' | 'terminal';
 
   const visible = ref(false);
   const loading = ref(false);
@@ -42,7 +44,9 @@
   const storeName = ref('');
   // 当前模式与绑定类别
   const mode = ref<BindMode>('device');
-  const kind = computed<BindKind>(() => (mode.value === 'qrcode' ? 'qrcode' : 'virtual'));
+  const kind = computed<BindKind>(() =>
+    mode.value === 'qrcode' ? 'qrcode' : mode.value === 'terminal' ? 'terminal' : 'virtual',
+  );
 
   // 候选列表(当前页)
   const candidates = ref<BindCandidate[]>([]);
@@ -58,11 +62,11 @@
   // 当前页勾选结果(提交时以表格实例为准)
   const selectedRows = ref<BindCandidate[]>([]);
 
-  /** 候选行(收款设备/码牌统一展示形状) */
+  /** 候选行(收款设备/码牌/系统终端统一展示形状) */
   interface BindCandidate {
     /** 主键 */
     id: string;
-    /** 设备号(收款设备) */
+    /** 设备号(收款设备) / 终端号(系统终端) */
     deviceNo?: string;
     /** 码牌编码(码牌) */
     code?: string;
@@ -70,20 +74,26 @@
     name?: string;
     /** 应用名称 */
     appName?: string;
+    /** 是否门店默认终端(系统终端; 绑定到本店后由后端清除默认) */
+    defaultTerminal?: boolean;
   }
 
   /** 类别展示名(提示文案用) */
   const kindLabel = computed(() =>
     kind.value === 'qrcode'
       ? $t('payment.merchant.store.bind.kindQrcode')
-      : $t('payment.merchant.store.workbench.tileDevice'),
+      : kind.value === 'terminal'
+        ? $t('payment.merchant.store.bind.kindTerminal')
+        : $t('payment.merchant.store.workbench.tileDevice'),
   );
 
   /** 弹窗标题 */
   const modalTitle = computed(() =>
     kind.value === 'qrcode'
       ? $t('payment.merchant.store.workbench.tileBindQrcode')
-      : $t('payment.merchant.store.workbench.tileBindDevice'),
+      : kind.value === 'terminal'
+        ? $t('payment.merchant.store.workbench.tileBindTerminal')
+        : $t('payment.merchant.store.workbench.tileBindDevice'),
   );
 
   /** 确认按钮带当前页勾选数量 */
@@ -97,10 +107,12 @@
   function toCandidate(row: any): BindCandidate {
     return {
       id: String(row.id),
-      deviceNo: row.deviceNo,
+      // 系统终端的编号字段是 terminalNo, 统一落到设备号列
+      deviceNo: row.deviceNo || row.terminalNo,
       code: row.code,
       name: row.name,
       appName: row.appName,
+      defaultTerminal: row.defaultTerminal,
     };
   }
 
@@ -119,18 +131,25 @@
   }
 
   /**
-   * 加载当前页(码牌服务端过滤未分配门店; 收款设备客户端过滤后前端分页)
+   * 加载当前页(码牌/系统终端服务端过滤未分配门店; 收款设备客户端过滤后前端分页)
    */
   async function queryPage() {
     loading.value = true;
     try {
       const { currentPage, pageSize } = pageConfig.value;
-      if (kind.value === 'qrcode') {
-        const { data } = await DeviceQrCodeApi.page({
-          current: currentPage,
-          size: pageSize,
-          storeUnassigned: true,
-        });
+      if (kind.value === 'qrcode' || kind.value === 'terminal') {
+        const { data } =
+          kind.value === 'qrcode'
+            ? await DeviceQrCodeApi.page({
+                current: currentPage,
+                size: pageSize,
+                storeUnassigned: true,
+              })
+            : await TerminalDeviceApi.page({
+                current: currentPage,
+                size: pageSize,
+                storeUnassigned: true,
+              });
         const records = ((data as any)?.records || []) as any[];
         candidates.value = records.map((row) => toCandidate(row));
         pageConfig.value.total = Number((data as any)?.total) || 0;
@@ -157,7 +176,7 @@
   /**
    * 打开弹窗
    *
-   * @param bindMode device=收款设备 / qrcode=码牌
+   * @param bindMode device=收款设备 / qrcode=码牌 / terminal=系统终端
    * @param ctx 目标门店上下文(storeNo + storeName)
    */
   function show(bindMode: BindMode, ctx: { storeName?: string; storeNo: string }) {
@@ -190,25 +209,45 @@
   }
 
   /**
-   * 确认绑定: 码牌一次批量提交; 收款设备接口为单台绑定, 逐台并发调用
+   * 确认绑定: 码牌一次批量提交; 系统终端走 bind-store-batch; 收款设备接口为单台绑定, 逐台并发调用
    */
   async function handleOk() {
     const checked = collectChecked();
     if (checked.length === 0) {
-      // 未勾选提示(区分设备/码牌)
+      // 未勾选提示(区分码牌/终端/设备)
       message.warning(
         kind.value === 'qrcode'
           ? $t('payment.merchant.store.bind.selectFirstQrcode')
-          : $t('payment.merchant.store.bind.selectFirstDevice'),
+          : kind.value === 'terminal'
+            ? $t('payment.merchant.store.bind.selectFirstTerminal')
+            : $t('payment.merchant.store.bind.selectFirstDevice'),
       );
       return;
+    }
+    // 绑定带默认标记的终端会清除其默认(默认终端同门店唯一), 提交前二次确认
+    if (kind.value === 'terminal' && checked.some((row) => row.defaultTerminal)) {
+      const ok = await new Promise<boolean>((resolve) => {
+        confirm({
+          content: $t('payment.merchant.store.bind.confirmBindDefaultTerminal'),
+          okButtonProps: { danger: true },
+          onOk: () => resolve(true),
+          onCancel: () => resolve(false),
+        });
+      });
+      if (!ok) {
+        return;
+      }
     }
     const ids = checked.map((row) => row.id);
     confirmLoading.value = true;
     try {
-      await (kind.value === 'qrcode'
-        ? DeviceQrCodeApi.bindStore({ ids, storeNo: storeNo.value })
-        : Promise.all(ids.map((id) => AudioDeviceApi.bindStore({ id, storeNo: storeNo.value }))));
+      if (kind.value === 'qrcode') {
+        await DeviceQrCodeApi.bindStore({ ids, storeNo: storeNo.value });
+      } else if (kind.value === 'terminal') {
+        await TerminalDeviceApi.bindStoreBatch({ terminalIds: ids, storeNo: storeNo.value });
+      } else {
+        await Promise.all(ids.map((id) => AudioDeviceApi.bindStore({ id, storeNo: storeNo.value })));
+      }
       // 绑定成功提示(带数量与门店名)
       message.success(
         kind.value === 'qrcode'
@@ -216,10 +255,15 @@
               count: ids.length,
               store: storeName.value || storeNo.value,
             })
-          : $t('payment.merchant.store.bind.successDevice', {
-              count: ids.length,
-              store: storeName.value || storeNo.value,
-            }),
+          : kind.value === 'terminal'
+            ? $t('payment.merchant.store.bind.successTerminal', {
+                count: ids.length,
+                store: storeName.value || storeNo.value,
+              })
+            : $t('payment.merchant.store.bind.successDevice', {
+                count: ids.length,
+                store: storeName.value || storeNo.value,
+              }),
       );
       visible.value = false;
       emit('ok');
@@ -270,6 +314,12 @@
               :min-width="180"
             />
             <vxe-column
+              v-else-if="kind === 'terminal'"
+              field="deviceNo"
+              :title="$t('payment.merchant.store.bind.columnTerminalNo')"
+              :min-width="180"
+            />
+            <vxe-column
               v-else
               field="deviceNo"
               :title="$t('payment.merchant.store.bind.columnDeviceNo')"
@@ -281,6 +331,7 @@
               </template>
             </vxe-column>
             <vxe-column
+              v-if="kind !== 'terminal'"
               field="appName"
               :title="$t('payment.merchant.store.bind.columnApp')"
               :min-width="140"

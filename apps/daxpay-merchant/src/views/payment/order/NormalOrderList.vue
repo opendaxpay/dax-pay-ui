@@ -385,6 +385,14 @@
           <a-descriptions-item :label="$t('payment.order.field.storeNo')">
             {{ detail.storeNo || '-' }}
           </a-descriptions-item>
+          <!-- 终端编码(系统终端) -->
+          <a-descriptions-item :label="$t('payment.order.field.terminalNo')">
+            {{ detail.terminalNo || '-' }}
+          </a-descriptions-item>
+          <!-- 通道侧终端号(通道回报的终端号) -->
+          <a-descriptions-item :label="$t('payment.order.field.outTerminalNo')">
+            {{ detail.outTerminalNo || '-' }}
+          </a-descriptions-item>
         </a-descriptions>
 
         <a-divider orientation="left" plain>{{ $t('payment.order.field.payTime') }}</a-divider>

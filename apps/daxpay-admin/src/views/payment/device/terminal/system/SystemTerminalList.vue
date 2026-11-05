@@ -2,7 +2,7 @@
   import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
 
   import { computed, onMounted, ref } from 'vue';
-  import { useRouter } from 'vue-router';
+  import { useRoute, useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
 
@@ -16,13 +16,14 @@
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
-  import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
+  import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
 
   import SystemTerminalBindDrawer from './SystemTerminalBindDrawer.vue';
   import SystemTerminalEdit from './SystemTerminalEdit.vue';
 
   defineOptions({ name: 'SystemTerminalList' });
 
+  const route = useRoute();
   const router = useRouter();
 
   // 商户号从路由 query 获取
@@ -160,6 +161,11 @@
       return;
     }
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
+    // 门店工作台跳转入口带 storeNo 时预置筛选(本店终端过滤, 直达则展示该商户全量)
+    const presetStoreNo = normalizeRouteQueryValue(route.query.storeNo);
+    if (presetStoreNo) {
+      queryForm.value.storeNo = presetStoreNo;
+    }
     // 加载商户信息用于标题展示
     loadMerchantInfo();
     queryPage();
@@ -231,7 +237,13 @@
           >
             <template #default="{ row }">
               <div v-if="row.storeNo" class="flex flex-col gap-y-1">
-                <span>{{ row.storeName || '-' }}</span>
+                <span>
+                  {{ row.storeName || '-' }}
+                  <!-- 门店默认终端标记(设置/取消默认入口在门店工作台) -->
+                  <a-tag v-if="row.defaultTerminal" color="processing" class="!m-0 !ml-1 !text-xs">
+                    {{ $t('payment.device.terminal.defaultTag') }}
+                  </a-tag>
+                </span>
                 <span class="text-xs text-muted-foreground">{{ row.storeNo }}</span>
               </div>
               <span v-else style="color: var(--text-color-placeholder)">-</span>

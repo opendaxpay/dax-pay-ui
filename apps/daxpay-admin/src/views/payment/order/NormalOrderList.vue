@@ -9,6 +9,7 @@
   import { $t } from '@vben/locales';
   import { formatDateTime } from '@vben/utils';
 
+  import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
   import { currencyLabel } from '@daxpay/ui-biz/utils/currency';
   import { buildExportFileName } from '@daxpay/ui-biz/utils/export-download';
   import { formatFen as formatAmount } from '@daxpay/ui-biz/utils/pay-amount';
@@ -24,7 +25,6 @@
 
   import { useOrderLabels } from './composables/useOrderLabels';
   import { useTradeActions } from './composables/useTradeActions';
-import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
   defineOptions({ name: 'NormalOrderList' });
 
@@ -424,6 +424,14 @@ import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.storeNo')">
             {{ detail.storeNo || '-' }}
+          </a-descriptions-item>
+          <!-- 终端编码(系统终端) -->
+          <a-descriptions-item :label="$t('payment.order.field.terminalNo')">
+            {{ detail.terminalNo || '-' }}
+          </a-descriptions-item>
+          <!-- 通道侧终端号(通道回报的终端号) -->
+          <a-descriptions-item :label="$t('payment.order.field.outTerminalNo')">
+            {{ detail.outTerminalNo || '-' }}
           </a-descriptions-item>
         </a-descriptions>
 

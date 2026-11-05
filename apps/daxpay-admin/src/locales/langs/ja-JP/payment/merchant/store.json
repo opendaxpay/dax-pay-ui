@@ -39,8 +39,6 @@
   },
   "card": {
     "storeNoPrefix": "店舗番号：{storeNo}",
-    "defaultAppLine": "デフォルトアプリ：{app}",
-    "defaultAppFollow": "デフォルトアプリ：加盟商のデフォルトに従う",
     "enterWorkbench": "ワークベンチへ"
   },
   "list": {
@@ -51,9 +49,11 @@
   },
   "bind": {
     "kindQrcode": "QRコード",
+    "kindTerminal": "システム端末",
     "alertTemplate": "店舗未割り当ての{kind}のみ表示します。チェックしてこの店舗にバインドしてください",
     "columnCode": "QRコード番号",
     "columnDeviceNo": "デバイス番号",
+    "columnTerminalNo": "端末番号",
     "columnName": "名称",
     "columnApp": "紐づくアプリ",
     "allApps": "すべてのアプリ",
@@ -61,8 +61,11 @@
     "okWithCount": "バインド({count})",
     "selectFirstDevice": "先にデバイスを選択してください",
     "selectFirstQrcode": "先にQRコードを選択してください",
+    "selectFirstTerminal": "先に端末を選択してください",
     "successDevice": "{count} 台の決済デバイスを店舗「{store}」にバインドしました",
-    "successQrcode": "{count} 枚のQRコードを店舗「{store}」にバインドしました"
+    "successQrcode": "{count} 枚のQRコードを店舗「{store}」にバインドしました",
+    "successTerminal": "{count} 台のシステム端末を店舗「{store}」にバインドしました",
+    "confirmBindDefaultTerminal": "選択した端末に店舗のデフォルト端末が含まれています。この店舗にバインドするとデフォルト設定が解除されます。続行しますか？"
   },
   "workbench": {
     "title": "店舗ワークベンチ",
@@ -75,14 +78,22 @@
     "tileDeviceDesc": "この店舗に紐づく決済デバイスの台帳と運用",
     "tileQrcode": "QRコード一覧",
     "tileQrcodeDesc": "この店舗に紐づくQRコード一覧と設定",
+    "tileTerminal": "システム端末",
+    "tileTerminalDesc": "本店舗のシステム端末とデフォルト端末の管理",
     "tileBindDevice": "決済デバイスをこの店舗にバインド",
     "tileBindDeviceDesc": "店舗未割り当ての決済デバイスを選択",
     "tileBindQrcode": "QRコードをこの店舗にバインド",
     "tileBindQrcodeDesc": "店舗未紐付けのQRコードを選択",
+    "tileBindTerminal": "端末をこの店舗にバインド",
+    "tileBindTerminalDesc": "この加盟店で店舗未割り当てのシステム端末を選択",
     "tileDefaultApp": "デフォルトアプリ",
     "tileDefaultAppStore": "この店舗指定：{name}",
     "tileDefaultAppFollow": "加盟商デフォルトに従う：{name}",
     "tileDefaultAppNone": "デフォルトアプリ未設定、クリックして設定",
+    "tileDefaultTerminal": "デフォルト端末",
+    "tileDefaultTerminalSet": "{name}（{no}）",
+    "tileDefaultTerminalDisabledSuffix": " 停止中",
+    "tileDefaultTerminalNone": "未設定です。クリックして選択",
     "tileStoreInfo": "店舗情報",
     "tileStoreInfoDesc": "店舗名・住所・電話などの基本情報を管理",
     "tileDefaultStoreActiveDesc": "現在デフォルト店舗です、クリックで解除",
@@ -92,10 +103,19 @@
     "noActions": "利用可能な操作はありません",
     "countUnitDevice": "台",
     "countUnitQrcode": "枚",
+    "countUnitTerminal": "台",
     "setAppTitle": "デフォルト決済アプリを設定",
     "confirmClearAppNoMchDefault": "この加盟商はデフォルトアプリ未設定です。クリアするとQRコードなど店舗単位の決済入口に利用可能なアプリがなくなります。クリアしますか？",
     "confirmClearDefaultStore": "解除すると店舗未指定の取引はデフォルト店舗へフォールバックできず、決済が失敗する可能性があります。解除しますか？",
     "setDefaultOk": "デフォルト店舗に設定しました",
-    "clearDefaultOk": "デフォルト店舗を解除しました"
+    "clearDefaultOk": "デフォルト店舗を解除しました",
+    "defaultTerminalTitle": "デフォルト端末を設定",
+    "defaultTerminalTitleWithStore": "デフォルト端末を設定 · {store}",
+    "defaultTerminalTip": "端末番号なしの会計は本店舗のデフォルト端末にフォールバックします。同店舗内の他のデフォルト設定は解除されます",
+    "defaultTerminalEmpty": "本店舗にシステム端末がありません。システム端末一覧で割り当てるか、「端末をこの店舗にバインド」をご利用ください",
+    "defaultTerminalPlaceholder": "選択しない場合はデフォルト端末を設定しません",
+    "defaultTerminalClearTip": "選択をクリアすると本店舗の現在のデフォルト端末設定も解除されます",
+    "defaultTerminalSetOk": "店舗のデフォルト端末に設定しました",
+    "defaultTerminalClearOk": "店舗のデフォルト端末を解除しました"
   }
 }

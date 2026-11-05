@@ -47,6 +47,18 @@ export const TerminalDeviceApi = {
       params: { terminalNo },
     });
   },
+  /** 设为门店默认终端(同门店唯一, 后端先清后设) */
+  setDefault(id: string): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/device/terminal/system/set-default', data: { id } });
+  },
+  /** 取消门店默认终端 */
+  clearDefault(id: string): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/device/terminal/system/clear-default', data: { id } });
+  },
+  /** 批量绑定门店(本商户未分配门店的系统终端绑到目标门店) */
+  bindStoreBatch(data: TerminalBindStoreBatchParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/device/terminal/system/bind-store-batch', data });
+  },
 };
 
 /**
@@ -74,6 +86,10 @@ export const ChannelTerminalApi = {
   /** 修改 */
   update(data: ChannelTerminalParam): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/device/terminal/channel/update', data });
+  },
+  /** 手动调整(手工订正通道侧终端号与登记状态, 不调通道) */
+  register(data: ChannelTerminalRegisterParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/device/terminal/channel/register', data });
   },
   /** 删除 */
   delete(id: string): Promise<Result<void>> {
@@ -103,6 +119,8 @@ export interface TerminalDeviceQuery {
   name?: string;
   storeNo?: string;
   enable?: boolean;
+  /** 仅未分配门店的终端(由后端转 store_no IS NULL, 门店工作台快捷绑定筛选用) */
+  storeUnassigned?: boolean;
 }
 
 /** 系统终端参数 */
@@ -125,6 +143,16 @@ export interface TerminalDeviceResult extends BaseEntity {
   storeName?: string;
   enable?: boolean;
   remark?: string;
+  /** 是否所属门店的默认终端(设置/取消默认入口在门店工作台) */
+  defaultTerminal?: boolean;
+}
+
+/** 系统终端批量绑定门店参数 */
+export interface TerminalBindStoreBatchParam {
+  /** 系统终端主键列表 */
+  terminalIds: string[];
+  /** 目标门店号 */
+  storeNo: string;
 }
 
 /** 通道终端查询 */
@@ -145,13 +173,22 @@ export interface ChannelTerminalParam {
   mchNo?: string;
   channelMchNo?: string;
   type?: string;
-  // 绑定的系统终端编码(新增必填, 编辑传入则补绑)
+  // 绑定的系统终端编码(新增必填, 建档即绑定; 编辑不传)
   systemTerminalNo?: string;
   name?: string;
   outTerminalNo?: string;
   status?: string;
   errorMsg?: string;
   remark?: string;
+}
+
+/** 通道终端手动调整参数(手工订正通道侧终端号与登记状态, 不调通道) */
+export interface ChannelTerminalRegisterParam {
+  id: string;
+  // 通道侧终端号(可空)
+  outTerminalNo?: string;
+  // 登记状态(字典 channel_terminal_status)
+  status: string;
 }
 
 /** 通道终端结果 */

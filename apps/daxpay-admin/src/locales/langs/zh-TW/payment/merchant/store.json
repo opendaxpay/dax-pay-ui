@@ -39,8 +39,6 @@
   },
   "card": {
     "storeNoPrefix": "門店號：{storeNo}",
-    "defaultAppLine": "預設應用：{app}",
-    "defaultAppFollow": "預設應用：跟隨商戶預設",
     "enterWorkbench": "進入工作台"
   },
   "list": {
@@ -51,9 +49,11 @@
   },
   "bind": {
     "kindQrcode": "碼牌",
+    "kindTerminal": "系統終端",
     "alertTemplate": "僅列出本商戶未分配門店的{kind}，勾選後綁定到本店",
     "columnCode": "碼牌編碼",
     "columnDeviceNo": "設備號",
+    "columnTerminalNo": "終端號",
     "columnName": "名稱",
     "columnApp": "關聯應用",
     "allApps": "全部應用",
@@ -61,8 +61,11 @@
     "okWithCount": "綁定({count})",
     "selectFirstDevice": "請先勾選設備",
     "selectFirstQrcode": "請先勾選碼牌",
+    "selectFirstTerminal": "請先勾選終端",
     "successDevice": "已綁定 {count} 台收款設備到門店「{store}」",
-    "successQrcode": "已綁定 {count} 張碼牌到門店「{store}」"
+    "successQrcode": "已綁定 {count} 張碼牌到門店「{store}」",
+    "successTerminal": "已綁定 {count} 台系統終端到門店「{store}」",
+    "confirmBindDefaultTerminal": "選中的終端中有門市預設終端，綁定到本店後會清除其預設標記，確認繼續？"
   },
   "workbench": {
     "title": "門店工作台",
@@ -75,14 +78,22 @@
     "tileDeviceDesc": "本店綁定的收款設備台帳與運維",
     "tileQrcode": "碼牌清單",
     "tileQrcodeDesc": "本店綁定的碼牌清單與配置",
+    "tileTerminal": "系統終端",
+    "tileTerminalDesc": "本店的系統終端與預設終端管理",
     "tileBindDevice": "綁定收款設備到本店",
     "tileBindDeviceDesc": "選擇本商戶未分配門店的收款設備",
     "tileBindQrcode": "綁定碼牌到本店",
     "tileBindQrcodeDesc": "選擇本商戶未綁定門店的碼牌",
+    "tileBindTerminal": "綁定終端到本店",
+    "tileBindTerminalDesc": "選擇本商戶未分配門店的系統終端",
     "tileDefaultApp": "預設應用",
     "tileDefaultAppStore": "本店指定：{name}",
     "tileDefaultAppFollow": "跟隨商戶預設：{name}",
     "tileDefaultAppNone": "未配置預設應用，點擊設定",
+    "tileDefaultTerminal": "預設終端",
+    "tileDefaultTerminalSet": "{name}（{no}）",
+    "tileDefaultTerminalDisabledSuffix": " 已停用",
+    "tileDefaultTerminalNone": "未設定，點擊選擇",
     "tileStoreInfo": "門店資訊",
     "tileStoreInfoDesc": "維護門店名稱、地址、聯絡電話等基本資訊",
     "tileDefaultStoreActiveDesc": "當前為預設門店，點擊可取消",
@@ -92,10 +103,19 @@
     "noActions": "暫無可用操作",
     "countUnitDevice": "台",
     "countUnitQrcode": "張",
+    "countUnitTerminal": "台",
     "setAppTitle": "設定預設支付應用",
     "confirmClearAppNoMchDefault": "該商戶未配置預設應用，清空後碼牌等按門店收款的入口將無可用應用，確認清空？",
     "confirmClearDefaultStore": "取消後未指定門店的收單請求將無法回落預設門店，可能下單失敗，確認取消？",
     "setDefaultOk": "已設為預設門店",
-    "clearDefaultOk": "已取消預設門店"
+    "clearDefaultOk": "已取消預設門店",
+    "defaultTerminalTitle": "設定預設終端",
+    "defaultTerminalTitleWithStore": "設定預設終端 · {store}",
+    "defaultTerminalTip": "未傳終端號收銀時回落到本店預設終端，同門市下其它預設標記將取消",
+    "defaultTerminalEmpty": "本店暫無系統終端，可先在系統終端中掛到本店，或用「綁定終端到本店」",
+    "defaultTerminalPlaceholder": "不選則不設預設終端",
+    "defaultTerminalClearTip": "清空選擇會同時清除本店當前的預設終端標記",
+    "defaultTerminalSetOk": "已設為門市預設終端",
+    "defaultTerminalClearOk": "已取消門市預設終端"
   }
 }

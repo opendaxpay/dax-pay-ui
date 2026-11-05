@@ -1,9 +1,12 @@
 <script lang="ts" setup>
+  import type { MenuProps } from 'antdv-next';
   import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
 
   import { computed, ref, watch } from 'vue';
 
   import { $t } from '@vben/locales';
+
+  import { IconifyIcon } from '@vben-core/icons';
 
   import {
     ChannelTerminalApi,
@@ -14,8 +17,8 @@
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
-  import ChannelTerminalBindDrawer from './ChannelTerminalBindDrawer.vue';
   import ChannelTerminalEdit from './ChannelTerminalEdit.vue';
+  import ChannelTerminalRegisterModal from './ChannelTerminalRegisterModal.vue';
 
   defineOptions({ name: 'ChannelTerminalPanel' });
 
@@ -34,7 +37,7 @@
   const xTable = ref<VxeTableInstance>();
   const xToolbar = ref<VxeToolbarInstance>();
   const editRef = ref<InstanceType<typeof ChannelTerminalEdit>>();
-  const bindRef = ref<InstanceType<typeof ChannelTerminalBindDrawer>>();
+  const registerRef = ref<InstanceType<typeof ChannelTerminalRegisterModal>>();
 
   const pageConfig = ref({
     currentPage: 1,
@@ -96,8 +99,11 @@
     editRef.value?.showEdit(row);
   }
 
-  function handleBind(row: ChannelTerminalResult) {
-    bindRef.value?.show(row);
+  /**
+   * 手动调整(手工订正通道侧终端号与登记状态, 不调通道)
+   */
+  function handleRegister(row: ChannelTerminalResult) {
+    registerRef.value?.show(row);
   }
 
   /**
@@ -114,6 +120,75 @@
         });
       },
     });
+  }
+
+  /** 是否已绑定系统终端 */
+  function hasBound(row: ChannelTerminalResult): boolean {
+    return (row.systemTerminals?.length ?? 0) > 0;
+  }
+
+  /**
+   * 解绑系统终端(解除该通道终端与全部已绑定系统终端的关联)
+   */
+  function handleUnbind(row: ChannelTerminalResult) {
+    const terminals = row.systemTerminals || [];
+    if (terminals.length === 0 || !row.id) {
+      return;
+    }
+    confirm({
+      // 确定解除绑定吗？
+      content: $t('payment.device.terminal.confirmUnbind'),
+      onOk() {
+        return Promise.all(
+          terminals.map((term) =>
+            ChannelTerminalApi.unbind({
+              systemTerminalNo: term.terminalNo!,
+              channelTerminalId: row.id!,
+            }),
+          ),
+        ).then(() => {
+          message.success($t('common.operationSuccess'));
+          queryPage();
+        });
+      },
+    });
+  }
+
+  /**
+   * 更多操作菜单(删除/解绑)
+   *
+   * a-dropdown 的 menu prop 要求 MenuProps 对象(items+onClick), 传裸数组会因 menu.items
+   * 为空导致弹出层渲染为空(点击无反应)——全站统一走 items+onClick 形态
+   */
+  function getActionMenu(row: ChannelTerminalResult): MenuProps {
+    const items: any[] = [
+      {
+        key: 'unbind',
+        // 解绑系统终端
+        label: $t('payment.device.terminal.unbind'),
+        disabled: !hasBound(row) || !hasPermission(PermCodes.Channel.Merchant.MANAGE),
+      },
+      { type: 'divider' },
+      {
+        key: 'delete',
+        // 删除
+        label: $t('common.delete'),
+        danger: true,
+        disabled: !hasPermission(PermCodes.Channel.Merchant.MANAGE),
+      },
+    ];
+    return {
+      items,
+      onClick: ({ key }: any) => {
+        if (key === 'unbind') {
+          handleUnbind(row);
+          return;
+        }
+        if (key === 'delete') {
+          handleDelete(row);
+        }
+      },
+    };
   }
 
   /**
@@ -175,7 +250,7 @@
     </vxe-toolbar>
     <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
       <vxe-column field="name" :title="$t('payment.device.terminal.field.name')" :min-width="120" />
-      <!-- 已绑定的系统终端(创建即绑定) -->
+      <!-- 已绑定的系统终端(建档即绑定) -->
       <vxe-column :title="$t('payment.device.terminal.field.systemTerminal')" :min-width="160">
         <template #default="{ row }">
           {{ systemTerminalLabel(row.systemTerminals) }}
@@ -208,22 +283,19 @@
               {{ $t('common.edit') }}
             </a-button>
             <a-button
-              v-if="hasPermission(PermCodes.Channel.Merchant.VIEW)"
-              type="link"
-              size="small"
-              @click="handleBind(row)"
-            >
-              {{ $t('payment.device.terminal.bindManage') }}
-            </a-button>
-            <a-button
               v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)"
               type="link"
               size="small"
-              danger
-              @click="handleDelete(row)"
+              @click="handleRegister(row)"
             >
-              {{ $t('common.delete') }}
+              {{ $t('payment.device.terminal.register') }}
             </a-button>
+            <a-dropdown :menu="getActionMenu(row)">
+              <a-button type="link" size="small">
+                {{ $t('common.more') }}
+                <IconifyIcon icon="ant-design:down-outlined" class="inline" />
+              </a-button>
+            </a-dropdown>
           </a-space>
         </template>
       </vxe-column>
@@ -238,6 +310,6 @@
     </div>
 
     <ChannelTerminalEdit ref="editRef" @ok="queryPage" />
-    <ChannelTerminalBindDrawer ref="bindRef" />
+    <ChannelTerminalRegisterModal ref="registerRef" @ok="queryPage" />
   </a-drawer>
 </template>

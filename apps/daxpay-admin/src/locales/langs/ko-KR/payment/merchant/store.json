@@ -39,8 +39,6 @@
   },
   "card": {
     "storeNoPrefix": "매장 번호: {storeNo}",
-    "defaultAppLine": "기본 앱: {app}",
-    "defaultAppFollow": "기본 앱: 가맹점 기본값 따름",
     "enterWorkbench": "워크벤치 열기"
   },
   "list": {
@@ -51,9 +49,11 @@
   },
   "bind": {
     "kindQrcode": "QR코드",
+    "kindTerminal": "시스템 단말",
     "alertTemplate": "매장에 할당되지 않은 {kind}만 표시됩니다. 선택하여 이 매장에 바인딩하세요",
     "columnCode": "QR코드 번호",
     "columnDeviceNo": "디바이스 번호",
+    "columnTerminalNo": "단말 번호",
     "columnName": "이름",
     "columnApp": "연결된 앱",
     "allApps": "전체 앱",
@@ -61,8 +61,11 @@
     "okWithCount": "바인딩({count})",
     "selectFirstDevice": "먼저 디바이스를 선택하세요",
     "selectFirstQrcode": "먼저 QR코드를 선택하세요",
+    "selectFirstTerminal": "먼저 단말을 선택하세요",
     "successDevice": "{count}대의 결제 디바이스를 매장 '{store}'에 바인딩했습니다",
-    "successQrcode": "{count}장의 QR코드를 매장 '{store}'에 바인딩했습니다"
+    "successQrcode": "{count}장의 QR코드를 매장 '{store}'에 바인딩했습니다",
+    "successTerminal": "시스템 단말 {count}대를 매장 '{store}'에 바인딩했습니다",
+    "confirmBindDefaultTerminal": "선택한 단말에 매장 기본 단말이 포함되어 있습니다. 이 매장에 바인딩하면 기본 표시가 해제됩니다. 계속하시겠습니까?"
   },
   "workbench": {
     "title": "매장 워크벤치",
@@ -75,14 +78,22 @@
     "tileDeviceDesc": "이 매장에 바인딩된 결제 디바이스 대장 및 운영",
     "tileQrcode": "QR코드 목록",
     "tileQrcodeDesc": "이 매장에 바인딩된 QR코드 목록 및 설정",
+    "tileTerminal": "시스템 단말",
+    "tileTerminalDesc": "이 매장의 시스템 단말 및 기본 단말 관리",
     "tileBindDevice": "결제 디바이스를 이 매장에 바인딩",
     "tileBindDeviceDesc": "매장에 할당되지 않은 결제 디바이스 선택",
     "tileBindQrcode": "QR코드를 이 매장에 바인딩",
     "tileBindQrcodeDesc": "매장에 바인딩되지 않은 QR코드 선택",
+    "tileBindTerminal": "단말을 이 매장에 바인딩",
+    "tileBindTerminalDesc": "이 가맹점에서 매장이 할당되지 않은 시스템 단말 선택",
     "tileDefaultApp": "기본 앱",
     "tileDefaultAppStore": "이 매장 지정: {name}",
     "tileDefaultAppFollow": "가맹점 기본값 따름: {name}",
     "tileDefaultAppNone": "기본 앱이 설정되지 않았습니다. 클릭하여 설정",
+    "tileDefaultTerminal": "기본 단말",
+    "tileDefaultTerminalSet": "{name} ({no})",
+    "tileDefaultTerminalDisabledSuffix": " 비활성화",
+    "tileDefaultTerminalNone": "설정되지 않았습니다. 클릭하여 선택",
     "tileStoreInfo": "매장 정보",
     "tileStoreInfoDesc": "매장 이름, 주소, 연락처 등 기본 정보 관리",
     "tileDefaultStoreActiveDesc": "현재 기본 매장입니다. 클릭하여 해제",
@@ -92,10 +103,19 @@
     "noActions": "사용 가능한 작업이 없습니다",
     "countUnitDevice": "대",
     "countUnitQrcode": "장",
+    "countUnitTerminal": "대",
     "setAppTitle": "기본 결제 앱 설정",
     "confirmClearAppNoMchDefault": "이 가맹점은 기본 앱이 설정되지 않았습니다. 비우면 QR코드 등 매장 단위 결제 진입점에 사용 가능한 앱이 없게 됩니다. 비우시겠습니까?",
     "confirmClearDefaultStore": "해제하면 매장을 지정하지 않은 거래가 기본 매장으로 폴백되지 않아 결제가 실패할 수 있습니다. 해제하시겠습니까?",
     "setDefaultOk": "기본 매장으로 설정했습니다",
-    "clearDefaultOk": "기본 매장을 해제했습니다"
+    "clearDefaultOk": "기본 매장을 해제했습니다",
+    "defaultTerminalTitle": "기본 단말 설정",
+    "defaultTerminalTitleWithStore": "기본 단말 설정 · {store}",
+    "defaultTerminalTip": "단말 번호 없는 결제는 이 매장의 기본 단말로 대체됩니다. 같은 매장의 다른 기본 표시는 해제됩니다",
+    "defaultTerminalEmpty": "이 매장에 시스템 단말이 없습니다. 시스템 단말 목록에서 할당하거나 \"단말을 이 매장에 바인딩\"을 사용하세요",
+    "defaultTerminalPlaceholder": "선택하지 않으면 기본 단말을 설정하지 않습니다",
+    "defaultTerminalClearTip": "선택을 비우면 이 매장의 현재 기본 단말 표시도 해제됩니다",
+    "defaultTerminalSetOk": "매장 기본 단말로 설정했습니다",
+    "defaultTerminalClearOk": "매장 기본 단말을 해제했습니다"
   }
 }

@@ -23,6 +23,8 @@
 
   const storeOptions = ref<LabelValue[]>([]);
   const editTerminalNo = ref('');
+  // 编辑态回显: 是否所属门店的默认终端(只读展示, 设置/取消默认入口在门店工作台)
+  const editDefaultTerminal = ref(false);
   // 锁定的商户号(由列表页传入；后端仍强制 PaymentContext)
   const lockedMchNo = ref<string>('');
 
@@ -52,6 +54,7 @@
   function resetForm() {
     formState.value = { name: '', enable: true };
     editTerminalNo.value = '';
+    editDefaultTerminal.value = false;
     storeOptions.value = [];
     formRef.value?.resetFields();
   }
@@ -85,6 +88,7 @@
         remark: row.remark,
       };
       editTerminalNo.value = row.terminalNo || '';
+      editDefaultTerminal.value = !!row.defaultTerminal;
       await loadStoreOptions(row.storeNo);
     } finally {
       confirmLoading.value = false;
@@ -124,6 +128,10 @@
     <a-form ref="formRef" :model="formState" :rules="formRules" :label-col="{ span: 6 }" :wrapper-col="{ span: 16 }">
       <a-form-item v-if="!addable" :label="$t('payment.device.terminal.field.terminalNo')">
         <a-input :value="editTerminalNo" disabled />
+      </a-form-item>
+      <!-- 默认终端只读回显(设置/取消默认入口在门店工作台) -->
+      <a-form-item v-if="!addable && editDefaultTerminal" :label="$t('payment.device.terminal.field.defaultTerminal')">
+        <a-tag color="processing" class="!m-0">{{ $t('common.yes') }}</a-tag>
       </a-form-item>
       <a-form-item :label="$t('payment.device.terminal.field.name')" name="name">
         <a-input v-model:value="formState.name" :placeholder="$t('common.pleaseInput')" />

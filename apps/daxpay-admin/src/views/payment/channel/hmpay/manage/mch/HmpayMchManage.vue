@@ -11,7 +11,7 @@
 
   import { HmpayChannelMerchantApi } from '#/api/payment/channel/hmpay/channel-merchant.api';
   import HmpayMchConfigEdit from '#/views/payment/channel/hmpay/config/HmpayMchConfigEdit.vue';
-  import TerminalCardPlaceholder from '#/views/payment/device/terminal/channel/TerminalCardPlaceholder.vue';
+  import TerminalManageCard from '#/views/payment/device/terminal/channel/TerminalManageCard.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/global/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
   import CommonChannelMerchantBasicInfo from '#/views/payment/global/channel-merchant/detail/CommonChannelMerchantBasicInfo.vue';
   import WxChannelAppCapability from '#/views/payment/wx/channel/WxChannelAppCapability.vue';
@@ -22,7 +22,7 @@
   interface FunctionGroup {
     group: string;
     color: string;
-    /** 是否在本组末尾追加终端台账占位卡 */
+    /** 是否在本组末尾追加终端台账卡 */
     terminal?: boolean;
     cards: { key: string; title: string; icon: string; description: string }[];
   }
@@ -96,7 +96,7 @@
       ],
     },
     {
-      // 终端台账占位分组(开发中, 待通道差异化字段定稿后接入正式卡片)
+      // 终端台账分组(通道侧终端登记/手动调整/绑定维护)
       group: $t('payment.merchant.channelMerchant.groupTerminal'),
       color: 'gray',
       terminal: true,
@@ -212,7 +212,7 @@
             :class="getGroupColorClass(group.color)"
           ></div>
         </a-card>
-        <TerminalCardPlaceholder v-if="group.terminal" />
+        <TerminalManageCard v-if="group.terminal" :mch-no="mchNo" :channel-mch-no="channelMchNo" />
       </div>
     </div>
 

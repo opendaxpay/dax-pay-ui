@@ -22,16 +22,16 @@
 
   import MchStoreInfoEdit from '../MchStoreInfoEdit.vue';
   import StoreBindModal from './StoreBindModal.vue';
+  import StoreTerminalDefaultModal from './StoreTerminalDefaultModal.vue';
 
   /**
    * 门店详情工作台(运营端隐藏子页, 从门店管理卡片墙「进入工作台」进入)
    *
    * 形态对齐商户工作台同款顶栏 + 分组磁贴卡片:
-   * 收银与设备分组(码牌计数来自 overview, 收款设备计数经虚拟设备分页接口 total 静默取数)
-   * + 快捷绑定入口(商户名下未分配门店的码牌一键绑到本店)
-   * + 默认设置组(默认应用) + 门店管理组(门店信息/默认门店/删除)。
-   * 开源版裁剪(对照 plus): 无云音箱/云打印/系统终端/默认终端与打印模板域;
-   * 收款设备运营端无调整门店端点, 快捷绑定仅码牌一类。
+   * 收银与设备分组(码牌/系统终端计数来自 overview, 收款设备计数经虚拟设备分页接口 total 静默取数)
+   * + 快捷绑定入口(商户名下未分配门店的收款设备/码牌/系统终端一键绑到本店)
+   * + 默认设置组(默认应用/默认终端) + 门店管理组(门店信息/默认门店/删除)。
+   * 开源版裁剪(对照 plus): 无云音箱/云打印与打印模板域。
    */
   defineOptions({ name: 'StoreWorkbench' });
 
@@ -84,6 +84,8 @@
   const deviceCount = ref<number | undefined>(undefined);
   const storeEditRef = ref<InstanceType<typeof MchStoreInfoEdit>>();
   const bindModalRef = ref<InstanceType<typeof StoreBindModal>>();
+  // 默认终端设置弹窗(默认设置组一级操作)
+  const terminalDefaultRef = ref<InstanceType<typeof StoreTerminalDefaultModal>>();
 
   // 默认支付应用设置弹窗(工作台一级操作)
   const appModalOpen = ref(false);
@@ -124,8 +126,27 @@
         countUnit: $t('payment.merchant.store.workbench.countUnitQrcode'),
       });
     }
-    // 快捷绑定卡(弹窗内选商户名下未分配门店的码牌绑到本店)
+    if (hasPermission(PermCodes.Merchant.Terminal.VIEW)) {
+      cashierCards.push({
+        key: 'terminal',
+        // 系统终端
+        title: $t('payment.merchant.store.workbench.tileTerminal'),
+        icon: 'ant-design:monitor-outlined',
+        description: $t('payment.merchant.store.workbench.tileTerminalDesc'),
+        count: o.terminalCount,
+        countUnit: $t('payment.merchant.store.workbench.countUnitTerminal'),
+      });
+    }
+    // 快捷绑定卡(弹窗内选商户名下未分配门店的收款设备/码牌/系统终端绑到本店)
     const bindCards: WorkbenchCard[] = [];
+    if (hasPermission(PermCodes.Device.Virtual.MANAGE)) {
+      bindCards.push({
+        key: 'bindDevice',
+        title: $t('payment.merchant.store.workbench.tileBindDevice'),
+        icon: 'ant-design:link-outlined',
+        description: $t('payment.merchant.store.workbench.tileBindDeviceDesc'),
+      });
+    }
     if (hasPermission(PermCodes.Device.QrCode.MANAGE)) {
       bindCards.push({
         key: 'bindQrcode',
@@ -134,7 +155,15 @@
         description: $t('payment.merchant.store.workbench.tileBindQrcodeDesc'),
       });
     }
-    // 默认设置组(一级操作: 默认应用, 当前值直接写在卡片描述上)
+    if (hasPermission(PermCodes.Merchant.Terminal.MANAGE)) {
+      bindCards.push({
+        key: 'bindTerminal',
+        title: $t('payment.merchant.store.workbench.tileBindTerminal'),
+        icon: 'lucide:link-2',
+        description: $t('payment.merchant.store.workbench.tileBindTerminalDesc'),
+      });
+    }
+    // 默认设置组(一级操作: 默认应用/默认终端, 当前值直接写在卡片描述上)
     const defaultCards: WorkbenchCard[] = [];
     if (canManageStore.value) {
       defaultCards.push({
@@ -150,6 +179,23 @@
                 name: o.mchDefaultAppName || o.mchDefaultAppId,
               })
             : $t('payment.merchant.store.workbench.tileDefaultAppNone'),
+      });
+    }
+    if (hasPermission(PermCodes.Merchant.Terminal.MANAGE)) {
+      defaultCards.push({
+        key: 'defaultTerminal',
+        title: $t('payment.merchant.store.workbench.tileDefaultTerminal'),
+        icon: 'ant-design:desktop-outlined',
+        // 当前默认终端名(号), 停用态追加后缀, 未设置给引导文案
+        description: o.defaultTerminalNo
+          ? $t('payment.merchant.store.workbench.tileDefaultTerminalSet', {
+              name: o.defaultTerminalName || o.defaultTerminalNo,
+              no: o.defaultTerminalNo,
+            }) +
+            (o.defaultTerminalEnable === false
+              ? $t('payment.merchant.store.workbench.tileDefaultTerminalDisabledSuffix')
+              : '')
+          : $t('payment.merchant.store.workbench.tileDefaultTerminalNone'),
       });
     }
     // 门店编辑入口卡片化(顶栏不放「编辑」按钮, 对齐商户工作台管理操作先例)
@@ -258,7 +304,7 @@
   }
 
   /**
-   * 加载门店概况聚合(码牌计数徽标)
+   * 加载门店概况聚合(码牌/系统终端计数徽标)
    */
   async function loadOverview() {
     const { data } = await MchStoreInfoApi.overview(storeId.value);
@@ -392,12 +438,13 @@
 
   /**
    * 卡片点击分发: 对象卡跳对应列表页并预置商户+门店筛选, 快捷绑定卡开弹窗,
-   * 默认应用卡开设置弹窗, 门店信息卡开编辑抽屉, 删除卡经二次确认后删除门店
+   * 默认应用/默认终端卡开设置弹窗, 门店信息卡开编辑抽屉, 删除卡经二次确认后删除门店
    */
   function handleCardClick(card: WorkbenchCard) {
     const routeMap: Record<string, string> = {
       device: '/device/virtual/list',
       qrcode: '/device/qrcode',
+      terminal: '/payment/device/terminal/system',
     };
     const target = routeMap[card.key];
     if (target) {
@@ -408,9 +455,12 @@
       return;
     }
     switch (card.key) {
-      case 'bindQrcode': {
-        // 快捷绑定弹窗(码牌)
-        bindModalRef.value?.show({
+      case 'bindDevice':
+      case 'bindQrcode':
+      case 'bindTerminal': {
+        // 快捷绑定弹窗(收款设备/码牌/系统终端)
+        const bindMode = card.key === 'bindQrcode' ? 'qrcode' : card.key === 'bindTerminal' ? 'terminal' : 'device';
+        bindModalRef.value?.show(bindMode, {
           mchNo: mchNo.value!,
           storeNo: storeNo.value!,
           storeName: storeInfo.value.storeName,
@@ -427,6 +477,15 @@
         } else {
           handleSetDefaultStore();
         }
+        break;
+      }
+      case 'defaultTerminal': {
+        // 设置默认终端弹窗
+        terminalDefaultRef.value?.show({
+          mchNo: mchNo.value!,
+          storeNo: storeNo.value!,
+          storeName: storeInfo.value.storeName,
+        });
         break;
       }
       case 'deleteStore': {
@@ -599,6 +658,7 @@
 
     <MchStoreInfoEdit ref="storeEditRef" @ok="handleRefresh" />
     <StoreBindModal ref="bindModalRef" @ok="handleRefresh" />
+    <StoreTerminalDefaultModal ref="terminalDefaultRef" @ok="handleRefresh" />
   </div>
 </template>
 

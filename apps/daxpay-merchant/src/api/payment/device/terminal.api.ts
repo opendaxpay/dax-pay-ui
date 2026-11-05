@@ -5,7 +5,8 @@ import { defHttp } from '#/api/request';
 /**
  * 系统终端 API（商户端 /mch/device/terminal/system/*）
  *
- * 后端强制 mchNo=PaymentContext；绑定候选通道终端走同前缀 channel-terminal-list。
+ * 后端强制 mchNo=PaymentContext；绑定关系在通道终端登记(运营端)时建立与维护，
+ * 商户端仅保留已绑定通道终端的只读查询(bound-channel-list)。
  */
 export const TerminalDeviceApi = {
   /** 分页 */
@@ -34,24 +35,24 @@ export const TerminalDeviceApi = {
   delete(id: string): Promise<Result<void>> {
     return defHttp.post({ url: '/mch/device/terminal/system/delete', params: { id } });
   },
-  /** 绑定通道终端 */
-  bind(data: TerminalChannelBindParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/mch/device/terminal/system/bind', data });
-  },
-  /** 解绑通道终端 */
-  unbind(data: TerminalChannelBindParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/mch/device/terminal/system/unbind', data });
-  },
-  /** 已绑定通道终端 */
+  /** 已绑定通道终端(只读) */
   boundChannelList(terminalNo: string): Promise<Result<ChannelTerminalResult[]>> {
     return defHttp.get({
       url: '/mch/device/terminal/system/bound-channel-list',
       params: { terminalNo },
     });
   },
-  /** 当前商户通道终端候选（绑定用） */
-  channelTerminalList(): Promise<Result<ChannelTerminalResult[]>> {
-    return defHttp.get({ url: '/mch/device/terminal/system/channel-terminal-list' });
+  /** 设为门店默认终端(同门店唯一, 后端先清后设) */
+  setDefault(id: string): Promise<Result<void>> {
+    return defHttp.post({ url: '/mch/device/terminal/system/set-default', data: { id } });
+  },
+  /** 取消门店默认终端 */
+  clearDefault(id: string): Promise<Result<void>> {
+    return defHttp.post({ url: '/mch/device/terminal/system/clear-default', data: { id } });
+  },
+  /** 批量绑定门店(本商户未分配门店的系统终端绑到目标门店) */
+  bindStoreBatch(data: TerminalBindStoreBatchParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/mch/device/terminal/system/bind-store-batch', data });
   },
 };
 
@@ -61,6 +62,8 @@ export interface TerminalDeviceQuery {
   name?: string;
   storeNo?: string;
   enable?: boolean;
+  /** 仅未分配门店的终端(由后端转 store_no IS NULL, 门店工作台快捷绑定筛选用) */
+  storeUnassigned?: boolean;
 }
 
 /** 系统终端参数 */
@@ -83,6 +86,16 @@ export interface TerminalDeviceResult extends BaseEntity {
   storeName?: string;
   enable?: boolean;
   remark?: string;
+  /** 是否所属门店的默认终端(设置/取消默认入口在门店工作台) */
+  defaultTerminal?: boolean;
+}
+
+/** 系统终端批量绑定门店参数 */
+export interface TerminalBindStoreBatchParam {
+  /** 系统终端主键列表 */
+  terminalIds: string[];
+  /** 目标门店号 */
+  storeNo: string;
 }
 
 /** 通道终端结果（绑定抽屉展示） */
@@ -98,10 +111,4 @@ export interface ChannelTerminalResult extends BaseEntity {
   remark?: string;
   mchNo?: string;
   mchName?: string;
-}
-
-/** 绑定参数 */
-export interface TerminalChannelBindParam {
-  systemTerminalNo: string;
-  channelTerminalId: string;
 }

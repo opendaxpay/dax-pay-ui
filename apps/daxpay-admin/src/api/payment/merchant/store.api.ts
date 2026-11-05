@@ -175,4 +175,12 @@ export interface StoreOverviewResult {
   mchDefaultAppName?: null | string;
   /** 绑定本店的码牌数 */
   qrCodeCount?: number;
+  /** 绑定本店的系统终端数 */
+  terminalCount?: number;
+  /** 本店默认终端号(未设置为 null) */
+  defaultTerminalNo?: null | string;
+  /** 本店默认终端名称(未设置为 null) */
+  defaultTerminalName?: null | string;
+  /** 本店默认终端是否启用(未设置为 null) */
+  defaultTerminalEnable?: boolean | null;
 }
