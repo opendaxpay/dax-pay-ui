@@ -28,6 +28,5 @@
   },
   "amountRangeWarning": "Jumlah harus antara 0,01 hingga 999999,99",
   "announceSent": "Perintah uji siaran terkirim, perangkat akan mengumumkan dengan jumlah dan metode yang dipilih",
-  "announcePreviewed": "Teks pengumuman pratinjau telah dibuat (hanya pratinjau, tidak dikirim ke perangkat)",
   "printSent": "Perintah uji cetak terkirim, silakan periksa printer"
 }

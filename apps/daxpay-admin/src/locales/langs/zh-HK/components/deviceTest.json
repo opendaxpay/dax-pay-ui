@@ -28,6 +28,5 @@
   },
   "amountRangeWarning": "金額須在 0.01~999999.99 元之間",
   "announceSent": "試播指令已下發, 設備將按所選金額與方式播報",
-  "announcePreviewed": "已產生預計播報文案(營運端僅預覽, 不下發設備)",
   "printSent": "試打指令已下發, 請查看印表機"
 }

@@ -70,7 +70,14 @@ export const VirtualDeviceApi = {
   },
 
   /**
-   * 试播文案预览(平台镜像终端词元规则, 返回预计播报文本; 运营端为纯预览, 不下发设备)
+   * 试播(下发 audio.test 指令, 设备按所选金额与方式播报, 返回 msgId 供回执比对)
+   */
+  test(data: DeviceTestParam): Promise<Result<string>> {
+    return defHttp.post({ url: '/admin/device/virtual/test', data });
+  },
+
+  /**
+   * 试播文案预览(平台镜像终端词元规则, 返回预计播报文本; 仅弹窗内展示, 不下发设备)
    */
   testSpeech(params: { amountFen?: number; channel?: string }): Promise<Result<string>> {
     return defHttp.get({ url: '/admin/device/virtual/test-speech', params });

@@ -28,6 +28,5 @@
   },
   "amountRangeWarning": "Số tiền phải từ 0.01~999999.99",
   "announceSent": "Đã gửi lệnh thử giọng nói, thiết bị sẽ thông báo theo số tiền và phương thức đã chọn",
-  "announcePreviewed": "Đã tạo văn bản thông báo dự kiến (chỉ xem trước, không gửi xuống thiết bị)",
   "printSent": "Đã gửi lệnh thử in, vui lòng kiểm tra máy in"
 }

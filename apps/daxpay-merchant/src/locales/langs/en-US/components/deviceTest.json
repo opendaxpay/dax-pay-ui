@@ -28,6 +28,5 @@
   },
   "amountRangeWarning": "Amount must be between 0.01 and 999999.99",
   "announceSent": "Test speech command sent, the device will announce with the selected amount and method",
-  "announcePreviewed": "Preview text generated (preview only, not sent to device)",
   "printSent": "Test print command sent, please check the printer"
 }

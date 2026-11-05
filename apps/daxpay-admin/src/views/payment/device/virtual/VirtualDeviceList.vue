@@ -240,7 +240,7 @@
   }
 
   /**
-   * 试播预计文案取数(运营端 test-speech 为纯预览端点, 不下发设备; 随参数防抖刷新)
+   * 试播预计文案取数(仅弹窗内展示「预计播报」, 不下发设备; 随参数防抖刷新)
    */
   function fetchTestSpeech(amountFen: number, channel: string): Promise<string> {
     return VirtualDeviceApi.testSpeech({ amountFen, channel }).then((res) => res.data ?? '');
@@ -248,13 +248,10 @@
 
   /**
    * 试播/试打弹窗下发: 按模式适配端点
-   * (试播走 test-speech 纯文案预览——运营端无下发试播端点; 试打走 test-print 真下发)
+   * (试播走 test 真下发 audio.test, 试打走 test-print 真下发)
    */
   function submitTest(param: DeviceTestParam): Promise<string> {
-    const request =
-      testMode.value === 'announce'
-        ? VirtualDeviceApi.testSpeech({ amountFen: param.amountFen, channel: param.channel })
-        : VirtualDeviceApi.testPrint(param);
+    const request = testMode.value === 'announce' ? VirtualDeviceApi.test(param) : VirtualDeviceApi.testPrint(param);
     return request.then((res) => res.data ?? '');
   }
 
@@ -442,10 +439,9 @@
     <!-- 激活二维码弹窗(扫码完成服务器配置+设备绑定) -->
     <ActivationQrModal ref="activationQrRef" />
 
-    <!-- 试播/试打弹窗(参数化: 金额/收款方式/输出模式/单号/版式; 试播为纯预览, 成功提示走预览口径) -->
+    <!-- 试播/试打弹窗(参数化: 金额/收款方式/输出模式/单号/版式; 试播为真下发, 弹窗内另附预计播报文案) -->
     <DeviceTestDialog
       v-model:open="testOpen"
-      announce-success-key="components.deviceTest.announcePreviewed"
       :device-id="testDevice?.id || undefined"
       :device-no="testDevice?.deviceNo ?? undefined"
       :fetch-speech="fetchTestSpeech"

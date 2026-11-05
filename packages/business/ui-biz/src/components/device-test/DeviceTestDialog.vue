@@ -24,7 +24,7 @@
 
   const props = withDefaults(
     defineProps<{
-      /** 试播提交成功提示文案 key(默认「指令已下发」口径; 运营端 test-speech 为纯预览端点, 传预览口径词条) */
+      /** 试播提交成功提示文案 key(默认「指令已下发」口径; 调用端如需自定义提示可传) */
       announceSuccessKey?: string;
       /** 设备主键 */
       deviceId?: string;
