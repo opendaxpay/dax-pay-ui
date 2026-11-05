@@ -40,6 +40,8 @@ export interface OnlineUser {
   account?: string;
   /** 终端编码 */
   clientCode?: string;
+  /** 终端形态: web/app/elf */
+  terminal?: string;
   /** 登录时间 */
   loginTime?: string;
 }

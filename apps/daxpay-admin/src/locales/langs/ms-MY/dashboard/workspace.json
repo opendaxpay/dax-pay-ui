@@ -69,7 +69,8 @@
     "riskStrategy": "Strategi Risiko",
     "riskBlacklist": "Blacklist",
     "riskHit": "Risk Hits",
-    "qrCodeList": "Pengurusan Kod QR"
+    "qrCodeList": "Pengurusan Kod QR",
+    "mobileApp": "Pengurusan Apl Mudah Alih"
   },
   "notice": {
     "important": "penting",

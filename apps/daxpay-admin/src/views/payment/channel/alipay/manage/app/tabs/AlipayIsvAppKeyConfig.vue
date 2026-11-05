@@ -284,12 +284,10 @@
                   {{ $t('payment.channel.alipayIsv.uploadAppCert') }}
                 </a-button>
               </a-upload>
-              <a-tooltip
-                v-else
-                :title="truncateContent(formState.appCert || '')"
-                placement="top"
-                :mouse-enter-delay="0.3"
-              >
+              <a-tooltip v-else placement="top" :mouse-enter-delay="0.3">
+                <template #title>
+                  <pre class="m-0 max-w-[480px] whitespace-pre-wrap break-all font-mono text-xs">{{ truncateContent(formState.appCert || '') }}</pre>
+                </template>
                 <a-input value="appCert.crt" disabled>
                   <template #suffix>
                     <span v-if="isEditing" class="cursor-pointer text-gray-400" @click="formState.appCert = ''">
@@ -316,12 +314,10 @@
                   {{ $t('payment.channel.alipayIsv.uploadAlipayCert') }}
                 </a-button>
               </a-upload>
-              <a-tooltip
-                v-else
-                :title="truncateContent(formState.alipayCert || '')"
-                placement="top"
-                :mouse-enter-delay="0.3"
-              >
+              <a-tooltip v-else placement="top" :mouse-enter-delay="0.3">
+                <template #title>
+                  <pre class="m-0 max-w-[480px] whitespace-pre-wrap break-all font-mono text-xs">{{ truncateContent(formState.alipayCert || '') }}</pre>
+                </template>
                 <a-input value="alipayCert.crt" disabled>
                   <template #suffix>
                     <span v-if="isEditing" class="cursor-pointer text-gray-400" @click="formState.alipayCert = ''">
@@ -348,12 +344,10 @@
                   {{ $t('payment.channel.alipayIsv.uploadRootCert') }}
                 </a-button>
               </a-upload>
-              <a-tooltip
-                v-else
-                :title="truncateContent(formState.alipayRootCert || '')"
-                placement="top"
-                :mouse-enter-delay="0.3"
-              >
+              <a-tooltip v-else placement="top" :mouse-enter-delay="0.3">
+                <template #title>
+                  <pre class="m-0 max-w-[480px] whitespace-pre-wrap break-all font-mono text-xs">{{ truncateContent(formState.alipayRootCert || '') }}</pre>
+                </template>
                 <a-input value="alipayRootCert.crt" disabled>
                   <template #suffix>
                     <span v-if="isEditing" class="cursor-pointer text-gray-400" @click="formState.alipayRootCert = ''">

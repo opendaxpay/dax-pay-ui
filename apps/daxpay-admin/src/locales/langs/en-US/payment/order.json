@@ -86,6 +86,7 @@
     "orderNo": "Platform Order No.",
     "merchant": "Merchant",
     "storeNo": "Store No.",
+    "qrCode": "QR Code No.",
     "gatewayType": "Gateway Type",
     "allocNo": "Allocation No",
     "bizAllocNo": "Merchant Allocation No",

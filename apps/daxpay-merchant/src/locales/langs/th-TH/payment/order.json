@@ -85,6 +85,7 @@
     "orderNo": "Platform Order No.",
     "gatewayType": "ประเภทเกตเวย์",
     "storeNo": "รหัสร้าน",
+    "qrCode": "รหัสคิวอาร์",
     "allocNo": "เลขที่การแบ่ง",
     "bizAllocNo": "เลขที่การแบ่งผู้ค้า",
     "outAllocNo": "เลขที่การแบ่งช่องทาง",

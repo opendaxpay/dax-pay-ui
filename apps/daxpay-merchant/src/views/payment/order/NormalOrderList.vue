@@ -9,7 +9,7 @@
   import { formatDateTime } from '@vben/utils';
 
   import { currencyLabel } from '@daxpay/ui-biz/utils/currency';
-  import { buildExportFileName } from '@daxpay/ui-biz/utils/export-download';
+  import { buildExportFileName, confirmExport } from '@daxpay/ui-biz/utils/export-download';
   import { formatFen as formatAmount } from '@daxpay/ui-biz/utils/pay-amount';
 
   import { MchAppInfoApi } from '#/api/payment/merchant/mch-app-info.api';
@@ -41,6 +41,10 @@
 
   // 导出当前查询条件下的数据(时间列由后端按当前用户时区格式化)
   async function handleExport() {
+    // 重操作, 先二次确认并复核当前条件的数据量
+    if (!(await confirmExport(pageConfig.value.total))) {
+      return;
+    }
     exporting.value = true;
     // 失败提示已由 downloadExportFile 统一弹出, 此处只复位按钮状态
     await NormalOrderApi.exportExcel(queryForm.value, {
@@ -392,6 +396,10 @@
           <!-- 通道侧终端号(通道回报的终端号) -->
           <a-descriptions-item :label="$t('payment.order.field.outTerminalNo')">
             {{ detail.outTerminalNo || '-' }}
+          </a-descriptions-item>
+          <!-- 码牌编码(收款码牌) -->
+          <a-descriptions-item :label="$t('payment.order.field.qrCode')">
+            {{ detail.qrCode || '-' }}
           </a-descriptions-item>
         </a-descriptions>
 

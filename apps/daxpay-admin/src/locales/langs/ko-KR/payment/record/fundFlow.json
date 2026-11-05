@@ -7,7 +7,10 @@
   "title": "자금 흐름",
   "action": {
     "export": "내보내기",
-    "exportFailed": "내보내기에 실패했습니다. 잠시 후 다시 시도해 주세요"
+    "exportFailed": "내보내기에 실패했습니다. 잠시 후 다시 시도해 주세요",
+    "timeRangeRequired": "내보내기 기간은 필수입니다(시작 및 종료 시간 모두 필요)",
+    "timeRangeInvalid": "내보내기 시작 시간은 종료 시간보다 늦을 수 없습니다",
+    "timeRangeTooLong": "내보내기 기간은 90일을 초과할 수 없습니다"
   },
   "field": {
     "createTime": "생성 시간"

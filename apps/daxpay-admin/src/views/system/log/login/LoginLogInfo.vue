@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { ref } from 'vue';
+  import { computed, ref } from 'vue';
 
   import { $t } from '@vben/locales';
   import { formatDateTime } from '@vben/utils';
@@ -9,6 +9,20 @@
   let data = ref<Partial<LoginLog>>({});
   let visible = ref(false);
   let confirmLoading = ref(false);
+
+  // 终端形态展示映射(与列表页一致, 未知/旧数据回退 -)
+  const terminalNameMap = computed<Record<string, string>>(() => ({
+    web: $t('system.log.login-log.terminalWeb'),
+    app: $t('system.log.login-log.terminalApp'),
+    elf: $t('system.log.login-log.terminalElf'),
+  }));
+
+  /**
+   * 终端形态展示名(空/未知回退 -)
+   */
+  function formatTerminal(terminal?: string) {
+    return (terminal && terminalNameMap.value[terminal]) || '-';
+  }
 
   /**
    * 显示详情
@@ -57,6 +71,10 @@
         <!-- 终端 -->
         <a-descriptions-item :label="$t('system.log.login-log.client')">
           {{ data.client }}
+        </a-descriptions-item>
+        <!-- 终端形态 -->
+        <a-descriptions-item :label="$t('system.log.login-log.terminal')">
+          {{ formatTerminal(data.terminal) }}
         </a-descriptions-item>
         <!-- 登录方式 -->
         <a-descriptions-item :label="$t('system.log.login-log.loginType')">

@@ -74,6 +74,32 @@ export function buildExportFileName(label: string, range?: { end?: string; start
   return dates.length > 0 ? `${label}_${dates.join('_')}.xlsx` : `${label}.xlsx`;
 }
 
+/**
+ * 导出前二次确认
+ *
+ * 导出是重操作(服务端内存生成 xlsx), 统一在触发前弹确认并展示导出条数,
+ * 供用户复核当前筛选条件, 避免宽条件误触发全量导出。
+ *
+ * @param count 导出条数(拿不到时不显示条数)
+ * @param scope 导出范围描述, 默认「当前查询条件下的全部数据」
+ * @returns 用户是否确认导出
+ */
+export function confirmExport(count?: number, scope?: string): Promise<boolean> {
+  const { confirm } = useMessage();
+  const scopeText = scope || $t('payment.common.export.scopeAll');
+  return new Promise((resolve) => {
+    confirm({
+      title: $t('payment.common.export.confirmTitle'),
+      content:
+        count == null
+          ? $t('payment.common.export.confirmOnly', { scope: scopeText })
+          : $t('payment.common.export.confirmWithCount', { scope: scopeText, count }),
+      onOk: () => resolve(true),
+      onCancel: () => resolve(false),
+    });
+  });
+}
+
 /** 解析以 Blob 形式返回的 JSON 错误体 */
 async function parseJsonBlob(blob: Blob): Promise<any> {
   try {

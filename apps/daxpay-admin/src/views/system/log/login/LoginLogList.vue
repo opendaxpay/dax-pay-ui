@@ -64,6 +64,13 @@
     { label: $t('common.fail'), value: false },
   ]);
 
+  // 终端形态展示映射(web=PC Web端/app=移动端/elf=PC收款精灵)
+  const terminalNameMap = computed<Record<string, string>>(() => ({
+    web: $t('system.log.login-log.terminalWeb'),
+    app: $t('system.log.login-log.terminalApp'),
+    elf: $t('system.log.login-log.terminalElf'),
+  }));
+
   // 查询字段配置
   const queryFields: QueryField[] = [
     {
@@ -105,6 +112,13 @@
     queryForm.value = {};
     pageConfig.value.currentPage = 1;
     queryPage();
+  }
+
+  /**
+   * 终端形态展示名(空/未知回退 -)
+   */
+  function formatTerminal(terminal?: string) {
+    return (terminal && terminalNameMap.value[terminal]) || '-';
   }
 
   /**
@@ -190,6 +204,12 @@
               <a-tag :color="row.login ? 'green' : 'red'">
                 {{ row.login ? $t('common.success') : $t('common.fail') }}
               </a-tag>
+            </template>
+          </vxe-column>
+          <!-- 终端形态 -->
+          <vxe-column field="terminal" :title="$t('system.log.login-log.terminal')" :min-width="110" align="center">
+            <template #default="{ row }">
+              {{ formatTerminal(row.terminal) }}
             </template>
           </vxe-column>
           <!-- 登录IP地址 -->

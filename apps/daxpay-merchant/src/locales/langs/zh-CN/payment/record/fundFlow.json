@@ -7,7 +7,10 @@
   "title": "资金流水",
   "action": {
     "export": "导出",
-    "exportFailed": "导出失败, 请稍后重试"
+    "exportFailed": "导出失败, 请稍后重试",
+    "timeRangeRequired": "导出时间范围必填(开始与结束时间均不能为空)",
+    "timeRangeInvalid": "导出开始时间不能晚于结束时间",
+    "timeRangeTooLong": "导出时间范围不能超过90天"
   },
   "field": {
     "createTime": "创建时间"

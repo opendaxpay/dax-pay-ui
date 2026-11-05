@@ -220,7 +220,10 @@
             {{ $t('payment.mobileApp.fields.uploadAppCert') }}
           </a-button>
         </a-upload>
-        <a-tooltip v-else :title="truncateContent(model.appCert || '')" placement="top" :mouse-enter-delay="0.3">
+        <a-tooltip v-else placement="top" :mouse-enter-delay="0.3">
+          <template #title>
+            <pre class="m-0 max-w-[480px] whitespace-pre-wrap break-all font-mono text-xs">{{ truncateContent(model.appCert || '') }}</pre>
+          </template>
           <a-input value="appCert.crt" disabled>
             <template #suffix>
               <span v-if="!props.disabled" class="cursor-pointer text-gray-400" @click="model.appCert = ''">
@@ -247,7 +250,10 @@
             {{ $t('payment.mobileApp.fields.uploadAlipayCert') }}
           </a-button>
         </a-upload>
-        <a-tooltip v-else :title="truncateContent(model.alipayCert || '')" placement="top" :mouse-enter-delay="0.3">
+        <a-tooltip v-else placement="top" :mouse-enter-delay="0.3">
+          <template #title>
+            <pre class="m-0 max-w-[480px] whitespace-pre-wrap break-all font-mono text-xs">{{ truncateContent(model.alipayCert || '') }}</pre>
+          </template>
           <a-input value="alipayCert.crt" disabled>
             <template #suffix>
               <span v-if="!props.disabled" class="cursor-pointer text-gray-400" @click="model.alipayCert = ''">
@@ -274,7 +280,10 @@
             {{ $t('payment.mobileApp.fields.uploadRootCert') }}
           </a-button>
         </a-upload>
-        <a-tooltip v-else :title="truncateContent(model.alipayRootCert || '')" placement="top" :mouse-enter-delay="0.3">
+        <a-tooltip v-else placement="top" :mouse-enter-delay="0.3">
+          <template #title>
+            <pre class="m-0 max-w-[480px] whitespace-pre-wrap break-all font-mono text-xs">{{ truncateContent(model.alipayRootCert || '') }}</pre>
+          </template>
           <a-input value="alipayRootCert.crt" disabled>
             <template #suffix>
               <span v-if="!props.disabled" class="cursor-pointer text-gray-400" @click="model.alipayRootCert = ''">

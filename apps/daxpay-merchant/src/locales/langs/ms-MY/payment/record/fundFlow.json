@@ -7,7 +7,10 @@
   "title": "Aliran Dana",
   "action": {
     "export": "Eksport",
-    "exportFailed": "Eksport gagal. Silakan cuba lagi kemudian."
+    "exportFailed": "Eksport gagal. Silakan cuba lagi kemudian.",
+    "timeRangeRequired": "Julat masa eksport wajib diisi (masa mula dan tamat tidak boleh kosong)",
+    "timeRangeInvalid": "Masa mula eksport tidak boleh lebih lewat daripada masa tamat",
+    "timeRangeTooLong": "Julat masa eksport tidak boleh melebihi 90 hari"
   },
   "field": {
     "createTime": "Masa Dicipta"

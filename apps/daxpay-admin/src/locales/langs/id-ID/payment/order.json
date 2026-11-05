@@ -87,6 +87,7 @@
     "merchant": "Merchant",
     "gatewayType": "Tipe Gateway",
     "storeNo": "No. Toko",
+    "qrCode": "No. Kode QR",
     "allocNo": "No. Alokasi",
     "bizAllocNo": "No. Alokasi Merchant",
     "outAllocNo": "No. Alokasi Saluran",

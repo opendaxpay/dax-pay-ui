@@ -116,6 +116,7 @@
     "orderNo": "平台业务单号",
     "merchant": "商户",
     "storeNo": "门店号",
+    "qrCode": "码牌编码",
     "allocNo": "分账单号",
     "bizAllocNo": "商户分账单号",
     "outAllocNo": "通道分账单号",

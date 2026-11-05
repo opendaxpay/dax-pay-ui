@@ -15,5 +15,9 @@
   "selectCleanDay": "Làm sạch nhật ký trước",
   "cleanWarning": "Cảnh báo",
   "cleanConfirm": "Bạn có chắc chắn xóa nhật ký trước ngày được chỉ định không? Không thể hoàn tác hành động này.",
-  "cleanSuccess": "Nhật ký được làm sạch thành công"
+  "cleanSuccess": "Nhật ký được làm sạch thành công",
+  "terminal": "Hình thức thiết bị",
+  "terminalWeb": "Web PC",
+  "terminalApp": "Di động",
+  "terminalElf": "Thu ngân PC"
 }

@@ -5,5 +5,9 @@
   "loginTime": "Thời gian đăng nhập",
   "kickout": "Đá luân lưu",
   "batchKickout": "Khai mạc hàng loạt",
-  "confirmKickout": "Bạn có chắc chắn loại bỏ những người dùng đã chọn không?"
+  "confirmKickout": "Bạn có chắc chắn loại bỏ những người dùng đã chọn không?",
+  "terminal": "Hình thức thiết bị",
+  "terminalWeb": "Web PC",
+  "terminalApp": "Di động",
+  "terminalElf": "Thu ngân PC"
 }

@@ -1,3 +1,15 @@
 {
-  "envFollowProductHint": "환경은 채널 가맹점 생성 시 확정되며 여기서 전환할 수 없습니다"
+  "envFollowProductHint": "환경은 채널 가맹점 생성 시 확정되며 여기서 전환할 수 없습니다",
+  "secretStatus": {
+    "configured": "설정됨 · {preview} · 비워 두고 저장하면 기존 값이 유지됩니다",
+    "configuredNoPreview": "설정됨 · 비워 두고 저장하면 기존 값이 유지됩니다",
+    "willReplace": "저장하면 기존 키가 교체됩니다({reference})",
+    "willReplaceNoReference": "저장하면 기존 키가 교체됩니다"
+  },
+  "export": {
+    "confirmTitle": "내보내기 확인",
+    "confirmOnly": "{scope}을(를) 내보내시겠습니까?",
+    "confirmWithCount": "{scope}을(를) 내보내시겠습니까? 총 {count}건",
+    "scopeAll": "현재 조회 조건의 전체 데이터"
+  }
 }

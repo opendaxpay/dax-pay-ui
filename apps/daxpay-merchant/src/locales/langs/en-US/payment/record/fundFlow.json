@@ -7,7 +7,10 @@
   "title": "Fund Flow",
   "action": {
     "export": "Export",
-    "exportFailed": "Export failed. Please try again later."
+    "exportFailed": "Export failed. Please try again later.",
+    "timeRangeRequired": "Export time range is required (start and end time cannot be empty)",
+    "timeRangeInvalid": "Export start time cannot be later than end time",
+    "timeRangeTooLong": "Export time range cannot exceed 90 days"
   },
   "field": {
     "createTime": "Created At"

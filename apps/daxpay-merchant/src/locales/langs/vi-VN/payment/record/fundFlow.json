@@ -7,7 +7,10 @@
   "title": "Dòng tiền",
   "action": {
     "export": "Xuất",
-    "exportFailed": "Xuất thất bại. Vui lòng thử lại sau."
+    "exportFailed": "Xuất thất bại. Vui lòng thử lại sau.",
+    "timeRangeRequired": "Khoảng thời gian xuất là bắt buộc (thời gian bắt đầu và kết thúc không được để trống)",
+    "timeRangeInvalid": "Thời gian bắt đầu xuất không được muộn hơn thời gian kết thúc",
+    "timeRangeTooLong": "Khoảng thời gian xuất không được vượt quá 90 ngày"
   },
   "field": {
     "createTime": "Thời gian tạo"

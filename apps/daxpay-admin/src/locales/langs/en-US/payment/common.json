@@ -1,3 +1,15 @@
 {
-  "envFollowProductHint": "Environment is fixed by the channel merchant at creation and cannot be switched here"
+  "envFollowProductHint": "Environment is fixed by the channel merchant at creation and cannot be switched here",
+  "secretStatus": {
+    "configured": "Configured · {preview} · leave blank to keep the current value",
+    "configuredNoPreview": "Configured · leave blank to keep the current value",
+    "willReplace": "Saving will replace the current key ({reference})",
+    "willReplaceNoReference": "Saving will replace the current key"
+  },
+  "export": {
+    "confirmTitle": "Confirm export",
+    "confirmOnly": "Export {scope}?",
+    "confirmWithCount": "Export {scope}? Total {count} records",
+    "scopeAll": "all data matching the current filters"
+  }
 }

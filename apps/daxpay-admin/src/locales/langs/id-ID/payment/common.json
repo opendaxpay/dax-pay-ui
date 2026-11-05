@@ -1,3 +1,15 @@
 {
-  "envFollowProductHint": "Lingkungan ditentukan saat merchant dibuat dan tidak dapat diubah di sini"
+  "envFollowProductHint": "Lingkungan ditentukan saat merchant dibuat dan tidak dapat diubah di sini",
+  "secretStatus": {
+    "configured": "Terkonfigurasi · {preview} · kosongkan saat menyimpan untuk mempertahankan nilai lama",
+    "configuredNoPreview": "Terkonfigurasi · kosongkan saat menyimpan untuk mempertahankan nilai lama",
+    "willReplace": "Menyimpan akan mengganti kunci lama ({reference})",
+    "willReplaceNoReference": "Menyimpan akan mengganti kunci lama"
+  },
+  "export": {
+    "confirmTitle": "Konfirmasi Ekspor",
+    "confirmOnly": "Ekspor {scope}?",
+    "confirmWithCount": "Ekspor {scope}? Total {count} data",
+    "scopeAll": "semua data sesuai filter saat ini"
+  }
 }

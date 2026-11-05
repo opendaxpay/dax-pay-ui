@@ -15,5 +15,9 @@
   "selectCleanDay": "清除多久前的日志",
   "cleanWarning": "警告",
   "cleanConfirm": "是否清除指定日期前的日志，该操作不可撤回",
-  "cleanSuccess": "清理日志成功"
+  "cleanSuccess": "清理日志成功",
+  "terminal": "终端形态",
+  "terminalWeb": "PC Web端",
+  "terminalApp": "移动端",
+  "terminalElf": "PC收款精灵"
 }

@@ -85,6 +85,7 @@
     "orderNo": "Platform Order No.",
     "gatewayType": "Jenis Gateway",
     "storeNo": "No. Kedai",
+    "qrCode": "No. Kod QR",
     "allocNo": "No. Peruntukan",
     "bizAllocNo": "No. Peruntukan Merchant",
     "outAllocNo": "No. Peruntukan Saluran",

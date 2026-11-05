@@ -362,8 +362,8 @@
                     {{ $t('system.platform.mail.passwordDesc') }}
                   </div>
                 </div>
-                <!-- 国际化：请输入SMTP授权码 -->
-                <a-input-password
+                <!-- 国际化：请输入SMTP授权码(机器凭证用明文输入框) -->
+                <a-input
                   v-model:value="formState.password"
                   :disabled="!isEditing"
                   :placeholder="$t('system.platform.mail.inputPassword')"

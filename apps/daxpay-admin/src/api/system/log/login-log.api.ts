@@ -38,6 +38,8 @@ export interface LoginLog extends BaseEntity {
   login?: boolean;
   /** 终端 */
   client?: string;
+  /** 终端形态(web=PC Web端/app=移动端/elf=PC收款精灵) */
+  terminal?: string;
   /** 登录方式 */
   loginType?: string;
   /** 登录IP地址 */

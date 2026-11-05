@@ -1,0 +1,8 @@
+{
+  "export": {
+    "confirmTitle": "내보내기 확인",
+    "confirmOnly": "{scope}을(를) 내보내시겠습니까?",
+    "confirmWithCount": "{scope}을(를) 내보내시겠습니까? 총 {count}건",
+    "scopeAll": "현재 조회 조건의 전체 데이터"
+  }
+}

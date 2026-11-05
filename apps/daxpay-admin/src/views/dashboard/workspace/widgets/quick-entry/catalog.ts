@@ -332,6 +332,17 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     defaultVisible: false,
     defaultOrder: 35,
   },
+  {
+    // 移动端应用管理(菜单名, menuCode=payment:config:mobile-app)
+    key: 'mobileApp',
+    routeName: '/payment/config/mobile-app',
+    icon: 'lucide:smartphone',
+    titleKey: 'dashboard.workspace.quickEntry.mobileApp',
+    color: 'bg-purple-700',
+    perms: [PermCodes.Payment.Config.MobileApp.VIEW],
+    defaultVisible: false,
+    defaultOrder: 36,
+  },
 ];
 
 /** 默认序列：defaultVisible=true 的按 defaultOrder 升序 */

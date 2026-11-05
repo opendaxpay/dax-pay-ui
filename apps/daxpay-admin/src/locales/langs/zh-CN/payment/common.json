@@ -1,3 +1,15 @@
 {
-  "envFollowProductHint": "环境由通道商户创建时确定，不可在此切换"
+  "envFollowProductHint": "环境由通道商户创建时确定，不可在此切换",
+  "secretStatus": {
+    "configured": "已配置 · {preview} · 留空保存则保留原值",
+    "configuredNoPreview": "已配置 · 留空保存则保留原值",
+    "willReplace": "保存后将替换原密钥({reference})",
+    "willReplaceNoReference": "保存后将替换原密钥"
+  },
+  "export": {
+    "confirmTitle": "确认导出",
+    "confirmOnly": "确定导出{scope}吗？",
+    "confirmWithCount": "确定导出{scope}吗？共 {count} 条",
+    "scopeAll": "当前查询条件下的全部数据"
+  }
 }

@@ -5,5 +5,9 @@
   "loginTime": "เวลาเข้าสู่ระบบ",
   "kickout": "เตะออก",
   "batchKickout": "การเตะออกเป็นกลุ่ม",
-  "confirmKickout": "คุณแน่ใจหรือว่าจะไล่ผู้ใช้ที่เลือกออก?"
+  "confirmKickout": "คุณแน่ใจหรือว่าจะไล่ผู้ใช้ที่เลือกออก?",
+  "terminal": "รูปแบบเทอร์มินัล",
+  "terminalWeb": "เว็บ PC",
+  "terminalApp": "มือถือ",
+  "terminalElf": "แคชเชียร์ PC"
 }

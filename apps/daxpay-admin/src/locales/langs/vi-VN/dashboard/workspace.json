@@ -69,7 +69,8 @@
     "riskStrategy": "Chiến lược rủi ro",
     "riskBlacklist": "Blacklist",
     "riskHit": "Risk Hits",
-    "qrCodeList": "Quản lý mã QR"
+    "qrCodeList": "Quản lý mã QR",
+    "mobileApp": "Quản lý ứng dụng di động"
   },
   "notice": {
     "important": "Quan trọng",

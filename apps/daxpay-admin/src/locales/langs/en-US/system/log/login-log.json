@@ -15,5 +15,9 @@
   "selectCleanDay": "Clean logs before",
   "cleanWarning": "Warning",
   "cleanConfirm": "Are you sure to delete logs before the specified date? This action cannot be undone.",
-  "cleanSuccess": "Logs cleaned successfully"
+  "cleanSuccess": "Logs cleaned successfully",
+  "terminal": "Terminal",
+  "terminalWeb": "PC Web",
+  "terminalApp": "Mobile",
+  "terminalElf": "PC Cashier Elf"
 }

@@ -5,5 +5,9 @@
   "loginTime": "ログイン時間",
   "kickout": "キックアウト",
   "batchKickout": "バッチキックアウト",
-  "confirmKickout": "選択したユーザーをキックアウトしてもよろしいですか?"
+  "confirmKickout": "選択したユーザーをキックアウトしてもよろしいですか?",
+  "terminal": "端末形態",
+  "terminalWeb": "PC Web",
+  "terminalApp": "モバイル",
+  "terminalElf": "PCキャッシャー"
 }

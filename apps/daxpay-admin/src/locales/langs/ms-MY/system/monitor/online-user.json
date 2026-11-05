@@ -5,5 +5,9 @@
   "loginTime": "Masa Log Masuk",
   "kickout": "Kickout",
   "batchKickout": "Tendang Keluar Berkelompok",
-  "confirmKickout": "Adakah anda pasti akan menendang keluar pengguna yang dipilih?"
+  "confirmKickout": "Adakah anda pasti akan menendang keluar pengguna yang dipilih?",
+  "terminal": "Bentuk Terminal",
+  "terminalWeb": "Web PC",
+  "terminalApp": "Mudah Alih",
+  "terminalElf": "Juruwang PC"
 }

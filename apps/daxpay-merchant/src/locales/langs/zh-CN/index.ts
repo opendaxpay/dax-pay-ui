@@ -29,6 +29,7 @@ import mPaymentChannelCommon from './payment/channel/common.json';
 import mPaymentChannelDouyin from './payment/channel/douyin.json';
 import mPaymentChannelDouyinManage from './payment/channel/douyinManage.json';
 import mPaymentChannelDouyinMchApp from './payment/channel/douyinMchApp.json';
+import mPaymentCommon from './payment/common.json';
 import mPaymentCommonApp from './payment/common/app.json';
 import mPaymentCommonRoute from './payment/common/route.json';
 import mPaymentDevelop from './payment/develop.json';
@@ -100,6 +101,7 @@ const entries: LocaleEntry[] = [
   [['payment', 'channel', 'douyin'], mPaymentChannelDouyin],
   [['payment', 'channel', 'douyinManage'], mPaymentChannelDouyinManage],
   [['payment', 'channel', 'douyinMchApp'], mPaymentChannelDouyinMchApp],
+  [['payment', 'common'], mPaymentCommon],
   [['payment', 'common', 'app'], mPaymentCommonApp],
   [['payment', 'common', 'route'], mPaymentCommonRoute],
   [['payment', 'develop'], mPaymentDevelop],

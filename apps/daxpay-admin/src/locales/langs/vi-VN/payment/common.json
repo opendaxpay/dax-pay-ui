@@ -1,3 +1,15 @@
 {
-  "envFollowProductHint": "Môi trường được cố định khi tạo merchant và không thể chuyển đổi tại đây"
+  "envFollowProductHint": "Môi trường được cố định khi tạo merchant và không thể chuyển đổi tại đây",
+  "secretStatus": {
+    "configured": "Đã cấu hình · {preview} · để trống khi lưu sẽ giữ nguyên giá trị cũ",
+    "configuredNoPreview": "Đã cấu hình · để trống khi lưu sẽ giữ nguyên giá trị cũ",
+    "willReplace": "Lưu sẽ thay thế khóa cũ ({reference})",
+    "willReplaceNoReference": "Lưu sẽ thay thế khóa cũ"
+  },
+  "export": {
+    "confirmTitle": "Xác nhận xuất",
+    "confirmOnly": "Xuất {scope}?",
+    "confirmWithCount": "Xuất {scope}? Tổng {count} bản ghi",
+    "scopeAll": "toàn bộ dữ liệu theo điều kiện lọc hiện tại"
+  }
 }

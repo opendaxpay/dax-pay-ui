@@ -1,0 +1,8 @@
+{
+  "export": {
+    "confirmTitle": "ยืนยันการส่งออก",
+    "confirmOnly": "ส่งออก{scope}หรือไม่?",
+    "confirmWithCount": "ส่งออก{scope}หรือไม่? ทั้งหมด {count} รายการ",
+    "scopeAll": "ข้อมูลทั้งหมดตามเงื่อนไขค้นหาปัจจุบัน"
+  }
+}

@@ -6,18 +6,22 @@
   import { $t } from '@vben/locales';
   import { formatDateTime } from '@vben/utils';
 
+  import dayjs from 'dayjs';
+
   import { currencyLabel } from '@daxpay/ui-biz/utils/currency';
-  import { buildExportFileName } from '@daxpay/ui-biz/utils/export-download';
+  import { buildExportFileName, confirmExport } from '@daxpay/ui-biz/utils/export-download';
   import { formatFen as formatAmount } from '@daxpay/ui-biz/utils/pay-amount';
 
   import { FundFlowApi, type FundFlowQuery, type FundFlowResult } from '#/api/payment/record/fund-flow.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
+  import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
   defineOptions({ name: 'FundFlowList' });
 
   const { hasPermission } = usePermission();
+  const { message } = useMessage();
 
   const loading = ref(false);
   const xTable = ref<VxeTableInstance>();
@@ -28,6 +32,24 @@
 
   // 导出当前查询条件下的数据(时间列由后端按当前用户时区格式化)
   async function handleExport() {
+    // 后端约束: 时间范围必填且跨度上限 90 天, 先在前端同口径拦截, 避免发无效请求
+    const { createTimeEnd, createTimeStart } = queryForm.value;
+    if (!createTimeStart || !createTimeEnd) {
+      message.warning($t('payment.record.fundFlow.action.timeRangeRequired'));
+      return;
+    }
+    if (dayjs(createTimeEnd).isBefore(dayjs(createTimeStart))) {
+      message.warning($t('payment.record.fundFlow.action.timeRangeInvalid'));
+      return;
+    }
+    if (dayjs(createTimeEnd).diff(dayjs(createTimeStart), 'day') > 90) {
+      message.warning($t('payment.record.fundFlow.action.timeRangeTooLong'));
+      return;
+    }
+    // 重操作, 先二次确认并复核当前条件的数据量
+    if (!(await confirmExport(pageConfig.value.total))) {
+      return;
+    }
     exporting.value = true;
     // 失败提示已由 downloadExportFile 统一弹出, 此处只复位按钮状态
     await FundFlowApi.exportExcel(queryForm.value, {

@@ -69,7 +69,8 @@
     "riskStrategy": "กลยุทธ์ความเสี่ยง",
     "riskBlacklist": "Blacklist",
     "riskHit": "Risk Hits",
-    "qrCodeList": "การจัดการรหัส QR"
+    "qrCodeList": "การจัดการรหัส QR",
+    "mobileApp": "การจัดการแอพมือถือ"
   },
   "notice": {
     "important": "สำคัญ",

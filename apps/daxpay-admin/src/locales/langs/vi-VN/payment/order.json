@@ -87,6 +87,7 @@
     "merchant": "Thương nhân",
     "gatewayType": "Loại cổng",
     "storeNo": "Mã cửa hàng",
+    "qrCode": "Mã QR",
     "allocNo": "Mã phân bổ",
     "bizAllocNo": "Mã phân bổ merchant",
     "outAllocNo": "Mã phân bổ kênh",

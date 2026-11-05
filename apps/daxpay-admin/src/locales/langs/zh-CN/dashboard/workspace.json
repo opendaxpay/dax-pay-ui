@@ -69,7 +69,8 @@
     "riskStrategy": "风控策略",
     "riskBlacklist": "黑名单管理",
     "riskHit": "风险命中记录",
-    "qrCodeList": "码牌管理"
+    "qrCodeList": "码牌管理",
+    "mobileApp": "移动端应用管理"
   },
   "notice": {
     "important": "重要",

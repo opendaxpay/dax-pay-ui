@@ -15,5 +15,9 @@
   "selectCleanDay": "이전에 로그 정리",
   "cleanWarning": "경고",
   "cleanConfirm": "지정된 날짜 이전의 로그를 삭제하시겠습니까? 이 작업은 취소할 수 없습니다.",
-  "cleanSuccess": "로그가 성공적으로 정리되었습니다."
+  "cleanSuccess": "로그가 성공적으로 정리되었습니다.",
+  "terminal": "단말 형태",
+  "terminalWeb": "PC 웹",
+  "terminalApp": "모바일",
+  "terminalElf": "PC 캐셔"
 }

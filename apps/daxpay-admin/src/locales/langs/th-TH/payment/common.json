@@ -1,3 +1,15 @@
 {
-  "envFollowProductHint": "สภาพแวดล้อมถูกกำหนดตอนสร้าง merchant และไม่สามารถสลับได้ที่นี่"
+  "envFollowProductHint": "สภาพแวดล้อมถูกกำหนดตอนสร้าง merchant และไม่สามารถสลับได้ที่นี่",
+  "secretStatus": {
+    "configured": "กำหนดค่าแล้ว · {preview} · เว้นว่างเมื่อบันทึกจะคงค่าเดิมไว้",
+    "configuredNoPreview": "กำหนดค่าแล้ว · เว้นว่างเมื่อบันทึกจะคงค่าเดิมไว้",
+    "willReplace": "เมื่อบันทึกจะแทนที่คีย์เดิม ({reference})",
+    "willReplaceNoReference": "เมื่อบันทึกจะแทนที่คีย์เดิม"
+  },
+  "export": {
+    "confirmTitle": "ยืนยันการส่งออก",
+    "confirmOnly": "ส่งออก{scope}หรือไม่?",
+    "confirmWithCount": "ส่งออก{scope}หรือไม่? ทั้งหมด {count} รายการ",
+    "scopeAll": "ข้อมูลทั้งหมดตามเงื่อนไขค้นหาปัจจุบัน"
+  }
 }

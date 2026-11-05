@@ -84,6 +84,7 @@
     "orderAmount": "訂單總金額",
     "orderNo": "平台業務單號",
     "storeNo": "門店號",
+    "qrCode": "碼牌編碼",
     "gatewayType": "網關類型",
     "allocNo": "分帳單號",
     "bizAllocNo": "商戶分帳單號",

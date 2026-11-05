@@ -69,7 +69,8 @@
     "riskStrategy": "Risk Strategy",
     "riskBlacklist": "Blacklist",
     "riskHit": "Risk Hits",
-    "qrCodeList": "QR Code Management"
+    "qrCodeList": "QR Code Management",
+    "mobileApp": "Mobile App Management"
   },
   "notice": {
     "important": "Important",

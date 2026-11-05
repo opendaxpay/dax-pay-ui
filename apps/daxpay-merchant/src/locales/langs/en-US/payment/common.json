@@ -1,0 +1,8 @@
+{
+  "export": {
+    "confirmTitle": "Confirm export",
+    "confirmOnly": "Export {scope}?",
+    "confirmWithCount": "Export {scope}? Total {count} records",
+    "scopeAll": "all data matching the current filters"
+  }
+}

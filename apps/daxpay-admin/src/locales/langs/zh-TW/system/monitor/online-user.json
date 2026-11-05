@@ -5,5 +5,9 @@
   "loginTime": "登入時間",
   "kickout": "強制下線",
   "batchKickout": "批次強制下線",
-  "confirmKickout": "確定要強制選中的使用者下線嗎？"
+  "confirmKickout": "確定要強制選中的使用者下線嗎？",
+  "terminal": "終端形態",
+  "terminalWeb": "PC Web端",
+  "terminalApp": "行動端",
+  "terminalElf": "PC收款精靈"
 }

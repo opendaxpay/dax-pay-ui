@@ -86,6 +86,7 @@
     "orderNo": "Platform Order No.",
     "merchant": "가맹점",
     "storeNo": "매장 번호",
+    "qrCode": "QR 코드 번호",
     "gatewayType": "게이트웨이 유형",
     "allocNo": "분할 번호",
     "bizAllocNo": "머천트 분할 번호",

@@ -39,6 +39,21 @@
   // 终端类型下拉(主数据, 排除 gateway)
   const { options: clientCodeOptions } = useClientOptions(true);
 
+  // 终端形态标签: web=PC Web端 / app=移动端 / elf=PC收款精灵
+  const terminalLabelMap: Record<string, string> = {
+    web: 'system.monitor.online-user.terminalWeb',
+    app: 'system.monitor.online-user.terminalApp',
+    elf: 'system.monitor.online-user.terminalElf',
+  };
+
+  /**
+   * 终端形态显示文案，未知/缺省返回 -
+   */
+  function terminalLabel(terminal?: string): string {
+    const key = terminal ? terminalLabelMap[terminal] : undefined;
+    return key ? $t(key) : '-';
+  }
+
   // 查询字段配置
   const queryFields = computed<QueryField[]>(() => [
     // 用户名称
@@ -203,6 +218,17 @@
               <a-tag :color="clientCodeColorMap[row.clientCode] || 'default'">
                 {{ /* 国际化：根据客户端编码显示对应标签 */ $t(clientCodeI18nMap[row.clientCode] || row.clientCode) }}
               </a-tag>
+            </template>
+          </vxe-column>
+          <!-- 终端形态 -->
+          <vxe-column
+            field="terminal"
+            :title="$t('system.monitor.online-user.terminal')"
+            min-width="110"
+            align="center"
+          >
+            <template #default="{ row }">
+              <span>{{ /* 国际化：按终端形态显示对应标签 */ terminalLabel(row.terminal) }}</span>
             </template>
           </vxe-column>
           <!-- 登录时间 -->

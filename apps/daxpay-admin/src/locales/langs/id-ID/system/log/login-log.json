@@ -15,5 +15,9 @@
   "selectCleanDay": "Bersihkan log sebelumnya",
   "cleanWarning": "Peringatan",
   "cleanConfirm": "Apakah Anda yakin untuk menghapus log sebelum tanggal yang ditentukan? Tindakan ini tidak dapat dibatalkan.",
-  "cleanSuccess": "Log berhasil dibersihkan"
+  "cleanSuccess": "Log berhasil dibersihkan",
+  "terminal": "Bentuk Terminal",
+  "terminalWeb": "Web PC",
+  "terminalApp": "Seluler",
+  "terminalElf": "Kasir PC"
 }

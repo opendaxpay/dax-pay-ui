@@ -7,7 +7,10 @@
   "title": "資金フロー",
   "action": {
     "export": "エクスポート",
-    "exportFailed": "エクスポートに失敗しました。しばらくしてから再試行してください"
+    "exportFailed": "エクスポートに失敗しました。しばらくしてから再試行してください",
+    "timeRangeRequired": "エクスポート期間は必須です(開始時刻と終了時刻の両方が必要です)",
+    "timeRangeInvalid": "エクスポート開始時刻は終了時刻より後にできません",
+    "timeRangeTooLong": "エクスポート期間は90日を超えられません"
   },
   "field": {
     "createTime": "作成日時"

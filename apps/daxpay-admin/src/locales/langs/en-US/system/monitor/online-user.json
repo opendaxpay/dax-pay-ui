@@ -5,5 +5,9 @@
   "loginTime": "Login Time",
   "kickout": "Kickout",
   "batchKickout": "Batch Kickout",
-  "confirmKickout": "Are you sure to kickout the selected users?"
+  "confirmKickout": "Are you sure to kickout the selected users?",
+  "terminal": "Terminal",
+  "terminalWeb": "PC Web",
+  "terminalApp": "Mobile",
+  "terminalElf": "PC Cashier Elf"
 }

@@ -126,6 +126,8 @@ export interface NormalOrderResult extends MchEntity {
   outTerminalNo?: string;
   /** 门店号 */
   storeNo?: string;
+  /** 码牌编码 */
+  qrCode?: string;
   // ===== 资金凭证联表字段(详情) =====
   /** 资金交易号 */
   tradeNo?: string;

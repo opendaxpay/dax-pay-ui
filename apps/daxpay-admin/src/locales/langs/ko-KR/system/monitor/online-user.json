@@ -5,5 +5,9 @@
   "loginTime": "로그인 시간",
   "kickout": "킥아웃",
   "batchKickout": "일괄 킥아웃",
-  "confirmKickout": "선택한 사용자를 정말로 추방하시겠습니까?"
+  "confirmKickout": "선택한 사용자를 정말로 추방하시겠습니까?",
+  "terminal": "단말 형태",
+  "terminalWeb": "PC 웹",
+  "terminalApp": "모바일",
+  "terminalElf": "PC 캐셔"
 }

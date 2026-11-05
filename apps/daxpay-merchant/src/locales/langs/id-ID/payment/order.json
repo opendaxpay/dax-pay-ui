@@ -85,6 +85,7 @@
     "orderNo": "Platform Order No.",
     "gatewayType": "Jenis Gateway",
     "storeNo": "No. Toko",
+    "qrCode": "No. Kode QR",
     "allocNo": "No. Alokasi",
     "bizAllocNo": "No. Alokasi Merchant",
     "outAllocNo": "No. Alokasi Saluran",

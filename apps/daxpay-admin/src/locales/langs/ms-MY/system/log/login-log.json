@@ -15,5 +15,9 @@
   "selectCleanDay": "Bersihkan balak sebelum ini",
   "cleanWarning": "Amaran",
   "cleanConfirm": "Adakah anda pasti akan memadamkan log sebelum tarikh yang ditentukan? Tindakan ini tidak boleh dibuat asal.",
-  "cleanSuccess": "Log berjaya dibersihkan"
+  "cleanSuccess": "Log berjaya dibersihkan",
+  "terminal": "Bentuk Terminal",
+  "terminalWeb": "Web PC",
+  "terminalApp": "Mudah Alih",
+  "terminalElf": "Juruwang PC"
 }

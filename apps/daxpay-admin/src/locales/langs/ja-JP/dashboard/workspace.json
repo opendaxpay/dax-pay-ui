@@ -69,7 +69,8 @@
     "riskStrategy": "リスク戦略",
     "riskBlacklist": "ブラックリスト",
     "riskHit": "リスクヒット",
-    "qrCodeList": "QRコード管理"
+    "qrCodeList": "QRコード管理",
+    "mobileApp": "モバイルアプリ管理"
   },
   "notice": {
     "important": "重要",

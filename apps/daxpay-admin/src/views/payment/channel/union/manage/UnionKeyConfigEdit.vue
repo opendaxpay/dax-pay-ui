@@ -150,9 +150,9 @@
           />
         </a-form-item>
 
-        <!-- 国际化: 私钥证书密码(脱敏回显) -->
+        <!-- 国际化: 私钥证书密码(脱敏回显, 机器凭证用明文输入框) -->
         <a-form-item :label="$t('payment.channel.union.keyPrivateCertPwd')">
-          <a-input-password
+          <a-input
             v-model:value="form.keyPrivateCertPwd"
             :disabled="!canEdit"
             :placeholder="$t('payment.channel.union.keyPrivateCertPwdPlaceholder')"

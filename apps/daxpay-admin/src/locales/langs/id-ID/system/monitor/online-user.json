@@ -5,5 +5,9 @@
   "loginTime": "Waktu Masuk",
   "kickout": "tendangan keluar",
   "batchKickout": "Penendangan Batch",
-  "confirmKickout": "Apakah Anda yakin akan mengeluarkan pengguna yang dipilih?"
+  "confirmKickout": "Apakah Anda yakin akan mengeluarkan pengguna yang dipilih?",
+  "terminal": "Bentuk Terminal",
+  "terminalWeb": "Web PC",
+  "terminalApp": "Seluler",
+  "terminalElf": "Kasir PC"
 }

@@ -1,3 +1,15 @@
 {
-  "envFollowProductHint": "Persekitaran ditentukan saat merchant dicipta dan tidak boleh ditukar di sini"
+  "envFollowProductHint": "Persekitaran ditentukan saat merchant dicipta dan tidak boleh ditukar di sini",
+  "secretStatus": {
+    "configured": "Dikonfigurasi · {preview} · biarkan kosong semasa simpan untuk kekalkan nilai asal",
+    "configuredNoPreview": "Dikonfigurasi · biarkan kosong semasa simpan untuk kekalkan nilai asal",
+    "willReplace": "Menyimpan akan menggantikan kunci asal ({reference})",
+    "willReplaceNoReference": "Menyimpan akan menggantikan kunci asal"
+  },
+  "export": {
+    "confirmTitle": "Sahkan Eksport",
+    "confirmOnly": "Eksport {scope}?",
+    "confirmWithCount": "Eksport {scope}? Jumlah {count} rekod",
+    "scopeAll": "semua data mengikut tapisan semasa"
+  }
 }

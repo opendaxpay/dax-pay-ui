@@ -1,0 +1,8 @@
+{
+  "export": {
+    "confirmTitle": "Sahkan Eksport",
+    "confirmOnly": "Eksport {scope}?",
+    "confirmWithCount": "Eksport {scope}? Jumlah {count} rekod",
+    "scopeAll": "semua data mengikut tapisan semasa"
+  }
+}

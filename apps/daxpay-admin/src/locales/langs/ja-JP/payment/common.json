@@ -1,3 +1,15 @@
 {
-  "envFollowProductHint": "環境はチャネルマーチャントの作成時に確定され、ここでは切り替えできません"
+  "envFollowProductHint": "環境はチャネルマーチャントの作成時に確定され、ここでは切り替えできません",
+  "secretStatus": {
+    "configured": "設定済み · {preview} · 空欄のまま保存すると現在の値を保持します",
+    "configuredNoPreview": "設定済み · 空欄のまま保存すると現在の値を保持します",
+    "willReplace": "保存すると現在のキーを置き換えます({reference})",
+    "willReplaceNoReference": "保存すると現在のキーを置き換えます"
+  },
+  "export": {
+    "confirmTitle": "エクスポートの確認",
+    "confirmOnly": "{scope}をエクスポートしますか？",
+    "confirmWithCount": "{scope}をエクスポートしますか？全 {count} 件",
+    "scopeAll": "現在の検索条件に一致するすべてのデータ"
+  }
 }

@@ -7,7 +7,10 @@
   "title": "Arus Dana",
   "action": {
     "export": "Ekspor",
-    "exportFailed": "Ekspor gagal. Silakan coba lagi nanti."
+    "exportFailed": "Ekspor gagal. Silakan coba lagi nanti.",
+    "timeRangeRequired": "Rentang waktu ekspor wajib diisi (waktu mulai dan selesai tidak boleh kosong)",
+    "timeRangeInvalid": "Waktu mulai ekspor tidak boleh lebih lambat dari waktu selesai",
+    "timeRangeTooLong": "Rentang waktu ekspor tidak boleh lebih dari 90 hari"
   },
   "field": {
     "createTime": "Waktu Dibuat"

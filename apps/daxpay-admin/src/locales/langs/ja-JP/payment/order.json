@@ -86,6 +86,7 @@
     "orderNo": "Platform Order No.",
     "merchant": "加盟店",
     "storeNo": "ストア番号",
+    "qrCode": "QRコード番号",
     "gatewayType": "ゲートウェイ種別",
     "allocNo": "精算番号",
     "bizAllocNo": "マーチャント精算番号",

@@ -1,0 +1,8 @@
+{
+  "export": {
+    "confirmTitle": "确认导出",
+    "confirmOnly": "确定导出{scope}吗？",
+    "confirmWithCount": "确定导出{scope}吗？共 {count} 条",
+    "scopeAll": "当前查询条件下的全部数据"
+  }
+}
