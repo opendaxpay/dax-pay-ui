@@ -19,6 +19,22 @@
     "title": "MQTT 接入",
     "description": "设备 MQTT 接入地址或密码未配置, 设备无法接收播报"
   },
+  "platformMail": {
+    "title": "邮件服务",
+    "description": "邮件通道已启用, 但发件服务器地址或账号密码未配置完成"
+  },
+  "platformAlipayAuth": {
+    "title": "支付宝应用",
+    "description": "平台支付宝开放平台应用凭据未配置, 支付宝登录与授权功能不可用"
+  },
+  "platformWechatMp": {
+    "title": "微信公众号",
+    "description": "已启用微信公众号登录, 但平台公众号 appId 或 appSecret 未配置"
+  },
+  "platformMobileApp": {
+    "title": "收银台应用",
+    "description": "收银台小程序应用未启用, 码牌与小程序收银将无法使用"
+  },
   "mchApp": {
     "title": "商户应用",
     "description": "尚未创建或启用任何商户应用"

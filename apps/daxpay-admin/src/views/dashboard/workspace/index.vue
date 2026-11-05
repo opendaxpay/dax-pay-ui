@@ -40,6 +40,18 @@
   );
   const configAlertDismissed = ref(false);
 
+  // 是否存在阻塞级(blocker)告警: 顶部横幅升级为红色 error
+  const configAlertHasBlocker = computed(() =>
+    configAlertItems.value.some((item) => item.severity === 'blocker'),
+  );
+
+  // 弹窗列表: blocker 阻塞项置顶, 同级保持后端下发顺序(稳定排序)
+  const configAlertSortedItems = computed(() =>
+    [...configAlertItems.value].sort(
+      (a, b) => Number(b.severity === 'blocker') - Number(a.severity === 'blocker'),
+    ),
+  );
+
   // 分类图标映射(与后端 ConfigCheckCategoryEnum.code 对应)
   const categoryIconMap: Record<string, string> = {
     platformWebsite: 'lucide:globe',
@@ -47,6 +59,10 @@
     platformOss: 'lucide:hard-drive',
     socialLogin: 'lucide:log-in',
     platformMqtt: 'lucide:radio-tower',
+    platformMail: 'lucide:mail',
+    platformAlipayAuth: 'lucide:fingerprint',
+    platformWechatMp: 'lucide:newspaper',
+    platformMobileApp: 'lucide:smartphone',
     mchApp: 'lucide:app-window',
     mchCredential: 'lucide:key-round',
     channelMerchant: 'lucide:store',
@@ -117,7 +133,7 @@
       class="!mb-4"
     >
       <a-alert
-        type="warning"
+        :type="configAlertHasBlocker ? 'error' : 'warning'"
         show-icon
         closable
         :message="$t('dashboard.workspace.configAlert.bannerTitle', { n: configAlertItems.length })"
@@ -150,13 +166,19 @@
     >
       <div class="flex flex-col gap-2">
         <div
-          v-for="item in configAlertItems"
+          v-for="item in configAlertSortedItems"
           :key="item.itemKey"
           class="hover:bg-accent flex cursor-pointer items-center gap-3 rounded-md p-2"
           @click="navTo(item)"
         >
+          <!-- blocker 阻塞项红色区分, 其余保持橙色 -->
           <div
-            class="flex size-8 shrink-0 items-center justify-center rounded-md bg-orange-50 text-orange-500"
+            class="flex size-8 shrink-0 items-center justify-center rounded-md"
+            :class="
+              item.severity === 'blocker'
+                ? 'bg-red-50 text-red-500'
+                : 'bg-orange-50 text-orange-500'
+            "
           >
             <IconifyIcon :icon="categoryIcon(item.category)" class="size-4" />
           </div>
@@ -164,7 +186,13 @@
             <div class="truncate text-sm font-medium">{{ $t(item.titleKey) }}</div>
             <div class="text-foreground/50 truncate text-xs">{{ $t(item.descriptionKey) }}</div>
           </div>
-          <a-tag v-if="item.count" color="orange" class="!m-0 shrink-0">{{ item.count }}</a-tag>
+          <a-tag
+            v-if="item.count"
+            :color="item.severity === 'blocker' ? 'red' : 'orange'"
+            class="!m-0 shrink-0"
+          >
+            {{ item.count }}
+          </a-tag>
           <IconifyIcon icon="lucide:chevron-right" class="text-foreground/30 size-4 shrink-0" />
         </div>
       </div>

@@ -19,6 +19,22 @@
     "title": "MQTT Access",
     "description": "Device MQTT broker URL or password is not configured; devices cannot receive broadcasts"
   },
+  "platformMail": {
+    "title": "Email Service",
+    "description": "Email channel is enabled, but the SMTP host or account credentials are incomplete"
+  },
+  "platformAlipayAuth": {
+    "title": "Alipay App",
+    "description": "Platform Alipay Open Platform app credentials are not configured, so Alipay login and authorization are unavailable"
+  },
+  "platformWechatMp": {
+    "title": "WeChat Official Account",
+    "description": "WeChat Official Account login is enabled, but the platform appId or appSecret is not configured"
+  },
+  "platformMobileApp": {
+    "title": "Cashier App",
+    "description": "No cashier mini-program app is enabled, so QR code plates and mini-program cashier will not work"
+  },
   "mchApp": {
     "title": "Merchant App",
     "description": "No merchant app has been created or enabled"

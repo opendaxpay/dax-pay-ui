@@ -19,6 +19,22 @@
     "title": "MQTT 접속",
     "description": "기기 MQTT 접속 주소 또는 비밀번호가 설정되지 않아 기기가 방송을 수신할 수 없습니다"
   },
+  "platformMail": {
+    "title": "메일 서비스",
+    "description": "메일 채널이 활성화되었지만 SMTP 서버 주소 또는 계정 정보가 완전히 설정되지 않았습니다"
+  },
+  "platformAlipayAuth": {
+    "title": "Alipay 앱",
+    "description": "플랫폼 Alipay 오픈플랫폼 앱 인증 정보가 설정되지 않아 Alipay 로그인 및 인증 기능을 사용할 수 없습니다"
+  },
+  "platformWechatMp": {
+    "title": "WeChat 공식계정",
+    "description": "WeChat 공식계정 로그인이 활성화되었지만 플랫폼 appId 또는 appSecret이 설정되지 않았습니다"
+  },
+  "platformMobileApp": {
+    "title": "캐셔 앱",
+    "description": "캐셔 미니프로그램 앱이 활성화되지 않아 QR코드 표지판과 미니프로그램 캐셔를 사용할 수 없습니다"
+  },
   "mchApp": {
     "title": "가맹점 앱",
     "description": "생성되거나 활성화된 가맹점 앱이 없습니다"

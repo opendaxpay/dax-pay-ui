@@ -26,10 +26,14 @@ export type ConfigCheckCategory =
   | 'mchCredential'
   | 'mchNotify'
   | 'payRoute'
+  | 'platformAlipayAuth'
+  | 'platformMail'
+  | 'platformMobileApp'
   | 'platformMqtt'
   | 'platformOss'
   | 'platformUrl'
   | 'platformWebsite'
+  | 'platformWechatMp'
   | 'socialLogin';
 
 /**

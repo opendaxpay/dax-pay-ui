@@ -19,6 +19,22 @@
     "title": "Kết Nối MQTT",
     "description": "Địa chỉ hoặc mật khẩu kết nối MQTT của thiết bị chưa được cấu hình, thiết bị không thể nhận thông báo"
   },
+  "platformMail": {
+    "title": "Dịch vụ Email",
+    "description": "Kênh email đã được bật, nhưng địa chỉ máy chủ SMTP hoặc thông tin tài khoản chưa hoàn chỉnh"
+  },
+  "platformAlipayAuth": {
+    "title": "Ứng dụng Alipay",
+    "description": "Chứng chỉ ứng dụng Alipay Open Platform chưa được cấu hình, nên đăng nhập và ủy quyền Alipay không khả dụng"
+  },
+  "platformWechatMp": {
+    "title": "Tài khoản Chính thức WeChat",
+    "description": "Đăng nhập Tài khoản Chính thức WeChat đã được bật, nhưng appId hoặc appSecret của nền tảng chưa được cấu hình"
+  },
+  "platformMobileApp": {
+    "title": "Ứng dụng Thu ngân",
+    "description": "Chưa kích hoạt ứng dụng mini-program thu ngân, nên bảng mã QR và thu ngân mini-program không thể sử dụng"
+  },
   "mchApp": {
     "title": "Ứng Dụng Merchant",
     "description": "Chưa có ứng dụng merchant nào được tạo hoặc kích hoạt"

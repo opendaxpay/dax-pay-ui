@@ -19,6 +19,22 @@
     "title": "Akses MQTT",
     "description": "URL atau kata sandi koneksi MQTT perangkat belum dikonfigurasi, perangkat tidak dapat menerima siaran"
   },
+  "platformMail": {
+    "title": "Layanan Email",
+    "description": "Kanal email telah diaktifkan, tetapi alamat server SMTP atau kredensial akun belum lengkap"
+  },
+  "platformAlipayAuth": {
+    "title": "Aplikasi Alipay",
+    "description": "Kredensial aplikasi Alipay Open Platform belum dikonfigurasi, sehingga login dan otorisasi Alipay tidak tersedia"
+  },
+  "platformWechatMp": {
+    "title": "Akun Resmi WeChat",
+    "description": "Login Akun Resmi WeChat diaktifkan, tetapi appId atau appSecret platform belum dikonfigurasi"
+  },
+  "platformMobileApp": {
+    "title": "Aplikasi Kasir",
+    "description": "Tidak ada aplikasi mini-program kasir yang diaktifkan, sehingga papan kode QR dan kasir mini-program tidak dapat digunakan"
+  },
   "mchApp": {
     "title": "Aplikasi Merchant",
     "description": "Belum ada aplikasi merchant yang dibuat atau diaktifkan"
