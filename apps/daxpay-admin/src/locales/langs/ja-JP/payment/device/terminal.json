@@ -1,6 +1,5 @@
 {
   "systemTitle": "システム端末",
-  "channelTitle": "チャネル端末",
   "field": {
     "terminalNo": "Terminal No.",
     "name": "Name",

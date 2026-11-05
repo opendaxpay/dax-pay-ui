@@ -65,6 +65,7 @@
   "menu.system.notify": "通知中心",
   "menu.payment.config.alipayApp": "支付宝服务商应用",
   "menu.device.qrcode": "码牌管理",
+  "menu.device.channelTerminal": "通道终端",
   "menu.develop.auth": "认证调试",
   "menu.develop.gateway": "支付调试(网关)",
   "menu.payment.merchant.group.manage": "商户管理",
@@ -116,8 +117,7 @@
   "menu.trade.abnormalOrder": "异常订单",
   "menu.trade.fundFlow": "资金流水",
   "menu.system.notify.mailTemplate": "邮件模板",
-  "menu.payment.device.virtual": "虚拟设备",
-  "menu.payment.device.virtual.list": "设备管理",
   "menu.payment.mock.isv": "模拟服务商管理",
-  "menu.payment.mock.isvWorkbench": "模拟服务商工作台"
+  "menu.payment.mock.isvWorkbench": "模拟服务商工作台",
+  "menu.device.virtual": "虚拟设备"
 }

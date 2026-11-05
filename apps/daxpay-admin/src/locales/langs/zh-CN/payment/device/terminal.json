@@ -1,6 +1,5 @@
 {
   "systemTitle": "系统终端",
-  "channelTitle": "通道终端",
   "field": {
     "terminalNo": "终端编码",
     "name": "终端名称",

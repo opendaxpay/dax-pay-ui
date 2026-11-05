@@ -64,6 +64,7 @@
   "menu.system.notify": "Notification Center",
   "menu.payment.config.alipayApp": "Alipay ISV Application",
   "menu.device.qrcode": "QR Code Management",
+  "menu.device.channelTerminal": "Channel Terminals",
   "menu.develop.auth": "Auth Develop",
   "menu.develop.gateway": "Payment Develop (Gateway)",
   "menu.payment.merchant.group.manage": "Merchant Management",
@@ -115,8 +116,7 @@
   "menu.trade.abnormalOrder": "Abnormal Orders",
   "menu.trade.fundFlow": "Fund Flows",
   "menu.system.notify.mailTemplate": "Mail Templates",
-  "menu.payment.device.virtual": "Virtual Devices",
-  "menu.payment.device.virtual.list": "Device Management",
   "menu.payment.mock.isv": "Mock Service Provider",
-  "menu.payment.mock.isvWorkbench": "Mock Service Provider Workbench"
+  "menu.payment.mock.isvWorkbench": "Mock Service Provider Workbench",
+  "menu.device.virtual": "Virtual Devices"
 }

@@ -140,7 +140,7 @@
       deviceCards.push({
         key: 'virtualDevice',
         // 虚拟设备 — 标题与菜单 i18n_key 一致(跳转设备管理列表页, URL 带 mchNo 预置筛选)
-        title: $t('menu.payment.device.virtual'),
+        title: $t('menu.device.virtual'),
         icon: 'lucide:monitor-speaker',
         // 该商户名下绑定虚拟设备(收款播报 APP)的台账与运维
         description: $t('payment.merchant.workbench.workbench.cardVirtualDeviceDesc'),

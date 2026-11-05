@@ -63,6 +63,7 @@
   "menu.system.notify": "通知センター",
   "menu.payment.config.alipayApp": "Alipay ISV アプリケーション",
   "menu.device.qrcode": "QRコード管理",
+  "menu.device.channelTerminal": "チャネル端末",
   "menu.develop.auth": "認証開発",
   "menu.develop.gateway": "決済開発(ゲートウェイ)",
   "menu.payment.merchant.group.manage": "加盟店管理",
@@ -115,8 +116,7 @@
   "menu.trade.abnormalOrder": "異常注文",
   "menu.trade.fundFlow": "資金フロー",
   "menu.system.notify.mailTemplate": "メールテンプレート",
-  "menu.payment.device.virtual": "仮想デバイス",
-  "menu.payment.device.virtual.list": "デバイス管理",
   "menu.payment.mock.isv": "モックサービスプロバイダー管理",
-  "menu.payment.mock.isvWorkbench": "モックサービスプロバイダーワークベンチ"
+  "menu.payment.mock.isvWorkbench": "モックサービスプロバイダーワークベンチ",
+  "menu.device.virtual": "仮想デバイス"
 }

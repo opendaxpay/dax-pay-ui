@@ -63,6 +63,7 @@
   "menu.system.notify": "ศูนย์การแจ้งเตือน",
   "menu.payment.config.alipayApp": "แอปพลิเคชัน Alipay ISV",
   "menu.device.qrcode": "การจัดการรหัส QR",
+  "menu.device.channelTerminal": "เทอร์มินัลช่องทาง",
   "menu.develop.auth": "รับรองความถูกต้องพัฒนา",
   "menu.develop.gateway": "การพัฒนาการชำระเงิน (เกตเวย์)",
   "menu.payment.merchant.group.manage": "การจัดการผู้ค้า",
@@ -115,8 +116,7 @@
   "menu.trade.abnormalOrder": "คำสั่งซื้อผิดปกติ",
   "menu.trade.fundFlow": "กระแสเงินสด",
   "menu.system.notify.mailTemplate": "เทมเพลตอีเมล",
-  "menu.payment.device.virtual": "อุปกรณ์เสมือน",
-  "menu.payment.device.virtual.list": "จัดการอุปกรณ์",
   "menu.payment.mock.isv": "การจัดการผู้ให้บริการจำลอง",
-  "menu.payment.mock.isvWorkbench": "เวิร์กเบนช์ผู้ให้บริการจำลอง"
+  "menu.payment.mock.isvWorkbench": "เวิร์กเบนช์ผู้ให้บริการจำลอง",
+  "menu.device.virtual": "อุปกรณ์เสมือน"
 }

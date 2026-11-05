@@ -63,6 +63,7 @@
   "menu.system.notify": "Pusat Pemberitahuan",
   "menu.payment.config.alipayApp": "Aplikasi Alipay ISV",
   "menu.device.qrcode": "Pengurusan Kod QR",
+  "menu.device.channelTerminal": "Terminal Saluran",
   "menu.develop.auth": "Membangunkan Pengesahan",
   "menu.develop.gateway": "Membangunkan Pembayaran (Gateway)",
   "menu.payment.merchant.group.manage": "Pengurusan Peniaga",
@@ -115,8 +116,7 @@
   "menu.trade.abnormalOrder": "Pesanan Tidak Normal",
   "menu.trade.fundFlow": "Aliran Dana",
   "menu.system.notify.mailTemplate": "Templat E-mel",
-  "menu.payment.device.virtual": "Peranti Maya",
-  "menu.payment.device.virtual.list": "Pengurusan Peranti",
   "menu.payment.mock.isv": "Pengurusan Penyedia Perkhidmatan Mock",
-  "menu.payment.mock.isvWorkbench": "Ruang Kerja Penyedia Perkhidmatan Mock"
+  "menu.payment.mock.isvWorkbench": "Ruang Kerja Penyedia Perkhidmatan Mock",
+  "menu.device.virtual": "Peranti Maya"
 }
