@@ -79,6 +79,15 @@
     "copyFailed": "Sao chép thất bại, sao chép thủ công",
     "downloadFailed": "Tải mã QR thất bại, thử lại"
   },
+  "batchActions": "Thao tác hàng loạt",
+  "batchBindMerchant": "Gắn merchant hàng loạt",
+  "batchUnbindMerchant": "Gỡ merchant hàng loạt",
+  "selectRequired": "Vui lòng chọn thiết bị trước",
+  "confirmBatchUnbind": "Xác nhận gỡ gắn merchant khỏi {count} thiết bị đã chọn? Việc gỡ sẽ đặt lại thông tin xác thực thiết bị và thiết bị phải kích hoạt lại.",
+  "batchUnbindSuccess": "Đã gỡ gắn merchant khỏi {count} thiết bị",
+  "export": "Xuất",
+  "exportFileName": "Danh sách thiết bị ảo",
+  "exportFailed": "Xuất thất bại. Vui lòng thử lại sau.",
   "bind": {
     "title": "Gắn merchant",
     "validationMchNo": "Chọn merchant",

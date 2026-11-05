@@ -79,6 +79,15 @@
     "copyFailed": "コピーに失敗しました。手動でコピーしてください",
     "downloadFailed": "QRコードのダウンロードに失敗しました。再試行してください"
   },
+  "batchActions": "一括操作",
+  "batchBindMerchant": "販売者を一括バインド",
+  "batchUnbindMerchant": "販売者の一括バインド解除",
+  "selectRequired": "先にデバイスを選択してください",
+  "confirmBatchUnbind": "選択した {count} 台のデバイスのバインドを解除しますか？解除するとデバイス証憑がリセットされ、端末で再アクティベートが必要です。",
+  "batchUnbindSuccess": "{count} 台のデバイスのバインドを解除しました",
+  "export": "エクスポート",
+  "exportFileName": "仮想デバイス一覧",
+  "exportFailed": "エクスポートに失敗しました。しばらくしてから再試行してください",
   "bind": {
     "title": "販売者をバインド",
     "validationMchNo": "販売者を選択してください",

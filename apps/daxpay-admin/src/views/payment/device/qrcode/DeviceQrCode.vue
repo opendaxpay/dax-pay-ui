@@ -10,6 +10,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
+  import { confirmExport } from '@daxpay/ui-biz/utils/export-download';
 
   import { DeviceQrCodeApi, type DeviceQrCodeResult } from '#/api/payment/device/qrcode.api';
   import { QrCode } from '#/components/qrcode';
@@ -29,6 +30,8 @@
   const route = useRoute();
 
   const loading = ref(false);
+  // 导出中标记(服务端为内存生成, 期间禁用按钮防重复提交)
+  const exporting = ref(false);
   const xTable = ref<VxeTableInstance>();
   const xToolbar = ref<VxeToolbarInstance>();
   const editRef = ref<InstanceType<typeof DeviceQrCodeEdit>>();
@@ -171,6 +174,24 @@
 
   function handleBatchCreate() {
     batchCreateRef.value?.show();
+  }
+
+  /**
+   * 导出当前查询条件下的码牌清单(时间列由后端按当前用户时区格式化)
+   */
+  async function handleExport() {
+    // 重操作, 先二次确认并复核当前条件的数据量
+    if (!(await confirmExport(pageConfig.value.total))) {
+      return;
+    }
+    exporting.value = true;
+    // 失败提示已由 downloadExportFile 统一弹出, 此处只复位按钮状态
+    await DeviceQrCodeApi.exportExcel(queryForm.value, {
+      fileName: `${$t('payment.device.qrcode.exportFileName')}.xlsx`,
+      failedText: $t('payment.device.qrcode.exportFailed'),
+    }).finally(() => {
+      exporting.value = false;
+    });
   }
 
   function handleEdit(row: DeviceQrCodeResult) {
@@ -354,6 +375,9 @@
                   <IconifyIcon icon="ant-design:down-outlined" class="inline" />
                 </a-button>
               </a-dropdown>
+              <a-button v-if="hasPermission(PermCodes.Device.QrCode.EXPORT)" :loading="exporting" @click="handleExport">
+                {{ $t('payment.device.qrcode.export') }}
+              </a-button>
             </a-space>
           </template>
         </vxe-toolbar>

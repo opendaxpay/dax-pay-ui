@@ -41,12 +41,17 @@
   const { hasPermission } = usePermission();
 
   const loading = ref(false);
+  // 导出中标记(服务端为内存生成, 期间禁用按钮防重复提交)
+  const exporting = ref(false);
   const xTable = ref<VxeTableInstance>();
   const xToolbar = ref<VxeToolbarInstance>();
   const generateRef = ref<InstanceType<typeof DeviceVirtualGenerateDrawer>>();
   const editRef = ref<InstanceType<typeof VirtualDeviceEditDrawer>>();
   const activationQrRef = ref<InstanceType<typeof ActivationQrModal>>();
   const bindMerchantRef = ref<InstanceType<typeof DeviceBindMerchantModal>>();
+
+  // 勾选行(仅当前页, 查询/翻页后清空)
+  const selectedRows = ref<VirtualDeviceResult[]>([]);
 
   // 试播/试打弹窗状态(金额/渠道/输出模式参数化)
   const testOpen = ref(false);
@@ -106,6 +111,13 @@
   const tableData = ref<VirtualDeviceResult[]>([]);
 
   /**
+   * 同步勾选行
+   */
+  function handleCheckboxChange() {
+    selectedRows.value = (xTable.value?.getCheckboxRecords() || []) as VirtualDeviceResult[];
+  }
+
+  /**
    * 分页查询虚拟设备
    */
   function queryPage() {
@@ -118,6 +130,9 @@
       .then((res: any) => {
         tableData.value = res.data.records || [];
         pageConfig.value.total = Number(res.data.total) || 0;
+        // 同步清空表格勾选与业务选中态, 避免按钮/复选框状态不一致
+        xTable.value?.clearCheckboxRow();
+        selectedRows.value = [];
         loading.value = false;
       })
       .catch(() => {
@@ -156,6 +171,84 @@
    */
   function handleGenerate() {
     generateRef.value?.show();
+  }
+
+  /**
+   * 导出当前查询条件下的虚拟设备清单(时间列由后端按当前用户时区格式化)
+   */
+  async function handleExport() {
+    exporting.value = true;
+    // 失败提示已由 downloadExportFile 统一弹出, 此处只复位按钮状态
+    await VirtualDeviceApi.exportExcel(queryForm.value, {
+      fileName: `${$t('payment.device.virtual.exportFileName')}.xlsx`,
+      failedText: $t('payment.device.virtual.exportFailed'),
+    }).finally(() => {
+      exporting.value = false;
+    });
+  }
+
+  /**
+   * 获取勾选 id, 无勾选时给出提示
+   */
+  function getSelectedIds(): null | string[] {
+    const ids = selectedRows.value.map((row) => row.id!).filter(Boolean);
+    if (ids.length === 0) {
+      message.warning($t('payment.device.virtual.selectRequired'));
+      return null;
+    }
+    return ids;
+  }
+
+  /**
+   * 批量绑定商户(商户+应用+门店三件套, 弹窗已支持 ids 数组)
+   */
+  function handleBatchBindMerchant() {
+    const ids = getSelectedIds();
+    if (!ids) {
+      return;
+    }
+    bindMerchantRef.value?.show(ids);
+  }
+
+  /**
+   * 批量解绑商户(凭证重置, 设备端需重新激活; 危险操作二次确认)
+   */
+  function handleBatchUnbindMerchant() {
+    const ids = getSelectedIds();
+    if (!ids) {
+      return;
+    }
+    confirm({
+      content: $t('payment.device.virtual.confirmBatchUnbind', { count: ids.length }),
+      onOk() {
+        return VirtualDeviceApi.unbindMerchant(ids).then(() => {
+          message.success($t('payment.device.virtual.batchUnbindSuccess', { count: ids.length }));
+          queryPage();
+        });
+      },
+    });
+  }
+
+  /**
+   * 工具栏批量操作菜单(绑定/解绑商户)
+   *
+   * a-dropdown 的 menu prop 要求 MenuProps 对象(items+onClick), 传裸数组会因 menu.items
+   * 为空导致弹出层渲染为空(点击无反应)——全站统一走 items+onClick 形态
+   */
+  function getBatchActionMenu(): MenuProps {
+    return {
+      items: [
+        { key: 'batchBindMerchant', label: $t('payment.device.virtual.batchBindMerchant') },
+        { key: 'batchUnbindMerchant', label: $t('payment.device.virtual.batchUnbindMerchant'), danger: true },
+      ],
+      onClick: ({ key }: { key: string }) => {
+        if (key === 'batchBindMerchant') {
+          handleBatchBindMerchant();
+        } else if (key === 'batchUnbindMerchant') {
+          handleBatchUnbindMerchant();
+        }
+      },
+    };
   }
 
   /**
@@ -328,10 +421,35 @@
               <a-button v-if="hasPermission(PermCodes.Device.Virtual.MANAGE)" type="primary" @click="handleGenerate">
                 {{ $t('payment.device.virtual.generate.title') }}
               </a-button>
+              <!-- 批量操作: 绑定/解绑商户(无权限或无勾选时禁用) -->
+              <a-dropdown
+                :disabled="!hasPermission(PermCodes.Device.Virtual.MANAGE) || selectedRows.length === 0"
+                :menu="getBatchActionMenu()"
+              >
+                <a-button :disabled="!hasPermission(PermCodes.Device.Virtual.MANAGE) || selectedRows.length === 0">
+                  {{ $t('payment.device.virtual.batchActions') }}
+                  <IconifyIcon icon="ant-design:down-outlined" class="inline" />
+                </a-button>
+              </a-dropdown>
+              <a-button
+                v-if="hasPermission(PermCodes.Device.Virtual.EXPORT)"
+                :loading="exporting"
+                @click="handleExport"
+              >
+                {{ $t('payment.device.virtual.export') }}
+              </a-button>
             </a-space>
           </template>
         </vxe-toolbar>
-        <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
+        <vxe-table
+          ref="xTable"
+          :row-config="{ keyField: 'id' }"
+          :data="tableData"
+          :loading="loading"
+          @checkbox-change="handleCheckboxChange"
+          @checkbox-all="handleCheckboxChange"
+        >
+          <vxe-column type="checkbox" width="50" />
           <!-- 设备号(平台自造 SN) -->
           <vxe-column field="deviceNo" :title="$t('payment.device.virtual.field.deviceNo')" :min-width="180">
             <template #default="{ row }">

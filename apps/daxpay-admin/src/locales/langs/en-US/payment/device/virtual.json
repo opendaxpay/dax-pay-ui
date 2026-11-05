@@ -79,6 +79,15 @@
     "copyFailed": "Copy failed, please copy manually",
     "downloadFailed": "QR code download failed, please retry"
   },
+  "batchActions": "Batch Actions",
+  "batchBindMerchant": "Batch Bind Merchant",
+  "batchUnbindMerchant": "Batch Unbind Merchant",
+  "selectRequired": "Please select devices first",
+  "confirmBatchUnbind": "Unbind the selected {count} devices? Unbinding resets their credentials, and the devices must be re-activated.",
+  "batchUnbindSuccess": "Unbound {count} devices",
+  "export": "Export",
+  "exportFileName": "Virtual Device List",
+  "exportFailed": "Export failed. Please try again later.",
   "bind": {
     "title": "Bind Merchant",
     "validationMchNo": "Please select a merchant",

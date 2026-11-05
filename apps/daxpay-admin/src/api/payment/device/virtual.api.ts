@@ -2,7 +2,9 @@ import type { DeviceTestParam } from '@daxpay/ui-biz/components/device-test';
 
 import type { BaseEntity, PageResult, Result } from '#/types/web';
 
-import { defHttp } from '#/api/request';
+import { downloadExportFile } from '@daxpay/ui-biz/utils/export-download';
+
+import { defHttp, requestClient } from '#/api/request';
 
 /**
  * 虚拟设备 API(简版: 生成/归属/编辑/启停/删除/激活二维码/试播试打)
@@ -18,6 +20,22 @@ export const VirtualDeviceApi = {
     params: VirtualDeviceQuery & { current?: number; size?: number },
   ): Promise<Result<PageResult<VirtualDeviceResult>>> {
     return defHttp.get({ url: '/admin/device/virtual/page', params });
+  },
+
+  /**
+   * 导出当前查询条件下的虚拟设备数据
+   *
+   * 服务端为内存生成后落响应, 失败时返回 JSON(而非文件);
+   * 错误文案已在 downloadExportFile 内统一提示, 返回 false 便于调用方复位按钮状态。
+   */
+  exportExcel(query: VirtualDeviceQuery, options: { failedText: string; fileName: string }): Promise<boolean> {
+    return downloadExportFile({
+      client: requestClient,
+      url: '/admin/device/virtual/export',
+      params: { ...query },
+      fileName: options.fileName,
+      failedText: options.failedText,
+    });
   },
 
   /**

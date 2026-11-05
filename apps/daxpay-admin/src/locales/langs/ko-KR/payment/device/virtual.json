@@ -79,6 +79,15 @@
     "copyFailed": "복사에 실패했습니다. 수동으로 복사하세요",
     "downloadFailed": "QR 코드 다운로드에 실패했습니다. 다시 시도하세요"
   },
+  "batchActions": "일괄 작업",
+  "batchBindMerchant": "판매자 일괄 바인딩",
+  "batchUnbindMerchant": "판매자 일괄 바인딩 해제",
+  "selectRequired": "먼저 디바이스를 선택하세요",
+  "confirmBatchUnbind": "선택한 디바이스 {count}대의 판매자 바인딩을 해제하시겠습니까? 해제하면 디바이스 자격 증명이 초기화되어 기기에서 다시 활성화해야 합니다.",
+  "batchUnbindSuccess": "디바이스 {count}대의 바인딩을 해제했습니다",
+  "export": "내보내기",
+  "exportFileName": "가상 디바이스 목록",
+  "exportFailed": "내보내기에 실패했습니다. 잠시 후 다시 시도해 주세요",
   "bind": {
     "title": "판매자 바인딩",
     "validationMchNo": "판매자를 선택하세요",

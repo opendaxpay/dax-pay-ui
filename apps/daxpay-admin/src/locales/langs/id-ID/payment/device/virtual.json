@@ -79,6 +79,15 @@
     "copyFailed": "Gagal menyalin, salin manual",
     "downloadFailed": "Gagal mengunduh kode QR, coba lagi"
   },
+  "batchActions": "Operasi Massal",
+  "batchBindMerchant": "Ikat Merchant Massal",
+  "batchUnbindMerchant": "Lepas Merchant Massal",
+  "selectRequired": "Pilih perangkat terlebih dahulu",
+  "confirmBatchUnbind": "Lepaskan ikatan merchant dari {count} perangkat terpilih? Pelepasan akan mengatur ulang kredensial perangkat dan perangkat harus diaktivasi ulang.",
+  "batchUnbindSuccess": "Berhasil melepaskan ikatan merchant dari {count} perangkat",
+  "export": "Ekspor",
+  "exportFileName": "Daftar Perangkat Virtual",
+  "exportFailed": "Ekspor gagal. Silakan coba lagi nanti.",
   "bind": {
     "title": "Ikat Merchant",
     "validationMchNo": "Pilih merchant",

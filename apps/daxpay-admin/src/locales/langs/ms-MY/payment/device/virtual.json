@@ -79,6 +79,15 @@
     "copyFailed": "Gagal menyalin, salin secara manual",
     "downloadFailed": "Gagal memuat turun kod QR, cuba lagi"
   },
+  "batchActions": "Tindakan Pukal",
+  "batchBindMerchant": "Ikat Pedagang Secara Pukal",
+  "batchUnbindMerchant": "Lepaskan Pedagang Secara Pukal",
+  "selectRequired": "Sila pilih peranti terlebih dahulu",
+  "confirmBatchUnbind": "Lepaskan ikatan pedagang daripada {count} peranti yang dipilih? Pelepasan akan menetapkan semula kredensial peranti dan peranti perlu diaktifkan semula.",
+  "batchUnbindSuccess": "Berjaya melepaskan ikatan pedagang bagi {count} peranti",
+  "export": "Eksport",
+  "exportFileName": "Senarai Peranti Maya",
+  "exportFailed": "Eksport gagal. Sila cuba lagi kemudian.",
   "bind": {
     "title": "Ikat Pedagang",
     "validationMchNo": "Pilih pedagang",

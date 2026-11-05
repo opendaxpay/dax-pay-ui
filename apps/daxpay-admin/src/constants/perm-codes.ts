@@ -277,11 +277,13 @@ export const PermCodes = {
     QrCode: {
       VIEW: 'device:qrcode:view',
       MANAGE: 'device:qrcode:manage',
+      EXPORT: 'device:qrcode:export',
     },
     // 虚拟设备(手机 APP 变云音箱/云打印, 收款播报+小票打印)
     Virtual: {
       VIEW: 'device:virtual:view',
       MANAGE: 'device:virtual:manage',
+      EXPORT: 'device:virtual:export',
     },
   },
 

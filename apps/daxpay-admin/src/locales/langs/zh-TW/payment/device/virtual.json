@@ -79,6 +79,15 @@
     "copyFailed": "複製失敗, 請手動複製",
     "downloadFailed": "二維碼下載失敗, 請重試"
   },
+  "batchActions": "批量操作",
+  "batchBindMerchant": "批量綁定商戶",
+  "batchUnbindMerchant": "批量解綁商戶",
+  "selectRequired": "請先勾選設備",
+  "confirmBatchUnbind": "確認解綁選中的 {count} 台設備嗎？解綁後設備端需重新激活。",
+  "batchUnbindSuccess": "已解綁 {count} 台設備",
+  "export": "匯出",
+  "exportFileName": "虛擬設備清單",
+  "exportFailed": "匯出失敗",
   "bind": {
     "title": "綁定商戶",
     "validationMchNo": "請選擇商戶",

@@ -79,6 +79,15 @@
     "copyFailed": "复制失败, 请手动复制",
     "downloadFailed": "二维码下载失败, 请重试"
   },
+  "batchActions": "批量操作",
+  "batchBindMerchant": "批量绑定商户",
+  "batchUnbindMerchant": "批量解绑商户",
+  "selectRequired": "请先勾选设备",
+  "confirmBatchUnbind": "确认解绑选中的 {count} 台设备吗？解绑后设备端需重新激活。",
+  "batchUnbindSuccess": "已解绑 {count} 台设备",
+  "export": "导出",
+  "exportFileName": "虚拟设备清单",
+  "exportFailed": "导出失败",
   "bind": {
     "title": "绑定商户",
     "validationMchNo": "请选择商户",
