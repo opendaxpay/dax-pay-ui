@@ -31,6 +31,7 @@
     "groupAccess": "接入設定",
     "cardVirtualDeviceDesc": "該商戶名下綁定虛擬設備（收款播報 APP）的台帳及運維",
     "unitPiece": "個",
-    "unitDevice": "台"
+    "unitDevice": "台",
+    "unitCopy": "份"
   }
 }

@@ -31,6 +31,7 @@
     "groupAccess": "Cấu hình tích hợp",
     "cardVirtualDeviceDesc": "Nhật ký và vận hành các thiết bị ảo (ứng dụng thông báo thanh toán) thuộc merchant này",
     "unitPiece": "",
-    "unitDevice": ""
+    "unitDevice": "",
+    "unitCopy": ""
   }
 }

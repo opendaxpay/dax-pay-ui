@@ -31,6 +31,7 @@
     "groupAccess": "Integration Config",
     "cardVirtualDeviceDesc": "Ledger and maintenance of virtual devices (payment announcement APP) bound to this merchant",
     "unitPiece": "",
-    "unitDevice": ""
+    "unitDevice": "",
+    "unitCopy": ""
   }
 }

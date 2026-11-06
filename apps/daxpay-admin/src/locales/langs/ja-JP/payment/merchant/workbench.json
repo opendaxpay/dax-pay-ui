@@ -31,6 +31,7 @@
     "groupAccess": "接続設定",
     "cardVirtualDeviceDesc": "この加盟店に紐づく仮想デバイス（入金アナウンスアプリ）の台帳と運用管理",
     "unitPiece": "",
-    "unitDevice": ""
+    "unitDevice": "",
+    "unitCopy": ""
   }
 }

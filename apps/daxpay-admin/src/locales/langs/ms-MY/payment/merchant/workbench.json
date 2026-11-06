@@ -31,6 +31,7 @@
     "groupAccess": "Konfigurasi Integrasi",
     "cardVirtualDeviceDesc": "Lejar dan penyenggaraan peranti maya (aplikasi pengumuman bayaran) milik merchant ini",
     "unitPiece": "",
-    "unitDevice": ""
+    "unitDevice": "",
+    "unitCopy": ""
   }
 }

@@ -31,6 +31,7 @@
     "groupAccess": "연동 설정",
     "cardVirtualDeviceDesc": "이 가맹점에 귀속된 가상 기기(수금 알림 앱)의 대장 및 운영 관리",
     "unitPiece": "",
-    "unitDevice": ""
+    "unitDevice": "",
+    "unitCopy": ""
   }
 }

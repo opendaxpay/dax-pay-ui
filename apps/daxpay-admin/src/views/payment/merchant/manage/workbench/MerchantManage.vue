@@ -12,6 +12,7 @@
   import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
 
   import { DashboardDeviceApi, type MchDeviceCountResult } from '#/api/payment/dashboard/device-dashboard.api';
+  import { DashboardMerchantApi, type MchBaseCountResult } from '#/api/payment/dashboard/merchant-dashboard.api';
   import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
@@ -36,8 +37,10 @@
   const loading = ref(false);
   const mchNo = ref<string>('');
   const merchantInfo = ref<MerchantInfo>({});
-  // 设备与支付应用计数(虚拟设备台数/微信应用数/抖音应用数, 加载失败时缺省不展示角标)
+  // 设备与支付应用计数(系统终端台数/虚拟设备台数/微信应用数/抖音应用数, 加载失败时缺省不展示角标)
   const deviceCounts = ref<MchDeviceCountResult>({});
+  // 基础数据计数(商户用户/门店/通道商户/应用/域名校验文件, 加载失败时缺省不展示角标)
+  const baseCounts = ref<MchBaseCountResult>({});
   // 页签标题动态化为「{商户名} · 商户工作台」
   const { setTabObjectTitle } = useDynamicTabTitle($t('payment.merchant.workbench.workbench.title'));
 
@@ -45,7 +48,8 @@
    * 功能卡片配置: 五组制(基础/支付/收银与设备/接入/危险)
    *
    * 收银与设备组收纳收款端实体(系统终端/虚拟设备), 与支付通路配置分离;
-   * 微信/抖音应用卡与虚拟设备卡带数字角标(存量计数, 取数见 loadDeviceCounts)。
+   * 除商户资料卡外均带数字角标(存量计数): 基础/支付/接入组取数见 loadBaseCounts,
+   * 微信/抖音应用卡与系统终端/虚拟设备卡取数见 loadDeviceCounts。
    */
   const functionCards = computed((): WorkbenchTileGroup[] => {
     const groups: WorkbenchTileGroup[] = [];
@@ -65,12 +69,18 @@
         title: $t('payment.merchant.workbench.workbench.cardUser'),
         icon: 'ant-design:user-outlined',
         description: $t('payment.merchant.workbench.workbench.cardUserDesc'),
+        // 用户数角标(存量总数, 含停用账号)
+        count: baseCounts.value.merchantUserCount,
+        countUnit: $t('payment.merchant.workbench.workbench.unitPiece'),
       },
       {
         key: 'store',
         title: $t('payment.merchant.workbench.workbench.cardStore'),
         icon: 'ant-design:environment-outlined',
         description: $t('payment.merchant.workbench.workbench.cardStoreDesc'),
+        // 门店数角标(存量总数)
+        count: baseCounts.value.storeCount,
+        countUnit: $t('payment.merchant.workbench.workbench.unitPiece'),
       },
     ];
     groups.push({
@@ -88,6 +98,9 @@
         icon: 'ant-design:shop-outlined',
         // 商户在各支付通道的商户号配置与管理
         description: $t('payment.merchant.workbench.workbench.cardChannelMerchantDesc'),
+        // 通道商户数角标(存量总数)
+        count: baseCounts.value.channelMerchantCount,
+        countUnit: $t('payment.merchant.workbench.workbench.unitPiece'),
       },
       {
         key: 'app',
@@ -96,6 +109,9 @@
         icon: 'ant-design:appstore-outlined',
         // 商户应用创建与管理
         description: $t('payment.merchant.workbench.workbench.cardAppDesc'),
+        // 应用数角标(存量总数)
+        count: baseCounts.value.appCount,
+        countUnit: $t('payment.merchant.workbench.workbench.unitPiece'),
       },
       {
         key: 'wxApp',
@@ -134,6 +150,9 @@
         icon: 'ant-design:monitor-outlined',
         // 商户逻辑终端编号与通道终端绑定管理
         description: $t('payment.merchant.workbench.workbench.cardTerminalDesc'),
+        // 台数角标(存量总数, 不限启用态)
+        count: deviceCounts.value.terminalCount,
+        countUnit: $t('payment.merchant.workbench.workbench.unitDevice'),
       },
     ];
     if (hasPermission(PermCodes.Device.Virtual.VIEW)) {
@@ -170,6 +189,9 @@
         title: $t('payment.merchant.workbench.workbench.cardWxDomainVerify'),
         icon: 'ant-design:safety-certificate-outlined',
         description: $t('payment.merchant.workbench.workbench.cardWxDomainVerifyDesc'),
+        // 份数角标(存量总数, 平台级校验文件不计入)
+        count: baseCounts.value.wxVerifyCount,
+        countUnit: $t('payment.merchant.workbench.workbench.unitCopy'),
       },
     ];
     groups.push({
@@ -207,6 +229,7 @@
     mchNo.value = routeContext.query.value.mchNo!;
     loadMerchantInfo();
     loadDeviceCounts();
+    loadBaseCounts();
   });
 
   /**
@@ -229,12 +252,25 @@
   }
 
   /**
-   * 加载设备与支付应用计数(收银与设备/支付配置组磁贴角标, 失败静默不展示)
+   * 加载设备与支付应用计数(系统终端/虚拟设备/微信应用/抖音应用)
    */
   function loadDeviceCounts() {
     DashboardDeviceApi.deviceCounts(mchNo.value)
       .then(({ data }) => {
         deviceCounts.value = data || {};
+      })
+      .catch(() => {
+        // 角标为辅助信息, 拉取失败保持缺省不展示, 不影响页面主体
+      });
+  }
+
+  /**
+   * 加载基础数据磁贴的存量计数(商户用户/门店/通道商户/应用/域名校验文件)
+   */
+  function loadBaseCounts() {
+    DashboardMerchantApi.baseCounts(mchNo.value)
+      .then(({ data }) => {
+        baseCounts.value = data || {};
       })
       .catch(() => {
         // 角标为辅助信息, 拉取失败保持缺省不展示, 不影响页面主体

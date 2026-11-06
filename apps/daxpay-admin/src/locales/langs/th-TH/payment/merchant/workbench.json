@@ -31,6 +31,7 @@
     "groupAccess": "การตั้งค่าการเชื่อมต่อ",
     "cardVirtualDeviceDesc": "บันทึกและดูแลอุปกรณ์เสมือน (แอปแจ้งเตือนการชำระเงิน) ที่ผูกกับร้านค้านี้",
     "unitPiece": "",
-    "unitDevice": ""
+    "unitDevice": "",
+    "unitCopy": ""
   }
 }

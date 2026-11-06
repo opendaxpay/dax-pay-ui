@@ -23,6 +23,8 @@ export const DashboardDeviceApi = {
  * 商户设备与应用计数结果
  */
 export interface MchDeviceCountResult {
+  /** 名下逻辑终端数 */
+  terminalCount?: number;
   /** 名下虚拟设备台数 */
   virtualDeviceCount?: number;
   /** 商户微信应用数 */
