@@ -31,8 +31,6 @@
   },
   "card": {
     "storeNoPrefix": "Số cửa hàng: {storeNo}",
-    "defaultAppLine": "Ứng dụng mặc định: {app}",
-    "defaultAppFollow": "Ứng dụng mặc định: theo mặc định của merchant",
     "enterWorkbench": "Mở bàn làm việc"
   },
   "list": {

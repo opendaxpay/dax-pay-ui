@@ -31,8 +31,6 @@
   },
   "card": {
     "storeNoPrefix": "No. Toko: {storeNo}",
-    "defaultAppLine": "Aplikasi bawaan: {app}",
-    "defaultAppFollow": "Aplikasi bawaan: ikuti bawaan merchant",
     "enterWorkbench": "Buka workbench"
   },
   "list": {

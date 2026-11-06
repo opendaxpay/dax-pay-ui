@@ -4,7 +4,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { IconifyIcon } from '@vben-core/icons';
+  import { ResourceAddCard, ResourceCard, ResourceCardGrid } from '@daxpay/ui-biz/components/resource-card';
 
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
@@ -12,7 +12,6 @@
   import { usePermission } from '#/hooks/usePermission';
   import useTablePage from '#/hooks/useTablePage';
 
-  import MchAppInfoCard from './MchAppInfoCard.vue';
   import MchAppInfoEdit from './MchAppInfoEdit.vue';
 
   defineOptions({ name: 'MchAppInfoList' });
@@ -76,6 +75,16 @@
   /** 是否展示无默认应用提示条 */
   const showNoDefaultTip = computed(() => hasAppWithoutDefault.value && !loading.value);
 
+  /** 应用卡底栏状态(状态点 + 文案, 启用=主色点 / 停用=灰点) */
+  function appStatus(app: MchAppInfoResult) {
+    const enabled = app.status === 'enable';
+    return {
+      dotClass: enabled ? 'bg-primary' : 'bg-muted-foreground/60',
+      // 启用 / 禁用
+      text: enabled ? $t('payment.merchant.app.app.statusEnable') : $t('payment.merchant.app.app.statusDisabled'),
+    };
+  }
+
   /**
    * 加载当前商户号（新增应用时传入）
    */
@@ -115,39 +124,35 @@
       </div>
 
       <a-spin :spinning="loading">
-        <div class="app-card-grid">
-          <MchAppInfoCard
+        <ResourceCardGrid>
+          <ResourceCard
             v-for="row in sortedAppList"
             :key="row.id || row.appId"
-            :record="row"
+            :title="row.appName || '-'"
+            :subtitle="$t('payment.merchant.app.app.appIdPrefix', { appId: row.appId || '-' })"
+            icon="ant-design:appstore-outlined"
+            :active="row.defaultApp === true"
+            :action-text="$t('payment.merchant.app.app.enterConfig')"
+            :aria-label="$t('payment.merchant.app.app.openActionAria')"
+            :status="appStatus(row)"
             @open="openAppWorkbench(row)"
-          />
-
-          <!-- 新增应用占位卡片 -->
-          <div
-            v-if="hasPermission(PermCodes.Merchant.App.MANAGE)"
-            class="add-card group flex h-full min-h-[156px] cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-border bg-card/60 text-muted-foreground shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary hover:bg-primary/5 hover:text-primary hover:shadow-md"
-            @click="handleAdd"
           >
-            <div
-              class="flex h-14 w-14 items-center justify-center rounded-2xl bg-muted transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/10"
-            >
-              <IconifyIcon icon="ant-design:plus-outlined" class="h-7 w-7" />
-            </div>
-            <span class="text-sm font-bold">{{ $t('payment.merchant.app.app.addCard') }}</span>
-          </div>
-        </div>
+            <!-- 默认应用标记(仅默认应用展示) -->
+            <template v-if="row.defaultApp" #titleExtra>
+              <a-tag color="processing" class="!m-0 shrink-0 !text-xs">
+                {{ $t('payment.merchant.app.app.defaultTag') }}
+              </a-tag>
+            </template>
+          </ResourceCard>
+
+          <!-- 新增应用召唤卡(权限与新增入口同条件) -->
+          <template v-if="hasPermission(PermCodes.Merchant.App.MANAGE)" #add>
+            <ResourceAddCard :text="$t('payment.merchant.app.app.addCard')" @click="handleAdd" />
+          </template>
+        </ResourceCardGrid>
       </a-spin>
     </a-card>
 
     <MchAppInfoEdit ref="appEditRef" @ok="handleOk" />
   </div>
 </template>
-
-<style scoped>
-  .app-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 16px;
-  }
-</style>

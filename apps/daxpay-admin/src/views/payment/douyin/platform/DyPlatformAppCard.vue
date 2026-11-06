@@ -7,22 +7,22 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { ResourceCard } from '@daxpay/ui-biz/components/resource-card';
+
   import { PermCodes } from '#/constants/perm-codes';
   import { usePermission } from '#/hooks/usePermission';
   import { getProviderSvgUrl } from '#/views/payment/shared/payProviderDisplay';
 
-  // 抖音支付渠道色值(图标本体为近黑色, 背景配浅黑更贴品牌)
-  const douyinColor = '#130A17';
-  const douyinSvgUrl = getProviderSvgUrl('douyin');
-
   const props = defineProps<{
     record: DyPlatformApp;
   }>();
-
   const emit = defineEmits<{
     delete: [];
     edit: [];
   }>();
+  // 抖音支付渠道色值(图标本体为近黑色, 背景配浅黑更贴品牌)
+  const douyinColor = '#130A17';
+  const douyinSvgUrl = getProviderSvgUrl('douyin');
 
   const { hasPermission } = usePermission();
 
@@ -40,76 +40,49 @@
 </script>
 
 <template>
-  <div class="platform-app-card group flex h-full min-h-[128px] flex-col rounded-xl border bg-card shadow-sm">
-    <div class="card-body flex flex-1 items-center gap-3 px-4 py-4">
-      <div
-        class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg"
-        :style="{ backgroundColor: `${douyinColor}1a` }"
+  <!-- 卡片统一走 ui-biz 的 ResourceCard, 本组件只保留抖音平台应用特有语义: 品牌图标、AppId 与类型副信息、卡脚编辑/删除操作 -->
+  <ResourceCard
+    :title="record.appName || '-'"
+    :subtitle="$t('payment.douyin.app.douyinAppIdPrefix', { appId: record.douyinAppId || '-' })"
+    :image="douyinSvgUrl"
+    :icon-bg="douyinColor"
+    :clickable="false"
+    footer="actions"
+  >
+    <!-- 副信息第二行: 应用类型 -->
+    <template #subtitleExtra>
+      <div class="mt-0.5 truncate text-xs text-muted-foreground">
+        {{ $t('payment.douyin.app.appTypePrefix', { type: appTypeLabel }) }}
+      </div>
+    </template>
+
+    <!-- 卡脚操作: 编辑 / 删除(同一管理权限控制) -->
+    <template #actions>
+      <a-tooltip
+        v-if="hasPermission(PermCodes.Payment.Douyin.PlatformApp.MANAGE)"
+        :title="$t('payment.douyin.app.edit')"
       >
-        <img v-if="douyinSvgUrl" :src="douyinSvgUrl" class="h-6 w-6" alt="douyin" />
-      </div>
-      <div class="min-w-0 flex-1">
-        <div class="truncate text-base font-semibold leading-snug text-foreground">
-          {{ record.appName || '-' }}
-        </div>
-        <div class="mt-1 truncate text-xs text-muted-foreground">
-          {{ $t('payment.douyin.app.douyinAppIdPrefix', { appId: record.douyinAppId || '-' }) }}
-        </div>
-        <div class="mt-0.5 truncate text-xs text-muted-foreground">
-          {{ $t('payment.douyin.app.appTypePrefix', { type: appTypeLabel }) }}
-        </div>
-      </div>
-    </div>
-
-    <div class="card-footer flex shrink-0 items-center justify-end border-t border-border px-4 py-1.5">
-      <div class="flex items-center">
-        <a-tooltip
-          v-if="hasPermission(PermCodes.Payment.Douyin.PlatformApp.MANAGE)"
-          :title="$t('payment.douyin.app.edit')"
+        <a-button
+          type="text"
+          size="small"
+          class="!h-6 !w-6 !min-w-6 !p-0 !text-muted-foreground hover:!text-primary"
+          @click="emit('edit')"
         >
-          <a-button
-            type="text"
-            size="small"
-            class="!h-6 !w-6 !min-w-6 !p-0 !text-muted-foreground hover:!text-primary"
-            @click="emit('edit')"
-          >
-            <template #icon>
-              <IconifyIcon icon="ant-design:edit-outlined" class="text-sm" />
-            </template>
-          </a-button>
-        </a-tooltip>
-        <a-tooltip
-          v-if="hasPermission(PermCodes.Payment.Douyin.PlatformApp.MANAGE)"
-          :title="$t('payment.douyin.app.delete')"
-        >
-          <a-button
-            type="text"
-            danger
-            size="small"
-            class="!h-6 !w-6 !min-w-6 !p-0"
-            @click="emit('delete')"
-          >
-            <template #icon>
-              <IconifyIcon icon="ant-design:delete-outlined" class="text-sm" />
-            </template>
-          </a-button>
-        </a-tooltip>
-      </div>
-    </div>
-  </div>
+          <template #icon>
+            <IconifyIcon icon="ant-design:edit-outlined" class="text-sm" />
+          </template>
+        </a-button>
+      </a-tooltip>
+      <a-tooltip
+        v-if="hasPermission(PermCodes.Payment.Douyin.PlatformApp.MANAGE)"
+        :title="$t('payment.douyin.app.delete')"
+      >
+        <a-button type="text" danger size="small" class="!h-6 !w-6 !min-w-6 !p-0" @click="emit('delete')">
+          <template #icon>
+            <IconifyIcon icon="ant-design:delete-outlined" class="text-sm" />
+          </template>
+        </a-button>
+      </a-tooltip>
+    </template>
+  </ResourceCard>
 </template>
-
-<style scoped>
-  .platform-app-card {
-    transition:
-      transform 0.25s ease,
-      box-shadow 0.25s ease,
-      border-color 0.25s ease;
-  }
-
-  .platform-app-card:hover {
-    border-color: hsl(var(--primary) / 0.4);
-    box-shadow: 0 8px 24px rgb(0 0 0 / 0.12);
-    transform: translateY(-4px);
-  }
-</style>

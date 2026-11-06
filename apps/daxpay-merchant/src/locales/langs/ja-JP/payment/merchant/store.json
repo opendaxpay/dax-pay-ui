@@ -31,8 +31,6 @@
   },
   "card": {
     "storeNoPrefix": "店舗番号：{storeNo}",
-    "defaultAppLine": "デフォルトアプリ：{app}",
-    "defaultAppFollow": "デフォルトアプリ：加盟商のデフォルトに従う",
     "enterWorkbench": "ワークベンチへ"
   },
   "list": {

@@ -31,8 +31,6 @@
   },
   "card": {
     "storeNoPrefix": "門店號：{storeNo}",
-    "defaultAppLine": "預設應用：{app}",
-    "defaultAppFollow": "預設應用：跟隨商戶預設",
     "enterWorkbench": "進入工作台"
   },
   "list": {

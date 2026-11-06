@@ -6,6 +6,8 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { ResourceAddCard, ResourceCardGrid } from '@daxpay/ui-biz/components/resource-card';
+
   import { type AlipayIsvApp, AlipayIsvAppApi } from '#/api/payment/channel/alipay/isv-app.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { usePermission } from '#/hooks/usePermission';
@@ -105,7 +107,7 @@
           class="py-12"
           :description="$t('payment.channel.alipayManage.emptyAppList')"
         />
-        <div v-else class="app-card-grid">
+        <ResourceCardGrid v-else>
           <AlipayIsvAppCard
             v-for="app in appList"
             :key="app.id ?? app.aliAppId"
@@ -114,17 +116,11 @@
             @manage="handleManage(app)"
           />
 
-          <!-- 新增应用占位卡片 -->
-          <div
-            v-if="canAdd"
-            class="add-card flex h-full min-h-[128px] cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-muted/30 text-muted-foreground transition-all hover:border-primary hover:bg-primary/5 hover:text-primary"
-            @click="handleAdd"
-          >
-            <IconifyIcon icon="ant-design:plus-outlined" class="text-3xl" />
-            <!-- 国际化：添加应用 -->
-            <span class="text-sm font-medium">{{ $t('payment.channel.alipayManage.addCard') }}</span>
-          </div>
-        </div>
+          <!-- 新增应用召唤卡(权限与新增入口同条件) -->
+          <template v-if="canAdd" #add>
+            <ResourceAddCard :text="$t('payment.channel.alipayManage.addCard')" @click="handleAdd" />
+          </template>
+        </ResourceCardGrid>
       </a-spin>
     </a-card>
 
@@ -132,31 +128,3 @@
     <AlipayIsvAppDetail ref="detailRef" @deleted="loadAppList" />
   </div>
 </template>
-
-<style scoped>
-  .app-card-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 16px;
-    padding: 0;
-    min-height: 120px;
-  }
-
-  @media (max-width: 1400px) {
-    .app-card-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 1024px) {
-    .app-card-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 640px) {
-    .app-card-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>

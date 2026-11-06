@@ -31,8 +31,6 @@
   },
   "card": {
     "storeNoPrefix": "매장 번호: {storeNo}",
-    "defaultAppLine": "기본 앱: {app}",
-    "defaultAppFollow": "기본 앱: 가맹점 기본값 따름",
     "enterWorkbench": "워크벤치 열기"
   },
   "list": {

@@ -31,8 +31,6 @@
   },
   "card": {
     "storeNoPrefix": "รหัสสาขา: {storeNo}",
-    "defaultAppLine": "แอปเริ่มต้น: {app}",
-    "defaultAppFollow": "แอปเริ่มต้น: ตามค่าเริ่มต้นของร้านค้า",
     "enterWorkbench": "เข้าสู่เวิร์กเบนช์"
   },
   "list": {

@@ -31,8 +31,6 @@
   },
   "card": {
     "storeNoPrefix": "No. Kedai: {storeNo}",
-    "defaultAppLine": "App lalai: {app}",
-    "defaultAppFollow": "App lalai: ikut lalai merchant",
     "enterWorkbench": "Buka workbench"
   },
   "list": {

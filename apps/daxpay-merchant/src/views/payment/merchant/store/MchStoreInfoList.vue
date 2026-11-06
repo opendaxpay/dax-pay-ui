@@ -4,7 +4,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { IconifyIcon } from '@vben-core/icons';
+  import { ResourceAddCard, ResourceCard, ResourceCardGrid } from '@daxpay/ui-biz/components/resource-card';
 
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { MchStoreInfoApi, type MchStoreInfoResult } from '#/api/payment/merchant/store.api';
@@ -12,7 +12,6 @@
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
-  import MchStoreInfoCard from './MchStoreInfoCard.vue';
   import MchStoreInfoEdit from './MchStoreInfoEdit.vue';
 
   /**
@@ -20,6 +19,7 @@
    *
    * 全量加载 + 客户端关键词/状态双条件过滤 + 默认门店置顶 + 新增门店召唤卡 + 未设默认告警条;
    * 整卡点击进入门店工作台(无 VIEW 权限整卡不响应)。
+   * 卡片统一走 ui-biz 通用 ResourceCard 三件套(与运营端/plus 同规格)。
    */
   defineOptions({ name: 'MchStoreInfoList' });
 
@@ -52,6 +52,21 @@
 
   /** 是否有门店管理权限(召唤卡新增入口同条件) */
   const canAdd = computed(() => hasPermission(PermCodes.Merchant.Store.MANAGE));
+
+  /** 是否可进入门店工作台(门店查看权限; 无权限时整卡不响应) */
+  const canView = computed(() => hasPermission(PermCodes.Merchant.Store.VIEW));
+
+  /** 门店卡底栏状态(状态点 + 文案, 启用=主色点 / 停用=灰点) */
+  function storeStatus(store: MchStoreInfoResult) {
+    const enabled = store.status === 'enable';
+    return {
+      dotClass: enabled ? 'bg-primary' : 'bg-muted-foreground/60',
+      // 启用 / 停用
+      text: enabled
+        ? $t('payment.merchant.store.store.status.enable')
+        : $t('payment.merchant.store.store.status.disabled'),
+    };
+  }
 
   // 是否有门店但没有默认门店(用于告警横幅)
   const hasStoreWithoutDefault = computed(() => {
@@ -163,39 +178,37 @@
         <div v-if="!loading && sortedStoreList.length === 0 && !canAdd" class="py-12">
           <a-empty :description="$t('payment.merchant.store.list.empty')" />
         </div>
-        <div v-else class="store-card-grid">
-          <MchStoreInfoCard
+        <ResourceCardGrid v-else>
+          <ResourceCard
             v-for="store in sortedStoreList"
             :key="store.id ?? store.storeNo"
-            :record="store"
+            :title="store.storeName || '-'"
+            :subtitle="$t('payment.merchant.store.card.storeNoPrefix', { storeNo: store.storeNo || '-' })"
+            icon="ant-design:shop-outlined"
+            :active="store.defaultStore === true"
+            :clickable="canView"
+            :footer="canView ? 'enter' : 'none'"
+            :action-text="$t('payment.merchant.store.card.enterWorkbench')"
+            :aria-label="$t('payment.merchant.store.card.enterWorkbench')"
+            :status="storeStatus(store)"
             @open="handleWorkbench(store)"
-          />
+          >
+            <!-- 默认门店标记(仅默认门店展示) -->
+            <template v-if="store.defaultStore" #titleExtra>
+              <a-tag color="processing" class="!m-0 shrink-0 !text-xs">
+                {{ $t('payment.merchant.store.store.defaultStore') }}
+              </a-tag>
+            </template>
+          </ResourceCard>
 
           <!-- 召唤卡: 权限与新增入口同条件, 点击打开新增门店抽屉 -->
-          <div
-            v-if="canAdd"
-            class="flex h-full min-h-[126px] cursor-pointer flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-border bg-card/60 text-muted-foreground shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:bg-primary/5 hover:text-primary hover:shadow-md"
-            @click="handleAdd"
-          >
-            <div
-              class="flex h-[42px] w-[42px] items-center justify-center rounded-lg bg-muted transition-all duration-300 group-hover:scale-110"
-            >
-              <IconifyIcon icon="ant-design:plus-outlined" class="text-xl" />
-            </div>
-            <span class="text-sm font-bold">{{ $t('payment.merchant.store.list.addCard') }}</span>
-          </div>
-        </div>
+          <template v-if="canAdd" #add>
+            <ResourceAddCard :text="$t('payment.merchant.store.list.addCard')" @click="handleAdd" />
+          </template>
+        </ResourceCardGrid>
       </a-spin>
     </a-card>
 
     <MchStoreInfoEdit ref="storeEditRef" @ok="loadStoreList" />
   </div>
 </template>
-
-<style scoped>
-  .store-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 16px;
-  }
-</style>

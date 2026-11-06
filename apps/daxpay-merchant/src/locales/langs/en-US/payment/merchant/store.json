@@ -31,8 +31,6 @@
   },
   "card": {
     "storeNoPrefix": "Store No.: {storeNo}",
-    "defaultAppLine": "Default app: {app}",
-    "defaultAppFollow": "Default app: follow merchant default",
     "enterWorkbench": "Open workbench"
   },
   "list": {

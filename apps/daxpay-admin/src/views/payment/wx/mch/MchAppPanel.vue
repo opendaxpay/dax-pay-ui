@@ -8,6 +8,8 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { ResourceAddCard, ResourceCardGrid } from '@daxpay/ui-biz/components/resource-card';
+
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { type WxMchApp, WxMchAppApi } from '#/api/payment/wx/mch-app.api';
   import { PermCodes } from '#/constants/perm-codes';
@@ -175,11 +177,7 @@
       </div>
     </div>
 
-    <a-empty
-      v-if="!selectedMchNo"
-      class="py-12"
-      :description="$t('payment.wx.app.selectMerchant')"
-    />
+    <a-empty v-if="!selectedMchNo" class="py-12" :description="$t('payment.wx.app.selectMerchant')" />
 
     <a-spin v-else :spinning="loading">
       <a-empty
@@ -187,7 +185,7 @@
         class="py-12"
         :description="$t('payment.wx.app.emptyAppList')"
       />
-      <div v-else class="app-card-grid">
+      <ResourceCardGrid v-else>
         <MchAppCard
           v-for="app in filteredAppList"
           :key="app.id ?? app.wxAppId"
@@ -196,46 +194,13 @@
           @delete="handleDelete(app)"
         />
 
-        <div
-          v-if="canAdd"
-          class="add-card flex h-full min-h-[128px] cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border bg-muted/30 text-muted-foreground transition-all hover:border-primary hover:bg-primary/5 hover:text-primary"
-          @click="handleAdd"
-        >
-          <IconifyIcon icon="ant-design:plus-outlined" class="text-3xl" />
-          <!-- 新增应用 -->
-          <span class="text-sm font-medium">{{ $t('payment.wx.app.addApp') }}</span>
-        </div>
-      </div>
+        <!-- 召唤卡: 有新增权限时展示 -->
+        <template v-if="canAdd" #add>
+          <ResourceAddCard :text="$t('payment.wx.app.addApp')" @click="handleAdd" />
+        </template>
+      </ResourceCardGrid>
     </a-spin>
 
     <MchAppEdit ref="editRef" @ok="loadAppList" />
   </div>
 </template>
-
-<style scoped>
-  .app-card-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 16px;
-    padding: 0;
-    min-height: 120px;
-  }
-
-  @media (max-width: 1400px) {
-    .app-card-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 1024px) {
-    .app-card-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 640px) {
-    .app-card-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
