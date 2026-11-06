@@ -48,7 +48,6 @@ import mPaymentMerchantCodeConfig from './payment/merchant/codeConfig.json';
 import mPaymentMerchantCredential from './payment/merchant/credential.json';
 import mPaymentMerchantForm from './payment/merchant/form.json';
 import mPaymentMerchantGatewayConfig from './payment/merchant/gatewayConfig.json';
-import mPaymentMerchantNotifyConfig from './payment/merchant/notifyConfig.json';
 import mPaymentMerchantRoute from './payment/merchant/route.json';
 import mPaymentMerchantStore from './payment/merchant/store.json';
 import mPaymentMerchantUser from './payment/merchant/user.json';
@@ -120,7 +119,6 @@ const entries: LocaleEntry[] = [
   [['payment', 'merchant', 'credential'], mPaymentMerchantCredential],
   [['payment', 'merchant', 'form'], mPaymentMerchantForm],
   [['payment', 'merchant', 'gatewayConfig'], mPaymentMerchantGatewayConfig],
-  [['payment', 'merchant', 'notifyConfig'], mPaymentMerchantNotifyConfig],
   [['payment', 'merchant', 'route'], mPaymentMerchantRoute],
   [['payment', 'merchant', 'store'], mPaymentMerchantStore],
   [['payment', 'merchant', 'user'], mPaymentMerchantUser],

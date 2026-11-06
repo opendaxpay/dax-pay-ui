@@ -41,8 +41,6 @@
   "merchant:gateway-pay-config:view": "Lihat",
   "merchant:info:manage": "Uruskan",
   "merchant:info:view": "Lihat",
-  "merchant:notify-config:manage": "Uruskan",
-  "merchant:notify-config:view": "Lihat",
   "merchant:store:manage": "Uruskan",
   "merchant:store:view": "Lihat",
   "merchant:terminal:manage": "Uruskan",

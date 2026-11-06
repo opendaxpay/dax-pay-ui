@@ -50,9 +50,5 @@
   "payRoute": {
     "title": "Laluan Pembayaran",
     "description": "Sesetengah aplikasi belum mengkonfigurasi strategi laluan pembayaran"
-  },
-  "mchNotify": {
-    "title": "Konfigurasi Pemberitahuan",
-    "description": "Sesetengah aplikasi belum mengkonfigurasi URL pemberitahuan panggilan balik"
   }
 }

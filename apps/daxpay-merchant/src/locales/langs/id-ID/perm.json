@@ -39,8 +39,6 @@
   "merchant:gateway-pay-config:view": "Lihat",
   "merchant:info:manage": "Mengelola",
   "merchant:info:view": "Melihat",
-  "merchant:notify-config:manage": "Mengelola",
-  "merchant:notify-config:view": "Melihat",
   "merchant:store:manage": "Mengelola",
   "merchant:store:view": "Melihat",
   "merchant:terminal:manage": "Mengelola",

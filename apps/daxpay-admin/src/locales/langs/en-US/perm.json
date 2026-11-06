@@ -41,8 +41,6 @@
   "merchant:gateway-pay-config:view": "View",
   "merchant:info:manage": "Manage",
   "merchant:info:view": "View",
-  "merchant:notify-config:manage": "Manage",
-  "merchant:notify-config:view": "View",
   "merchant:store:manage": "Manage",
   "merchant:store:view": "View",
   "merchant:terminal:manage": "Manage",

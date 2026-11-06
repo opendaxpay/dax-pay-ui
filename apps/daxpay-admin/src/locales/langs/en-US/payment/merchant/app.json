@@ -22,7 +22,6 @@
     "payRoute": "Channel Binding",
     "gatewayPayConfig": "Gateway Pay Config",
     "gatewayPayConfigDesc": "Configure channel routing for QR code and aggregate pay across environments",
-    "notifyConfig": "Async Notify Config",
     "cashierConfig": "Cashier Config",
     "cashierConfigDesc": "Configure cashier items and payment method entries",
     "enterConfig": "Configure",
@@ -32,14 +31,12 @@
     "groupConfig": "Payment Config",
     "groupManage": "App Management",
     "payRouteDesc": "Choose which channel merchant each wallet (WeChat/Alipay/…) uses for this app",
-    "notifyConfigDesc": "Configure event callback URLs and subscriptions",
     "editDesc": "Edit app name, status and basic info",
     "setDefaultDesc": "Used when no app is specified for a transaction",
     "cancelDefaultDesc": "You will need to assign another default app",
     "deleteDesc": "This cannot be undone. Proceed with caution",
     "openActionAria": "Open app configuration",
-    "confirmDisableDefault": "This is the default app. Disabling it will break fallback for orders without appId. Continue?",
-    "groupNotifyDevice": "Notifications & Devices"
+    "confirmDisableDefault": "This is the default app. Disabling it will break fallback for orders without appId. Continue?"
   },
   "easypay": {
     "useSystemKey": "Use system key pair",

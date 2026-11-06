@@ -22,7 +22,6 @@
     "payRoute": "Pengikat Saluran",
     "gatewayPayConfig": "Konfigurasi Pembayaran Gateway",
     "gatewayPayConfigDesc": "Konfigurasi laluan saluran untuk pembayaran QR dan agregat dalam pelbagai persekitaran",
-    "notifyConfig": "Konfigurasi Pemberitahuan Async",
     "cashierConfig": "Konfigurasi Juruwang",
     "cashierConfigDesc": "Konfigurasikan item juruwang dan entri kaedah pembayaran",
     "enterConfig": "Konfigurasikan",
@@ -32,14 +31,12 @@
     "groupConfig": "Konfigurasi Pembayaran",
     "groupManage": "Pengurusan Apl",
     "payRouteDesc": "Pilih saluran pedagang mana yang digunakan oleh setiap dompet (WeChat/Alipay/…) untuk apl ini",
-    "notifyConfigDesc": "Konfigurasikan URL panggilan balik acara dan langganan",
     "editDesc": "Edit nama apl, status dan maklumat asas",
     "setDefaultDesc": "Digunakan apabila tiada apl ditentukan untuk transaksi",
     "cancelDefaultDesc": "Anda perlu menetapkan apl lalai lain",
     "deleteDesc": "Ini tidak boleh dibuat asal. Teruskan dengan berhati-hati",
     "openActionAria": "Buka konfigurasi apl",
-    "confirmDisableDefault": "Ini ialah aplikasi lalai. Menyahaktifkannya akan menyebabkan pesanan tanpa appId gagal sebagai sandaran. Teruskan?",
-    "groupNotifyDevice": "Notifikasi & Peranti"
+    "confirmDisableDefault": "Ini ialah aplikasi lalai. Menyahaktifkannya akan menyebabkan pesanan tanpa appId gagal sebagai sandaran. Teruskan?"
   },
   "easypay": {
     "useSystemKey": "Gunakan pasangan kunci sistem",

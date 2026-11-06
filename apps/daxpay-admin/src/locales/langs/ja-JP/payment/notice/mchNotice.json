@@ -22,7 +22,6 @@
   "no": "いいえ",
   "placeholderBizNo": "業務番号を入力",
   "sourceOrder": "注文",
-  "sourceApp": "アプリ",
   "sourceProtocol": "プロトコル",
   "formatSystem": "システム",
   "formatEasyPay": "易支付",

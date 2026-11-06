@@ -14,9 +14,5 @@
   "payRoute": {
     "title": "決済ルーティング",
     "description": "一部のアプリで決済ルーティング戦略が未設定です"
-  },
-  "mchNotify": {
-    "title": "通知設定",
-    "description": "一部のアプリでコールバック通知URLが未設定です"
   }
 }

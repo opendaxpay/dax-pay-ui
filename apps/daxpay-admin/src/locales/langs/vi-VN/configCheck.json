@@ -50,9 +50,5 @@
   "payRoute": {
     "title": "Tuyến Thanh Toán",
     "description": "Một số ứng dụng chưa cấu hình chiến lược tuyến thanh toán"
-  },
-  "mchNotify": {
-    "title": "Cấu Hình Thông Báo",
-    "description": "Một số ứng dụng chưa cấu hình URL thông báo callback"
   }
 }

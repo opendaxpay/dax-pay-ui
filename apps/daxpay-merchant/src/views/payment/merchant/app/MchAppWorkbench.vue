@@ -13,7 +13,6 @@
   import { DashboardDeviceApi, type MchDeviceCountResult } from '#/api/payment/dashboard/device-dashboard.api';
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
-  import { NOTIFY_CONFIG_BUILDING } from '#/constants/feature-flags';
   import { PermCodes } from '#/constants/perm-codes';
   import { useDeleteConfirm } from '#/hooks/useDeleteConfirm';
   import { useMessage } from '#/hooks/useMessage';
@@ -21,7 +20,6 @@
   import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
 
   import MchAppInfoEdit from './MchAppInfoEdit.vue';
-  import MchAppNotifyConfig from './MchAppNotifyConfig.vue';
 
   defineOptions({ name: 'MchAppWorkbench' });
 
@@ -44,7 +42,6 @@
   // 设备与应用计数(仅取虚拟设备台数用于「收款设备」磁贴, 加载失败时缺省不展示)
   const deviceCounts = ref<MchDeviceCountResult>({});
   const appEditRef = ref<InstanceType<typeof MchAppInfoEdit>>();
-  const notifyDrawerVisible = ref(false);
   // 页签标题动态化为「{应用名} · 应用配置」
   const { setTabObjectTitle } = useDynamicTabTitle($t('payment.merchant.app.app.workbenchTitle'));
 
@@ -101,20 +98,10 @@
       });
     }
 
-    // 通知与设备: 收款之后的联动——业务事件回调 + 本商户收款设备
-    const notifyCards: WorkbenchTile[] = [];
-    if (hasPermission(PermCodes.Merchant.NotifyConfig.VIEW)) {
-      notifyCards.push({
-        key: 'notify',
-        title: $t('payment.merchant.app.app.notifyConfig'),
-        icon: 'ant-design:notification-outlined',
-        description: $t('payment.merchant.app.app.notifyConfigDesc'),
-        // 异步通知配置功能未开放, 入口保留并加建设中角标, 点入显示占位
-        building: NOTIFY_CONFIG_BUILDING,
-      });
-    }
+    // 收款设备: 收款之后的联动——本商户收款设备
+    const deviceCards: WorkbenchTile[] = [];
     if (hasPermission(PermCodes.Device.Audio.VIEW)) {
-      notifyCards.push({
+      deviceCards.push({
         key: 'audioDevice',
         // 收款设备 — 标题与菜单 i18n_key 一致
         title: $t('menu.payment.merchant.audioDevice'),
@@ -125,11 +112,11 @@
         countUnit: $t('payment.merchant.app.app.unitDevice'),
       });
     }
-    if (notifyCards.length > 0) {
+    if (deviceCards.length > 0) {
       groups.push({
-        group: $t('payment.merchant.app.app.groupNotifyDevice'),
+        group: $t('payment.merchant.app.app.groupDevice'),
         color: 'purple',
-        cards: notifyCards,
+        cards: deviceCards,
       });
     }
 
@@ -264,10 +251,6 @@
         pushAppRoute('/mch/gateway-config');
         break;
       }
-      case 'notify': {
-        notifyDrawerVisible.value = true;
-        break;
-      }
       case 'payRoute': {
         pushAppRoute('/mch/route');
         break;
@@ -380,7 +363,5 @@
     </a-spin>
 
     <MchAppInfoEdit ref="appEditRef" @ok="handleEditOk" />
-
-    <MchAppNotifyConfig v-model:visible="notifyDrawerVisible" :app-id="appInfo.appId" :app-name="appInfo.appName" />
   </div>
 </template>

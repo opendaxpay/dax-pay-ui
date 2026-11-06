@@ -51,10 +51,6 @@ export const PermCodes = {
       VIEW: 'merchant:credential:view',
       MANAGE: 'merchant:credential:manage',
     },
-    NotifyConfig: {
-      VIEW: 'merchant:notify-config:view',
-      MANAGE: 'merchant:notify-config:manage',
-    },
     App: {
       VIEW: 'merchant:app:view',
       MANAGE: 'merchant:app:manage',

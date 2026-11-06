@@ -50,9 +50,5 @@
   "payRoute": {
     "title": "Rute Pembayaran",
     "description": "Beberapa aplikasi belum mengonfigurasi strategi rute pembayaran"
-  },
-  "mchNotify": {
-    "title": "Konfigurasi Notifikasi",
-    "description": "Beberapa aplikasi belum mengonfigurasi URL notifikasi callback"
   }
 }

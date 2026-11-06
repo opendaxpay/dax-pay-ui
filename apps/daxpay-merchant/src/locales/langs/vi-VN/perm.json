@@ -39,8 +39,6 @@
   "merchant:gateway-pay-config:view": "Xem",
   "merchant:info:manage": "Quản lý",
   "merchant:info:view": "Xem",
-  "merchant:notify-config:manage": "Quản lý",
-  "merchant:notify-config:view": "Xem",
   "merchant:store:manage": "Quản lý",
   "merchant:store:view": "Xem",
   "merchant:terminal:manage": "Quản lý",

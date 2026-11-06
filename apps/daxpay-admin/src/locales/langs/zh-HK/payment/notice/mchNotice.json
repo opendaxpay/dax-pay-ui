@@ -22,7 +22,6 @@
   "no": "否",
   "placeholderBizNo": "請輸入業務單號",
   "sourceOrder": "訂單級",
-  "sourceApp": "應用級",
   "sourceProtocol": "协议",
   "formatSystem": "系統",
   "formatEasyPay": "易支付",

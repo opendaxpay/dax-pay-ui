@@ -2,8 +2,7 @@
   /**
    * 工作台分组磁贴网格(通用)
    * 分组彩色竖条 + 220px 卡片网格 + hover 动效, danger 卡(删除等)红色系,
-   * active 卡(当前生效态, 如已设为默认)主色系 + 常显底条, 与危险态区分,
-   * building 卡(建设中)降透明弱化并禁点;
+   * active 卡(当前生效态, 如已设为默认)主色系 + 常显底条, 与危险态区分;
    * 数量以标题旁的灰色小标签呈现(存量语义, 不用红点角标, 与「待办/告警」区分)
    */
   import { IconifyIcon } from '@vben/icons';
@@ -29,8 +28,6 @@
      * 指向性配置卡(本应用使用哪个通道/终端)配的是引用对象, 不是主体默认态, 不要用本属性。
      */
     active?: boolean;
-    /** 建设中卡(功能未开放): 整卡降透明弱化并禁止点击, 右上角灰色角标 */
-    building?: boolean;
     /** 数量(可选, 如商户名下设备台数; undefined 不渲染) */
     count?: number;
     /** 数量单位(可选, 如「台」「个」; 不传只显示数字) */
@@ -70,10 +67,6 @@
   };
 
   function handleCardClick(card: WorkbenchTile) {
-    // 建设中入口不可点
-    if (card.building) {
-      return;
-    }
     emit('select', card.key);
   }
 
@@ -95,23 +88,10 @@
         <a-card
           v-for="card in group.cards"
           :key="card.key"
-          :hoverable="!card.building"
-          class="tile-card group relative overflow-hidden rounded-2xl border-none bg-card shadow-md transition-all duration-300"
-          :class="{
-            'tile-card--building': card.building,
-            // 建设中卡禁用 hover 动效(图标/标题/底条效果随之失效)
-            'hover:-translate-y-1.5 hover:shadow-xl': !card.building,
-          }"
+          class="tile-card group relative overflow-hidden rounded-2xl border-none bg-card shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
           :styles="{ body: { padding: '24px 20px' } }"
           @click="handleCardClick(card)"
         >
-          <!-- 建设中角标 -->
-          <div
-            v-if="card.building"
-            class="absolute right-2 top-2 z-10 rounded-full bg-muted-foreground/15 px-2 py-0.5 text-[10px] font-medium text-muted-foreground"
-          >
-            {{ $t('payment.merchant.notifyConfig.notifyConfig.buildingBadge') }}
-          </div>
           <div class="flex flex-col items-center text-center">
             <div
               class="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:shadow-md"
@@ -191,12 +171,6 @@
 
   .tile-card {
     max-height: 200px;
-  }
-
-  /* 建设中卡片: 整卡降透明弱化, 禁止点击 */
-  .tile-card--building {
-    opacity: 0.6;
-    cursor: not-allowed;
   }
 
   .card-desc {

@@ -72,7 +72,6 @@
 
   function sourceLabel(source?: string) {
     if (source === 'order') return $t('payment.notice.mchNotice.sourceOrder');
-    if (source === 'app') return $t('payment.notice.mchNotice.sourceApp');
     if (source === 'protocol') return $t('payment.notice.mchNotice.sourceProtocol');
     return source || '-';
   }

@@ -22,7 +22,6 @@
     "payRoute": "Ràng buộc kênh",
     "gatewayPayConfig": "Cấu hình thanh toán Gateway",
     "gatewayPayConfigDesc": "Cấu hình định tuyến kênh cho thanh toán QR và tổng hợp trong các môi trường",
-    "notifyConfig": "Cấu hình thông báo không đồng bộ",
     "cashierConfig": "Cấu hình thu ngân",
     "cashierConfigDesc": "Định cấu hình các mục thu ngân và các mục phương thức thanh toán",
     "enterConfig": "Cấu hình",
@@ -32,14 +31,12 @@
     "groupConfig": "Cấu hình thanh toán",
     "groupManage": "Quản lý ứng dụng",
     "payRouteDesc": "Chọn kênh mà mỗi ví (WeChat/Alipay/…) sử dụng cho ứng dụng này",
-    "notifyConfigDesc": "Định cấu hình URL gọi lại sự kiện và đăng ký",
     "editDesc": "Chỉnh sửa tên ứng dụng, trạng thái và thông tin cơ bản",
     "setDefaultDesc": "Được sử dụng khi không có ứng dụng nào được chỉ định cho một giao dịch",
     "cancelDefaultDesc": "Bạn sẽ cần chỉ định một ứng dụng mặc định khác",
     "deleteDesc": "Điều này không thể hoàn tác được. Tiến hành thận trọng",
     "openActionAria": "Mở cấu hình ứng dụng",
-    "confirmDisableDefault": "Đây là ứng dụng mặc định. Tắt nó sẽ làm đơn không có appId mất phương án dự phòng. Tiếp tục?",
-    "groupNotifyDevice": "Thông báo & Thiết bị"
+    "confirmDisableDefault": "Đây là ứng dụng mặc định. Tắt nó sẽ làm đơn không có appId mất phương án dự phòng. Tiếp tục?"
   },
   "easypay": {
     "useSystemKey": "Dùng cặp khóa hệ thống",

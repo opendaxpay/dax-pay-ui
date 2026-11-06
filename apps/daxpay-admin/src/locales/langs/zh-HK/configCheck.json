@@ -50,9 +50,5 @@
   "payRoute": {
     "title": "支付路由",
     "description": "部分應用尚未配置支付路由策略"
-  },
-  "mchNotify": {
-    "title": "通知配置",
-    "description": "部分應用未配置回呼通知地址"
   }
 }

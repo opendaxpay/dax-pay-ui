@@ -14,9 +14,5 @@
   "payRoute": {
     "title": "Payment Route",
     "description": "Some apps have not configured a payment route strategy"
-  },
-  "mchNotify": {
-    "title": "Notification Config",
-    "description": "Some apps have not configured a callback notification URL"
   }
 }

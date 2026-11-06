@@ -41,8 +41,6 @@
   "merchant:gateway-pay-config:view": "表示",
   "merchant:info:manage": "管理",
   "merchant:info:view": "ビュー",
-  "merchant:notify-config:manage": "管理",
-  "merchant:notify-config:view": "ビュー",
   "merchant:store:manage": "管理",
   "merchant:store:view": "ビュー",
   "merchant:terminal:manage": "管理",
