@@ -6,8 +6,6 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
-
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { MchStoreInfoApi, type MchStoreInfoResult } from '#/api/payment/merchant/store.api';
   import { PermCodes } from '#/constants/perm-codes';
@@ -143,10 +141,6 @@
 <template>
   <div class="m-3">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
-      <template #title>
-        <!-- 页头与菜单名一致（门店管理） -->
-        <PageTitleBar :title="$t('payment.merchant.store.store.title')" />
-      </template>
       <template #extra>
         <div class="flex items-center gap-2">
           <a-input

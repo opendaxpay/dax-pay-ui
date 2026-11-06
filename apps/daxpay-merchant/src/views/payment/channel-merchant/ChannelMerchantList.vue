@@ -11,7 +11,6 @@
 
   import { $t } from '@vben/locales';
 
-  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
   import { Modal } from 'antdv-next';
 
   import { ChannelMerchantApi } from '#/api/payment/global/channel-merchant/channel-merchant.api';
@@ -253,10 +252,6 @@
 <template>
   <div class="m-3">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
-      <template #title>
-        <!-- 页头与菜单名一致（通道商户） -->
-        <PageTitleBar :title="$t('menu.payment.merchant.channelMerchant')" />
-      </template>
       <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: loadList }" />
 
       <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="list" :loading="loading">

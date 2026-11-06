@@ -3,8 +3,6 @@
 
   import { $t } from '@vben/locales';
 
-  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
-
   import { MerchantApi, type MerchantInfo } from '#/api/payment/merchant/merchant.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
@@ -129,10 +127,6 @@
 <template>
   <div class="m-3">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
-      <template #title>
-        <!-- 商户资料（与菜单 menu.payment.merchant.profile 一致） -->
-        <PageTitleBar :title="$t('menu.payment.merchant.profile')" />
-      </template>
       <template #extra>
         <a-space>
           <a-button
