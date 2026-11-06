@@ -1,1 +1,58 @@
-{}
+{
+  "platformWebsite": {
+    "title": "사이트 정보",
+    "description": "시스템 이름, 로고, ICP 신고 등 사이트 표시 정보가 설정되지 않았습니다"
+  },
+  "platformUrl": {
+    "title": "플랫폼 URL",
+    "description": "백엔드 API 주소 또는 관리자 URL이 설정되지 않아 콜백과 서드파티 로그인에 영향이 있습니다"
+  },
+  "platformOss": {
+    "title": "오브젝트 스토리지",
+    "description": "오브젝트 스토리지가 설정되지 않아 파일 업로드 기능을 사용할 수 없습니다"
+  },
+  "socialLogin": {
+    "title": "소셜 로그인",
+    "description": "활성화된 소셜 로그인 플랫폼 중 매개변수 설정이 완료되지 않은 곳이 있습니다"
+  },
+  "platformMqtt": {
+    "title": "MQTT 접속",
+    "description": "기기 MQTT 접속 주소 또는 비밀번호가 설정되지 않아 기기가 방송을 수신할 수 없습니다"
+  },
+  "platformMail": {
+    "title": "메일 서비스",
+    "description": "메일 채널이 활성화되었지만 SMTP 서버 주소 또는 계정 정보가 완전히 설정되지 않았습니다"
+  },
+  "platformAlipayAuth": {
+    "title": "Alipay 앱",
+    "description": "플랫폼 Alipay 오픈플랫폼 앱 인증 정보가 설정되지 않아 Alipay 로그인 및 인증 기능을 사용할 수 없습니다"
+  },
+  "platformWechatMp": {
+    "title": "WeChat 공식계정",
+    "description": "WeChat 공식계정 로그인이 활성화되었지만 플랫폼 appId 또는 appSecret이 설정되지 않았습니다"
+  },
+  "platformMobileApp": {
+    "title": "캐셔 앱",
+    "description": "캐셔 미니프로그램 앱이 활성화되지 않아 QR코드 표지판과 미니프로그램 캐셔를 사용할 수 없습니다"
+  },
+  "mchApp": {
+    "title": "가맹점 앱",
+    "description": "생성되거나 활성화된 가맹점 앱이 없습니다"
+  },
+  "mchCredential": {
+    "title": "API 자격 증명",
+    "description": "가맹점 통신 자격 증명(공개키/비밀키)이 생성되지 않았습니다"
+  },
+  "channelMerchant": {
+    "title": "채널 가맹점",
+    "description": "활성화된 채널 가맹점이 설정되지 않았습니다"
+  },
+  "payRoute": {
+    "title": "결제 라우팅",
+    "description": "일부 앱의 결제 라우팅 전략이 설정되지 않았습니다"
+  },
+  "mchNotify": {
+    "title": "알림 설정",
+    "description": "일부 앱의 콜백 알림 URL이 설정되지 않았습니다"
+  }
+}
