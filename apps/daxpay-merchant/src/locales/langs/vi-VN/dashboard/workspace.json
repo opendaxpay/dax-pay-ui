@@ -8,7 +8,8 @@
   "stat": {
     "appCount": "Ứng dụng",
     "storeCount": "Cửa hàng",
-    "channelMerchantCount": "Merchant kênh"
+    "channelMerchantCount": "Merchant kênh",
+    "noPermission": "Không có quyền truy cập trang này. Vui lòng liên hệ quản trị viên merchant."
   },
   "widget": {
     "workbenchHeader": "Không gian làm việc",

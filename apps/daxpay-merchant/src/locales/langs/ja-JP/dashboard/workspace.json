@@ -8,7 +8,8 @@
   "stat": {
     "appCount": "アプリ",
     "storeCount": "店舗",
-    "channelMerchantCount": "チャネル加盟店"
+    "channelMerchantCount": "チャネル加盟店",
+    "noPermission": "このページへのアクセス権限がありません。マーチャント管理者にお問い合わせください。"
   },
   "widget": {
     "workbenchHeader": "ワークスペース",

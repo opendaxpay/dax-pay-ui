@@ -8,7 +8,8 @@
   "stat": {
     "appCount": "應用",
     "storeCount": "門店",
-    "channelMerchantCount": "通道商戶"
+    "channelMerchantCount": "通道商戶",
+    "noPermission": "無存取權限，請聯繫商戶管理員授權"
   },
   "widget": {
     "workbenchHeader": "工作臺",

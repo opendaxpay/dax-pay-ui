@@ -8,7 +8,8 @@
   "stat": {
     "appCount": "Aplikasi",
     "storeCount": "Kedai",
-    "channelMerchantCount": "Merchant Saluran"
+    "channelMerchantCount": "Merchant Saluran",
+    "noPermission": "Tiada kebenaran untuk mengakses halaman ini. Sila hubungi pentadbir merchant."
   },
   "widget": {
     "workbenchHeader": "Ruang kerja",

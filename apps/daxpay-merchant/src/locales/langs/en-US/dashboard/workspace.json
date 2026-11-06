@@ -8,7 +8,8 @@
   "stat": {
     "appCount": "Applications",
     "storeCount": "Stores",
-    "channelMerchantCount": "Channel Merchants"
+    "channelMerchantCount": "Channel Merchants",
+    "noPermission": "No permission to access this page. Please contact your merchant administrator."
   },
   "widget": {
     "workbenchHeader": "Workspace",

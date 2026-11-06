@@ -8,7 +8,8 @@
   "stat": {
     "appCount": "Aplikasi",
     "storeCount": "Toko",
-    "channelMerchantCount": "Merchant Saluran"
+    "channelMerchantCount": "Merchant Saluran",
+    "noPermission": "Tidak memiliki izin untuk mengakses halaman ini. Hubungi administrator merchant."
   },
   "widget": {
     "workbenchHeader": "Ruang kerja",

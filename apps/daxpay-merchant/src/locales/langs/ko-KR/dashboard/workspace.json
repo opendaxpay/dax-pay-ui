@@ -8,7 +8,8 @@
   "stat": {
     "appCount": "앱",
     "storeCount": "매장",
-    "channelMerchantCount": "채널 가맹점"
+    "channelMerchantCount": "채널 가맹점",
+    "noPermission": "이 페이지에 접근할 권한이 없습니다. 가맹점 관리자에게 문의해 주세요."
   },
   "widget": {
     "workbenchHeader": "작업공간",

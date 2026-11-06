@@ -8,7 +8,8 @@
   "stat": {
     "appCount": "แอป",
     "storeCount": "ร้านค้า",
-    "channelMerchantCount": "ร้านค้าช่องทาง"
+    "channelMerchantCount": "ร้านค้าช่องทาง",
+    "noPermission": "ไม่มีสิทธิ์เข้าถึงหน้านี้ กรุณาติดต่อผู้ดูแลร้านค้า"
   },
   "widget": {
     "workbenchHeader": "พื้นที่ทำงาน",
