@@ -9,8 +9,6 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
-  import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
-
   import { TerminalDeviceApi, type TerminalDeviceResult } from '#/api/payment/device/terminal.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { MchStoreInfoApi } from '#/api/payment/merchant/store.api';
@@ -234,11 +232,13 @@
             :show-overflow="false"
           >
             <template #default="{ row }">
-              <div v-if="row.storeNo" class="flex items-center gap-1">
-                <!-- 门店名称(门店号)单行 -->
-                <NameNoCell :name="row.storeName" :no="row.storeNo" />
+              <div v-if="row.storeNo" class="flex min-w-0 items-center gap-1">
+                <!-- 门店名称单行省略(与 plus 终端列表口径一致: 只展示名称不拼门店号, 门店号仅作筛选条件) -->
+                <span class="min-w-0 truncate" :title="row.storeName || row.storeNo">
+                  {{ row.storeName || row.storeNo }}
+                </span>
                 <!-- 门店默认终端标记(设置/取消默认入口在门店工作台) -->
-                <a-tag v-if="row.defaultTerminal" color="processing" class="!m-0 !text-xs">
+                <a-tag v-if="row.defaultTerminal" color="processing" class="!m-0 shrink-0 !text-xs">
                   {{ $t('payment.device.terminal.defaultTag') }}
                 </a-tag>
               </div>
