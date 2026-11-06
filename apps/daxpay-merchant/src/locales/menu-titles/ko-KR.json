@@ -26,7 +26,7 @@
   "menu.payment.merchant.payRoute": "채널 바인딩",
   "menu.payment.merchant.cashierConfig": "계산원 구성",
   "menu.payment.merchant.easypay": "EasyPay 설정",
-  "menu.payment.merchant.terminal": "판매자 단말",
+  "menu.payment.merchant.terminal": "단말 관리",
   "menu.payment.merchant.wxVerify": "도메인 검증 파일",
   "menu.payment.wx.mchApp": "WeChat 앱",
   "menu.payment.douyin.mchApp": "더우인 앱",

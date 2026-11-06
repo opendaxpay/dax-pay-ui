@@ -23,7 +23,7 @@ const PASSWORD_STATUS_CODES = new Set([40_301, 40_302]);
 const LEGACY_DEVICE_PATHS: Record<string, string> = {
   // 码牌管理
   '/mch/qrcode': '/mch/device/qrcode',
-  // 终端管理（plus 口径：商户终端）
+  // 终端管理
   '/mch/terminal': '/mch/device/terminal',
   // 虚拟设备（原收款设备 audio 命名）
   '/mch/device/audio': '/mch/device/virtual',

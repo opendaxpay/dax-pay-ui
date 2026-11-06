@@ -91,7 +91,7 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     defaultOrder: 13,
   },
   {
-    // 商户终端 — 菜单 path /mch/device/terminal
+    // 终端管理 — 菜单 path /mch/device/terminal
     key: 'terminal',
     routeName: '/mch/device/terminal',
     icon: 'lucide:monitor',
