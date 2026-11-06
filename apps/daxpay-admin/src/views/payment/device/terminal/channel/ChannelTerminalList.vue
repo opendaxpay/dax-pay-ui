@@ -2,13 +2,18 @@
   import type { MenuProps } from 'antdv-next';
   import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
 
+  import type { LabelValue } from '#/types/web';
+
   import { computed, onMounted, ref } from 'vue';
 
   import { $t } from '@vben/locales';
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
+
   import { ChannelTerminalApi, type ChannelTerminalResult } from '#/api/payment/device/terminal.api';
+  import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
   import { channelI18nMap, channelNameMap } from '#/enums/payment';
@@ -32,6 +37,18 @@
   // 查询条件
   const queryForm = ref<Record<string, any>>({});
 
+  // 商户下拉(筛选条件)
+  const merchantOptions = ref<LabelValue[]>([]);
+
+  /**
+   * 加载商户下拉
+   */
+  function loadMerchantOptions() {
+    MerchantApi.dropdown(false, true).then(({ data }) => {
+      merchantOptions.value = data || [];
+    });
+  }
+
   // 登记状态(前端 dict.json, 与后端字典 channel_terminal_status 对齐)
   const statusOptions = computed(() => [
     { label: $t('dict.channel_terminal_status.init'), value: 'init' },
@@ -43,11 +60,12 @@
 
   const queryFields = computed<QueryField[]>(() => [
     {
-      type: 'string',
+      type: 'list',
       field: 'mchNo',
-      // 商户号
+      // 商户
       name: $t('payment.device.terminal.field.mchNo'),
-      placeholder: $t('common.pleaseInput'),
+      placeholder: $t('common.pleaseSelect'),
+      selectList: merchantOptions.value,
     },
     {
       type: 'string',
@@ -61,6 +79,13 @@
       field: 'name',
       // 终端名称
       name: $t('payment.device.terminal.field.name'),
+      placeholder: $t('common.pleaseInput'),
+    },
+    {
+      type: 'string',
+      field: 'outTerminalNo',
+      // 通道终端号
+      name: $t('payment.device.terminal.field.outTerminalNo'),
       placeholder: $t('common.pleaseInput'),
     },
     {
@@ -161,17 +186,6 @@
     wait: 'orange',
   };
 
-  /**
-   * 已绑定系统终端文案
-   */
-  function systemTerminalLabel(row: ChannelTerminalResult) {
-    const terminals = row.systemTerminals || [];
-    if (terminals.length === 0) {
-      return '-';
-    }
-    return terminals.map((i) => `${i.name || '-'} (${i.terminalNo})`).join('；');
-  }
-
   function handleEdit(row: ChannelTerminalResult) {
     editRef.value?.showEdit(row);
   }
@@ -226,6 +240,7 @@
 
   onMounted(() => {
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
+    loadMerchantOptions();
     queryPage();
   });
 </script>
@@ -241,16 +256,33 @@
         <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }" />
         <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
           <vxe-column field="name" :title="$t('payment.device.terminal.field.name')" :min-width="140" />
+          <!-- 商户: 名称(商户号)单行, 定位终端归属 -->
+          <vxe-column field="mchName" :title="$t('payment.device.terminal.field.mchNo')" :min-width="180">
+            <template #default="{ row }">
+              <NameNoCell :name="row.mchName" :no="row.mchNo" />
+            </template>
+          </vxe-column>
           <vxe-column field="channel" :title="$t('payment.device.terminal.field.channel')" :min-width="120">
             <template #default="{ row }">
               {{ channelLabel(row.channel) }}
             </template>
           </vxe-column>
           <vxe-column field="channelMchNo" :title="$t('payment.device.terminal.field.channelMchNo')" :min-width="180" />
-          <!-- 绑定的系统终端(建档即绑定) -->
-          <vxe-column :title="$t('payment.device.terminal.field.systemTerminal')" :min-width="180">
+          <!-- 绑定的系统终端(建档即绑定; 一条通道终端只归属一个系统终端) -->
+          <vxe-column
+            :title="$t('payment.device.terminal.field.systemTerminal')"
+            :min-width="240"
+            :show-overflow="false"
+          >
             <template #default="{ row }">
-              {{ systemTerminalLabel(row) }}
+              <div v-if="row.systemTerminals?.length" class="flex flex-wrap gap-1">
+                <a-tag v-for="term in row.systemTerminals" :key="term.terminalNo">
+                  {{ `${term.name || '-'} (${term.terminalNo})` }}
+                </a-tag>
+              </div>
+              <span v-else style="color: var(--text-color-placeholder)">
+                {{ $t('payment.device.terminal.noBound') }}
+              </span>
             </template>
           </vxe-column>
           <vxe-column field="type" :title="$t('payment.device.terminal.field.type')" :min-width="110" align="center">

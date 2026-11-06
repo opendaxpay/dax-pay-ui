@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+  import type { MenuProps } from 'antdv-next';
   import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
 
   import { computed, onMounted, ref } from 'vue';
@@ -6,6 +7,9 @@
 
   import { $t } from '@vben/locales';
 
+  import { IconifyIcon } from '@vben-core/icons';
+
+  import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
   import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
   import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
 
@@ -156,6 +160,42 @@
     });
   }
 
+  /**
+   * 操作列更多菜单(绑定管理只读查看已绑定通道终端, 删除危险操作置底)
+   *
+   * a-dropdown 的 menu prop 要求 MenuProps 对象(items+onClick), 传裸数组会因 menu.items
+   * 为空导致弹出层渲染为空(点击无反应)——全站统一走 items+onClick 形态
+   */
+  function getActionMenu(row: TerminalDeviceResult): MenuProps {
+    return {
+      items: [
+        {
+          key: 'bind',
+          // 绑定管理(只读查看通道终端绑定关系)
+          label: $t('payment.device.terminal.bindManage'),
+          disabled: !hasPermission(PermCodes.Merchant.Terminal.VIEW),
+        },
+        { type: 'divider' },
+        {
+          key: 'delete',
+          // 删除
+          label: $t('common.delete'),
+          danger: true,
+          disabled: !hasPermission(PermCodes.Merchant.Terminal.MANAGE),
+        },
+      ],
+      onClick: ({ key }: { key: string }) => {
+        if (key === 'bind') {
+          handleBind(row);
+          return;
+        }
+        if (key === 'delete') {
+          handleDelete(row);
+        }
+      },
+    };
+  }
+
   onMounted(() => {
     if (!routeContext.isValid.value) {
       return;
@@ -236,15 +276,13 @@
             :show-overflow="false"
           >
             <template #default="{ row }">
-              <div v-if="row.storeNo" class="flex flex-col gap-y-1">
-                <span>
-                  {{ row.storeName || '-' }}
-                  <!-- 门店默认终端标记(设置/取消默认入口在门店工作台) -->
-                  <a-tag v-if="row.defaultTerminal" color="processing" class="!m-0 !ml-1 !text-xs">
-                    {{ $t('payment.device.terminal.defaultTag') }}
-                  </a-tag>
-                </span>
-                <span class="text-xs text-muted-foreground">{{ row.storeNo }}</span>
+              <div v-if="row.storeNo" class="flex items-center gap-1">
+                <!-- 门店名称(门店号)单行 -->
+                <NameNoCell :name="row.storeName" :no="row.storeNo" />
+                <!-- 门店默认终端标记(设置/取消默认入口在门店工作台) -->
+                <a-tag v-if="row.defaultTerminal" color="processing" class="!m-0 !text-xs">
+                  {{ $t('payment.device.terminal.defaultTag') }}
+                </a-tag>
               </div>
               <span v-else style="color: var(--text-color-placeholder)">-</span>
             </template>
@@ -261,12 +299,18 @@
             </template>
           </vxe-column>
           <vxe-column
+            field="remark"
+            :title="$t('payment.device.terminal.field.remark')"
+            :min-width="160"
+            show-overflow
+          />
+          <vxe-column
             field="createTime"
             :title="$t('payment.device.terminal.field.createTime')"
             :min-width="180"
             formatter="formatDateTime"
           />
-          <vxe-column fixed="right" width="220" :show-overflow="false" :title="$t('common.operation')">
+          <vxe-column fixed="right" :width="160" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">
               <a-space :size="2">
                 <template #separator>
@@ -280,23 +324,12 @@
                 >
                   {{ $t('common.edit') }}
                 </a-button>
-                <a-button
-                  v-if="hasPermission(PermCodes.Merchant.Terminal.VIEW)"
-                  type="link"
-                  size="small"
-                  @click="handleBind(row)"
-                >
-                  {{ $t('payment.device.terminal.bindManage') }}
-                </a-button>
-                <a-button
-                  v-if="hasPermission(PermCodes.Merchant.Terminal.MANAGE)"
-                  type="link"
-                  size="small"
-                  danger
-                  @click="handleDelete(row)"
-                >
-                  {{ $t('common.delete') }}
-                </a-button>
+                <a-dropdown :menu="getActionMenu(row)">
+                  <a-button type="link" size="small">
+                    {{ $t('common.more') }}
+                    <IconifyIcon icon="ant-design:down-outlined" class="inline" />
+                  </a-button>
+                </a-dropdown>
               </a-space>
             </template>
           </vxe-column>
