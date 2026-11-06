@@ -123,11 +123,13 @@
 </script>
 
 <template>
-  <div class="m-3">
-    <a-card variant="borderless" class="rounded-xl shadow-sm">
+  <div class="m-3 p-3 bg-background rounded-lg list-page-compact">
+    <a-card>
       <BQuery :fields="queryFields" :query-params="queryForm" @query="queryPage" @reset="resetQuery" />
+    </a-card>
 
-      <div class="mt-4">
+    <div class="mt-4">
+      <a-card>
         <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
           <template #buttons>
             <a-button
@@ -204,8 +206,8 @@
           :total="pageConfig.total"
           @page-change="handlePageChange"
         />
-      </div>
-    </a-card>
+      </a-card>
+    </div>
 
     <MchWxDomainVerifyEdit ref="editRef" @ok="queryPage" />
   </div>
