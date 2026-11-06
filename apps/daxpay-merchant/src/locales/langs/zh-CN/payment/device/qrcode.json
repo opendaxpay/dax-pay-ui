@@ -58,5 +58,17 @@
   "claimCodePlaceholder": "请输入码牌编号",
   "claimTip": "扫描码牌二维码或输入编号，绑定后即可用于收款",
   "claimRequired": "请输入码牌编号",
-  "claimSuccess": "绑定成功"
+  "claimSuccess": "绑定成功",
+  "batchActions": "批量操作",
+  "batchSelected": "已选 {count} 项",
+  "bindApp": "绑定应用",
+  "unbindApp": "解绑应用",
+  "bindStore": "绑定门店",
+  "unbindStore": "解绑门店",
+  "confirmUnbindApp": "确定要解绑所选码牌的应用吗？",
+  "confirmUnbindStore": "确定要解绑所选码牌的门店吗？",
+  "export": "导出",
+  "exportFileName": "码牌清单",
+  "exportFailed": "导出失败",
+  "selectRequired": "请先勾选码牌"
 }

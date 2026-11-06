@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+  import type { MenuProps } from 'antdv-next';
   import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
 
   import { computed, onMounted, ref } from 'vue';
@@ -6,7 +7,13 @@
 
   import { $t } from '@vben/locales';
 
+  import { IconifyIcon } from '@vben-core/icons';
+
+  import { confirmExport } from '@daxpay/ui-biz/utils/export-download';
+
   import { DeviceQrCodeApi, type DeviceQrCodeResult } from '#/api/payment/device/qrcode.api';
+  import { MchAppInfoApi } from '#/api/payment/merchant/mch-app-info.api';
+  import { MchStoreInfoApi } from '#/api/payment/merchant/store.api';
   import { QrCode } from '#/components/qrcode';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
@@ -25,6 +32,36 @@
   const xTable = ref<VxeTableInstance>();
   const xToolbar = ref<VxeToolbarInstance>();
   const editRef = ref<InstanceType<typeof DeviceQrCodeEdit>>();
+
+  // 勾选行、导出与批量操作状态
+  const selectedRows = ref<DeviceQrCodeResult[]>([]);
+  const exporting = ref(false);
+  const batchVisible = ref(false);
+  const batchSaving = ref(false);
+  const batchType = ref<'bindApp' | 'bindStore'>('bindApp');
+  const batchValue = ref<string>();
+
+  // 应用/门店下拉选项(商户端由登录态隔离, 无需传 mchNo)
+  const appOptions = ref<{ label: string; value: string }[]>([]);
+  const storeOptions = ref<{ label: string; value: string }[]>([]);
+
+  /**
+   * 加载应用/门店下拉(批量绑定时选择目标归属)
+   */
+  function loadSelectOptions() {
+    MchAppInfoApi.enableList().then(({ data }) => {
+      appOptions.value = (data || []).map((item) => ({
+        label: item.appName ? `${item.appName} (${item.appId})` : item.appId!,
+        value: item.appId!,
+      }));
+    });
+    MchStoreInfoApi.page({ current: 1, size: 200 }).then(({ data }) => {
+      storeOptions.value = (data?.records || []).map((item) => ({
+        label: item.storeName ? `${item.storeName} (${item.storeNo})` : item.storeNo!,
+        value: item.storeNo!,
+      }));
+    });
+  }
 
   const queryForm = ref<Record<string, any>>({});
 
@@ -105,6 +142,13 @@
   const claimCode = ref('');
 
   /**
+   * 同步勾选行
+   */
+  function handleCheckboxChange() {
+    selectedRows.value = (xTable.value?.getCheckboxRecords() || []) as DeviceQrCodeResult[];
+  }
+
+  /**
    * 分页查询码牌列表
    */
   function queryPage() {
@@ -117,6 +161,9 @@
       .then((res) => {
         tableData.value = res.data.records || [];
         pageConfig.value.total = Number(res.data.total) || 0;
+        // 翻页/刷新后清空勾选, 避免批量操作作用到已不可见的行
+        xTable.value?.clearCheckboxRow();
+        selectedRows.value = [];
         loading.value = false;
       })
       .catch(() => {
@@ -142,11 +189,143 @@
     if (route.query.storeNo) {
       queryForm.value.storeNo = String(route.query.storeNo);
     }
+    loadSelectOptions();
     queryPage();
   });
 
   function handleEdit(row: DeviceQrCodeResult) {
     editRef.value?.showEdit(row);
+  }
+
+  /**
+   * 导出当前查询条件下的码牌清单(时间列由后端按当前用户时区格式化)
+   */
+  async function handleExport() {
+    // 重操作, 先二次确认并复核当前条件的数据量
+    if (!(await confirmExport(pageConfig.value.total))) {
+      return;
+    }
+    exporting.value = true;
+    // 失败提示已由 downloadExportFile 统一弹出, 此处只复位按钮状态
+    await DeviceQrCodeApi.exportExcel(queryForm.value, {
+      fileName: `${$t('payment.device.qrcode.exportFileName')}.xlsx`,
+      failedText: $t('payment.device.qrcode.exportFailed'),
+    }).finally(() => {
+      exporting.value = false;
+    });
+  }
+
+  /**
+   * 取勾选 id, 无勾选时提示
+   */
+  function getSelectedIds(): null | string[] {
+    const ids = selectedRows.value.map((row) => row.id!).filter(Boolean);
+    if (ids.length === 0) {
+      message.warning($t('payment.device.qrcode.selectRequired'));
+      return null;
+    }
+    return ids;
+  }
+
+  /**
+   * 打开批量绑定应用/门店弹窗
+   */
+  function handleBindBatch(type: 'bindApp' | 'bindStore') {
+    if (!getSelectedIds()) {
+      return;
+    }
+    batchType.value = type;
+    batchValue.value = undefined;
+    batchVisible.value = true;
+  }
+
+  /**
+   * 提交批量绑定(应用空=全部应用由编辑页处理, 批量须显式选择)
+   */
+  async function handleBatchOk() {
+    const ids = getSelectedIds();
+    if (!ids) {
+      return;
+    }
+    if (!batchValue.value) {
+      message.warning(
+        batchType.value === 'bindApp'
+          ? $t('payment.device.qrcode.pleaseSelectApp')
+          : $t('payment.device.qrcode.pleaseSelectStore'),
+      );
+      return;
+    }
+    batchSaving.value = true;
+    try {
+      const request =
+        batchType.value === 'bindApp'
+          ? DeviceQrCodeApi.bindApp({ ids, appId: batchValue.value })
+          : DeviceQrCodeApi.bindStore({ ids, storeNo: batchValue.value });
+      await request;
+      message.success($t('common.operationSuccess'));
+      batchVisible.value = false;
+      queryPage();
+    } finally {
+      batchSaving.value = false;
+    }
+  }
+
+  /**
+   * 批量解绑应用/门店(保留另一方归属)
+   */
+  function handleUnbindBatch(type: 'unbindApp' | 'unbindStore') {
+    const ids = getSelectedIds();
+    if (!ids) {
+      return;
+    }
+    confirm({
+      content:
+        type === 'unbindApp'
+          ? $t('payment.device.qrcode.confirmUnbindApp')
+          : $t('payment.device.qrcode.confirmUnbindStore'),
+      onOk() {
+        const request = type === 'unbindApp' ? DeviceQrCodeApi.unbindApp(ids) : DeviceQrCodeApi.unbindStore(ids);
+        return request.then(() => {
+          message.success($t('common.operationSuccess'));
+          queryPage();
+        });
+      },
+    });
+  }
+
+  /**
+   * 工具栏批量操作菜单(应用/门店归属批量调整)
+   */
+  function getBatchActionMenu(): MenuProps {
+    return {
+      items: [
+        { key: 'bindApp', label: $t('payment.device.qrcode.bindApp') },
+        { key: 'unbindApp', label: $t('payment.device.qrcode.unbindApp') },
+        { type: 'divider' },
+        { key: 'bindStore', label: $t('payment.device.qrcode.bindStore') },
+        { key: 'unbindStore', label: $t('payment.device.qrcode.unbindStore') },
+      ],
+      onClick: ({ key }: { key: string }) => {
+        switch (key) {
+          case 'bindApp': {
+            handleBindBatch('bindApp');
+            break;
+          }
+          case 'bindStore': {
+            handleBindBatch('bindStore');
+            break;
+          }
+          case 'unbindApp': {
+            handleUnbindBatch('unbindApp');
+            break;
+          }
+          case 'unbindStore': {
+            handleUnbindBatch('unbindStore');
+            break;
+          }
+        }
+      },
+    };
   }
 
   /**
@@ -238,10 +417,32 @@
               <a-button v-if="hasPermission(PermCodes.Device.QrCode.MANAGE)" type="primary" @click="handleClaimOpen">{{
                 $t('payment.device.qrcode.claim')
               }}</a-button>
+              <!-- 批量操作: 应用/门店归属批量调整(商户归属划拨属运营端, 不在此) -->
+              <a-dropdown
+                v-if="hasPermission(PermCodes.Device.QrCode.MANAGE)"
+                :disabled="selectedRows.length === 0"
+                :menu="getBatchActionMenu()"
+              >
+                <a-button :disabled="selectedRows.length === 0">
+                  {{ $t('payment.device.qrcode.batchActions') }}
+                  <IconifyIcon icon="ant-design:down-outlined" class="inline" />
+                </a-button>
+              </a-dropdown>
+              <a-button v-if="hasPermission(PermCodes.Device.QrCode.EXPORT)" :loading="exporting" @click="handleExport">
+                {{ $t('payment.device.qrcode.export') }}
+              </a-button>
             </a-space>
           </template>
         </vxe-toolbar>
-        <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
+        <vxe-table
+          ref="xTable"
+          :row-config="{ keyField: 'id' }"
+          :data="tableData"
+          :loading="loading"
+          @checkbox-change="handleCheckboxChange"
+          @checkbox-all="handleCheckboxChange"
+        >
+          <vxe-column type="checkbox" width="50" />
           <!-- 编码可点, 打开查看码牌弹窗 -->
           <vxe-column field="code" :title="$t('payment.device.qrcode.field.code')" :min-width="200">
             <template #default="{ row }">
@@ -362,6 +563,41 @@
     </div>
 
     <DeviceQrCodeEdit ref="editRef" @ok="queryPage" />
+
+    <!-- 批量绑定应用/门店弹窗: 一次调整勾选码牌的归属 -->
+    <a-modal
+      v-model:open="batchVisible"
+      :title="$t('payment.device.qrcode.batchActions')"
+      :width="480"
+      :confirm-loading="batchSaving"
+      :destroy-on-hidden="true"
+      :mask-closable="false"
+      @ok="handleBatchOk"
+    >
+      <a-form :label-col="{ span: 6 }" :wrapper-col="{ span: 16 }" class="form-compact">
+        <a-form-item
+          :label="
+            batchType === 'bindApp' ? $t('payment.device.qrcode.field.appId') : $t('payment.device.qrcode.field.store')
+          "
+          required
+        >
+          <a-select
+            v-model:value="batchValue"
+            :options="batchType === 'bindApp' ? appOptions : storeOptions"
+            :placeholder="
+              batchType === 'bindApp'
+                ? $t('payment.device.qrcode.pleaseSelectApp')
+                : $t('payment.device.qrcode.pleaseSelectStore')
+            "
+            show-search
+            option-filter-prop="label"
+          />
+        </a-form-item>
+      </a-form>
+      <div class="px-2 text-xs text-muted-foreground">
+        {{ $t('payment.device.qrcode.batchSelected', { count: selectedRows.length }) }}
+      </div>
+    </a-modal>
 
     <!-- 认领码牌弹窗: 输入码牌编号将平台空白码认领到当前商户 -->
     <a-modal

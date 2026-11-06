@@ -11,6 +11,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { DeviceTestDialog } from '@daxpay/ui-biz/components/device-test';
+  import { confirmExport } from '@daxpay/ui-biz/utils/export-download';
 
   import { AudioDeviceApi, type AudioDeviceResult } from '#/api/payment/device/audio.api';
   import { MchAppInfoApi } from '#/api/payment/merchant/mch-app-info.api';
@@ -34,8 +35,13 @@
   const route = useRoute();
 
   const loading = ref(false);
+  // 导出中标记(服务端为内存生成, 期间禁用按钮防重复提交)
+  const exporting = ref(false);
   const xTable = ref<VxeTableInstance>();
   const xToolbar = ref<VxeToolbarInstance>();
+
+  // 勾选行(仅当前页, 查询/翻页后清空)
+  const selectedRows = ref<AudioDeviceResult[]>([]);
 
   // 试播/试打弹窗(共享组件来自 ui-biz, 接口由本页注入商户端端点)
   const testOpen = ref(false);
@@ -125,6 +131,9 @@
       .then((res) => {
         tableData.value = res.data.records || [];
         pageConfig.value.total = Number(res.data.total) || 0;
+        // 同步清空表格勾选与业务选中态, 避免按钮/复选框状态不一致
+        xTable.value?.clearCheckboxRow();
+        selectedRows.value = [];
         loading.value = false;
       })
       .catch(() => {
@@ -142,6 +151,43 @@
     pageConfig.value.currentPage = currentPage;
     pageConfig.value.pageSize = pageSize;
     queryPage();
+  }
+
+  /**
+   * 同步勾选行
+   */
+  function handleCheckboxChange() {
+    selectedRows.value = (xTable.value?.getCheckboxRecords() || []) as AudioDeviceResult[];
+  }
+
+  /**
+   * 获取勾选 id, 无勾选时给出提示
+   */
+  function getSelectedIds(): null | string[] {
+    const ids = selectedRows.value.map((row) => row.id!).filter(Boolean);
+    if (ids.length === 0) {
+      message.warning($t('payment.device.audio.selectRequired'));
+      return null;
+    }
+    return ids;
+  }
+
+  /**
+   * 导出当前查询条件下的收款设备清单(时间列由后端按当前用户时区格式化)
+   */
+  async function handleExport() {
+    // 重操作, 先二次确认并复核当前条件的数据量
+    if (!(await confirmExport(pageConfig.value.total))) {
+      return;
+    }
+    exporting.value = true;
+    // 失败提示已由 downloadExportFile 统一弹出, 此处只复位按钮状态
+    await AudioDeviceApi.exportExcel(queryForm.value, {
+      fileName: `${$t('payment.device.audio.exportFileName')}.xlsx`,
+      failedText: $t('payment.device.audio.exportFailed'),
+    }).finally(() => {
+      exporting.value = false;
+    });
   }
 
   /** 设备展示名(确认弹窗等提示用) */
@@ -213,6 +259,150 @@
     } finally {
       configSaving.value = false;
     }
+  }
+
+  // ===== 编辑设备名称弹窗 =====
+  const editVisible = ref(false);
+  const editSaving = ref(false);
+  const editRow = ref<AudioDeviceResult>();
+  const editForm = ref<{ id?: string; name?: string }>({});
+
+  /**
+   * 打开编辑弹窗(仅名称可改, 设备号与归属不可改, 归属走配置抽屉)
+   */
+  function handleEdit(row: AudioDeviceResult) {
+    editRow.value = row;
+    editForm.value = { id: row.id || undefined, name: row.name || undefined };
+    editVisible.value = true;
+  }
+
+  /**
+   * 提交改名
+   */
+  async function handleEditSave() {
+    const { id, name } = editForm.value;
+    if (!id || !name?.trim()) {
+      return;
+    }
+    editSaving.value = true;
+    try {
+      await AudioDeviceApi.update({ id, name: name.trim() });
+      message.success($t('common.saveSuccess'));
+      editVisible.value = false;
+      queryPage();
+    } finally {
+      editSaving.value = false;
+    }
+  }
+
+  // ===== 批量操作(应用/门店归属) =====
+  const batchVisible = ref(false);
+  const batchSaving = ref(false);
+  // 批量模式: app=绑定应用, store=绑定门店
+  const batchMode = ref<'app' | 'store'>('app');
+  // 本次批量操作的设备主键(打开弹窗时快照, 避免弹窗期间勾选变化)
+  const batchIds = ref<string[]>([]);
+  const batchForm = ref<{ appId?: string; storeNo?: string }>({});
+
+  /**
+   * 批量绑定应用(空=全部应用)
+   */
+  function handleBatchBindApp() {
+    const ids = getSelectedIds();
+    if (!ids) {
+      return;
+    }
+    batchMode.value = 'app';
+    batchIds.value = ids;
+    batchForm.value = {};
+    batchVisible.value = true;
+  }
+
+  /**
+   * 批量绑定门店
+   */
+  function handleBatchBindStore() {
+    const ids = getSelectedIds();
+    if (!ids) {
+      return;
+    }
+    batchMode.value = 'store';
+    batchIds.value = ids;
+    batchForm.value = {};
+    batchVisible.value = true;
+  }
+
+  /**
+   * 批量解绑门店(置为未分配, 不再参与播报/打印; 危险操作二次确认)
+   */
+  function handleBatchUnbindStore() {
+    const ids = getSelectedIds();
+    if (!ids) {
+      return;
+    }
+    confirm({
+      // 解绑门店(未分配)后设备不再参与播报/打印
+      content: $t('payment.device.audio.confirmUnbindStore'),
+      onOk() {
+        // 门店号留空即解绑门店
+        return AudioDeviceApi.bindStoreBatch({ ids }).then(() => {
+          message.success($t('common.operationSuccess'));
+          queryPage();
+        });
+      },
+    });
+  }
+
+  /**
+   * 提交批量绑定(应用/门店共用弹窗, 按模式分流)
+   */
+  async function handleBatchSave() {
+    batchSaving.value = true;
+    try {
+      // 空应用号即全部应用; 门店号已在提交前校验必选
+      const request =
+        batchMode.value === 'app'
+          ? AudioDeviceApi.bindAppBatch({ ids: batchIds.value, appId: batchForm.value.appId || undefined })
+          : AudioDeviceApi.bindStoreBatch({ ids: batchIds.value, storeNo: batchForm.value.storeNo || undefined });
+      await request;
+      message.success($t('common.operationSuccess'));
+      batchVisible.value = false;
+      queryPage();
+    } finally {
+      batchSaving.value = false;
+    }
+  }
+
+  /**
+   * 工具栏批量操作菜单(绑定应用/绑定门店/解绑门店)
+   *
+   * a-dropdown 的 menu prop 要求 MenuProps 对象(items+onClick), 传裸数组会因 menu.items
+   * 为空导致弹出层渲染为空(点击无反应)——全站统一走 items+onClick 形态
+   */
+  function getBatchActionMenu(): MenuProps {
+    return {
+      items: [
+        { key: 'bindApp', label: $t('payment.device.audio.bindApp') },
+        { key: 'bindStore', label: $t('payment.device.audio.bindStore') },
+        { key: 'unbindStore', label: $t('payment.device.audio.unbindStore'), danger: true },
+      ],
+      onClick: ({ key }: { key: string }) => {
+        switch (key) {
+          case 'bindApp': {
+            handleBatchBindApp();
+            break;
+          }
+          case 'bindStore': {
+            handleBatchBindStore();
+            break;
+          }
+          case 'unbindStore': {
+            handleBatchUnbindStore();
+            break;
+          }
+        }
+      },
+    };
   }
 
   // ===== 激活二维码弹窗 =====
@@ -309,10 +499,16 @@
   }
 
   /**
-   * 操作列更多菜单(试播/试打/激活二维码/启停)
+   * 操作列更多菜单(编辑名称/试播/试打/激活二维码/启停)
    */
   function getActionMenu(row: AudioDeviceResult): MenuProps {
     const items: MenuProps['items'] = [
+      {
+        key: 'edit',
+        // 编辑名称(仅改名, 归属调整走配置抽屉)
+        label: $t('payment.device.audio.edit'),
+      },
+      { type: 'divider' },
       {
         key: 'testBroadcast',
         // 试播
@@ -348,6 +544,10 @@
         switch (key) {
           case 'disable': {
             handleChangeEnable(row, false);
+            break;
+          }
+          case 'edit': {
+            handleEdit(row);
             break;
           }
           case 'enable': {
@@ -396,8 +596,34 @@
 
     <div class="mt-4">
       <a-card>
-        <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }"> </vxe-toolbar>
-        <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
+        <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
+          <template #buttons>
+            <a-space>
+              <!-- 批量操作: 绑定应用/绑定门店/解绑门店(无权限或无勾选时禁用) -->
+              <a-dropdown
+                :disabled="!hasPermission(PermCodes.Device.Audio.MANAGE) || selectedRows.length === 0"
+                :menu="getBatchActionMenu()"
+              >
+                <a-button :disabled="!hasPermission(PermCodes.Device.Audio.MANAGE) || selectedRows.length === 0">
+                  {{ $t('payment.device.audio.batchActions') }}
+                  <IconifyIcon icon="ant-design:down-outlined" class="inline" />
+                </a-button>
+              </a-dropdown>
+              <a-button v-if="hasPermission(PermCodes.Device.Audio.EXPORT)" :loading="exporting" @click="handleExport">
+                {{ $t('payment.device.audio.export') }}
+              </a-button>
+            </a-space>
+          </template>
+        </vxe-toolbar>
+        <vxe-table
+          ref="xTable"
+          :row-config="{ keyField: 'id' }"
+          :data="tableData"
+          :loading="loading"
+          @checkbox-change="handleCheckboxChange"
+          @checkbox-all="handleCheckboxChange"
+        >
+          <vxe-column type="checkbox" width="50" />
           <vxe-column field="name" :title="$t('payment.device.audio.column.device')" :min-width="220">
             <template #default="{ row }">
               <div class="flex flex-col">
@@ -449,7 +675,7 @@
           <vxe-column
             v-if="hasPermission(PermCodes.Device.Audio.MANAGE)"
             fixed="right"
-            :width="200"
+            :width="160"
             :show-overflow="false"
             :title="$t('common.operation')"
           >
@@ -533,6 +759,71 @@
         </div>
       </template>
     </a-drawer>
+
+    <!-- 编辑设备名称: 仅名称可改, 设备号与归属变更走配置抽屉 -->
+    <a-modal
+      v-model:open="editVisible"
+      :title="$t('payment.device.audio.editTitle')"
+      :width="480"
+      :destroy-on-hidden="true"
+      :confirm-loading="editSaving"
+      :ok-button-props="{ disabled: !editForm.name?.trim() }"
+      @ok="handleEditSave"
+    >
+      <a-form layout="vertical" class="form-compact">
+        <a-form-item :label="$t('payment.device.audio.column.device')">
+          <span class="text-muted-foreground">{{ editRow?.deviceNo || '-' }}</span>
+        </a-form-item>
+        <a-form-item :label="$t('payment.device.audio.name')" required>
+          <a-input
+            v-model:value="editForm.name"
+            :maxlength="128"
+            :placeholder="$t('payment.device.audio.namePlaceholder')"
+          />
+        </a-form-item>
+      </a-form>
+    </a-modal>
+
+    <!-- 批量绑定: 应用/门店共用弹窗, 按当前批量模式渲染 -->
+    <a-modal
+      v-model:open="batchVisible"
+      :title="batchMode === 'app' ? $t('payment.device.audio.bindApp') : $t('payment.device.audio.bindStore')"
+      :width="520"
+      :destroy-on-hidden="true"
+      :confirm-loading="batchSaving"
+      :ok-button-props="{ disabled: batchMode === 'store' && !batchForm.storeNo }"
+      @ok="handleBatchSave"
+    >
+      <a-form layout="vertical" class="form-compact">
+        <!-- 本次批量操作的设备台数 -->
+        <div class="mb-3 text-xs text-muted-foreground">
+          {{ $t('payment.device.audio.batchSelected', { count: batchIds.length }) }}
+        </div>
+        <a-form-item v-if="batchMode === 'app'" :label="$t('payment.device.audio.field.appId')">
+          <a-select
+            v-model:value="batchForm.appId"
+            :options="appOptions"
+            :placeholder="$t('payment.device.audio.allApps')"
+            allow-clear
+            show-search
+            option-filter-prop="label"
+          />
+          <!-- 留空表示全部应用 -->
+          <div class="mt-1 text-xs text-muted-foreground">{{ $t('payment.device.audio.config.appHint') }}</div>
+        </a-form-item>
+        <a-form-item v-else :label="$t('payment.device.audio.field.storeNo')">
+          <a-select
+            v-model:value="batchForm.storeNo"
+            :options="storeOptions"
+            :placeholder="$t('common.pleaseSelect')"
+            show-search
+            option-filter-prop="label"
+          />
+          <!-- 解绑门店请走「解绑门店」操作 -->
+          <div class="mt-1 text-xs text-muted-foreground">{{ $t('payment.device.audio.config.storeHint') }}</div>
+        </a-form-item>
+      </a-form>
+    </a-modal>
 
     <!-- 激活二维码弹窗: 商户手机装 APP 后扫码即完成设备激活 -->
     <a-modal

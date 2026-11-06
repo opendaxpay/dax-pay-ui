@@ -58,5 +58,17 @@
   "claimCodePlaceholder": "コードを入力してください",
   "claimTip": "QRコードをスキャンするか番号を入力すると、紐付け後すぐに決済に利用できます",
   "claimRequired": "コードを入力してください",
-  "claimSuccess": "紐付けました"
+  "claimSuccess": "紐付けました",
+  "batchActions": "一括操作",
+  "batchSelected": "{count} 件選択中",
+  "bindApp": "アプリを紐付け",
+  "unbindApp": "アプリの紐付け解除",
+  "bindStore": "店舗を紐付け",
+  "unbindStore": "店舗の紐付け解除",
+  "confirmUnbindApp": "選択した QR コードボードのアプリの紐付けを解除しますか？",
+  "confirmUnbindStore": "選択した QR コードボードの店舗の紐付けを解除しますか？",
+  "export": "エクスポート",
+  "exportFileName": "QRコードボード一覧",
+  "exportFailed": "エクスポートに失敗しました。しばらくしてから再試行してください",
+  "selectRequired": "最初に QR コード ボードを選択してください"
 }

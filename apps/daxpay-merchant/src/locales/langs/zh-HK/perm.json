@@ -8,6 +8,8 @@
   "develop:sign:view": "查看",
   "develop:trade:sign": "簽名",
   "develop:trade:view": "查看",
+  "device:audio:manage": "管理",
+  "device:audio:view": "查看",
   "device:qrcode:manage": "管理",
   "device:qrcode:view": "查看",
   "iam:menu:manage": "管理",

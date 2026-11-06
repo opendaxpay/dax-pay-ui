@@ -47,5 +47,19 @@
     "storeStrictHint": "有効にすると、店舗注文はその店舗に紐付いたデバイスにのみ配信され、店舗未紐付けのデバイスは対象外になります。無効にすると、店舗未紐付けのデバイスは店舗共通として扱われ、すべての店舗注文が配信されます。",
     "template": "レシートフォーマット",
     "templateStandard": "標準レシート"
-  }
+  },
+  "edit": "編集",
+  "editTitle": "デバイス名を編集",
+  "name": "デバイス名",
+  "namePlaceholder": "デバイス名を入力してください",
+  "batchActions": "一括操作",
+  "batchSelected": "{count} 件選択中",
+  "bindApp": "アプリを紐付け",
+  "bindStore": "店舗を紐付け",
+  "unbindStore": "店舗の紐付け解除",
+  "confirmUnbindStore": "選択したデバイスの店舗の紐付けを解除しますか？",
+  "export": "エクスポート",
+  "exportFileName": "決済デバイス一覧",
+  "exportFailed": "エクスポートに失敗しました。しばらくしてから再試行してください",
+  "selectRequired": "最初にデバイスを選択してください"
 }

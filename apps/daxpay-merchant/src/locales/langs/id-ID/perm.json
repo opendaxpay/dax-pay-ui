@@ -8,6 +8,8 @@
   "develop:sign:view": "Melihat",
   "develop:trade:sign": "Tanda",
   "develop:trade:view": "Melihat",
+  "device:audio:manage": "Mengelola",
+  "device:audio:view": "Melihat",
   "device:qrcode:manage": "Mengelola",
   "device:qrcode:view": "Melihat",
   "iam:menu:manage": "Mengelola",

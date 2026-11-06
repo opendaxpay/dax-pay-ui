@@ -47,5 +47,19 @@
     "storeStrictHint": "When enabled, store orders are pushed only to devices bound to that store; devices without a bound store no longer participate. When disabled, devices without a bound store are treated as merchant-wide and receive all store orders.",
     "template": "Receipt Template",
     "templateStandard": "Standard Receipt"
-  }
+  },
+  "edit": "Edit",
+  "editTitle": "Edit Device Name",
+  "name": "Device Name",
+  "namePlaceholder": "Enter device name",
+  "batchActions": "Batch Actions",
+  "batchSelected": "{count} selected",
+  "bindApp": "Bind App",
+  "bindStore": "Bind Store",
+  "unbindStore": "Unbind Store",
+  "confirmUnbindStore": "Unbind the store from the selected devices?",
+  "export": "Export",
+  "exportFileName": "Payment Device List",
+  "exportFailed": "Export failed. Please try again later.",
+  "selectRequired": "Please select devices first"
 }

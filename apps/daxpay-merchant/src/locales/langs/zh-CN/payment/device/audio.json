@@ -47,5 +47,19 @@
     "storeStrictHint": "开启后, 门店订单仅推送给绑定了该门店的设备, 未绑定门店的设备不再参与; 关闭则未绑门店的设备视为商户通用, 所有门店订单都会推送。",
     "template": "小票版式",
     "templateStandard": "标准小票"
-  }
+  },
+  "edit": "编辑",
+  "editTitle": "编辑设备名称",
+  "name": "设备名称",
+  "namePlaceholder": "请输入设备名称",
+  "batchActions": "批量操作",
+  "batchSelected": "已选 {count} 项",
+  "bindApp": "绑定应用",
+  "bindStore": "绑定门店",
+  "unbindStore": "解绑门店",
+  "confirmUnbindStore": "确定要解绑所选设备的门店吗？",
+  "export": "导出",
+  "exportFileName": "收款设备清单",
+  "exportFailed": "导出失败",
+  "selectRequired": "请先勾选设备"
 }

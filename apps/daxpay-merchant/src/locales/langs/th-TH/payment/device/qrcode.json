@@ -58,5 +58,17 @@
   "claimCodePlaceholder": "Please enter the QR code",
   "claimTip": "Scan the QR code board or enter its number to bind it for payment",
   "claimRequired": "Please enter the QR code",
-  "claimSuccess": "Bound successfully"
+  "claimSuccess": "Bound successfully",
+  "batchActions": "การดำเนินการแบบชุด",
+  "batchSelected": "เลือกแล้ว {count} รายการ",
+  "bindApp": "ผูกแอป",
+  "unbindApp": "ยกเลิกการผูกแอป",
+  "bindStore": "ผูกสาขา",
+  "unbindStore": "ยกเลิกการผูกสาขา",
+  "confirmUnbindApp": "ยกเลิกการผูกแอปจากบอร์ดโค้ด QR ที่เลือกหรือไม่?",
+  "confirmUnbindStore": "ยกเลิกการผูกสาขาจากบอร์ดโค้ด QR ที่เลือกหรือไม่?",
+  "export": "ส่งออก",
+  "exportFileName": "รายการโค้ด QR",
+  "exportFailed": "ส่งออกล้มเหลว กรุณาลองใหม่ภายหลัง",
+  "selectRequired": "โปรดเลือกบอร์ดรหัส QR ก่อน"
 }

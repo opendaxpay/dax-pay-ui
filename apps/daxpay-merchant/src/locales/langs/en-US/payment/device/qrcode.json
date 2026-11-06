@@ -58,5 +58,17 @@
   "claimCodePlaceholder": "Please enter the QR code",
   "claimTip": "Scan the QR code board or enter its number to bind it for payment",
   "claimRequired": "Please enter the QR code",
-  "claimSuccess": "Bound successfully"
+  "claimSuccess": "Bound successfully",
+  "batchActions": "Batch Actions",
+  "batchSelected": "{count} selected",
+  "bindApp": "Bind App",
+  "unbindApp": "Unbind App",
+  "bindStore": "Bind Store",
+  "unbindStore": "Unbind Store",
+  "confirmUnbindApp": "Unbind the app from the selected QR code boards?",
+  "confirmUnbindStore": "Unbind the store from the selected QR code boards?",
+  "export": "Export",
+  "exportFileName": "QR Code Board List",
+  "exportFailed": "Export failed. Please try again later.",
+  "selectRequired": "Please select QR code boards first"
 }

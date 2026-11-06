@@ -47,5 +47,19 @@
     "storeStrictHint": "Saat diaktifkan, pesanan toko hanya dikirim ke perangkat yang terikat ke toko tersebut; perangkat tanpa toko terikat tidak lagi ikut serta. Saat dinonaktifkan, perangkat tanpa toko terikat dianggap umum untuk merchant dan menerima semua pesanan toko.",
     "template": "Templat Struk",
     "templateStandard": "Struk Standar"
-  }
+  },
+  "edit": "Edit",
+  "editTitle": "Edit Nama Perangkat",
+  "name": "Nama Perangkat",
+  "namePlaceholder": "Masukkan nama perangkat",
+  "batchActions": "Operasi Massal",
+  "batchSelected": "{count} dipilih",
+  "bindApp": "Ikat Aplikasi",
+  "bindStore": "Ikat Toko",
+  "unbindStore": "Lepas Ikat Toko",
+  "confirmUnbindStore": "Lepas ikatan toko dari perangkat yang dipilih?",
+  "export": "Ekspor",
+  "exportFileName": "Daftar Perangkat Pembayaran",
+  "exportFailed": "Ekspor gagal. Silakan coba lagi nanti.",
+  "selectRequired": "Silakan pilih perangkat terlebih dahulu"
 }

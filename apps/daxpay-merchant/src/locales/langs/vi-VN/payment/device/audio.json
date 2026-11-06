@@ -47,5 +47,19 @@
     "storeStrictHint": "Khi bật, đơn hàng của cửa hàng chỉ được đẩy tới thiết bị đã liên kết với cửa hàng đó; thiết bị chưa liên kết cửa hàng sẽ không tham gia. Khi tắt, thiết bị chưa liên kết cửa hàng được coi là dùng chung cho toàn bộ merchant và nhận tất cả đơn hàng cửa hàng.",
     "template": "Mẫu hóa đơn",
     "templateStandard": "Hóa đơn tiêu chuẩn"
-  }
+  },
+  "edit": "Chỉnh sửa",
+  "editTitle": "Chỉnh sửa tên thiết bị",
+  "name": "Tên thiết bị",
+  "namePlaceholder": "Nhập tên thiết bị",
+  "batchActions": "Thao tác hàng loạt",
+  "batchSelected": "Đã chọn {count} mục",
+  "bindApp": "Liên kết ứng dụng",
+  "bindStore": "Liên kết cửa hàng",
+  "unbindStore": "Bỏ liên kết cửa hàng",
+  "confirmUnbindStore": "Bỏ liên kết cửa hàng khỏi các thiết bị đã chọn?",
+  "export": "Xuất",
+  "exportFileName": "Danh sách thiết bị thanh toán",
+  "exportFailed": "Xuất thất bại. Vui lòng thử lại sau.",
+  "selectRequired": "Vui lòng chọn thiết bị trước"
 }

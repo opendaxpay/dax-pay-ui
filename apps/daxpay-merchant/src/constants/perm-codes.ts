@@ -266,11 +266,13 @@ export const PermCodes = {
     QrCode: {
       VIEW: 'device:qrcode:view',
       MANAGE: 'device:qrcode:manage',
+      EXPORT: 'device:qrcode:export',
     },
     // 收款设备(虚拟设备, 手机变云音箱/云打印)
     Audio: {
       VIEW: 'device:audio:view',
       MANAGE: 'device:audio:manage',
+      EXPORT: 'device:audio:export',
     },
   },
 

@@ -2,7 +2,9 @@ import type { DeviceTestParam } from '@daxpay/ui-biz/components/device-test';
 
 import type { BaseEntity, PageResult, Result } from '#/types/web';
 
-import { defHttp } from '#/api/request';
+import { downloadExportFile } from '@daxpay/ui-biz/utils/export-download';
+
+import { defHttp, requestClient } from '#/api/request';
 
 /**
  * 收款设备(虚拟设备) API（商户端 /mch/device/audio/*）
@@ -27,6 +29,28 @@ export const AudioDeviceApi = {
   },
 
   /**
+   * 修改设备名称(启停走 changeEnable, 不在此接口)
+   */
+  update(data: AudioDeviceUpdateParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/mch/device/audio/update', data });
+  },
+
+  /**
+   * 导出当前查询条件下的收款设备清单
+   *
+   * 服务端生成 xlsx, 失败文案由 downloadExportFile 统一提示。
+   */
+  exportExcel(query: AudioDeviceQuery, options: { failedText: string; fileName: string }): Promise<boolean> {
+    return downloadExportFile({
+      client: requestClient,
+      url: '/mch/device/audio/export',
+      params: { ...query },
+      fileName: options.fileName,
+      failedText: options.failedText,
+    });
+  },
+
+  /**
    * 调整使用应用(空=全部应用)
    */
   bindApp(data: AudioDeviceBindAppParam): Promise<Result<void>> {
@@ -45,6 +69,20 @@ export const AudioDeviceApi = {
    */
   unbindStore(id: string): Promise<Result<void>> {
     return defHttp.post({ url: '/mch/device/audio/unbind-store', params: { id } });
+  },
+
+  /**
+   * 批量调整使用应用(空=全部应用)
+   */
+  bindAppBatch(data: AudioDeviceBindAppBatchParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/mch/device/audio/bind-app-batch', data });
+  },
+
+  /**
+   * 批量调整使用门店(空=解绑门店/未分配)
+   */
+  bindStoreBatch(data: AudioDeviceBindStoreBatchParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/mch/device/audio/bind-store-batch', data });
   },
 
   /**
@@ -101,6 +139,30 @@ export interface AudioDeviceBindAppParam {
   id: string;
   /** 应用号(空=全部应用) */
   appId?: string;
+}
+
+/** 批量调整使用应用参数 */
+export interface AudioDeviceBindAppBatchParam {
+  /** 设备主键列表 */
+  ids: string[];
+  /** 应用号(空=全部应用) */
+  appId?: string;
+}
+
+/** 批量调整使用门店参数 */
+export interface AudioDeviceBindStoreBatchParam {
+  /** 设备主键列表 */
+  ids: string[];
+  /** 门店号(空=解绑门店/未分配) */
+  storeNo?: string;
+}
+
+/** 修改设备名称参数 */
+export interface AudioDeviceUpdateParam {
+  /** 设备主键 */
+  id: string;
+  /** 设备名称 */
+  name: string;
 }
 
 /** 调整使用门店参数 */

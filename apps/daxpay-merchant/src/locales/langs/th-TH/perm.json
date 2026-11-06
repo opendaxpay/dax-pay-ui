@@ -8,6 +8,8 @@
   "develop:sign:view": "ดู",
   "develop:trade:sign": "ลงนาม",
   "develop:trade:view": "ดู",
+  "device:audio:manage": "จัดการ",
+  "device:audio:view": "ดู",
   "device:qrcode:manage": "จัดการ",
   "device:qrcode:view": "ดู",
   "iam:menu:manage": "จัดการ",

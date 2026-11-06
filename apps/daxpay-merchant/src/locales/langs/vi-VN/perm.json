@@ -8,6 +8,8 @@
   "develop:sign:view": "Xem",
   "develop:trade:sign": "Dấu hiệu",
   "develop:trade:view": "Xem",
+  "device:audio:manage": "Quản lý",
+  "device:audio:view": "Xem",
   "device:qrcode:manage": "Quản lý",
   "device:qrcode:view": "Xem",
   "iam:menu:manage": "Quản lý",

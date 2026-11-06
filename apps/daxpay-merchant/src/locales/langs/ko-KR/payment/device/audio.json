@@ -47,5 +47,19 @@
     "storeStrictHint": "사용하면 매장 주문은 해당 매장에 바인딩된 기기로만 전송되며, 매장 미바인딩 기기는 제외됩니다. 사용하지 않으면 매장 미바인딩 기기는 매장 공용으로 간주되어 모든 매장 주문이 전송됩니다.",
     "template": "영수증 서식",
     "templateStandard": "표준 영수증"
-  }
+  },
+  "edit": "편집",
+  "editTitle": "기기 이름 편집",
+  "name": "기기 이름",
+  "namePlaceholder": "기기 이름을 입력하세요",
+  "batchActions": "일괄 작업",
+  "batchSelected": "{count}건 선택됨",
+  "bindApp": "앱 연결",
+  "bindStore": "매장 연결",
+  "unbindStore": "매장 연결 해제",
+  "confirmUnbindStore": "선택한 기기의 매장 연결을 해제하시겠습니까?",
+  "export": "내보내기",
+  "exportFileName": "결제 기기 목록",
+  "exportFailed": "내보내기에 실패했습니다. 잠시 후 다시 시도해 주세요",
+  "selectRequired": "기기를 먼저 선택해주세요."
 }

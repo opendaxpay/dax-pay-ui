@@ -8,6 +8,8 @@
   "develop:sign:view": "ビュー",
   "develop:trade:sign": "サイン",
   "develop:trade:view": "ビュー",
+  "device:audio:manage": "管理",
+  "device:audio:view": "ビュー",
   "device:qrcode:manage": "管理",
   "device:qrcode:view": "ビュー",
   "iam:menu:manage": "管理",

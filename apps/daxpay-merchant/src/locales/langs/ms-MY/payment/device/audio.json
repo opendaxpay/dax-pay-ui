@@ -47,5 +47,19 @@
     "storeStrictHint": "Apabila dihidupkan, pesanan cawangan hanya dihantar kepada peranti yang terikat pada cawangan tersebut; peranti tanpa cawangan terikat tidak lagi terlibat. Apabila dimatikan, peranti tanpa cawangan terikat dianggap umum untuk pedagang dan menerima semua pesanan cawangan.",
     "template": "Templat Resit",
     "templateStandard": "Resit Standard"
-  }
+  },
+  "edit": "Edit",
+  "editTitle": "Edit Nama Peranti",
+  "name": "Nama Peranti",
+  "namePlaceholder": "Masukkan nama peranti",
+  "batchActions": "Tindakan Pukal",
+  "batchSelected": "{count} dipilih",
+  "bindApp": "Ikat Aplikasi",
+  "bindStore": "Ikat Kedai",
+  "unbindStore": "Nyahikat Kedai",
+  "confirmUnbindStore": "Nyahikat kedai daripada peranti yang dipilih?",
+  "export": "Eksport",
+  "exportFileName": "Senarai Peranti Pembayaran",
+  "exportFailed": "Eksport gagal. Sila cuba lagi kemudian.",
+  "selectRequired": "Sila pilih peranti dahulu"
 }

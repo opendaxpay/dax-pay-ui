@@ -58,5 +58,17 @@
   "claimCodePlaceholder": "코드를 입력해 주세요",
   "claimTip": "QR 코드를 스캔하거나 번호를 입력하면 연결 후 바로 결제에 사용할 수 있습니다",
   "claimRequired": "코드를 입력해 주세요",
-  "claimSuccess": "연결되었습니다"
+  "claimSuccess": "연결되었습니다",
+  "batchActions": "일괄 작업",
+  "batchSelected": "{count}건 선택됨",
+  "bindApp": "앱 연결",
+  "unbindApp": "앱 연결 해제",
+  "bindStore": "매장 연결",
+  "unbindStore": "매장 연결 해제",
+  "confirmUnbindApp": "선택한 QR 코드 보드의 앱 연결을 해제하시겠습니까?",
+  "confirmUnbindStore": "선택한 QR 코드 보드의 매장 연결을 해제하시겠습니까?",
+  "export": "내보내기",
+  "exportFileName": "QR 코드 보드 목록",
+  "exportFailed": "내보내기에 실패했습니다. 잠시 후 다시 시도해 주세요",
+  "selectRequired": "QR코드 보드를 먼저 선택해주세요."
 }
