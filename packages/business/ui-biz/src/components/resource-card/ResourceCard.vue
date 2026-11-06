@@ -2,7 +2,7 @@
   /**
    * 实体资源卡片(通用)
    * 用于「某主体下的一类资源集合」卡片墙: 门店 / 商户应用 / 通道应用 / 服务商 / 收银台商户等,
-   * 统一规格 = 156px 高 / 16px 圆角 / 56px 图标块 / 16px 粗标题 / 底栏状态 + 入口。
+   * 统一规格 = 168px 高 / 16px 圆角 / 64px 图标块 / 17px 粗标题 / 底栏状态 + 入口。
    * 底栏三种形态: enter=状态点+入口文案(默认); actions=右侧按钮组(通道应用卡的编辑/删除);
    * none=不渲染(如无查看权限的门店卡)。
    * 整卡可点时自带键盘可达(Enter/Space)与焦点环; clickable=false 时不响应点击也不渲染 hover 动效。
@@ -89,7 +89,7 @@
 
 <template>
   <div
-    class="resource-card group relative flex h-full min-h-[156px] flex-col overflow-hidden rounded-2xl border bg-card shadow-md"
+    class="resource-card group relative flex h-full min-h-[168px] flex-col overflow-hidden rounded-2xl border bg-card shadow-md"
     :class="[
       clickable ? 'resource-card--clickable cursor-pointer' : '',
       active ? 'resource-card--active' : '',
@@ -101,30 +101,30 @@
     @keydown="handleKeydown"
   >
     <!-- 右上角浮动徽章(凭证配置状态等) -->
-    <div v-if="$slots.badge" class="absolute right-3 top-3 z-10 flex items-center gap-1.5">
+    <div v-if="$slots.badge" class="absolute right-5 top-5 z-10 flex items-center gap-1.5">
       <slot name="badge"></slot>
     </div>
 
     <slot name="body">
-      <div class="card-body flex flex-1 items-center gap-4 px-4 py-4">
+      <div class="card-body flex flex-1 items-center gap-4 px-5 py-5">
         <div
-          class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-primary shadow-sm transition-all duration-300"
+          class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl text-primary shadow-sm transition-all duration-300"
           :class="[
             iconBg ? '' : 'bg-primary/10',
             clickable ? 'group-hover:scale-110 group-hover:shadow-md' : '',
           ]"
           :style="iconStyle"
         >
-          <img v-if="image" :src="image" class="h-7 w-7" alt="" />
-          <IconifyIcon v-else-if="icon" :icon="icon" class="h-7 w-7" />
-          <span v-else class="text-lg font-bold">{{ fallbackChar }}</span>
+          <img v-if="image" :src="image" class="h-8 w-8" alt="" />
+          <IconifyIcon v-else-if="icon" :icon="icon" class="h-8 w-8" />
+          <span v-else class="text-xl font-bold">{{ fallbackChar }}</span>
         </div>
         <div class="min-w-0 flex-1" :class="$slots.badge ? 'pr-24' : ''">
           <div class="flex items-center gap-2">
             <slot name="titlePrefix"></slot>
             <a-tooltip :title="title" placement="top">
               <span
-                class="min-w-0 truncate text-base font-bold leading-snug text-foreground transition-colors duration-300"
+                class="min-w-0 truncate text-[17px] font-bold leading-snug text-foreground transition-colors duration-300"
                 :class="clickable || active ? 'group-hover:text-primary' : ''"
               >
                 {{ title || '-' }}
@@ -133,7 +133,7 @@
             <slot name="titleExtra"></slot>
           </div>
           <a-tooltip v-if="subtitle" :title="subtitle" placement="top">
-            <div class="mt-2 truncate text-xs text-muted-foreground">{{ subtitle }}</div>
+            <div class="mt-2 truncate text-[13px] text-muted-foreground">{{ subtitle }}</div>
           </a-tooltip>
           <slot name="subtitleExtra"></slot>
         </div>
@@ -143,18 +143,18 @@
     <!-- 底栏: 状态点 + 入口 -->
     <div
       v-if="footer === 'enter'"
-      class="card-footer flex shrink-0 items-center justify-between px-4 pb-4 pt-1"
+      class="card-footer flex shrink-0 items-center justify-between px-5 pb-5 pt-1"
     >
-      <div v-if="status" class="flex items-center gap-1.5 text-xs leading-none text-muted-foreground">
+      <div v-if="status" class="flex items-center gap-1.5 text-[13px] leading-none text-muted-foreground">
         <span class="inline-block h-1.5 w-1.5 rounded-full" :class="status.dotClass || 'bg-primary'" />
         <span>{{ status.text }}</span>
       </div>
       <div
         v-if="clickable && actionText"
-        class="ml-auto flex items-center gap-0.5 text-xs font-medium text-muted-foreground transition-colors duration-300 group-hover:text-primary"
+        class="ml-auto flex items-center gap-0.5 text-[13px] font-medium text-muted-foreground transition-colors duration-300 group-hover:text-primary"
       >
         <span>{{ actionText }}</span>
-        <IconifyIcon icon="ant-design:right-outlined" class="text-xs" />
+        <IconifyIcon icon="ant-design:right-outlined" class="text-[13px]" />
       </div>
       <slot name="footerRight"></slot>
     </div>
@@ -162,7 +162,7 @@
     <!-- 底栏: 右侧操作按钮组(需要分隔线) -->
     <div
       v-else-if="footer === 'actions'"
-      class="card-footer flex shrink-0 items-center justify-end border-t border-border px-4 py-1.5"
+      class="card-footer flex shrink-0 items-center justify-end border-t border-border px-5 py-2"
     >
       <div class="flex items-center gap-1">
         <slot name="actions"></slot>

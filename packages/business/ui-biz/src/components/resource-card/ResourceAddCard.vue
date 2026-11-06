@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   /**
    * 资源卡片墙的「新增」召唤卡(通用)
-   * 规格与实体资源卡同尺寸(156px / 16px 圆角), 实线边框 + 56px 图标块 + 粗体文案,
+   * 规格与实体资源卡同尺寸(168px / 16px 圆角), 实线边框 + 64px 图标块 + 粗体文案,
    * hover 上浮并染主色; 键盘 Enter/Space 与资源卡一致。
    */
   import { $t } from '@vben/locales';
@@ -38,7 +38,7 @@
 
 <template>
   <div
-    class="add-card group flex h-full min-h-[156px] cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border bg-card text-muted-foreground shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary hover:bg-primary/5 hover:text-primary hover:shadow-md"
+    class="add-card group flex h-full min-h-[168px] cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border bg-card text-muted-foreground shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-primary hover:bg-primary/5 hover:text-primary hover:shadow-md"
     role="button"
     tabindex="0"
     :aria-label="text"
@@ -46,10 +46,10 @@
     @keydown="handleKeydown"
   >
     <div
-      class="flex h-14 w-14 items-center justify-center rounded-2xl bg-muted transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/10"
+      class="flex h-16 w-16 items-center justify-center rounded-2xl bg-muted transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/10"
     >
-      <IconifyIcon :icon="icon" class="h-7 w-7" />
+      <IconifyIcon :icon="icon" class="h-8 w-8" />
     </div>
-    <span class="text-sm font-bold">{{ text }}</span>
+    <span class="text-[15px] font-bold">{{ text }}</span>
   </div>
 </template>

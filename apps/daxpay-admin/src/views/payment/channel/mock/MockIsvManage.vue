@@ -161,7 +161,7 @@
 
         <!-- 副信息第二行: 名下通道商户数 -->
         <template #subtitleExtra>
-          <div class="mt-0.5 truncate text-xs text-muted-foreground">
+          <div class="mt-0.5 truncate text-[13px] text-muted-foreground">
             {{ $t('payment.channel.mock.isv.channelMerchantCount') }}: {{ channelMerchantCount(record) }}
           </div>
         </template>

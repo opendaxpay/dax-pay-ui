@@ -40,28 +40,28 @@
 </script>
 
 <template>
-  <div class="mch-app-card group flex h-full min-h-[128px] flex-col rounded-xl border bg-card shadow-sm">
-    <div class="card-body flex flex-1 items-center gap-3 px-4 py-4">
+  <div class="mch-app-card group flex h-full min-h-[168px] flex-col rounded-2xl border bg-card shadow-sm">
+    <div class="card-body flex flex-1 items-center gap-4 px-5 py-5">
       <div
-        class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg"
+        class="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl"
         :style="{ backgroundColor: `${wechatColor}1a` }"
       >
-        <img v-if="wechatSvgUrl" :src="wechatSvgUrl" class="h-6 w-6" alt="wechat" />
+        <img v-if="wechatSvgUrl" :src="wechatSvgUrl" class="h-8 w-8" alt="wechat" />
       </div>
       <div class="min-w-0 flex-1">
-        <div class="truncate text-base font-semibold leading-snug text-foreground">
+        <div class="truncate text-[17px] font-bold leading-snug text-foreground">
           {{ record.appName || '-' }}
         </div>
-        <div class="mt-1 truncate text-xs text-muted-foreground">
+        <div class="mt-1 truncate text-[13px] text-muted-foreground">
           {{ $t('payment.wx.app.wxAppIdPrefix', { appId: record.wxAppId || '-' }) }}
         </div>
-        <div class="mt-0.5 truncate text-xs text-muted-foreground">
+        <div class="mt-0.5 truncate text-[13px] text-muted-foreground">
           {{ $t('payment.wx.app.appTypePrefix', { type: appTypeLabel }) }}
         </div>
       </div>
     </div>
 
-    <div class="card-footer flex shrink-0 items-center justify-end border-t border-border px-4 py-1.5">
+    <div class="card-footer flex shrink-0 items-center justify-end border-t border-border px-5 py-2">
       <div class="flex items-center">
         <a-tooltip
           v-if="hasPermission(PermCodes.Payment.Wx.MchApp.MANAGE)"
