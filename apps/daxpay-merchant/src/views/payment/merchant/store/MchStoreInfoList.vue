@@ -4,6 +4,7 @@
 
   import { $t } from '@vben/locales';
 
+  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
   import { ResourceAddCard, ResourceCard, ResourceCardGrid } from '@daxpay/ui-biz/components/resource-card';
 
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
@@ -156,6 +157,10 @@
 <template>
   <div class="m-3">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
+      <template #title>
+        <!-- 页头与菜单名一致（门店管理）, 对齐 plus 一级菜单页形态 -->
+        <PageTitleBar :title="$t('payment.merchant.store.store.title')" />
+      </template>
       <template #extra>
         <div class="flex items-center gap-2">
           <a-input

@@ -4,6 +4,7 @@
 
   import { $t } from '@vben/locales';
 
+  import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
   import { ResourceAddCard, ResourceCard, ResourceCardGrid } from '@daxpay/ui-biz/components/resource-card';
 
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
@@ -118,6 +119,10 @@
 <template>
   <div class="m-3">
     <a-card variant="borderless" class="rounded-xl shadow-sm">
+      <template #title>
+        <!-- 页头与菜单名一致（应用管理）, 对齐 plus 一级菜单页形态 -->
+        <PageTitleBar :title="$t('payment.merchant.app.app.myApps')" />
+      </template>
       <!-- 国际化：有应用但未设置默认应用时提示 -->
       <div v-if="showNoDefaultTip" class="mb-4">
         <a-alert :message="$t('payment.merchant.app.app.noDefaultAppTip')" type="warning" show-icon />
