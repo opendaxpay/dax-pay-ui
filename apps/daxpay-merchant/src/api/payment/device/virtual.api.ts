@@ -7,32 +7,32 @@ import { downloadExportFile } from '@daxpay/ui-biz/utils/export-download';
 import { defHttp, requestClient } from '#/api/request';
 
 /**
- * 收款设备(虚拟设备) API（商户端 /mch/device/audio/*）
+ * 收款设备(虚拟设备) API（商户端 /mch/device/virtual/*）
  *
  * 当前仅虚拟设备（vendor=virtual，手机 APP 变云音箱/云打印）；商户号由后端登录态强制隔离。
  * 商户自助能力：查看 / 应用与门店调整 / 启停 / 激活二维码 / 试播试打;
  * 设备由运营端生成并绑定商户, 商户在 APP 端扫激活二维码(或手填设备号)激活。
  */
-export const AudioDeviceApi = {
+export const VirtualDeviceApi = {
   /**
    * 分页查询收款设备(仅当前商户)
    */
-  page(params: AudioDeviceQuery & { current?: number; size?: number }): Promise<Result<PageResult<AudioDeviceResult>>> {
-    return defHttp.get({ url: '/mch/device/audio/page', params });
+  page(params: VirtualDeviceQuery & { current?: number; size?: number }): Promise<Result<PageResult<VirtualDeviceResult>>> {
+    return defHttp.get({ url: '/mch/device/virtual/page', params });
   },
 
   /**
    * 根据 id 查询收款设备
    */
-  get(id: string): Promise<Result<AudioDeviceResult>> {
-    return defHttp.get({ url: '/mch/device/audio/get', params: { id } });
+  get(id: string): Promise<Result<VirtualDeviceResult>> {
+    return defHttp.get({ url: '/mch/device/virtual/get', params: { id } });
   },
 
   /**
    * 修改设备名称(启停走 changeEnable, 不在此接口)
    */
-  update(data: AudioDeviceUpdateParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/mch/device/audio/update', data });
+  update(data: VirtualDeviceUpdateParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/mch/device/virtual/update', data });
   },
 
   /**
@@ -40,10 +40,10 @@ export const AudioDeviceApi = {
    *
    * 服务端生成 xlsx, 失败文案由 downloadExportFile 统一提示。
    */
-  exportExcel(query: AudioDeviceQuery, options: { failedText: string; fileName: string }): Promise<boolean> {
+  exportExcel(query: VirtualDeviceQuery, options: { failedText: string; fileName: string }): Promise<boolean> {
     return downloadExportFile({
       client: requestClient,
-      url: '/mch/device/audio/export',
+      url: '/mch/device/virtual/export',
       params: { ...query },
       fileName: options.fileName,
       failedText: options.failedText,
@@ -53,76 +53,76 @@ export const AudioDeviceApi = {
   /**
    * 调整使用应用(空=全部应用)
    */
-  bindApp(data: AudioDeviceBindAppParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/mch/device/audio/bind-app', data });
+  bindApp(data: VirtualDeviceBindAppParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/mch/device/virtual/bind-app', data });
   },
 
   /**
    * 调整使用门店
    */
-  bindStore(data: AudioDeviceBindStoreParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/mch/device/audio/bind-store', data });
+  bindStore(data: VirtualDeviceBindStoreParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/mch/device/virtual/bind-store', data });
   },
 
   /**
    * 解绑门店(置为未分配, 不参与播报/打印)
    */
   unbindStore(id: string): Promise<Result<void>> {
-    return defHttp.post({ url: '/mch/device/audio/unbind-store', params: { id } });
+    return defHttp.post({ url: '/mch/device/virtual/unbind-store', params: { id } });
   },
 
   /**
    * 批量调整使用应用(空=全部应用)
    */
-  bindAppBatch(data: AudioDeviceBindAppBatchParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/mch/device/audio/bind-app-batch', data });
+  bindAppBatch(data: VirtualDeviceBindAppBatchParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/mch/device/virtual/bind-app-batch', data });
   },
 
   /**
    * 批量调整使用门店(空=解绑门店/未分配)
    */
-  bindStoreBatch(data: AudioDeviceBindStoreBatchParam): Promise<Result<void>> {
-    return defHttp.post({ url: '/mch/device/audio/bind-store-batch', data });
+  bindStoreBatch(data: VirtualDeviceBindStoreBatchParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/mch/device/virtual/bind-store-batch', data });
   },
 
   /**
    * 启用/停用设备
    */
   changeEnable(id: string, enable: boolean): Promise<Result<void>> {
-    return defHttp.post({ url: '/mch/device/audio/change-enable', params: { id, enable } });
+    return defHttp.post({ url: '/mch/device/virtual/change-enable', params: { id, enable } });
   },
 
   /**
    * 试播(可指定金额与收款方式, 返回 msgId 供回执比对)
    */
   testBroadcast(data: DeviceTestParam): Promise<Result<string>> {
-    return defHttp.post({ url: '/mch/device/audio/test-broadcast', data });
+    return defHttp.post({ url: '/mch/device/virtual/test-broadcast', data });
   },
 
   /**
    * 试播文案预览(返回预计播报文本)
    */
   testSpeech(params: { amountFen?: number; channel?: string }): Promise<Result<string>> {
-    return defHttp.get({ url: '/mch/device/audio/test-speech', params });
+    return defHttp.get({ url: '/mch/device/virtual/test-speech', params });
   },
 
   /**
    * 试打(内置版式渲染, 参数携带 templateCode; 返回 msgId 供回执比对)
    */
   testPrint(data: DeviceTestParam): Promise<Result<string>> {
-    return defHttp.post({ url: '/mch/device/audio/test-print', data });
+    return defHttp.post({ url: '/mch/device/virtual/test-print', data });
   },
 
   /**
    * 激活二维码内容(返回内容字符串, 前端自行渲染二维码)
    */
   qrContent(deviceNo: string): Promise<Result<string>> {
-    return defHttp.get({ url: '/mch/device/audio/qr-content', params: { deviceNo } });
+    return defHttp.get({ url: '/mch/device/virtual/qr-content', params: { deviceNo } });
   },
 };
 
 /** 收款设备查询参数 */
-export interface AudioDeviceQuery {
+export interface VirtualDeviceQuery {
   /** 设备号(模糊) */
   deviceNo?: string;
   /** 关联应用号(空=全部应用) */
@@ -134,7 +134,7 @@ export interface AudioDeviceQuery {
 }
 
 /** 调整使用应用参数 */
-export interface AudioDeviceBindAppParam {
+export interface VirtualDeviceBindAppParam {
   /** 设备主键 */
   id: string;
   /** 应用号(空=全部应用) */
@@ -142,7 +142,7 @@ export interface AudioDeviceBindAppParam {
 }
 
 /** 批量调整使用应用参数 */
-export interface AudioDeviceBindAppBatchParam {
+export interface VirtualDeviceBindAppBatchParam {
   /** 设备主键列表 */
   ids: string[];
   /** 应用号(空=全部应用) */
@@ -150,7 +150,7 @@ export interface AudioDeviceBindAppBatchParam {
 }
 
 /** 批量调整使用门店参数 */
-export interface AudioDeviceBindStoreBatchParam {
+export interface VirtualDeviceBindStoreBatchParam {
   /** 设备主键列表 */
   ids: string[];
   /** 门店号(空=解绑门店/未分配) */
@@ -158,7 +158,7 @@ export interface AudioDeviceBindStoreBatchParam {
 }
 
 /** 修改设备名称参数 */
-export interface AudioDeviceUpdateParam {
+export interface VirtualDeviceUpdateParam {
   /** 设备主键 */
   id: string;
   /** 设备名称 */
@@ -166,7 +166,7 @@ export interface AudioDeviceUpdateParam {
 }
 
 /** 调整使用门店参数 */
-export interface AudioDeviceBindStoreParam {
+export interface VirtualDeviceBindStoreParam {
   /** 设备主键 */
   id: string;
   /** 门店号(须归属当前商户) */
@@ -174,7 +174,7 @@ export interface AudioDeviceBindStoreParam {
 }
 
 /** 收款设备结果 */
-export interface AudioDeviceResult extends BaseEntity {
+export interface VirtualDeviceResult extends BaseEntity {
   /** 设备名称 */
   name?: string;
   /** 设备号 */

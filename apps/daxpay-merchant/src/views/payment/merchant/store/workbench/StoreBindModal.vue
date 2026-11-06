@@ -5,7 +5,7 @@
 
   import { $t } from '@vben/locales';
 
-  import { AudioDeviceApi } from '#/api/payment/device/audio.api';
+  import { VirtualDeviceApi } from '#/api/payment/device/virtual.api';
   import { DeviceQrCodeApi } from '#/api/payment/device/qrcode.api';
   import { TerminalDeviceApi } from '#/api/payment/device/terminal.api';
   import { useMessage } from '#/hooks/useMessage';
@@ -156,7 +156,7 @@
       } else {
         // 首页拉全量并过滤未分配(商户设备量级小), 其后页直接切片
         if (currentPage === 1 || virtualCandidates.length === 0) {
-          const { data } = await AudioDeviceApi.page({ current: 1, size: 500 });
+          const { data } = await VirtualDeviceApi.page({ current: 1, size: 500 });
           virtualCandidates = ((data as any)?.records || [])
             .filter((row: any) => !row.storeNo)
             .map((row: any) => toCandidate(row));
@@ -246,7 +246,7 @@
       } else if (kind.value === 'terminal') {
         await TerminalDeviceApi.bindStoreBatch({ terminalIds: ids, storeNo: storeNo.value });
       } else {
-        await Promise.all(ids.map((id) => AudioDeviceApi.bindStore({ id, storeNo: storeNo.value })));
+        await Promise.all(ids.map((id) => VirtualDeviceApi.bindStore({ id, storeNo: storeNo.value })));
       }
       // 绑定成功提示(带数量与门店名)
       message.success(

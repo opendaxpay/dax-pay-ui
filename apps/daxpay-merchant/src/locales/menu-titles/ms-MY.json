@@ -26,11 +26,12 @@
   "menu.payment.merchant.payRoute": "Pengikat Saluran",
   "menu.payment.merchant.cashierConfig": "Konfigurasi Juruwang",
   "menu.payment.merchant.easypay": "EasyPay Config",
-  "menu.payment.merchant.terminal": "Terminal Sistem",
+  "menu.payment.merchant.terminal": "Terminal Peniaga",
   "menu.payment.merchant.wxVerify": "Fail Verifikasi Domain",
   "menu.payment.wx.mchApp": "Aplikasi WeChat",
   "menu.payment.douyin.mchApp": "Aplikasi Douyin",
   "menu.payment.merchant.channelMerchant.alipayApp": "Aplikasi Alipay",
+  "menu.device": "Pengurusan Peranti",
   "menu.develop": "Membangunkan",
   "menu.develop.trade": "Membangunkan Pembayaran (Biasa)",
   "menu.develop.sign": "Tanda Bangun",
@@ -51,9 +52,8 @@
   "menu.trade.allocOrder": "Pesanan Pengasingan",
   "menu.trade.abnormalOrder": "Pesanan Tidak Normal",
   "menu.trade.fundFlow": "Aliran Dana",
-
   "menu.trade.unipayLog": "Log API Pembayaran",
   "menu.payment.merchant.qrcode": "Pengurusan Kod QR",
-  "menu.payment.merchant.audioDevice": "Peranti Pembayaran",
-  "menu.payment.merchant.file": "Fail Pedagang"
+  "menu.payment.merchant.file": "Fail Pedagang",
+  "menu.device.virtual": "Peranti Maya"
 }

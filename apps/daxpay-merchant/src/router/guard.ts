@@ -13,6 +13,22 @@ import { generateAccess } from './access';
 
 const PASSWORD_STATUS_CODES = new Set([40_301, 40_302]);
 
+/**
+ * 设备域旧路径映射（2026-11 设备子菜单统一收口到 /mch/device/* 前缀）
+ *
+ * 菜单表已切换到新路径，但存量书签、门店/应用工作台的旧跳转、外部复制链接
+ * 仍可能指向旧地址。命中后在进入权限守卫前重定向，避免直接 404。
+ * 保留 query（如 storeNo 预置筛选）与 hash，按 replace 处理不污染浏览历史。
+ */
+const LEGACY_DEVICE_PATHS: Record<string, string> = {
+  // 码牌管理
+  '/mch/qrcode': '/mch/device/qrcode',
+  // 终端管理（plus 口径：商户终端）
+  '/mch/terminal': '/mch/device/terminal',
+  // 虚拟设备（原收款设备 audio 命名）
+  '/mch/device/audio': '/mch/device/virtual',
+};
+
 /** 判断请求是否因初始密码或密码过期被后端拦截 */
 function isPasswordStatusError(error: unknown): boolean {
   const requestError = error as {
@@ -33,6 +49,17 @@ function setupCommonGuard(router: Router) {
   const loadedPaths = new Set<string>();
 
   router.beforeEach((to) => {
+    // 设备域旧路径重定向（先于进度条与权限判断，避免旧地址被判为无权限或白屏）
+    const legacyDevicePath = LEGACY_DEVICE_PATHS[to.path];
+    if (legacyDevicePath) {
+      return {
+        path: legacyDevicePath,
+        query: to.query,
+        hash: to.hash,
+        replace: true,
+      };
+    }
+
     to.meta.loaded = loadedPaths.has(to.path);
 
     // 页面加载进度条

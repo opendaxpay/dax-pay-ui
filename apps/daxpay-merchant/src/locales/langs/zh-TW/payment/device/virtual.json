@@ -10,7 +10,8 @@
     "app": "應用",
     "store": "門市",
     "enable": "啟用",
-    "runStatus": "運行狀態"
+    "runStatus": "運行狀態",
+    "lastOnline": "最後在線"
   },
   "allApps": "全部應用",
   "unassigned": "未分配",

@@ -43,7 +43,7 @@
 
   // 打印版式下拉(内置版式, 首期仅 standard 标准小票, 枚举扩展位)
   const templateOptions = computed(() => [
-    { label: $t('payment.device.audio.appConfig.templateStandard'), value: 'standard' },
+    { label: $t('payment.device.virtual.appConfig.templateStandard'), value: 'standard' },
   ]);
 
   /**
@@ -222,35 +222,35 @@
         </a-form-item>
         <!-- 收款播报配置区块（仅编辑已有应用时展示; 应用创建后再配置, 新增态无 appId） -->
         <template v-if="editable">
-          <a-divider>{{ $t('payment.device.audio.appConfig.title') }}</a-divider>
-          <a-form-item :label="$t('payment.device.audio.appConfig.broadcast')">
+          <a-divider>{{ $t('payment.device.virtual.appConfig.title') }}</a-divider>
+          <a-form-item :label="$t('payment.device.virtual.appConfig.broadcast')">
             <div class="flex items-center gap-2">
               <a-switch v-model:checked="deviceConfig.broadcastEnable" />
               <!-- 播报开关说明 -->
               <span class="text-xs text-muted-foreground">
-                {{ $t('payment.device.audio.appConfig.broadcastHint') }}
+                {{ $t('payment.device.virtual.appConfig.broadcastHint') }}
               </span>
             </div>
           </a-form-item>
-          <a-form-item :label="$t('payment.device.audio.appConfig.print')">
+          <a-form-item :label="$t('payment.device.virtual.appConfig.print')">
             <div class="flex items-center gap-2">
               <a-switch v-model:checked="deviceConfig.printEnable" />
               <!-- 打印开关说明 -->
               <span class="text-xs text-muted-foreground">
-                {{ $t('payment.device.audio.appConfig.printHint') }}
+                {{ $t('payment.device.virtual.appConfig.printHint') }}
               </span>
             </div>
           </a-form-item>
-          <a-form-item :label="$t('payment.device.audio.appConfig.storeStrict')">
+          <a-form-item :label="$t('payment.device.virtual.appConfig.storeStrict')">
             <div class="flex items-center gap-2">
               <a-switch v-model:checked="deviceConfig.storeStrictMatch" />
               <!-- 门店订单严格匹配开关说明 -->
               <span class="text-xs text-muted-foreground">
-                {{ $t('payment.device.audio.appConfig.storeStrictHint') }}
+                {{ $t('payment.device.virtual.appConfig.storeStrictHint') }}
               </span>
             </div>
           </a-form-item>
-          <a-form-item :label="$t('payment.device.audio.appConfig.template')">
+          <a-form-item :label="$t('payment.device.virtual.appConfig.template')">
             <a-select v-model:value="deviceConfig.templateCode" :options="templateOptions" />
           </a-form-item>
         </template>

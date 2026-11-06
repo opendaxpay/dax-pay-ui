@@ -26,11 +26,12 @@
   "menu.payment.merchant.payRoute": "Channel Binding",
   "menu.payment.merchant.cashierConfig": "Cashier Config",
   "menu.payment.merchant.easypay": "EasyPay Config",
-  "menu.payment.merchant.terminal": "System Terminals",
+  "menu.payment.merchant.terminal": "Merchant Terminal",
   "menu.payment.merchant.wxVerify": "Domain Verification Files",
   "menu.payment.wx.mchApp": "WeChat App",
   "menu.payment.douyin.mchApp": "Douyin App",
   "menu.payment.merchant.channelMerchant.alipayApp": "Alipay App",
+  "menu.device": "Device Management",
   "menu.develop": "Develop",
   "menu.develop.trade": "Payment Develop (Normal)",
   "menu.develop.sign": "Sign Develop",
@@ -51,9 +52,8 @@
   "menu.trade.allocOrder": "Allocation Orders",
   "menu.trade.abnormalOrder": "Abnormal Orders",
   "menu.trade.fundFlow": "Fund Flows",
-
   "menu.trade.unipayLog": "Payment API Log",
   "menu.payment.merchant.qrcode": "QR Code Management",
-  "menu.payment.merchant.audioDevice": "Payment Device",
-  "menu.payment.merchant.file": "Merchant Files"
+  "menu.payment.merchant.file": "Merchant Files",
+  "menu.device.virtual": "Virtual Devices"
 }

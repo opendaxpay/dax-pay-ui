@@ -10,7 +10,8 @@
     "app": "앱",
     "store": "매장",
     "enable": "활성화",
-    "runStatus": "실행 상태"
+    "runStatus": "실행 상태",
+    "lastOnline": "최근 온라인"
   },
   "allApps": "전체 앱",
   "unassigned": "미할당",

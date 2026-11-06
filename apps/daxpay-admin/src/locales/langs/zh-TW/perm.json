@@ -10,6 +10,8 @@
   "develop:trade:view": "檢視",
   "device:qrcode:manage": "管理",
   "device:qrcode:view": "檢視",
+  "device:virtual:manage": "管理",
+  "device:virtual:view": "檢視",
   "iam:menu:manage": "管理",
   "iam:menu:view": "檢視",
   "iam:online:kickout": "踢下線",

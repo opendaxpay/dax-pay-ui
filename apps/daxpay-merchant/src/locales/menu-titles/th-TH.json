@@ -26,11 +26,12 @@
   "menu.payment.merchant.payRoute": "การผูกช่อง",
   "menu.payment.merchant.cashierConfig": "การกำหนดค่าแคชเชียร์",
   "menu.payment.merchant.easypay": "EasyPay Config",
-  "menu.payment.merchant.terminal": "เทอร์มินัลระบบ",
+  "menu.payment.merchant.terminal": "เทอร์มินัลพ่อค้า",
   "menu.payment.merchant.wxVerify": "ไฟล์ตรวจสอบโดเมน",
   "menu.payment.wx.mchApp": "แอป WeChat",
   "menu.payment.douyin.mchApp": "แอป Douyin",
   "menu.payment.merchant.channelMerchant.alipayApp": "แอพอาลีเพย์",
+  "menu.device": "การจัดการอุปกรณ์",
   "menu.develop": "พัฒนา",
   "menu.develop.trade": "การพัฒนาการชำระเงิน (ปกติ)",
   "menu.develop.sign": "ลงชื่อ พัฒนา",
@@ -51,9 +52,8 @@
   "menu.trade.allocOrder": "คำสั่งแบ่งเงิน",
   "menu.trade.abnormalOrder": "คำสั่งซื้อผิดปกติ",
   "menu.trade.fundFlow": "กระแสเงินสด",
-
   "menu.trade.unipayLog": "ล็อก API ชำระเงิน",
   "menu.payment.merchant.qrcode": "การจัดการรหัส QR",
-  "menu.payment.merchant.audioDevice": "อุปกรณ์รับชำระเงิน",
-  "menu.payment.merchant.file": "ไฟล์ผู้ขาย"
+  "menu.payment.merchant.file": "ไฟล์ผู้ขาย",
+  "menu.device.virtual": "อุปกรณ์เสมือน"
 }

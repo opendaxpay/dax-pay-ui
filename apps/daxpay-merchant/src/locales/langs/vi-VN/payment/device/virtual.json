@@ -10,7 +10,8 @@
     "app": "Ứng dụng",
     "store": "Cửa hàng",
     "enable": "Bật",
-    "runStatus": "Trạng thái chạy"
+    "runStatus": "Trạng thái chạy",
+    "lastOnline": "Lần trực tuyến cuối"
   },
   "allApps": "Tất cả ứng dụng",
   "unassigned": "Chưa gán",

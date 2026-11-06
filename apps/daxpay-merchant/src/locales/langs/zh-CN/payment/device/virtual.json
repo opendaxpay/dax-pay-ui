@@ -10,7 +10,8 @@
     "app": "应用",
     "store": "门店",
     "enable": "启用",
-    "runStatus": "运行状态"
+    "runStatus": "运行状态",
+    "lastOnline": "最后在线"
   },
   "allApps": "全部应用",
   "unassigned": "未分配",

@@ -10,7 +10,8 @@
     "app": "Aplikasi",
     "store": "Toko",
     "enable": "Aktif",
-    "runStatus": "Status Operasional"
+    "runStatus": "Status Operasional",
+    "lastOnline": "Terakhir Online"
   },
   "allApps": "Semua Aplikasi",
   "unassigned": "Belum Ditetapkan",

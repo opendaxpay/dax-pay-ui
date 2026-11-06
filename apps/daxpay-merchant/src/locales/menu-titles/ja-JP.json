@@ -26,11 +26,12 @@
   "menu.payment.merchant.payRoute": "チャネルバインディング",
   "menu.payment.merchant.cashierConfig": "レジ設定",
   "menu.payment.merchant.easypay": "EasyPay設定",
-  "menu.payment.merchant.terminal": "システム端末",
+  "menu.payment.merchant.terminal": "マーチャント端末",
   "menu.payment.merchant.wxVerify": "ドメイン検証ファイル",
   "menu.payment.wx.mchApp": "WeChatアプリ",
   "menu.payment.douyin.mchApp": "Douyinアプリ",
   "menu.payment.merchant.channelMerchant.alipayApp": "アリペイアプリ",
+  "menu.device": "デバイス管理",
   "menu.develop": "開発する",
   "menu.develop.trade": "決済開発(通常)",
   "menu.develop.sign": "サイン開発",
@@ -51,9 +52,8 @@
   "menu.trade.allocOrder": "精算注文",
   "menu.trade.abnormalOrder": "異常注文",
   "menu.trade.fundFlow": "資金フロー",
-
   "menu.trade.unipayLog": "決済APIログ",
   "menu.payment.merchant.qrcode": "QRコード管理",
-  "menu.payment.merchant.audioDevice": "決済デバイス",
-  "menu.payment.merchant.file": "加盟店ファイル"
+  "menu.payment.merchant.file": "加盟店ファイル",
+  "menu.device.virtual": "仮想デバイス"
 }

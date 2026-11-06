@@ -10,7 +10,8 @@
     "app": "アプリ",
     "store": "店舗",
     "enable": "有効",
-    "runStatus": "稼働状態"
+    "runStatus": "稼働状態",
+    "lastOnline": "最終オンライン"
   },
   "allApps": "すべてのアプリ",
   "unassigned": "未割り当て",

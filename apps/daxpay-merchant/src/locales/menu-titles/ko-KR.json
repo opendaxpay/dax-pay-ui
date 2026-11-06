@@ -26,11 +26,12 @@
   "menu.payment.merchant.payRoute": "채널 바인딩",
   "menu.payment.merchant.cashierConfig": "계산원 구성",
   "menu.payment.merchant.easypay": "EasyPay 설정",
-  "menu.payment.merchant.terminal": "시스템 단말",
+  "menu.payment.merchant.terminal": "판매자 단말",
   "menu.payment.merchant.wxVerify": "도메인 검증 파일",
   "menu.payment.wx.mchApp": "WeChat 앱",
   "menu.payment.douyin.mchApp": "더우인 앱",
   "menu.payment.merchant.channelMerchant.alipayApp": "알리페이 앱",
+  "menu.device": "장치 관리",
   "menu.develop": "개발하다",
   "menu.develop.trade": "결제 개발(일반)",
   "menu.develop.sign": "개발에 서명하다",
@@ -51,9 +52,8 @@
   "menu.trade.allocOrder": "정산 주문",
   "menu.trade.abnormalOrder": "비정상 주문",
   "menu.trade.fundFlow": "자금 흐름",
-
   "menu.trade.unipayLog": "결제 API 로그",
   "menu.payment.merchant.qrcode": "QR 코드 관리",
-  "menu.payment.merchant.audioDevice": "결제 디바이스",
-  "menu.payment.merchant.file": "가맹점 파일"
+  "menu.payment.merchant.file": "가맹점 파일",
+  "menu.device.virtual": "가상 디바이스"
 }

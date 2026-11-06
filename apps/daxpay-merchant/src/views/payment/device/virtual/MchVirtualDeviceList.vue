@@ -7,13 +7,15 @@
   import { useRoute } from 'vue-router';
 
   import { $t } from '@vben/locales';
+  import { formatDateTime } from '@vben/utils';
 
   import { IconifyIcon } from '@vben-core/icons';
 
   import { DeviceTestDialog } from '@daxpay/ui-biz/components/device-test';
+  import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
   import { confirmExport } from '@daxpay/ui-biz/utils/export-download';
 
-  import { AudioDeviceApi, type AudioDeviceResult } from '#/api/payment/device/audio.api';
+  import { VirtualDeviceApi, type VirtualDeviceResult } from '#/api/payment/device/virtual.api';
   import { MchAppInfoApi } from '#/api/payment/merchant/mch-app-info.api';
   import { MchStoreInfoApi } from '#/api/payment/merchant/store.api';
   import { QrCode } from '#/components/qrcode';
@@ -28,7 +30,7 @@
    * 商户自查名下收款设备(手机 APP 变云音箱/云打印): 查询筛选 / 应用与门店归属调整 / 启停 /
    * 行操作激活二维码(商户手机装 APP 后扫码即完成设备激活) / 试播试打。
    */
-  defineOptions({ name: 'MchAudioDeviceList' });
+  defineOptions({ name: 'MchVirtualDeviceList' });
 
   const { confirm, message } = useMessage();
   const { hasPermission } = usePermission();
@@ -41,12 +43,12 @@
   const xToolbar = ref<VxeToolbarInstance>();
 
   // 勾选行(仅当前页, 查询/翻页后清空)
-  const selectedRows = ref<AudioDeviceResult[]>([]);
+  const selectedRows = ref<VirtualDeviceResult[]>([]);
 
   // 试播/试打弹窗(共享组件来自 ui-biz, 接口由本页注入商户端端点)
   const testOpen = ref(false);
   const testMode = ref<'announce' | 'print'>('announce');
-  const testDevice = ref<AudioDeviceResult>();
+  const testDevice = ref<VirtualDeviceResult>();
 
   // 下拉选项(应用/门店仅展示基础信息, 商户号由登录态隔离)
   const appOptions = ref<{ label: string; value: string }[]>([]);
@@ -60,14 +62,14 @@
       type: 'string',
       field: 'deviceNo',
       // 设备号
-      name: $t('payment.device.audio.field.deviceNo'),
+      name: $t('payment.device.virtual.field.deviceNo'),
       placeholder: $t('common.pleaseInput'),
     },
     {
       type: 'list',
       field: 'appId',
       // 应用
-      name: $t('payment.device.audio.field.appId'),
+      name: $t('payment.device.virtual.field.appId'),
       placeholder: $t('common.pleaseSelect'),
       selectList: appOptions.value,
     },
@@ -75,7 +77,7 @@
       type: 'list',
       field: 'storeNo',
       // 门店
-      name: $t('payment.device.audio.field.storeNo'),
+      name: $t('payment.device.virtual.field.storeNo'),
       placeholder: $t('common.pleaseSelect'),
       selectList: storeOptions.value,
     },
@@ -83,7 +85,7 @@
       type: 'list',
       field: 'enable',
       // 状态
-      name: $t('payment.device.audio.field.enable'),
+      name: $t('payment.device.virtual.field.enable'),
       placeholder: $t('common.pleaseSelect'),
       selectList: [
         { label: $t('common.enable'), value: true },
@@ -98,7 +100,7 @@
     total: 0,
   });
 
-  const tableData = ref<AudioDeviceResult[]>([]);
+  const tableData = ref<VirtualDeviceResult[]>([]);
 
   /**
    * 加载应用/门店下拉(商户端由登录态隔离, 无需传 mchNo)
@@ -123,7 +125,7 @@
    */
   function queryPage() {
     loading.value = true;
-    AudioDeviceApi.page({
+    VirtualDeviceApi.page({
       current: pageConfig.value.currentPage,
       size: pageConfig.value.pageSize,
       ...queryForm.value,
@@ -157,7 +159,7 @@
    * 同步勾选行
    */
   function handleCheckboxChange() {
-    selectedRows.value = (xTable.value?.getCheckboxRecords() || []) as AudioDeviceResult[];
+    selectedRows.value = (xTable.value?.getCheckboxRecords() || []) as VirtualDeviceResult[];
   }
 
   /**
@@ -166,7 +168,7 @@
   function getSelectedIds(): null | string[] {
     const ids = selectedRows.value.map((row) => row.id!).filter(Boolean);
     if (ids.length === 0) {
-      message.warning($t('payment.device.audio.selectRequired'));
+      message.warning($t('payment.device.virtual.selectRequired'));
       return null;
     }
     return ids;
@@ -182,16 +184,16 @@
     }
     exporting.value = true;
     // 失败提示已由 downloadExportFile 统一弹出, 此处只复位按钮状态
-    await AudioDeviceApi.exportExcel(queryForm.value, {
-      fileName: `${$t('payment.device.audio.exportFileName')}.xlsx`,
-      failedText: $t('payment.device.audio.exportFailed'),
+    await VirtualDeviceApi.exportExcel(queryForm.value, {
+      fileName: `${$t('payment.device.virtual.exportFileName')}.xlsx`,
+      failedText: $t('payment.device.virtual.exportFailed'),
     }).finally(() => {
       exporting.value = false;
     });
   }
 
   /** 设备展示名(确认弹窗等提示用) */
-  function displayName(row: AudioDeviceResult): string {
+  function displayName(row: VirtualDeviceResult): string {
     return row.name || row.deviceNo || '-';
   }
 
@@ -205,7 +207,7 @@
   const configVisible = ref(false);
   const configLoading = ref(false);
   const configSaving = ref(false);
-  const configRow = ref<AudioDeviceResult>();
+  const configRow = ref<VirtualDeviceResult>();
   const configForm = ref<ConfigFormState>({});
   // 打开时记录原归属, 保存时 diff 决定是否调用 bind 接口
   const originalAppId = ref<string>();
@@ -214,12 +216,12 @@
   /**
    * 打开配置抽屉(拉取最新详情, 避免列表快照过期)
    */
-  async function handleConfig(row: AudioDeviceResult) {
+  async function handleConfig(row: VirtualDeviceResult) {
     configRow.value = row;
     configVisible.value = true;
     configLoading.value = true;
     try {
-      const { data } = await AudioDeviceApi.get(row.id!);
+      const { data } = await VirtualDeviceApi.get(row.id!);
       const detail = data || row;
       configForm.value = {
         id: detail.id!,
@@ -246,12 +248,12 @@
       // 应用归属变化: 空值即「全部应用」
       const appId = configForm.value.appId || undefined;
       if (appId !== originalAppId.value) {
-        await AudioDeviceApi.bindApp({ id, appId });
+        await VirtualDeviceApi.bindApp({ id, appId });
       }
       // 门店归属变化: 空值走解绑(未分配, 不参与播报/打印)
       const storeNo = configForm.value.storeNo || undefined;
       if (storeNo !== originalStoreNo.value) {
-        await (storeNo ? AudioDeviceApi.bindStore({ id, storeNo }) : AudioDeviceApi.unbindStore(id));
+        await (storeNo ? VirtualDeviceApi.bindStore({ id, storeNo }) : VirtualDeviceApi.unbindStore(id));
       }
       message.success($t('common.saveSuccess'));
       configVisible.value = false;
@@ -264,13 +266,13 @@
   // ===== 编辑设备名称弹窗 =====
   const editVisible = ref(false);
   const editSaving = ref(false);
-  const editRow = ref<AudioDeviceResult>();
+  const editRow = ref<VirtualDeviceResult>();
   const editForm = ref<{ id?: string; name?: string }>({});
 
   /**
    * 打开编辑弹窗(仅名称可改, 设备号与归属不可改, 归属走配置抽屉)
    */
-  function handleEdit(row: AudioDeviceResult) {
+  function handleEdit(row: VirtualDeviceResult) {
     editRow.value = row;
     editForm.value = { id: row.id || undefined, name: row.name || undefined };
     editVisible.value = true;
@@ -286,7 +288,7 @@
     }
     editSaving.value = true;
     try {
-      await AudioDeviceApi.update({ id, name: name.trim() });
+      await VirtualDeviceApi.update({ id, name: name.trim() });
       message.success($t('common.saveSuccess'));
       editVisible.value = false;
       queryPage();
@@ -342,10 +344,10 @@
     }
     confirm({
       // 解绑门店(未分配)后设备不再参与播报/打印
-      content: $t('payment.device.audio.confirmUnbindStore'),
+      content: $t('payment.device.virtual.confirmUnbindStore'),
       onOk() {
         // 门店号留空即解绑门店
-        return AudioDeviceApi.bindStoreBatch({ ids }).then(() => {
+        return VirtualDeviceApi.bindStoreBatch({ ids }).then(() => {
           message.success($t('common.operationSuccess'));
           queryPage();
         });
@@ -362,8 +364,8 @@
       // 空应用号即全部应用; 门店号已在提交前校验必选
       const request =
         batchMode.value === 'app'
-          ? AudioDeviceApi.bindAppBatch({ ids: batchIds.value, appId: batchForm.value.appId || undefined })
-          : AudioDeviceApi.bindStoreBatch({ ids: batchIds.value, storeNo: batchForm.value.storeNo || undefined });
+          ? VirtualDeviceApi.bindAppBatch({ ids: batchIds.value, appId: batchForm.value.appId || undefined })
+          : VirtualDeviceApi.bindStoreBatch({ ids: batchIds.value, storeNo: batchForm.value.storeNo || undefined });
       await request;
       message.success($t('common.operationSuccess'));
       batchVisible.value = false;
@@ -382,9 +384,9 @@
   function getBatchActionMenu(): MenuProps {
     return {
       items: [
-        { key: 'bindApp', label: $t('payment.device.audio.bindApp') },
-        { key: 'bindStore', label: $t('payment.device.audio.bindStore') },
-        { key: 'unbindStore', label: $t('payment.device.audio.unbindStore'), danger: true },
+        { key: 'bindApp', label: $t('payment.device.virtual.bindApp') },
+        { key: 'bindStore', label: $t('payment.device.virtual.bindStore') },
+        { key: 'unbindStore', label: $t('payment.device.virtual.unbindStore'), danger: true },
       ],
       onClick: ({ key }: { key: string }) => {
         switch (key) {
@@ -413,14 +415,14 @@
   /**
    * 打开激活二维码弹窗(调 qr-content 拿内容字符串后本地渲染二维码)
    */
-  function handleQrCode(row: AudioDeviceResult) {
+  function handleQrCode(row: VirtualDeviceResult) {
     if (!row.deviceNo) {
       return;
     }
     qrLoading.value = true;
     qrVisible.value = true;
     qrContentStr.value = '';
-    AudioDeviceApi.qrContent(row.deviceNo)
+    VirtualDeviceApi.qrContent(row.deviceNo)
       .then((res) => {
         qrContentStr.value = res.data || '';
       })
@@ -448,14 +450,14 @@
   /**
    * 启用/停用设备
    */
-  function handleChangeEnable(row: AudioDeviceResult, enable: boolean) {
+  function handleChangeEnable(row: VirtualDeviceResult, enable: boolean) {
     confirm({
       // 启用/停用确认文案(带设备名)
       content: enable
-        ? $t('payment.device.audio.confirmEnable', { name: displayName(row) })
-        : $t('payment.device.audio.confirmDisable', { name: displayName(row) }),
+        ? $t('payment.device.virtual.confirmEnable', { name: displayName(row) })
+        : $t('payment.device.virtual.confirmDisable', { name: displayName(row) }),
       onOk() {
-        return AudioDeviceApi.changeEnable(row.id!, enable).then(() => {
+        return VirtualDeviceApi.changeEnable(row.id!, enable).then(() => {
           message.success($t('common.operationSuccess'));
           queryPage();
         });
@@ -466,7 +468,7 @@
   /**
    * 试播(可调金额与收款方式; 弹窗内含预计播报文案)
    */
-  function handleTestBroadcast(row: AudioDeviceResult) {
+  function handleTestBroadcast(row: VirtualDeviceResult) {
     testDevice.value = row;
     testMode.value = 'announce';
     testOpen.value = true;
@@ -475,7 +477,7 @@
   /**
    * 试打(内置版式渲染, 先预览后出纸由共享弹窗控制)
    */
-  function handleTestPrint(row: AudioDeviceResult) {
+  function handleTestPrint(row: VirtualDeviceResult) {
     testDevice.value = row;
     testMode.value = 'print';
     testOpen.value = true;
@@ -488,41 +490,41 @@
 
   /** 试播预计文案取数(命名函数, 避免模板内联箭头的 ref 解包歧义) */
   function fetchTestSpeech(amountFen: number, channel: string): Promise<string> {
-    return AudioDeviceApi.testSpeech({ amountFen, channel }).then((res) => res.data ?? '');
+    return VirtualDeviceApi.testSpeech({ amountFen, channel }).then((res) => res.data ?? '');
   }
 
   /** 试播/试打下发(弹窗组好参后由本函数调对应端点) */
   function submitTest(param: DeviceTestParam): Promise<string> {
     const request =
-      testMode.value === 'announce' ? AudioDeviceApi.testBroadcast(param) : AudioDeviceApi.testPrint(param);
+      testMode.value === 'announce' ? VirtualDeviceApi.testBroadcast(param) : VirtualDeviceApi.testPrint(param);
     return request.then((res) => res.data ?? '');
   }
 
   /**
    * 操作列更多菜单(编辑名称/试播/试打/激活二维码/启停)
    */
-  function getActionMenu(row: AudioDeviceResult): MenuProps {
+  function getActionMenu(row: VirtualDeviceResult): MenuProps {
     const items: MenuProps['items'] = [
       {
         key: 'edit',
         // 编辑名称(仅改名, 归属调整走配置抽屉)
-        label: $t('payment.device.audio.edit'),
+        label: $t('payment.device.virtual.edit'),
       },
       { type: 'divider' },
       {
         key: 'testBroadcast',
         // 试播
-        label: $t('payment.device.audio.action.testBroadcast'),
+        label: $t('payment.device.virtual.action.testBroadcast'),
       },
       {
         key: 'testPrint',
         // 试打
-        label: $t('payment.device.audio.action.testPrint'),
+        label: $t('payment.device.virtual.action.testPrint'),
       },
       {
         key: 'qrCode',
         // 激活二维码
-        label: $t('payment.device.audio.action.qrCode'),
+        label: $t('payment.device.virtual.action.qrCode'),
       },
       { type: 'divider' },
       row.enable
@@ -601,16 +603,16 @@
             <a-space>
               <!-- 批量操作: 绑定应用/绑定门店/解绑门店(无权限或无勾选时禁用) -->
               <a-dropdown
-                :disabled="!hasPermission(PermCodes.Device.Audio.MANAGE) || selectedRows.length === 0"
+                :disabled="!hasPermission(PermCodes.Device.Virtual.MANAGE) || selectedRows.length === 0"
                 :menu="getBatchActionMenu()"
               >
-                <a-button :disabled="!hasPermission(PermCodes.Device.Audio.MANAGE) || selectedRows.length === 0">
-                  {{ $t('payment.device.audio.batchActions') }}
+                <a-button :disabled="!hasPermission(PermCodes.Device.Virtual.MANAGE) || selectedRows.length === 0">
+                  {{ $t('payment.device.virtual.batchActions') }}
                   <IconifyIcon icon="ant-design:down-outlined" class="inline" />
                 </a-button>
               </a-dropdown>
-              <a-button v-if="hasPermission(PermCodes.Device.Audio.EXPORT)" :loading="exporting" @click="handleExport">
-                {{ $t('payment.device.audio.export') }}
+              <a-button v-if="hasPermission(PermCodes.Device.Virtual.EXPORT)" :loading="exporting" @click="handleExport">
+                {{ $t('payment.device.virtual.export') }}
               </a-button>
             </a-space>
           </template>
@@ -624,31 +626,27 @@
           @checkbox-all="handleCheckboxChange"
         >
           <vxe-column type="checkbox" width="50" />
-          <vxe-column field="name" :title="$t('payment.device.audio.column.device')" :min-width="220">
+          <vxe-column field="name" :title="$t('payment.device.virtual.column.device')" :min-width="240">
             <template #default="{ row }">
-              <div class="flex flex-col">
-                <span>{{ row.name || '-' }}</span>
-                <span class="text-xs text-muted-foreground">
-                  {{ row.deviceNo || '-' }}
-                </span>
-              </div>
+              <!-- 名称(设备号)单行: 名称为主体, 设备号灰字缀后 -->
+              <NameNoCell :name="row.name" :no="row.deviceNo" />
             </template>
           </vxe-column>
-          <vxe-column field="appId" :title="$t('payment.device.audio.column.app')" :min-width="150">
+          <vxe-column field="appId" :title="$t('payment.device.virtual.column.app')" :min-width="150">
             <template #default="{ row }">
               <span v-if="row.appId">{{ row.appName || row.appId }}</span>
               <!-- 空应用号表示全部应用 -->
-              <span v-else class="text-muted-foreground">{{ $t('payment.device.audio.allApps') }}</span>
+              <span v-else class="text-muted-foreground">{{ $t('payment.device.virtual.allApps') }}</span>
             </template>
           </vxe-column>
-          <vxe-column field="storeNo" :title="$t('payment.device.audio.column.store')" :min-width="150">
+          <vxe-column field="storeNo" :title="$t('payment.device.virtual.column.store')" :min-width="150">
             <template #default="{ row }">
               <span v-if="row.storeNo">{{ row.storeName || row.storeNo }}</span>
               <!-- 空门店表示未分配 -->
-              <span v-else class="text-muted-foreground">{{ $t('payment.device.audio.unassigned') }}</span>
+              <span v-else class="text-muted-foreground">{{ $t('payment.device.virtual.unassigned') }}</span>
             </template>
           </vxe-column>
-          <vxe-column field="enable" :title="$t('payment.device.audio.column.enable')" :min-width="90" align="center">
+          <vxe-column field="enable" :title="$t('payment.device.virtual.column.enable')" :min-width="90" align="center">
             <template #default="{ row }">
               <a-tag v-if="row.enable" color="green">{{ $t('common.enable') }}</a-tag>
               <a-tag v-else color="default">{{ $t('common.disable') }}</a-tag>
@@ -657,25 +655,34 @@
           <!-- 运行状态: 未激活优先(未激活无从判在线), 其次在线/离线(心跳 15 分钟窗口) -->
           <vxe-column
             field="online"
-            :title="$t('payment.device.audio.column.runStatus')"
+            :title="$t('payment.device.virtual.column.runStatus')"
             :min-width="100"
             align="center"
           >
             <template #default="{ row }">
               <template v-if="row.vendor === 'virtual'">
                 <a-tag v-if="row.activated === false" color="default">
-                  {{ $t('payment.device.audio.runStatus.notActivated') }}
+                  {{ $t('payment.device.virtual.runStatus.notActivated') }}
                 </a-tag>
-                <a-tag v-else-if="row.online" color="green">{{ $t('payment.device.audio.runStatus.online') }}</a-tag>
-                <a-tag v-else color="red">{{ $t('payment.device.audio.runStatus.offline') }}</a-tag>
+                <a-tag v-else-if="row.online" color="green">{{ $t('payment.device.virtual.runStatus.online') }}</a-tag>
+                <a-tag v-else color="red">{{ $t('payment.device.virtual.runStatus.offline') }}</a-tag>
               </template>
               <span v-else style="color: var(--text-color-placeholder)">-</span>
             </template>
           </vxe-column>
+          <!-- 最后在线时间(心跳节流落库, 非实时值; 未激活设备无从判断) -->
+          <vxe-column field="lastOnlineTime" :title="$t('payment.device.virtual.column.lastOnline')" :min-width="180">
+            <template #default="{ row }">
+              <span v-if="row.vendor === 'virtual' && row.activated !== false && row.lastOnlineTime">
+                {{ formatDateTime(row.lastOnlineTime) }}
+              </span>
+              <span v-else style="color: var(--text-color-placeholder)">-</span>
+            </template>
+          </vxe-column>
           <vxe-column
-            v-if="hasPermission(PermCodes.Device.Audio.MANAGE)"
+            v-if="hasPermission(PermCodes.Device.Virtual.MANAGE)"
             fixed="right"
-            :width="160"
+            :width="200"
             :show-overflow="false"
             :title="$t('common.operation')"
           >
@@ -685,7 +692,7 @@
                   <a-divider type="vertical" />
                 </template>
                 <a-button type="link" size="small" @click="handleConfig(row)">
-                  {{ $t('payment.device.audio.action.config') }}
+                  {{ $t('payment.device.virtual.action.config') }}
                 </a-button>
                 <a-dropdown :menu="getActionMenu(row)">
                   <a-button type="link" size="small">
@@ -711,41 +718,41 @@
     <!-- 设备配置抽屉: 应用/门店归属 -->
     <a-drawer
       v-model:open="configVisible"
-      :title="$t('payment.device.audio.config.title')"
+      :title="$t('payment.device.virtual.config.title')"
       :default-size="600"
       resizable
       :destroy-on-hidden="true"
     >
       <a-spin :spinning="configLoading">
         <a-form layout="vertical" class="form-compact">
-          <a-form-item :label="$t('payment.device.audio.column.device')">
+          <a-form-item :label="$t('payment.device.virtual.column.device')">
             <span class="text-muted-foreground">
               {{ configRow?.name || '-' }}（{{ configRow?.deviceNo || '-' }}）
             </span>
           </a-form-item>
-          <a-form-item :label="$t('payment.device.audio.column.app')">
+          <a-form-item :label="$t('payment.device.virtual.column.app')">
             <a-select
               v-model:value="configForm.appId"
               :options="appOptions"
-              :placeholder="$t('payment.device.audio.allApps')"
+              :placeholder="$t('payment.device.virtual.allApps')"
               allow-clear
               show-search
               option-filter-prop="label"
             />
             <!-- 留空表示全部应用 -->
-            <div class="mt-1 text-xs text-muted-foreground">{{ $t('payment.device.audio.config.appHint') }}</div>
+            <div class="mt-1 text-xs text-muted-foreground">{{ $t('payment.device.virtual.config.appHint') }}</div>
           </a-form-item>
-          <a-form-item :label="$t('payment.device.audio.column.store')">
+          <a-form-item :label="$t('payment.device.virtual.column.store')">
             <a-select
               v-model:value="configForm.storeNo"
               :options="storeOptions"
-              :placeholder="$t('payment.device.audio.unassigned')"
+              :placeholder="$t('payment.device.virtual.unassigned')"
               allow-clear
               show-search
               option-filter-prop="label"
             />
             <!-- 未分配门店将不参与播报/打印 -->
-            <div class="mt-1 text-xs text-muted-foreground">{{ $t('payment.device.audio.config.storeHint') }}</div>
+            <div class="mt-1 text-xs text-muted-foreground">{{ $t('payment.device.virtual.config.storeHint') }}</div>
           </a-form-item>
         </a-form>
       </a-spin>
@@ -763,7 +770,7 @@
     <!-- 编辑设备名称: 仅名称可改, 设备号与归属变更走配置抽屉 -->
     <a-modal
       v-model:open="editVisible"
-      :title="$t('payment.device.audio.editTitle')"
+      :title="$t('payment.device.virtual.editTitle')"
       :width="480"
       :destroy-on-hidden="true"
       :confirm-loading="editSaving"
@@ -771,14 +778,14 @@
       @ok="handleEditSave"
     >
       <a-form layout="vertical" class="form-compact">
-        <a-form-item :label="$t('payment.device.audio.column.device')">
+        <a-form-item :label="$t('payment.device.virtual.column.device')">
           <span class="text-muted-foreground">{{ editRow?.deviceNo || '-' }}</span>
         </a-form-item>
-        <a-form-item :label="$t('payment.device.audio.name')" required>
+        <a-form-item :label="$t('payment.device.virtual.name')" required>
           <a-input
             v-model:value="editForm.name"
             :maxlength="128"
-            :placeholder="$t('payment.device.audio.namePlaceholder')"
+            :placeholder="$t('payment.device.virtual.namePlaceholder')"
           />
         </a-form-item>
       </a-form>
@@ -787,7 +794,7 @@
     <!-- 批量绑定: 应用/门店共用弹窗, 按当前批量模式渲染 -->
     <a-modal
       v-model:open="batchVisible"
-      :title="batchMode === 'app' ? $t('payment.device.audio.bindApp') : $t('payment.device.audio.bindStore')"
+      :title="batchMode === 'app' ? $t('payment.device.virtual.bindApp') : $t('payment.device.virtual.bindStore')"
       :width="520"
       :destroy-on-hidden="true"
       :confirm-loading="batchSaving"
@@ -797,21 +804,21 @@
       <a-form layout="vertical" class="form-compact">
         <!-- 本次批量操作的设备台数 -->
         <div class="mb-3 text-xs text-muted-foreground">
-          {{ $t('payment.device.audio.batchSelected', { count: batchIds.length }) }}
+          {{ $t('payment.device.virtual.batchSelected', { count: batchIds.length }) }}
         </div>
-        <a-form-item v-if="batchMode === 'app'" :label="$t('payment.device.audio.field.appId')">
+        <a-form-item v-if="batchMode === 'app'" :label="$t('payment.device.virtual.field.appId')">
           <a-select
             v-model:value="batchForm.appId"
             :options="appOptions"
-            :placeholder="$t('payment.device.audio.allApps')"
+            :placeholder="$t('payment.device.virtual.allApps')"
             allow-clear
             show-search
             option-filter-prop="label"
           />
           <!-- 留空表示全部应用 -->
-          <div class="mt-1 text-xs text-muted-foreground">{{ $t('payment.device.audio.config.appHint') }}</div>
+          <div class="mt-1 text-xs text-muted-foreground">{{ $t('payment.device.virtual.config.appHint') }}</div>
         </a-form-item>
-        <a-form-item v-else :label="$t('payment.device.audio.field.storeNo')">
+        <a-form-item v-else :label="$t('payment.device.virtual.field.storeNo')">
           <a-select
             v-model:value="batchForm.storeNo"
             :options="storeOptions"
@@ -820,7 +827,7 @@
             option-filter-prop="label"
           />
           <!-- 解绑门店请走「解绑门店」操作 -->
-          <div class="mt-1 text-xs text-muted-foreground">{{ $t('payment.device.audio.config.storeHint') }}</div>
+          <div class="mt-1 text-xs text-muted-foreground">{{ $t('payment.device.virtual.config.storeHint') }}</div>
         </a-form-item>
       </a-form>
     </a-modal>
@@ -828,20 +835,20 @@
     <!-- 激活二维码弹窗: 商户手机装 APP 后扫码即完成设备激活 -->
     <a-modal
       v-model:open="qrVisible"
-      :title="$t('payment.device.audio.qr.title')"
+      :title="$t('payment.device.virtual.qr.title')"
       :width="420"
       :footer="null"
       :destroy-on-hidden="true"
     >
       <a-spin :spinning="qrLoading">
         <div class="qr-modal">
-          <p class="qr-tip">{{ $t('payment.device.audio.qr.tip') }}</p>
+          <p class="qr-tip">{{ $t('payment.device.virtual.qr.tip') }}</p>
           <div v-if="qrContentStr" class="qr-card">
             <QrCode :value="qrContentStr" :width="250" :margin="0" />
           </div>
           <div class="qr-content">{{ qrContentStr || '-' }}</div>
           <a-button type="primary" block :disabled="!qrContentStr" @click="handleCopyQrContent">
-            {{ $t('payment.device.audio.qr.copy') }}
+            {{ $t('payment.device.virtual.qr.copy') }}
           </a-button>
         </div>
       </a-spin>

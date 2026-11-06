@@ -11,7 +11,7 @@
   import { PageTitleBar } from '@daxpay/ui-biz/components/page-title-bar';
   import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
 
-  import { AudioDeviceApi } from '#/api/payment/device/audio.api';
+  import { VirtualDeviceApi } from '#/api/payment/device/virtual.api';
   import { MchAppInfoApi } from '#/api/payment/merchant/mch-app-info.api';
   import { MchStoreInfoApi } from '#/api/payment/merchant/store.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
@@ -100,7 +100,7 @@
     const o = overview.value;
     // 收银与设备(本店绑定的收款设备与码牌)
     const cashierCards: WorkbenchCard[] = [];
-    if (hasPermission(PermCodes.Device.Audio.VIEW)) {
+    if (hasPermission(PermCodes.Device.Virtual.VIEW)) {
       cashierCards.push({
         key: 'device',
         // 收款设备
@@ -135,7 +135,7 @@
     }
     // 快捷绑定卡(弹窗内选本商户未分配门店的对象绑到本店)
     const bindCards: WorkbenchCard[] = [];
-    if (hasPermission(PermCodes.Device.Audio.MANAGE)) {
+    if (hasPermission(PermCodes.Device.Virtual.MANAGE)) {
       bindCards.push({
         key: 'bindDevice',
         title: $t('payment.merchant.store.workbench.tileBindDevice'),
@@ -312,7 +312,7 @@
    */
   async function loadDeviceCount() {
     try {
-      const { data } = await AudioDeviceApi.page({ current: 1, size: 1, storeNo: storeNo.value });
+      const { data } = await VirtualDeviceApi.page({ current: 1, size: 1, storeNo: storeNo.value });
       deviceCount.value = Number(data?.total) || 0;
     } catch {
       deviceCount.value = undefined;
@@ -430,9 +430,9 @@
    */
   function handleCardClick(card: WorkbenchCard) {
     const routeMap: Record<string, string> = {
-      device: '/mch/device/audio',
-      qrcode: '/mch/qrcode',
-      terminal: '/mch/terminal',
+      device: '/mch/device/virtual',
+      qrcode: '/mch/device/qrcode',
+      terminal: '/mch/device/terminal',
     };
     const target = routeMap[card.key];
     if (target) {

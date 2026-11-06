@@ -10,6 +10,8 @@
   "develop:trade:view": "Melihat",
   "device:qrcode:manage": "Mengelola",
   "device:qrcode:view": "Melihat",
+  "device:virtual:manage": "Mengelola",
+  "device:virtual:view": "Melihat",
   "iam:menu:manage": "Mengelola",
   "iam:menu:view": "Melihat",
   "iam:online:kickout": "Menendang keluar",

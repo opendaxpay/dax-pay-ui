@@ -10,7 +10,8 @@
     "app": "Aplikasi",
     "store": "Kedai",
     "enable": "Aktif",
-    "runStatus": "Status Operasi"
+    "runStatus": "Status Operasi",
+    "lastOnline": "Kali Terakhir Dalam Talian"
   },
   "allApps": "Semua Aplikasi",
   "unassigned": "Belum Ditetapkan",

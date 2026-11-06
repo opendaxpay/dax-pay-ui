@@ -10,7 +10,8 @@
     "app": "App",
     "store": "Store",
     "enable": "Enabled",
-    "runStatus": "Run Status"
+    "runStatus": "Run Status",
+    "lastOnline": "Last Online"
   },
   "allApps": "All Apps",
   "unassigned": "Unassigned",

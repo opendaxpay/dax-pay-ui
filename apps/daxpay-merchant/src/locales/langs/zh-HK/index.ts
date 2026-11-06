@@ -33,9 +33,9 @@ import mPaymentCommon from './payment/common.json';
 import mPaymentCommonApp from './payment/common/app.json';
 import mPaymentCommonRoute from './payment/common/route.json';
 import mPaymentDevelop from './payment/develop.json';
-import mPaymentDeviceAudio from './payment/device/audio.json';
 import mPaymentDeviceQrcode from './payment/device/qrcode.json';
 import mPaymentDeviceTerminal from './payment/device/terminal.json';
+import mPaymentDeviceVirtual from './payment/device/virtual.json';
 import mPaymentDouyinApp from './payment/douyin/app.json';
 import mPaymentMerchantAggregate from './payment/merchant/aggregate.json';
 import mPaymentMerchantAlipayDirectApp from './payment/merchant/alipayDirectApp.json';
@@ -104,9 +104,9 @@ const entries: LocaleEntry[] = [
   [['payment', 'common', 'app'], mPaymentCommonApp],
   [['payment', 'common', 'route'], mPaymentCommonRoute],
   [['payment', 'develop'], mPaymentDevelop],
-  [['payment', 'device', 'audio'], mPaymentDeviceAudio],
   [['payment', 'device', 'qrcode'], mPaymentDeviceQrcode],
   [['payment', 'device', 'terminal'], mPaymentDeviceTerminal],
+  [['payment', 'device', 'virtual'], mPaymentDeviceVirtual],
   [['payment', 'douyin', 'app'], mPaymentDouyinApp],
   [['payment', 'merchant', 'aggregate'], mPaymentMerchantAggregate],
   [['payment', 'merchant', 'alipayDirectApp'], mPaymentMerchantAlipayDirectApp],

@@ -80,9 +80,9 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     defaultOrder: 12,
   },
   {
-    // 码牌管理 — 菜单 path /mch/qrcode
+    // 码牌管理 — 菜单 path /mch/device/qrcode
     key: 'qrcode',
-    routeName: '/mch/qrcode',
+    routeName: '/mch/device/qrcode',
     icon: 'lucide:qr-code',
     titleKey: 'menu.payment.merchant.qrcode',
     color: 'bg-fuchsia-500',
@@ -91,9 +91,9 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     defaultOrder: 13,
   },
   {
-    // 系统终端 — 菜单 path /mch/terminal
+    // 商户终端 — 菜单 path /mch/device/terminal
     key: 'terminal',
-    routeName: '/mch/terminal',
+    routeName: '/mch/device/terminal',
     icon: 'lucide:monitor',
     titleKey: 'menu.payment.merchant.terminal',
     color: 'bg-slate-500',

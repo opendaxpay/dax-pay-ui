@@ -268,11 +268,11 @@ export const PermCodes = {
       MANAGE: 'device:qrcode:manage',
       EXPORT: 'device:qrcode:export',
     },
-    // 收款设备(虚拟设备, 手机变云音箱/云打印)
-    Audio: {
-      VIEW: 'device:audio:view',
-      MANAGE: 'device:audio:manage',
-      EXPORT: 'device:audio:export',
+    // 虚拟设备(手机 APP 变云音箱/云打印, 与运营端共用同一套权限码)
+    Virtual: {
+      VIEW: 'device:virtual:view',
+      MANAGE: 'device:virtual:manage',
+      EXPORT: 'device:virtual:export',
     },
   },
 

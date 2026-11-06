@@ -26,11 +26,12 @@
   "menu.payment.merchant.payRoute": "通道路由",
   "menu.payment.merchant.cashierConfig": "收银台配置",
   "menu.payment.merchant.easypay": "易支付配置",
-  "menu.payment.merchant.terminal": "系统终端",
+  "menu.payment.merchant.terminal": "商户终端",
   "menu.payment.merchant.wxVerify": "域名校验文件",
   "menu.payment.wx.mchApp": "微信应用",
   "menu.payment.douyin.mchApp": "抖音应用",
   "menu.payment.merchant.channelMerchant.alipayApp": "支付宝应用",
+  "menu.device": "设备管理",
   "menu.develop": "开发调试",
   "menu.develop.trade": "支付调试(普通)",
   "menu.develop.sign": "签名调试",
@@ -51,9 +52,8 @@
   "menu.trade.allocOrder": "分账订单",
   "menu.trade.abnormalOrder": "异常订单",
   "menu.trade.fundFlow": "资金流水",
-
   "menu.trade.unipayLog": "支付接口日志",
   "menu.payment.merchant.qrcode": "码牌管理",
-  "menu.payment.merchant.audioDevice": "收款设备",
-  "menu.payment.merchant.file": "商户文件"
+  "menu.payment.merchant.file": "商户文件",
+  "menu.device.virtual": "虚拟设备"
 }

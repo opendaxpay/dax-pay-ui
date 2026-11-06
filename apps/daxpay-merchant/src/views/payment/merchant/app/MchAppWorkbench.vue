@@ -98,13 +98,13 @@
       });
     }
 
-    // 收款设备: 收款之后的联动——本商户收款设备
+    // 虚拟设备: 收款之后的联动——本商户虚拟设备(手机 APP 变云音箱/云打印)
     const deviceCards: WorkbenchTile[] = [];
-    if (hasPermission(PermCodes.Device.Audio.VIEW)) {
+    if (hasPermission(PermCodes.Device.Virtual.VIEW)) {
       deviceCards.push({
-        key: 'audioDevice',
-        // 收款设备 — 标题与菜单 i18n_key 一致
-        title: $t('menu.payment.merchant.audioDevice'),
+        key: 'virtualDevice',
+        // 虚拟设备 — 标题与菜单 i18n_key 一致
+        title: $t('menu.device.virtual'),
         icon: 'ant-design:sound-outlined',
         description: $t('payment.merchant.app.app.cardAudioDeviceDesc'),
         // 台数角标(存量总数)
@@ -222,9 +222,9 @@
    */
   function handleCardSelect(key: string) {
     switch (key) {
-      case 'audioDevice': {
-        // 收款设备页(商户登录态隔离, 无需携带参数)
-        router.push('/mch/device/audio');
+      case 'virtualDevice': {
+        // 虚拟设备页(商户登录态隔离, 无需携带参数)
+        router.push('/mch/device/virtual');
         break;
       }
       case 'cancelDefault': {

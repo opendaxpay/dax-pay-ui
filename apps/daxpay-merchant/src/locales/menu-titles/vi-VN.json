@@ -26,11 +26,12 @@
   "menu.payment.merchant.payRoute": "Ràng buộc kênh",
   "menu.payment.merchant.cashierConfig": "Cấu hình thu ngân",
   "menu.payment.merchant.easypay": "EasyPay Config",
-  "menu.payment.merchant.terminal": "Thiết bị hệ thống",
+  "menu.payment.merchant.terminal": "Thiết bị Người bán",
   "menu.payment.merchant.wxVerify": "Tệp xác minh tên miền",
   "menu.payment.wx.mchApp": "Ứng dụng WeChat",
   "menu.payment.douyin.mchApp": "Ứng dụng Douyin",
   "menu.payment.merchant.channelMerchant.alipayApp": "Ứng dụng Alipay",
+  "menu.device": "Quản lý thiết bị",
   "menu.develop": "Phát triển",
   "menu.develop.trade": "Phát triển thanh toán (Thường)",
   "menu.develop.sign": "Đăng ký phát triển",
@@ -51,9 +52,8 @@
   "menu.trade.allocOrder": "Đơn Phân Toán",
   "menu.trade.abnormalOrder": "Đơn hàng bất thường",
   "menu.trade.fundFlow": "Dòng tiền",
-
   "menu.trade.unipayLog": "Nhật ký API thanh toán",
   "menu.payment.merchant.qrcode": "Quản lý mã QR",
-  "menu.payment.merchant.audioDevice": "Thiết bị thanh toán",
-  "menu.payment.merchant.file": "Tệp Merchant"
+  "menu.payment.merchant.file": "Tệp Merchant",
+  "menu.device.virtual": "Thiết bị ảo"
 }
