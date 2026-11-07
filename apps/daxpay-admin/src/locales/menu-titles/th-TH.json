@@ -115,5 +115,6 @@
   "menu.system.notify.mailTemplate": "เทมเพลตอีเมล",
   "menu.payment.mock.isv": "การจัดการผู้ให้บริการจำลอง",
   "menu.payment.mock.isvWorkbench": "เวิร์กเบนช์ผู้ให้บริการจำลอง",
-  "menu.device.virtual": "อุปกรณ์เสมือน"
+  "menu.device.virtual": "อุปกรณ์เสมือน",
+  "menu.device.terminalRegister": "การขึ้นทะเบียนเทอร์มินัล"
 }

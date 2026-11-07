@@ -40,5 +40,18 @@
   "registerTips": "Pembetulan manual nombor terminal sebelah saluran dan status pendaftaran. Tiada permintaan dihantar ke saluran.",
   "outTerminalNoPlaceholder": "Masukkan nombor terminal saluran",
   "validateStatus": "Sila pilih status pendaftaran",
-  "bindReadOnlyTip": "Pengikatan diuruskan melalui pendaftaran terminal saluran dan paparan sahaja di sini"
+  "bindReadOnlyTip": "Pengikatan diuruskan melalui pendaftaran terminal saluran dan paparan sahaja di sini",
+  "report": "Lapor",
+  "reportTitle": "Laporan Terminal",
+  "reportSuccess": "Permintaan laporan telah dilaksanakan",
+  "reportSelectTerminal": "Pilih terminal sistem sebelum melaporkan",
+  "reportNotSupported": "Saluran ini tidak menyokong pelaporan automatik, daftarkan nombor terminal saluran melalui fungsi pendaftaran",
+  "reportLockHintSubmitted": "Terminal ini telah dilaporkan, batalkan dahulu sebelum menukar terminal sistem",
+  "reportLockHintBound": "Sudah dikaitkan, pelaporan akan menggunakan terminal sistem ini; buat ikatan dahulu untuk menggantinya",
+  "reportSelectHint": "Memilih terminal sistem mewujudkan kaitan (satu terminal saluran hanya milik satu terminal sistem)",
+  "sync": "Segerak",
+  "syncSuccess": "Permintaan penyesuaian telah dilaksanakan",
+  "cancel": "Batalkan Terminal",
+  "cancelSuccess": "Permintaan pembatalan telah dilaksanakan",
+  "confirmCancel": "Batalkan terminal saluran ini? Nombor terminal tidak lagi boleh digunakan untuk pembayaran"
 }

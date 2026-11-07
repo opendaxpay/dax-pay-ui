@@ -115,5 +115,6 @@
   "menu.system.notify.mailTemplate": "Mẫu email",
   "menu.payment.mock.isv": "Quản lý nhà cung cấp dịch vụ mô phỏng",
   "menu.payment.mock.isvWorkbench": "Workbench nhà cung cấp dịch vụ mô phỏng",
-  "menu.device.virtual": "Thiết bị ảo"
+  "menu.device.virtual": "Thiết bị ảo",
+  "menu.device.terminalRegister": "Báo bị đầu cuối"
 }

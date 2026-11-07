@@ -40,5 +40,18 @@
   "registerTips": "Manually correct the channel-side terminal number and register status. No request is sent to the channel.",
   "outTerminalNoPlaceholder": "Please enter the channel terminal number",
   "validateStatus": "Please select the register status",
-  "bindReadOnlyTip": "Bindings are maintained via channel terminal registration and shown here read-only"
+  "bindReadOnlyTip": "Bindings are maintained via channel terminal registration and shown here read-only",
+  "report": "Report",
+  "reportTitle": "Terminal Report",
+  "reportSuccess": "Report request executed",
+  "reportSelectTerminal": "Select a system terminal before reporting",
+  "reportNotSupported": "This channel does not support auto reporting, register the channel terminal number via the register action",
+  "reportLockHintSubmitted": "This terminal has been reported, cancel it before changing the system terminal",
+  "reportLockHintBound": "Already linked, reporting will reuse this system terminal; unbind first to change it",
+  "reportSelectHint": "Selecting a system terminal creates the link (one channel terminal belongs to only one system terminal)",
+  "sync": "Sync",
+  "syncSuccess": "Sync request executed",
+  "cancel": "Cancel Terminal",
+  "cancelSuccess": "Cancel request executed",
+  "confirmCancel": "Cancel this channel terminal? The terminal number will no longer be usable for payment"
 }

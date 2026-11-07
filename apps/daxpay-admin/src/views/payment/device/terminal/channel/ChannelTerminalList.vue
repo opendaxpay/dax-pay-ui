@@ -22,6 +22,7 @@
 
   import ChannelTerminalEdit from './ChannelTerminalEdit.vue';
   import ChannelTerminalRegisterModal from './ChannelTerminalRegisterModal.vue';
+  import ChannelTerminalReportDrawer from './ChannelTerminalReportDrawer.vue';
 
   defineOptions({ name: 'ChannelTerminalList' });
 
@@ -33,6 +34,7 @@
   const xToolbar = ref<VxeToolbarInstance>();
   const editRef = ref<InstanceType<typeof ChannelTerminalEdit>>();
   const registerRef = ref<InstanceType<typeof ChannelTerminalRegisterModal>>();
+  const reportRef = ref<InstanceType<typeof ChannelTerminalReportDrawer>>();
 
   // 查询条件
   const queryForm = ref<Record<string, any>>({});
@@ -198,6 +200,48 @@
   }
 
   /**
+   * 是否已绑定系统终端(报备/同步/注销均以绑定关系中的首个终端号作为报备锚点)
+   */
+  function hasBound(row: ChannelTerminalResult): boolean {
+    return (row.systemTerminals?.length ?? 0) > 0;
+  }
+
+  /**
+   * 终端报备(报备即绑定: 选择系统终端; 人工通道走手动登记)
+   */
+  function handleReport(row: ChannelTerminalResult) {
+    reportRef.value?.show(row);
+  }
+
+  /**
+   * 终端状态同步(调通道 API 回读实际状态)
+   */
+  function handleSync(row: ChannelTerminalResult) {
+    ChannelTerminalApi.sync(row.id!).then(() => {
+      // 同步请求已执行
+      message.success($t('payment.device.terminal.syncSuccess'));
+      queryPage();
+    });
+  }
+
+  /**
+   * 终端注销(调通道 API; 注销后该终端号不可用于收款)
+   */
+  function handleCancelTerminal(row: ChannelTerminalResult) {
+    confirm({
+      // 确定注销该通道终端吗？注销后该终端号将不可用于收款
+      content: $t('payment.device.terminal.confirmCancel'),
+      onOk() {
+        return ChannelTerminalApi.cancel(row.id!).then(() => {
+          // 注销请求已执行
+          message.success($t('payment.device.terminal.cancelSuccess'));
+          queryPage();
+        });
+      },
+    });
+  }
+
+  /**
    * 删除通道终端
    */
   function handleDelete(row: ChannelTerminalResult) {
@@ -214,7 +258,7 @@
   }
 
   /**
-   * 更多操作菜单(删除)
+   * 更多操作菜单(登记调整/同步/注销/删除)
    *
    * a-dropdown 的 menu prop 要求 MenuProps 对象(items+onClick), 传裸数组会因 menu.items
    * 为空导致弹出层渲染为空(点击无反应)——全站统一走 items+onClick 形态
@@ -222,6 +266,25 @@
   function getActionMenu(row: ChannelTerminalResult): MenuProps {
     return {
       items: [
+        {
+          key: 'register',
+          // 登记调整
+          label: $t('payment.device.terminal.register'),
+          disabled: !hasPermission(PermCodes.Channel.Merchant.MANAGE),
+        },
+        {
+          key: 'sync',
+          // 同步
+          label: $t('payment.device.terminal.sync'),
+          disabled: !hasBound(row) || !hasPermission(PermCodes.Channel.Merchant.MANAGE),
+        },
+        {
+          key: 'cancel',
+          // 注销
+          label: $t('payment.device.terminal.cancel'),
+          disabled: !hasPermission(PermCodes.Channel.Merchant.MANAGE),
+        },
+        { type: 'divider' },
         {
           key: 'delete',
           // 删除
@@ -231,8 +294,23 @@
         },
       ],
       onClick: ({ key }: any) => {
-        if (key === 'delete') {
-          handleDelete(row);
+        switch (key) {
+          case 'cancel': {
+            handleCancelTerminal(row);
+            break;
+          }
+          case 'delete': {
+            handleDelete(row);
+            break;
+          }
+          case 'register': {
+            handleRegister(row);
+            break;
+          }
+          case 'sync': {
+            handleSync(row);
+            break;
+          }
         }
       },
     };
@@ -320,7 +398,7 @@
           <vxe-column
             v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)"
             fixed="right"
-            width="220"
+            width="200"
             :show-overflow="false"
             :title="$t('common.operation')"
           >
@@ -329,11 +407,11 @@
                 <template #separator>
                   <a-divider type="vertical" />
                 </template>
+                <a-button type="link" size="small" @click="handleReport(row)">
+                  {{ $t('payment.device.terminal.report') }}
+                </a-button>
                 <a-button type="link" size="small" @click="handleEdit(row)">
                   {{ $t('common.edit') }}
-                </a-button>
-                <a-button type="link" size="small" @click="handleRegister(row)">
-                  {{ $t('payment.device.terminal.register') }}
                 </a-button>
                 <a-dropdown :menu="getActionMenu(row)">
                   <a-button type="link" size="small">
@@ -358,5 +436,6 @@
 
     <ChannelTerminalEdit ref="editRef" @ok="queryPage" />
     <ChannelTerminalRegisterModal ref="registerRef" @ok="queryPage" />
+    <ChannelTerminalReportDrawer ref="reportRef" @ok="queryPage" />
   </div>
 </template>

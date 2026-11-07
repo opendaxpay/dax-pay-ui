@@ -40,5 +40,18 @@
   "registerTips": "Sửa thủ công số thiết bị đầu cuối phía kênh và trạng thái đăng ký, không gửi yêu cầu tới kênh.",
   "outTerminalNoPlaceholder": "Nhập số thiết bị đầu cuối kênh",
   "validateStatus": "Vui lòng chọn trạng thái đăng ký",
-  "bindReadOnlyTip": "Liên kết được quản lý khi đăng ký thiết bị đầu cuối kênh, chỉ hiển thị tại đây"
+  "bindReadOnlyTip": "Liên kết được quản lý khi đăng ký thiết bị đầu cuối kênh, chỉ hiển thị tại đây",
+  "report": "Báo bị",
+  "reportTitle": "Báo bị đầu cuối",
+  "reportSuccess": "Yêu cầu báo bị đã được thực thi",
+  "reportSelectTerminal": "Hãy chọn đầu cuối hệ thống trước khi báo bị",
+  "reportNotSupported": "Kênh này không hỗ trợ báo bị tự động, hãy đăng ký số đầu cuối kênh qua chức năng đăng ký",
+  "reportLockHintSubmitted": "Đầu cuối này đã được báo bị, hãy hủy bỏ trước khi đổi đầu cuối hệ thống",
+  "reportLockHintBound": "Đã liên kết, báo bị sẽ dùng đầu cuối hệ thống này; hãy bỏ liên kết trước nếu muốn đổi",
+  "reportSelectHint": "Chọn đầu cuối hệ thống sẽ tạo liên kết (một đầu cuối kênh chỉ thuộc một đầu cuối hệ thống)",
+  "sync": "Đồng bộ",
+  "syncSuccess": "Yêu cầu đồng bộ đã được thực thi",
+  "cancel": "Hủy đầu cuối",
+  "cancelSuccess": "Yêu cầu hủy đã được thực thi",
+  "confirmCancel": "Hủy đầu cuối kênh này? Sau khi hủy, số đầu cuối sẽ không thể dùng để thanh toán nữa"
 }

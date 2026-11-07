@@ -40,5 +40,18 @@
   "registerTips": "채널 측 단말기 번호와 등록 상태를 수동으로 수정합니다. 채널로 요청을 전송하지 않습니다.",
   "outTerminalNoPlaceholder": "채널 단말기 번호를 입력하세요",
   "validateStatus": "등록 상태를 선택하세요",
-  "bindReadOnlyTip": "연결은 채널 단말기 등록 시 관리되며 여기서는 표시 전용입니다"
+  "bindReadOnlyTip": "연결은 채널 단말기 등록 시 관리되며 여기서는 표시 전용입니다",
+  "report": "등록(보비)",
+  "reportTitle": "단말 등록",
+  "reportSuccess": "등록 요청이 실행되었습니다",
+  "reportSelectTerminal": "등록 전에 시스템 단말을 선택하세요",
+  "reportNotSupported": "이 채널은 자동 등록을 지원하지 않습니다. 등록 기능으로 채널 측 단말 번호를 등록하세요",
+  "reportLockHintSubmitted": "이 단말은 이미 등록되었습니다. 시스템 단말을 변경하려면 먼저 해지하세요",
+  "reportLockHintBound": "이미 연결되어 있어 등록 시 이 시스템 단말을 사용합니다. 변경하려면 먼저 바인딩을 해제하세요",
+  "reportSelectHint": "시스템 단말을 선택하면 연결이 생성됩니다(하나의 채널 단말은 하나의 시스템 단말에만 속합니다)",
+  "sync": "동기화",
+  "syncSuccess": "동기화 요청이 실행되었습니다",
+  "cancel": "해지",
+  "cancelSuccess": "해지 요청이 실행되었습니다",
+  "confirmCancel": "이 채널 단말을 해지할까요? 해지 후 이 단말 번호로는 결제를 받을 수 없습니다"
 }

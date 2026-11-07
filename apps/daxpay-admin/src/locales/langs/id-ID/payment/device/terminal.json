@@ -40,5 +40,18 @@
   "registerTips": "Perbaiki nomor terminal sisi channel dan status pendaftaran secara manual. Tidak ada permintaan yang dikirim ke channel.",
   "outTerminalNoPlaceholder": "Masukkan nomor terminal channel",
   "validateStatus": "Silakan pilih status pendaftaran",
-  "bindReadOnlyTip": "Pengikatan dikelola melalui pendaftaran terminal channel dan hanya ditampilkan di sini"
+  "bindReadOnlyTip": "Pengikatan dikelola melalui pendaftaran terminal channel dan hanya ditampilkan di sini",
+  "report": "Laporkan",
+  "reportTitle": "Laporan Terminal",
+  "reportSuccess": "Permintaan laporan telah dieksekusi",
+  "reportSelectTerminal": "Pilih terminal sistem sebelum melaporkan",
+  "reportNotSupported": "Kanal ini tidak mendukung pelaporan otomatis, daftarkan nomor terminal kanal melalui aksi daftar",
+  "reportLockHintSubmitted": "Terminal ini sudah dilaporkan, batalkan dulu sebelum mengganti terminal sistem",
+  "reportLockHintBound": "Sudah terhubung, pelaporan akan menggunakan terminal sistem ini; lepas ikatan dulu untuk menggantinya",
+  "reportSelectHint": "Memilih terminal sistem membuat hubungan (satu terminal kanal hanya milik satu terminal sistem)",
+  "sync": "Sinkron",
+  "syncSuccess": "Permintaan sinkronisasi telah dieksekusi",
+  "cancel": "Batalkan Terminal",
+  "cancelSuccess": "Permintaan pembatalan telah dieksekusi",
+  "confirmCancel": "Batalkan terminal kanal ini? Nomor terminal tidak dapat digunakan untuk pembayaran lagi"
 }

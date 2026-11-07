@@ -115,5 +115,6 @@
   "menu.system.notify.mailTemplate": "Mail Templates",
   "menu.payment.mock.isv": "Mock Service Provider",
   "menu.payment.mock.isvWorkbench": "Mock Service Provider Workbench",
-  "menu.device.virtual": "Virtual Devices"
+  "menu.device.virtual": "Virtual Devices",
+  "menu.device.terminalRegister": "Terminal Registration"
 }

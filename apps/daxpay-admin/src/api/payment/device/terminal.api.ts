@@ -91,6 +91,22 @@ export const ChannelTerminalApi = {
   register(data: ChannelTerminalRegisterParam): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/device/terminal/channel/register', data });
   },
+  /** 终端报备(调通道API; 未绑定时须选择系统终端, 报备即绑定) */
+  report(data: ChannelTerminalReportParam): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/device/terminal/channel/report', data });
+  },
+  /** 终端注销(调通道API; 人工通道直接置已注销) */
+  cancel(id: string): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/device/terminal/channel/cancel', params: { id } });
+  },
+  /** 终端状态同步(调通道API回读实际状态) */
+  sync(id: string): Promise<Result<void>> {
+    return defHttp.post({ url: '/admin/device/terminal/channel/sync', params: { id } });
+  },
+  /** 通道支持的终端报送类型(空列表=通道不支持自动报备) */
+  terminalTypes(product: string): Promise<Result<string[]>> {
+    return defHttp.get({ url: '/admin/device/terminal/channel/terminal-types', params: { product } });
+  },
   /** 删除 */
   delete(id: string): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/device/terminal/channel/delete', params: { id } });
@@ -189,6 +205,13 @@ export interface ChannelTerminalRegisterParam {
   outTerminalNo?: string;
   // 登记状态(字典 channel_terminal_status)
   status: string;
+}
+
+/** 通道终端报备参数(报备即绑定; 已绑定时系统终端号可空=沿用已绑定终端) */
+export interface ChannelTerminalReportParam {
+  id: string;
+  // 系统终端编码(首次报备必填)
+  systemTerminalNo?: string;
 }
 
 /** 通道终端结果 */

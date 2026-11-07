@@ -40,5 +40,18 @@
   "registerTips": "手工訂正通道側終端號與登記狀態，不會向通道發起請求",
   "outTerminalNoPlaceholder": "請輸入通道終端號",
   "validateStatus": "請選擇登記狀態",
-  "bindReadOnlyTip": "綁定關係由通道終端登記維護，此處僅作展示"
+  "bindReadOnlyTip": "綁定關係由通道終端登記維護，此處僅作展示",
+  "report": "報備",
+  "reportTitle": "終端報備",
+  "reportSuccess": "報備請求已執行",
+  "reportSelectTerminal": "請選擇系統終端後再報備",
+  "reportNotSupported": "該通道不支援自動報備, 請使用登記功能登記通道終端號",
+  "reportLockHintSubmitted": "該終端已報備, 更換系統終端請先註銷終端",
+  "reportLockHintBound": "已建立關聯, 報備將沿用該系統終端; 如需更換可先解綁後重新選擇",
+  "reportSelectHint": "選擇系統終端即建立關聯(一條通道終端只歸屬一個系統終端)",
+  "sync": "同步",
+  "syncSuccess": "同步請求已執行",
+  "cancel": "註銷",
+  "cancelSuccess": "註銷請求已執行",
+  "confirmCancel": "確定註銷該通道終端嗎？註銷後該終端號將不可用於收款"
 }
