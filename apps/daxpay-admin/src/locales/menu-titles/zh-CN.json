@@ -116,6 +116,5 @@
   "menu.system.notify.mailTemplate": "邮件模板",
   "menu.payment.mock.isv": "模拟服务商管理",
   "menu.payment.mock.isvWorkbench": "模拟服务商工作台",
-  "menu.device.virtual": "虚拟设备",
-  "menu.device.terminalRegister": "终端报备"
+  "menu.device.virtual": "虚拟设备"
 }

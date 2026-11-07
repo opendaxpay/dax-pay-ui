@@ -10,8 +10,6 @@
   "develop:trade:view": "Lihat",
   "device:qrcode:manage": "Uruskan",
   "device:qrcode:view": "Lihat",
-  "device:terminal:manage": "Uruskan",
-  "device:terminal:view": "Lihat",
   "device:virtual:manage": "Uruskan",
   "device:virtual:view": "Lihat",
   "iam:menu:manage": "Uruskan",

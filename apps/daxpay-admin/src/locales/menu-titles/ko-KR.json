@@ -115,6 +115,5 @@
   "menu.system.notify.mailTemplate": "메일 템플릿",
   "menu.payment.mock.isv": "모의 서비스 제공자 관리",
   "menu.payment.mock.isvWorkbench": "모의 서비스 제공자 워크벤치",
-  "menu.device.virtual": "가상 디바이스",
-  "menu.device.terminalRegister": "단말 등록"
+  "menu.device.virtual": "가상 디바이스"
 }

@@ -115,6 +115,5 @@
   "menu.system.notify.mailTemplate": "Templat Email",
   "menu.payment.mock.isv": "Manajemen Penyedia Layanan Mock",
   "menu.payment.mock.isvWorkbench": "Workbench Penyedia Layanan Mock",
-  "menu.device.virtual": "Perangkat Virtual",
-  "menu.device.terminalRegister": "Registrasi Terminal"
+  "menu.device.virtual": "Perangkat Virtual"
 }

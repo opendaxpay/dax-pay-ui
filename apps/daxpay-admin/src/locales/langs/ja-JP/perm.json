@@ -10,8 +10,6 @@
   "develop:trade:view": "ビュー",
   "device:qrcode:manage": "管理",
   "device:qrcode:view": "ビュー",
-  "device:terminal:manage": "管理",
-  "device:terminal:view": "ビュー",
   "device:virtual:manage": "管理",
   "device:virtual:view": "ビュー",
   "iam:menu:manage": "管理",

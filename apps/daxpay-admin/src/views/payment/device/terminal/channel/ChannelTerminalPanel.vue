@@ -20,6 +20,7 @@
 
   import ChannelTerminalEdit from './ChannelTerminalEdit.vue';
   import ChannelTerminalRegisterModal from './ChannelTerminalRegisterModal.vue';
+  import ChannelTerminalReportDrawer from './ChannelTerminalReportDrawer.vue';
 
   defineOptions({ name: 'ChannelTerminalPanel' });
 
@@ -39,6 +40,7 @@
   const xToolbar = ref<VxeToolbarInstance>();
   const editRef = ref<InstanceType<typeof ChannelTerminalEdit>>();
   const registerRef = ref<InstanceType<typeof ChannelTerminalRegisterModal>>();
+  const reportRef = ref<InstanceType<typeof ChannelTerminalReportDrawer>>();
 
   const pageConfig = ref({
     currentPage: 1,
@@ -108,6 +110,41 @@
   }
 
   /**
+   * 终端报备(报备即绑定: 选择商户终端; 人工通道由抽屉提示走手动调整)
+   */
+  function handleReport(row: ChannelTerminalResult) {
+    reportRef.value?.show(row);
+  }
+
+  /**
+   * 终端状态同步(调通道 API 回读实际状态)
+   */
+  function handleSync(row: ChannelTerminalResult) {
+    ChannelTerminalApi.sync(row.id!).then(() => {
+      // 同步请求已执行
+      message.success($t('payment.device.terminal.syncSuccess'));
+      queryPage();
+    });
+  }
+
+  /**
+   * 终端注销(调通道 API; 注销后该终端号不可用于收款)
+   */
+  function handleCancelTerminal(row: ChannelTerminalResult) {
+    confirm({
+      // 确定注销该通道终端吗？注销后该终端号不可用于收款
+      content: $t('payment.device.terminal.confirmCancel'),
+      onOk() {
+        return ChannelTerminalApi.cancel(row.id!).then(() => {
+          // 注销请求已执行
+          message.success($t('payment.device.terminal.cancelSuccess'));
+          queryPage();
+        });
+      },
+    });
+  }
+
+  /**
    * 删除通道终端
    */
   function handleDelete(row: ChannelTerminalResult) {
@@ -156,18 +193,32 @@
   }
 
   /**
-   * 更多操作菜单(删除/解绑)
+   * 更多操作菜单(同步/手动调整/解绑/删除)
    *
    * a-dropdown 的 menu prop 要求 MenuProps 对象(items+onClick), 传裸数组会因 menu.items
    * 为空导致弹出层渲染为空(点击无反应)——全站统一走 items+onClick 形态
    */
   function getActionMenu(row: ChannelTerminalResult): MenuProps {
+    // 关联关系在通道侧维护: 未报送时允许解绑, 已报送须先注销
+    const canUnbind = hasBound(row) && row.status !== 'submit';
     const items: any[] = [
+      {
+        key: 'sync',
+        // 同步状态
+        label: $t('payment.device.terminal.sync'),
+        disabled: !hasBound(row) || !hasPermission(PermCodes.Channel.Merchant.MANAGE),
+      },
+      {
+        key: 'register',
+        // 手动调整(通道侧已报备完成时, 手工订正通道终端号与登记状态)
+        label: $t('payment.device.terminal.register'),
+        disabled: !hasPermission(PermCodes.Channel.Merchant.MANAGE),
+      },
       {
         key: 'unbind',
         // 解绑商户终端
         label: $t('payment.device.terminal.unbind'),
-        disabled: !hasBound(row) || !hasPermission(PermCodes.Device.Terminal.MANAGE),
+        disabled: !canUnbind || !hasPermission(PermCodes.Channel.Merchant.MANAGE),
       },
       { type: 'divider' },
       {
@@ -175,18 +226,29 @@
         // 删除
         label: $t('common.delete'),
         danger: true,
-        disabled: !hasPermission(PermCodes.Device.Terminal.MANAGE),
+        disabled: !hasPermission(PermCodes.Channel.Merchant.MANAGE),
       },
     ];
     return {
       items,
       onClick: ({ key }: any) => {
-        if (key === 'unbind') {
-          handleUnbind(row);
-          return;
-        }
-        if (key === 'delete') {
-          handleDelete(row);
+        switch (key) {
+          case 'delete': {
+            handleDelete(row);
+            break;
+          }
+          case 'register': {
+            handleRegister(row);
+            break;
+          }
+          case 'sync': {
+            handleSync(row);
+            break;
+          }
+          case 'unbind': {
+            handleUnbind(row);
+            break;
+          }
         }
       },
     };
@@ -244,7 +306,7 @@
   >
     <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
       <template #buttons>
-        <a-button v-if="hasPermission(PermCodes.Device.Terminal.MANAGE)" type="primary" @click="handleAdd">
+        <a-button v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)" type="primary" @click="handleAdd">
           {{ $t('payment.device.terminal.add') }}
         </a-button>
       </template>
@@ -278,21 +340,28 @@
               <a-divider type="vertical" />
             </template>
             <a-button
-              v-if="hasPermission(PermCodes.Device.Terminal.MANAGE)"
+              v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)"
               type="link"
               size="small"
               @click="handleEdit(row)"
             >
               {{ $t('common.edit') }}
             </a-button>
-            <a-button
-              v-if="hasPermission(PermCodes.Device.Terminal.MANAGE)"
-              type="link"
-              size="small"
-              @click="handleRegister(row)"
-            >
-              {{ $t('payment.device.terminal.register') }}
-            </a-button>
+            <template v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)">
+              <!-- 已报送: 报备不可重复, 按钮变注销(二次确认) -->
+              <a-button
+                v-if="row.status === 'submit'"
+                type="link"
+                size="small"
+                danger
+                @click="handleCancelTerminal(row)"
+              >
+                {{ $t('payment.device.terminal.cancel') }}
+              </a-button>
+              <a-button v-else type="link" size="small" @click="handleReport(row)">
+                {{ $t('payment.device.terminal.report') }}
+              </a-button>
+            </template>
             <a-dropdown :menu="getActionMenu(row)">
               <a-button type="link" size="small">
                 {{ $t('common.more') }}
@@ -314,5 +383,6 @@
 
     <ChannelTerminalEdit ref="editRef" @ok="queryPage" />
     <ChannelTerminalRegisterModal ref="registerRef" @ok="queryPage" />
+    <ChannelTerminalReportDrawer ref="reportRef" @ok="queryPage" />
   </a-drawer>
 </template>

@@ -115,6 +115,5 @@
   "menu.system.notify.mailTemplate": "メールテンプレート",
   "menu.payment.mock.isv": "モックサービスプロバイダー管理",
   "menu.payment.mock.isvWorkbench": "モックサービスプロバイダーワークベンチ",
-  "menu.device.virtual": "仮想デバイス",
-  "menu.device.terminalRegister": "端末報備"
+  "menu.device.virtual": "仮想デバイス"
 }

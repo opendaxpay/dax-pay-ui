@@ -115,6 +115,5 @@
   "menu.system.notify.mailTemplate": "Templat E-mel",
   "menu.payment.mock.isv": "Pengurusan Penyedia Perkhidmatan Mock",
   "menu.payment.mock.isvWorkbench": "Ruang Kerja Penyedia Perkhidmatan Mock",
-  "menu.device.virtual": "Peranti Maya",
-  "menu.device.terminalRegister": "Pendaftaran Terminal"
+  "menu.device.virtual": "Peranti Maya"
 }

@@ -10,8 +10,6 @@
   "develop:trade:view": "Melihat",
   "device:qrcode:manage": "Mengelola",
   "device:qrcode:view": "Melihat",
-  "device:terminal:manage": "Mengelola",
-  "device:terminal:view": "Melihat",
   "device:virtual:manage": "Mengelola",
   "device:virtual:view": "Melihat",
   "iam:menu:manage": "Mengelola",
