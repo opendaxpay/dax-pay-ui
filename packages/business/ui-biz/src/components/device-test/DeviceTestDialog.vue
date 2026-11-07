@@ -265,11 +265,14 @@
 
 <style scoped>
   .dt-quick {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
     margin-top: 6px;
   }
 
   .dt-quick-tag {
-    margin-bottom: 4px;
+    margin: 0;
     cursor: pointer;
   }
 
