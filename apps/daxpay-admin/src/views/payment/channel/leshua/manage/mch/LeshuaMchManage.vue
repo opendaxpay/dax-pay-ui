@@ -154,8 +154,8 @@
 
 <template>
   <div class="py-4">
-    <div v-for="group in functionCards" :key="group.group">
-      <div class="mb-6 flex items-center gap-3 px-2">
+    <div v-for="group in functionCards" :key="group.group" class="card-group">
+      <div class="mb-4 flex items-center gap-3 px-2">
         <div class="h-6 w-1.5 rounded-full shadow-sm" :class="getGroupColorClass(group.color)"></div>
         <span class="text-xl font-extrabold tracking-tight text-foreground">{{ group.group }}</span>
       </div>

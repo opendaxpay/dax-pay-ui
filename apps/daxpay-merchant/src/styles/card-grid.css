@@ -5,3 +5,8 @@
   gap: 16px;
   justify-content: center;
 }
+
+/* 分组块: 组间留白须明显大于组标题到本组卡片的间距, 否则下一组标题会贴住上一组卡片, 读不出分组归属 */
+.card-group + .card-group {
+  margin-top: 56px;
+}

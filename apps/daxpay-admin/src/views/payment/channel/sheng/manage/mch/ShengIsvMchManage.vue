@@ -128,9 +128,9 @@
         class="sheng-isv-tip"
         :message="$t('payment.channel.shengIsv.isvNotConnectedTip')"
       />
-      <!-- 分组间距用 mt-6 显式声明(space-y-12 在当前 Tailwind 构建中未生成规则) -->
-      <div v-for="group in functionCards" :key="group.group" class="mt-6 first:mt-0">
-        <div class="mb-6 flex items-center gap-3 px-2">
+      <!-- 分组间距由 .card-group 统一承担(见 styles/card-grid.css) -->
+      <div v-for="group in functionCards" :key="group.group" class="card-group">
+        <div class="mb-4 flex items-center gap-3 px-2">
           <div class="h-6 w-1.5 rounded-full shadow-sm" :class="getGroupColorClass(group.color)"></div>
           <span class="text-xl font-extrabold tracking-tight text-foreground">{{ group.group }}</span>
         </div>
@@ -186,7 +186,7 @@
   }
 
   /* 警示条紧凑化: 默认上下 8px 内边距使单行提示偏高显空, 收紧后内容更居中饱满;
-     下边距替代未生效的 space-y-12, 与分组标题拉开节奏 */
+     下边距与首个分组标题拉开节奏 */
   .sheng-isv-tip {
     padding-block: 5px;
     margin-bottom: 12px;
