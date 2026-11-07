@@ -5,6 +5,8 @@
 
   import { $t } from '@vben/locales';
 
+  import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
+
   import {
     PayCallbackRecordApi,
     type PayCallbackRecordQuery,
@@ -204,17 +206,9 @@
           <vxe-column field="product" :title="$t('payment.order.field.product')" :min-width="140" show-overflow>
             <template #default="{ row }">{{ productLabel(row.product) }}</template>
           </vxe-column>
-          <vxe-column
-            field="channelMchNo"
-            :title="$t('payment.record.callbackRecord.channelMchNo')"
-            :min-width="160"
-            :show-overflow="false"
-          >
+          <vxe-column field="channelMchNo" :title="$t('payment.record.callbackRecord.channelMchNo')" :min-width="200">
             <template #default="{ row }">
-              <div class="flex flex-col gap-y-1">
-                <span>{{ row.channelMerchantName || row.channelMchNo || '-' }}</span>
-                <span v-if="row.channelMchNo" class="text-xs text-muted-foreground">{{ row.channelMchNo }}</span>
-              </div>
+              <NameNoCell :name="row.channelMerchantName" :no="row.channelMchNo" />
             </template>
           </vxe-column>
           <vxe-column
