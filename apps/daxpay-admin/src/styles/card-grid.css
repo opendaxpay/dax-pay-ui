@@ -3,8 +3,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, 220px);
   gap: 16px;
-  /* 左对齐: auto-fill 的固定轨道铺不满容器时余量会被平分到两侧, 卡片会整体右移、与左对齐的分组标题错位(窄窗口只剩一张卡时最明显) */
-  justify-content: start;
+  /* 整墙居中: 固定轨道铺不满容器时余量两侧平分, 卡片墙相对内容区视觉居中(既定视觉, 勿改成左对齐) */
+  justify-content: center;
 }
 
 /* 分组块: 组间留白须明显大于组标题到本组卡片的间距, 否则下一组标题会贴住上一组卡片, 读不出分组归属 */

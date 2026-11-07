@@ -166,8 +166,8 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, 220px);
     gap: 24px;
-    /* 左对齐: 固定轨道铺不满容器时居中会把整墙卡片推向右侧, 与左对齐的分组标题错位 */
-    justify-content: start;
+    /* 整墙居中: 固定轨道铺不满容器时余量两侧平分, 磁贴墙相对内容区视觉居中(既定视觉, 勿改成左对齐) */
+    justify-content: center;
   }
 
   .tile-card {
