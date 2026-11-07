@@ -10,6 +10,8 @@
   "develop:trade:view": "보다",
   "device:qrcode:manage": "관리하다",
   "device:qrcode:view": "보다",
+  "device:terminal:manage": "관리하다",
+  "device:terminal:view": "보다",
   "device:virtual:manage": "관리하다",
   "device:virtual:view": "보다",
   "iam:menu:manage": "관리하다",

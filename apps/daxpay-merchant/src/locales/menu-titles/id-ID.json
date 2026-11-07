@@ -26,7 +26,7 @@
   "menu.payment.merchant.payRoute": "Pengikatan Saluran",
   "menu.payment.merchant.cashierConfig": "Konfigurasi Kasir",
   "menu.payment.merchant.easypay": "EasyPay Config",
-  "menu.payment.merchant.terminal": "Manajemen Terminal",
+  "menu.payment.merchant.terminal": "Terminal Pedagang",
   "menu.payment.merchant.wxVerify": "File Verifikasi Domain",
   "menu.payment.wx.mchApp": "Aplikasi WeChat",
   "menu.payment.douyin.mchApp": "Aplikasi Douyin",

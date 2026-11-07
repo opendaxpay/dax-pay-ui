@@ -44,7 +44,7 @@
     "cert": "证书模式"
   },
   "channel_terminal_status": {
-    "submit": "已上报",
+    "submit": "已报送",
     "logged": "已注销",
     "error": "错误",
     "wait": "未报送",
@@ -53,7 +53,7 @@
   "terminal_type": {
     "wechat": "微信渠道报送",
     "alipay": "支付宝渠道报送",
-    "union": "云闪付渠道报送",
+    "union": "银联渠道报送",
     "common": "标准上报"
   },
   "currency": {

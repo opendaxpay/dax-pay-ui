@@ -20,7 +20,7 @@
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
-  import { channelI18nMap, channelNameMap } from '#/enums/payment';
+  import { channelI18nMap, channelNameMap, channelTerminalStatusColorMap } from '#/enums/payment/channelEnum';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
@@ -90,14 +90,14 @@
     {
       type: 'string',
       field: 'outTerminalNo',
-      // 通道终端号
+      // 通道侧终端号
       name: $t('payment.device.terminal.field.outTerminalNo'),
       placeholder: $t('common.pleaseInput'),
     },
     {
       type: 'list',
       field: 'status',
-      // 登记状态
+      // 报备状态
       name: $t('payment.device.terminal.field.status'),
       placeholder: $t('common.pleaseSelect'),
       selectList: statusOptions.value,
@@ -180,17 +180,6 @@
     }
     return $t(`dict.channel_terminal_status.${status}`);
   }
-
-  /**
-   * 状态标签颜色
-   */
-  const statusColorMap: Record<string, string> = {
-    error: 'red',
-    init: 'default',
-    logged: 'default',
-    submit: 'green',
-    wait: 'orange',
-  };
 
   function handleEdit(row: ChannelTerminalResult) {
     editRef.value?.showEdit(row);
@@ -284,19 +273,19 @@
           key: 'register',
           // 登记调整
           label: $t('payment.device.terminal.register'),
-          disabled: !hasPermission(PermCodes.Channel.Merchant.MANAGE),
+          disabled: !hasPermission(PermCodes.Device.Terminal.MANAGE),
         },
         {
           key: 'sync',
           // 同步
           label: $t('payment.device.terminal.sync'),
-          disabled: !hasBound(row) || !hasPermission(PermCodes.Channel.Merchant.MANAGE),
+          disabled: !hasBound(row) || !hasPermission(PermCodes.Device.Terminal.MANAGE),
         },
         {
           key: 'cancel',
           // 注销
           label: $t('payment.device.terminal.cancel'),
-          disabled: !hasPermission(PermCodes.Channel.Merchant.MANAGE),
+          disabled: !hasPermission(PermCodes.Device.Terminal.MANAGE),
         },
         { type: 'divider' },
         {
@@ -304,7 +293,7 @@
           // 删除
           label: $t('common.delete'),
           danger: true,
-          disabled: !hasPermission(PermCodes.Channel.Merchant.MANAGE),
+          disabled: !hasPermission(PermCodes.Device.Terminal.MANAGE),
         },
       ],
       onClick: ({ key }: any) => {
@@ -360,8 +349,8 @@
             </template>
           </vxe-column>
           <vxe-column field="channelMchNo" :title="$t('payment.device.terminal.field.channelMchNo')" :min-width="180" />
-          <!-- 绑定的系统终端(建档即绑定; 多台绑定拼成单行 + 全局省略, 避免标签换行撑高行高) -->
-          <vxe-column :title="$t('payment.device.terminal.field.systemTerminal')" :min-width="200">
+          <!-- 绑定的商户终端(建档即绑定; 多台绑定拼成单行 + 全局省略, 避免标签换行撑高行高) -->
+          <vxe-column :title="$t('payment.device.terminal.field.boundMerchantTerminal')" :min-width="200">
             <template #default="{ row }">
               <span v-if="hasBound(row)">{{ systemTerminalLabel(row.systemTerminals) }}</span>
               <span v-else style="color: var(--text-color-placeholder)">
@@ -381,7 +370,9 @@
             align="center"
           >
             <template #default="{ row }">
-              <a-tag :color="statusColorMap[row.status] || 'default'">{{ statusLabel(row.status) }}</a-tag>
+              <a-tag :color="channelTerminalStatusColorMap[row.status] || 'default'">
+                {{ statusLabel(row.status) }}
+              </a-tag>
             </template>
           </vxe-column>
           <vxe-column field="outTerminalNo" :title="$t('payment.device.terminal.field.outTerminalNo')" :min-width="170">
@@ -402,7 +393,7 @@
             formatter="formatDateTime"
           />
           <vxe-column
-            v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)"
+            v-if="hasPermission(PermCodes.Device.Terminal.MANAGE)"
             fixed="right"
             width="200"
             :show-overflow="false"

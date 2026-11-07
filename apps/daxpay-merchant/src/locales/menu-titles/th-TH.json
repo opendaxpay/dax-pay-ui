@@ -26,7 +26,7 @@
   "menu.payment.merchant.payRoute": "การผูกช่อง",
   "menu.payment.merchant.cashierConfig": "การกำหนดค่าแคชเชียร์",
   "menu.payment.merchant.easypay": "EasyPay Config",
-  "menu.payment.merchant.terminal": "การจัดการเทอร์มินัล",
+  "menu.payment.merchant.terminal": "เทอร์มินัลพ่อค้า",
   "menu.payment.merchant.wxVerify": "ไฟล์ตรวจสอบโดเมน",
   "menu.payment.wx.mchApp": "แอป WeChat",
   "menu.payment.douyin.mchApp": "แอป Douyin",

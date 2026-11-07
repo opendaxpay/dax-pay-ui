@@ -1,6 +1,6 @@
 {
   "field": {
-    "systemTerminal": "Thiết bị hệ thống",
+    "systemTerminal": "Thiết bị người bán",
     "type": "Loại báo cáo",
     "outTerminalNo": "Số thiết bị kênh",
     "status": "Trạng thái",
@@ -11,19 +11,30 @@
     "enable": "Enabled",
     "defaultTerminal": "Terminal mặc định",
     "remark": "Remark",
-    "createTime": "Created At"
+    "createTime": "Created At",
+    "channel": "Channel",
+    "channelMchNo": "Số người bán kênh",
+    "errorMsg": "Thông báo lỗi",
+    "boundMerchantTerminal": "Thiết bị người bán đã liên kết",
+    "relatedChannel": "Kênh liên kết"
   },
   "enableYes": "Enabled",
   "enableNo": "Disabled",
   "defaultTag": "Mặc định",
   "add": "Add",
-  "bindManage": "Bindings",
+  "bindManage": "Liên kết thiết bị",
   "confirmDelete": "Delete this terminal?",
   "validateName": "Please enter name",
   "validateEnable": "Please select status",
   "pleaseSelectStore": "Select store (optional)",
-  "boundChannel": "Bound channel terminals",
-  "noBound": "No bindings",
-  "bindReadOnlyTip": "Liên kết được quản lý khi đăng ký thiết bị đầu cuối kênh, chỉ hiển thị tại đây",
-  "ledgerReadOnlyTip": "Việc đăng ký, báo cáo và liên kết thiết bị kênh do bên vận hành nền tảng quản lý. Danh sách này chỉ để xem."
+  "boundChannel": "Thiết bị kênh đã liên kết",
+  "noBound": "Chưa có liên kết",
+  "bindReadOnlyTip": "Liên kết được tạo bởi bên vận hành khi báo cáo thiết bị kênh và chỉ hiển thị tại đây",
+  "ledgerReadOnlyTip": "Việc báo cáo và liên kết thiết bị kênh do bên vận hành nền tảng quản lý. Danh sách này chỉ để xem.",
+  "relatedChannelTitle": "Thiết bị kênh liên kết",
+  "relatedChannelTip": "Liên kết được tạo bởi bên vận hành khi báo cáo thiết bị kênh. Vui lòng liên hệ bên vận hành nền tảng nếu cần điều chỉnh.",
+  "notBound": "Chưa liên kết",
+  "summaryTotal": "{count} bản ghi",
+  "summarySubmitted": "Đã báo cáo {count}",
+  "summaryError": "Bất thường {count}"
 }

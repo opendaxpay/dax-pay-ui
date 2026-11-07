@@ -1,9 +1,9 @@
 {
   "field": {
-    "systemTerminal": "시스템 단말",
+    "systemTerminal": "판매자 단말",
     "type": "보고 유형",
     "outTerminalNo": "채널 단말 번호",
-    "status": "등록 상태",
+    "status": "상태",
     "terminalNo": "Terminal No.",
     "name": "Name",
     "store": "Store",
@@ -11,19 +11,30 @@
     "enable": "Enabled",
     "defaultTerminal": "기본 단말",
     "remark": "Remark",
-    "createTime": "Created At"
+    "createTime": "Created At",
+    "channel": "Channel",
+    "channelMchNo": "채널 판매자 번호",
+    "errorMsg": "오류 메시지",
+    "boundMerchantTerminal": "연결된 판매자 단말",
+    "relatedChannel": "연결 채널"
   },
   "enableYes": "Enabled",
   "enableNo": "Disabled",
   "defaultTag": "기본",
   "add": "추가",
-  "bindManage": "연결 관리",
+  "bindManage": "단말 연결",
   "confirmDelete": "이 단말을 삭제하시겠습니까?",
   "validateName": "Please enter name",
   "validateEnable": "Please select status",
   "pleaseSelectStore": "Select store (optional)",
-  "boundChannel": "Bound channel terminals",
-  "noBound": "No bindings",
-  "bindReadOnlyTip": "연결은 채널 단말기 등록 시 관리되며 여기서는 표시 전용입니다",
-  "ledgerReadOnlyTip": "채널 단말의 등록·보고·연결은 플랫폼 운영 측에서 관리합니다. 여기서는 조회만 가능합니다."
+  "boundChannel": "연결된 채널 단말",
+  "noBound": "연결 없음",
+  "bindReadOnlyTip": "연결 관계는 운영 측이 채널 단말 보고 시 생성하며 여기서는 표시만 됩니다",
+  "ledgerReadOnlyTip": "채널 단말의 보고 및 연결은 플랫폼 운영 측에서 관리합니다. 여기서는 조회만 가능합니다.",
+  "relatedChannelTitle": "연결된 채널 단말",
+  "relatedChannelTip": "연결 관계는 운영 측이 채널 단말 보고 시 생성합니다. 변경이 필요하면 플랫폼 운영에 문의하세요.",
+  "notBound": "미연결",
+  "summaryTotal": "{count} 건",
+  "summarySubmitted": "보고됨 {count}",
+  "summaryError": "오류 {count}"
 }

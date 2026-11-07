@@ -10,6 +10,8 @@
   "develop:trade:view": "查看",
   "device:qrcode:manage": "管理",
   "device:qrcode:view": "查看",
+  "device:terminal:manage": "管理",
+  "device:terminal:view": "查看",
   "device:virtual:manage": "管理",
   "device:virtual:view": "查看",
   "iam:menu:manage": "管理",

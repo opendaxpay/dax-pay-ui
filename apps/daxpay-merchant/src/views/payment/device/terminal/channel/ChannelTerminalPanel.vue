@@ -10,6 +10,8 @@
     type ChannelTerminalResult,
     type TerminalDeviceResult,
   } from '#/api/payment/device/terminal.api';
+  // 通道终端状态 → 标签颜色(与 plus / 运营端共用同一份常量)
+  import { channelTerminalStatusColorMap as statusColorMap } from '#/enums/payment';
 
   /**
    * 终端台账抽屉(商户端, 只读)
@@ -100,7 +102,7 @@
   }
 
   /**
-   * 已绑定系统终端文案
+   * 绑定的商户终端文案
    */
   function systemTerminalLabel(terminals?: TerminalDeviceResult[]) {
     if (!terminals || terminals.length === 0) {
@@ -136,8 +138,8 @@
     <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }" />
     <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
       <vxe-column field="name" :title="$t('payment.device.terminal.field.name')" :min-width="120" />
-      <!-- 已绑定的系统终端(建档即绑定) -->
-      <vxe-column :title="$t('payment.device.terminal.field.systemTerminal')" :min-width="160">
+      <!-- 已绑定的商户终端(运营端报备通道终端时建立关联) -->
+      <vxe-column :title="$t('payment.device.terminal.field.boundMerchantTerminal')" :min-width="160">
         <template #default="{ row }">
           {{ systemTerminalLabel(row.systemTerminals) }}
         </template>
@@ -150,7 +152,7 @@
       <vxe-column field="outTerminalNo" :title="$t('payment.device.terminal.field.outTerminalNo')" :min-width="140" />
       <vxe-column field="status" :title="$t('payment.device.terminal.field.status')" :min-width="100" align="center">
         <template #default="{ row }">
-          <a-tag>{{ statusLabel(row.status) }}</a-tag>
+          <a-tag :color="statusColorMap[row.status] || 'default'">{{ statusLabel(row.status) }}</a-tag>
         </template>
       </vxe-column>
       <vxe-column field="remark" :title="$t('payment.device.terminal.field.remark')" :min-width="140" show-overflow />

@@ -26,7 +26,7 @@
   "menu.payment.merchant.payRoute": "チャネルバインディング",
   "menu.payment.merchant.cashierConfig": "レジ設定",
   "menu.payment.merchant.easypay": "EasyPay設定",
-  "menu.payment.merchant.terminal": "端末管理",
+  "menu.payment.merchant.terminal": "マーチャント端末",
   "menu.payment.merchant.wxVerify": "ドメイン検証ファイル",
   "menu.payment.wx.mchApp": "WeChatアプリ",
   "menu.payment.douyin.mchApp": "Douyinアプリ",

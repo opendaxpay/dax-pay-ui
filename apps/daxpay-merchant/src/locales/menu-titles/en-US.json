@@ -26,7 +26,7 @@
   "menu.payment.merchant.payRoute": "Channel Binding",
   "menu.payment.merchant.cashierConfig": "Cashier Config",
   "menu.payment.merchant.easypay": "EasyPay Config",
-  "menu.payment.merchant.terminal": "Terminal Management",
+  "menu.payment.merchant.terminal": "Merchant Terminal",
   "menu.payment.merchant.wxVerify": "Domain Verification Files",
   "menu.payment.wx.mchApp": "WeChat App",
   "menu.payment.douyin.mchApp": "Douyin App",

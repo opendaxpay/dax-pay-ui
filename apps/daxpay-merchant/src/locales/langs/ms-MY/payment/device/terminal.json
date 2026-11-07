@@ -1,6 +1,6 @@
 {
   "field": {
-    "systemTerminal": "Terminal Sistem",
+    "systemTerminal": "Terminal Pedagang",
     "type": "Jenis Laporan",
     "outTerminalNo": "No. Terminal Saluran",
     "status": "Status",
@@ -11,19 +11,30 @@
     "enable": "Enabled",
     "defaultTerminal": "Terminal Lalai",
     "remark": "Remark",
-    "createTime": "Created At"
+    "createTime": "Created At",
+    "channel": "Channel",
+    "channelMchNo": "No. Pedagang Saluran",
+    "errorMsg": "Mesej Ralat",
+    "boundMerchantTerminal": "Terminal Pedagang Terikat",
+    "relatedChannel": "Saluran Berkaitan"
   },
   "enableYes": "Enabled",
   "enableNo": "Disabled",
   "defaultTag": "Lalai",
   "add": "Add",
-  "bindManage": "Bindings",
+  "bindManage": "Kaitkan Terminal",
   "confirmDelete": "Delete this terminal?",
   "validateName": "Please enter name",
   "validateEnable": "Please select status",
   "pleaseSelectStore": "Select store (optional)",
-  "boundChannel": "Bound channel terminals",
-  "noBound": "No bindings",
-  "bindReadOnlyTip": "Pengikatan diuruskan melalui pendaftaran terminal saluran dan paparan sahaja di sini",
-  "ledgerReadOnlyTip": "Pendaftaran, pelaporan dan pengikatan terminal saluran diurus oleh pengendali platform. Senarai ini untuk rujukan sahaja."
+  "boundChannel": "Terminal saluran terikat",
+  "noBound": "Tiada ikatan",
+  "bindReadOnlyTip": "Kaitan dicipta oleh pengendali semasa pelaporan terminal saluran dan dipaparkan di sini sahaja",
+  "ledgerReadOnlyTip": "Pelaporan dan pengikatan terminal saluran diurus oleh pengendali platform. Senarai ini untuk rujukan sahaja.",
+  "relatedChannelTitle": "Terminal Saluran Berkaitan",
+  "relatedChannelTip": "Kaitan dicipta oleh pengendali semasa pelaporan terminal saluran. Hubungi pengendali platform jika perlu penyesuaian.",
+  "notBound": "Belum terikat",
+  "summaryTotal": "{count} rekod",
+  "summarySubmitted": "Dilaporkan {count}",
+  "summaryError": "Tidak normal {count}"
 }

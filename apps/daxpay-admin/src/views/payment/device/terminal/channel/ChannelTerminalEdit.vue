@@ -11,6 +11,7 @@
     type TerminalDeviceResult,
   } from '#/api/payment/device/terminal.api';
   import { FormEditType } from '#/enums/formEditType';
+  import { channelTerminalStatusColorMap } from '#/enums/payment/channelEnum';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
 
@@ -234,7 +235,9 @@
       </a-form-item>
       <!-- 编辑态只读回显登记状态与通道侧终端号(由「手动调整」维护) -->
       <a-form-item v-if="!addable" :label="$t('payment.device.terminal.field.status')">
-        <a-tag>{{ statusLabel(editReadonly.status) }}</a-tag>
+        <a-tag :color="channelTerminalStatusColorMap[editReadonly.status || ''] || 'default'">
+          {{ statusLabel(editReadonly.status) }}
+        </a-tag>
       </a-form-item>
       <a-form-item v-if="!addable" :label="$t('payment.device.terminal.field.outTerminalNo')">
         <span>{{ editReadonly.outTerminalNo || '-' }}</span>

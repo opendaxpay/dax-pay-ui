@@ -12,6 +12,12 @@ export const TerminalDeviceApi = {
   ): Promise<Result<PageResult<TerminalDeviceResult>>> {
     return defHttp.get({ url: '/admin/device/terminal/system/page', params });
   },
+  /** 商户终端总览分页(只读, 含关联通道终端) */
+  overviewPage(
+    params: TerminalDeviceQuery & { current?: number; size?: number },
+  ): Promise<Result<PageResult<TerminalDeviceResult>>> {
+    return defHttp.get({ url: '/admin/device/terminal/system/overview-page', params });
+  },
   /** 详情 */
   get(id: string): Promise<Result<TerminalDeviceResult>> {
     return defHttp.get({ url: '/admin/device/terminal/system/get', params: { id } });
@@ -161,6 +167,8 @@ export interface TerminalDeviceResult extends BaseEntity {
   remark?: string;
   /** 是否所属门店的默认终端(设置/取消默认入口在门店工作台) */
   defaultTerminal?: boolean;
+  /** 关联的通道终端列表(商户终端总览接口返回) */
+  channelTerminals?: ChannelTerminalResult[];
 }
 
 /** 系统终端批量绑定门店参数 */

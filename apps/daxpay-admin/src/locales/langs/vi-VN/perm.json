@@ -10,6 +10,8 @@
   "develop:trade:view": "Xem",
   "device:qrcode:manage": "Quản lý",
   "device:qrcode:view": "Xem",
+  "device:terminal:manage": "Quản lý",
+  "device:terminal:view": "Xem",
   "device:virtual:manage": "Quản lý",
   "device:virtual:view": "Xem",
   "iam:menu:manage": "Quản lý",

@@ -10,6 +10,8 @@
   "develop:trade:view": "View",
   "device:qrcode:manage": "Manage",
   "device:qrcode:view": "View",
+  "device:terminal:manage": "Manage",
+  "device:terminal:view": "View",
   "device:virtual:manage": "Manage",
   "device:virtual:view": "View",
   "iam:menu:manage": "Manage",

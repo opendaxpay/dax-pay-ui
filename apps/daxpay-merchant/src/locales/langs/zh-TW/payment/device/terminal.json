@@ -1,9 +1,9 @@
 {
   "field": {
-    "systemTerminal": "系統終端",
+    "systemTerminal": "商戶終端",
     "type": "報送類型",
     "outTerminalNo": "通道終端號",
-    "status": "登記狀態",
+    "status": "狀態",
     "terminalNo": "终端编码",
     "name": "终端名称",
     "store": "门店",
@@ -11,19 +11,30 @@
     "enable": "启用",
     "defaultTerminal": "預設終端",
     "remark": "备注",
-    "createTime": "创建时间"
+    "createTime": "创建时间",
+    "channel": "通道",
+    "channelMchNo": "通道商戶號",
+    "errorMsg": "錯誤訊息",
+    "boundMerchantTerminal": "綁定商戶終端",
+    "relatedChannel": "關聯通道"
   },
   "enableYes": "启用",
   "enableNo": "停用",
   "defaultTag": "預設",
   "add": "新增",
-  "bindManage": "綁定管理",
+  "bindManage": "關聯終端",
   "confirmDelete": "確定刪除該終端嗎？",
   "validateName": "请输入终端名称",
   "validateEnable": "请选择启用状态",
   "pleaseSelectStore": "请选择门店(可选)",
-  "boundChannel": "已绑定通道终端",
-  "noBound": "暂无绑定",
-  "bindReadOnlyTip": "綁定關係由通道終端登記維護，此處僅作展示",
-  "ledgerReadOnlyTip": "通道終端的登記、報備與綁定由平台營運維護，此處僅供核對"
+  "boundChannel": "已綁定通道終端",
+  "noBound": "暫無綁定",
+  "bindReadOnlyTip": "關聯關係由營運端在通道終端報備時建立，此處僅作展示",
+  "ledgerReadOnlyTip": "通道終端的報備與關聯由平台營運維護，此處僅供核對",
+  "relatedChannelTitle": "關聯通道終端",
+  "relatedChannelTip": "關聯關係由營運端在通道終端報備時建立，如需調整請聯繫平台營運。",
+  "notBound": "未綁定",
+  "summaryTotal": "{count} 條",
+  "summarySubmitted": "已報備 {count}",
+  "summaryError": "異常 {count}"
 }

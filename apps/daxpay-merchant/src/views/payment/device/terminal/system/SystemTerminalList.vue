@@ -1,13 +1,10 @@
 <script lang="ts" setup>
-  import type { MenuProps } from 'antdv-next';
   import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
 
   import { computed, onMounted, ref } from 'vue';
   import { useRoute } from 'vue-router';
 
   import { $t } from '@vben/locales';
-
-  import { IconifyIcon } from '@vben-core/icons';
 
   import { TerminalDeviceApi, type TerminalDeviceResult } from '#/api/payment/device/terminal.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
@@ -18,7 +15,7 @@
   import { usePermission } from '#/hooks/usePermission';
   import { normalizeRouteQueryValue } from '#/hooks/useRequiredRouteQuery';
 
-  import SystemTerminalBindDrawer from './SystemTerminalBindDrawer.vue';
+  import TerminalChannelDrawer from '../components/TerminalChannelDrawer.vue';
   import SystemTerminalEdit from './SystemTerminalEdit.vue';
 
   defineOptions({ name: 'SystemTerminalList' });
@@ -35,7 +32,7 @@
   const xTable = ref<VxeTableInstance>();
   const xToolbar = ref<VxeToolbarInstance>();
   const editRef = ref<InstanceType<typeof SystemTerminalEdit>>();
-  const bindRef = ref<InstanceType<typeof SystemTerminalBindDrawer>>();
+  const channelRef = ref<InstanceType<typeof TerminalChannelDrawer>>();
 
   const queryForm = ref<Record<string, any>>({});
 
@@ -124,8 +121,42 @@
     editRef.value?.showEdit(row);
   }
 
+  /** 打开「关联终端」抽屉(只读查看该商户终端关联的通道终端) */
   function handleBind(row: TerminalDeviceResult) {
-    bindRef.value?.show(row);
+    channelRef.value?.show({ terminalNo: row.terminalNo || '', name: row.name });
+  }
+
+  /**
+   * 关联通道摘要分段: N 条 · 已报备 X · 异常 Y
+   *
+   * 返回分段数组便于模板逐段渲染, 异常段单独标红(异常数为 0 时不标红)
+   */
+  function channelSummary(row: TerminalDeviceResult) {
+    const list = row.channelTerminals || [];
+    return [
+      {
+        key: 'total',
+        // 共 N 条
+        text: $t('payment.device.terminal.summaryTotal', { count: list.length }),
+        error: false,
+      },
+      {
+        key: 'submitted',
+        // 已报备 N
+        text: $t('payment.device.terminal.summarySubmitted', {
+          count: list.filter((item) => item.status === 'submit').length,
+        }),
+        error: false,
+      },
+      {
+        key: 'error',
+        // 异常 N
+        text: $t('payment.device.terminal.summaryError', {
+          count: list.filter((item) => item.status === 'error').length,
+        }),
+        error: list.some((item) => item.status === 'error'),
+      },
+    ];
   }
 
   /** 删除系统终端 */
@@ -156,42 +187,6 @@
         value: item.storeNo!,
       }));
     });
-  }
-
-  /**
-   * 操作列更多菜单（绑定管理只读查看已绑定通道终端, 删除危险操作置底）
-   *
-   * a-dropdown 的 menu prop 要求 MenuProps 对象(items+onClick), 传裸数组会因 menu.items
-   * 为空导致弹出层渲染为空(点击无反应)——全站统一走 items+onClick 形态
-   */
-  function getActionMenu(row: TerminalDeviceResult): MenuProps {
-    return {
-      items: [
-        {
-          key: 'bind',
-          // 绑定管理(只读查看通道终端绑定关系)
-          label: $t('payment.device.terminal.bindManage'),
-          disabled: !hasPermission(PermCodes.Merchant.Terminal.VIEW),
-        },
-        { type: 'divider' },
-        {
-          key: 'delete',
-          // 删除
-          label: $t('common.delete'),
-          danger: true,
-          disabled: !hasPermission(PermCodes.Merchant.Terminal.MANAGE),
-        },
-      ],
-      onClick: ({ key }: { key: string }) => {
-        if (key === 'bind') {
-          handleBind(row);
-          return;
-        }
-        if (key === 'delete') {
-          handleDelete(row);
-        }
-      },
-    };
   }
 
   onMounted(async () => {
@@ -241,6 +236,37 @@
             </template>
           </vxe-column>
           <vxe-column
+            field="channelTerminals"
+            :title="$t('payment.device.terminal.field.relatedChannel')"
+            :min-width="190"
+            show-overflow
+          >
+            <template #default="{ row }">
+              <template v-if="Array.isArray(row.channelTerminals)">
+                <!-- 后端已下发: 空数组=未绑定, 非空=条数/已报备/异常摘要 -->
+                <span v-if="row.channelTerminals.length === 0" style="color: var(--text-color-placeholder)">
+                  {{ $t('payment.device.terminal.notBound') }}
+                </span>
+                <span v-else>
+                  <template v-for="(item, index) in channelSummary(row)" :key="item.key">
+                    <span v-if="index > 0"> · </span>
+                    <span :class="item.error ? 'text-red-500' : ''">{{ item.text }}</span>
+                  </template>
+                </span>
+              </template>
+              <!-- 后端未下发 channelTerminals 时降级为「查看」入口, 不误显示未绑定 -->
+              <a-button
+                v-else-if="hasPermission(PermCodes.Merchant.Terminal.VIEW)"
+                type="link"
+                size="small"
+                @click="handleBind(row)"
+              >
+                {{ $t('common.view') }}
+              </a-button>
+              <span v-else style="color: var(--text-color-placeholder)">-</span>
+            </template>
+          </vxe-column>
+          <vxe-column
             field="enable"
             :title="$t('payment.device.terminal.field.enable')"
             :min-width="100"
@@ -263,12 +289,21 @@
             :min-width="180"
             formatter="formatDateTime"
           />
-          <vxe-column fixed="right" :width="160" :show-overflow="false" :title="$t('common.operation')">
+          <vxe-column fixed="right" :width="260" :show-overflow="false" :title="$t('common.operation')">
             <template #default="{ row }">
               <a-space :size="2">
                 <template #separator>
                   <a-divider type="vertical" />
                 </template>
+                <!-- 关联终端: 只读查看该商户终端已关联的通道终端 -->
+                <a-button
+                  v-if="hasPermission(PermCodes.Merchant.Terminal.VIEW)"
+                  type="link"
+                  size="small"
+                  @click="handleBind(row)"
+                >
+                  {{ $t('payment.device.terminal.bindManage') }}
+                </a-button>
                 <a-button
                   v-if="hasPermission(PermCodes.Merchant.Terminal.MANAGE)"
                   type="link"
@@ -277,12 +312,16 @@
                 >
                   {{ $t('common.edit') }}
                 </a-button>
-                <a-dropdown :menu="getActionMenu(row)">
-                  <a-button type="link" size="small">
-                    {{ $t('common.more') }}
-                    <IconifyIcon icon="ant-design:down-outlined" class="inline" />
-                  </a-button>
-                </a-dropdown>
+                <!-- 删除: 危险操作红色, 与关联终端/编辑平铺直出 -->
+                <a-button
+                  v-if="hasPermission(PermCodes.Merchant.Terminal.MANAGE)"
+                  type="link"
+                  size="small"
+                  danger
+                  @click="handleDelete(row)"
+                >
+                  {{ $t('common.delete') }}
+                </a-button>
               </a-space>
             </template>
           </vxe-column>
@@ -299,6 +338,6 @@
     </div>
 
     <SystemTerminalEdit ref="editRef" @ok="queryPage" />
-    <SystemTerminalBindDrawer ref="bindRef" />
+    <TerminalChannelDrawer ref="channelRef" />
   </div>
 </template>

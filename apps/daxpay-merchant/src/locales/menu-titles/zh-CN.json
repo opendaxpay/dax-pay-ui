@@ -26,7 +26,7 @@
   "menu.payment.merchant.payRoute": "通道路由",
   "menu.payment.merchant.cashierConfig": "收银台配置",
   "menu.payment.merchant.easypay": "易支付配置",
-  "menu.payment.merchant.terminal": "终端管理",
+  "menu.payment.merchant.terminal": "商户终端",
   "menu.payment.merchant.wxVerify": "域名校验文件",
   "menu.payment.wx.mchApp": "微信应用",
   "menu.payment.douyin.mchApp": "抖音应用",

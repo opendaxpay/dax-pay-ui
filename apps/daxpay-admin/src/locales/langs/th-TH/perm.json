@@ -10,6 +10,8 @@
   "develop:trade:view": "ดู",
   "device:qrcode:manage": "จัดการ",
   "device:qrcode:view": "ดู",
+  "device:terminal:manage": "จัดการ",
+  "device:terminal:view": "ดู",
   "device:virtual:manage": "จัดการ",
   "device:virtual:view": "ดู",
   "iam:menu:manage": "จัดการ",

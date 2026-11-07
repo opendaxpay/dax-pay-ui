@@ -98,6 +98,8 @@ export interface TerminalDeviceResult extends BaseEntity {
   remark?: string;
   /** 是否所属门店的默认终端(设置/取消默认入口在门店工作台) */
   defaultTerminal?: boolean;
+  /** 关联的通道终端(后端分页时批量填充, 只读聚合; 未下发时为 undefined) */
+  channelTerminals?: ChannelTerminalResult[];
 }
 
 /** 系统终端批量绑定门店参数 */

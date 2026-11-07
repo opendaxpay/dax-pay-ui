@@ -306,3 +306,16 @@ export const channelLogoMap: Record<string, string> = {
   // 模拟通道(mock.svg 已存在, 直接登记)
   [ChannelEnum.MOCK]: 'mock',
 };
+
+/**
+ * 通道终端报备状态 → 标签颜色（与 plus / 后端 ChannelTerminalStatusEnum 对齐）
+ *
+ * 运营端与商户端共用：两端通道终端台账、关联终端抽屉、报备页均引用此映射。
+ */
+export const channelTerminalStatusColorMap: Record<string, string> = {
+  error: 'red',
+  init: 'default',
+  logged: 'default',
+  submit: 'green',
+  wait: 'orange',
+};

@@ -1,6 +1,6 @@
 {
   "field": {
-    "systemTerminal": "เทอร์มินัลระบบ",
+    "systemTerminal": "เทอร์มินัลพ่อค้า",
     "type": "ประเภทการรายงาน",
     "outTerminalNo": "หมายเลขเทอร์มินัลช่องทาง",
     "status": "สถานะ",
@@ -11,19 +11,30 @@
     "enable": "Enabled",
     "defaultTerminal": "เทอร์มินัลเริ่มต้น",
     "remark": "Remark",
-    "createTime": "Created At"
+    "createTime": "Created At",
+    "channel": "Channel",
+    "channelMchNo": "หมายเลขพ่อค้าช่องทาง",
+    "errorMsg": "ข้อความข้อผิดพลาด",
+    "boundMerchantTerminal": "เทอร์มินัลพ่อค้าที่ผูกไว้",
+    "relatedChannel": "ช่องทางที่เชื่อมโยง"
   },
   "enableYes": "Enabled",
   "enableNo": "Disabled",
   "defaultTag": "เริ่มต้น",
   "add": "Add",
-  "bindManage": "Bindings",
+  "bindManage": "เชื่อมโยงเทอร์มินัล",
   "confirmDelete": "Delete this terminal?",
   "validateName": "Please enter name",
   "validateEnable": "Please select status",
   "pleaseSelectStore": "Select store (optional)",
-  "boundChannel": "Bound channel terminals",
-  "noBound": "No bindings",
-  "bindReadOnlyTip": "การเชื่อมโยงจะดูแลผ่านการลงทะเบียนเทอร์มินัลช่องทาง ที่นี่แสดงเท่านั้น",
-  "ledgerReadOnlyTip": "การลงทะเบียน การรายงาน และการผูกเทอร์มินัลช่องทางดำเนินการโดยผู้ให้บริการแพลตฟอร์ม รายการนี้ใช้ดูเท่านั้น"
+  "boundChannel": "เทอร์มินัลช่องทางที่ผูกแล้ว",
+  "noBound": "ยังไม่มีการผูก",
+  "bindReadOnlyTip": "การเชื่อมโยงสร้างโดยฝ่ายปฏิบัติการเมื่อรายงานเทอร์มินัลช่องทาง และแสดงที่นี่เท่านั้น",
+  "ledgerReadOnlyTip": "การรายงานและการเชื่อมโยงเทอร์มินัลช่องทางดำเนินการโดยฝ่ายปฏิบัติการแพลตฟอร์ม รายการนี้ใช้ดูเท่านั้น",
+  "relatedChannelTitle": "เทอร์มินัลช่องทางที่เชื่อมโยง",
+  "relatedChannelTip": "การเชื่อมโยงสร้างโดยฝ่ายปฏิบัติการเมื่อรายงานเทอร์มินัลช่องทาง หากต้องการปรับเปลี่ยนโปรดติดต่อฝ่ายปฏิบัติการแพลตฟอร์ม",
+  "notBound": "ยังไม่ผูก",
+  "summaryTotal": "{count} รายการ",
+  "summarySubmitted": "รายงานแล้ว {count}",
+  "summaryError": "ผิดปกติ {count}"
 }

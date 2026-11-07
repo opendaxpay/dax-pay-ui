@@ -275,6 +275,11 @@ export const PermCodes = {
       MANAGE: 'device:qrcode:manage',
       EXPORT: 'device:qrcode:export',
     },
+    // 通道终端报备(与通道商户管理解耦)
+    Terminal: {
+      VIEW: 'device:terminal:view',
+      MANAGE: 'device:terminal:manage',
+    },
     // 虚拟设备(手机 APP 变云音箱/云打印, 收款播报+小票打印)
     Virtual: {
       VIEW: 'device:virtual:view',

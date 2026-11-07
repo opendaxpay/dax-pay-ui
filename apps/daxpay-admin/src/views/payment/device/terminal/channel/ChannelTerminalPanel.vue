@@ -14,6 +14,7 @@
     type TerminalDeviceResult,
   } from '#/api/payment/device/terminal.api';
   import { PermCodes } from '#/constants/perm-codes';
+  import { channelTerminalStatusColorMap } from '#/enums/payment/channelEnum';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
 
@@ -122,13 +123,13 @@
     });
   }
 
-  /** 是否已绑定系统终端 */
+  /** 是否已绑定商户终端 */
   function hasBound(row: ChannelTerminalResult): boolean {
     return (row.systemTerminals?.length ?? 0) > 0;
   }
 
   /**
-   * 解绑系统终端(解除该通道终端与全部已绑定系统终端的关联)
+   * 解绑商户终端(解除该通道终端与全部已绑定商户终端的关联)
    */
   function handleUnbind(row: ChannelTerminalResult) {
     const terminals = row.systemTerminals || [];
@@ -164,9 +165,9 @@
     const items: any[] = [
       {
         key: 'unbind',
-        // 解绑系统终端
+        // 解绑商户终端
         label: $t('payment.device.terminal.unbind'),
-        disabled: !hasBound(row) || !hasPermission(PermCodes.Channel.Merchant.MANAGE),
+        disabled: !hasBound(row) || !hasPermission(PermCodes.Device.Terminal.MANAGE),
       },
       { type: 'divider' },
       {
@@ -174,7 +175,7 @@
         // 删除
         label: $t('common.delete'),
         danger: true,
-        disabled: !hasPermission(PermCodes.Channel.Merchant.MANAGE),
+        disabled: !hasPermission(PermCodes.Device.Terminal.MANAGE),
       },
     ];
     return {
@@ -212,7 +213,7 @@
   }
 
   /**
-   * 已绑定系统终端文案
+   * 已绑定商户终端文案
    */
   function systemTerminalLabel(terminals?: TerminalDeviceResult[]) {
     if (!terminals || terminals.length === 0) {
@@ -243,30 +244,32 @@
   >
     <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
       <template #buttons>
-        <a-button v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)" type="primary" @click="handleAdd">
+        <a-button v-if="hasPermission(PermCodes.Device.Terminal.MANAGE)" type="primary" @click="handleAdd">
           {{ $t('payment.device.terminal.add') }}
         </a-button>
       </template>
     </vxe-toolbar>
     <vxe-table ref="xTable" :row-config="{ keyField: 'id' }" :data="tableData" :loading="loading">
       <vxe-column field="name" :title="$t('payment.device.terminal.field.name')" :min-width="120" />
-      <!-- 已绑定的系统终端(建档即绑定) -->
-      <vxe-column :title="$t('payment.device.terminal.field.systemTerminal')" :min-width="160">
-        <template #default="{ row }">
-          {{ systemTerminalLabel(row.systemTerminals) }}
-        </template>
-      </vxe-column>
       <vxe-column field="type" :title="$t('payment.device.terminal.field.type')" :min-width="120">
         <template #default="{ row }">
           {{ typeLabel(row.type) }}
         </template>
       </vxe-column>
-      <vxe-column field="outTerminalNo" :title="$t('payment.device.terminal.field.outTerminalNo')" :min-width="140" />
-      <vxe-column field="status" :title="$t('payment.device.terminal.field.status')" :min-width="100" align="center">
+      <!-- 已绑定的商户终端(建档即绑定) -->
+      <vxe-column :title="$t('payment.device.terminal.field.boundMerchantTerminal')" :min-width="160">
         <template #default="{ row }">
-          <a-tag>{{ statusLabel(row.status) }}</a-tag>
+          {{ systemTerminalLabel(row.systemTerminals) }}
         </template>
       </vxe-column>
+      <vxe-column field="status" :title="$t('payment.device.terminal.field.status')" :min-width="100" align="center">
+        <template #default="{ row }">
+          <a-tag :color="channelTerminalStatusColorMap[row.status] || 'default'">
+            {{ statusLabel(row.status) }}
+          </a-tag>
+        </template>
+      </vxe-column>
+      <vxe-column field="outTerminalNo" :title="$t('payment.device.terminal.field.outTerminalNo')" :min-width="140" />
       <vxe-column field="errorMsg" :title="$t('payment.device.terminal.field.errorMsg')" :min-width="120" />
       <vxe-column fixed="right" width="220" :show-overflow="false" :title="$t('common.operation')">
         <template #default="{ row }">
@@ -275,7 +278,7 @@
               <a-divider type="vertical" />
             </template>
             <a-button
-              v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)"
+              v-if="hasPermission(PermCodes.Device.Terminal.MANAGE)"
               type="link"
               size="small"
               @click="handleEdit(row)"
@@ -283,7 +286,7 @@
               {{ $t('common.edit') }}
             </a-button>
             <a-button
-              v-if="hasPermission(PermCodes.Channel.Merchant.MANAGE)"
+              v-if="hasPermission(PermCodes.Device.Terminal.MANAGE)"
               type="link"
               size="small"
               @click="handleRegister(row)"

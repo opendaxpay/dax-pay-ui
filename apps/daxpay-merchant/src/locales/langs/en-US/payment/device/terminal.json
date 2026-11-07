@@ -1,6 +1,6 @@
 {
   "field": {
-    "systemTerminal": "System Terminal",
+    "systemTerminal": "Merchant Terminal",
     "type": "Report Type",
     "outTerminalNo": "Channel Terminal No.",
     "status": "Status",
@@ -11,19 +11,30 @@
     "enable": "Enabled",
     "defaultTerminal": "Default Terminal",
     "remark": "Remark",
-    "createTime": "Created At"
+    "createTime": "Created At",
+    "channel": "Channel",
+    "channelMchNo": "Channel Merchant No.",
+    "errorMsg": "Error Message",
+    "boundMerchantTerminal": "Bound Merchant Terminal",
+    "relatedChannel": "Related Channel"
   },
   "enableYes": "Enabled",
   "enableNo": "Disabled",
   "defaultTag": "Default",
   "add": "Add",
-  "bindManage": "Bindings",
+  "bindManage": "Related Terminals",
   "confirmDelete": "Delete this terminal?",
   "validateName": "Please enter name",
   "validateEnable": "Please select status",
   "pleaseSelectStore": "Select store (optional)",
   "boundChannel": "Bound channel terminals",
   "noBound": "No bindings",
-  "bindReadOnlyTip": "Bindings are maintained via channel terminal registration and shown here read-only",
-  "ledgerReadOnlyTip": "Channel terminals are registered and bound by the platform operator. This list is read-only."
+  "bindReadOnlyTip": "Relations are created by the platform operator when reporting channel terminals and are shown here read-only",
+  "ledgerReadOnlyTip": "Channel terminal reporting and binding are maintained by the platform operator. This list is read-only.",
+  "relatedChannelTitle": "Related Channel Terminals",
+  "relatedChannelTip": "Relations are created by the platform operator when reporting channel terminals. Contact the platform operator for changes.",
+  "notBound": "Not bound",
+  "summaryTotal": "{count} items",
+  "summarySubmitted": "Reported {count}",
+  "summaryError": "Abnormal {count}"
 }
