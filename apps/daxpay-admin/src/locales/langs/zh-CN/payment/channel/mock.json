@@ -6,8 +6,7 @@
     "channelMerchantNameRequired": "请输入通道商户名称",
     "channelMchNo": "通道商户号",
     "channelMchNoPlaceholder": "请输入通道商户号",
-    "channelMchNoRequired": "请输入通道商户号",
-    "channelMchNoTip": "请先在模拟通道控制台创建商户，再登记其商户号"
+    "channelMchNoRequired": "请输入通道商户号"
   },
   "isv": {
     "selectLabel": "所属服务商",

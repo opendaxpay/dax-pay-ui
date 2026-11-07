@@ -6,8 +6,7 @@
     "channelMerchantNameRequired": "กรุณากรอกชื่อร้านค้าช่องทาง",
     "channelMchNo": "หมายเลขร้านค้าช่องทาง",
     "channelMchNoPlaceholder": "กรอกหมายเลขร้านค้าช่องทาง",
-    "channelMchNoRequired": "กรุณากรอกหมายเลขร้านค้าช่องทาง",
-    "channelMchNoTip": "สร้างร้านค้าในคอนโซลเกตเวย์จำลองก่อน แล้วจึงลงทะเบียนหมายเลขร้านค้าที่นี่"
+    "channelMchNoRequired": "กรุณากรอกหมายเลขร้านค้าช่องทาง"
   },
   "isv": {
     "selectLabel": "ผู้ให้บริการ",

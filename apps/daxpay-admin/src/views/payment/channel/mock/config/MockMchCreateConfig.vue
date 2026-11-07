@@ -143,7 +143,6 @@
           <a-form-item
             :label="$t('payment.channel.mock.create.channelMchNo')"
             name="channelMchNo"
-            :extra="$t('payment.channel.mock.create.channelMchNoTip')"
           >
             <a-input
               v-model:value="form.channelMchNo"

@@ -6,8 +6,7 @@
     "channelMerchantNameRequired": "Sila masukkan nama pedagang saluran",
     "channelMchNo": "No. Pedagang Saluran",
     "channelMchNoPlaceholder": "Masukkan no. pedagang saluran",
-    "channelMchNoRequired": "Masukkan no. pedagang saluran",
-    "channelMchNoTip": "Cipta pedagang dalam konsol gerbang mock terlebih dahulu, kemudian daftarkan no. pedagangnya di sini"
+    "channelMchNoRequired": "Masukkan no. pedagang saluran"
   },
   "isv": {
     "selectLabel": "Penyedia Perkhidmatan",
