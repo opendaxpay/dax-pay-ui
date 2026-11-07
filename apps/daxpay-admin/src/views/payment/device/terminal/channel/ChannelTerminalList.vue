@@ -12,7 +12,11 @@
 
   import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
-  import { ChannelTerminalApi, type ChannelTerminalResult } from '#/api/payment/device/terminal.api';
+  import {
+    ChannelTerminalApi,
+    type ChannelTerminalResult,
+    type TerminalDeviceResult,
+  } from '#/api/payment/device/terminal.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
   import { BQuery, type QueryField } from '#/components/query';
   import { PermCodes } from '#/constants/perm-codes';
@@ -207,6 +211,16 @@
   }
 
   /**
+   * 已绑定系统终端文案(多台用分号拼成单行, 交给全局省略+悬浮提示, 避免标签换行撑高行高)
+   */
+  function systemTerminalLabel(terminals?: TerminalDeviceResult[]) {
+    if (!terminals || terminals.length === 0) {
+      return '-';
+    }
+    return terminals.map((i) => `${i.name || '-'} (${i.terminalNo})`).join('；');
+  }
+
+  /**
    * 终端报备(报备即绑定: 选择系统终端; 人工通道走手动登记)
    */
   function handleReport(row: ChannelTerminalResult) {
@@ -346,18 +360,10 @@
             </template>
           </vxe-column>
           <vxe-column field="channelMchNo" :title="$t('payment.device.terminal.field.channelMchNo')" :min-width="180" />
-          <!-- 绑定的系统终端(建档即绑定; 一条通道终端只归属一个系统终端) -->
-          <vxe-column
-            :title="$t('payment.device.terminal.field.systemTerminal')"
-            :min-width="240"
-            :show-overflow="false"
-          >
+          <!-- 绑定的系统终端(建档即绑定; 多台绑定拼成单行 + 全局省略, 避免标签换行撑高行高) -->
+          <vxe-column :title="$t('payment.device.terminal.field.systemTerminal')" :min-width="200">
             <template #default="{ row }">
-              <div v-if="row.systemTerminals?.length" class="flex flex-wrap gap-1">
-                <a-tag v-for="term in row.systemTerminals" :key="term.terminalNo">
-                  {{ `${term.name || '-'} (${term.terminalNo})` }}
-                </a-tag>
-              </div>
+              <span v-if="hasBound(row)">{{ systemTerminalLabel(row.systemTerminals) }}</span>
               <span v-else style="color: var(--text-color-placeholder)">
                 {{ $t('payment.device.terminal.noBound') }}
               </span>

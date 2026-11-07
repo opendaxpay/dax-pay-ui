@@ -121,6 +121,20 @@
     return text || code;
   }
 
+  // 回调状态标签颜色(色值不参与翻译, 与订单族 statusColor 口径一致)
+  const statusColorMap: Record<string, string> = {
+    success: 'green',
+    fail: 'red',
+    exception: 'orange',
+    close: 'default',
+    ignore: 'default',
+    not_found: 'default',
+  };
+
+  function statusColor(code?: string): string {
+    return (code ? statusColorMap[code] : undefined) ?? 'default';
+  }
+
   function productLabel(code?: string): string {
     if (!code) return '-';
     const i18nKey = productI18nMap[code];
@@ -206,9 +220,16 @@
           <vxe-column field="callbackType" :title="$t('payment.record.callbackRecord.callbackType')" :min-width="100">
             <template #default="{ row }">{{ callbackTypeLabel(row.callbackType) }}</template>
           </vxe-column>
-          <vxe-column field="status" :title="$t('payment.record.callbackRecord.status')" :min-width="110">
+          <vxe-column
+            field="status"
+            :title="$t('payment.record.callbackRecord.status')"
+            :min-width="110"
+            align="center"
+          >
             <template #default="{ row }">
-              {{ statusLabel(row.status) }}
+              <a-tag :color="statusColor(row.status)">
+                {{ statusLabel(row.status) }}
+              </a-tag>
             </template>
           </vxe-column>
           <vxe-column

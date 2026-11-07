@@ -6,12 +6,12 @@
   import { $t } from '@vben/locales';
   import { formatDateTime } from '@vben/utils';
 
+  import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
   import { currencyLabel } from '@daxpay/ui-biz/utils/currency';
   import { formatFen as formatAmount } from '@daxpay/ui-biz/utils/pay-amount';
 
   import { TransferApi, type TransferTradeQuery, type TransferTradeResult } from '#/api/payment/transfer/transfer.api';
   import { BQuery, type QueryField } from '#/components/query';
-import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
   defineOptions({ name: 'TransferTradeList' });
 
   const loading = ref(false);
@@ -192,7 +192,7 @@ import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
       <a-spin :spinning="drawerLoading">
         <a-descriptions :column="2" size="small" bordered class="transfer-desc">
           <a-descriptions-item :label="$t('payment.transfer.field.merchant')">
-            {{ detail.mchName || detail.mchNo || '-' }}
+            <NameNoCell :name="detail.mchName" :no="detail.mchNo" />
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.transfer.field.tradeNo')">
             {{ detail.tradeNo || '-' }}

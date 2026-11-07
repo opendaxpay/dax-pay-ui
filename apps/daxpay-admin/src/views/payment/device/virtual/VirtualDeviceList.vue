@@ -13,6 +13,7 @@
   import { IconifyIcon } from '@vben-core/icons';
 
   import { DeviceTestDialog } from '@daxpay/ui-biz/components/device-test';
+  import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
   import { VirtualDeviceApi } from '#/api/payment/device/virtual.api';
   import { BQuery, type QueryField } from '#/components/query';
@@ -471,7 +472,7 @@
           <!-- 归属: 已绑商户显商户名 > 平台库存 -->
           <vxe-column :title="$t('payment.device.virtual.owner')" :min-width="160">
             <template #default="{ row }">
-              <span v-if="row.mchNo">{{ row.mchName || row.mchNo }}</span>
+              <NameNoCell v-if="row.mchNo" :name="row.mchName" :no="row.mchNo" />
               <a-tag v-else color="default">{{ $t('payment.device.virtual.platformStock') }}</a-tag>
             </template>
           </vxe-column>

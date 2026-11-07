@@ -8,6 +8,7 @@
   import { $t } from '@vben/locales';
   import { formatDateTime } from '@vben/utils';
 
+  import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
   import { currencyLabel } from '@daxpay/ui-biz/utils/currency';
   import { buildExportFileName, confirmExport } from '@daxpay/ui-biz/utils/export-download';
   import { formatFen as formatAmount } from '@daxpay/ui-biz/utils/pay-amount';
@@ -22,7 +23,6 @@
   import { usePermission } from '#/hooks/usePermission';
 
   import { useOrderLabels } from './composables/useOrderLabels';
-import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
   defineOptions({ name: 'RefundOrderList' });
 
@@ -410,8 +410,7 @@ import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
         <div class="mb-4 text-sm font-medium">{{ $t('payment.order.refund.section.identity') }}</div>
         <a-descriptions :column="2" size="small" bordered class="mb-4">
           <a-descriptions-item :label="$t('payment.order.field.merchant')">
-            {{ detail.mchName || detail.mchNo || '-' }}
-            <span v-if="detail.mchName && detail.mchNo" class="text-muted-foreground"> ({{ detail.mchNo }})</span>
+            <NameNoCell :name="detail.mchName" :no="detail.mchNo" />
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.appId')">
             {{ detail.appId || '-' }}

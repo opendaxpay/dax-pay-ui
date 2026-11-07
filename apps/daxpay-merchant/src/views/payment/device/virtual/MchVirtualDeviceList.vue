@@ -611,7 +611,11 @@
                   <IconifyIcon icon="ant-design:down-outlined" class="inline" />
                 </a-button>
               </a-dropdown>
-              <a-button v-if="hasPermission(PermCodes.Device.Virtual.EXPORT)" :loading="exporting" @click="handleExport">
+              <a-button
+                v-if="hasPermission(PermCodes.Device.Virtual.EXPORT)"
+                :loading="exporting"
+                @click="handleExport"
+              >
                 {{ $t('payment.device.virtual.export') }}
               </a-button>
             </a-space>
@@ -726,9 +730,7 @@
       <a-spin :spinning="configLoading">
         <a-form layout="vertical" class="form-compact">
           <a-form-item :label="$t('payment.device.virtual.column.device')">
-            <span class="text-muted-foreground">
-              {{ configRow?.name || '-' }}（{{ configRow?.deviceNo || '-' }}）
-            </span>
+            <span class="text-muted-foreground"> {{ configRow?.name || '-' }}({{ configRow?.deviceNo || '-' }}) </span>
           </a-form-item>
           <a-form-item :label="$t('payment.device.virtual.column.app')">
             <a-select

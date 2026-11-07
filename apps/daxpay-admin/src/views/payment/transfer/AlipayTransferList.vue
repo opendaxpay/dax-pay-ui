@@ -6,6 +6,7 @@
   import { $t } from '@vben/locales';
   import { formatDateTime } from '@vben/utils';
 
+  import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
   import { currencyLabel } from '@daxpay/ui-biz/utils/currency';
   import { formatFen as formatAmount } from '@daxpay/ui-biz/utils/pay-amount';
 
@@ -18,7 +19,6 @@
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
-import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
   defineOptions({ name: 'AlipayTransferList' });
 
@@ -264,7 +264,7 @@ import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
         <div class="mb-4 text-sm font-medium">{{ $t('payment.transfer.section.identity') }}</div>
         <a-descriptions :column="2" size="small" bordered class="transfer-desc mb-4">
           <a-descriptions-item :label="$t('payment.transfer.field.merchant')">
-            {{ detail.mchName || detail.mchNo || '-' }}
+            <NameNoCell :name="detail.mchName" :no="detail.mchNo" />
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.transfer.field.transferNo')">
             {{ detail.transferNo || '-' }}
