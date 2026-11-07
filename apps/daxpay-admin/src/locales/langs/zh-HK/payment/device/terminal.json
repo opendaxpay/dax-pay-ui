@@ -18,7 +18,8 @@
     "errorMsg": "错误信息",
     "systemTerminal": "商戶終端",
     "boundMerchantTerminal": "綁定商戶終端",
-    "relatedChannel": "關聯通道"
+    "relatedChannel": "關聯通道",
+    "extra": "報備參數"
   },
   "enableYes": "启用",
   "enableNo": "停用",
@@ -64,5 +65,8 @@
   "confirmCancel": "確定註銷該通道終端嗎？註銷後該終端號將不可用於收款",
   "filterMch": "商戶",
   "pleaseSelect": "請選擇",
-  "pleaseInput": "請輸入"
+  "pleaseInput": "請輸入",
+  "extraPlaceholder": "通道差異化報備參數(JSON 物件)",
+  "extraJsonInvalid": "報備參數不是合法的 JSON 格式",
+  "extraJsonObjectRequired": "報備參數必須是 JSON 物件, 如 {\"storeId\":\"...\"}"
 }

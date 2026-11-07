@@ -18,7 +18,8 @@
     "errorMsg": "Error Message",
     "systemTerminal": "Thiết bị người bán",
     "boundMerchantTerminal": "Thiết bị người bán đã liên kết",
-    "relatedChannel": "Kênh liên kết"
+    "relatedChannel": "Kênh liên kết",
+    "extra": "Tham số báo cáo"
   },
   "enableYes": "Enabled",
   "enableNo": "Disabled",
@@ -64,5 +65,8 @@
   "confirmCancel": "Hủy đầu cuối kênh này? Sau khi hủy, số đầu cuối sẽ không thể dùng để thanh toán nữa",
   "filterMch": "Người bán",
   "pleaseSelect": "Vui lòng chọn",
-  "pleaseInput": "Vui lòng nhập"
+  "pleaseInput": "Vui lòng nhập",
+  "extraPlaceholder": "Tham số báo cáo riêng của kênh (đối tượng JSON)",
+  "extraJsonInvalid": "Tham số báo cáo không đúng định dạng JSON",
+  "extraJsonObjectRequired": "Tham số báo cáo phải là đối tượng JSON, ví dụ {\"storeId\":\"...\"}"
 }

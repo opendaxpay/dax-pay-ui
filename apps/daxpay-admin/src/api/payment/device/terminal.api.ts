@@ -113,6 +113,10 @@ export const ChannelTerminalApi = {
   terminalTypes(product: string): Promise<Result<string[]>> {
     return defHttp.get({ url: '/admin/device/terminal/channel/terminal-types', params: { product } });
   },
+  /** 通道差异化报备参数字段定义(结构化表单渲染用, 无定义返回空数组) */
+  extraFields(product: string): Promise<Result<TerminalExtraField[]>> {
+    return defHttp.get({ url: '/admin/device/terminal/channel/extra-fields', params: { product } });
+  },
   /** 删除 */
   delete(id: string): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/device/terminal/channel/delete', params: { id } });
@@ -204,6 +208,8 @@ export interface ChannelTerminalParam {
   status?: string;
   errorMsg?: string;
   remark?: string;
+  // 通道差异化报备参数(JSON, 键=通道协议参数名)
+  extra?: string;
 }
 
 /** 通道终端手动调整参数(手工订正通道侧终端号与登记状态, 不调通道) */
@@ -222,6 +228,22 @@ export interface ChannelTerminalReportParam {
   systemTerminalNo?: string;
 }
 
+/** 通道差异化报备参数字段定义(后端策略下发, 运营端按此渲染结构化表单) */
+export interface TerminalExtraField {
+  /** 字段键(即 extra JSON 的 key) */
+  key: string;
+  /** 字段标签(通道协议字段名, 随策略下发) */
+  label: string;
+  /** 控件类型: input 单行 / textarea 多行 */
+  type?: string;
+  /** 是否必填 */
+  required?: boolean;
+  /** 占位提示 */
+  placeholder?: string;
+  /** 字段说明 */
+  desc?: string;
+}
+
 /** 通道终端结果 */
 export interface ChannelTerminalResult extends BaseEntity {
   channelMchNo?: string;
@@ -233,6 +255,8 @@ export interface ChannelTerminalResult extends BaseEntity {
   status?: string;
   errorMsg?: string;
   remark?: string;
+  // 通道差异化报备参数(JSON, 键=通道协议参数名)
+  extra?: string;
   // 已绑定的系统终端列表
   systemTerminals?: TerminalDeviceResult[];
   mchNo?: string;

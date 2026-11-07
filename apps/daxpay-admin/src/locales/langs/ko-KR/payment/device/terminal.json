@@ -18,7 +18,8 @@
     "errorMsg": "Error Message",
     "systemTerminal": "판매자 단말",
     "boundMerchantTerminal": "연결 판매자 단말",
-    "relatedChannel": "연결 채널"
+    "relatedChannel": "연결 채널",
+    "extra": "보고 파라미터"
   },
   "enableYes": "Enabled",
   "enableNo": "Disabled",
@@ -64,5 +65,8 @@
   "confirmCancel": "이 채널 단말을 해지할까요? 해지 후 이 단말 번호로는 결제를 받을 수 없습니다",
   "filterMch": "판매자",
   "pleaseSelect": "선택하세요",
-  "pleaseInput": "입력하세요"
+  "pleaseInput": "입력하세요",
+  "extraPlaceholder": "채널별 보고 파라미터(JSON 객체)",
+  "extraJsonInvalid": "보고 파라미터가 올바른 JSON 형식이 아닙니다",
+  "extraJsonObjectRequired": "보고 파라미터는 JSON 객체여야 합니다. 예: {\"storeId\":\"...\"}"
 }

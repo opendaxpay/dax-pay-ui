@@ -95,7 +95,12 @@
   }
 
   function handleAdd() {
-    editRef.value?.showAdd({ mchNo: props.mchNo, channelMchNo: props.channelMchNo });
+    // 产品取当前台账首条(同通道商户产品一致); 空台账时由编辑弹窗回退 JSON 文本域
+    editRef.value?.showAdd({
+      mchNo: props.mchNo,
+      channelMchNo: props.channelMchNo,
+      product: tableData.value[0]?.product || '',
+    });
   }
 
   function handleEdit(row: ChannelTerminalResult) {

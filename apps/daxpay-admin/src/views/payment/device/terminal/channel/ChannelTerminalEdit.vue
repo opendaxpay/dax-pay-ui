@@ -9,6 +9,7 @@
     type ChannelTerminalResult,
     TerminalDeviceApi,
     type TerminalDeviceResult,
+    type TerminalExtraField,
   } from '#/api/payment/device/terminal.api';
   import { FormEditType } from '#/enums/formEditType';
   import { channelTerminalStatusColorMap } from '#/enums/payment/channelEnum';
@@ -22,13 +23,24 @@
   const { visible, confirmLoading, title, initFormEditType, handleCancel, addable } = useFormEdit();
 
   // 通道商户上下文(新增时锁定)
-  const context = ref<{ channelMchNo: string; mchNo: string }>({ mchNo: '', channelMchNo: '' });
+  const context = ref<{ channelMchNo: string; mchNo: string; product: string }>({
+    mchNo: '',
+    channelMchNo: '',
+    product: '',
+  });
   const editReadonly = ref<{
     channelMchNo?: string;
     outTerminalNo?: string;
     status?: string;
     type?: string;
   }>({});
+
+  // 通道差异化报备参数字段定义(按后端策略元数据渲染结构化表单, 不向用户暴露 JSON)
+  const extraFields = ref<TerminalExtraField[]>([]);
+  // 结构化报备参数的编辑态(键=字段定义 key)
+  const extraForm = ref<Record<string, any>>({});
+  // 原始 extra JSON(保留未在表单中声明的键, 保存时合并回写)
+  const baseExtra = ref<Record<string, any>>({});
 
   // 系统终端下拉候选(新增必选)
   const terminalOptions = ref<TerminalDeviceResult[]>([]);
@@ -83,7 +95,53 @@
     };
     editReadonly.value = {};
     boundSystemTerminals.value = [];
+    extraFields.value = [];
+    extraForm.value = {};
+    baseExtra.value = {};
     formRef.value?.resetFields();
+  }
+
+  /**
+   * 加载通道报备参数字段定义(结构化表单渲染用)
+   */
+  async function loadExtraFields(product: string) {
+    if (!product) {
+      extraFields.value = [];
+      return;
+    }
+    const { data } = await ChannelTerminalApi.extraFields(product);
+    extraFields.value = data || [];
+  }
+
+  /**
+   * 解析 extra JSON(非法/空返回空对象)
+   */
+  function parseExtraJson(extra?: string): Record<string, any> {
+    if (!extra) {
+      return {};
+    }
+    try {
+      const parsed = JSON.parse(extra);
+      return typeof parsed === 'object' && parsed !== null && !Array.isArray(parsed) ? parsed : {};
+    } catch {
+      return {};
+    }
+  }
+
+  /**
+   * 组装结构化报备参数为 extra JSON(空值剔除; 未声明字段原样保留)
+   */
+  function buildExtraJson(): string | undefined {
+    const merged: Record<string, any> = { ...baseExtra.value };
+    for (const field of extraFields.value) {
+      const value = extraForm.value[field.key];
+      if (value === undefined || value === null || value === '') {
+        delete merged[field.key];
+      } else {
+        merged[field.key] = value;
+      }
+    }
+    return Object.keys(merged).length > 0 ? JSON.stringify(merged) : undefined;
   }
 
   /**
@@ -101,12 +159,13 @@
   /**
    * 打开新增(通道商户上下文已锁定)
    */
-  function showAdd(ctx: { channelMchNo: string; mchNo: string }) {
-    context.value = ctx;
+  function showAdd(ctx: { channelMchNo: string; mchNo: string; product?: string }) {
+    context.value = { channelMchNo: ctx.channelMchNo, mchNo: ctx.mchNo, product: ctx.product || '' };
     initFormEditType(FormEditType.Add);
     resetForm();
     visible.value = true;
     loadTerminalOptions(ctx.mchNo);
+    loadExtraFields(context.value.product);
   }
 
   /**
@@ -116,6 +175,7 @@
     context.value = {
       mchNo: record.mchNo || '',
       channelMchNo: record.channelMchNo || '',
+      product: record.product || '',
     };
     initFormEditType(FormEditType.Edit);
     resetForm();
@@ -125,6 +185,7 @@
       const [detailRes] = await Promise.all([
         ChannelTerminalApi.get(record.id!),
         loadTerminalOptions(context.value.mchNo),
+        loadExtraFields(context.value.product),
       ]);
       const row = detailRes.data || record;
       formState.value = {
@@ -133,9 +194,13 @@
         channelMchNo: row.channelMchNo,
         type: row.type,
         name: row.name,
+        extra: row.extra,
         remark: row.remark,
       };
       boundSystemTerminals.value = row.systemTerminals || [];
+      // 解析已有 extra 填充结构化表单(未知键在 baseExtra 保留, 保存时合并回写)
+      baseExtra.value = parseExtraJson(row.extra);
+      extraForm.value = { ...baseExtra.value };
       // 登记状态/通道侧终端号由「手动调整」维护, 编辑态只读回显
       editReadonly.value = {
         channelMchNo: row.channelMchNo,
@@ -157,6 +222,25 @@
     } catch {
       return;
     }
+    // 报备参数: 有通道字段定义时按结构化表单组装(不暴露 JSON);
+    // 无字段定义的通道回退为 JSON 文本域, 填了必须是合法 JSON 对象
+    if (extraFields.value.length > 0) {
+      formState.value.extra = buildExtraJson();
+    } else {
+      const extraText = formState.value.extra?.trim();
+      if (extraText) {
+        try {
+          const parsed = JSON.parse(extraText);
+          if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) {
+            message.warning($t('payment.device.terminal.extraJsonObjectRequired'));
+            return;
+          }
+        } catch {
+          message.warning($t('payment.device.terminal.extraJsonInvalid'));
+          return;
+        }
+      }
+    }
     confirmLoading.value = true;
     try {
       await (addable.value
@@ -167,10 +251,11 @@
             channelMchNo: context.value.channelMchNo,
             status: 'init',
           })
-        : // 编辑仅维护基础信息(名称/备注); 通道侧终端号与登记状态走「手动调整」
+        : // 编辑仅维护基础信息(名称/报备参数/备注); 通道侧终端号与登记状态走「手动调整」
           ChannelTerminalApi.update({
             id: formState.value.id,
             name: formState.value.name,
+            extra: formState.value.extra,
             remark: formState.value.remark,
           }));
       message.success($t('common.operationSuccess'));
@@ -241,6 +326,31 @@
       </a-form-item>
       <a-form-item v-if="!addable" :label="$t('payment.device.terminal.field.outTerminalNo')">
         <span>{{ editReadonly.outTerminalNo || '-' }}</span>
+      </a-form-item>
+      <!-- 通道差异化报备参数: 有字段定义时按结构化表单展示(标签为通道协议字段名, 随策略下发), 否则回退 JSON 文本域 -->
+      <template v-if="extraFields.length > 0">
+        <a-form-item v-for="field in extraFields" :key="field.key" :label="field.label">
+          <a-input
+            v-if="field.type !== 'textarea'"
+            v-model:value="extraForm[field.key]"
+            :placeholder="field.placeholder || $t('common.pleaseInput')"
+            allow-clear
+          />
+          <a-textarea
+            v-else
+            v-model:value="extraForm[field.key]"
+            :rows="2"
+            :placeholder="field.placeholder || $t('common.pleaseInput')"
+          />
+          <div v-if="field.desc" class="text-xs text-muted-foreground">{{ field.desc }}</div>
+        </a-form-item>
+      </template>
+      <a-form-item v-else :label="$t('payment.device.terminal.field.extra')" name="extra">
+        <a-textarea
+          v-model:value="formState.extra"
+          :rows="3"
+          :placeholder="$t('payment.device.terminal.extraPlaceholder')"
+        />
       </a-form-item>
       <a-form-item :label="$t('payment.device.terminal.field.remark')" name="remark">
         <a-textarea v-model:value="formState.remark" :rows="3" :placeholder="$t('common.pleaseInput')" />

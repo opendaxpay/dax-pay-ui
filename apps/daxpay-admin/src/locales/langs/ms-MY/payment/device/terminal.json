@@ -18,7 +18,8 @@
     "errorMsg": "Error Message",
     "systemTerminal": "Terminal Peniaga",
     "boundMerchantTerminal": "Terminal Peniaga Terikat",
-    "relatedChannel": "Saluran Berkaitan"
+    "relatedChannel": "Saluran Berkaitan",
+    "extra": "Parameter Laporan"
   },
   "enableYes": "Enabled",
   "enableNo": "Disabled",
@@ -64,5 +65,8 @@
   "confirmCancel": "Batalkan terminal saluran ini? Nombor terminal tidak lagi boleh digunakan untuk pembayaran",
   "filterMch": "Peniaga",
   "pleaseSelect": "Sila pilih",
-  "pleaseInput": "Sila masukkan"
+  "pleaseInput": "Sila masukkan",
+  "extraPlaceholder": "Parameter laporan khusus saluran (objek JSON)",
+  "extraJsonInvalid": "Parameter laporan bukan format JSON yang sah",
+  "extraJsonObjectRequired": "Parameter laporan mesti objek JSON, cth. {\"storeId\":\"...\"}"
 }

@@ -18,7 +18,8 @@
     "errorMsg": "Error Message",
     "systemTerminal": "Terminal Pedagang",
     "boundMerchantTerminal": "Terminal Pedagang Terikat",
-    "relatedChannel": "Kanal Terkait"
+    "relatedChannel": "Kanal Terkait",
+    "extra": "Parameter Pelaporan"
   },
   "enableYes": "Enabled",
   "enableNo": "Disabled",
@@ -64,5 +65,8 @@
   "confirmCancel": "Batalkan terminal kanal ini? Nomor terminal tidak dapat digunakan untuk pembayaran lagi",
   "filterMch": "Pedagang",
   "pleaseSelect": "Silakan pilih",
-  "pleaseInput": "Silakan masukkan"
+  "pleaseInput": "Silakan masukkan",
+  "extraPlaceholder": "Parameter pelaporan khusus kanal (objek JSON)",
+  "extraJsonInvalid": "Parameter pelaporan bukan format JSON yang valid",
+  "extraJsonObjectRequired": "Parameter pelaporan harus berupa objek JSON, mis. {\"storeId\":\"...\"}"
 }

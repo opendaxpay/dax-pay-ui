@@ -18,7 +18,8 @@
     "errorMsg": "Error Message",
     "systemTerminal": "เทอร์มินัลพ่อค้า",
     "boundMerchantTerminal": "เทอร์มินัลพ่อค้าที่ผูกไว้",
-    "relatedChannel": "ช่องทางที่เชื่อมโยง"
+    "relatedChannel": "ช่องทางที่เชื่อมโยง",
+    "extra": "พารามิเตอร์การรายงาน"
   },
   "enableYes": "Enabled",
   "enableNo": "Disabled",
@@ -64,5 +65,8 @@
   "confirmCancel": "ยกเลิกเทอร์มินัลช่องทางนี้หรือไม่? หมายเลขเทอร์มินัลจะใช้รับชำระเงินไม่ได้อีก",
   "filterMch": "พ่อค้า",
   "pleaseSelect": "กรุณาเลือก",
-  "pleaseInput": "กรุณากรอก"
+  "pleaseInput": "กรุณากรอก",
+  "extraPlaceholder": "พารามิเตอร์การรายงานเฉพาะช่องทาง (ออบเจ็กต์ JSON)",
+  "extraJsonInvalid": "พารามิเตอร์การรายงานไม่ใช่รูปแบบ JSON ที่ถูกต้อง",
+  "extraJsonObjectRequired": "พารามิเตอร์การรายงานต้องเป็นออบเจ็กต์ JSON เช่น {\"storeId\":\"...\"}"
 }

@@ -18,7 +18,8 @@
     "errorMsg": "错误信息",
     "systemTerminal": "商户终端",
     "boundMerchantTerminal": "绑定商户终端",
-    "relatedChannel": "关联通道"
+    "relatedChannel": "关联通道",
+    "extra": "报备参数"
   },
   "enableYes": "启用",
   "enableNo": "停用",
@@ -64,5 +65,8 @@
   "confirmCancel": "确定注销该通道终端吗？注销后该终端号将不可用于收款",
   "filterMch": "商户",
   "pleaseSelect": "请选择",
-  "pleaseInput": "请输入"
+  "pleaseInput": "请输入",
+  "extraPlaceholder": "通道差异化报备参数(JSON 对象)",
+  "extraJsonInvalid": "报备参数不是合法的 JSON 格式",
+  "extraJsonObjectRequired": "报备参数必须是 JSON 对象, 如 {\"storeId\":\"...\"}"
 }
