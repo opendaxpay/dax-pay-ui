@@ -12,6 +12,7 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
   import { buildExportFileName, confirmExport } from '@daxpay/ui-biz/utils/export-download';
   import { formatFen as formatAmount } from '@daxpay/ui-biz/utils/pay-amount';
 
@@ -27,7 +28,6 @@
   import RefundModal from './components/RefundModal.vue';
   import { useOrderLabels } from './composables/useOrderLabels';
   import { useTradeActions } from './composables/useTradeActions';
-import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
   defineOptions({ name: 'PayTradeList' });
 
@@ -481,8 +481,7 @@ import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
         <a-divider orientation="left" plain>{{ $t('payment.order.trade.detail') }}</a-divider>
         <a-descriptions :column="2" size="small" bordered>
           <a-descriptions-item :label="$t('payment.order.field.merchant')">
-            {{ detail.mchName || '-' }}
-            <span v-if="detail.mchNo" class="text-muted-foreground"> ({{ detail.mchNo }})</span>
+            <NameNoCell :name="detail.mchName" :no="detail.mchNo" />
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.tradeNo')">
             {{ detail.tradeNo || '-' }}

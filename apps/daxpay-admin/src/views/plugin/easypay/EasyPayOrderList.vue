@@ -9,6 +9,8 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
+
   import {
     EasyPayOrderApi,
     type EasyPayOrderQuery,
@@ -18,7 +20,6 @@
   import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
-import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
   defineOptions({ name: 'EasyPayOrderList' });
 
@@ -361,8 +362,7 @@ import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
         <a-divider orientation="left" plain>{{ $t('plugin.easypay.order.section.order') }}</a-divider>
         <a-descriptions :column="2" size="small" bordered>
           <a-descriptions-item :label="$t('plugin.easypay.order.field.merchant')">
-            {{ detail.mchName || '-' }}
-            <span v-if="detail.mchNo" class="text-muted-foreground"> ({{ detail.mchNo }})</span>
+            <NameNoCell :name="detail.mchName" :no="detail.mchNo" />
           </a-descriptions-item>
           <a-descriptions-item :label="$t('plugin.easypay.order.field.orderId')">
             {{ detail.orderId || detail.id || '-' }}

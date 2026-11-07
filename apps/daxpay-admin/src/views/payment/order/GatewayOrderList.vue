@@ -9,6 +9,7 @@
   import { $t } from '@vben/locales';
   import { formatDateTime } from '@vben/utils';
 
+  import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
   import { buildExportFileName, confirmExport } from '@daxpay/ui-biz/utils/export-download';
   import { formatFen as formatAmount } from '@daxpay/ui-biz/utils/pay-amount';
 
@@ -27,7 +28,6 @@
 
   import { useOrderLabels } from './composables/useOrderLabels';
   import { useTradeActions } from './composables/useTradeActions';
-import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
 
   defineOptions({ name: 'GatewayOrderList' });
 
@@ -379,8 +379,7 @@ import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
       <a-spin :spinning="drawerLoading">
         <a-descriptions :column="2" size="small" bordered>
           <a-descriptions-item :label="$t('payment.order.field.merchant')">
-            {{ detail.mchName || '-' }}
-            <span v-if="detail.mchNo" class="text-muted-foreground"> ({{ detail.mchNo }})</span>
+            <NameNoCell :name="detail.mchName" :no="detail.mchNo" />
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.orderNo')">
             {{ detail.orderNo || '-' }}

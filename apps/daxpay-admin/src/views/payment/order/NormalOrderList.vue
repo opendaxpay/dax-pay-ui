@@ -376,8 +376,7 @@
         <a-divider orientation="left" plain>{{ $t('payment.order.normal.detail') }}</a-divider>
         <a-descriptions :column="2" size="small" bordered>
           <a-descriptions-item :label="$t('payment.order.field.merchant')">
-            {{ detail.mchName || '-' }}
-            <span v-if="detail.mchNo" class="text-muted-foreground"> ({{ detail.mchNo }})</span>
+            <NameNoCell :name="detail.mchName" :no="detail.mchNo" />
           </a-descriptions-item>
           <a-descriptions-item :label="$t('payment.order.field.orderNo')">
             {{ detail.orderNo || '-' }}
