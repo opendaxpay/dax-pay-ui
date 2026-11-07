@@ -1,5 +1,9 @@
 {
   "field": {
+    "systemTerminal": "系统终端",
+    "type": "报送类型",
+    "outTerminalNo": "通道终端号",
+    "status": "登记状态",
     "terminalNo": "终端编码",
     "name": "终端名称",
     "store": "门店",
@@ -20,5 +24,6 @@
   "pleaseSelectStore": "请选择门店(可选)",
   "boundChannel": "已绑定通道终端",
   "noBound": "暂无绑定",
-  "bindReadOnlyTip": "绑定关系由通道终端登记维护，此处仅作展示"
+  "bindReadOnlyTip": "绑定关系由通道终端登记维护，此处仅作展示",
+  "ledgerReadOnlyTip": "通道终端的登记、报备与绑定由平台运营维护，此处仅供核对"
 }

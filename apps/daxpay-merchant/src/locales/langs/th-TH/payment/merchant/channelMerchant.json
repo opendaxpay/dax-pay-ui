@@ -119,5 +119,8 @@
   "referenceDrawerTitleWithName": "รายละเอียดการอ้างอิง - {name}",
   "referenceTotalLabel": "จำนวนการอ้างอิงทั้งหมด",
   "referenceEmpty": "ไม่ถูกอ้างอิงโดยการตั้งค่าใด",
-  "referenceAppRefs": "{count} รายการอ้างอิง"
+  "referenceAppRefs": "{count} รายการอ้างอิง",
+  "groupTerminal": "บัญชีเทอร์มินัล",
+  "cardTerminal": "บัญชีเทอร์มินัล",
+  "cardTerminalDesc": "ดูเทอร์มินัลฝั่งช่องทางและการผูกของพ่อค้าช่องทางนี้"
 }

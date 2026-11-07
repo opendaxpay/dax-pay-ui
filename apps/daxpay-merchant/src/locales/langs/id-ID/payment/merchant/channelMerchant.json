@@ -119,5 +119,8 @@
   "referenceDrawerTitleWithName": "Detail Referensi - {name}",
   "referenceTotalLabel": "Total referensi",
   "referenceEmpty": "Tidak direferensikan oleh konfigurasi apa pun",
-  "referenceAppRefs": "{count} referensi"
+  "referenceAppRefs": "{count} referensi",
+  "groupTerminal": "Buku Terminal",
+  "cardTerminal": "Buku Terminal",
+  "cardTerminalDesc": "Lihat terminal saluran dan tautan pada channel merchant ini"
 }

@@ -119,5 +119,8 @@
   "referenceDrawerTitleWithName": "Chi tiết tham chiếu - {name}",
   "referenceTotalLabel": "Tổng số tham chiếu",
   "referenceEmpty": "Không được tham chiếu bởi cấu hình nào",
-  "referenceAppRefs": "{count} tham chiếu"
+  "referenceAppRefs": "{count} tham chiếu",
+  "groupTerminal": "Sổ thiết bị",
+  "cardTerminal": "Sổ thiết bị",
+  "cardTerminalDesc": "Xem thiết bị kênh và liên kết của merchant kênh này"
 }

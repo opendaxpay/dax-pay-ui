@@ -1,5 +1,9 @@
 {
   "field": {
+    "systemTerminal": "Thiết bị hệ thống",
+    "type": "Loại báo cáo",
+    "outTerminalNo": "Số thiết bị kênh",
+    "status": "Trạng thái",
     "terminalNo": "Terminal No.",
     "name": "Name",
     "store": "Store",
@@ -20,5 +24,6 @@
   "pleaseSelectStore": "Select store (optional)",
   "boundChannel": "Bound channel terminals",
   "noBound": "No bindings",
-  "bindReadOnlyTip": "Liên kết được quản lý khi đăng ký thiết bị đầu cuối kênh, chỉ hiển thị tại đây"
+  "bindReadOnlyTip": "Liên kết được quản lý khi đăng ký thiết bị đầu cuối kênh, chỉ hiển thị tại đây",
+  "ledgerReadOnlyTip": "Việc đăng ký, báo cáo và liên kết thiết bị kênh do bên vận hành nền tảng quản lý. Danh sách này chỉ để xem."
 }

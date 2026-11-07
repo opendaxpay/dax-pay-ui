@@ -1,5 +1,9 @@
 {
   "field": {
+    "systemTerminal": "System Terminal",
+    "type": "Report Type",
+    "outTerminalNo": "Channel Terminal No.",
+    "status": "Status",
     "terminalNo": "Terminal No.",
     "name": "Name",
     "store": "Store",
@@ -20,5 +24,6 @@
   "pleaseSelectStore": "Select store (optional)",
   "boundChannel": "Bound channel terminals",
   "noBound": "No bindings",
-  "bindReadOnlyTip": "Bindings are maintained via channel terminal registration and shown here read-only"
+  "bindReadOnlyTip": "Bindings are maintained via channel terminal registration and shown here read-only",
+  "ledgerReadOnlyTip": "Channel terminals are registered and bound by the platform operator. This list is read-only."
 }

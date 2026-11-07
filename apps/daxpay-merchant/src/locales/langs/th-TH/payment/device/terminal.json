@@ -1,5 +1,9 @@
 {
   "field": {
+    "systemTerminal": "เทอร์มินัลระบบ",
+    "type": "ประเภทการรายงาน",
+    "outTerminalNo": "หมายเลขเทอร์มินัลช่องทาง",
+    "status": "สถานะ",
     "terminalNo": "Terminal No.",
     "name": "Name",
     "store": "Store",
@@ -20,5 +24,6 @@
   "pleaseSelectStore": "Select store (optional)",
   "boundChannel": "Bound channel terminals",
   "noBound": "No bindings",
-  "bindReadOnlyTip": "การเชื่อมโยงจะดูแลผ่านการลงทะเบียนเทอร์มินัลช่องทาง ที่นี่แสดงเท่านั้น"
+  "bindReadOnlyTip": "การเชื่อมโยงจะดูแลผ่านการลงทะเบียนเทอร์มินัลช่องทาง ที่นี่แสดงเท่านั้น",
+  "ledgerReadOnlyTip": "การลงทะเบียน การรายงาน และการผูกเทอร์มินัลช่องทางดำเนินการโดยผู้ให้บริการแพลตฟอร์ม รายการนี้ใช้ดูเท่านั้น"
 }

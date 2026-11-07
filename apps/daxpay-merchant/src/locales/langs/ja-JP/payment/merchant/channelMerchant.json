@@ -119,5 +119,8 @@
   "referenceDrawerTitleWithName": "参照明細 - {name}",
   "referenceTotalLabel": "参照合計数",
   "referenceEmpty": "どの設定からも参照されていません",
-  "referenceAppRefs": "{count} 件の参照"
+  "referenceAppRefs": "{count} 件の参照",
+  "groupTerminal": "端末台帳",
+  "cardTerminal": "端末台帳",
+  "cardTerminalDesc": "本チャネル加盟店の端末と紐付け状況を表示します"
 }

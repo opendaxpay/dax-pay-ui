@@ -119,5 +119,8 @@
   "referenceDrawerTitleWithName": "Butiran Rujukan - {name}",
   "referenceTotalLabel": "Jumlah rujukan",
   "referenceEmpty": "Tidak dirujuk oleh sebarang konfigurasi",
-  "referenceAppRefs": "{count} rujukan"
+  "referenceAppRefs": "{count} rujukan",
+  "groupTerminal": "Lejar Terminal",
+  "cardTerminal": "Lejar Terminal",
+  "cardTerminalDesc": "Lihat terminal saluran dan ikatan bagi merchant saluran ini"
 }

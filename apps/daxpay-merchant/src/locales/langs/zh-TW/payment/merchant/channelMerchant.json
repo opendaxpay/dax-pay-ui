@@ -119,5 +119,8 @@
   "referenceDrawerTitleWithName": "引用明細 - {name}",
   "referenceTotalLabel": "總引用處數",
   "referenceEmpty": "未被任何配置引用",
-  "referenceAppRefs": "{count} 處引用"
+  "referenceAppRefs": "{count} 處引用",
+  "groupTerminal": "終端台帳",
+  "cardTerminal": "終端台帳",
+  "cardTerminalDesc": "查看本通道商戶下的通道側終端與綁定關係"
 }

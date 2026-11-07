@@ -14,6 +14,7 @@
   import ChannelMerchantNameEditModal from '#/views/payment/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
   import CommonChannelMerchantBasicInfo from '#/views/payment/channel-merchant/detail/CommonChannelMerchantBasicInfo.vue';
   import WechatDirectKeyConfigDrawer from '#/views/payment/channel-merchant/detail/WechatDirectKeyConfigDrawer.vue';
+  import TerminalManageCard from '#/views/payment/device/terminal/channel/TerminalManageCard.vue';
   import WxChannelAppCapability from '#/views/payment/wx/channel/WxChannelAppCapability.vue';
 
   defineOptions({ name: 'WechatDirectMchManage' });
@@ -33,8 +34,16 @@
   const capabilityRef = ref<InstanceType<typeof WxChannelAppCapability>>();
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
 
+  /** 功能卡片分组配置(terminal: 本组末尾追加终端台账只读卡) */
+  interface FunctionGroup {
+    group: string;
+    color: string;
+    terminal?: boolean;
+    cards: { description: string; icon: string; key: string; title: string }[];
+  }
+
   /** 功能卡片配置（按组分组的卡片布局） */
-  const functionCards = [
+  const functionCards: FunctionGroup[] = [
     {
       group: $t('payment.merchant.channelMerchant.groupBasic'),
       color: 'blue',
@@ -89,6 +98,13 @@
           description: $t('payment.merchant.channelMerchant.cardCapabilityBindingDesc'),
         },
       ],
+    },
+    {
+      // 终端台账分组(通道侧终端只读查看, 登记/报备/绑定收口运营端)
+      group: $t('payment.merchant.channelMerchant.groupTerminal'),
+      color: 'gray',
+      terminal: true,
+      cards: [],
     },
   ];
 
@@ -186,6 +202,8 @@
               :class="getGroupColorClass(group.color)"
             ></div>
           </a-card>
+          <!-- 终端台账: 只读查看本通道商户下的通道侧终端与绑定关系 -->
+          <TerminalManageCard v-if="group.terminal" :channel-mch-no="channelMchNo" />
         </div>
       </div>
     </div>

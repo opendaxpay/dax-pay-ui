@@ -1,5 +1,9 @@
 {
   "field": {
+    "systemTerminal": "시스템 단말",
+    "type": "보고 유형",
+    "outTerminalNo": "채널 단말 번호",
+    "status": "등록 상태",
     "terminalNo": "Terminal No.",
     "name": "Name",
     "store": "Store",
@@ -20,5 +24,6 @@
   "pleaseSelectStore": "Select store (optional)",
   "boundChannel": "Bound channel terminals",
   "noBound": "No bindings",
-  "bindReadOnlyTip": "연결은 채널 단말기 등록 시 관리되며 여기서는 표시 전용입니다"
+  "bindReadOnlyTip": "연결은 채널 단말기 등록 시 관리되며 여기서는 표시 전용입니다",
+  "ledgerReadOnlyTip": "채널 단말의 등록·보고·연결은 플랫폼 운영 측에서 관리합니다. 여기서는 조회만 가능합니다."
 }

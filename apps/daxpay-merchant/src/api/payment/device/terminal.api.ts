@@ -6,7 +6,7 @@ import { defHttp } from '#/api/request';
  * 系统终端 API（商户端 /mch/device/terminal/system/*）
  *
  * 后端强制 mchNo=PaymentContext；绑定关系在通道终端登记(运营端)时建立与维护，
- * 商户端仅保留已绑定通道终端的只读查询(bound-channel-list)。
+ * 商户端仅保留通道终端的只读查询（台账分页 + 按系统终端反查已绑定通道终端）。
  */
 export const TerminalDeviceApi = {
   /** 分页 */
@@ -56,6 +56,16 @@ export const TerminalDeviceApi = {
   },
 };
 
+/** 通道终端台账 API（商户端 /mch/device/terminal/channel/*，只读） */
+export const ChannelTerminalApi = {
+  /** 通道终端分页(商户号由后端取上下文, 前端只限定通道商户号与筛选条件) */
+  page(
+    params: ChannelTerminalQuery & { current?: number; size?: number },
+  ): Promise<Result<PageResult<ChannelTerminalResult>>> {
+    return defHttp.get({ url: '/mch/device/terminal/channel/page', params });
+  },
+};
+
 /** 系统终端查询 */
 export interface TerminalDeviceQuery {
   terminalNo?: string;
@@ -98,7 +108,7 @@ export interface TerminalBindStoreBatchParam {
   storeNo: string;
 }
 
-/** 通道终端结果（绑定抽屉展示） */
+/** 通道终端结果（台账列表 / 绑定抽屉展示） */
 export interface ChannelTerminalResult extends BaseEntity {
   channelMchNo?: string;
   product?: string;
@@ -111,4 +121,24 @@ export interface ChannelTerminalResult extends BaseEntity {
   remark?: string;
   mchNo?: string;
   mchName?: string;
+  /** 已绑定的系统终端列表(查询时后端填充, 不落库) */
+  systemTerminals?: TerminalDeviceResult[];
+}
+
+/** 通道终端查询（商户端只读台账筛选用） */
+export interface ChannelTerminalQuery {
+  /** 通道商户号 */
+  channelMchNo?: string;
+  /** 所属通道 */
+  channel?: string;
+  /** 所属支付产品 */
+  product?: string;
+  /** 报送类型 */
+  type?: string;
+  /** 终端名称 */
+  name?: string;
+  /** 通道侧终端号 */
+  outTerminalNo?: string;
+  /** 登记状态 */
+  status?: string;
 }

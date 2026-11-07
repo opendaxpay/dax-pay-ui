@@ -1,5 +1,9 @@
 {
   "field": {
+    "systemTerminal": "Terminal Sistem",
+    "type": "Jenis Laporan",
+    "outTerminalNo": "No. Terminal Saluran",
+    "status": "Status",
     "terminalNo": "Terminal No.",
     "name": "Name",
     "store": "Store",
@@ -20,5 +24,6 @@
   "pleaseSelectStore": "Select store (optional)",
   "boundChannel": "Bound channel terminals",
   "noBound": "No bindings",
-  "bindReadOnlyTip": "Pengikatan diuruskan melalui pendaftaran terminal saluran dan paparan sahaja di sini"
+  "bindReadOnlyTip": "Pengikatan diuruskan melalui pendaftaran terminal saluran dan paparan sahaja di sini",
+  "ledgerReadOnlyTip": "Pendaftaran, pelaporan dan pengikatan terminal saluran diurus oleh pengendali platform. Senarai ini untuk rujukan sahaja."
 }
