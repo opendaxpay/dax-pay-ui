@@ -68,6 +68,8 @@
    * 获取当前激活的环境值
    */
   function getActiveEnvValue(row: PayProductConfigResult): string {
+    // 仅沙箱产品固定沙箱环境(不可切换)
+    if (row.sandboxOnly) return 'sandbox';
     // 全局沙箱关闭时强制显示生产环境
     if (!sandboxEnabled.value) return 'prod';
     return row.activeEnv === 'sandbox' ? 'sandbox' : 'prod';
@@ -226,6 +228,10 @@
         <div v-if="isComing(row)" class="absolute top-2.5 right-2.5 z-20">
           <a-tag color="processing">{{ $t('payment.constant.product.productConfig.coming') }}</a-tag>
         </div>
+        <!-- 右上角：仅沙箱产品(模拟通道)显示固定标签，不提供切换 -->
+        <div v-else-if="row.sandboxOnly" class="absolute top-2.5 right-2.5 z-20">
+          <a-tag color="orange">{{ $t('payment.constant.product.productConfig.sandboxLabel') }}</a-tag>
+        </div>
         <!-- 右上角：环境切换（产品支持沙箱且全局沙箱已启用时显示） -->
         <div v-else-if="row.sandboxSupport && sandboxEnabled" class="absolute top-2.5 right-2.5 z-20">
           <a-radio-group
@@ -278,7 +284,9 @@
             </span>
           </div>
           <template v-else>
+            <!-- 仅沙箱产品不提供生产环境配置入口 -->
             <div
+              v-if="!row.sandboxOnly"
               class="config-slot prod-slot"
               :class="{ 'border-r border-border': row.sandboxSupport && sandboxEnabled }"
               @click.stop="openDetailPage(row, false)"
@@ -291,7 +299,7 @@
               </div>
             </div>
             <div
-              v-if="row.sandboxSupport && sandboxEnabled"
+              v-if="row.sandboxOnly || (row.sandboxSupport && sandboxEnabled)"
               class="config-slot sandbox-slot"
               @click.stop="openDetailPage(row, true)"
             >

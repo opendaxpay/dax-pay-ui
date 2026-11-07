@@ -47,6 +47,8 @@ export interface PayProductConfigResult extends BaseEntity {
   channelName?: string;
   /** 是否支持沙箱环境 */
   sandboxSupport?: boolean;
+  /** 是否仅支持沙箱环境（模拟通道等：生效环境恒为 sandbox，不可切换生产） */
+  sandboxOnly?: boolean;
   /** 生效环境: prod/sandbox */
   activeEnv?: string;
   /** 是否启用（来自支付产品主数据，卡片状态点与详情页启停使用） */
