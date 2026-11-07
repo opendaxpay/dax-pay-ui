@@ -44,11 +44,11 @@ export const TerminalDeviceApi = {
   },
   /** 设为门店默认终端(同门店唯一, 后端先清后设) */
   setDefault(id: string): Promise<Result<void>> {
-    return defHttp.post({ url: '/mch/device/terminal/system/set-default', data: { id } });
+    return defHttp.post({ url: '/mch/device/terminal/system/set-default', params: { id } });
   },
   /** 取消门店默认终端 */
   clearDefault(id: string): Promise<Result<void>> {
-    return defHttp.post({ url: '/mch/device/terminal/system/clear-default', data: { id } });
+    return defHttp.post({ url: '/mch/device/terminal/system/clear-default', params: { id } });
   },
   /** 批量绑定门店(本商户未分配门店的系统终端绑到目标门店) */
   bindStoreBatch(data: TerminalBindStoreBatchParam): Promise<Result<void>> {
