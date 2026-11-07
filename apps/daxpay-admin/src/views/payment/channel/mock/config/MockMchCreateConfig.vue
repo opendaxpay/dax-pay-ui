@@ -16,8 +16,8 @@
   /**
    * 模拟通道直连商户建档(mock_pay)
    *
-   * 纯本地登记: 商户档案在模拟网关控制台创建, 此处仅登记通道商户号与展示名称;
-   * 通道商户号可留空(后端按 MOCK 前缀自动生成), 商户级接入密钥在工作台后置维护。
+   * 纯本地登记: 商户档案在模拟通道控制台创建, 此处登记其通道商户号与展示名称;
+   * 模拟通道为独立通道(无对接接口), 通道商户号必须手工登记, 商户级接入密钥在工作台后置维护。
    */
   defineOptions({ name: 'MockMchCreateConfig' });
 
@@ -53,6 +53,8 @@
   });
 
   const rules = computed(() => ({
+    // 通道商户号(模拟通道控制台创建的商户号, 必须手工登记)
+    channelMchNo: [{ required: true, message: $t('payment.channel.mock.create.channelMchNoRequired') }],
     // 通道商户名称
     channelMerchantName: [{ required: true, message: $t('payment.channel.mock.create.channelMerchantNameRequired') }],
   }));
@@ -81,9 +83,8 @@
         const param: MockChannelMerchantCreateParam = {
           mchNo: mchNo.value,
           product: productCode.value,
+          channelMchNo: form.value.channelMchNo.trim(),
           channelMerchantName: form.value.channelMerchantName.trim(),
-          // 通道商户号留空: 由后端按 MOCK 前缀自动生成
-          channelMchNo: form.value.channelMchNo.trim() || undefined,
         };
         MockChannelMerchantApi.createMockDirectMerchant(param)
           .then(() => {
@@ -138,7 +139,7 @@
               :placeholder="$t('payment.merchant.channelMerchant.pleaseInputName')"
             />
           </a-form-item>
-          <!-- 国际化：通道商户号(纯本地登记, 留空自动生成) -->
+          <!-- 国际化：通道商户号(模拟通道控制台创建的商户号, 必须手工登记) -->
           <a-form-item
             :label="$t('payment.channel.mock.create.channelMchNo')"
             name="channelMchNo"

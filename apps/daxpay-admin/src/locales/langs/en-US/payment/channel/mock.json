@@ -5,8 +5,9 @@
     "channelMerchantName": "Channel Merchant Name",
     "channelMerchantNameRequired": "Please enter the channel merchant name",
     "channelMchNo": "Channel Merchant No.",
-    "channelMchNoPlaceholder": "Enter channel merchant no. (leave blank to auto-generate)",
-    "channelMchNoTip": "You can register a merchant no. created in the mock gateway console; leave blank to auto-generate"
+    "channelMchNoPlaceholder": "Enter channel merchant no.",
+    "channelMchNoRequired": "Please enter the channel merchant no.",
+    "channelMchNoTip": "Create the merchant in the mock gateway console first, then register its merchant no. here"
   },
   "isv": {
     "selectLabel": "Service Provider",

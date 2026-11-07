@@ -5,8 +5,9 @@
     "channelMerchantName": "Tên đơn vị nhận thanh toán kênh",
     "channelMerchantNameRequired": "Vui lòng nhập tên đơn vị nhận thanh toán kênh",
     "channelMchNo": "Mã đơn vị nhận thanh toán kênh",
-    "channelMchNoPlaceholder": "Nhập mã đơn vị nhận thanh toán kênh (để trống để tự động tạo)",
-    "channelMchNoTip": "Có thể đăng ký mã đơn vị nhận thanh toán đã tạo trong bảng điều khiển cổng mô phỏng; để trống để hệ thống tự động tạo"
+    "channelMchNoPlaceholder": "Nhập mã đơn vị nhận thanh toán kênh",
+    "channelMchNoRequired": "Vui lòng nhập mã đơn vị nhận thanh toán kênh",
+    "channelMchNoTip": "Hãy tạo đơn vị nhận thanh toán trong bảng điều khiển cổng mô phỏng trước, sau đó đăng ký mã của đơn vị tại đây"
   },
   "isv": {
     "selectLabel": "Nhà cung cấp dịch vụ",

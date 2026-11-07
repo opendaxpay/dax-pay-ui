@@ -5,8 +5,9 @@
     "channelMerchantName": "通道商戶名稱",
     "channelMerchantNameRequired": "請輸入通道商戶名稱",
     "channelMchNo": "通道商戶號",
-    "channelMchNoPlaceholder": "請輸入通道商戶號（留空自動生成）",
-    "channelMchNoTip": "可登記模擬通道控制台已創建的商戶號，留空則由系統自動生成"
+    "channelMchNoPlaceholder": "請輸入通道商戶號",
+    "channelMchNoRequired": "請輸入通道商戶號",
+    "channelMchNoTip": "請先在模擬通道控制台創建商戶，再登記其商戶號"
   },
   "isv": {
     "selectLabel": "所屬服務商",

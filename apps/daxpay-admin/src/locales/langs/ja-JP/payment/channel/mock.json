@@ -5,8 +5,9 @@
     "channelMerchantName": "チャネル加盟店名",
     "channelMerchantNameRequired": "チャネル加盟店名を入力してください",
     "channelMchNo": "チャネル加盟店番号",
-    "channelMchNoPlaceholder": "チャネル加盟店番号を入力（空白時は自動生成）",
-    "channelMchNoTip": "モックゲートウェイコンソールで作成済みの加盟店番号を登録できます。空白の場合は自動生成されます"
+    "channelMchNoPlaceholder": "チャネル加盟店番号を入力してください",
+    "channelMchNoRequired": "チャネル加盟店番号を入力してください",
+    "channelMchNoTip": "モックゲートウェイコンソールで加盟店を作成してから、その加盟店番号をここに登録してください"
   },
   "isv": {
     "selectLabel": "所属サービスプロバイダー",

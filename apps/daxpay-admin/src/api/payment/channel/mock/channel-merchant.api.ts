@@ -11,7 +11,7 @@ export const MockChannelMerchantApi = {
   /**
    * 创建 Mock 直连通道商户(mock_pay 产品)
    *
-   * 通道商户号可留空: 留空由后端按 MOCK 前缀自动生成, 非空则登记模拟通道控制台已创建的商户号。
+   * 纯本地登记: 登记模拟通道控制台已创建的商户号; 模拟通道为独立通道, 无对接接口。
    */
   createMockDirectMerchant(data: MockChannelMerchantCreateParam): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/mock/channel-merchant/create', data });
@@ -40,11 +40,11 @@ export const MockChannelMerchantApi = {
 export interface MockChannelMerchantCreateParam {
   /** 商户号 */
   mchNo: string;
-  /** 通道商户号(可空, 空则后端按 MOCK 前缀自动生成) */
-  channelMchNo?: string;
+  /** 通道商户号(模拟通道控制台创建的商户号, 必填) */
+  channelMchNo: string;
   /** 通道商户名称 */
   channelMerchantName: string;
-  /** 所属支付产品(mock_pay / mock_isv) */
+  /** 所属支付产品(mock_pay) */
   product: string;
 }
 

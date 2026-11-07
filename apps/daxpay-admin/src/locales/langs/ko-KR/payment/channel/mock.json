@@ -5,8 +5,9 @@
     "channelMerchantName": "채널 가맹점명",
     "channelMerchantNameRequired": "채널 가맹점명을 입력하세요",
     "channelMchNo": "채널 가맹점 번호",
-    "channelMchNoPlaceholder": "채널 가맹점 번호 입력 (비우면 자동 생성)",
-    "channelMchNoTip": "모의 게이트웨이 콘솔에서 생성한 가맹점 번호를 등록할 수 있습니다. 비우면 시스템이 자동 생성합니다"
+    "channelMchNoPlaceholder": "채널 가맹점 번호를 입력하세요",
+    "channelMchNoRequired": "채널 가맹점 번호를 입력하세요",
+    "channelMchNoTip": "모의 게이트웨이 콘솔에서 가맹점을 먼저 생성한 후 해당 가맹점 번호를 등록하세요"
   },
   "isv": {
     "selectLabel": "소속 서비스 제공자",

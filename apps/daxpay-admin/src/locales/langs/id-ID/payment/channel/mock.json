@@ -5,8 +5,9 @@
     "channelMerchantName": "Nama Merchant Saluran",
     "channelMerchantNameRequired": "Masukkan nama merchant saluran",
     "channelMchNo": "No. Merchant Saluran",
-    "channelMchNoPlaceholder": "Masukkan no. merchant saluran (kosongkan untuk dibuat otomatis)",
-    "channelMchNoTip": "Anda dapat mendaftarkan no. merchant yang dibuat di konsol gateway mock; kosongkan agar dibuat otomatis"
+    "channelMchNoPlaceholder": "Masukkan no. merchant saluran",
+    "channelMchNoRequired": "Masukkan no. merchant saluran",
+    "channelMchNoTip": "Buat merchant di konsol gateway mock terlebih dahulu, lalu daftarkan no. merchant-nya di sini"
   },
   "isv": {
     "selectLabel": "Penyedia Layanan",
