@@ -80,6 +80,8 @@ export interface ChannelMerchantResult extends BaseEntity {
   mchNo?: string;
   /** 商户名称 */
   mchName?: string;
+  /** 归属服务商号(服务商模式产品有值, 主表直读) */
+  isvNo?: string;
 }
 
 /**
@@ -108,12 +110,10 @@ export interface ChannelMerchantQueryParam {
   size?: number;
   /** 商户号 */
   mchNo?: string;
-  /** 通道商户号 */
-  channelMerchantNo?: string;
+  /** 通道商户号(后端查询参数已由 channelMerchantNo 改名, 对齐库列 channel_mch_no) */
+  channelMchNo?: string;
   /** 通道商户名称 */
   channelMerchantName?: string;
-  /** 所属通道 */
-  channel?: string;
   /** 是否沙箱环境 */
   sandbox?: boolean;
 }

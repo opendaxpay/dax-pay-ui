@@ -52,7 +52,10 @@
 
   /** 是否直连形态(mock_pay): 展示商户级「对接配置」卡(端点复用通道商户 channel:merchant 码) */
   const isDirectProduct = computed(() => channelMerchant.value.product === ProductEnum.MOCK_PAY);
+  // 对接配置状态查询(view 即可, 磁贴描述用)
   const canCredential = computed(() => hasPermission(PermCodes.Channel.Merchant.VIEW));
+  // 对接配置含密钥保存入口, 写操作按 manage 门控(仅 VIEW 用户不显示磁贴)
+  const canManageCredential = computed(() => hasPermission(PermCodes.Channel.Merchant.MANAGE));
 
   /** 对接配置磁贴描述(带配置状态) */
   const credentialDescription = computed(() => {
@@ -85,7 +88,7 @@
           icon: 'ant-design:edit-outlined',
           description: $t('payment.channel.mock.manage.cardEditNameDesc'),
         },
-        ...(canCredential.value && isDirectProduct.value
+        ...(canManageCredential.value && isDirectProduct.value
           ? [
               {
                 key: 'credential',

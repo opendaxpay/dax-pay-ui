@@ -17,8 +17,8 @@
     "optionLabel": "{name}（{no}）",
     "disabledSuffix": "（비활성）",
     "subMchNo": "하위 가맹점 번호",
-    "subMchNoPlaceholder": "하위 가맹점 번호 입력 (비우면 자동 생성)",
-    "subMchNoTooltip": "채널 가맹점 번호입니다. 모의 게이트웨이 콘솔의 서비스 제공자 하위 가맹점 번호를 등록할 수 있으며, 비우면 자동 생성됩니다",
+    "subMchNoPlaceholder": "하위 가맹점 번호 입력",
+    "subMchNoTooltip": "채널 가맹점 번호입니다. 모의 게이트웨이 콘솔에서 이미 생성된 서비스 제공자 하위 가맹점 번호를 등록합니다",
     "empty": "사용 가능한 서비스 제공자가 없습니다. 먼저 모의 서비스 제공자 관리에서 생성하고 활성화하세요",
     "manageTitle": "모의 서비스 제공자 관리",
     "manageDescription": "모의 결제(서비스 제공자 모드)의 제공자 기본 정보를 관리합니다. 생성·편집·활성/비활성 전환을 지원하며, 카드를 클릭하면 워크벤치에서 접속 설정을 관리할 수 있습니다",
@@ -129,5 +129,13 @@
   },
   "type": {
     "userId": "사용자 ID"
+  },
+  "direct": {
+    "workbenchTitle": "모의 결제 직접 연결 워크벤치",
+    "workbenchDesc": "모의 결제(직접 연결 모드) 제품 워크벤치: 전역 접속 키와 채널 가맹점 등록 입구를 관리하며, 제품 활성화/비활성화를 여기서 제어합니다",
+    "cardCredential": "전역 접속 키",
+    "cardCredentialDesc": "모의 채널의 채널 단위 게이트웨이 서명 키. 모든 모의 가맹점이 공유하며 가맹점 단위 미설정 시 대체용으로 사용됩니다",
+    "cardChannelMerchant": "채널 가맹점 목록으로 이동",
+    "cardChannelMerchantDesc": "전역 채널 가맹점 목록으로 이동하여 모의 채널에 등록된 가맹점을 조회하고 관리합니다"
   }
 }

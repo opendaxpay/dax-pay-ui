@@ -108,12 +108,10 @@ export interface ChannelMerchantQueryParam {
   current?: number;
   /** 每页大小 */
   size?: number;
-  /** 通道商户号 */
-  channelMerchantNo?: string;
+  /** 通道商户号(后端查询参数已由 channelMerchantNo 改名, 对齐库列 channel_mch_no) */
+  channelMchNo?: string;
   /** 通道商户名称 */
   channelMerchantName?: string;
-  /** 所属通道 */
-  channel?: string;
   /** 是否沙箱环境 */
   sandbox?: boolean;
 }

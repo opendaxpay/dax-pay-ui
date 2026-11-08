@@ -17,8 +17,8 @@
     "optionLabel": "{name}（{no}）",
     "disabledSuffix": "（Dinyahdayakan）",
     "subMchNo": "No. Sub-pedagang",
-    "subMchNoPlaceholder": "Masukkan no. sub-pedagang (biarkan kosong untuk dijana automatik)",
-    "subMchNoTooltip": "Iaitu no. pedagang saluran; daftar no. sub-pedagang penyedia dari konsol gerbang mock, atau biarkan kosong untuk dijana automatik",
+    "subMchNoPlaceholder": "Masukkan no. sub-pedagang",
+    "subMchNoTooltip": "Iaitu no. pedagang saluran; daftar no. sub-pedagang penyedia yang telah dibuat di konsol gerbang mock",
     "empty": "Tiada penyedia perkhidmatan tersedia; cipta dan dayakan di Pengurusan Penyedia Perkhidmatan Mock terlebih dahulu",
     "manageTitle": "Pengurusan Penyedia Perkhidmatan Mock",
     "manageDescription": "Penyelenggaraan data induk penyedia perkhidmatan mock (mod penyedia perkhidmatan): cipta, edit dan dayakan/nyahdayakan; klik kad untuk membuka ruang kerja dan mengurus konfigurasi akses",
@@ -129,5 +129,13 @@
   },
   "type": {
     "userId": "ID Pengguna"
+  },
+  "direct": {
+    "workbenchTitle": "Workbench Sambungan Terus Mock",
+    "workbenchDesc": "Workbench produk pembayaran mock (mod sambungan terus): urus kunci akses global dan titik masuk pedagang saluran; aktif/nonaktif produk dikawal di sini",
+    "cardCredential": "Kunci Akses Global",
+    "cardCredentialDesc": "Kunci tandatangan gerbang peringkat saluran bagi saluran mock, dikongsi oleh semua pedagang mock; menjadi sandaran apabila kunci peringkat pedagang belum dikonfigurasi",
+    "cardChannelMerchant": "Pergi ke Senarai Pedagang Saluran",
+    "cardChannelMerchantDesc": "Buka senarai pedagang saluran global untuk melihat dan mengurus pedagang yang didaftarkan di saluran mock"
   }
 }

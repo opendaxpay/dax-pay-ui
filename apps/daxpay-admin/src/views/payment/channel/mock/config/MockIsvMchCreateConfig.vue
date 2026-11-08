@@ -14,11 +14,14 @@
   import { productI18nMap, productNameMap } from '#/enums/payment';
   import { useMessage } from '#/hooks/useMessage';
 
+  import MockIsvInfoEditModal from './MockIsvInfoEditModal.vue';
+
   /**
    * 模拟通道服务商商户建档(mock_isv)
    *
-   * 纯本地登记: 归属服务商创建时选定并锁死, 子商户号可登记模拟通道控制台已创建的商户号,
-   * 留空则由后端按 MOCK 前缀自动生成; 服务商的新建/编辑在模拟服务商管理页维护, 本表单只做选择。
+   * 纯本地登记: 归属服务商创建时选定并锁死, 子商户号必填(登记模拟通道控制台已创建的商户号,
+   * 对齐 plus 口径不再自动生成); 服务商的新建/编辑在模拟服务商管理页维护,
+   * 本表单下拉项带行内编辑图标可直接修改所选服务商。
    */
   defineOptions({ name: 'MockIsvMchCreateConfig' });
 
@@ -42,6 +45,8 @@
   /** 服务商下拉选项(全量行含停用, 停用项置灰不可选) */
   const isvOptions = ref<MockIsvInfoOption[]>([]);
   const isvLoading = ref(false);
+  // 服务商编辑弹窗(下拉项行内编辑入口用)
+  const isvModalRef = ref<InstanceType<typeof MockIsvInfoEditModal>>();
 
   const visible = ref(false);
   const createSuccess = ref(false);
@@ -86,6 +91,19 @@
         },
       },
     ],
+    // 子商户号(必填, 登记模拟通道控制台已创建的服务商子商户号, 不再自动生成)
+    channelMchNo: [
+      { required: true, message: $t('payment.channel.mock.create.channelMchNoRequired') },
+      {
+        // 纯空白视为未填写(提交前 trim 校验)
+        validator: (_rule: any, value: string) => {
+          if (value && !value.trim()) {
+            return Promise.reject($t('payment.channel.mock.create.channelMchNoRequired'));
+          }
+          return Promise.resolve();
+        },
+      },
+    ],
     // 通道商户名称
     channelMerchantName: [{ required: true, message: $t('payment.channel.mock.create.channelMerchantNameRequired') }],
   }));
@@ -104,6 +122,19 @@
       .finally(() => {
         isvLoading.value = false;
       });
+  }
+
+  /** 下拉项编辑图标: 按主键取行数据打开编辑弹窗(停用项可编辑不可选用) */
+  function handleEditIsv(id: unknown) {
+    const record = isvOptions.value.find((item) => item.id === id);
+    if (record) {
+      isvModalRef.value?.show(record);
+    }
+  }
+
+  /** 服务商保存成功: 重载下拉并保持当前选中(v-model 值不受选项刷新影响) */
+  function handleIsvSaved() {
+    loadIsvOptions();
   }
 
   /** 初始化建档表单(由创建流程分发组件调用) */
@@ -131,8 +162,8 @@
         const param: MockIsvChannelMerchantCreateParam = {
           mchNo: mchNo.value,
           isvId: form.value.isvId!,
-          // 子商户号可留空: 留空由后端按 MOCK 前缀自动生成
-          channelMchNo: form.value.channelMchNo.trim() || undefined,
+          // 子商户号必填: 登记模拟通道控制台已创建的服务商子商户号
+          channelMchNo: form.value.channelMchNo.trim(),
           channelMerchantName: form.value.channelMerchantName.trim(),
         };
         MockChannelMerchantApi.createMockIsvMerchant(param)
@@ -186,7 +217,7 @@
               <span class="text-foreground">{{ productDisplayName }}</span>
             </div>
           </a-form-item>
-          <!-- 国际化：所属服务商(停用项置灰不可选) -->
+          <!-- 国际化：所属服务商(停用项置灰不可选; 下拉项带行内编辑入口) -->
           <a-form-item :label="$t('payment.channel.mock.isv.selectLabel')" name="isvId">
             <a-select
               v-model:value="form.isvId"
@@ -196,7 +227,18 @@
               :placeholder="$t('payment.channel.mock.isv.selectPlaceholder')"
               show-search
               option-filter-prop="label"
-            />
+            >
+              <template #optionRender="{ option }">
+                <div class="flex items-center justify-between gap-2">
+                  <span>{{ option.data.label }}</span>
+                  <IconifyIcon
+                    icon="ant-design:edit-outlined"
+                    class="shrink-0 cursor-pointer text-muted-foreground hover:text-primary"
+                    @click.stop="handleEditIsv(option.data.value)"
+                  />
+                </div>
+              </template>
+            </a-select>
           </a-form-item>
           <!-- 国际化：通道商户名称 -->
           <a-form-item :label="$t('payment.channel.mock.create.channelMerchantName')" name="channelMerchantName">
@@ -205,7 +247,7 @@
               :placeholder="$t('payment.merchant.channelMerchant.pleaseInputName')"
             />
           </a-form-item>
-          <!-- 国际化：子商户号(可留空, 留空由后端自动生成) -->
+          <!-- 国际化：子商户号(必填, 登记模拟通道控制台已创建的服务商子商户号) -->
           <a-form-item
             :label="$t('payment.channel.mock.isv.subMchNo')"
             name="channelMchNo"
@@ -244,5 +286,8 @@
         {{ $t('payment.merchant.channelMerchant.closePage') }}
       </a-button>
     </div>
+
+    <!-- 服务商编辑弹窗(下拉项行内编辑入口, 保存成功后重载下拉并保持当前选中) -->
+    <MockIsvInfoEditModal ref="isvModalRef" @ok="handleIsvSaved" />
   </div>
 </template>

@@ -11,7 +11,8 @@
   import { PayProductConfigApi, type PayProductConfigResult } from '#/api/payment/config/pay-product-config.api';
   import { PayEnvApi } from '#/api/payment/masterdata/pay-env.api';
   import ChannelLogo from '#/components/channel/ChannelLogo.vue';
-  import { productI18nMap, productNameMap } from '#/enums/payment';
+  import { MockDirectPaths, MockIsvPaths } from '#/constants/isv-provider-paths';
+  import { ProductEnum, productI18nMap, productNameMap } from '#/enums/payment';
   import { useMessage } from '#/hooks/useMessage';
 
   defineOptions({ name: 'ProductConfig' });
@@ -117,10 +118,21 @@
 
   /**
    * 打开产品详情页
+   * mock 双产品走独立路由(直连进模拟直连工作台, 服务商进模拟服务商管理页), 不经公共分发页
    */
   function openDetailPage(row: PayProductConfigResult, sandbox: boolean) {
     // 规划中产品未实连, 不提供配置入口
     if (isComing(row)) return;
+    if (row.product === ProductEnum.MOCK_PAY) {
+      // 模拟支付(直连): 直连工作台(全局接入密钥 + 通道商户入口)
+      router.push({ path: MockDirectPaths.WORKBENCH });
+      return;
+    }
+    if (row.product === ProductEnum.MOCK_ISV) {
+      // 模拟支付(服务商): 服务商管理页
+      router.push({ path: MockIsvPaths.MANAGE });
+      return;
+    }
     // 将来适配：跳转到对应通道的配置页面
     router.push({
       path: '/payment/product-detail',

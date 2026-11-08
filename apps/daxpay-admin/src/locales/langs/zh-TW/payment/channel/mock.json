@@ -17,8 +17,8 @@
     "optionLabel": "{name}（{no}）",
     "disabledSuffix": "（已停用）",
     "subMchNo": "子商戶號",
-    "subMchNoPlaceholder": "請輸入子商戶號（留空自動產生）",
-    "subMchNoTooltip": "即通道商戶號，可登記模擬通道主控台的服務商子商戶號，留空則由系統自動產生",
+    "subMchNoPlaceholder": "請輸入子商戶號",
+    "subMchNoTooltip": "即通道商戶號，登記模擬通道主控台已建立的服務商子商戶號",
     "empty": "暫無可用服務商，請先在模擬服務商管理中建立並啟用",
     "manageTitle": "模擬服務商管理",
     "manageDescription": "模擬支付（服務商模式）的服務商主資料維護：新增、編輯與啟停，點擊卡片進入工作台維護接入設定",
@@ -129,5 +129,13 @@
   },
   "type": {
     "userId": "使用者ID"
+  },
+  "direct": {
+    "workbenchTitle": "模擬支付直連工作台",
+    "workbenchDesc": "模擬支付（直連模式）產品工作台：維護全域接入金鑰與通道商戶登記入口，產品啟停在此控制",
+    "cardCredential": "全域接入金鑰",
+    "cardCredentialDesc": "模擬通道通道級網關簽名金鑰，全部模擬商戶共用，商戶級未配置時的回落兜底",
+    "cardChannelMerchant": "前往通道商戶列表",
+    "cardChannelMerchantDesc": "跳轉全局通道商戶列表，查看與管理模擬通道登記的通道商戶"
   }
 }

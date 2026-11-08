@@ -17,8 +17,8 @@
     "optionLabel": "{name}（{no}）",
     "disabledSuffix": "（Đã tắt）",
     "subMchNo": "Mã đơn vị nhận thanh toán phụ",
-    "subMchNoPlaceholder": "Nhập mã đơn vị nhận thanh toán phụ (để trống để tự động tạo)",
-    "subMchNoTooltip": "Tức là mã đơn vị nhận thanh toán kênh; có thể đăng ký mã đơn vị nhận thanh toán phụ của nhà cung cấp trong bảng điều khiển cổng mô phỏng, để trống để hệ thống tự động tạo",
+    "subMchNoPlaceholder": "Nhập mã đơn vị nhận thanh toán phụ",
+    "subMchNoTooltip": "Tức là mã đơn vị nhận thanh toán kênh; đăng ký mã đơn vị nhận thanh toán phụ của nhà cung cấp đã được tạo trong bảng điều khiển cổng mô phỏng",
     "empty": "Không có nhà cung cấp dịch vụ khả dụng; hãy tạo và bật trong Quản lý nhà cung cấp dịch vụ mô phỏng trước",
     "manageTitle": "Quản lý nhà cung cấp dịch vụ mô phỏng",
     "manageDescription": "Quản lý dữ liệu chính nhà cung cấp dịch vụ mô phỏng (chế độ nhà cung cấp dịch vụ): tạo, chỉnh sửa và bật/tắt; nhấp vào thẻ để mở workbench và cấu hình truy cập",
@@ -129,5 +129,13 @@
   },
   "type": {
     "userId": "ID người dùng"
+  },
+  "direct": {
+    "workbenchTitle": "Workbench kết nối trực tiếp mô phỏng",
+    "workbenchDesc": "Workbench sản phẩm thanh toán mô phỏng (chế độ kết nối trực tiếp): quản lý khóa truy cập toàn cục và lối vào đơn vị nhận thanh toán kênh; bật/tắt sản phẩm được điều khiển tại đây",
+    "cardCredential": "Khóa truy cập toàn cục",
+    "cardCredentialDesc": "Khóa ký cổng giao dịch cấp kênh của kênh mô phỏng, dùng chung cho tất cả đơn vị mô phỏng; là phương án dự phòng khi khóa cấp đơn vị chưa được cấu hình",
+    "cardChannelMerchant": "Đến danh sách đơn vị nhận thanh toán kênh",
+    "cardChannelMerchantDesc": "Mở danh sách đơn vị nhận thanh toán kênh toàn cục để xem và quản lý các đơn vị đã đăng ký trên kênh mô phỏng"
   }
 }

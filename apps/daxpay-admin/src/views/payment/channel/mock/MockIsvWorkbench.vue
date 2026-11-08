@@ -14,7 +14,9 @@
   import { MockIsvInfoApi } from '#/api/payment/channel/mock/isv-info.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { MockIsvPaths } from '#/constants/isv-provider-paths';
+  import { PermCodes } from '#/constants/perm-codes';
   import { useMessage } from '#/hooks/useMessage';
+  import { usePermission } from '#/hooks/usePermission';
   import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
 
   import MockIsvCredentialConfig from './config/MockIsvCredentialConfig.vue';
@@ -30,7 +32,11 @@
 
   const router = useRouter();
   const { confirm, message } = useMessage();
+  const { hasPermission } = usePermission();
   const { setTabObjectTitle } = useDynamicTabTitle($t('payment.channel.mock.isv.workbenchTitle'));
+
+  // 启停/删除/接入配置保存为写操作, 仅 manage 权限可见入口(仅 VIEW 用户不显示对应磁贴)
+  const canManage = computed(() => hasPermission(PermCodes.Channel.Merchant.MANAGE));
 
   const routeContext = useRequiredRouteQuery({
     keys: ['id'],
@@ -58,7 +64,7 @@
     isvName: [{ required: true, message: $t('payment.channel.mock.isv.isvNameRequired') }],
   };
 
-  /** 功能磁贴分组(基础配置 + 管理操作; 无费率/应用组) */
+  /** 功能磁贴分组(基础配置 + 管理操作; 无费率/应用组; 写操作磁贴按 manage 权限门控) */
   const tileGroups = computed(() => [
     {
       // 国际化: 基础配置
@@ -72,49 +78,59 @@
           icon: 'ant-design:info-circle-outlined',
           description: $t('payment.channel.mock.isv.cardBasicInfoDesc'),
         },
-        {
-          key: 'access',
-          // 国际化: 接入配置
-          title: $t('payment.channel.mock.isv.cardAccess'),
-          icon: 'ant-design:api-outlined',
-          description: $t('payment.channel.mock.isv.cardAccessDesc'),
-        },
+        // 接入配置含密钥保存入口, 写操作按 manage 门控(仅 VIEW 用户不显示)
+        ...(canManage.value
+          ? [
+              {
+                key: 'access',
+                // 国际化: 接入配置
+                title: $t('payment.channel.mock.isv.cardAccess'),
+                icon: 'ant-design:api-outlined',
+                description: $t('payment.channel.mock.isv.cardAccessDesc'),
+              },
+            ]
+          : []),
       ],
     },
-    {
-      // 国际化: 管理操作
-      group: $t('payment.channel.mock.isv.groupManage'),
-      color: 'red',
-      cards: [
-        {
-          key: 'toggle',
-          title: profile.value.enable
-            ? $t('payment.channel.mock.isv.cardToggleEnable')
-            : $t('payment.channel.mock.isv.cardToggleDisable'),
-          icon: 'ant-design:team-outlined',
-          description: profile.value.enable
-            ? $t('payment.channel.mock.isv.cardToggleEnableDesc')
-            : $t('payment.channel.mock.isv.cardToggleDisableDesc'),
-        },
-        {
-          key: 'pay-toggle',
-          title: profile.value.payEnable
-            ? $t('payment.channel.mock.isv.cardTogglePayEnable')
-            : $t('payment.channel.mock.isv.cardTogglePayDisable'),
-          icon: 'ant-design:pay-circle-outlined',
-          description: profile.value.payEnable
-            ? $t('payment.channel.mock.isv.cardTogglePayEnableDesc')
-            : $t('payment.channel.mock.isv.cardTogglePayDisableDesc'),
-        },
-        {
-          key: 'delete',
-          // 国际化: 删除服务商
-          title: $t('payment.channel.mock.isv.cardDelete'),
-          icon: 'ant-design:delete-outlined',
-          description: $t('payment.channel.mock.isv.cardDeleteDesc'),
-        },
-      ],
-    },
+    // 管理操作组(启停绑定/启停支付/删除全为写操作, 仅 manage 权限整组显示)
+    ...(canManage.value
+      ? [
+          {
+            // 国际化: 管理操作
+            group: $t('payment.channel.mock.isv.groupManage'),
+            color: 'red',
+            cards: [
+              {
+                key: 'toggle',
+                title: profile.value.enable
+                  ? $t('payment.channel.mock.isv.cardToggleEnable')
+                  : $t('payment.channel.mock.isv.cardToggleDisable'),
+                icon: 'ant-design:team-outlined',
+                description: profile.value.enable
+                  ? $t('payment.channel.mock.isv.cardToggleEnableDesc')
+                  : $t('payment.channel.mock.isv.cardToggleDisableDesc'),
+              },
+              {
+                key: 'pay-toggle',
+                title: profile.value.payEnable
+                  ? $t('payment.channel.mock.isv.cardTogglePayEnable')
+                  : $t('payment.channel.mock.isv.cardTogglePayDisable'),
+                icon: 'ant-design:pay-circle-outlined',
+                description: profile.value.payEnable
+                  ? $t('payment.channel.mock.isv.cardTogglePayEnableDesc')
+                  : $t('payment.channel.mock.isv.cardTogglePayDisableDesc'),
+              },
+              {
+                key: 'delete',
+                // 国际化: 删除服务商
+                title: $t('payment.channel.mock.isv.cardDelete'),
+                icon: 'ant-design:delete-outlined',
+                description: $t('payment.channel.mock.isv.cardDeleteDesc'),
+              },
+            ],
+          },
+        ]
+      : []),
   ]);
 
   /**

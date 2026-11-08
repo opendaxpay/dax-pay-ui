@@ -51,7 +51,8 @@
   const queryFields = computed<QueryField[]>(() => [
     {
       type: 'string',
-      field: 'channelMerchantNo',
+      // 查询参数对齐后端 channelMchNo(库列 channel_mch_no)
+      field: 'channelMchNo',
       name: $t('payment.merchant.channelMerchant.channelMerchantNo'),
       placeholder: $t('payment.merchant.channelMerchant.channelMerchantNo'),
     },

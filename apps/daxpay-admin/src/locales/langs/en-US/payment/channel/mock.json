@@ -17,8 +17,8 @@
     "optionLabel": "{name} ({no})",
     "disabledSuffix": " (Disabled)",
     "subMchNo": "Sub-merchant No.",
-    "subMchNoPlaceholder": "Enter sub-merchant no. (leave blank to auto-generate)",
-    "subMchNoTooltip": "Channel merchant no.; register the ISV sub-merchant no. from the mock gateway console, or leave blank to auto-generate",
+    "subMchNoPlaceholder": "Enter the sub-merchant no.",
+    "subMchNoTooltip": "Channel merchant no.; register the ISV sub-merchant no. already created in the mock gateway console",
     "empty": "No service provider available; create and enable one in Mock Service Provider first",
     "manageTitle": "Mock Service Provider",
     "manageDescription": "Maintain mock payment (ISV mode) service providers: create, edit and toggle; click a card to open the workbench for access configuration",
@@ -129,5 +129,13 @@
   },
   "type": {
     "userId": "User ID"
+  },
+  "direct": {
+    "workbenchTitle": "Mock Direct-Connect Workbench",
+    "workbenchDesc": "Workbench for the mock payment (direct-connect mode) product: manage the global access key and the channel merchant entry; product enable/disable is controlled here",
+    "cardCredential": "Global Access Key",
+    "cardCredentialDesc": "Channel-level gateway signing keys of the mock channel, shared by all mock merchants; fallback when merchant-level keys are unconfigured",
+    "cardChannelMerchant": "Go to Channel Merchant List",
+    "cardChannelMerchantDesc": "Open the global channel merchant list to view and manage merchants registered on the mock channel"
   }
 }

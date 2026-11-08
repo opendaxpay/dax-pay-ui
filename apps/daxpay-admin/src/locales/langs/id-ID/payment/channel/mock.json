@@ -17,8 +17,8 @@
     "optionLabel": "{name}（{no}）",
     "disabledSuffix": "（Nonaktif）",
     "subMchNo": "No. Sub-merchant",
-    "subMchNoPlaceholder": "Masukkan no. sub-merchant (kosongkan untuk dibuat otomatis)",
-    "subMchNoTooltip": "Yaitu no. merchant saluran; daftarkan no. sub-merchant penyedia dari konsol gateway mock, atau kosongkan agar dibuat otomatis",
+    "subMchNoPlaceholder": "Masukkan no. sub-merchant",
+    "subMchNoTooltip": "Yaitu no. merchant saluran; daftarkan no. sub-merchant penyedia yang sudah dibuat di konsol gateway mock",
     "empty": "Tidak ada penyedia layanan yang tersedia; buat dan aktifkan terlebih dahulu di Manajemen Penyedia Layanan Mock",
     "manageTitle": "Manajemen Penyedia Layanan Mock",
     "manageDescription": "Pemeliharaan data induk penyedia layanan mock (mode penyedia layanan): buat, edit, dan aktif/nonaktif; klik kartu untuk membuka workbench dan mengelola konfigurasi akses",
@@ -129,5 +129,13 @@
   },
   "type": {
     "userId": "ID Pengguna"
+  },
+  "direct": {
+    "workbenchTitle": "Workbench Koneksi Langsung Mock",
+    "workbenchDesc": "Workbench produk pembayaran mock (mode koneksi langsung): kelola kunci akses global dan titik masuk merchant saluran; aktif/nonaktif produk dikendalikan di sini",
+    "cardCredential": "Kunci Akses Global",
+    "cardCredentialDesc": "Kunci tanda tangan gateway level saluran milik saluran mock, digunakan bersama oleh seluruh merchant mock; menjadi cadangan bila kunci level merchant belum dikonfigurasi",
+    "cardChannelMerchant": "Buka Daftar Merchant Saluran",
+    "cardChannelMerchantDesc": "Buka daftar merchant saluran global untuk melihat dan mengelola merchant yang terdaftar di saluran mock"
   }
 }
