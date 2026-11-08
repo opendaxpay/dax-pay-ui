@@ -5,7 +5,7 @@
     "groupBasic": "基礎管理",
     "groupPayment": "支付配置",
     "cardMchInfo": "商戶資料",
-    "cardMchInfoDesc": "商戶號、名稱、狀態等基本資訊",
+    "cardMchInfoDesc": "商戶編號、名稱、狀態等基本資訊",
     "cardChannelMerchant": "通道商戶",
     "cardChannelMerchantDesc": "商戶在各支付通道的商戶號配置與管理",
     "cardApp": "應用管理",

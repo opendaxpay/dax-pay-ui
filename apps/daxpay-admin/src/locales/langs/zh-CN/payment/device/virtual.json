@@ -3,7 +3,7 @@
     "deviceNo": "设备号",
     "name": "设备名称",
     "batchNo": "批次号",
-    "mchNo": "商户号",
+    "mchNo": "商户编号",
     "enable": "状态",
     "appName": "应用",
     "storeName": "门店",

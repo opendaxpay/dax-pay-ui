@@ -4,7 +4,7 @@
     "name": "碼牌名稱",
     "batchNo": "批次號",
     "count": "創建數量",
-    "mchNo": "商户號",
+    "mchNo": "商户編號",
     "mchName": "商户名稱",
     "merchant": "商户",
     "appId": "應用",

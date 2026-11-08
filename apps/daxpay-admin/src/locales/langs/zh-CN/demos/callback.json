@@ -21,7 +21,7 @@
     "columns": {
       "bizType": "业务类型",
       "event": "事件码",
-      "mchNo": "商户号",
+      "mchNo": "商户编号",
       "appId": "应用ID",
       "bizNo": "业务号",
       "amount": "金额(分)",

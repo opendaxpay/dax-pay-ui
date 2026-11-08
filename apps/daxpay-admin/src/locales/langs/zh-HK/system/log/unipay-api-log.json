@@ -1,5 +1,5 @@
 {
-  "mchNo": "商户号",
+  "mchNo": "商户编号",
   "mchName": "商戶",
   "reqId": "請求ID",
   "apiPath": "接口路径",
@@ -16,7 +16,7 @@
   "reqParam": "请求参数",
   "resBody": "响应内容",
   "operateTime": "调用时间",
-  "inputMchNo": "请输入商户号",
+  "inputMchNo": "请输入商户编号",
   "inputReqId": "請輸入請求ID",
   "inputApiPath": "请输入接口路径",
   "inputTraceId": "请输入追踪ID",

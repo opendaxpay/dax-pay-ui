@@ -12,7 +12,7 @@
   "confirmDelete": "确定删除该验证文件吗？",
   "field": {
     "fileName": "文件名",
-    "mchNo": "商户号",
+    "mchNo": "商户编号",
     "belong": "归属",
     "verifyCode": "验证内容",
     "remark": "备注",

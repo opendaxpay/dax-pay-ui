@@ -38,7 +38,7 @@
       "phase": "阶段",
       "hitType": "命中类型",
       "hitValue": "命中值",
-      "mchNo": "商户号",
+      "mchNo": "商户编号",
       "tradeNo": "交易号",
       "createTime": "创建时间",
       "merchant": "商户",

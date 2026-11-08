@@ -1,5 +1,5 @@
 {
-  "mchNo": "商戶號",
+  "mchNo": "商戶編號",
   "mchName": "商戶",
   "reqId": "請求ID",
   "apiPath": "介面路徑",
@@ -16,7 +16,7 @@
   "reqParam": "請求參數",
   "resBody": "回應內容",
   "operateTime": "呼叫時間",
-  "inputMchNo": "請輸入商戶號",
+  "inputMchNo": "請輸入商戶編號",
   "inputReqId": "請輸入請求ID",
   "inputApiPath": "請輸入介面路徑",
   "inputTraceId": "請輸入追蹤ID",

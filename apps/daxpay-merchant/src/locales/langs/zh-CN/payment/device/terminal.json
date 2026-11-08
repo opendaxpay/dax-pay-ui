@@ -17,7 +17,7 @@
     "errorMsg": "错误信息",
     "boundMerchantTerminal": "绑定商户终端",
     "extra": "报备参数",
-    "mchNo": "商户号",
+    "mchNo": "商户编号",
     "relatedChannel": "关联通道"
   },
   "enableYes": "启用",

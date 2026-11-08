@@ -104,7 +104,7 @@
     "terminalNo": "终端编码",
     "containerStatus": "容器业务状态",
     "source": "订单来源",
-    "mchNo": "商户号",
+    "mchNo": "商户编号",
     "appId": "商户应用",
     "createTime": "创建时间",
     "refundNo": "退款号",

@@ -1,6 +1,6 @@
 {
   "field": {
-    "mchNo": "商戶號",
+    "mchNo": "商戶編號",
     "mchName": "商戶名稱",
     "mchShortName": "商戶簡稱",
     "status": "狀態",

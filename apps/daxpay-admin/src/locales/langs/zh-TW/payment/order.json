@@ -74,7 +74,7 @@
     "terminalNo": "終端編碼",
     "containerStatus": "容器業務狀態",
     "source": "訂單來源",
-    "mchNo": "商戶號",
+    "mchNo": "商戶編號",
     "appId": "商戶應用",
     "createTime": "建立時間",
     "refundNo": "退款號",
