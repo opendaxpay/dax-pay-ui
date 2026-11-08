@@ -262,7 +262,7 @@
       v-model:open="taskDrawerVisible"
       :title="$t('payment.notice.mchNotice.taskDetail')"
       default-size="1080"
-      destroy-on-close
+      destroy-on-hidden
     >
       <a-spin :spinning="taskDetailLoading">
         <a-descriptions :column="2" bordered size="small">
@@ -314,7 +314,7 @@
       v-model:open="recordDrawerVisible"
       :title="$t('payment.notice.mchNotice.records')"
       default-size="1080"
-      destroy-on-close
+      destroy-on-hidden
     >
       <div class="mb-4 space-y-2 text-sm">
         <div>{{ $t('payment.notice.mchNotice.bizNo') }}: {{ recordTask.bizNo }}</div>
@@ -357,7 +357,7 @@
       v-model:open="recordModalVisible"
       :title="$t('payment.notice.mchNotice.recordDetail')"
       width="720"
-      destroy-on-close
+      destroy-on-hidden
       :footer="null"
     >
       <a-descriptions :column="2" bordered size="small">

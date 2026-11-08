@@ -286,7 +286,7 @@
       v-model:open="drawerVisible"
       :title="$t('payment.record.callbackRecord.detail')"
       default-size="720"
-      destroy-on-close
+      destroy-on-hidden
     >
       <div class="mb-4 space-y-2 text-sm">
         <div>{{ $t('payment.record.callbackRecord.tradeNo') }}: {{ detail.tradeNo || '-' }}</div>

@@ -326,7 +326,7 @@ import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
       v-model:open="drawerVisible"
       :title="$t('payment.order.abnormalOrder.detail')"
       default-size="720"
-      destroy-on-close
+      destroy-on-hidden
     >
       <div class="mb-4 space-y-2 text-sm">
         <div>{{ $t('payment.order.field.tradeNo') }}: {{ detail.tradeNo || '-' }}</div>

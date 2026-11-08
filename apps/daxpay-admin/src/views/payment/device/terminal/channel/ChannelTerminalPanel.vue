@@ -307,7 +307,6 @@
     :title="drawerTitle"
     :default-size="960"
     :destroy-on-hidden="true"
-    :body-style="{ paddingBottom: '24px' }"
   >
     <vxe-toolbar ref="xToolbar" custom refresh :refresh-options="{ queryMethod: queryPage }">
       <template #buttons>

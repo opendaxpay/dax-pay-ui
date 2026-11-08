@@ -326,7 +326,7 @@
     v-model:open="open"
     :title="`${$t('system.notify.mailTemplate.drawerTitle')} - ${sceneLabel}`"
     :default-size="1180"
-    :destroy-on-close="true"
+    :destroy-on-hidden="true"
   >
     <!-- 根元素内部第一层: 说明注释写在这里(模板根级禁止 HTML 注释) -->
     <div ref="drawerBodyRef" class="drawer-body" :class="{ 'drawer-body--resizing': resizing }">
