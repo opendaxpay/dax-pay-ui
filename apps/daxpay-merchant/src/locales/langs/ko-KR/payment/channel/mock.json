@@ -1,0 +1,12 @@
+{
+  "manage": {
+    "groupBasic": "기본 관리",
+    "cardBasicInfo": "기본 정보",
+    "cardBasicInfoDesc": "채널 가맹점 기본 등록 정보 조회",
+    "cardEditName": "채널 가맹점명 수정",
+    "cardEditNameDesc": "채널 가맹점의 표시명을 수정합니다",
+    "groupTrade": "거래 설정",
+    "cardTerminal": "단말 관리",
+    "cardTerminalDesc": "이 채널 가맹점의 채널 측 단말을 등록하고 바인딩·해제합니다"
+  }
+}

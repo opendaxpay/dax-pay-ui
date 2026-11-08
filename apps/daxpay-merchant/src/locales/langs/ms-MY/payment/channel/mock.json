@@ -1,0 +1,12 @@
+{
+  "manage": {
+    "groupBasic": "Pengurusan Asas",
+    "cardBasicInfo": "Maklumat Asas",
+    "cardBasicInfoDesc": "Lihat maklumat pendaftaran asas pedagang saluran",
+    "cardEditName": "Ubah Nama Pedagang",
+    "cardEditNameDesc": "Ubah nama paparan pedagang saluran",
+    "groupTrade": "Konfigurasi Transaksi",
+    "cardTerminal": "Pengurusan Terminal",
+    "cardTerminalDesc": "Daftar terminal sebelah saluran di bawah pedagang saluran ini, ikat dan batalkan"
+  }
+}

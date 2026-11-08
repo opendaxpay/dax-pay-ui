@@ -1,0 +1,12 @@
+{
+  "manage": {
+    "groupBasic": "Manajemen Dasar",
+    "cardBasicInfo": "Informasi Dasar",
+    "cardBasicInfoDesc": "Lihat informasi pendaftaran dasar merchant saluran",
+    "cardEditName": "Ubah Nama Merchant",
+    "cardEditNameDesc": "Ubah nama tampilan merchant saluran",
+    "groupTrade": "Konfigurasi Transaksi",
+    "cardTerminal": "Manajemen Terminal",
+    "cardTerminalDesc": "Daftarkan terminal sisi saluran untuk merchant saluran ini, tautkan dan batalkan"
+  }
+}

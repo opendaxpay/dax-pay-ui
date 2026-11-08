@@ -8,6 +8,8 @@
   "manageTitleWechat": "WeChat ISV Merchant Management",
   "manageTitleWechatDirect": "WeChat Direct Merchant Management",
   "manageTitleDefault": "Channel Merchant Management",
+  "manageTitleMock": "Mock Payment Merchant Management",
+  "manageTitleMockIsv": "Mock Payment ISV Merchant Management",
   "groupBasic": "Basic Management",
   "groupTrade": "Transaction Config",
   "groupApp": "App Management",

@@ -8,6 +8,8 @@
   "manageTitleWechat": "微信服務商商户管理",
   "manageTitleWechatDirect": "微信直連商户管理",
   "manageTitleDefault": "通道商户管理",
+  "manageTitleMock": "模擬支付商戶管理",
+  "manageTitleMockIsv": "模擬支付服務商商戶管理",
   "groupBasic": "基礎管理",
   "groupTrade": "交易設定",
   "groupApp": "應用管理",

@@ -8,6 +8,8 @@
   "manageTitleWechat": "WeChat ISV 販売者管理",
   "manageTitleWechatDirect": "WeChat 直接販売者管理",
   "manageTitleDefault": "チャネル加盟店管理",
+  "manageTitleMock": "モック決済加盟店管理",
+  "manageTitleMockIsv": "モック決済サービスプロバイダー加盟店管理",
   "groupBasic": "基本的な管理",
   "groupTrade": "取引設定",
   "groupApp": "アプリ管理",

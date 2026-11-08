@@ -1,0 +1,12 @@
+{
+  "manage": {
+    "groupBasic": "Basic",
+    "cardBasicInfo": "Basic Info",
+    "cardBasicInfoDesc": "View channel merchant basic registration info",
+    "cardEditName": "Edit Merchant Name",
+    "cardEditNameDesc": "Change the display name of the channel merchant",
+    "groupTrade": "Trade Configuration",
+    "cardTerminal": "Terminal Management",
+    "cardTerminalDesc": "Register channel-side terminals for this channel merchant, bind and deregister"
+  }
+}

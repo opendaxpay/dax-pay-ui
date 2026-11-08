@@ -8,6 +8,8 @@
   "manageTitleWechat": "การจัดการผู้ค้า WeChat ISV",
   "manageTitleWechatDirect": "การจัดการร้านค้าโดยตรงของ WeChat",
   "manageTitleDefault": "การจัดการผู้ค้าช่องทาง",
+  "manageTitleMock": "การจัดการร้านค้าจำลอง",
+  "manageTitleMockIsv": "การจัดการร้านค้า ISV จำลอง",
   "groupBasic": "การจัดการขั้นพื้นฐาน",
   "groupTrade": "การตั้งค่าธุรกรรม",
   "groupApp": "การจัดการแอป",

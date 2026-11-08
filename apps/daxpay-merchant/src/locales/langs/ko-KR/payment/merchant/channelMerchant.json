@@ -8,6 +8,8 @@
   "manageTitleWechat": "WeChat ISV 판매자 관리",
   "manageTitleWechatDirect": "위챗 직거래 가맹점 관리",
   "manageTitleDefault": "채널 판매자 관리",
+  "manageTitleMock": "모의 결제 가맹점 관리",
+  "manageTitleMockIsv": "모의 결제 서비스 제공자 가맹점 관리",
   "groupBasic": "기본관리",
   "groupTrade": "거래 설정",
   "groupApp": "앱 관리",

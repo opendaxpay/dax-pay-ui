@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { computed, nextTick, onMounted, ref, watch } from 'vue';
+  import { type Component, computed, defineAsyncComponent, nextTick, onMounted, ref, shallowRef, watch } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
@@ -17,15 +17,59 @@
   import { ProductEnum } from '#/enums/payment';
   import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
   import { useSandboxEnabled } from '#/hooks/useSandboxEnabled';
-  import AlipayChannelMerchantManage from '#/views/payment/channel/alipay/manage/mch/AlipayChannelMerchantManage.vue';
-  import AlipayMchManage from '#/views/payment/channel/alipay/manage/mch/AlipayMchManage.vue';
-  import DouyinDirectMchManage from '#/views/payment/channel/douyin/manage/DouyinDirectMchManage.vue';
-  import LeshuaChannelMerchantManage from '#/views/payment/channel/leshua/manage/mch/LeshuaChannelMerchantManage.vue';
-  import WechatChannelMerchantManage from '#/views/payment/channel/wechat/manage/mch/WechatChannelMerchantManage.vue';
-  import WechatDirectMchManage from '#/views/payment/channel/wechat/manage/mch/WechatDirectMchManage.vue';
   import TerminalManageCard from '#/views/payment/device/terminal/channel/TerminalManageCard.vue';
 
   defineOptions({ name: 'ChannelMerchantDetailDispatch' });
+
+  /** 模拟通道直连/服务商共用同一工作台组件（mock_pay / mock_isv） */
+  const MockMchManage = defineAsyncComponent(() => import('#/views/payment/channel/mock/manage/MockMchManage.vue'));
+
+  /**
+   * 支付产品 → 通道商户管理组件映射表（懒加载，按需分包）
+   * 单一事实源: 新增/删除通道仅需在此增删一行; 未匹配的产品渲染不支持兜底
+   */
+  const channelMchManageMap: Record<string, Component> = {
+    [ProductEnum.ALIPAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/alipay/manage/mch/AlipayMchManage.vue'),
+    ),
+    [ProductEnum.ALIPAY_ISV]: defineAsyncComponent(
+      () => import('#/views/payment/channel/alipay/manage/mch/AlipayChannelMerchantManage.vue'),
+    ),
+    [ProductEnum.WECHAT_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/wechat/manage/mch/WechatDirectMchManage.vue'),
+    ),
+    [ProductEnum.WECHAT_ISV]: defineAsyncComponent(
+      () => import('#/views/payment/channel/wechat/manage/mch/WechatChannelMerchantManage.vue'),
+    ),
+    [ProductEnum.DOUYIN_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/douyin/manage/DouyinDirectMchManage.vue'),
+    ),
+    [ProductEnum.LESHUA_PAY]: defineAsyncComponent(
+      () => import('#/views/payment/channel/leshua/manage/mch/LeshuaChannelMerchantManage.vue'),
+    ),
+    // 模拟通道: 直连/服务商共用同一工作台
+    [ProductEnum.MOCK_PAY]: MockMchManage,
+    [ProductEnum.MOCK_ISV]: MockMchManage,
+  };
+
+  /**
+   * 支付产品 → 管理页头标题 i18n key 映射表（缺省回退 manageTitleDefault）
+   * 单一事实源: 改标题文案仅需在此调整
+   */
+  const pageTitleI18nKeyMap: Record<string, string> = {
+    [ProductEnum.ALIPAY]: 'payment.merchant.channelMerchant.manageTitleAlipayDirect',
+    [ProductEnum.ALIPAY_ISV]: 'payment.merchant.channelMerchant.manageTitleAlipay',
+    [ProductEnum.WECHAT_ISV]: 'payment.merchant.channelMerchant.manageTitleWechat',
+    [ProductEnum.WECHAT_PAY]: 'payment.merchant.channelMerchant.manageTitleWechatDirect',
+    [ProductEnum.DOUYIN_PAY]: 'payment.channel.douyinManage.manageTitle',
+    [ProductEnum.LESHUA_PAY]: 'payment.merchant.channelMerchant.manageTitleLeshua',
+    // 模拟通道: 直连/服务商分别用各自的页头标题
+    [ProductEnum.MOCK_PAY]: 'payment.merchant.channelMerchant.manageTitleMock',
+    [ProductEnum.MOCK_ISV]: 'payment.merchant.channelMerchant.manageTitleMockIsv',
+  };
+
+  /** 标题回退 key */
+  const DEFAULT_TITLE_KEY = 'payment.merchant.channelMerchant.manageTitleDefault';
 
   const route = useRoute();
   const router = useRouter();
@@ -47,51 +91,26 @@
   // 页签标题动态化为「{通道商户名} · 通道商户管理」(页头标题随产品变化, 页签用通用功能名)
   const { setTabObjectTitle } = useDynamicTabTitle($t('payment.merchant.channelMerchant.manageTitleDefault'));
 
-  const alipayMchManageRef = ref<InstanceType<typeof AlipayMchManage>>();
-  const alipayChannelMerchantManageRef = ref<InstanceType<typeof AlipayChannelMerchantManage>>();
-  const wechatDirectManageRef = ref<InstanceType<typeof WechatDirectMchManage>>();
-  const wechatManageRef = ref<InstanceType<typeof WechatChannelMerchantManage>>();
-  const douyinDirectManageRef = ref<InstanceType<typeof DouyinDirectMchManage>>();
-  const leshuaManageRef = ref<InstanceType<typeof LeshuaChannelMerchantManage>>();
-
   const resolvedProduct = computed(() => product.value || channelMerchant.value.product || '');
 
-  /** 按产品解析页头标题（对齐运营端，返回通道管理标题） */
-  function resolvePageTitle(productCode: string) {
-    if (productCode === ProductEnum.ALIPAY) {
-      return $t('payment.merchant.channelMerchant.manageTitleAlipayDirect');
-    }
-    if (productCode === ProductEnum.ALIPAY_ISV) {
-      return $t('payment.merchant.channelMerchant.manageTitleAlipay');
-    }
-    if (productCode === ProductEnum.WECHAT_ISV) {
-      return $t('payment.merchant.channelMerchant.manageTitleWechat');
-    }
-    if (productCode === ProductEnum.WECHAT_PAY) {
-      return $t('payment.merchant.channelMerchant.manageTitleWechatDirect');
-    }
-    if (productCode === ProductEnum.DOUYIN_PAY) {
-      return $t('payment.channel.douyinManage.manageTitle');
-    }
-    if (productCode === ProductEnum.LESHUA_PAY) {
-      return $t('payment.merchant.channelMerchant.manageTitleLeshua');
-    }
-    return $t('payment.merchant.channelMerchant.manageTitleDefault');
-  }
+  /** 当前激活的管理组件（由 resolvedProduct 查表得到; 未匹配时为 undefined → 渲染 a-empty 兜底） */
+  const activeComponent = shallowRef<Component>();
+  const activeRef = ref<{
+    init: (channelMchNo: string, channelMerchant: ChannelMerchantResult) => void;
+  }>();
+  /** 待执行的 init 参数（异步组件加载完成后消费, 保证 init 不在组件挂载前空跑） */
+  const pendingInit = ref<null | {
+    channelMchNo: string;
+    channelMerchant: ChannelMerchantResult;
+  }>(null);
 
-  const pageTitle = computed(() => resolvePageTitle(resolvedProduct.value));
+  /** 按当前产品解析页头标题 */
+  const pageTitle = computed(() => $t(pageTitleI18nKeyMap[resolvedProduct.value] ?? DEFAULT_TITLE_KEY));
 
-  /** 是否为已支持的支付产品 */
-  function isSupported(p: string) {
-    return (
-      p === ProductEnum.ALIPAY ||
-      p === ProductEnum.ALIPAY_ISV ||
-      p === ProductEnum.WECHAT_ISV ||
-      p === ProductEnum.WECHAT_PAY ||
-      p === ProductEnum.DOUYIN_PAY ||
-      p === ProductEnum.LESHUA_PAY
-    );
-  }
+  /** 模拟通道产品: 终端台账由工作台内的「交易配置」磁贴承载, 不再渲染页面底部的通用卡片, 避免双入口 */
+  const isMockProduct = computed(
+    () => resolvedProduct.value === ProductEnum.MOCK_PAY || resolvedProduct.value === ProductEnum.MOCK_ISV,
+  );
 
   /** 加载通道商户公共信息 */
   function loadChannelMerchant() {
@@ -120,29 +139,39 @@
     router.push({ path: '/mch/channel-merchant' });
   }
 
+  /** 触发当前激活组件的 init */
+  function runPendingInit() {
+    const inst = activeRef.value;
+    const params = pendingInit.value;
+    if (!inst || !params) {
+      return;
+    }
+    pendingInit.value = null;
+    inst.init(params.channelMchNo, params.channelMerchant);
+  }
+
   /** 按当前产品初始化子页面 */
   function initChannelPanel() {
     const channelMchNo = channelMerchant.value.channelMchNo;
     if (!channelMchNo) {
       return;
     }
-    if (product.value === ProductEnum.ALIPAY) {
-      alipayMchManageRef.value?.init(channelMchNo, channelMerchant.value);
+    const comp = channelMchManageMap[resolvedProduct.value];
+    if (!comp) {
+      // 不支持的产品 → 清空激活组件, 模板走 a-empty 兜底
+      activeComponent.value = undefined;
+      return;
     }
-    if (product.value === ProductEnum.ALIPAY_ISV) {
-      alipayChannelMerchantManageRef.value?.init(channelMchNo, channelMerchant.value);
-    }
-    if (product.value === ProductEnum.WECHAT_PAY) {
-      wechatDirectManageRef.value?.init(channelMchNo, channelMerchant.value);
-    }
-    if (product.value === ProductEnum.WECHAT_ISV) {
-      wechatManageRef.value?.init(channelMchNo, channelMerchant.value);
-    }
-    if (product.value === ProductEnum.DOUYIN_PAY) {
-      douyinDirectManageRef.value?.init(channelMchNo, channelMerchant.value);
-    }
-    if (product.value === ProductEnum.LESHUA_PAY) {
-      leshuaManageRef.value?.init(channelMchNo, channelMerchant.value);
+    pendingInit.value = {
+      channelMchNo,
+      channelMerchant: channelMerchant.value,
+    };
+    if (activeComponent.value === comp) {
+      // 同组件已挂载(如保存成功后刷新) → 下一帧直接 init
+      nextTick(runPendingInit);
+    } else {
+      // 切换组件 → 触发渲染; 异步组件挂载后由 watch(activeRef) 调 init
+      activeComponent.value = comp;
     }
   }
 
@@ -163,6 +192,9 @@
     }
     nextTick(() => initChannelPanel());
   });
+
+  // 异步组件加载完毕挂载后, 触发其 init（flush:post 确保模板 ref 已就绪）
+  watch(activeRef, runPendingInit, { flush: 'post' });
 
   onMounted(() => {
     syncRouteState();
@@ -185,12 +217,7 @@
       <template #title>
         <div class="flex w-full items-center justify-between gap-4">
           <!-- 标题栏: 返回 + 功能名 +（通道商户名）, 与其它卡片页统一形态 -->
-          <PageTitleBar
-            back
-            :title="pageTitle"
-            :name="channelMerchant.channelMerchantName || ''"
-            @back="goBack"
-          />
+          <PageTitleBar back :title="pageTitle" :name="channelMerchant.channelMerchantName || ''" @back="goBack" />
           <!-- 环境标识: 仅支持沙箱的产品且平台沙箱总闸开启时展示(与支付产品配置详情页同款样式), 读通道商户固化的 sandbox 字段 -->
           <div v-if="sandboxEnabled && channelMerchant.sandboxSupport" class="flex flex-none items-center">
             <a-tooltip :title="$t('payment.merchant.channelMerchant.envStatusTip')">
@@ -210,48 +237,15 @@
       </template>
 
       <a-spin :spinning="loading">
-        <AlipayMchManage
-          v-if="resolvedProduct === ProductEnum.ALIPAY"
-          ref="alipayMchManageRef"
-          @success="loadChannelMerchant"
-        />
-        <AlipayChannelMerchantManage
-          v-else-if="resolvedProduct === ProductEnum.ALIPAY_ISV"
-          ref="alipayChannelMerchantManageRef"
-          @success="loadChannelMerchant"
-        />
-        <WechatDirectMchManage
-          v-else-if="resolvedProduct === ProductEnum.WECHAT_PAY"
-          ref="wechatDirectManageRef"
-          @success="loadChannelMerchant"
-        />
-        <WechatChannelMerchantManage
-          v-else-if="resolvedProduct === ProductEnum.WECHAT_ISV"
-          ref="wechatManageRef"
-          @success="loadChannelMerchant"
-        />
-        <DouyinDirectMchManage
-          v-else-if="resolvedProduct === ProductEnum.DOUYIN_PAY"
-          ref="douyinDirectManageRef"
-          @success="loadChannelMerchant"
-        />
-        <LeshuaChannelMerchantManage
-          v-else-if="resolvedProduct === ProductEnum.LESHUA_PAY"
-          ref="leshuaManageRef"
-          @success="loadChannelMerchant"
-        />
-        <div
-          v-else-if="!isSupported(resolvedProduct)"
-          class="flex items-center justify-center"
-          style="min-height: 400px"
-        >
+        <component v-if="activeComponent" :is="activeComponent" ref="activeRef" @success="loadChannelMerchant" />
+        <div v-else class="flex items-center justify-center" style="min-height: 400px">
           <a-empty :description="$t('payment.merchant.channelMerchant.detailNotSupportYet')" />
         </div>
       </a-spin>
     </a-card>
 
-    <!-- 终端台账: 全产品通用的通用维护区(不随产品页分组变化, 避免重复入口) -->
-    <div v-if="channelMerchant.channelMchNo" class="mt-3">
+    <!-- 终端台账: 全产品通用的通用维护区(不随产品页分组变化, 避免重复入口); 模拟通道已由工作台磁贴承载 -->
+    <div v-if="channelMerchant.channelMchNo && !isMockProduct" class="mt-3">
       <a-card variant="borderless" class="rounded-xl shadow-sm">
         <template #title>
           <div class="flex items-center gap-3">

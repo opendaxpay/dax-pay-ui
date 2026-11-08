@@ -1,0 +1,12 @@
+{
+  "manage": {
+    "groupBasic": "基本管理",
+    "cardBasicInfo": "基本情報",
+    "cardBasicInfoDesc": "チャネル加盟店の基本登録情報を表示します",
+    "cardEditName": "チャネル加盟店名を変更",
+    "cardEditNameDesc": "チャネル加盟店の表示名を変更します",
+    "groupTrade": "取引設定",
+    "cardTerminal": "端末管理",
+    "cardTerminalDesc": "このチャネル加盟店配下のチャネル側端末を登録し、紐付けと解除を行います"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "manage": {
+    "groupBasic": "基礎管理",
+    "cardBasicInfo": "基本信息",
+    "cardBasicInfoDesc": "查看通道商戶基礎登記信息",
+    "cardEditName": "修改通道商戶名稱",
+    "cardEditNameDesc": "修改通道商戶的顯示名稱",
+    "groupTrade": "交易配置",
+    "cardTerminal": "終端管理",
+    "cardTerminalDesc": "登記本通道商戶下的通道側終端，支持綁定與註銷"
+  }
+}

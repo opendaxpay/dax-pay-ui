@@ -8,6 +8,8 @@
   "manageTitleWechat": "Quản lý người bán WeChat ISV",
   "manageTitleWechatDirect": "Quản lý người bán trực tiếp WeChat",
   "manageTitleDefault": "Quản lý người bán kênh",
+  "manageTitleMock": "Quản lý đơn vị nhận thanh toán mô phỏng",
+  "manageTitleMockIsv": "Quản lý đơn vị nhận thanh toán ISV mô phỏng",
   "groupBasic": "Quản lý cơ bản",
   "groupTrade": "Cấu hình Giao dịch",
   "groupApp": "Quản lý ứng dụng",

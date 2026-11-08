@@ -8,6 +8,8 @@
   "manageTitleWechat": "Pengurusan Pedagang WeChat ISV",
   "manageTitleWechatDirect": "Pengurusan Pedagang Langsung WeChat",
   "manageTitleDefault": "Pengurusan Pedagang Saluran",
+  "manageTitleMock": "Pengurusan Pedagang Mock",
+  "manageTitleMockIsv": "Pengurusan Pedagang ISV Mock",
   "groupBasic": "Pengurusan Asas",
   "groupTrade": "Konfigurasi Transaksi",
   "groupApp": "Pengurusan Apl",

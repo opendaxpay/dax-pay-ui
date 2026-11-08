@@ -1,0 +1,12 @@
+{
+  "manage": {
+    "groupBasic": "Quản lý cơ bản",
+    "cardBasicInfo": "Thông tin cơ bản",
+    "cardBasicInfoDesc": "Xem thông tin đăng ký cơ bản của đơn vị nhận thanh toán kênh",
+    "cardEditName": "Sửa tên đơn vị nhận thanh toán",
+    "cardEditNameDesc": "Sửa tên hiển thị của đơn vị nhận thanh toán kênh",
+    "groupTrade": "Cấu hình giao dịch",
+    "cardTerminal": "Quản lý thiết bị đầu cuối",
+    "cardTerminalDesc": "Đăng ký thiết bị đầu cuối phía kênh cho đơn vị nhận thanh toán kênh này, liên kết và hủy"
+  }
+}
