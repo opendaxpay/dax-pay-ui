@@ -5,7 +5,7 @@ import { computed } from 'vue';
 
 import { cn } from '@vben-core/shared/utils';
 
-import { ChevronRight } from 'lucide-vue-next';
+import { ChevronRight } from '@lucide/vue';
 import { DropdownMenuSubTrigger, useForwardProps } from 'reka-ui';
 
 const props = defineProps<DropdownMenuSubTriggerProps & { class?: any }>();

@@ -5,7 +5,7 @@ import { computed } from 'vue';
 
 import { cn } from '@vben-core/shared/utils';
 
-import { ChevronUp } from 'lucide-vue-next';
+import { ChevronUp } from '@lucide/vue';
 import { SelectScrollUpButton, useForwardProps } from 'reka-ui';
 
 const props = defineProps<SelectScrollUpButtonProps & { class?: any }>();

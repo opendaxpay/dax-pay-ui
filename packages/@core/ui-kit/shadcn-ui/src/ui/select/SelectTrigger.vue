@@ -5,7 +5,7 @@ import { computed } from 'vue';
 
 import { cn } from '@vben-core/shared/utils';
 
-import { ChevronDown } from 'lucide-vue-next';
+import { ChevronDown } from '@lucide/vue';
 import { SelectIcon, SelectTrigger, useForwardProps } from 'reka-ui';
 
 const props = defineProps<SelectTriggerProps & { class?: any }>();

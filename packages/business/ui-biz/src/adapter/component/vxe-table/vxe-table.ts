@@ -32,17 +32,21 @@ import zhTW from 'vxe-pc-ui/lib/language/zh-TW';
 import { VxeColgroup, VxeColumn, VxeTable, VxeToolbar } from 'vxe-table';
 
 // 国际化配置
-// 不知道为什么, 必须添加default之后才能正常使用
-VxeUI.setI18n('en-US', enUS.default);
-VxeUI.setI18n('zh-CN', zhCN.default);
-VxeUI.setI18n('zh-TW', zhTW.default);
-VxeUI.setI18n('zh-HK', zhHK.default);
-VxeUI.setI18n('ja-JP', jaJP.default);
-VxeUI.setI18n('ko-KR', koKR.default);
-VxeUI.setI18n('id-ID', idID.default);
-VxeUI.setI18n('vi-VN', viVN.default);
-VxeUI.setI18n('th-TH', thTH.default);
-VxeUI.setI18n('ms-MY', msMY.default);
+// vxe-pc-ui 4.20.x 的 .d.ts 声明 default 直出语言包; dev 预构建拿到 { default: 语言包 }, 生产构建被解包成语言包本体, 两种形状都兼容
+function vxeLang<T>(mod: T): T {
+  const wrapper = mod as unknown as { default?: T };
+  return wrapper.default ?? mod;
+}
+VxeUI.setI18n('en-US', vxeLang(enUS));
+VxeUI.setI18n('zh-CN', vxeLang(zhCN));
+VxeUI.setI18n('zh-TW', vxeLang(zhTW));
+VxeUI.setI18n('zh-HK', vxeLang(zhHK));
+VxeUI.setI18n('ja-JP', vxeLang(jaJP));
+VxeUI.setI18n('ko-KR', vxeLang(koKR));
+VxeUI.setI18n('id-ID', vxeLang(idID));
+VxeUI.setI18n('vi-VN', vxeLang(viVN));
+VxeUI.setI18n('th-TH', vxeLang(thTH));
+VxeUI.setI18n('ms-MY', vxeLang(msMY));
 
 // 注册全局 vxe-table 日期格式化器, 使列 formatter="formatDateTime" 生效
 // (原在两端 bootstrap 注册, 收敛到本模块随导入生效)

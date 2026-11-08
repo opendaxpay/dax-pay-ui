@@ -5,7 +5,7 @@ import { computed } from 'vue';
 
 import { cn } from '@vben-core/shared/utils';
 
-import { Plus } from 'lucide-vue-next';
+import { Plus } from '@lucide/vue';
 import { NumberFieldIncrement, useForwardProps } from 'reka-ui';
 
 const props = defineProps<NumberFieldIncrementProps & { class?: any }>();

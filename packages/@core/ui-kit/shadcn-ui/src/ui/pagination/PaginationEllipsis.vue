@@ -5,7 +5,7 @@ import { computed } from 'vue';
 
 import { cn } from '@vben-core/shared/utils';
 
-import { MoreHorizontal } from 'lucide-vue-next';
+import { MoreHorizontal } from '@lucide/vue';
 import { PaginationEllipsis } from 'reka-ui';
 
 const props = defineProps<PaginationEllipsisProps & { class?: any }>();

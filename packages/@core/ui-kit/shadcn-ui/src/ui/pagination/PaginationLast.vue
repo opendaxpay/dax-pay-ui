@@ -5,7 +5,7 @@ import { computed } from 'vue';
 
 import { cn } from '@vben-core/shared/utils';
 
-import { ChevronsRight } from 'lucide-vue-next';
+import { ChevronsRight } from '@lucide/vue';
 import { PaginationLast } from 'reka-ui';
 
 import { Button } from '../button';
