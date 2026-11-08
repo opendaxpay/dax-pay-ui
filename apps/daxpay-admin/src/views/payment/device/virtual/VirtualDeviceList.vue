@@ -175,6 +175,17 @@
   }
 
   /**
+   * 生成完成: 按本批批次号筛选并刷新, 便于立即核对/导出新生成的设备
+   */
+  function handleGenerateOk(batchNo?: string) {
+    if (batchNo) {
+      queryForm.value.batchNo = batchNo;
+      pageConfig.value.currentPage = 1;
+    }
+    queryPage();
+  }
+
+  /**
    * 导出当前查询条件下的虚拟设备清单(时间列由后端按当前用户时区格式化)
    */
   async function handleExport() {
@@ -579,7 +590,7 @@
       </a-card>
     </div>
 
-    <DeviceVirtualGenerateDrawer ref="generateRef" @ok="queryPage" />
+    <DeviceVirtualGenerateDrawer ref="generateRef" @ok="handleGenerateOk" />
 
     <VirtualDeviceEditDrawer ref="editRef" @ok="queryPage" />
 

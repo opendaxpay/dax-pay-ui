@@ -48,14 +48,7 @@
     "confirmTitle": "Confirm Generation",
     "confirmContent": "About to generate {count} virtual devices (batch {batchNo}). They will be stored as platform stock without binding to any merchant. Adjust ownership via Bind Merchant on the list page.",
     "emptyResult": "No device numbers generated, please retry",
-    "success": "Generated {count} virtual devices",
-    "resultTag": "Success",
-    "resultSummary": "Generated {count} virtual devices · Batch {batchNo}",
-    "copyAll": "Copy All",
-    "copied": "Copied to clipboard",
-    "copyFailed": "Copy failed, please copy manually",
-    "again": "Generate Another Batch",
-    "done": "Done",
+    "success": "Generated {count} virtual devices (batch {batchNo})",
     "submit": "Generate"
   },
   "edit": {

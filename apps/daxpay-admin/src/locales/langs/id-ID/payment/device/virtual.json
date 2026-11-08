@@ -48,14 +48,7 @@
     "confirmTitle": "Konfirmasi Pembuatan",
     "confirmContent": "Akan membuat {count} perangkat virtual (batch {batchNo}). Langsung masuk stok platform tanpa ikatan merchant; sesuaikan kepemilikan melalui Ikat Merchant di halaman daftar.",
     "emptyResult": "Tidak ada no. perangkat yang dibuat, coba lagi",
-    "success": "Berhasil membuat {count} perangkat virtual",
-    "resultTag": "Berhasil",
-    "resultSummary": "Berhasil membuat {count} perangkat virtual · Batch {batchNo}",
-    "copyAll": "Salin Semua",
-    "copied": "Tersalin ke clipboard",
-    "copyFailed": "Gagal menyalin, salin manual",
-    "again": "Buat Batch Lagi",
-    "done": "Selesai",
+    "success": "Berhasil membuat {count} perangkat virtual (batch {batchNo})",
     "submit": "Buat & Simpan"
   },
   "edit": {

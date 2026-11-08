@@ -48,14 +48,7 @@
     "confirmTitle": "確認生成",
     "confirmContent": "即將生成 {count} 台虛擬設備(批次 {batchNo})。生成後直接入庫至平台庫存, 未綁定商戶, 歸屬調整請在本頁列表的「綁定商戶」操作。",
     "emptyResult": "未生成設備號, 請重試",
-    "success": "已生成 {count} 台虛擬設備",
-    "resultTag": "生成成功",
-    "resultSummary": "已生成 {count} 台虛擬設備 · 批次 {batchNo}",
-    "copyAll": "複製全部",
-    "copied": "已複製到剪貼簿",
-    "copyFailed": "複製失敗, 請手動選擇複製",
-    "again": "再生成一批",
-    "done": "完成",
+    "success": "已生成 {count} 台虛擬設備(批次 {batchNo})",
     "submit": "生成並入庫"
   },
   "edit": {

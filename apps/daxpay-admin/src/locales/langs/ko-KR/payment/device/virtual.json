@@ -48,14 +48,7 @@
     "confirmTitle": "생성 확인",
     "confirmContent": "{count}대의 가상 디바이스(배치 {batchNo})를 생성합니다. 생성 후 플랫폼 재고로 등록되며 판매자에게 바인딩되지 않습니다. 소속 변경은 목록 페이지의 「판매자 바인딩」에서 진행하세요.",
     "emptyResult": "디바이스 번호가 생성되지 않았습니다. 다시 시도하세요",
-    "success": "{count}대의 가상 디바이스가 생성되었습니다",
-    "resultTag": "생성 성공",
-    "resultSummary": "{count}대의 가상 디바이스 생성됨 · 배치 {batchNo}",
-    "copyAll": "모두 복사",
-    "copied": "클립보드에 복사되었습니다",
-    "copyFailed": "복사에 실패했습니다. 수동으로 복사하세요",
-    "again": "다시 생성",
-    "done": "완료",
+    "success": "{count}대의 가상 디바이스가 생성되었습니다(배치 {batchNo})",
     "submit": "생성 및 등록"
   },
   "edit": {

@@ -48,14 +48,7 @@
     "confirmTitle": "Xác nhận tạo",
     "confirmContent": "Sẽ tạo {count} thiết bị ảo (lô {batchNo}) vào kho nền tảng, chưa gắn merchant; điều chỉnh sở hữu qua Gắn merchant ở trang danh sách.",
     "emptyResult": "Chưa tạo được số thiết bị, thử lại",
-    "success": "Đã tạo {count} thiết bị ảo",
-    "resultTag": "Thành công",
-    "resultSummary": "Đã tạo {count} thiết bị ảo · Lô {batchNo}",
-    "copyAll": "Sao chép tất cả",
-    "copied": "Đã sao chép vào clipboard",
-    "copyFailed": "Sao chép thất bại, vui lòng sao chép thủ công",
-    "again": "Tạo lô khác",
-    "done": "Xong",
+    "success": "Đã tạo {count} thiết bị ảo (lô {batchNo})",
     "submit": "Tạo & lưu"
   },
   "edit": {

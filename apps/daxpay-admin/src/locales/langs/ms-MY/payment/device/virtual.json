@@ -48,14 +48,7 @@
     "confirmTitle": "Sahkan Penjanaan",
     "confirmContent": "Akan menjana {count} peranti maya (kelompok {batchNo}) ke stok platform tanpa ikatan pedagang; laraskan kepemilikan melalui Ikat Pedagang di halaman senarai.",
     "emptyResult": "Tiada no. peranti dijana, cuba lagi",
-    "success": "Telah menjana {count} peranti maya",
-    "resultTag": "Berjaya",
-    "resultSummary": "Telah menjana {count} peranti maya · Kelompok {batchNo}",
-    "copyAll": "Salin Semua",
-    "copied": "Disalin ke papan keratan",
-    "copyFailed": "Gagal menyalin, salin secara manual",
-    "again": "Jana Kelompok Lagi",
-    "done": "Selesai",
+    "success": "Telah menjana {count} peranti maya (kelompok {batchNo})",
     "submit": "Jana & Simpan"
   },
   "edit": {

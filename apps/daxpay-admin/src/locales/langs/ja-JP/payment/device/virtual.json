@@ -48,14 +48,7 @@
     "confirmTitle": "生成の確認",
     "confirmContent": "{count} 台の仮想デバイス(バッチ {batchNo})を生成します。生成後はプラットフォーム在庫となり、販売者にはバインドされません。一覧ページの「販売者をバインド」で所属を調整してください。",
     "emptyResult": "デバイス番号が生成されませんでした。再試行してください",
-    "success": "{count} 台の仮想デバイスを生成しました",
-    "resultTag": "生成成功",
-    "resultSummary": "{count} 台の仮想デバイスを生成 · バッチ {batchNo}",
-    "copyAll": "すべてコピー",
-    "copied": "クリップボードにコピーしました",
-    "copyFailed": "コピーに失敗しました。手動でコピーしてください",
-    "again": "続けて生成",
-    "done": "完了",
+    "success": "{count} 台の仮想デバイスを生成しました(バッチ {batchNo})",
     "submit": "生成して登録"
   },
   "edit": {

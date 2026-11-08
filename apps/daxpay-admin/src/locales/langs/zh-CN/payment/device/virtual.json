@@ -48,14 +48,7 @@
     "confirmTitle": "确认生成",
     "confirmContent": "即将生成 {count} 台虚拟设备(批次 {batchNo})。生成后直接入库至平台库存, 未绑定商户, 归属调整请在本页列表的「绑定商户」操作。",
     "emptyResult": "未生成设备号, 请重试",
-    "success": "已生成 {count} 台虚拟设备",
-    "resultTag": "生成成功",
-    "resultSummary": "已生成 {count} 台虚拟设备 · 批次 {batchNo}",
-    "copyAll": "复制全部",
-    "copied": "已复制到剪贴板",
-    "copyFailed": "复制失败, 请手动选择复制",
-    "again": "再生成一批",
-    "done": "完成",
+    "success": "已生成 {count} 台虚拟设备(批次 {batchNo})",
     "submit": "生成并入库"
   },
   "edit": {
