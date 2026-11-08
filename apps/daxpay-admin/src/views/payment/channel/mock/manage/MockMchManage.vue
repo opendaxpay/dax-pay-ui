@@ -256,8 +256,9 @@
 </template>
 
 <style scoped>
+  /* 磁贴高度随内容(约 156px), 只封顶不垫高: 用 min-height 撑高会把内容顶在上方、底部留一片空白 */
   .isv-card {
-    min-height: 200px;
+    max-height: 200px;
   }
 
   .line-clamp-1 {
