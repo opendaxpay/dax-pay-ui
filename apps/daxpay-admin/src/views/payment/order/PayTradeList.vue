@@ -46,6 +46,11 @@
   // 导出中标记(服务端为内存生成, 期间禁用按钮防重复提交)
   const exporting = ref(false);
 
+  // 退款弹窗/分账抽屉共用的订单详情获取(须在脚本侧声明: vue-tsc 3.3.12 对模板 v-bind 内联箭头里访问导入对象会误插 .value)
+  function fetchTradeDetail(id: string) {
+    return PayTradeApi.getById(id).then((res) => res.data);
+  }
+
   // 导出当前查询条件下的数据(时间列由后端按当前用户时区格式化)
   async function handleExport() {
     // 重操作, 先二次确认并复核当前条件的数据量
@@ -601,16 +606,8 @@
     </a-drawer>
 
     <!-- 退款弹窗 -->
-    <RefundModal
-      ref="refundModalRef"
-      :fetch-detail="(id) => PayTradeApi.getById(id).then((res) => res.data)"
-      @success="queryPage"
-    />
+    <RefundModal ref="refundModalRef" :fetch-detail="fetchTradeDetail" @success="queryPage" />
     <!-- 发起分账抽屉 -->
-    <AllocDrawer
-      ref="allocDrawerRef"
-      :fetch-detail="(id) => PayTradeApi.getById(id).then((res) => res.data)"
-      @success="queryPage"
-    />
+    <AllocDrawer ref="allocDrawerRef" :fetch-detail="fetchTradeDetail" @success="queryPage" />
   </div>
 </template>
