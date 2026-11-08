@@ -14,6 +14,7 @@
 
   import { DeviceTestDialog } from '@daxpay/ui-biz/components/device-test';
   import { NameNoCell } from '@daxpay/ui-biz/components/name-no-cell';
+  import { confirmExport } from '@daxpay/ui-biz/utils/export-download';
 
   import { VirtualDeviceApi } from '#/api/payment/device/virtual.api';
   import { BQuery, type QueryField } from '#/components/query';
@@ -186,12 +187,25 @@
   }
 
   /**
-   * 导出当前查询条件下的虚拟设备清单(时间列由后端按当前用户时区格式化)
+   * 导出虚拟设备清单(时间列由后端按当前用户时区格式化)
+   *
+   * 勾选优先: 有勾选行只导勾选行(忽略其余筛选条件), 无勾选按当前查询条件全量导出。
    */
   async function handleExport() {
+    const checkedIds = selectedRows.value
+      .map((row) => row.id)
+      .filter(Boolean)
+      .join(',');
+    // 重操作, 先二次确认并复核导出范围的数据量(勾选导出按勾选条数, 未勾选按当前条件总数)
+    const confirmed = checkedIds
+      ? await confirmExport(checkedIds.split(',').length, $t('payment.common.export.scopeSelected'))
+      : await confirmExport(pageConfig.value.total);
+    if (!confirmed) {
+      return;
+    }
     exporting.value = true;
     // 失败提示已由 downloadExportFile 统一弹出, 此处只复位按钮状态
-    await VirtualDeviceApi.exportExcel(queryForm.value, {
+    await VirtualDeviceApi.exportExcel(queryForm.value, checkedIds || undefined, {
       fileName: `${$t('payment.device.virtual.exportFileName')}.xlsx`,
       failedText: $t('payment.device.virtual.exportFailed'),
     }).finally(() => {
