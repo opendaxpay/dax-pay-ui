@@ -10,6 +10,7 @@
     "confirmTitle": "Xác nhận xuất",
     "confirmOnly": "Xuất {scope}?",
     "confirmWithCount": "Xuất {scope}? Tổng {count} bản ghi",
-    "scopeAll": "toàn bộ dữ liệu theo điều kiện lọc hiện tại"
+    "scopeAll": "toàn bộ dữ liệu theo điều kiện lọc hiện tại",
+    "scopeSelected": "dữ liệu đã chọn"
   }
 }

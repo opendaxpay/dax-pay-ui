@@ -10,6 +10,7 @@
     "confirmTitle": "エクスポートの確認",
     "confirmOnly": "{scope}をエクスポートしますか？",
     "confirmWithCount": "{scope}をエクスポートしますか？全 {count} 件",
-    "scopeAll": "現在の検索条件に一致するすべてのデータ"
+    "scopeAll": "現在の検索条件に一致するすべてのデータ",
+    "scopeSelected": "選択したデータ"
   }
 }

@@ -18,16 +18,20 @@ export const DeviceQrCodeApi = {
   },
 
   /**
-   * 导出当前查询条件下的码牌数据
+   * 导出当前查询条件下的码牌数据(勾选优先: ids 非空时只导出勾选行, 忽略其余筛选条件)
    *
    * 服务端为内存生成后落响应, 失败时返回 JSON(而非文件);
    * 错误文案已在 downloadExportFile 内统一提示, 返回 false 便于调用方复位按钮状态。
    */
-  exportExcel(query: DeviceQrCodeQuery, options: { failedText: string; fileName: string }): Promise<boolean> {
+  exportExcel(
+    query: DeviceQrCodeQuery,
+    ids: string | undefined,
+    options: { failedText: string; fileName: string },
+  ): Promise<boolean> {
     return downloadExportFile({
       client: requestClient,
       url: '/admin/device/qrcode/export',
-      params: { ...query },
+      params: { ...query, ...(ids ? { ids } : {}) },
       fileName: options.fileName,
       failedText: options.failedText,
     });

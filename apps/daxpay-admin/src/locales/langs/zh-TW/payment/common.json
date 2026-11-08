@@ -10,6 +10,7 @@
     "confirmTitle": "確認匯出",
     "confirmOnly": "確定匯出{scope}嗎？",
     "confirmWithCount": "確定匯出{scope}嗎？共 {count} 筆",
-    "scopeAll": "目前查詢條件下的全部資料"
+    "scopeAll": "目前查詢條件下的全部資料",
+    "scopeSelected": "選取的資料"
   }
 }

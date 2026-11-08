@@ -36,15 +36,19 @@ export const VirtualDeviceApi = {
   },
 
   /**
-   * 导出当前查询条件下的收款设备清单
+   * 导出当前查询条件下的收款设备清单(勾选优先: ids 非空时只导出勾选行, 忽略其余筛选条件)
    *
    * 服务端生成 xlsx, 失败文案由 downloadExportFile 统一提示。
    */
-  exportExcel(query: VirtualDeviceQuery, options: { failedText: string; fileName: string }): Promise<boolean> {
+  exportExcel(
+    query: VirtualDeviceQuery,
+    ids: string | undefined,
+    options: { failedText: string; fileName: string },
+  ): Promise<boolean> {
     return downloadExportFile({
       client: requestClient,
       url: '/mch/device/virtual/export',
-      params: { ...query },
+      params: { ...query, ...(ids ? { ids } : {}) },
       fileName: options.fileName,
       failedText: options.failedText,
     });

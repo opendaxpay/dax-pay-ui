@@ -10,6 +10,7 @@
     "confirmTitle": "Konfirmasi Ekspor",
     "confirmOnly": "Ekspor {scope}?",
     "confirmWithCount": "Ekspor {scope}? Total {count} data",
-    "scopeAll": "semua data sesuai filter saat ini"
+    "scopeAll": "semua data sesuai filter saat ini",
+    "scopeSelected": "data yang dipilih"
   }
 }

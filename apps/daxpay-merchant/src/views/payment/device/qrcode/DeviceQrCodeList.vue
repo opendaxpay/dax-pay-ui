@@ -198,16 +198,25 @@
   }
 
   /**
-   * 导出当前查询条件下的码牌清单(时间列由后端按当前用户时区格式化)
+   * 导出码牌清单(时间列由后端按当前用户时区格式化)
+   *
+   * 勾选优先: 有勾选行只导勾选行(忽略其余筛选条件), 无勾选按当前查询条件全量导出。
    */
   async function handleExport() {
-    // 重操作, 先二次确认并复核当前条件的数据量
-    if (!(await confirmExport(pageConfig.value.total))) {
+    const checkedIds = selectedRows.value
+      .map((row) => row.id)
+      .filter(Boolean)
+      .join(',');
+    // 重操作, 先二次确认并复核导出范围的数据量
+    const confirmed = checkedIds
+      ? await confirmExport(checkedIds.split(',').length, $t('payment.common.export.scopeSelected'))
+      : await confirmExport(pageConfig.value.total);
+    if (!confirmed) {
       return;
     }
     exporting.value = true;
     // 失败提示已由 downloadExportFile 统一弹出, 此处只复位按钮状态
-    await DeviceQrCodeApi.exportExcel(queryForm.value, {
+    await DeviceQrCodeApi.exportExcel(queryForm.value, checkedIds || undefined, {
       fileName: `${$t('payment.device.qrcode.exportFileName')}.xlsx`,
       failedText: $t('payment.device.qrcode.exportFailed'),
     }).finally(() => {
