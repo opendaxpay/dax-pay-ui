@@ -204,11 +204,7 @@
    * 批量绑定商户(商户+应用+门店三件套, 弹窗已支持 ids 数组)
    */
   function handleBatchBindMerchant() {
-    const ids = getSelectedIds();
-    if (!ids) {
-      return;
-    }
-    bindMerchantRef.value?.show(ids);
+    handleBindMerchant();
   }
 
   /**
@@ -253,10 +249,41 @@
   }
 
   /**
-   * 绑定商户(商户+应用+门店三件套)
+   * 绑定商户 / 调整应用门店
+   *
+   * 单台已绑定走「调整应用/门店」: 回填当前归属并锁定商户(跨商户改绑后端拒绝, 须先解绑);
+   * 批量含已绑定设备一律拦下: 整批应用/门店不一致时留空提交会清空对应配置,
+   * 且后端逐台校验会整批失败——调整请单台操作, 换商户请先「解绑商户」。
    */
-  function handleBindMerchant(row: VirtualDeviceResult) {
-    bindMerchantRef.value?.show([row.id!]);
+  function handleBindMerchant(rows?: VirtualDeviceResult[]) {
+    const list = rows ?? selectedRows.value;
+    if (list.length === 0) {
+      message.warning($t('payment.device.virtual.selectRequired'));
+      return;
+    }
+    const boundRows = list.filter((row) => !!row.mchNo);
+    // 单台已绑定: 调整模式
+    if (list.length === 1 && boundRows.length === 1) {
+      const row = list[0]!;
+      bindMerchantRef.value?.show([row.id!], {
+        appId: row.appId,
+        mchNo: row.mchNo,
+        storeNo: row.storeNo,
+      });
+      return;
+    }
+    // 批量含已绑定设备: 拦下
+    if (boundRows.length > 0) {
+      message.warning(
+        $t('payment.device.virtual.bind.batchBoundIntercept', {
+          bound: boundRows.length,
+          total: list.length,
+        }),
+      );
+      return;
+    }
+    // 全部未绑定: 全新绑定
+    bindMerchantRef.value?.show(list.map((row) => row.id!));
   }
 
   /**
@@ -364,7 +391,11 @@
       { type: 'divider' as const, key: 'd1' },
     ];
     if (row.mchNo) {
-      items.push({ key: 'unbind', label: $t('payment.device.virtual.actionUnbind'), danger: true });
+      // 已绑定: 调整应用/门店(商户锁定), 换商户须先解绑
+      items.push(
+        { key: 'bind', label: $t('payment.device.virtual.actionAdjust') },
+        { key: 'unbind', label: $t('payment.device.virtual.actionUnbind'), danger: true },
+      );
     } else {
       items.push({ key: 'bind', label: $t('payment.device.virtual.actionBind') });
     }
@@ -381,7 +412,7 @@
   function handleActionMenu(info: { key: number | string }, row: VirtualDeviceResult) {
     switch (info.key) {
       case 'bind': {
-        handleBindMerchant(row);
+        handleBindMerchant([row]);
         break;
       }
       case 'delete': {

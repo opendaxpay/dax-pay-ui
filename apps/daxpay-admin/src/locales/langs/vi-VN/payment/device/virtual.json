@@ -28,6 +28,7 @@
   "actionTestPrint": "Thử in",
   "actionQr": "Mã QR kích hoạt",
   "actionBind": "Gắn merchant",
+  "actionAdjust": "Điều chỉnh ứng dụng/cửa hàng",
   "actionUnbind": "Gỡ merchant",
   "confirmUnbind": "Gỡ gắn merchant khỏi thiết bị này? Việc gỡ sẽ đặt lại thông tin xác thực thiết bị và thiết bị phải kích hoạt lại.",
   "unbindSuccess": "Đã gỡ merchant",
@@ -93,6 +94,8 @@
     "validationMchNo": "Chọn merchant",
     "defaultApp": "Ứng dụng mặc định",
     "appPlaceholder": "Chọn ứng dụng (có thể bỏ trống, dùng ứng dụng mặc định)",
-    "storePlaceholder": "Chọn cửa hàng (có thể bỏ trống, thiết bị chung của merchant)"
+    "storePlaceholder": "Chọn cửa hàng (có thể bỏ trống, thiết bị chung của merchant)",
+    "mchLockedHint": "Muốn đổi merchant, hãy bỏ gắn trước",
+    "batchBoundIntercept": "Trong {total} thiết bị đã chọn có {bound} thiết bị đã gắn merchant. Hãy bỏ gắn trước khi gắn hàng loạt; điều chỉnh ứng dụng/cửa hàng của thiết bị đã gắn cần làm từng thiết bị."
   }
 }

@@ -28,6 +28,7 @@
   "actionTestPrint": "试打",
   "actionQr": "激活二维码",
   "actionBind": "绑定商户",
+  "actionAdjust": "调整应用/门店",
   "actionUnbind": "解绑商户",
   "confirmUnbind": "确定解绑该设备的商户归属吗？解绑将重置设备凭证, 设备端需重新激活。",
   "unbindSuccess": "已解绑商户",
@@ -93,6 +94,8 @@
     "validationMchNo": "请选择商户",
     "defaultApp": "默认应用",
     "appPlaceholder": "请选择应用(可空则使用默认应用)",
-    "storePlaceholder": "请选择门店(可空则为商户通用设备)"
+    "storePlaceholder": "请选择门店(可空则为商户通用设备)",
+    "mchLockedHint": "更换商户需先解绑后再绑定",
+    "batchBoundIntercept": "所选 {total} 台中有 {bound} 台已绑定商户, 请先「解绑商户」后再批量绑定; 调整已绑定设备的应用/门店请单台操作"
   }
 }

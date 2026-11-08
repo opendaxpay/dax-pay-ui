@@ -28,6 +28,7 @@
   "actionTestPrint": "인쇄 테스트",
   "actionQr": "활성화 QR 코드",
   "actionBind": "판매자 바인딩",
+  "actionAdjust": "앱/매장 조정",
   "actionUnbind": "판매자 바인딩 해제",
   "confirmUnbind": "이 디바이스의 판매자 바인딩을 해제하시겠습니까? 해제하면 디바이스 자격 증명이 초기화되어 기기에서 다시 활성화해야 합니다.",
   "unbindSuccess": "판매자 바인딩이 해제되었습니다",
@@ -93,6 +94,8 @@
     "validationMchNo": "판매자를 선택하세요",
     "defaultApp": "기본 앱",
     "appPlaceholder": "앱 선택(선택하지 않으면 기본 앱 사용)",
-    "storePlaceholder": "매장 선택(선택하지 않으면 판매자 공용 디바이스)"
+    "storePlaceholder": "매장 선택(선택하지 않으면 판매자 공용 디바이스)",
+    "mchLockedHint": "판매자를 변경하려면 먼저 바인딩을 해제하세요",
+    "batchBoundIntercept": "선택한 {total}대 중 {bound}대가 이미 판매자에 바인딩되어 있습니다. 일괄 바인딩 전에 「판매자 바인딩 해제」를 진행하세요. 바인딩된 디바이스의 앱/매장 조정은 한 대씩 진행하세요."
   }
 }

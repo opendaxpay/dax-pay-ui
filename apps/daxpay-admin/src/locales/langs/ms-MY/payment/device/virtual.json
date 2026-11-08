@@ -28,6 +28,7 @@
   "actionTestPrint": "Uji Cetak",
   "actionQr": "Kod QR Pengaktifan",
   "actionBind": "Ikat Pedagang",
+  "actionAdjust": "Laras Aplikasi/Kedai",
   "actionUnbind": "Lepaskan Pedagang",
   "confirmUnbind": "Lepaskan ikatan pedagang peranti ini? Pelepasan akan menetapkan semula kredensial peranti dan peranti perlu diaktifkan semula.",
   "unbindSuccess": "Ikatan pedagang dilepaskan",
@@ -93,6 +94,8 @@
     "validationMchNo": "Pilih pedagang",
     "defaultApp": "Aplikasi Lalai",
     "appPlaceholder": "Pilih aplikasi (boleh kosong, guna aplikasi lalai)",
-    "storePlaceholder": "Pilih kedai (boleh kosong, peranti umum pedagang)"
+    "storePlaceholder": "Pilih kedai (boleh kosong, peranti umum pedagang)",
+    "mchLockedHint": "Untuk tukar pedagang, nyahikat dahulu",
+    "batchBoundIntercept": "Daripada {total} peranti dipilih, {bound} telah diikat kepada pedagang. Nyahikat sebelum ikat pukal; pelarasan aplikasi/kedai peranti yang telah diikat dibuat satu demi satu."
   }
 }

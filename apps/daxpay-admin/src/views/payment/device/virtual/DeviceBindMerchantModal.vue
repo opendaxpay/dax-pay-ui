@@ -30,6 +30,9 @@
   const confirmLoading = ref(false);
   const formRef = ref();
 
+  // 调整模式: 设备已绑定商户时回填当前归属并锁定商户, 仅允许改应用/门店
+  const boundMode = ref(false);
+
   // 待绑定设备 id
   const ids = ref<string[]>([]);
   // 商户下拉
@@ -106,15 +109,31 @@
 
   /**
    * 打开绑定弹窗
+   *
+   * @param selectedIds 待绑定设备 id
+   * @param current     当前归属(已绑定设备回填并锁定商户, 仅允许改应用/门店)
    */
-  async function show(selectedIds: string[]) {
+  async function show(selectedIds: string[], current?: { appId?: string; mchNo?: string; storeNo?: string }) {
     ids.value = selectedIds;
-    formState.value = { mchNo: undefined, appId: undefined, storeNo: undefined };
+    boundMode.value = !!current?.mchNo;
+    // resetFields 须在赋值前调用, 否则会把回填的商户号重置回初始空值
+    formRef.value?.resetFields();
+    formState.value = { mchNo: current?.mchNo, appId: undefined, storeNo: undefined };
     appOptions.value = [];
     storeOptions.value = [];
-    formRef.value?.resetFields();
     visible.value = true;
     await loadMchOptions();
+    if (!current?.mchNo) {
+      return;
+    }
+    // 级联加载内部会先清空下级, 故回填须待下拉选项就绪后再赋值
+    await Promise.all([loadAppOptions(current.mchNo), loadStoreOptions(current.mchNo)]);
+    // 加载期间弹窗被切换到其他设备时丢弃本次回填(防异步竞态串显)
+    if (formState.value.mchNo !== current.mchNo) {
+      return;
+    }
+    formState.value.appId = current.appId;
+    formState.value.storeNo = current.storeNo;
   }
 
   function handleCancel() {
@@ -152,7 +171,7 @@
 <template>
   <a-modal
     v-model:open="visible"
-    :title="$t('payment.device.virtual.bind.title')"
+    :title="boundMode ? $t('payment.device.virtual.actionAdjust') : $t('payment.device.virtual.bind.title')"
     :width="560"
     :confirm-loading="confirmLoading"
     :destroy-on-hidden="true"
@@ -162,12 +181,17 @@
   >
     <a-spin :spinning="confirmLoading">
       <a-form ref="formRef" :model="formState" :rules="formRules" layout="vertical">
-        <!-- 商户号 -->
-        <a-form-item :label="$t('payment.device.virtual.field.mchNo')" name="mchNo">
+        <!-- 商户号(调整模式锁定, 换商户须先解绑) -->
+        <a-form-item
+          :label="$t('payment.device.virtual.field.mchNo')"
+          name="mchNo"
+          :extra="boundMode ? $t('payment.device.virtual.bind.mchLockedHint') : undefined"
+        >
           <a-select
             v-model:value="formState.mchNo"
             :options="mchOptions"
             :placeholder="$t('common.pleaseSelect')"
+            :disabled="boundMode"
             show-search
             option-filter-prop="label"
             @change="handleMchChange"

@@ -28,6 +28,7 @@
   "actionTestPrint": "印刷テスト",
   "actionQr": "アクティベーションQRコード",
   "actionBind": "販売者をバインド",
+  "actionAdjust": "アプリ/店舗を調整",
   "actionUnbind": "販売者のバインド解除",
   "confirmUnbind": "このデバイスの販売者バインドを解除しますか？解除するとデバイス証憑がリセットされ、端末で再アクティベートが必要です。",
   "unbindSuccess": "販売者のバインドを解除しました",
@@ -93,6 +94,8 @@
     "validationMchNo": "販売者を選択してください",
     "defaultApp": "デフォルトアプリ",
     "appPlaceholder": "アプリを選択(未選択の場合はデフォルトアプリ)",
-    "storePlaceholder": "店舗を選択(未選択の場合は販売者共通デバイス)"
+    "storePlaceholder": "店舗を選択(未選択の場合は販売者共通デバイス)",
+    "mchLockedHint": "販売者を変更する場合は先にバインド解除してください",
+    "batchBoundIntercept": "選択した {total} 台のうち {bound} 台は販売者にバインド済みです。一括バインドの前に「販売者を解除」してください。バインド済みデバイスのアプリ/店舗の調整は1台ずつ行ってください。"
   }
 }

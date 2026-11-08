@@ -28,6 +28,7 @@
   "actionTestPrint": "Uji Cetak",
   "actionQr": "Kode QR Aktivasi",
   "actionBind": "Ikat Merchant",
+  "actionAdjust": "Sesuaikan Aplikasi/Toko",
   "actionUnbind": "Lepaskan Merchant",
   "confirmUnbind": "Lepaskan ikatan merchant perangkat ini? Pelepasan akan mengatur ulang kredensial perangkat dan perangkat harus diaktivasi ulang.",
   "unbindSuccess": "Ikatan merchant dilepas",
@@ -93,6 +94,8 @@
     "validationMchNo": "Pilih merchant",
     "defaultApp": "Aplikasi Default",
     "appPlaceholder": "Pilih aplikasi (opsional, gunakan aplikasi default)",
-    "storePlaceholder": "Pilih toko (opsional, perangkat umum merchant)"
+    "storePlaceholder": "Pilih toko (opsional, perangkat umum merchant)",
+    "mchLockedHint": "Untuk mengganti merchant, lepaskan ikatan terlebih dahulu",
+    "batchBoundIntercept": "Dari {total} perangkat yang dipilih, {bound} sudah terikat ke merchant. Lepaskan ikatan sebelum mengikat massal; penyesuaian aplikasi/toko perangkat yang sudah terikat dilakukan satu per satu."
   }
 }

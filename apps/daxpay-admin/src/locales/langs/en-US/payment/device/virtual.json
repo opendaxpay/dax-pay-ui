@@ -28,6 +28,7 @@
   "actionTestPrint": "Test Print",
   "actionQr": "Activation QR Code",
   "actionBind": "Bind Merchant",
+  "actionAdjust": "Adjust App/Store",
   "actionUnbind": "Unbind Merchant",
   "confirmUnbind": "Unbind the merchant of this device? Unbinding resets the device credential, and the device must be re-activated.",
   "unbindSuccess": "Merchant unbound",
@@ -93,6 +94,8 @@
     "validationMchNo": "Please select a merchant",
     "defaultApp": "Default App",
     "appPlaceholder": "Select an app (optional, defaults to the default app)",
-    "storePlaceholder": "Select a store (optional, general-purpose device of the merchant)"
+    "storePlaceholder": "Select a store (optional, general-purpose device of the merchant)",
+    "mchLockedHint": "To change the merchant, unbind first",
+    "batchBoundIntercept": "{bound} of the {total} selected devices are already bound to a merchant. Unbind them before batch binding; to adjust the app/store of bound devices, operate one device at a time."
   }
 }

@@ -28,6 +28,7 @@
   "actionTestPrint": "試打",
   "actionQr": "激活二維碼",
   "actionBind": "綁定商戶",
+  "actionAdjust": "調整應用/門店",
   "actionUnbind": "解綁商戶",
   "confirmUnbind": "確定解綁該設備的商戶歸屬嗎？解綁將重置設備憑證, 設備端需重新激活。",
   "unbindSuccess": "已解綁商戶",
@@ -93,6 +94,8 @@
     "validationMchNo": "請選擇商戶",
     "defaultApp": "預設應用",
     "appPlaceholder": "請選擇應用(可空則使用預設應用)",
-    "storePlaceholder": "請選擇門店(可空則為商戶通用設備)"
+    "storePlaceholder": "請選擇門店(可空則為商戶通用設備)",
+    "mchLockedHint": "更換商戶需先解綁後再綁定",
+    "batchBoundIntercept": "所選 {total} 台中有 {bound} 台已綁定商戶, 請先「解綁商戶」後再批量綁定; 調整已綁定設備的應用/門店請單台操作"
   }
 }
