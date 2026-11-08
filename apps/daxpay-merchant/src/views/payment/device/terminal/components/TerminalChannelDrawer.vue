@@ -85,7 +85,6 @@
     :title="title"
     :default-size="920"
     :destroy-on-hidden="true"
-    :body-style="{ paddingBottom: '24px' }"
   >
     <div class="mb-4">
       <!-- 只读提示: 关联关系由运营端在通道终端报备时建立 -->

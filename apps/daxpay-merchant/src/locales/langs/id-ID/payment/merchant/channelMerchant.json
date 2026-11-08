@@ -122,5 +122,5 @@
   "referenceAppRefs": "{count} referensi",
   "groupTerminal": "Buku Terminal",
   "cardTerminal": "Buku Terminal",
-  "cardTerminalDesc": "Lihat terminal saluran dan tautan pada channel merchant ini"
+  "cardTerminalDesc": "Kelola terminal saluran di pedagang saluran ini dan ikatkan terminal pedagang"
 }

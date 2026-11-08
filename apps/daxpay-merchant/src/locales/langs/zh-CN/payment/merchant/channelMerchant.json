@@ -122,5 +122,5 @@
   "referenceAppRefs": "{count} 处引用",
   "groupTerminal": "终端台账",
   "cardTerminal": "终端台账",
-  "cardTerminalDesc": "查看本通道商户下的通道侧终端与绑定关系"
+  "cardTerminalDesc": "维护本通道商户下的通道终端，并绑定商户终端"
 }

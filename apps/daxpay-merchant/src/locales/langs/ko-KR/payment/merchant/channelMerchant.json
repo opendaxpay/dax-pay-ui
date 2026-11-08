@@ -122,5 +122,5 @@
   "referenceAppRefs": "{count}건 참조",
   "groupTerminal": "단말 대장",
   "cardTerminal": "단말 대장",
-  "cardTerminalDesc": "본 채널 가맹점의 단말과 연결 정보를 조회합니다"
+  "cardTerminalDesc": "이 채널 판매자의 채널 단말을 관리하고 판매자 단말을 연결합니다"
 }

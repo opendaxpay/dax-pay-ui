@@ -23,6 +23,7 @@
   import LeshuaChannelMerchantManage from '#/views/payment/channel/leshua/manage/mch/LeshuaChannelMerchantManage.vue';
   import WechatChannelMerchantManage from '#/views/payment/channel/wechat/manage/mch/WechatChannelMerchantManage.vue';
   import WechatDirectMchManage from '#/views/payment/channel/wechat/manage/mch/WechatDirectMchManage.vue';
+  import TerminalManageCard from '#/views/payment/device/terminal/channel/TerminalManageCard.vue';
 
   defineOptions({ name: 'ChannelMerchantDetailDispatch' });
 
@@ -248,5 +249,22 @@
         </div>
       </a-spin>
     </a-card>
+
+    <!-- 终端台账: 全产品通用的通用维护区(不随产品页分组变化, 避免重复入口) -->
+    <div v-if="channelMerchant.channelMchNo" class="mt-3">
+      <a-card variant="borderless" class="rounded-xl shadow-sm">
+        <template #title>
+          <div class="flex items-center gap-3">
+            <div class="h-6 w-1.5 rounded-full bg-gray-500 shadow-sm"></div>
+            <span class="text-xl font-extrabold tracking-tight text-foreground">
+              {{ $t('payment.merchant.channelMerchant.groupTerminal') }}
+            </span>
+          </div>
+        </template>
+        <div class="card-grid">
+          <TerminalManageCard :channel-mch-no="channelMerchant.channelMchNo || ''" :product="resolvedProduct" />
+        </div>
+      </a-card>
+    </div>
   </div>
 </template>

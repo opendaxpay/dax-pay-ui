@@ -122,5 +122,5 @@
   "referenceAppRefs": "{count} tham chiếu",
   "groupTerminal": "Sổ thiết bị",
   "cardTerminal": "Sổ thiết bị",
-  "cardTerminalDesc": "Xem thiết bị kênh và liên kết của merchant kênh này"
+  "cardTerminalDesc": "Quản lý thiết bị kênh thuộc người bán kênh này và liên kết thiết bị người bán"
 }

@@ -122,5 +122,5 @@
   "referenceAppRefs": "{count} 件の参照",
   "groupTerminal": "端末台帳",
   "cardTerminal": "端末台帳",
-  "cardTerminalDesc": "本チャネル加盟店の端末と紐付け状況を表示します"
+  "cardTerminalDesc": "このチャネル加盟店のチャネル端末を管理し、マーチャント端末を紐付けます"
 }

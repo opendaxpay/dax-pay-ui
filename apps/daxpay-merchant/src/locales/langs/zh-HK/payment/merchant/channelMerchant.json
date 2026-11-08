@@ -122,5 +122,5 @@
   "referenceAppRefs": "{count} 處引用",
   "groupTerminal": "終端台帳",
   "cardTerminal": "終端台帳",
-  "cardTerminalDesc": "查看本通道商戶下的通道側終端與綁定關係"
+  "cardTerminalDesc": "維護本通道商戶下的通道終端，並綁定商戶終端"
 }

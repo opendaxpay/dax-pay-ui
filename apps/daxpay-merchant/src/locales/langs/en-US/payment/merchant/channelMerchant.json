@@ -122,5 +122,5 @@
   "referenceAppRefs": "{count} refs",
   "groupTerminal": "Terminal Ledger",
   "cardTerminal": "Terminal Ledger",
-  "cardTerminalDesc": "View channel-side terminals and bindings of this channel merchant"
+  "cardTerminalDesc": "Manage channel terminals under this channel merchant and bind merchant terminals"
 }

@@ -10,24 +10,26 @@
   /**
    * 终端台账卡片(商户端通道商户工作台磁贴)
    *
-   * 只读入口: 通道侧终端的登记/报备与系统终端绑定收口运营端, 商户端只能查看本商户的终端台账；
-   * 商户号由后端从登录上下文取, 前端只传通道商户号。
+   * 商户可自行维护本商户名下的通道终端(新增建档/报备/注销/解绑等);
+   * 商户号由后端从登录上下文取, 前端只传通道商户号与支付产品。
    */
   defineOptions({ name: 'TerminalManageCard' });
 
-  const props = defineProps<{
+  defineProps<{
     /** 通道商户号 */
     channelMchNo: string;
+    /** 支付产品(用于查询通道报送能力与报备字段定义) */
+    product?: string;
   }>();
 
-  // 终端台账抽屉(只读)
+  // 终端台账抽屉
   const terminalPanelRef = ref<InstanceType<typeof ChannelTerminalPanel>>();
 
   /**
    * 打开终端台账抽屉
    */
   function openTerminalPanel() {
-    terminalPanelRef.value?.open(props.channelMchNo);
+    terminalPanelRef.value?.open();
   }
 </script>
 
@@ -62,8 +64,8 @@
       <div class="absolute bottom-0 left-0 h-1.5 w-0 transition-all duration-300 group-hover:w-full bg-gray-500"></div>
     </a-card>
 
-    <!-- 终端台账抽屉(通道侧终端只读台账) -->
-    <ChannelTerminalPanel ref="terminalPanelRef" />
+    <!-- 终端台账抽屉(本商户名下的通道终端, 可维护) -->
+    <ChannelTerminalPanel ref="terminalPanelRef" :channel-mch-no="channelMchNo" :product="product" />
   </div>
 </template>
 
