@@ -188,8 +188,12 @@
           <a-form ref="formRef" layout="vertical" class="!pt-2" :model="formState" :rules="formRules">
             <!-- 国际化：当前令牌 -->
             <a-form-item :label="$t('payment.merchant.channelMerchant.appAuthTokenCurrent')">
-              <div class="current-token-value">
-                {{ maskSecret(isvConfig.appAuthToken) }}
+              <div class="current-token-value" :class="{ 'is-empty': !isvConfig.appAuthToken }">
+                {{
+                  isvConfig.appAuthToken
+                    ? maskSecret(isvConfig.appAuthToken)
+                    : $t('payment.merchant.channelMerchant.appAuthTokenEmpty')
+                }}
               </div>
             </a-form-item>
             <!-- 国际化：新令牌 -->
@@ -288,6 +292,12 @@
     padding: 6px 0;
     font-family: monospace;
     color: var(--ant-color-text-secondary);
+  }
+
+  /* 未配置令牌: 空态文案不用等宽字体, 与令牌串区分开 */
+  .current-token-value.is-empty {
+    font-family: inherit;
+    color: var(--ant-color-text-tertiary);
   }
 
   /* 代运营授权说明(折叠面板, 模拟 Alert info 风格) */

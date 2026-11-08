@@ -71,6 +71,7 @@
   "appAuthTokenRequired": "アプリ認証トークンを入力してください",
   "appAuthTokenSetTitle": "アプリ認証トークンを設定する",
   "appAuthTokenCurrent": "現在のトークン",
+  "appAuthTokenEmpty": "未設定",
   "appAuthTokenNew": "新しいトークン",
   "appAuthTokenNewPlaceholder": "新しいアプリ認証トークンを入力してください",
   "appAuthTokenUpdateConfirm": "アプリ認証トークンの更新を確認しますか?",

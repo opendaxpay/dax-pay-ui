@@ -71,6 +71,7 @@
   "appAuthTokenRequired": "Please enter app auth token",
   "appAuthTokenSetTitle": "Set App Auth Token",
   "appAuthTokenCurrent": "Current Token",
+  "appAuthTokenEmpty": "Not set",
   "appAuthTokenNew": "New Token",
   "appAuthTokenNewPlaceholder": "Please enter the new app auth token",
   "appAuthTokenUpdateConfirm": "Confirm updating the app auth token?",

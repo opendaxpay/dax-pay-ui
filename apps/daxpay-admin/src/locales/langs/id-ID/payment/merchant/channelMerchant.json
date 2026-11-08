@@ -71,6 +71,7 @@
   "appAuthTokenRequired": "Silakan masukkan token autentikasi aplikasi",
   "appAuthTokenSetTitle": "Setel Token Otentikasi Aplikasi",
   "appAuthTokenCurrent": "Token Saat Ini",
+  "appAuthTokenEmpty": "Belum diatur",
   "appAuthTokenNew": "Token Baru",
   "appAuthTokenNewPlaceholder": "Silakan masukkan token autentikasi aplikasi baru",
   "appAuthTokenUpdateConfirm": "Konfirmasikan pembaruan token autentikasi aplikasi?",

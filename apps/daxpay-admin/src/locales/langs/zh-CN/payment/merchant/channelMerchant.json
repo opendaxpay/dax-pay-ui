@@ -76,6 +76,7 @@
   "appAuthTokenRequired": "请输入应用授权令牌",
   "appAuthTokenSetTitle": "设置应用授权令牌",
   "appAuthTokenCurrent": "当前令牌",
+  "appAuthTokenEmpty": "暂无",
   "appAuthTokenNew": "新令牌",
   "appAuthTokenNewPlaceholder": "请输入新的应用授权令牌",
   "appAuthTokenUpdateConfirm": "确认更新应用授权令牌？",

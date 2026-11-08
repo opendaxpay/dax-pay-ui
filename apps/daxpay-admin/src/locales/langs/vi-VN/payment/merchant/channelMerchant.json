@@ -71,6 +71,7 @@
   "appAuthTokenRequired": "Vui lòng nhập mã thông báo xác thực ứng dụng",
   "appAuthTokenSetTitle": "Đặt mã thông báo xác thực ứng dụng",
   "appAuthTokenCurrent": "Mã thông báo hiện tại",
+  "appAuthTokenEmpty": "Chưa thiết lập",
   "appAuthTokenNew": "Mã thông báo mới",
   "appAuthTokenNewPlaceholder": "Vui lòng nhập mã thông báo xác thực ứng dụng mới",
   "appAuthTokenUpdateConfirm": "Xác nhận cập nhật mã thông báo xác thực ứng dụng?",

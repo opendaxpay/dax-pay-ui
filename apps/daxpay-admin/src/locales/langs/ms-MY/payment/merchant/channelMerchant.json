@@ -71,6 +71,7 @@
   "appAuthTokenRequired": "Sila masukkan token pengesahan apl",
   "appAuthTokenSetTitle": "Tetapkan Token Pengesahan Apl",
   "appAuthTokenCurrent": "Token Semasa",
+  "appAuthTokenEmpty": "Belum ditetapkan",
   "appAuthTokenNew": "Token Baharu",
   "appAuthTokenNewPlaceholder": "Sila masukkan token pengesahan apl baharu",
   "appAuthTokenUpdateConfirm": "Sahkan mengemas kini token pengesahan apl?",

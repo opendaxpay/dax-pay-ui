@@ -71,6 +71,7 @@
   "appAuthTokenRequired": "โปรดป้อนโทเค็นการตรวจสอบสิทธิ์ของแอป",
   "appAuthTokenSetTitle": "ตั้งค่าโทเค็นการตรวจสอบสิทธิ์ของแอป",
   "appAuthTokenCurrent": "โทเค็นปัจจุบัน",
+  "appAuthTokenEmpty": "ยังไม่ได้ตั้งค่า",
   "appAuthTokenNew": "โทเค็นใหม่",
   "appAuthTokenNewPlaceholder": "โปรดป้อนโทเค็นการตรวจสอบสิทธิ์ของแอปใหม่",
   "appAuthTokenUpdateConfirm": "ยืนยันการอัปเดตโทเค็นการตรวจสอบสิทธิ์ของแอปหรือไม่",

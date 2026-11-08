@@ -71,6 +71,7 @@
   "appAuthTokenRequired": "앱 인증 토큰을 입력하세요.",
   "appAuthTokenSetTitle": "앱 인증 토큰 설정",
   "appAuthTokenCurrent": "현재 토큰",
+  "appAuthTokenEmpty": "미설정",
   "appAuthTokenNew": "새로운 토큰",
   "appAuthTokenNewPlaceholder": "새 앱 인증 토큰을 입력하세요.",
   "appAuthTokenUpdateConfirm": "앱 인증 토큰 업데이트를 확인하시겠습니까?",
