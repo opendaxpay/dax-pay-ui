@@ -139,8 +139,8 @@
         :subtitle="$t('payment.channel.mock.isv.subtitle', { no: record.isvNo || '-' })"
         :image="channelSvg"
         :status="isvStatus(record)"
-        :action-text="$t('payment.merchant.store.enterWorkbench')"
-        :aria-label="$t('payment.merchant.store.enterWorkbench')"
+        :action-text="$t('payment.merchant.store.card.enterWorkbench')"
+        :aria-label="$t('payment.merchant.store.card.enterWorkbench')"
         @open="handleOpen(record)"
       >
         <!-- 右上角: 凭证配置状态徽章 + 编辑入口(阻止冒泡, 不进入工作台) -->

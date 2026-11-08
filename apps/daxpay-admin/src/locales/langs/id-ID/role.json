@@ -1,1 +1,6 @@
-{}
+{
+  "admin_admin": "Administrator Platform",
+  "merchant_admin": "Administrator Pedagang",
+  "merchant_user": "Pengguna Pedagang",
+  "merchant_cashier": "Kasir Pedagang"
+}

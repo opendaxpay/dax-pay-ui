@@ -1,1 +1,5 @@
-{}
+{
+  "merchant_admin": "Quản trị viên Merchant",
+  "merchant_user": "Người dùng Merchant",
+  "merchant_cashier": "Thu ngân Merchant"
+}

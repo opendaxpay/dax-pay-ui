@@ -1,1 +1,5 @@
-{}
+{
+  "merchant_admin": "가맹점 관리자",
+  "merchant_user": "가맹점 사용자",
+  "merchant_cashier": "가맹점 계산원"
+}

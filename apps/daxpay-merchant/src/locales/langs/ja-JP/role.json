@@ -1,1 +1,5 @@
-{}
+{
+  "merchant_admin": "加盟店管理者",
+  "merchant_user": "加盟店ユーザー",
+  "merchant_cashier": "加盟店レジ担当"
+}

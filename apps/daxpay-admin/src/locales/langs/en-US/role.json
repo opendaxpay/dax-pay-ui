@@ -1,1 +1,6 @@
-{}
+{
+  "admin_admin": "Platform Administrator",
+  "merchant_admin": "Merchant Administrator",
+  "merchant_user": "Merchant User",
+  "merchant_cashier": "Merchant Cashier"
+}

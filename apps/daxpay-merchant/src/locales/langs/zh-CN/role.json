@@ -1,1 +1,5 @@
-{}
+{
+  "merchant_admin": "商户管理员",
+  "merchant_user": "商户普通用户",
+  "merchant_cashier": "商户收银员"
+}
