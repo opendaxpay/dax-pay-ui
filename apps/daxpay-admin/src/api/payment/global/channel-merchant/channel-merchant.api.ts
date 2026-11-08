@@ -80,8 +80,6 @@ export interface ChannelMerchantResult extends BaseEntity {
   mchNo?: string;
   /** 商户名称 */
   mchName?: string;
-  /** 归属服务商号(服务商模式产品有值, 主表直读) */
-  isvNo?: string;
 }
 
 /**
