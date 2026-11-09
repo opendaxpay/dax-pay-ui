@@ -30,7 +30,7 @@
     messageKey: 'payment.common.route.missingMchNo',
     fallbackPath: '/payment/merchant',
   });
-  const { message: msg } = useMessage();
+  const { confirm, message: msg } = useMessage();
   const { openDeleteConfirm } = useDeleteConfirm();
   const { hasPermission } = usePermission();
 
@@ -200,12 +200,23 @@
       cards: accessCards,
     });
 
-    // 危险操作: 仅持有商户管理权限的用户可见(删除入口从列表操作列移入此处)
-    if (hasPermission(PermCodes.Merchant.Info.MANAGE)) {
+    // 管理操作: 仅持有商户管理权限的用户可见(启停/删除入口从详情与列表移入此处)
+    if (hasPermission(PermCodes.Merchant.Info.MANAGE) && merchantInfo.value.status) {
+      const disabling = merchantInfo.value.status === 'enable';
       groups.push({
-        group: $t('payment.merchant.workbench.workbench.groupDanger'),
+        group: $t('payment.merchant.workbench.workbench.groupManage'),
         color: 'red',
         cards: [
+          {
+            key: 'toggleStatus',
+            // 禁用商户 / 启用商户（按当前状态切换）
+            title: disabling
+              ? $t('payment.merchant.workbench.workbench.cardDisableMerchant')
+              : $t('payment.merchant.workbench.workbench.cardEnableMerchant'),
+            icon: 'ant-design:poweroff-outlined',
+            // 切换启用/禁用状态, 禁用后商户无法发起交易
+            description: $t('payment.merchant.workbench.workbench.cardToggleStatusDesc'),
+          },
           {
             key: 'deleteMerchant',
             // 删除商户
@@ -281,6 +292,11 @@
    * 功能卡点击分发(磁贴 select 事件按 key 分发, 跳转携带 mchNo 预置筛选)
    */
   function handleCardSelect(key: string) {
+    // 启用/禁用商户卡片 → 按当前状态切换
+    if (key === 'toggleStatus') {
+      handleToggleStatus();
+      return;
+    }
     // 删除商户卡片 → 强确认删除
     if (key === 'deleteMerchant') {
       handleDeleteMerchant();
@@ -306,6 +322,32 @@
         query: { mchNo: mchNo.value, ...target.query },
       });
     }
+  }
+
+  /**
+   * 启用/禁用商户（按当前状态切换，成功后刷新工作台）
+   */
+  function handleToggleStatus() {
+    const merchant = merchantInfo.value;
+    if (!merchant.id || !merchant.status) {
+      return;
+    }
+    const enabling = merchant.status !== 'enable';
+    confirm({
+      title: enabling
+        ? $t('payment.merchant.workbench.workbench.cardEnableMerchant')
+        : $t('payment.merchant.workbench.workbench.cardDisableMerchant'),
+      content: enabling
+        ? $t('payment.merchant.workbench.workbench.enableMerchantContent', { name: merchant.mchName || '' })
+        : $t('payment.merchant.workbench.workbench.disableMerchantContent', { name: merchant.mchName || '' }),
+      okText: enabling ? $t('payment.merchant.base.status.enable') : $t('payment.merchant.base.status.disabled'),
+      cancelText: $t('common.cancelText'),
+      onOk: () =>
+        (enabling ? MerchantApi.enable(merchant.id!) : MerchantApi.disable(merchant.id!)).then(() => {
+          msg.success($t('common.operationSuccess'));
+          loadMerchantInfo();
+        }),
+    });
   }
 
   /**

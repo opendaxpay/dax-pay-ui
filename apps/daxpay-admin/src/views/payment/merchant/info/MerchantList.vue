@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import type { VxeTableInstance, VxeToolbarInstance } from 'vxe-table';
 
-  import { computed, onMounted, ref } from 'vue';
+  import { computed, onActivated, onMounted, ref } from 'vue';
   import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
@@ -61,10 +61,20 @@
   });
 
   const tableData = ref<MerchantInfo[]>([]);
+  // 是否已激活过(keep-alive 首次挂载由 onMounted 查询, 避免重复请求)
+  let activatedOnce = false;
 
   onMounted(() => {
     xTable.value?.connectToolbar(xToolbar.value as VxeToolbarInstance);
     queryPage();
+  });
+
+  // 从商户工作台返回时刷新列表(启停/删除后状态列保持最新)
+  onActivated(() => {
+    if (activatedOnce) {
+      queryPage();
+    }
+    activatedOnce = true;
   });
 
   function queryPage() {

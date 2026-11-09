@@ -45,12 +45,6 @@
     status: 'enable',
   });
 
-  // 状态选项
-  const statusOptions = [
-    { label: $t('payment.merchant.base.status.enable'), value: 'enable' },
-    { label: $t('payment.merchant.base.status.disabled'), value: 'disabled' },
-  ];
-
   // 商户类型选项（只读展示）
   const subjectTypeMap: Record<string, string> = {
     micro: $t('payment.merchant.base.subjectType.micro'),
@@ -62,7 +56,6 @@
   const rules = {
     mchName: [{ required: true, message: $t('payment.merchant.base.validation.pleaseInputMchName') }],
     mchShortName: [{ required: true, message: $t('payment.merchant.base.validation.pleaseInputMchShortName') }],
-    status: [{ required: true, message: $t('payment.merchant.base.validation.pleaseSelectStatus') }],
   };
 
   onMounted(() => {
@@ -138,7 +131,10 @@
           onOk: async () => {
             confirmLoading.value = true;
             try {
-              await MerchantApi.update(form.value);
+              // 状态由商户工作台「管理操作」承载，详情保存不携带 status，避免覆盖启停结果
+              const payload = { ...form.value };
+              delete payload.status;
+              await MerchantApi.update(payload);
               message.success($t('common.saveSuccess'));
               isEditing.value = false;
               await loadDetail();
@@ -218,14 +214,15 @@
                 :placeholder="$t('payment.merchant.form.add.mchShortNamePlaceholder')"
               />
             </a-form-item>
-            <!-- 状态 -->
-            <a-form-item :label="$t('payment.merchant.base.field.status')" name="status">
-              <a-select
-                v-model:value="form.status"
-                :options="statusOptions"
-                :disabled="!isEditing"
-                :placeholder="$t('payment.merchant.base.validation.pleaseSelectStatus')"
-              />
+            <!-- 状态：只读展示，启停用由商户工作台「管理操作」承载 -->
+            <a-form-item :label="$t('payment.merchant.base.field.status')">
+              <a-tag :color="form.status === 'enable' ? 'green' : 'red'">
+                {{
+                  form.status === 'enable'
+                    ? $t('payment.merchant.base.status.enable')
+                    : $t('payment.merchant.base.status.disabled')
+                }}
+              </a-tag>
             </a-form-item>
           </a-form>
         </div>
