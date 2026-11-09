@@ -58,5 +58,6 @@
   "menu.device.virtual": "Peranti Maya",
   "menu.log": "Log",
   "menu.log.login": "Log Masuk",
-  "menu.log.operate": "Kendalikan Log"
+  "menu.log.operate": "Kendalikan Log",
+  "menu.system": "Sistem"
 }

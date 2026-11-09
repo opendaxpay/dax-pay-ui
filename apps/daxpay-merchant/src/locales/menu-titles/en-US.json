@@ -58,5 +58,6 @@
   "menu.device.virtual": "Virtual Devices",
   "menu.log": "Logs",
   "menu.log.login": "Login Log",
-  "menu.log.operate": "Operate Log"
+  "menu.log.operate": "Operate Log",
+  "menu.system": "System"
 }

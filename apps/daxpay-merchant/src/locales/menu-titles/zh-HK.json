@@ -58,5 +58,6 @@
   "menu.device.virtual": "虛擬設備",
   "menu.log": "日誌",
   "menu.log.login": "登錄日誌",
-  "menu.log.operate": "操作日誌"
+  "menu.log.operate": "操作日誌",
+  "menu.system": "系統管理"
 }

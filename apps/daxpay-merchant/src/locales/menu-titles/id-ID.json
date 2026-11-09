@@ -58,5 +58,6 @@
   "menu.device.virtual": "Perangkat Virtual",
   "menu.log": "Log",
   "menu.log.login": "Catatan Masuk",
-  "menu.log.operate": "Operasikan Log"
+  "menu.log.operate": "Operasikan Log",
+  "menu.system": "Sistem"
 }

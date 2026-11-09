@@ -58,5 +58,6 @@
   "menu.device.virtual": "仮想デバイス",
   "menu.log": "ログ",
   "menu.log.login": "ログインログ",
-  "menu.log.operate": "操作ログ"
+  "menu.log.operate": "操作ログ",
+  "menu.system": "システム"
 }
