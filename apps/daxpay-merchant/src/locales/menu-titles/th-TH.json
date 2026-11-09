@@ -56,7 +56,7 @@
   "menu.payment.merchant.qrcode": "การจัดการรหัส QR",
   "menu.payment.merchant.file": "ไฟล์ผู้ขาย",
   "menu.device.virtual": "อุปกรณ์เสมือน",
-  "menu.log": "บันทึก",
+  "menu.log": "บันทึกการตรวจสอบ",
   "menu.log.login": "เข้าสู่ระบบ",
   "menu.log.operate": "ดำเนินการบันทึก",
   "menu.system": "ระบบ"

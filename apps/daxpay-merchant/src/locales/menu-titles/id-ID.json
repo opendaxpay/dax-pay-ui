@@ -56,7 +56,7 @@
   "menu.payment.merchant.qrcode": "Manajemen Kode QR",
   "menu.payment.merchant.file": "File Merchant",
   "menu.device.virtual": "Perangkat Virtual",
-  "menu.log": "Log",
+  "menu.log": "Log Audit",
   "menu.log.login": "Catatan Masuk",
   "menu.log.operate": "Operasikan Log",
   "menu.system": "Sistem"

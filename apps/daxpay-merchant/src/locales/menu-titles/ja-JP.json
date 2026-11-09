@@ -56,7 +56,7 @@
   "menu.payment.merchant.qrcode": "QRコード管理",
   "menu.payment.merchant.file": "加盟店ファイル",
   "menu.device.virtual": "仮想デバイス",
-  "menu.log": "ログ",
+  "menu.log": "監査ログ",
   "menu.log.login": "ログインログ",
   "menu.log.operate": "操作ログ",
   "menu.system": "システム"

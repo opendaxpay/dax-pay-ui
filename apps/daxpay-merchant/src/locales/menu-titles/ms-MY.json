@@ -56,7 +56,7 @@
   "menu.payment.merchant.qrcode": "Pengurusan Kod QR",
   "menu.payment.merchant.file": "Fail Pedagang",
   "menu.device.virtual": "Peranti Maya",
-  "menu.log": "Log",
+  "menu.log": "Log Audit",
   "menu.log.login": "Log Masuk",
   "menu.log.operate": "Kendalikan Log",
   "menu.system": "Sistem"
