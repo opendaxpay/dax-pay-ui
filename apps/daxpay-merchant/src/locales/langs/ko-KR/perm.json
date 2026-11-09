@@ -41,6 +41,8 @@
   "merchant:gateway-pay-config:view": "보기",
   "merchant:info:manage": "관리하다",
   "merchant:info:view": "보다",
+  "merchant:log:login:view": "로그인 로그 보기",
+  "merchant:log:operate:view": "운영 로그 보기",
   "merchant:store:manage": "관리하다",
   "merchant:store:view": "보다",
   "merchant:terminal:manage": "관리하다",

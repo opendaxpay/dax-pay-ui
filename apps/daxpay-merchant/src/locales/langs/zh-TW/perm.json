@@ -41,6 +41,8 @@
   "merchant:gateway-pay-config:view": "檢視",
   "merchant:info:manage": "管理",
   "merchant:info:view": "檢視",
+  "merchant:log:login:view": "登入日誌檢視",
+  "merchant:log:operate:view": "操作日誌檢視",
   "merchant:store:manage": "管理",
   "merchant:store:view": "檢視",
   "merchant:terminal:manage": "管理",

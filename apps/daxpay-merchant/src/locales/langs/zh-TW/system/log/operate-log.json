@@ -1,0 +1,20 @@
+{
+  "account": "操作賬號",
+  "title": "操作模組",
+  "businessType": "業務型別",
+  "requestMethod": "請求方式",
+  "operateUrl": "請求URL",
+  "operateIp": "操作IP",
+  "operateLocation": "操作地點",
+  "operateParam": "請求引數",
+  "operateReturn": "返回引數",
+  "status": "操作狀態",
+  "errorMsg": "錯誤提示",
+  "operateTime": "操作時間",
+  "client": "登入終端",
+  "browser": "瀏覽器型別",
+  "os": "作業系統",
+  "inputTitle": "請輸入操作模組",
+  "inputAccount": "請輸入操作賬號",
+  "detailTitle": "操作日誌詳情"
+}

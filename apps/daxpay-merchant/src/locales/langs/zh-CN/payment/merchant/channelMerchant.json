@@ -91,7 +91,6 @@
   "uploadPublicKey": "上传公钥",
   "uploadSuccess": "{name} 上传成功",
   "cardCapabilityBinding": "支付应用配置",
-  "manageTitleLeshua": "乐刷商户管理",
   "cardTransferScene": "转账场景管理",
   "cardTransferSceneDesc": "管理支付宝转账场景(2026年起新接入商户转账必配)",
   "transferSceneManage": "转账场景管理",

@@ -91,7 +91,6 @@
   "uploadPublicKey": "Unggah Public Key",
   "uploadSuccess": "{name} diunggah",
   "cardCapabilityBinding": "Pengaturan Aplikasi Pembayaran",
-  "manageTitleLeshua": "Manajemen Pedagang Leshua",
   "transferScenePresetTip": "Maksimal 3 adegan transfer dapat diaktifkan. Adegan default harus diaktifkan. Hanya adegan aktif yang dapat dipilih saat transfer.",
   "transferSceneEnableConfirm": "Aktifkan adegan transfer ini? Adegan aktif dapat dipilih saat melakukan transfer",
   "transferSceneDisableConfirm": "Nonaktifkan adegan transfer ini? Adegan nonaktif tidak dapat dipilih saat transfer",

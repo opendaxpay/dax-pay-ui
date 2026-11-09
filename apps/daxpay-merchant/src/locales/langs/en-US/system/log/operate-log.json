@@ -1,0 +1,20 @@
+{
+  "account": "Account",
+  "title": "Module",
+  "businessType": "Business Type",
+  "requestMethod": "Request Method",
+  "operateUrl": "Request URL",
+  "operateIp": "IP Address",
+  "operateLocation": "Location",
+  "operateParam": "Request Params",
+  "operateReturn": "Response",
+  "status": "Status",
+  "errorMsg": "Error Message",
+  "operateTime": "Operate Time",
+  "client": "Client",
+  "browser": "Browser",
+  "os": "OS",
+  "inputTitle": "Please enter module name",
+  "inputAccount": "Please enter account",
+  "detailTitle": "Operation Log Detail"
+}

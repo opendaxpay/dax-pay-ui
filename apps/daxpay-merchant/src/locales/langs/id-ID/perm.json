@@ -41,6 +41,8 @@
   "merchant:gateway-pay-config:view": "Lihat",
   "merchant:info:manage": "Mengelola",
   "merchant:info:view": "Melihat",
+  "merchant:log:login:view": "Lihat Catatan Masuk",
+  "merchant:log:operate:view": "Lihat Log Operasi",
   "merchant:store:manage": "Mengelola",
   "merchant:store:view": "Melihat",
   "merchant:terminal:manage": "Mengelola",

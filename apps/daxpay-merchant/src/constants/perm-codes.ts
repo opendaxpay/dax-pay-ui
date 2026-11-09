@@ -99,6 +99,17 @@ export const PermCodes = {
       VIEW: 'merchant:wx-verify:view',
       MANAGE: 'merchant:wx-verify:manage',
     },
+    /** 审计日志(商户端只读, 不提供清理) menuCode=merchant:log:login|operate */
+    Log: {
+      Login: {
+        MENU: 'merchant:log:login',
+        VIEW: 'merchant:log:login:view',
+      },
+      Operate: {
+        MENU: 'merchant:log:operate',
+        VIEW: 'merchant:log:operate:view',
+      },
+    },
   },
 
   /** 渠道（通道商户 / 通道应用均统一码，不按通道拆） */

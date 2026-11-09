@@ -41,6 +41,8 @@
   "merchant:gateway-pay-config:view": "ดู",
   "merchant:info:manage": "จัดการ",
   "merchant:info:view": "ดู",
+  "merchant:log:login:view": "ดูบันทึกการเข้าสู่ระบบ",
+  "merchant:log:operate:view": "ดูบันทึกการดำเนินการ",
   "merchant:store:manage": "จัดการ",
   "merchant:store:view": "ดู",
   "merchant:terminal:manage": "จัดการ",

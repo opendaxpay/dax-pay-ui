@@ -55,5 +55,8 @@
   "menu.trade.unipayLog": "Payment API Log",
   "menu.payment.merchant.qrcode": "QR Code Management",
   "menu.payment.merchant.file": "Merchant Files",
-  "menu.device.virtual": "Virtual Devices"
+  "menu.device.virtual": "Virtual Devices",
+  "menu.log": "Logs",
+  "menu.log.login": "Login Log",
+  "menu.log.operate": "Operate Log"
 }

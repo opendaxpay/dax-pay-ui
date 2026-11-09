@@ -55,5 +55,8 @@
   "menu.trade.unipayLog": "결제 API 로그",
   "menu.payment.merchant.qrcode": "QR 코드 관리",
   "menu.payment.merchant.file": "가맹점 파일",
-  "menu.device.virtual": "가상 디바이스"
+  "menu.device.virtual": "가상 디바이스",
+  "menu.log": "로그",
+  "menu.log.login": "로그인 로그",
+  "menu.log.operate": "운영 로그"
 }

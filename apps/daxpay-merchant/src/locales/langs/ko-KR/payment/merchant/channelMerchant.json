@@ -91,7 +91,6 @@
   "uploadPublicKey": "공개키 업로드",
   "uploadSuccess": "{name} 업로드 완료",
   "cardCapabilityBinding": "결제 앱 설정",
-  "manageTitleLeshua": "레슈아 상인 관리",
   "cardTransferScene": "이체 시나리오 관리",
   "cardTransferSceneDesc": "Alipay 이체 시나리오 관리(2026년 이후 신규 가맹점 이체 필수 설정)",
   "transferSceneManage": "이체 시나리오 관리",

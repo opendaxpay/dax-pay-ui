@@ -1,0 +1,20 @@
+{
+  "account": "Akun",
+  "title": "Modul",
+  "businessType": "Jenis Bisnis",
+  "requestMethod": "Metode Permintaan",
+  "operateUrl": "URL Permintaan",
+  "operateIp": "Alamat IP",
+  "operateLocation": "Lokasi",
+  "operateParam": "Permintaan Param",
+  "operateReturn": "Tanggapan",
+  "status": "Status",
+  "errorMsg": "Pesan Kesalahan",
+  "operateTime": "Waktu Operasi",
+  "client": "Klien",
+  "browser": "Peramban",
+  "os": "sistem operasi",
+  "inputTitle": "Silakan masukkan nama modul",
+  "inputAccount": "Silakan masukkan akun",
+  "detailTitle": "Detil Log Operasi"
+}

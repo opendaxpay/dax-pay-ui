@@ -1,0 +1,18 @@
+{
+  "account": "使用者賬號",
+  "status": "登入狀態",
+  "ip": "登入IP地址",
+  "os": "作業系統",
+  "browser": "瀏覽器型別",
+  "msg": "提示訊息",
+  "loginTime": "訪問時間",
+  "client": "登入終端",
+  "loginType": "登入方式",
+  "loginLocation": "登入地點",
+  "inputAccount": "請輸入使用者賬號",
+  "detailTitle": "登入日誌詳情",
+  "terminal": "終端形態",
+  "terminalWeb": "PC Web端",
+  "terminalApp": "行動端",
+  "terminalElf": "PC收款精靈"
+}

@@ -44,9 +44,6 @@
     [ProductEnum.DOUYIN_PAY]: defineAsyncComponent(
       () => import('#/views/payment/channel/douyin/manage/DouyinDirectMchManage.vue'),
     ),
-    [ProductEnum.LESHUA_PAY]: defineAsyncComponent(
-      () => import('#/views/payment/channel/leshua/manage/mch/LeshuaChannelMerchantManage.vue'),
-    ),
     // 模拟通道: 直连/服务商共用同一工作台
     [ProductEnum.MOCK_PAY]: MockMchManage,
     [ProductEnum.MOCK_ISV]: MockMchManage,
@@ -62,7 +59,6 @@
     [ProductEnum.WECHAT_ISV]: 'payment.merchant.channelMerchant.manageTitleWechat',
     [ProductEnum.WECHAT_PAY]: 'payment.merchant.channelMerchant.manageTitleWechatDirect',
     [ProductEnum.DOUYIN_PAY]: 'payment.channel.douyinManage.manageTitle',
-    [ProductEnum.LESHUA_PAY]: 'payment.merchant.channelMerchant.manageTitleLeshua',
     // 模拟通道: 直连/服务商分别用各自的页头标题
     [ProductEnum.MOCK_PAY]: 'payment.merchant.channelMerchant.manageTitleMock',
     [ProductEnum.MOCK_ISV]: 'payment.merchant.channelMerchant.manageTitleMockIsv',

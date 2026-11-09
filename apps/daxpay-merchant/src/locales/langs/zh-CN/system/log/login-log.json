@@ -1,0 +1,18 @@
+{
+  "account": "用户账号",
+  "status": "登录状态",
+  "ip": "登录IP地址",
+  "os": "操作系统",
+  "browser": "浏览器类型",
+  "msg": "提示消息",
+  "loginTime": "访问时间",
+  "client": "登录终端",
+  "loginType": "登录方式",
+  "loginLocation": "登录地点",
+  "inputAccount": "请输入用户账号",
+  "detailTitle": "登录日志详情",
+  "terminal": "终端形态",
+  "terminalWeb": "PC Web端",
+  "terminalApp": "移动端",
+  "terminalElf": "PC收款精灵"
+}

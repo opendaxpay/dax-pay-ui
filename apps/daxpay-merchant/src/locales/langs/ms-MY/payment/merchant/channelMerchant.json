@@ -91,7 +91,6 @@
   "uploadPublicKey": "Muat Naik Public Key",
   "uploadSuccess": "{name} dimuat naik",
   "cardCapabilityBinding": "Persediaan Apl Pembayaran",
-  "manageTitleLeshua": "Pengurusan Pedagang Leshua",
   "transferScenePresetTip": "Maksimum 3 babak pemindahan boleh diaktifkan. Babak lalai mesti diaktifkan. Hanya babak aktif boleh dipilih semasa pemindahan.",
   "transferSceneEnableConfirm": "Aktifkan babak pemindahan ini? Babak aktif boleh dipilih semasa pemindahan",
   "transferSceneDisableConfirm": "Nyahaktifkan babak pemindahan ini? Babak tidak aktif tidak boleh dipilih semasa pemindahan",

@@ -1,0 +1,18 @@
+{
+  "account": "アカウント",
+  "status": "状態",
+  "ip": "IPアドレス",
+  "os": "OS",
+  "browser": "ブラウザ",
+  "msg": "メッセージ",
+  "loginTime": "ログイン時間",
+  "client": "クライアント",
+  "loginType": "ログインタイプ",
+  "loginLocation": "位置",
+  "inputAccount": "アカウントを入力してください",
+  "detailTitle": "ログインログの詳細",
+  "terminal": "端末形態",
+  "terminalWeb": "PC Web",
+  "terminalApp": "モバイル",
+  "terminalElf": "PCキャッシャー"
+}

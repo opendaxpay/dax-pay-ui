@@ -1,0 +1,18 @@
+{
+  "account": "Tài khoản",
+  "status": "Trạng thái",
+  "ip": "Địa chỉ IP",
+  "os": "hệ điều hành",
+  "browser": "Trình duyệt",
+  "msg": "Tin nhắn",
+  "loginTime": "Thời gian đăng nhập",
+  "client": "Khách hàng",
+  "loginType": "Loại đăng nhập",
+  "loginLocation": "Vị trí",
+  "inputAccount": "Vui lòng nhập tài khoản",
+  "detailTitle": "Đăng nhập Chi tiết nhật ký",
+  "terminal": "Hình thức thiết bị",
+  "terminalWeb": "Web PC",
+  "terminalApp": "Di động",
+  "terminalElf": "Thu ngân PC"
+}

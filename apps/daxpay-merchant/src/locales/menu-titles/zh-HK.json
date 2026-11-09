@@ -55,5 +55,8 @@
   "menu.trade.unipayLog": "支付接口日誌",
   "menu.payment.merchant.qrcode": "碼牌管理",
   "menu.payment.merchant.file": "商戶檔案",
-  "menu.device.virtual": "虛擬設備"
+  "menu.device.virtual": "虛擬設備",
+  "menu.log": "日誌",
+  "menu.log.login": "登錄日誌",
+  "menu.log.operate": "操作日誌"
 }

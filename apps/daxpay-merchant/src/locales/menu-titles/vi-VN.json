@@ -55,5 +55,8 @@
   "menu.trade.unipayLog": "Nhật ký API thanh toán",
   "menu.payment.merchant.qrcode": "Quản lý mã QR",
   "menu.payment.merchant.file": "Tệp Merchant",
-  "menu.device.virtual": "Thiết bị ảo"
+  "menu.device.virtual": "Thiết bị ảo",
+  "menu.log": "Nhật ký",
+  "menu.log.login": "Đăng nhập Nhật ký",
+  "menu.log.operate": "Nhật ký vận hành"
 }

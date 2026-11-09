@@ -1,0 +1,18 @@
+{
+  "account": "Account",
+  "status": "Status",
+  "ip": "IP Address",
+  "os": "OS",
+  "browser": "Browser",
+  "msg": "Message",
+  "loginTime": "Login Time",
+  "client": "Client",
+  "loginType": "Login Type",
+  "loginLocation": "Location",
+  "inputAccount": "Please enter account",
+  "detailTitle": "Login Log Detail",
+  "terminal": "Terminal",
+  "terminalWeb": "PC Web",
+  "terminalApp": "Mobile",
+  "terminalElf": "PC Cashier Elf"
+}

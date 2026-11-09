@@ -29,6 +29,7 @@ import mPaymentChannelCommon from './payment/channel/common.json';
 import mPaymentChannelDouyin from './payment/channel/douyin.json';
 import mPaymentChannelDouyinManage from './payment/channel/douyinManage.json';
 import mPaymentChannelDouyinMchApp from './payment/channel/douyinMchApp.json';
+import mPaymentChannelMock from './payment/channel/mock.json';
 import mPaymentCommon from './payment/common.json';
 import mPaymentCommonApp from './payment/common/app.json';
 import mPaymentCommonRoute from './payment/common/route.json';
@@ -68,6 +69,8 @@ import mPluginEasypayOrder from './plugin/easypay/order.json';
 import mPluginEasypayRefund from './plugin/easypay/refund.json';
 import mProfile from './profile.json';
 import mRole from './role.json';
+import mSystemLogLoginLog from './system/log/login-log.json';
+import mSystemLogOperateLog from './system/log/operate-log.json';
 import mSystemNotify from './system/notify.json';
 import mSystemPlatform from './system/platform.json';
 import mSystemRegion from './system/region.json';
@@ -100,6 +103,7 @@ const entries: LocaleEntry[] = [
   [['payment', 'channel', 'douyin'], mPaymentChannelDouyin],
   [['payment', 'channel', 'douyinManage'], mPaymentChannelDouyinManage],
   [['payment', 'channel', 'douyinMchApp'], mPaymentChannelDouyinMchApp],
+  [['payment', 'channel', 'mock'], mPaymentChannelMock],
   [['payment', 'common'], mPaymentCommon],
   [['payment', 'common', 'app'], mPaymentCommonApp],
   [['payment', 'common', 'route'], mPaymentCommonRoute],
@@ -139,6 +143,8 @@ const entries: LocaleEntry[] = [
   [['plugin', 'easypay', 'refund'], mPluginEasypayRefund],
   [['profile'], mProfile],
   [['role'], mRole],
+  [['system', 'log', 'login-log'], mSystemLogLoginLog],
+  [['system', 'log', 'operate-log'], mSystemLogOperateLog],
   [['system', 'notify'], mSystemNotify],
   [['system', 'platform'], mSystemPlatform],
   [['system', 'region'], mSystemRegion],

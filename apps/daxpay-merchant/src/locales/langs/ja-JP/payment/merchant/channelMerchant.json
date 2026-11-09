@@ -91,7 +91,6 @@
   "uploadPublicKey": "公開鍵アップロード",
   "uploadSuccess": "{name} アップロード完了",
   "cardCapabilityBinding": "支払いアプリ設定",
-  "manageTitleLeshua": "レシュア マーチャント マネジメント",
   "cardTransferScene": "振込シーン管理",
   "cardTransferSceneDesc": "Alipay振込シーンを管理(2026年以降の新規加盟店の振込必須設定)",
   "transferSceneManage": "振込シーン管理",

@@ -41,6 +41,8 @@
   "merchant:gateway-pay-config:view": "View",
   "merchant:info:manage": "Manage",
   "merchant:info:view": "View",
+  "merchant:log:login:view": "View Login Log",
+  "merchant:log:operate:view": "View Operate Log",
   "merchant:store:manage": "Manage",
   "merchant:store:view": "View",
   "merchant:terminal:manage": "Manage",

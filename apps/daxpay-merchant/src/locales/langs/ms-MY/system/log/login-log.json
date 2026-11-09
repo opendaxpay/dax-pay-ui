@@ -1,0 +1,18 @@
+{
+  "account": "Akaun",
+  "status": "Status",
+  "ip": "Alamat IP",
+  "os": "OS",
+  "browser": "pelayar",
+  "msg": "Mesej",
+  "loginTime": "Masa Log Masuk",
+  "client": "Pelanggan",
+  "loginType": "Jenis Log Masuk",
+  "loginLocation": "Lokasi",
+  "inputAccount": "Sila masukkan akaun",
+  "detailTitle": "Log Masuk Butiran",
+  "terminal": "Bentuk Terminal",
+  "terminalWeb": "Web PC",
+  "terminalApp": "Mudah Alih",
+  "terminalElf": "Juruwang PC"
+}

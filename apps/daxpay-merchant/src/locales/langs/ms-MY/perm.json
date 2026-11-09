@@ -41,6 +41,8 @@
   "merchant:gateway-pay-config:view": "Lihat",
   "merchant:info:manage": "Uruskan",
   "merchant:info:view": "Lihat",
+  "merchant:log:login:view": "Lihat Log Masuk",
+  "merchant:log:operate:view": "Lihat Log Kendalian",
   "merchant:store:manage": "Uruskan",
   "merchant:store:view": "Lihat",
   "merchant:terminal:manage": "Uruskan",

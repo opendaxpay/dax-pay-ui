@@ -1,0 +1,20 @@
+{
+  "account": "アカウント",
+  "title": "モジュール",
+  "businessType": "業種",
+  "requestMethod": "リクエストメソッド",
+  "operateUrl": "リクエストURL",
+  "operateIp": "IPアドレス",
+  "operateLocation": "位置",
+  "operateParam": "リクエストパラメータ",
+  "operateReturn": "応答",
+  "status": "状態",
+  "errorMsg": "エラーメッセージ",
+  "operateTime": "動作時間",
+  "client": "クライアント",
+  "browser": "ブラウザ",
+  "os": "OS",
+  "inputTitle": "モジュール名を入力してください",
+  "inputAccount": "アカウントを入力してください",
+  "detailTitle": "操作ログ詳細"
+}
