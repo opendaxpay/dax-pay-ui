@@ -202,7 +202,8 @@
     "allocValidateName": "Nama wajib diisi untuk penerima openid peribadi",
     "allocValidateTitle": "Sila masukkan tajuk pembahagian dana",
     "export": "Eksport",
-    "exportFailed": "Eksport gagal. Silakan cuba lagi kemudian."
+    "exportFailed": "Eksport gagal. Silakan cuba lagi kemudian.",
+    "orderDetail": "Butiran Pesanan"
   },
   "tradeType": {
     "normal": "Normal Pay",

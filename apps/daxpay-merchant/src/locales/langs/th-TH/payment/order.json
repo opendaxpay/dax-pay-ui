@@ -202,7 +202,8 @@
     "allocValidateName": "ผู้รับแบบ openid ส่วนบุคคลต้องกรอกชื่อ",
     "allocValidateTitle": "กรุณากรอกหัวข้อการแบ่งเงิน",
     "export": "ส่งออก",
-    "exportFailed": "ส่งออกล้มเหลว กรุณาลองใหม่ภายหลัง"
+    "exportFailed": "ส่งออกล้มเหลว กรุณาลองใหม่ภายหลัง",
+    "orderDetail": "รายละเอียดคำสั่งซื้อ"
   },
   "tradeType": {
     "normal": "Normal Pay",
