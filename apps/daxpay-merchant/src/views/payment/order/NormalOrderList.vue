@@ -4,6 +4,7 @@
   import type { LabelValue } from '#/types/web';
 
   import { computed, onMounted, ref } from 'vue';
+  import { useRoute } from 'vue-router';
 
   import { $t } from '@vben/locales';
   import { formatDateTime } from '@vben/utils';
@@ -26,6 +27,7 @@
   defineOptions({ name: 'NormalOrderList' });
 
   const { hasPermission } = usePermission();
+  const route = useRoute();
 
   // 订单详情编码字段展示名(支付通道/支付方式)
   const { channelLabel, methodLabel } = useOrderLabels();
@@ -245,6 +247,11 @@
           value: item.appId ?? '',
         })) ?? [];
     });
+    // 支付订单列表「订单明细」下钻: 按路由携带的业务单号预填查询
+    const routeBizOrderNo = route.query.bizOrderNo;
+    if (typeof routeBizOrderNo === 'string' && routeBizOrderNo) {
+      queryForm.value.bizOrderNo = routeBizOrderNo;
+    }
     queryPage();
   });
 </script>
