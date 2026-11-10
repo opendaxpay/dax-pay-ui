@@ -14,10 +14,11 @@
   import { useMessage } from '#/hooks/useMessage';
 
   /**
-   * 模拟通道直连商户建档(mock_pay)
+   * 模拟通道商户建档(mock_pay 直连 / mock_isv 服务商共用)
    *
    * 纯本地登记: 商户档案在模拟通道控制台创建, 此处登记其通道商户号与展示名称;
-   * 模拟通道为独立通道(无对接接口), 通道商户号必须手工登记, 商户级接入密钥在工作台后置维护。
+   * 模拟通道为独立通道(无对接接口), 通道商户号必须手工登记, 产品编码由上游 init 传入后端;
+   * 服务商形态归属全局唯一模拟服务商, 表单不再提供服务商字段。
    */
   defineOptions({ name: 'MockMchCreateConfig' });
 
@@ -86,7 +87,7 @@
           channelMchNo: form.value.channelMchNo.trim(),
           channelMerchantName: form.value.channelMerchantName.trim(),
         };
-        MockChannelMerchantApi.createMockDirectMerchant(param)
+        MockChannelMerchantApi.createMockMerchant(param)
           .then(() => {
             createSuccess.value = true;
             // 国际化：创建成功
@@ -140,10 +141,7 @@
             />
           </a-form-item>
           <!-- 国际化：通道商户号(模拟通道控制台创建的商户号, 必须手工登记) -->
-          <a-form-item
-            :label="$t('payment.channel.mock.create.channelMchNo')"
-            name="channelMchNo"
-          >
+          <a-form-item :label="$t('payment.channel.mock.create.channelMchNo')" name="channelMchNo">
             <a-input
               v-model:value="form.channelMchNo"
               allow-clear

@@ -15,6 +15,11 @@
     () => import('#/views/payment/channel/ums/config/UmsMchCreateConfig.vue'),
   );
 
+  /** 模拟通道共用同一建档组件(直连/服务商两产品 → 同一组件实例, 产品编码由 init 传入) */
+  const MockMchCreateConfig = defineAsyncComponent(
+    () => import('#/views/payment/channel/mock/config/MockMchCreateConfig.vue'),
+  );
+
   /**
    * 支付产品 → 商户开通配置组件映射表(懒加载, 按需分包)
    * 单一事实源: 新增/删除通道仅需在此增删一行
@@ -80,13 +85,9 @@
     [ProductEnum.YEE_PAY]: defineAsyncComponent(
       () => import('#/views/payment/channel/yeepay/config/YeepayMchCreateConfig.vue'),
     ),
-    // 模拟通道: 直连(mock_pay)与服务商(mock_isv)同为 mock 通道, 建档表单按产品区分
-    [ProductEnum.MOCK_PAY]: defineAsyncComponent(
-      () => import('#/views/payment/channel/mock/config/MockMchCreateConfig.vue'),
-    ),
-    [ProductEnum.MOCK_ISV]: defineAsyncComponent(
-      () => import('#/views/payment/channel/mock/config/MockIsvMchCreateConfig.vue'),
-    ),
+    // 模拟通道: 直连(mock_pay)与服务商(mock_isv)共用同一建档表单(产品编码由 init 传入后端)
+    [ProductEnum.MOCK_PAY]: MockMchCreateConfig,
+    [ProductEnum.MOCK_ISV]: MockMchCreateConfig,
     // 银联商务家族: 6 个产品共用同一组件
     [ProductEnum.UMS_QRCODE]: UmsMchCreateConfig,
     [ProductEnum.UMS_JSAPI]: UmsMchCreateConfig,

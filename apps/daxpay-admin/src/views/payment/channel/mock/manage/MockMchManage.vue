@@ -47,9 +47,6 @@
   // 分账接收方抽屉(通道侧绑定档案)
   const allocReceiverRef = ref<InstanceType<typeof AllocReceiverDrawer>>();
 
-  /** 是否为服务商形态(mock_isv): 基本信息多展示归属服务商 */
-  const isIsvProduct = computed(() => channelMerchant.value.product === ProductEnum.MOCK_ISV);
-
   /** 是否直连形态(mock_pay): 展示商户级「对接配置」卡(端点复用通道商户 channel:merchant 码) */
   const isDirectProduct = computed(() => channelMerchant.value.product === ProductEnum.MOCK_PAY);
   // 对接配置状态查询(view 即可, 磁贴描述用)
@@ -234,13 +231,8 @@
       </div>
     </div>
 
-    <!-- 基本信息抽屉(服务商形态多展示归属服务商与编号) -->
-    <MockMchBasicInfo
-      ref="basicInfoRef"
-      :channel-mch-no="channelMchNo"
-      :channel-merchant="channelMerchant"
-      :is-isv-product="isIsvProduct"
-    />
+    <!-- 基本信息抽屉 -->
+    <MockMchBasicInfo ref="basicInfoRef" :channel-mch-no="channelMchNo" :channel-merchant="channelMerchant" />
 
     <ChannelMerchantNameEditModal ref="editNameRef" :channel-merchant="channelMerchant" @success="emit('success')" />
 

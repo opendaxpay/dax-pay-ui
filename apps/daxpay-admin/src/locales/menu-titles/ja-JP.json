@@ -113,8 +113,5 @@
   "menu.trade.abnormalOrder": "異常注文",
   "menu.trade.fundFlow": "資金フロー",
   "menu.system.notify.mailTemplate": "メールテンプレート",
-  "menu.payment.mock.isv": "モックサービスプロバイダー管理",
-  "menu.payment.mock.isvWorkbench": "モックサービスプロバイダーワークベンチ",
-  "menu.payment.mock.directWorkbench": "モックダイレクトワークベンチ",
   "menu.device.virtual": "仮想デバイス"
 }

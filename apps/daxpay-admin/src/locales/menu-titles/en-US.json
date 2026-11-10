@@ -113,8 +113,5 @@
   "menu.trade.abnormalOrder": "Abnormal Orders",
   "menu.trade.fundFlow": "Fund Flows",
   "menu.system.notify.mailTemplate": "Mail Templates",
-  "menu.payment.mock.isv": "Mock Service Provider",
-  "menu.payment.mock.isvWorkbench": "Mock Service Provider Workbench",
-  "menu.payment.mock.directWorkbench": "Mock Direct-Connect Workbench",
   "menu.device.virtual": "Virtual Devices"
 }

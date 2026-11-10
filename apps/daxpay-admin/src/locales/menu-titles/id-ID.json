@@ -113,8 +113,5 @@
   "menu.trade.abnormalOrder": "Pesanan Abnormal",
   "menu.trade.fundFlow": "Arus Dana",
   "menu.system.notify.mailTemplate": "Templat Email",
-  "menu.payment.mock.isv": "Manajemen Penyedia Layanan Mock",
-  "menu.payment.mock.isvWorkbench": "Workbench Penyedia Layanan Mock",
-  "menu.payment.mock.directWorkbench": "Workbench Koneksi Langsung Mock",
   "menu.device.virtual": "Perangkat Virtual"
 }

@@ -17,6 +17,7 @@
   import HmpayManage from '#/views/payment/channel/hmpay/manage/HmpayManage.vue';
   import LakalaManage from '#/views/payment/channel/lakala/manage/LakalaManage.vue';
   import LeshuaManage from '#/views/payment/channel/leshua/manage/LeshuaManage.vue';
+  import MockManage from '#/views/payment/channel/mock/MockManage.vue';
   import ShengIsvManage from '#/views/payment/channel/sheng/manage/ShengIsvManage.vue';
   import VbillManage from '#/views/payment/channel/vbill/manage/VbillManage.vue';
   import WechatIsvManage from '#/views/payment/channel/wechat/manage/WechatIsvManage.vue';
@@ -126,6 +127,15 @@
         currentComponent.value = markRaw(LeshuaManage);
         break;
       }
+      // 模拟通道: 直连(mock_pay)与服务商(mock_isv)共用单工作台
+      case 'mock_isv': {
+        currentComponent.value = markRaw(MockManage);
+        break;
+      }
+      case 'mock_pay': {
+        currentComponent.value = markRaw(MockManage);
+        break;
+      }
       case 'sheng_isv': {
         currentComponent.value = markRaw(ShengIsvManage);
         break;
@@ -185,6 +195,12 @@
     }
     if (product.value === 'easy_pay') {
       return $t('payment.product.enum.easyPay');
+    }
+    if (product.value === 'mock_pay') {
+      return $t('payment.product.enum.mockPay');
+    }
+    if (product.value === 'mock_isv') {
+      return $t('payment.product.enum.mockIsv');
     }
     if (product.value) {
       return $t('payment.constant.product.productName.unknown', { product: product.value });

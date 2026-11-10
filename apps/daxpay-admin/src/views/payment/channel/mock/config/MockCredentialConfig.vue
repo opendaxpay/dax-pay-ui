@@ -6,6 +6,7 @@
   import { $t } from '@vben/locales';
 
   import { MockCredentialApi } from '#/api/payment/channel/mock/credential.api';
+  import { MockIsvInfoApi } from '#/api/payment/channel/mock/isv-info.api';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
 
@@ -13,12 +14,16 @@
    * Mock 模拟通道全局网关签名密钥配置抽屉
    *
    * 通道级全局单行配置(商户私钥 + 平台公钥, 与模拟网关侧密钥成对一致),
-   * 由模拟服务商管理页页头「全局接入密钥」入口打开;
+   * 由模拟通道产品工作台(MockManage)「接入密钥」磁贴打开;
+   * 服务商形态可同时维护服务商编号(须与 mock 网关控制台商户档案 isv_no 一致);
    * 后端脱敏回显, 未修改的字段不提交(后端空值不覆盖)。
    */
   defineOptions({ name: 'MockCredentialConfig' });
 
-  const emit = defineEmits<{ saved: [] }>();
+  const emit = defineEmits<{ ownerSaved: []; saved: [] }>();
+
+  // 服务商编号(服务商产品可编辑, 标明密钥归属主体; 直连产品不传)
+  const props = defineProps<{ ownerEditable?: boolean; ownerNo?: string }>();
 
   const { diffForm } = useFormEdit();
   const { message } = useMessage();
@@ -32,6 +37,10 @@
   });
   // 后端脱敏回显的原始值(保存时逐字段比对, 未改动的不提交)
   const originalForm = ref<MockCredentialResult>({});
+  // 服务商编号表单值(仅服务商形态可编辑)
+  const ownerNoForm = ref('');
+  // 打开时的服务商编号(保存时判断是否变更)
+  const originalOwnerNo = ref('');
 
   /** 两字段是否均未配置(后端返回空值即未配置) */
   const unconfigured = computed(() => !originalForm.value.merchantPrivateKey && !originalForm.value.platformPublicKey);
@@ -41,6 +50,8 @@
    */
   function show() {
     visible.value = true;
+    originalOwnerNo.value = props.ownerNo || '';
+    ownerNoForm.value = props.ownerNo || '';
     loadConfig();
   }
 
@@ -67,15 +78,39 @@
   }
 
   /**
-   * 保存(仅提交实际改动的字段, 脱敏原样/留空都不提交, 后端空值不覆盖)
+   * 保存
+   *
+   * 服务商编号变更先落库(须与网关控制台档案一致), 再按差异提交密钥字段;
+   * 脱敏原样/留空的密钥字段不提交(后端空值不覆盖)。
    */
   function handleSave() {
-    saving.value = true;
+    const normalizedOwnerNo = (ownerNoForm.value || '').trim();
+    if (props.ownerEditable && !normalizedOwnerNo) {
+      message.warning($t('payment.channel.mock.credential.isvNoRequired'));
+      return;
+    }
     const changedData = diffForm(originalForm.value, formState.value, 'merchantPrivateKey', 'platformPublicKey');
-    return MockCredentialApi.saveMockCredential(changedData)
+    const ownerChanged = props.ownerEditable && normalizedOwnerNo !== originalOwnerNo.value;
+    const keyChanged = Object.keys(changedData).length > 0;
+    if (!ownerChanged && !keyChanged) {
+      visible.value = false;
+      return;
+    }
+    saving.value = true;
+    const tasks: Promise<unknown>[] = [];
+    if (ownerChanged) {
+      tasks.push(MockIsvInfoApi.updateIsvNo(normalizedOwnerNo));
+    }
+    if (keyChanged) {
+      tasks.push(MockCredentialApi.saveMockCredential(changedData));
+    }
+    return Promise.all(tasks)
       .then(() => {
         message.success($t('payment.channel.mock.credential.saveSuccess'));
         visible.value = false;
+        if (ownerChanged) {
+          emit('ownerSaved');
+        }
         emit('saved');
       })
       .finally(() => {
@@ -108,11 +143,25 @@
         </span>
       </div>
       <a-form :model="formState" :label-col="{ span: 5 }" :wrapper-col="{ span: 19 }">
+        <!-- 国际化: 服务商编号(服务商产品密钥归属主体, 须与网关控制台档案一致) -->
+        <a-form-item v-if="ownerEditable" :label="$t('payment.channel.mock.credential.isvNo')">
+          <a-input
+            v-model:value="ownerNoForm"
+            :maxlength="32"
+            :placeholder="$t('payment.channel.mock.credential.isvNoPlaceholder')"
+          />
+          <template #extra>
+            <span class="text-xs text-muted-foreground">
+              {{ $t('payment.channel.mock.credential.isvNoTip') }}
+            </span>
+          </template>
+        </a-form-item>
+
         <!-- 国际化: 商户私钥 -->
         <a-form-item :label="$t('payment.channel.mock.credential.merchantPrivateKey')" name="merchantPrivateKey">
           <a-textarea
             v-model:value="formState.merchantPrivateKey"
-            :rows="8"
+            :rows="3"
             :placeholder="$t('payment.channel.mock.credential.merchantPrivateKeyPlaceholder')"
           />
           <template #extra>
@@ -130,7 +179,7 @@
         <a-form-item :label="$t('payment.channel.mock.credential.platformPublicKey')" name="platformPublicKey">
           <a-textarea
             v-model:value="formState.platformPublicKey"
-            :rows="6"
+            :rows="3"
             :placeholder="$t('payment.channel.mock.credential.platformPublicKeyPlaceholder')"
           />
           <template #extra>

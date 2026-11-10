@@ -113,8 +113,5 @@
   "menu.trade.abnormalOrder": "Pesanan Tidak Normal",
   "menu.trade.fundFlow": "Aliran Dana",
   "menu.system.notify.mailTemplate": "Templat E-mel",
-  "menu.payment.mock.isv": "Pengurusan Penyedia Perkhidmatan Mock",
-  "menu.payment.mock.isvWorkbench": "Ruang Kerja Penyedia Perkhidmatan Mock",
-  "menu.payment.mock.directWorkbench": "Workbench Sambungan Terus Mock",
   "menu.device.virtual": "Peranti Maya"
 }
