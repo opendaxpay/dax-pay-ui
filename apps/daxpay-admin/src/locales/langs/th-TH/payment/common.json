@@ -6,6 +6,12 @@
     "willReplace": "เมื่อบันทึกจะแทนที่คีย์เดิม ({reference})",
     "willReplaceNoReference": "เมื่อบันทึกจะแทนที่คีย์เดิม"
   },
+  "credentialStatus": {
+    "configured": "กำหนดค่าแล้ว",
+    "pending": "ยังไม่ตั้งค่า",
+    "missingTip": "ยังไม่ได้กำหนดค่า: {fields}",
+    "separator": ", "
+  },
   "export": {
     "confirmTitle": "ยืนยันการส่งออก",
     "confirmOnly": "ส่งออก{scope}หรือไม่?",

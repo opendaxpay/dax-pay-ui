@@ -1,4 +1,16 @@
 {
+  "secretStatus": {
+    "configured": "設定済み · {preview} · 空欄のまま保存すると現在の値を保持します",
+    "configuredNoPreview": "設定済み · 空欄のまま保存すると現在の値を保持します",
+    "willReplace": "保存すると現在のキーを置き換えます({reference})",
+    "willReplaceNoReference": "保存すると現在のキーを置き換えます"
+  },
+  "credentialStatus": {
+    "configured": "設定済み",
+    "pending": "未設定",
+    "missingTip": "未設定：{fields}",
+    "separator": "、"
+  },
   "export": {
     "confirmTitle": "エクスポートの確認",
     "confirmOnly": "{scope}をエクスポートしますか？",

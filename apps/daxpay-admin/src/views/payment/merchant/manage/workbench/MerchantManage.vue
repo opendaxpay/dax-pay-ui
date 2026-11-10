@@ -20,6 +20,7 @@
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
   import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
+  import CredentialStatusTag from '#/views/payment/shared/CredentialStatusTag.vue';
 
   defineOptions({ name: 'MerchantManage' });
 
@@ -39,10 +40,28 @@
   const merchantInfo = ref<MerchantInfo>({});
   // 设备与支付应用计数(系统终端台数/虚拟设备台数/微信应用数/抖音应用数, 加载失败时缺省不展示角标)
   const deviceCounts = ref<MchDeviceCountResult>({});
-  // 基础数据计数(商户用户/门店/通道商户/应用/域名校验文件, 加载失败时缺省不展示角标)
+  // 基础数据计数(商户用户/门店/通道商户/应用/域名校验文件 + 对接凭证配置状态, 加载失败时缺省不展示角标与状态标签)
   const baseCounts = ref<MchBaseCountResult>({});
   // 页签标题动态化为「{商户名} · 商户工作台」
   const { setTabObjectTitle } = useDynamicTabTitle($t('payment.merchant.workbench.workbench.title'));
+
+  /**
+   * 对接配置缺失明细(「对接配置」磁贴待配置时 tooltip 列出)
+   *
+   * 平台公钥由平台侧注入、不在计数接口内, 不列入; 计数未加载时为空数组(标签本身也不渲染)。
+   */
+  const credentialMissing = computed(() => {
+    const missing: string[] = [];
+    if (baseCounts.value.publicKeyConfigured === false) {
+      // 商户公钥
+      missing.push($t('payment.merchant.credential.credential.publicKey'));
+    }
+    if (baseCounts.value.secretKeyConfigured === false) {
+      // 通信密钥
+      missing.push($t('payment.merchant.credential.credential.secretKey'));
+    }
+    return missing;
+  });
 
   /**
    * 功能卡片配置: 五组制(基础/支付/收银与设备/接入/危险)
@@ -412,7 +431,17 @@
         </div>
 
         <!-- 功能分组磁贴 -->
-        <WorkbenchTileGrid :groups="functionCards" @select="handleCardSelect" />
+        <WorkbenchTileGrid :groups="functionCards" @select="handleCardSelect">
+          <template #badge="{ card }">
+            <!-- 对接配置磁贴右上角: 配置状态标签(紧凑形态; 计数未加载/失败时不渲染) -->
+            <CredentialStatusTag
+              v-if="card.key === 'credentialConfig'"
+              compact
+              :configured="baseCounts.credentialConfigured"
+              :missing="credentialMissing"
+            />
+          </template>
+        </WorkbenchTileGrid>
       </a-card>
     </a-spin>
   </div>

@@ -3,6 +3,7 @@
   import { useRouter } from 'vue-router';
 
   import { $t } from '@vben/locales';
+  import { formatDateTime } from '@vben/utils';
 
   import { IconifyIcon } from '@vben-core/icons';
 
@@ -23,6 +24,7 @@
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
   import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
+  import CredentialStatusTag from '#/views/payment/shared/CredentialStatusTag.vue';
 
   defineOptions({ name: 'MerchantCredentialConfig' });
 
@@ -49,9 +51,62 @@
   const formState = ref<MerchantCredentialResult>({});
   // 原始脱敏数据，用于 diffForm 比对
   const originalForm = ref<MerchantCredentialResult>({});
+  // 对接配置是否已加载（平台公钥状态标签加载前不渲染，避免闪现「平台侧未配置」）
+  const loaded = ref(false);
   // RSA密钥对弹窗
   const keyPairVisible = ref(false);
   const privateKeyContent = ref('');
+
+  /** 平台公钥配置状态（平台侧注入，非空即已配置；加载前 undefined 不渲染标签） */
+  const platformKeyConfigured = computed(() => (loaded.value ? !!originalForm.value.platformPublicKey : undefined));
+
+  /** 通信密钥脱敏摘要（后端前 6 后 6 脱敏回显，压缩为「前段******后段」便于核对） */
+  const secretKeyPreview = computed(() => maskedPreview(originalForm.value.secretKey));
+
+  /** 商户公钥状态行（未配置不展示；已配置提示留空保留，输入新值提示将替换原值） */
+  const publicKeyStatusText = computed(() => {
+    if (!originalForm.value.publicKeyConfigured) {
+      return '';
+    }
+    const current = formState.value.publicKey;
+    if (current && current !== originalForm.value.publicKey) {
+      // 保存后将替换原密钥
+      return $t('payment.common.secretStatus.willReplaceNoReference');
+    }
+    // 已配置 · 留空保存则保留原值
+    return $t('payment.common.secretStatus.configuredNoPreview');
+  });
+
+  /** 通信密钥状态行（同商户公钥，附脱敏摘要；表单回显为脱敏串，未改动/留空均不覆盖原值） */
+  const secretKeyStatusText = computed(() => {
+    if (!originalForm.value.secretKeyConfigured) {
+      return '';
+    }
+    const preview = secretKeyPreview.value;
+    const current = formState.value.secretKey;
+    if (current && current !== originalForm.value.secretKey) {
+      // 保存后将替换原密钥（脱敏摘要）
+      return preview
+        ? $t('payment.common.secretStatus.willReplace', { reference: preview })
+        : $t('payment.common.secretStatus.willReplaceNoReference');
+    }
+    // 已配置 · 脱敏摘要 · 留空保存则保留原值
+    return preview
+      ? $t('payment.common.secretStatus.configured', { preview })
+      : $t('payment.common.secretStatus.configuredNoPreview');
+  });
+
+  /** 最近配置时间（头部描述区；任一商户侧密钥已配置才展示，自动建档空行的时间不代表配置时间） */
+  const lastConfiguredText = computed(() => {
+    const { lastModifiedTime, publicKeyConfigured, secretKeyConfigured } = originalForm.value;
+    if (!lastModifiedTime || !(publicKeyConfigured || secretKeyConfigured)) {
+      return '';
+    }
+    // 最近配置时间：{time}
+    return $t('payment.merchant.credential.credential.lastConfiguredTime', {
+      time: formatDateTime(lastModifiedTime),
+    });
+  });
 
   /**
    * 加载商户信息
@@ -73,7 +128,24 @@
     const { data } = await MerchantCredentialApi.findByMchNo(mchNo.value);
     formState.value = data || {};
     originalForm.value = { ...data };
+    loaded.value = true;
     loading.value = false;
+  }
+
+  /**
+   * 脱敏串摘要：取首尾连续明文各 6 位，中间以固定 6 星压缩（如 abcdef******uvwxyz）
+   * 无星号（非脱敏形态，防明文外露）或单侧无明文（短值全遮）时返回空，状态行不带摘要
+   */
+  function maskedPreview(masked?: string) {
+    if (!masked || !masked.includes('*')) {
+      return '';
+    }
+    const head = /^[^*]*/.exec(masked)?.[0] ?? '';
+    const tail = /[^*]*$/.exec(masked)?.[0] ?? '';
+    if (!head || !tail) {
+      return '';
+    }
+    return `${head.slice(0, 6)}******${tail.slice(-6)}`;
   }
 
   /**
@@ -230,6 +302,7 @@
     back
     :title="$t('payment.merchant.credential.credential.title')"
     :name="merchantInfo.mchName || ''"
+    :description="lastConfiguredText"
     :loading="loading"
     @back="handleBack"
   >
@@ -264,10 +337,17 @@
       <a-form layout="vertical" class="module-form">
         <!-- 平台公钥（只读） -->
         <!-- 国际化：平台公钥 -->
-        <a-form-item
-          :label="$t('payment.merchant.credential.credential.platformPublicKey')"
-          :tooltip="$t('payment.merchant.credential.credential.platformPublicKeyTooltip')"
-        >
+        <a-form-item :tooltip="$t('payment.merchant.credential.credential.platformPublicKeyTooltip')">
+          <template #label>
+            <span class="inline-flex items-center gap-2">
+              {{ $t('payment.merchant.credential.credential.platformPublicKey') }}
+              <!-- 国际化：已配置 / 平台侧未配置 -->
+              <CredentialStatusTag
+                :configured="platformKeyConfigured"
+                :pending-text="$t('payment.merchant.credential.credential.platformKeyNotConfigured')"
+              />
+            </span>
+          </template>
           <div class="textarea-wrapper">
             <a-textarea
               :value="formState.platformPublicKey"
@@ -290,10 +370,14 @@
 
         <!-- 商户公钥 -->
         <!-- 国际化：商户公钥 -->
-        <a-form-item
-          :label="$t('payment.merchant.credential.credential.publicKey')"
-          :tooltip="$t('payment.merchant.credential.credential.publicKeyTooltip')"
-        >
+        <a-form-item :tooltip="$t('payment.merchant.credential.credential.publicKeyTooltip')">
+          <template #label>
+            <span class="inline-flex items-center gap-2">
+              {{ $t('payment.merchant.credential.credential.publicKey') }}
+              <!-- 国际化：已配置 / 待配置 -->
+              <CredentialStatusTag :configured="originalForm.publicKeyConfigured" />
+            </span>
+          </template>
           <div class="textarea-wrapper">
             <a-textarea
               v-model:value="formState.publicKey"
@@ -312,14 +396,22 @@
               </a-button>
             </div>
           </div>
+          <!-- 状态行：已配置 · 留空保存则保留原值 / 保存后将替换原密钥（未配置不渲染） -->
+          <template v-if="publicKeyStatusText" #extra>
+            <span class="text-xs text-muted-foreground">{{ publicKeyStatusText }}</span>
+          </template>
         </a-form-item>
 
         <!-- 通信密钥 -->
         <!-- 国际化：通信密钥 -->
-        <a-form-item
-          :label="$t('payment.merchant.credential.credential.secretKey')"
-          :tooltip="$t('payment.merchant.credential.credential.secretKeyTooltip')"
-        >
+        <a-form-item :tooltip="$t('payment.merchant.credential.credential.secretKeyTooltip')">
+          <template #label>
+            <span class="inline-flex items-center gap-2">
+              {{ $t('payment.merchant.credential.credential.secretKey') }}
+              <!-- 国际化：已配置 / 待配置 -->
+              <CredentialStatusTag :configured="originalForm.secretKeyConfigured" />
+            </span>
+          </template>
           <div class="flex gap-2">
             <a-input
               v-model:value="formState.secretKey"
@@ -333,6 +425,10 @@
               {{ $t('payment.merchant.credential.credential.genAesSecretKey') }}
             </a-button>
           </div>
+          <!-- 状态行：已配置 · 脱敏摘要 · 留空保存则保留原值 / 保存后将替换原密钥（未配置不渲染） -->
+          <template v-if="secretKeyStatusText" #extra>
+            <span class="text-xs text-muted-foreground">{{ secretKeyStatusText }}</span>
+          </template>
         </a-form-item>
       </a-form>
     </div>

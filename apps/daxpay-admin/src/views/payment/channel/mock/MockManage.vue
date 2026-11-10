@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+  import type { MockCredentialResult } from '#/api/payment/channel/mock/credential.api';
+
   import { computed, ref } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
 
@@ -6,11 +8,13 @@
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { MockCredentialApi } from '#/api/payment/channel/mock/credential.api';
   import { MockIsvInfoApi, type MockIsvInfoResult } from '#/api/payment/channel/mock/isv-info.api';
   import { PermCodes } from '#/constants/perm-codes';
   import { ProductEnum } from '#/enums/payment';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
+  import CredentialStatusTag from '#/views/payment/shared/CredentialStatusTag.vue';
 
   import MockCredentialConfig from './config/MockCredentialConfig.vue';
 
@@ -46,12 +50,18 @@
   const isIsv = computed(() => product.value === ProductEnum.MOCK_ISV);
   // 全局唯一模拟服务商(仅 mock_isv 加载)
   const isvInfo = ref<MockIsvInfoResult | null>(null);
+  // 通道级全局接入密钥查询结果(接入密钥磁贴状态标签用; null=未加载/加载失败/无权查看)
+  const credentialInfo = ref<MockCredentialResult | null>(null);
 
   // 工作台磁贴
   interface MockWorkbenchCard {
+    /** 配置状态(右上角状态标签; undefined 不渲染) */
+    configured?: boolean;
     description: string;
     icon: string;
     key: string;
+    /** 待配置时 tooltip 列出的缺失项 */
+    missing?: string[];
     title: string;
   }
 
@@ -61,6 +71,26 @@
     color: string;
     group: string;
   }
+
+  /** 接入密钥配置状态(两密钥均非空即已配置; 未加载时 undefined, 标签不渲染) */
+  const credentialConfigured = computed(() => credentialInfo.value?.configured ?? undefined);
+
+  /** 接入密钥缺失明细(后端脱敏回显为空即未配置, 待配置 tooltip 用) */
+  const credentialMissing = computed(() => {
+    const missing: string[] = [];
+    if (!credentialInfo.value) {
+      return missing;
+    }
+    if (!credentialInfo.value.merchantPrivateKey) {
+      // 商户私钥
+      missing.push($t('payment.channel.mock.credential.merchantPrivateKey'));
+    }
+    if (!credentialInfo.value.platformPublicKey) {
+      // 平台公钥
+      missing.push($t('payment.channel.mock.credential.platformPublicKey'));
+    }
+    return missing;
+  });
 
   /** 接入密钥磁贴描述(服务商形态追加只读的全局服务商编号) */
   const credentialDescription = computed(() => {
@@ -97,6 +127,9 @@
             title: $t('payment.channel.mock.workbench.cardCredential'),
             icon: 'ant-design:key-outlined',
             description: credentialDescription.value,
+            // 右上角配置状态标签(已配置/待配置)
+            configured: credentialConfigured.value,
+            missing: credentialMissing.value,
           },
         ],
       },
@@ -128,19 +161,33 @@
     ];
     // 权限门控: 查看权限控制接入密钥与通道商户入口, 管理权限控制支付开关
     groups.forEach((group) => {
-      group.cards = group.cards.filter((card) =>
-        card.key === 'paySwitch' ? canManage.value : canView.value,
-      );
+      group.cards = group.cards.filter((card) => (card.key === 'paySwitch' ? canManage.value : canView.value));
     });
     return groups.filter((group) => group.cards.length > 0);
   });
 
-  /** 初始化(由分发页调用; 服务商形态加载全局服务商状态) */
+  /** 初始化(由分发页调用; 加载接入密钥配置状态, 服务商形态另加载全局服务商状态) */
   function init(isSandbox: boolean) {
     sandbox.value = isSandbox;
+    loadCredentialStatus();
     if (isIsv.value) {
       loadCurrent();
     }
+  }
+
+  /** 加载通道级全局接入密钥配置状态(与接入密钥抽屉同一查询; 无查看权限时跳过, 磁贴本身也不展示) */
+  function loadCredentialStatus() {
+    if (!canView.value) {
+      return;
+    }
+    MockCredentialApi.getMockCredential()
+      .then(({ data }) => {
+        credentialInfo.value = data ?? null;
+      })
+      .catch(() => {
+        // 状态标签为辅助信息, 拉取失败不展示标签, 不影响磁贴入口
+        credentialInfo.value = null;
+      });
   }
 
   /** 加载全局唯一模拟服务商(编号/名称/启停状态) */
@@ -223,6 +270,10 @@
           :styles="{ body: { padding: '16px' } }"
           @click="handleCardClick(card)"
         >
+          <!-- 右上角配置状态标签(仅带配置状态的磁贴, 未加载时不渲染; 宽度封顶避开中央图标) -->
+          <div v-if="card.configured !== undefined" class="absolute right-2 top-2 z-10 max-w-[calc(50%_-_40px)]">
+            <CredentialStatusTag compact :configured="card.configured" :missing="card.missing" />
+          </div>
           <div class="flex flex-col items-center text-center">
             <div
               class="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:shadow-md"
@@ -248,11 +299,13 @@
         </a-card>
       </div>
     </div>
+    <!-- 全局接入密钥抽屉(保存成功后刷新磁贴配置状态) -->
     <MockCredentialConfig
       ref="credentialRef"
       :owner-editable="isIsv"
       :owner-no="isvInfo?.isvNo"
       @owner-saved="loadCurrent"
+      @saved="loadCredentialStatus"
     />
   </div>
 </template>

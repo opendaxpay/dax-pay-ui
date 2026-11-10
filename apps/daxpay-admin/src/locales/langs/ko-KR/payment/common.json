@@ -6,6 +6,12 @@
     "willReplace": "저장하면 기존 키가 교체됩니다({reference})",
     "willReplaceNoReference": "저장하면 기존 키가 교체됩니다"
   },
+  "credentialStatus": {
+    "configured": "설정됨",
+    "pending": "미설정",
+    "missingTip": "미설정: {fields}",
+    "separator": ", "
+  },
   "export": {
     "confirmTitle": "내보내기 확인",
     "confirmOnly": "{scope}을(를) 내보내시겠습니까?",

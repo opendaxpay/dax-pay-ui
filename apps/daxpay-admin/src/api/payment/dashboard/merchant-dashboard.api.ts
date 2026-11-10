@@ -33,4 +33,10 @@ export interface MchBaseCountResult {
   channelMerchantCount?: number;
   /** 域名校验文件数 */
   wxVerifyCount?: number;
+  /** 对接凭证是否已配置完整(商户公钥与通信密钥均非空, 「对接配置」磁贴状态标签用) */
+  credentialConfigured?: boolean;
+  /** 商户公钥是否已配置(磁贴待配置 tooltip 缺失明细用) */
+  publicKeyConfigured?: boolean;
+  /** 通信密钥是否已配置(磁贴待配置 tooltip 缺失明细用) */
+  secretKeyConfigured?: boolean;
 }

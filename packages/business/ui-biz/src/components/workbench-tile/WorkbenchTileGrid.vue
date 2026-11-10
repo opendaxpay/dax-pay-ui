@@ -3,7 +3,8 @@
    * 工作台分组磁贴网格(通用)
    * 分组彩色竖条 + 220px 卡片网格 + hover 动效, danger 卡(删除等)红色系,
    * active 卡(当前生效态, 如已设为默认)主色系 + 常显底条, 与危险态区分;
-   * 数量以标题旁的灰色小标签呈现(存量语义, 不用红点角标, 与「待办/告警」区分)
+   * 数量以标题旁的灰色小标签呈现(存量语义, 不用红点角标, 与「待办/告警」区分);
+   * 右上角提供 badge 作用域插槽(如接入配置状态 tag), 调用方按 card.key 自行渲染, 不传不渲染
    */
   import { IconifyIcon } from '@vben/icons';
   import { $t } from '@vben/locales';
@@ -16,6 +17,11 @@
 
   const emit = defineEmits<{
     select: [key: string];
+  }>();
+
+  defineSlots<{
+    /** 磁贴右上角徽章(作用域参数为当前磁贴) */
+    badge?: (props: { card: WorkbenchTile }) => any;
   }>();
 
   export type TileColor = 'blue' | 'gray' | 'green' | 'orange' | 'purple' | 'red';
@@ -92,6 +98,16 @@
           :styles="{ body: { padding: '24px 20px' } }"
           @click="handleCardClick(card)"
         >
+          <!--
+            右上角徽章(如配置状态 tag): 调用方按 card.key 渲染, 无内容时空容器不占位;
+            宽度封顶 50% - 40px(220px 磁贴约 70px), 保证长文案语种也不压住中央 56px 图标(含 hover 放大)
+          -->
+          <div
+            v-if="$slots.badge"
+            class="absolute right-2 top-2 z-10 flex max-w-[calc(50%_-_40px)] items-center gap-1.5"
+          >
+            <slot name="badge" :card="card" />
+          </div>
           <div class="flex flex-col items-center text-center">
             <div
               class="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:shadow-md"

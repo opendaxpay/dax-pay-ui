@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-  import { onMounted, ref } from 'vue';
+  import { computed, onMounted, ref } from 'vue';
 
   import { $t } from '@vben/locales';
+  import { formatDateTime } from '@vben/utils';
 
   import { IconifyIcon } from '@vben-core/icons';
 
+  import { PageShell } from '@daxpay/ui-biz/components/page-shell';
   import { useClipboard } from '@vueuse/core';
 
   import {
@@ -14,11 +16,11 @@
   } from '#/api/payment/merchant/credential.api';
   import { KeyGenApi } from '#/api/payment/merchant/key-gen.api';
   import { MerchantApi } from '#/api/payment/merchant/merchant.api';
-  import { PageShell } from '@daxpay/ui-biz/components/page-shell';
   import { PermCodes } from '#/constants/perm-codes';
   import { useFormEdit } from '#/hooks/useFormEdit';
   import { useMessage } from '#/hooks/useMessage';
   import { usePermission } from '#/hooks/usePermission';
+  import CredentialStatusTag from '#/views/payment/shared/CredentialStatusTag.vue';
 
   defineOptions({ name: 'MerchantCredentialConfig' });
 
@@ -37,9 +39,62 @@
   const formState = ref<MerchantCredentialResult>({});
   // 原始脱敏数据，用于 diffForm 比对
   const originalForm = ref<MerchantCredentialResult>({});
+  // 对接配置是否已加载（平台公钥状态标签加载前不渲染，避免闪现「平台侧未配置」）
+  const loaded = ref(false);
   // RSA 密钥对弹窗
   const keyPairVisible = ref(false);
   const privateKeyContent = ref('');
+
+  /** 平台公钥配置状态（平台侧注入，非空即已配置；加载前 undefined 不渲染标签） */
+  const platformKeyConfigured = computed(() => (loaded.value ? !!originalForm.value.platformPublicKey : undefined));
+
+  /** 通信密钥脱敏摘要（后端前 6 后 6 脱敏回显，压缩为「前段******后段」便于核对） */
+  const secretKeyPreview = computed(() => maskedPreview(originalForm.value.secretKey));
+
+  /** 商户公钥状态行（未配置不展示；已配置提示留空保留，输入新值提示将替换原值） */
+  const publicKeyStatusText = computed(() => {
+    if (!originalForm.value.publicKeyConfigured) {
+      return '';
+    }
+    const current = formState.value.publicKey;
+    if (current && current !== originalForm.value.publicKey) {
+      // 保存后将替换原密钥
+      return $t('payment.common.secretStatus.willReplaceNoReference');
+    }
+    // 已配置 · 留空保存则保留原值
+    return $t('payment.common.secretStatus.configuredNoPreview');
+  });
+
+  /** 通信密钥状态行（同商户公钥，附脱敏摘要；表单回显为脱敏串，未改动/留空均不覆盖原值） */
+  const secretKeyStatusText = computed(() => {
+    if (!originalForm.value.secretKeyConfigured) {
+      return '';
+    }
+    const preview = secretKeyPreview.value;
+    const current = formState.value.secretKey;
+    if (current && current !== originalForm.value.secretKey) {
+      // 保存后将替换原密钥（脱敏摘要）
+      return preview
+        ? $t('payment.common.secretStatus.willReplace', { reference: preview })
+        : $t('payment.common.secretStatus.willReplaceNoReference');
+    }
+    // 已配置 · 脱敏摘要 · 留空保存则保留原值
+    return preview
+      ? $t('payment.common.secretStatus.configured', { preview })
+      : $t('payment.common.secretStatus.configuredNoPreview');
+  });
+
+  /** 最近配置时间（头部描述区；任一商户侧密钥已配置才展示，自动建档空行的时间不代表配置时间） */
+  const lastConfiguredText = computed(() => {
+    const { lastModifiedTime, publicKeyConfigured, secretKeyConfigured } = originalForm.value;
+    if (!lastModifiedTime || !(publicKeyConfigured || secretKeyConfigured)) {
+      return '';
+    }
+    // 最近配置时间：{time}
+    return $t('payment.merchant.credential.credential.lastConfiguredTime', {
+      time: formatDateTime(lastModifiedTime),
+    });
+  });
 
   /**
    * 加载当前商户信息并取 mchNo
@@ -58,7 +113,24 @@
     const { data } = await MerchantCredentialApi.findByMchNo(mchNo.value);
     formState.value = data || {};
     originalForm.value = { ...data };
+    loaded.value = true;
     loading.value = false;
+  }
+
+  /**
+   * 脱敏串摘要：取首尾连续明文各 6 位，中间以固定 6 星压缩（如 abcdef******uvwxyz）
+   * 无星号（非脱敏形态，防明文外露）或单侧无明文（短值全遮）时返回空，状态行不带摘要
+   */
+  function maskedPreview(masked?: string) {
+    if (!masked || !masked.includes('*')) {
+      return '';
+    }
+    const head = /^[^*]*/.exec(masked)?.[0] ?? '';
+    const tail = /[^*]*$/.exec(masked)?.[0] ?? '';
+    if (!head || !tail) {
+      return '';
+    }
+    return `${head.slice(0, 6)}******${tail.slice(-6)}`;
   }
 
   /**
@@ -194,7 +266,7 @@
 </script>
 
 <template>
-  <PageShell :title="$t('menu.payment.merchant.credential')" :loading="loading">
+  <PageShell :title="$t('menu.payment.merchant.credential')" :description="lastConfiguredText" :loading="loading">
     <!-- 对接配置（与菜单 menu.payment.merchant.credential 一致） -->
     <template #actions>
       <template v-if="!isEditing">
@@ -215,86 +287,109 @@
       </template>
     </template>
 
-        <div class="credential-form-container max-w-4xl px-4 py-2">
-          <!-- 信息提示 -->
-          <div class="info-banner">
-            <IconifyIcon icon="ant-design:info-circle-filled" />
-            <!-- 商户 API 配置用于接口调用时的身份验证与数据加解密，请妥善保管密钥信息 -->
-            <span>{{ $t('payment.merchant.credential.credential.infoBanner') }}</span>
+    <div class="credential-form-container max-w-4xl px-4 py-2">
+      <!-- 信息提示 -->
+      <div class="info-banner">
+        <IconifyIcon icon="ant-design:info-circle-filled" />
+        <!-- 商户 API 配置用于接口调用时的身份验证与数据加解密，请妥善保管密钥信息 -->
+        <span>{{ $t('payment.merchant.credential.credential.infoBanner') }}</span>
+      </div>
+
+      <a-form layout="vertical" class="module-form">
+        <!-- 平台公钥（只读） -->
+        <a-form-item :tooltip="$t('payment.merchant.credential.credential.platformPublicKeyTooltip')">
+          <template #label>
+            <span class="inline-flex items-center gap-2">
+              {{ $t('payment.merchant.credential.credential.platformPublicKey') }}
+              <!-- 已配置 / 平台侧未配置 -->
+              <CredentialStatusTag
+                :configured="platformKeyConfigured"
+                :pending-text="$t('payment.merchant.credential.credential.platformKeyNotConfigured')"
+              />
+            </span>
+          </template>
+          <div class="textarea-wrapper">
+            <a-textarea
+              :value="formState.platformPublicKey"
+              :placeholder="$t('payment.merchant.credential.credential.platformPublicKeyPlaceholder')"
+              :rows="3"
+              readonly
+              class="readonly-textarea"
+            />
+            <div class="textarea-actions">
+              <a-button type="link" size="small" @click="handleCopy(formState.platformPublicKey || '')">
+                <template #icon>
+                  <IconifyIcon icon="ant-design:copy-outlined" />
+                </template>
+                <!-- 复制 -->
+                {{ $t('payment.merchant.credential.credential.copy') }}
+              </a-button>
+            </div>
           </div>
+        </a-form-item>
 
-          <a-form layout="vertical" class="module-form">
-            <!-- 平台公钥（只读） -->
-            <a-form-item
-              :label="$t('payment.merchant.credential.credential.platformPublicKey')"
-              :tooltip="$t('payment.merchant.credential.credential.platformPublicKeyTooltip')"
-            >
-              <div class="textarea-wrapper">
-                <a-textarea
-                  :value="formState.platformPublicKey"
-                  :placeholder="$t('payment.merchant.credential.credential.platformPublicKeyPlaceholder')"
-                  :rows="3"
-                  readonly
-                  class="readonly-textarea"
-                />
-                <div class="textarea-actions">
-                  <a-button type="link" size="small" @click="handleCopy(formState.platformPublicKey || '')">
-                    <template #icon>
-                      <IconifyIcon icon="ant-design:copy-outlined" />
-                    </template>
-                    <!-- 复制 -->
-                    {{ $t('payment.merchant.credential.credential.copy') }}
-                  </a-button>
-                </div>
-              </div>
-            </a-form-item>
+        <!-- 商户公钥 -->
+        <a-form-item :tooltip="$t('payment.merchant.credential.credential.publicKeyTooltip')">
+          <template #label>
+            <span class="inline-flex items-center gap-2">
+              {{ $t('payment.merchant.credential.credential.publicKey') }}
+              <!-- 已配置 / 待配置 -->
+              <CredentialStatusTag :configured="originalForm.publicKeyConfigured" />
+            </span>
+          </template>
+          <div class="textarea-wrapper">
+            <a-textarea
+              v-model:value="formState.publicKey"
+              :placeholder="$t('payment.merchant.credential.credential.publicKeyPlaceholder')"
+              :rows="3"
+              :disabled="!isEditing"
+              allow-clear
+            />
+            <div class="textarea-actions">
+              <a-button type="link" size="small" :disabled="!isEditing" @click="handleGenRsaKeyPair">
+                <template #icon>
+                  <IconifyIcon icon="ant-design:key-outlined" />
+                </template>
+                <!-- 生成密钥对 -->
+                {{ $t('payment.merchant.credential.credential.genRsaKeyPair') }}
+              </a-button>
+            </div>
+          </div>
+          <!-- 状态行：已配置 · 留空保存则保留原值 / 保存后将替换原密钥（未配置不渲染） -->
+          <template v-if="publicKeyStatusText" #extra>
+            <span class="text-xs text-muted-foreground">{{ publicKeyStatusText }}</span>
+          </template>
+        </a-form-item>
 
-            <!-- 商户公钥 -->
-            <a-form-item
-              :label="$t('payment.merchant.credential.credential.publicKey')"
-              :tooltip="$t('payment.merchant.credential.credential.publicKeyTooltip')"
-            >
-              <div class="textarea-wrapper">
-                <a-textarea
-                  v-model:value="formState.publicKey"
-                  :placeholder="$t('payment.merchant.credential.credential.publicKeyPlaceholder')"
-                  :rows="3"
-                  :disabled="!isEditing"
-                  allow-clear
-                />
-                <div class="textarea-actions">
-                  <a-button type="link" size="small" :disabled="!isEditing" @click="handleGenRsaKeyPair">
-                    <template #icon>
-                      <IconifyIcon icon="ant-design:key-outlined" />
-                    </template>
-                    <!-- 生成密钥对 -->
-                    {{ $t('payment.merchant.credential.credential.genRsaKeyPair') }}
-                  </a-button>
-                </div>
-              </div>
-            </a-form-item>
-
-            <!-- 通信密钥 -->
-            <a-form-item
-              :label="$t('payment.merchant.credential.credential.secretKey')"
-              :tooltip="$t('payment.merchant.credential.credential.secretKeyTooltip')"
-            >
-              <div class="flex gap-2">
-                <a-input
-                  v-model:value="formState.secretKey"
-                  :placeholder="$t('payment.merchant.credential.credential.secretKeyPlaceholder')"
-                  :disabled="!isEditing"
-                  class="flex-1"
-                  allow-clear
-                />
-                <a-button type="primary" ghost :disabled="!isEditing" @click="handleGenAesSecretKey">
-                  <!-- 生成密钥 -->
-                  {{ $t('payment.merchant.credential.credential.genAesSecretKey') }}
-                </a-button>
-              </div>
-            </a-form-item>
-          </a-form>
-        </div>
+        <!-- 通信密钥 -->
+        <a-form-item :tooltip="$t('payment.merchant.credential.credential.secretKeyTooltip')">
+          <template #label>
+            <span class="inline-flex items-center gap-2">
+              {{ $t('payment.merchant.credential.credential.secretKey') }}
+              <!-- 已配置 / 待配置 -->
+              <CredentialStatusTag :configured="originalForm.secretKeyConfigured" />
+            </span>
+          </template>
+          <div class="flex gap-2">
+            <a-input
+              v-model:value="formState.secretKey"
+              :placeholder="$t('payment.merchant.credential.credential.secretKeyPlaceholder')"
+              :disabled="!isEditing"
+              class="flex-1"
+              allow-clear
+            />
+            <a-button type="primary" ghost :disabled="!isEditing" @click="handleGenAesSecretKey">
+              <!-- 生成密钥 -->
+              {{ $t('payment.merchant.credential.credential.genAesSecretKey') }}
+            </a-button>
+          </div>
+          <!-- 状态行：已配置 · 脱敏摘要 · 留空保存则保留原值 / 保存后将替换原密钥（未配置不渲染） -->
+          <template v-if="secretKeyStatusText" #extra>
+            <span class="text-xs text-muted-foreground">{{ secretKeyStatusText }}</span>
+          </template>
+        </a-form-item>
+      </a-form>
+    </div>
 
     <!-- RSA 密钥对弹窗 -->
     <a-modal

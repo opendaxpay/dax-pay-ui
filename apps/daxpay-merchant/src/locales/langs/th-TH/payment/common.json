@@ -1,4 +1,16 @@
 {
+  "secretStatus": {
+    "configured": "กำหนดค่าแล้ว · {preview} · เว้นว่างเมื่อบันทึกจะคงค่าเดิมไว้",
+    "configuredNoPreview": "กำหนดค่าแล้ว · เว้นว่างเมื่อบันทึกจะคงค่าเดิมไว้",
+    "willReplace": "เมื่อบันทึกจะแทนที่คีย์เดิม ({reference})",
+    "willReplaceNoReference": "เมื่อบันทึกจะแทนที่คีย์เดิม"
+  },
+  "credentialStatus": {
+    "configured": "กำหนดค่าแล้ว",
+    "pending": "ยังไม่ตั้งค่า",
+    "missingTip": "ยังไม่ได้กำหนดค่า: {fields}",
+    "separator": ", "
+  },
   "export": {
     "confirmTitle": "ยืนยันการส่งออก",
     "confirmOnly": "ส่งออก{scope}หรือไม่?",

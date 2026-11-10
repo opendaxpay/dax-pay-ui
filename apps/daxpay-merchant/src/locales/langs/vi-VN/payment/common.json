@@ -1,4 +1,16 @@
 {
+  "secretStatus": {
+    "configured": "Đã cấu hình · {preview} · để trống khi lưu sẽ giữ nguyên giá trị cũ",
+    "configuredNoPreview": "Đã cấu hình · để trống khi lưu sẽ giữ nguyên giá trị cũ",
+    "willReplace": "Lưu sẽ thay thế khóa cũ ({reference})",
+    "willReplaceNoReference": "Lưu sẽ thay thế khóa cũ"
+  },
+  "credentialStatus": {
+    "configured": "Đã cấu hình",
+    "pending": "Chưa cấu hình",
+    "missingTip": "Chưa cấu hình: {fields}",
+    "separator": ", "
+  },
   "export": {
     "confirmTitle": "Xác nhận xuất",
     "confirmOnly": "Xuất {scope}?",

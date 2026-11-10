@@ -30,6 +30,14 @@ export interface MerchantCredentialResult extends BaseEntity {
   platformPublicKey?: string;
   /** 通信密钥 */
   secretKey?: string;
+  /** 凭证是否已配置完整(商户公钥与通信密钥均非空) */
+  credentialConfigured?: boolean;
+  /** 商户公钥是否已配置 */
+  publicKeyConfigured?: boolean;
+  /** 通信密钥是否已配置 */
+  secretKeyConfigured?: boolean;
+  /** 最后修改时间(UTC ISO 串, 展示须走 formatDateTime) */
+  lastModifiedTime?: string;
 }
 
 /**

@@ -6,6 +6,12 @@
     "willReplace": "Saving will replace the current key ({reference})",
     "willReplaceNoReference": "Saving will replace the current key"
   },
+  "credentialStatus": {
+    "configured": "Configured",
+    "pending": "Not set",
+    "missingTip": "Not configured: {fields}",
+    "separator": ", "
+  },
   "export": {
     "confirmTitle": "Confirm export",
     "confirmOnly": "Export {scope}?",

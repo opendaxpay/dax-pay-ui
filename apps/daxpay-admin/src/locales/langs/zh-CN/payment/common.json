@@ -6,6 +6,12 @@
     "willReplace": "保存后将替换原密钥({reference})",
     "willReplaceNoReference": "保存后将替换原密钥"
   },
+  "credentialStatus": {
+    "configured": "已配置",
+    "pending": "待配置",
+    "missingTip": "未配置：{fields}",
+    "separator": "、"
+  },
   "export": {
     "confirmTitle": "确认导出",
     "confirmOnly": "确定导出{scope}吗？",

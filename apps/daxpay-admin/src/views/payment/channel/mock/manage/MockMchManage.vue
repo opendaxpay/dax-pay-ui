@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+  import type { MockDirectCredentialResult } from '#/api/payment/channel/mock/direct-credential.api';
   import type { ChannelMerchantResult } from '#/api/payment/global/channel-merchant/channel-merchant.api';
 
   import { computed, ref } from 'vue';
@@ -14,6 +15,7 @@
   import ChannelTerminalPanel from '#/views/payment/device/terminal/channel/ChannelTerminalPanel.vue';
   import AllocReceiverDrawer from '#/views/payment/global/channel-merchant/detail/AllocReceiverDrawer.vue';
   import ChannelMerchantNameEditModal from '#/views/payment/global/channel-merchant/detail/ChannelMerchantNameEditModal.vue';
+  import CredentialStatusTag from '#/views/payment/shared/CredentialStatusTag.vue';
 
   import MockMchAccessConfig from '../config/MockMchAccessConfig.vue';
   import MockMchBasicInfo from './MockMchBasicInfo.vue';
@@ -39,8 +41,8 @@
   const channelMerchant = ref<ChannelMerchantResult>({});
   const basicInfoRef = ref<InstanceType<typeof MockMchBasicInfo>>();
   const editNameRef = ref<InstanceType<typeof ChannelMerchantNameEditModal>>();
-  // 商户级对接配置状态(find 的 configured, 磁贴描述带状态; undefined=未加载/无权查看)
-  const credentialConfigured = ref<boolean | undefined>(undefined);
+  // 商户级对接配置查询结果(find 的 configured 驱动磁贴状态标签; null=未加载/无权查看/加载失败)
+  const credentialInfo = ref<MockDirectCredentialResult | null>(null);
   const credentialDrawerRef = ref<InstanceType<typeof MockMchAccessConfig>>();
   // 终端台账抽屉(通道侧终端登记/报备/注销)
   const terminalListRef = ref<InstanceType<typeof ChannelTerminalPanel>>();
@@ -49,23 +51,52 @@
 
   /** 是否直连形态(mock_pay): 展示商户级「对接配置」卡(端点复用通道商户 channel:merchant 码) */
   const isDirectProduct = computed(() => channelMerchant.value.product === ProductEnum.MOCK_PAY);
-  // 对接配置状态查询(view 即可, 磁贴描述用)
+  // 对接配置状态查询(view 即可, 磁贴状态标签用)
   const canCredential = computed(() => hasPermission(PermCodes.Channel.Merchant.VIEW));
   // 对接配置含密钥保存入口, 写操作按 manage 门控(仅 VIEW 用户不显示磁贴)
   const canManageCredential = computed(() => hasPermission(PermCodes.Channel.Merchant.MANAGE));
 
-  /** 对接配置磁贴描述(带配置状态) */
-  const credentialDescription = computed(() => {
-    if (credentialConfigured.value === undefined) {
-      return $t('payment.channel.mock.manage.cardCredentialDesc');
+  // 工作台磁贴
+  interface MockMchWorkbenchCard {
+    /** 配置状态(右上角状态标签; undefined 不渲染) */
+    configured?: boolean;
+    description: string;
+    icon: string;
+    key: string;
+    /** 待配置时 tooltip 列出的缺失项 */
+    missing?: string[];
+    title: string;
+  }
+
+  // 工作台磁贴分组
+  interface MockMchWorkbenchGroup {
+    cards: MockMchWorkbenchCard[];
+    color: string;
+    group: string;
+  }
+
+  /** 对接配置状态(商户私钥与平台公钥均非空即已配置; 未加载时 undefined, 标签不渲染) */
+  const credentialConfigured = computed(() => credentialInfo.value?.configured ?? undefined);
+
+  /** 对接配置缺失明细(脱敏回显为空即未配置, 待配置 tooltip 用) */
+  const credentialMissing = computed(() => {
+    const missing: string[] = [];
+    if (!credentialInfo.value) {
+      return missing;
     }
-    return credentialConfigured.value
-      ? $t('payment.channel.mock.manage.cardCredentialDescConfigured')
-      : $t('payment.channel.mock.manage.cardCredentialDescNotConfigured');
+    if (!credentialInfo.value.merchantPrivateKeyMasked) {
+      // 商户私钥
+      missing.push($t('payment.channel.mock.credential.merchantPrivateKey'));
+    }
+    if (!credentialInfo.value.platformPublicKeyMasked) {
+      // 平台公钥
+      missing.push($t('payment.channel.mock.credential.platformPublicKey'));
+    }
+    return missing;
   });
 
   /** 功能磁贴分组(基础管理 + 交易配置) */
-  const functionCards = computed(() => [
+  const functionCards = computed<MockMchWorkbenchGroup[]>(() => [
     {
       // 国际化: 基础管理
       group: $t('payment.channel.mock.manage.groupBasic'),
@@ -92,7 +123,10 @@
                 // 国际化: 对接配置
                 title: $t('payment.channel.mock.manage.cardCredential'),
                 icon: 'ant-design:api-outlined',
-                description: credentialDescription.value,
+                description: $t('payment.channel.mock.manage.cardCredentialDesc'),
+                // 右上角配置状态标签(已配置/待配置)
+                configured: credentialConfigured.value,
+                missing: credentialMissing.value,
               },
             ]
           : []),
@@ -152,17 +186,17 @@
     }
   }
 
-  /** 加载商户级对接配置状态(磁贴描述状态用; 无查看权限或编号未就绪时跳过) */
+  /** 加载商户级对接配置状态(磁贴状态标签用; 无查看权限或编号未就绪时跳过) */
   function loadCredentialStatus() {
     if (!canCredential.value || !channelMchNo.value) {
       return;
     }
     MockDirectCredentialApi.findMockDirectCredential(channelMchNo.value)
       .then(({ data }) => {
-        credentialConfigured.value = data.configured;
+        credentialInfo.value = data ?? null;
       })
       .catch(() => {
-        credentialConfigured.value = undefined;
+        credentialInfo.value = null;
       });
   }
 
@@ -204,6 +238,10 @@
             :styles="{ body: { padding: '16px' } }"
             @click="handleCardSelect(card.key)"
           >
+            <!-- 右上角配置状态标签(仅带配置状态的磁贴, 未加载时不渲染; 宽度封顶避开中央图标) -->
+            <div v-if="card.configured !== undefined" class="absolute right-2 top-2 z-10 max-w-[calc(50%_-_40px)]">
+              <CredentialStatusTag compact :configured="card.configured" :missing="card.missing" />
+            </div>
             <div class="flex flex-col items-center text-center">
               <div
                 class="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:shadow-md"

@@ -6,6 +6,12 @@
     "willReplace": "Menyimpan akan mengganti kunci lama ({reference})",
     "willReplaceNoReference": "Menyimpan akan mengganti kunci lama"
   },
+  "credentialStatus": {
+    "configured": "Terkonfigurasi",
+    "pending": "Belum diatur",
+    "missingTip": "Belum dikonfigurasi: {fields}",
+    "separator": ", "
+  },
   "export": {
     "confirmTitle": "Konfirmasi Ekspor",
     "confirmOnly": "Ekspor {scope}?",
