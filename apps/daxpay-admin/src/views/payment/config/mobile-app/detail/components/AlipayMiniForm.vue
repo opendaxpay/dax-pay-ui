@@ -184,7 +184,7 @@
       <a-textarea
         v-model:value="model.privateKey"
         :disabled="props.disabled"
-        :rows="4"
+        :rows="3"
         allow-clear
         :placeholder="$t('payment.mobileApp.fields.privateKeyPlaceholder')"
       />
@@ -195,7 +195,7 @@
       <a-textarea
         v-model:value="model.alipayPublicKey"
         :disabled="props.disabled"
-        :rows="4"
+        :rows="3"
         allow-clear
         :placeholder="$t('payment.mobileApp.fields.alipayPublicKeyPlaceholder')"
       />

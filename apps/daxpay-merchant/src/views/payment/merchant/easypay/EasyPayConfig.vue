@@ -493,7 +493,7 @@
                   <div class="textarea-wrapper">
                     <a-textarea
                       :value="form.platformPublicKey"
-                      :rows="4"
+                      :rows="3"
                       readonly
                       class="readonly-textarea font-mono text-sm"
                     />
@@ -524,7 +524,7 @@
                   <div class="textarea-wrapper">
                     <a-textarea
                       v-model:value="form.publicKey"
-                      :rows="4"
+                      :rows="3"
                       :disabled="!isEditing"
                       allow-clear
                       class="font-mono text-sm"

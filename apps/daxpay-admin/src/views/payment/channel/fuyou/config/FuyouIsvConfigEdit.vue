@@ -139,7 +139,7 @@
           <a-textarea
             v-model:value="form.privateKey"
             :disabled="!canEdit"
-            :rows="4"
+            :rows="3"
             :placeholder="$t('payment.channel.fuyouIsv.privateKeyPlaceholder')"
           />
         </a-form-item>
@@ -148,7 +148,7 @@
           <a-textarea
             v-model:value="form.publicKey"
             :disabled="!canEdit"
-            :rows="4"
+            :rows="3"
             :placeholder="$t('payment.channel.fuyouIsv.publicKeyPlaceholder')"
           />
         </a-form-item>

@@ -139,7 +139,7 @@
         >
           <a-textarea
             v-model:value="form.merchantPrivateKey"
-            :rows="6"
+            :rows="3"
             :autosize="{ minRows: 4, maxRows: 12 }"
             :disabled="!canEdit"
             :placeholder="$t('payment.channel.shengIsv.isvPrivateKeyPlaceholder')"
@@ -154,7 +154,7 @@
         >
           <a-textarea
             v-model:value="form.shengpayPublicKey"
-            :rows="6"
+            :rows="3"
             :autosize="{ minRows: 4, maxRows: 12 }"
             :disabled="!canEdit"
             :placeholder="$t('payment.channel.shengIsv.publicKeyPlaceholder')"

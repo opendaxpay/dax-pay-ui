@@ -132,7 +132,7 @@
           <a-textarea
             v-model:value="form.privateKey"
             :disabled="!canEdit"
-            :rows="4"
+            :rows="3"
             :placeholder="$t('payment.channel.adapay.privateKeyPlaceholder')"
           />
         </a-form-item>
@@ -142,7 +142,7 @@
           <a-textarea
             v-model:value="form.publicKey"
             :disabled="!canEdit"
-            :rows="4"
+            :rows="3"
             :placeholder="$t('payment.channel.adapay.publicKeyPlaceholder')"
           />
         </a-form-item>

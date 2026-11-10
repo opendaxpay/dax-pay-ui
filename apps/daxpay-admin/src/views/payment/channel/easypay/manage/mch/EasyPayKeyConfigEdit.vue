@@ -148,7 +148,7 @@
         >
           <a-textarea
             v-model:value="form.merchantPrivateKey"
-            :rows="6"
+            :rows="3"
             :autosize="{ minRows: 4, maxRows: 12 }"
             :disabled="!canEdit"
             :placeholder="$t('payment.channel.easypay.privateKeyPlaceholder')"
@@ -163,7 +163,7 @@
         >
           <a-textarea
             v-model:value="form.platformPublicKey"
-            :rows="6"
+            :rows="3"
             :autosize="{ minRows: 4, maxRows: 12 }"
             :disabled="!canEdit"
             :placeholder="$t('payment.channel.easypay.publicKeyPlaceholder')"

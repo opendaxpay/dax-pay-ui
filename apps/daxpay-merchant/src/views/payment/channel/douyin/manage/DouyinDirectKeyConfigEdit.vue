@@ -121,7 +121,7 @@
           <a-textarea
             v-model:value="form.merchantPrivateKey"
             :disabled="!canEdit"
-            :rows="4"
+            :rows="3"
             :placeholder="$t('payment.channel.douyin.merchantPrivateKeyPlaceholder')"
           />
         </a-form-item>

@@ -146,7 +146,7 @@
         >
           <a-textarea
             v-model:value="form.dgPublicKey"
-            :rows="6"
+            :rows="3"
             :autosize="{ minRows: 4, maxRows: 12 }"
             :disabled="!canEdit"
             :placeholder="$t('payment.channel.dougongIsv.dgPublicKeyPlaceholder')"
@@ -161,7 +161,7 @@
         >
           <a-textarea
             v-model:value="form.privateKey"
-            :rows="6"
+            :rows="3"
             :autosize="{ minRows: 4, maxRows: 12 }"
             :disabled="!canEdit"
             :placeholder="$t('payment.channel.dougongIsv.privateKeyPlaceholder')"

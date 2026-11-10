@@ -256,7 +256,7 @@
             <a-textarea
               v-model:value="formState.alipayPublicKey"
               :disabled="!isEditing"
-              :rows="5"
+              :rows="3"
               :placeholder="$t('payment.merchant.alipayDirectApp.alipayPublicKeyPlaceholder')"
             />
           </a-form-item>
@@ -265,7 +265,7 @@
             <a-textarea
               v-model:value="formState.privateKey"
               :disabled="!isEditing"
-              :rows="5"
+              :rows="3"
               :placeholder="$t('payment.merchant.alipayDirectApp.privateKeyPlaceholder')"
             />
           </a-form-item>

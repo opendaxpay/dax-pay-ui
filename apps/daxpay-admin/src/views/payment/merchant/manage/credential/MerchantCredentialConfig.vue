@@ -272,7 +272,7 @@
             <a-textarea
               :value="formState.platformPublicKey"
               :placeholder="$t('payment.merchant.credential.credential.platformPublicKeyPlaceholder')"
-              :rows="6"
+              :rows="3"
               readonly
               class="readonly-textarea"
             />
@@ -298,7 +298,7 @@
             <a-textarea
               v-model:value="formState.publicKey"
               :placeholder="$t('payment.merchant.credential.credential.publicKeyPlaceholder')"
-              :rows="6"
+              :rows="3"
               :disabled="!isEditing"
               allow-clear
             />

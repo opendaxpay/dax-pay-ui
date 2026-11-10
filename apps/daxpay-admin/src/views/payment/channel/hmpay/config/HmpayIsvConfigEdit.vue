@@ -125,7 +125,7 @@
         >
           <a-textarea
             v-model:value="form.publicKey"
-            :rows="6"
+            :rows="3"
             :autosize="{ minRows: 4, maxRows: 12 }"
             :placeholder="$t('payment.channel.hmpayIsv.publicKeyPlaceholder')"
           />
@@ -138,7 +138,7 @@
         >
           <a-textarea
             v-model:value="form.privateKey"
-            :rows="6"
+            :rows="3"
             :autosize="{ minRows: 4, maxRows: 12 }"
             :placeholder="$t('payment.channel.hmpayIsv.privateKeyPlaceholder')"
           />
