@@ -68,5 +68,6 @@
   "pleaseInput": "กรุณากรอก",
   "extraPlaceholder": "พารามิเตอร์การรายงานเฉพาะช่องทาง (ออบเจ็กต์ JSON)",
   "extraJsonInvalid": "พารามิเตอร์การรายงานไม่ใช่รูปแบบ JSON ที่ถูกต้อง",
-  "extraJsonObjectRequired": "พารามิเตอร์การรายงานต้องเป็นออบเจ็กต์ JSON เช่น {\"storeId\":\"...\"}"
+  "extraJsonObjectRequired": "พารามิเตอร์การรายงานต้องเป็นออบเจ็กต์ JSON เช่น {'{'}\"storeId\":\"...\"{'}'}",
+  "extraFieldRequired": "กรุณากรอก{label}"
 }

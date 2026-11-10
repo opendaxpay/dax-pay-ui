@@ -68,5 +68,6 @@
   "pleaseInput": "Please enter",
   "extraPlaceholder": "Channel-specific report params (JSON object)",
   "extraJsonInvalid": "Report params is not valid JSON",
-  "extraJsonObjectRequired": "Report params must be a JSON object, e.g. {\"storeId\":\"...\"}"
+  "extraJsonObjectRequired": "Report params must be a JSON object, e.g. {'{'}\"storeId\":\"...\"{'}'}",
+  "extraFieldRequired": "{label} is required"
 }

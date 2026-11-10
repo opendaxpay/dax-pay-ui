@@ -68,5 +68,6 @@
   "pleaseInput": "请输入",
   "extraPlaceholder": "通道差异化报备参数(JSON 对象)",
   "extraJsonInvalid": "报备参数不是合法的 JSON 格式",
-  "extraJsonObjectRequired": "报备参数必须是 JSON 对象, 如 {\"storeId\":\"...\"}"
+  "extraJsonObjectRequired": "报备参数必须是 JSON 对象, 如 {'{'}\"storeId\":\"...\"{'}'}",
+  "extraFieldRequired": "{label}不能为空"
 }

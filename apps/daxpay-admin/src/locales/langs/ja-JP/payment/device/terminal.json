@@ -68,5 +68,6 @@
   "pleaseInput": "入力してください",
   "extraPlaceholder": "チャネル固有の届出パラメータ(JSON オブジェクト)",
   "extraJsonInvalid": "届出パラメータが正しい JSON 形式ではありません",
-  "extraJsonObjectRequired": "届出パラメータは JSON オブジェクトである必要があります。例: {\"storeId\":\"...\"}"
+  "extraJsonObjectRequired": "届出パラメータは JSON オブジェクトである必要があります。例: {'{'}\"storeId\":\"...\"{'}'}",
+  "extraFieldRequired": "{label}は必須です"
 }

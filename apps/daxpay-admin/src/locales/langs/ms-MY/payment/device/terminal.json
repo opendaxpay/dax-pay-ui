@@ -68,5 +68,6 @@
   "pleaseInput": "Sila masukkan",
   "extraPlaceholder": "Parameter laporan khusus saluran (objek JSON)",
   "extraJsonInvalid": "Parameter laporan bukan format JSON yang sah",
-  "extraJsonObjectRequired": "Parameter laporan mesti objek JSON, cth. {\"storeId\":\"...\"}"
+  "extraJsonObjectRequired": "Parameter laporan mesti objek JSON, cth. {'{'}\"storeId\":\"...\"{'}'}",
+  "extraFieldRequired": "{label} diperlukan"
 }

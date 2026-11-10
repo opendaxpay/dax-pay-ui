@@ -68,5 +68,6 @@
   "pleaseInput": "입력하세요",
   "extraPlaceholder": "채널별 보고 파라미터(JSON 객체)",
   "extraJsonInvalid": "보고 파라미터가 올바른 JSON 형식이 아닙니다",
-  "extraJsonObjectRequired": "보고 파라미터는 JSON 객체여야 합니다. 예: {\"storeId\":\"...\"}"
+  "extraJsonObjectRequired": "보고 파라미터는 JSON 객체여야 합니다. 예: {'{'}\"storeId\":\"...\"{'}'}",
+  "extraFieldRequired": "{label}은(는) 필수입니다"
 }

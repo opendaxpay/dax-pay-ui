@@ -68,5 +68,6 @@
   "pleaseInput": "Silakan masukkan",
   "extraPlaceholder": "Parameter pelaporan khusus kanal (objek JSON)",
   "extraJsonInvalid": "Parameter pelaporan bukan format JSON yang valid",
-  "extraJsonObjectRequired": "Parameter pelaporan harus berupa objek JSON, mis. {\"storeId\":\"...\"}"
+  "extraJsonObjectRequired": "Parameter pelaporan harus berupa objek JSON, mis. {'{'}\"storeId\":\"...\"{'}'}",
+  "extraFieldRequired": "{label} diperlukan"
 }

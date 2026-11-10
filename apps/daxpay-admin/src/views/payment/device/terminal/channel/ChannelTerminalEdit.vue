@@ -145,6 +145,26 @@
   }
 
   /**
+   * 校验结构化报备参数必填项(后端字段定义 required); 有未填项时提示并返回 false
+   */
+  function validateExtraFields(): boolean {
+    for (const field of extraFields.value) {
+      if (!field.required) {
+        continue;
+      }
+      const value = extraForm.value[field.key];
+      // 未填 / 空串 / 纯空白均视为未填写
+      const empty = value === undefined || value === null || (typeof value === 'string' && value.trim() === '');
+      if (empty) {
+        // 报备参数必填项未填写: 「{label}不能为空」
+        message.warning($t('payment.device.terminal.extraFieldRequired', { label: field.label || field.key }));
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /**
    * 加载商户下系统终端下拉候选
    */
   async function loadTerminalOptions(mchNo: string) {
@@ -225,6 +245,10 @@
     // 报备参数: 有通道字段定义时按结构化表单组装(不暴露 JSON);
     // 无字段定义的通道回退为 JSON 文本域, 填了必须是合法 JSON 对象
     if (extraFields.value.length > 0) {
+      // 结构化字段按后端字段定义 required 做必填校验, 未通过则中断提交
+      if (!validateExtraFields()) {
+        return;
+      }
       formState.value.extra = buildExtraJson();
     } else {
       const extraText = formState.value.extra?.trim();
@@ -329,7 +353,7 @@
       </a-form-item>
       <!-- 通道差异化报备参数: 有字段定义时按结构化表单展示(标签为通道协议字段名, 随策略下发), 否则回退 JSON 文本域 -->
       <template v-if="extraFields.length > 0">
-        <a-form-item v-for="field in extraFields" :key="field.key" :label="field.label">
+        <a-form-item v-for="field in extraFields" :key="field.key" :label="field.label" :required="field.required">
           <a-input
             v-if="field.type !== 'textarea'"
             v-model:value="extraForm[field.key]"

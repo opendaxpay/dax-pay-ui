@@ -68,5 +68,6 @@
   "pleaseInput": "Vui lòng nhập",
   "extraPlaceholder": "Tham số báo cáo riêng của kênh (đối tượng JSON)",
   "extraJsonInvalid": "Tham số báo cáo không đúng định dạng JSON",
-  "extraJsonObjectRequired": "Tham số báo cáo phải là đối tượng JSON, ví dụ {\"storeId\":\"...\"}"
+  "extraJsonObjectRequired": "Tham số báo cáo phải là đối tượng JSON, ví dụ {'{'}\"storeId\":\"...\"{'}'}",
+  "extraFieldRequired": "{label} không được để trống"
 }
