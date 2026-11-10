@@ -24,6 +24,9 @@ export function useQueryTab(getValidKeys: () => string[]): {
   const route = useRoute();
   const router = useRouter();
 
+  // 所属路由在 setup 时捕获: 本页被 keep-alive 缓存后切到别的页面, 不被其他页面的 ?tab= 触发
+  const ownedPath = route.path;
+
   // query 归一: 命中可见分组返回原值, 否则回退首个可见分组
   function normalizeTab(raw: unknown): string {
     const tab = typeof raw === 'string' ? raw : '';
@@ -44,10 +47,13 @@ export function useQueryTab(getValidKeys: () => string[]): {
     router.replace({ path: route.path, query: { ...route.query, tab: key } });
   }
 
-  // 外部导航带 ?tab= 时跟随(无效值/菜单裸路径进入回退首个可见分组)
+  // 外部导航带 ?tab= 时跟随(无效值/菜单裸路径进入回退首个可见分组); 仅限本页路由
   watch(
     () => route.query.tab,
     (raw) => {
+      if (route.path !== ownedPath) {
+        return;
+      }
       const next = normalizeTab(raw);
       if (next && next !== activeKey.value) {
         activeKey.value = next;
