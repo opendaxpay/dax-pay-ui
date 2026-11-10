@@ -311,7 +311,7 @@
       store: { path: '/payment/merchant/store' },
       terminal: { path: '/payment/device/terminal/system' },
       user: { path: '/payment/merchant/user' },
-      virtualDevice: { path: '/device/virtual/list' },
+      virtualDevice: { path: '/device/virtual' },
       wxApp: { path: '/payment/wx/app', query: { tab: 'merchant' } },
       wxDomainVerify: { path: '/payment/merchant/manage/wx-verify' },
     };

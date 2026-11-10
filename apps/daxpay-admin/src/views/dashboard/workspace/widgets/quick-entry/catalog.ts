@@ -217,10 +217,10 @@ export const ENTRY_CATALOG: QuickEntryMeta[] = [
     defaultVisible: false,
     defaultOrder: 21,
   },
-  // 虚拟设备管理（手机 APP 变云音箱/云打印, 菜单 path /device/virtual/list）, 默认展示
+  // 虚拟设备管理（手机 APP 变云音箱/云打印, 菜单 path /device/virtual）, 默认展示
   {
     key: 'virtualDevice',
-    routeName: '/device/virtual/list',
+    routeName: '/device/virtual',
     icon: 'lucide:monitor-speaker',
     titleKey: 'dashboard.workspace.quickEntry.virtualDevice',
     color: 'bg-emerald-500',
