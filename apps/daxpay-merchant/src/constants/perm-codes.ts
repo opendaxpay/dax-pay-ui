@@ -136,12 +136,10 @@ export const PermCodes = {
     Platform: {
       Product: {
         VIEW: 'payment:platform:product:view',
-        MANAGE: 'payment:platform:product:manage',
       },
       /** 支付渠道 */
       Provider: {
         VIEW: 'payment:platform:provider:view',
-        MANAGE: 'payment:platform:provider:manage',
       },
       PayChannel: {
         VIEW: 'payment:platform:pay-channel:view',
@@ -182,11 +180,6 @@ export const PermCodes = {
       },
       Hit: {
         VIEW: 'payment:risk:hit:view',
-      },
-      /** 商户风控配置(地理围栏等商户级风控) menuCode=payment:risk:mch-config */
-      MchConfig: {
-        VIEW: 'payment:risk:mch-config:view',
-        MANAGE: 'payment:risk:mch-config:manage',
       },
     },
   },
