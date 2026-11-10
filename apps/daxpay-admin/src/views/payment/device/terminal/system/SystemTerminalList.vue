@@ -36,6 +36,8 @@
   const { hasPermission } = usePermission();
 
   const mchNo = computed(() => routeContext.query.value.mchNo);
+  // 是否由门店工作台跳入(回退时原路返回门店工作台, 其余回商户工作台)
+  const fromStore = computed(() => normalizeRouteQueryValue(route.query.from) === 'store');
   const { setTabObjectTitle } = useDynamicTabTitle($t('payment.device.terminal.systemTitle'));
   // 商户信息（用于标题展示商户名称）
   const merchantInfo = ref<MerchantInfo>({});
@@ -172,9 +174,21 @@
   });
 
   /**
-   * 返回商户工作台
+   * 返回上级工作台(门店工作台进入时回门店工作台, 其余回商户工作台)
    */
   function handleBack() {
+    // 门店工作台入口携带 from=store + 门店 id/storeNo, 原路返回
+    if (fromStore.value) {
+      router.push({
+        path: '/payment/merchant/store/workbench',
+        query: {
+          id: String(route.query.id ?? ''),
+          storeNo: String(route.query.storeNo ?? ''),
+          mchNo: mchNo.value,
+        },
+      });
+      return;
+    }
     router.push({
       path: '/payment/merchant/manage',
       query: { mchNo: mchNo.value },

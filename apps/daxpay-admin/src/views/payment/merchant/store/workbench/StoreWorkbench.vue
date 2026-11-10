@@ -442,16 +442,20 @@
    */
   function handleCardClick(card: WorkbenchCard) {
     const routeMap: Record<string, string> = {
-      device: '/device/virtual/list',
+      device: '/device/virtual',
       qrcode: '/device/qrcode',
       terminal: '/payment/device/terminal/system',
     };
     const target = routeMap[card.key];
     if (target) {
-      router.push({
-        path: target,
-        query: { mchNo: mchNo.value, storeNo: storeNo.value },
-      });
+      // 基础筛选参数(预置商户+门店过滤)
+      const query: Record<string, string> = { mchNo: mchNo.value, storeNo: storeNo.value };
+      // 终端列表页带回退按钮, 额外带 from=store + 门店 id 供原路返回门店工作台; 设备/码牌页无回退不携带
+      if (card.key === 'terminal') {
+        query.id = storeId.value;
+        query.from = 'store';
+      }
+      router.push({ path: target, query });
       return;
     }
     switch (card.key) {
