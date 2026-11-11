@@ -108,6 +108,11 @@
    */
   async function handleCheck(urlType: string, field: keyof UrlConfig) {
     const url = formState.value[field];
+    // 空值直接拦截: 地址为空时检查必然返回未配置, 提示先输入再检查
+    if (!url?.trim()) {
+      message.warning($t('system.platform.url.checkUrlRequired'));
+      return;
+    }
     checking.value = { ...checking.value, [field]: true };
     try {
       const { data } = await UrlConfigApi.check({

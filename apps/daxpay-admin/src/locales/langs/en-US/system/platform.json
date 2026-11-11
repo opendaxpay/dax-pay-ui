@@ -23,6 +23,7 @@
     "check": "Check",
     "checkSuccess": "Connectivity check passed",
     "checkFailed": "Connectivity check failed",
+    "checkUrlRequired": "Please enter the URL before checking",
     "section": {
       "endpoint": "Client Access URLs"
     }

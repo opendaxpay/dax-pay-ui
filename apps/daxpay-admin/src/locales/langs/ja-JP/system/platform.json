@@ -23,6 +23,7 @@
     "check": "チェック",
     "checkSuccess": "接続チェックに合格しました",
     "checkFailed": "接続チェックに失敗しました",
+    "checkUrlRequired": "チェックの前にURLを入力してください",
     "section": {
       "endpoint": "クライアントアクセスURL"
     }

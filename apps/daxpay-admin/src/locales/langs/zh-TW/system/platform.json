@@ -23,6 +23,7 @@
     "check": "檢查",
     "checkSuccess": "連通性檢查通過",
     "checkFailed": "連通性檢查失敗",
+    "checkUrlRequired": "請先輸入地址後再檢查",
     "section": {
       "endpoint": "各端訪問地址"
     }

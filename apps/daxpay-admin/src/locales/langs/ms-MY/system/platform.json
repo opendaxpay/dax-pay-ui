@@ -23,6 +23,7 @@
     "check": "Semak",
     "checkSuccess": "Semakan ketersambungan lulus",
     "checkFailed": "Semakan ketersambungan gagal",
+    "checkUrlRequired": "Sila masukkan URL sebelum membuat semakan",
     "section": {
       "endpoint": "URL Akses Pelanggan"
     }

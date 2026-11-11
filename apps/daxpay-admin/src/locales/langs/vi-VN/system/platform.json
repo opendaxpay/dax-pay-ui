@@ -23,6 +23,7 @@
     "check": "Kiểm tra",
     "checkSuccess": "Đã vượt qua kiểm tra kết nối",
     "checkFailed": "Kiểm tra kết nối không thành công",
+    "checkUrlRequired": "Vui lòng nhập URL trước khi kiểm tra",
     "section": {
       "endpoint": "URL truy cập của khách hàng"
     }

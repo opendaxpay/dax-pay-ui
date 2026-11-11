@@ -23,6 +23,7 @@
     "check": "Memeriksa",
     "checkSuccess": "Pemeriksaan konektivitas berhasil",
     "checkFailed": "Pemeriksaan konektivitas gagal",
+    "checkUrlRequired": "Masukkan URL terlebih dahulu sebelum memeriksa",
     "section": {
       "endpoint": "URL Akses Klien"
     }
