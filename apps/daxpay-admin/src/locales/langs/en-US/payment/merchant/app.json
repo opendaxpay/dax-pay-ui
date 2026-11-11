@@ -36,7 +36,10 @@
     "cancelDefaultDesc": "You will need to assign another default app",
     "deleteDesc": "This cannot be undone. Proceed with caution",
     "openActionAria": "Open app configuration",
-    "confirmDisableDefault": "This is the default app. Disabling it will break fallback for orders without appId. Continue?"
+    "confirmDisableDefault": "This is the default app. Disabling it will break fallback for orders without appId. Continue?",
+    "groupDevice": "Devices",
+    "cardAudioDeviceDesc": "View and configure this merchant's payment announcement / printing devices",
+    "unitDevice": ""
   },
   "easypay": {
     "useSystemKey": "Use system key pair",
@@ -73,15 +76,5 @@
     "genKeyPairTitle": "RSA Key Pair",
     "privateKey": "Private Key",
     "privateKeyWarning": "The private key is shown only once. Keep it safe — it cannot be recovered if lost."
-  },
-  "deviceConfig": {
-    "title": "Payment Broadcast",
-    "titleDesc": "Voice announcement and receipt printing on the virtual device APP after a successful payment",
-    "broadcastEnable": "Voice Announcement",
-    "printEnable": "Receipt Printing",
-    "storeStrict": "Strict store order matching",
-    "storeStrictHint": "When enabled, store orders are pushed only to devices bound to that store; devices without a bound store no longer participate. When disabled, devices without a bound store are treated as merchant-wide and receive all store orders.",
-    "templateCode": "Print Template",
-    "templateStandard": "Standard Receipt"
   }
 }

@@ -78,7 +78,7 @@
    * 应用列表排序：默认应用排最前，其余按创建时间升序（先创建的在前）
    */
   const sortedAppList = computed(() => {
-    return [...appList.value].toSorted((a, b) => {
+    return appList.value.toSorted((a, b) => {
       if (a.defaultApp && !b.defaultApp) return -1;
       if (!a.defaultApp && b.defaultApp) return 1;
       return getCreateTimestamp(a.createTime) - getCreateTimestamp(b.createTime);
@@ -181,7 +181,7 @@
         <ResourceCardGrid>
           <ResourceCard
             v-for="row in sortedAppList"
-            :key="row.id ?? ''"
+            :key="row.id || row.appId"
             :title="row.appName || '-'"
             :subtitle="$t('payment.merchant.app.app.appIdPrefix', { appId: row.appId || '-' })"
             icon="ant-design:appstore-outlined"

@@ -18,8 +18,9 @@
     "cardUserDesc": "ユーザーアカウントの管理と権限の割り当て",
     "cardStore": "店舗管理",
     "cardStoreDesc": "実店舗のプロファイルとロケーション管理",
-    "cardTerminal": "システム端末",
+    "cardTerminal": "マーチャント端末",
     "cardTerminalDesc": "マーチャント論理端末とチャネル端末のバインド管理",
+    "cardQrcodeDesc": "この加盟店に紐づくQRコードの台帳と紐付け管理",
     "cardWxApp": "決済アプリ(WeChat)",
     "cardWxAppDesc": "当該加盟店のWeChat公式アカウント・ミニプログラム等の開放アプリを管理",
     "cardDyApp": "決済アプリ(Douyin)",
@@ -37,6 +38,7 @@
     "cardVirtualDeviceDesc": "この加盟店に紐づく仮想デバイス（入金アナウンスアプリ）の台帳と運用管理",
     "unitPiece": "",
     "unitDevice": "",
+    "unitQrcode": "枚",
     "unitCopy": ""
   }
 }

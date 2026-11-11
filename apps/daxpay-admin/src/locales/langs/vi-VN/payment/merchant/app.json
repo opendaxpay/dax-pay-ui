@@ -36,7 +36,10 @@
     "cancelDefaultDesc": "Bạn sẽ cần chỉ định một ứng dụng mặc định khác",
     "deleteDesc": "Điều này không thể hoàn tác được. Tiến hành thận trọng",
     "openActionAria": "Mở cấu hình ứng dụng",
-    "confirmDisableDefault": "Đây là ứng dụng mặc định. Tắt nó sẽ làm đơn không có appId mất phương án dự phòng. Tiếp tục?"
+    "confirmDisableDefault": "Đây là ứng dụng mặc định. Tắt nó sẽ làm đơn không có appId mất phương án dự phòng. Tiếp tục?",
+    "groupDevice": "Thiết bị",
+    "cardAudioDeviceDesc": "Xem và cấu hình thiết bị thông báo / in thanh toán của merchant này",
+    "unitDevice": ""
   },
   "easypay": {
     "useSystemKey": "Dùng cặp khóa hệ thống",
@@ -73,15 +76,5 @@
     "genKeyPairTitle": "Cặp khóa RSA",
     "privateKey": "Khóa riêng",
     "privateKeyWarning": "Khóa riêng chỉ hiển thị một lần tại đây. Vui lòng lưu giữ an toàn — không thể khôi phục nếu mất."
-  },
-  "deviceConfig": {
-    "title": "Thông báo thanh toán",
-    "titleDesc": "Cấu hình thông báo giọng nói và in hóa đơn trên APP thiết bị ảo sau khi thanh toán thành công",
-    "broadcastEnable": "Thông báo giọng nói",
-    "printEnable": "In hóa đơn",
-    "storeStrict": "Khớp nghiêm ngặt đơn hàng cửa hàng",
-    "storeStrictHint": "Khi bật, đơn hàng của cửa hàng chỉ được đẩy tới thiết bị đã liên kết với cửa hàng đó; thiết bị chưa liên kết cửa hàng sẽ không tham gia. Khi tắt, thiết bị chưa liên kết cửa hàng được coi là dùng chung cho toàn bộ merchant và nhận tất cả đơn hàng cửa hàng.",
-    "templateCode": "Mẫu in",
-    "templateStandard": "Hóa đơn tiêu chuẩn"
   }
 }

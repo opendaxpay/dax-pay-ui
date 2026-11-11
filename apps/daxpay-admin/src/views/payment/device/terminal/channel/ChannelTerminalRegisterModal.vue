@@ -32,7 +32,7 @@
   }));
 
   /**
-   * 已绑定的系统终端只读文案
+   * 已绑定的商户终端只读文案
    */
   const boundSystemLabel = computed(() => {
     const terminals = current.value?.systemTerminals || [];
@@ -105,7 +105,7 @@
       <a-alert type="info" show-icon :message="$t('payment.device.terminal.registerTips')" />
     </div>
     <a-form ref="formRef" :model="formState" :rules="formRules" :label-col="{ span: 6 }" :wrapper-col="{ span: 16 }">
-      <!-- 系统终端只读展示(绑定关系在通道终端登记时建立, 手动调整不改关联) -->
+      <!-- 商户终端只读展示(绑定关系在通道终端登记时建立, 手动调整不改关联) -->
       <a-form-item :label="$t('payment.device.terminal.field.systemTerminal')">
         <span>{{ boundSystemLabel }}</span>
       </a-form-item>

@@ -29,6 +29,13 @@ export const MchAppInfoApi = {
   },
 
   /**
+   * 根据应用号查询
+   */
+  getByAppId(appId: string): Promise<Result<MchAppInfoResult>> {
+    return defHttp.get({ url: '/admin/merchant/app-info/get-by-app-id', params: { appId } });
+  },
+
+  /**
    * 新增商户应用
    */
   add(data: MchAppInfoParam): Promise<Result<void>> {

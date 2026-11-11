@@ -36,7 +36,10 @@
     "cancelDefaultDesc": "다른 기본 앱을 할당해야 합니다.",
     "deleteDesc": "이 작업은 취소할 수 없습니다. 주의해서 진행하세요",
     "openActionAria": "앱 구성 열기",
-    "confirmDisableDefault": "이 앱은 기본 앱입니다. 비활성화하면 appId 미지정 주문의 폴백이 실패합니다. 비활성화할까요?"
+    "confirmDisableDefault": "이 앱은 기본 앱입니다. 비활성화하면 appId 미지정 주문의 폴백이 실패합니다. 비활성화할까요?",
+    "groupDevice": "기기",
+    "cardAudioDeviceDesc": "이 가맹점의 수금 알림/인쇄 기기 조회 및 설정",
+    "unitDevice": ""
   },
   "easypay": {
     "useSystemKey": "시스템 키 쌍 사용",
@@ -73,15 +76,5 @@
     "genKeyPairTitle": "RSA 키 쌍",
     "privateKey": "개인 키",
     "privateKeyWarning": "개인 키는 여기에 한 번만 표시됩니다. 안전하게 보관하세요. 분실 시 복구할 수 없습니다."
-  },
-  "deviceConfig": {
-    "title": "결제 안내 방송",
-    "titleDesc": "결제 성공 후 가상 디바이스 앱의 음성 안내 방송 및 영수증 인쇄 설정",
-    "broadcastEnable": "음성 안내 방송",
-    "printEnable": "영수증 인쇄",
-    "storeStrict": "매장 주문 엄격 매칭",
-    "storeStrictHint": "사용하면 매장 주문은 해당 매장에 바인딩된 기기로만 전송되며, 매장 미바인딩 기기는 제외됩니다. 사용하지 않으면 매장 미바인딩 기기는 매장 공용으로 간주되어 모든 매장 주문이 전송됩니다.",
-    "templateCode": "인쇄 템플릿",
-    "templateStandard": "표준 영수증"
   }
 }

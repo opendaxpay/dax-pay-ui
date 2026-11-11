@@ -3,7 +3,7 @@ import type { BaseEntity, PageResult, Result } from '#/types/web';
 import { defHttp } from '#/api/request';
 
 /**
- * 系统终端 API
+ * 商户终端 API
  */
 export const TerminalDeviceApi = {
   /** 分页 */
@@ -61,7 +61,7 @@ export const TerminalDeviceApi = {
   clearDefault(id: string): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/device/terminal/system/clear-default', params: { id } });
   },
-  /** 批量绑定门店(本商户未分配门店的系统终端绑到目标门店) */
+  /** 批量绑定门店(本商户未分配门店的商户终端绑到目标门店) */
   bindStoreBatch(data: TerminalBindStoreBatchParam): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/device/terminal/system/bind-store-batch', data });
   },
@@ -97,7 +97,7 @@ export const ChannelTerminalApi = {
   register(data: ChannelTerminalRegisterParam): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/device/terminal/channel/register', data });
   },
-  /** 终端报备(调通道API; 未绑定时须选择系统终端, 报备即绑定) */
+  /** 终端报备(调通道API; 未绑定时须选择商户终端, 报备即绑定) */
   report(data: ChannelTerminalReportParam): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/device/terminal/channel/report', data });
   },
@@ -121,15 +121,15 @@ export const ChannelTerminalApi = {
   delete(id: string): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/device/terminal/channel/delete', params: { id } });
   },
-  /** 绑定系统终端 */
+  /** 绑定商户终端 */
   bind(data: TerminalChannelBindParam): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/device/terminal/channel/bind', data });
   },
-  /** 解绑系统终端 */
+  /** 解绑商户终端 */
   unbind(data: TerminalChannelBindParam): Promise<Result<void>> {
     return defHttp.post({ url: '/admin/device/terminal/channel/unbind', data });
   },
-  /** 已绑定系统终端 */
+  /** 已绑定商户终端 */
   boundSystemList(channelTerminalId: string): Promise<Result<TerminalDeviceResult[]>> {
     return defHttp.get({
       url: '/admin/device/terminal/channel/bound-system-list',
@@ -138,7 +138,7 @@ export const ChannelTerminalApi = {
   },
 };
 
-/** 系统终端查询 */
+/** 商户终端查询 */
 export interface TerminalDeviceQuery {
   mchNo?: string;
   terminalNo?: string;
@@ -149,7 +149,7 @@ export interface TerminalDeviceQuery {
   storeUnassigned?: boolean;
 }
 
-/** 系统终端参数 */
+/** 商户终端参数 */
 export interface TerminalDeviceParam {
   id?: string;
   mchNo?: string;
@@ -159,7 +159,7 @@ export interface TerminalDeviceParam {
   remark?: string;
 }
 
-/** 系统终端结果 */
+/** 商户终端结果 */
 export interface TerminalDeviceResult extends BaseEntity {
   terminalNo?: string;
   name?: string;
@@ -175,9 +175,9 @@ export interface TerminalDeviceResult extends BaseEntity {
   channelTerminals?: ChannelTerminalResult[];
 }
 
-/** 系统终端批量绑定门店参数 */
+/** 商户终端批量绑定门店参数 */
 export interface TerminalBindStoreBatchParam {
-  /** 系统终端主键列表 */
+  /** 商户终端主键列表 */
   terminalIds: string[];
   /** 目标门店号 */
   storeNo: string;
@@ -201,7 +201,7 @@ export interface ChannelTerminalParam {
   mchNo?: string;
   channelMchNo?: string;
   type?: string;
-  // 绑定的系统终端编码(新增必填, 建档即绑定; 编辑不传)
+  // 绑定的商户终端编码(新增必填, 建档即绑定; 编辑不传)
   systemTerminalNo?: string;
   name?: string;
   outTerminalNo?: string;
@@ -221,10 +221,10 @@ export interface ChannelTerminalRegisterParam {
   status: string;
 }
 
-/** 通道终端报备参数(报备即绑定; 已绑定时系统终端号可空=沿用已绑定终端) */
+/** 通道终端报备参数(报备即绑定; 已绑定时商户终端号可空=沿用已绑定终端) */
 export interface ChannelTerminalReportParam {
   id: string;
-  // 系统终端编码(首次报备必填)
+  // 商户终端编码(首次报备必填)
   systemTerminalNo?: string;
 }
 
@@ -257,7 +257,7 @@ export interface ChannelTerminalResult extends BaseEntity {
   remark?: string;
   // 通道差异化报备参数(JSON, 键=通道协议参数名)
   extra?: string;
-  // 已绑定的系统终端列表
+  // 已绑定的商户终端列表
   systemTerminals?: TerminalDeviceResult[];
   mchNo?: string;
   mchName?: string;

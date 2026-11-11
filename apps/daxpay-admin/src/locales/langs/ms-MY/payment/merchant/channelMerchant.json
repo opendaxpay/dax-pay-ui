@@ -103,7 +103,7 @@
   "wechatSubMerchantNoRequired": "Sila masukkan no sub-peniaga.",
   "groupTerminal": "Lejar Terminal",
   "cardTerminal": "Lejar Terminal",
-  "cardTerminalDesc": "Daftar nombor terminal saluran dan ikat ke terminal sistem",
+  "cardTerminalDesc": "Daftar nombor terminal saluran dan ikat ke terminal peniaga",
   "transferScenePresetTip": "Maksimum 3 babak pemindahan boleh diaktifkan. Babak lalai mesti diaktifkan. Hanya babak aktif boleh dipilih semasa pemindahan.",
   "transferSceneEnableConfirm": "Aktifkan babak pemindahan ini? Babak aktif boleh dipilih semasa pemindahan",
   "transferSceneDisableConfirm": "Nyahaktifkan babak pemindahan ini? Babak tidak aktif tidak boleh dipilih semasa pemindahan",

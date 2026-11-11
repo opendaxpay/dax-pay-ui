@@ -73,6 +73,18 @@
     "copyFailed": "Gagal menyalin, salin secara manual",
     "downloadFailed": "Gagal memuat turun kod QR, cuba lagi"
   },
+  "appConfig": {
+    "title": "Siaran Pembayaran",
+    "broadcast": "Siaran Suara",
+    "broadcastHint": "Siarkan jumlah diterima melalui pembesar suara kedai selepas pembayaran",
+    "print": "Cetakan Resit",
+    "printHint": "Cetak resit secara automatik selepas pembayaran",
+    "storeStrict": "Padanan ketat pesanan cawangan",
+    "storeStrictHint": "Hantar hanya kepada peranti yang terikat pada cawangan",
+    "storeStrictHintFull": "Apabila dihidupkan, pesanan cawangan hanya dihantar kepada peranti yang terikat pada cawangan tersebut; peranti tanpa cawangan terikat tidak lagi terlibat. Apabila dimatikan, peranti tanpa cawangan terikat dianggap umum untuk pedagang dan menerima semua pesanan cawangan.",
+    "template": "Templat Resit",
+    "templateStandard": "Resit Standard"
+  },
   "batchActions": "Tindakan Pukal",
   "batchBindMerchant": "Ikat Pedagang Secara Pukal",
   "batchUnbindMerchant": "Lepaskan Pedagang Secara Pukal",

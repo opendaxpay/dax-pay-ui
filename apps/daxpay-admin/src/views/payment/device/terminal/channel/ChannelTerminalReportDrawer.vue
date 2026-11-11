@@ -26,7 +26,7 @@
   const terminalOptions = ref<TerminalDeviceResult[]>([]);
   const form = ref<{ systemTerminalNo?: string }>({});
 
-  // 已绑定的系统终端(1:1 模型下至多一条)
+  // 已绑定的商户终端(1:1 模型下至多一条)
   const boundTerminals = computed(() => current.value?.systemTerminals ?? []);
   // 已绑定即锁定: 终端下拉不可改, 换绑走解绑/注销流程
   const locked = computed(() => boundTerminals.value.length > 0);
@@ -51,7 +51,7 @@
   }
 
   /**
-   * 打开报备抽屉: 选择系统终端即绑定, 发起报备调通道 API(仅自动通道可用)
+   * 打开报备抽屉: 选择商户终端即绑定, 发起报备调通道 API(仅自动通道可用)
    */
   async function show(row: ChannelTerminalResult) {
     current.value = row;

@@ -103,7 +103,7 @@
   "wechatSubMerchantNoRequired": "Vui lòng nhập số người bán phụ.",
   "groupTerminal": "Sổ thiết bị",
   "cardTerminal": "Sổ thiết bị",
-  "cardTerminalDesc": "Đăng ký số thiết bị kênh và liên kết với thiết bị hệ thống",
+  "cardTerminalDesc": "Đăng ký số thiết bị kênh và liên kết với thiết bị người bán",
   "transferScenePresetTip": "Tối đa 3 cảnh chuyển khoản có thể kích hoạt. Cảnh mặc định phải được kích hoạt. Chỉ cảnh đã kích hoạt mới có thể chọn khi chuyển khoản.",
   "transferSceneEnableConfirm": "Kích hoạt cảnh chuyển khoản này? Cảnh đã kích hoạt có thể chọn khi chuyển khoản",
   "transferSceneDisableConfirm": "Vô hiệu hóa cảnh chuyển khoản này? Cảnh đã vô hiệu không thể chọn khi chuyển khoản",

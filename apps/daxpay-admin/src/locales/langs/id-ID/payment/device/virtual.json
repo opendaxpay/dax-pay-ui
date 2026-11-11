@@ -73,6 +73,18 @@
     "copyFailed": "Gagal menyalin, salin manual",
     "downloadFailed": "Gagal mengunduh kode QR, coba lagi"
   },
+  "appConfig": {
+    "title": "Siaran Pembayaran",
+    "broadcast": "Siaran Suara",
+    "broadcastHint": "Siarkan jumlah yang diterima melalui speaker toko setelah pembayaran",
+    "print": "Pencetakan Struk",
+    "printHint": "Cetak struk secara otomatis setelah pembayaran",
+    "storeStrict": "Pencocokan ketat pesanan toko",
+    "storeStrictHint": "Hanya kirim ke perangkat yang terhubung ke toko",
+    "storeStrictHintFull": "Saat diaktifkan, pesanan toko hanya dikirim ke perangkat yang terikat ke toko tersebut; perangkat tanpa toko terikat tidak lagi ikut serta. Saat dinonaktifkan, perangkat tanpa toko terikat dianggap umum untuk merchant dan menerima semua pesanan toko.",
+    "template": "Templat Struk",
+    "templateStandard": "Struk Standar"
+  },
   "batchActions": "Operasi Massal",
   "batchBindMerchant": "Ikat Merchant Massal",
   "batchUnbindMerchant": "Lepas Merchant Massal",

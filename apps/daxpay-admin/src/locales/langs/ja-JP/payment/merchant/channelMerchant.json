@@ -103,7 +103,7 @@
   "wechatSubMerchantNoRequired": "サブマーチャント番号を入力してください。",
   "groupTerminal": "端末台帳",
   "cardTerminal": "端末台帳",
-  "cardTerminalDesc": "本チャネル加盟店の端末番号を登録し、システム端末と紐付けます",
+  "cardTerminalDesc": "本チャネル加盟店の端末番号を登録し、加盟店端末と紐付けます",
   "cardTransferScene": "振込シーン管理",
   "cardTransferSceneDesc": "Alipay振込シーンを管理(2026年以降の新規加盟店の振込必須設定)",
   "transferSceneManage": "振込シーン管理",

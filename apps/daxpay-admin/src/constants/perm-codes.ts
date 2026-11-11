@@ -87,7 +87,7 @@ export const PermCodes = {
       VIEW: 'merchant:store:view',
       MANAGE: 'merchant:store:manage',
     },
-    /** 系统终端 menuCode=merchant:terminal */
+    /** 商户终端 menuCode=merchant:terminal */
     Terminal: {
       VIEW: 'merchant:terminal:view',
       MANAGE: 'merchant:terminal:manage',

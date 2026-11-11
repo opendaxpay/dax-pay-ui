@@ -18,8 +18,9 @@
     "cardUserDesc": "Quản lý tài khoản người dùng và phân quyền",
     "cardStore": "Quản lý cửa hàng",
     "cardStoreDesc": "Hồ sơ cửa hàng vật lý và quản lý vị trí",
-    "cardTerminal": "Thiết bị hệ thống",
+    "cardTerminal": "Thiết bị Người bán",
     "cardTerminalDesc": "Quản lý mã thiết bị logic của thương gia và liên kết thiết bị kênh",
+    "cardQrcodeDesc": "Nhật ký và quản lý gán mã QR thuộc merchant này",
     "cardWxApp": "Ứng dụng thanh toán (WeChat)",
     "cardWxAppDesc": "Quản lý tài khoản chính thức WeChat, Mini Program và ứng dụng mở khác của thương nhân này",
     "cardDyApp": "Ứng dụng thanh toán (Douyin)",
@@ -37,6 +38,7 @@
     "cardVirtualDeviceDesc": "Nhật ký và vận hành các thiết bị ảo (ứng dụng thông báo thanh toán) thuộc merchant này",
     "unitPiece": "",
     "unitDevice": "",
+    "unitQrcode": "",
     "unitCopy": ""
   }
 }

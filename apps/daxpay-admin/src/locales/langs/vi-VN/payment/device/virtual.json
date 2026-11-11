@@ -73,6 +73,18 @@
     "copyFailed": "Sao chép thất bại, sao chép thủ công",
     "downloadFailed": "Tải mã QR thất bại, thử lại"
   },
+  "appConfig": {
+    "title": "Phát thông báo thu tiền",
+    "broadcast": "Phát thông báo giọng nói",
+    "broadcastHint": "Phát số tiền nhận được qua loa cửa hàng sau khi thanh toán",
+    "print": "In hóa đơn",
+    "printHint": "Tự động in hóa đơn sau khi thanh toán",
+    "storeStrict": "Khớp nghiêm ngặt đơn hàng cửa hàng",
+    "storeStrictHint": "Chỉ gửi tới thiết bị đã liên kết cửa hàng",
+    "storeStrictHintFull": "Khi bật, đơn hàng của cửa hàng chỉ được đẩy tới thiết bị đã liên kết với cửa hàng đó; thiết bị chưa liên kết cửa hàng sẽ không tham gia. Khi tắt, thiết bị chưa liên kết cửa hàng được coi là dùng chung cho toàn bộ merchant và nhận tất cả đơn hàng cửa hàng.",
+    "template": "Mẫu hóa đơn",
+    "templateStandard": "Hóa đơn tiêu chuẩn"
+  },
   "batchActions": "Thao tác hàng loạt",
   "batchBindMerchant": "Gắn merchant hàng loạt",
   "batchUnbindMerchant": "Gỡ merchant hàng loạt",

@@ -38,7 +38,7 @@
   const loading = ref(false);
   const mchNo = ref<string>('');
   const merchantInfo = ref<MerchantInfo>({});
-  // 设备与支付应用计数(系统终端台数/虚拟设备台数/微信应用数/抖音应用数, 加载失败时缺省不展示角标)
+  // 设备与支付应用计数(商户码牌张数/商户终端台数/虚拟设备台数/微信应用数/抖音应用数, 加载失败时缺省不展示角标)
   const deviceCounts = ref<MchDeviceCountResult>({});
   // 基础数据计数(商户用户/门店/通道商户/应用/域名校验文件 + 对接凭证配置状态, 加载失败时缺省不展示角标与状态标签)
   const baseCounts = ref<MchBaseCountResult>({});
@@ -66,9 +66,9 @@
   /**
    * 功能卡片配置: 五组制(基础/支付/收银与设备/接入/危险)
    *
-   * 收银与设备组收纳收款端实体(系统终端/虚拟设备), 与支付通路配置分离;
+   * 收银与设备组收纳收款端实体(码牌/商户终端/虚拟设备), 与支付通路配置分离;
    * 除商户资料卡外均带数字角标(存量计数): 基础/支付/接入组取数见 loadBaseCounts,
-   * 微信/抖音应用卡与系统终端/虚拟设备卡取数见 loadDeviceCounts。
+   * 微信/抖音应用卡与码牌/商户终端/虚拟设备卡取数见 loadDeviceCounts。
    */
   const functionCards = computed((): WorkbenchTileGroup[] => {
     const groups: WorkbenchTileGroup[] = [];
@@ -160,20 +160,32 @@
       cards: paymentCards,
     });
 
-    // 收银与设备(收款端实体: 系统终端 / 虚拟设备)
-    const deviceCards: WorkbenchTile[] = [
-      {
-        key: 'terminal',
-        // 系统终端
-        title: $t('payment.merchant.workbench.workbench.cardTerminal'),
-        icon: 'ant-design:monitor-outlined',
-        // 商户逻辑终端编号与通道终端绑定管理
-        description: $t('payment.merchant.workbench.workbench.cardTerminalDesc'),
-        // 台数角标(存量总数, 不限启用态)
-        count: deviceCounts.value.terminalCount,
-        countUnit: $t('payment.merchant.workbench.workbench.unitDevice'),
-      },
-    ];
+    // 收银与设备(收款端实体: 码牌 / 商户终端 / 虚拟设备)
+    const deviceCards: WorkbenchTile[] = [];
+    if (hasPermission(PermCodes.Device.QrCode.VIEW)) {
+      deviceCards.push({
+        key: 'qrcode',
+        // 码牌管理 — 标题与菜单 i18n_key 一致(跳转码牌列表页, URL 带 mchNo 预置筛选)
+        title: $t('menu.device.qrcode'),
+        icon: 'lucide:qr-code',
+        // 该商户名下码牌的台账与归属绑定配置
+        description: $t('payment.merchant.workbench.workbench.cardQrcodeDesc'),
+        // 张数角标(存量总数, 含未激活码牌)
+        count: deviceCounts.value.qrCodeCount,
+        countUnit: $t('payment.merchant.workbench.workbench.unitQrcode'),
+      });
+    }
+    deviceCards.push({
+      key: 'terminal',
+      // 商户终端
+      title: $t('payment.merchant.workbench.workbench.cardTerminal'),
+      icon: 'ant-design:monitor-outlined',
+      // 商户逻辑终端编号与通道终端绑定管理
+      description: $t('payment.merchant.workbench.workbench.cardTerminalDesc'),
+      // 台数角标(存量总数, 不限启用态)
+      count: deviceCounts.value.terminalCount,
+      countUnit: $t('payment.merchant.workbench.workbench.unitDevice'),
+    });
     if (hasPermission(PermCodes.Device.Virtual.VIEW)) {
       deviceCards.push({
         key: 'virtualDevice',
@@ -282,7 +294,7 @@
   }
 
   /**
-   * 加载设备与支付应用计数(系统终端/虚拟设备/微信应用/抖音应用)
+   * 加载设备与支付应用计数(码牌/商户终端/虚拟设备/微信应用/抖音应用)
    */
   function loadDeviceCounts() {
     DashboardDeviceApi.deviceCounts(mchNo.value)
@@ -327,6 +339,7 @@
       credentialConfig: { path: '/payment/merchant/manage/credential' },
       dyApp: { path: '/payment/douyin/app', query: { tab: 'merchant' } },
       mchInfo: { path: '/payment/merchant/manage/info' },
+      qrcode: { path: '/device/qrcode' },
       store: { path: '/payment/merchant/store' },
       terminal: { path: '/payment/device/terminal/system' },
       user: { path: '/payment/merchant/user' },

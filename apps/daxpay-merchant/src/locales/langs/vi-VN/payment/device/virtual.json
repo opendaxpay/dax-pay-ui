@@ -45,7 +45,8 @@
     "print": "In hóa đơn",
     "printHint": "Tự động in hóa đơn sau khi thanh toán",
     "storeStrict": "Khớp nghiêm ngặt đơn hàng cửa hàng",
-    "storeStrictHint": "Khi bật, đơn hàng của cửa hàng chỉ được đẩy tới thiết bị đã liên kết với cửa hàng đó; thiết bị chưa liên kết cửa hàng sẽ không tham gia. Khi tắt, thiết bị chưa liên kết cửa hàng được coi là dùng chung cho toàn bộ merchant và nhận tất cả đơn hàng cửa hàng.",
+    "storeStrictHint": "Chỉ gửi tới thiết bị đã liên kết cửa hàng",
+    "storeStrictHintFull": "Khi bật, đơn hàng của cửa hàng chỉ được đẩy tới thiết bị đã liên kết với cửa hàng đó; thiết bị chưa liên kết cửa hàng sẽ không tham gia. Khi tắt, thiết bị chưa liên kết cửa hàng được coi là dùng chung cho toàn bộ merchant và nhận tất cả đơn hàng cửa hàng.",
     "template": "Mẫu hóa đơn",
     "templateStandard": "Hóa đơn tiêu chuẩn"
   },

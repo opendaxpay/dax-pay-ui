@@ -45,7 +45,8 @@
     "print": "Cetakan Resit",
     "printHint": "Cetak resit secara automatik selepas pembayaran",
     "storeStrict": "Padanan ketat pesanan cawangan",
-    "storeStrictHint": "Apabila dihidupkan, pesanan cawangan hanya dihantar kepada peranti yang terikat pada cawangan tersebut; peranti tanpa cawangan terikat tidak lagi terlibat. Apabila dimatikan, peranti tanpa cawangan terikat dianggap umum untuk pedagang dan menerima semua pesanan cawangan.",
+    "storeStrictHint": "Hantar hanya kepada peranti yang terikat pada cawangan",
+    "storeStrictHintFull": "Apabila dihidupkan, pesanan cawangan hanya dihantar kepada peranti yang terikat pada cawangan tersebut; peranti tanpa cawangan terikat tidak lagi terlibat. Apabila dimatikan, peranti tanpa cawangan terikat dianggap umum untuk pedagang dan menerima semua pesanan cawangan.",
     "template": "Templat Resit",
     "templateStandard": "Resit Standard"
   },

@@ -36,7 +36,10 @@
     "cancelDefaultDesc": "Anda perlu menetapkan apl lalai lain",
     "deleteDesc": "Ini tidak boleh dibuat asal. Teruskan dengan berhati-hati",
     "openActionAria": "Buka konfigurasi apl",
-    "confirmDisableDefault": "Ini ialah aplikasi lalai. Menyahaktifkannya akan menyebabkan pesanan tanpa appId gagal sebagai sandaran. Teruskan?"
+    "confirmDisableDefault": "Ini ialah aplikasi lalai. Menyahaktifkannya akan menyebabkan pesanan tanpa appId gagal sebagai sandaran. Teruskan?",
+    "groupDevice": "Peranti",
+    "cardAudioDeviceDesc": "Lihat dan konfigurasi peranti pengumuman / cetakan bayaran merchant ini",
+    "unitDevice": ""
   },
   "easypay": {
     "useSystemKey": "Gunakan pasangan kunci sistem",
@@ -73,15 +76,5 @@
     "genKeyPairTitle": "Pasangan Kunci RSA",
     "privateKey": "Kunci Peribadi",
     "privateKeyWarning": "Kunci peribadi hanya dipaparkan sekali di sini. Simpan dengan selamat — tidak boleh dipulihkan jika hilang."
-  },
-  "deviceConfig": {
-    "title": "Pengumuman Pembayaran",
-    "titleDesc": "Konfigurasi pengumuman suara dan cetak resit pada APP peranti maya selepas pembayaran berjaya",
-    "broadcastEnable": "Pengumuman Suara",
-    "printEnable": "Cetak Resit",
-    "storeStrict": "Padanan ketat pesanan cawangan",
-    "storeStrictHint": "Apabila dihidupkan, pesanan cawangan hanya dihantar kepada peranti yang terikat pada cawangan tersebut; peranti tanpa cawangan terikat tidak lagi terlibat. Apabila dimatikan, peranti tanpa cawangan terikat dianggap umum untuk pedagang dan menerima semua pesanan cawangan.",
-    "templateCode": "Templat Cetak",
-    "templateStandard": "Resit Standard"
   }
 }

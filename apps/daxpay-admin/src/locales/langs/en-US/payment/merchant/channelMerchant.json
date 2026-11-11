@@ -103,7 +103,7 @@
   "wechatSubMerchantNoRequired": "Please enter sub-merchant no.",
   "groupTerminal": "Terminal Ledger",
   "cardTerminal": "Terminal Ledger",
-  "cardTerminalDesc": "Register channel-side terminal numbers and bind system terminals",
+  "cardTerminalDesc": "Register channel-side terminal numbers and bind merchant terminals",
   "cardTransferScene": "Transfer Scene Management",
   "cardTransferSceneDesc": "Manage Alipay transfer scenes (required for new merchants from 2026)",
   "transferSceneManage": "Transfer Scene Management",

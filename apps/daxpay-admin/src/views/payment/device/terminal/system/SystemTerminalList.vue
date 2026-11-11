@@ -143,7 +143,7 @@
   }
 
   /**
-   * 删除系统终端
+   * 删除商户终端
    */
   function handleDelete(row: TerminalDeviceResult) {
     confirm({
@@ -220,7 +220,7 @@
   <div v-else class="m-3 p-3 bg-background rounded-lg list-page-compact">
     <a-card>
       <template #title>
-        <!-- 运营视角统一为「商户终端」, 与菜单/页签同口径; 门店维度仍称「系统终端」 -->
+        <!-- 全站统一定名「商户终端」, 与菜单/页签同口径 -->
         <PageTitleBar
           back
           :title="$t('payment.device.terminal.systemTitle')"

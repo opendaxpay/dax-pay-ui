@@ -45,7 +45,8 @@
     "print": "Pencetakan Struk",
     "printHint": "Cetak struk secara otomatis setelah pembayaran",
     "storeStrict": "Pencocokan ketat pesanan toko",
-    "storeStrictHint": "Saat diaktifkan, pesanan toko hanya dikirim ke perangkat yang terikat ke toko tersebut; perangkat tanpa toko terikat tidak lagi ikut serta. Saat dinonaktifkan, perangkat tanpa toko terikat dianggap umum untuk merchant dan menerima semua pesanan toko.",
+    "storeStrictHint": "Hanya kirim ke perangkat yang terhubung ke toko",
+    "storeStrictHintFull": "Saat diaktifkan, pesanan toko hanya dikirim ke perangkat yang terikat ke toko tersebut; perangkat tanpa toko terikat tidak lagi ikut serta. Saat dinonaktifkan, perangkat tanpa toko terikat dianggap umum untuk merchant dan menerima semua pesanan toko.",
     "template": "Templat Struk",
     "templateStandard": "Struk Standar"
   },

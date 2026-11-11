@@ -103,7 +103,7 @@
   "wechatSubMerchantNoRequired": "請輸入特約商戶號",
   "groupTerminal": "終端台帳",
   "cardTerminal": "終端台帳",
-  "cardTerminalDesc": "登記本通道商戶下的通道側終端號, 並可綁定系統終端",
+  "cardTerminalDesc": "登記本通道商戶下的通道側終端號, 並可綁定商戶終端",
   "cardTransferScene": "轉帳場景管理",
   "cardTransferSceneDesc": "管理支付寶轉帳場景(2026年起新接入商戶轉帳必配)",
   "transferSceneManage": "轉帳場景管理",

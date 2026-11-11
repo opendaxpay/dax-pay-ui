@@ -18,8 +18,9 @@
     "cardUserDesc": "User account management and permission assignment",
     "cardStore": "Store Management",
     "cardStoreDesc": "Physical store profiles and location management",
-    "cardTerminal": "System Terminals",
+    "cardTerminal": "Merchant Terminals",
     "cardTerminalDesc": "Merchant logical terminal codes and channel terminal binding management",
+    "cardQrcodeDesc": "Ledger and binding management of QR codes owned by this merchant",
     "cardWxApp": "Payment Apps (WeChat)",
     "cardWxAppDesc": "Manage WeChat Official Accounts, Mini Programs, and other open apps for this merchant",
     "cardDyApp": "Payment Apps (Douyin)",
@@ -37,6 +38,7 @@
     "cardVirtualDeviceDesc": "Ledger and maintenance of virtual devices (payment announcement APP) bound to this merchant",
     "unitPiece": "",
     "unitDevice": "",
+    "unitQrcode": "",
     "unitCopy": ""
   }
 }

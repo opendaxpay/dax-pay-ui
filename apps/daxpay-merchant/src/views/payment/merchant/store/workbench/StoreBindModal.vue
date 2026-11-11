@@ -14,13 +14,13 @@
    * 门店快捷绑定弹窗(门店工作台「快捷绑定」组, 商户端)
    *
    * 弹窗内列出「本商户未分配门店」的候选对象:
-   * 码牌/系统终端走服务端过滤(查询条件 storeUnassigned=true 由后端转 store_no IS NULL, 服务端分页);
+   * 码牌/商户终端走服务端过滤(查询条件 storeUnassigned=true 由后端转 store_no IS NULL, 服务端分页);
    * 收款设备(虚拟设备)查询接口无未分配过滤参数, 拉当前商户全量后客户端过滤未分配再前端分页。
    * 勾选只作用于当前页(翻页/重查即清空), 确认后按类别绑定:
-   * 码牌走既有 bind-store(ids 批量); 系统终端走 bind-store-batch;
+   * 码牌走既有 bind-store(ids 批量); 商户终端走 bind-store-batch;
    * 收款设备接口为单台绑定, 逐台并发调用 bind-store;
    * 绑定带默认标记的终端由后端清除默认, 前端提交前二次确认;
-   * 解绑不在本弹窗做(收款设备/码牌/系统终端列表页已有解绑或换绑入口)。
+   * 解绑不在本弹窗做(收款设备/码牌/商户终端列表页已有解绑或换绑入口)。
    */
   defineOptions({ name: 'StoreBindModal' });
 
@@ -31,7 +31,7 @@
   /** 绑定对象类别(收款设备=虚拟设备) */
   type BindKind = 'qrcode' | 'terminal' | 'virtual';
 
-  /** 打开模式: device=收款设备 / qrcode=码牌 / terminal=系统终端 */
+  /** 打开模式: device=收款设备 / qrcode=码牌 / terminal=商户终端 */
   type BindMode = 'device' | 'qrcode' | 'terminal';
 
   const visible = ref(false);
@@ -62,11 +62,11 @@
   // 当前页勾选结果(提交时以表格实例为准)
   const selectedRows = ref<BindCandidate[]>([]);
 
-  /** 候选行(收款设备/码牌/系统终端统一展示形状) */
+  /** 候选行(收款设备/码牌/商户终端统一展示形状) */
   interface BindCandidate {
     /** 主键 */
     id: string;
-    /** 设备号(收款设备) / 终端号(系统终端) */
+    /** 设备号(收款设备) / 终端号(商户终端) */
     deviceNo?: string;
     /** 码牌编码(码牌) */
     code?: string;
@@ -74,7 +74,7 @@
     name?: string;
     /** 应用名称 */
     appName?: string;
-    /** 是否门店默认终端(系统终端; 绑定到本店后由后端清除默认) */
+    /** 是否门店默认终端(商户终端; 绑定到本店后由后端清除默认) */
     defaultTerminal?: boolean;
   }
 
@@ -107,7 +107,7 @@
   function toCandidate(row: any): BindCandidate {
     return {
       id: String(row.id),
-      // 系统终端的编号字段是 terminalNo, 统一落到设备号列
+      // 商户终端的编号字段是 terminalNo, 统一落到设备号列
       deviceNo: row.deviceNo || row.terminalNo,
       code: row.code,
       name: row.name,
@@ -131,7 +131,7 @@
   }
 
   /**
-   * 加载当前页(码牌/系统终端服务端过滤未分配门店; 收款设备客户端过滤后前端分页)
+   * 加载当前页(码牌/商户终端服务端过滤未分配门店; 收款设备客户端过滤后前端分页)
    */
   async function queryPage() {
     loading.value = true;
@@ -176,7 +176,7 @@
   /**
    * 打开弹窗
    *
-   * @param bindMode device=收款设备 / qrcode=码牌 / terminal=系统终端
+   * @param bindMode device=收款设备 / qrcode=码牌 / terminal=商户终端
    * @param ctx 目标门店上下文(storeNo + storeName)
    */
   function show(bindMode: BindMode, ctx: { storeName?: string; storeNo: string }) {
@@ -209,7 +209,7 @@
   }
 
   /**
-   * 确认绑定: 码牌一次批量提交; 系统终端走 bind-store-batch; 收款设备接口为单台绑定, 逐台并发调用
+   * 确认绑定: 码牌一次批量提交; 商户终端走 bind-store-batch; 收款设备接口为单台绑定, 逐台并发调用
    */
   async function handleOk() {
     const checked = collectChecked();

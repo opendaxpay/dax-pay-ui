@@ -159,7 +159,7 @@
     ];
   }
 
-  /** 删除系统终端 */
+  /** 删除商户终端 */
   function handleDelete(row: TerminalDeviceResult) {
     confirm({
       // 确定删除该终端吗？

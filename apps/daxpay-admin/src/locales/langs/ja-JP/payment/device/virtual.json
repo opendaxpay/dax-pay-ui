@@ -73,6 +73,18 @@
     "copyFailed": "コピーに失敗しました。手動でコピーしてください",
     "downloadFailed": "QRコードのダウンロードに失敗しました。再試行してください"
   },
+  "appConfig": {
+    "title": "入金アナウンス",
+    "broadcast": "音声アナウンス",
+    "broadcastHint": "入金後、店内スピーカーで入金額を読み上げます",
+    "print": "レシート印刷",
+    "printHint": "入金後、プリンターが自動でレシートを印刷します",
+    "storeStrict": "店舗注文の厳格一致",
+    "storeStrictHint": "店舗に紐付けられた端末にのみ送信",
+    "storeStrictHintFull": "有効にすると、店舗注文はその店舗に紐付いたデバイスにのみ配信され、店舗未紐付けのデバイスは対象外になります。無効にすると、店舗未紐付けのデバイスは店舗共通として扱われ、すべての店舗注文が配信されます。",
+    "template": "レシートフォーマット",
+    "templateStandard": "標準レシート"
+  },
   "batchActions": "一括操作",
   "batchBindMerchant": "販売者を一括バインド",
   "batchUnbindMerchant": "販売者の一括バインド解除",

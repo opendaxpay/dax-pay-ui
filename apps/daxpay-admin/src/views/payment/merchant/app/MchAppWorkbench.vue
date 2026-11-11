@@ -10,6 +10,7 @@
   import { WorkbenchTileGrid } from '@daxpay/ui-biz/components/workbench-tile';
   import { useDynamicTabTitle } from '@daxpay/ui-biz/hooks/useDynamicTabTitle';
 
+  import { DashboardDeviceApi, type MchDeviceCountResult } from '#/api/payment/dashboard/device-dashboard.api';
   import { MchAppInfoApi, type MchAppInfoResult } from '#/api/payment/merchant/mch-app-info.api';
   import RouteQueryMissingState from '#/components/route/RouteQueryMissingState.vue';
   import { PermCodes } from '#/constants/perm-codes';
@@ -18,6 +19,7 @@
   import { usePermission } from '#/hooks/usePermission';
   import { normalizeRouteQueryValue, useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
 
+  import MchAppDeviceConfigModal from './MchAppDeviceConfigModal.vue';
   import MchAppInfoEdit from './MchAppInfoEdit.vue';
 
   defineOptions({ name: 'MchAppWorkbench' });
@@ -46,7 +48,10 @@
 
   const loading = ref(false);
   const appInfo = ref<MchAppInfoResult>({});
+  // 设备计数(「收款设备」磁贴台数角标, 加载失败时缺省不展示)
+  const deviceCounts = ref<MchDeviceCountResult>({});
   const appEditRef = ref<InstanceType<typeof MchAppInfoEdit>>();
+  const deviceConfigRef = ref<InstanceType<typeof MchAppDeviceConfigModal>>();
   // 页签标题动态化为「{应用名} · 应用配置」
   const { setTabObjectTitle } = useDynamicTabTitle($t('payment.merchant.app.app.workbenchTitle'));
 
@@ -101,6 +106,37 @@
       });
     }
 
+    // 虚拟设备: 收款之后的联动——本商户虚拟设备(手机 APP 变云音箱/云打印)
+    const deviceCards: WorkbenchTile[] = [];
+    if (hasPermission(PermCodes.Device.Virtual.VIEW)) {
+      deviceCards.push({
+        key: 'virtualDevice',
+        // 虚拟设备 — 标题与菜单 i18n_key 一致(跳设备列表页, URL 带 mchNo 预置该商户筛选)
+        title: $t('menu.device.virtual'),
+        icon: 'ant-design:sound-outlined',
+        description: $t('payment.merchant.app.app.cardAudioDeviceDesc'),
+        // 台数角标(存量总数)
+        count: deviceCounts.value.virtualDeviceCount,
+        countUnit: $t('payment.merchant.app.app.unitDevice'),
+      });
+    }
+    // 收款播报配置: 弹窗(播报/打印开关 + 门店严格匹配 + 打印版式), 按应用维度独立保存
+    if (hasPermission(PermCodes.Merchant.App.VIEW)) {
+      deviceCards.push({
+        key: 'deviceConfig',
+        title: $t('payment.device.virtual.appConfig.title'),
+        icon: 'ant-design:notification-outlined',
+        description: $t('payment.device.virtual.appConfig.broadcastHint'),
+      });
+    }
+    if (deviceCards.length > 0) {
+      groups.push({
+        group: $t('payment.merchant.app.app.groupDevice'),
+        color: 'purple',
+        cards: deviceCards,
+      });
+    }
+
     const manageCards: WorkbenchTile[] = [];
     if (hasPermission(PermCodes.Merchant.App.MANAGE)) {
       manageCards.push({
@@ -146,7 +182,7 @@
   });
 
   /**
-   * 加载当前应用信息
+   * 加载当前应用信息(按 appId 单查, 校验返回商户与 URL 商户一致, 防跨商户串号)
    */
   async function loadAppInfo() {
     if (!mchNo.value || !appId.value) {
@@ -154,24 +190,33 @@
     }
     loading.value = true;
     try {
-      const { data } = await MchAppInfoApi.page({
-        mchNo: mchNo.value,
-        current: 1,
-        size: 200,
-      });
-      const records = data?.records || [];
-      const app = records.find((a) => a.appId === appId.value);
-      if (!app) {
+      const { data } = await MchAppInfoApi.getByAppId(appId.value);
+      if (!data || !data.appId || data.mchNo !== mchNo.value) {
+        // 应用不存在或与当前商户不匹配, 返回列表
         message.warning($t('payment.merchant.app.app.appNotFound'));
         router.push({ path: '/payment/merchant/app', query: { mchNo: mchNo.value } });
         return;
       }
-      appInfo.value = app;
+      appInfo.value = data;
       // 页签标题动态化为「{应用名} · 应用配置」(名字超长由页签栏截断)
-      setTabObjectTitle(app.appName || '');
+      setTabObjectTitle(data.appName || '');
     } finally {
       loading.value = false;
     }
+  }
+
+  /**
+   * 加载设备计数(「收款设备」磁贴数量标签, 失败静默不显示数量)
+   */
+  function loadDeviceCounts() {
+    DashboardDeviceApi.deviceCounts(mchNo.value)
+      .then(({ data }) => {
+        deviceCounts.value = data || {};
+      })
+      .catch(() => {
+        // 角标为辅助信息, 拉取失败保持缺省不展示
+        deviceCounts.value = {};
+      });
   }
 
   /**
@@ -204,6 +249,10 @@
         handleDelete();
         break;
       }
+      case 'deviceConfig': {
+        deviceConfigRef.value?.show({ appId: appId.value, appName: appInfo.value.appName });
+        break;
+      }
       case 'easypay': {
         router.push({
           path: '/payment/merchant/easypay',
@@ -231,6 +280,11 @@
       }
       case 'setDefault': {
         handleSetDefault();
+        break;
+      }
+      case 'virtualDevice': {
+        // 虚拟设备列表页(平台视角, URL 带 mchNo 预置该商户筛选)
+        router.push({ path: '/device/virtual', query: { mchNo: mchNo.value } });
         break;
       }
     }
@@ -303,6 +357,7 @@
       return;
     }
     loadAppInfo();
+    loadDeviceCounts();
   });
 </script>
 
@@ -337,6 +392,7 @@
       </a-card>
     </a-spin>
 
+    <MchAppDeviceConfigModal ref="deviceConfigRef" />
     <MchAppInfoEdit ref="appEditRef" @ok="handleEditOk" />
   </div>
 </template>

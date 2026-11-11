@@ -103,7 +103,7 @@
   "wechatSubMerchantNoRequired": "Silakan masukkan nomor sub-pedagang.",
   "groupTerminal": "Buku Terminal",
   "cardTerminal": "Buku Terminal",
-  "cardTerminalDesc": "Daftarkan nomor terminal saluran dan tautkan ke terminal sistem",
+  "cardTerminalDesc": "Daftarkan nomor terminal saluran dan tautkan ke terminal pedagang",
   "transferScenePresetTip": "Maksimal 3 adegan transfer dapat diaktifkan. Adegan default harus diaktifkan. Hanya adegan aktif yang dapat dipilih saat transfer.",
   "transferSceneEnableConfirm": "Aktifkan adegan transfer ini? Adegan aktif dapat dipilih saat melakukan transfer",
   "transferSceneDisableConfirm": "Nonaktifkan adegan transfer ini? Adegan nonaktif tidak dapat dipilih saat transfer",

@@ -29,8 +29,8 @@
    *
    * 形态对齐应用工作台同款顶栏 + 分组磁贴卡片:
    * 顶栏仅返回箭头 + 标题 + (门店名) + 默认门店标签, 门店编辑入口卡片化收进「门店管理」分组;
-   * 收银与设备分组(码牌/系统终端计数来自 overview, 收款设备计数经收款设备分页接口 total 静默取数)
-   * + 快捷绑定入口(本商户未分配门店的收款设备/码牌/系统终端一键绑到本店)
+   * 收银与设备分组(码牌/商户终端计数来自 overview, 收款设备计数经收款设备分页接口 total 静默取数)
+   * + 快捷绑定入口(本商户未分配门店的收款设备/码牌/商户终端一键绑到本店)
    * + 默认设置组(默认应用/默认终端, 当前值直接写在卡片描述)。
    * 开源版裁剪(对照 plus): 无云打印与打印模板域。
    */
@@ -125,7 +125,7 @@
     if (hasPermission(PermCodes.Merchant.Terminal.VIEW)) {
       cashierCards.push({
         key: 'terminal',
-        // 系统终端
+        // 商户终端
         title: $t('payment.merchant.store.workbench.tileTerminal'),
         icon: 'ant-design:monitor-outlined',
         description: $t('payment.merchant.store.workbench.tileTerminalDesc'),
@@ -300,7 +300,7 @@
   }
 
   /**
-   * 加载门店概况聚合(码牌/系统终端计数徽标)
+   * 加载门店概况聚合(码牌/商户终端计数徽标)
    */
   async function loadOverview() {
     const { data } = await MchStoreInfoApi.overview(storeId.value);
@@ -446,7 +446,7 @@
       case 'bindDevice':
       case 'bindQrcode':
       case 'bindTerminal': {
-        // 快捷绑定弹窗(收款设备/码牌/系统终端)
+        // 快捷绑定弹窗(收款设备/码牌/商户终端)
         const bindMode = card.key === 'bindQrcode' ? 'qrcode' : card.key === 'bindTerminal' ? 'terminal' : 'device';
         bindModalRef.value?.show(bindMode, {
           storeNo: storeNo.value,

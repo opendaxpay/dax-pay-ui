@@ -42,9 +42,9 @@
   // 原始 extra JSON(保留未在表单中声明的键, 保存时合并回写)
   const baseExtra = ref<Record<string, any>>({});
 
-  // 系统终端下拉候选(新增必选)
+  // 商户终端下拉候选(新增必选)
   const terminalOptions = ref<TerminalDeviceResult[]>([]);
-  // 编辑时已绑定的系统终端(只读展示)
+  // 编辑时已绑定的商户终端(只读展示)
   const boundSystemTerminals = ref<TerminalDeviceResult[]>([]);
 
   const formState = ref<ChannelTerminalParam>({
@@ -70,7 +70,7 @@
     return $t(`dict.channel_terminal_status.${status}`);
   }
 
-  // 系统终端下拉选项(仅启用终端)
+  // 商户终端下拉选项(仅启用终端)
   const systemTerminalSelectOptions = computed(() =>
     terminalOptions.value
       .filter((i) => i.enable !== false)
@@ -80,7 +80,7 @@
   const formRules = computed(() => ({
     type: [{ required: true, message: $t('payment.device.terminal.validateType') }],
     name: [{ required: true, message: $t('payment.device.terminal.validateName') }],
-    // 新增时必须选择系统终端(建档即绑定)
+    // 新增时必须选择商户终端(建档即绑定)
     systemTerminalNo: addable.value
       ? [{ required: true, message: $t('payment.device.terminal.validateSystemTerminal') }]
       : [],
@@ -165,7 +165,7 @@
   }
 
   /**
-   * 加载商户下系统终端下拉候选
+   * 加载商户下商户终端下拉候选
    */
   async function loadTerminalOptions(mchNo: string) {
     if (!mchNo) {
@@ -268,7 +268,7 @@
     confirmLoading.value = true;
     try {
       await (addable.value
-        ? // 新增: 选择系统终端建档即绑定, 登记状态初始为 init
+        ? // 新增: 选择商户终端建档即绑定, 登记状态初始为 init
           ChannelTerminalApi.add({
             ...formState.value,
             mchNo: context.value.mchNo,

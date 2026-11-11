@@ -73,6 +73,18 @@
     "copyFailed": "Copy failed, please copy manually",
     "downloadFailed": "QR code download failed, please retry"
   },
+  "appConfig": {
+    "title": "Payment Broadcast",
+    "broadcast": "Voice Broadcast",
+    "broadcastHint": "Broadcast the received amount on the store speaker after payment",
+    "print": "Receipt Printing",
+    "printHint": "Print a receipt automatically after payment",
+    "storeStrict": "Strict store order matching",
+    "storeStrictHint": "Push only to devices bound to the store",
+    "storeStrictHintFull": "When enabled, store orders are pushed only to devices bound to that store; devices without a bound store no longer participate. When disabled, devices without a bound store are treated as merchant-wide and receive all store orders.",
+    "template": "Receipt Template",
+    "templateStandard": "Standard Receipt"
+  },
   "batchActions": "Batch Actions",
   "batchBindMerchant": "Batch Bind Merchant",
   "batchUnbindMerchant": "Batch Unbind Merchant",

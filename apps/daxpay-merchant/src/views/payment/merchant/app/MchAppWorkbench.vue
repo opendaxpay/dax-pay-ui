@@ -19,6 +19,7 @@
   import { usePermission } from '#/hooks/usePermission';
   import { useRequiredRouteQuery } from '#/hooks/useRequiredRouteQuery';
 
+  import MchAppDeviceConfigModal from './MchAppDeviceConfigModal.vue';
   import MchAppInfoEdit from './MchAppInfoEdit.vue';
 
   defineOptions({ name: 'MchAppWorkbench' });
@@ -42,6 +43,7 @@
   // 设备与应用计数(仅取虚拟设备台数用于「收款设备」磁贴, 加载失败时缺省不展示)
   const deviceCounts = ref<MchDeviceCountResult>({});
   const appEditRef = ref<InstanceType<typeof MchAppInfoEdit>>();
+  const deviceConfigRef = ref<InstanceType<typeof MchAppDeviceConfigModal>>();
   // 页签标题动态化为「{应用名} · 应用配置」
   const { setTabObjectTitle } = useDynamicTabTitle($t('payment.merchant.app.app.workbenchTitle'));
 
@@ -110,6 +112,15 @@
         // 台数角标(存量总数)
         count: deviceCounts.value.virtualDeviceCount,
         countUnit: $t('payment.merchant.app.app.unitDevice'),
+      });
+    }
+    // 收款播报配置: 弹窗(播报/打印开关 + 门店严格匹配 + 打印版式), 按应用维度独立保存
+    if (hasPermission(PermCodes.Merchant.App.VIEW)) {
+      deviceCards.push({
+        key: 'deviceConfig',
+        title: $t('payment.device.virtual.appConfig.title'),
+        icon: 'ant-design:notification-outlined',
+        description: $t('payment.device.virtual.appConfig.broadcastHint'),
       });
     }
     if (deviceCards.length > 0) {
@@ -222,11 +233,6 @@
    */
   function handleCardSelect(key: string) {
     switch (key) {
-      case 'virtualDevice': {
-        // 虚拟设备页(商户登录态隔离, 无需携带参数)
-        router.push('/mch/device/virtual');
-        break;
-      }
       case 'cancelDefault': {
         handleCancelDefault();
         break;
@@ -237,6 +243,11 @@
       }
       case 'delete': {
         handleDelete();
+        break;
+      }
+      case 'deviceConfig': {
+        // 收款播报配置弹窗(独立保存, 仅依赖业务 appId)
+        deviceConfigRef.value?.show({ appId: appId.value, appName: appInfo.value.appName });
         break;
       }
       case 'easypay': {
@@ -257,6 +268,11 @@
       }
       case 'setDefault': {
         handleSetDefault();
+        break;
+      }
+      case 'virtualDevice': {
+        // 虚拟设备页(商户登录态隔离, 无需携带参数)
+        router.push('/mch/device/virtual');
         break;
       }
     }
@@ -362,6 +378,7 @@
       </a-card>
     </a-spin>
 
+    <MchAppDeviceConfigModal ref="deviceConfigRef" />
     <MchAppInfoEdit ref="appEditRef" @ok="handleEditOk" />
   </div>
 </template>

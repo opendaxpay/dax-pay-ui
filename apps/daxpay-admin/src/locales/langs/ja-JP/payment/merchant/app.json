@@ -36,7 +36,10 @@
     "cancelDefaultDesc": "別のデフォルトアプリを割り当てる必要があります",
     "deleteDesc": "これを元に戻すことはできません。慎重に進めてください",
     "openActionAria": "アプリ設定を開く",
-    "confirmDisableDefault": "このアプリはデフォルトアプリです。無効化すると appId 未指定の注文のフォールバックが失敗します。無効化しますか？"
+    "confirmDisableDefault": "このアプリはデフォルトアプリです。無効化すると appId 未指定の注文のフォールバックが失敗します。無効化しますか？",
+    "groupDevice": "デバイス",
+    "cardAudioDeviceDesc": "この加盟店の入金アナウンス・印刷デバイスの確認と設定",
+    "unitDevice": ""
   },
   "easypay": {
     "useSystemKey": "システム鍵ペアを使用",
@@ -73,15 +76,5 @@
     "genKeyPairTitle": "RSA鍵ペア",
     "privateKey": "秘密鍵",
     "privateKeyWarning": "秘密鍵はここに一度だけ表示されます。確実に保管してください。紛失すると復元できません。"
-  },
-  "deviceConfig": {
-    "title": "入金読み上げ",
-    "titleDesc": "入金成功後の仮想デバイスアプリでの音声読み上げとレシート印刷の設定",
-    "broadcastEnable": "音声読み上げ",
-    "printEnable": "レシート印刷",
-    "storeStrict": "店舗注文の厳格一致",
-    "storeStrictHint": "有効にすると、店舗注文はその店舗に紐付いたデバイスにのみ配信され、店舗未紐付けのデバイスは対象外になります。無効にすると、店舗未紐付けのデバイスは店舗共通として扱われ、すべての店舗注文が配信されます。",
-    "templateCode": "印刷テンプレート",
-    "templateStandard": "標準レシート"
   }
 }

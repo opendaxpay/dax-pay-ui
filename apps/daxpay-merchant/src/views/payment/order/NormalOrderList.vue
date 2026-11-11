@@ -396,7 +396,7 @@
           <a-descriptions-item :label="$t('payment.order.field.storeNo')">
             {{ detail.storeNo || '-' }}
           </a-descriptions-item>
-          <!-- 终端编码(系统终端) -->
+          <!-- 终端编码(商户终端) -->
           <a-descriptions-item :label="$t('payment.order.field.terminalNo')">
             {{ detail.terminalNo || '-' }}
           </a-descriptions-item>

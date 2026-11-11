@@ -3,10 +3,10 @@ import type { BaseEntity, PageResult, Result } from '#/types/web';
 import { defHttp } from '#/api/request';
 
 /**
- * 系统终端 API（商户端 /mch/device/terminal/system/*）
+ * 商户终端 API（商户端 /mch/device/terminal/system/*）
  *
  * 后端强制 mchNo=PaymentContext；通道终端台账由商户自行维护（新增建档/报备/注销等），
- * 系统终端侧保留台账反查入口（按系统终端反查已绑定通道终端）。
+ * 商户终端侧保留台账反查入口（按商户终端反查已绑定通道终端）。
  */
 export const TerminalDeviceApi = {
   /** 分页 */
@@ -50,7 +50,7 @@ export const TerminalDeviceApi = {
   clearDefault(id: string): Promise<Result<void>> {
     return defHttp.post({ url: '/mch/device/terminal/system/clear-default', params: { id } });
   },
-  /** 批量绑定门店(本商户未分配门店的系统终端绑到目标门店) */
+  /** 批量绑定门店(本商户未分配门店的商户终端绑到目标门店) */
   bindStoreBatch(data: TerminalBindStoreBatchParam): Promise<Result<void>> {
     return defHttp.post({ url: '/mch/device/terminal/system/bind-store-batch', data });
   },
@@ -114,7 +114,7 @@ export const ChannelTerminalApi = {
   },
 };
 
-/** 系统终端查询 */
+/** 商户终端查询 */
 export interface TerminalDeviceQuery {
   terminalNo?: string;
   name?: string;
@@ -124,7 +124,7 @@ export interface TerminalDeviceQuery {
   storeUnassigned?: boolean;
 }
 
-/** 系统终端参数 */
+/** 商户终端参数 */
 export interface TerminalDeviceParam {
   id?: string;
   mchNo?: string;
@@ -134,7 +134,7 @@ export interface TerminalDeviceParam {
   remark?: string;
 }
 
-/** 系统终端结果 */
+/** 商户终端结果 */
 export interface TerminalDeviceResult extends BaseEntity {
   terminalNo?: string;
   name?: string;
@@ -150,9 +150,9 @@ export interface TerminalDeviceResult extends BaseEntity {
   channelTerminals?: ChannelTerminalResult[];
 }
 
-/** 系统终端批量绑定门店参数 */
+/** 商户终端批量绑定门店参数 */
 export interface TerminalBindStoreBatchParam {
-  /** 系统终端主键列表 */
+  /** 商户终端主键列表 */
   terminalIds: string[];
   /** 目标门店号 */
   storeNo: string;
@@ -173,7 +173,7 @@ export interface ChannelTerminalResult extends BaseEntity {
   mchName?: string;
   /** 通道差异化报备参数(JSON, 键=通道协议参数名) */
   extra?: string;
-  /** 已绑定的系统终端列表(查询时后端填充, 不落库) */
+  /** 已绑定的商户终端列表(查询时后端填充, 不落库) */
   systemTerminals?: TerminalDeviceResult[];
 }
 

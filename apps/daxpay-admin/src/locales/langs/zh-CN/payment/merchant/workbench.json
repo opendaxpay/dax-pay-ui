@@ -18,8 +18,9 @@
     "cardUserDesc": "用户账号管理与权限分配",
     "cardStore": "门店管理",
     "cardStoreDesc": "商户物理门店档案与位置信息管理",
-    "cardTerminal": "系统终端",
+    "cardTerminal": "商户终端",
     "cardTerminalDesc": "商户逻辑终端编号与通道终端绑定管理",
+    "cardQrcodeDesc": "该商户名下码牌的台账与归属绑定管理",
     "cardWxApp": "支付应用(微信)",
     "cardWxAppDesc": "管理该商户的微信公众号、小程序等开放应用",
     "cardDyApp": "支付应用(抖音)",
@@ -37,6 +38,7 @@
     "cardVirtualDeviceDesc": "该商户名下绑定虚拟设备（收款播报 APP）的台账与运维",
     "unitPiece": "个",
     "unitDevice": "台",
+    "unitQrcode": "张",
     "unitCopy": "份"
   }
 }

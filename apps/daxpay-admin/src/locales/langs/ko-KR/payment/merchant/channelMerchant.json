@@ -103,7 +103,7 @@
   "wechatSubMerchantNoRequired": "하위 판매자 번호를 입력하세요.",
   "groupTerminal": "단말 대장",
   "cardTerminal": "단말 대장",
-  "cardTerminalDesc": "본 채널 가맹점의 단말 번호를 등록하고 시스템 단말에 연결합니다",
+  "cardTerminalDesc": "본 채널 가맹점의 단말 번호를 등록하고 판매자 단말에 연결합니다",
   "cardTransferScene": "이체 시나리오 관리",
   "cardTransferSceneDesc": "Alipay 이체 시나리오 관리(2026년 이후 신규 가맹점 이체 필수 설정)",
   "transferSceneManage": "이체 시나리오 관리",

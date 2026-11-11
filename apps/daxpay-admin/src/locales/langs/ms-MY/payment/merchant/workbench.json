@@ -18,8 +18,9 @@
     "cardUserDesc": "Pengurusan akaun pengguna dan tugasan kebenaran",
     "cardStore": "Pengurusan Stor",
     "cardStoreDesc": "Profil kedai fizikal dan pengurusan lokasi",
-    "cardTerminal": "Terminal Sistem",
+    "cardTerminal": "Terminal Peniaga",
     "cardTerminalDesc": "Urus kod terminal logik pedagang dan pengikatan terminal saluran",
+    "cardQrcodeDesc": "Lejar dan pengurusan ikatan kod QR milik merchant ini",
     "cardWxApp": "Apl Pembayaran (WeChat)",
     "cardWxAppDesc": "Urus Akaun Rasmi WeChat, Mini Program dan apl terbuka lain untuk peniaga ini",
     "cardDyApp": "Apl Pembayaran (Douyin)",
@@ -37,6 +38,7 @@
     "cardVirtualDeviceDesc": "Lejar dan penyenggaraan peranti maya (aplikasi pengumuman bayaran) milik merchant ini",
     "unitPiece": "",
     "unitDevice": "",
+    "unitQrcode": "",
     "unitCopy": ""
   }
 }

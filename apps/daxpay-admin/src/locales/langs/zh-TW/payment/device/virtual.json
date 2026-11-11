@@ -73,6 +73,18 @@
     "copyFailed": "複製失敗, 請手動複製",
     "downloadFailed": "二維碼下載失敗, 請重試"
   },
+  "appConfig": {
+    "title": "收款播報",
+    "broadcast": "語音播報",
+    "broadcastHint": "收款到帳後, 店內音箱播送到帳金額",
+    "print": "小票列印",
+    "printHint": "收款到帳後, 印表機自動列印小票",
+    "storeStrict": "門店訂單嚴格匹配",
+    "storeStrictHint": "僅推送已綁定該門店的設備",
+    "storeStrictHintFull": "開啟後, 門店訂單僅推送給綁定了該門店的設備, 未綁定門店的設備不再參與; 關閉則未綁門店的設備視為商戶通用, 所有門店訂單都會推送。",
+    "template": "小票版式",
+    "templateStandard": "標準小票"
+  },
   "batchActions": "批量操作",
   "batchBindMerchant": "批量綁定商戶",
   "batchUnbindMerchant": "批量解綁商戶",
