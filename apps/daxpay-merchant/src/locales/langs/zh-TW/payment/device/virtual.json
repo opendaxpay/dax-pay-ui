@@ -60,7 +60,7 @@
   "unbindStore": "解綁門店",
   "confirmUnbindStore": "確定要解綁所選設備的門店嗎？",
   "export": "匯出",
-  "exportFileName": "收款設備清單",
+  "exportFileName": "虛擬設備清單",
   "exportFailed": "匯出失敗",
   "selectRequired": "請先勾選設備"
 }

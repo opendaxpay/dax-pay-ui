@@ -60,7 +60,7 @@
   "unbindStore": "Lepas Ikat Toko",
   "confirmUnbindStore": "Lepas ikatan toko dari perangkat yang dipilih?",
   "export": "Ekspor",
-  "exportFileName": "Daftar Perangkat Pembayaran",
+  "exportFileName": "Daftar Perangkat Virtual",
   "exportFailed": "Ekspor gagal. Silakan coba lagi nanti.",
   "selectRequired": "Silakan pilih perangkat terlebih dahulu"
 }

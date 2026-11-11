@@ -60,7 +60,7 @@
   "unbindStore": "Bỏ liên kết cửa hàng",
   "confirmUnbindStore": "Bỏ liên kết cửa hàng khỏi các thiết bị đã chọn?",
   "export": "Xuất",
-  "exportFileName": "Danh sách thiết bị thanh toán",
+  "exportFileName": "Danh sách thiết bị ảo",
   "exportFailed": "Xuất thất bại. Vui lòng thử lại sau.",
   "selectRequired": "Vui lòng chọn thiết bị trước"
 }

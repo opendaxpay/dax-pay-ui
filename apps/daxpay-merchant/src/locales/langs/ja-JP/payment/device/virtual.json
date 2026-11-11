@@ -60,7 +60,7 @@
   "unbindStore": "店舗の紐付け解除",
   "confirmUnbindStore": "選択したデバイスの店舗の紐付けを解除しますか？",
   "export": "エクスポート",
-  "exportFileName": "決済デバイス一覧",
+  "exportFileName": "仮想デバイス一覧",
   "exportFailed": "エクスポートに失敗しました。しばらくしてから再試行してください",
   "selectRequired": "最初にデバイスを選択してください"
 }

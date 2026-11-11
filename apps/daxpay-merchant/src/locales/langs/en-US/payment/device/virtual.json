@@ -60,7 +60,7 @@
   "unbindStore": "Unbind Store",
   "confirmUnbindStore": "Unbind the store from the selected devices?",
   "export": "Export",
-  "exportFileName": "Payment Device List",
+  "exportFileName": "Virtual Device List",
   "exportFailed": "Export failed. Please try again later.",
   "selectRequired": "Please select devices first"
 }

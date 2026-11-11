@@ -60,7 +60,7 @@
   "unbindStore": "Nyahikat Kedai",
   "confirmUnbindStore": "Nyahikat kedai daripada peranti yang dipilih?",
   "export": "Eksport",
-  "exportFileName": "Senarai Peranti Pembayaran",
+  "exportFileName": "Senarai Peranti Maya",
   "exportFailed": "Eksport gagal. Sila cuba lagi kemudian.",
   "selectRequired": "Sila pilih peranti dahulu"
 }

@@ -60,7 +60,7 @@
   "unbindStore": "매장 연결 해제",
   "confirmUnbindStore": "선택한 기기의 매장 연결을 해제하시겠습니까?",
   "export": "내보내기",
-  "exportFileName": "결제 기기 목록",
+  "exportFileName": "가상 디바이스 목록",
   "exportFailed": "내보내기에 실패했습니다. 잠시 후 다시 시도해 주세요",
   "selectRequired": "기기를 먼저 선택해주세요."
 }
